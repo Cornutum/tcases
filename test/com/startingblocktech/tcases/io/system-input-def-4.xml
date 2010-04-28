@@ -1,0 +1,27 @@
+<System name="System-2">
+  <Function name="Function-0">
+
+    <Input type="state">
+      <Var name="state-0-0">
+        <Value name="value-0" failure="TRUE">
+          <When>
+            <AnyOf>
+              <AnyOf property="P1"/>
+              <AnyOf property="P2"/>
+              <AnyOf property="P3"/>
+            </AnyOf>
+          </When>
+        </Value>
+        <Value name="value-2" once="YES" failure="no">
+          <When>
+            <AnyOf>
+              <AnyOf property="P4"/>
+              <AnyOf property="P5"/>
+            </AnyOf>
+          </When>
+        </Value>
+      </Var>
+    </Input>
+
+  </Function>
+</System>
