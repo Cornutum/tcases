@@ -1,0 +1,49 @@
+<System name="System-3">
+  <Function name="Function-0">
+
+    <Input type="arg">
+      <Var name="arg-0-0" when="P1,P2,P3 " whenNot="P4">
+        <Value name="value-0" when="P5" whenNot="P6,P7"/>
+      </Var>
+      <Var name="arg-0-1" when="P8,P9" whenNot="P10">
+        <Value name="value-1" when="P11" whenNot="P12, P13"/>
+      </Var>
+    </Input>
+
+    <Input type="env">
+      <VarSet name="env-0-0" whenNot="P14,P15">
+        <Var name="member-0" when=" P15,  P16 " whenNot=",P17, P17, ">
+          <Value name="value-2"/>
+        </Var>
+      </VarSet>
+      <Var name="env-0-1">
+        <Value name="value-3"/>
+      </Var>
+    </Input>
+
+  </Function>
+
+  <Function name="Function-1">
+
+    <Input type="arg">
+      <VarSet name="arg-0-0" whenNot="P14,P15">
+        <Var name="member-0" when=" P15,  P16 " whenNot=",P17, P17, ">
+          <Value name="value-2"/>
+        </Var>
+      </VarSet>
+      <Var name="arg-0-1">
+        <Value name="value-3"/>
+      </Var>
+    </Input>
+
+    <Input type="env">
+      <Var name="env-0-0" when="P1,P2,P3 " whenNot="P4">
+        <Value name="value-0" when="P5" whenNot="P6,P7"/>
+      </Var>
+      <Var name="env-0-1" when="P8,P9" whenNot="P10">
+        <Value name="value-1" when="P11" whenNot="P12, P13"/>
+      </Var>
+    </Input>
+
+  </Function>
+</System>

@@ -1,0 +1,980 @@
+//////////////////////////////////////////////////////////////////////////////
+// 
+//               Copyright 2010, Starting Block Technologies
+//                        www.startingblocktech.com
+//                           All Rights Reserved
+//
+//////////////////////////////////////////////////////////////////////////////
+
+package com.startingblocktech.tcases.io;
+
+import com.startingblocktech.tcases.*;
+import com.startingblocktech.tcases.conditions.*;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.Locator;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * An {@link ISystemInputSource} that reads from an XML document.
+ *
+ * @version $Revision$, $Date$
+ */
+public class SystemInputDocReader extends DefaultHandler implements ISystemInputSource
+  {
+  /**
+   * The base class for element handlers used by this parser.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class ElementHandler extends DefaultHandler
+    {
+    /**
+     * Returns the value of the given attribute. Throws a SAXException if the attribute is not defined.
+     */
+    public String requireAttribute( Attributes attributes, String attributeName, String attributeValue) throws SAXException
+      {
+      if( attributeValue == null)
+        {
+        throw new SAXParseException( "No \"" + attributeName + "\" attribute specified", getDocumentLocator()); 
+        }
+
+      return attributeValue;
+      }
+
+    /**
+     * Returns the value of the given attribute. Throws a SAXException if the attribute is undefined or empty.
+     */
+    public String requireAttribute( Attributes attributes, String attributeName) throws SAXException
+      {
+      return requireAttribute( attributes, attributeName, getAttribute( attributes, attributeName));
+      }
+      
+    /**
+     * Returns the value of the given attribute. Returns null if the attribute value is undefined or empty.
+     */
+    public String getAttribute( Attributes attributes, String attributeName)
+      {
+      String value = attributes.getValue( attributeName);
+      return StringUtils.isBlank( value)? null : value;
+      }
+
+    /**
+     * Converts the given property list string to a set of property names.
+     */
+    public Set<String> toProperties( String propertyList)
+      {
+      Set<String> propertySet = null;
+
+      String[] properties = propertyList==null? null : propertyList.split( ",");
+      if( properties != null && properties.length > 0)
+        {
+        propertySet = new HashSet<String>();
+        for( int i = 0; i < properties.length; i++)
+          {
+          String propertyName = StringUtils.trimToNull( properties[i]);
+          if( propertyName != null)
+            {
+            propertySet.add( propertyName);
+            }
+          }
+        }
+      
+      return propertySet;
+      }
+
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return false;
+      }
+      
+    /**
+     * Changes the parent ElementHandler.
+     */
+    public void setParent( ElementHandler parent)
+      {
+      parent_ = parent;
+      }
+
+    /**
+     * Returns the parent ElementHandler.
+     */
+    public ElementHandler getParent()
+      {
+      return parent_;
+      }
+
+    private ElementHandler parent_;
+    }
+  
+  /**
+   * Handles System elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class SystemHandler extends ElementHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return FUNCTION_TAG.equals( memberQname);
+      }
+    
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      setSystemInputDef( new SystemInputDef( requireAttribute( attributes, NAME_ATR).trim()));
+      }
+
+    /**
+     * Changes the {@link SystemInputDef} represented by this element.
+     */
+    private void setSystemInputDef( SystemInputDef inputDef)
+      {
+      systemInputDef_ = inputDef;
+      }
+
+    /**
+     * Returns the {@link SystemInputDef} represented by this element.
+     */
+    public SystemInputDef getSystemInputDef()
+      {
+      return systemInputDef_;
+      }
+    }
+  
+  /**
+   * Handles Function elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class FunctionHandler extends ElementHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return INPUT_TAG.equals( memberQname);
+      }
+    
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      setFunctionInputDef( new FunctionInputDef( requireAttribute( attributes, NAME_ATR).trim()));
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      FunctionInputDef functionInputDef = getFunctionInputDef();
+      if( functionInputDef.getVarTypes().length == 0)
+        {
+        throw new SAXParseException( "No input variables defined for " + functionInputDef, getDocumentLocator()); 
+        }
+      SystemHandler parent = (SystemHandler) getParent();
+      try
+        {
+        parent.getSystemInputDef().addFunctionInputDef( functionInputDef);
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Can't add definition for " + functionInputDef, getDocumentLocator(), e); 
+        }
+      }
+
+    /**
+     * Changes the {@link FunctionInputDef} represented by this element.
+     */
+    private void setFunctionInputDef( FunctionInputDef functionInputDef)
+      {
+      functionInputDef_ = functionInputDef;
+      }
+
+    /**
+     * Returns the {@link FunctionInputDef} represented by this element.
+     */
+    public FunctionInputDef getFunctionInputDef()
+      {
+      return functionInputDef_;
+      }
+
+    private FunctionInputDef functionInputDef_;
+    }
+  
+  /**
+   * Handles Input elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class InputHandler extends ElementHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return
+        VAR_TAG.equals( memberQname)
+        || VARSET_TAG.equals( memberQname);
+      }
+    
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      setType( requireAttribute( attributes, TYPE_ATR).trim());
+      }
+
+    /**
+     * Changes the input variable type represented by this element.
+     */
+    private void setType( String type)
+      {
+      type_ = type;
+      }
+
+    /**
+     * Returns the input variable type represented by this element.
+     */
+    public String getType()
+      {
+      return type_;
+      }
+
+    /**
+     * Returns the {@link FunctionInputDef} for this element.
+     */
+    public FunctionInputDef getFunctionInputDef()
+      {
+      FunctionHandler parent = (FunctionHandler) getParent();
+      return parent.getFunctionInputDef();
+      }
+
+    private String type_;
+    }
+  
+  /**
+   * Base class for conditional elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected abstract class ConditionalHandler extends ElementHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return WHEN_TAG.equals( memberQname);
+      }
+    
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      ICondition condition = null;
+      
+      Set<String> when = toProperties( getAttribute( attributes, WHEN_ATR));
+      if( when != null)
+        {
+        condition = new ContainsAll( when);
+        }
+
+      Set<String> whenNot = toProperties( getAttribute( attributes, WHENNOT_ATR));
+      if( whenNot != null)
+        {
+        ICondition excludes = new Not().add( new ContainsAny( whenNot));
+
+        condition =
+          condition == null
+          ? excludes
+          : new AllOf().add( condition).add( excludes);
+        }
+
+      getConditional().setCondition( condition);
+      }
+
+    /**
+     * Returns the {@link Conditional} represented by this element.
+     */
+    public abstract Conditional getConditional();
+    }
+  
+  /**
+   * Base class for elements that can contain one or more conditions.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected abstract class ConditionContainer extends ElementHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return
+        ALLOF_TAG.equals( memberQname)
+        || ANYOF_TAG.equals( memberQname)
+        || NOT_TAG.equals( memberQname);
+      }
+    
+    /**
+     * Adds the  {@link ICondition} to this container.
+     */
+    public abstract void addCondition( ICondition condition) throws SAXParseException;
+    
+    /**
+     * Returns true if no {@link ICondition} added to this container.
+     */
+    public abstract boolean isEmpty();
+    }
+  
+  /**
+   * Handles When elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class WhenHandler extends ConditionContainer
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      if( getConditional().getCondition() != null)
+        {
+        throw new SAXParseException( "Condition already defined for this element", getDocumentLocator()); 
+        }
+      }
+    
+    /**
+     * Adds the  {@link ICondition} to this container.
+     */
+    public void addCondition( ICondition condition) throws SAXParseException
+      {
+      Conditional conditional = getConditional();
+      if( conditional.getCondition() != null)
+        {
+        throw new SAXParseException( "Condition already defined for this element", getDocumentLocator()); 
+        }
+
+      conditional.setCondition( condition);
+      }
+    
+    /**
+     * Returns true if no {@link ICondition} added to this container.
+     */
+    public boolean isEmpty()
+      {
+      return getConditional().getCondition() == null;
+      }
+
+    /**
+     * Returns the {@link Conditional} that contains by this element.
+     */
+    public Conditional getConditional()
+      {
+      ConditionalHandler parent = (ConditionalHandler) getParent();
+      return parent.getConditional();
+      }
+    }
+  
+  /**
+   * Base class for {@link ConditionSet} elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected abstract class ConditionSetHandler extends ConditionContainer
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      Set<String> properties = toProperties( getAttribute( attributes, PROPERTY_ATR));
+      if( properties != null)
+        {
+        withProperties( properties);
+        }
+      }
+
+    /**
+     * Initializes this ConditionSet using the given set of properties.
+     */
+    public abstract void withProperties( Set<String> properties) throws SAXParseException;
+    
+    /**
+     * Adds the  {@link ICondition} to this container.
+     */
+    public void addCondition( ICondition condition) throws SAXParseException
+      {
+      getConditionSet().add( condition);
+      }
+    
+    /**
+     * Returns true if no {@link ICondition} added to this container.
+     */
+    public boolean isEmpty()
+      {
+      return getConditionSet().getConditions().isEmpty();
+      }
+
+    /**
+     * Changes the condition set represented by this element.
+     */
+    public void setConditionSet( ConditionSet conditionSet)
+      {
+      conditionSet_ = conditionSet;
+      }
+
+    /**
+     * Returns the condition set represented by this element.
+     */
+    public ConditionSet getConditionSet()
+      {
+      return conditionSet_;
+      }
+
+    private ConditionSet conditionSet_;
+    }
+  
+  /**
+   * Handles AllOf elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class AllOfHandler extends ConditionSetHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      setConditionSet( new AllOf());
+      super.startElement( uri, localName, qName, attributes);
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( (AllOf) getConditionSet());
+      }
+
+    /**
+     * Initializes this ConditionSet using the given set of properties.
+     */
+    public void withProperties( Set<String> properties) throws SAXParseException
+      {
+      addCondition( new ContainsAll( properties));
+      }
+    }
+  
+  /**
+   * Handles AnyOf elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class AnyOfHandler extends ConditionSetHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      setConditionSet( new AnyOf());
+      super.startElement( uri, localName, qName, attributes);
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( (AnyOf) getConditionSet());
+      }
+
+    /**
+     * Initializes this ConditionSet using the given set of properties.
+     */
+    public void withProperties( Set<String> properties) throws SAXParseException
+      {
+      addCondition( new ContainsAny( properties));
+      }
+    }
+  
+  /**
+   * Handles Not elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class NotHandler extends ConditionSetHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      setConditionSet( new Not());
+      super.startElement( uri, localName, qName, attributes);
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( (Not) getConditionSet());
+      }
+
+    /**
+     * Initializes this ConditionSet using the given set of properties.
+     */
+    public void withProperties( Set<String> properties) throws SAXParseException
+      {
+      addCondition( new ContainsAny( properties));
+      }
+    }
+  
+  /**
+   * Base class for variable definition elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected abstract class VarDefHandler extends ConditionalHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      setVarDef( createVarDef( requireAttribute( attributes, NAME_ATR).trim()));
+      super.startElement( uri, localName, qName, attributes);
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      AbstractVarDef varDef = getVarDef();
+      try
+        {
+        if( getParent() instanceof InputHandler)
+          {
+          InputHandler parent = (InputHandler) getParent();
+          varDef.setType( parent.getType());
+          parent.getFunctionInputDef().addVarDef( varDef);
+          }
+        else
+          {
+          VarSetHandler parent = (VarSetHandler) getParent();
+          parent.getVarSet().addMember( varDef);
+          }
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Can't add definition for " + varDef, getDocumentLocator(), e); 
+        }
+      }
+
+    /**
+     * Changes the {@link AbstractVarDef} represented by this element.
+     */
+    private void setVarDef( AbstractVarDef varDef)
+      {
+      varDef_ = varDef;
+      }
+
+    /**
+     * Returns the {@link AbstractVarDef} represented by this element.
+     */
+    public AbstractVarDef getVarDef()
+      {
+      return varDef_;
+      }
+
+    /**
+     * Creates the {@link AbstractVarDef} represented by this element.
+     */
+    public abstract AbstractVarDef createVarDef( String name);
+
+    /**
+     * Returns the {@link Conditional} represented by this element.
+     */
+    public Conditional getConditional()
+      {
+      return getVarDef();
+      }
+
+    private AbstractVarDef varDef_;
+    }
+  
+  /**
+   * Handles Var elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class VarHandler extends VarDefHandler
+    {
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      if( !getVar().getValues().hasNext())
+        {
+        throw new SAXParseException( "No values defined for " + getVar(), getDocumentLocator()); 
+        }
+
+      super.endElement( uri, localName, qName);
+      }
+    
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return
+        super.isMember( memberQname)
+        || VALUE_TAG.equals( memberQname);
+      }
+    
+    /**
+     * Creates the {@link AbstractVarDef} represented by this element.
+     */
+    public AbstractVarDef createVarDef( String name)
+      {
+      return new VarDef( name);
+      }
+
+    /**
+     * Returns the {@link VarDef} represented by this element.
+     */
+    public VarDef getVar()
+      {
+      return (VarDef) getVarDef();
+      }
+    }
+  
+  /**
+   * Handles VarSet elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class VarSetHandler extends VarDefHandler
+    {
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      if( !getVarSet().getMembers().hasNext())
+        {
+        throw new SAXParseException( "No members defined for " + getVarSet(), getDocumentLocator()); 
+        }
+
+      super.endElement( uri, localName, qName);
+      }
+    
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return
+        super.isMember( memberQname)
+        || VAR_TAG.equals( memberQname)
+        || VARSET_TAG.equals( memberQname);
+      }
+    
+    /**
+     * Creates the {@link AbstractVarDef} represented by this element.
+     */
+    public AbstractVarDef createVarDef( String name)
+      {
+      return new VarSet( name);
+      }
+
+    /**
+     * Returns the {@link VarSet} represented by this element.
+     */
+    public VarSet getVarSet()
+      {
+      return (VarSet) getVarDef();
+      }
+    }
+  
+  /**
+   * Handles Value elements
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class ValueHandler extends ConditionalHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return
+        super.isMember( memberQname)
+        || PROPERTY_TAG.equals( memberQname);
+      }
+    
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      VarValueDef value = new VarValueDef( requireAttribute( attributes, NAME_ATR).trim());
+      setValue( value);
+
+      super.startElement( uri, localName, qName, attributes);
+
+      String failureAtr = StringUtils.trimToNull( getAttribute( attributes, FAILURE_ATR));
+      boolean failure = failureAtr != null && BooleanUtils.toBoolean( failureAtr);
+
+      String onceAtr = StringUtils.trimToNull( getAttribute( attributes, ONCE_ATR));
+      boolean once = onceAtr != null && BooleanUtils.toBoolean( onceAtr);
+
+      value.setType
+        ( failure? VarValueDef.Type.FAILURE :
+          once? VarValueDef.Type.ONCE :
+          VarValueDef.Type.VALID);
+
+      String propertyAtr = getAttribute( attributes, PROPERTY_ATR);
+      if( propertyAtr != null)
+        {
+        if( !value.getType().isValid())
+          {
+          throw new SAXParseException( "Can't define properties for a failure value", getDocumentLocator()); 
+          }
+        value.addProperties( toProperties( propertyAtr));
+        } 
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      VarHandler parent = (VarHandler) getParent();
+      VarDef var = parent.getVar();
+      try
+        {
+        var.addValue( getValue());
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Can't add value for " + var, getDocumentLocator(), e); 
+        }
+      }
+
+    /**
+     * Changes the {@link VarValueDef} represented by this element.
+     */
+    private void setValue( VarValueDef value)
+      {
+      value_ = value;
+      }
+
+    /**
+     * Returns the {@link VarValueDef} represented by this element.
+     */
+    public VarValueDef getValue()
+      {
+      return value_;
+      }
+
+    /**
+     * Returns the {@link Conditional} represented by this element.
+     */
+    public Conditional getConditional()
+      {
+      return getValue();
+      }
+
+    private VarValueDef value_;
+    }
+  
+  /**
+   * Handles Property elements
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class PropertyHandler extends ElementHandler
+    {    
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      ValueHandler parent = (ValueHandler) getParent();
+      VarValueDef value = parent.getValue();
+
+      Set<String> properties = toProperties( requireAttribute( attributes, NAME_ATR).trim());
+      if( properties.isEmpty())
+        {
+        throw new SAXParseException( "No property names specified", getDocumentLocator()); 
+        }
+
+      if( !value.getType().isValid())
+        {
+        throw new SAXParseException( "Can't define properties for a failure value", getDocumentLocator()); 
+        }
+
+      value.addProperties( properties);
+      }
+    }
+  
+  /**
+   * Creates a new SystemInputDocReader object.
+   */
+  public SystemInputDocReader()
+    {
+    this( System.in);
+    }
+  
+  /**
+   * Creates a new SystemInputDocReader object.
+   */
+  public SystemInputDocReader( InputStream stream)
+    {
+    setInputStream( stream);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef} instance.
+   */
+  public SystemInputDef getSystemInputDef()
+    {
+    SAXParser parser;
+    try
+      {
+      parser = SAXParserFactory.newInstance().newSAXParser();
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't create SAXParser", e);
+      }
+
+    try
+      {
+      parser.parse( getInputStream(), this);
+      }
+    catch( SAXParseException spe)
+      {
+      throw
+        new RuntimeException
+        ( "Error in document at line=" + spe.getLineNumber(),
+          spe);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read SystemInputDef", e);
+      }
+
+    return systemInputDef_;
+    }
+
+  /**
+   * Changes the input stream for this reader.
+   */
+  public void setInputStream( InputStream stream)
+    {
+    stream_ = stream;
+    }
+
+  /**
+   * Returns the input stream for this reader.
+   */
+  protected InputStream getInputStream()
+    {
+    return stream_;
+    }
+
+  /**
+   * Pushes the given ElementHandler onto the top of the parse stack.
+   */
+  protected void pushElementHandler( ElementHandler handler)
+    {
+    elementHandlers_.add( 0, handler);
+    }
+
+  /**
+   * Removes an ElementHandler from the top of the parse stack.
+   */
+  protected ElementHandler popElementHandler()
+    {
+    return elementHandlers_.size() > 0? (ElementHandler)elementHandlers_.remove( 0) : null;
+    }
+
+  /**
+   * Returns the ElementHandler at the top of the parse stack.
+   */
+  protected ElementHandler getCurrentElementHandler()
+    {
+    return elementHandlers_.size() > 0? (ElementHandler) elementHandlers_.get( 0) : null;
+    }
+    
+  public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+    {
+    ElementHandler handler =
+      qName.equals( ALLOF_TAG)?       (ElementHandler) new AllOfHandler() :
+      qName.equals( ANYOF_TAG)?       (ElementHandler) new AnyOfHandler() :
+      qName.equals( FUNCTION_TAG)?    (ElementHandler) new FunctionHandler() :
+      qName.equals( INPUT_TAG)?       (ElementHandler) new InputHandler() :
+      qName.equals( NOT_TAG)?         (ElementHandler) new NotHandler() :
+      qName.equals( PROPERTY_TAG)?    (ElementHandler) new PropertyHandler() :
+      qName.equals( SYSTEM_TAG)?      (ElementHandler) new SystemHandler() :
+      qName.equals( VALUE_TAG)?       (ElementHandler) new ValueHandler() :
+      qName.equals( VAR_TAG)?         (ElementHandler) new VarHandler() :
+      qName.equals( VARSET_TAG)?      (ElementHandler) new VarSetHandler() :
+      qName.equals( WHEN_TAG)?        (ElementHandler) new WhenHandler() :
+      null;
+
+    if( handler == null)
+      {
+      throw new SAXParseException( "Unknown element: " + qName, getDocumentLocator()); 
+      }
+
+    ElementHandler parentHandler = getCurrentElementHandler();
+    if( !(parentHandler == null
+          ? SYSTEM_TAG.equals( qName)
+          : parentHandler.isMember( qName)))
+      {
+      throw new SAXParseException( "A " + qName + " element can't appear in this location", getDocumentLocator()); 
+      }
+
+    handler.setParent( parentHandler);
+    pushElementHandler( handler);
+    handler.startElement( uri, localName, qName, attributes);
+    }
+
+  public void endElement( String uri, String localName, String qName) throws SAXException
+    {
+    ElementHandler handler = getCurrentElementHandler();
+    if( handler != null)
+      {
+      handler.endElement( uri, localName, qName);
+      popElementHandler(); 
+      }
+    }
+
+  public void setDocumentLocator( Locator locator)
+    {
+    locator_ = locator;
+    }
+
+  public Locator getDocumentLocator()
+    {
+    return locator_;
+    }
+    
+  public void warning( SAXParseException e) throws SAXException
+    {
+    }
+
+  public void error( SAXParseException e) throws SAXException
+    {
+    throw e;
+    }
+
+  private InputStream           stream_;
+  private Locator               locator_;
+  private List<ElementHandler>  elementHandlers_  = new ArrayList<ElementHandler>();
+  private SystemInputDef        systemInputDef_;
+
+  private static final String ALLOF_TAG     = "AllOf";
+  private static final String ANYOF_TAG     = "AnyOf";
+  private static final String FUNCTION_TAG  = "Function";
+  private static final String INPUT_TAG     = "Input";
+  private static final String NOT_TAG       = "Not";
+  private static final String PROPERTY_TAG  = "Property";
+  private static final String SYSTEM_TAG    = "System";
+  private static final String VALUE_TAG     = "Value";
+  private static final String VARSET_TAG    = "VarSet";
+  private static final String VAR_TAG       = "Var";
+  private static final String WHEN_TAG      = "When";
+
+  private static final String FAILURE_ATR   = "failure";
+  private static final String NAME_ATR      = "name";
+  private static final String ONCE_ATR      = "once";
+  private static final String PROPERTY_ATR  = "property";
+  private static final String TYPE_ATR      = "type";
+  private static final String WHENNOT_ATR   = "whenNot";
+  private static final String WHEN_ATR      = "when";
+  }
