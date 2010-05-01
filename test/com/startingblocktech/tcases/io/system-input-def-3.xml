@@ -2,23 +2,29 @@
   <Function name="Function-0">
 
     <Input type="arg">
-      <Var name="arg-0-0" when="P1,P2,P3 " whenNot="P4">
-        <Value name="value-0" when="P5" whenNot="P6,P7"/>
-      </Var>
-      <Var name="arg-0-1" when="P8,P9" whenNot="P10">
-        <Value name="value-1" when="P11" whenNot="P12, P13"/>
-      </Var>
+      <VarSet name="arg-0-0" when="P1,P2,P3 " whenNot="P4,P5">
+        <Var name="member-0">
+          <Value name="value_0"/>
+        </Var>
+      </VarSet>
+      <VarSet name="arg-0-1" when="P8,P9" whenNot="P10,P11,P12">
+        <Var name="member-0">
+          <Value name="value_1"/>
+        </Var>
+      </VarSet>
     </Input>
 
     <Input type="env">
-      <VarSet name="env-0-0" whenNot="P14,P15">
-        <Var name="member-0" when=" P15,  P16 " whenNot=",P17, P17, ">
-          <Value name="value-2"/>
+      <VarSet name="env-0-0">
+        <Var name="member-0">
+          <Value name="value_2"/>
         </Var>
       </VarSet>
-      <Var name="env-0-1">
-        <Value name="value-3"/>
-      </Var>
+      <VarSet name="env-0-1">
+        <Var name="member-0">
+          <Value name="value_3"/>
+        </Var>
+      </VarSet>
     </Input>
 
   </Function>
@@ -26,23 +32,29 @@
   <Function name="Function-1">
 
     <Input type="arg">
-      <VarSet name="arg-0-0" whenNot="P14,P15">
-        <Var name="member-0" when=" P15,  P16 " whenNot=",P17, P17, ">
-          <Value name="value-2"/>
+      <VarSet name="arg-1-0">
+        <Var name="member-0">
+          <Value name="value_4"/>
         </Var>
       </VarSet>
-      <Var name="arg-0-1">
-        <Value name="value-3"/>
-      </Var>
+      <VarSet name="arg-1-1">
+        <Var name="member-0">
+          <Value name="value_5"/>
+        </Var>
+      </VarSet>
     </Input>
 
     <Input type="env">
-      <Var name="env-0-0" when="P1,P2,P3 " whenNot="P4">
-        <Value name="value-0" when="P5" whenNot="P6,P7"/>
-      </Var>
-      <Var name="env-0-1" when="P8,P9" whenNot="P10">
-        <Value name="value-1" when="P11" whenNot="P12, P13"/>
-      </Var>
+      <VarSet name="env-1-0">
+        <Var name="member-0">
+          <Value name="value_6"/>
+        </Var>
+      </VarSet>
+      <VarSet name="env-1-1">
+        <Var name="member-0">
+          <Value name="value_7"/>
+        </Var>
+      </VarSet>
     </Input>
 
   </Function>
