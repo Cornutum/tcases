@@ -206,6 +206,11 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_3()
     {
+    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-3.xml");
+    assertEquals( "System name", "System-3", systemInputDef.getName());
+
+    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
+    assertEquals( "Function input defs", 2, functionInputDefs.length);
     }
 
   /**
