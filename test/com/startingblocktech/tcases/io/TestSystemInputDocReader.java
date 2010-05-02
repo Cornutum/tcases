@@ -1446,7 +1446,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_32()
     {
-    assertException( "system-input-def-32.xml", 26, "Variable=member-0 already defined for varSet=env-0-0");
+    assertException( "system-input-def-32.xml", 26, "Member=member-0 already defined for varSet=env-0-0");
     }
 
   /**
