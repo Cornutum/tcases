@@ -62,7 +62,7 @@ public class SystemInputDef
 
     if( findFunctionInputDef( functionInputDef.getName()) >= 0)
       {
-      throw new IllegalStateException( "Function=" + functionInputDef.getName() + "already defined for system=" + getName());
+      throw new IllegalStateException( "Function=" + functionInputDef.getName() + " already defined for system=" + getName());
       }
     
     functionInputDefs_.add( functionInputDef);

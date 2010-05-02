@@ -76,7 +76,7 @@ public class TestCase implements Comparable<TestCase>
 
     if( findVarBinding( varBinding.getVar()) >= 0)
       {
-      throw new IllegalStateException( "Binding for " + varBinding.getVar() + "already defined for testCase=" + getId());
+      throw new IllegalStateException( "Binding for " + varBinding.getVar() + " already defined for testCase=" + getId());
       }
     
     varBindings_.add( varBinding);

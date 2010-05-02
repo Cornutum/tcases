@@ -62,7 +62,7 @@ public class VarSet extends AbstractVarDef
 
     if( findMember( var.getName()) >= 0)
       {
-      throw new IllegalStateException( "Variable=" + var.getName() + "already defined for varSet=" + getPathName());
+      throw new IllegalStateException( "Member=" + var.getName() + " already defined for varSet=" + getPathName());
       }
 
     members_.add( var);

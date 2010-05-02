@@ -62,7 +62,7 @@ public class VarDef extends AbstractVarDef
 
     if( findValue( value.getName()) >= 0)
       {
-      throw new IllegalStateException( "Value=" + value.getName() + "already defined for variable=" + getPathName());
+      throw new IllegalStateException( "Value=" + value.getName() + " already defined for variable=" + getPathName());
       }
 
     values_.add( value);

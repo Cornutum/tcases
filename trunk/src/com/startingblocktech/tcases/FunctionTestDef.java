@@ -61,7 +61,7 @@ public class FunctionTestDef
 
     if( findTestCase( testCase.getId()) >= 0)
       {
-      throw new IllegalStateException( "Test=" + testCase.getId() + "already defined for function=" + getName());
+      throw new IllegalStateException( "Test=" + testCase.getId() + " already defined for function=" + getName());
       }
     
     testCases_.add( testCase);

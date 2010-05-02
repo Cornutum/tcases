@@ -25,6 +25,7 @@ import org.apache.commons.lang.StringUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -329,6 +330,14 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
         || ANYOF_TAG.equals( memberQname)
         || NOT_TAG.equals( memberQname);
       }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      if( isEmpty())
+        {
+        throw new SAXParseException( "No member defined for this " + qName + " condition", getDocumentLocator());
+        }
+      }
     
     /**
      * Adds the  {@link ICondition} to this container.
@@ -459,6 +468,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
 
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
+      super.endElement( uri, localName, qName);
       ConditionContainer parent = (ConditionContainer) getParent();
       parent.addCondition( (AllOf) getConditionSet());
       }
@@ -487,6 +497,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
 
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
+      super.endElement( uri, localName, qName);
       ConditionContainer parent = (ConditionContainer) getParent();
       parent.addCondition( (AnyOf) getConditionSet());
       }
@@ -515,6 +526,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
 
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
+      super.endElement( uri, localName, qName);
       ConditionContainer parent = (ConditionContainer) getParent();
       parent.addCondition( (Not) getConditionSet());
       }
@@ -605,9 +617,12 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     {
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
-      if( !getVar().getValues().hasNext())
+      Iterator<VarValueDef> values;
+      boolean hasValidValue;
+      for( values = getVar().getValues(), hasValidValue = false; values.hasNext() && !(hasValidValue = values.next().isValid()); );
+      if( !hasValidValue)
         {
-        throw new SAXParseException( "No values defined for " + getVar(), getDocumentLocator()); 
+        throw new SAXParseException( "No valid values defined for " + getVar(), getDocumentLocator()); 
         }
 
       super.endElement( uri, localName, qName);
@@ -915,7 +930,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
           ? SYSTEM_TAG.equals( qName)
           : parentHandler.isMember( qName)))
       {
-      throw new SAXParseException( "A " + qName + " element can't appear in this location", getDocumentLocator()); 
+      throw new SAXParseException( "The " + qName + " element is not allowed at this location", getDocumentLocator()); 
       }
 
     handler.setParent( parentHandler);

@@ -16,7 +16,7 @@
           </Value>
         </Var>
 
-        <VarSet name="member-1">
+        <VarSet>
           <Var name="member-1-0">
             <Value name="value-1-0"/>
           </Var>

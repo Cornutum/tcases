@@ -13,6 +13,9 @@
         <Var name="member-0" when="P1," whenNot=",,P2,,P3 ,P3 ,">
           <Value name="value-0" when="P4" whenNot=" P5, P6 " property=" P7 ">
             <Property name="P8, P9, P10, P8"/>
+            <When>
+              <AnyOf property="C1"/>
+            </When>
           </Value>
         </Var>
 
