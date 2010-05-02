@@ -30,6 +30,9 @@
             <AnyOf property="P5, P5"/>
           </When>
         </Value>
+        <When>
+          <Not property="C1"/>
+        </When>
       </Var>
     </Input>
 

@@ -63,7 +63,7 @@ public class FunctionInputDef
 
     if( findVarDef( varDef.getName()) >= 0)
       {
-      throw new IllegalStateException( "Variable=" + varDef.getName() + "already defined for function=" + getName());
+      throw new IllegalStateException( "Variable=" + varDef.getName() + " already defined for function=" + getName());
       }
     
     vars_.add( varDef);

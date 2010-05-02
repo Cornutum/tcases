@@ -37,7 +37,7 @@
 
   <Function name="Function-1">
 
-    <Input type="state">
+    <Input>
       <Var name="state-1-0">
         <Value name="value-0" failure="no">
           <When>

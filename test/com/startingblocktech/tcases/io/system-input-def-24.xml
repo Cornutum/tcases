@@ -1,0 +1,82 @@
+<System name="System-2">
+  <Function name="Function-0">
+
+    <Input type="arg">
+      <Var name="arg-0-0" when="P1,P2,P3 " whenNot="P4">
+        <Value name="value-0" when="P5,P6" whenNot="P7" property=" P8, P9, ">
+          <Property name="P10, P11"/>
+          <Property name="P11, P12"/>
+          <Property name="P12, P13"/>
+        </Value>
+        <Value name="value-1" when="P14,P15" whenNot="P16" failure="yes">
+        </Value>
+        <Value name="value-2" when="P17, P18" whenNot="P19" property="P20, P20, P21" once="true">
+          <Property name="P22,P23,P24,"/>
+          <Property name=",P25"/>
+        </Value>
+      </Var>
+      <Var name="arg-0-1">
+        <Value name="value-3" once="YES">
+        </Value>
+        <Value name="value-4">
+        </Value>
+        <Value name="value-5" failure="TRUE">
+        </Value>
+      </Var>
+      <VarSet name="arg-0-2">
+        <Var name="member-0">
+          <Value name="value-6"/>
+        </Var>
+      </VarSet>
+    </Input>
+
+    <Input type="env">
+      <VarSet name="env-0-0" whenNot="P26">
+        <Var name="member-0">
+          <Value name="value-7"/>
+          <Value name="value-8"/>
+        </Var>
+        <When>
+          <Not property="X1"/>
+        </When>
+      </VarSet>
+      <VarSet name="env-0-1" whenNot="P27">
+        <Var name="member-0" when="P1,P2,P3 " whenhNot="P4">
+          <Value name="value-9" when="P14,P15" whenNot="P16" failure="yes">
+          </Value>
+          <Value name="value-10" when="P5,P6" whenNot="P7" property=" P8, P9, ">
+            <Property name="P10, P11"/>
+            <Property name="P11, P12"/>
+            <Property name="P12, P13"/>
+          </Value>
+          <Value name="value-11" when="P17, P18" whenNot="P19" property="P20, P20, P21" once="true">
+            <Property name="P22,P23,P24,"/>
+            <Property name=",P25"/>
+          </Value>
+        </Var>
+      </VarSet>
+      <Var name="env-0-2">
+        <Value name="value-12"/>
+      </Var>
+    </Input>
+
+  </Function>
+
+  <Function name="Function-1">
+
+    <Input type="arg">
+      <VarSet name="arg-1-0">
+        <Var name="member-0">
+          <Value name="value-13"/>
+        </Var>
+      </VarSet>
+      <Var name="arg-1-1">
+        <Value name="value-14"/>
+      </Var>
+    </Input>
+
+    <Input type="env">
+    </Input>
+
+  </Function>
+</System>

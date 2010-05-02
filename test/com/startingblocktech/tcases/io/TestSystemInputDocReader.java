@@ -16,6 +16,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.collections15.IteratorUtils;
 
 import java.io.InputStream;
+import org.xml.sax.SAXParseException;
 
 /**
  * Runs tests for the {@link SystemInputDocReader}.
@@ -55,7 +56,7 @@ public class TestSystemInputDocReader
    * <TR><TD> VarSet.WhenProperties </TD> <TD> One </TD></TR>
    * <TR><TD> VarSet.WhenNotProperties </TD> <TD> None </TD></TR>
    * <TR><TD> VarSet.Condition </TD> <TD> None </TD></TR>
-   * <TR><TD> VarSet.Members </TD> <TD> One </TD></TR>
+   * <TR><TD> VarSet.Members </TD> <TD> Many </TD></TR>
    * <TR><TD> Condition.Properties </TD> <TD> NA </TD></TR>
    * <TR><TD> Condition.Members </TD> <TD> NA </TD></TR>
    * </TABLE>
@@ -252,6 +253,11 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_4()
     {
+    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-4.xml");
+    assertEquals( "System name", "System-4", systemInputDef.getName());
+
+    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
+    assertEquals( "Function input defs", 2, functionInputDefs.length);
     }
 
   /**
@@ -294,6 +300,11 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_5()
     {
+    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-5.xml");
+    assertEquals( "System name", "System-5", systemInputDef.getName());
+
+    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
+    assertEquals( "Function input defs", 1, functionInputDefs.length);
     }
 
   /**
@@ -327,7 +338,7 @@ public class TestSystemInputDocReader
    * <TR><TD> VarSet.WhenProperties </TD> <TD> None </TD></TR>
    * <TR><TD> VarSet.WhenNotProperties </TD> <TD> None </TD></TR>
    * <TR><TD> VarSet.Condition </TD> <TD> Not </TD></TR>
-   * <TR><TD> VarSet.Members </TD> <TD> One </TD></TR>
+   * <TR><TD> VarSet.Members </TD> <TD> Many </TD></TR>
    * <TR><TD> Condition.Properties </TD> <TD> None </TD></TR>
    * <TR><TD> Condition.Members </TD> <TD> One </TD></TR>
    * </TABLE>
@@ -336,6 +347,11 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_6()
     {
+    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-6.xml");
+    assertEquals( "System name", "System-6", systemInputDef.getName());
+
+    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
+    assertEquals( "Function input defs", 1, functionInputDefs.length);
     }
 
   /**
@@ -347,7 +363,7 @@ public class TestSystemInputDocReader
    * <TR><TD> System.Name </TD> <TD> Defined </TD></TR>
    * <TR><TD> Function.Count </TD> <TD> One </TD></TR>
    * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Type.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Type.Count </TD> <TD> Many </TD></TR>
    * <TR><TD> Type.Name </TD> <TD> Defined </TD></TR>
    * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
    * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
@@ -355,8 +371,8 @@ public class TestSystemInputDocReader
    * <TR><TD> Var.WhenNotProperties </TD> <TD> None </TD></TR>
    * <TR><TD> Var.Condition </TD> <TD> None </TD></TR>
    * <TR><TD> Var.ValidValues </TD> <TD> One </TD></TR>
-   * <TR><TD> Var.FailureValues </TD> <TD> One </TD></TR>
-   * <TR><TD> Var.OnceValue </TD> <TD> Yes </TD></TR>
+   * <TR><TD> Var.FailureValues </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.OnceValue </TD> <TD> No </TD></TR>
    * <TR><TD> Value.Name </TD> <TD> Defined </TD></TR>
    * <TR><TD> Value.WhenProperties </TD> <TD> None </TD></TR>
    * <TR><TD> Value.WhenNotProperties </TD> <TD> None </TD></TR>
@@ -378,6 +394,11 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_7()
     {
+    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-7.xml");
+    assertEquals( "System name", "System-7", systemInputDef.getName());
+
+    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
+    assertEquals( "Function input defs", 1, functionInputDefs.length);
     }
 
   /**
@@ -420,6 +441,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_8()
     {
+    assertException( "system-input-def-8.xml", 1, "No \"name\" attribute specified");
     }
 
   /**
@@ -462,6 +484,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_9()
     {
+    assertException( "system-input-def-9.xml", 62, "No \"name\" attribute specified");
     }
 
   /**
@@ -504,6 +527,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_10()
     {
+    assertException( "system-input-def-10.xml", 3, "No input variables defined for FunctionInputDef[Function-0]");
     }
 
   /**
@@ -546,6 +570,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_11()
     {
+    assertException( "system-input-def-11.xml", 40, "No \"type\" attribute specified");
     }
 
   /**
@@ -588,6 +613,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_12()
     {
+    assertException( "system-input-def-12.xml", 7, "No input variables defined for FunctionInputDef[Function-0]");
     }
 
   /**
@@ -630,6 +656,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_13()
     {
+    assertException( "system-input-def-13.xml", 24, "No \"name\" attribute specified");
     }
 
   /**
@@ -672,6 +699,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_14()
     {
+    assertException( "system-input-def-14.xml", 14, "Condition already defined for this element");
     }
 
   /**
@@ -714,6 +742,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_15()
     {
+    assertException( "system-input-def-15.xml", 33, "Condition already defined for this element");
     }
 
   /**
@@ -756,6 +785,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_16()
     {
+    assertException( "system-input-def-16.xml", 23, "No valid values defined for VarDef[env-0-0]");
     }
 
   /**
@@ -798,6 +828,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_17()
     {
+    assertException( "system-input-def-17.xml", 35, "No \"name\" attribute specified");
     }
 
   /**
@@ -840,6 +871,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_18()
     {
+    assertException( "system-input-def-18.xml", 16, "Condition already defined for this element");
     }
 
   /**
@@ -882,6 +914,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_19()
     {
+    assertException( "system-input-def-19.xml", 32, "Condition already defined for this element");
     }
 
   /**
@@ -924,6 +957,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_20()
     {
+    assertException( "system-input-def-20.xml", 14, "Can't define properties for a failure value");
     }
 
   /**
@@ -966,6 +1000,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_21()
     {
+    assertException( "system-input-def-21.xml", 36, "Can't define properties for a failure value");
     }
 
   /**
@@ -1008,6 +1043,8 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_22()
     {
+    assertException( "system-input-def-22-1.xml", 10, "No \"name\" attribute specified");
+    assertException( "system-input-def-22-2.xml", 11, "No property names specified");
     }
 
   /**
@@ -1050,6 +1087,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_23()
     {
+    assertException( "system-input-def-23.xml", 19, "No \"name\" attribute specified");
     }
 
   /**
@@ -1092,6 +1130,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_24()
     {
+    assertException( "system-input-def-24.xml", 39, "Condition already defined for this element");
     }
 
   /**
@@ -1134,6 +1173,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_25()
     {
+    assertException( "system-input-def-25.xml", 76, "Condition already defined for this element");
     }
 
   /**
@@ -1176,55 +1216,14 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_26()
     {
+    assertException( "system-input-def-26.xml", 11, "No members defined for VarSet[arg-0-0]");
     }
 
   /**
    * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
-   * <TR align="left"><TH colspan=2> 27.  getSystemInputDef (Failure: VarSet.Members) </TH></TR>
-   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> System.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Function.Count </TD> <TD> One </TD></TR>
-   * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Type.Count </TD> <TD> One </TD></TR>
-   * <TR><TD> Type.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
-   * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Var.WhenProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> Var.WhenNotProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> Var.Condition </TD> <TD> None </TD></TR>
-   * <TR><TD> Var.ValidValues </TD> <TD> One </TD></TR>
-   * <TR><TD> Var.FailureValues </TD> <TD> One </TD></TR>
-   * <TR><TD> Var.OnceValue </TD> <TD> Yes </TD></TR>
-   * <TR><TD> Value.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Value.WhenProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> Value.WhenNotProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> Value.Condition </TD> <TD> AllOf </TD></TR>
-   * <TR><TD> Value.Properties </TD> <TD> One </TD></TR>
-   * <TR><TD> Property.Count </TD> <TD> Many </TD></TR>
-   * <TR><TD> Property.Properties </TD> <TD> One </TD></TR>
-   * <TR><TD> VarSet.Count </TD> <TD> Many </TD></TR>
-   * <TR><TD> VarSet.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> VarSet.WhenProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> VarSet.WhenNotProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> VarSet.Condition </TD> <TD> AnyOf </TD></TR>
-   * <TR><TD> VarSet.Members </TD> <TD><FONT color=red> Many </FONT></TD></TR>
-   * <TR><TD> Condition.Properties </TD> <TD> One </TD></TR>
-   * <TR><TD> Condition.Members </TD> <TD> None </TD></TR>
-   * </TABLE>
-   * </P>
-   */
-  @Test
-  public void testGetSystemInputDef_27()
-    {
-    }
-
-  /**
-   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
-   * <P>
-   * <TABLE border="1" cellpadding="8">
-   * <TR align="left"><TH colspan=2> 28.  getSystemInputDef (Failure: Condition.Members) </TH></TR>
+   * <TR align="left"><TH colspan=2> 27.  getSystemInputDef (Failure: Condition.Members) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> System.Name </TD> <TD> Defined </TD></TR>
    * <TR><TD> Function.Count </TD> <TD> Many </TD></TR>
@@ -1258,8 +1257,196 @@ public class TestSystemInputDocReader
    * </P>
    */
   @Test
+  public void testGetSystemInputDef_27()
+    {
+    assertException( "system-input-def-27-1.xml", 22, "No member defined for this Not condition");
+    assertException( "system-input-def-27-2.xml", 26, "No member defined for this When condition");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 28.  getSystemInputDef (Failure: Invalid member) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
   public void testGetSystemInputDef_28()
     {
+    assertException( "system-input-def-28.xml", 22, "The AllOf element is not allowed at this location");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 29.  getSystemInputDef (Failure: Value.Name) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> System.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Function.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Type.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Type.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.Condition </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.ValidValues </TD> <TD> One </TD></TR>
+   * <TR><TD> Var.FailureValues </TD> <TD> One </TD></TR>
+   * <TR><TD> Var.OnceValue </TD> <TD> Yes </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> <FONT color=red> Duplicate </FONT> </TD></TR>
+   * <TR><TD> Value.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Value.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Value.Condition </TD> <TD> AllOf </TD></TR>
+   * <TR><TD> Value.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> Property.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Property.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> VarSet.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> VarSet.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> VarSet.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> VarSet.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> VarSet.Condition </TD> <TD> AnyOf </TD></TR>
+   * <TR><TD> VarSet.Members </TD> <TD> One </TD></TR>
+   * <TR><TD> Condition.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> Condition.Members </TD> <TD> None </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_29()
+    {
+    assertException( "system-input-def-29.xml", 23, "Value=value-1 already defined for variable=member-0");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 30.  getSystemInputDef (Failure: Function.Name) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> System.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Function.Count </TD> <TD> <FONT color=red> Duplicate </FONT> </TD></TR>
+   * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Type.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Type.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.Condition </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.ValidValues </TD> <TD> One </TD></TR>
+   * <TR><TD> Var.FailureValues </TD> <TD> One </TD></TR>
+   * <TR><TD> Var.OnceValue </TD> <TD> Yes </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Value.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Value.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Value.Condition </TD> <TD> AllOf </TD></TR>
+   * <TR><TD> Value.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> Property.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Property.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> VarSet.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> VarSet.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> VarSet.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> VarSet.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> VarSet.Condition </TD> <TD> AnyOf </TD></TR>
+   * <TR><TD> VarSet.Members </TD> <TD> One </TD></TR>
+   * <TR><TD> Condition.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> Condition.Members </TD> <TD> None </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_30()
+    {
+    assertException( "system-input-def-30.xml", 39, "Function=Function-0 already defined for system=System-7");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 31.  getSystemInputDef (Failure: Var.Name) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> System.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Function.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Type.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Type.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Var.Name </TD> <TD> <FONT color=red> Duplicate </FONT> </TD></TR>
+   * <TR><TD> Var.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.Condition </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.ValidValues </TD> <TD> One </TD></TR>
+   * <TR><TD> Var.FailureValues </TD> <TD> One </TD></TR>
+   * <TR><TD> Var.OnceValue </TD> <TD> Yes </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Value.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Value.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Value.Condition </TD> <TD> AllOf </TD></TR>
+   * <TR><TD> Value.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> Property.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Property.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> VarSet.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> VarSet.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> VarSet.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> VarSet.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> VarSet.Condition </TD> <TD> AnyOf </TD></TR>
+   * <TR><TD> VarSet.Members </TD> <TD> One </TD></TR>
+   * <TR><TD> Condition.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> Condition.Members </TD> <TD> None </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_31()
+    {
+    assertException( "system-input-def-31.xml", 27, "Variable=env-0-0 already defined for function=Function-0");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 32.  getSystemInputDef (Failure: VarSet.Members) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> System.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Function.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Type.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Type.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.Condition </TD> <TD> None </TD></TR>
+   * <TR><TD> Var.ValidValues </TD> <TD> One </TD></TR>
+   * <TR><TD> Var.FailureValues </TD> <TD> One </TD></TR>
+   * <TR><TD> Var.OnceValue </TD> <TD> Yes </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Value.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Value.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> Value.Condition </TD> <TD> AllOf </TD></TR>
+   * <TR><TD> Value.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> Property.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Property.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> VarSet.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> VarSet.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> VarSet.WhenProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> VarSet.WhenNotProperties </TD> <TD> None </TD></TR>
+   * <TR><TD> VarSet.Condition </TD> <TD> AnyOf </TD></TR>
+   * <TR><TD> VarSet.Members </TD> <TD> <FONT color=red> Duplicate </FONT> </TD></TR>
+   * <TR><TD> Condition.Properties </TD> <TD> One </TD></TR>
+   * <TR><TD> Condition.Members </TD> <TD> None </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_32()
+    {
+    assertException( "system-input-def-32.xml", 26, "Variable=member-0 already defined for varSet=env-0-0");
     }
 
   /**
@@ -1289,5 +1476,41 @@ public class TestSystemInputDocReader
     return systemInputDef;
     }
 
-  }
+  /**
+   * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
+   */
+  private void assertException( String resource, int expectedLine, String expectedMsg)
+    {
+    Throwable failure = null;
+    try
+      {
+      readSystemInputDef( resource);
+      }
+    catch( Throwable t)
+      {
+      failure = t;
+      }
 
+    if( failure == null)
+      {
+      fail( "Expected exception not thrown.");
+      }
+    
+    Throwable cause;
+    for( cause = failure.getCause();
+         !(cause == null || cause instanceof SAXParseException);
+         cause = cause.getCause());
+
+    if( cause == null)
+      {
+      throw new RuntimeException( "Unexpected exception thrown", failure);
+      }
+
+    SAXParseException spe = (SAXParseException) cause;
+    assertEquals( "Exception line", expectedLine, spe.getLineNumber());
+
+    String actualMsg = spe.getException()==null? spe.getMessage() : spe.getException().getMessage();
+    assertEquals( "Exception message", expectedMsg, actualMsg);
+    }
+
+  }

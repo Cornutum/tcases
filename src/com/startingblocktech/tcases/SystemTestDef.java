@@ -62,7 +62,7 @@ public class SystemTestDef
 
     if( findFunctionTestDef( functionTestDef.getName()) >= 0)
       {
-      throw new IllegalStateException( "Function=" + functionTestDef.getName() + "already defined for system=" + getName());
+      throw new IllegalStateException( "Function=" + functionTestDef.getName() + " already defined for system=" + getName());
       }
     
     functionTestDefs_.add( functionTestDef);

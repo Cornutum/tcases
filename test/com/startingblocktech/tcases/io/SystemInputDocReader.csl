@@ -592,13 +592,11 @@ getSystemInputDef
         }
       One
         {
-          type = once;
           conditions = varSets;
         }
       
       Many
         {
-          type = failure;
           conditions = varSets;
         }
       NA

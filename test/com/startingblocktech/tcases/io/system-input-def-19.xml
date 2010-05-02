@@ -27,6 +27,9 @@
 
         <Value name="value-3">
           <When>
+            <AnyOf property="P4, "/>
+          </When>
+          <When>
             <AnyOf property="P5, P5"/>
           </When>
         </Value>
