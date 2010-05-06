@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!-- Version: $Revision$ $Date$ -->
+
+<project name="tcases" default="none" basedir=".">
+
+  <!-- Root directory -->
+  <property name="root.path" value="."/>
+  <property name="root.dir" location="${root.path}"/>
+
+  <!-- Global properties -->
+  <import file="${root.dir}/global-properties.xml"/>
+
+  <!-- Standard targets -->
+  <target name="build" description="Create all distribution packages." depends="compile">
+    <mkdir dir="${distrib.lib.dir}"/>
+    <jar destfile="${distrib.lib.dir}/tcases.jar" basedir="${class.dir}">
+      <include name="**/*.class"/>
+    </jar>  
+  </target>
+
+  <target name="clean" description="Delete all generated files." depends="clean.build, clean.test, clean.javadoc"> 
+  </target>
+
+  <target name="compile" description="Compile all source files." depends="init">
+    <mkdir dir="${class.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${class.dir}"
+      debug="${javac.debug}"
+      deprecation="${javac.deprecation}"
+      >
+      <classpath refid="javac.classpath"/>
+      <compilerarg line="${javac.lint}"/>
+    </javac>
+  </target>
+
+  <target name="init" description="Setup for building"> 
+  </target>
+
+  <target name="rebuild" description="Equivalent to 'clean', followed by 'build'." depends="clean,build"> 
+  </target>
+
+  <target name="test" description="Run all unit tests." depends="compile.test">
+    <property name="test.failure.property" value="test.failed"/>
+    <property name="testcase" value="Test*"/>
+
+    <mkdir dir="${test.reports.dir}"/>
+    <junit 
+      haltonfailure="no"
+      failureproperty="${test.failure.property}"
+      errorproperty="${test.failure.property}"
+      printsummary="yes">
+      <classpath>
+        <path refid="javac.test.classpath"/>
+      </classpath>
+      <formatter type="xml" if="test.continue"/> 
+      <formatter type="plain" usefile="no" unless="test.continue"/>
+      <batchtest fork="yes" todir="${test.reports.dir}">
+        <fileset dir="${test.src.dir}">
+          <include name="**/${testcase}.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+
+    <!-- Record occurrence of any test failure -->
+    <if>
+      <isset property="${test.failure.property}"/>
+      <then>
+        <touch file="${test.failed.file}"/>
+        <fail unless="test.continue" message="One or more tests failed"/>
+      </then>
+    </if>
+  </target>
+
+  <!-- Other targets -->
+
+  <target name="test.report" description="Run all unit tests and create an HTML report of test results.">
+    <delete file="${test.failed.file}"/>
+    <delete dir="${test.reports.dir}"/>
+    <mkdir dir="${test.reports.dir}"/>
+
+    <property name="test.continue" value="true"/>
+    <antcall target="test"/>
+    
+    <junitreport todir="${test.reports.dir}">
+      <fileset dir="${test.reports.dir}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report format="frames" todir="${test.reports.dir}/html"/>
+    </junitreport>
+
+    <fail message="One or more tests failed">
+      <condition>
+        <available file="${test.failed.file}"/>
+      </condition>
+    </fail>
+  </target>
+
+  <target name="javadoc" depends="build">    
+    <mkdir dir="${javadoc.dir}"/>
+    <javadoc 
+      sourcepath="${src.dir}"
+      destdir="${javadoc.dir}"
+      packagenames="*"
+      verbose="off"
+      >
+      <classpath>
+        <path refid="javac.classpath"/>
+      </classpath>
+    </javadoc>
+  </target>
+
+  <target name="clean.build">
+    <delete dir="${class.dir}"/>
+    <delete file="${distrib.dir}"/>
+  </target>
+
+  <target name="clean.test">
+    <delete dir="${test.class.dir}"/>
+  </target>
+
+  <target name="clean.javadoc">
+    <delete dir="${javadoc.dir}"/>
+  </target>
+
+  <target name="compile.test" depends="build, compile.test.classes">
+  </target>
+
+  <target name="compile.test.classes" depends="compile.test.resources">
+    <mkdir dir="${test.class.dir}"/>
+    <javac srcdir="${test.src.dir}" destdir="${test.class.dir}"
+      debug="${javac.debug}"
+      deprecation="${javac.deprecation}"
+      >
+      <classpath refid="javac.test.classpath"/>
+      <compilerarg line="${javac.lint}"/>
+    </javac>
+  </target>
+
+  <target name="compile.test.resources">
+    <!-- Copy any resources to class path. -->
+    <copy todir="${test.class.dir}">
+      <fileset dir="${test.src.dir}">
+        <include name="**/*.xml"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="none">
+    <fail>No default target defined.</fail>
+  </target>
+
+</project>
