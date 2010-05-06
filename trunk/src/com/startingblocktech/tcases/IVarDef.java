@@ -60,17 +60,17 @@ public interface IVarDef
 
 
   /**
-   * {@link getType Identifies} an input variable that is a formal argument of a function.
+   * {@link #getType Identifies} an input variable that is a formal argument of a function.
    */
   String ARG = "arg";
 
   /**
-   * {@link getType Identifies} an implicit input variable defined by the environment to a function.
+   * {@link #getType Identifies} an implicit input variable defined by the environment to a function.
    */
   String ENV = "env";
 
   /**
-   * {@link getType Identifies} an implicit input variable defined the internal state of the system.
+   * {@link #getType Identifies} an implicit input variable defined the internal state of the system.
    */
   String STATE = "state";
   }
