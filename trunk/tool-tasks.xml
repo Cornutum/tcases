@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- Version: $Revision$ $Date$ -->
+
+<project name="toolTasks" default="none" basedir=".">
+
+  <property name="tools.build.lib" location="${root.dir}/tools/build/lib"/>
+
+  <path id="tools.build.classpath">
+    <fileset dir="${tools.build.lib}">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+
+  <!-- Utility tasks: if, etc. -->
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="tools.build.classpath"/>
+
+  <target name="none">
+    <fail>No default target defined.</fail>
+  </target>
+
+</project>

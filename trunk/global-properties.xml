@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!-- Version: $Revision$ $Date$ -->
+
+<project name="globalProperties" default="none" basedir=".">
+
+  <!-- Utility tasks -->
+  <import file="${root.dir}/tool-tasks.xml"/>
+
+  <!-- Root URL -->
+  <pathconvert property="root.dir.std" targetos="unix">
+    <path location="${root.dir}"/>
+  </pathconvert>
+
+  <!-- Release tag -->
+  <basename file="${root.dir}" property="release.tag"/>
+  <tstamp>
+    <format property="release.timestamp" pattern="yyyyMMdd-HHmm" timezone="GMT+0"/>
+  </tstamp>
+  
+  <!-- Source directories -->
+  <property name="src.dir" location="${root.dir}/src"/>
+  <property name="test.src.dir" location="${root.dir}/test"/>
+  <property name="lib.dir" location="${root.dir}/lib"/>
+
+  <!-- Build directories -->
+  <property name="build.dir" location="${root.dir}/build"/>
+  <property name="class.dir" location="${build.dir}/class"/>
+  <property name="lib.dir" location="${build.dir}/lib"/>
+  <property name="distrib.dir" location="${build.dir}/distrib"/>
+  <property name="distrib.lib.dir" location="${distrib.dir}/lib"/>
+
+  <property name="javadoc.dir" location="${build.dir}/javadoc"/>
+
+  <property name="test.build.dir" location="${build.dir}/test"/>
+  <property name="test.class.dir" location="${test.build.dir}/class"/>
+  <property name="test.lib.dir" location="${test.build.dir}/lib"/>
+  <property name="test.reports.dir" location="${test.build.dir}/reports"/>
+
+  <!-- Tool properties -->
+  <property name="tools.dir" location="${root.dir}/tools"/>
+  <property name="tools.test.lib" location="${tools.dir}/test/lib"/>
+
+  <!-- Test document properties -->
+  <property name="test.failed.file" location="${test.build.dir}/test-failed"/>
+
+  <!-- Java runtime properties -->
+  <property name="java.assert" value="true"/>
+
+  <!-- Java compiler properties -->
+  <property name="javac.debug" value="true"/>
+  <property name="javac.deprecation" value="true"/>
+  <property name="javac.lint" value="-Xlint:all,-path"/>
+
+  <!-- Common classpaths -->
+  <path id="javac.classpath">
+    <pathelement location="${class.dir}"/>
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <path id="javac.test.classpath">
+    <path refid="javac.classpath"/>
+    <pathelement location="${test.class.dir}"/>
+    <fileset dir="${tools.test.lib}">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="none">
+    <fail>No default target defined.</fail>
+  </target>
+
+</project>
