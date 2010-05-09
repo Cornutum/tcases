@@ -1043,7 +1043,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_22()
     {
-    assertException( "system-input-def-22-1.xml", 10, "No \"name\" attribute specified");
+    assertException( "system-input-def-22-1.xml", 10, "No property names specified");
     assertException( "system-input-def-22-2.xml", 11, "No property names specified");
     }
 

@@ -8,6 +8,7 @@
 package com.startingblocktech.tcases;
 
 import com.startingblocktech.tcases.util.ToString;
+import static com.startingblocktech.tcases.DefUtils.*;
 
 import java.util.Iterator;
 
@@ -41,6 +42,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    */
   public void setName( String name)
     {
+    assertIdentifier( name);
     name_ = name;
     }
   
@@ -81,7 +83,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    */
   public void setType( String type)
     {
-    assert type != null;
+    assertIdentifier( type);
     type_ = type;
     }
 

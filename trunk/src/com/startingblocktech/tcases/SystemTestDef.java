@@ -8,6 +8,7 @@
 package com.startingblocktech.tcases;
 
 import com.startingblocktech.tcases.util.ToString;
+import static com.startingblocktech.tcases.DefUtils.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class SystemTestDef
    */
   public void setName( String name)
     {
+    assertIdentifier( name);
     name_ = name;
     }
 
