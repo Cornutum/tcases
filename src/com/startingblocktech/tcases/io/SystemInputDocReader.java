@@ -9,6 +9,7 @@ package com.startingblocktech.tcases.io;
 
 import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.conditions.*;
+import static com.startingblocktech.tcases.DefUtils.*;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -63,6 +64,25 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       return requireAttribute( attributes, attributeName, getAttribute( attributes, attributeName));
       }
+
+    /**
+     * Returns the value of the given identifier attribute. Throws a SAXException if the attribute is undefined, empty, or invalid.
+     */
+    public String requireIdentifier( Attributes attributes, String attributeName) throws SAXException
+      {
+      String id = requireAttribute( attributes, attributeName, getAttribute( attributes, attributeName)).trim();
+
+      try
+        {
+        assertIdentifier( id);
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+        }
+
+      return id;
+      }
       
     /**
      * Returns the value of the given attribute. Returns null if the attribute value is undefined or empty.
@@ -74,12 +94,13 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       }
 
     /**
-     * Converts the given property list string to a set of property names.
+     * Converts the given attribute value to a set of property names.
      */
-    public Set<String> toProperties( String propertyList)
+    public Set<String> toProperties( Attributes attributes, String attributeName) throws SAXParseException
       {
       Set<String> propertySet = null;
 
+      String propertyList = StringUtils.strip( getAttribute( attributes, attributeName));
       String[] properties = propertyList==null? null : propertyList.split( ",");
       if( properties != null && properties.length > 0)
         {
@@ -91,6 +112,15 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
             {
             propertySet.add( propertyName);
             }
+          }
+
+        try
+          {
+          assertPropertyIdentifiers( propertySet);
+          }
+        catch( Exception e)
+          {
+          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
           }
         }
       
@@ -141,7 +171,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      setSystemInputDef( new SystemInputDef( requireAttribute( attributes, NAME_ATR).trim()));
+      setSystemInputDef( new SystemInputDef( requireIdentifier( attributes, NAME_ATR)));
       }
 
     /**
@@ -178,7 +208,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      setFunctionInputDef( new FunctionInputDef( requireAttribute( attributes, NAME_ATR).trim()));
+      setFunctionInputDef( new FunctionInputDef( requireIdentifier( attributes, NAME_ATR)));
       }
 
     public void endElement( String uri, String localName, String qName) throws SAXException
@@ -237,7 +267,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      setType( requireAttribute( attributes, TYPE_ATR).trim());
+      setType( requireIdentifier( attributes, TYPE_ATR));
       }
 
     /**
@@ -287,13 +317,13 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       ICondition condition = null;
       
-      Set<String> when = toProperties( getAttribute( attributes, WHEN_ATR));
+      Set<String> when = toProperties( attributes, WHEN_ATR);
       if( when != null)
         {
         condition = new ContainsAll( when);
         }
 
-      Set<String> whenNot = toProperties( getAttribute( attributes, WHENNOT_ATR));
+      Set<String> whenNot = toProperties( attributes, WHENNOT_ATR);
       if( whenNot != null)
         {
         ICondition excludes = new Not().add( new ContainsAny( whenNot));
@@ -406,7 +436,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     {
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      Set<String> properties = toProperties( getAttribute( attributes, PROPERTY_ATR));
+      Set<String> properties = toProperties( attributes, PROPERTY_ATR);
       if( properties != null)
         {
         withProperties( properties);
@@ -549,7 +579,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     {
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      setVarDef( createVarDef( requireAttribute( attributes, NAME_ATR).trim()));
+      setVarDef( createVarDef( requireIdentifier( attributes, NAME_ATR)));
       super.startElement( uri, localName, qName, attributes);
       }
 
@@ -719,7 +749,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      VarValueDef value = new VarValueDef( requireAttribute( attributes, NAME_ATR).trim());
+      VarValueDef value = new VarValueDef( requireIdentifier( attributes, NAME_ATR));
       setValue( value);
 
       super.startElement( uri, localName, qName, attributes);
@@ -735,15 +765,12 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
           once? VarValueDef.Type.ONCE :
           VarValueDef.Type.VALID);
 
-      String propertyAtr = getAttribute( attributes, PROPERTY_ATR);
-      if( propertyAtr != null)
+      if( getAttribute( attributes, PROPERTY_ATR) != null && !value.getType().isValid())
         {
-        if( !value.getType().isValid())
-          {
-          throw new SAXParseException( "Can't define properties for a failure value", getDocumentLocator()); 
-          }
-        value.addProperties( toProperties( propertyAtr));
-        } 
+        throw new SAXParseException( "Can't define properties for a failure value", getDocumentLocator()); 
+        }
+
+      value.addProperties( toProperties( attributes, PROPERTY_ATR));
       }
 
     public void endElement( String uri, String localName, String qName) throws SAXException
@@ -799,8 +826,8 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       ValueHandler parent = (ValueHandler) getParent();
       VarValueDef value = parent.getValue();
 
-      Set<String> properties = toProperties( requireAttribute( attributes, NAME_ATR).trim());
-      if( properties.isEmpty())
+      Set<String> properties = toProperties( attributes, NAME_ATR);
+      if( properties == null || properties.isEmpty())
         {
         throw new SAXParseException( "No property names specified", getDocumentLocator()); 
         }

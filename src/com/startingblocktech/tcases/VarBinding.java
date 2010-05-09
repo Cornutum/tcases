@@ -8,6 +8,7 @@
 package com.startingblocktech.tcases;
 
 import com.startingblocktech.tcases.util.ToString;
+import static com.startingblocktech.tcases.DefUtils.*;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -59,6 +60,7 @@ public class VarBinding
    */
   public void setVar( String varName)
     {
+    assertIdentifier( varName);
     var_ = varName;
     }
 
@@ -75,6 +77,7 @@ public class VarBinding
    */
   public void setValue( String valueName)
     {
+    assertIdentifier( valueName);
     value_ = valueName;
     }
 
@@ -91,6 +94,7 @@ public class VarBinding
    */
   public void setType( String type)
     {
+    assertIdentifier( type);
     varType_ = type;
     }
 

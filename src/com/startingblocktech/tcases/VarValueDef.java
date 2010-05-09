@@ -8,6 +8,7 @@
 package com.startingblocktech.tcases;
 
 import com.startingblocktech.tcases.util.ToString;
+import static com.startingblocktech.tcases.DefUtils.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -68,6 +69,7 @@ public class VarValueDef extends Conditional
    */
   public void setName( String name)
     {
+    assertIdentifier( name);
     name_ = name;
     }
 
@@ -108,6 +110,7 @@ public class VarValueDef extends Conditional
    */
   public void setProperties( Set<String> properties)
     {
+    assertPropertyIdentifiers( properties);
     properties_ = new HashSet<String>();
     addProperties( properties);
     }
