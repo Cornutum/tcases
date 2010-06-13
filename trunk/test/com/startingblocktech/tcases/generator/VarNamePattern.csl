@@ -1,0 +1,194 @@
+//////////////////////////////////////////////////////////////////////////////
+// 
+//               Copyright 2010, Starting Block Technologies
+//                        www.startingblocktech.com
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//  Version: $Revision$, $Date$
+//
+//  Random: 
+//
+/////////////////////////////////////////////////////////////////////////////
+
+
+isValid
+{
+ parameters:
+  String
+    {
+      Null
+        {
+          type = failure;
+        }
+      Empty
+        {
+          type = failure;
+        }
+      Blank
+        {
+          type = failure;
+        }
+      NonBlank;
+    }
+
+  Length
+    {
+      One;
+      Many
+        {
+          properties = lengthMany;
+        }
+    }
+
+  Name
+    {
+      Empty
+        {
+          type = failure;
+        }
+      NonIdentifier
+        {
+          type = failure;
+        }
+      Identifier;
+    }
+
+  Wildcard.Count
+    {
+      None;
+      One
+        {
+          properties = wildcard;
+        }
+      Only
+        {
+          properties = wildcard;
+          conditions = ~lengthMany;
+        }
+      Many
+        {
+          conditions = lengthMany;
+          type = failure;
+        }
+    }
+
+  Wildcard.Position
+    {
+      First
+        {
+          conditions = wildcard, lengthMany;
+          type = failure;
+        }
+      Middle
+        {
+          conditions = wildcard, lengthMany;
+          type = failure;
+        }
+      Last
+        {
+          conditions = wildcard;
+        }
+      NA
+        {
+          conditions = ~wildcard;
+        }
+    }
+
+  Wildcard.Type
+    {
+      AllChildren
+        {
+          conditions = wildcard;
+        }
+      AllDescendants
+        {
+          conditions = wildcard;
+        }
+      NA
+        {
+          conditions = ~wildcard;
+        }
+    }
+}
+
+matches
+{
+ parameters:
+  Pattern.Length
+    {
+      One;
+      Many
+        {
+          properties = patternMany;
+        }
+    }
+
+  Pattern.Wildcard
+    {
+      None; 
+      AllChildren
+        {
+          properties = wildcard, wildcardChildren;
+        }
+      AllDescendants
+        {
+          properties = wildcard, wildcardDescendant;
+        }
+    }
+
+  Path-Head.Length
+    {
+      Less-Than
+        {
+          conditions = patternMany;
+          type = failure;
+        }
+      Greater-Than
+        {
+          conditions = ~wildcard;
+          type = failure;
+        }
+
+      Equal;
+    }
+
+  Path-Head.Match
+    {
+      Yes;
+      No
+        {
+          type = failure;
+        }
+    }
+
+  Path-Tail.Length
+    {
+      None
+        {
+          conditions = wildcardChildren;
+          type = failure;
+        }
+      Optional
+        {
+          conditions = wildcardDescendant;
+        }
+      One
+        {
+          conditions = wildcard;
+        }
+      Many
+        {
+          conditions = wildcardDescendant;
+        }
+      TooMany
+        {
+          conditions = wildcardChildren;
+          type = failure;
+        }
+      NA
+        {
+          conditions = ~wildcard;
+        }
+    }
+}
