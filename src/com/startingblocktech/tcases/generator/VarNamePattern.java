@@ -29,7 +29,7 @@ public class VarNamePattern
     varNamePath_ =
       StringUtils.isBlank( pattern)
       ? null
-      : pattern.split( "\\.");
+      : pattern.split( "\\.", -1);
 
     int patternLength = varNamePath_==null? 0 : varNamePath_.length;
     for( minDepth_ = 0,
