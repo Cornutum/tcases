@@ -178,8 +178,7 @@ public class TupleCombiner
       Iterator<IVarDef> members = varDef.getMembers();
       if( members == null)
         {
-        VarNamePattern varNamePath = new VarNamePattern( varDef.getPathName());
-        if( !isExcluded( varNamePath) && isIncluded( varNamePath))
+        if( isEligible( varDef))
           {
           combinedVars.add( varDef);
           }
@@ -246,6 +245,15 @@ public class TupleCombiner
       {
       throw new IllegalArgumentException( "Can't find variable matching pattern=" + varNamePattern);
       }
+    }
+
+  /**
+   * Returns true if the given input variable is eligible to be combined.
+   */
+  public boolean isEligible( IVarDef varDef)
+    {
+    VarNamePattern varNamePath = new VarNamePattern( varDef.getPathName());
+    return !isExcluded( varNamePath) && isIncluded( varNamePath);
     }
 
   /**
