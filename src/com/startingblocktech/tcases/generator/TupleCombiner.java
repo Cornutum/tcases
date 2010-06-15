@@ -144,51 +144,35 @@ public class TupleCombiner
    */
   public Iterator<VarBinding[]> getTuples( FunctionInputDef inputDef)
     {
-    List<IVarDef> vars = getCombinedVars( inputDef);
+    List<VarDef> vars = getCombinedVars( inputDef);
     return null;
     }
 
   /**
    * Returns the set of input variables to be combined.
    */
-  private List<IVarDef> getCombinedVars( FunctionInputDef inputDef)
+  private List<VarDef> getCombinedVars( FunctionInputDef inputDef)
     {
     assertApplicable( inputDef);
-    List<IVarDef> combinedVars = addCombinedVars( new ArrayList<IVarDef>(), inputDef.getVarDefs());
+
+    List<VarDef> combinedVars = new ArrayList<VarDef>();
+    for( VarDefIterator varDefs = new VarDefIterator( inputDef); varDefs.hasNext(); )
+      {
+      VarDef varDef = varDefs.next();
+      if( isEligible( varDef))
+        {
+        combinedVars.add( varDef);
+        }
+      }
+
     if( combinedVars.size() < getTupleSize())
       {
       throw
         new IllegalStateException
-        ( "Can't return " + getTupleSize() + "-tuples for " + inputDef + ": "
-          + combinedVars.size() + " variables eligible for combination");
+        ( "Can't return " + getTupleSize() + "-tuples for " + inputDef
+          + ": only " + combinedVars.size() + " variables eligible for combination");
       }
 
-    return combinedVars;
-    }
-
-  /**
-   * Adds to the <code>combinedVars</code> list all members of the given variable set that are eligible to be combined
-   * and returns the <code>combinedVars</code> list.
-   */
-  private List<IVarDef> addCombinedVars( List<IVarDef> combinedVars, Iterator<IVarDef> varDefs)
-    {
-    while( varDefs.hasNext())
-      {
-      IVarDef varDef = varDefs.next();
-      Iterator<IVarDef> members = varDef.getMembers();
-      if( members == null)
-        {
-        if( isEligible( varDef))
-          {
-          combinedVars.add( varDef);
-          }
-        }
-      else
-        {
-        addCombinedVars( combinedVars, members);
-        }
-      }
-    
     return combinedVars;
     }
 
