@@ -41,6 +41,15 @@ public class VarNamePattern
          minDepth_++);
     }
 
+
+  /**
+   * Returns true if the given variable name matches this pattern.
+   */
+  public boolean matches( String varName)
+    {
+    return matches( new VarNamePattern( varName));
+    }
+  
   /**
    * Returns true if the given variable name matches this pattern.
    */
@@ -147,7 +156,7 @@ public class VarNamePattern
 
     return
       members == null
-      ? matches( new VarNamePattern( var.getPathName()))
+      ? matches( var.getPathName())
       : isApplicable( members);
     }
 
