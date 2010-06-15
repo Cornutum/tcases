@@ -319,7 +319,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         true,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
 
   /**
@@ -345,7 +345,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         true,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
 
   /**
@@ -371,7 +371,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         true,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
 
   /**
@@ -397,7 +397,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         false,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
 
   /**
@@ -423,7 +423,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         false,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
 
   /**
@@ -449,7 +449,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         false,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
 
   /**
@@ -475,7 +475,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         false,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
 
   /**
@@ -501,7 +501,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         false,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
 
   /**
@@ -527,7 +527,7 @@ public class TestVarNamePattern
     assertEquals
       ( "pattern=" + pattern + " matches string=" + string,
         true,
-        pattern.matches( new VarNamePattern( string)));
+        pattern.matches( string));
     }
   }
 
