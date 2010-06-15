@@ -77,8 +77,9 @@
     <delete dir="${test.reports.dir}"/>
     <mkdir dir="${test.reports.dir}"/>
 
-    <property name="test.continue" value="true"/>
-    <antcall target="test"/>
+    <antcall target="test">
+      <param name="test.continue" value="true"/>
+    </antcall>
     
     <junitreport todir="${test.reports.dir}">
       <fileset dir="${test.reports.dir}">
@@ -94,17 +95,19 @@
     </fail>
   </target>
 
-  <target name="javadoc" depends="build">    
+  <target name="javadoc" depends="compile.test">    
     <mkdir dir="${javadoc.dir}"/>
     <javadoc 
-      sourcepath="${src.dir}"
       destdir="${javadoc.dir}"
-      packagenames="*"
       verbose="off"
       >
       <classpath>
-        <path refid="javac.classpath"/>
+        <path refid="javac.test.classpath"/>
       </classpath>
+      <sourcefiles>
+        <fileset dir="${src.dir}" includes="**/*.java"/>
+        <fileset dir="${test.src.dir}" includes="**/*.java"/>
+      </sourcefiles>
     </javadoc>
   </target>
 
