@@ -2,7 +2,6 @@
 // 
 //               Copyright 2010, Starting Block Technologies
 //                        www.startingblocktech.com
-//                           Any Rights Reserved
 //
 //////////////////////////////////////////////////////////////////////////////
 
