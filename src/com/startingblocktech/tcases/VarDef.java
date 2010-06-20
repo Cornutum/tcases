@@ -7,6 +7,9 @@
 
 package com.startingblocktech.tcases;
 
+import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections15.Predicate;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -50,6 +53,40 @@ public class VarDef extends AbstractVarDef
   public Iterator<VarValueDef> getValues()
     {
     return values_.iterator();
+    }
+
+  /**
+   * Returns an iterator for the set of valid values.
+   */
+  public Iterator<VarValueDef> getValidValues()
+    {
+    return
+      IteratorUtils.filteredIterator
+      ( getValues(),
+        new Predicate<VarValueDef>()
+          {
+          public boolean evaluate( VarValueDef valueDef)
+            {
+            return valueDef.isValid();
+            }
+          });
+    }
+
+  /**
+   * Returns an iterator for the set of failure values.
+   */
+  public Iterator<VarValueDef> getFailureValues()
+    {
+    return
+      IteratorUtils.filteredIterator
+      ( getValues(),
+        new Predicate<VarValueDef>()
+          {
+          public boolean evaluate( VarValueDef valueDef)
+            {
+            return !valueDef.isValid();
+            }
+          });
     }
 
   /**
