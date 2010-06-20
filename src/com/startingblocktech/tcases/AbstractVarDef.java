@@ -10,6 +10,8 @@ package com.startingblocktech.tcases;
 import com.startingblocktech.tcases.util.ToString;
 import static com.startingblocktech.tcases.DefUtils.*;
 
+import org.apache.commons.lang.ObjectUtils;
+
 import java.util.Iterator;
 
 /**
@@ -123,6 +125,27 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    * Otherwise, returns null.
    */
   abstract public Iterator<VarValueDef> getValues();
+
+  public boolean equals( Object object)
+    {
+    AbstractVarDef other =
+      object != null && object.getClass().equals( getClass())
+      ? (AbstractVarDef) object
+      : null;
+
+    return
+      other != null
+      && ObjectUtils.equals( other.getName(), getName())
+      && ObjectUtils.equals( other.getType(), getType());
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ (getName()==null? 0 : getName().hashCode())
+      ^ (getType()==null? 0 : getType().hashCode());
+    }
 
   public String toString()
     {
