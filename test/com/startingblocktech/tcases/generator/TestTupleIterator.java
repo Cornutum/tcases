@@ -15,7 +15,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -58,24 +57,24 @@ public class TestTupleIterator
     TupleIterator tuples = new TupleIterator( 5, varDefs);
 
     // Then...
-    List<List<VarBindingDef>> expectedTuples = new ArrayList<List<VarBindingDef>>();
+    List<Tuple> expectedTuples = new ArrayList<Tuple>();
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value11),
           new VarBindingDef( var3, value32),
           new VarBindingDef( var5, value51)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value12),
           new VarBindingDef( var3, value32),
           new VarBindingDef( var5, value51)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value11),
           new VarBindingDef( var3, value32),
           new VarBindingDef( var5, value52)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value12),
           new VarBindingDef( var3, value32),
           new VarBindingDef( var5, value52)));
@@ -108,53 +107,53 @@ public class TestTupleIterator
     TupleIterator tuples = new TupleIterator( 2, varDefs);
 
     // Then...
-    List<List<VarBindingDef>> expectedTuples = new ArrayList<List<VarBindingDef>>();
+    List<Tuple> expectedTuples = new ArrayList<Tuple>();
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value11),
           new VarBindingDef( var2, value21)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value12),
           new VarBindingDef( var2, value21)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value11),
           new VarBindingDef( var2, value22)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value12),
           new VarBindingDef( var2, value22)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value11),
           new VarBindingDef( var3, value31)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value12),
           new VarBindingDef( var3, value31)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value11),
           new VarBindingDef( var3, value32)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var1, value12),
           new VarBindingDef( var3, value32)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var2, value21),
           new VarBindingDef( var3, value31)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value31)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var2, value21),
           new VarBindingDef( var3, value32)));
     expectedTuples.add
-      ( Arrays.asList
+      ( new Tuple
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 

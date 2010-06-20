@@ -11,7 +11,6 @@ import com.startingblocktech.tcases.util.ToString;
 import com.startingblocktech.tcases.VarDef;
 import com.startingblocktech.tcases.VarValueDef;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -21,7 +20,7 @@ import java.util.NoSuchElementException;
  *
  * @version $Revision$, $Date$
  */
-public class TupleIterator implements Iterator<List<VarBindingDef>>
+public class TupleIterator implements Iterator<Tuple>
   {
   /**
    * Creates a new TupleIterator object.
@@ -44,9 +43,9 @@ public class TupleIterator implements Iterator<List<VarBindingDef>>
     return getNextTuple() != null;
     }
 
-  public List<VarBindingDef> next()
+  public Tuple next()
     {
-    List<VarBindingDef> nextTuple = getNextTuple();
+    Tuple nextTuple = getNextTuple();
     if( nextTuple == null)
       {
       throw new NoSuchElementException();
@@ -80,7 +79,7 @@ public class TupleIterator implements Iterator<List<VarBindingDef>>
   /**
    * Returns the next N-tuple of compatible values.
    */
-  private List<VarBindingDef> getNextTuple()
+  private Tuple getNextTuple()
     {
     if( nextTuple_ == null)
       {
@@ -124,7 +123,7 @@ public class TupleIterator implements Iterator<List<VarBindingDef>>
             }
           }
 
-        nextTuple_ = new ArrayList<VarBindingDef>();
+        nextTuple_ = new Tuple();
         if( values_.hasNext())
           {
           nextTuple_.add( new VarBindingDef( startVarDef, values_.next()));
@@ -152,8 +151,8 @@ public class TupleIterator implements Iterator<List<VarBindingDef>>
   private int                   varStart_;
   private int                   varEnd_;
   private Iterator<VarValueDef> values_;
-  private List<VarBindingDef>   subTuple_;
+  private Tuple                 subTuple_;
   private TupleIterator         subTuples_;
-  private List<VarBindingDef>   nextTuple_;
+  private Tuple                 nextTuple_;
   }
 
