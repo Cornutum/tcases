@@ -142,7 +142,7 @@ public class TupleCombiner
   /**
    * Returns all valid N-tuples of values for the included input variables.
    */
-  public Iterator<VarBinding[]> getTuples( FunctionInputDef inputDef)
+  public Iterator<VarBindingDef[]> getTuples( FunctionInputDef inputDef)
     {
     List<VarDef> vars = getCombinedVars( inputDef);
     return null;
