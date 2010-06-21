@@ -12,6 +12,8 @@ import static com.startingblocktech.tcases.DefUtils.*;
 
 import org.apache.commons.lang.ObjectUtils;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -118,9 +120,8 @@ public class VarValueDef extends Conditional
   /**
    * Changes the set of test case properties contributed by this value.
    */
-  public void setProperties( Set<String> properties)
+  public void setProperties( Collection<String> properties)
     {
-    assertPropertyIdentifiers( properties);
     properties_ = new HashSet<String>();
     addProperties( properties);
     }
@@ -128,12 +129,23 @@ public class VarValueDef extends Conditional
   /**
    * Adds to the set of test case properties contributed by this value.
    */
-  public void addProperties( Set<String> properties)
+  public VarValueDef addProperties( Collection<String> properties)
     {
     if( properties != null)
       {
+      assertPropertyIdentifiers( properties);
       getProperties().addAll( properties);
       }
+
+    return this;
+    }
+
+  /**
+   * Adds to the set of test case properties contributed by this value.
+   */
+  public VarValueDef addProperties( String ... properties)
+    {
+    return addProperties( Arrays.asList( properties));
     }
 
   /**
