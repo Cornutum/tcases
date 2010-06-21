@@ -26,6 +26,13 @@ public abstract class ConditionSet implements ICondition
    * Returns true if this condition is satisfied by the given test case properties.
    */
   public abstract boolean satisfied( PropertySet properties);
+
+  /**
+   * Returns true if this condition is compatible with the given test case properties.
+   * A condition is <em>"compatible"</em> with these properties if it is already satisfied
+   * or if it could be satisfied with the addition of more properties.
+   */
+  public abstract boolean compatible( PropertySet properties);
   
   /**
    * Adds a condition to this set.

@@ -39,5 +39,15 @@ public class Not extends ConditionSet
     
     return isSatisfied;
     }
+
+  /**
+   * Returns true if this condition is compatible with the given test case properties.
+   * A condition is <em>"compatible"</em> with these properties if it is already satisfied
+   * or if it could be satisfied with the addition of more properties.
+   */
+  public boolean compatible( PropertySet properties)
+    {
+    return satisfied( properties);
+    }
   }
 
