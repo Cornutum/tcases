@@ -12,6 +12,8 @@ import com.startingblocktech.tcases.util.ToString;
 import org.apache.commons.collections15.bag.HashBag;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
@@ -26,26 +28,24 @@ public class PropertySet
    */
   public PropertySet()
     {
-    this( null);
+    this( (Collection<String>) null);
     }
   
   /**
    * Creates a new PropertySet object.
    */
-  public PropertySet( String[] properties)
+  public PropertySet( String ...properties)
+    {
+    this( Arrays.asList( properties));
+    }
+  
+  /**
+   * Creates a new PropertySet object.
+   */
+  public PropertySet( Collection<String> properties)
     {
     properties_ = new HashBag<String>();
-    if( properties != null)
-      {
-      for( int i = 0; i < properties.length; i++)
-        {
-        String property = StringUtils.trimToNull( properties[i]);
-        if( property == null)
-          {
-          add( property);
-          }
-        }
-      }
+    addAll( properties);
     }
 
   /**
@@ -53,8 +53,12 @@ public class PropertySet
    */
   public PropertySet add( String property)
     {
-    assert property != null;
-    properties_.add( property);
+    String candidate = StringUtils.trimToNull( property);
+    if( candidate != null)
+      {
+      properties_.add( candidate);
+      }
+
     return this;
     }
 
@@ -65,7 +69,23 @@ public class PropertySet
     {
     if( propertySet != null)
       {
-      properties_.addAll( propertySet.properties_.uniqueSet());
+      addAll( propertySet.properties_.uniqueSet());
+      }
+
+    return this;
+    }
+
+  /**
+   * Adds a set of properties to this set.
+   */
+  public PropertySet addAll( Collection<String> properties)
+    {
+    if( properties != null)
+      {
+      for( String property : properties)
+        {
+        add( property);
+        }
       }
 
     return this;
@@ -76,8 +96,28 @@ public class PropertySet
    */
   public PropertySet remove( String property)
     {
-    assert property != null;
-    properties_.remove( property, 1);
+    String candidate = StringUtils.trimToNull( property);
+    if( candidate != null)
+      {
+      properties_.remove( candidate, 1);
+      }
+
+    return this;
+    }
+
+  /**
+   * Removes a set of properties from this set.
+   */
+  public PropertySet removeAll( Collection<String> properties)
+    {
+    if( properties != null)
+      {
+      for( String property : properties)
+        {
+        remove( property);
+        }
+      }
+    
     return this;
     }
 
