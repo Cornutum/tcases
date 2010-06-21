@@ -40,12 +40,12 @@ public class TupleIterator implements Iterator<Tuple>
 
   public boolean hasNext()
     {
-    return getNextTuple() != null;
+    return getNextCompatibleTuple() != null;
     }
 
   public Tuple next()
     {
-    Tuple nextTuple = getNextTuple();
+    Tuple nextTuple = getNextCompatibleTuple();
     if( nextTuple == null)
       {
       throw new NoSuchElementException();
@@ -74,6 +74,17 @@ public class TupleIterator implements Iterator<Tuple>
   public int getTupleSize()
     {
     return tupleSize_;
+    }
+
+  private Tuple getNextCompatibleTuple()
+    {
+    Tuple nextTuple;
+    while( !((nextTuple = getNextTuple()) == null || nextTuple.isCompatible()))
+      {
+      nextTuple_ = null;
+      }
+
+    return nextTuple;
     }
 
   /**

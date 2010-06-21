@@ -7,6 +7,7 @@
 
 package com.startingblocktech.tcases.generator;
 
+import com.startingblocktech.tcases.PropertySet;
 import com.startingblocktech.tcases.VarDef;
 import com.startingblocktech.tcases.util.ToString;
 
@@ -56,6 +57,8 @@ public class Tuple
   public void setBindings( Collection<VarBindingDef> bindings)
     {
     bindings_ = new HashMap<VarDef,VarBindingDef>();
+    properties_ = new PropertySet();
+    
     if( bindings != null)
       {
       for( VarBindingDef binding : bindings)
@@ -79,7 +82,9 @@ public class Tuple
   public Tuple add( VarBindingDef binding)
     {
     remove( binding.getVarDef());
+
     bindings_.put( binding.getVarDef(), binding);
+    properties_.addAll( binding.getValueDef().getProperties());
 
     return this;
     }
@@ -105,9 +110,29 @@ public class Tuple
     VarBindingDef binding = bindings_.remove( var);
     if( binding != null)
       {
+      properties_.removeAll( binding.getValueDef().getProperties());
       }
 
     return this;
+    }
+
+  /**
+   * Returns true if this tuple contains compatible variable bindings.
+   */
+  public boolean isCompatible()
+    {
+    boolean compatible;
+    Iterator<VarBindingDef> bindings;
+
+    for( compatible = true,
+           bindings = getBindings();
+
+         compatible
+           && bindings.hasNext();
+
+         compatible = bindings.next().getValueDef().getCondition().compatible( properties_));
+    
+    return compatible;
     }
 
   public boolean equals( Object object)
@@ -140,5 +165,6 @@ public class Tuple
     }
 
   private Map<VarDef,VarBindingDef> bindings_;
+  private PropertySet properties_;
   }
 
