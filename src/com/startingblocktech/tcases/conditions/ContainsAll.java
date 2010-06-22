@@ -9,11 +9,9 @@ package com.startingblocktech.tcases.conditions;
 
 import com.startingblocktech.tcases.ICondition;
 import com.startingblocktech.tcases.PropertySet;
-import com.startingblocktech.tcases.util.ToString;
 
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * A {@link ICondition condition} that is satisfied by a {@link PropertySet} that contains
@@ -21,23 +19,22 @@ import java.util.Set;
  *
  * @version $Revision$, $Date$
  */
-public class ContainsAll implements ICondition 
+public class ContainsAll extends PropertyExpr implements ICondition 
   {
   /**
    * Creates a new ContainsAll object.
    */
-  public ContainsAll()
+  public ContainsAll( String ... properties)
     {
-    this( null);
+    super( properties);
     }
 
   /**
    * Creates a new ContainsAll object.
    */
-  public ContainsAll( Set<String> properties)
+  public ContainsAll( Collection<String> properties)
     {
-    properties_ = new HashSet<String>();
-    properties_.addAll( properties);
+    super( properties);
     }
 
   /**
@@ -45,7 +42,16 @@ public class ContainsAll implements ICondition
    */
   public ContainsAll add( String property)
     {
-    properties_.add( property);
+    super.addProperty( property);    
+    return this;
+    }
+
+  /**
+   * Adds a set of  properties to this set.
+   */
+  public ContainsAll addAll( Collection<String> properties)
+    {
+    super.addProperties( properties);    
     return this;
     }
 
@@ -54,7 +60,7 @@ public class ContainsAll implements ICondition
    */
   public ContainsAll remove( String property)
     {
-    properties_.remove( property);
+    super.removeProperty( property);    
     return this;
     }
 
@@ -66,7 +72,7 @@ public class ContainsAll implements ICondition
     boolean isSatisfied;
     Iterator<String> properties;
     
-    for( properties = properties_.iterator(),
+    for( properties = getProperties().iterator(),
            isSatisfied = true;
 
          isSatisfied
@@ -86,15 +92,5 @@ public class ContainsAll implements ICondition
     {
     return true;
     }
-
-  public String toString()
-    {
-    return
-      ToString.getBuilder( this)
-      .append( properties_)
-      .toString();
-    }
-
-  private Set<String> properties_;
   }
 

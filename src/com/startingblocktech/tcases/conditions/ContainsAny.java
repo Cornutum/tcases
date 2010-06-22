@@ -9,11 +9,9 @@ package com.startingblocktech.tcases.conditions;
 
 import com.startingblocktech.tcases.ICondition;
 import com.startingblocktech.tcases.PropertySet;
-import com.startingblocktech.tcases.util.ToString;
 
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * A {@link ICondition condition} that is satisfied by a {@link PropertySet} that contains
@@ -21,23 +19,22 @@ import java.util.Set;
  *
  * @version $Revision$, $Date$
  */
-public class ContainsAny implements ICondition 
+public class ContainsAny extends PropertyExpr implements ICondition 
   {
   /**
    * Creates a new ContainsAny object.
    */
-  public ContainsAny()
+  public ContainsAny( String ... properties)
     {
-    this( null);
+    super( properties);
     }
 
   /**
    * Creates a new ContainsAny object.
    */
-  public ContainsAny( Set<String> properties)
+  public ContainsAny( Collection<String> properties)
     {
-    properties_ = new HashSet<String>();
-    properties_.addAll( properties);
+    super( properties);
     }
 
   /**
@@ -45,7 +42,16 @@ public class ContainsAny implements ICondition
    */
   public ContainsAny add( String property)
     {
-    properties_.add( property);
+    super.addProperty( property);    
+    return this;
+    }
+
+  /**
+   * Adds a set of  properties to this set.
+   */
+  public ContainsAny addAll( Collection<String> properties)
+    {
+    super.addProperties( properties);    
     return this;
     }
 
@@ -54,7 +60,7 @@ public class ContainsAny implements ICondition
    */
   public ContainsAny remove( String property)
     {
-    properties_.remove( property);
+    super.removeProperty( property);    
     return this;
     }
 
@@ -66,8 +72,8 @@ public class ContainsAny implements ICondition
     boolean isSatisfied;
     Iterator<String> properties;
     
-    for( properties = properties_.iterator(),
-           isSatisfied = properties_.isEmpty();
+    for( properties = getProperties().iterator(),
+           isSatisfied = getProperties().isEmpty();
 
          !isSatisfied
            && properties.hasNext();
@@ -87,14 +93,5 @@ public class ContainsAny implements ICondition
     return true;
     }
 
-  public String toString()
-    {
-    return
-      ToString.getBuilder( this)
-      .append( properties_)
-      .toString();
-    }
-
-  private Set<String> properties_;
   }
 
