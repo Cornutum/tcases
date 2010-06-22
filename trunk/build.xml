@@ -40,7 +40,7 @@
 
   <target name="test" description="Run all unit tests." depends="compile.test">
     <property name="test.failure.property" value="test.failed"/>
-    <property name="testcase" value="Test*"/>
+    <property name="testclass" value="Test*"/>
 
     <mkdir dir="${test.reports.dir}"/>
     <junit 
@@ -55,7 +55,7 @@
       <formatter type="plain" usefile="no" unless="test.continue"/>
       <batchtest fork="yes" todir="${test.reports.dir}">
         <fileset dir="${test.src.dir}">
-          <include name="**/${testcase}.java"/>
+          <include name="**/${testclass}.java"/>
         </fileset>
       </batchtest>
     </junit>
