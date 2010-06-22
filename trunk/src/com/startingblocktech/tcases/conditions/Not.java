@@ -21,6 +21,13 @@ import java.util.Iterator;
 public class Not extends ConditionSet
   {
   /**
+   * Creates a new Not instance.
+   */
+  public Not( ICondition ... conditions)
+    {
+    super( conditions);
+    }
+  /**
    * Returns true if this condition is satisfied by the given test case properties.
    */
   public boolean satisfied( PropertySet properties)

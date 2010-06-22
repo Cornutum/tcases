@@ -21,6 +21,13 @@ import java.util.Iterator;
 public class AnyOf extends ConditionSet
   {
   /**
+   * Creates a new AnyOf instance.
+   */
+  public AnyOf( ICondition ... conditions)
+    {
+    super( conditions);
+    }
+  /**
    * Returns true if this condition is satisfied by the given test case properties.
    */
   public boolean satisfied( PropertySet properties)

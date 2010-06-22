@@ -23,6 +23,17 @@ import java.util.List;
 public abstract class ConditionSet implements ICondition
   {
   /**
+   * Creates a new ConditionSet instance.
+   */
+  protected ConditionSet( ICondition ... conditions)
+    {
+    for( int i = 0; i < conditions.length; i++)
+      {
+      add( conditions[i]);
+      }
+    }
+
+  /**
    * Returns true if this condition is satisfied by the given test case properties.
    */
   public abstract boolean satisfied( PropertySet properties);

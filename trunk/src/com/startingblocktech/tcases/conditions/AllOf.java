@@ -21,6 +21,14 @@ import java.util.Iterator;
 public class AllOf extends ConditionSet
   {
   /**
+   * Creates a new AllOf instance.
+   */
+  public AllOf( ICondition ... conditions)
+    {
+    super( conditions);
+    }
+  
+  /**
    * Returns true if this condition is satisfied by the given test case properties.
    */
   public boolean satisfied( PropertySet properties)
