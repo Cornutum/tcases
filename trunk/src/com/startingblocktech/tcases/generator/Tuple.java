@@ -77,6 +77,14 @@ public class Tuple
     }
 
   /**
+   * Returns the number of variable bindings in this tuple.
+   */
+  public int size()
+    {
+    return bindings_.size();
+    }
+
+  /**
    * Adds a binding to this tuple.
    */
   public Tuple add( VarBindingDef binding)
@@ -123,6 +131,7 @@ public class Tuple
     {
     boolean compatible;
     Iterator<VarBindingDef> bindings;
+    VarBindingDef binding = null;
 
     for( compatible = true,
            bindings = getBindings();
@@ -130,7 +139,18 @@ public class Tuple
          compatible
            && bindings.hasNext();
 
-         compatible = bindings.next().getValueDef().getCondition().compatible( properties_));
+         compatible =
+           (binding = bindings.next())
+           .getValueDef().getCondition().compatible( properties_));
+
+    if( !compatible && size() == 1)
+      {
+      throw
+        new IllegalStateException
+        ( "Invalid " + binding
+          + ", value condition=" + binding.getValueDef().getCondition()
+          + " is incompatible its own properties=" + binding.getValueDef().getProperties());
+      }
     
     return compatible;
     }
