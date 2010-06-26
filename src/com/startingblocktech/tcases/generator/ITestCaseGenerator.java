@@ -19,7 +19,7 @@ public interface ITestCaseGenerator
   /**
    * Changes the random number sequence seed for this generator.
    */
-  void setRandomSeed( long seed);
+  void setRandomSeed( Long seed);
 
   /**
    * Returns a set of {@link TestCase test cases} for the given function input definition.

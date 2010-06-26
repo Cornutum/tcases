@@ -78,7 +78,7 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Changes the random number sequence seed for this generator.
    */
-  public void setRandomSeed( long seed)
+  public void setRandomSeed( Long seed)
     {
     seed_ = seed;
     }
@@ -86,7 +86,7 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Returns the random number sequence seed for this generator.
    */
-  public long getRandomSeed()
+  public Long getRandomSeed()
     {
     return seed_;
     }
@@ -101,8 +101,8 @@ public class TupleGenerator implements ITestCaseGenerator
     return null;
     }
 
-  private long seed_;
-  private int  defaultTupleSize_;
+  private Long        seed_;
+  private int         defaultTupleSize_;
   List<TupleCombiner> combiners_;
   }
 
