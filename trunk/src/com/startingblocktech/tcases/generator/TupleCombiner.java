@@ -142,10 +142,9 @@ public class TupleCombiner
   /**
    * Returns all valid N-tuples of values for the included input variables.
    */
-  public Iterator<VarBindingDef[]> getTuples( FunctionInputDef inputDef)
+  public Iterator<Tuple> getTuples( FunctionInputDef inputDef, RandSeq randSeq)
     {
-    List<VarDef> vars = getCombinedVars( inputDef);
-    return null;
+    return new TupleIterator( getTupleSize(), getCombinedVars( inputDef), randSeq);
     }
 
   /**
