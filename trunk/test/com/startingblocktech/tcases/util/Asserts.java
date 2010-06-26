@@ -59,6 +59,14 @@ public abstract class Asserts
         }
       }
     }
+  /**
+   * Reports a failure if the actual Collection contains a different set of values than the expected Collection.
+   */
+  public static <T> void assertSetEquals( String label, Collection<T> expected, Iterator<T> actual)
+    {
+    List<T> actualList = actual == null ? null : IteratorUtils.toList( actual);
+    assertSetEquals( label, expected, actualList);
+    }
 
   /**
    * Reports a failure if the actual Collection contains a different set of values than the expected array.
@@ -75,8 +83,7 @@ public abstract class Asserts
   public static <T> void assertSetEquals( String label, T[] expected, Iterator<T> actual)
     {
     List<T> expectedList = expected == null ? null : Arrays.asList( expected);
-    List<T> actualList = actual == null ? null : IteratorUtils.toList( actual);
-    assertSetEquals( label, expectedList, actualList);
+    assertSetEquals( label, expectedList, actual);
     }
 
   /**
