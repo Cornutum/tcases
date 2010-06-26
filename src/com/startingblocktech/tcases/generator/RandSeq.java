@@ -74,6 +74,24 @@ public class RandSeq
     return reorder( IteratorUtils.toList( sequence)).iterator();
     }
 
+  /**
+   * Applies the given <code>randSeq</code> to rearrange the given sequence in a random order.
+   * If <code>randSeq</code> is <code>null</code>, returns the sequence unchanged.
+   */
+  public static <T> List<T> reorderIf( RandSeq randSeq, List<T> sequence)
+    {
+    return randSeq==null? sequence : randSeq.reorder( sequence);
+    }
+
+  /**
+   * Applies the given <code>randSeq</code> to rearrange the given sequence in a random order.
+   * If <code>randSeq</code> is <code>null</code>, returns the sequence unchanged.
+   */
+  public static <T> Iterator<T> reorderIf( RandSeq randSeq, Iterator<T> sequence)
+    {
+    return randSeq==null? sequence : randSeq.reorder( sequence);
+    }
+
   private Random generator_;
   }
 
