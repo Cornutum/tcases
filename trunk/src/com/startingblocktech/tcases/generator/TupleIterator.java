@@ -27,8 +27,17 @@ public class TupleIterator implements Iterator<Tuple>
    */
   public TupleIterator( int tupleSize, List<VarDef> varDefs)
     {
+    this( tupleSize, varDefs, null);
+    }
+  
+  /**
+   * Creates a new TupleIterator object.
+   */
+  public TupleIterator( int tupleSize, List<VarDef> varDefs, RandSeq randSeq)
+    {
     setTupleSize( tupleSize);
     varDefs_ = varDefs;
+    randSeq_ = randSeq;
 
     varStart_ = -1;
     varEnd_ = varDefs.size() - tupleSize + 1;
@@ -111,7 +120,7 @@ public class TupleIterator implements Iterator<Tuple>
             for( ;
                  varStart_ < varEnd_
                    &&
-                   (subTuples_ = new TupleIterator( tupleSize - 1, varDefs_.subList( varStart_ + 1, varDefs_.size())))
+                   (subTuples_ = new TupleIterator( tupleSize - 1, varDefs_.subList( varStart_ + 1, varDefs_.size()), randSeq_))
                    .hasNext() == false;
 
                  varStart_++);
@@ -126,7 +135,7 @@ public class TupleIterator implements Iterator<Tuple>
         if( values_ == null)
           {
           // Resume traversing values for current start variable.
-          values_ = startVarDef.getValidValues();
+          values_ = RandSeq.reorderIf( randSeq_, startVarDef.getValidValues());
           if( tupleSize > 1)
             {
             // Advance to next subtuple for current start variable.
@@ -159,6 +168,7 @@ public class TupleIterator implements Iterator<Tuple>
 
   private int                   tupleSize_;
   private List<VarDef>          varDefs_;
+  private RandSeq               randSeq_;
   private int                   varStart_;
   private int                   varEnd_;
   private Iterator<VarValueDef> values_;

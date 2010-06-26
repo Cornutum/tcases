@@ -230,6 +230,85 @@ public class TestTupleIterator
 
     Asserts.assertSeqEquals( "Tuples", expectedTuples, tuples);
     }
+  
+  @Test
+  public void testAllPairsRandom()
+    {
+    // Given...
+    VarValueDef value11 = new VarValueDef( "value-1-1");
+    VarValueDef value12 = new VarValueDef( "value-1-2");
+    VarDef      var1    = new VarDef( "var-1").addValue( value11).addValue( value12);
+
+    VarValueDef value21 = new VarValueDef( "value-2-1");
+    VarValueDef value22 = new VarValueDef( "value-2-2");
+    VarDef      var2    = new VarDef( "var-2").addValue( value21).addValue( value22);
+
+    VarValueDef value31 = new VarValueDef( "value-3-1");
+    VarValueDef value32 = new VarValueDef( "value-3-2");
+    VarDef      var3    = new VarDef( "var-3").addValue( value31).addValue( value32);
+    
+    List<VarDef> varDefs = new ArrayList<VarDef>();
+    varDefs.add( var1);
+    varDefs.add( var2);
+    varDefs.add( var3);
+    
+    // When...
+    RandSeq randSeq = new RandSeq( getClass().getName().hashCode());
+    TupleIterator tuples = new TupleIterator( 2, varDefs, randSeq);
+
+    // Then...
+    List<Tuple> expectedTuples = new ArrayList<Tuple>();
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var1, value11),
+          new VarBindingDef( var2, value21)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var1, value12),
+          new VarBindingDef( var2, value21)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var1, value11),
+          new VarBindingDef( var2, value22)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var1, value12),
+          new VarBindingDef( var2, value22)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var1, value11),
+          new VarBindingDef( var3, value31)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var1, value12),
+          new VarBindingDef( var3, value31)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var1, value11),
+          new VarBindingDef( var3, value32)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var1, value12),
+          new VarBindingDef( var3, value32)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var2, value21),
+          new VarBindingDef( var3, value31)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var2, value22),
+          new VarBindingDef( var3, value31)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var2, value21),
+          new VarBindingDef( var3, value32)));
+    expectedTuples.add
+      ( new Tuple
+        ( new VarBindingDef( var2, value22),
+          new VarBindingDef( var3, value32)));
+
+    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
+    }
 
   @Test
   public void testMinTupleSize()
