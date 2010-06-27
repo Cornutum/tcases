@@ -32,7 +32,10 @@ public abstract class DefUtils
     {
     if( !isIdentifier( id))
       {
-      throw new IllegalArgumentException( "\"" + String.valueOf( id) + "\" is not a valid identifier");
+      throw
+        new IllegalArgumentException
+        ( (id==null? "null" : ("\"" + String.valueOf( id) + "\""))
+          + " is not a valid identifier");
       }
     }
   
