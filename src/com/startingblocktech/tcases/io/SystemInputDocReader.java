@@ -647,10 +647,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     {
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
-      Iterator<VarValueDef> values;
-      boolean hasValidValue;
-      for( values = getVar().getValues(), hasValidValue = false; values.hasNext() && !(hasValidValue = values.next().isValid()); );
-      if( !hasValidValue)
+      if( !getVar().getValidValues().hasNext())
         {
         throw new SAXParseException( "No valid values defined for " + getVar(), getDocumentLocator()); 
         }
