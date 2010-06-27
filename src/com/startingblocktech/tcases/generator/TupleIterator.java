@@ -136,6 +136,10 @@ public class TupleIterator implements Iterator<Tuple>
           {
           // Resume traversing values for current start variable.
           values_ = RandSeq.reorderIf( randSeq_, startVarDef.getValidValues());
+          if( !values_.hasNext())
+            {
+            throw new IllegalStateException( "Can't complete tuples -- no valid values defined for var=" + startVarDef);
+            }
           if( tupleSize > 1)
             {
             // Advance to next subtuple for current start variable.
@@ -144,10 +148,7 @@ public class TupleIterator implements Iterator<Tuple>
           }
 
         nextTuple_ = new Tuple();
-        if( values_.hasNext())
-          {
-          nextTuple_.add( new VarBindingDef( startVarDef, values_.next()));
-          }
+        nextTuple_.add( new VarBindingDef( startVarDef, values_.next()));
         if( subTuple_ != null)
           {
           nextTuple_.addAll( subTuple_);
