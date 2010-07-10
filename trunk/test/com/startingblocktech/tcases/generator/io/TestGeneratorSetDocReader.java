@@ -536,6 +536,43 @@ public class TestGeneratorSetDocReader
     assertException( "generator-set-12.xml", 13, "\"D..\" is not a valid variable name pattern");
     }
 
+  @Test
+  public void failWhenElementUnknown()
+    {
+    assertException( "generator-set-13.xml", 4, "Unknown element: Combiner");
+    }
+
+  @Test
+  public void failWhenElementMisplaced()
+    {
+    assertException( "generator-set-14.xml", 11, "The Include element is not allowed at this location");
+    }
+
+  /**
+   * Tests {@link GeneratorSetDocReader#getGeneratorSet getGeneratorSet()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 15.   getGeneratorSet (Failure: TupleGenerator.Function) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> TupleGenerator.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> TupleGenerator.Function </TD> <TD><FONT color=red> Duplicate </FONT></TD></TR>
+   * <TR><TD> TupleGenerator.Seed </TD> <TD> Default </TD></TR>
+   * <TR><TD> TupleGenerator.Tuples </TD> <TD> Default </TD></TR>
+   * <TR><TD> Combiner.Count </TD> <TD> None </TD></TR>
+   * <TR><TD> Combiner.Tuples </TD> <TD> NA </TD></TR>
+   * <TR><TD> Include.Count </TD> <TD> NA </TD></TR>
+   * <TR><TD> Include.Var </TD> <TD> NA </TD></TR>
+   * <TR><TD> Exclude.Count </TD> <TD> NA </TD></TR>
+   * <TR><TD> Exclude.Var </TD> <TD> NA </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetGeneratorSet_15()
+    {
+    assertException( "generator-set-15.xml", 6, "Generator already defined for function=F1");
+    }
+
   /**
    * Returns the {@link IGeneratorSet} defined by the given resource.
    */
