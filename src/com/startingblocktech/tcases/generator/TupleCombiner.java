@@ -92,7 +92,7 @@ public class TupleCombiner
     }
 
   /**
-   * Removes all pattern matching input variables to be included in this combination.
+   * Removes all patterns matching input variables to be included in this combination.
    */
   public void removeAllIncludedVars()
     {
@@ -140,6 +140,14 @@ public class TupleCombiner
     }
 
   /**
+   * Returns true if no included variable patterns have been defined.
+   */
+  public boolean isEmpty()
+    {
+    return getIncludedVars().isEmpty();
+    }
+
+  /**
    * Returns all valid N-tuples of values for the included input variables.
    */
   public Iterator<Tuple> getTuples( FunctionInputDef inputDef, RandSeq randSeq)
@@ -150,7 +158,7 @@ public class TupleCombiner
   /**
    * Returns the set of input variables to be combined.
    */
-  private List<VarDef> getCombinedVars( FunctionInputDef inputDef)
+  public List<VarDef> getCombinedVars( FunctionInputDef inputDef)
     {
     assertApplicable( inputDef);
 
@@ -264,6 +272,29 @@ public class TupleCombiner
       .toString();
     }
 
+  public boolean equals( Object object)
+    {
+    TupleCombiner other =
+      object != null && object.getClass().equals( getClass())
+      ? (TupleCombiner) object
+      : null;
+
+    return
+      other != null
+      && other.getTupleSize() == getTupleSize()
+      && other.getIncludedVars().equals( getIncludedVars())
+      && other.getExcludedVars().equals( getExcludedVars()); 
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ getTupleSize()
+      ^ getIncludedVars().hashCode()
+      ^ getExcludedVars().hashCode();
+    }
+  
   private int tupleSize_;
   private Set<VarNamePattern> includedVars_;
   private Set<VarNamePattern> excludedVars_;
