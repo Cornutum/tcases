@@ -92,9 +92,12 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
           {
           longValue = Long.valueOf( value);
           }
-        catch( Exception e)
+        catch( NumberFormatException e)
           {
-          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+          throw
+            new SAXParseException
+            ( "Invalid \"" + attributeName + "\" attribute: \"" + value + "\" is not a number",
+              getDocumentLocator()); 
           }
         }
 
@@ -217,12 +220,15 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
           }
         }
 
-      GeneratorsHandler parent = (GeneratorsHandler) getParent();
-      if( parent.getGeneratorSet().getGenerator( functionName) != null)
+      try
         {
-        throw new SAXParseException( "Generator already defined for function=" + functionName, getDocumentLocator()); 
+        GeneratorsHandler parent = (GeneratorsHandler) getParent();
+        parent.getGeneratorSet().addGenerator( functionName, tupleGenerator);
         }
-      parent.getGeneratorSet().setGenerator( functionName, tupleGenerator);
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Invalid \"" + FUNCTION_ATR + "\" attribute", getDocumentLocator(), e); 
+        }
       }
 
     /**
