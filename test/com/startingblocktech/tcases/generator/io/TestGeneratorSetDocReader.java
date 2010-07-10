@@ -85,6 +85,8 @@ public class TestGeneratorSetDocReader
     String          functionName;
     TupleCombiner[] combiners;
     TupleCombiner   combiner;
+    VarSet          varSet;
+    IVarDef         varDef;
     
     tupleGenerator = (TupleGenerator ) generators[0];
     assertEquals( "Generator 0, seed", new Long( 1234L), tupleGenerator.getRandomSeed());
@@ -101,6 +103,35 @@ public class TestGeneratorSetDocReader
 
     combiner = combiners[0];
     assertEquals( "Generator 0, combiner 0, empty", false, combiner.isEmpty());
+
+    varSet =
+      new VarSet( "include1")
+      .addMember( new VarSet( "B").addMember( new VarDef( "C")));
+    
+    varDef = varSet.getDescendant( "B.C");
+    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
+    
+    varDef = new VarDef( "include2");
+    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
+
+    varSet =
+      new VarSet( "exclude1")
+      .addMember( new VarDef( "var"))
+      .addMember( new VarDef( "var2"));
+    
+    varDef = varSet.getDescendant( "var");
+    assertEquals( "Combiner[0], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
+    
+    varDef = varSet.getDescendant( "var2");
+    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
+
+    varSet =
+      new VarSet( "exclude2")
+      .addMember( new VarSet( "var").addMember( new VarSet( "A").addMember( new VarDef( "B"))))
+      .addMember( new VarDef( "var2"));
+    
+    varDef = varSet.getDescendant( "var.A.B");
+    assertEquals( "Combiner[0], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
     }
 
   /**
