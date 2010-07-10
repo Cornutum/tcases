@@ -7,6 +7,8 @@
 
 package com.startingblocktech.tcases;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -88,10 +90,40 @@ public class VarSet extends AbstractVarDef
   /**
    * Returns the member variable with the given name.
    */
-  public IVarDef getMember( String name)    {
+  public IVarDef getMember( String name)
+    {
     int i = findMember( name);
     return i >= 0? members_.get(i) : null;
     }
+
+  /**
+   * Returns the descendant variable with the given path, relative to this set.
+   */
+  public IVarDef getDescendant( String pathName)
+    {
+    String[]  path              = pathName == null? null : pathName.split( "\\.");
+    int       pathLength        = path == null? 0 : path.length;
+    int       parentPathLength  = pathLength - 1;
+
+    int       i;
+    VarSet    parent;
+    IVarDef   descendant;
+    for( i = 0,
+           parent = this,
+           descendant = null;
+
+         i < parentPathLength
+           && (descendant = parent.getMember( StringUtils.trimToNull( path[i]))) != null
+           && descendant.getClass().equals( getClass());
+
+         i++,
+           parent = (VarSet) descendant);
+
+    return
+      i == parentPathLength
+      ? parent.getMember( StringUtils.trimToNull( path[i]))
+      : null;
+    }    
 
   /**
    * Returns the index of the member variable with the given name.
