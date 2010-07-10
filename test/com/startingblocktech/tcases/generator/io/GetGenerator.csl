@@ -24,7 +24,7 @@ getGeneratorSet
         }
       Many
         {
-          properties = generators;
+          properties = generators, generatorsMany;
         }
     }
 
@@ -45,6 +45,11 @@ getGeneratorSet
       Non-identifier
         {
           conditions = generators;
+          type = failure;
+        }
+      Duplicate
+        {
+          conditions = generatorsMany;
           type = failure;
         }
       NA

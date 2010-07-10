@@ -1,0 +1,8 @@
+<Generators>
+
+  <TupleGenerator function="F1"/>
+  <TupleGenerator function="F2"/>
+  <TupleGenerator/>
+  <TupleGenerator function="F1"/>
+
+</Generators>

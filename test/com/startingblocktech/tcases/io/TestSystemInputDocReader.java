@@ -1450,6 +1450,20 @@ public class TestSystemInputDocReader
     }
 
   /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 33.  getSystemInputDef (Failure: Unknown element) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_33()
+    {
+    assertException( "system-input-def-33.xml", 17, "Unknown element: Vars");
+    }
+
+  /**
    * Returns the {@link SystemInputDef} defined by the given resource.
    */
   private SystemInputDef readSystemInputDef( String resource)
