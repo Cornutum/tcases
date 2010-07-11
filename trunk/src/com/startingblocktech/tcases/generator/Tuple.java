@@ -9,6 +9,7 @@ package com.startingblocktech.tcases.generator;
 
 import com.startingblocktech.tcases.PropertySet;
 import com.startingblocktech.tcases.VarDef;
+import com.startingblocktech.tcases.VarValueDef;
 import com.startingblocktech.tcases.util.ToString;
 
 import org.apache.commons.lang.ObjectUtils;
@@ -89,10 +90,25 @@ public class Tuple
    */
   public Tuple add( VarBindingDef binding)
     {
-    remove( binding.getVarDef());
+    if( binding != null)
+      {
+      VarDef var = binding.getVarDef();
+      if( var == null)
+        {
+        throw new IllegalArgumentException( "Invalid binding=" + binding + ": variable undefined");
+        }
 
-    bindings_.put( binding.getVarDef(), binding);
-    properties_.addAll( binding.getValueDef().getProperties());
+      VarValueDef value = binding.getValueDef();
+      if( value == null)
+        {
+        throw new IllegalArgumentException( "Invalid binding=" + binding + ": value undefined");
+        }
+      
+      remove( var);
+
+      bindings_.put( var, binding);
+      properties_.addAll( value.getProperties());
+      }
 
     return this;
     }
@@ -102,9 +118,12 @@ public class Tuple
    */
   public Tuple addAll( Tuple tuple)
     {
-    for( Iterator<VarBindingDef> bindings = tuple.getBindings(); bindings.hasNext();)
+    if( tuple != null)
       {
-      add( bindings.next());
+      for( Iterator<VarBindingDef> bindings = tuple.getBindings(); bindings.hasNext();)
+        {
+        add( bindings.next());
+        }
       }
 
     return this;

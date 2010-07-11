@@ -51,7 +51,7 @@ public class VarBindingDef
     {
     if( valueDef != null && varDef.getValue( valueDef.getName()) == null)
       {
-      throw new IllegalArgumentException( "No value=" + valueDef + " defined for var=" + varDef);
+      throw new IllegalArgumentException( "Value=" + valueDef + " is not defined for var=" + varDef);
       }
     
     varDef_ = varDef;
