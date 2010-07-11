@@ -28,7 +28,15 @@ public class TestCase implements Comparable<TestCase>
    */
   public enum Type
     {
-    SUCCESS, FAILURE;
+    /**
+     * Valid input, expected to produce a valid response.
+     */
+    SUCCESS,
+
+    /**
+     * Invalid input, expected to produce an error response.
+     */
+    FAILURE;
     }
 
   /**

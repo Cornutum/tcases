@@ -14,7 +14,7 @@ import com.startingblocktech.tcases.util.ToString;
 import org.apache.commons.lang.ObjectUtils;
 
 /**
- * Defines a selection of a {@link VarValueDef value definition} for an {@link VarDef input variable definition}.b
+ * Defines a selection of a {@link VarValueDef value definition} for an {@link VarDef input variable definition}.
  *
  * @version $Revision$, $Date$
  */
