@@ -31,7 +31,20 @@ public class VarValueDef extends Conditional
    */
   public enum Type
     {
-    VALID( true), FAILURE( false), ONCE( true);
+    /**
+     * A valid input value
+     */
+    VALID( true),
+
+    /**
+     * An invalid input value
+     */
+    FAILURE( false),
+
+    /**
+     * A valid input value that need not appear in multiple test case combinations.
+     */
+    ONCE( true);
 
     Type( boolean valid)
       {
