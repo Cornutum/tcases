@@ -15,7 +15,7 @@ import org.apache.commons.collections15.IteratorUtils;
 import org.apache.commons.collections15.Transformer;
 
 /**
- * Runs tests for {@link VarSetIterator}.
+ * Runs tests for {@link VarDefIterator}.
  *
  * @version $Revision$, $Date$
  */

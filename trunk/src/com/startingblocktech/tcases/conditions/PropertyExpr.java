@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Base class for {@link ICondition conditions} that evaluate a predicate on a set of properties.
+ * Base class for {@link com.startingblocktech.tcases.ICondition conditions} that evaluate a predicate on a set of properties.
  *
  * @version $Revision$, $Date$
  */
