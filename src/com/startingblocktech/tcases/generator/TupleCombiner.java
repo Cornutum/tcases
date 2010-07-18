@@ -150,9 +150,81 @@ public class TupleCombiner
   /**
    * Returns all valid N-tuples of values for the included input variables.
    */
-  public Iterator<Tuple> getTuples( FunctionInputDef inputDef, RandSeq randSeq)
+  public List<Tuple> getTuples( FunctionInputDef inputDef)
     {
-    return new TupleIterator( getTupleSize(), getCombinedVars( inputDef), randSeq);
+    return getTuples( getCombinedVars( inputDef), getTupleSize());
+    }
+
+  /**
+   * Returns all valid N-tuples of values for the given input variables.
+   */
+  protected static List<Tuple> getTuples( List<VarDef> varDefs, int tupleSize)
+    {
+    int varEnd = varDefs.size() - tupleSize + 1;
+    if( tupleSize < 1 || varEnd <= 0)
+      {
+      throw new IllegalArgumentException( "Can't create " + tupleSize + "-tuples for " + varDefs.size() + " combined variables");
+      }
+    return getVarTuples( varDefs, varEnd, tupleSize);
+    }
+
+  /**
+   * Returns all valid tuples of values for the given input variables.
+   */
+  private static List<Tuple> getVarTuples( List<VarDef> varDefs, int varEnd, int tupleSize)
+    {
+    List<Tuple> tuples = new ArrayList<Tuple>();
+
+    int varDefCount = varDefs.size();
+    varEnd = Math.min( varDefCount, varEnd);
+
+    // For each variable up to the last included...
+    for( int i = 0; i < varEnd; i++)
+      {
+      // Combine each valid value...
+      VarDef                nextVar   = varDefs.get(i);
+      Iterator<VarValueDef> values    = nextVar.getValidValues();
+      if( !values.hasNext())
+        {
+        throw new IllegalStateException( "Can't complete tuples -- no valid values defined for var=" + nextVar);
+        }
+
+      // With all subtuples from the remaining variables.
+      List<Tuple> subTuples =
+        tupleSize==1
+        ? null
+        : getVarTuples( varDefs.subList( i + 1, varDefCount), varEnd, tupleSize - 1);
+
+      // Only one variable to combine?
+      if( subTuples == null)
+        {
+        // Yes, return list of 1-tuples for this variable.
+        while( values.hasNext())
+          {
+          tuples.add( new Tuple( new VarBindingDef( nextVar, values.next())));
+          }
+        }
+
+      // Any compatible subtuples for remaining variables?
+      else if( !subTuples.isEmpty())
+        {
+        // Yes, add all compatible combinations with values for this variable.
+        while( values.hasNext())
+          {
+          VarBindingDef nextBinding = new VarBindingDef( nextVar, values.next());
+          for( Tuple subTuple : subTuples)
+            {
+            Tuple nextTuple = new Tuple( nextBinding).addAll( subTuple);
+            if( nextTuple.isCompatible())
+              {
+              tuples.add( nextTuple);
+              }
+            }
+          }
+        }
+      }
+    
+    return tuples;
     }
 
   /**
