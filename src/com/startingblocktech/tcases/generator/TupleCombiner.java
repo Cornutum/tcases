@@ -165,21 +165,18 @@ public class TupleCombiner
       {
       throw new IllegalArgumentException( "Can't create " + tupleSize + "-tuples for " + varDefs.size() + " combined variables");
       }
-    return getVarTuples( varDefs, varEnd, tupleSize);
+    return getTuples( varDefs, 0, varEnd, tupleSize);
     }
 
   /**
    * Returns all valid tuples of values for the given input variables.
    */
-  private static List<Tuple> getVarTuples( List<VarDef> varDefs, int varEnd, int tupleSize)
+  private static List<Tuple> getTuples( List<VarDef> varDefs, int varStart, int varEnd, int tupleSize)
     {
     List<Tuple> tuples = new ArrayList<Tuple>();
 
-    int varDefCount = varDefs.size();
-    varEnd = Math.min( varDefCount, varEnd);
-
     // For each variable up to the last included...
-    for( int i = 0; i < varEnd; i++)
+    for( int i = varStart; i < varEnd; i++)
       {
       // Combine each valid value...
       VarDef                nextVar   = varDefs.get(i);
@@ -193,7 +190,7 @@ public class TupleCombiner
       List<Tuple> subTuples =
         tupleSize==1
         ? null
-        : getVarTuples( varDefs.subList( i + 1, varDefCount), varEnd, tupleSize - 1);
+        : getTuples( varDefs, i + 1, varEnd + 1, tupleSize - 1);
 
       // Only one variable to combine?
       if( subTuples == null)
