@@ -205,7 +205,7 @@ public class TestVarNamePattern
     pattern = new VarNamePattern ( " foo.bar");
     assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
 
-    pattern = new VarNamePattern ( " foo.bar");
+    pattern = new VarNamePattern ( "foo .bar");
     assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
 
     pattern = new VarNamePattern ( "foo:bar");
