@@ -26,6 +26,7 @@
     <javac srcdir="${src.dir}" destdir="${class.dir}"
       debug="${javac.debug}"
       deprecation="${javac.deprecation}"
+      includeantruntime="false"
       >
       <classpath refid="javac.classpath"/>
       <compilerarg line="${javac.lint}"/>
@@ -132,6 +133,7 @@
     <javac srcdir="${test.src.dir}" destdir="${test.class.dir}"
       debug="${javac.debug}"
       deprecation="${javac.deprecation}"
+      includeantruntime="false"
       >
       <classpath refid="javac.test.classpath"/>
       <compilerarg line="${javac.lint}"/>
