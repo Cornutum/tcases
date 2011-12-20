@@ -916,7 +916,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
    */
   protected ElementHandler popElementHandler()
     {
-    return elementHandlers_.size() > 0? (ElementHandler)elementHandlers_.remove( 0) : null;
+    return elementHandlers_.size() > 0? elementHandlers_.remove( 0) : null;
     }
 
   /**
@@ -924,7 +924,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
    */
   protected ElementHandler getCurrentElementHandler()
     {
-    return elementHandlers_.size() > 0? (ElementHandler) elementHandlers_.get( 0) : null;
+    return elementHandlers_.size() > 0? elementHandlers_.get( 0) : null;
     }
     
   public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
