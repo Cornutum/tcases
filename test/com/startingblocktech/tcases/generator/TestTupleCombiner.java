@@ -7,6 +7,7 @@
 
 package com.startingblocktech.tcases.generator;
 
+import com.startingblocktech.tcases.VarBindingDef;
 import com.startingblocktech.tcases.VarDef;
 import com.startingblocktech.tcases.VarValueDef;
 import com.startingblocktech.tcases.conditions.*;
