@@ -11,6 +11,8 @@ import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.util.ToString;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -150,15 +152,23 @@ public class TupleCombiner
   /**
    * Returns all valid N-tuples of values for the included input variables.
    */
-  public List<Tuple> getTuples( FunctionInputDef inputDef)
+  public Collection<Tuple> getTuples( FunctionInputDef inputDef)
     {
     return getTuples( getCombinedVars( inputDef), getTupleSize());
     }
 
   /**
+   * Returns all valid 1-tuples of values for the given input variable.
+   */
+  public static Collection<Tuple> getTuples( VarDef var)
+    {
+    return getTuples( Arrays.asList( var), 1);
+    }
+
+  /**
    * Returns all valid N-tuples of values for the given input variables.
    */
-  protected static List<Tuple> getTuples( List<VarDef> varDefs, int tupleSize)
+  protected static Collection<Tuple> getTuples( List<VarDef> varDefs, int tupleSize)
     {
     int varEnd = varDefs.size() - tupleSize + 1;
     if( tupleSize < 1 || varEnd <= 0)
@@ -171,9 +181,9 @@ public class TupleCombiner
   /**
    * Returns all valid tuples of values for the given input variables.
    */
-  private static List<Tuple> getTuples( List<VarDef> varDefs, int varStart, int varEnd, int tupleSize)
+  private static Collection<Tuple> getTuples( List<VarDef> varDefs, int varStart, int varEnd, int tupleSize)
     {
-    List<Tuple> tuples = new ArrayList<Tuple>();
+    Collection<Tuple> tuples = new ArrayList<Tuple>();
 
     // For each variable up to the last included...
     for( int i = varStart; i < varEnd; i++)
@@ -187,7 +197,7 @@ public class TupleCombiner
         }
 
       // With all subtuples from the remaining variables.
-      List<Tuple> subTuples =
+      Collection<Tuple> subTuples =
         tupleSize==1
         ? null
         : getTuples( varDefs, i + 1, varEnd + 1, tupleSize - 1);

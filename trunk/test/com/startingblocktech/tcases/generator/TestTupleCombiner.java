@@ -16,6 +16,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -48,10 +49,10 @@ public class TestTupleCombiner
     varDefs.add( var3);
     
     // When...
-    List<Tuple> tuples = TupleCombiner.getTuples( varDefs, 3);
+    Collection<Tuple> tuples = TupleCombiner.getTuples( varDefs, 3);
     
     // Then...
-    List<Tuple> expectedTuples = new ArrayList<Tuple>();
+    Collection<Tuple> expectedTuples = new ArrayList<Tuple>();
     expectedTuples.add
       ( new Tuple
         ( new VarBindingDef( var1, value11),
@@ -73,7 +74,7 @@ public class TestTupleCombiner
           new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSeqEquals( "Tuples", expectedTuples, tuples);
+    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
     }
   
   @Test
@@ -98,10 +99,10 @@ public class TestTupleCombiner
     varDefs.add( var3);
     
     // When...
-    List<Tuple> tuples = TupleCombiner.getTuples( varDefs, 2);
+    Collection<Tuple> tuples = TupleCombiner.getTuples( varDefs, 2);
 
     // Then...
-    List<Tuple> expectedTuples = new ArrayList<Tuple>();
+    Collection<Tuple> expectedTuples = new ArrayList<Tuple>();
     expectedTuples.add
       ( new Tuple
         ( new VarBindingDef( var1, value11),
@@ -151,7 +152,7 @@ public class TestTupleCombiner
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSeqEquals( "Tuples", expectedTuples, tuples);
+    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
     }
   
   @Test
@@ -180,10 +181,10 @@ public class TestTupleCombiner
     varDefs.add( var3);
     
     // When...
-    List<Tuple> tuples = TupleCombiner.getTuples( varDefs, 2);
+    Collection<Tuple> tuples = TupleCombiner.getTuples( varDefs, 2);
 
     // Then...
-    List<Tuple> expectedTuples = new ArrayList<Tuple>();
+    Collection<Tuple> expectedTuples = new ArrayList<Tuple>();
     expectedTuples.add
       ( new Tuple
         ( new VarBindingDef( var1, value11),
@@ -221,7 +222,7 @@ public class TestTupleCombiner
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSeqEquals( "Tuples", expectedTuples, tuples);
+    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
     }
 
   @Test
@@ -235,7 +236,7 @@ public class TestTupleCombiner
     // When...
     try
       {
-      List<Tuple> tuples = TupleCombiner.getTuples( varDefs, 0);
+      Collection<Tuple> tuples = TupleCombiner.getTuples( varDefs, 0);
 
       fail( "Unexpected TupleCombiner=" + tuples);
       }
@@ -261,7 +262,7 @@ public class TestTupleCombiner
     // When...
     try
       {
-      List<Tuple> tuples = TupleCombiner.getTuples( varDefs, 3);
+      Collection<Tuple> tuples = TupleCombiner.getTuples( varDefs, 3);
       fail( "Unexpected TupleCombiner=" + tuples);
       }
 
@@ -286,8 +287,8 @@ public class TestTupleCombiner
     // When...
     try
       {
-      List<Tuple> tuples = TupleCombiner.getTuples( varDefs, 2);
-      Asserts.assertSeqEquals( "Tuples", (List<Tuple>)null, tuples);
+      Collection<Tuple> tuples = TupleCombiner.getTuples( varDefs, 2);
+      Asserts.assertSetEquals( "Tuples", (Collection<Tuple>)null, tuples);
       }
 
     // Then...

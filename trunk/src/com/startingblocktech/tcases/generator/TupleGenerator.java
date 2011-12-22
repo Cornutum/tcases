@@ -10,11 +10,12 @@ package com.startingblocktech.tcases.generator;
 import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.util.ToString;
 
-import org.apache.commons.collections15.ListUtils;
-import org.apache.commons.collections15.Transformer;
 import org.apache.commons.lang.ObjectUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -111,62 +112,94 @@ public class TupleGenerator implements ITestCaseGenerator
    */
   public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
-    try
+    List<TestCase> validCases = getValidCases( inputDef, baseTests);
+
+    FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
+    for( TestCase testCase : validCases)
       {
-      assertCombinersValid( inputDef);
-      return null;
+      testDef.addTestCase( testCase);
       }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't generate tests for " + inputDef, e);
-      }
+    
+    return testDef;
     }
 
   /**
-   * Throws an exception if this set of combiners cannot be applied to the given function input
-   * definition.
+   * Returns a set of valid {@link TestCase test cases} for the given function input definition.
+   * If the given base test definition is non-null, returns a set of new test cases
+   * that extend the base tests.
    */
-  private void assertCombinersValid( FunctionInputDef inputDef)
+  private List<TestCase> getValidCases( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
-    List<TupleCombiner> combiners = getCombiners();
+    List<TestCase> validCases = new ArrayList<TestCase>();
+    List<VarTupleSet> varTupleSets = getValidTupleSets( inputDef);
 
-    final FunctionInputDef combinerInputDef = inputDef;
+    // For each valid input tuple not yet used in a test case...
+    Tuple nextUnused;
+    for( int testCaseId = 0;
+         (nextUnused = VarTupleSet.getNextUnused( varTupleSets)) != null;
+         testCaseId++)
+      {
+      // Create a new test case.
+      TestCase validCase = new TestCase( testCaseId);
+      validCases.add( validCase);
+      }
+    
+    return validCases;
+    }
 
-    List<List<VarDef>> combinerVars =
-      ListUtils.transformedList
-      ( getCombiners(),
-        new Transformer<TupleCombiner,List<VarDef>>()
-          {
-          public List<VarDef> transform( TupleCombiner combiner)
-            {
-            return combiner.getCombinedVars( combinerInputDef);
-            }
-          });
+  /**
+   * Returns the list of all valid input tuple sets required for generated test cases.
+   */
+  private List<VarTupleSet> getValidTupleSets( FunctionInputDef inputDef)
+    {
+    List<VarTupleSet> varTupleSets = new ArrayList<VarTupleSet>();
+    RandSeq randSeq = getRandomSeed()==null? null : new RandSeq( getRandomSeed());
 
-    // For every variable...
-    int combinerCount = combiners.size();
+    // Get tuple sets required for each specified combiner.
+    for( TupleCombiner combiner : getCombiners())
+      {
+      varTupleSets.add
+        ( new VarTupleSet
+          ( RandSeq.order( randSeq, combiner.getTuples( inputDef))));
+      }
+
+    // For each input variable...
     for( VarDefIterator varDefs = new VarDefIterator( inputDef); varDefs.hasNext(); )
       {
       VarDef varDef = varDefs.next();
 
-      // Is this variable included in a TupleCombiner?
-      int c1;
-      for( c1 = 0; c1 < combinerCount && !combinerVars.get( c1).contains( varDef); c1++);
-      if( c1 < combinerCount)
+      // ... that does not belong to a combiner tuple set...
+      TupleCombiner eligibleFor;
+      Iterator<TupleCombiner> combiners;
+      for( eligibleFor = null,
+             combiners = getCombiners().iterator();
+
+           combiners.hasNext()
+             && (eligibleFor = combiners.next()).isEligible( varDef) == false;
+
+           eligibleFor = null);
+
+      if( eligibleFor == null)
         {
-        // Yes, but is it also included in another TupleCombiner?
-        int c2;
-        for( c2 = c1 + 1; c2 < combinerCount && !combinerVars.get( c2).contains( varDef); c2++);
-        if( c2 < combinerCount)
-          {
-          // Yes, report error.
-          throw
-            new IllegalStateException
-            ( "Variable=" + varDef
-              + " belongs to multiple combiners=[" + combiners.get( c1) + "," + combiners.get( c2) + "]");
-          }
+        // ...add the set of all its 1-tuples.
+        varTupleSets.add
+          ( new VarTupleSet
+            ( RandSeq.order( randSeq, TupleCombiner.getTuples( varDef))));
         }
-      } 
+      }
+
+    // Organize tuple sets for "greedy" processing, i.e. biggest tuples first.
+    Collections.sort
+      ( varTupleSets,
+        new Comparator<VarTupleSet>()
+          {
+          public int compare( VarTupleSet set1, VarTupleSet set2)
+            {
+            return set2.getTupleSize() - set1.getTupleSize();
+            }
+          });
+    
+    return varTupleSets;
     }
 
   public String toString()
