@@ -54,6 +54,14 @@ public class VarBinding
     this( varDef.getPathName(), varDef.getType(), valueDef.getName());
     setValueValid( valueDef.getType().isValid());
     }
+  
+  /**
+   * Creates a new VarBinding object.
+   */
+  public VarBinding( VarBindingDef def)
+    {
+    this( def.getVarDef(), def.getValueDef());
+    }
 
   /**
    * Changes the variable name for this binding.
