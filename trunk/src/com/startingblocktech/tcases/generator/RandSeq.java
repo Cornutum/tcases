@@ -11,6 +11,7 @@ package com.startingblocktech.tcases.generator;
 import org.apache.commons.collections15.IteratorUtils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -81,6 +82,16 @@ public class RandSeq
   public static <T> List<T> reorderIf( RandSeq randSeq, List<T> sequence)
     {
     return randSeq==null? sequence : randSeq.reorder( sequence);
+    }
+
+  /**
+   * Applies the given <code>randSeq</code> to rearrange the given collection in a random order.
+   * If <code>randSeq</code> is <code>null</code>, returns the collection in normal order.
+   */
+  public static <T> List<T> order( RandSeq randSeq, Collection<T> collection)
+    {
+    ArrayList<T> sequence = randSeq==null? null : new ArrayList<T>( collection);
+    return sequence==null? sequence : randSeq.reorder( sequence);
     }
 
   /**
