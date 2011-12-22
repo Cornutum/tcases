@@ -27,7 +27,6 @@ public class VarTupleSet
     if( tuples != null)
       {
       unused_.addAll( tuples);
-      tupleSize_ = unused_.get(0).size();
       }
     
     used_ = new ArrayList<Tuple>();
@@ -47,14 +46,6 @@ public class VarTupleSet
   public Iterator<Tuple> getUsed()
     {
     return used_.iterator();
-    }
-
-  /**
-   * Returns the tuple size of members of this set.
-   */
-  public int getTupleSize()
-    {
-    return tupleSize_;
     }
 
   /**
@@ -78,27 +69,18 @@ public class VarTupleSet
     }
 
   /**
-   * Returns the next unused tuple from the given tuple sets.
+   * Returns the next unused tuple from this set. Returns null if all
+   * tuples have been used.
    */
-  public static Tuple getNextUnused( List<VarTupleSet> sets)
+  public Tuple getNextUnused()
     {
-    Iterator<VarTupleSet> tupleSets;
-    VarTupleSet unconsumed;
-    for( tupleSets = sets.iterator(),
-           unconsumed = null;
-         
-         tupleSets.hasNext()
-           && (unconsumed = tupleSets.next()).isConsumed();
-
-         unconsumed = null);
-    
+    Iterator<Tuple> unused = getUnused();
     return
-      unconsumed == null
-      ? null
-      : unconsumed.getUnused().next();
+      unused.hasNext()
+      ? unused.next()
+      : null;
     }
 
   private List<Tuple> unused_;
   private List<Tuple> used_;
-  private int tupleSize_ = 0;
   }

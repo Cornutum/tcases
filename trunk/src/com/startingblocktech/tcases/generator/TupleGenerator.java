@@ -13,9 +13,8 @@ import com.startingblocktech.tcases.util.ToString;
 import org.apache.commons.lang.ObjectUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -131,12 +130,12 @@ public class TupleGenerator implements ITestCaseGenerator
   private List<TestCase> getValidCases( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
     List<TestCase> validCases = new ArrayList<TestCase>();
-    List<VarTupleSet> varTupleSets = getValidTupleSets( inputDef);
+    VarTupleSet tuples = getValidTupleSet( inputDef);
 
     // For each valid input tuple not yet used in a test case...
     Tuple nextUnused;
     for( int testCaseId = 0;
-         (nextUnused = VarTupleSet.getNextUnused( varTupleSets)) != null;
+         (nextUnused = tuples.getNextUnused()) != null;
          testCaseId++)
       {
       // Create a new test case.
@@ -148,19 +147,29 @@ public class TupleGenerator implements ITestCaseGenerator
     }
 
   /**
-   * Returns the list of all valid input tuple sets required for generated test cases.
+   * Returns the all valid input tuples required for generated test cases.
    */
-  private List<VarTupleSet> getValidTupleSets( FunctionInputDef inputDef)
+  private VarTupleSet getValidTupleSet( FunctionInputDef inputDef)
     {
-    List<VarTupleSet> varTupleSets = new ArrayList<VarTupleSet>();
+    List<Tuple> validTuples = new ArrayList<Tuple>();
     RandSeq randSeq = getRandomSeed()==null? null : new RandSeq( getRandomSeed());
 
-    // Get tuple sets required for each specified combiner.
-    for( TupleCombiner combiner : getCombiners())
+    // Get tuple sets required for each specified combiner,
+    // ordered for "greedy" processing, i.e. biggest tuples first.
+    TupleCombiner[] combiners = new TupleCombiner[ getCombiners().size()];
+    getCombiners().toArray( combiners);
+    Arrays.sort
+      ( combiners,
+        new Comparator<TupleCombiner>()
+          {
+          public int compare( TupleCombiner combiner1, TupleCombiner combiner2)
+            {
+            return combiner2.getTupleSize() - combiner1.getTupleSize();
+            }
+          });
+    for( int i = 0; i < combiners.length; i++)
       {
-      varTupleSets.add
-        ( new VarTupleSet
-          ( RandSeq.order( randSeq, combiner.getTuples( inputDef))));
+      validTuples.addAll( RandSeq.order( randSeq, combiners[i].getTuples( inputDef)));
       }
 
     // For each input variable...
@@ -169,37 +178,16 @@ public class TupleGenerator implements ITestCaseGenerator
       VarDef varDef = varDefs.next();
 
       // ... that does not belong to a combiner tuple set...
-      TupleCombiner eligibleFor;
-      Iterator<TupleCombiner> combiners;
-      for( eligibleFor = null,
-             combiners = getCombiners().iterator();
-
-           combiners.hasNext()
-             && (eligibleFor = combiners.next()).isEligible( varDef) == false;
-
-           eligibleFor = null);
-
-      if( eligibleFor == null)
+      int i;
+      for( i = 0; i < combiners.length && !combiners[i].isEligible( varDef); i++);
+      if( i >= combiners.length)
         {
         // ...add the set of all its 1-tuples.
-        varTupleSets.add
-          ( new VarTupleSet
-            ( RandSeq.order( randSeq, TupleCombiner.getTuples( varDef))));
+        validTuples.addAll( RandSeq.order( randSeq, TupleCombiner.getTuples( varDef)));
         }
       }
-
-    // Organize tuple sets for "greedy" processing, i.e. biggest tuples first.
-    Collections.sort
-      ( varTupleSets,
-        new Comparator<VarTupleSet>()
-          {
-          public int compare( VarTupleSet set1, VarTupleSet set2)
-            {
-            return set2.getTupleSize() - set1.getTupleSize();
-            }
-          });
     
-    return varTupleSets;
+    return new VarTupleSet( validTuples);
     }
 
   public String toString()
