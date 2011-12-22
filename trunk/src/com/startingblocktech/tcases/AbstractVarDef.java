@@ -10,8 +10,6 @@ package com.startingblocktech.tcases;
 import com.startingblocktech.tcases.util.ToString;
 import static com.startingblocktech.tcases.DefUtils.*;
 
-import org.apache.commons.lang.ObjectUtils;
-
 import java.util.Iterator;
 
 /**
@@ -46,6 +44,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
     {
     assertIdentifier( name);
     name_ = name;
+    pathName_ = null;
     }
   
   /**
@@ -61,23 +60,28 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    */
   public String getPathName()
     {
-    StringBuilder pathName = new StringBuilder();
-
-    IVarDef parent = getParent();
-    if( parent != null)
+    if( pathName_ == null)
       {
-      pathName
-        .append( parent.getPathName())
-        .append( '.');
+      StringBuilder pathName = new StringBuilder();
+
+      IVarDef parent = getParent();
+      if( parent != null)
+        {
+        pathName
+          .append( parent.getPathName())
+          .append( '.');
+        }
+
+      String name = getName();
+      if( name != null)
+        {
+        pathName.append( name);
+        }
+
+      pathName_ = pathName.toString();
       }
 
-    String name = getName();
-    if( name != null)
-      {
-      pathName.append( name);
-      }
-
-    return pathName.toString();
+    return pathName_;
     }
 
   /**
@@ -104,6 +108,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   public void setParent( IVarDef parent)
     {
     parent_ = parent;
+    pathName_ = null;
     }
 
   /**
@@ -126,27 +131,6 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    */
   abstract public Iterator<VarValueDef> getValues();
 
-  public boolean equals( Object object)
-    {
-    AbstractVarDef other =
-      object != null && object.getClass().equals( getClass())
-      ? (AbstractVarDef) object
-      : null;
-
-    return
-      other != null
-      && ObjectUtils.equals( other.getName(), getName())
-      && ObjectUtils.equals( other.getType(), getType());
-    }
-
-  public int hashCode()
-    {
-    return
-      getClass().hashCode()
-      ^ (getName()==null? 0 : getName().hashCode())
-      ^ (getType()==null? 0 : getType().hashCode());
-    }
-
   public String toString()
     {
     return
@@ -158,5 +142,6 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   private String name_;
   private String type_;
   private IVarDef parent_;
+  private String pathName_;
   }
 
