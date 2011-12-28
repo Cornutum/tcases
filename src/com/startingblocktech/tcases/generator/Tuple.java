@@ -79,6 +79,18 @@ public class Tuple
     }
 
   /**
+   * Returns the value bound by this tuple for the given variable.
+   */
+  public VarValueDef getBinding( VarDef var)
+    {
+    VarBindingDef binding = bindings_.get( var);
+    return
+      binding == null
+      ? null
+      : binding.getValueDef();
+    }
+
+  /**
    * Returns the number of variable bindings in this tuple.
    */
   public int size()
