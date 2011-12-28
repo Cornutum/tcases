@@ -10,11 +10,14 @@ package com.startingblocktech.tcases.generator;
 import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.util.ToString;
 
+import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections15.Predicate;
 import org.apache.commons.lang.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -111,39 +114,109 @@ public class TupleGenerator implements ITestCaseGenerator
    */
   public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
-    List<TestCase> validCases = getValidCases( inputDef, baseTests);
+    List<TestCaseDef> validCases = getValidCases( inputDef, baseTests);
 
     FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
-    for( TestCase testCase : validCases)
+    int id = 0;
+    for( TestCaseDef testCase : validCases)
       {
-      testDef.addTestCase( testCase);
+      testDef.addTestCase( testCase.createTestCase( id++));
       }
     
     return testDef;
     }
 
   /**
-   * Returns a set of valid {@link TestCase test cases} for the given function input definition.
+   * Returns a set of valid {@link TestCaseDef test case definitions} for the given function input definition.
    * If the given base test definition is non-null, returns a set of new test cases
    * that extend the base tests.
    */
-  private List<TestCase> getValidCases( FunctionInputDef inputDef, FunctionTestDef baseTests)
+  private List<TestCaseDef> getValidCases( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
-    List<TestCase> validCases = new ArrayList<TestCase>();
+    List<TestCaseDef> validCases = new ArrayList<TestCaseDef>();
     VarTupleSet tuples = getValidTupleSet( inputDef);
 
     // For each valid input tuple not yet used in a test case...
     Tuple nextUnused;
-    for( int testCaseId = 0;
-         (nextUnused = tuples.getNextUnused()) != null;
-         testCaseId++)
+    while( (nextUnused = tuples.getNextUnused()) != null)
       {
-      // Create a new test case.
-      TestCase validCase = new TestCase( testCaseId);
+      // Create a new test case for this tuple.
+      TestCaseDef validCase = new TestCaseDef();
+      try
+        {
+        validCase.addBindings( nextUnused);
+        }
+      catch( Exception e)
+        {
+        throw new RuntimeException( "Can't initialize new test case", e);
+        }
+
+      // Complete bindings for remaining variables.
+      if( !completeBindings( validCase, tuples, getRemainingVars( inputDef, validCase), 0))
+        {
+        throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
+        }
+      
       validCases.add( validCase);
       }
     
     return validCases;
+    }
+
+  /**
+   * Using selections from the given set of tuples, completes binding for all remaining variables,
+   * starting with the given index. Returns true if all variables have been bound.
+   */
+  private boolean completeBindings( TestCaseDef testCase, VarTupleSet tuples, VarDef[] vars, int start)
+    {
+    // All variables bound?
+    boolean complete = start >= vars.length;
+    if( !complete)
+      {
+      // No, look for a compatible binding for the next variable.
+      VarDef nextVar = vars[ start];
+      Tuple tuple;
+      Iterator<Tuple> varTuples;
+      for( tuple = null, varTuples = tuples.getUnused( nextVar);
+           tuple == null && varTuples.hasNext();
+           )
+        {
+        try
+          {
+          tuple = varTuples.next();
+          testCase.addBindings( tuple);
+          }
+        catch( BindingException be)
+          {
+          // TBD: log this event.
+          tuple = null;
+          }
+        catch( Exception e)
+          {
+          throw new RuntimeException( "Can't add binding for var=" + nextVar, e);
+          }
+        }
+      }
+    
+    return complete;
+    }
+
+  /**
+   * Returns the set of input variables not yet bound by the given test case.
+   */
+  private VarDef[] getRemainingVars( FunctionInputDef inputDef, final TestCaseDef testCase)
+    {
+    return
+      IteratorUtils.toArray
+      ( IteratorUtils.filteredIterator
+        ( new VarDefIterator( inputDef),
+          new Predicate<VarDef>()
+            {
+            public boolean evaluate( VarDef var)
+              {
+              return testCase.getBinding( var) == null;
+              }
+            }));
     }
 
   /**
