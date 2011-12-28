@@ -7,6 +7,11 @@
 
 package com.startingblocktech.tcases.generator;
 
+import com.startingblocktech.tcases.VarDef;
+
+import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections15.Predicate;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,6 +46,23 @@ public class VarTupleSet
     }
 
   /**
+   * Returns input tuples not yet used in a test case that bind the given variable.
+   */
+  public Iterator<Tuple> getUnused( final VarDef var)
+    {
+    return
+      IteratorUtils.filteredIterator
+      ( unused_.iterator(),
+        new Predicate<Tuple>()
+        {
+        public boolean evaluate( Tuple tuple)
+          {
+          return tuple.getBinding( var) != null;
+          }
+        });
+    }
+
+  /**
    * Returns input tuples already used in a test case.
    */
   public Iterator<Tuple> getUsed()
@@ -49,14 +71,41 @@ public class VarTupleSet
     }
 
   /**
+   * Returns input tuples already used in a test case that bind the given variable.
+   */
+  public Iterator<Tuple> getUsed( final VarDef var)
+    {
+    return
+      IteratorUtils.filteredIterator
+      ( used_.iterator(),
+        new Predicate<Tuple>()
+        {
+        public boolean evaluate( Tuple tuple)
+          {
+          return tuple.getBinding( var) != null;
+          }
+        });
+    }
+
+  /**
    * Asserts that the given tuple has been used in a test case.
    */
   public void used( Tuple tuple)
     {
+    // Currently unused?
     int i = unused_.indexOf( tuple);
     if( i >= 0)
       {
+      // Yes, relocated to used list.
       used_.add( unused_.remove( i));
+      }
+
+    // No, already used?
+    else if( (i = used_.indexOf( tuple)) >= 0)
+      {
+      // Yes, move to the end of the list. This acts to keep the used list
+      // in least-recently-used-first order.
+      used_.add( used_.remove( i));
       }
     }
 
