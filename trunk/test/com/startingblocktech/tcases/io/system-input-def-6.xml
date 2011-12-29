@@ -1,7 +1,7 @@
 <System name="System-6">
   <Function name="Function-0">
 
-    <Input type="arg">
+    <Input>
       <VarSet name="arg-0-0">
         <Var name="member-0">
           <Value name="value-0"/>

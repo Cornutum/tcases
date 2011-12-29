@@ -317,7 +317,7 @@ public class TestSystemInputDocReader
    * <TR><TD> Function.Count </TD> <TD> Many </TD></TR>
    * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
    * <TR><TD> Type.Count </TD> <TD> One </TD></TR>
-   * <TR><TD> Type.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Type.Name </TD> <TD> Undefined </TD></TR>
    * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
    * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
    * <TR><TD> Var.WhenProperties </TD> <TD> None </TD></TR>
@@ -528,49 +528,6 @@ public class TestSystemInputDocReader
   public void testGetSystemInputDef_10()
     {
     assertException( "system-input-def-10.xml", 3, "No input variables defined for FunctionInputDef[Function-0]");
-    }
-
-  /**
-   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
-   * <P>
-   * <TABLE border="1" cellpadding="8">
-   * <TR align="left"><TH colspan=2> 11.  getSystemInputDef (Failure: Type.Name) </TH></TR>
-   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> System.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Function.Count </TD> <TD> Many </TD></TR>
-   * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Type.Count </TD> <TD> One </TD></TR>
-   * <TR><TD> Type.Name </TD> <TD><FONT color=red> Undefined </FONT></TD></TR>
-   * <TR><TD> Var.Count </TD> <TD> One </TD></TR>
-   * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Var.WhenProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> Var.WhenNotProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> Var.Condition </TD> <TD> AnyOf </TD></TR>
-   * <TR><TD> Var.ValidValues </TD> <TD> Many </TD></TR>
-   * <TR><TD> Var.FailureValues </TD> <TD> Many </TD></TR>
-   * <TR><TD> Var.OnceValue </TD> <TD> Yes </TD></TR>
-   * <TR><TD> Value.Name </TD> <TD> Defined </TD></TR>
-   * <TR><TD> Value.WhenProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> Value.WhenNotProperties </TD> <TD> None </TD></TR>
-   * <TR><TD> Value.Condition </TD> <TD> AnyOf </TD></TR>
-   * <TR><TD> Value.Properties </TD> <TD> None </TD></TR>
-   * <TR><TD> Property.Count </TD> <TD> None </TD></TR>
-   * <TR><TD> Property.Properties </TD> <TD> NA </TD></TR>
-   * <TR><TD> VarSet.Count </TD> <TD> None </TD></TR>
-   * <TR><TD> VarSet.Name </TD> <TD> NA </TD></TR>
-   * <TR><TD> VarSet.WhenProperties </TD> <TD> NA </TD></TR>
-   * <TR><TD> VarSet.WhenNotProperties </TD> <TD> NA </TD></TR>
-   * <TR><TD> VarSet.Condition </TD> <TD> NA </TD></TR>
-   * <TR><TD> VarSet.Members </TD> <TD> NA </TD></TR>
-   * <TR><TD> Condition.Properties </TD> <TD> One </TD></TR>
-   * <TR><TD> Condition.Members </TD> <TD> None </TD></TR>
-   * </TABLE>
-   * </P>
-   */
-  @Test
-  public void testGetSystemInputDef_11()
-    {
-    assertException( "system-input-def-11.xml", 40, "No \"type\" attribute specified");
     }
 
   /**
