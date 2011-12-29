@@ -8,6 +8,7 @@
 package com.startingblocktech.tcases.generator;
 
 import com.startingblocktech.tcases.VarDef;
+import com.startingblocktech.tcases.util.ToString;
 
 import org.apache.commons.collections15.IteratorUtils;
 import org.apache.commons.collections15.Predicate;
@@ -128,6 +129,15 @@ public class VarTupleSet
       unused.hasNext()
       ? unused.next()
       : null;
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( "used", used_.size())
+      .append( "unused", unused_.size())
+      .toString();
     }
 
   private List<Tuple> unused_;
