@@ -9,9 +9,9 @@ package com.startingblocktech.tcases;
 
 import com.startingblocktech.tcases.util.ToString;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 
 /**
@@ -82,12 +82,13 @@ public class TestCase implements Comparable<TestCase>
     assert varBinding != null;
     assert varBinding.getVar() != null;
 
-    if( findVarBinding( varBinding.getVar()) >= 0)
+    String varName = varBinding.getVar();
+    if( varBindings_.containsKey( varName))
       {
-      throw new IllegalStateException( "Binding for " + varBinding.getVar() + " already defined for testCase=" + getId());
+      throw new IllegalStateException( "Binding for " + varName + " already defined for testCase=" + getId());
       }
     
-    varBindings_.add( varBinding);
+    varBindings_.put( varName, varBinding);
     return this;
     }
 
@@ -96,12 +97,7 @@ public class TestCase implements Comparable<TestCase>
    */
   public TestCase removeVarBinding( String name)
     {
-    int i = findVarBinding( name);
-    if( i >= 0)
-      {
-      varBindings_.remove(i);
-      }
-
+    varBindings_.remove( name);
     return this;
     }
 
@@ -110,8 +106,7 @@ public class TestCase implements Comparable<TestCase>
    */
   public VarBinding getVarBinding( String name)
     {
-    int i = findVarBinding( name);
-    return i >= 0? varBindings_.get(i) : null;
+    return varBindings_.get( name);
     }
 
   /**
@@ -119,10 +114,17 @@ public class TestCase implements Comparable<TestCase>
    */
   public VarBinding getInvalidValue()
     {
-    int varCount = varBindings_.size();
-    int i;
-    for( i = 0; i < varCount && varBindings_.get(i).isValueValid(); i++);
-    return i < varCount? varBindings_.get(i) : null;
+    VarBinding invalidBinding;
+    Iterator<VarBinding> bindings;
+    for( invalidBinding = null,
+           bindings = varBindings_.values().iterator();
+
+         bindings.hasNext()
+           && (invalidBinding = bindings.next()).isValueValid();
+
+         invalidBinding = null);
+
+    return invalidBinding;
     }
 
   /**
@@ -130,7 +132,7 @@ public class TestCase implements Comparable<TestCase>
    */
   public Iterator<VarBinding> getVarBindings()
     {
-    return varBindings_.iterator();
+    return varBindings_.values().iterator();
     }
 
   /**
@@ -149,17 +151,6 @@ public class TestCase implements Comparable<TestCase>
     return types;
     }
 
-  /**
-   * Returns the index of the binding for the given variable.
-   */
-  protected int findVarBinding( String name)
-    {
-    int varCount = name==null? 0 : varBindings_.size();
-    int i;
-    for( i = 0; i < varCount && !name.equals( varBindings_.get(i).getVar()); i++);
-    return i < varCount? i : -1;
-    }
-
   public String toString()
     {
     return
@@ -173,8 +164,26 @@ public class TestCase implements Comparable<TestCase>
     {
     return getId() - other.getId();
     }
-  
+
+  public int hashCode()
+    {
+    return id_ ^ varBindings_.hashCode();
+    }
+
+  public boolean equals( Object object)
+    {
+    TestCase other =
+      object != null && object.getClass().equals( getClass())
+      ? (TestCase) object
+      : null;
+
+    return
+      other != null
+      && id_ == other.id_
+      && varBindings_.equals( other.varBindings_);
+    }
+
   private int id_;
-  private List<VarBinding> varBindings_ = new ArrayList<VarBinding>();
+  private Map<String,VarBinding> varBindings_ = new HashMap<String,VarBinding>();
   }
 
