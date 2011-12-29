@@ -38,17 +38,49 @@ public class TestCaseDef
     }
 
   /**
-   * Adds the variable bindings defined by the given tuple.
+   * If the given tuple is compatible with the current test case definition, adds any
+   * new bindings. Returns null if the tuple is incompatible. Otherwise, returns a new
+   * tuple containing the new bindings actually added.
    */
-  public void addBindings( Tuple tuple) throws BindingException
+  public Tuple addCompatible( Tuple tuple)
+    {
+    Tuple newBindings = null;
+
+    try
+      {
+      newBindings = addBindings( tuple);
+      }
+    catch( BindingException be)
+      {
+      // TBD: log this event.
+      }
+
+    return newBindings;
+    }
+
+  /**
+   * Adds the variable bindings defined by the given tuple.
+   * Returns a new tuple containing the new bindings actually added.
+   */
+  public Tuple addBindings( Tuple tuple) throws BindingException
     {
     for( Iterator<VarBindingDef> bindings = tuple.getBindings();
          bindings.hasNext();
          checkCompatible( bindings.next()));
 
+    Tuple newBindings = new Tuple();
     for( Iterator<VarBindingDef> bindings = tuple.getBindings();
          bindings.hasNext();
-         addBinding( bindings.next()));
+         )
+      {
+      VarBindingDef binding = bindings.next();
+      if( addBinding( binding))
+        {
+        newBindings.add( binding);
+        }
+      }
+
+    return newBindings;
     }
 
   /**
@@ -139,17 +171,21 @@ public class TestCaseDef
     }
 
   /**
-   * Adds a new variable binding to the current test case.
+   * Adds a new variable binding to the current test case, if necessary.
+   * Returns true if a new binding was actually added.
    */
-  private void addBinding( VarBindingDef binding)
+  private boolean addBinding( VarBindingDef binding)
     {
     VarDef var = binding.getVarDef();
-    if( !bindings_.containsKey( var))
+    boolean added = !bindings_.containsKey( var);
+    if( added)
       {
       VarValueDef value = binding.getValueDef();
       bindings_.put( var, value);
       properties_.addAll( value.getProperties());
       }
+
+    return added;
     }
 
   /**
