@@ -65,19 +65,38 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       }
 
     /**
+     * Returns the value of the given identifier attribute or null if undefined. Throws a SAXException if the attribute is invalid.
+     */
+    public String getIdentifier( Attributes attributes, String attributeName) throws SAXException
+      {
+      return toIdentifier( attributeName, getAttribute( attributes, attributeName));
+      }
+
+    /**
      * Returns the value of the given identifier attribute. Throws a SAXException if the attribute is undefined, empty, or invalid.
      */
     public String requireIdentifier( Attributes attributes, String attributeName) throws SAXException
       {
-      String id = requireAttribute( attributes, attributeName, getAttribute( attributes, attributeName)).trim();
+      return toIdentifier( attributeName, requireAttribute( attributes, attributeName));
+      }
 
-      try
+    /**
+     * Returns the given attribute value as an identifier. Throws a SAXException if the attribute is not a valid identifier.
+     */
+    public String toIdentifier( String attributeName, String attributeValue) throws SAXException
+      {
+      String id = StringUtils.trimToNull( attributeValue);
+
+      if( id != null)
         {
-        assertIdentifier( id);
-        }
-      catch( Exception e)
-        {
-        throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+        try
+          {
+          assertIdentifier( id);
+          }
+        catch( Exception e)
+          {
+          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+          }
         }
 
       return id;
@@ -266,7 +285,8 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      setType( requireIdentifier( attributes, TYPE_ATR));
+      String type = getIdentifier( attributes, TYPE_ATR);
+      setType( type == null? IVarDef.ARG : type);
       }
 
     /**
