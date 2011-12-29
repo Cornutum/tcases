@@ -19,7 +19,10 @@ public abstract class Conditional
    */
   public void setCondition( ICondition condition)
     {
-    condition_ = condition;
+    condition_ =
+      condition == null
+      ? ICondition.ALWAYS
+      : condition;
     }
 
   /**
