@@ -40,6 +40,18 @@ public abstract class DefUtils
     }
   
   /**
+   * Throws an exception if the given string is not a valid identifier path name.
+   */
+  public static void assertPath( String pathName) throws IllegalArgumentException
+    {
+    String ids[] = pathName.split( "\\.", -1);
+    for( int i = 0; i < ids.length; i++)
+      {
+      assertIdentifier( ids[i]);
+      }
+    }
+  
+  /**
    * Throws an exception if any member of the given set of properties is not a valid identifier.
    */
   public static void assertPropertyIdentifiers( Collection<String> properties) throws IllegalArgumentException

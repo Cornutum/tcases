@@ -68,7 +68,7 @@ public class VarBinding
    */
   public void setVar( String varName)
     {
-    assertIdentifier( varName);
+    assertPath( varName);
     var_ = varName;
     }
 
