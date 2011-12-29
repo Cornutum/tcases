@@ -90,8 +90,7 @@ public class RandSeq
    */
   public static <T> List<T> order( RandSeq randSeq, Collection<T> collection)
     {
-    ArrayList<T> sequence = randSeq==null? null : new ArrayList<T>( collection);
-    return sequence==null? sequence : randSeq.reorder( sequence);
+    return reorderIf( randSeq, new ArrayList<T>( collection));
     }
 
   /**
