@@ -120,7 +120,7 @@ public class TestCaseDef
         }
 
       // Is this value inconsistent with the current test case?
-      if( !value.getCondition().compatible( properties_))
+      if( !value.acquireCondition().compatible( properties_))
         {
         throw new ValueInconsistentException( binding, properties_);
         }
@@ -142,7 +142,7 @@ public class TestCaseDef
     boolean applicable;
     IVarDef ancestor;
     for( ancestor = var;
-         (applicable = var.getCondition().compatible( properties)) && ancestor.getParent() != null;
+         (applicable = var.acquireCondition().compatible( properties)) && ancestor.getParent() != null;
          ancestor = ancestor.getParent());
     
     return applicable;
@@ -163,7 +163,7 @@ public class TestCaseDef
            vars = bindings_.keySet().iterator();
 
          vars.hasNext()
-           && (inapplicable = vars.next()).getCondition().compatible( properties);
+           && (inapplicable = vars.next()).acquireCondition().compatible( properties);
          
          inapplicable = null);
     

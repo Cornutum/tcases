@@ -173,14 +173,14 @@ public class Tuple
 
          compatible =
            (binding = bindings.next())
-           .getValueDef().getCondition().compatible( properties_));
+           .getValueDef().acquireCondition().compatible( properties_));
 
     if( !compatible && size() == 1)
       {
       throw
         new IllegalStateException
         ( "Invalid " + binding
-          + ", value condition=" + binding.getValueDef().getCondition()
+          + ", value condition=" + binding.getValueDef().acquireCondition()
           + " is incompatible its own properties=" + binding.getValueDef().getProperties());
       }
     

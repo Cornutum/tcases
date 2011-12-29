@@ -19,10 +19,7 @@ public abstract class Conditional
    */
   public void setCondition( ICondition condition)
     {
-    condition_ =
-      condition == null
-      ? ICondition.ALWAYS
-      : condition;
+    condition_ = condition;
     }
 
   /**
@@ -31,6 +28,18 @@ public abstract class Conditional
   public ICondition getCondition()
     {
     return condition_;
+    }
+
+  /**
+   * Returns the effective condition that defines when this element is applicable.
+   */
+  public ICondition acquireCondition()
+    {
+    ICondition condition = getCondition();
+    return
+      condition == null
+      ? ICondition.ALWAYS
+      : condition;
     }
   
   private ICondition condition_;
