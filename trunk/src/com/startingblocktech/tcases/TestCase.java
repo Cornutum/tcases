@@ -167,7 +167,10 @@ public class TestCase implements Comparable<TestCase>
 
   public int hashCode()
     {
-    return id_ ^ varBindings_.hashCode();
+    return
+      getClass().hashCode()
+      ^ id_
+      ^ varBindings_.hashCode();
     }
 
   public boolean equals( Object object)
