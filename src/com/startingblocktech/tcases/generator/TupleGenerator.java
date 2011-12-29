@@ -157,6 +157,7 @@ public class TupleGenerator implements ITestCaseGenerator
         throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
         }
       
+      tuples.used( nextUnused);
       validCases.add( validCase);
       }
     
@@ -173,27 +174,48 @@ public class TupleGenerator implements ITestCaseGenerator
     boolean complete = start >= vars.length;
     if( !complete)
       {
-      // No, look for a compatible binding for the next variable.
+      // No, bind next variable.
       VarDef nextVar = vars[ start];
-      Tuple tuple;
-      Iterator<Tuple> varTuples;
-      for( tuple = null, varTuples = tuples.getUnused( nextVar);
-           tuple == null && varTuples.hasNext();
-           )
+
+      // Next variable already bound?
+      if( testCase.getValue( nextVar) != null)
         {
-        try
+        // Yes, complete remaining variables.
+        complete = completeBindings( testCase, tuples, vars, start + 1);
+        }
+
+      else
+        {
+        // No, look for a compatible tuple to add that will bind the next variable,
+        // preferably one not yet used.
+        Iterator<Tuple> varTuples =
+          IteratorUtils.chainedIterator
+          ( tuples.getUnused( nextVar),
+            tuples.getUsed( nextVar));
+        
+        Tuple tuple;
+        for( tuple = null;
+
+             // More tuples to try?
+             varTuples.hasNext()
+               && !( // Compatible tuple found?
+                    (tuple = testCase.addCompatible( varTuples.next())) != null
+
+                    // Can we complete bindings for remaining variables?
+                    && (complete = completeBindings( testCase, tuples, vars, start + 1)));
+             
+             tuple = null)
           {
-          tuple = varTuples.next();
-          testCase.addBindings( tuple);
+          if( tuple != null)
+            {
+            testCase.removeBindings( tuple);
+            }
           }
-        catch( BindingException be)
+
+        if( complete)
           {
-          // TBD: log this event.
-          tuple = null;
-          }
-        catch( Exception e)
-          {
-          throw new RuntimeException( "Can't add binding for var=" + nextVar, e);
+          // Test case is complete -- mark any tuple added used.
+          tuples.used( tuple);
           }
         }
       }
@@ -216,7 +238,8 @@ public class TupleGenerator implements ITestCaseGenerator
               {
               return testCase.getBinding( var) == null;
               }
-            }));
+            }),
+        VarDef.class);
     }
 
   /**
@@ -229,7 +252,7 @@ public class TupleGenerator implements ITestCaseGenerator
 
     // Get tuple sets required for each specified combiner,
     // ordered for "greedy" processing, i.e. biggest tuples first.
-    TupleCombiner[] combiners = new TupleCombiner[ getCombiners().size()];
+    final TupleCombiner[] combiners = new TupleCombiner[ getCombiners().size()];
     getCombiners().toArray( combiners);
     Arrays.sort
       ( combiners,
@@ -245,19 +268,30 @@ public class TupleGenerator implements ITestCaseGenerator
       validTuples.addAll( RandSeq.order( randSeq, combiners[i].getTuples( inputDef)));
       }
 
-    // For each input variable...
-    for( VarDefIterator varDefs = new VarDefIterator( inputDef); varDefs.hasNext(); )
-      {
-      VarDef varDef = varDefs.next();
+    // For all input variables that do not belong to a combiner tuple set...
+    List<VarDef> uncombinedVars =
+      IteratorUtils.toList
+      ( IteratorUtils.filteredIterator
+        ( new VarDefIterator( inputDef),
+          new Predicate<VarDef>()
+            {
+            public boolean evaluate( VarDef var)
+              {
+              int i;
+              for( i = 0; i < combiners.length && !combiners[i].isEligible( var); i++);
+              return i >= combiners.length;
+              }
+            }));
 
-      // ... that does not belong to a combiner tuple set...
-      int i;
-      for( i = 0; i < combiners.length && !combiners[i].isEligible( varDef); i++);
-      if( i >= combiners.length)
-        {
-        // ...add the set of all its 1-tuples.
-        validTuples.addAll( RandSeq.order( randSeq, TupleCombiner.getTuples( varDef)));
-        }
+    if( !uncombinedVars.isEmpty())
+      {
+      // ... add the default tuples.
+      validTuples.addAll
+        ( RandSeq.order
+          ( randSeq,
+            TupleCombiner.getTuples
+            ( uncombinedVars,
+              Math.min( uncombinedVars.size(), getDefaultTupleSize()))));
       }
     
     return new VarTupleSet( validTuples);

@@ -11,7 +11,6 @@ import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.util.ToString;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -158,17 +157,9 @@ public class TupleCombiner
     }
 
   /**
-   * Returns all valid 1-tuples of values for the given input variable.
-   */
-  public static Collection<Tuple> getTuples( VarDef var)
-    {
-    return getTuples( Arrays.asList( var), 1);
-    }
-
-  /**
    * Returns all valid N-tuples of values for the given input variables.
    */
-  protected static Collection<Tuple> getTuples( List<VarDef> varDefs, int tupleSize)
+  public static Collection<Tuple> getTuples( List<VarDef> varDefs, int tupleSize)
     {
     int varEnd = varDefs.size() - tupleSize + 1;
     if( tupleSize < 1 || varEnd <= 0)
