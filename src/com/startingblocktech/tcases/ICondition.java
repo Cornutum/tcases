@@ -39,5 +39,9 @@ public interface ICondition
         {
         return true;
         }
+      public String toString()
+        {
+        return "ALWAYS";
+        }
       };
   }
