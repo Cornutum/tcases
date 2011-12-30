@@ -9,6 +9,7 @@ package com.startingblocktech.tcases;
 
 import com.startingblocktech.tcases.util.ToString;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -153,10 +154,14 @@ public class TestCase implements Comparable<TestCase>
 
   public String toString()
     {
+    VarBinding[] bindings = new VarBinding[ varBindings_.size()];
+    Arrays.sort( varBindings_.values().toArray( bindings));
+    
     return
       ToString.getBuilder( this)
       .append( getId())
       .append( getType())
+      .append( bindings)
       .toString();
     }
 
