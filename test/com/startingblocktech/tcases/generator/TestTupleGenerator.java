@@ -9,11 +9,9 @@ package com.startingblocktech.tcases.generator;
 
 import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.io.SystemInputDocReader;
+import static com.startingblocktech.tcases.util.Asserts.*;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-
-import org.apache.commons.collections15.IteratorUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
@@ -37,8 +35,38 @@ public class TestTupleGenerator
     FunctionTestDef functionTestDef = generator.getTests( functionInputDef, null);
 
     // Expect...
-    TestCase[] testCases = IteratorUtils.toArray( functionTestDef.getTestCases(), TestCase.class);
-    assertEquals( "Test cases", 3, testCases.length); 
+    TCaseBuilder tc = new TCaseBuilder();
+    assertSeqEquals
+      ( "Test cases",
+        TCaseBuilder.sequence
+        ( tc
+          .start()
+          .bind( "Color.Hue", "Red")
+          .bind( "Color.Lightness", "Bright")
+          .bind( "Color.Saturation", "Pale")
+          .bind( "Size", "Small")
+          .bind( "Shape", "Square")
+          .build(),
+
+          tc
+          .start()
+          .bind( "Color.Hue", "Green")
+          .bind( "Color.Lightness", "Normal")
+          .bind( "Color.Saturation", "Even")
+          .bind( "Size", "Medium")
+          .bind( "Shape", "Circle")
+          .build(),
+
+          tc
+          .start()
+          .bind( "Color.Hue", "Blue")
+          .bind( "Color.Lightness", "Dark")
+          .bind( "Color.Saturation", "Intense")
+          .bind( "Size", "Large")
+          .bind( "Shape", "Heart")
+          .build()
+          ),
+        functionTestDef.getTestCases());
     }
 
   /**
