@@ -5,7 +5,7 @@
    xmlns="http://www.startingblocktech.com/tcases"
    >
   <!-- Defines the schema for a system input specification document -->
-  <!-- $Revision: 88 $, $Date: 2011-12-29 18:04:00 -0600 (Thu, 29 Dec 2011) $ -->
+  <!-- $Revision$, $Date$ -->
 
   <!-- Conditions -->
   <xs:complexType name="conditionExprType">
