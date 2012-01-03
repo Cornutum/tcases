@@ -10,6 +10,9 @@ package com.startingblocktech.tcases.generator;
 import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.util.ToString;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -52,7 +55,9 @@ public class TestCaseDef
       }
     catch( BindingException be)
       {
-      // TBD: log this event.
+      logger_.debug
+        ( "Tuple={} incompatible with testCaseDef={}: {}",
+          new Object[]{ tuple, this, be});
       }
 
     return newBindings;
@@ -234,4 +239,6 @@ public class TestCaseDef
 
   private Map<VarDef,VarValueDef> bindings_ = new HashMap<VarDef,VarValueDef>();
   private PropertySet properties_ = new PropertySet();
+
+  private static final Logger logger_ = LoggerFactory.getLogger( TestCaseDef.class);
   }

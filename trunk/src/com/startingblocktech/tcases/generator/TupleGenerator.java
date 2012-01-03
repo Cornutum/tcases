@@ -14,6 +14,9 @@ import org.apache.commons.collections15.IteratorUtils;
 import org.apache.commons.collections15.Predicate;
 import org.apache.commons.lang.ObjectUtils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -114,6 +117,8 @@ public class TupleGenerator implements ITestCaseGenerator
    */
   public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
+    logger_.info( "{}: generating test cases", inputDef);
+    
     List<TestCaseDef> validCases = getValidCases( inputDef, baseTests);
 
     FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
@@ -123,6 +128,7 @@ public class TupleGenerator implements ITestCaseGenerator
       testDef.addTestCase( testCase.createTestCase( id++));
       }
     
+    logger_.info( "{}: completed {} test cases", inputDef, id);
     return testDef;
     }
 
@@ -331,6 +337,8 @@ public class TupleGenerator implements ITestCaseGenerator
   
   private Long        seed_;
   private int         defaultTupleSize_;
-  List<TupleCombiner> combiners_;
+  private List<TupleCombiner> combiners_;
+
+  private static final Logger logger_ = LoggerFactory.getLogger( TupleGenerator.class);
   }
 
