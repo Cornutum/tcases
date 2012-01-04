@@ -8,13 +8,10 @@
 package com.startingblocktech.tcases.generator;
 
 import com.startingblocktech.tcases.*;
-import com.startingblocktech.tcases.io.SystemInputDocReader;
+import com.startingblocktech.tcases.io.SystemInputResources;
 import static com.startingblocktech.tcases.util.Asserts.*;
 
 import org.junit.Test;
-import org.apache.commons.io.IOUtils;
-
-import java.io.InputStream;
 
 /**
  * Runs tests for {@link TupleGenerator}
@@ -27,7 +24,7 @@ public class TestTupleGenerator
   public void getTuples_Basic()
     {
     // Given...
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-0.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleGenerator generator = new TupleGenerator();
 
@@ -69,33 +66,5 @@ public class TestTupleGenerator
         functionTestDef.getTestCases());
     }
 
-  /**
-   * Returns the {@link SystemInputDef} defined by the given resource.
-   */
-  private SystemInputDef readSystemInputDef( String resource)
-    {
-    SystemInputDef  systemInputDef  = null;
-    InputStream     stream          = null;
-    
-    try
-      {
-      stream = getClass().getResourceAsStream( resource);
-
-      SystemInputDocReader reader = new SystemInputDocReader( stream);
-      systemInputDef = reader.getSystemInputDef();
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't read resource=" + resource, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( stream);
-      }
-
-    return systemInputDef;
-    }
+  private SystemInputResources systemInputResources_ = new SystemInputResources( TestTupleGenerator.class);
   }
-
-
-
