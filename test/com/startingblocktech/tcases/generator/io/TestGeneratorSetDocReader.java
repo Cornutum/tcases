@@ -102,7 +102,6 @@ public class TestGeneratorSetDocReader
     assertEquals( "Generator 0, combiners", 1, combiners.length);
 
     combiner = combiners[0];
-    assertEquals( "Generator 0, combiner 0, empty", false, combiner.isEmpty());
 
     varSet =
       new VarSet( "include1")

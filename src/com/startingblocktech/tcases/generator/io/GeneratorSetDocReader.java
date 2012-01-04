@@ -283,15 +283,8 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
 
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
-      TupleCombiner tupleCombiner = getTupleCombiner();
-
-      if( tupleCombiner.isEmpty())
-        {
-        tupleCombiner.addIncludedVar( "**");
-        }
-      
       TupleGeneratorHandler parent = (TupleGeneratorHandler) getParent();
-      parent.getTupleGenerator().addCombiner( tupleCombiner);
+      parent.getTupleGenerator().addCombiner( getTupleCombiner());
       }
 
     /**
