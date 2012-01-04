@@ -7,6 +7,7 @@
 
 package com.startingblocktech.tcases.generator;
 
+import com.startingblocktech.tcases.Conditional;
 import com.startingblocktech.tcases.PropertySet;
 import com.startingblocktech.tcases.VarBindingDef;
 import com.startingblocktech.tcases.VarDef;
@@ -172,15 +173,15 @@ public class Tuple
            && bindings.hasNext();
 
          compatible =
-           (binding = bindings.next())
-           .getValueDef().acquireCondition().compatible( properties_));
+           Conditional.acquireCondition( (binding = bindings.next()).getValueDef())
+           .compatible( properties_));
 
     if( !compatible && size() == 1)
       {
       throw
         new IllegalStateException
         ( "Invalid " + binding
-          + ", value condition=" + binding.getValueDef().acquireCondition()
+          + ", value condition=" + binding.getValueDef().getCondition()
           + " is incompatible its own properties=" + binding.getValueDef().getProperties());
       }
     

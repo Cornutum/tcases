@@ -14,7 +14,7 @@ import java.util.Iterator;
  *
  * @version $Revision$, $Date$
  */
-public interface IVarDef
+public interface IVarDef extends IConditional
   {
   /**
    * Changes the parent of this variable.
