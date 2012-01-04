@@ -147,6 +147,8 @@ public class TupleGenerator implements ITestCaseGenerator
     while( (nextUnused = tuples.getNextUnused()) != null)
       {
       // Create a new test case for this tuple.
+      logger_.debug( "Creating test case for tuple={}", nextUnused);
+
       TestCaseDef validCase = new TestCaseDef();
       try
         {
@@ -160,9 +162,11 @@ public class TupleGenerator implements ITestCaseGenerator
       // Complete bindings for remaining variables.
       if( !completeBindings( validCase, tuples, getRemainingVars( inputDef, validCase), 0))
         {
+        logger_.error( "Can't create test case for tuple={}", nextUnused);
         throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
         }
       
+      logger_.debug( "Completed test case={}", validCase);
       tuples.used( nextUnused);
       validCases.add( validCase);
       }
@@ -177,8 +181,14 @@ public class TupleGenerator implements ITestCaseGenerator
   private boolean completeBindings( TestCaseDef testCase, VarTupleSet tuples, VarDef[] vars, int start)
     {
     // All variables bound?
-    boolean complete = start >= vars.length;
-    if( !complete)
+    boolean complete = false;
+    if( start >= vars.length)
+      {
+      // Yes, all conditions satisified?
+      complete = testCase.isComplete();
+      }
+
+    else
       {
       // No, bind next variable.
       VarDef nextVar = vars[ start];
@@ -194,27 +204,34 @@ public class TupleGenerator implements ITestCaseGenerator
         {
         // No, look for a compatible tuple to add that will bind the next variable,
         // preferably one not yet used.
+        logger_.debug( "{}: Adding binding for var={}", this, nextVar);
+        
         Iterator<Tuple> varTuples =
           IteratorUtils.chainedIterator
-          ( tuples.getUnused( nextVar),
-            tuples.getUsed( nextVar));
+          ( IteratorUtils.chainedIterator
+            ( tuples.getUnused( nextVar),
+              tuples.getUsed( nextVar)),
+            getNA( nextVar));
         
         Tuple tuple;
-        for( tuple = null;
+        Tuple tupleAdded;
+        for( tuple = null,
+               tupleAdded = null;
 
              // More tuples to try?
              varTuples.hasNext()
                && !( // Compatible tuple found?
-                    (tuple = testCase.addCompatible( varTuples.next())) != null
+                    (tupleAdded = testCase.addCompatible( (tuple = varTuples.next()))) != null
 
                     // Can we complete bindings for remaining variables?
                     && (complete = completeBindings( testCase, tuples, vars, start + 1)));
              
-             tuple = null)
+             tupleAdded = null)
           {
-          if( tuple != null)
+          if( tupleAdded != null)
             {
-            testCase.removeBindings( tuple);
+            logger_.debug( "{}: Removing tuple={}", this, tupleAdded);
+            testCase.removeBindings( tupleAdded);
             }
           }
 
@@ -227,6 +244,21 @@ public class TupleGenerator implements ITestCaseGenerator
       }
     
     return complete;
+    }
+
+  /**
+   * Returns an iterator that contains the "not applicable" binding for the given variable. Returns an empty list if this
+   * variable is not {@link VarDef#isOptional optional}.
+   */
+  private Iterator<Tuple> getNA( VarDef var)
+    {
+    List<Tuple> na = new ArrayList<Tuple>(1);
+    if( var.isOptional())
+      {
+      na.add( new Tuple( new VarBindingDef( var, VarValueDef.NA)));
+      }
+
+    return na.iterator();
     }
 
   /**

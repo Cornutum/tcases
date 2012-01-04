@@ -13,6 +13,9 @@ import com.startingblocktech.tcases.util.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -52,12 +55,14 @@ public class TestCaseDef
     try
       {
       newBindings = addBindings( tuple);
+      logger_.debug( "{}: Adding tuple={}", this, tuple);
+
       }
     catch( BindingException be)
       {
       logger_.debug
-        ( "Tuple={} incompatible with testCaseDef={}: {}",
-          new Object[]{ tuple, this, be});
+        ( "{}, can't add tuple={}: {}",
+          new Object[]{ this, tuple, be.getMessage()});
       }
 
     return newBindings;
@@ -116,16 +121,17 @@ public class TestCaseDef
         }
       }
 
-    else
+    // Adding "not applicable" binding?
+    else if( value != VarValueDef.NA)
       {
-      // Is this variable applicable to the current test case?
+      // No, is this variable applicable to the current test case?
       if( !isVarApplicable( var, properties_))
         {
         throw new VarNotApplicableException( binding, properties_);
         }
 
       // Is this value inconsistent with the current test case?
-      if( !value.acquireCondition().compatible( properties_))
+      if( !Conditional.acquireCondition( value).compatible( properties_))
         {
         throw new ValueInconsistentException( binding, properties_);
         }
@@ -147,10 +153,30 @@ public class TestCaseDef
     boolean applicable;
     IVarDef ancestor;
     for( ancestor = var;
-         (applicable = var.acquireCondition().compatible( properties)) && ancestor.getParent() != null;
+         (applicable = Conditional.acquireCondition( ancestor).compatible( properties)) && ancestor.getParent() != null;
          ancestor = ancestor.getParent());
     
     return applicable;
+    }
+
+  /**
+   * Returns null if all conditions for the given variable are satisfied by the current bindings.
+   * Otherwise, returns the unsatisfied conditions
+   */
+  private ICondition getVarUnsatisfied( VarDef var)
+    {
+    ICondition unsatisfied;
+    IVarDef ancestor;
+    for( ancestor = var,
+           unsatisfied = null;
+
+         ancestor != null
+           && (unsatisfied = Conditional.acquireCondition( ancestor)).satisfied( properties_);
+         
+         ancestor = ancestor.getParent(),
+           unsatisfied = null);
+    
+    return unsatisfied;
     }
 
   /**
@@ -168,7 +194,8 @@ public class TestCaseDef
            vars = bindings_.keySet().iterator();
 
          vars.hasNext()
-           && (inapplicable = vars.next()).acquireCondition().compatible( properties);
+           && (isNA( (inapplicable = vars.next()))
+               || isVarApplicable( inapplicable, properties));
          
          inapplicable = null);
     
@@ -215,6 +242,56 @@ public class TestCaseDef
     }
 
   /**
+   * Returns true if the given value is currently bound to the "not applicable" value.
+   */
+  public boolean isNA( VarDef var)
+    {
+    return VarValueDef.isNA( getBinding( var));
+    }
+
+  /**
+   * Returns true if all conditions for current bindings are satisfied.
+   */
+  public boolean isComplete()
+    {
+    boolean complete;
+    VarDef incomplete;
+    VarValueDef value;
+    ICondition unsatisfied;
+    Iterator<VarDef> vars;
+
+    // For each variable currently bound...
+    for( vars = bindings_.keySet().iterator(),
+           complete = true,
+           incomplete = null,
+           unsatisfied = null,
+           value = null;
+
+         vars.hasNext()
+           && (complete =
+
+               // Variable not applicable?
+               VarValueDef.isNA( (value = getBinding( (incomplete = vars.next()))))
+               ||
+               ( // Variable conditions satisified?
+                 (unsatisfied = getVarUnsatisfied( incomplete)) == null
+                 &&
+                 // Value condition satisfied?
+                 (unsatisfied = Conditional.acquireCondition( value)).satisfied( properties_)));
+
+         );
+
+    if( !complete)
+      {
+      logger_.debug
+        ( "{}: Condition unsatisifed, var={}, condition={}",
+          new Object[]{ this, incomplete, unsatisfied});
+      }
+
+    return complete;
+    }
+
+  /**
    * Create a new test case using the current definition.
    */
   public TestCase createTestCase( int id)
@@ -230,9 +307,19 @@ public class TestCaseDef
 
   public String toString()
     {
+    ArrayList<Map.Entry<VarDef,VarValueDef>> bindings = new ArrayList<Map.Entry<VarDef,VarValueDef>>( bindings_.entrySet());
+    Collections.sort
+      ( bindings,
+        new Comparator<Map.Entry<VarDef,VarValueDef>>()
+        {
+        public int compare( Map.Entry<VarDef,VarValueDef> e1, Map.Entry<VarDef,VarValueDef> e2)
+          {
+          return e1.getKey().compareTo( e2.getKey());
+          }
+        }); 
     return
       ToString.getBuilder( this)
-      .append( "bindings", bindings_.size())
+      .append( "bindings", bindings)
       .append( "properties", properties_)
       .toString();
     }
