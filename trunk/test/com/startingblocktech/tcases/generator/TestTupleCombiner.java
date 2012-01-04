@@ -7,14 +7,19 @@
 
 package com.startingblocktech.tcases.generator;
 
+import com.startingblocktech.tcases.FunctionInputDef;
+import com.startingblocktech.tcases.SystemInputDef;
 import com.startingblocktech.tcases.VarBindingDef;
 import com.startingblocktech.tcases.VarDef;
 import com.startingblocktech.tcases.VarValueDef;
 import com.startingblocktech.tcases.conditions.*;
+import com.startingblocktech.tcases.io.SystemInputResources;
 import com.startingblocktech.tcases.util.Asserts;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections15.Transformer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -301,7 +306,182 @@ public class TestTupleCombiner
       throw new RuntimeException( "Unexpected exception", e);
       }
     }
+  
+  @Test
+  public void getCombinedVars_All()
+    {
+    // Given...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
+    TupleCombiner combiner = new TupleCombiner();
+    
+    // When...
+    List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
+    
+    // Then...
+    Asserts.assertSetEquals
+      ( "Combined vars",
+        new String[]  
+        {
+          "Color.Hue",
+          "Color.Lightness",
+          "Color.Saturation",
+          "Shape",
+          "Size"
+        },
+        IteratorUtils.transformedIterator
+        ( combined.iterator(),
+          new Transformer<VarDef,String>()
+            {
+            public String transform( VarDef var)
+              {
+              return var.getPathName();
+              }
+            }));
+    }
+  
+  @Test
+  public void getCombinedVars_Included()
+    {
+    // Given...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
+    TupleCombiner combiner = new TupleCombiner().addIncludedVar( "Size");
+    
+    // When...
+    List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
+    
+    // Then...
+    Asserts.assertSetEquals
+      ( "Combined vars",
+        new String[]  
+        {
+          "Size"
+        },
+        IteratorUtils.transformedIterator
+        ( combined.iterator(),
+          new Transformer<VarDef,String>()
+            {
+            public String transform( VarDef var)
+              {
+              return var.getPathName();
+              }
+            }));
+    }
+  
+  @Test
+  public void getCombinedVars_Excluded()
+    {
+    // Given...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
+    TupleCombiner combiner = new TupleCombiner().addExcludedVar( "Size");
+    
+    // When...
+    List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
+    
+    // Then...
+    Asserts.assertSetEquals
+      ( "Combined vars",
+        new String[]  
+        {
+          "Color.Hue",
+          "Color.Lightness",
+          "Color.Saturation",
+          "Shape"
+        },
+        IteratorUtils.transformedIterator
+        ( combined.iterator(),
+          new Transformer<VarDef,String>()
+            {
+            public String transform( VarDef var)
+              {
+              return var.getPathName();
+              }
+            }));
+    }
+  
+  @Test
+  public void getCombinedVars_Some()
+    {
+    // Given...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
+    TupleCombiner combiner = new TupleCombiner().addIncludedVar( "Color.*").addExcludedVar( "Color.Hue");
+    
+    // When...
+    List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
+    
+    // Then...
+    Asserts.assertSetEquals
+      ( "Combined vars",
+        new String[]  
+        {
+          "Color.Lightness",
+          "Color.Saturation"
+        },
+        IteratorUtils.transformedIterator
+        ( combined.iterator(),
+          new Transformer<VarDef,String>()
+            {
+            public String transform( VarDef var)
+              {
+              return var.getPathName();
+              }
+            }));
+    }
+  
+  @Test
+  public void getCombinedVars_IncludedNotApplicable()
+    {
+    // Given...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
+    TupleCombiner combiner = new TupleCombiner().addIncludedVar( "Size.*").addExcludedVar( "Color.Hue");
+    
+    // When...
+    try
+      {
+      List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
+
+      fail( "Unexpected vars=" + combined);
+      }
+
+    // Then...
+    catch( IllegalArgumentException iae)
+      {
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Unexpected exception", e);
+      }
+    }
+  
+  @Test
+  public void getCombinedVars_ExcludedNotApplicable()
+    {
+    // Given...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
+    TupleCombiner combiner = new TupleCombiner().addExcludedVar( "Color.Red");
+    
+    // When...
+    try
+      {
+      List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
+
+      fail( "Unexpected vars=" + combined);
+      }
+
+    // Then...
+    catch( IllegalArgumentException iae)
+      {
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Unexpected exception", e);
+      }
+    }
+
+  private SystemInputResources systemInputResources_ = new SystemInputResources( TestTupleCombiner.class);
   }
-
-
-

@@ -79,25 +79,28 @@ public class TupleCombiner
   /**
    * Adds a pattern matching input variables to be included in this combination.
    */
-  public void addIncludedVar( String varNamePattern)
+  public TupleCombiner addIncludedVar( String varNamePattern)
     {
     getIncludedVars().add( getValidVarNamePattern( varNamePattern));
+    return this;
     }
 
   /**
    * Removes a pattern matching input variables to be included in this combination.
    */
-  public void removeIncludedVar( String varNamePattern)
+  public TupleCombiner removeIncludedVar( String varNamePattern)
     {
     getIncludedVars().remove( new VarNamePattern( varNamePattern));
+    return this;
     }
 
   /**
    * Removes all patterns matching input variables to be included in this combination.
    */
-  public void removeAllIncludedVars()
+  public TupleCombiner removeAllIncludedVars()
     {
     getIncludedVars().clear();
+    return this;
     }
 
   /**
@@ -119,33 +122,28 @@ public class TupleCombiner
   /**
    * Adds a pattern matching input variables to be excluded from this combination.
    */
-  public void addExcludedVar( String varNamePattern)
+  public TupleCombiner addExcludedVar( String varNamePattern)
     {
     getExcludedVars().add( getValidVarNamePattern( varNamePattern));
+    return this;
     }
 
   /**
    * Removes a pattern matching input variables to be excluded from this combination.
    */
-  public void removeExcludedVar( String varNamePattern)
+  public TupleCombiner removeExcludedVar( String varNamePattern)
     {
     getExcludedVars().remove( new VarNamePattern( varNamePattern));
+    return this;
     }
 
   /**
    * Removes all patterns matching input variables to be excluded from this combination.
    */
-  public void removeAllExcludedVars()
+  public TupleCombiner removeAllExcludedVars()
     {
     getExcludedVars().clear();
-    }
-
-  /**
-   * Returns true if no included variable patterns have been defined.
-   */
-  public boolean isEmpty()
-    {
-    return getIncludedVars().isEmpty();
+    return this;
     }
 
   /**
@@ -269,9 +267,15 @@ public class TupleCombiner
    */
   private boolean isIncluded( VarNamePattern varNamePath)
     {
-    boolean included = false;
-    Iterator<VarNamePattern> includedVars = getIncludedVars().iterator();
-    while( includedVars.hasNext() && !(included = includedVars.next().matches( varNamePath)));
+    // If no included patterns specified, include all variables.
+    boolean included = getIncludedVars().isEmpty();
+    if( !included)
+      {
+      // Otherwise, look for a matching pattern.
+      Iterator<VarNamePattern> includedVars = getIncludedVars().iterator();
+      while( includedVars.hasNext() && !(included = includedVars.next().matches( varNamePath)));
+      }
+    
     return included;
     }
 
