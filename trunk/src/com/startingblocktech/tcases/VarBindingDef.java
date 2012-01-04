@@ -47,7 +47,7 @@ public class VarBindingDef
    */
   public VarBindingDef bind( VarDef varDef, VarValueDef valueDef)
     {
-    if( valueDef != null && varDef.getValue( valueDef.getName()) == null)
+    if( valueDef != null && !varDef.isApplicable( valueDef))
       {
       throw new IllegalArgumentException( "Value=" + valueDef + " is not defined for var=" + varDef);
       }
@@ -72,6 +72,14 @@ public class VarBindingDef
   public VarValueDef getValueDef()
     {
     return valueDef_;
+    }
+
+  /**
+   * Returns true if this binding has the "not applicable" value.
+   */
+  public boolean isNA()
+    {
+    return VarValueDef.isNA( valueDef_);
     }
 
   public boolean equals( Object object)

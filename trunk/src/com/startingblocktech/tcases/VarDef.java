@@ -38,6 +38,20 @@ public class VarDef extends AbstractVarDef
     }
 
   /**
+   * Returns true if this variable (has an ancestor that) defines a condition.
+   */
+  public boolean isOptional()
+    {
+    IVarDef ancestor;
+    boolean optional;
+    for( optional = false, ancestor = this;
+         !(optional = ancestor.getCondition() != null) && ancestor.getParent() != null;
+         ancestor = ancestor.getParent());
+
+    return optional;
+    }
+
+  /**
    * If this variable has member variables, returns an iterator for the member variable list.
    * Otherwise, returns null.
    */
@@ -126,6 +140,16 @@ public class VarDef extends AbstractVarDef
   public VarValueDef getValue( String name)    {
     int i = findValue( name);
     return i >= 0? values_.get(i) : null;
+    }
+
+  /**
+   * Returns true if the given value can be bound to this variable.
+   */
+  public boolean isApplicable( VarValueDef value)
+    {
+    return
+      getValue( value.getName()) != null
+      || (VarValueDef.isNA( value) && isOptional());
     }
 
   /**
