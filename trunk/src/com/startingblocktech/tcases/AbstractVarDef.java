@@ -17,7 +17,7 @@ import java.util.Iterator;
  *
  * @version $Revision$, $Date$
  */
-public abstract class AbstractVarDef extends Conditional implements IVarDef
+public abstract class AbstractVarDef extends Conditional implements IVarDef, Comparable<IVarDef>
   {
   /**
    * Creates a new AbstractVarDef object.
@@ -130,6 +130,11 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    * Otherwise, returns null.
    */
   abstract public Iterator<VarValueDef> getValues();
+
+  public int compareTo( IVarDef other)
+    {
+    return getPathName().compareTo( other.getPathName());
+    }
 
   public String toString()
     {
