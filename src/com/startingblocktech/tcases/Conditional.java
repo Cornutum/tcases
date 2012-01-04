@@ -12,7 +12,7 @@ package com.startingblocktech.tcases;
  *
  * @version $Revision$, $Date$
  */
-public abstract class Conditional
+public abstract class Conditional implements IConditional
   {
   /**
    * Changes the condition that defines when this element is applicable.
@@ -33,9 +33,9 @@ public abstract class Conditional
   /**
    * Returns the effective condition that defines when this element is applicable.
    */
-  public ICondition acquireCondition()
+  public static ICondition acquireCondition( IConditional conditional)
     {
-    ICondition condition = getCondition();
+    ICondition condition = conditional.getCondition();
     return
       condition == null
       ? ICondition.ALWAYS
