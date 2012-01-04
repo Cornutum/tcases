@@ -12,10 +12,8 @@ import com.startingblocktech.tcases.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.collections15.IteratorUtils;
 
-import java.io.InputStream;
 import org.xml.sax.SAXParseException;
 
 /**
@@ -65,7 +63,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_0()
     {
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-0.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
     assertEquals( "System name", "System-0", systemInputDef.getName());
 
     FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
@@ -112,7 +110,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_1()
     {
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-1.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-1.xml");
     assertEquals( "System name", "System-1", systemInputDef.getName());
 
     FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
@@ -159,7 +157,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_2()
     {
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-2.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-2.xml");
     assertEquals( "System name", "System-2", systemInputDef.getName());
 
     FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
@@ -206,7 +204,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_3()
     {
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-3.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-3.xml");
     assertEquals( "System name", "System-3", systemInputDef.getName());
 
     FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
@@ -253,7 +251,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_4()
     {
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-4.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-4.xml");
     assertEquals( "System name", "System-4", systemInputDef.getName());
 
     FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
@@ -300,7 +298,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_5()
     {
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-5.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-5.xml");
     assertEquals( "System name", "System-5", systemInputDef.getName());
 
     FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
@@ -347,7 +345,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_6()
     {
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-6.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-6.xml");
     assertEquals( "System name", "System-6", systemInputDef.getName());
 
     FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
@@ -394,7 +392,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_7()
     {
-    SystemInputDef systemInputDef = readSystemInputDef( "system-input-def-7.xml");
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-7.xml");
     assertEquals( "System name", "System-7", systemInputDef.getName());
 
     FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
@@ -1421,33 +1419,6 @@ public class TestSystemInputDocReader
     }
 
   /**
-   * Returns the {@link SystemInputDef} defined by the given resource.
-   */
-  private SystemInputDef readSystemInputDef( String resource)
-    {
-    SystemInputDef  systemInputDef  = null;
-    InputStream     stream          = null;
-    
-    try
-      {
-      stream = getClass().getResourceAsStream( resource);
-
-      SystemInputDocReader reader = new SystemInputDocReader( stream);
-      systemInputDef = reader.getSystemInputDef();
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't read resource=" + resource, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( stream);
-      }
-
-    return systemInputDef;
-    }
-
-  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)
@@ -1455,7 +1426,7 @@ public class TestSystemInputDocReader
     Throwable failure = null;
     try
       {
-      readSystemInputDef( resource);
+      systemInputResources_.read( resource);
       }
     catch( Throwable t)
       {
@@ -1484,4 +1455,5 @@ public class TestSystemInputDocReader
     assertEquals( "Exception message", expectedMsg, actualMsg);
     }
 
+  private SystemInputResources systemInputResources_ = new SystemInputResources( TestSystemInputDocReader.class);
   }
