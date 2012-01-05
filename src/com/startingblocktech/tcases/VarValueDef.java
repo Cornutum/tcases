@@ -55,9 +55,9 @@ public class VarValueDef extends Conditional
      * Returns if this type of value is a valid member of the variable input domain.
      */
     public boolean isValid()
-    {
-    return valid_;
-    }
+      {
+      return valid_;
+      }
 
     private boolean valid_;
     }
