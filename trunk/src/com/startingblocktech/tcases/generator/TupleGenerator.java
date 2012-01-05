@@ -208,10 +208,14 @@ public class TupleGenerator implements ITestCaseGenerator
         
         Iterator<Tuple> varTuples =
           IteratorUtils.chainedIterator
-          ( IteratorUtils.chainedIterator
-            ( tuples.getUnused( nextVar),
-              tuples.getUsed( nextVar)),
-            getNA( nextVar));
+          ( tuples.getUnused( nextVar),
+            
+            IteratorUtils.chainedIterator
+            ( tuples.getUsed( nextVar, false),
+              
+              IteratorUtils.chainedIterator
+              ( tuples.getUsed( nextVar, true),
+                getNA( nextVar))));
         
         Tuple tuple;
         Tuple tupleAdded;
