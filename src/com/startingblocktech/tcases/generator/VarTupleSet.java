@@ -8,6 +8,7 @@
 package com.startingblocktech.tcases.generator;
 
 import com.startingblocktech.tcases.VarDef;
+import com.startingblocktech.tcases.VarValueDef;
 import com.startingblocktech.tcases.util.ToString;
 
 import org.apache.commons.collections15.IteratorUtils;
@@ -74,7 +75,20 @@ public class VarTupleSet
   /**
    * Returns input tuples already used in a test case that bind the given variable.
    */
-  public Iterator<Tuple> getUsed( final VarDef var)
+  public Iterator<Tuple> getUsed( VarDef var)
+    {
+    return getUsed( var, null);
+    }
+
+  /**
+   * Returns input tuples already used in a test case that bind the given variable.
+   * <P/>
+   * If <CODE>once</CODE> is non-null, the tuples returned depends on the {@link VarDefValue#getType type}
+   * of the value bound. If <CODE>once</CODE> is true, returns only 1-tuples that bind
+   * the variable to a value of type {@link VarDefValue.Type#ONCE}. Otherwise, returns
+   * n-tuples where n &gt; 1 or where the value type is {@link VarDefValue.Type#VALID}.
+   */
+  public Iterator<Tuple> getUsed( final VarDef var, final Boolean once)
     {
     return
       IteratorUtils.filteredIterator
@@ -83,7 +97,12 @@ public class VarTupleSet
         {
         public boolean evaluate( Tuple tuple)
           {
-          return tuple.getBinding( var) != null;
+          VarValueDef value = tuple.getBinding( var);
+          return
+            value != null
+            && (once == null
+                ||
+                once.booleanValue() == (tuple.size() == 1 && value.getType()==VarValueDef.Type.ONCE));
           }
         });
     }
