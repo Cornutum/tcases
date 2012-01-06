@@ -388,6 +388,97 @@ public class TestTupleGenerator
           ),
         functionTestDef.getTestCases());
     }
+  
+  @Test
+  public void getTuples_Failures()
+    {
+    // Given...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-3.xml");
+    FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
+    TupleGenerator generator = new TupleGenerator();
+
+    // When...
+    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, null);
+
+    // Expect...
+    TCaseBuilder tc = new TCaseBuilder();
+    assertSeqEquals
+      ( "Test cases",
+        TCaseBuilder.sequence
+        ( tc
+          .start()
+          .bind( "Color.Hue", "Red")
+          .bind( "Color.Lightness", "Bright")
+          .bind( "Color.Saturation", "Pale")
+          .bind( "Shape", "Circle")
+          .bind( "Size", "Small")
+          .build(),
+
+          tc
+          .start()
+          .bind( "Color.Hue", "Green")
+          .bind( "Color.Lightness", "Normal")
+          .bind( "Color.Saturation", "Even")
+          .bind( "Shape", "Heart")
+          .bind( "Size", "Small")
+          .build(),
+
+          tc
+          .start()
+          .bind( "Color.Hue", "Blue")
+          .bind( "Color.Lightness", "Dark")
+          .bind( "Color.Saturation", "Intense")
+          .bind( "Shape", "Heart")
+          .bind( "Size", "Small")
+          .build(),
+
+          tc
+          .start()
+          .bind( "Color.Hue", "NA")
+          .bind( "Color.Lightness", "NA")
+          .bind( "Color.Saturation", "NA")
+          .bind( "Shape", "Square")
+          .bind( "Size", "Medium")
+          .build(),
+
+          tc
+          .start()
+          .bind( "Color.Hue", "NA")
+          .bind( "Color.Lightness", "NA")
+          .bind( "Color.Saturation", "NA")
+          .bind( "Shape", "Circle")
+          .bind( "Size", "Large")
+          .build(),
+          tc
+          .start()
+          .bind( "Color.Hue", "Green")
+          .bind( "Color.Lightness", "Transparent", false)
+          .bind( "Color.Saturation", "Even")
+          .bind( "Shape", "Heart")
+          .bind( "Size", "Small")
+          .build(),
+          
+          tc
+          .start()
+          .bind( "Color.Hue", "Blue")
+          .bind( "Color.Lightness", "Dark")
+          .bind( "Color.Saturation", "Undefined", false)
+          .bind( "Shape", "Heart")
+          .bind( "Size", "Small")
+          .build(),
+          
+          tc
+          .start()
+          .bind( "Color.Hue", "NA")
+          .bind( "Color.Lightness", "NA")
+          .bind( "Color.Saturation", "NA")
+          .bind( "Shape", "Square")
+          .bind( "Size", "Ginormous", false)
+          .build()
+          ),
+
+        functionTestDef.getTestCases());
+    }
 
   private SystemInputResources systemInputResources_ = new SystemInputResources( TestTupleGenerator.class);
   }

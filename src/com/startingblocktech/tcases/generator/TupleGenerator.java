@@ -117,19 +117,37 @@ public class TupleGenerator implements ITestCaseGenerator
    */
   public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
-    logger_.info( "{}: generating test cases", inputDef);
-    
-    List<TestCaseDef> validCases = getValidCases( inputDef, baseTests);
-
-    FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
-    int id = 0;
-    for( TestCaseDef testCase : validCases)
+    try
       {
-      testDef.addTestCase( testCase.createTestCase( id++));
-      }
+      logger_.info( "{}: generating test cases", inputDef);
+
+      RandSeq randSeq = getRandomSeed()==null? null : new RandSeq( getRandomSeed());
+      List<TestCaseDef> validCases = getValidCases( randSeq, inputDef, baseTests);
+      List<TestCaseDef> failureCases = getFailureCases( randSeq, inputDef, baseTests, validCases);
+
+      FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
+      int id = 0;
+
+      // Add valid test cases.
+      for( TestCaseDef testCase : validCases)
+        {
+        testDef.addTestCase( testCase.createTestCase( id++));
+        }
+
+      // Add failure test cases.
+      for( TestCaseDef testCase : failureCases)
+        {
+        testDef.addTestCase( testCase.createTestCase( id++));
+        }
     
-    logger_.info( "{}: completed {} test cases", inputDef, id);
-    return testDef;
+      logger_.info( "{}: completed {} test cases", inputDef, id);
+      return testDef;
+      }
+    catch( Exception e)
+      {
+      logger_.error( String.valueOf( inputDef) + ": can't create test cases", e);
+      throw new RuntimeException( String.valueOf( inputDef) + ": can't create test cases", e);
+      }
     }
 
   /**
@@ -137,10 +155,12 @@ public class TupleGenerator implements ITestCaseGenerator
    * If the given base test definition is non-null, returns a set of new test cases
    * that extend the base tests.
    */
-  private List<TestCaseDef> getValidCases( FunctionInputDef inputDef, FunctionTestDef baseTests)
+  private List<TestCaseDef> getValidCases( RandSeq randSeq, FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
+    logger_.debug( "{}: creating valid test cases", inputDef);
+    
     List<TestCaseDef> validCases = new ArrayList<TestCaseDef>();
-    VarTupleSet tuples = getValidTupleSet( inputDef);
+    VarTupleSet tuples = getValidTupleSet( randSeq, inputDef);
 
     // For each valid input tuple not yet used in a test case...
     Tuple nextUnused;
@@ -162,7 +182,6 @@ public class TupleGenerator implements ITestCaseGenerator
       // Complete bindings for remaining variables.
       if( !completeBindings( validCase, tuples, getRemainingVars( inputDef, validCase), 0))
         {
-        logger_.error( "Can't create test case for tuple={}", nextUnused);
         throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
         }
       
@@ -170,7 +189,8 @@ public class TupleGenerator implements ITestCaseGenerator
       tuples.used( nextUnused);
       validCases.add( validCase);
       }
-    
+
+    logger_.info( "{}: created {} valid test cases", inputDef, validCases.size());
     return validCases;
     }
 
@@ -234,7 +254,7 @@ public class TupleGenerator implements ITestCaseGenerator
           {
           if( tupleAdded != null)
             {
-            logger_.debug( "{}: Removing tuple={}", this, tupleAdded);
+            logger_.debug( "{}: removing tuple={}", this, tupleAdded);
             testCase.removeBindings( tupleAdded);
             }
           }
@@ -287,10 +307,9 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Returns the all valid input tuples required for generated test cases.
    */
-  private VarTupleSet getValidTupleSet( FunctionInputDef inputDef)
+  private VarTupleSet getValidTupleSet( RandSeq randSeq, FunctionInputDef inputDef)
     {
     List<Tuple> validTuples = new ArrayList<Tuple>();
-    RandSeq randSeq = getRandomSeed()==null? null : new RandSeq( getRandomSeed());
 
     // Get tuple sets required for each specified combiner,
     // ordered for "greedy" processing, i.e. biggest tuples first.
@@ -337,6 +356,111 @@ public class TupleGenerator implements ITestCaseGenerator
       }
     
     return new VarTupleSet( validTuples);
+    }
+
+  /**
+   * Returns a set of failure {@link TestCaseDef test case definitions} for the given function input definition.
+   * If the given base test definition is non-null, returns a set of new test cases
+   * that extend the base tests.
+   */
+  private List<TestCaseDef> getFailureCases( RandSeq randSeq, FunctionInputDef inputDef, FunctionTestDef baseTests, List<TestCaseDef> validCases)
+    {
+    logger_.debug( "{}: creating failure test cases", inputDef);
+    
+    List<TestCaseDef> failureCases = new ArrayList<TestCaseDef>();
+    VarTupleSet tuples = getFailureTupleSet( randSeq, inputDef);
+
+    // For each failure input tuple not yet used in a test case...
+    int validStart;
+    int validUsed;
+    int validCount;
+    Tuple nextUnused;
+    for( validCount = validCases.size(),
+           validStart = 0;
+         
+         (nextUnused = tuples.getNextUnused()) != null;
+
+         validStart = (validUsed + 1) % validCount)
+      {
+      // Create a new failure test case for this tuple, substituting the failure value into a compatible
+      // valid case. To increase variability (and thus potential coverage), rotate the point where we
+      // begin searching for a compatible valid case.
+      logger_.debug( "Creating test case for tuple={}", nextUnused);
+      TestCaseDef failureCase;
+      int i;
+      for( i = 0,
+             validUsed = validStart,
+             failureCase = null;
+           
+           i < validCount
+             && (failureCase = createFailureCase( validCases.get( validUsed), nextUnused)) == null;
+
+           i++,
+             validUsed = (validUsed + 1) % validCount);
+
+      if( failureCase == null)
+        {
+        throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
+        }
+
+      logger_.debug( "Completed test case={}", failureCase);
+      tuples.used( nextUnused);
+      failureCases.add( failureCase);
+      }
+    
+    logger_.info( "{}: created {} failure test cases", inputDef, failureCases.size());
+    return failureCases;
+    }
+
+  /**
+   * Returns a new test case using the same variable bindings as the given valid case,
+   * except for the substitution of the given failure binding. Returns null if
+   * the <CODE>failureTuple</CODE> is not compatible with this valid case.
+   */
+  private TestCaseDef createFailureCase( TestCaseDef validCase, Tuple failureTuple)
+    {
+    TestCaseDef failureCase;
+
+    try
+      {
+      failureCase = new TestCaseDef( validCase);
+      failureCase.removeBindings( failureTuple);
+      failureCase.addBindings( failureTuple);
+      if( !failureCase.isComplete())
+        {
+        failureCase = null;
+        }
+      }
+    catch( BindingException be)
+      {
+      logger_.debug( "{}, can't add tuple={}: {}", new Object[]{ validCase, failureTuple, be.getMessage()});
+      failureCase = null;
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( String.valueOf( validCase) + ", can't add tuple=", e);
+      }
+
+    return failureCase;
+    }
+
+  /**
+   * Returns the all failure input tuples required for generated test cases.
+   */
+  private VarTupleSet getFailureTupleSet( RandSeq randSeq, FunctionInputDef inputDef)
+    {
+    List<Tuple> failureTuples = new ArrayList<Tuple>();
+
+    for( VarDefIterator vars = new VarDefIterator( inputDef); vars.hasNext(); )
+      {
+      VarDef var = vars.next();
+      for( Iterator<VarValueDef> failures = var.getFailureValues(); failures.hasNext(); )
+        {
+        failureTuples.add( new Tuple( new VarBindingDef( var, failures.next())));
+        }
+      }
+    
+    return new VarTupleSet( RandSeq.reorderIf( randSeq, failureTuples));
     }
 
   public String toString()
