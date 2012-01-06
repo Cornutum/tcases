@@ -36,6 +36,21 @@ public class TestCaseDef
     }
 
   /**
+   * Creates a new TestCaseDef object.
+   */
+  public TestCaseDef( TestCaseDef other)
+    {
+    this();
+    if( other != null)
+      {
+      for( VarDef var : other.bindings_.keySet())
+        {
+        addBinding( var, other.getBinding( var));
+        }
+      }
+    }
+
+  /**
    * Returns the current value binding for the given input variable.
    */
   public VarValueDef getValue( VarDef var)
@@ -55,7 +70,7 @@ public class TestCaseDef
     try
       {
       newBindings = addBindings( tuple);
-      logger_.debug( "{}: Adding tuple={}", this, tuple);
+      logger_.debug( "{}: adding tuple={}", this, tuple);
 
       }
     catch( BindingException be)
@@ -212,12 +227,19 @@ public class TestCaseDef
     boolean added = !bindings_.containsKey( var);
     if( added)
       {
-      VarValueDef value = binding.getValueDef();
-      bindings_.put( var, value);
-      properties_.addAll( value.getProperties());
+      addBinding( var, binding.getValueDef());
       }
 
     return added;
+    }
+
+  /**
+   * Adds a new variable binding to the current test case.
+   */
+  private void addBinding( VarDef var, VarValueDef value)
+    {
+    bindings_.put( var, value);
+    properties_.addAll( value.getProperties());
     }
 
   /**
@@ -284,7 +306,7 @@ public class TestCaseDef
     if( !complete)
       {
       logger_.debug
-        ( "{}: Condition unsatisifed, var={}, condition={}",
+        ( "{}: condition unsatisifed, var={}, condition={}",
           new Object[]{ this, incomplete, unsatisfied});
       }
 
