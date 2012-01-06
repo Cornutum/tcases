@@ -142,7 +142,9 @@ public class VarBinding implements Comparable<VarBinding>
 
     if( !isValueValid())
       {
-      builder.append( "valid", isValueValid());
+      builder.getStringBuffer()
+        .append( ", valid=")
+        .append( isValueValid());
       }
 
     return builder.toString();
