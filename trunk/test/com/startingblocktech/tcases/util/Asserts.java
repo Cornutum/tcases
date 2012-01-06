@@ -118,6 +118,7 @@ public abstract class Asserts
         {
         fail
           ( labelBuilder.delete( 0, labelBuilder.length())
+            .append( label)
             .append( " too small, starting at index=").append( i)
             .append( ", missing=[").append( StringUtils.join( expected.toArray(), ",", i, expected.size())).append( "]")
             .toString());
@@ -126,6 +127,7 @@ public abstract class Asserts
         {
         fail
           ( labelBuilder.delete( 0, labelBuilder.length())
+            .append( label)
             .append( " too big, starting at index=").append( i)
             .append( ", unexpected=[").append( StringUtils.join( IteratorUtils.toArray( actual), ",")).append( "]")
             .toString());
