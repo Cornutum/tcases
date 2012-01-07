@@ -74,7 +74,7 @@ public class VarSet extends AbstractVarDef
     }
 
   /**
-   * Removes an input variable to this set.
+   * Removes an input variable from this set.
    */
   public VarSet removeMember( String name)
     {

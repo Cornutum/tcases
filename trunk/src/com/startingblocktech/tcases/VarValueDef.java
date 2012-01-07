@@ -199,7 +199,7 @@ public class VarValueDef extends Conditional
     }
 
   /**
-   * Returns true if the given value is the standard {@link NA "not applicable"} value.
+   * Returns true if the given value is the standard {@link #NA "not applicable"} value.
    */
   public static boolean isNA( VarValueDef value)
     {

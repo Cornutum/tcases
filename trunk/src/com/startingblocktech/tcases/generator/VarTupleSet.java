@@ -83,10 +83,12 @@ public class VarTupleSet
   /**
    * Returns input tuples already used in a test case that bind the given variable.
    * <P/>
-   * If <CODE>once</CODE> is non-null, the tuples returned depends on the {@link VarDefValue#getType type}
-   * of the value bound. If <CODE>once</CODE> is true, returns only 1-tuples that bind
-   * the variable to a value of type {@link VarDefValue.Type#ONCE}. Otherwise, returns
-   * n-tuples where n &gt; 1 or where the value type is {@link VarDefValue.Type#VALID}.
+   * If <CODE>once</CODE> is non-null, the tuples returned depends on the {@link
+   * VarValueDef#getType type} of the value bound. If <CODE>once</CODE> is true, returns only
+   * 1-tuples that bind the variable to a value of type {@link
+   * com.startingblocktech.tcases.VarValueDef.Type#ONCE ONCE}. Otherwise, returns n-tuples where n
+   * &gt; 1 or where the value type is {@link com.startingblocktech.tcases.VarValueDef.Type#VALID
+   * VALID}.
    */
   public Iterator<Tuple> getUsed( final VarDef var, final Boolean once)
     {
