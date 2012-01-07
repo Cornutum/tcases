@@ -1,0 +1,260 @@
+//////////////////////////////////////////////////////////////////////////////
+// 
+//               Copyright 2010, Starting Block Technologies
+//                        www.startingblocktech.com
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//  Version: $Revision$, $Date$
+//
+//  Random: 66766890
+//
+/////////////////////////////////////////////////////////////////////////////
+
+
+getSystemTestDef
+{
+ parameters:
+  TestCases.System
+    {
+      Undefined
+        {
+          type = failure;
+        }
+      Defined;
+    }
+  
+  Function.Count
+    {
+      None;
+      One
+        {
+          properties = functions;
+        }
+      Many
+        {
+          properties = functions;
+        }
+    }
+
+  Function.Name
+    {
+      Undefined
+        {
+          type = failure;
+          conditions = functions;
+        }
+      Defined
+        {
+          conditions = functions;
+        }
+      NA
+        {
+          conditions = ~functions;
+        }
+    }
+  
+  TestCase.Count
+    {
+      None
+        {
+          conditions = functions;
+        }
+      One
+        {
+          properties = testCases;
+          conditions = functions;
+        }
+      Many
+        {
+          properties = testCases;
+          conditions = functions;
+        }
+      NA
+        {
+          conditions = ~functions;
+        }
+    }
+
+  TestCase.Id
+    {
+      Undefined
+        {
+          type = failure;
+          conditions = testCases;
+        }
+      Non-numeric
+        {
+          type = failure;
+          conditions = testCases;
+        }
+      Negative
+        {
+          type = failure;
+          conditions = testCases;
+        }
+      Defined
+        {
+          conditions = testCases;
+        }
+      NA
+        {
+          conditions = ~testCases;
+        }
+    }
+
+  TestCase.Failure
+    {
+      Failure-Value-Missing
+        {
+          type = failure;
+          conditions = testCases;
+          conditions = ~valueFailure;
+        }
+      Undefined
+        {
+          conditions = testCases;
+        }
+      Yes
+        {
+          conditions = testCases;
+          properties = testCaseFailure;
+        }
+      No
+        {
+          conditions = testCases;
+        }
+      NA
+        {
+          conditions = ~testCases;
+        }
+    }
+
+  Input.Count
+    {
+      None
+        {
+          type = failure;
+          conditions = testCases;
+        }
+      One
+        {
+          conditions = testCases;
+          properties = inputs;
+        }
+      Many
+        {
+          conditions = testCases;
+          properties = inputs;
+        }
+      NA
+        {
+          conditions = ~testCases;
+        }
+    }
+
+  Input.Type
+    {
+      Undefined
+        {
+          conditions = inputs;
+        }
+      Defined
+        {
+          conditions = inputs;
+        }
+      NA
+        {
+          conditions = ~inputs;
+        }
+    }
+
+  Var.Count
+    {
+      None
+        {
+          type = failure;
+          conditions = inputs;
+        }
+      One
+        {
+          conditions = inputs;
+          properties = vars;
+        }
+      Many
+        {
+          conditions = inputs;
+          properties = vars;
+        }
+      NA
+        {
+          conditions = ~inputs;
+        }
+    }
+
+  Var.Name
+    {
+      Undefined
+        {
+          conditions = vars;
+          type = failure;
+        }
+      Invalid
+        {
+          conditions = vars;
+          type = failure;
+        }
+      Defined
+        {
+          conditions = vars;
+        }
+      NA
+        {
+          conditions = ~vars;
+        }
+    }
+
+  Var.Value
+    {
+      Undefined
+        {
+          conditions = vars;
+          type = failure;
+        }
+      Defined
+        {
+          conditions = vars;
+        }
+      NA
+        {
+          conditions = ~vars;
+        }
+    }
+
+  Var.Failure
+    {
+      Undefined
+        {
+          conditions = vars;
+        }
+      Yes
+        {
+          conditions = vars;
+          properties = valueFailure;
+        }
+      Unexpected
+        {
+          type = failure;
+          conditions = vars;
+          conditions = ~testCaseFailure;
+        }
+      No
+        {
+          conditions = vars;
+        }
+      NA
+        {
+          conditions = ~vars;
+        }
+    }
+}
