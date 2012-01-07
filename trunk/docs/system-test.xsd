@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<xs:schema 
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="http://www.startingblocktech.com/tcases"
+   xmlns="http://www.startingblocktech.com/tcases"
+   >
+  <!-- Defines the schema for a system test case specification document -->
+  <!-- $Revision: 92 $, $Date: 2012-01-02 19:50:23 -0600 (Mon, 02 Jan 2012) $ -->
+
+  <!-- System functions -->
+  <xs:element name="TestCases">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded">
+
+        <xs:element name="Function">
+          <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+
+              <xs:element name="TestCase">
+                <xs:complexType>
+                  <xs:sequence maxOccurs="unbounded">
+
+                    <xs:element name="Input">
+                      <xs:complexType>
+                        <xs:sequence maxOccurs="unbounded">
+
+                          <xs:element name="Var">
+                            <xs:complexType>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                              <xs:attribute name="value" type="xs:string" use="required"/>
+                              <xs:attribute name="failure" type="xs:boolean"/>
+                            </xs:complexType>
+                          </xs:element>
+
+                        </xs:sequence>
+
+                        <xs:attribute name="type" type="xs:string" default="arg"/>
+                      </xs:complexType>
+                    </xs:element>
+
+                  </xs:sequence>
+
+                  <xs:attribute name="id" type="xs:nonNegativeInteger" use="required"/>
+                  <xs:attribute name="failure" type="xs:boolean"/>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+
+            <xs:attribute name="name" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="system" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
