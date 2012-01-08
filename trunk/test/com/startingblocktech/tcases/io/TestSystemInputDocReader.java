@@ -1419,6 +1419,62 @@ public class TestSystemInputDocReader
     }
 
   /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 34.  getSystemInputDef (Failure: System.Name, Invalid identifier) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_34()
+    {
+    assertException( "system-input-def-34.xml", 1, "Invalid \"name\" attribute: \"System 1\" is not a valid identifier");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 35.  getSystemInputDef (Failure: Function.Name, Invalid identifier) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_35()
+    {
+    assertException( "system-input-def-35.xml", 32, "Invalid \"name\" attribute: \"Function-1.Is.Invalid\" is not a valid identifier");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 36.  getSystemInputDef (Failure: Var.Name, Invalid identifier) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_36()
+    {
+    assertException( "system-input-def-36.xml", 18, "Invalid \"name\" attribute: \"env-0=0\" is not a valid identifier");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 37.  getSystemInputDef (Failure: Value.Name, Invalid identifier) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_37()
+    {
+    assertException( "system-input-def-37.xml", 55, "Invalid \"name\" attribute: \"value.7\" is not a valid identifier");
+    }
+
+  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)
