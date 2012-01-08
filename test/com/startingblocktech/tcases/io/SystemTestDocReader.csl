@@ -7,7 +7,7 @@
 //
 //  Version: $Revision$, $Date$
 //
-//  Random: 66766890
+//  Random: 750644686
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -18,6 +18,10 @@ getSystemTestDef
   TestCases.System
     {
       Undefined
+        {
+          type = failure;
+        }
+      Invalid-Identifier
         {
           type = failure;
         }
@@ -40,6 +44,16 @@ getSystemTestDef
   Function.Name
     {
       Undefined
+        {
+          type = failure;
+          conditions = functions;
+        }
+      Duplicate
+        {
+          type = failure;
+          conditions = functions;
+        }
+      Invalid-Identifier
         {
           type = failure;
           conditions = functions;
@@ -89,6 +103,11 @@ getSystemTestDef
           conditions = testCases;
         }
       Negative
+        {
+          type = failure;
+          conditions = testCases;
+        }
+      Duplicate
         {
           type = failure;
           conditions = testCases;
@@ -204,6 +223,16 @@ getSystemTestDef
           conditions = vars;
           type = failure;
         }
+      Duplicate
+        {
+          type = failure;
+          conditions = vars;
+        }
+      Invalid-Path
+        {
+          type = failure;
+          conditions = vars;
+        }
       Defined
         {
           conditions = vars;
@@ -240,6 +269,7 @@ getSystemTestDef
       Yes
         {
           conditions = vars;
+          conditions = testCaseFailure;
           properties = valueFailure;
         }
       Unexpected

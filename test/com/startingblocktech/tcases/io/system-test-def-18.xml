@@ -9,7 +9,7 @@
 
     <TestCase id="1" failure="false">
       <Input>
-        <Var name="Var-10" value="Value-10"/>
+        <Var name="Var 10" value="Value-10"/>
       </Input>      
     </TestCase>
   </Function>

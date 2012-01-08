@@ -15,7 +15,7 @@
   </Function>
 
   <Function name="Function-1">
-    <TestCase id="0" failure="false">
+    <TestCase failure="false">
       <Input>
         <Var name="Var-00" value="Value-00"/>
       </Input>      
