@@ -95,7 +95,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
           }
         catch( Exception e)
           {
-          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute: " + e.getMessage(), getDocumentLocator()); 
           }
         }
 
@@ -138,7 +138,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
           }
         catch( Exception e)
           {
-          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute: " + e.getMessage(), getDocumentLocator()); 
           }
         }
       
