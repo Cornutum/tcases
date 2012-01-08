@@ -29,10 +29,7 @@
   </Function>
 
   <Function name="Function-2">
-    <TestCase id="0" failure="false">
-      <Input>
-        <Var name="Var-00" value="Value-00"/>
-      </Input>      
+    <TestCase id="0" failure="false">      
     </TestCase>
 
     <TestCase id="1" failure="false">

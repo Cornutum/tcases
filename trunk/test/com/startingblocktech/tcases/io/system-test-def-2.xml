@@ -1,0 +1,15 @@
+<TestCases system="System-2">
+
+  <Function name="Function-0">
+    <TestCase id="0" failure="true">
+      <Input type="env">
+        <Var name="VarSet-00.1.2.3" value="Value-00"/>
+        <Var name="VarSet-01" value="Value-01" failure="yes"/>
+      </Input>
+      <Input type="state">
+        <Var name="VarSet-02" value="Value-02"/>
+      </Input>
+    </TestCase>
+  </Function>
+
+</TestCases>

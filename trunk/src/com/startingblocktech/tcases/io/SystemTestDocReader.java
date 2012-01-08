@@ -90,15 +90,22 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
         {
         try
           {
-          integer = Integer.valueOf( value);
+          try
+            {
+            integer = Integer.valueOf( value);
+            }
+          catch( Exception e)
+            {
+            throw new RuntimeException( "Invalid value=\"" + value + "\", must be a non-negative integer");
+            }
           if( integer < 0)
             {
-            throw new IllegalArgumentException( "Invalid value=" + integer + ": must be non-negative");
+            throw new RuntimeException( "Invalid value=" + integer + ", must be non-negative");
             }
           }
         catch( Exception e)
           {
-          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute: " + e.getMessage(), getDocumentLocator()); 
           }
         }
       
@@ -136,7 +143,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
           }
         catch( Exception e)
           {
-          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute: " + e.getMessage(), getDocumentLocator()); 
           }
         }
 
@@ -174,7 +181,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
           }
         catch( Exception e)
           {
-          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute", getDocumentLocator(), e); 
+          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute: " + e.getMessage(), getDocumentLocator()); 
           }
         }
 
@@ -335,9 +342,13 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
       TestCase testCase = getTestCase();
+      if( !testCase.getVarBindings().hasNext())
+        {
+        throw new SAXParseException( "No input specified for test case=" + testCase.getId(), getDocumentLocator()); 
+        }
       if( isFailure() && (testCase.getType() == TestCase.Type.SUCCESS))
         {
-        throw new SAXParseException( "No failure input specified for " + testCase, getDocumentLocator()); 
+        throw new SAXParseException( "No failure input specified for test case=" + testCase.getId(), getDocumentLocator()); 
         }
       
       FunctionHandler parent = (FunctionHandler) getParent();
@@ -461,13 +472,20 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
         {
         throw
           new SAXParseException
-          ( "Unexpected failure value=" + binding.getValue()
-            + " for success test case " + testCase.getId(),
+          ( "Unexpected failure value=\"" + binding.getValue()
+            + "\" for success test case " + testCase.getId(),
             getDocumentLocator()); 
         }
       
       binding.setValueValid( !failure);
-      testCase.addVarBinding( binding);
+      try
+        {
+        testCase.addVarBinding( binding);
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( e.getMessage(), getDocumentLocator());
+        }
       }
 
     /**
