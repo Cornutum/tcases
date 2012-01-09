@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -126,21 +127,23 @@ public class TupleGenerator implements ITestCaseGenerator
       List<TestCaseDef> failureCases = getFailureCases( randSeq, inputDef, baseTests, validCases);
 
       FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
-      int id = 0;
 
-      // Add valid test cases.
-      for( TestCaseDef testCase : validCases)
-        {
-        testDef.addTestCase( testCase.createTestCase( id++));
-        }
+      // Create test cases, in order of increasing id.
+      List<TestCaseDef> testCaseDefs = new ArrayList<TestCaseDef>();
+      testCaseDefs.addAll( validCases);
+      testCaseDefs.addAll( failureCases);
+      Collections.sort( testCaseDefs);
 
-      // Add failure test cases.
-      for( TestCaseDef testCase : failureCases)
+      int nextId = 0;
+      for( TestCaseDef testCase : testCaseDefs)
         {
-        testDef.addTestCase( testCase.createTestCase( id++));
+        Integer id = testCase.getId();
+        testDef.addTestCase
+          ( testCase.createTestCase
+            ( id==null? nextId++ : id.intValue()));
         }
     
-      logger_.info( "{}: completed {} test cases", inputDef, id);
+      logger_.info( "{}: completed {} test cases", inputDef, testCaseDefs.size());
       return testDef;
       }
     catch( Exception e)
