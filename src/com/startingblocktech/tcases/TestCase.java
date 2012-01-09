@@ -9,6 +9,10 @@ package com.startingblocktech.tcases;
 
 import com.startingblocktech.tcases.util.ToString;
 
+import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections15.Predicate;
+import org.apache.commons.lang.ObjectUtils;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -134,6 +138,23 @@ public class TestCase implements Comparable<TestCase>
   public Iterator<VarBinding> getVarBindings()
     {
     return varBindings_.values().iterator();
+    }
+
+  /**
+   * Returns the bindings for variables of the given type for this function.
+   */
+  public Iterator<VarBinding> getVarBindings( final String type)
+    {
+    return
+      IteratorUtils.filteredIterator
+      ( varBindings_.values().iterator(),
+        new Predicate<VarBinding>()
+        {
+        public boolean evaluate( VarBinding binding)
+          {
+          return ObjectUtils.equals( binding.getType(), type);
+          }
+        });
     }
 
   /**
