@@ -10,6 +10,8 @@ package com.startingblocktech.tcases;
 import com.startingblocktech.tcases.util.ToString;
 import static com.startingblocktech.tcases.DefUtils.*;
 
+import org.apache.commons.lang.ObjectUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
@@ -111,6 +113,27 @@ public class SystemTestDef
     int i;
     for( i = 0; i < functionCount && !name.equals( functionTestDefs_.get(i).getName()); i++);
     return i < functionCount? i : -1;
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ (getName() == null? 0 : getName().hashCode())
+      ^ functionTestDefs_.hashCode();
+    }
+
+  public boolean equals( Object object)
+    {
+    SystemTestDef other =
+      object != null && object.getClass().equals( getClass())
+      ? (SystemTestDef) object
+      : null;
+
+    return
+      other != null
+      && ObjectUtils.equals( getName(), other.getName())
+      && functionTestDefs_.equals( other.functionTestDefs_);
     }
 
   public String toString()
