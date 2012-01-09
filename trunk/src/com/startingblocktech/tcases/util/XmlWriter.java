@@ -34,6 +34,27 @@ public class XmlWriter extends IndentedWriter
     }
 
   /**
+   * Writes the standard XML document declaration
+   */
+  public void writeDeclaration( String encoding)
+    {
+    print( "<?xml version=\"1.0\"");
+    if( encoding != null)
+      {
+      writeAttribute( "encoding", encoding);
+      }
+    println( "?>");
+    }
+
+  /**
+   * Writes the standard XML document declaration
+   */
+  public void writeDeclaration()
+    {
+    writeDeclaration( null);
+    }
+
+  /**
    * Begins an element start tag.
    */
   public void writeTagStart( String tag)
@@ -48,7 +69,7 @@ public class XmlWriter extends IndentedWriter
    */
   public void writeTagEnd()
     {
-    print( "/>");
+    print( ">");
     println();
     }
 
