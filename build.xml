@@ -43,6 +43,9 @@
     <property name="test.failure.property" value="test.failed"/>
     <property name="testclass" value="Test*"/>
 
+    <property name="tcases.log.file" value="${java.io.tmpdir}/tcases.log"/>
+    <delete file="${tcases.log.file}"/>
+
     <mkdir dir="${test.reports.dir}"/>
     <junit 
       haltonfailure="no"
@@ -52,6 +55,7 @@
       <classpath>
         <path refid="javac.test.classpath"/>
       </classpath>
+      <sysproperty key="tcases.log.file" value="${tcases.log.file}"/>
       <formatter type="xml" if="test.continue"/> 
       <formatter type="plain" usefile="no" unless="test.continue"/>
       <batchtest fork="yes" todir="${test.reports.dir}">
