@@ -25,7 +25,7 @@ import java.util.Map;
  *
  * @version $Revision$, $Date$
  */
-public class TestCaseDef
+public class TestCaseDef implements Comparable<TestCaseDef>
   {
 
   /**
@@ -48,6 +48,22 @@ public class TestCaseDef
         addBinding( var, other.getBinding( var));
         }
       }
+    }
+
+  /**
+   * Changes the (optional) id for this test case.
+   */
+  public void setId( Integer id)
+    {
+    id_ = id;
+    }
+
+  /**
+   * Returns the (optional) id for this test case.
+   */
+  public Integer getId()
+    {
+    return id_;
     }
 
   /**
@@ -327,6 +343,13 @@ public class TestCaseDef
     return testCase;
     }
 
+  public int compareTo( TestCaseDef other)
+    {
+    int id = getId()==null? Integer.MAX_VALUE : getId();
+    int otherId  = other.getId()==null? Integer.MAX_VALUE : other.getId();
+    return id - otherId;
+    }
+
   public String toString()
     {
     ArrayList<Map.Entry<VarDef,VarValueDef>> bindings = new ArrayList<Map.Entry<VarDef,VarValueDef>>( bindings_.entrySet());
@@ -341,11 +364,13 @@ public class TestCaseDef
         }); 
     return
       ToString.getBuilder( this)
+      .append( "id", getId())
       .append( "bindings", bindings)
       .append( "properties", properties_)
       .toString();
     }
 
+  private Integer id_;
   private Map<VarDef,VarValueDef> bindings_ = new HashMap<VarDef,VarValueDef>();
   private PropertySet properties_ = new PropertySet();
 
