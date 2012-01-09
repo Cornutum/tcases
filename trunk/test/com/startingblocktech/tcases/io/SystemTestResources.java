@@ -11,6 +11,8 @@ import com.startingblocktech.tcases.SystemTestDef;
 
 import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 
 /**
@@ -34,19 +36,42 @@ public class SystemTestResources
    */
   public SystemTestDef read( String resource)
     {
-    SystemTestDef  systemTestDef  = null;
-    InputStream     stream          = null;
-    
     try
       {
-      stream = class_.getResourceAsStream( resource);
-
-      SystemTestDocReader reader = new SystemTestDocReader( stream);
-      systemTestDef = reader.getSystemTestDef();
+      return read( class_.getResourceAsStream( resource));
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't read resource=" + resource, e);
+      }
+    }
+
+  /**
+   * Returns the {@link SystemTestDef} defined by the given file.
+   */
+  public SystemTestDef read( File file)
+    {
+    try
+      {
+      return read( new FileInputStream( file));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read file=" + file, e);
+      }
+    }
+
+  /**
+   * Returns the {@link SystemTestDef} defined by the given resource.
+   */
+  public SystemTestDef read( InputStream stream) throws Exception
+    {
+    SystemTestDef systemTestDef = null;
+    
+    try
+      {
+      SystemTestDocReader reader = new SystemTestDocReader( stream);
+      systemTestDef = reader.getSystemTestDef();
       }
     finally
       {
