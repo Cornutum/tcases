@@ -134,13 +134,12 @@ public class TupleGenerator implements ITestCaseGenerator
       testCaseDefs.addAll( failureCases);
       Collections.sort( testCaseDefs);
 
-      int nextId = 0;
+      int nextId = -1;
       for( TestCaseDef testCase : testCaseDefs)
         {
         Integer id = testCase.getId();
-        testDef.addTestCase
-          ( testCase.createTestCase
-            ( id==null? nextId++ : id.intValue()));
+        nextId = id==null? nextId + 1 : id.intValue();
+        testDef.addTestCase( testCase.createTestCase( nextId));
         }
     
       logger_.info( "{}: completed {} test cases", inputDef, testCaseDefs.size());
