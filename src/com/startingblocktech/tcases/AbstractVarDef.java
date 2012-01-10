@@ -131,6 +131,11 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef, Com
    */
   abstract public Iterator<VarValueDef> getValues();
 
+  /**
+   * Returns the descendant variable with the given name path, relative to this variable.
+   */
+  abstract public IVarDef find( String[] path);
+
   public int compareTo( IVarDef other)
     {
     return getPathName().compareTo( other.getPathName());

@@ -10,6 +10,9 @@ package com.startingblocktech.tcases;
 import com.startingblocktech.tcases.util.ToString;
 import static com.startingblocktech.tcases.DefUtils.*;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -43,7 +46,10 @@ public class FunctionInputDef
    */
   public void setName( String name)
     {
-    assertIdentifier( name);
+    if( name != null)
+      {
+      assertIdentifier( name);
+      }
     name_ = name;
     }
 
@@ -128,6 +134,36 @@ public class FunctionInputDef
     int i;
     for( i = 0; i < varCount && !name.equals( vars_.get(i).getName()); i++);
     return i < varCount? i : -1;
+    }
+
+  /**
+   * Returns the variable definition with the given path name.
+   */
+  public IVarDef findVarPath( String pathName)
+    {
+    String[] path = DefUtils.toPath( pathName);
+    IVarDef  var;
+
+    return
+      path == null?
+      null :
+
+      (var = getVarDef( StringUtils.trimToNull( path[0]))) == null?
+      null :
+
+      var.find( Arrays.copyOfRange( path, 1, path.length));
+    }
+
+  /**
+   * Returns the individual variable definition with the given path name.
+   */
+  public VarDef findVarDefPath( String pathName)
+    {
+    IVarDef var = findVarPath( pathName);
+    return
+      var != null && var.getClass().equals( VarDef.class)
+      ? (VarDef) var
+      : null;
     }
 
   public String toString()
