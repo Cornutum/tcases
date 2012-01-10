@@ -290,43 +290,43 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   /**
    * Returns true if all conditions for current bindings are satisfied.
    */
-  public boolean isComplete()
+  public boolean isSatisfied()
     {
-    boolean complete;
-    VarDef incomplete;
+    boolean satisfied;
+    VarDef var;
     VarValueDef value;
     ICondition unsatisfied;
     Iterator<VarDef> vars;
 
     // For each variable currently bound...
     for( vars = bindings_.keySet().iterator(),
-           complete = true,
-           incomplete = null,
+           satisfied = true,
+           var = null,
            unsatisfied = null,
            value = null;
 
          vars.hasNext()
-           && (complete =
+           && (satisfied =
 
                // Variable not applicable?
-               VarValueDef.isNA( (value = getBinding( (incomplete = vars.next()))))
+               VarValueDef.isNA( (value = getBinding( (var = vars.next()))))
                ||
                ( // Variable conditions satisified?
-                 (unsatisfied = getVarUnsatisfied( incomplete)) == null
+                 (unsatisfied = getVarUnsatisfied( var)) == null
                  &&
                  // Value condition satisfied?
                  (unsatisfied = Conditional.acquireCondition( value)).satisfied( properties_)));
 
          );
 
-    if( !complete)
+    if( !satisfied)
       {
       logger_.debug
         ( "{}: condition unsatisifed, var={}, condition={}",
-          new Object[]{ this, incomplete, unsatisfied});
+          new Object[]{ this, var, unsatisfied});
       }
 
-    return complete;
+    return satisfied;
     }
 
   /**
