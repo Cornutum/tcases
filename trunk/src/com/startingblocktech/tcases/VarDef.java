@@ -68,6 +68,17 @@ public class VarDef extends AbstractVarDef
     {
     return values_.iterator();
     }
+  
+  /**
+   * Returns the descendant variable with the given name path, relative to this variable.
+   */
+  public IVarDef find( String[] path)
+    {
+    return
+      path == null || path.length == 0
+      ? this
+      : null;
+    }
 
   /**
    * Returns an iterator for the set of valid values.

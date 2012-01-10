@@ -23,6 +23,18 @@ public abstract class DefUtils
   public static boolean isIdentifier( String id)
     {
     return id != null && identifierRegex_.matcher( id).matches();
+    }  
+
+  /**
+   * Translates the given identifier path name into a corresponding
+   * sequence of identifiers.
+   */
+  public static String[] toPath( String pathName)
+    {
+    return
+      pathName == null
+      ? null
+      : pathName.split( "\\.", -1);
     }
   
   /**
@@ -44,7 +56,7 @@ public abstract class DefUtils
    */
   public static void assertPath( String pathName) throws IllegalArgumentException
     {
-    String ids[] = pathName.split( "\\.", -1);
+    String ids[] = toPath( pathName);
     for( int i = 0; i < ids.length; i++)
       {
       assertIdentifier( ids[i]);

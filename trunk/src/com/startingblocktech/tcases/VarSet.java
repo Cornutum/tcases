@@ -53,6 +53,17 @@ public class VarSet extends AbstractVarDef
     {
     return null;
     }
+  
+  /**
+   * Returns the descendant variable with the given name path, relative to this variable.
+   */
+  public IVarDef find( String[] path)
+    {
+    return
+       path == null || path.length == 0
+      ? this
+      : getDescendant( path);
+    }
 
   /**
    * Adds an input variable to this set.
@@ -101,7 +112,14 @@ public class VarSet extends AbstractVarDef
    */
   public IVarDef getDescendant( String pathName)
     {
-    String[]  path              = pathName == null? null : pathName.split( "\\.");
+    return getDescendant( DefUtils.toPath( pathName));
+    }    
+
+  /**
+   * Returns the descendant variable with the given path, relative to this set.
+   */
+  private IVarDef getDescendant( String[] path)
+    {
     int       pathLength        = path == null? 0 : path.length;
     int       parentPathLength  = pathLength - 1;
 
@@ -123,7 +141,7 @@ public class VarSet extends AbstractVarDef
       i == parentPathLength
       ? parent.getMember( StringUtils.trimToNull( path[i]))
       : null;
-    }    
+    }
 
   /**
    * Returns the index of the member variable with the given name.
