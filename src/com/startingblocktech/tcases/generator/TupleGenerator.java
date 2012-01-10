@@ -207,7 +207,7 @@ public class TupleGenerator implements ITestCaseGenerator
     if( start >= vars.length)
       {
       // Yes, all conditions satisified?
-      complete = testCase.isComplete();
+      complete = testCase.isSatisfied();
       }
 
     else
@@ -428,7 +428,7 @@ public class TupleGenerator implements ITestCaseGenerator
       failureCase = new TestCaseDef( validCase);
       failureCase.removeBindings( failureTuple);
       failureCase.addBindings( failureTuple);
-      if( !failureCase.isComplete())
+      if( !failureCase.isSatisfied())
         {
         failureCase = null;
         }
