@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Generates {@link TestCase test cases} for a {@link FunctionInputDef function} that use
@@ -122,9 +124,18 @@ public class TupleGenerator implements ITestCaseGenerator
       {
       logger_.info( "{}: generating test cases", inputDef);
 
+      List<TestCaseDef> baseCases = getBaseCases( inputDef, baseTests);
       RandSeq randSeq = getRandomSeed()==null? null : new RandSeq( getRandomSeed());
-      List<TestCaseDef> validCases = getValidCases( randSeq, inputDef, baseTests);
-      List<TestCaseDef> failureCases = getFailureCases( randSeq, inputDef, baseTests, validCases);
+
+      // Get all valid cases.
+      VarTupleSet validTuples = getValidTupleSet( randSeq, inputDef);
+      List<TestCaseDef> validCases = getBaseValidCases( inputDef, validTuples, baseCases);
+      validCases.addAll( getValidCases( inputDef, validTuples));
+
+      // Get all failure cases.
+      VarTupleSet failureTuples = getFailureTupleSet( randSeq, inputDef);
+      List<TestCaseDef> failureCases = getBaseFailureCases( inputDef, validTuples, failureTuples, baseCases);
+      failureCases.addAll( getFailureCases( inputDef, failureTuples, validCases));
 
       FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
 
@@ -153,23 +164,165 @@ public class TupleGenerator implements ITestCaseGenerator
     }
 
   /**
-   * Returns a set of valid {@link TestCaseDef test case definitions} for the given function input definition.
-   * If the given base test definition is non-null, returns a set of new test cases
-   * that extend the base tests.
+   * Returns a set of (possibly incomplete) {@link TestCaseDef test case definitions} corresponding the
+   * the given base test cases. Variable bindings in the base tests that are no longer defined or
+   * that have incompatible properties are ignored.
    */
-  private List<TestCaseDef> getValidCases( RandSeq randSeq, FunctionInputDef inputDef, FunctionTestDef baseTests)
+  private List<TestCaseDef> getBaseCases( FunctionInputDef inputDef, FunctionTestDef baseTests)
+    {
+    logger_.debug( "{}: creating base test cases", inputDef);
+
+    List<TestCaseDef> testCases = new ArrayList<TestCaseDef>();
+    if( baseTests != null)
+      {
+      // For each base test case...
+      for( Iterator<TestCase> baseCases = baseTests.getTestCases();
+           baseCases.hasNext(); )
+        {
+        // Create the corresponding test case definition...
+        TestCase baseTest = baseCases.next();
+        TestCaseDef testCase = new TestCaseDef();
+        testCase.setId( baseTest.getId());
+        logger_.debug( "{}: adding base test={}", inputDef, baseTest);
+
+        // For each variable binding...
+        for( Iterator<VarBinding> bindings = baseTest.getVarBindings();
+             testCase != null && bindings.hasNext();)
+          {
+          VarBinding binding = bindings.next();
+          VarDef var = inputDef.findVarDefPath( binding.getVar());
+          VarValueDef value = var==null? null : var.getValue( binding.getValue());
+
+          // Is variable still defined?
+          if( var == null)
+            {
+            logger_.debug( "{}: var={} undefined", inputDef, binding.getVar());
+            }
+          // Is value still defined?
+          else if( value == null)
+            {
+            logger_.debug( "{}: value={} undefined", inputDef, binding);
+            }
+          // Value type unchanged?
+          else if( value.isValid() != binding.isValueValid())
+            {
+            // No, can't preserve this base test.
+            logger_.debug
+              ( "{}: can't add {}, {} changed to failure={}",
+                new Object[]{ inputDef, baseTest, binding, !value.isValid()});
+            testCase = null;
+            }
+          else
+            {
+            // Add variable binding if still compatible.
+            testCase.addCompatible( new Tuple( new VarBindingDef( var, value)));
+            }
+          }
+
+        if( testCase != null && testCase.getVars().hasNext())
+          {
+          // Add new (possibly incomplete) test case definition for this base test.
+          testCases.add( testCase);
+          }
+        }
+      }
+    
+    logger_.debug( "{}: completed {} base test cases", inputDef, testCases.size());
+    return testCases;
+    }
+
+  /**
+   * Returns a set of valid {@link TestCaseDef test case definitions} that extend the given base test cases.
+   */
+  private List<TestCaseDef> extendBaseCases( FunctionInputDef inputDef, VarTupleSet validTuples, Iterator<TestCaseDef> baseCases)
+    {
+    List<TestCaseDef> testCases = new ArrayList<TestCaseDef>();
+    
+    // For each base test case...
+    while( baseCases.hasNext())
+      {
+      TestCaseDef testCase = baseCases.next();
+      logger_.debug( "Extending base test case={}", testCase);
+
+      // Complete all variable bindings.
+      Set<VarDef> unconsumed = new HashSet<VarDef>( IteratorUtils.toList( testCase.getVars()));
+      if( completeBindings( testCase, validTuples, getBaseVarsRemaining( inputDef, testCase), 0, unconsumed))
+        {
+        logger_.debug( "Completed test case={}", testCase);
+        testCases.add( testCase);
+        }
+      else
+        {
+        logger_.debug( "Can't complete test case={}", testCase);
+        }
+      }
+
+    return testCases;
+   }
+
+  /**
+   * Returns a set of valid {@link TestCaseDef test case definitions} that extend the given base test cases.
+   */
+  private List<TestCaseDef> getBaseValidCases( FunctionInputDef inputDef, VarTupleSet validTuples, List<TestCaseDef> baseCases)
+    {
+    logger_.debug( "{}: extending valid base test cases", inputDef);
+
+    Iterator<TestCaseDef> validBaseCases =
+      IteratorUtils.filteredIterator
+      ( baseCases.iterator(),
+        new Predicate<TestCaseDef>()
+          {
+          public boolean evaluate( TestCaseDef testCase)
+            {
+            return testCase.getInvalidVar() == null;
+            }
+          });
+
+    List<TestCaseDef> testCases = extendBaseCases( inputDef, validTuples, validBaseCases);
+
+    logger_.info( "{}: extended {} valid base test cases", inputDef, testCases.size());
+    return testCases;
+   } 
+
+  /**
+   * Returns a set of failure {@link TestCaseDef test case definitions} that extend the given base test cases.
+   */
+  private List<TestCaseDef> getBaseFailureCases( FunctionInputDef inputDef, VarTupleSet validTuples, VarTupleSet failureTuples, List<TestCaseDef> baseCases)
+    {
+    logger_.debug( "{}: extending base failure test cases", inputDef);
+
+    Iterator<TestCaseDef> validBaseCases =
+      IteratorUtils.filteredIterator
+      ( baseCases.iterator(),
+        new Predicate<TestCaseDef>()
+          {
+          public boolean evaluate( TestCaseDef testCase)
+            {
+            return testCase.getInvalidVar() != null;
+            }
+          });
+
+    List<TestCaseDef> testCases = extendBaseCases( inputDef, validTuples, validBaseCases);
+
+    logger_.info( "{}: extended {} base failure test cases", inputDef, testCases.size());
+    return testCases;
+   }
+
+  /**
+   * Returns a set of valid {@link TestCaseDef test case definitions} for the given function input definition.
+   */
+  private List<TestCaseDef> getValidCases( FunctionInputDef inputDef, VarTupleSet validTuples)
     {
     logger_.debug( "{}: creating valid test cases", inputDef);
     
     List<TestCaseDef> validCases = new ArrayList<TestCaseDef>();
-    VarTupleSet tuples = getValidTupleSet( randSeq, inputDef);
 
     // For each valid input tuple not yet used in a test case...
     Tuple nextUnused;
-    while( (nextUnused = tuples.getNextUnused()) != null)
+    while( (nextUnused = validTuples.getNextUnused()) != null)
       {
       // Create a new test case for this tuple.
-      logger_.debug( "Creating test case for tuple={}", nextUnused);
+      logger_.debug( "Creating new test case for tuple={}", nextUnused);
 
       TestCaseDef validCase = new TestCaseDef();
       try
@@ -182,13 +335,13 @@ public class TupleGenerator implements ITestCaseGenerator
         }
 
       // Complete bindings for remaining variables.
-      if( !completeBindings( validCase, tuples, getRemainingVars( inputDef, validCase), 0))
+      if( !completeBindings( validCase, validTuples, getVarsRemaining( inputDef, validCase), 0))
         {
         throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
         }
       
       logger_.debug( "Completed test case={}", validCase);
-      tuples.used( nextUnused);
+      validTuples.used( nextUnused);
       validCases.add( validCase);
       }
 
@@ -201,6 +354,15 @@ public class TupleGenerator implements ITestCaseGenerator
    * starting with the given index. Returns true if all variables have been bound.
    */
   private boolean completeBindings( TestCaseDef testCase, VarTupleSet tuples, VarDef[] vars, int start)
+    {
+    return completeBindings( testCase, tuples, vars, start, null);
+    }
+
+  /**
+   * Using selections from the given set of tuples, completes binding for all remaining variables,
+   * starting with the given index. Returns true if all variables have been bound.
+   */
+  private boolean completeBindings( TestCaseDef testCase, VarTupleSet tuples, VarDef[] vars, int start, Set<VarDef> unconsumed)
     {
     // All variables bound?
     boolean complete = false;
@@ -216,13 +378,7 @@ public class TupleGenerator implements ITestCaseGenerator
       VarDef nextVar = vars[ start];
 
       // Next variable already bound?
-      if( testCase.getValue( nextVar) != null)
-        {
-        // Yes, complete remaining variables.
-        complete = completeBindings( testCase, tuples, vars, start + 1);
-        }
-
-      else
+      if( testCase.getValue( nextVar) == null)
         {
         // No, look for a compatible tuple to add that will bind the next variable,
         // preferably one not yet used.
@@ -250,7 +406,7 @@ public class TupleGenerator implements ITestCaseGenerator
                     (tupleAdded = testCase.addCompatible( (tuple = varTuples.next()))) != null
 
                     // Can we complete bindings for remaining variables?
-                    && (complete = completeBindings( testCase, tuples, vars, start + 1)));
+                    && (complete = completeBindings( testCase, tuples, vars, start + 1, unconsumed)));
              
              tupleAdded = null)
           {
@@ -264,6 +420,45 @@ public class TupleGenerator implements ITestCaseGenerator
         if( complete)
           {
           // Test case is complete -- mark any tuple added used.
+          tuples.used( tuple);
+          }
+        }
+
+      // Tuple already consumed by this variable binding?
+      else if( unconsumed == null || !unconsumed.contains( nextVar))
+        {
+        // Yes, complete remaining variables.
+        complete = completeBindings( testCase, tuples, vars, start + 1, unconsumed);
+        }
+
+      else
+        {
+        // No, look for unused tuple consumed by this variable binding.
+        Tuple tuple;
+        Iterator<Tuple> varTuples;
+        for( varTuples= tuples.getUnused( nextVar),
+               tuple = null;
+             
+             varTuples.hasNext()
+               && testCase.addCompatible( (tuple = varTuples.next())) == null;
+
+             tuple = null);
+
+        // With updated unconsumed bindings...
+        Set<VarDef> unconsumedNew = new HashSet<VarDef>( unconsumed);
+        unconsumedNew.remove( nextVar);
+        if( tuple != null)
+          {
+          for( Iterator<VarBindingDef> bindings = tuple.getBindings();
+               bindings.hasNext();
+               unconsumedNew.remove( bindings.next().getVarDef()));
+          }
+
+        // ...complete remaining variables....
+        complete = completeBindings( testCase, tuples, vars, start + 1, unconsumedNew);
+        if( complete && tuple != null)
+          {
+          // Test case is complete -- mark any tuple consumed.
           tuples.used( tuple);
           }
         }
@@ -290,20 +485,39 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Returns the set of input variables not yet bound by the given test case.
    */
-  private VarDef[] getRemainingVars( FunctionInputDef inputDef, final TestCaseDef testCase)
+  private VarDef[] getVarsRemaining( FunctionInputDef inputDef, TestCaseDef testCase)
+    {
+    return IteratorUtils.toArray( getVarsUnbound( inputDef, testCase), VarDef.class);
+    }
+
+  /**
+   * Returns the set of input variables to be bound by the given base test case.
+   */
+  private VarDef[] getBaseVarsRemaining( FunctionInputDef inputDef, TestCaseDef baseCase)
     {
     return
       IteratorUtils.toArray
-      ( IteratorUtils.filteredIterator
-        ( new VarDefIterator( inputDef),
-          new Predicate<VarDef>()
-            {
-            public boolean evaluate( VarDef var)
-              {
-              return testCase.getBinding( var) == null;
-              }
-            }),
+      ( IteratorUtils.chainedIterator
+        ( baseCase.getVars(),
+          getVarsUnbound( inputDef, baseCase)),
         VarDef.class);
+    }
+
+  /**
+   * Returns the set of input variables not yet bound by the given test case.
+   */
+  private Iterator<VarDef> getVarsUnbound( FunctionInputDef inputDef, final TestCaseDef testCase)
+    {
+    return
+      IteratorUtils.filteredIterator
+      ( new VarDefIterator( inputDef),
+        new Predicate<VarDef>()
+          {
+          public boolean evaluate( VarDef var)
+            {
+            return testCase.getBinding( var) == null;
+            }
+          });
     }
 
   /**
@@ -362,15 +576,12 @@ public class TupleGenerator implements ITestCaseGenerator
 
   /**
    * Returns a set of failure {@link TestCaseDef test case definitions} for the given function input definition.
-   * If the given base test definition is non-null, returns a set of new test cases
-   * that extend the base tests.
    */
-  private List<TestCaseDef> getFailureCases( RandSeq randSeq, FunctionInputDef inputDef, FunctionTestDef baseTests, List<TestCaseDef> validCases)
+  private List<TestCaseDef> getFailureCases( FunctionInputDef inputDef, VarTupleSet failureTuples, List<TestCaseDef> validCases)
     {
     logger_.debug( "{}: creating failure test cases", inputDef);
     
     List<TestCaseDef> failureCases = new ArrayList<TestCaseDef>();
-    VarTupleSet tuples = getFailureTupleSet( randSeq, inputDef);
 
     // For each failure input tuple not yet used in a test case...
     int validStart;
@@ -380,7 +591,7 @@ public class TupleGenerator implements ITestCaseGenerator
     for( validCount = validCases.size(),
            validStart = 0;
          
-         (nextUnused = tuples.getNextUnused()) != null;
+         (nextUnused = failureTuples.getNextUnused()) != null;
 
          validStart = (validUsed + 1) % validCount)
       {
@@ -406,7 +617,7 @@ public class TupleGenerator implements ITestCaseGenerator
         }
 
       logger_.debug( "Completed test case={}", failureCase);
-      tuples.used( nextUnused);
+      failureTuples.used( nextUnused);
       failureCases.add( failureCase);
       }
     
