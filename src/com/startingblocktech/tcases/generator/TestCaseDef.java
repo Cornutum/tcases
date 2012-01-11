@@ -222,7 +222,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     Iterator<VarDef> vars;
     VarDef inapplicable;
     for( inapplicable = null,
-           vars = bindings_.keySet().iterator();
+           vars = getVars();
 
          vars.hasNext()
            && (isNA( (inapplicable = vars.next()))
@@ -272,6 +272,14 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Returns the variables currently bound in this current test case.
+   */
+  public Iterator<VarDef> getVars()
+    {
+    return bindings_.keySet().iterator();
+    }
+
+  /**
    * Returns the value currently bound to the given variable.
    */
   public VarValueDef getBinding( VarDef var)
@@ -288,6 +296,24 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Returns the variable bound to an invalid value, if any.
+   */
+  public VarDef getInvalidVar()
+    {
+    VarDef invalidVar;
+    Iterator<VarDef> vars;
+    for( vars = getVars(),
+           invalidVar = null;
+
+         vars.hasNext()
+           && getValue( (invalidVar = vars.next())).isValid();
+
+         invalidVar = null);
+    
+    return invalidVar;
+    }
+
+  /**
    * Returns true if all conditions for current bindings are satisfied.
    */
   public boolean isSatisfied()
@@ -299,7 +325,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     Iterator<VarDef> vars;
 
     // For each variable currently bound...
-    for( vars = bindings_.keySet().iterator(),
+    for( vars = getVars(),
            satisfied = true,
            var = null,
            unsatisfied = null,
