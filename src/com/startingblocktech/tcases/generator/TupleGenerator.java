@@ -371,106 +371,119 @@ public class TupleGenerator implements ITestCaseGenerator
    */
   private boolean completeBindings( TestCaseDef testCase, VarTupleSet tuples, VarDef[] vars, int start, Set<VarDef> unconsumed)
     {
-    // All variables bound?
-    boolean complete = false;
-    if( start >= vars.length)
-      {
-      // Yes, all conditions satisified?
-      complete = testCase.isSatisfied();
-      }
+    VarDef nextVar = start >= vars.length? null : vars[ start];
 
-    else
-      {
-      // No, bind next variable.
-      VarDef nextVar = vars[ start];
+    return
+      // All variables bound?
+      nextVar == null?
+      // Yes, all conditions satisified?
+      testCase.isSatisfied() :
 
       // Next variable already bound?
-      if( testCase.getValue( nextVar) == null)
-        {
-        // No, look for a compatible tuple to add that will bind the next variable,
-        // preferably one not yet used.
-        logger_.debug( "{}: Adding binding for var={}", this, nextVar);
-        
-        Iterator<Tuple> varTuples =
-          IteratorUtils.chainedIterator
-          ( tuples.getUnused( nextVar),
-            
-            IteratorUtils.chainedIterator
-            ( tuples.getUsed( nextVar, false),
-              
-              IteratorUtils.chainedIterator
-              ( tuples.getUsed( nextVar, true),
-                getNA( nextVar))));
-        
-        Tuple tuple;
-        Tuple tupleAdded;
-        for( tuple = null,
-               tupleAdded = null;
-
-             // More tuples to try?
-             varTuples.hasNext()
-               && !( // Compatible tuple found?
-                    (tupleAdded = testCase.addCompatible( (tuple = varTuples.next()))) != null
-
-                    // Can we complete bindings for remaining variables?
-                    && (complete = completeBindings( testCase, tuples, vars, start + 1, unconsumed)));
-             
-             tupleAdded = null)
-          {
-          if( tupleAdded != null)
-            {
-            logger_.debug( "{}: removing tuple={}", this, tupleAdded);
-            testCase.removeBindings( tupleAdded);
-            }
-          }
-
-        if( complete)
-          {
-          // Test case is complete -- mark any tuple added used.
-          tuples.used( tuple);
-          }
-        }
+      testCase.getValue( nextVar) == null?
+      // No, look for a compatible tuple to add that will bind the next variable,
+      completeForVarUnbound( testCase, tuples, vars, start, unconsumed) :
 
       // Tuple already consumed by this variable binding?
-      else if( unconsumed == null || !unconsumed.contains( nextVar))
-        {
-        // Yes, complete remaining variables.
-        complete = completeBindings( testCase, tuples, vars, start + 1, unconsumed);
-        }
+      unconsumed == null || !unconsumed.contains( nextVar)?
+      // Yes, complete remaining variables.
+      completeBindings( testCase, tuples, vars, start + 1, unconsumed) :
 
-      else
-        {
-        // No, look for unused tuple consumed by this variable binding.
-        Tuple tuple;
-        Iterator<Tuple> varTuples;
-        for( varTuples= tuples.getUnused( nextVar),
-               tuple = null;
+      // Else look for unused tuple to consume with this variable binding.
+      completeForVarUnconsumed( testCase, tuples, vars, start, unconsumed);
+    }
+
+  /**
+   * Using selections from the given set of tuples, completes binding for all remaining variables,
+   * starting with the given index. Returns true if all variables have been bound.
+   */
+  private boolean completeForVarUnbound( TestCaseDef testCase, VarTupleSet tuples, VarDef[] vars, int start, Set<VarDef> unconsumed)
+    {
+    // Look for a compatible tuple to add that will bind the next variable,
+    // preferably one not yet used.
+    VarDef nextVar = vars[ start];
+    logger_.debug( "{}: Adding binding for var={}", this, nextVar);
+        
+    Iterator<Tuple> varTuples =
+      IteratorUtils.chainedIterator
+      ( tuples.getUnused( nextVar),
+            
+        IteratorUtils.chainedIterator
+        ( tuples.getUsed( nextVar, false),
+              
+          IteratorUtils.chainedIterator
+          ( tuples.getUsed( nextVar, true),
+            getNA( nextVar))));
+        
+    boolean complete;
+    Tuple tuple;
+    Tuple tupleAdded;
+    for( complete = false,
+           tuple = null,
+           tupleAdded = null;
+
+         // More tuples to try?
+         varTuples.hasNext()
+           && !( // Compatible tuple found?
+                (tupleAdded = testCase.addCompatible( (tuple = varTuples.next()))) != null
+
+                // Can we complete bindings for remaining variables?
+                && (complete = completeBindings( testCase, tuples, vars, start + 1, unconsumed)));
              
-             varTuples.hasNext()
-               && testCase.addCompatible( (tuple = varTuples.next())) == null;
-
-             tuple = null);
-
-        // With updated unconsumed bindings...
-        Set<VarDef> unconsumedNew = new HashSet<VarDef>( unconsumed);
-        unconsumedNew.remove( nextVar);
-        if( tuple != null)
-          {
-          for( Iterator<VarBindingDef> bindings = tuple.getBindings();
-               bindings.hasNext();
-               unconsumedNew.remove( bindings.next().getVarDef()));
-          }
-
-        // ...complete remaining variables....
-        complete = completeBindings( testCase, tuples, vars, start + 1, unconsumedNew);
-        if( complete && tuple != null)
-          {
-          // Test case is complete -- mark any tuple consumed.
-          tuples.used( tuple);
-          }
+         tupleAdded = null)
+      {
+      if( tupleAdded != null)
+        {
+        logger_.debug( "{}: removing tuple={}", this, tupleAdded);
+        testCase.removeBindings( tupleAdded);
         }
       }
-    
+
+    if( complete)
+      {
+      // Test case is complete -- mark any tuple added used.
+      tuples.used( tuple);
+      }
+
+    return complete;
+    }
+
+  /**
+   * Using selections from the given set of tuples, completes binding for all remaining variables,
+   * starting with the given index. Returns true if all variables have been bound.
+   */
+  private boolean completeForVarUnconsumed( TestCaseDef testCase, VarTupleSet tuples, VarDef[] vars, int start, Set<VarDef> unconsumed)
+    {
+    // Look for unused tuple consumed by next variable binding.
+    VarDef nextVar = vars[ start];
+    Tuple tuple;
+    Iterator<Tuple> varTuples;
+    for( varTuples= tuples.getUnused( nextVar),
+           tuple = null;
+             
+         varTuples.hasNext()
+           && testCase.addCompatible( (tuple = varTuples.next())) == null;
+
+         tuple = null);
+
+    // With updated unconsumed bindings...
+    Set<VarDef> unconsumedNew = new HashSet<VarDef>( unconsumed);
+    unconsumedNew.remove( nextVar);
+    if( tuple != null)
+      {
+      for( Iterator<VarBindingDef> bindings = tuple.getBindings();
+           bindings.hasNext();
+           unconsumedNew.remove( bindings.next().getVarDef()));
+      }
+
+    // ...complete remaining variables....
+    boolean complete = completeBindings( testCase, tuples, vars, start + 1, unconsumedNew);
+    if( complete && tuple != null)
+      {
+      // Test case is complete -- mark any tuple consumed.
+      tuples.used( tuple);
+      }
+
     return complete;
     }
 
