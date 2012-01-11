@@ -9,6 +9,7 @@ package com.startingblocktech.tcases.generator;
 
 import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.io.SystemInputResources;
+import com.startingblocktech.tcases.io.SystemTestResources;
 import static com.startingblocktech.tcases.util.Asserts.*;
 
 import org.junit.Test;
@@ -508,66 +509,77 @@ public class TestTupleGenerator
           .bind( "Shape", "Square")
           .bind( "Size", "Small")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Green")
           .bind( "Shape", "Square")
           .bind( "Size", "Medium")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Blue")
           .bind( "Shape", "Square")
           .bind( "Size", "Large")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Red")
           .bind( "Shape", "Heart")
           .bind( "Size", "Small")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Green")
           .bind( "Shape", "Heart")
           .bind( "Size", "Medium")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Blue")
           .bind( "Shape", "Heart")
           .bind( "Size", "Large")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Red")
           .bind( "Shape", "Circle")
           .bind( "Size", "Small")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Green")
           .bind( "Shape", "Circle")
           .bind( "Size", "Medium")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Blue")
           .bind( "Shape", "Circle")
           .bind( "Size", "Large")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Undefined", false)
           .bind( "Shape", "Square")
           .bind( "Size", "Small")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Green")
           .bind( "Shape", "Undefined", false)
           .bind( "Size", "Medium")
           .build(),
+          
           tc
           .start()
           .bind( "Color", "Blue")
@@ -577,6 +589,139 @@ public class TestTupleGenerator
           ),
         functionTestDef.getTestCases());
     }
+  
+  @Test
+  public void getTests_FromBaseTests_Changed()
+    {
+    // Given...
+    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-4.xml");
+    FunctionTestDef baseTestDef = systemTestDef.getFunctionTestDef( "Make");
+
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-5.xml");
+    FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
+    TupleGenerator generator = new TupleGenerator();
+
+    generator.addCombiner
+      ( new TupleCombiner(2)
+        .addIncludedVar( "Shape")
+        .addIncludedVar( "Size"));
+    
+    // When...
+    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, baseTestDef);
+    
+    // Expect...
+    TCaseBuilder tc = new TCaseBuilder();
+    assertSeqEquals
+      ( "Test cases",
+        new TestCase[]
+        {
+          tc
+          .start()
+          .id(1)
+          .bind( "Color", "Green")
+          .bind( "Shape", "Diamond")
+          .bind( "Size", "Medium")
+          .build(),
+          
+          tc
+          .start()
+          .id(4)
+          .bind( "Color", "Green")
+          .bind( "Shape", "Heart")
+          .bind( "Size", "Medium")
+          .build(),
+          
+          tc
+          .start()
+          .id(7)
+          .bind( "Color", "Green")
+          .bind( "Shape", "Circle")
+          .bind( "Size", "Medium")
+          .build(),
+          
+          tc
+          .start()
+          .id(10)
+          .bind( "Color", "Green")
+          .bind( "Shape", "Undefined", false)
+          .bind( "Size", "Medium")
+          .build(),
+          
+          tc
+          .start()
+          .id(11)
+          .bind( "Color", "Blue")
+          .bind( "Shape", "Heart")
+          .bind( "Size", "Undefined", false)
+          .build(),
+          
+          tc
+          .start()
+          .id(12)
+          .bind( "Color", "Blue")
+          .bind( "Shape", "Diamond")
+          .bind( "Size", "Small")
+          .build(),
+          
+          tc
+          .start()
+          .id(13)
+          .bind( "Color", "Undefined")
+          .bind( "Shape", "Diamond")
+          .bind( "Size", "Ginormous")
+          .build(),
+          
+          tc
+          .start()
+          .id(14)
+          .bind( "Color", "Green")
+          .bind( "Shape", "Heart")
+          .bind( "Size", "Small")
+          .build(),
+          
+          tc
+          .start()
+          .id(15)
+          .bind( "Color", "Blue")
+          .bind( "Shape", "Heart")
+          .bind( "Size", "Ginormous")
+          .build(),
+          
+          tc
+          .start()
+          .id(16)
+          .bind( "Color", "Undefined")
+          .bind( "Shape", "Circle")
+          .bind( "Size", "Small")
+          .build(),
+          
+          tc
+          .start()
+          .id(17)
+          .bind( "Color", "Green")
+          .bind( "Shape", "Circle")
+          .bind( "Size", "Ginormous")
+          .build(),
+          
+          tc
+          .start()
+          .id(18)
+          .bind( "Color", "Red")
+          .bind( "Shape", "Diamond")
+          .bind( "Size", "Medium")
+          .build(),
+          
+          tc
+          .start()
+          .id(19)
+          .bind( "Color", "Green")
+          .bind( "Shape", "Diamond")
+          .bind( "Size", "Large", false)
+          .build()
+        },
+        functionTestDef.getTestCases());
+    }
 
   private SystemInputResources systemInputResources_ = new SystemInputResources( TestTupleGenerator.class);
+  private SystemTestResources systemTestResources_ = new SystemTestResources( TestTupleGenerator.class);
   }
