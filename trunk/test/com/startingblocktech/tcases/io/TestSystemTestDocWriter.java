@@ -13,7 +13,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.io.FileWriter;
 
 /**
  * Runs tests for the {@link SystemTestDocWriter}.
@@ -59,19 +58,7 @@ public class TestSystemTestDocWriter
 
     // When...
     File doc = getDocPath();
-    SystemTestDocWriter writer = createWriter( doc);
-    try
-      {
-      writer.write( systemTestBefore);
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't write definition=" + systemTestResource + " to file=" + doc, e);
-      }
-    finally
-      {
-      writer.close();
-      }
+    systemTestResources_.write( systemTestBefore, doc);
 
     // Then...
     SystemTestDef systemTestAfter = null;
@@ -85,21 +72,6 @@ public class TestSystemTestDocWriter
       }
 
     assertEquals( "Output from definition=" + systemTestResource, systemTestBefore, systemTestAfter);
-    }
-
-  /**
-   * Creates a {@link SystemTestDocWriter} for the given file.
-   */
-  private SystemTestDocWriter createWriter( File doc)
-    {
-    try
-      {
-      return new SystemTestDocWriter( new FileWriter( doc));
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't write to file=" + doc, e);
-      }
     }
 
   /**

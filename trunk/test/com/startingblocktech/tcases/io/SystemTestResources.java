@@ -13,6 +13,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 
 /**
@@ -58,6 +59,41 @@ public class SystemTestResources
     catch( Exception e)
       {
       throw new RuntimeException( "Can't read file=" + file, e);
+      }
+    }
+
+  /**
+   * Writes the {@link SystemTestDef} to the the given file.
+   */
+  public void write( SystemTestDef systemTest, File file)
+    {
+    SystemTestDocWriter writer = createWriter( file);
+    try
+      {
+      writer.write( systemTest);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write " + systemTest + " to file=" + file, e);
+      }
+    finally
+      {
+      writer.close();
+      }
+    }
+
+  /**
+   * Creates a {@link SystemTestDocWriter} for the given file.
+   */
+  private SystemTestDocWriter createWriter( File file)
+    {
+    try
+      {
+      return new SystemTestDocWriter( new FileWriter( file));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't open file=" + file, e);
       }
     }
 
