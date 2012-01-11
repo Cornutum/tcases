@@ -41,6 +41,15 @@ public class Tuple
   /**
    * Creates a new Tuple object.
    */
+  public Tuple( Tuple other)
+    {
+    this();
+    addAll( other);
+    }
+  
+  /**
+   * Creates a new Tuple object.
+   */
   public Tuple( VarBindingDef ... bindings)
     {
     setBindings( Arrays.asList( bindings));
