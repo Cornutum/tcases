@@ -1,0 +1,30 @@
+<System name="Things">
+
+  <Function name="Make">
+    <Input>
+
+      <Var name="Color">
+        <Value name="Red"/>
+        <Value name="Green"/>
+        <Value name="Blue"/>
+        <Value name="Undefined" failure="true"/>
+      </Var>
+
+      <Var name="Shape">
+        <Value name="Square"/>
+        <Value name="Heart"/>
+        <Value name="Circle"/>
+        <Value name="Undefined" failure="true"/>
+      </Var>
+
+      <Var name="Size">
+        <Value name="Small"/>
+        <Value name="Medium"/>
+        <Value name="Large"/>
+        <Value name="Undefined" failure="true"/>
+      </Var>
+
+    </Input>
+  </Function>
+
+</System>
