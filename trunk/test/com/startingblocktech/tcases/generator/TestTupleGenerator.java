@@ -21,7 +21,7 @@ import org.junit.Test;
 public class TestTupleGenerator
   {
   @Test
-  public void getTuples_Basic()
+  public void getTests_Basic()
     {
     // Given...
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
@@ -67,7 +67,7 @@ public class TestTupleGenerator
     }
   
   @Test
-  public void getTuples_Constrained()
+  public void getTests_Constrained()
     {
     // Given...
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-1.xml");
@@ -131,7 +131,7 @@ public class TestTupleGenerator
     }
   
   @Test
-  public void getTuples_Combined()
+  public void getTests_Combined()
     {
     // Given...
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
@@ -240,7 +240,7 @@ public class TestTupleGenerator
     }
   
   @Test
-  public void getTuples_Once()
+  public void getTests_Once()
     {
     // Given...
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-2.xml");
@@ -390,7 +390,7 @@ public class TestTupleGenerator
     }
   
   @Test
-  public void getTuples_Failures()
+  public void getTests_Failures()
     {
     // Given...
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-3.xml");
