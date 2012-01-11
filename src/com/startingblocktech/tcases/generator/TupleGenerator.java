@@ -371,7 +371,10 @@ public class TupleGenerator implements ITestCaseGenerator
    */
   private boolean completeBindings( TestCaseDef testCase, VarTupleSet tuples, VarDef[] vars, int start, Set<VarDef> unconsumed)
     {
-    VarDef nextVar = start >= vars.length? null : vars[ start];
+    VarDef nextVar =
+      start >= vars.length
+      ? null
+      : vars[ start];
 
     return
       // All variables bound?
@@ -381,16 +384,16 @@ public class TupleGenerator implements ITestCaseGenerator
 
       // Next variable already bound?
       testCase.getValue( nextVar) == null?
-      // No, look for a compatible tuple to add that will bind the next variable,
+      // No, look for a compatible tuple to add that will bind the next variable.
       completeForVarUnbound( testCase, tuples, vars, start, unconsumed) :
 
       // Tuple already consumed by this variable binding?
-      unconsumed == null || !unconsumed.contains( nextVar)?
-      // Yes, complete remaining variables.
-      completeBindings( testCase, tuples, vars, start + 1, unconsumed) :
-
-      // Else look for unused tuple to consume with this variable binding.
-      completeForVarUnconsumed( testCase, tuples, vars, start, unconsumed);
+      unconsumed != null && unconsumed.contains( nextVar)?
+      // No, look for unused tuple to consume with this variable binding.
+      completeForVarUnconsumed( testCase, tuples, vars, start, unconsumed) :
+      
+      // Else nothing to do for this variable -- complete remaining variables.
+      completeBindings( testCase, tuples, vars, start + 1, unconsumed);
     }
 
   /**
