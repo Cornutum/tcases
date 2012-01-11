@@ -304,6 +304,13 @@ public class TupleGenerator implements ITestCaseGenerator
 
     List<TestCaseDef> testCases = extendBaseCases( inputDef, validTuples, validBaseCases);
 
+    // Consume all failure values used.
+    for( TestCaseDef testCase : testCases)
+      {
+      VarDef failureVar = testCase.getInvalidVar();
+      failureTuples.used( new Tuple( new VarBindingDef( failureVar, testCase.getValue( failureVar))));
+      }
+
     logger_.info( "{}: extended {} base failure test cases", inputDef, testCases.size());
     return testCases;
    }
