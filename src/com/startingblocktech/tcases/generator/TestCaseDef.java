@@ -142,13 +142,14 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     {
     VarDef var = binding.getVarDef();
     VarValueDef value = binding.getValueDef();
+    VarValueDef prevValue = bindings_.get( var);
 
-    // Is this variable already bound to a different value?
-    if( bindings_.containsKey( var))
+    // Is this variable already bound to a different valid value?
+    if( prevValue != null)
       {
-      if( !value.equals( bindings_.get( var)))
+      if( prevValue.isValid() && !value.equals( prevValue))
         {
-        throw new VarBoundException( binding, bindings_.get( var));
+        throw new VarBoundException( binding, prevValue);
         }
       }
 
