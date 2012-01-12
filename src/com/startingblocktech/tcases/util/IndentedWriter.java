@@ -35,7 +35,7 @@ public class IndentedWriter
   public IndentedWriter( OutputStream output)
     {
     this();
-    writer_ = new PrintWriter( output);
+    writer_ = new PrintWriter( output==null? System.out : output);
     }
 
   /**
