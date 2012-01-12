@@ -502,7 +502,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
    */
   public SystemTestDocReader()
     {
-    this( System.in);
+    this( null);
     }
   
   /**
@@ -552,7 +552,10 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
    */
   public void setInputStream( InputStream stream)
     {
-    stream_ = stream;
+    stream_ =
+      stream == null
+      ? System.in
+      : stream;
     }
 
   /**
