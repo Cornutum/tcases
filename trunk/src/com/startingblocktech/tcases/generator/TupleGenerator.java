@@ -552,6 +552,8 @@ public class TupleGenerator implements ITestCaseGenerator
 
     // Get tuple sets required for each specified combiner,
     // ordered for "greedy" processing, i.e. biggest tuples first.
+    // For this purpose, "all permutations" is considered the maximum tuple size,
+    // even though in practice it might not be.
     final TupleCombiner[] combiners = new TupleCombiner[ getCombiners().size()];
     getCombiners().toArray( combiners);
     Arrays.sort
@@ -560,7 +562,14 @@ public class TupleGenerator implements ITestCaseGenerator
           {
           public int compare( TupleCombiner combiner1, TupleCombiner combiner2)
             {
-            return combiner2.getTupleSize() - combiner1.getTupleSize();
+            return
+              effectiveTupleSize( combiner2.getTupleSize())
+              - effectiveTupleSize( combiner1.getTupleSize());
+            }
+
+          private int effectiveTupleSize( int tupleSize)
+            {
+            return tupleSize < 1? Integer.MAX_VALUE : tupleSize;
             }
           });
     for( int i = 0; i < combiners.length; i++)
@@ -586,12 +595,16 @@ public class TupleGenerator implements ITestCaseGenerator
     if( !uncombinedVars.isEmpty())
       {
       // ... add the default tuples.
+      int defaultTupleSize = getDefaultTupleSize();
+      int varCount = uncombinedVars.size();
       validTuples.addAll
         ( RandSeq.order
           ( randSeq,
             TupleCombiner.getTuples
             ( uncombinedVars,
-              Math.min( uncombinedVars.size(), getDefaultTupleSize()))));
+              Math.min
+              ( varCount,
+                defaultTupleSize < 1? varCount : defaultTupleSize))));
       }
     
     return new VarTupleSet( validTuples);
