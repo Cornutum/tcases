@@ -862,7 +862,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
    */
   public SystemInputDocReader()
     {
-    this( System.in);
+    this( null);
     }
   
   /**
@@ -912,7 +912,10 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
    */
   public void setInputStream( InputStream stream)
     {
-    stream_ = stream;
+    stream_ =
+      stream==null
+      ? System.in
+      : stream;
     }
 
   /**
