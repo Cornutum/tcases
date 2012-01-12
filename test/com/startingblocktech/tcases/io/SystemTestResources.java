@@ -39,7 +39,14 @@ public class SystemTestResources
     {
     try
       {
-      return read( class_.getResourceAsStream( resource));
+      InputStream resourceStream = class_.getResourceAsStream( resource);
+      if( resourceStream == null)
+        {
+        throw
+          new RuntimeException
+          ( "Can't find resource=" + class_.getName() + "." + resource);
+        }
+      return read( resourceStream);
       }
     catch( Exception e)
       {
@@ -98,7 +105,7 @@ public class SystemTestResources
     }
 
   /**
-   * Returns the {@link SystemTestDef} defined by the given resource.
+   * Returns the {@link SystemTestDef} defined by the given stream.
    */
   public SystemTestDef read( InputStream stream) throws Exception
     {

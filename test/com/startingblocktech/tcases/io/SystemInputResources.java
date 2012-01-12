@@ -40,6 +40,12 @@ public class SystemInputResources
     try
       {
       stream = class_.getResourceAsStream( resource);
+      if( stream == null)
+        {
+        throw
+          new RuntimeException
+          ( "Can't find resource=" + class_.getName() + "." + resource);
+        }
 
       SystemInputDocReader reader = new SystemInputDocReader( stream);
       systemInputDef = reader.getSystemInputDef();
