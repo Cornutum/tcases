@@ -1,18 +1,56 @@
-<Generators>
+<?xml version="1.0"?>
+<xs:schema 
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="http://www.startingblocktech.com/tcases"
+   xmlns="http://www.startingblocktech.com/tcases"
+   >
   <!-- Defines the schema for a generator definition document -->
   <!-- $Revision$, $Date$ -->
-  <TupleGenerator function="" seed="" tuples="">
-    <Combine tuples="">
-      <Include var=""/>
-    </Combine>
-  </TupleGenerator>
 
-  <TupleGenerator function="funcName" tuples="*"/>
-  
-  <TupleGenerator>
-    <Combine>
-      <Include var="varSetName.**"/>
-      <Exclude var="varSetName.member"/>
-    </Combine>
-  </TupleGenerator>
-</Generators>
+  <!-- System functions -->
+  <xs:element name="Generators">
+    <xs:complexType>
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+
+        <xs:element name="TupleGenerator">
+          <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+
+              <xs:element name="Combine">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:choice>
+
+                      <xs:element name="Include">
+                        <xs:complexType>
+                          <xs:attribute name="var" type="xs:string" use="required"/>
+                        </xs:complexType>
+                      </xs:element>
+
+                      <xs:element name="Exclude">
+                        <xs:complexType>
+                          <xs:attribute name="var" type="xs:string" use="required"/>
+                        </xs:complexType>
+                      </xs:element>
+
+                    </xs:choice>
+                  </xs:sequence>
+
+                  <xs:attribute name="tuples" type="xs:nonNegativeInteger"/>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+
+            <xs:attribute name="function" type="xs:string"/>
+            <xs:attribute name="seed" type="xs:integer"/>
+            <xs:attribute name="tuples" type="xs:nonNegativeInteger"/>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
