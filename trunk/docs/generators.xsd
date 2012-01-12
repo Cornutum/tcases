@@ -1,0 +1,18 @@
+<Generators>
+  <!-- Defines the schema for a generator definition document -->
+  <!-- $Revision$, $Date$ -->
+  <TupleGenerator function="" seed="" tuples="">
+    <Combine tuples="">
+      <Include var=""/>
+    </Combine>
+  </TupleGenerator>
+
+  <TupleGenerator function="funcName" tuples="*"/>
+  
+  <TupleGenerator>
+    <Combine>
+      <Include var="varSetName.**"/>
+      <Exclude var="varSetName.member"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>
