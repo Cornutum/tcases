@@ -497,7 +497,7 @@ public class Tcases
     catch( Exception e)
       {
       exitCode = 1;
-      e.printStackTrace();
+      e.printStackTrace( System.err);
       }
     finally
       {
