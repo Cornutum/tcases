@@ -155,12 +155,17 @@ public class TupleCombiner
     }
 
   /**
-   * Returns all valid N-tuples of values for the given input variables.
+   * Returns all valid N-tuples of values for the given input variables. A non-positive tupleSize specifies
+   * all permutations.
    */
   public static Collection<Tuple> getTuples( List<VarDef> varDefs, int tupleSize)
     {
+    if( tupleSize < 1)
+      {
+      tupleSize = varDefs.size();
+      }
     int varEnd = varDefs.size() - tupleSize + 1;
-    if( tupleSize < 1 || varEnd <= 0)
+    if( varEnd <= 0)
       {
       throw new IllegalArgumentException( "Can't create " + tupleSize + "-tuples for " + varDefs.size() + " combined variables");
       }
