@@ -15,10 +15,8 @@ import com.startingblocktech.tcases.generator.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.collections15.IteratorUtils;
 
-import java.io.InputStream;
 import org.xml.sax.SAXParseException;
 
 /**
@@ -50,7 +48,7 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_0()
     {
-    IGeneratorSet generatorSet = readGeneratorSet( "generator-set-0.xml");
+    IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-0.xml");
     ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
     assertEquals( "Generators", 0, generators.length);    
     }
@@ -77,7 +75,7 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_1()
     {
-    IGeneratorSet generatorSet = readGeneratorSet( "generator-set-1.xml");
+    IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-1.xml");
     ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
     assertEquals( "Generators", 1, generators.length);
 
@@ -155,7 +153,7 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_2()
     {
-    IGeneratorSet generatorSet = readGeneratorSet( "generator-set-2.xml");
+    IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-2.xml");
     ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
     assertEquals( "Generators", 4, generators.length);
 
@@ -216,7 +214,7 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_3()
     {
-    IGeneratorSet generatorSet = readGeneratorSet( "generator-set-3.xml");
+    IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-3.xml");
     ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
     assertEquals( "Generators", 1, generators.length);
 
@@ -300,7 +298,7 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_4()
     {
-    IGeneratorSet generatorSet = readGeneratorSet( "generator-set-4.xml");
+    IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-4.xml");
     ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
     assertEquals( "Generators", 1, generators.length);
 
@@ -573,33 +571,6 @@ public class TestGeneratorSetDocReader
     }
 
   /**
-   * Returns the {@link IGeneratorSet} defined by the given resource.
-   */
-  private IGeneratorSet readGeneratorSet( String resource)
-    {
-    IGeneratorSet  generatorSet  = null;
-    InputStream     stream          = null;
-    
-    try
-      {
-      stream = getClass().getResourceAsStream( resource);
-
-      GeneratorSetDocReader reader = new GeneratorSetDocReader( stream);
-      generatorSet = reader.getGeneratorSet();
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't read resource=" + resource, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( stream);
-      }
-
-    return generatorSet;
-    }
-
-  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)
@@ -607,7 +578,7 @@ public class TestGeneratorSetDocReader
     Throwable failure = null;
     try
       {
-      readGeneratorSet( resource);
+      generatorSetResources_.read( resource);
       }
     catch( Throwable t)
       {
@@ -636,4 +607,5 @@ public class TestGeneratorSetDocReader
     assertEquals( "Exception message", expectedMsg, actualMsg);
     }
 
+  private GeneratorSetResources generatorSetResources_ = new GeneratorSetResources( TestGeneratorSetDocReader.class);
   }
