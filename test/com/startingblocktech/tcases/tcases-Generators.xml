@@ -1,0 +1,22 @@
+<Generators>
+
+  <TupleGenerator seed="2001100745">
+
+    <Combine tuples="0">
+      <Include var="outDir.defined"/>
+      <Include var="outFile.path.isAbsolute"/>
+    </Combine>
+
+    <Combine tuples="0">
+      <Include var="outFile.defined"/>
+      <Include var="inFile.defined"/>
+    </Combine>
+
+    <Combine tuples="0">
+      <Include var="outFile.defined"/>
+      <Include var="inFile.defined"/>
+    </Combine>
+
+  </TupleGenerator>
+
+</Generators>
