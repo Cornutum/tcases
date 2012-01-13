@@ -1,0 +1,91 @@
+<System name="Tcases">
+  <Function name="run">
+    <Input>
+
+      <VarSet name="outDir">
+        <Var name="defined">
+          <Value name="Yes" property="outDir"/>
+          <Value name="No"/>
+        </Var>
+
+        <VarSet name="path" when="outDir">
+          <Var name="exists">
+            <Value name="Yes" property="outDirExists"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="isDirectory" when="outDirExists">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+      <VarSet name="outFile">
+        <Var name="defined">
+          <Value name="Yes" property="outFile"/>
+          <Value name="No"/>
+        </Var>
+
+        <VarSet name="path" when="outFile">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists">
+            <Value name="Yes" property="outFileExists"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+      <Var name="extendTests" when="outFileExists">
+        <Value name="Yes"/>
+        <Value name="No"/>
+      </Var>
+
+      <VarSet name="genFile">
+        <Var name="defined">
+          <Value name="Yes" property="genFile"/>
+          <Value name="No"/>
+        </Var>
+
+        <VarSet name="path" when="genFile">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+
+        <Var name="default" whenNot="genFile">
+          <Value name="ForInputExists" when="inFile"/>
+          <Value name="ForInputNone" when="inFile"/>
+          <Value name="Standard" whenNot="inFile"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="inFile">
+        <Var name="defined">
+          <Value name="Yes" property="inFile"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="path" when="inFile">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists" when="inFile">
+            <Value name="asDefined"/>
+            <Value name="withInputXml"/>
+            <Value name="withXml"/>
+            <Value name="No" failure="true"/>
+          </Var>          
+        </VarSet>
+      </VarSet>
+
+    </Input>
+  </Function>
+</System>
