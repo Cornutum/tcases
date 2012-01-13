@@ -7,6 +7,7 @@
 
 package com.startingblocktech.tcases.generator;
 
+import com.startingblocktech.tcases.VarBindingDef;
 import com.startingblocktech.tcases.VarDef;
 import com.startingblocktech.tcases.VarValueDef;
 import com.startingblocktech.tcases.util.ToString;
@@ -118,8 +119,19 @@ public class VarTupleSet
     int i = unused_.indexOf( tuple);
     if( i >= 0)
       {
-      // Yes, relocated to used list.
-      used_.add( unused_.remove( i));
+      // Yes, relocate to used list. Once used, all N-tuples can be reduced to 1-tuples.
+      // This enables different combinations that may be required to complete tests for
+      // other tuples. In particular, it allows for an NA binding of an optional variable,
+      // which will never appear in N-tuples.
+      unused_.remove( i);
+      for( Iterator<VarBindingDef> bindings = tuple.getBindings(); bindings.hasNext();)
+        {
+        Tuple tuple1 = new Tuple( bindings.next());
+        if( used_.indexOf( tuple1) < 0)
+          {
+          used_.add( tuple1);
+          }
+        }
       }
 
     // No, already used?
