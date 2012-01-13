@@ -37,7 +37,7 @@ public class Tcases
    * <TABLE cellspacing="0" cellpadding="8">
    * <TR valign="top">
    * <TD colspan="3">
-   * <NOBR> [-d <I>outDir</I>] [-o <I>testDef</I>] [-n] [-g genDef] [<I>inputDef</I>]</NOBR>
+   * <NOBR> [-o <I>outDir</I>] [-t <I>testDef</I>] [-n] [-g genDef] [<I>inputDef</I>]</NOBR>
    * </TD>
    * </TR>
    * 
@@ -56,10 +56,10 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR>-d <I>outDir</I> </NOBR>
+   * <NOBR>-o <I>outDir</I> </NOBR>
    * </TD>
    * <TD>
-   * If <I>-d</I> is defined, test definition output is written to the specified directory.
+   * If <I>-o</I> is defined, test definition output is written to the specified directory.
    * If omitted, the default <I>outDir</I> is the directory containing the <I>inputDef</I> or,
    * if reading from standard input, the current working directory. If an output path cannot be
    * derived, output is written to standard output.
@@ -71,10 +71,10 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR>-o <I>testDef</I> </NOBR>
+   * <NOBR>-t <I>testDef</I> </NOBR>
    * </TD>
    * <TD>
-   * If <I>-o</I> is defined, test definition output is written to the specified <I>testDef</I> path,
+   * If <I>-t</I> is defined, test definition output is written to the specified <I>testDef</I> path,
    * relative to the <I>outDir</I>.
    * If omitted, the default <I>testDef</I> name is derived from the <I>inputDef</I> name.
    * If an output path cannot be derived, output is written to standard output.
@@ -104,7 +104,7 @@ public class Tcases
    * <TD>
    * If <I>-g</I> is defined, test definitions are created using the generator(s) specified
    * by the given <I>genDef</I> file. If omitted, the default generator definition is used.
-   * The default generator definition is read from a <CODE>*-Generators.xml</CODE> file in the same directory as the <I>inputDef</I>,
+   * The default generator definition is read from the corresponding <CODE>*-Generators.xml</CODE> file in the same directory as the <I>inputDef</I>,
    * if it exists. Otherwise, the default {@link TupleGenerator} is used for all functions.
    * </TD>
    * </TR>
@@ -118,9 +118,13 @@ public class Tcases
    * </TD>
    * <TD>
    * The system input definition is read from the given <I>inputDef</I>. If omitted, the system input definition is
-   * read from standard input.
-   * </TD>
-   * </TR>
+   * read from standard input. Otherwise, the system input definition is read from the first one of the following files
+   * that can be located.
+   * <OL> 
+   * <LI> <I>inputDef</I> </LI>
+   * <LI> <I>inputDef</I>-Input.xml </LI>
+   * <LI> <I>inputDef</I>.xml </LI>
+   * </OL>
    * 
    * </TABLE>
    * </CODE>
@@ -162,7 +166,7 @@ public class Tcases
       {
       String arg = args[i];
 
-      if( arg.equals( "-d"))
+      if( arg.equals( "-o"))
         {
         i++;
         if( i >= args.length)
@@ -172,7 +176,7 @@ public class Tcases
         setOutDir( new File( args[i]));
         }
 
-      else if( arg.equals( "-o"))
+      else if( arg.equals( "-t"))
         {
         i++;
         if( i >= args.length)
@@ -253,7 +257,7 @@ public class Tcases
         new RuntimeException
         ( "Usage: "
           + Tcases.class.getSimpleName()
-          + " [-d outDir] [-o testDef] [-n] [-g genDef] [inputDef]",
+          + " [-o outDir] [-t testDef] [-n] [-g genDef] [inputDef]",
           cause);
       }
 
@@ -382,8 +386,15 @@ public class Tcases
    */
   public void run( Options options) throws Exception
     {
-    // Read system input definition.
+    // Identify the system input definition file.
     File inputDefFile = options.getInputDef();
+    if( inputDefFile != null
+        && !inputDefFile.exists()
+        && !(inputDefFile = new File( options.getInputDef().getPath() + "-Input.xml")).exists()
+        && !(inputDefFile = new File( options.getInputDef().getPath() + ".xml")).exists())
+        {
+        throw new RuntimeException( "Can't locate input file for path=" + options.getInputDef());
+        }
 
     File inputDir =
       inputDefFile==null?
@@ -393,7 +404,8 @@ public class Tcases
       new File( ".") :
 
       inputDefFile.getParentFile();
-
+    
+    // Read the system input definition.
     SystemInputDef inputDef = null;
     InputStream inputStream = null;
     try
@@ -414,7 +426,7 @@ public class Tcases
       IOUtils.closeQuietly( inputStream);
       }
 
-    // Identify test definition file. 
+    // Identify the test definition file. 
     File outputDir = options.getOutDir();
     File testDefFile = options.getTestDef();
     if( !(inputDefFile == null && testDefFile == null))
@@ -433,19 +445,26 @@ public class Tcases
           ? inputBase.substring( 0, inputBase.length() - "-input".length())
           : inputBase;
 
-        testDefFile = new File( testDefBase + "-Test.xml");
+        testDefFile = new File( inputDir, testDefBase + "-Test.xml");
         }
 
-      if( !testDefFile.isAbsolute())
+      testDefFile =
+        new File
+        ( outputDir,
+          testDefFile.isAbsolute()? testDefFile.getName() : testDefFile.getPath());
+
+      // Ensure output directory exists.
+      File testDefDir = testDefFile.getParentFile();
+      if( !testDefDir.exists() && !testDefDir.mkdirs())
         {
-        testDefFile = new File( outputDir, testDefFile.getPath());
+        throw new RuntimeException( "Can't create output directory=" + testDefDir);
         }
       }
             
     SystemTestDef baseDef = null;
     if( options.isExtended() && testDefFile != null && testDefFile.exists())
       {
-      // Read previous base test definitions.
+      // Read the previous base test definitions.
       InputStream testStream = null;
       try
         {
@@ -463,7 +482,7 @@ public class Tcases
         }
       }
 
-    // Identify generator definition file.
+    // Identify the generator definition file.
     File genDefFile = options.getGenDef();
     if( genDefFile != null)
       {
