@@ -8,6 +8,7 @@
 package com.startingblocktech.tcases;
 
 import com.startingblocktech.tcases.generator.*;
+import com.startingblocktech.tcases.generator.io.*;
 import com.startingblocktech.tcases.io.*;
 
 import org.apache.commons.io.FilenameUtils;
@@ -60,8 +61,8 @@ public class Tcases
    * <TD>
    * If <I>-d</I> is defined, test definition output is written to the specified directory.
    * If omitted, the default <I>outDir</I> is the directory containing the <I>inputDef</I> or,
-   * if reading from standard input, the current working directory. If neither an <I>outDir</I>
-   * nor a <I>testDef</I> file is defined, output is written to standard output.
+   * if reading from standard input, the current working directory. If an output path cannot be
+   * derived, output is written to standard output.
    * </TD>
    * </TR>
    * 
@@ -76,8 +77,7 @@ public class Tcases
    * If <I>-o</I> is defined, test definition output is written to the specified <I>testDef</I> path,
    * relative to the <I>outDir</I>.
    * If omitted, the default <I>testDef</I> name is derived from the <I>inputDef</I> name.
-   * If neither an <I>outDir</I>
-   * nor a <I>testDef</I> file is defined, output is written to standard output.
+   * If an output path cannot be derived, output is written to standard output.
    * </TD>
    * </TR>
    * 
@@ -362,137 +362,8 @@ public class Tcases
     int exitCode = 0;
     try
       {
-      Options options = new Options( args);
-
-      // Read system input definition.
-      File inputDefFile = options.getInputDef();
-
-      File inputDir =
-        inputDefFile==null?
-        null :
-
-        inputDefFile.getParent() == null?
-        new File( ".") :
-
-        inputDefFile.getParentFile();
-
-      SystemInputDef inputDef = null;
-      InputStream inputStream = null;
-      try
-        {
-        if( inputDefFile != null)
-          {
-          inputStream = new FileInputStream( inputDefFile);
-          }
-        SystemInputDocReader reader = new SystemInputDocReader( inputStream);
-        inputDef = reader.getSystemInputDef();
-        }
-      catch( Exception e)
-        {
-        throw new RuntimeException( "Can't read input definition file=" + inputDefFile, e);
-        }
-      finally
-        {
-        IOUtils.closeQuietly( inputStream);
-        }
-
-      // Identify test definition file. 
-      File outputDir = options.getOutDir();
-      File testDefFile = options.getTestDef();
-      if( !(outputDir == null && testDefFile == null))
-        {
-        if( outputDir == null)
-          {
-          outputDir = inputDir;
-          }
-
-        if( testDefFile == null)
-          {
-          String inputBase =
-            inputDefFile==null
-            ? null
-            : FilenameUtils.getBaseName( inputDefFile.getName());
-
-          String inputExt =
-            inputDefFile==null
-            ? null
-            : FilenameUtils.getExtension( inputDefFile.getName());
-
-          String testDefBase =
-            inputBase==null?
-            null :
-            
-            inputBase.toLowerCase().endsWith( "-input")?
-            inputBase.substring( 0, inputBase.length() - "-input".length()) :
-
-            inputBase;
-
-          testDefFile =
-            new File
-            ( testDefBase == null
-              ? "Test.xml"
-              : testDefBase + "-Test." + inputExt);
-          }
-
-        if( !testDefFile.isAbsolute())
-          {
-          testDefFile = new File( outputDir, testDefFile.getPath());
-          }
-        }
-            
-      SystemTestDef baseDef = null;
-      if( options.isExtended() && testDefFile != null && testDefFile.exists())
-        {
-        // Read previous base test definitions.
-        InputStream testStream = null;
-        try
-          {
-          testStream = new FileInputStream( testDefFile);
-          SystemTestDocReader reader = new SystemTestDocReader( testStream);
-          baseDef = reader.getSystemTestDef();
-          }
-        catch( Exception e)
-          {
-          throw new RuntimeException( "Can't read test definition file=" + testDefFile, e);
-          }
-        finally
-          {
-          IOUtils.closeQuietly( testStream);
-          }
-        }
-
-      // Read generator definitions.
-      GeneratorSet genDefs = new GeneratorSet();
-      genDefs.addGenerator( GeneratorSet.ALL, new TupleGenerator());
-
-      // Generate new test definitions.
-      SystemTestDef testDef = new SystemTestDef( inputDef.getName());
-      for( Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs(); functionDefs.hasNext();)
-        {
-        FunctionInputDef functionDef = functionDefs.next();
-        FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
-        ITestCaseGenerator functionGen = genDefs.getGenerator( functionDef.getName());
-        testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
-        }
-
-      // Write new test definitions.
-      SystemTestDocWriter writer = null;
-      try
-        {
-        writer = new SystemTestDocWriter( testDefFile==null? null : new FileOutputStream( testDefFile));
-        writer.write( testDef);
-        }
-      catch( Exception e)
-        {
-        throw new RuntimeException( "Can't write test definition file=" + testDefFile, e);
-        }
-      finally
-        {
-        if( writer != null)
-          {
-          writer.close();
-          }
-        }
+      Tcases tcases = new Tcases();
+      tcases.run( new Options( args));
       }
     catch( Exception e)
       {
@@ -502,6 +373,177 @@ public class Tcases
     finally
       {
       System.exit( exitCode);
+      }
+    }
+
+  /**
+   * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}
+   * using the given {@link Options command line options}.
+   */
+  public void run( Options options) throws Exception
+    {
+    // Read system input definition.
+    File inputDefFile = options.getInputDef();
+
+    File inputDir =
+      inputDefFile==null?
+      null :
+
+      inputDefFile.getParent() == null?
+      new File( ".") :
+
+      inputDefFile.getParentFile();
+
+    SystemInputDef inputDef = null;
+    InputStream inputStream = null;
+    try
+      {
+      if( inputDefFile != null)
+        {
+        inputStream = new FileInputStream( inputDefFile);
+        }
+      SystemInputDocReader reader = new SystemInputDocReader( inputStream);
+      inputDef = reader.getSystemInputDef();
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read input definition file=" + inputDefFile, e);
+      }
+    finally
+      {
+      IOUtils.closeQuietly( inputStream);
+      }
+
+    // Identify test definition file. 
+    File outputDir = options.getOutDir();
+    File testDefFile = options.getTestDef();
+    if( !(inputDefFile == null && testDefFile == null))
+      {
+      if( outputDir == null)
+        {
+        outputDir = inputDir;
+        }
+
+      if( testDefFile == null)
+        {
+        String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
+
+        String testDefBase =
+          inputBase.toLowerCase().endsWith( "-input")
+          ? inputBase.substring( 0, inputBase.length() - "-input".length())
+          : inputBase;
+
+        testDefFile = new File( testDefBase + "-Test.xml");
+        }
+
+      if( !testDefFile.isAbsolute())
+        {
+        testDefFile = new File( outputDir, testDefFile.getPath());
+        }
+      }
+            
+    SystemTestDef baseDef = null;
+    if( options.isExtended() && testDefFile != null && testDefFile.exists())
+      {
+      // Read previous base test definitions.
+      InputStream testStream = null;
+      try
+        {
+        testStream = new FileInputStream( testDefFile);
+        SystemTestDocReader reader = new SystemTestDocReader( testStream);
+        baseDef = reader.getSystemTestDef();
+        }
+      catch( Exception e)
+        {
+        throw new RuntimeException( "Can't read test definition file=" + testDefFile, e);
+        }
+      finally
+        {
+        IOUtils.closeQuietly( testStream);
+        }
+      }
+
+    // Identify generator definition file.
+    File genDefFile = options.getGenDef();
+    if( genDefFile != null)
+      {
+      if( !genDefFile.isAbsolute())
+        {
+        genDefFile = new File( inputDir, genDefFile.getPath());
+        }
+      }
+    else if( inputDefFile != null)
+      {
+      String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
+
+      String genDefBase =
+        inputBase.toLowerCase().endsWith( "-input")
+        ? inputBase.substring( 0, inputBase.length() - "-input".length())
+        : inputBase;
+
+      genDefFile = new File( inputDir, genDefBase + "-Generators.xml");
+      if( !genDefFile.exists())
+        {
+        genDefFile = null;
+        }
+      }
+      
+    // Generator definitions specified?
+    IGeneratorSet genDef = null;
+    if( genDefFile != null)
+      {
+      // Yes, read generator definitions.
+      InputStream genStream = null;
+      try
+        {
+        genStream = new FileInputStream( genDefFile);
+        GeneratorSetDocReader reader = new GeneratorSetDocReader( genStream);
+        genDef = reader.getGeneratorSet();
+        }
+      catch( Exception e)
+        {
+        throw new RuntimeException( "Can't read generator definition file=" + genDefFile, e);
+        }
+      finally
+        {
+        IOUtils.closeQuietly( genStream);
+        }
+      }
+    else
+      {
+      // No, use default TupleGenerator.
+      GeneratorSet genSet = new GeneratorSet();
+      genSet.addGenerator( GeneratorSet.ALL, new TupleGenerator());
+      genDef = genSet;
+      } 
+
+    // Generate new test definitions.
+    SystemTestDef testDef = new SystemTestDef( inputDef.getName());
+    for( Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs(); functionDefs.hasNext();)
+      {
+      FunctionInputDef functionDef = functionDefs.next();
+      FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
+      ITestCaseGenerator functionGen = genDef.getGenerator( functionDef.getName());
+      testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
+      }
+
+    // Write new test definitions.
+    SystemTestDocWriter writer = null;
+    try
+      {
+      writer = new SystemTestDocWriter( testDefFile==null? null : new FileOutputStream( testDefFile));
+      writer.write( testDef);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write test definition file=" + testDefFile, e);
+      }
+    finally
+      {
+      if( writer != null)
+        {
+        writer.close();
+        }
       }
     }
   }
