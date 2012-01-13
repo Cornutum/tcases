@@ -70,16 +70,9 @@ public abstract class DefUtils
     {
     if( properties != null)
       {
-      try
+      for( String property : properties)
         {
-        for( String property : properties)
-          {
-          assertIdentifier( property);
-          }
-        }
-      catch( Exception e)
-        {
-        throw new IllegalArgumentException( "Invalid property set", e);
+        assertIdentifier( property);
         }
       }
     }
