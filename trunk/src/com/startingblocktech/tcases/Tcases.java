@@ -141,6 +141,7 @@ public class Tcases
     public Options()
       {
       setExtended( true);
+      setWorkingDir( null);
       }
     
     /**
@@ -343,11 +344,31 @@ public class Tcases
       return extended_;
       }
 
+    /**
+     * Changes the current working directory used to complete relative path names.
+     */
+    public void setWorkingDir( File workingDir)
+      {
+      workingDir_ =
+        workingDir == null
+        ? new File( ".")
+        : workingDir;
+      }
+
+    /**
+     * Returns the current working directory used to complete relative path names.
+     */
+    public File getWorkingDir()
+      {
+      return workingDir_;
+      }
+
     private File inputDef_;
     private File outDir_;
     private File testDef_;
     private File genDef_;
     private boolean extended_;
+    private File workingDir_;
     }
   
   /**
@@ -387,23 +408,25 @@ public class Tcases
   public void run( Options options) throws Exception
     {
     // Identify the system input definition file.
-    File inputDefFile = options.getInputDef();
+    File inputDefOption = options.getInputDef();
+    if( inputDefOption != null && !inputDefOption.isAbsolute())
+      {
+      inputDefOption = new File( options.getWorkingDir(), inputDefOption.getPath());
+      }
+
+    File inputDefFile = inputDefOption;
     if( inputDefFile != null
         && !inputDefFile.exists()
-        && !(inputDefFile = new File( options.getInputDef().getPath() + "-Input.xml")).exists()
-        && !(inputDefFile = new File( options.getInputDef().getPath() + ".xml")).exists())
+        && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.xml")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists())
         {
         throw new RuntimeException( "Can't locate input file for path=" + options.getInputDef());
         }
 
     File inputDir =
-      inputDefFile==null?
-      null :
-
-      inputDefFile.getParent() == null?
-      new File( ".") :
-
-      inputDefFile.getParentFile();
+      inputDefFile==null
+      ? null
+      : inputDefFile.getParentFile();
     
     // Read the system input definition.
     SystemInputDef inputDef = null;
@@ -543,6 +566,10 @@ public class Tcases
       FunctionInputDef functionDef = functionDefs.next();
       FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
       ITestCaseGenerator functionGen = genDef.getGenerator( functionDef.getName());
+      if( functionGen == null)
+        {
+        throw new RuntimeException( "No generator for function=" + functionDef.getName() + " defined in generator definition=" + genDefFile);
+        }
       testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
       }
 
