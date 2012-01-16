@@ -35,6 +35,7 @@
   <property name="test.class.dir" location="${test.build.dir}/class"/>
   <property name="test.lib.dir" location="${test.build.dir}/lib"/>
   <property name="test.reports.dir" location="${test.build.dir}/reports"/>
+  <property name="test.javadoc.dir" location="${test.build.dir}/javadoc"/>
 
   <!-- Tool properties -->
   <property name="tools.dir" location="${root.dir}/tools"/>
