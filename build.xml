@@ -100,10 +100,25 @@
     </fail>
   </target>
 
-  <target name="javadoc" depends="compile.test">    
+  <target name="javadoc" depends="compile">    
     <mkdir dir="${javadoc.dir}"/>
     <javadoc 
       destdir="${javadoc.dir}"
+      verbose="off"
+      >
+      <classpath>
+        <path refid="javac.classpath"/>
+      </classpath>
+      <sourcefiles>
+        <fileset dir="${src.dir}" includes="**/*.java"/>
+      </sourcefiles>
+    </javadoc>
+  </target>
+
+  <target name="javadoc.test" depends="compile.test">    
+    <mkdir dir="${test.javadoc.dir}"/>
+    <javadoc 
+      destdir="${test.javadoc.dir}"
       verbose="off"
       >
       <classpath>
