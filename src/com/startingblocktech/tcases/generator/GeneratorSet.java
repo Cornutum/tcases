@@ -7,6 +7,8 @@
 
 package com.startingblocktech.tcases.generator;
 
+import com.startingblocktech.tcases.util.ToString;
+
 import org.apache.commons.lang.StringUtils;
 
 import java.util.HashMap;
@@ -74,6 +76,14 @@ public class GeneratorSet implements IGeneratorSet
     {
     functionName = StringUtils.trimToNull( functionName);
     return functionName==null? ALL : functionName;
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( "functions", generators_.keySet())
+      .toString();
     }
 
   private Map<String,ITestCaseGenerator> generators_ = new HashMap<String,ITestCaseGenerator>();
