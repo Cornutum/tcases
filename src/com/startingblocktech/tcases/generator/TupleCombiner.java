@@ -10,6 +10,9 @@ package com.startingblocktech.tcases.generator;
 import com.startingblocktech.tcases.*;
 import com.startingblocktech.tcases.util.ToString;
 
+import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections15.Transformer;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -75,6 +78,25 @@ public class TupleCombiner
     {
     return includedVars_;
     }
+  
+  /**
+   * Returns the set of input variables to be included in this combination.
+   */
+  public String[] getIncluded()
+    {
+    return
+      IteratorUtils.toArray
+      ( IteratorUtils.transformedIterator
+        ( includedVars_.iterator(),
+          new Transformer<VarNamePattern,String>()
+            {
+            public String transform( VarNamePattern pattern)
+              {
+              return pattern.toString();
+              }
+            }),
+        String.class);
+    }
 
   /**
    * Adds a pattern matching input variables to be included in this combination.
@@ -117,6 +139,25 @@ public class TupleCombiner
   private Set<VarNamePattern> getExcludedVars()
     {
     return excludedVars_;
+    }
+  
+  /**
+   * Returns the set of input variables to be excluded from this combination.
+   */
+  public String[] getExcluded()
+    {
+    return
+      IteratorUtils.toArray
+      ( IteratorUtils.transformedIterator
+        ( excludedVars_.iterator(),
+          new Transformer<VarNamePattern,String>()
+            {
+            public String transform( VarNamePattern pattern)
+              {
+              return pattern.toString();
+              }
+            }),
+        String.class);
     }
 
   /**
