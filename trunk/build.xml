@@ -185,7 +185,7 @@
     <delete dir="${javadoc.dir}"/>
   </target>
 
-  <target name="compile.test" depends="build, compile.test.classes">
+  <target name="compile.test" depends="compile, compile.test.classes">
   </target>
 
   <target name="compile.test.classes" depends="compile.test.resources">
