@@ -13,6 +13,8 @@ import com.startingblocktech.tcases.io.*;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -425,7 +427,7 @@ public class Tcases
 
     File inputDir =
       inputDefFile==null
-      ? null
+      ? options.getWorkingDir()
       : inputDefFile.getParentFile();
     
     // Read the system input definition.
@@ -433,6 +435,7 @@ public class Tcases
     InputStream inputStream = null;
     try
       {
+      logger_.info( "Reading system input definition={}", inputDefFile);
       if( inputDefFile != null)
         {
         inputStream = new FileInputStream( inputDefFile);
@@ -491,6 +494,7 @@ public class Tcases
       InputStream testStream = null;
       try
         {
+        logger_.info( "Reading base test definition={}", testDefFile);
         testStream = new FileInputStream( testDefFile);
         SystemTestDocReader reader = new SystemTestDocReader( testStream);
         baseDef = reader.getSystemTestDef();
@@ -538,6 +542,7 @@ public class Tcases
       InputStream genStream = null;
       try
         {
+        logger_.info( "Reading generator definition={}", genDefFile);
         genStream = new FileInputStream( genDefFile);
         GeneratorSetDocReader reader = new GeneratorSetDocReader( genStream);
         genDef = reader.getGeneratorSet();
@@ -577,6 +582,7 @@ public class Tcases
     SystemTestDocWriter writer = null;
     try
       {
+      logger_.info( "Updating test definition={}", testDefFile);
       writer = new SystemTestDocWriter( testDefFile==null? null : new FileOutputStream( testDefFile));
       writer.write( testDef);
       }
@@ -592,5 +598,6 @@ public class Tcases
         }
       }
     }
-  }
 
+  private static final Logger logger_ = LoggerFactory.getLogger( Tcases.class);
+  }
