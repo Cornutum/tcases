@@ -12,22 +12,23 @@
   </pathconvert>
 
   <!-- Release tag -->
-  <basename file="${root.dir}" property="release.tag"/>
-  <tstamp>
-    <format property="release.timestamp" pattern="yyyyMMdd-HHmm" timezone="GMT+0"/>
-  </tstamp>
+  <property name="release.id" value="0.0.1"/>
+  <property name="release.tag" value="tcases-${release.id}"/>
   
   <!-- Source directories -->
   <property name="src.dir" location="${root.dir}/src"/>
   <property name="test.src.dir" location="${root.dir}/test"/>
   <property name="lib.dir" location="${root.dir}/lib"/>
+  <property name="bin.dir" location="${root.dir}/bin"/>
+  <property name="docs.dir" location="${root.dir}/docs"/>
+  <property name="resources.dir" location="${root.dir}/resources"/>
 
   <!-- Build directories -->
   <property name="build.dir" location="${root.dir}/build"/>
   <property name="class.dir" location="${build.dir}/class"/>
   <property name="lib.dir" location="${build.dir}/lib"/>
   <property name="distrib.dir" location="${build.dir}/distrib"/>
-  <property name="distrib.lib.dir" location="${distrib.dir}/lib"/>
+  <property name="release.dir" location="${distrib.dir}/${release.tag}"/>
 
   <property name="javadoc.dir" location="${build.dir}/javadoc"/>
 

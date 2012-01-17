@@ -11,11 +11,52 @@
   <import file="${root.dir}/global-properties.xml"/>
 
   <!-- Standard targets -->
-  <target name="build" description="Create all distribution packages." depends="compile">
-    <mkdir dir="${distrib.lib.dir}"/>
-    <jar destfile="${distrib.lib.dir}/tcases.jar" basedir="${class.dir}">
+  <target name="build" description="Create all distribution packages." depends="compile,javadoc">
+    <delete dir="${release.dir}"/>
+
+    <mkdir dir="${release.dir}/lib"/>
+    <jar destfile="${release.dir}/lib/tcases.jar" basedir="${class.dir}">
       <include name="**/*.class"/>
-    </jar>  
+    </jar>
+    <copy todir="${release.dir}/lib">
+      <fileset dir="${lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+      <fileset dir="${resources.dir}">
+        <include name="*.xml"/>
+      </fileset>
+    </copy>
+
+    <mkdir dir="${release.dir}/docs/api"/>
+    <copy todir="${release.dir}/docs">
+      <fileset dir="${docs.dir}">
+        <include name="*.xsd"/>
+      </fileset>
+    </copy>
+    <copy todir="${release.dir}/docs/api">
+      <fileset dir="${javadoc.dir}">
+        <include name="**/*"/>
+      </fileset>
+    </copy>
+
+    <mkdir dir="${release.dir}/bin"/>
+    <copy todir="${release.dir}/bin">
+      <fileset dir="${bin.dir}">
+        <include name="*.sh"/>
+      </fileset>
+    </copy>
+
+    <zip destfile="${distrib.dir}/${release.tag}.zip">
+      <fileset dir="${distrib.dir}">
+        <include name="${release.tag}/**/*"/>
+      </fileset>
+    </zip>
+
+    <tar destfile="${distrib.dir}/${release.tag}.tgz" compression="gzip">
+      <fileset dir="${distrib.dir}">
+        <include name="${release.tag}/**/*"/>
+      </fileset>
+    </tar>
   </target>
 
   <target name="clean" description="Delete all generated files." depends="clean.build, clean.test, clean.javadoc"> 
