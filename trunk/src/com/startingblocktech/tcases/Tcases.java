@@ -455,15 +455,13 @@ public class Tcases
     // Identify the test definition file. 
     File outputDir = options.getOutDir();
     File testDefFile = options.getTestDef();
+    File baseDefFile = null;
     if( !(inputDefFile == null && testDefFile == null))
       {
-      if( outputDir == null)
-        {
-        outputDir = inputDir;
-        }
-
+      // Test definition defined?
       if( testDefFile == null)
         {
+        // No, derive default from input file.
         String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
 
         String testDefBase =
@@ -471,7 +469,23 @@ public class Tcases
           ? inputBase.substring( 0, inputBase.length() - "-input".length())
           : inputBase;
 
-        testDefFile = new File( inputDir, testDefBase + "-Test.xml");
+        testDefFile = new File( testDefBase + "-Test.xml");
+        }
+
+      // For relative path, read base test definitions from input directory.
+      baseDefFile = testDefFile;
+      if( !baseDefFile.isAbsolute())
+        {
+        baseDefFile = new File( inputDir, baseDefFile.getPath());
+        }
+
+      // For relative path, write test definitions to output directory.
+      if( outputDir == null)
+        {
+        outputDir =
+          testDefFile.isAbsolute()
+          ? testDefFile.getParentFile()
+          : inputDir;
         }
 
       testDefFile =
@@ -488,20 +502,20 @@ public class Tcases
       }
             
     SystemTestDef baseDef = null;
-    if( options.isExtended() && testDefFile != null && testDefFile.exists())
+    if( options.isExtended() && baseDefFile != null && baseDefFile.exists())
       {
       // Read the previous base test definitions.
       InputStream testStream = null;
       try
         {
-        logger_.info( "Reading base test definition={}", testDefFile);
-        testStream = new FileInputStream( testDefFile);
+        logger_.info( "Reading base test definition={}", baseDefFile);
+        testStream = new FileInputStream( baseDefFile);
         SystemTestDocReader reader = new SystemTestDocReader( testStream);
         baseDef = reader.getSystemTestDef();
         }
       catch( Exception e)
         {
-        throw new RuntimeException( "Can't read test definition file=" + testDefFile, e);
+        throw new RuntimeException( "Can't read test definition file=" + baseDefFile, e);
         }
       finally
         {
