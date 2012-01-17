@@ -9,6 +9,8 @@ package com.startingblocktech.tcases.generator.io;
 
 import com.startingblocktech.tcases.generator.*;
 import static com.startingblocktech.tcases.DefUtils.*;
+import static com.startingblocktech.tcases.generator.io.GeneratorSetDoc.*;
+import static com.startingblocktech.tcases.generator.io.TupleGeneratorDoc.*;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -499,15 +501,4 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   private Locator               locator_;
   private List<ElementHandler>  elementHandlers_  = new ArrayList<ElementHandler>();
   private GeneratorSet          generatorSet_;
-
-  private static final String COMBINE_TAG         = "Combine";
-  private static final String EXCLUDE_TAG         = "Exclude";
-  private static final String GENERATORS_TAG      = "Generators";
-  private static final String INCLUDE_TAG         = "Include";
-  private static final String TUPLEGENERATOR_TAG  = "TupleGenerator";
-
-  private static final String FUNCTION_ATR        = "function";
-  private static final String SEED_ATR            = "seed";
-  private static final String TUPLES_ATR          = "tuples";
-  private static final String VAR_ATR             = "var";
   }
