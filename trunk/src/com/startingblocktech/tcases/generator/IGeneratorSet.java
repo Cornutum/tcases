@@ -25,5 +25,10 @@ public interface IGeneratorSet
    * Returns all test case generators in this set.
    */
   Iterator<ITestCaseGenerator> getGenerators();
-  
+
+  /**
+   * Returns the set of system function names associated with generators in
+   * this set.
+   */
+  String[] getGeneratorFunctions();
   }

@@ -32,6 +32,17 @@ public class GeneratorSet implements IGeneratorSet
     }
 
   /**
+   * Returns the set of system function names associated with generators in
+   * this set.
+   */
+  public String[] getGeneratorFunctions()
+    {
+    String[] functions = new String[ generators_.size()];
+    generators_.keySet().toArray( functions);
+    return functions;
+    }
+  
+  /**
    * Returns all test case generators in this set.
    */
   public Iterator<ITestCaseGenerator> getGenerators()
@@ -78,6 +89,25 @@ public class GeneratorSet implements IGeneratorSet
     return functionName==null? ALL : functionName;
     }
 
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ generators_.hashCode();
+    }
+
+  public boolean equals( Object object)
+    {
+    GeneratorSet other =
+      object != null && object.getClass().equals( getClass())
+      ? (GeneratorSet) object
+      : null;
+
+    return
+      other != null
+      && other.generators_.equals( generators_);
+    }
+  
   public String toString()
     {
     return
