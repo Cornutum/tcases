@@ -170,10 +170,14 @@ public class VarNamePattern
 
   public int hashCode()
     {
-    return
-      varNamePath_ == null
-      ? 0
-      : varNamePath_.hashCode();
+    int code = getClass().hashCode();
+    int pathSize = varNamePath_==null? 0 : varNamePath_.length;
+
+    for( int i = 0;
+         i < pathSize;
+         code ^= varNamePath_[i++].hashCode());
+
+    return code;
     }
 
   public String toString()
