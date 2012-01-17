@@ -13,6 +13,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 
 /**
@@ -86,6 +87,41 @@ public class GeneratorSetResources
       }
 
     return generatorSet;
+    }
+
+  /**
+   * Writes the {@link IGeneratorSet} to the the given file.
+   */
+  public void write( IGeneratorSet generatorSet, File file)
+    {
+    GeneratorSetDocWriter writer = createWriter( file);
+    try
+      {
+      writer.write( generatorSet);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write " + generatorSet + " to file=" + file, e);
+      }
+    finally
+      {
+      writer.close();
+      }
+    }
+
+  /**
+   * Creates a {@link GeneratorSetDocWriter} for the given file.
+   */
+  private GeneratorSetDocWriter createWriter( File file)
+    {
+    try
+      {
+      return new GeneratorSetDocWriter( new FileWriter( file));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't open file=" + file, e);
+      }
     }
 
   private Class<?> class_;
