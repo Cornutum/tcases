@@ -17,6 +17,11 @@
       <Include var="inFile.defined"/>
     </Combine>
 
+    <Combine tuples="0">
+      <Include var="genFile.defined"/>
+      <Include var="seed.defined"/>
+    </Combine>
+
   </TupleGenerator>
 
 </Generators>
