@@ -39,7 +39,7 @@ public class Tcases
    * <TABLE cellspacing="0" cellpadding="8">
    * <TR valign="top">
    * <TD colspan="3">
-   * <NOBR> [-o <I>outDir</I>] [-t <I>testDef</I>] [-n] [-g genDef] [<I>inputDef</I>]</NOBR>
+   * <NOBR> [-o <I>outDir</I>] [-t <I>testDef</I>] [-n] [-g <I>genDef</I>] [-r <I>seed</I>] [-c <I>tupleSize</I>] [<I>inputDef</I>]</NOBR>
    * </TD>
    * </TR>
    * 
@@ -108,6 +108,32 @@ public class Tcases
    * by the given <I>genDef</I> file. If omitted, the default generator definition is used.
    * The default generator definition is read from the corresponding <CODE>*-Generators.xml</CODE> file in the same directory as the <I>inputDef</I>,
    * if it exists. Otherwise, the default {@link TupleGenerator} is used for all functions.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-r <I>seed</I> </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-r</I> is defined, use the given random number <I>seed</I> for all generators. This updates the generator definitions specified by the
+   * <I>genDef</I> file.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-c <I>tupleSize</I> </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-c</I> is defined, use the given default <I>tupleSize</I> for all generators. This updates the generator definitions specified by the
+   * <I>genDef</I> file.
    * </TD>
    * </TR>
    * 
@@ -199,6 +225,40 @@ public class Tcases
         setGenDef( new File( args[i]));
         }
 
+      else if( arg.equals( "-r"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        try
+          {
+          setRandomSeed( Long.valueOf( args[i]));
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid random seed", e);
+          }
+        }
+
+      else if( arg.equals( "-c"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        try
+          {
+          setDefaultTupleSize( Integer.valueOf( args[i]));
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid tuple size", e);
+          }
+        }
+
       else if( arg.equals( "-n"))
         {
         setExtended( false);
@@ -260,7 +320,7 @@ public class Tcases
         new RuntimeException
         ( "Usage: "
           + Tcases.class.getSimpleName()
-          + " [-o outDir] [-t testDef] [-n] [-g genDef] [inputDef]",
+          + " [-o outDir] [-t testDef] [-n] [-g genDef] [-r seed] [-c tupleSize] [inputDef]",
           cause);
       }
 
@@ -347,6 +407,38 @@ public class Tcases
       }
 
     /**
+     * Changes the random seed used by generators.
+     */
+    public void setRandomSeed( Long seed)
+      {
+      seed_ = seed;
+      }
+
+    /**
+     * Returns the random seed used by generators.
+     */
+    public Long getRandomSeed()
+      {
+      return seed_;
+      }
+
+    /**
+     * Changes the default tuple size used by generators.
+     */
+    public void setDefaultTupleSize( Integer tupleSize)
+      {
+      defaultTupleSize_ = tupleSize;
+      }
+
+    /**
+     * Returns the default tuple size used by generators.
+     */
+    public Integer getDefaultTupleSize()
+      {
+      return defaultTupleSize_;
+      }
+
+    /**
      * Changes the current working directory used to complete relative path names.
      */
     public void setWorkingDir( File workingDir)
@@ -370,6 +462,8 @@ public class Tcases
     private File testDef_;
     private File genDef_;
     private boolean extended_;
+    private Long seed_;
+    private Integer defaultTupleSize_;
     private File workingDir_;
     }
   
@@ -525,6 +619,7 @@ public class Tcases
 
     // Identify the generator definition file.
     File genDefFile = options.getGenDef();
+    File genDefDefault = null;
     if( genDefFile != null)
       {
       if( !genDefFile.isAbsolute())
@@ -541,10 +636,10 @@ public class Tcases
         ? inputBase.substring( 0, inputBase.length() - "-input".length())
         : inputBase;
 
-      genDefFile = new File( inputDir, genDefBase + "-Generators.xml");
-      if( !genDefFile.exists())
+      genDefDefault = new File( inputDir, genDefBase + "-Generators.xml");
+      if( genDefDefault.exists())
         {
-        genDefFile = null;
+        genDefFile = genDefDefault;
         }
       }
       
@@ -584,11 +679,21 @@ public class Tcases
       {
       FunctionInputDef functionDef = functionDefs.next();
       FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
-      ITestCaseGenerator functionGen = genDef.getGenerator( functionDef.getName());
+      TupleGenerator functionGen = (TupleGenerator) genDef.getGenerator( functionDef.getName());
       if( functionGen == null)
         {
         throw new RuntimeException( "No generator for function=" + functionDef.getName() + " defined in generator definition=" + genDefFile);
         }
+
+      if( options.getRandomSeed() != null)
+        {
+        functionGen.setRandomSeed( options.getRandomSeed());
+        }
+      if( options.getDefaultTupleSize() != null)
+        {
+        functionGen.setDefaultTupleSize( options.getDefaultTupleSize());
+        }
+      
       testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
       }
 

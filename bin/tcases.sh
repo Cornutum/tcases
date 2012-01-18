@@ -13,7 +13,7 @@ pgm=`basename $0 .sh`
 
 usage()
 {
-  echo Usage: $script "[-o outDir] [-t testDef] [-n] [-g genDef] [-l logFile] [inputDef]" >&2
+  echo Usage: $script "[-o outDir] [-t testDef] [-n] [-g genDef] [-r seed] [-c tuples] [-l logFile] [inputDef]" >&2
   echo "" >&2
   echo "  Generates a set of test cases from a system input definition, according" >&2
   echo "  to the given command line arguments." >&2
@@ -26,6 +26,9 @@ usage()
   echo "                1. inputDef" >&2
   echo "                2. inputDef-Input.xml" >&2
   echo "                3. inputDef.xml" >&2
+  echo "" >&2
+  echo "  -c tuples   If -c is defined, use the given default tuple size for all generators." >&2
+  echo "              This updates the generator definitions specified by the genDef file." >&2
   echo "" >&2
  	echo "  -g genDef   If -g is defined, test definitions are created using the generator(s)" >&2
   echo "              specified by the given genDef file. If omitted, the default generator" >&2
@@ -47,6 +50,9 @@ usage()
   echo "              directory. If an output path cannot be derived, output is written to" >&2
   echo "              standard output." >&2
   echo "" >&2
+  echo "  -r seed     If -r is defined, use the given random number seed for all generators." >&2
+  echo "              This updates the generator definitions specified by the genDef file." >&2
+  echo "" >&2
  	echo "  -t testDef  If -t is defined, test definition output is written to the specified" >&2
   echo "              testDef path, relative to the outDir. If omitted, the default testDef" >&2
   echo "              name is derived from the inputDef name. If an output path cannot be" >&2
@@ -55,10 +61,12 @@ usage()
 
 while [ $# -gt 0 ] ; do
   case $1 in
+    -c) shift; defTupleSize="$1";;
     -g) shift; genDef="$1";;
     -l) shift; logFile="$1";;
     -n) noExtend="$1";;
     -o) shift; outDir="$1";;
+    -r) shift; seed="$1";;
     -t) shift; testDef="$1";;
     -*) usage; exit 1;;
      *) break;;
@@ -100,6 +108,8 @@ java \
   -Dtcases.log.file="$logFile" \
   com.startingblocktech.tcases.Tcases \
   ${genDef:+-g "$genDef"} \
+  ${seed:+-r "$seed"} \
+  ${defTupleSize:+-c "$defTupleSize"} \
   $noExtend \
   ${outDir:+-o "$outDir"} \
   ${testDef:+-t "$testDef"} \
