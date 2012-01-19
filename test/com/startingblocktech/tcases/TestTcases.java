@@ -30,6 +30,8 @@ public class TestTcases
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD> NA </TD></TR>
    * <TR><TD> extendTests </TD> <TD> NA </TD></TR>
    * <TR><TD> genFile.default </TD> <TD> ForInputNone </TD></TR>
    * <TR><TD> genFile.defined </TD> <TD> No </TD></TR>
@@ -44,6 +46,8 @@ public class TestTcases
    * <TR><TD> outFile.defined </TD> <TD> Yes </TD></TR>
    * <TR><TD> outFile.path.exists </TD> <TD> No </TD></TR>
    * <TR><TD> outFile.path.isAbsolute </TD> <TD> Yes </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> NA </TD></TR>
    * </TABLE>
    * </P>
    */
@@ -83,6 +87,8 @@ public class TestTcases
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 1. run (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD> Yes </TD></TR>
    * <TR><TD> extendTests </TD> <TD> Yes </TD></TR>
    * <TR><TD> genFile.default </TD> <TD> NA </TD></TR>
    * <TR><TD> genFile.defined </TD> <TD> Yes </TD></TR>
@@ -97,6 +103,8 @@ public class TestTcases
    * <TR><TD> outFile.defined </TD> <TD> Yes </TD></TR>
    * <TR><TD> outFile.path.exists </TD> <TD> Yes </TD></TR>
    * <TR><TD> outFile.path.isAbsolute </TD> <TD> No </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> Yes </TD></TR>
    * </TABLE>
    * </P>
    */
@@ -111,6 +119,8 @@ public class TestTcases
     String[] args =
       {
         "-n",
+        "-c", "12345",
+        "-r", "45678",
         "-g", genFile.getPath(),
         "-t", testDefFile.getName()
       };
@@ -132,6 +142,8 @@ public class TestTcases
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 2. run (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD> NA </TD></TR>
    * <TR><TD> extendTests </TD> <TD> NA </TD></TR>
    * <TR><TD> genFile.default </TD> <TD> Standard </TD></TR>
    * <TR><TD> genFile.defined </TD> <TD> No </TD></TR>
@@ -146,6 +158,8 @@ public class TestTcases
    * <TR><TD> outFile.defined </TD> <TD> Yes </TD></TR>
    * <TR><TD> outFile.path.exists </TD> <TD> No </TD></TR>
    * <TR><TD> outFile.path.isAbsolute </TD> <TD> No </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> NA </TD></TR>
    * </TABLE>
    * </P>
    */
@@ -182,6 +196,8 @@ public class TestTcases
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 3. run (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD> Yes </TD></TR>
    * <TR><TD> extendTests </TD> <TD> No </TD></TR>
    * <TR><TD> genFile.default </TD> <TD> NA </TD></TR>
    * <TR><TD> genFile.defined </TD> <TD> Yes </TD></TR>
@@ -196,6 +212,8 @@ public class TestTcases
    * <TR><TD> outFile.defined </TD> <TD> Yes </TD></TR>
    * <TR><TD> outFile.path.exists </TD> <TD> Yes </TD></TR>
    * <TR><TD> outFile.path.isAbsolute </TD> <TD> Yes </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> NA </TD></TR>
    * </TABLE>
    * </P>
    */
@@ -210,6 +228,7 @@ public class TestTcases
 
     String[] args =
       {
+        "-c", "12345",
         "-g", genFile.getName(),
         "-t", testDefFile.getPath(),
         "run-3"
@@ -232,6 +251,8 @@ public class TestTcases
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 4. run (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD> NA </TD></TR>
    * <TR><TD> extendTests </TD> <TD> NA </TD></TR>
    * <TR><TD> genFile.default </TD> <TD> ForInputExists </TD></TR>
    * <TR><TD> genFile.defined </TD> <TD> No </TD></TR>
@@ -246,6 +267,8 @@ public class TestTcases
    * <TR><TD> outFile.defined </TD> <TD> No </TD></TR>
    * <TR><TD> outFile.path.exists </TD> <TD> NA </TD></TR>
    * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> Yes </TD></TR>
    * </TABLE>
    * </P>
    */
@@ -263,6 +286,7 @@ public class TestTcases
       {
         "-n",
         "-o", outDir.getPath(),
+        "-r", "12345",
         inFile.getPath()
       };
 
@@ -280,6 +304,8 @@ public class TestTcases
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 5. run (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD> Yes </TD></TR>
    * <TR><TD> extendTests </TD> <TD> NA </TD></TR>
    * <TR><TD> genFile.default </TD> <TD> NA </TD></TR>
    * <TR><TD> genFile.defined </TD> <TD> Yes </TD></TR>
@@ -294,6 +320,8 @@ public class TestTcases
    * <TR><TD> outFile.defined </TD> <TD> No </TD></TR>
    * <TR><TD> outFile.path.exists </TD> <TD> NA </TD></TR>
    * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> Yes </TD></TR>
    * </TABLE>
    * </P>
    */
@@ -305,7 +333,9 @@ public class TestTcases
     
     String[] args =
       {
-        "-g", genFile.getPath()
+        "-g", genFile.getPath(),
+        "-r", "12345",
+        "-c", "45678"
       };
 
     /* Must run interactively: uses standard input
@@ -324,6 +354,8 @@ public class TestTcases
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 6. run (Failure) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD> NA </TD></TR>
    * <TR><TD> extendTests </TD> <TD> NA </TD></TR>
    * <TR><TD> genFile.default </TD> <TD> Standard </TD></TR>
    * <TR><TD> genFile.defined </TD> <TD> No </TD></TR>
@@ -338,6 +370,8 @@ public class TestTcases
    * <TR><TD> outFile.defined </TD> <TD> Yes </TD></TR>
    * <TR><TD> outFile.path.exists </TD> <TD> No </TD></TR>
    * <TR><TD> outFile.path.isAbsolute </TD> <TD> No </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> NA </TD></TR>
    * </TABLE>
    * </P>
    */
@@ -469,6 +503,128 @@ public class TestTcases
       {
         "-n",
         "-o", outDir.getPath(),
+        inFile.getPath()
+      };
+
+    // When...
+    Tcases tcases = new Tcases();
+    Exception failure = null;
+    try
+      {
+      tcases.run( new Options( args));
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 9. run (Failure) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD><FONT color=red> No </FONT></TD></TR>
+   * <TR><TD> extendTests </TD> <TD> No </TD></TR>
+   * <TR><TD> genFile.default </TD> <TD> NA </TD></TR>
+   * <TR><TD> genFile.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> Yes </TD></TR>
+   * <TR><TD> genFile.path.isAbsolute </TD> <TD> No </TD></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withInputXml </TD></TR>
+   * <TR><TD> inFile.path.isAbsolute </TD> <TD> No </TD></TR>
+   * <TR><TD> outDir.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> outDir.path.exists </TD> <TD> NA </TD></TR>
+   * <TR><TD> outDir.path.isDirectory </TD> <TD> NA </TD></TR>
+   * <TR><TD> outFile.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> outFile.path.exists </TD> <TD> Yes </TD></TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> Yes </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> NA </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_9() throws Exception
+    {
+    // Given...
+    File testDefFile = getResourceFile( "run-9-test-other.xml");
+    File genFile = getResourceFile( "run-9-gen-other.xml");
+    File inFile = getResourceFile( "run-9-Input.xml");
+
+    String[] args =
+      {
+        "-c",
+        "-g", genFile.getName(),
+        "-t", testDefFile.getPath(),
+        "run-3"
+      };
+
+    // When...
+    Tcases tcases = new Tcases();
+    Exception failure = null;
+    try
+      {
+      Options options = new Options( args);
+      options.setWorkingDir( inFile.getParentFile());
+    
+      tcases.run( options);
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 10. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultTupleSize.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> defaultTupleSize.isNumber </TD> <TD> NA </TD></TR>
+   * <TR><TD> extendTests </TD> <TD> NA </TD></TR>
+   * <TR><TD> genFile.default </TD> <TD> ForInputExists </TD></TR>
+   * <TR><TD> genFile.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> NA </TD></TR>
+   * <TR><TD> genFile.path.isAbsolute </TD> <TD> NA </TD></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> asDefined </TD></TR>
+   * <TR><TD> inFile.path.isAbsolute </TD> <TD> Yes </TD></TR>
+   * <TR><TD> outDir.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> outDir.path.exists </TD> <TD> No </TD></TR>
+   * <TR><TD> outDir.path.isDirectory </TD> <TD> NA </TD></TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD></TR>
+   * <TR><TD> outFile.path.exists </TD> <TD> NA </TD></TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD></TR>
+   * <TR><TD> seed.defined </TD> <TD> Yes </TD></TR>
+   * <TR><TD> seed.isNumber </TD> <TD> Yes </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_10() throws Exception
+    {
+    // Given...
+    File outDir = getResourceFile( "run-10-outDir");
+    File inFile = getResourceFile( "run-10.xml");
+
+    FileUtils.deleteDirectory( outDir);
+
+    String[] args =
+      {
+        "-n",
+        "-o", outDir.getPath(),
+        "-r", "NaN",
         inFile.getPath()
       };
 
