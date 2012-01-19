@@ -716,6 +716,38 @@ public class Tcases
         writer.close();
         }
       }
+
+    // Write any updates to generator definitions.
+    File genUpdateFile =
+      genDefFile != null?
+      genDefFile :
+
+      genDefDefault != null?
+      genDefDefault :
+
+      null;
+
+    if( genUpdateFile != null && (options.getRandomSeed() != null || options.getDefaultTupleSize() != null))
+      {
+      GeneratorSetDocWriter genWriter = null;
+      try
+        {
+        logger_.info( "Updating generator definition={}", genUpdateFile);
+        genWriter = new GeneratorSetDocWriter( new FileOutputStream( genUpdateFile));
+        genWriter.write( genDef);
+        }
+      catch( Exception e)
+        {
+        throw new RuntimeException( "Can't write generator definition file=" + genUpdateFile, e);
+        }
+      finally
+        {
+        if( genWriter != null)
+          {
+          genWriter.close();
+          }
+        }
+      }
     }
 
   private static final Logger logger_ = LoggerFactory.getLogger( Tcases.class);
