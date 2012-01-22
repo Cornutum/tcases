@@ -480,7 +480,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
      */
     public boolean isEmpty()
       {
-      return getConditionSet().getConditions().isEmpty();
+      return getConditionSet().getConditions().hasNext() == false;
       }
 
     /**

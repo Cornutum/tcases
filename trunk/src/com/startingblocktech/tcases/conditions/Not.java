@@ -35,7 +35,7 @@ public class Not extends ConditionSet
     boolean isSatisfied;
     Iterator<ICondition> conditions;
     
-    for( conditions = getConditions().iterator(),
+    for( conditions = getConditions(),
            isSatisfied = true;
            
 

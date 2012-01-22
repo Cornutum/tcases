@@ -36,7 +36,7 @@ public class AllOf extends ConditionSet
     boolean isSatisfied;
     Iterator<ICondition> conditions;
     
-    for( conditions = getConditions().iterator(),
+    for( conditions = getConditions(),
            isSatisfied = true;
            
 
@@ -58,7 +58,7 @@ public class AllOf extends ConditionSet
     boolean isCompatible;
     Iterator<ICondition> conditions;
     
-    for( conditions = getConditions().iterator(),
+    for( conditions = getConditions(),
            isCompatible = true;
            
 
