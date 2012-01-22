@@ -35,7 +35,7 @@ public class AnyOf extends ConditionSet
     boolean isSatisfied;
     Iterator<ICondition> conditions;
     
-    for( conditions = getConditions().iterator(),
+    for( conditions = getConditions(),
            isSatisfied = !conditions.hasNext();
 
          !isSatisfied
@@ -56,7 +56,7 @@ public class AnyOf extends ConditionSet
     boolean isCompatible;
     Iterator<ICondition> conditions;
     
-    for( conditions = getConditions().iterator(),
+    for( conditions = getConditions(),
            isCompatible = !conditions.hasNext();
 
          !isCompatible

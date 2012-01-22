@@ -12,7 +12,7 @@ import com.startingblocktech.tcases.PropertySet;
 import com.startingblocktech.tcases.util.ToString;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -66,9 +66,9 @@ public abstract class ConditionSet implements ICondition
   /**
    * Returns the conditions in this set.
    */
-  public Collection<ICondition> getConditions()
+  public Iterator<ICondition> getConditions()
     {
-    return conditions_;
+    return conditions_.iterator();
     }
 
   public String toString()
