@@ -125,6 +125,8 @@ public class TestTcases
         "-t", testDefFile.getName()
       };
 
+    new Options( args);
+    
     /* Must run interactively: uses standard input.
      
     // When...
@@ -178,6 +180,8 @@ public class TestTcases
         "-o", outDir.getPath(),
         "-t", testDefFile.getName()
       };
+
+    new Options( args);
 
     /* Must run interactively: uses standard input
     // When...
@@ -338,6 +342,8 @@ public class TestTcases
         "-c", "45678"
       };
 
+    new Options( args);
+  
     /* Must run interactively: uses standard input
     // When...
     Tcases tcases = new Tcases();
