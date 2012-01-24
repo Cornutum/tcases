@@ -4,6 +4,14 @@
    targetNamespace="http://www.startingblocktech.com/tcases"
    xmlns="http://www.startingblocktech.com/tcases"
    >
+  <!-- 
+  //////////////////////////////////////////////////////////////////////////////
+  // 
+  //               Copyright 2010, Starting Block Technologies
+  //                        www.startingblocktech.com
+  //
+  //////////////////////////////////////////////////////////////////////////////
+  -->
   <!-- Defines the schema for a system test case specification document -->
   <!-- $Revision: 92 $, $Date: 2012-01-02 19:50:23 -0600 (Mon, 02 Jan 2012) $ -->
 

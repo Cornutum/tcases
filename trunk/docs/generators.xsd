@@ -4,6 +4,14 @@
    targetNamespace="http://www.startingblocktech.com/tcases"
    xmlns="http://www.startingblocktech.com/tcases"
    >
+  <!-- 
+  //////////////////////////////////////////////////////////////////////////////
+  // 
+  //               Copyright 2010, Starting Block Technologies
+  //                        www.startingblocktech.com
+  //
+  //////////////////////////////////////////////////////////////////////////////
+  -->
   <!-- Defines the schema for a generator definition document -->
   <!-- $Revision$, $Date$ -->
 
