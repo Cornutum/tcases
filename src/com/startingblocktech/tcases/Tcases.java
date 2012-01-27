@@ -39,7 +39,15 @@ public class Tcases
    * <TABLE cellspacing="0" cellpadding="8">
    * <TR valign="top">
    * <TD colspan="3">
-   * <NOBR> [-o <I>outDir</I>] [-t <I>testDef</I>] [-n] [-g <I>genDef</I>] [-r <I>seed</I>] [-c <I>tupleSize</I>] [<I>inputDef</I>]</NOBR>
+   * <NOBR>
+   * [-c <I>tupleSize</I>]
+   * [-g <I>genDef</I>]
+   * [-n]
+   * [-o <I>outDir</I>]
+   * [-r <I>seed</I>]
+   * [-t <I>testDef</I>]
+   * [<I>inputDef</I>]
+   * </NOBR>
    * </TD>
    * </TR>
    * 
@@ -58,41 +66,11 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR>-o <I>outDir</I> </NOBR>
+   * <NOBR>-c <I>tupleSize</I> </NOBR>
    * </TD>
    * <TD>
-   * If <I>-o</I> is defined, test definition output is written to the specified directory.
-   * If omitted, the default <I>outDir</I> is the directory containing the <I>inputDef</I> or,
-   * if reading from standard input, the current working directory. If an output path cannot be
-   * derived, output is written to standard output.
-   * </TD>
-   * </TR>
-   * 
-   * <TR valign="top">
-   * <TD>
-   * &nbsp;
-   * </TD>
-   * <TD>
-   * <NOBR>-t <I>testDef</I> </NOBR>
-   * </TD>
-   * <TD>
-   * If <I>-t</I> is defined, test definition output is written to the specified <I>testDef</I> path,
-   * relative to the <I>outDir</I>.
-   * If omitted, the default <I>testDef</I> name is derived from the <I>inputDef</I> name.
-   * If an output path cannot be derived, output is written to standard output.
-   * </TD>
-   * </TR>
-   * 
-   * <TR valign="top">
-   * <TD>
-   * &nbsp;
-   * </TD>
-   * <TD>
-   * <NOBR>-n </NOBR>
-   * </TD>
-   * <TD>
-   * If <I>-n</I> is defined, any previous contents of the <I>testDef</I> are ignored.
-   * If omitted, new test definitions are based on the previous <I>testDef</I>.
+   * If <I>-c</I> is defined, use the given default <I>tupleSize</I> for all generators. This updates the generator definitions specified by the
+   * <I>genDef</I> file.
    * </TD>
    * </TR>
    * 
@@ -116,6 +94,34 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-n </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-n</I> is defined, any previous contents of the <I>testDef</I> are ignored.
+   * If omitted, new test definitions are based on the previous <I>testDef</I>.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-o <I>outDir</I> </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-o</I> is defined, test definition output is written to the specified directory.
+   * If omitted, the default <I>outDir</I> is the directory containing the <I>inputDef</I> or,
+   * if reading from standard input, the current working directory. If an output path cannot be
+   * derived, output is written to standard output.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-r <I>seed</I> </NOBR>
    * </TD>
    * <TD>
@@ -129,11 +135,13 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR>-c <I>tupleSize</I> </NOBR>
+   * <NOBR>-t <I>testDef</I> </NOBR>
    * </TD>
    * <TD>
-   * If <I>-c</I> is defined, use the given default <I>tupleSize</I> for all generators. This updates the generator definitions specified by the
-   * <I>genDef</I> file.
+   * If <I>-t</I> is defined, test definition output is written to the specified <I>testDef</I> path,
+   * relative to the <I>outDir</I>.
+   * If omitted, the default <I>testDef</I> name is derived from the <I>inputDef</I> name.
+   * If an output path cannot be derived, output is written to standard output.
    * </TD>
    * </TR>
    * 
@@ -320,7 +328,7 @@ public class Tcases
         new RuntimeException
         ( "Usage: "
           + Tcases.class.getSimpleName()
-          + " [-o outDir] [-t testDef] [-n] [-g genDef] [-r seed] [-c tupleSize] [inputDef]",
+          + " [-c tupleSize] [-g genDef] [-n] [-o outDir] [-r seed] [-t testDef] [inputDef]",
           cause);
       }
 
