@@ -13,6 +13,7 @@ import com.startingblocktech.tcases.io.*;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -41,11 +44,14 @@ public class Tcases
    * <TD colspan="3">
    * <NOBR>
    * [-c <I>tupleSize</I>]
+   * [-f <I>outFile</I>]
    * [-g <I>genDef</I>]
    * [-n]
    * [-o <I>outDir</I>]
+   * [-p <I>name</I>=<I>value</I>]
    * [-r <I>seed</I>]
    * [-t <I>testDef</I>]
+   * [-x <I>transformDef</I> | -J]
    * [<I>inputDef</I>]
    * </NOBR>
    * </TD>
@@ -79,6 +85,20 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-f <I>outFile</I> </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-f</I> is defined, test definition output is written to the specified <I>outFile</I>, relative to the given <I>outDir</I>.
+   * If omitted, test definitions are written to the file specified by the <I>-t</I> option.
+   * If an output path cannot be derived, output is written to standard output.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-g <I>genDef</I> </NOBR>
    * </TD>
    * <TD>
@@ -86,6 +106,51 @@ public class Tcases
    * by the given <I>genDef</I> file. If omitted, the default generator definition is used.
    * The default generator definition is read from the corresponding <CODE>*-Generators.xml</CODE> file in the same directory as the <I>inputDef</I>,
    * if it exists. Otherwise, the default {@link TupleGenerator} is used for all functions.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-J </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-J</I> is defined, test definition output is transformed into Java source code for a JUnit
+   * test class. The resulting Java source file is written to the specified <I>outDir</I>. The
+   * following parameters (see the <I>-p</I> option) affect the results of this transform.
+   * <BLOCKQUOTE>
+   * <TABLE border="0" cellspacing="16">
+   * <TR valign="baseline">
+   * <TD><B> test </B></TD>
+   * <TD>
+   * The name of the generated test class. If omitted, the default is "<I>&lt;class&gt;</I>Test" where <I>&lt;class&gt;</I> is defined by the <B>class</B>
+   * parameter.
+   * </TD>
+   * </TR>
+   * <TR valign="baseline">
+   * <TD><B> class </B></TD>
+   * <TD>
+   * The name of the class under test. If omitted, the default is defined by the <B>system</B>
+   * parameter.
+   * </TD>
+   * </TR>
+   * <TR valign="baseline">
+   * <TD><B> system </B></TD>
+   * <TD>
+   * The name of the system under test. If omitted, the default is defined by the <I>inputDef</I>.
+   * </TD>
+   * </TR>
+   * <TR valign="baseline">
+   * <TD><B> throws </B></TD>
+   * <TD>
+   * A boolean value (true/false, yes/no). If true, generated test methods are declared to throw Exception.
+   * If omitted, the default is false.
+   * </TD>
+   * </TR>
+   * </TABLE>   
+   * </BLOCKQUOTE>
    * </TD>
    * </TR>
    * 
@@ -122,6 +187,19 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-p <I>name</I>=<I>value</I> </NOBR>
+   * </TD>
+   * <TD>
+   * Defines the value of a transform parameter. Any number of <I>-p</I> options may be specified.
+   * This option is meaningful only if the <I>-x</I> or <I>-J</I> option is given.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-r <I>seed</I> </NOBR>
    * </TD>
    * <TD>
@@ -135,13 +213,28 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-x <I>transformDef</I> </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-x</I> is defined, test definition output is transformed according to the XSLT transform defined
+   * by the <I>transformDef</I> file. If relative, the <I>transformDef</I> path is assumed to be relative to the
+   * directory containing the <I>inputDef</I>.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-t <I>testDef</I> </NOBR>
    * </TD>
    * <TD>
-   * If <I>-t</I> is defined, test definition output is written to the specified <I>testDef</I> path,
+   * If <I>-t</I> is defined, new test definitions are based on the contents of the specified <I>testDef</I> file,
+   * relative to the directory containing the <I>inputDef</I>. Also, unless the <I>-f</I> option is given, new
+   * test definition output is written to the specified <I>testDef</I> path,
    * relative to the <I>outDir</I>.
    * If omitted, the default <I>testDef</I> name is derived from the <I>inputDef</I> name.
-   * If an output path cannot be derived, output is written to standard output.
    * </TD>
    * </TR>
    * 
@@ -213,6 +306,16 @@ public class Tcases
         setOutDir( new File( args[i]));
         }
 
+      else if( arg.equals( "-f"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        setOutFile( new File( args[i]));
+        }
+
       else if( arg.equals( "-t"))
         {
         i++;
@@ -271,6 +374,51 @@ public class Tcases
         {
         setExtended( false);
         }
+
+      else if( arg.equals( "-J"))
+        {
+        if( getTransformDef() != null)
+          {
+          throwUsageException( "Can't specify both -J and -x");
+          }
+        setJUnit( true);
+        }
+
+      else if( arg.equals( "-x"))
+        {
+        if( isJUnit())
+          {
+          throwUsageException( "Can't specify both -J and -x");
+          }
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        setTransformDef( new File( args[i]));
+        }
+
+      else if( arg.equals( "-p"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        String binding = args[i];
+        int valuePos = binding.indexOf( '=');
+        if( valuePos < 0)
+          {
+          throwUsageException( "Invalid -p option: must be name=value");
+          }
+        String name = StringUtils.trimToNull( binding.substring( 0, valuePos));
+        if( name == null)
+          {
+          throwUsageException( "Invalid -p option: parameter name undefined");
+          }
+        String value = binding.substring( valuePos+1);
+        getTransformParams().put( name, value);
+        }
       
       else
         {
@@ -328,7 +476,16 @@ public class Tcases
         new RuntimeException
         ( "Usage: "
           + Tcases.class.getSimpleName()
-          + " [-c tupleSize] [-g genDef] [-n] [-o outDir] [-r seed] [-t testDef] [inputDef]",
+          + " [-c tupleSize]"
+          + " [-f outFile]"
+          + " [-g genDef]"
+          + " [-n]"
+          + " [-o outDir]"
+          + " [-p name=value]"
+          + " [-r seed]"
+          + " [-t testDef]"
+          + " [-x transformDef | -J]"
+          + " [inputDef]",
           cause);
       }
 
@@ -346,6 +503,22 @@ public class Tcases
     public File getOutDir()
       {
       return outDir_;
+      }
+
+    /**
+     * Changes the output file for generated test definitions.
+     */
+    public void setOutFile( File outFile)
+      {
+      outFile_ = outFile;
+      }
+
+    /**
+     * Returns the output file for generated test definitions.
+     */
+    public File getOutFile()
+      {
+      return outFile_;
       }
 
     /**
@@ -378,6 +551,54 @@ public class Tcases
     public File getGenDef()
       {
       return genDef_;
+      }
+
+    /**
+     * Changes the transform file.
+     */
+    public void setTransformDef( File transformDef)
+      {
+      transformDef_ = transformDef;
+      }
+
+    /**
+     * Returns the transform file.
+     */
+    public File getTransformDef()
+      {
+      return transformDef_;
+      }
+
+    /**
+     * Changes if using the JUnit transform.
+     */
+    public void setJUnit( boolean junit)
+      {
+      junit_ = junit;
+      }
+
+    /**
+     * Returns if using the JUnit transform.
+     */
+    public boolean isJUnit()
+      {
+      return junit_;
+      }
+
+    /**
+     * Changes the transform parameter bindings.
+     */
+    public void setTransformParams( Map<String,Object> params)
+      {
+      transformParams_ = params;
+      }
+
+    /**
+     * Returns the transform parameter bindings.
+     */
+    public Map<String,Object> getTransformParams()
+      {
+      return transformParams_;
       }
 
     /**
@@ -467,8 +688,12 @@ public class Tcases
 
     private File inputDef_;
     private File outDir_;
+    private File outFile_;
     private File testDef_;
     private File genDef_;
+    private File transformDef_;
+    private Map<String,Object> transformParams_ = new HashMap<String,Object>();
+    private boolean junit_;
     private boolean extended_;
     private Long seed_;
     private Integer defaultTupleSize_;
@@ -555,10 +780,17 @@ public class Tcases
       }
 
     // Identify the test definition file. 
-    File outputDir = options.getOutDir();
     File testDefFile = options.getTestDef();
     File baseDefFile = null;
-    if( !(inputDefFile == null && testDefFile == null))
+
+    File outputDir = options.getOutDir();
+    File outputFile = options.getOutFile();
+    if( outputFile == null)
+      {
+      outputFile = testDefFile;
+      }
+    
+    if( !(inputDefFile == null && outputFile == null))
       {
       // Test definition defined?
       if( testDefFile == null)
@@ -582,24 +814,28 @@ public class Tcases
         }
 
       // For relative path, write test definitions to output directory.
+      if( outputFile == null)
+        {
+        outputFile = testDefFile;
+        }
+      
       if( outputDir == null)
         {
         outputDir =
-          testDefFile.isAbsolute()
-          ? testDefFile.getParentFile()
+          outputFile.isAbsolute()
+          ? outputFile.getParentFile()
           : inputDir;
         }
 
-      testDefFile =
+      outputFile =
         new File
         ( outputDir,
-          testDefFile.isAbsolute()? testDefFile.getName() : testDefFile.getPath());
+          outputFile.isAbsolute()? outputFile.getName() : outputFile.getPath());
 
       // Ensure output directory exists.
-      File testDefDir = testDefFile.getParentFile();
-      if( !testDefDir.exists() && !testDefDir.mkdirs())
+      if( !outputDir.exists() && !outputDir.mkdirs())
         {
-        throw new RuntimeException( "Can't create output directory=" + testDefDir);
+        throw new RuntimeException( "Can't create output directory=" + outputDir);
         }
       }
             
@@ -709,13 +945,13 @@ public class Tcases
     SystemTestDocWriter writer = null;
     try
       {
-      logger_.info( "Updating test definition={}", testDefFile);
-      writer = new SystemTestDocWriter( testDefFile==null? null : new FileOutputStream( testDefFile));
+      logger_.info( "Updating test definition file={}", outputFile);
+      writer = new SystemTestDocWriter( outputFile==null? null : new FileOutputStream( outputFile));
       writer.write( testDef);
       }
     catch( Exception e)
       {
-      throw new RuntimeException( "Can't write test definition file=" + testDefFile, e);
+      throw new RuntimeException( "Can't write test definition file=" + outputFile, e);
       }
     finally
       {
