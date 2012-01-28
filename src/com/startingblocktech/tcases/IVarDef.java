@@ -37,6 +37,12 @@ public interface IVarDef extends IConditional
   String getPathName();
 
   /**
+   * Returns the effective condition that defines when this variable is applicable,
+   * based on the conditions for this variable and all of its ancestors.
+   */
+  ICondition getEffectiveCondition();
+
+  /**
    * Returns the type identifier for this variable.
    */
   String getType();

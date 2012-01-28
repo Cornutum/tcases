@@ -53,6 +53,40 @@ public class VarSet extends AbstractVarDef
     {
     return null;
     }
+
+  /**
+   * Changes the parent of this variable.
+   */
+  public void setParent( IVarDef parent)
+    {
+    super.setParent( parent);
+
+    // Reset ancestry for all descendants.
+    if( members_ != null)
+      {
+      for( IVarDef member : members_)
+        {
+        member.setParent( this);
+        }
+      }
+    }
+  
+  /**
+   * Changes the condition that defines when this element is applicable.
+   */
+  public void setCondition( ICondition condition)
+    {
+    super.setCondition( condition);
+
+    // Reset ancestry for all descendants.
+    if( members_ != null)
+      {
+      for( IVarDef member : members_)
+        {
+        member.setParent( this);
+        }
+      }
+    }
   
   /**
    * Returns the descendant variable with the given name path, relative to this variable.

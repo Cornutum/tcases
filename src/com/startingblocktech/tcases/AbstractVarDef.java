@@ -7,6 +7,7 @@
 
 package com.startingblocktech.tcases;
 
+import com.startingblocktech.tcases.conditions.AllOf;
 import com.startingblocktech.tcases.util.ToString;
 import static com.startingblocktech.tcases.DefUtils.*;
 
@@ -109,6 +110,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef, Com
     {
     parent_ = parent;
     pathName_ = null;
+    effCondition_ = null;
     }
 
   /**
@@ -117,6 +119,66 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef, Com
   public IVarDef getParent()
     {
     return parent_;
+    }
+
+  /**
+   * Returns the effective condition that defines when this variable is applicable,
+   * based on the conditions for this variable and all of its ancestors.
+   */
+  public ICondition getEffectiveCondition()
+    {
+    if( effCondition_ == null)
+      {
+      ICondition  condition           = getCondition();
+      IVarDef     parent              = getParent();
+      ICondition  parentEffCondition  = parent==null? null : parent.getEffectiveCondition();
+
+      if( condition == null && parentEffCondition != null)
+        {
+        // Same effective condition as parent.
+        effCondition_ = parentEffCondition;
+        }
+
+      else if( condition != null && parentEffCondition == null)
+        {
+        // No ancestor conditions to add.
+        effCondition_ = condition;
+        }
+
+      else
+        {
+        // Create new conjunction with ancestor conditions.
+        AllOf effCondition = new AllOf();
+        if( condition != null)
+          {
+          if( parentEffCondition instanceof AllOf)
+            {
+            for( Iterator<ICondition> parentEffConditions = ((AllOf) parentEffCondition).getConditions();
+                 parentEffConditions.hasNext();
+                 effCondition.add( parentEffConditions.next()));
+            }
+          else
+            {
+            effCondition.add( parentEffCondition);
+            }
+          
+          effCondition.add( condition);
+          }
+
+        effCondition_ = effCondition;
+        }
+      }
+    
+    return effCondition_;
+    }
+  
+  /**
+   * Changes the condition that defines when this element is applicable.
+   */
+  public void setCondition( ICondition condition)
+    {
+    super.setCondition( condition);
+    effCondition_ = null;
     }
 
   /**
@@ -153,5 +215,6 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef, Com
   private String type_;
   private IVarDef parent_;
   private String pathName_;
+  private ICondition effCondition_;
   }
 

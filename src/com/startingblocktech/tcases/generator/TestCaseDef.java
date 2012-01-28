@@ -157,7 +157,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     else if( value != VarValueDef.NA)
       {
       // No, is this variable applicable to the current test case?
-      if( !isVarApplicable( var, properties_))
+      if( !var.getEffectiveCondition().compatible( properties_))
         {
         throw new VarNotApplicableException( binding, properties_);
         }
@@ -178,44 +178,10 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Returns true if the given variable is applicable with the given set of test case properties.
-   */
-  private boolean isVarApplicable( VarDef var, PropertySet properties)
-    {
-    boolean applicable;
-    IVarDef ancestor;
-    for( ancestor = var;
-         (applicable = Conditional.acquireCondition( ancestor).compatible( properties)) && ancestor.getParent() != null;
-         ancestor = ancestor.getParent());
-    
-    return applicable;
-    }
-
-  /**
-   * Returns null if all conditions for the given variable are satisfied by the current bindings.
-   * Otherwise, returns the unsatisfied conditions
-   */
-  private ICondition getVarUnsatisfied( VarDef var)
-    {
-    ICondition unsatisfied;
-    IVarDef ancestor;
-    for( ancestor = var,
-           unsatisfied = null;
-
-         ancestor != null
-           && (unsatisfied = Conditional.acquireCondition( ancestor)).satisfied( properties_);
-         
-         ancestor = ancestor.getParent(),
-           unsatisfied = null);
-    
-    return unsatisfied;
-    }
-
-  /**
    * Returns null if the given value would make not make any currently bound variable inapplicable.
    * Otherwise, return a variable that is inapplicable with this value.
    */
-    private VarDef getVarInapplicable( VarValueDef value)
+  private VarDef getVarInapplicable( VarValueDef value)
     {
     PropertySet properties = new PropertySet( value.getProperties());
     properties.addAll( properties_);
@@ -227,7 +193,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
 
          vars.hasNext()
            && (isNA( (inapplicable = vars.next()))
-               || isVarApplicable( inapplicable, properties));
+               || inapplicable.getEffectiveCondition().compatible( properties));
          
          inapplicable = null);
     
@@ -339,7 +305,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
                VarValueDef.isNA( (value = getBinding( (var = vars.next()))))
                ||
                ( // Variable conditions satisified?
-                 (unsatisfied = getVarUnsatisfied( var)) == null
+                 (unsatisfied = var.getEffectiveCondition()).satisfied( properties_)
                  &&
                  // Value condition satisfied?
                  (unsatisfied = Conditional.acquireCondition( value)).satisfied( properties_)));
