@@ -206,6 +206,9 @@
       <fileset dir="${test.src.dir}">
         <include name="**/*.xml"/>
       </fileset>
+      <fileset dir="${resources.dir}">
+        <include name="**/*.xsl"/>
+      </fileset>
     </copy>
   </target>
 
