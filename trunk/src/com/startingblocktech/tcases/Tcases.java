@@ -123,13 +123,6 @@ public class Tcases
    * <BLOCKQUOTE>
    * <TABLE border="0" cellspacing="16">
    * <TR valign="baseline">
-   * <TD><B> test </B></TD>
-   * <TD>
-   * The name of the generated test class. If omitted, the default is "<I>&lt;class&gt;</I>Test" where <I>&lt;class&gt;</I> is defined by the <B>class</B>
-   * parameter.
-   * </TD>
-   * </TR>
-   * <TR valign="baseline">
    * <TD><B> class </B></TD>
    * <TD>
    * The name of the class under test. If omitted, the default is defined by the <B>system</B>
