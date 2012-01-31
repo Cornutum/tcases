@@ -12,9 +12,12 @@
   <!-- Transforms system test definitions into JUnit test source code -->
   <!-- $Revision$, $Date$ -->
 
-  <xsl:output method="text" indent="yes"/>
+  <xsl:output method="text"/>
 
   <xsl:param name="throws" select="0"/>
+
+  <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'"/> 
+  <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/> 
 
   <xsl:template match="TestCases">
     <xsl:variable name="system" select="@system"/>
@@ -24,6 +27,7 @@
 
       <xsl:for-each select="TestCase">
         <xsl:variable name="id" select="@id"/>
+        <xsl:variable name="failureCase" select="translate(@failure,$uppercase,$lowercase)"/>
 
         <xsl:text>
   /**
@@ -42,7 +46,7 @@
         <xsl:value-of select="$function"/>
         <xsl:text> (</xsl:text>
         <xsl:choose>
-          <xsl:when test="@failure = 'true'">
+          <xsl:when test="$failureCase='true' or $failureCase='yes'">
             <xsl:text>&lt;FONT color="red"&gt; Failure &lt;/FONT&gt;</xsl:text>
           </xsl:when>
           <xsl:otherwise>
@@ -54,11 +58,12 @@
 </xsl:text>
 
         <xsl:for-each select="Input/Var">
+          <xsl:variable name="failureValue" select="translate(@failure,$uppercase,$lowercase)"/>
           <xsl:text>   * &lt;TR&gt;&lt;TD&gt; </xsl:text>
           <xsl:value-of select="@name"/>
           <xsl:text> &lt;/TD&gt; &lt;TD&gt; </xsl:text>
           <xsl:choose>
-            <xsl:when test="@failure = 'true'">
+            <xsl:when test="$failureValue='true' or $failureValue='yes'">
               <xsl:text>&lt;FONT color="red"&gt; </xsl:text>
               <xsl:value-of select="@value"/>
               <xsl:text>  &lt;/FONT&gt;</xsl:text>
