@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
 import java.io.File;
+import java.io.FilterOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
@@ -34,6 +36,28 @@ import javax.xml.transform.stream.StreamSource;
  */
 public class TransformFilter implements Runnable
   {
+  /**
+   * Receives the input data to be transformed.
+   *
+   * @version $Revision$, $Date$
+   */
+  private class TransformSourceStream extends FilterOutputStream
+    {
+    /**
+     * Creates a new TransformSourceStream object.
+     */
+    public TransformSourceStream( OutputStream source)
+      {
+      super( source);
+      }
+
+    public void close() throws IOException
+      {
+      super.close();
+      complete();
+      }
+    }
+
   /**
    * Creates a new TransformFilter object.
    */
@@ -155,41 +179,50 @@ public class TransformFilter implements Runnable
     {
     if( source_ == null)
       {
-      try
-        {
-        // Create Transformer object.
-        Source transform = getTransform();
-        if( transform == null)
-          {
-          throw new IllegalStateException( "No XSLT transform specified");
-          }
-        TransformerFactory factory = TransformerFactory.newInstance();
-        transformer_ = factory.newTransformer( transform);
-        if( transformParams_ != null)
-          {
-          for( String paramName : transformParams_.keySet())
-            {
-            transformer_.setParameter( paramName, transformParams_.get( paramName));
-            }
-          }
-
-        // Create filter streams.
-        PipedOutputStream pipeOut = new PipedOutputStream();
-        PipedInputStream pipeIn = new PipedInputStream( pipeOut);
-        input_ = new StreamSource( pipeIn);
-        source_ = pipeOut;
-
-        // Start filter thread.
-        thread_ = new Thread( this, String.valueOf( this));
-        thread_.start();
-        }
-      catch( Exception e)
-        {
-        throw new RuntimeException( "Can't start filtering", e);
-        } 
+      start();
       }
     
     return source_;
+    }
+
+  /**
+   * Starts transform output.
+   */
+  private void start()
+    {
+    try
+      {
+      // Create Transformer object.
+      Source transform = getTransform();
+      if( transform == null)
+        {
+        throw new IllegalStateException( "No XSLT transform specified");
+        }
+      TransformerFactory factory = TransformerFactory.newInstance();
+      transformer_ = factory.newTransformer( transform);
+      if( transformParams_ != null)
+        {
+        for( String paramName : transformParams_.keySet())
+          {
+          transformer_.setParameter( paramName, transformParams_.get( paramName));
+          }
+        }
+
+      // Create filter streams.
+      PipedOutputStream pipeOut = new PipedOutputStream();
+      PipedInputStream pipeIn = new PipedInputStream( pipeOut);
+      input_ = new StreamSource( pipeIn);
+      source_ = new TransformSourceStream( pipeOut);
+
+      // Start filter thread.
+      failure_ = null;
+      thread_ = new Thread( this, String.valueOf( this));
+      thread_.start();
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't start filtering", e);
+      } 
     }
 
   /**
@@ -197,25 +230,49 @@ public class TransformFilter implements Runnable
    */
   public void close()
     {
+    IOUtils.closeQuietly( source_);
+    try
+      {
+      complete();
+      }
+    catch( Exception e)
+      {
+      logger_.error( "Can't complete transform", e);
+      }
+    }
+
+  /**
+   * Completes transform output.
+   */
+  private void complete() throws IOException
+    {
     if( source_ != null)
       {
       try
         {
-        source_.close();
         thread_.join();
         }
       catch( Exception e)
         {
-        throw new RuntimeException( "Can't close output to target=" + getTargetId(), e);
+        logger_.error( "Thread=" + thread_ + " not completed", e);
         }
-      finally
+
+      IOException failure =
+        failure_ == null
+        ? null
+        : new IOException( "Can't write output to target=" + getTargetId(), failure_);
+      
+      failure_ = null;
+      input_ = null;
+      source_ = null;
+      target_ = null;
+      thread_ = null;
+      transform_ = null;
+      transformer_ = null;
+
+      if( failure != null)
         {
-        input_ = null;
-        source_ = null;
-        target_ = null;
-        thread_ = null;
-        transform_ = null;
-        transformer_ = null;
+        throw failure;
         }
       }
     }  
@@ -230,7 +287,8 @@ public class TransformFilter implements Runnable
       }
     catch( Exception e)
       {
-      logger_.error( "Failed, thread=" + thread_, e);
+      failure_ = e;
+      logger_.error( "Can't complete transform", e);
       }
     finally
       {
@@ -253,6 +311,7 @@ public class TransformFilter implements Runnable
       .toString();
     }
   
+  private Exception failure_;
   private StreamSource input_;
   private OutputStream source_;
   private Result target_;

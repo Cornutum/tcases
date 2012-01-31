@@ -37,7 +37,7 @@ public class TestTransformFilter
     IOUtils.copy
       ( getClass().getResourceAsStream( "system-test-def-2.xml"),
         filter.getSource());
-    filter.close();
+    filter.getSource().close();
     
     // Then...
     assertEquals( "Output written, target=" + target, true, target.length() > 0);
