@@ -14,13 +14,16 @@
 
   <xsl:output method="text"/>
 
-  <xsl:param name="throws" select="0"/>
-
   <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'"/> 
   <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/> 
 
+  <xsl:param name="throws" select="'false'"/>
+  <xsl:variable name="throwsValue" select="translate($throws,$uppercase,$lowercase)"/>
+  <xsl:param name="system" select=""/>
+  <xsl:param name="class" select=""/>
+
   <xsl:template match="TestCases">
-    <xsl:variable name="system" select="@system"/>
+    <xsl:variable name="systemId" select="@system"/>
 
     <xsl:for-each select="Function">
       <xsl:variable name="function" select="@name"/>
@@ -31,13 +34,31 @@
 
         <xsl:text>
   /**
-   * Tests {@link </xsl:text>
-        <xsl:value-of select="$system"/>
-        <xsl:text>#</xsl:text>
-        <xsl:value-of select="$function"/>
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="$function"/>
-        <xsl:text>()} using the following inputs.
+   * Tests </xsl:text>
+        <xsl:choose>
+          <xsl:when test="$system">
+            <xsl:value-of select="$system"/>
+          </xsl:when>
+          <xsl:when test="$class">
+            <xsl:text>{@link </xsl:text>
+            <xsl:value-of select="$class"/>
+            <xsl:text>#</xsl:text>
+            <xsl:value-of select="$function"/>
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="$function"/>
+            <xsl:text>()}</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>{@link </xsl:text>
+            <xsl:value-of select="$systemId"/>
+            <xsl:text>#</xsl:text>
+            <xsl:value-of select="$function"/>
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="$function"/>
+            <xsl:text>()}</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>        
+        <xsl:text> using the following inputs.
    * &lt;P&gt;
    * &lt;TABLE border="1" cellpadding="8"&gt;
    * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; </xsl:text>
@@ -47,7 +68,7 @@
         <xsl:text> (</xsl:text>
         <xsl:choose>
           <xsl:when test="$failureCase='true' or $failureCase='yes'">
-            <xsl:text>&lt;FONT color="red"&gt; Failure &lt;/FONT&gt;</xsl:text>
+            <xsl:text>&lt;FONT color="red"&gt;Failure&lt;/FONT&gt;</xsl:text>
           </xsl:when>
           <xsl:otherwise>
             <xsl:text>Success</xsl:text>
@@ -85,7 +106,7 @@
         <xsl:text>_</xsl:text>
         <xsl:value-of select="$id"/>
         <xsl:text>()</xsl:text>
-        <xsl:if test="boolean($throws)">
+        <xsl:if test="$throwsValue='true' or $throwsValue='yes'">
           <xsl:text> throws Exception</xsl:text>
         </xsl:if>
         <xsl:text>
