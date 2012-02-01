@@ -128,7 +128,8 @@ public class TransformFilter implements Runnable
    */
   public void setTarget( File target)
     {
-    setTarget( new StreamResult( target));
+    Result result = target==null? null : new StreamResult( target);
+    setTarget( result);
     }
 
   /**
@@ -136,7 +137,8 @@ public class TransformFilter implements Runnable
    */
   public void setTarget( OutputStream target)
     {
-    setTarget( new StreamResult( target));
+    Result result = target==null? null : new StreamResult( target);
+    setTarget( result);
     }
 
   /**
@@ -283,7 +285,13 @@ public class TransformFilter implements Runnable
     
     try
       {
-      transformer_.transform( input_, target_);
+      // If no target defined, write to standard output.
+      Result target =
+        target_ == null
+        ? new StreamResult( System.out)
+        : target_;
+      
+      transformer_.transform( input_, target);
       }
     catch( Exception e)
       {

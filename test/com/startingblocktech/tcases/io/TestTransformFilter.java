@@ -57,6 +57,27 @@ public class TestTransformFilter
     }
   
   @Test
+  public void testStandardOutput() throws Exception
+    {
+    // Given...
+    TransformFilter filter =
+      new TransformFilter
+      ( getClass().getResourceAsStream( "/testDef2Junit.xsl"));
+
+    File target = null;
+    filter.setTarget( target);
+
+    // When...
+    IOUtils.copy
+      ( getClass().getResourceAsStream( "system-test-def-2.xml"),
+        filter.getSource());
+    filter.getSource().close();
+    
+    // Then...
+    // Check standard output
+    }
+  
+  @Test
   public void testWithParams() throws Exception
     {
     // Given...
