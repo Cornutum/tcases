@@ -28,10 +28,7 @@ public class TestTransformFilter
   public void testWriteFile() throws Exception
     {
     // Given...
-    TransformFilter filter =
-      new TransformFilter
-      ( getClass().getResourceAsStream( "/testDef2Junit.xsl"));
-
+    TransformFilter filter = new TestDefToJUnitFilter(); 
     File target = File.createTempFile( "TestTransformFilter-WriteFile-", ".java");
     target.deleteOnExit();
     filter.setTarget( target);
@@ -60,9 +57,7 @@ public class TestTransformFilter
   public void testStandardOutput() throws Exception
     {
     // Given...
-    TransformFilter filter =
-      new TransformFilter
-      ( getClass().getResourceAsStream( "/testDef2Junit.xsl"));
+    TransformFilter filter = new TestDefToJUnitFilter();
 
     File target = null;
     filter.setTarget( target);
@@ -81,9 +76,7 @@ public class TestTransformFilter
   public void testWithParams() throws Exception
     {
     // Given...
-    TransformFilter filter =
-      new TransformFilter
-      ( getClass().getResourceAsStream( "/testDef2Junit.xsl"));
+    TransformFilter filter = new TestDefToJUnitFilter();
 
     File target = File.createTempFile( "TestTransformFilter-WithParams-", ".java");
     target.deleteOnExit();
