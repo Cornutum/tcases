@@ -24,6 +24,7 @@
       </fileset>
       <fileset dir="${resources.dir}">
         <include name="*.xml"/>
+        <include name="*.xsl"/>
       </fileset>
     </copy>
 
