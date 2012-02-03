@@ -21,9 +21,11 @@ import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.util.Map;
+import javax.xml.transform.ErrorListener;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -34,7 +36,7 @@ import javax.xml.transform.stream.StreamSource;
  *
  * @version $Revision$, $Date$
  */
-public class TransformFilter implements Runnable
+public class TransformFilter implements Runnable, ErrorListener
   {
   /**
    * Receives the input data to be transformed.
@@ -201,7 +203,10 @@ public class TransformFilter implements Runnable
         throw new IllegalStateException( "No XSLT transform specified");
         }
       TransformerFactory factory = TransformerFactory.newInstance();
+      factory.setErrorListener( this);
+      
       transformer_ = factory.newTransformer( transform);
+      transformer_.setErrorListener( this);
       if( transformParams_ != null)
         {
         for( String paramName : transformParams_.keySet())
@@ -309,6 +314,23 @@ public class TransformFilter implements Runnable
       }
     
     logger_.debug( "Completed, thread={}", thread_);
+    }
+
+  public void error( TransformerException exception) throws TransformerException
+    {
+    logger_.error( "target={}, {}", getTargetId(), exception);
+    throw exception;
+    }
+  
+  public void fatalError( TransformerException exception) throws TransformerException
+    {
+    logger_.error( "target={}, {}", getTargetId(), exception);
+    throw exception;
+    }
+  
+ public void warning( TransformerException exception)
+    {
+    logger_.warn( "target={}, {}", getTargetId(), exception);
     }
 
   public String toString()
