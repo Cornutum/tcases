@@ -1,0 +1,91 @@
+<System name="Tcases">
+  <Function name="run">
+    <Input>
+
+      <VarSet name="outDir">
+        <Var name="defined">
+          <Value name="Yes" property="outDir"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="outFile">
+        <Var name="defined">
+          <Value name="Yes" property="outFile"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="path" when="outFile">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+        <Var name="isTestFile" when="outFile">
+          <Value name="Yes" failure="true"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="testFile">
+        <Var name="defined">
+          <Value name="Yes" property="testFile"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="inFile">
+        <Var name="defined">
+          <Value name="Yes" property="inFile"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="transform">
+        <Var name="defined">
+          <Value name="Yes" property="transform"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="path" when="transform">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+      <VarSet name="transformParams">
+        <When>
+          <AnyOf property="transform, isJUnit"/>
+        </When>
+        <Var name="count">
+          <Value name="One" property="params"/>
+          <Value name="Many" property="params"/>
+          <Value name="None"/>
+        </Var>
+        <Var name="assignsValue" when="params">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="nameDefined" when="params">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="valueDefined" when="params">
+          <Value name="Yes"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <Var name="isJUnit">
+        <Value name="Yes" property="isJUnit" whenNot="transform"/>
+        <Value name="No" when="transform"/>
+        <Value name="NotAllowed" when="transform" failure="true"/>
+      </Var>
+
+    </Input>
+  </Function>
+</System>
