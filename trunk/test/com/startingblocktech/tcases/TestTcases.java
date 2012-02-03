@@ -651,6 +651,483 @@ public class TestTcases
     }
 
   /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> None </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> NA </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_0() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-0");
+    File outDir = getResourceFile( "run-transform-0-outDir");
+    File outFile = new File( "run-transform-0.java");
+    File outFilePath = new File( outDir, outFile.getName());
+    File testDefFile = getResourceFile( "run-transform-0-test.xml");
+
+    String[] args =
+      {
+        "-J",
+        "-o", outDir.getPath(),
+        "-f", outFile.getName(),
+        "-t", testDefFile.getPath(),
+        inFile.getPath()
+      };
+    
+    // When...
+    Tcases tcases = new Tcases();
+    tcases.run( new Options( args));
+        
+    // Then...
+    assertEquals( "Test def created", true, outFilePath.exists());
+    }
+  
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 1. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> No </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> NA </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> One </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_1() throws Exception
+    {
+    // Given...
+    File transformFile = getResourceFile( "run-transform-1.xsl");
+
+    String[] args =
+      {
+        "-x", transformFile.getPath(),
+        "-p", "system=Run_Transform_1"
+      };
+
+    Options options = new Options( args);
+    assertNotNull( options);
+    
+    /* Must run interactively: uses standard input.
+    // When...
+    Tcases tcases = new Tcases();
+    tcases.run( options);
+        
+    // Then...
+    assertEquals( "Test def created", true, outFilePath.exists());
+    */
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 2. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_2() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-2");
+    File outDir = getResourceFile( "run-transform-2-outDir");
+    File outFile = getResourceFile( "run-transform-2.java");
+    File outFilePath = new File( outDir, outFile.getName());
+    File testDefFile = getResourceFile( "run-transform-2-test.xml");
+
+    String[] args =
+      {
+        "-J",
+        "-p", "throws=yes",
+        "-o", outDir.getPath(),
+        "-f", outFile.getPath(),
+        "-t", testDefFile.getPath(),
+        "-p", "class=Run_Transform_2",
+        inFile.getPath()
+      };
+    
+    // When...
+    Tcases tcases = new Tcases();
+    tcases.run( new Options( args));
+        
+    // Then...
+    assertEquals( "Test def created", true, outFilePath.exists());
+    }
+  
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 3. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> No </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> NA </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> One </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_3() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-3.xml");
+    File transformFile = getResourceFile( "run-transform-3.xsl");
+    File outFilePath = getResourceFile( "run-transform-3.java");
+
+    String[] args =
+      {
+        "-f", outFilePath.getName(),
+        "-x", transformFile.getName(),
+        "-p", "system=",
+        inFile.getPath()
+      };
+
+    // When...
+    Tcases tcases = new Tcases();
+    tcases.run( new Options( args));
+        
+    // Then...
+    assertEquals( "Test def created", true, outFilePath.exists());
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 4. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> No </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> NA </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> One </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_4() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-4");
+    File transformFile = getResourceFile( "run-transform-4.xsl");
+
+    String[] args =
+      {
+        "-x", transformFile.getPath(),
+        "-p", "=Run_Transform_1",
+        inFile.getPath()
+      };
+
+    // When...
+    Tcases tcases = new Tcases();
+    Exception failure = null;
+    try
+      {
+      tcases.run( new Options( args));
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+
+    String cause = failure.getCause()==null? null : failure.getCause().getMessage();
+    assertEquals( "Cause", "Invalid -p option: parameter name undefined", cause);
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 5. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> No </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> NA </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> None </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> NA </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_5() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-5");
+    File transformFile = getResourceFile( "run-transform-5.xsl");
+
+    String[] args =
+      {
+        "-x", transformFile.getPath(),
+        inFile.getPath()
+      };
+
+    // When...
+    Tcases tcases = new Tcases();
+    Exception failure = null;
+    try
+      {
+      tcases.run( new Options( args));
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 6. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> No </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> NA </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> One </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_6() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-6");
+    File transformFile = getResourceFile( "run-transform-6.xsl");
+
+    String[] args =
+      {
+        "-x", transformFile.getPath(),
+        "-p", "Run_Transform_5",
+        inFile.getPath()
+      };
+
+    // When...
+    Tcases tcases = new Tcases();
+    Exception failure = null;
+    try
+      {
+      tcases.run( new Options( args));
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+
+    String cause = failure.getCause()==null? null : failure.getCause().getMessage();
+    assertEquals( "Cause", "Invalid -p option: must be name=value", cause);
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 7. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> <FONT color="red"> Yes  </FONT> </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_7() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-7");
+    File testDefFile = getResourceFile( "run-transform-7-Test.xml");
+    File outFilePath = testDefFile;
+
+    assertEquals( "Default output file exists", true, outFilePath.exists());
+    
+    String[] args =
+      {
+        "-J",
+        "-p", "throws=yes",
+        "-p", "class=Run_Transform_7",
+        inFile.getPath()
+      };
+    
+    // When...
+    Tcases tcases = new Tcases();
+    Exception failure = null;
+    try
+      {
+      tcases.run( new Options( args));
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 8. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> isJUnit </TD> <TD> <FONT color="red"> NotAllowed  </FONT> </TD> </TR>
+   * <TR><TD> outDir.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.isTestFile </TD> <TD> NA </TD> </TR>
+   * <TR><TD> outFile.path.isAbsolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> transform.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> transform.path.isAbsolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> transformParams.assignsValue </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.count </TD> <TD> None </TD> </TR>
+   * <TR><TD> transformParams.nameDefined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> transformParams.valueDefined </TD> <TD> NA </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_Transform_8() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-8");
+    File transformFile = getResourceFile( "run-transform-8.xsl");
+
+    String[] args =
+      {
+        "-x", transformFile.getPath(),
+        "-J",
+        inFile.getPath()
+      };
+
+    // When...
+    Tcases tcases = new Tcases();
+    Exception failure = null;
+    try
+      {
+      tcases.run( new Options( args));
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+
+    String cause = failure.getCause()==null? null : failure.getCause().getMessage();
+    assertEquals( "Cause", "Can't specify both -J and -x", cause);
+    }
+
+  /**
    * Tests {@link Tcases#run run()} using the input definition for the Tcases command line.
    */
   //  @Test

@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -679,6 +680,66 @@ public class Tcases
       return workingDir_;
       }
 
+    public String toString()
+      {
+      StringBuilder builder = new StringBuilder();
+
+      if( getDefaultTupleSize() != null)
+        {
+        builder.append( " -c ").append( getDefaultTupleSize());
+        }
+
+      if( getOutFile() != null)
+        {
+        builder.append( " -f ").append( getOutFile().getPath());
+        }
+
+      if( getGenDef() != null)
+        {
+        builder.append( " -g ").append( getGenDef().getPath());
+        }
+
+      if( !isExtended())
+        {
+        builder.append( " -n");
+        }
+
+      if( getOutDir() != null)
+        {
+        builder.append( " -o ").append( getOutDir().getPath());
+        }
+
+      if( getTransformParams() != null)
+        {
+        for( String name : getTransformParams().keySet())
+          {
+          builder.append( " -p ").append( name).append( '=').append( getTransformParams().get( name));
+          }
+        }
+
+      if( getRandomSeed() != null)
+        {
+        builder.append( " -r ").append( getRandomSeed());
+        }
+
+      if( getTestDef() != null)
+        {
+        builder.append( " -t ").append( getTestDef().getPath());
+        }
+
+      if( getTransformDef() != null)
+        {
+        builder.append( " -x ").append( getTransformDef().getPath());
+        }
+
+      if( isJUnit())
+        {
+        builder.append( " -J");
+        }
+        
+      return builder.toString();
+      }
+
     private File inputDef_;
     private File outDir_;
     private File outFile_;
@@ -934,12 +995,51 @@ public class Tcases
       testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
       }
 
+    // Identify test definition transformations.
+    TransformFilter transformer = null;
+    File transformDefFile = options.getTransformDef();
+    if( transformDefFile != null)
+      {
+      if( !transformDefFile.isAbsolute())
+        {
+        transformDefFile = new File( inputDir, transformDefFile.getPath());
+        }
+      transformer = new TransformFilter( transformDefFile);
+      }
+    else if( options.isJUnit())
+      {
+      transformer = new TestDefToJUnitFilter();
+      }
+    
+    if( transformer != null)
+      {
+      if( outputFile != null && outputFile.equals( baseDefFile) && baseDefFile.exists())
+        {
+        throw new RuntimeException( "Transformed output will overwrite test definition file=" + baseDefFile);
+        }
+      transformer.setTarget( outputFile);
+      transformer.setParams( options.getTransformParams());
+      }
+
     // Write new test definitions.
     SystemTestDocWriter writer = null;
     try
       {
       logger_.info( "Updating test definition file={}", outputFile);
-      writer = new SystemTestDocWriter( outputFile==null? null : new FileOutputStream( outputFile));
+
+      OutputStream output =
+        // Transformed output?
+        transformer != null?
+        transformer.getSource() :
+
+        // Output file?
+        outputFile != null?
+        new FileOutputStream( outputFile) :
+        
+        // Standard output?
+        null;        
+        
+      writer = new SystemTestDocWriter( output);
       writer.write( testDef);
       }
     catch( Exception e)
