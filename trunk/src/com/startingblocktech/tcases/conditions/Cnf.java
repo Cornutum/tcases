@@ -53,7 +53,7 @@ public abstract class Cnf
             }
           }
         }
-      conjunct_ = simpleConjunct( conjunction);
+      conjunct_ = simplify( conjunction);
       }
   
     public void visit( AnyOf condition)
@@ -63,7 +63,7 @@ public abstract class Cnf
            conditions.hasNext();
            conjunct = either( conjunct, Cnf.convert( conditions.next())));
 
-      conjunct_ = simpleConjunct( conjunct);
+      conjunct_ = simplify( conjunct);
       }
   
     public void visit( ContainsAll condition)
@@ -75,7 +75,7 @@ public abstract class Cnf
         conjunction.add( new Assert( properties.next()));
         }
 
-      conjunct_ = simpleConjunct( conjunction);
+      conjunct_ = simplify( conjunction);
       }
   
     public void visit( ContainsAny condition)
@@ -87,7 +87,7 @@ public abstract class Cnf
         disjunction.add( new Assert( properties.next()));
         }
     
-      conjunct_ = simpleDisjunct( disjunction);
+      conjunct_ = simplify( disjunction);
       }
   
     public void visit( IConjunct condition)
@@ -113,7 +113,7 @@ public abstract class Cnf
           }
         }
     
-      conjunct_ = simpleConjunct( conjunction);
+      conjunct_ = simplify( conjunction);
       }
 
       private IConjunct conjunct_;
@@ -135,7 +135,7 @@ public abstract class Cnf
           conjunction.add( assertions.next().negate());
           }
 
-        anyOf.add( simpleConjunct( conjunction));
+        anyOf.add( simplify( conjunction));
         }
     
     return Cnf.convert( anyOf);
@@ -170,12 +170,12 @@ public abstract class Cnf
           IDisjunct disjunct = new Disjunction( disjunct1, disjunct2);
           if( !isTautology( disjunct))
             {
-            conjunction.add( simpleDisjunct( disjunct));
+            conjunction.add( simplify( disjunct));
             }
           }
         }
       
-      conjunct = simpleConjunct( conjunction);
+      conjunct = simplify( conjunction);
       }
 
     return conjunct;
@@ -197,7 +197,7 @@ public abstract class Cnf
       ? conjunct
 
       // Yes, return refactored conjunction
-      : simpleConjunct
+      : simplify
         ( new Conjunction( assertion)
           .append( refactor( remainder( conjunct, assertion))));
     }
@@ -236,7 +236,7 @@ public abstract class Cnf
   /**
    * Returns the simple form of the given conjunction.
    */
-  public static IConjunct simpleConjunct( IConjunct conjunct)
+  public static IConjunct simplify( IConjunct conjunct)
     {
     return
       conjunct.getDisjunctCount() == 1
@@ -247,12 +247,13 @@ public abstract class Cnf
   /**
    * Returns the simple form of the given disjunction.
    */
-  public static IDisjunct simpleDisjunct( IDisjunct disjunct)
+  public static IDisjunct simplify( IDisjunct disjunct)
     {
+    IAssertion assertion = toAssertion( disjunct);
     return
-      disjunct.getAssertionCount() == 1
-      ? disjunct.getAssertions().next()
-      : disjunct;
+      assertion == null
+      ? disjunct
+      : assertion;
     }
 
   /**
