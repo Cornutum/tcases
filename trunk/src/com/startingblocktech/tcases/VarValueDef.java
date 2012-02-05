@@ -7,6 +7,7 @@
 
 package com.startingblocktech.tcases;
 
+import com.startingblocktech.tcases.conditions.ICondition;
 import com.startingblocktech.tcases.util.ToString;
 import static com.startingblocktech.tcases.DefUtils.*;
 

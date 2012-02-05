@@ -7,7 +7,6 @@
 
 package com.startingblocktech.tcases.conditions;
 
-import com.startingblocktech.tcases.ICondition;
 import com.startingblocktech.tcases.PropertySet;
 
 import java.util.Iterator;
@@ -55,6 +54,14 @@ public class Not extends ConditionSet
   public boolean compatible( PropertySet properties)
     {
     return satisfied( properties);
+    }
+  
+  /**
+   * Implements the Visitor pattern for this condition.
+   */
+  public void accept( IConditionVisitor visitor)
+    {
+    visitor.visit( this);
     }
   }
 

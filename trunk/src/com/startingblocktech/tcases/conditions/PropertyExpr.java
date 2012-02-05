@@ -14,10 +14,11 @@ import org.apache.commons.lang.StringUtils;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Base class for {@link com.startingblocktech.tcases.ICondition conditions} that evaluate a predicate on a set of properties.
+ * Base class for {@link com.startingblocktech.tcases.conditions.ICondition conditions} that evaluate a predicate on a set of properties.
  *
  * @version $Revision$, $Date$
  */
@@ -36,7 +37,7 @@ public abstract class PropertyExpr
    */
   protected PropertyExpr( Collection<String> properties)
     {
-    setProperties( new HashSet<String>());
+    properties_ = new HashSet<String>();
     addProperties( properties);
     }
 
@@ -48,7 +49,7 @@ public abstract class PropertyExpr
     String candidate = StringUtils.trimToNull( property);
     if( candidate != null)
       {
-      getProperties().add( property);
+      properties_.add( property);
       }
     }
 
@@ -68,30 +69,22 @@ public abstract class PropertyExpr
    */
   public void removeProperty( String property)
     {
-    getProperties().remove( property);
-    }
-
-  /**
-   * Changes the set of properties to evaluate.
-   */
-  protected void setProperties( Set<String> properties)
-    {
-    properties_ = properties;
+    properties_.remove( property);
     }
 
   /**
    * Returns the set of properties to evaluate.
    */
-  protected Set<String> getProperties()
+  protected Iterator<String> getProperties()
     {
-    return properties_;
+    return properties_.iterator();
     }
 
   public String toString()
     {
     return
       ToString.getBuilder( this)
-      .append( getProperties())
+      .append( properties_)
       .toString();
     }
 

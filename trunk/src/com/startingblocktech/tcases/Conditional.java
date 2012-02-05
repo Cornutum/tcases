@@ -7,6 +7,8 @@
 
 package com.startingblocktech.tcases;
 
+import com.startingblocktech.tcases.conditions.ICondition;
+
 /**
  * Base class for conditional elements.
  *

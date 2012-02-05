@@ -8,6 +8,7 @@
 package com.startingblocktech.tcases.generator;
 
 import com.startingblocktech.tcases.*;
+import com.startingblocktech.tcases.conditions.ICondition;
 import com.startingblocktech.tcases.util.ToString;
 
 import org.slf4j.Logger;
