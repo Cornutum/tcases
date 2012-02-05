@@ -7,7 +7,6 @@
 
 package com.startingblocktech.tcases.conditions;
 
-import com.startingblocktech.tcases.ICondition;
 import com.startingblocktech.tcases.PropertySet;
 
 import java.util.Collection;
@@ -72,8 +71,8 @@ public class ContainsAny extends PropertyExpr implements ICondition
     boolean isSatisfied;
     Iterator<String> properties;
     
-    for( properties = getProperties().iterator(),
-           isSatisfied = getProperties().isEmpty();
+    for( properties = getProperties(),
+           isSatisfied = !properties.hasNext();
 
          !isSatisfied
            && properties.hasNext();
@@ -91,6 +90,14 @@ public class ContainsAny extends PropertyExpr implements ICondition
   public boolean compatible( PropertySet properties)
     {
     return true;
+    }
+  
+  /**
+   * Implements the Visitor pattern for this condition.
+   */
+  public void accept( IConditionVisitor visitor)
+    {
+    visitor.visit( this);
     }
 
   }

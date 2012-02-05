@@ -5,7 +5,9 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases;
+package com.startingblocktech.tcases.conditions;
+
+import com.startingblocktech.tcases.PropertySet;
 
 /**
  * A condition that evaluates a set of test case properties.
@@ -27,21 +29,12 @@ public interface ICondition
   boolean compatible( PropertySet properties);
 
   /**
+   * Implements the Visitor pattern for this condition.
+   */
+  void accept( IConditionVisitor visitor);
+
+  /**
    * A {@link ICondition condition} that is always satisfied by any {@link PropertySet}.
    */
-  ICondition ALWAYS = new ICondition()
-      {
-      public boolean satisfied( PropertySet properties)
-        {
-        return true;
-        }
-      public boolean compatible( PropertySet properties)
-        {
-        return true;
-        }
-      public String toString()
-        {
-        return "ALWAYS";
-        }
-      };
+  ICondition ALWAYS = new AllOf();
   }

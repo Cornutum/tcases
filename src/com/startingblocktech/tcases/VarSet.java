@@ -9,6 +9,8 @@ package com.startingblocktech.tcases;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.startingblocktech.tcases.conditions.ICondition;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

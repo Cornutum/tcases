@@ -7,7 +7,6 @@
 
 package com.startingblocktech.tcases.conditions;
 
-import com.startingblocktech.tcases.ICondition;
 import com.startingblocktech.tcases.PropertySet;
 
 import java.util.Iterator;
@@ -65,6 +64,14 @@ public class AnyOf extends ConditionSet
          isCompatible = conditions.next().compatible( properties));
     
     return isCompatible;
+    }
+  
+  /**
+   * Implements the Visitor pattern for this condition.
+   */
+  public void accept( IConditionVisitor visitor)
+    {
+    visitor.visit( this);
     }
   }
 

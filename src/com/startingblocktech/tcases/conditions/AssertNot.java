@@ -9,42 +9,36 @@ package com.startingblocktech.tcases.conditions;
 
 import com.startingblocktech.tcases.PropertySet;
 
-import java.util.Iterator;
-
 /**
- * A {@link ICondition condition} that is satisfied if and only if all members of a given set
- * of conditions are satisfied. Defines a logical "and" condition.
+ * An {@link IAssertion assertion} that asserts the non-existence of a single property.
  *
  * @version $Revision$, $Date$
  */
-public class AllOf extends ConditionSet
+public class AssertNot extends AbstractAssertion
   {
   /**
-   * Creates a new AllOf instance.
+   * Creates a new AssertNot object.
    */
-  public AllOf( ICondition ... conditions)
+  public AssertNot()
     {
-    super( conditions);
+    this( null);
     }
   
+  /**
+   * Creates a new AssertNot object.
+   */
+  public AssertNot( String property)
+    {
+    super( property);
+    }
+
   /**
    * Returns true if this condition is satisfied by the given test case properties.
    */
   public boolean satisfied( PropertySet properties)
     {
-    boolean isSatisfied;
-    Iterator<ICondition> conditions;
-    
-    for( conditions = getConditions(),
-           isSatisfied = true;
-           
-
-         isSatisfied
-           && conditions.hasNext();
-
-         isSatisfied = conditions.next().satisfied( properties));
-    
-    return isSatisfied;
+    String property = getProperty();
+    return !(property != null && properties.contains( property));
     }
 
   /**
@@ -54,19 +48,30 @@ public class AllOf extends ConditionSet
    */
   public boolean compatible( PropertySet properties)
     {
-    boolean isCompatible;
-    Iterator<ICondition> conditions;
-    
-    for( conditions = getConditions(),
-           isCompatible = true;
-           
+    return satisfied( properties);
+    }
+  
+  /**
+   * Returns an assertion that negates this assertion.
+   */
+  public IAssertion negate()
+    {
+    return new Assert( getProperty());
+    }
+  
+  /**
+   * Returns true if this assertion negates the other.
+   */
+  public boolean negates( IAssertion other)
+    {
+    Assert assertion =
+      other != null && other.getClass().equals( Assert.class)
+      ? (Assert) other
+      : null;
 
-         isCompatible
-           && conditions.hasNext();
-
-         isCompatible = conditions.next().compatible( properties));
-    
-    return isCompatible;
+    return
+      assertion != null
+      && assertion.getProperty().equals( getProperty());
     }
   
   /**

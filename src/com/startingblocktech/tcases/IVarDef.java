@@ -9,6 +9,8 @@ package com.startingblocktech.tcases;
 
 import java.util.Iterator;
 
+import com.startingblocktech.tcases.conditions.ICondition;
+
 /**
  * Defines an input variable.
  *
