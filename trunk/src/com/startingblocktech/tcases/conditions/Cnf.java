@@ -10,7 +10,6 @@ package com.startingblocktech.tcases.conditions;
 import org.apache.commons.collections15.IteratorUtils;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Defines methods for handling conditions in conjunctive normal form.
@@ -146,16 +145,14 @@ public abstract class Cnf
    */
   public static IConjunct either( IConjunct conjunct1, IConjunct conjunct2)
     {
-    List<IDisjunct> disjuncts1;
-    List<IDisjunct> disjuncts2;
-    IConjunct       conjunct;
+    IConjunct conjunct;
 
-    if( (disjuncts1 = IteratorUtils.toList( conjunct1.getDisjuncts())).isEmpty())
+    if( conjunct1.getDisjunctCount() == 0)
       {
       conjunct = conjunct2;
       }
 
-    else if( (disjuncts2 = IteratorUtils.toList( conjunct2.getDisjuncts())).isEmpty())
+    else if( conjunct2.getDisjunctCount() == 0)
       {
       conjunct = conjunct1;
       }
@@ -163,11 +160,15 @@ public abstract class Cnf
     else
       {
       Conjunction conjunction = new Conjunction();
-      for( IDisjunct disjunct1 : disjuncts1)
+      for( Iterator<IDisjunct> disjuncts1 = conjunct1.getDisjuncts();
+           disjuncts1.hasNext();)
         {
-        for( IDisjunct disjunct2 : disjuncts2)
+        IDisjunct disjunct1 = disjuncts1.next();
+        
+        for( Iterator<IDisjunct> disjuncts2 = conjunct2.getDisjuncts();
+           disjuncts2.hasNext();)
           {
-          IDisjunct disjunct = new Disjunction( disjunct1, disjunct2);
+          IDisjunct disjunct = new Disjunction( disjunct1, disjuncts2.next());
           if( !isTautology( disjunct))
             {
             conjunction.add( simplify( disjunct));
