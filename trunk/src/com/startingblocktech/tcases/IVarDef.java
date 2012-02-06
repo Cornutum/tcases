@@ -83,7 +83,7 @@ public interface IVarDef extends IConditional
   String ENV = "env";
 
   /**
-   * {@link #getType Identifies} an implicit input variable defined the internal state of the system.
+   * {@link #getType Identifies} an implicit input variable defined by the internal state of the system.
    */
   String STATE = "state";
   }
