@@ -69,7 +69,7 @@ public class PropertySet
     {
     if( propertySet != null)
       {
-      addAll( propertySet.properties_.uniqueSet());
+      addAll( propertySet.getProperties());
       }
 
     return this;
@@ -85,6 +85,22 @@ public class PropertySet
       for( String property : properties)
         {
         add( property);
+        }
+      }
+
+    return this;
+    }
+
+  /**
+   * Adds a set of properties to this set.
+   */
+  public PropertySet addAll( Iterator<String> properties)
+    {
+    if( properties != null)
+      {
+      while( properties.hasNext())
+        {
+        add( properties.next());
         }
       }
 
@@ -142,7 +158,7 @@ public class PropertySet
    */
   public Iterator<String> getProperties()
     {
-    return properties_.iterator();
+    return properties_.uniqueSet().iterator();
     }
 
   public String toString()
