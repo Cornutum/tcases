@@ -28,15 +28,21 @@
       </fileset>
     </copy>
 
-    <mkdir dir="${release.dir}/docs/api"/>
+    <mkdir dir="${release.dir}/docs"/>
     <copy todir="${release.dir}/docs">
       <fileset dir="${docs.dir}">
         <include name="*.xsd"/>
       </fileset>
     </copy>
+    <mkdir dir="${release.dir}/docs/api"/>
     <copy todir="${release.dir}/docs/api">
       <fileset dir="${javadoc.dir}">
         <include name="**/*"/>
+      </fileset>
+    </copy>
+    <copy todir="${release.dir}/docs">
+      <fileset dir="${docs.dir}">
+        <include name="examples/**/*"/>
       </fileset>
     </copy>
 
