@@ -1128,27 +1128,6 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the input definition for the Tcases command line.
-   */
-  //  @Test
-  public void run_ForTcases() throws Exception
-    {
-    // Given...
-    String[] args =
-      {
-        "-n",
-        getResourceFile( "tcases-Input.xml").getPath()
-      };
-    
-    // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
-        
-    // Then...
-    assertEquals( "Test def created", true, getResourceFile( "tcases-Test.xml").exists());
-    }
-
-  /**
    * Return the file for the given resource.
    */
   private File getResourceFile( String resource)
