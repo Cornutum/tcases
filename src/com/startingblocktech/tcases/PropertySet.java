@@ -47,6 +47,15 @@ public class PropertySet
     properties_ = new HashBag<String>();
     addAll( properties);
     }
+  
+  /**
+   * Creates a new PropertySet object.
+   */
+  public PropertySet( PropertySet properties)
+    {
+    properties_ = new HashBag<String>();
+    addAll( properties);
+    }
 
   /**
    * Adds a property to this set.
@@ -128,9 +137,35 @@ public class PropertySet
     {
     if( properties != null)
       {
-      for( String property : properties)
+      removeAll( properties.iterator());
+      }
+    
+    return this;
+    }
+
+  /**
+   * Removes a set of properties from this set.
+   */
+  public PropertySet removeAll( PropertySet properties)
+    {
+    if( properties != null)
+      {
+      removeAll( properties.getProperties());
+      }
+    
+    return this;
+    }
+
+  /**
+   * Removes a set of properties from this set.
+   */
+  public PropertySet removeAll( Iterator<String> properties)
+    {
+    if( properties != null)
+      {
+      while( properties.hasNext())
         {
-        remove( property);
+        remove( properties.next());
         }
       }
     
