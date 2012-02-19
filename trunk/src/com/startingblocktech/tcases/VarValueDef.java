@@ -11,12 +11,11 @@ import com.startingblocktech.tcases.conditions.ICondition;
 import com.startingblocktech.tcases.util.ToString;
 import static com.startingblocktech.tcases.DefUtils.*;
 
+import org.apache.commons.collections15.IteratorUtils;
 import org.apache.commons.lang.ObjectUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Defines the properties of a value for an {@link IVarDef input variable}.
@@ -87,7 +86,7 @@ public class VarValueDef extends Conditional
     setName( name);
     setType( type);
     setCondition( ICondition.ALWAYS);
-    setProperties( null);
+    setProperties( (PropertySet) null);
     }
 
   /**
@@ -136,8 +135,25 @@ public class VarValueDef extends Conditional
    */
   public void setProperties( Collection<String> properties)
     {
-    properties_ = new HashSet<String>();
+    properties_ = new PropertySet();
     addProperties( properties);
+    }
+
+  /**
+   * Changes the set of test case properties contributed by this value.
+   */
+  public void setProperties( PropertySet properties)
+    {
+    properties_ = new PropertySet();
+    addProperties( properties);
+    }
+
+  /**
+   * Returns the set of test case properties contributed by this value.
+   */
+  public PropertySet getProperties()
+    {
+    return properties_;
     }
 
   /**
@@ -157,17 +173,22 @@ public class VarValueDef extends Conditional
   /**
    * Adds to the set of test case properties contributed by this value.
    */
-  public VarValueDef addProperties( String ... properties)
+  public VarValueDef addProperties( PropertySet properties)
     {
-    return addProperties( Arrays.asList( properties));
+    if( properties != null)
+      {
+      addProperties( IteratorUtils.toList( properties.getProperties()));
+      }
+
+    return this;
     }
 
   /**
-   * Returns the set of test case properties contributed by this value.
+   * Adds to the set of test case properties contributed by this value.
    */
-  public Set<String> getProperties()
+  public VarValueDef addProperties( String ... properties)
     {
-    return properties_;
+    return addProperties( Arrays.asList( properties));
     }
 
   public boolean equals( Object object)
@@ -215,6 +236,6 @@ public class VarValueDef extends Conditional
 
   private String name_;
   private Type type_;
-  private Set<String> properties_;
+  private PropertySet properties_;
   }
 
