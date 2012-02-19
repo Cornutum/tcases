@@ -7,6 +7,8 @@
 
 package com.startingblocktech.tcases.conditions;
 
+import com.startingblocktech.tcases.PropertySet;
+
 import org.apache.commons.collections15.IteratorUtils;
 
 import java.util.Iterator;
@@ -290,6 +292,43 @@ public abstract class Cnf
   public static IConjunct convert( ICondition condition)
     {
     return new Converter().convert( condition);
+    }
+
+  /**
+   * Returns true if the given properties partially satisfy the given condition.
+   */
+  public static boolean satisfiesSome( IConjunct condition, PropertySet properties)
+    {
+    boolean satisfies;
+    Iterator<IDisjunct> disjuncts;
+    for( disjuncts = condition.getDisjuncts(),
+           satisfies = !disjuncts.hasNext();
+         
+         !satisfies
+           && disjuncts.hasNext();
+
+         satisfies = disjuncts.next().satisfied( properties));
+
+    return satisfies;
+    }
+
+  /**
+   * Returns the part of the given condition unsatisfied by the given properties.
+   */
+  public static IConjunct getUnsatisfied( IConjunct condition, PropertySet properties)
+    {
+    Conjunction unsatisfied = new Conjunction();
+    for( Iterator<IDisjunct> disjuncts = condition.getDisjuncts();
+         disjuncts.hasNext();)
+      {
+      IDisjunct disjunct = disjuncts.next();
+      if( !disjunct.satisfied( properties))
+        {
+        unsatisfied.add( disjunct);
+        }
+      }
+
+    return unsatisfied;
     }
   }
 

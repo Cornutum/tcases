@@ -8,8 +8,10 @@
 package com.startingblocktech.tcases.generator;
 
 import com.startingblocktech.tcases.*;
-import com.startingblocktech.tcases.conditions.ICondition;
+import com.startingblocktech.tcases.conditions.*;
 import com.startingblocktech.tcases.util.ToString;
+
+import org.apache.commons.collections15.Predicate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,32 @@ import java.util.Map;
  */
 public class TestCaseDef implements Comparable<TestCaseDef>
   {
+  /**
+   * A Predicate that returns true for a variable that can partially satisfy the
+   * current {@link #getRequired required condition} for this test case.
+   *
+   * @version $Revision$, $Date$
+   */
+  private class VarSatisfies implements Predicate<VarDef>
+    {
+    public boolean evaluate( VarDef var)
+      {
+      boolean satisfies;
+      Iterator<VarValueDef> values;
+      IConjunct required;
+
+      for( values = var.getValues(),
+             required = getRequired(),
+             satisfies = false;
+
+           !satisfies
+             && values.hasNext();
+
+           satisfies = Cnf.satisfiesSome( required, values.next().getProperties()));
+      
+      return satisfies;
+      }
+    }
 
   /**
    * Creates a new TestCaseDef object.
@@ -184,8 +212,10 @@ public class TestCaseDef implements Comparable<TestCaseDef>
    */
   private VarDef getVarInapplicable( VarValueDef value)
     {
-    PropertySet properties = new PropertySet( value.getProperties());
-    properties.addAll( properties_);
+    PropertySet properties =
+      new PropertySet()
+      .addAll( value.getProperties())
+      .addAll( properties_);
     
     Iterator<VarDef> vars;
     VarDef inapplicable;
@@ -224,6 +254,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     {
     bindings_.put( var, value);
     properties_.addAll( value.getProperties());
+    required_ = null;
     }
 
   /**
@@ -236,6 +267,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     if( value != null)
       {
       properties_.removeAll( value.getProperties());
+      required_ = null;
       }
     }
 
@@ -282,42 +314,55 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Returns the conditions of current bindings not yet satisfied.
+   */
+  public IConjunct getRequired()
+    {
+    if( required_ == null)
+      {
+      AllOf conditions = new AllOf();
+      for( Iterator<VarDef> vars = getVars();
+           vars.hasNext();)
+        {
+        VarDef var = vars.next();
+        VarValueDef value = getBinding( var);
+        if( !VarValueDef.isNA( value))
+          {
+          conditions.add( var.getEffectiveCondition());
+          conditions.add( Conditional.acquireCondition( value));
+          }
+        }
+
+      required_ = Cnf.getUnsatisfied( Cnf.convert( conditions), properties_);
+      }
+
+    return required_;
+    }
+
+  /**
+   * Returns the Predicate that returns true for a tuple that partially satisfies the
+   * current {@link #getRequired required condition} for this test case.
+   */
+  public Predicate<VarDef> getVarSatisfies()
+    {
+    if( varSatisfies_ == null)
+      {
+      varSatisfies_ = new VarSatisfies();
+      }
+
+    return varSatisfies_;
+    }
+
+  /**
    * Returns true if all conditions for current bindings are satisfied.
    */
   public boolean isSatisfied()
     {
-    boolean satisfied;
-    VarDef var;
-    VarValueDef value;
-    ICondition unsatisfied;
-    Iterator<VarDef> vars;
-
-    // For each variable currently bound...
-    for( vars = getVars(),
-           satisfied = true,
-           var = null,
-           unsatisfied = null,
-           value = null;
-
-         vars.hasNext()
-           && (satisfied =
-
-               // Variable not applicable?
-               VarValueDef.isNA( (value = getBinding( (var = vars.next()))))
-               ||
-               ( // Variable conditions satisified?
-                 (unsatisfied = var.getEffectiveCondition()).satisfied( properties_)
-                 &&
-                 // Value condition satisfied?
-                 (unsatisfied = Conditional.acquireCondition( value)).satisfied( properties_)));
-
-         );
+    boolean satisfied = getRequired().getDisjunctCount() == 0;
 
     if( !satisfied)
       {
-      logger_.debug
-        ( "{}: condition unsatisifed, var={}, condition={}",
-          new Object[]{ this, var, unsatisfied});
+      logger_.debug ( "{}: condition unsatisfied={}", this, getRequired());
       }
 
     return satisfied;
@@ -367,6 +412,8 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private Integer id_;
   private Map<VarDef,VarValueDef> bindings_ = new HashMap<VarDef,VarValueDef>();
   private PropertySet properties_ = new PropertySet();
+  private IConjunct required_;
+  private Predicate<VarDef> varSatisfies_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TestCaseDef.class);
   }

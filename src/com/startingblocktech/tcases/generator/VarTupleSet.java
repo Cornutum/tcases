@@ -49,9 +49,9 @@ public class VarTupleSet
     }
 
   /**
-   * Returns input tuples not yet used in a test case that bind the given variable.
+   * Returns input tuples not yet used in a test case that bind any of the given variables.
    */
-  public Iterator<Tuple> getUnused( final VarDef var)
+  public Iterator<Tuple> getUnused( final List<VarDef> vars)
     {
     return
       IteratorUtils.filteredIterator
@@ -60,7 +60,16 @@ public class VarTupleSet
         {
         public boolean evaluate( Tuple tuple)
           {
-          return tuple.getBinding( var) != null;
+          boolean binds;
+          Iterator<VarDef> bindVars;
+          for( binds = false,
+                 bindVars = vars.iterator();
+               
+               !binds && bindVars.hasNext();
+               
+               binds = tuple.getBinding( bindVars.next()) != null);
+          
+          return binds;
           }
         });
     }
@@ -74,15 +83,15 @@ public class VarTupleSet
     }
 
   /**
-   * Returns input tuples already used in a test case that bind the given variable.
+   * Returns input tuples already used in a test case that bind any of the given variables.
    */
-  public Iterator<Tuple> getUsed( VarDef var)
+  public Iterator<Tuple> getUsed( List<VarDef> vars)
     {
-    return getUsed( var, null);
+    return getUsed( vars, null);
     }
 
   /**
-   * Returns input tuples already used in a test case that bind the given variable.
+   * Returns input tuples already used in a test case that bind any of the given variables.
    * <P/>
    * If <CODE>once</CODE> is non-null, the tuples returned depends on the {@link
    * VarValueDef#getType type} of the value bound. If <CODE>once</CODE> is true, returns only
@@ -91,8 +100,10 @@ public class VarTupleSet
    * &gt; 1 or where the value type is {@link com.startingblocktech.tcases.VarValueDef.Type#VALID
    * VALID}.
    */
-  public Iterator<Tuple> getUsed( final VarDef var, final Boolean once)
+  public Iterator<Tuple> getUsed( final List<VarDef> vars, final Boolean once)
     {
+    final boolean onceValue = once != null && once.booleanValue();
+    
     return
       IteratorUtils.filteredIterator
       ( used_.iterator(),
@@ -100,12 +111,23 @@ public class VarTupleSet
         {
         public boolean evaluate( Tuple tuple)
           {
-          VarValueDef value = tuple.getBinding( var);
-          return
-            value != null
-            && (once == null
-                ||
-                once.booleanValue() == (tuple.size() == 1 && value.getType()==VarValueDef.Type.ONCE));
+          boolean singleton = tuple.size() == 1;
+
+          VarValueDef value;
+          boolean binds;
+          Iterator<VarDef> bindVars;
+          for( binds = false,
+                 bindVars = vars.iterator();
+               
+               !binds && bindVars.hasNext();
+               
+               binds =
+                 (value = tuple.getBinding( bindVars.next())) != null
+                 && (once == null
+                     ||
+                     onceValue == (singleton && value.getType()==VarValueDef.Type.ONCE)));
+          
+          return binds;
           }
         });
     }
