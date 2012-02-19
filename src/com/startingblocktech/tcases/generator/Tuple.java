@@ -109,6 +109,14 @@ public class Tuple
     }
 
   /**
+   * Returns the properties of the variable bindings for this tuple.
+   */
+  public PropertySet getProperties()
+    {
+    return properties_;
+    }
+
+  /**
    * Adds a binding to this tuple.
    */
   public Tuple add( VarBindingDef binding)
