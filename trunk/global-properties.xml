@@ -26,7 +26,6 @@
   <!-- Build directories -->
   <property name="build.dir" location="${root.dir}/build"/>
   <property name="class.dir" location="${build.dir}/class"/>
-  <property name="lib.dir" location="${build.dir}/lib"/>
   <property name="distrib.dir" location="${build.dir}/distrib"/>
   <property name="release.dir" location="${distrib.dir}/${release.tag}"/>
 
@@ -34,7 +33,6 @@
 
   <property name="test.build.dir" location="${build.dir}/test"/>
   <property name="test.class.dir" location="${test.build.dir}/class"/>
-  <property name="test.lib.dir" location="${test.build.dir}/lib"/>
   <property name="test.reports.dir" location="${test.build.dir}/reports"/>
   <property name="test.javadoc.dir" location="${test.build.dir}/javadoc"/>
 
