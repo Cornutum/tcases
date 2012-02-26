@@ -21,7 +21,7 @@ import java.io.File;
  * For example, the {@link #setInputDef setInputDef} method defines a task attribute named "inputDef".
  * For a detailed description of these properties, see {@link Options Tcases.Options}. 
  * <P/>
- * To define a transform parameter (see the {@link Options -p option}, use a nested <CODE>&lt;param&gt;</CODE> element.
+ * To define a transform parameter (see the {@link Options -p option}), use a nested <CODE>&lt;param&gt;</CODE> element.
  *
  * @version $Revision$, $Date$
  */
