@@ -1,0 +1,72 @@
+<System name="Find">
+  <!-- Version: $Revision$ $Date$ -->
+
+  <Function name="find">
+    <!-- 
+         Usage: find pattern file
+
+         Locates one or more instances of a given pattern in a text file. 
+
+         All lines in the file that contain the pattern are written to standard output. A
+         line containing the pattern is written only once, regardless of the number of
+         times the pattern occurs in it.
+
+         The pattern is any sequence of characters whose length does not exceed the
+         maximum length of a line in the file. To include a blank in the pattern, the
+         entire pattern must be enclosed in quotes ("). To include a quotation mark in the
+         pattern, two quotes in a row ("") must be used.
+      -->
+    <Input type="arg">
+      <VarSet name="pattern">
+        <Var name="size">
+          <Value name="empty" property="empty"/>
+          <Value name="singleChar" property="singleChar"/>
+          <Value name="manyChars"/>
+          <Value name="longerThanFileLines" failure="true"/>
+        </Var>
+        <Var name="quoted">
+          <Value name="yes" property="quoted"/>
+          <Value name="no" whenNot="empty"/>
+          <Value name="invalid" failure="true"/>
+        </Var>
+        <Var name="blanks" whenNot="empty">
+          <Value name="none"/>
+          <Value name="one" when="singleChar, quoted"/>
+          <Value name="many">
+            <When>
+              <AllOf property="quoted">
+                <Not property="singleChar"/>
+              </AllOf>
+            </When>
+          </Value>
+        </Var>
+        <Var name="embeddedQuotes" whenNot="empty, singleChar">
+          <Value name="none"/>
+          <Value name="one"/>
+          <Value name="many" once="true"/>
+        </Var>
+      </VarSet>
+
+      <Var name="fileName">
+        <Value name="valid"/>
+        <Value name="nonExistent" failure="true"/>
+        <Value name="omitted" failure="true"/>
+      </Var>
+    </Input>
+
+    <Input type="env">
+      <VarSet name="file">
+        <Var name="patterns" whenNot="empty">
+          <Value name="none" once="true"/>
+          <Value name="one" property="match"/>
+          <Value name="many" property="match, many"/>          
+        </Var>
+        <Var name="patternsInLine" when="match">
+          <Value name="one"/>
+          <Value name="many" once="true" when="many"/>          
+        </Var>
+      </VarSet>
+    </Input>
+
+  </Function>
+</System>
