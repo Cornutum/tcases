@@ -39,6 +39,8 @@
   <!-- Tool properties -->
   <property name="tools.dir" location="${root.dir}/tools"/>
   <property name="tools.test.lib" location="${tools.dir}/test/lib"/>
+  <property name="integration.dir" location="${tools.dir}/integration"/>
+  <property name="integration.ant.lib" location="${integration.dir}/lib/apache-ant-1.8.2"/>
 
   <!-- Test document properties -->
   <property name="test.failed.file" location="${test.build.dir}/test-failed"/>
@@ -56,6 +58,9 @@
     <pathelement location="${class.dir}"/>
     <fileset dir="${lib.dir}">
       <include name="**/*.jar"/>
+    </fileset>
+    <fileset dir="${integration.ant.lib}">
+      <include name="*.jar"/>
     </fileset>
   </path>
 
