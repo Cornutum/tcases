@@ -56,6 +56,20 @@ public class TestCaseDef implements Comparable<TestCaseDef>
       return satisfies;
       }
     }
+  
+  /**
+   * A Predicate that returns true for a tuple that can partially satisfy the
+   * current {@link #getRequired required condition} for this test case.
+   *
+   * @version $Revision$, $Date$
+   */
+  private class TupleSatisfies implements Predicate<Tuple>
+    {
+    public boolean evaluate( Tuple tuple)
+      {
+      return Cnf.satisfiesSome( getRequired(), tuple.getProperties());
+      }
+    }
 
   /**
    * Creates a new TestCaseDef object.
@@ -340,7 +354,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Returns the Predicate that returns true for a tuple that partially satisfies the
+   * Returns the Predicate that returns true for a variable that partially satisfies the
    * current {@link #getRequired required condition} for this test case.
    */
   public Predicate<VarDef> getVarSatisfies()
@@ -354,18 +368,47 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Returns the Predicate that returns true for a tuple that partially satisfies the
+   * current {@link #getRequired required condition} for this test case.
+   */
+  public Predicate<Tuple> getTupleSatisfies()
+    {
+    if( tupleSatisfies_ == null)
+      {
+      tupleSatisfies_ = new TupleSatisfies();
+      }
+
+    return tupleSatisfies_;
+    }
+
+  /**
    * Returns true if all conditions for current bindings are satisfied.
    */
   public boolean isSatisfied()
     {
-    boolean satisfied = getRequired().getDisjunctCount() == 0;
+    return getRequired().getDisjunctCount() == 0;
+    }
 
-    if( !satisfied)
+  /**
+   * Returns true if the current {@link #getRequired required condition} for this test case
+   * is unsatisfiable.
+   */
+  public boolean isInfeasible()
+    {
+    boolean feasible;
+    Iterator<IDisjunct> disjuncts;
+    for( feasible = true,
+           disjuncts = getRequired().getDisjuncts();
+
+         feasible
+           && disjuncts.hasNext();)
       {
-      logger_.debug ( "{}: condition unsatisfied={}", this, getRequired());
+      for( Iterator<IAssertion> assertions = disjuncts.next().getAssertions();
+           feasible && assertions.hasNext();
+           feasible = !assertions.next().getClass().equals( AssertNot.class));
       }
-
-    return satisfied;
+    
+    return !feasible;
     }
 
   /**
@@ -414,6 +457,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private PropertySet properties_ = new PropertySet();
   private IConjunct required_;
   private Predicate<VarDef> varSatisfies_;
+  private Predicate<Tuple> tupleSatisfies_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TestCaseDef.class);
   }

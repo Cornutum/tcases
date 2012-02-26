@@ -408,6 +408,11 @@ public class TupleGenerator implements ITestCaseGenerator
       complete = testCase.isSatisfied();
       }
 
+    else if( testCase.isInfeasible())
+      {
+      complete = false;
+      }
+
     else
       {
       // No, look for a compatible tuple to add that will bind more variables.    
@@ -424,12 +429,12 @@ public class TupleGenerator implements ITestCaseGenerator
         // Evaluate all potentially-satisfying tuples.
         Iterator<Tuple> satisfyingTuples =
           IteratorUtils.chainedIterator
-          ( tuples.getUnused( reqVars),
+          ( getSatisfyingTuples( testCase, tuples.getUnused( reqVars)),
             
             IteratorUtils.chainedIterator
-            ( tuples.getUsed( reqVars, false),
+            ( getSatisfyingTuples( testCase, tuples.getUsed( reqVars, false)),
 
-              tuples.getUsed( reqVars, true)));
+              getSatisfyingTuples( testCase, tuples.getUsed( reqVars, true))));
 
         if( testCase.isSatisfied())
           {
@@ -480,6 +485,17 @@ public class TupleGenerator implements ITestCaseGenerator
   private List<VarDef> getSatisfyingVars( TestCaseDef testCase, List<VarDef> vars)
     {
     return IteratorUtils.toList( IteratorUtils.filteredIterator( vars.iterator(), testCase.getVarSatisfies()));
+    }
+
+  /**
+   * Returns an iterator for the members of the given list of tuples that could partially satisfy conditions for the given test case.
+   */
+  private Iterator<Tuple> getSatisfyingTuples( TestCaseDef testCase, Iterator<Tuple> tuples)
+    {
+    return
+      testCase.isSatisfied()
+      ? tuples
+      : IteratorUtils.filteredIterator( tuples, testCase.getTupleSatisfies());
     }
 
   /**
