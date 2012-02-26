@@ -111,6 +111,11 @@
         </xsl:if>
         <xsl:text>
     {
+    // Given...
+
+    // When...
+
+    // Then...
     }
 </xsl:text>
       </xsl:for-each>
