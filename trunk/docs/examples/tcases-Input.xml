@@ -1,4 +1,6 @@
 <System name="Tcases">
+  <!-- Version: $Revision$ $Date$ -->
+
   <Function name="run">
     <Input>
 
