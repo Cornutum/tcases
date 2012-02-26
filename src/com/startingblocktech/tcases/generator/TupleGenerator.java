@@ -378,15 +378,28 @@ public class TupleGenerator implements ITestCaseGenerator
         throw new RuntimeException( "Can't initialize new test case", e);
         }
 
-      // Complete bindings for remaining variables.
-      if( !completeBindings( validCase, validTuples, getVarsRemaining( inputDef, validCase)))
+      // Completed bindings for remaining variables?
+      if( completeBindings( validCase, validTuples, getVarsRemaining( inputDef, validCase)))
         {
+        // Yes, add new valid test case.
+        logger_.debug( "Completed test case={}", validCase);
+        validTuples.used( nextUnused);
+        validCases.add( validCase);
+        }
+
+      // Is this an infeasible tuple?
+      else if( nextUnused.size() > 1)
+        {
+        // Yes, log a warning.
+        logger_.warn( "Can't create test case for tuple={}", nextUnused);
+        validTuples.remove( nextUnused);
+        }
+
+      else
+        {
+        // An infeasible single value is an input definition error.
         throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
         }
-      
-      logger_.debug( "Completed test case={}", validCase);
-      validTuples.used( nextUnused);
-      validCases.add( validCase);
       }
 
     logger_.info( "{}: created {} valid test cases", inputDef, validCases.size());

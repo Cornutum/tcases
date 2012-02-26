@@ -166,6 +166,18 @@ public class VarTupleSet
     }
 
   /**
+   * Removes the given tuple from use in test cases.
+   */
+  public void remove( Tuple tuple)
+    {
+    int i = unused_.indexOf( tuple);
+    if( i >= 0)
+      {
+      unused_.remove( tuple);
+      }
+    }
+
+  /**
    * Returns true if all members of this set have been used in test cases.
    */
   public boolean isConsumed()
