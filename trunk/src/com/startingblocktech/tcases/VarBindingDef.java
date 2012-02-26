@@ -7,6 +7,8 @@
 
 package com.startingblocktech.tcases;
 
+import com.startingblocktech.tcases.conditions.AllOf;
+import com.startingblocktech.tcases.conditions.ICondition;
 import com.startingblocktech.tcases.util.ToString;
 
 import org.apache.commons.lang.ObjectUtils;
@@ -54,6 +56,7 @@ public class VarBindingDef
     
     varDef_ = varDef;
     valueDef_ = valueDef;
+    effCondition_ = null;
 
     return this;
     }
@@ -72,6 +75,25 @@ public class VarBindingDef
   public VarValueDef getValueDef()
     {
     return valueDef_;
+    }
+
+  /**
+   * Returns the effective condition that defines when this binding is applicable.
+   */
+  public ICondition getEffectiveCondition()
+    {
+    if( effCondition_ == null)
+      {
+      ICondition  varCondition    = getVarDef().getEffectiveCondition();
+      ICondition  valueCondition  = getValueDef().getCondition();
+
+      effCondition_ =
+        valueCondition == null
+        ? varCondition 
+        : new AllOf( varCondition, valueCondition);
+      }
+    
+    return effCondition_;
     }
 
   /**
@@ -114,5 +136,6 @@ public class VarBindingDef
 
   private VarDef      varDef_;
   private VarValueDef valueDef_;
+  private ICondition  effCondition_;
   }
 

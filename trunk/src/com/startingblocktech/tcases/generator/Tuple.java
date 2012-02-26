@@ -190,7 +190,8 @@ public class Tuple
            && bindings.hasNext();
 
          compatible =
-           Conditional.acquireCondition( (binding = bindings.next()).getValueDef())
+           (binding = bindings.next())
+           .getEffectiveCondition()
            .compatible( properties_));
 
     if( !compatible && size() == 1)
