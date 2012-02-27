@@ -156,6 +156,9 @@
       >
       <classpath>
         <path refid="javac.classpath"/>
+        <fileset dir="${integration.ant.lib}">
+          <include name="*.jar"/>
+        </fileset>
       </classpath>
       <sourcefiles>
         <fileset dir="${src.dir}" includes="**/*.java"/>
