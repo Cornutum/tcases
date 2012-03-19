@@ -1,0 +1,143 @@
+<HTML>
+  <HEAD>
+    <LINK rel="stylesheet" type="text/css" href="tcases.css"/>
+    <TITLE>Tcases: The Complete Guide</TITLE>
+  </HEAD>
+  <BODY>
+
+    <DIV class="page">
+      <H1>Tcases: The Complete Guide</H1>
+
+      <H2>Contents</H2>
+      <UL>
+        <LI> <A href="#intro"> Introduction </A>
+          <UL>
+            <LI><A href="#what">What Does It Do?</A></LI>     
+            <LI><A href="#how">How Does It Work?</A></LI> 
+            <LI><A href="#why">Why Tcases?</A></LI>      
+          </UL>
+        </LI>
+        <LI> <A href="#start"> Getting Started </A></LI>
+        <LI><A href="#input">Modeling The Input Space</A></LI>
+        <LI><A href="#coverage">Defining Input Coverage</A></LI>
+        <LI><A href="#junit">Creating JUnit Tests</A></LI>
+      </UL>
+
+      <H2><A name="intro">Introduction</A></H2>
+      <H3><A name="what">What Does It Do?</A></H3>     
+      <P>
+        Tcases is a tool for designing tests. It doesn't matter what kind of system you are
+        testing. Nor does it matter what level of the system you are testing &mdash; unit, subsystem,
+        or full system. You can use Tcases to design your tests in any of these situations. With
+        Tcases, you define the input space for your system-under-test and the level of coverage that
+        you want. Then Tcases generates a minimal set of test cases that meets your requirements.
+      </P>
+      <P>
+        Tcases is primarily a tool
+        for <A href="http://en.wikipedia.org/wiki/Black-box_testing">black-box test design</A>. For
+        such tests, the concept of "coverage" is different from structural testing critieria such as
+        line coverage, branch converage, etc. Instead, Tcases is guided by coverage of the input
+        space of your system.  
+      </P>
+      <P>
+        What is the "input space" of the system? The simplest way to look at
+        it is this: the set of all (combinations of) input values that could possibly be
+        applied. Easy to say, but hard to do! For all but the simplest systems, such a set is
+        enormous, perhaps even infinite. You could never afford to build and run all those test
+        cases.  Instead, you have to select test cases from a small sample of the input space. But
+        how? If your sample is too big, you'll run out of time before you finish. But if your
+        sample is too small &mdash; or, worse, if it's the <EM>wrong</EM> subset &mdash; you'll miss lots
+        of defects. 
+      </P>
+      <P>
+        That is the test design problem: given a limited amount of testing effort, how can you
+        minimize the risk of defects?  And Tcases is the tool for the job. Tcases gives you a way to
+        define the input space for your system that is concise but comprehensive.  Then Tcases
+        allows you to control the number of test cases in your sample subset by specifying the level
+        of coverage you want. You can start with a basic level of coverage, and Tcases will generate
+        a small set of test cases that touches every significant element of the input space. Then
+        you can improve your tests by selectively adding coverage in specific high-risk areas.  For
+        example, you can specify <A href="http://en.wikipedia.org/wiki/All-pairs_testing">pairwise
+        coverage</A> or higher-order combinations of selected input variables.
+      </P>
+
+
+      <H3><A name="how">How Does It Work?</A></H3> 
+      <P>
+        First, you create a <A href="#systemInputDef">system input definition</A>, an XML document
+        that defines your system as a set of <A href="#functionInputDef">functions</A>. For each
+        system function, the system input definition defines the <A href="#varDef">variables</A>
+        that characterize the function input space.
+      </P> 
+      <P>
+        Then, you can create a <A href="#genDef">generator definition</A>. That's another XML
+        document that defines the coverage you want for each system function. The generator
+        definition is optional. You can skip this step and still get a basic level of coverage.
+      </P>
+      <P>
+        Finally, you run Tcases. Tcases is a Java program that you can run from the command line or
+        from your favorite IDE.  Tcases comes with built-in support for running using
+        a <SPAN class="code">bash</SPAN> shell script or an <SPAN class="code">ant</SPAN> target.
+        Using your input definition and your generator definition, Tcases generates
+        a <A href="#systemTestDef">system test definition</A>.  The system test definition is an XML
+        document that lists, for each system function, a set of test cases that provides the
+        specified level of coverage. Each test case defines a specific value for every function
+        input variable. Tcases generates not only valid input values that define successful test
+        cases but also invalid values for the tests cases that are needed to verify expected error
+        handling.
+      </P>
+      <P>
+        Of course, the system test definition is not something you can execute directly. But it
+        follows a well-defined XML schema, which means you can use a variety of XML transformation tools to
+        convert it into a form that it suitable for testing your system. For example, Tcases comes with a
+        built-in transformer that converts a system test definition into a Java source code template
+        for a JUnit test class.
+        
+      </P>
+
+      <H3><A name="why">Why Tcases?</A></H3>      
+      <P>
+        <UL>
+          <LI><B>If you are defining acceptance for a new story...</B>
+            <P>
+              Tcases gives you a powerful technique for crystallizing your understanding of a new story: 
+              <A href="#input">modeling the input space</A>. This is especially helpful if you are following a
+              <A href="http://en.wikipedia.org/wiki/Behavior_Driven_Development">behavior-driven
+              development (BDD)</A> process. BDD captures the intended system behavior using a few
+              key examples, each of which is expressed in the form of a test case. BDD examples
+              naturally identify important system input variables.  Input modeling then leads to a
+              deeper and broader understanding of the inputs that the system must handle. Quickly
+              creating a high-level <A href="#input">system input definition</A> is great way to
+              check if you've identified all the examples you need.
+            </P>
+          </LI>
+          <P/>
+          <LI><B>If you are building unit tests...</B>
+            <P>
+              Tcases is a crucial complement to
+              the <A href="http://en.wikipedia.org/wiki/Test-Driven_Development">test-driven
+              development (TDD)</A> approach to building unit tests. 
+            </P>
+          </LI>
+          <P/>
+          <LI><B>If you are building system tests...</B>
+            <P>
+              ...
+            </P>
+          </LI>
+          <P/>
+        </UL>
+      </P>
+
+      <H2><A name="start">Getting Started</A></H2>
+
+      <H2><A name="input">Modeling The Input Space</A></H2>
+
+      <H2><A name="coverage">Defining Input Coverage</A></H2>
+
+      <H2><A name="junit">Creating JUnit Tests</A></H2>
+
+    </DIV>
+
+  </BODY>
+</HTML>
