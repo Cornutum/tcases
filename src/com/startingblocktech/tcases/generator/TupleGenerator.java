@@ -135,7 +135,7 @@ public class TupleGenerator implements ITestCaseGenerator
       // Get all failure cases.
       VarTupleSet failureTuples = getFailureTupleSet( randSeq, inputDef);
       List<TestCaseDef> failureCases = getBaseFailureCases( inputDef, validTuples, failureTuples, baseCases);
-      failureCases.addAll( getFailureCases( inputDef, failureTuples, validCases));
+      failureCases.addAll( getFailureCases( inputDef, failureTuples, validTuples));
 
       FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
 
@@ -365,45 +365,66 @@ public class TupleGenerator implements ITestCaseGenerator
     Tuple nextUnused;
     while( (nextUnused = validTuples.getNextUnused()) != null)
       {
-      // Create a new test case for this tuple.
-      logger_.debug( "Creating new test case for tuple={}", nextUnused);
-
-      TestCaseDef validCase = new TestCaseDef();
-      try
-        {
-        validCase.addBindings( nextUnused);
-        }
-      catch( Exception e)
-        {
-        throw new RuntimeException( "Can't initialize new test case", e);
-        }
-
-      // Completed bindings for remaining variables?
-      if( completeBindings( validCase, validTuples, getVarsRemaining( inputDef, validCase)))
+      // Completed bindings for all variables?
+      TestCaseDef validCase = createTestCase( nextUnused, inputDef, validTuples);
+      if( validCase != null)
         {
         // Yes, add new valid test case.
-        logger_.debug( "Completed test case={}", validCase);
         validTuples.used( nextUnused);
         validCases.add( validCase);
         }
 
-      // Is this an infeasible tuple?
-      else if( nextUnused.size() > 1)
-        {
-        // Yes, log a warning.
-        logger_.warn( "Can't create test case for tuple={}", nextUnused);
-        validTuples.remove( nextUnused);
-        }
-
       else
         {
-        // An infeasible single value is an input definition error.
-        throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
+        // No, remove infeasible tuple.
+        validTuples.remove( nextUnused);
         }
       }
 
     logger_.info( "{}: created {} valid test cases", inputDef, validCases.size());
     return validCases;
+    }
+
+  /**
+   * Creates a new {@link TestCaseDef test case} uses the given tuple. 
+   */
+  private TestCaseDef createTestCase( Tuple tuple, FunctionInputDef inputDef, VarTupleSet validTuples)
+    {
+    logger_.debug( "Creating new test case for tuple={}", tuple);
+
+    // Create a new test case for this tuple.
+    TestCaseDef newCase = new TestCaseDef();
+    try
+      {
+      newCase.addBindings( tuple);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't initialize new test case", e);
+      }
+
+    // Completed bindings for remaining variables?
+    if( completeBindings( newCase, validTuples, getVarsRemaining( inputDef, newCase)))
+      {
+      // Yes, return new test case.
+      logger_.debug( "Completed test case={}", newCase);
+      }
+
+    // Is this an infeasible tuple?
+    else if( tuple.size() > 1)
+      {
+      // Yes, log a warning.
+      logger_.warn( "Can't create test case for tuple={}", tuple);
+      newCase = null;
+      }
+
+    else
+      {
+      // An infeasible single value is an input definition error.
+      throw new RuntimeException( "Can't create test case for tuple=" + tuple);
+      }
+
+    return newCase;
     }
 
   /**
@@ -637,84 +658,28 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Returns a set of failure {@link TestCaseDef test case definitions} for the given function input definition.
    */
-  private List<TestCaseDef> getFailureCases( FunctionInputDef inputDef, VarTupleSet failureTuples, List<TestCaseDef> validCases)
+  private List<TestCaseDef> getFailureCases( FunctionInputDef inputDef, VarTupleSet failureTuples, VarTupleSet validTuples)
     {
     logger_.debug( "{}: creating failure test cases", inputDef);
     
     List<TestCaseDef> failureCases = new ArrayList<TestCaseDef>();
 
     // For each failure input tuple not yet used in a test case...
-    int validStart;
-    int validUsed;
-    int validCount;
     Tuple nextUnused;
-    for( validCount = validCases.size(),
-           validStart = 0;
-         
-         (nextUnused = failureTuples.getNextUnused()) != null;
-
-         validStart = (validUsed + 1) % validCount)
+    while( (nextUnused = failureTuples.getNextUnused()) != null)
       {
-      // Create a new failure test case for this tuple, substituting the failure value into a compatible
-      // valid case. To increase variability (and thus potential coverage), rotate the point where we
-      // begin searching for a compatible valid case.
-      logger_.debug( "Creating test case for tuple={}", nextUnused);
-      TestCaseDef failureCase;
-      int i;
-      for( i = 0,
-             validUsed = validStart,
-             failureCase = null;
-           
-           i < validCount
-             && (failureCase = createFailureCase( validCases.get( validUsed), nextUnused)) == null;
-
-           i++,
-             validUsed = (validUsed + 1) % validCount);
-
-      if( failureCase == null)
+      // Completed bindings for all variables?
+      TestCaseDef failureCase = createTestCase( nextUnused, inputDef, validTuples);
+      if( failureCase != null)
         {
-        throw new RuntimeException( "Can't create test case for tuple=" + nextUnused);
+        // Yes, add new failure test case.
+        failureTuples.used( nextUnused);
+        failureCases.add( failureCase);
         }
-
-      logger_.debug( "Completed test case={}", failureCase);
-      failureTuples.used( nextUnused);
-      failureCases.add( failureCase);
       }
-    
+
     logger_.info( "{}: created {} failure test cases", inputDef, failureCases.size());
     return failureCases;
-    }
-
-  /**
-   * Returns a new test case using the same variable bindings as the given valid case,
-   * except for the substitution of the given failure binding. Returns null if
-   * the <CODE>failureTuple</CODE> is not compatible with this valid case.
-   */
-  private TestCaseDef createFailureCase( TestCaseDef validCase, Tuple failureTuple)
-    {
-    TestCaseDef failureCase;
-
-    try
-      {
-      failureCase = new TestCaseDef( validCase);
-      failureCase.removeBindings( failureTuple);
-      failureCase.addBindings( failureTuple);
-      if( !failureCase.isSatisfied())
-        {
-        failureCase = null;
-        }
-      }
-    catch( BindingException be)
-      {
-      logger_.debug( "{}, can't add tuple={}: {}", new Object[]{ validCase, failureTuple, be.getMessage()});
-      failureCase = null;
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( String.valueOf( validCase) + ", can't add tuple=", e);
-      }
-
-    return failureCase;
     }
 
   /**
