@@ -452,19 +452,19 @@ public class TestTupleGenerator
           .build(),
           tc
           .start()
-          .bind( "Color.Hue", "Green")
+          .bind( "Color.Hue", "Red")
           .bind( "Color.Lightness", "Transparent", false)
-          .bind( "Color.Saturation", "Even")
+          .bind( "Color.Saturation", "Pale")
           .bind( "Shape", "Heart")
           .bind( "Size", "Small")
           .build(),
           
           tc
           .start()
-          .bind( "Color.Hue", "Blue")
-          .bind( "Color.Lightness", "Dark")
+          .bind( "Color.Hue", "Green")
+          .bind( "Color.Lightness", "Bright")
           .bind( "Color.Saturation", "Undefined", false)
-          .bind( "Shape", "Heart")
+          .bind( "Shape", "Circle")
           .bind( "Size", "Small")
           .build(),
           
@@ -575,15 +575,15 @@ public class TestTupleGenerator
           
           tc
           .start()
-          .bind( "Color", "Green")
+          .bind( "Color", "Red")
           .bind( "Shape", "Undefined", false)
           .bind( "Size", "Medium")
           .build(),
           
           tc
           .start()
-          .bind( "Color", "Blue")
-          .bind( "Shape", "Square")
+          .bind( "Color", "Green")
+          .bind( "Shape", "Heart")
           .bind( "Size", "Undefined", false)
           .build() 
           ),
@@ -714,8 +714,8 @@ public class TestTupleGenerator
           tc
           .start()
           .id(19)
-          .bind( "Color", "Green")
-          .bind( "Shape", "Diamond")
+          .bind( "Color", "Blue")
+          .bind( "Shape", "Circle")
           .bind( "Size", "Large", false)
           .build()
         },
