@@ -49,6 +49,7 @@ public class VarDefIterator implements Iterator<VarDef>
     VarDef nextVarDef = getNextVarDef();
     nextVarDef_ = null;
 
+    nextVarDef.setSeqNum( seqNum_++);
     return nextVarDef;
     }
 
@@ -103,5 +104,6 @@ public class VarDefIterator implements Iterator<VarDef>
   private Iterator<IVarDef> varDefs_;
   private VarDef nextVarDef_;
   private VarDefIterator nextVarSet_;
+  private int seqNum_ = 0;
   }
 
