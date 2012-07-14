@@ -50,10 +50,11 @@ public class VarBinding implements Comparable<VarBinding>
   /**
    * Creates a new VarBinding object.
    */
-  public VarBinding( IVarDef varDef, VarValueDef valueDef)
+  public VarBinding( VarDef varDef, VarValueDef valueDef)
     {
     this( varDef.getPathName(), varDef.getType(), valueDef.getName());
     setValueValid( valueDef.getType().isValid());
+    setVarDef( varDef);
     }
   
   /**
@@ -131,6 +132,22 @@ public class VarBinding implements Comparable<VarBinding>
     return valueValid_;
     }
 
+  /**
+   * Changes the variable definition for this binding, if any.
+   */
+  private void setVarDef( VarDef varDef)
+    {
+    varDef_ = varDef;
+    }
+
+  /**
+   * Returns the variable definition for this binding, if any.
+   */
+  private VarDef getVarDef()
+    {
+    return varDef_;
+    }
+
   public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
@@ -152,7 +169,19 @@ public class VarBinding implements Comparable<VarBinding>
 
   public int compareTo( VarBinding other)
     {
-    return getVar().compareTo( other.getVar());
+    VarDef varDef = getVarDef();
+    VarDef otherVarDef = other.getVarDef();
+    return
+      varDef != null && otherVarDef != null?
+      varDef.compareTo( otherVarDef) :
+
+      varDef != null?
+      1 :
+
+      otherVarDef != null?
+      -1 :
+      
+      getVar().compareTo( other.getVar());
     }
 
   public int hashCode()
@@ -184,5 +213,5 @@ public class VarBinding implements Comparable<VarBinding>
   private String varType_;
   private String value_;
   private boolean valueValid_;
+  private VarDef varDef_;
   }
-
