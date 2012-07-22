@@ -12,7 +12,10 @@ import com.startingblocktech.tcases.conditions.ICondition;
 import com.startingblocktech.tcases.util.ToString;
 import static com.startingblocktech.tcases.DefUtils.*;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Base class for {@link IVarDef} implementations.
@@ -21,6 +24,71 @@ import java.util.Iterator;
  */
 public abstract class AbstractVarDef extends Conditional implements IVarDef
   {
+  /**
+   * Defines the position of a variable definition within a function input definition.
+   *
+   * @version $Revision$, $Date$
+   */
+  private static class Position implements IVarDef.Position
+    {    
+    /**
+     * Creates a new Position object.
+     */
+    public Position( int seqNum)
+      {
+      this( null, seqNum);
+      }
+    
+    /**
+     * Creates a new Position object.
+     */
+    public Position( IVarDef parent, int seqNum)
+      {
+      int[] parentPosition =
+        parent == null
+        ? null
+        : toPosition( parent.getPosition()).path_;
+      
+      path_ = ArrayUtils.add( parentPosition, seqNum);
+      }
+
+    public int compareTo( IVarDef.Position other)
+      {
+      Position position = toPosition( other);
+
+      // Position with smaller ancestor is smaller.
+      int delta = 0;
+      int parentLength = Math.min( path_.length, position.path_.length);
+      for( int i = 0; i < parentLength && (delta = path_[i] - position.path_[i]) == 0; i++);
+
+      if( delta == 0)
+        {
+        // Ancestor is smaller than descendant.
+        delta = path_.length - position.path_.length;
+        }
+      
+      return delta;
+      }
+
+    private Position toPosition( IVarDef.Position other)
+      {
+       Position position =
+        other != null && other.getClass().equals( getClass())
+        ? (Position) other
+        : null;
+
+      if( position == null)
+        {
+        throw new IllegalArgumentException( String.valueOf( this) + " is not comparable with " + other);
+        }
+
+      return position;
+      }
+    
+    private int[] path_;
+    }
+
+
   /**
    * Creates a new AbstractVarDef object.
    */
@@ -37,6 +105,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
     setName( name);
     setType( IVarDef.ARG);
     setCondition( ICondition.ALWAYS);
+    setSeqNum( getNextSeqNum());
     }
   
   /**
@@ -112,6 +181,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
     parent_ = parent;
     pathName_ = null;
     effCondition_ = null;
+    position_ = null;
     }
 
   /**
@@ -183,6 +253,51 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
     }
 
   /**
+   * Changes the position of this variable definition.
+   */
+  private void setPosition( Position position)
+    {
+    position_ = position;
+    }
+
+  /**
+   * Returns the position of this variable definition.
+   */
+  public IVarDef.Position getPosition()
+    {
+    if( position_ == null)
+      {
+      setPosition( new Position( getParent(), seqNum_));
+      }
+    
+    return position_;
+    }
+
+  /**
+   * Changes the sequence number of this variable.
+   */
+  public void setSeqNum( int seqNum)
+    {
+    seqNum_ = seqNum;
+    }
+
+  /**
+   * Returns the sequence number of this variable.
+   */
+  public int getSeqNum()
+    {
+    return seqNum_;
+    }
+
+  /**
+   * Returns the next variable sequence number.
+   */
+  protected int getNextSeqNum()
+    {
+    return nextSeqNum_.getAndIncrement();
+    }
+
+  /**
    * If this variable has member variables, returns an iterator for the member variable list.
    * Otherwise, returns null.
    */
@@ -211,6 +326,9 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   private String type_;
   private IVarDef parent_;
   private String pathName_;
+  private Position position_;
+  private int seqNum_;
   private ICondition effCondition_;
-  }
 
+  private static AtomicInteger nextSeqNum_ = new AtomicInteger();
+  }

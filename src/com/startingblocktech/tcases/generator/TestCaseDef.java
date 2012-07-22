@@ -441,7 +441,9 @@ public class TestCaseDef implements Comparable<TestCaseDef>
         {
         public int compare( Map.Entry<VarDef,VarValueDef> e1, Map.Entry<VarDef,VarValueDef> e2)
           {
-          return e1.getKey().compareTo( e2.getKey());
+          IVarDef.Position pos1 = e1.getKey().getPosition();
+          IVarDef.Position pos2 = e2.getKey().getPosition();
+          return pos1.compareTo( pos2);
           }
         }); 
     return

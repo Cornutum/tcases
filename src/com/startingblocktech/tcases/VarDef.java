@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @version $Revision$, $Date$
  */
-public class VarDef extends AbstractVarDef implements Comparable<VarDef>
+public class VarDef extends AbstractVarDef
   {
   /**
    * Creates a new VarDef object.
@@ -164,27 +164,6 @@ public class VarDef extends AbstractVarDef implements Comparable<VarDef>
     }
 
   /**
-   * Defines the sequence number for this variable.
-   */
-  public void setSeqNum( int seqNum)
-    {
-    seqNum_ = seqNum;
-    }
-
-  /**
-   * Returns the sequence number for this variable.
-   */
-  public int getSeqNum()
-    {
-    return seqNum_;
-    }
-
-  public int compareTo( VarDef other)
-    {
-    return getSeqNum() - other.getSeqNum();
-    }
-  
-  /**
    * Returns the index of the value definition with the given name.
    */
   protected int findValue( String name)
@@ -196,6 +175,5 @@ public class VarDef extends AbstractVarDef implements Comparable<VarDef>
     }
   
   private List<VarValueDef> values_ = new ArrayList<VarValueDef>();
-  private int seqNum_;
   }
 
