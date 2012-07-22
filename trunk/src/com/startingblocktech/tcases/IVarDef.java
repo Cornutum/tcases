@@ -19,6 +19,11 @@ import com.startingblocktech.tcases.conditions.ICondition;
 public interface IVarDef extends IConditional
   {
   /**
+   * Defines an ordering of variable definitions.
+   */
+  interface Position extends Comparable<Position> {}
+  
+  /**
    * Changes the parent of this variable.
    */
   void setParent( IVarDef parent);
@@ -27,6 +32,21 @@ public interface IVarDef extends IConditional
    * If this is member of another variable, returns the parent variable. Otherwise, returns null.
    */
   IVarDef getParent();
+
+  /**
+   * Returns the position of this variable definition.
+   */
+  Position getPosition();
+
+  /**
+   * Changes the sequence number of this variable.
+   */
+  void setSeqNum( int seqNum);
+
+  /**
+   * Returns the sequence number of this variable.
+   */
+  int getSeqNum();
 
   /**
    * Returns the variable name.

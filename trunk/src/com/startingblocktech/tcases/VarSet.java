@@ -116,6 +116,7 @@ public class VarSet extends AbstractVarDef
 
     members_.add( var);
     var.setParent( this);
+    var.setSeqNum( getNextSeqNum());
 
     return this;
     }
