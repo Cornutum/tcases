@@ -34,14 +34,6 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
     /**
      * Creates a new Position object.
      */
-    public Position( int seqNum)
-      {
-      this( null, seqNum);
-      }
-    
-    /**
-     * Creates a new Position object.
-     */
     public Position( IVarDef parent, int seqNum)
       {
       int[] parentPosition =
