@@ -32,6 +32,8 @@
     <copy todir="${release.dir}/docs">
       <fileset dir="${docs.dir}">
         <include name="*.xsd"/>
+        <include name="*.htm"/>
+        <include name="*.css"/>
       </fileset>
     </copy>
     <mkdir dir="${release.dir}/docs/api"/>
