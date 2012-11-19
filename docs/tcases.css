@@ -35,6 +35,7 @@ DIV.page H2
 
 DIV.page H3
 {
+    margin: 1.5em 0 0 0;
     font-size: 12pt;
     font-weight: bold;
 }
@@ -48,5 +49,30 @@ SPAN.code
 {
     font-family: Courier New, Courier;
     font-weight: bold;
-    font-size: 12pt
+    font-size: 12pt;
+}
+
+SPAN.exampleDoc
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #101080;
+}
+
+SPAN.exampleComment
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #A81717;
+}
+
+SPAN.exampleEmph
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: black;
+    background-color: #F4F48A;
 }
