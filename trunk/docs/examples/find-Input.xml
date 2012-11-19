@@ -1,4 +1,4 @@
-<System name="Find">
+<System name="Examples">
   <!-- Version: $Revision$ $Date$ -->
 
   <Function name="find">
@@ -17,17 +17,16 @@
          pattern, two quotes in a row ("") must be used.
       -->
     <Input type="arg">
-      <VarSet name="pattern">
+      <VarSet name="pattern" when="fileExists">
         <Var name="size">
           <Value name="empty" property="empty"/>
           <Value name="singleChar" property="singleChar"/>
           <Value name="manyChars"/>
-          <Value name="longerThanFileLines" failure="true"/>
         </Var>
         <Var name="quoted">
           <Value name="yes" property="quoted"/>
           <Value name="no" whenNot="empty"/>
-          <Value name="invalid" failure="true"/>
+          <Value name="unterminated" failure="true"/>
         </Var>
         <Var name="blanks" whenNot="empty">
           <Value name="none"/>
@@ -48,23 +47,33 @@
       </VarSet>
 
       <Var name="fileName">
-        <Value name="valid"/>
-        <Value name="nonExistent" failure="true"/>
-        <Value name="omitted" failure="true"/>
+        <Value name="defined" property="fileName"/>
+        <Value name="missing" failure="true"/>
       </Var>
     </Input>
 
     <Input type="env">
-      <VarSet name="file">
-        <Var name="patterns" whenNot="empty">
-          <Value name="none" once="true"/>
-          <Value name="one" property="match"/>
-          <Value name="many" property="match, many"/>          
+      <VarSet name="file" when="fileName">
+        <Var name="exists">
+          <Value name="yes" property="fileExists"/>
+          <Value name="no" failure="true"/>
         </Var>
-        <Var name="patternsInLine" when="match">
-          <Value name="one"/>
-          <Value name="many" once="true" when="many"/>          
-        </Var>
+        <VarSet name="contents" when="fileExists">
+          <Var name="linesLongerThanPattern">
+            <Value name="one" property="matchable" once="true"/>
+            <Value name="many" property="matchable"/>
+            <Value name="none" failure="true"/>
+          </Var>
+          <Var name="patterns" when="matchable" whenNot="empty">
+            <Value name="none" once="true"/>
+            <Value name="one" property="match"/>
+            <Value name="many" property="match, many"/>          
+          </Var>
+          <Var name="patternsInLine" when="match">
+            <Value name="one"/>
+            <Value name="many" once="true" when="many"/>          
+          </Var>
+        </VarSet>
       </VarSet>
     </Input>
 
