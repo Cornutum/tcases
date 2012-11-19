@@ -26,11 +26,15 @@
         </LI>
         <LI><A href="#input">Modeling The Input Space</A>
           <UL>
-            <LI><A href="#functions">Defining System Functions</A></LI>     
+            <LI><A href="#exampleFind">An Example: The find Command</A></LI> 
+            <LI><A href="#functions">Defining System Functions</A></LI> 
             <LI><A href="#vars">Defining Input Variables</A></LI>
+            <LI><A href="#values">Defining Input Values</A></LI>
+            <LI><A href="#varSets">Defining Variable Sets</A></LI>
             <LI><A href="#constraints">Defining Constraints: Properties and Conditions</A></LI>
           </UL>
         </LI>
+        <LI><A href="#control">Controlling Test Definitions</A></LI>
         <LI><A href="#coverage">Defining Input Coverage</A></LI>
         <LI><A href="#junit">Creating JUnit Tests</A></LI>
       </UL>
@@ -128,13 +132,14 @@
             <P>
               Tcases is a crucial complement to
               the <A href="http://en.wikipedia.org/wiki/Test-Driven_Development">test-driven
-              development (TDD)</A> approach to building unit tests. 
+              development (TDD)</A> approach to building unit tests.
+              <P>(TBD)<P>
             </P>
           </LI>
           <P/>
           <LI><B>If you are building system tests...</B>
             <P>
-              ...
+              <P>(TBD)<P>
             </P>
           </LI>
           <P/>
@@ -147,7 +152,7 @@
         Your first move is to download the Tcases binary distribution file. You can choose to
         download this in either of two different forms: a ZIP file or a compressed (<SPAN class="code">gzip</SPAN>)
         <SPAN class="code">tar</SPAN> file. Extract the contents of the distribution file to any
-        directory you like &mdash; this is now your <EM>"Tcases home directory"</EM>. This will
+        directory you like &mdash; this is now your <EM>"Tcases home directory"</EM>. Unpacking the distribution file will
         create a <EM>"Tcases release directory"</EM> &mdash; a subdirectory of the
         form <SPAN class="code">tcases-<I>m</I>.<I>n</I>.<I>r</I></SPAN> &mdash; that contains all
         the files for this release of Tcases. The release directory contains the following subdirectories.
@@ -166,7 +171,7 @@
 
       <H3><A name="run">Running From the Command Line</A></H3>
       <P>
-        You can run Tcases directly from your shell command line. If you use <SPAN class="code">bash</SPAN> shell or similar
+        You can run Tcases directly from your shell command line. If you use <SPAN class="code">bash</SPAN> or a similar
         UNIX shell, you can run the <SPAN class="code">tcases.sh</SPAN> command.
         For a quick check, you can run one of the examples that comes with Tcases, using the following commands.
 
@@ -206,17 +211,315 @@
       </P>
       
       <H2><A name="input">Modeling The Input Space</A></H2>
+      <P>
+        Tcases creates test definitions based on a <EM>system input definition</EM> that you create. But how
+        do you do that? That's what this section aims to explain.
+      </P>
+      <P>
+        A <EM>system input definition</EM> is an XML document that models the
+        "input space" of the system-under-test (SUT). We say it "models" system inputs because it doesn't
+        literally itemize all possible input values. Instead, a system input definition lists all the
+        important aspects of system inputs that affect system results. Think of this as
+        describing the "dimensions of variation" in the "input space" of your system. Some dimensions of
+        variation are obvious. If you are testing the <SPAN class="code">add</SPAN> function, you know there
+        are at least two dimensions of variation &mdash; the two different numbers being added. But to find
+        all of the key dimensions, you may have to take a deeper look.
+      </P>
+
+      <P>
+        For example, consider how you might test a simple "list files" command, like
+        the <SPAN class="code">ls</SPAN> command in <SPAN class="code">UNIX</SPAN>. (And to keep it simple,
+        let's assume there are no command options or switches to worry about.) Clearly, one dimension of
+        variation is the number of file names given. <SPAN class="code">ls</SPAN> should handle not just one
+        file name but also a list of many file names. And if no file names are
+        given, <SPAN class="code">ls</SPAN> is expected to have a completely different result. But what about each
+        file name itself? <SPAN class="code">ls</SPAN> will produce a different result, depending on whether
+        this is a relative file name or an absolute path. So, the "relativeness" of the file name is an
+        additional dimension of variation. But that's not all! Some file names could identify actual files,
+        but others could be bogus names for files that don't exist, and this difference has a big effect of
+        what <SPAN class="code">ls</SPAN> is expected to do. So, here's another dimension of variation that
+        has nothing to do with the file names themselves but instead concerns the state of the environment in
+        which <SPAN class="code">ls</SPAN> runs.
+      </P>
+
+      <P>
+        You can see that modeling the input space demands careful thought about the SUT. That's a job that no
+        tool can do for you. But Tcases gives you a way to capture that knowledge and to translate it into
+        effective test cases.
+      </P>
+
+      <H3><A name="exampleFind">An Example: The find Command</A></H3>
+      <P>
+        To understand input modeling with Tcases, it helps to see an example in action. In this guide, we're
+        going to explain how Tcases works by showing how we can use it to test a hypothetical <SPAN class="code">find</SPAN>
+        command. The complete input definition for <SPAN class="code">find</SPAN> is included with this guide &mdash; you can
+        see it <A href="examples/find-Input.xml">here</A>.
+      </P>
+
+      <P>
+        Take a look at the <SPAN class="code">find</SPAN> specification below. What test cases would you use to test it?
+        
+        <BLOCKQUOTE>
+          Usage: <SPAN class="code">find pattern file</SPAN>
+          <BR/><BR/>
+          Locates one or more instances of a given pattern in a text file. 
+          <BR/><BR/>
+          All lines in the file that contain the pattern are written to standard output. A
+          line containing the pattern is written only once, regardless of the number of
+          times the pattern occurs in it.
+          <BR/><BR/>
+          The pattern is any sequence of characters whose length does not exceed the
+          maximum length of a line in the file. To include a blank in the pattern, the
+          entire pattern must be enclosed in quotes (&quot;). To include a quotation mark in the
+          pattern, two quotes in a row ("") must be used.
+        </BLOCKQUOTE>
+      </P>
+
       <H3><A name="functions">Defining System Functions</A></H3>
       <P>
+        A <A name="systemInputDef">system input definition</A> describes a specific system-under-test, so the root element of the document looks like this:
+
+        <BLOCKQUOTE>
+          <SPAN class="exampleDoc">
+            &lt;System name="<SPAN class="exampleEmph">${mySystemName}</SPAN>"&gt; <BR>
+            &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions go here --&gt;</SPAN> <BR/>
+            &lt;/System&gt; <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
+
+        In general, the SUT has one or more operations or "functions" to be tested. Accordingly,
+        the <SPAN class="code">System</SPAN> element contains
+        a <A name="functionInputDef"><SPAN class="code">Function</SPAN></A> element for each of them.
+
+        <BLOCKQUOTE>
+          <SPAN class="exampleDoc">
+            &lt;System name="${mySystemName}"&gt; <BR/>
+            &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-1}</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-1} go here --&gt;</SPAN> <BR/>
+            &nbsp; &lt;/Function&gt; <BR/>
+            <BR/>
+            &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-2}</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-2} go here --&gt;</SPAN> <BR/>
+            &nbsp; &lt;/Function&gt; <BR/>
+            &nbsp; ... <BR/>
+            &lt;/System&gt; <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
+      </P> 
+      
+      <P>
+        Obviously, what constitutes a "system" or a "function" depends entirely on what you're testing. If your "system" is a Java class, then your
+        "functions" might be its methods. If your "system" is an application, then your "functions" might be use cases. If your "system" is a Web site,
+        then your "functions" might be pages. In any case, the process of input modeling is exactly the same.
+      </P>
+      
+      <P>
+        For our example, we'll build an input definition for a system named "Examples" which has only one function named "find".
+
+        <BLOCKQUOTE>
+          <SPAN class="exampleDoc">
+            &lt;System name="Examples"&gt; <BR/>
+            &nbsp; &lt;Function name="<SPAN class="exampleEmph">find</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; ... <BR/>
+            &nbsp; &lt;/Function&gt; <BR/>
+            &lt;/System&gt; <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
       </P>
 
       <H3><A name="vars">Defining Input Variables</A></H3>
       <P>
+        For each function to be tested, you need to define all of the dimensions of variation in its input
+        space. For simplicity, Tcases refers to each such dimension as a "variable" and each basic variable is
+        represented by a <A name="varDef"><SPAN class="code">Var</SPAN></A> element.  In addition,
+        Tcases organizes input variables by type, using an <SPAN class="code">Input</SPAN> element.
+      </P>
+      <P>
+        The <SPAN class="code">find</SPAN> command has two different types of input variables. There are direct input
+        arguments, such as the file name, which have input type <SPAN class="code">arg</SPAN>. There are also other factors, such as
+        the state of the file, which act as indirect "environmental" input variables and are given input type <SPAN class="code">env</SPAN>.
+        (More details about these are shown in a <A href="#exampleEnv">later section</A>.)
+
+        <BLOCKQUOTE>
+          <SPAN class="exampleDoc">
+            &lt;System name="Examples"&gt; <BR/>
+            &nbsp; &lt;Function name="find"&gt; <BR/>
+            &nbsp; &nbsp; &lt;Input type="<SPAN class="exampleEmph">arg</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- arg: Direct input arguments (the default) --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">fileName</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; ... <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;/Var&gt;<BR/>
+            &nbsp; &nbsp; &nbsp; ... <BR/>
+            &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+            <BR/>
+            &nbsp; &nbsp; &lt;Input type="<SPAN class="exampleEmph">env</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- env: Environment state variables --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; ... <BR/>
+            &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+            &nbsp; &nbsp; ... <BR/>
+            &nbsp; &lt;/Function&gt; <BR/>
+            &lt;/System&gt; <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
+      </P>
+      
+      <P>
+        Actually, the <SPAN class="code">type</SPAN> attribute of the <SPAN class="code">Input</SPAN>
+        element is just a tag that can be any value you want. And it is optional &mdash; if omitted, the
+        default is <SPAN class="code">arg</SPAN>.  This grouping of inputs by type is available if you find it
+        helpful. There is no limit to the number of different <SPAN class="code">Input</SPAN> types that you
+        can define.
+      </P>
+
+      <H3><A name="values">Defining Input Values</A></H3>
+      <P>
+        For Tcases to create a test case, it must choose values for all of the input variables. How does it do
+        that? We describe all of the possible values for each input variable using one or
+        more <SPAN class="code">Value</SPAN> elements. 
+      </P>
+      <P>
+        By default, a <SPAN class="code">Value</SPAN> element
+        defines a valid value, one that the function-under-test is expected to accept. But we can use the
+        optional <SPAN class="code">failure</SPAN> attribute to identify an value that is invalid and expected
+        to cause the function to produce some kind of failure response.  Tcases uses these input
+        values to generate two types of test cases &mdash; "success" cases, which use only valid values for all
+        variables, and "failure" cases, which use a <SPAN class="code">failure</SPAN> value for exactly one
+        variable.
+      </P>
+      <P>
+        For example, we can define two possible values for the <SPAN class="code">fileName</SPAN> argument to <SPAN class="code">find</SPAN>.
+
+        <BLOCKQUOTE>
+          <SPAN class="exampleDoc">
+            &lt;Function name="find"&gt; <BR/>
+            &nbsp; &lt;Input type="arg"&gt; <BR/>
+            &nbsp; &nbsp; &lt;Var name="fileName"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- The required file name is defined --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;Value name="<SPAN class="exampleEmph">defined</SPAN>"/&gt; <BR/>
+            <BR/>
+            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- The required file name is missing -- an error --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;Value name="<SPAN class="exampleEmph">missing</SPAN>" <B>failure="true"</B>/&gt; <BR/>
+            &nbsp; &nbsp; ... <BR/>
+            &nbsp; &lt;/Input&gt; <BR/>
+            &nbsp; ... <BR/>
+            &lt;/Function&gt; <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
+      </P>
+
+      <P>
+        That's it? Your only choices for the file name are "missing" or not? Good question! What's happening
+        here is a very important part of input space modeling. It would be silly to list every possible
+        file name as a <SPAN class="code">Value</SPAN> here.  Why? Because it just doesn't matter. At least for
+        this particular function, the letters and format of the file name have no bearing on the
+        behavior of the function. Instead, what's needed is a <U>model</U> of the value domain for this variable that
+        characterizes the <U>types</U> of values that are significant to the test. This is a well-known test design
+        technique known as <A href="http://en.wikipedia.org/wiki/Equivalence_partitioning">equivalence class
+        partitioning</A>. You use each <SPAN class="code">Value</SPAN> element to identify a <U>class</U> of
+        values. By definition, all specific values in this class are test-equivalent. We don't need to test them all &mdash; 
+        any one of them will do.
+      </P>
+
+      <P>
+        In the case of the <SPAN class="code">fileName</SPAN> variable, we've decided that the significance of
+        file name itself is whether it is present or not, and we've chosen to identify those two variations as
+        "defined" and "missing".  But the name you use to identify each <SPAN class="code">Value</SPAN> class is entirely up to you
+        &mdash; it is part of the input model you design to describe your tests and it appears in the test case
+        definitions that Tcases generates, to guide your test implementation.
+      </P>
+
+      <H3><A name="varSets">Defining Variable Sets</A></H3>
+      <P>
+        It's common to find that a single logical input actually has lots of different characteristics, each of
+        which creates a different "dimension of variation" in the input space. For example, consider the file
+        that is searched by the <SPAN class="code">find</SPAN> command. Does it even exist? Maybe yes, maybe no
+        &mdash; that's one dimension of variation that the tests must cover. And what about its contents? Of
+        course, you'd like to test the case where the file contains lines that match the pattern, as well the
+        case where there are no matches. So, that's another dimension of variation. The spec says that each
+        matching line is printed exactly once, even when it contain multiple matches. Wouldn't you want to test
+        a file that has lines with different numbers of matches? Well, there's yet another dimension of
+        variation. One file &mdash; so many dimensions!
+      </P>
+
+      <P>
+        You can model this complex sort of input as a "variable set", using a <SPAN class="code">VarSet</SPAN>
+        element.  With a <SPAN class="code">VarSet</SPAN>, you can describe a single logical input as a set of
+        multiple <SPAN class="code">Var</SPAN> definitions.  A <SPAN class="code">VarSet</SPAN> can even
+        contain another <SPAN class="code">VarSet</SPAN>, creating a hierarchy of logical inputs that can be
+        extended to any number of levels.
+      </P>
+
+      <P>
+        For example, the single <SPAN class="code">file</SPAN> input to the <SPAN class="code">find</SPAN> command
+        can modeled by the following <A name="exampleEnv">variable set definition</A>.
+
+        <BLOCKQUOTE>
+          <SPAN class="exampleDoc">
+            &lt;Function name="find"&gt; <BR/>
+            &nbsp; ... <BR/>
+            &nbsp; &lt;Input type="env"&gt; <BR/>
+            &nbsp; &nbsp; &lt;VarSet name="<SPAN class="exampleEmph">file</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Does the file exist? --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">exists</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="yes"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="no" failure="true"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Does the file contain... --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;VarSet name="<SPAN class="exampleEmph">contents</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... any lines longer that the pattern? --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">linesLongerThanPattern</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... any matching lines? --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">patterns</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... multiple matches in a line? --&gt;</SPAN> <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">patternsInLine</SPAN>"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+            &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+            &nbsp; &lt;/Input&gt; <BR/>
+            &nbsp; ... <BR/>
+            &lt;/Function&gt; <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
+      </P>
+
+      <P>
+        Isn't this hierarchy really just the same as four <SPAN class="code">Var</SPAN> elements, something like the following?
+
+        <BLOCKQUOTE>
+          <SPAN class="exampleDoc">
+            &lt;Var name="file.exists"&gt; <BR/>
+            ... <BR/>
+            &lt;Var name="file.contents.linesLongerThanPattern"&gt; <BR/>
+            ... <BR/>
+            &lt;Var name="file.contents.patterns"&gt; <BR/>
+            ... <BR/>
+            &lt;Var name="file.contents.patternsInLine"&gt; <BR/>
+            ... <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
+      </P>
+
+      <P>
+        Yes, and when generating test cases, that's essentially how Tcases handles it. But defining a complex
+        input as a <SPAN class="code">VarSet</SPAN> makes the input model simpler to create, read, and maintain. Also,
+        it allows you to apply constraints to an entire tree of variables at once, at you'll see in the next section.
       </P>
 
       <H3><A name="constraints">Defining Constraints: Properties and Conditions</A></H3>
       <P>
       </P>
+
+      <H2><A name="control">Controlling Test Definitions</A></H2>
 
       <H2><A name="coverage">Defining Input Coverage</A></H2>
 
