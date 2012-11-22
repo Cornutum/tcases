@@ -22,6 +22,7 @@
             <LI><A href="#install">Installing Tcases</A></LI>     
             <LI><A href="#run">Running From the Command Line</A></LI> 
             <LI><A href="#run-ant">Running With Ant</A></LI>      
+            <LI><A href="#results">Understanding Tcases Results</A></LI>      
           </UL>
         </LI>
         <LI><A href="#input">Modeling The Input Space</A>
@@ -210,6 +211,59 @@
         for the <A href="api/com/startingblocktech/tcases/ant/TcasesTask.html"><SPAN class="code">TcasesTask</SPAN></A> class.
       </P>
       
+      <H3><A name="results">Understanding Tcases Results</A></H3>
+      <P>
+        What happens when you run Tcases? Tcases reads a <A href="#systemInputDef">system input definition</A>, an XML document
+        that defines the "input space" of the system function to be tested. From this, Tcases outputs different XML document
+        called a <A href="#systemTestDef">system test definition</A>, which describes a set of test cases.
+      </P>
+
+      <P>
+        Try running Tcases on one of the example system input definitions. The following commands will generate
+        test cases for the <SPAN class="code">find</SPAN> command <A href="#exampleFind">example</A>, which is
+        explained in <A href="#input">full detail</A> later in this guide.
+
+        <BLOCKQUOTE>
+          <SPAN class="code">
+            &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+            &gt; cd docs/examples <BR/>
+            &gt; tcases.sh < find-Input.xml <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
+      </P>
+
+      <P>
+        The resulting system test definition is written to standard output. Here's what it looks like: for
+        the "find" <A href="#functions">function</A>, a list of test case definitions, each of which defines values for all of
+        the function's input <A href="#vars">variables</A>.
+
+        <BLOCKQUOTE>
+          <SPAN class="exampleDoc">
+            &lt;?xml version="1.0"?&gt; <BR/>
+            &lt;TestCases system="Examples"&gt; <BR/>
+            &nbsp; &lt;<SPAN class="exampleEmph">Function</SPAN> name="find"&gt; <BR/>
+            &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">TestCase</SPAN> id="0"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Var</SPAN> name="pattern.size" <SPAN class="exampleEmph">value</SPAN>="empty"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="NA"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="NA"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;Input type="env"&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="NA"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="NA"/&gt; <BR/>
+            &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+            &nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+            &nbsp; &nbsp; ... <BR/>
+            &nbsp; &lt;/Function&gt; <BR/>
+            &lt;/TestCases&gt; <BR/>
+          </SPAN>
+        </BLOCKQUOTE>
+      </P>
+
       <H2><A name="input">Modeling The Input Space</A></H2>
       <P>
         Tcases creates test definitions based on a <EM>system input definition</EM> that you create. But how
@@ -374,7 +428,7 @@
       <H3><A name="values">Defining Input Values</A></H3>
       <P>
         For Tcases to create a test case, it must choose values for all of the input variables. How does it do
-        that? We describe all of the possible values for each input variable using one or
+        that? Because we describe all of the possible values for each input variable using one or
         more <SPAN class="code">Value</SPAN> elements. 
       </P>
       <P>
