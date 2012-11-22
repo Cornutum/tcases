@@ -176,13 +176,11 @@
         UNIX shell, you can run the <SPAN class="code">tcases.sh</SPAN> command.
         For a quick check, you can run one of the examples that comes with Tcases, using the following commands.
 
-        <BLOCKQUOTE>
-          <SPAN class="code">
-            &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-            &gt; cd docs/examples <BR/>
-            &gt; tcases.sh < find-Input.xml <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases.sh &lt; find-Input.xml <BR/>
+        </DIV>
       </P>
       <P>
         For details about the interface to the <SPAN class="code">tcases.sh</SPAN> command, see the
@@ -196,13 +194,11 @@
         You can also run Tcases as an Ant task. For an example of how this works, take a look at <SPAN class="code">docs/examples/ant-tcases.xml</SPAN>.
         Want to try it out? Run the the following commands.
         
-        <BLOCKQUOTE>
-          <SPAN class="code">
-            &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-            &gt; cd docs/examples <BR/>
-            &gt; ant -f ant-tcases.xml <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; ant -f ant-tcases.xml <BR/>
+        </DIV>
 
       </P>
       <P>
@@ -214,7 +210,7 @@
       <H3><A name="results">Understanding Tcases Results</A></H3>
       <P>
         What happens when you run Tcases? Tcases reads a <A href="#systemInputDef">system input definition</A>, an XML document
-        that defines the "input space" of the system function to be tested. From this, Tcases outputs different XML document
+        that defines the "input space" of the system function to be tested. From this, Tcases produces a different XML document
         called a <A href="#systemTestDef">system test definition</A>, which describes a set of test cases.
       </P>
 
@@ -223,13 +219,11 @@
         test cases for the <SPAN class="code">find</SPAN> command <A href="#exampleFind">example</A>, which is
         explained in <A href="#input">full detail</A> later in this guide.
 
-        <BLOCKQUOTE>
-          <SPAN class="code">
-            &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-            &gt; cd docs/examples <BR/>
-            &gt; tcases.sh < find-Input.xml <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases.sh &lt; find-Input.xml <BR/>
+        </DIV>
       </P>
 
       <P>
@@ -237,31 +231,29 @@
         the "find" <A href="#functions">function</A>, a list of test case definitions, each of which defines values for all of
         the function's input <A href="#vars">variables</A>.
 
-        <BLOCKQUOTE>
-          <SPAN class="exampleDoc">
-            &lt;?xml version="1.0"?&gt; <BR/>
-            &lt;TestCases system="Examples"&gt; <BR/>
-            &nbsp; &lt;<SPAN class="exampleEmph">Function</SPAN> name="find"&gt; <BR/>
-            &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">TestCase</SPAN> id="0"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Var</SPAN> name="pattern.size" <SPAN class="exampleEmph">value</SPAN>="empty"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="NA"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="NA"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;Input type="env"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="NA"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="NA"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
-            &nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
-            &nbsp; &nbsp; ... <BR/>
-            &nbsp; &lt;/Function&gt; <BR/>
-            &lt;/TestCases&gt; <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleDoc">
+          &lt;?xml version="1.0"?&gt; <BR/>
+          &lt;TestCases system="Examples"&gt; <BR/>
+          &nbsp; &lt;<SPAN class="exampleEmph">Function</SPAN> name="find"&gt; <BR/>
+          &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">TestCase</SPAN> id="0"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Var</SPAN> name="pattern.size" <SPAN class="exampleEmph">value</SPAN>="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="NA"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="NA"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="NA"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="NA"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &lt;/TestCases&gt; <BR/>
+        </DIV>
       </P>
 
       <H2><A name="input">Modeling The Input Space</A></H2>
@@ -333,32 +325,28 @@
       <P>
         A <A name="systemInputDef">system input definition</A> describes a specific system-under-test, so the root element of the document looks like this:
 
-        <BLOCKQUOTE>
-          <SPAN class="exampleDoc">
-            &lt;System name="<SPAN class="exampleEmph">${mySystemName}</SPAN>"&gt; <BR>
-            &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions go here --&gt;</SPAN> <BR/>
-            &lt;/System&gt; <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleDoc">
+          &lt;System name="<SPAN class="exampleEmph">${mySystemName}</SPAN>"&gt; <BR>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions go here --&gt;</SPAN> <BR/>
+          &lt;/System&gt; <BR/>
+        </DIV>
 
         In general, the SUT has one or more operations or "functions" to be tested. Accordingly,
         the <SPAN class="code">System</SPAN> element contains
         a <A name="functionInputDef"><SPAN class="code">Function</SPAN></A> element for each of them.
 
-        <BLOCKQUOTE>
-          <SPAN class="exampleDoc">
-            &lt;System name="${mySystemName}"&gt; <BR/>
-            &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-1}</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-1} go here --&gt;</SPAN> <BR/>
-            &nbsp; &lt;/Function&gt; <BR/>
-            <BR/>
-            &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-2}</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-2} go here --&gt;</SPAN> <BR/>
-            &nbsp; &lt;/Function&gt; <BR/>
-            &nbsp; ... <BR/>
-            &lt;/System&gt; <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleDoc">
+          &lt;System name="${mySystemName}"&gt; <BR/>
+          &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-1}</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-1} go here --&gt;</SPAN> <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          <BR/>
+          &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-2}</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-2} go here --&gt;</SPAN> <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &nbsp; ... <BR/>
+          &lt;/System&gt; <BR/>
+        </DIV>
       </P> 
       
       <P>
@@ -370,15 +358,13 @@
       <P>
         For our example, we'll build an input definition for a system named "Examples" which has only one function named "find".
 
-        <BLOCKQUOTE>
-          <SPAN class="exampleDoc">
-            &lt;System name="Examples"&gt; <BR/>
-            &nbsp; &lt;Function name="<SPAN class="exampleEmph">find</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; ... <BR/>
-            &nbsp; &lt;/Function&gt; <BR/>
-            &lt;/System&gt; <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleDoc">
+          &lt;System name="Examples"&gt; <BR/>
+          &nbsp; &lt;Function name="<SPAN class="exampleEmph">find</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &lt;/System&gt; <BR/>
+        </DIV>
       </P>
 
       <H3><A name="vars">Defining Input Variables</A></H3>
@@ -394,27 +380,25 @@
         the state of the file, which act as indirect "environmental" input variables and are given input type <SPAN class="code">env</SPAN>.
         (More details about these are shown in a <A href="#exampleEnv">later section</A>.)
 
-        <BLOCKQUOTE>
-          <SPAN class="exampleDoc">
-            &lt;System name="Examples"&gt; <BR/>
-            &nbsp; &lt;Function name="find"&gt; <BR/>
-            &nbsp; &nbsp; &lt;Input type="<SPAN class="exampleEmph">arg</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- arg: Direct input arguments (the default) --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">fileName</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; ... <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;/Var&gt;<BR/>
-            &nbsp; &nbsp; &nbsp; ... <BR/>
-            &nbsp; &nbsp; &lt;/Input&gt; <BR/>
-            <BR/>
-            &nbsp; &nbsp; &lt;Input type="<SPAN class="exampleEmph">env</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- env: Environment state variables --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; ... <BR/>
-            &nbsp; &nbsp; &lt;/Input&gt; <BR/>
-            &nbsp; &nbsp; ... <BR/>
-            &nbsp; &lt;/Function&gt; <BR/>
-            &lt;/System&gt; <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleDoc">
+          &lt;System name="Examples"&gt; <BR/>
+          &nbsp; &lt;Function name="find"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Input type="<SPAN class="exampleEmph">arg</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- arg: Direct input arguments (the default) --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">fileName</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; ... <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt;<BR/>
+          &nbsp; &nbsp; &nbsp; ... <BR/>
+          &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          <BR/>
+          &nbsp; &nbsp; &lt;Input type="<SPAN class="exampleEmph">env</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- env: Environment state variables --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; ... <BR/>
+          &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &lt;/System&gt; <BR/>
+        </DIV>
       </P>
       
       <P>
@@ -443,22 +427,20 @@
       <P>
         For example, we can define two possible values for the <SPAN class="code">fileName</SPAN> argument to <SPAN class="code">find</SPAN>.
 
-        <BLOCKQUOTE>
-          <SPAN class="exampleDoc">
-            &lt;Function name="find"&gt; <BR/>
-            &nbsp; &lt;Input type="arg"&gt; <BR/>
-            &nbsp; &nbsp; &lt;Var name="fileName"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- The required file name is defined --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;Value name="<SPAN class="exampleEmph">defined</SPAN>"/&gt; <BR/>
-            <BR/>
-            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- The required file name is missing -- an error --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;Value name="<SPAN class="exampleEmph">missing</SPAN>" <B>failure="true"</B>/&gt; <BR/>
-            &nbsp; &nbsp; ... <BR/>
-            &nbsp; &lt;/Input&gt; <BR/>
-            &nbsp; ... <BR/>
-            &lt;/Function&gt; <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleDoc">
+          &lt;Function name="find"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- The required file name is defined --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="<SPAN class="exampleEmph">defined</SPAN>"/&gt; <BR/>
+          <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- The required file name is missing -- an error --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="<SPAN class="exampleEmph">missing</SPAN>" <B>failure="true"</B>/&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; ... <BR/>
+          &lt;/Function&gt; <BR/>
+        </DIV>
       </P>
 
       <P>
@@ -507,60 +489,56 @@
         For example, the single <SPAN class="code">file</SPAN> input to the <SPAN class="code">find</SPAN> command
         can modeled by the following <A name="exampleEnv">variable set definition</A>.
 
-        <BLOCKQUOTE>
-          <SPAN class="exampleDoc">
-            &lt;Function name="find"&gt; <BR/>
-            &nbsp; ... <BR/>
-            &nbsp; &lt;Input type="env"&gt; <BR/>
-            &nbsp; &nbsp; &lt;VarSet name="<SPAN class="exampleEmph">file</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Does the file exist? --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">exists</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="yes"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="no" failure="true"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Does the file contain... --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;VarSet name="<SPAN class="exampleEmph">contents</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... any lines longer that the pattern? --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">linesLongerThanPattern</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... any matching lines? --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">patterns</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... multiple matches in a line? --&gt;</SPAN> <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">patternsInLine</SPAN>"&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
-            &nbsp; &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
-            &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
-            &nbsp; &lt;/Input&gt; <BR/>
-            &nbsp; ... <BR/>
-            &lt;/Function&gt; <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleDoc">
+          &lt;Function name="find"&gt; <BR/>
+          &nbsp; ... <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;VarSet name="<SPAN class="exampleEmph">file</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Does the file exist? --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">exists</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="no" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Does the file contain... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;VarSet name="<SPAN class="exampleEmph">contents</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... any lines longer that the pattern? --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">linesLongerThanPattern</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... any matching lines? --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">patterns</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... multiple matches in a line? --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">patternsInLine</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; ... <BR/>
+          &lt;/Function&gt; <BR/>
+        </DIV>
       </P>
 
       <P>
         Isn't this hierarchy really just the same as four <SPAN class="code">Var</SPAN> elements, something like the following?
 
-        <BLOCKQUOTE>
-          <SPAN class="exampleDoc">
-            &lt;Var name="file.exists"&gt; <BR/>
-            ... <BR/>
-            &lt;Var name="file.contents.linesLongerThanPattern"&gt; <BR/>
-            ... <BR/>
-            &lt;Var name="file.contents.patterns"&gt; <BR/>
-            ... <BR/>
-            &lt;Var name="file.contents.patternsInLine"&gt; <BR/>
-            ... <BR/>
-          </SPAN>
-        </BLOCKQUOTE>
+        <DIV class="exampleDoc">
+          &lt;Var name="file.exists"&gt; <BR/>
+          ... <BR/>
+          &lt;Var name="file.contents.linesLongerThanPattern"&gt; <BR/>
+          ... <BR/>
+          &lt;Var name="file.contents.patterns"&gt; <BR/>
+          ... <BR/>
+          &lt;Var name="file.contents.patternsInLine"&gt; <BR/>
+          ... <BR/>
+        </DIV>
       </P>
 
       <P>
