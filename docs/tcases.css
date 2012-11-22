@@ -52,12 +52,39 @@ SPAN.code
     font-size: 12pt;
 }
 
+DIV.exampleCode
+{
+    font-family: Courier New, Courier;
+    font-weight: bold;
+    font-size: 12pt;
+    margin-left: 3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
 SPAN.exampleDoc
 {
     font-family: Courier New, Courier;
     font-weight: normal;
     font-size: 12pt;
     color: #101080;
+}
+
+DIV.exampleDoc
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #101080;
+    padding: .5em;
+    background-color: #F0F0F0;
+    border-style: solid;
+    border-width: 1;
+    border-color: black;
+    margin-left: 3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 75%;
 }
 
 SPAN.exampleComment
@@ -74,5 +101,5 @@ SPAN.exampleEmph
     font-weight: normal;
     font-size: 12pt;
     color: black;
-    background-color: #F4F48A;
+    background-color: #F8F88A;
 }
