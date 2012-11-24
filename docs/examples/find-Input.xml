@@ -30,7 +30,7 @@
         </Var>
         <Var name="blanks" whenNot="empty">
           <Value name="none"/>
-          <Value name="one" when="singleChar, quoted"/>
+          <Value name="one" when="quoted, singleChar"/>
           <Value name="many">
             <When>
               <AllOf property="quoted">
