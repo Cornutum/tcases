@@ -40,6 +40,13 @@ DIV.page H3
     font-weight: bold;
 }
 
+DIV.page H4
+{
+    margin: 1.5em 0 0 0;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
 DIV.page P
 {
     margin-left: 1em;
@@ -83,8 +90,10 @@ DIV.exampleDoc
     border-color: black;
     margin-left: 3em;
     margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     width: 75%;
+    max-height: 21em;
+    overflow: scroll;
 }
 
 SPAN.exampleComment
@@ -102,4 +111,13 @@ SPAN.exampleEmph
     font-size: 12pt;
     color: black;
     background-color: #F8F88A;
+}
+
+SPAN.exampleError
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: black;
+    background-color: #FFA078;
 }

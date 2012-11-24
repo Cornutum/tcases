@@ -35,9 +35,13 @@
             <LI><A href="#constraints">Defining Constraints: Properties and Conditions</A></LI>
           </UL>
         </LI>
-        <LI><A href="#control">Controlling Test Definitions</A></LI>
         <LI><A href="#coverage">Defining Input Coverage</A></LI>
-        <LI><A href="#junit">Creating JUnit Tests</A></LI>
+        <LI><A href="#control">Controlling Test Cases</A></LI>
+        <LI><A href="#transform">Transforming Test Cases</A>
+          <UL>
+            <LI><A href="#junit">Creating JUnit Tests</A></LI>
+          </UL>
+        </LI>
       </UL>
 
       <H2><A name="intro">Introduction</A></H2>
@@ -549,13 +553,471 @@
 
       <H3><A name="constraints">Defining Constraints: Properties and Conditions</A></H3>
       <P>
+        We've seen how to define the value choices for all of the input variables of each function-under-test,
+        including complex input variables with multiple dimensions. That's enough for us to complete a 
+        system input definition for the <SPAN class="code">find</SPAN> command that looks something like the following.
+
+        <DIV class="exampleDoc">
+          &lt;Function name="find"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;VarSet name="pattern"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="size"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="manyChars"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="quoted"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="no"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="unterminated" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="blanks"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="embeddedQuotes"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="defined"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="missing" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;VarSet name="file"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="exists"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="no" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;VarSet name="contents"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="linesLongerThanPattern"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="patterns"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="patternsInLine"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/Function&gt; <BR/>
+        </DIV>
       </P>
 
-      <H2><A name="control">Controlling Test Definitions</A></H2>
+      <P>
+        When we run Tcases with this input document, we'll get a list of test case definitions like this:
+
+        <DIV class="exampleDoc">
+          &lt;TestCases system="Examples"&gt; <BR/>
+          &nbsp; &lt;Function name="find"&gt; <BR/>
+          &nbsp; &nbsp; &lt;TestCase id="0"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.size" value="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+          <BR/>
+          &nbsp; &nbsp; &lt;TestCase id="1"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.size" value="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="no"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &lt;/TestCases&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        But wait up a second &mdash; something doesn't look right here. Take a closer look at test case 0 below. It's telling us
+        to try a test case using a file that contains no instances of the test pattern. Oh, and at the same time, the file
+        should contain a line that has one match for the test pattern. That seems sort of ... impossible.
+
+        <DIV class="exampleDoc">
+          &lt;TestCase id="0"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.size" value="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">file.contents.patterns</SPAN>" value="<SPAN class="exampleError">none</SPAN>"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">file.contents.patternsInLine</SPAN>" value="<SPAN class="exampleError">one</SPAN>"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/TestCase&gt; <BR/>
+        </DIV>
+      </P>
+      
+      <P>
+        And look at test case 1 below. It looks equally problematic. For this test case, the pattern should be
+        a single character. And the pattern should contain one blank. <U>And</U> the pattern should contain one
+        embedded quote character! No way!
+
+        <DIV class="exampleDoc">
+          &lt;TestCase id="1"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">pattern.size</SPAN>" value="<SPAN class="exampleError">singleChar</SPAN>"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="no"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">pattern.blanks</SPAN>" value="<SPAN class="exampleError">one</SPAN>"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">pattern.embeddedQuotes</SPAN>" value="<SPAN class="exampleError">one</SPAN>"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="many"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="many"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/TestCase&gt; <BR/>
+        </DIV>
+      </P>
+      
+      <P>
+        What's happening here? Clearly, some of the "dimensions of variation" described by these <SPAN class="code">Var</SPAN> definitions
+        are not entirely independent of each other. Instead, there are relationships among these variables that <EM>constrain</EM> which
+        combinations of values are feasible. We need a way to define those relationships so that infeasible combinations can be excluded from
+        our test cases. And that's where <EM>properties</EM> and <EM>conditions</EM> come into play.
+      </P>
+
+      <H4><A name="properties">Value properties</A></H4>
+      <P>
+        Any <SPAN class="code">Value</SPAN> definition can declare a <SPAN class="code">property</SPAN> list that
+        specifies one or more "properties" for this value. For example:
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="pattern"&gt; <BR/>
+          &nbsp; &lt;Var name="size"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="empty" <SPAN class="exampleEmph">property="empty"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="singleChar" <SPAN class="exampleEmph">property="singleChar"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="manyChars"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="quoted"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="yes" <SPAN class="exampleEmph">property="quoted"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="no"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="unterminated" failure="true"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="blanks"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="embeddedQuotes"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        A <SPAN class="code">property</SPAN> list is a comma-separated list of identifiers, each of which defines a "property" for this value.
+        A property is just a name that you invent for yourself to identify an important characteristic of this value. The concept is that 
+        when this value is included in a test case, it contributes all of its properties &mdash; these now become properties of the test case itself.
+        That makes it possible for us to later define "conditions" on which properties a test case must (or must not!) have for certain values
+        to be included.
+      </P>
+
+      <P>
+        For example, the definition above for the <SPAN class="code">pattern.size</SPAN> variable says that
+        when we choose the value <SPAN class="code">empty</SPAN> for a test case, the test case acquires a
+        property named <SPAN class="code">empty</SPAN>.  But if we choose the
+        value <SPAN class="code">singleChar</SPAN>, the test case acquires a different property
+        named <SPAN class="code">singleChar</SPAN>. And if we choose the
+        value <SPAN class="code">manyChars</SPAN>, no new properties are added to the test case. Note that the
+        correspondence between these particular names of the values and properties is not exactly accidental
+        &mdash; it helps us understand what these elements mean &mdash; but it has no special significance. We
+        could have named any of them differently if we wanted to.
+      </P>
+
+      <H4><A name="valueConditions">Value conditions</A></H4>
+      <P>
+        We can define the conditions required for a <SPAN class="code">Value</SPAN> to be included in a test case using the
+        <SPAN class="code">when</SPAN> and <SPAN class="code">whenNot</SPAN> attributes. Each of these defines
+        a comma-separated list of property identifiers. Adding a <SPAN class="code">when</SPAN> list means "for
+        this value to be included in a test case, the test case must have <U>all</U> of these
+        properties". Similarly, a <SPAN class="code">whenNot</SPAN> list means "for this value to be included
+        in a test case, the test case must <U>not</U> have <U>any</U> of these properties".
+      </P>
+
+      <P>
+        For example, consider the conditions we can define for the various characteristics of the <SPAN class="code">pattern</SPAN>
+        input.
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="pattern"&gt; <BR/>
+          &nbsp; &lt;Var name="size"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="empty" property="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="singleChar" property="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="manyChars"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="quoted"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="yes" property="quoted"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="no" <SPAN class="exampleEmph">whenNot="empty"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="unterminated" failure="true"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="blanks"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one" <SPAN class="exampleEmph">when="quoted, singleChar"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many" <SPAN class="exampleEmph">when="quoted"</SPAN> <SPAN class="exampleEmph">whenNot="singleChar"</SPAN>/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="embeddedQuotes"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        This defines a <EM>constraint</EM> on the <SPAN class="code">pattern.quoted</SPAN> variable. We want to
+        have a test case in which the value for this value is <SPAN class="code">no</SPAN>, i.e. the pattern
+        string is not quoted. But in this case, the <SPAN class="code">pattern.size</SPAN> cannot
+        be <SPAN class="code">empty</SPAN>. Because that combination doesn't make sense, we want to exclude it from the test cases
+        generated by Tcases.
+      </P>
+
+      <P>
+        Similarly, we define a constraint on the <SPAN class="code">pattern.blanks</SPAN> variable, which specifies how many blanks
+        should be in the pattern string. We want a test case in which the value is <SPAN class="code">many</SPAN>. But in such 
+        a test case, the pattern must be quoted (otherwise, a blank is not possible) and it must <U>not</U> be a single character
+        (which would contradict the requirement for multiple blanks).
+      </P>
+
+      <P>
+        This also defines another constraint on any test case in which the value of <SPAN class="code">pattern.blanks</SPAN> is
+        <SPAN class="code">one</SPAN>. In such a test case, of course, the pattern must be quoted. And we've declared also
+        that the pattern size must be a single character. But why? That doesn't seem strictly necessary. What's wrong with
+        a pattern that has multiple characters and only one blank? Well, nothing &mdash; that's a perfectly good combination.
+        But isn't a pattern that is exactly one blank character a more <U>interesting</U> test case? Isn't that a case that could expose
+        a certain kind of defect in the pattern matching logic? And isn't the case of many-chars-one-blank unlikely to expose
+        any defects not visible in the many-chars-many-blanks case? This demonstrates another way for a smart tester to use properties and conditions:
+        to steer toward test cases with more potent combinations and away from combinations that add little defect-fighting power.
+      </P>
+
+      <P>
+        It's important to note that there are no conditions attached to choosing a value of <SPAN class="code">none</SPAN> for
+        <SPAN class="code">pattern.blanks</SPAN>. A test case can use this value in combination with any
+        others. And that's a good thing.  We want to model the reality of the input space for the function,
+        without eliminating any test cases that are actually feasible. Otherwise, our tests will have a blind
+        spot that could allow defects to slip by undetected. Rule of thumb: Use conditions sparingly and only when necessary
+        to avoid infeasible or unproductive test cases.
+      </P>
+
+      <H4><A name="varConditions">Variable conditions</A></H4>
+      <P>
+        You may find that, under certain conditions, an input variable becomes irrelevant. It doesn't matter
+        which value you choose &mdash; none of them make a difference in function behavior. It's easy to model
+        this situation &mdash; just define a condition on the <SPAN class="code">Var</SPAN> definition itself.
+      </P>
+
+      <P>
+        For example, when we're testing the <SPAN class="code">find</SPAN> command, we want to try all of the
+        values defined for every dimension of the <SPAN class="code">pattern</SPAN> variable set. But, in the
+        case when the pattern string is empty, the question of how many blanks it contains is pointless.  In
+        this case, the <SPAN class="code">pattern.blanks</SPAN> variable is irrelevant. Similarly, when we test
+        a pattern string that is only one character, the <SPAN class="code">pattern.embeddedQuotes</SPAN>
+        variable is meaningless. We can capture these facts about the input space by adding <SPAN class="code">Var</SPAN>
+        constraints, as shown below.
+
+        <DIV class="exampleDoc">
+          &lt;<SPAN class="exampleEmph">VarSet name="pattern" when="fileExists"</SPAN>&gt; <BR/>
+          &nbsp; &lt;Var name="size"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="empty" property="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="singleChar" property="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="manyChars"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="quoted"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="yes" property="quoted"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="no" whenNot="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="unterminated" failure="true"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;<SPAN class="exampleEmph">Var name="blanks" whenNot="empty"</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one" when="quoted, singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many" when="quoted" whenNot="singleChar"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;<SPAN class="exampleEmph">Var name="embeddedQuotes" whenNot="empty, singleChar"</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        You can define variable constraints at any level of a variable set hierarchy. For example, you can see in the example above
+        that a constraint is defined for the entire <SPAN class="code">pattern</SPAN> variable set. This constraint models the
+        fact that the pattern is irrelevant when the file specified to search doesn't even exist.
+      </P>
+
+      <P>
+        How does a variable constraint affect the test cases generated by Tcases? In a test case where a
+        variable is irrelevant, it is assigned the value "NA", meaning "not applicable". For example, test case
+        0 belows shows how testing an empty pattern causes <SPAN class="code">pattern.blanks</SPAN>
+        and <SPAN class="code">pattern.embeddedQuotes</SPAN> to be irrelevant. Similarly, test case 8 shows how testing
+        with a non-existent file makes nearly every other variable irrelevant.
+
+        <DIV class="exampleDoc">
+          &lt;TestCase id="0"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.size" value="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.blanks" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patterns" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/TestCase&gt; <BR/>
+          ... <BR/>
+          &lt;TestCase id="8" failure="true"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.size" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.quoted" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.blanks" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.exists" value="no" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patterns" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/TestCase&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H4><A name="complexConditions">Complex conditions</A></H4>
+      <P>
+        The <SPAN class="code">when</SPAN> and <SPAN class="code">whenNot</SPAN> attributes are sufficient to express the most common
+        constraints on <SPAN class="code">Var</SPAN> and <SPAN class="code">Value</SPAN> definitions. But what if the condition you need is
+        more complicated? For example, what about a <SPAN class="code">Value</SPAN> that can be included only if a test case has either
+        property X <U>or</U> property Y? For such situations, you can define conditions using a <SPAN class="code">When</SPAN> element.
+        A <SPAN class="code">When</SPAN> element can appear as a subelement of any definition that allows a condition: <SPAN class="code">Value</SPAN>,
+        <SPAN class="code">Var</SPAN>, or <SPAN class="code">VarSet</SPAN>.
+      </P>
+
+      <P>
+        For example, the condition for a test case to include a pattern with many blank characters can be expressed with a <SPAN class="code">When</SPAN>
+        element like this:
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="pattern" when="fileExists"&gt; <BR/>
+          &nbsp; ...  <BR/>
+          &nbsp; &lt;Var name="blanks" whenNot="empty"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one" when="quoted, singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleEmph">&lt;When&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All of the condition below are true... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;AllOf&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... all of the following properties are present... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;AllOf property="quoted"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... and none of&nbsp; the following properties are present. --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Not property="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/AllOf&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/When&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &lt;/Value&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; ... <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        A <SPAN class="code">When</SPAN> element contains a single subelement that defines a boolean expression. The boolean expressions are:
+        
+        <UL>
+          <LI> <SPAN class="code">AllOf</SPAN>: a logical "AND" expression
+          </LI><P/>
+          <LI> <SPAN class="code">AnyOf</SPAN>: a logical "OR" expression
+          </LI><P/>
+          <LI> <SPAN class="code">Not</SPAN>: a logical negation expression
+          </LI><P/>
+        </UL>
+      </P>
+
+      <P>
+        All of these elements have a similar structure. They can have an optional <SPAN class="code">property</SPAN> list, which specifies the
+        properties that are subject to this expression. Also, they can contain any number of additional boolean expressions as subelements.
+        For example:
+
+        <DIV class="exampleDoc">
+          &lt;When&gt; <BR/>
+          &nbsp; &lt;Not property="A"&gt; <BR/>
+          &nbsp; &nbsp; &lt;AnyOf property="B"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;AllOf property="C, D"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/AnyOf&gt; <BR/>
+          &nbsp; &lt;/Not&gt; <BR/>
+          &lt;/When&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        This <SPAN class="code">When</SPAN> expression is equivalent to the following boolean expression in Java.
+
+        <DIV class="exampleDoc">
+          !A && !(B || (C && D))
+        </DIV>
+      </P>
+
+      <P>
+        The <SPAN class="code">when</SPAN> and <SPAN class="code">whenNot</SPAN> attributes are shorthand for the equivalent
+        <SPAN class="code">When</SPAN> expression, and these alternatives are mutually exclusive. If you use either of these attributes, you
+        can't specify a <SPAN class="code">When</SPAN> element in the same definition and vice versa.
+      </P>
 
       <H2><A name="coverage">Defining Input Coverage</A></H2>
 
-      <H2><A name="junit">Creating JUnit Tests</A></H2>
+      <H2><A name="control">Controlling Test Cases</A></H2>
+
+      <H2><A name="transform">Transforming Test Cases</A></H2>
+
+      <H3><A name="junit">Creating JUnit Tests</A></H3>
+      <P>
+      </P>
 
     </DIV>
 
