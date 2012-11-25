@@ -35,7 +35,14 @@
             <LI><A href="#constraints">Defining Constraints: Properties and Conditions</A></LI>
           </UL>
         </LI>
-        <LI><A href="#coverage">Defining Input Coverage</A></LI>
+        <LI><A href="#coverage">Defining Input Coverage</A>
+          <UL>
+            <LI><A href="#combinations">Combinatorial Testing Basics</A></LI>
+            <LI><A href="#defaultCoverage">Default Coverage</A></LI>
+            <LI><A href="#higherCoverage">Defining Higher Coverage</A></LI>
+            <LI><A href="#multiCoverage">Defining Multiple Levels Of Coverage</A></LI>
+          </UL>
+        </LI>
         <LI><A href="#control">Controlling Test Cases</A></LI>
         <LI><A href="#transform">Transforming Test Cases</A>
           <UL>
@@ -215,7 +222,7 @@
       <P>
         What happens when you run Tcases? Tcases reads a <A href="#systemInputDef">system input definition</A>, an XML document
         that defines the "input space" of the system function to be tested. From this, Tcases produces a different XML document
-        called a <A href="#systemTestDef">system test definition</A>, which describes a set of test cases.
+        called a <A name="systemTestDef"><EM>system test definition</EM></A>, which describes a set of test cases.
       </P>
 
       <P>
@@ -1010,6 +1017,220 @@
       </P>
 
       <H2><A name="coverage">Defining Input Coverage</A></H2>
+      <P>
+        Tcases generates test case definitions by creating combinations of values for all input variables. But
+        how does it come up with these combinations? And why these particular combinations and not others? And
+        just how good are these test cases? Can you rely on them to test your system thoroughly?
+      </P>
+
+      <P>
+        Good questions. And here's the basic answer: Tcases generates the minimum number of test cases needed to meet the coverage
+        requirements that you specify. But to understand what that means, you need to understand how Tcases measures coverage.
+      </P>
+
+      <H3><A name="combinations">Combinatorial Testing Basics</A></H3>
+      <P>
+        Tcases is concerned with input space coverage &mdash; how many of the feasible combinations of input
+        values are tested. To measure input space coverage, Tcases is guided by concepts from the field of
+        <A href="http://csrc.nist.gov/groups/SNS/acts/index.html">combinatorial testing</A>. As testers, we're
+        looking for combinations of input values that will trigger a <EM>failure</EM>, thus exposing a <EM>defect</EM> in
+        the SUT. But, in general, we can't afford the effort to test every combination. We have to settle for some
+        subset. But how?
+      </P>
+
+      <P>
+        Suppose we tried the following approach. For the first test case, just pick a valid value for every
+        input variable. Then, for the next test case, pick a different valid value for every variable. Continue
+        this until we've used every valid value of every variable at least once. Of course, as we do this,
+        we'll skip over any infeasible combinations that don't satisfy our constraints. The result will be a
+        fairly small number of test cases. In fact, the number of "success" case created by this procedure will
+        be S, where S is the maximum number of valid values defined for any one variable. For the failure
+        cases, we can do something similar by creating a new test case for each invalid value, substituting it
+        into an otherwise-valid combination of other values. That gives us F more test cases, where F is the
+        total number of invalid values for all variables. So that's S+F tests cases, a pretty small test suite
+        that ought to be quite doable. But what is the coverage? Well, we've guaranteed that every value of
+        every variable is used at least once. That is what is known as "1-way coverage" or "1-tuple coverage" &mdash; all
+        "combinations" of 1 variable.
+      </P>
+      
+      <P>
+        But is that good enough? Experience
+        (and <A href="http://csrc.nist.gov/groups/SNS/acts/ftfi.html">research<A>) teaches us that many
+        failures are triggered by the interaction of two or more variables. So maybe we should aim for a higher
+        level of input coverage. We could iterate over every pair of input variables and consider every combination of
+        their values. For example, the <SPAN class="code">pattern.size</SPAN> variable has 3 valid values and
+        the <SPAN class="code">pattern.quoted</SPAN> variable has 2 valid values. That makes 6 combinations for
+        this pair of variables (ignoring constraints). For each pair, create a test case and fill it out with
+        values for all of the other variables. In the end, we'll have a test suite that uses every such pair at
+        least once &mdash; that's "2-way coverage" or "2-tuple coverage" (also known as "pairwise
+        coverage"). This is a much stronger test suite &mdash; more likely to find many defects &mdash; but
+        it's also a larger number of test cases.
+      </P>
+      
+      <P>
+        We can extend the same approach to even higher levels of combinatorial coverage &mdash; 3-way coverage,
+        4-way coverage, etc. With each higher level, our tests become more powerful. But the price is that the
+        number of test cases increases rapidly with each additional level. At some point, the gain is not worth
+        the pain. In fact, research indicates that very few failures are caused by the interaction of 4 or more variables,
+        and failures that require an interaction of 6 or more variables are virtually unknown. Most failures appear to
+        be triggered by 1- or 2-way interactions. But that doesn't necessarily mean you should stop at 2-way coverage.
+        Every system has its own unique risks. Also, not all variables interact equally &mdash; you may have some
+        sets of variables that need a higher level of coverage than the rest.
+      </P>
+
+      <H3><A name="defaultCoverage">Default Coverage</A></H3>
+      <P>
+        For the record, the default for Tcases is 1-tuple coverage. In other words, unless you specify otherwise, Tcases
+        will translate your system input definition into a minimal set of test case definitions that uses every value of every
+        variable &mdash; every "1-tuple" &mdash; at least once, while satisfying all constraints.
+      </P>
+      
+      <P>
+        Is that good enough? Maybe. If you've built your system input definition carefully, you're likely to
+        find that a 1-tuple coverage test suite also achieves upward of 75% basic block (line) coverage of the
+        SUT. In fact, using Tcases in tandem with a structural coverage tool like Emma or Cobertura can be
+        very effective. Tip: Use Tcases to create a 1-tuple coverage test suite, then measure structural coverage
+        to identify any gaps in the system input definition. You can repeat this process to quickly reach a
+        small but powerful set of test cases.
+      </P>
+
+      <P>
+        But to get the tests you need faster, you may need to selectively apply 2-tuple coverage or higher. The next section
+        explains how.
+      </P>
+
+      <H3><A name="higherCoverage">Defining Higher Coverage</A></H3>
+      <P>
+        For higher levels of coverage, you need to create a <A name="genDef"><EM>generator definition</EM></A>
+        that specifies your coverage requirements in detail. A generator definition, which is another XML document
+        that Tcases applies to your system input definition, defines a set of "generators".
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; &lt;TupleGenerator function="${function-1}"&gt; <BR/>
+        &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Coverage requirements for ${function-1} go here --&gt;</SPAN> <BR/>
+        &nbsp; &lt;/TupleGenerator&gt; <BR/>
+         <BR/>
+        &nbsp; &lt;TupleGenerator function="${function-2}"&gt; <BR/>
+        &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Coverage requirements for ${function-2} go here --&gt;</SPAN> <BR/>
+        &nbsp; &lt;/TupleGenerator&gt; <BR/>
+        &nbsp; ... <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        The simplest possible generator definition looks like this:
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; <SPAN class="exampleComment">&lt;!--For all functions (the default), generate 1-tuple coverage (the default)--&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        To require 2-tuple coverage for all variables of all functions, you would create a generator definition like this:
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all functions --&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">tuples="2"</SPAN>/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        To require 3-tuple coverage only for the function named <SPAN class="code">F</SPAN>, while generating 2-tuple
+        converage for all other functions, you would create a generator definition like the one below. Notice that you can
+        explicitly identify "all functions" using the special function name <SPAN class="code">*</SPAN>. Or you can just
+        leave the <SPAN class="code">function</SPAN> attribute undefined, which has the same effect.
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; <SPAN class="exampleComment">&lt;!-- By default, generate 2-tuple coverage for all functions --&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">function="*"</SPAN> tuples="2"/&gt; <BR/>
+         <BR/>
+        &nbsp; <SPAN class="exampleComment">&lt;!-- But  generate 3-tuple coverage for F --&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">function="F"</SPAN> tuples="3"/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+      
+      <H3><A name="multiCoverage">Defining Multiple Levels Of Coverage</A></H3>
+      <P>
+        When you look carefully at the functions of your system-under-test, you may well find that some of them
+        call for more intense testing than others. That's what a generator definition allows you to do. In
+        fact, when you look carefully at a single function, you may be more concerned about the interactions
+        between certain specific variables. You may even want to test every possible permutation for a small subset of key
+        variables. Is it possible to get high coverage in a few areas and basic coverage everywhere else? Why, yes, you
+        can. This section explains how.
+      </P>
+
+      <P>
+        You've already seen how you can specify different levels of coverage for different functions. For finer
+        control, you can use one or more <SPAN class="code">Combine</SPAN> elements.  A <SPAN class="code">Combine</SPAN>
+        element defines the level of coverage generated for a specific subset of <SPAN class="code">Var</SPAN>
+        definitions. You specify which variables to combine using a variable "path pattern". For example:
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 1-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleEmph">&lt;Combine tuples="2"&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... but 2-tuple coverage for Vars in the "pattern" variable set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Include var="pattern.*"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        A variable path pattern describes a path to a specific <SPAN class="code">Var</SPAN>, possibly nested within a <SPAN class="code">VarSet</SPAN>
+        hierarchy. Wildcards allow you to match all immediate children (<SPAN class="code">*</SPAN>) or all descendants (<SPAN class="code">**</SPAN>)
+        of a <SPAN class="code">VarSet</SPAN>. Note that a pattern can contain at most one wildcard, which can appear only at the end of the path.
+      </P>
+
+      <P>
+        You can use a combination of <SPAN class="code">Include</SPAN> and <SPAN class="code">Exclude</SPAN>
+        elements to concisely describe exactly which variables to combine. You can specify as many <SPAN class="code">Include</SPAN>
+        or <SPAN class="code">Exclude</SPAN> elements as you need. For example:
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &lt;Combine tuples="2"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...except for Vars in the "file" set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Exclude var="file.**"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &lt;TupleGenerator function="find" tuples="2"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...but 1-tuple coverage (the default) for... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Combine</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...all Vars in the "pattern" variable set... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Include var="pattern.*"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...except "embeddedQuotes" --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Exclude var="pattern.embeddedQuotes"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
 
       <H2><A name="control">Controlling Test Cases</A></H2>
 
