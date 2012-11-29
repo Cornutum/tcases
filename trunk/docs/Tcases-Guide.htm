@@ -43,12 +43,23 @@
             <LI><A href="#multiCoverage">Defining Multiple Levels Of Coverage</A></LI>
           </UL>
         </LI>
-        <LI><A href="#control">Controlling Test Cases</A></LI>
+        <LI><A href="#project">Managing A Tcases Project</A>
+          <UL>
+            <LI><A href="#files">Managing Project Files</A></LI>
+            <LI><A href="#reuse">Reusing Previous Test Cases</A></LI>
+            <LI><A href="#random">Mix It Up: Random Combinations</A></LI>
+            <LI><A href="#once">Avoiding Unneeded Combinations</A></LI>
+            <LI><A href="#simpleGenDef">Simple Generator Definitions</A></LI>
+            <LI><A href="#trouble">Troubleshooting FAQs</A></LI>
+          </UL>
+        </LI>
         <LI><A href="#transform">Transforming Test Cases</A>
           <UL>
             <LI><A href="#junit">Creating JUnit Tests</A></LI>
+            <LI><A href="#xslt">Using XSLT Transforms</A></LI>
           </UL>
         </LI>
+        <LI><A href="#reference">Further Reference</A></LI>
       </UL>
 
       <H2><A name="intro">Introduction</A></H2>
@@ -141,18 +152,11 @@
           </LI>
           <P/>
           <LI><B>If you are building unit tests...</B>
-            <P>
-              Tcases is a crucial complement to
-              the <A href="http://en.wikipedia.org/wiki/Test-Driven_Development">test-driven
-              development (TDD)</A> approach to building unit tests.
-              <P>(TBD)<P>
-            </P>
+            <P>(TBD)</P>
           </LI>
           <P/>
           <LI><B>If you are building system tests...</B>
-            <P>
-              <P>(TBD)<P>
-            </P>
+            <P>(TBD)</P>
           </LI>
           <P/>
         </UL>
@@ -422,7 +426,7 @@
 
       <H3><A name="values">Defining Input Values</A></H3>
       <P>
-        For Tcases to create a test case, it must choose values for all of the input variables. How does it do
+        For Tcases to create a test case, it must choose values for all of the input variables. How can it do
         that? Because we describe all of the possible values for each input variable using one or
         more <SPAN class="code">Value</SPAN> elements. 
       </P>
@@ -1231,13 +1235,510 @@
           &lt;/Generators&gt; <BR/>
         </DIV>
       </P>
+      <P>
+        A <SPAN class="code">Combine</SPAN> element that specifies the special value <SPAN class="code">tuples="0"</SPAN>
+        generates test cases that include all possible value permutations of the included variables. 
+        Obviously, this setting has the potential to create a huge number of test cases, so it should be used
+        sparingly and only for small sets of variables.
+        For example:
 
-      <H2><A name="control">Controlling Test Cases</A></H2>
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Include all permutations of the "pattern" variable set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &lt;Combine <SPAN class="exampleEmph">tuples="0"</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Include var="pattern.*"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H2><A name="project">Managing A Tcases Project</A></H2>
+      <P>
+        Using Tcases to design a test suite means:
+        
+        <UL>
+          <LI>Learning about the expected behavior of the SUT</LI>
+          <LI>Creating an initial system input definition</LI>
+          <LI>Generating, evaluating, and improving test case definitions</LI>
+          <LI>Evaluating and improving coverage requirements</LI>
+          <LI>Changing input definitions to handle new cases</LI>
+        </UL>
+      </P>
+      <P>
+        You might finish all these tasks very quickly. Or this effort might extend over a significant period of time. Either way, that's a project.
+        This section offers some tips to help you complete your Tcases project more effectively.
+      </P>
+
+      <H3><A name="files">Managing Project Files</A></H3>
+      <P>
+        A Tcases project must deal with several closely-related files: a system input definition, zero or more generator definitions, and
+        the test case definition document that is generated from them (possibly in multiple forms). The <SPAN class="code">tcases.sh</SPAN>
+        command implements some conventions that make it easier to keep these files organized.
+      </P>
+      <P>
+        The <SPAN class="code">tcases.sh</SPAN> command allows you to refer to all of the files for a project
+        named <SPAN class="code">${projectName}</SPAN> using the following conventions.
+        
+        <UL>
+          <LI><SPAN class="code">${projectName}-Input.xml</SPAN>: the system input definition file</LI>
+          <LI><SPAN class="code">${projectName}-Generators.xml</SPAN>: the generator definition file</LI>
+          <LI><SPAN class="code">${projectName}-Test.xml</SPAN>: the test case definition file</LI>
+        </UL>
+      </P>
+      <P>
+        For example, here's a simple way to run Tcases.
+
+        <DIV class="exampleCode">
+          &gt; tcases.sh ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        This command performs the following actions.
+        
+        <OL>
+          <LI>Reads the system input definition from <SPAN class="code">${projectName}-Input.xml</SPAN></LI>
+          <LI>Reads the generator definition from <SPAN class="code">${projectName}-Generators.xml</SPAN>, if it exists</LI>
+          <LI>Writes test case definitions to <SPAN class="code">${projectName}-Test.xml</SPAN></LI>
+        </OL>
+      </P>
+      <P>
+        Of course, you can use various options for the <SPAN class="code">tcases.sh</SPAN> command to customize this default
+        pattern. For details, see the <A href="api/com/startingblocktech/tcases/Tcases.Options.html"><SPAN class="code">Tcases.Options</SPAN></A> class,
+        or run <SPAN class="code">tcases.sh -help</SPAN>.
+      </P>
+
+      <H3><A name="reuse">Reusing Previous Test Cases</A></H3>
+      <P>
+        You know the feeling. You've spent days figuring out a minimal set of test cases that covers all test
+        requirements. Then the developer walks up with the great news: they've decided to add a new feature
+        with some new parameters. And they've changed their minds about some things. You know that required
+        parameter? Well, it's optional now &mdash; leaving it blank is no longer an error. Sometimes is seems
+        they're doing this just to torture you. But, honestly, most of the time it's just the normal progression
+        of a development project. After a few iterations, you've gained more knowledge that you need to apply to 
+        the system you're building. Or after a release or two, it's time to make the system do new tricks.
+      </P> 
+      <P>
+        Either way, it's back to the ol' test drawing board. Or is it? You're not changing everything. Why can't you just tweak the
+        test cases you already have? Funny you should ask. Because that's exactly what Tcases can do. In fact, it's the default
+        way of working. Remember that simple <SPAN class="code">tcases.sh</SPAN> command line?
+
+        <DIV class="exampleCode">
+          &gt; tcases.sh ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        Here's what it <U>really</U> does:
+        
+        <OL>
+          <LI>Reads the system input definition from <SPAN class="code">${projectName}-Input.xml</SPAN></LI>
+          <LI>Reads the generator definition from <SPAN class="code">${projectName}-Generators.xml</SPAN>, if it exists</LI>
+          <LI><U>And reads previous test cases</U>  from <SPAN class="code">${projectName}-Test.xml</SPAN>, if it exists</LI>
+          <LI> <U>Then writes new test case definitions</U> to <SPAN class="code">${projectName}-Test.xml</SPAN> which
+          reuse as much of the previous test cases as possible, extending or modifying them as needed</LI>
+        </OL>
+      </P>
+      <P>
+        You might prefer to ignore previous test cases and just create new ones from scratch. That's especially
+        true in the early stages of your project while you're still working out the details of the system input
+        definition. If so, you can use the <SPAN class="code">-n</SPAN> option to always create new tests cases, ignoring
+        any previous ones.
+
+        <DIV class="exampleCode">
+          &gt; tcases.sh <SPAN class="codeEmph">-n</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+        
+      <H3><A name="random">Mix It Up: Random Combinations</A></H3>
+      <P>
+        By default, Tcases creates combinations of input variables by marching through the system input definition top-to-bottom, picking things
+        up in the order in which it finds them. You might try to exploit that natural order, although satisfying constraints
+        can take things off a predictable sequence. That's why you really shouldn't care too much about which combinations Tcases comes up with.
+        Even better? Ask Tcases to randomize its combination procedure.
+      </P>
+      <P>
+        You can define random combinations in your generator definition by using the <SPAN class="code">seed</SPAN> attribute
+        &mdash; see the example below.
+        This integer value acts as the seed for a random number generator that controls the combination process. Alternatively,
+        you can (re)define the seed value using <A href="#simpleGenDef">command line options</A> described in later sections.
+        By specifying the seed explicitly, you ensure that <U>exactly the same</U> random combinations will be used every
+        time you run Tcases with this generator definition.
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; &lt;TupleGenerator function="find" <SPAN class="exampleEmph">seed="200712190644"</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+      <P>
+        The results of random combination can be very interesting. First, you can end up with test cases that
+        you might not have considered, even though they are perfectly valid and produce the same
+        coverage. Sometimes that's just enough to expose a defect that might otherwise have been overlooked,
+        simply because no one thought to try that case. This is an application of the principle of "gratuitous
+        variety" to improve your tests. This also produces another benefit &mdash; sometimes an unusual
+        combination can demonstrate a flaw in your test design. If a combination just doesn't make sense, then
+        it's likely that a constraint is missing or incorrect. 
+      </P>
+      <P>
+        Finally, random combinations can occasionally
+        reduce the number of test cases needed to meet your coverage requirements. That's because some
+        combinations may "consume" variable tuples more efficiently than other equally-valid
+        combinations. Tcases does not attempt to spend the enormous effort needed to guarantee an optimally
+        minimal set of test cases. It simply starts at the beginning and does its best to get quickly to the
+        end. But a random walk through the combinations may lead Tcases to a more efficient path. If you're concerned about
+        the size of your test suite, it may be a good idea to compare results for several different <SPAN class="code">seed</SPAN>
+        values.
+      </P>
+        
+      <H3><A name="once">Avoiding Unneeded Combinations</A></H3>
+      <P>
+        Even when Tcases is generating test cases for the default 1-tuple coverage, it's typical to see some input values used
+        many times. This is most likely for those <SPAN class="code">Var</SPAN> elements that contain only a few 
+        <SPAN class="code">Value</SPAN> definitions. Even after these values have been used, Tcases will continue to reuse them
+        to fill out the remaining test cases needed to complete the test suite. In some situations, this can be a bit of a 
+        pain. Sometimes there is a <SPAN class="code">Value</SPAN> that you need to test at least once, but for various reasons,
+        including it multiple times adds complexity without really increasing the likelihood of finding new failures.
+        In this case, you can use the <SPAN class="code">once</SPAN> attribute as a hint to avoiding reusing a value more than once.
+      </P>
+      <P>
+        For example, the <SPAN class="code">find</SPAN> command requires that the <SPAN class="code">pattern</SPAN> must
+        not exceed the maximum length of a line in the file. Even one line longer than the pattern would be enough to
+        avoid this error condition. In fact, the principles of boundary value testing suggest that it's a good idea
+        to have a test case that has <U>exactly</U> one line longer. Therefore:
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="file" when="fileName"&gt; <BR/>
+          &nbsp; ... <BR/>
+          &nbsp; &lt;VarSet name="contents" when="fileExists"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="linesLongerThanPattern"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Value name="one" property="matchable"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="many" property="matchable"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/VarSet&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+      <P>
+        But this is a corner case that doesn't bear repeating. It's a chore to create a test file that meets this special condition, and it's
+        complicated to stretch such a file to meet additional conditions. Moreover, it's unlikely that this special condition 
+        will have higher-order interactions with other variable combinations. So let's add <SPAN class="code">once="true"</SPAN> to
+        request Tcases to include this value in only one test case.
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="file" when="fileName"&gt; <BR/>
+          &nbsp; ... <BR/>
+          &nbsp; &lt;VarSet name="contents" when="fileExists"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="linesLongerThanPattern"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="one" property="matchable"<SPAN class="exampleEmph"> once="true"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="many" property="matchable"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/VarSet&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+      <P>
+        Nice! But keep in mind that the <SPAN class="code">once</SPAN> hint may not always be respected.
+        
+        <UL>
+          <LI>The <SPAN class="code">once</SPAN> attribute applies only when using 1-tuple coverage. For 
+          higher-order coverage, multiple uses will be required and <SPAN class="code">once</SPAN> is ignored. </LI><P/>
+
+          <LI>Even when <SPAN class="code">once="true"</SPAN>, a <SPAN class="code">Value</SPAN> may be used more than once
+            if it is needed to satisfy a constraint in remaining test cases. </LI><P/>
+        </UL>
+      </P>
+
+      <H3><A name="simpleGenDef">Simple Generator Definitions</A></H3>
+      <P>
+        Tcases provides some options to make it easier to create and update a simple <A href="#genDef">generator definition</A>
+        document.
+      </P>
+
+      <H4>Defining A Random Seed</H4>
+      <P>
+        To define a random combination seed, use the <SPAN class="code">-r</SPAN> option. For example, the following command
+        generates test cases with a default <SPAN class="code">TupleGenerator</SPAN> that uses the specified seed value.
+
+        <DIV class="exampleCode">
+          &gt; tcases.sh <SPAN class="codeEmph">-r 299293214</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        If you already have a <SPAN class="code">${projectName}-Generators.xml</SPAN> file, this command will
+        update the file by adding or changing the default <SPAN class="code">seed</SPAN> value, as shown
+        below. If no <SPAN class="code">${projectName}-Generators.xml</SPAN> file exists, it will create one.
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">seed="299293214"</SPAN>/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H4>Defining The Default Coverage Level</H4>
+      <P>
+        To define the default coverage level for all functions, use the <SPAN class="code">-c</SPAN> option. For example, the following command
+        generates test cases with a default <SPAN class="code">TupleGenerator</SPAN> that uses the specified coverage level.
+
+        <DIV class="exampleCode">
+          &gt; tcases.sh <SPAN class="codeEmph">-c 2</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        If you already have a <SPAN class="code">${projectName}-Generators.xml</SPAN> file, this command will
+        update the file by adding or changing the default <SPAN class="code">tuples</SPAN> value, as shown
+        below. If no <SPAN class="code">${projectName}-Generators.xml</SPAN> file exists, it will create one.
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">tuples="2"</SPAN>/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H3><A name="trouble">Troubleshooting FAQs</A></H3>
+      <P>(TBD)</P>
 
       <H2><A name="transform">Transforming Test Cases</A></H2>
+      <P>
+        The test case definitions that Tcases produces are not directly executable. Their purpose is to specify and guide the construction
+        of actual tests. But because test case definitions appear in a well-defined XML document, it's not hard to transform them into
+        a more concrete form. This section describes the options Tcases offers for output transformations.
+      </P>
 
       <H3><A name="junit">Creating JUnit Tests</A></H3>
       <P>
+        Transforming test cases into JUnit code is a capability that built into the <SPAN class="code">tcases.sh</SPAN> command. How does it work?
+        Just add the <SPAN class="code">-J</SPAN> option, and Tcases will automatically writes test case definitions in the form of Java code for
+        a JUnit test.
+      </P>
+      <P>
+        Here's a simple example. Try out these commands:
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases.sh <SPAN class="codeEmph">-J</SPAN> &lt; find-Input.xml <BR/>
+        </DIV>
+      </P>
+      <P>
+        Here's what you'll see printed to standard output: 
+        each test case definition has been transformed into a JUnit4 <SPAN class="code">@Test</SPAN> method. The name of the method
+        is based on the <SPAN class="code">Function</SPAN> name. And the Javadoc comments describe the input values for this test case. The
+        body of the method is empty, waiting for the implementation to be filled in by you.
+
+        <DIV class="exampleDoc">
+          <SPAN class="exampleComment">
+          &nbsp; /** <BR/>
+          &nbsp;  * Tests <SPAN class="exampleEmph">{@link Examples#find find()}</SPAN> using the following inputs.<BR/>
+          &nbsp;  * &lt;P&gt;<BR/>
+          &nbsp;  * &lt;TABLE border="1" cellpadding="8"&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; 0. find (Success) &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH&gt; Input Choice &lt;/TH&gt; &lt;TH&gt; Value &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.size &lt;/TD&gt; &lt;TD&gt; empty &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.quoted &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.blanks &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.embeddedQuotes &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; fileName &lt;/TD&gt; &lt;TD&gt; defined &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.exists &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.linesLongerThanPattern &lt;/TD&gt; &lt;TD&gt; one &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patterns &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patternsInLine &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;/TABLE&gt;<BR/>
+          &nbsp;  * &lt;/P&gt;<BR/>
+          &nbsp;  */<BR/>
+          </SPAN>
+          &nbsp; @Test<BR/>
+          &nbsp; public void find_0()<BR/>
+          &nbsp; &nbsp; {<BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Then...</SPAN><BR/>
+          &nbsp; &nbsp; } <BR/>
+          &nbsp; ...<BR/>
+        </DIV>
+      </P>
+      <P>
+        For failure test cases, the Javadoc highlights the single invalid value that defines the case.
+
+        <DIV class="exampleDoc">
+          &nbsp; ...<BR/>
+          <SPAN class="exampleComment">
+          &nbsp; /** <BR/>
+          &nbsp;  * Tests <SPAN class="exampleEmph">{@link Examples#find find()}</SPAN> using the following inputs. <BR/>
+          &nbsp;  * &lt;P&gt; <BR/>
+          &nbsp;  * &lt;TABLE border="1" cellpadding="8"&gt; <BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; 6. find <SPAN class="exampleEmph">(&lt;FONT color="red"&gt;Failure&lt;/FONT&gt;)</SPAN> &lt;/TH&gt;&lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH&gt; Input Choice &lt;/TH&gt; &lt;TH&gt; Value &lt;/TH&gt;&lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.size &lt;/TD&gt; &lt;TD&gt; empty &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.quoted &lt;/TD&gt; &lt;TD&gt; <SPAN class="exampleEmph">&lt;FONT color="red"&gt; unterminated&nbsp; &lt;/FONT&gt; &lt;/TD&gt; &lt;/TR&gt;</SPAN> <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.blanks &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.embeddedQuotes &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; fileName &lt;/TD&gt; &lt;TD&gt; defined &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.exists &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.linesLongerThanPattern &lt;/TD&gt; &lt;TD&gt; many &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patterns &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patternsInLine &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;/TABLE&gt; <BR/>
+          &nbsp;  * &lt;/P&gt; <BR/>
+          &nbsp;  */ <BR/>
+          </SPAN> 
+          &nbsp; @Test <BR/>
+          &nbsp; public void find_6() <BR/>
+          &nbsp; &nbsp; { <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN> <BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN> <BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Then...</SPAN> <BR/>
+          &nbsp; &nbsp; } <BR/>
+          &nbsp; ...<BR/>
+        </DIV>
+      </P>
+      <P>
+        The <SPAN class="code">-J</SPAN> option is most useful when the <SPAN class="code">System</SPAN> corresponds to a class and each
+        <SPAN class="code">Function</SPAN> corresponds to a class method to be tested. Accordingly, the Javadoc includes an <SPAN class="code">@link</SPAN>
+        to the method-under-test, as shown above. You can customize the form of this <SPAN class="code">@link</SPAN> by defining either the
+        <SPAN class="code">class</SPAN> parameter or the <SPAN class="code">system</SPAN> parameter. For example, if you use the options "<SPAN class="code">-J -p class=MyClass</SPAN>", then the output looks like this:
+
+        <DIV class="exampleDoc">
+          <SPAN class="exampleComment">
+          &nbsp; /** <BR/>
+          &nbsp;  * Tests <SPAN class="exampleEmph">{@link MyClass#find find()}</SPAN> using the following inputs.<BR/>
+          &nbsp;  * &lt;P&gt;<BR/>
+          &nbsp;  * &lt;TABLE border="1" cellpadding="8"&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; 0. find (Success) &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH&gt; Input Choice &lt;/TH&gt; &lt;TH&gt; Value &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.size &lt;/TD&gt; &lt;TD&gt; empty &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.quoted &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.blanks &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.embeddedQuotes &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; fileName &lt;/TD&gt; &lt;TD&gt; defined &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.exists &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.linesLongerThanPattern &lt;/TD&gt; &lt;TD&gt; one &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patterns &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patternsInLine &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;/TABLE&gt;<BR/>
+          &nbsp;  * &lt;/P&gt;<BR/>
+          &nbsp;  */<BR/>
+          </SPAN>
+          &nbsp; @Test<BR/>
+          &nbsp; public void find_0()<BR/>
+          &nbsp; &nbsp; {<BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Then...</SPAN><BR/>
+          &nbsp; &nbsp; } <BR/>
+          &nbsp; ...<BR/>
+        </DIV>
+      </P>
+      <P>
+        Alternatively, if you use the options "<SPAN class="code">-J -p system=MySystem</SPAN>", then the output looks like this:
+
+        <DIV class="exampleDoc">
+          <SPAN class="exampleComment">
+          &nbsp; /** <BR/>
+          &nbsp;  * Tests <SPAN class="exampleEmph">MySystem</SPAN> using the following inputs.<BR/>
+          &nbsp;  * &lt;P&gt;<BR/>
+          &nbsp;  * &lt;TABLE border="1" cellpadding="8"&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; 0. find (Success) &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH&gt; Input Choice &lt;/TH&gt; &lt;TH&gt; Value &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.size &lt;/TD&gt; &lt;TD&gt; empty &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.quoted &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.blanks &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.embeddedQuotes &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; fileName &lt;/TD&gt; &lt;TD&gt; defined &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.exists &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.linesLongerThanPattern &lt;/TD&gt; &lt;TD&gt; one &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patterns &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patternsInLine &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;/TABLE&gt;<BR/>
+          &nbsp;  * &lt;/P&gt;<BR/>
+          &nbsp;  */<BR/>
+          </SPAN>
+          &nbsp; @Test<BR/>
+          &nbsp; public void find_0()<BR/>
+          &nbsp; &nbsp; {<BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Then...</SPAN><BR/>
+          &nbsp; &nbsp; } <BR/>
+          &nbsp; ...<BR/>
+        </DIV>
+      </P>
+
+      <H3><A name="xslt">Using XSLT Transforms</A></H3>
+      <P>
+        The JUnit output transform is implemented using <A href="http://en.wikipedia.org/wiki/XSLT">XSLT</A> templates. If you've created
+        your own XSLT stylesheet to transform test case definitions, you can apply it using the <SPAN class="code">-x</SPAN> option.
+      </P>
+      <P>
+        For example, 
+        the following command will still send its output to the default test case definition file for the
+        project, <SPAN class="code">${projectName}-Test.xml</SPAN>. But first it transforms the standard test
+        case definition document using the XSLT stylesheet in the <SPAN class="code">myStylesheet.xml</SPAN> file.
+
+        <DIV class="exampleCode">
+          &gt; tcases.sh <SPAN class="codeEmph">-x myStylesheet.xml</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        Because the transformed document is a different kind of document, you'll usually want to write it to a different type of file,
+        using the <SPAN class="code">-f</SPAN> option. For this reason, the <SPAN class="code">-f</SPAN> and <SPAN class="code">-J</SPAN>
+        are typically used together, too.        
+
+        <DIV class="exampleCode">
+          &gt; tcases.sh -x myStylesheet.xml <SPAN class="codeEmph">-f myOutputDoc</SPAN> ${projectName} <BR/>
+          &gt; tcases.sh <SPAN class="codeEmph">-J -f findTest.java</SPAN> find <BR/>
+        </DIV>
+      </P>
+      <P>
+        If your XSLT stylesheet uses parameters, you can assign them values using one or more instances of the <SPAN class="code">-p</SPAN>
+        option. For example:       
+
+        <DIV class="exampleCode">
+          &gt; tcases.sh -x myStylesheet.xml <SPAN class="codeEmph">-p <I>&lt;name&gt;</I>=<I>&lt;value&gt;</I></SPAN> -f myOutputDoc ${projectName} <BR/>
+        </DIV>
+      </P>
+
+      <H2><A name="reference">Further Reference</A></H2>
+      <P>
+        Want more technical details about Tcases? Here are links to some additional information.
+
+        <UL>
+          <LI> The <SPAN class="code">find</SPAN> command <A href="examples/find-Input.xml">example</A></LI><P/>
+          <LI> The <SPAN class="code">tcases.sh</SPAN> <A href="api/com/startingblocktech/tcases/Tcases.Options.html">command line</A></LI><P/>
+          <LI> Document schemas <P/>
+            <UL>
+              <LI> The <A href="system-input.xsd">system input definition document schema</A> </LI><P/>
+              <LI> The <A href="generators.xsd">generator definition document schema</A> </LI><P/>
+              <LI> The <A href="system-test.xsd">test case definition document schema</A> </LI><P/>
+            </UL>
+          <LI> Related testing techniques <P/>
+            <UL>
+              <LI> <A href="http://en.wikipedia.org/wiki/Black-box_testing">Black-box test design</A> </LI><P/>
+              <LI> <A href="http://en.wikipedia.org/wiki/Equivalence_partitioning">Equivalence class partitioning</A> </LI><P/>
+              <LI> <A href="http://csrc.nist.gov/groups/SNS/acts/index.html">Combinatorial testing</A> </LI><P/>
+            </UL>
+          </LI><P/>
+        </UL>
       </P>
 
     </DIV>
