@@ -1,14 +1,14 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.conditions;
+package org.cornutum.tcases.conditions;
 
 /**
- * A {@link com.startingblocktech.tcases.conditions.ICondition condition} that asserts the (non)existence of a single property.
+ * A {@link org.cornutum.tcases.conditions.ICondition condition} that asserts the (non)existence of a single property.
  *
  * @version $Revision$, $Date$
  */

@@ -1,13 +1,13 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.conditions;
+package org.cornutum.tcases.conditions;
 
-import com.startingblocktech.tcases.PropertySet;
+import org.cornutum.tcases.PropertySet;
 
 import org.apache.commons.collections15.IteratorUtils;
 

@@ -1,14 +1,14 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.conditions;
+package org.cornutum.tcases.conditions;
 
-import com.startingblocktech.tcases.PropertySet;
-import com.startingblocktech.tcases.util.ToString;
+import org.cornutum.tcases.PropertySet;
+import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections15.IteratorUtils;
 import org.apache.commons.collections15.iterators.SingletonIterator;
@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * A {@link com.startingblocktech.tcases.conditions.ICondition condition} that defined by the disjunction (logical OR) of one or
+ * A {@link org.cornutum.tcases.conditions.ICondition condition} that defined by the disjunction (logical OR) of one or
  * more {@link IAssertion assertions}.
  *
  * @version $Revision$, $Date$

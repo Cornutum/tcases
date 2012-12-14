@@ -1,15 +1,15 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.io;
+package org.cornutum.tcases.io;
 
-import com.startingblocktech.tcases.*;
-import com.startingblocktech.tcases.util.XmlWriter;
-import static com.startingblocktech.tcases.io.SystemTestDoc.*;
+import org.cornutum.tcases.*;
+import org.cornutum.tcases.util.XmlWriter;
+import static org.cornutum.tcases.io.SystemTestDoc.*;
 
 import org.apache.commons.collections15.IteratorUtils;
 

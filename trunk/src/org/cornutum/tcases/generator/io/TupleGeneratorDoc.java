@@ -1,15 +1,15 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.generator.io;
+package org.cornutum.tcases.generator.io;
 
 
 /**
- * Defines constants for the identifiers in a {@link com.startingblocktech.tcases.generator.TupleGenerator}
+ * Defines constants for the identifiers in a {@link org.cornutum.tcases.generator.TupleGenerator}
  * definition document.
  *
  * @version $Revision$, $Date$

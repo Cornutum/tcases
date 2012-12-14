@@ -1,13 +1,13 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.io;
+package org.cornutum.tcases.io;
 
-import com.startingblocktech.tcases.SystemTestDef;
+import org.cornutum.tcases.SystemTestDef;
 
 /**
  * Interface for reading a {@link SystemTestDef} instance.

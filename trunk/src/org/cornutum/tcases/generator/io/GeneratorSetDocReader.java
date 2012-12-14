@@ -1,16 +1,16 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.generator.io;
+package org.cornutum.tcases.generator.io;
 
-import com.startingblocktech.tcases.generator.*;
-import static com.startingblocktech.tcases.DefUtils.*;
-import static com.startingblocktech.tcases.generator.io.GeneratorSetDoc.*;
-import static com.startingblocktech.tcases.generator.io.TupleGeneratorDoc.*;
+import org.cornutum.tcases.generator.*;
+import static org.cornutum.tcases.DefUtils.*;
+import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
+import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;

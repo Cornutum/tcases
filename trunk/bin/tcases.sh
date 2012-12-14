@@ -1,7 +1,7 @@
 #######################################################################
 #
-#                Copyright 2010, Starting Block Technologies
-#                         www.startingblocktech.com
+#                     Copyright 2012, Cornutum Project
+#                              www.cornutum.org
 # 
 #                         $Revision$
 #      $Date$
@@ -128,7 +128,7 @@ fi
 java \
   -cp "$classPath" \
   -Dtcases.log.file="$logFile" \
-  com.startingblocktech.tcases.Tcases \
+  org.cornutum.tcases.Tcases \
   ${genDef:+-g "$genDef"} \
   ${seed:+-r "$seed"} \
   ${defTupleSize:+-c "$defTupleSize"} \

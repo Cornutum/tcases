@@ -1,16 +1,16 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.generator.io;
+package org.cornutum.tcases.generator.io;
 
-import com.startingblocktech.tcases.IVarDef;
-import com.startingblocktech.tcases.VarDef;
-import com.startingblocktech.tcases.VarSet;
-import com.startingblocktech.tcases.generator.*;
+import org.cornutum.tcases.IVarDef;
+import org.cornutum.tcases.VarDef;
+import org.cornutum.tcases.VarSet;
+import org.cornutum.tcases.generator.*;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

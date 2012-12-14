@@ -1,14 +1,14 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.ant;
+package org.cornutum.tcases.ant;
 
-import com.startingblocktech.tcases.Tcases;
-import com.startingblocktech.tcases.Tcases.Options;
+import org.cornutum.tcases.Tcases;
+import org.cornutum.tcases.Tcases.Options;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;

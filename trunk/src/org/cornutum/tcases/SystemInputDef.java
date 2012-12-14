@@ -1,14 +1,14 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases;
+package org.cornutum.tcases;
 
-import com.startingblocktech.tcases.util.ToString;
-import static com.startingblocktech.tcases.DefUtils.*;
+import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.DefUtils.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;

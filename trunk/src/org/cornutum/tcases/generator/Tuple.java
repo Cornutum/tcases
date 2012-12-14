@@ -1,17 +1,17 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.generator;
+package org.cornutum.tcases.generator;
 
-import com.startingblocktech.tcases.PropertySet;
-import com.startingblocktech.tcases.VarBindingDef;
-import com.startingblocktech.tcases.VarDef;
-import com.startingblocktech.tcases.VarValueDef;
-import com.startingblocktech.tcases.util.ToString;
+import org.cornutum.tcases.PropertySet;
+import org.cornutum.tcases.VarBindingDef;
+import org.cornutum.tcases.VarDef;
+import org.cornutum.tcases.VarValueDef;
+import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;

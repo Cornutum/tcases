@@ -1,16 +1,16 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.io;
+package org.cornutum.tcases.io;
 
-import com.startingblocktech.tcases.*;
-import com.startingblocktech.tcases.conditions.*;
+import org.cornutum.tcases.*;
+import org.cornutum.tcases.conditions.*;
 
-import static com.startingblocktech.tcases.DefUtils.*;
+import static org.cornutum.tcases.DefUtils.*;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
