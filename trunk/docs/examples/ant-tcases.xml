@@ -6,7 +6,7 @@
   <property name="tcases.dir" location="../.."/>
 
   <!-- Defines the 'tcases' task -->
-  <taskdef name="tcases" classname="com.startingblocktech.tcases.ant.TcasesTask">
+  <taskdef name="tcases" classname="org.cornutum.tcases.ant.TcasesTask">
     <classpath>
       <pathelement location="${tcases.dir}/lib"/> <!-- Include this to locate standard logging configuration -->
       <fileset dir="${tcases.dir}/lib" includes="*.jar"/>
