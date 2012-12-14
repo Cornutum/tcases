@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.conditions;
+package org.cornutum.tcases.conditions;
 
 /**
  * Defines the Visitor pattern for {@link ICondition condition} objects.

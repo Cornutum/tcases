@@ -1,15 +1,15 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.generator;
+package org.cornutum.tcases.generator;
 
-import com.startingblocktech.tcases.*;
-import com.startingblocktech.tcases.conditions.*;
-import com.startingblocktech.tcases.util.ToString;
+import org.cornutum.tcases.*;
+import org.cornutum.tcases.conditions.*;
+import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections15.Predicate;
 

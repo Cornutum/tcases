@@ -1,16 +1,16 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.generator;
+package org.cornutum.tcases.generator;
 
-import com.startingblocktech.tcases.VarBindingDef;
-import com.startingblocktech.tcases.VarDef;
-import com.startingblocktech.tcases.VarValueDef;
-import com.startingblocktech.tcases.util.ToString;
+import org.cornutum.tcases.VarBindingDef;
+import org.cornutum.tcases.VarDef;
+import org.cornutum.tcases.VarValueDef;
+import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections15.IteratorUtils;
 import org.apache.commons.collections15.Predicate;
@@ -96,8 +96,8 @@ public class VarTupleSet
    * If <CODE>once</CODE> is non-null, the tuples returned depends on the {@link
    * VarValueDef#getType type} of the value bound. If <CODE>once</CODE> is true, returns only
    * 1-tuples that bind the variable to a value of type {@link
-   * com.startingblocktech.tcases.VarValueDef.Type#ONCE ONCE}. Otherwise, returns n-tuples where n
-   * &gt; 1 or where the value type is {@link com.startingblocktech.tcases.VarValueDef.Type#VALID
+   * org.cornutum.tcases.VarValueDef.Type#ONCE ONCE}. Otherwise, returns n-tuples where n
+   * &gt; 1 or where the value type is {@link org.cornutum.tcases.VarValueDef.Type#VALID
    * VALID}.
    */
   public Iterator<Tuple> getUsed( final List<VarDef> vars, final Boolean once)

@@ -1,13 +1,13 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.conditions;
+package org.cornutum.tcases.conditions;
 
-import com.startingblocktech.tcases.util.ToString;
+import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Base class for {@link com.startingblocktech.tcases.conditions.ICondition conditions} that evaluate a predicate on a set of properties.
+ * Base class for {@link org.cornutum.tcases.conditions.ICondition conditions} that evaluate a predicate on a set of properties.
  *
  * @version $Revision$, $Date$
  */

@@ -1,13 +1,13 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.io;
+package org.cornutum.tcases.io;
 
-import com.startingblocktech.tcases.util.ToString;
+import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;

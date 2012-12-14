@@ -1,12 +1,12 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //                           All Rights Reserved
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.util;
+package org.cornutum.tcases.util;
 
 import static org.junit.Assert.*;
 

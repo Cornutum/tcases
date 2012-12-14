@@ -1,14 +1,14 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.generator;
+package org.cornutum.tcases.generator;
 
-import com.startingblocktech.tcases.VarBindingDef;
-import com.startingblocktech.tcases.VarValueDef;
+import org.cornutum.tcases.VarBindingDef;
+import org.cornutum.tcases.VarValueDef;
 
 /**
  * Thrown when binding a variable that is already bound to a different value.

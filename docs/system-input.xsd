@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <xs:schema 
    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-   targetNamespace="http://www.startingblocktech.com/tcases"
-   xmlns="http://www.startingblocktech.com/tcases"
+   targetNamespace="http://www.cornutum.org/tcases"
+   xmlns="http://www.cornutum.org/tcases"
    >
   <!-- 
   //////////////////////////////////////////////////////////////////////////////
   // 
-  //               Copyright 2010, Starting Block Technologies
-  //                        www.startingblocktech.com
+  //                    Copyright 2012, Cornutum Project
+  //                             www.cornutum.org
   //
   //////////////////////////////////////////////////////////////////////////////
   -->

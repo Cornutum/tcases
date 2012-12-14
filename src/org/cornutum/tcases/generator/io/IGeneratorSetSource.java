@@ -1,13 +1,13 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//               Copyright 2010, Starting Block Technologies
-//                        www.startingblocktech.com
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package com.startingblocktech.tcases.generator.io;
+package org.cornutum.tcases.generator.io;
 
-import com.startingblocktech.tcases.generator.IGeneratorSet;
+import org.cornutum.tcases.generator.IGeneratorSet;
 
 /**
  * Interface for reading an {@link IGeneratorSet} instance.
