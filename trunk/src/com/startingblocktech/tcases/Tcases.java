@@ -833,46 +833,40 @@ public class Tcases
       IOUtils.closeQuietly( inputStream);
       }
 
-    // Identify the test definition file. 
+    // Test definition defined?
     File testDefFile = options.getTestDef();
-    File baseDefFile = null;
+    if( testDefFile == null && inputDefFile != null)
+      {
+      // No, derive default from input file.
+      String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
 
+      String testDefBase =
+        inputBase.toLowerCase().endsWith( "-input")
+        ? inputBase.substring( 0, inputBase.length() - "-input".length())
+        : inputBase;
+
+      testDefFile = new File( testDefBase + "-Test.xml");
+      }
+
+    // Identify base test definition file.
+    File baseDefFile = testDefFile;
+    if( baseDefFile != null && !baseDefFile.isAbsolute())
+      {
+      // For relative path, read base test definitions from input directory.
+      baseDefFile = new File( inputDir, baseDefFile.getPath());
+      }
+
+    // Output file defined?
     File outputDir = options.getOutDir();
     File outputFile = options.getOutFile();
-    if( outputFile == null)
+    if ( outputFile == null)
       {
+      // No, defaults to test definition file.
       outputFile = testDefFile;
       }
-    
-    if( !(inputDefFile == null && outputFile == null))
+    if( outputFile != null)
       {
-      // Test definition defined?
-      if( testDefFile == null)
-        {
-        // No, derive default from input file.
-        String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
-
-        String testDefBase =
-          inputBase.toLowerCase().endsWith( "-input")
-          ? inputBase.substring( 0, inputBase.length() - "-input".length())
-          : inputBase;
-
-        testDefFile = new File( testDefBase + "-Test.xml");
-        }
-
-      // For relative path, read base test definitions from input directory.
-      baseDefFile = testDefFile;
-      if( !baseDefFile.isAbsolute())
-        {
-        baseDefFile = new File( inputDir, baseDefFile.getPath());
-        }
-
-      // For relative path, write test definitions to output directory.
-      if( outputFile == null)
-        {
-        outputFile = testDefFile;
-        }
-      
+      // Ensure output directory exists.
       if( outputDir == null)
         {
         outputDir =
@@ -880,19 +874,17 @@ public class Tcases
           ? outputFile.getParentFile()
           : inputDir;
         }
+      if( !outputDir.exists() && !outputDir.mkdirs())
+        {
+        throw new RuntimeException( "Can't create output directory=" + outputDir);
+        }
 
       outputFile =
         new File
         ( outputDir,
           outputFile.isAbsolute()? outputFile.getName() : outputFile.getPath());
-
-      // Ensure output directory exists.
-      if( !outputDir.exists() && !outputDir.mkdirs())
-        {
-        throw new RuntimeException( "Can't create output directory=" + outputDir);
-        }
       }
-            
+
     SystemTestDef baseDef = null;
     if( options.isExtended() && baseDefFile != null && baseDefFile.exists())
       {
