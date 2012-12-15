@@ -1,3 +1,0 @@
-= Getting Started =
-
-  * [http://www.cornutum.org/tcases/docs/Tcases-Guide.htm Tcases: The Complete Guide]
