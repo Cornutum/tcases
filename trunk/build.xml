@@ -225,6 +225,21 @@
     </copy>
   </target>
 
+  <target name="version" description="Updates source files to record the specified &#36;{version.id}">
+    <fail unless="version.id" message="No version id specified. Please define property=version.id"/>
+    <echo>Setting version=${version.id}</echo>
+    <replaceregexp 
+       file="${src.dir}/org/cornutum/tcases/Tcases.java"
+       match="(public static final String VERSION = .)[0-9.]*(.;)"
+       replace="\1${version.id}\2"
+       />
+    <replaceregexp 
+       file="global-properties.xml"
+       match="(property name=.release.id. value=.)[0-9.]*"
+       replace="\1${version.id}"
+       />
+  </target>
+
   <target name="none">
     <fail>No default target defined.</fail>
   </target>
