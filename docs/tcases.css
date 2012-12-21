@@ -128,7 +128,7 @@ DIV.exampleDoc
     margin-bottom: 2em;
     width: 75%;
     max-height: 21em;
-    overflow: scroll;
+    overflow: auto;
 }
 
 SPAN.exampleComment
