@@ -13,7 +13,7 @@ pgm=`basename $0 .sh`
 
 usage()
 {
-  echo Usage: $script "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-o outDir] [-p name=value] [-r seed] [-t testDef] [-x transformDef | -J] [inputDef]" >&2
+  echo Usage: $script "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-o outDir] [-p name=value] [-r seed] [-t testDef] [-v] [-x transformDef | -J] [inputDef]" >&2
   echo "" >&2
   echo "  Generates a set of test cases from a system input definition, according" >&2
   echo "  to the given command line arguments." >&2
@@ -65,14 +65,17 @@ usage()
   echo "  -r seed     If -r is defined, use the given random number seed for all generators." >&2
   echo "              This updates the generator definitions specified by the genDef file." >&2
   echo "" >&2
-  echo "  -x xltDef   If -x is defined, test definition output is transformed according to the" >&2
-  echo "              XSLT transform defined by the xltDef file. If relative, the xltDef path is" >&2
-  echo "              assumed to be relative to the directory containing the inputDef." >&2
-  echo "" >&2
  	echo "  -t testDef  If -t is defined, test definition output is written to the specified" >&2
   echo "              testDef path, relative to the outDir. If omitted, the default testDef" >&2
   echo "              name is derived from the inputDef name. If an output path cannot be" >&2
   echo "              derived, output is written to standard output." >&2
+  echo "" >&2
+ 	echo "  -v          Shows the current Tcases version. If this option is given, no other" >&2
+  echo "              action is performed." >&2
+  echo "" >&2
+  echo "  -x xltDef   If -x is defined, test definition output is transformed according to the" >&2
+  echo "              XSLT transform defined by the xltDef file. If relative, the xltDef path is" >&2
+  echo "              assumed to be relative to the directory containing the inputDef." >&2
 }
 
 while [ $# -gt 0 ] ; do
@@ -87,6 +90,7 @@ while [ $# -gt 0 ] ; do
     -p) shift; params="$params -p $1";;
     -r) shift; seed="$1";;
     -t) shift; testDef="$1";;
+    -v) showVersion="$1";;
     -x) shift; xsltDef="$1";;
     -*) usage; exit 1;;
      *) break;;
@@ -129,6 +133,7 @@ java \
   -cp "$classPath" \
   -Dtcases.log.file="$logFile" \
   org.cornutum.tcases.Tcases \
+  $showVersion \
   ${genDef:+-g "$genDef"} \
   ${seed:+-r "$seed"} \
   ${defTupleSize:+-c "$defTupleSize"} \

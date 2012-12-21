@@ -25,6 +25,8 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -52,6 +54,7 @@ public class Tcases
    * [-p <I>name</I>=<I>value</I>]
    * [-r <I>seed</I>]
    * [-t <I>testDef</I>]
+   * [-v]
    * [-x <I>transformDef</I> | -J]
    * [<I>inputDef</I>]
    * </NOBR>
@@ -237,6 +240,18 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-v </NOBR>
+   * </TD>
+   * <TD>
+   * Prints the current Tcases version identifier to standard output.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR><I>inputDef</I> </NOBR>
    * </TD>
    * <TD>
@@ -318,6 +333,11 @@ public class Tcases
           throwUsageException();
           }
         setTestDef( new File( args[i]));
+        }
+
+      else if( arg.equals( "-v"))
+        {
+        setShowVersion( true);
         }
 
       else if( arg.equals( "-g"))
@@ -680,6 +700,22 @@ public class Tcases
       return workingDir_;
       }
 
+    /**
+     * Changes if the current version should be shown.
+     */
+    public void setShowVersion( boolean showVersion)
+      {
+      showVersion_ = showVersion;
+      }
+
+    /**
+     * Returns if the current version should be shown.
+     */
+    public boolean showVersion()
+      {
+      return showVersion_;
+      }
+
     public String toString()
       {
       StringBuilder builder = new StringBuilder();
@@ -727,6 +763,11 @@ public class Tcases
         builder.append( " -t ").append( getTestDef().getPath());
         }
 
+      if( showVersion())
+        {
+        builder.append( " -v");
+        }
+
       if( getTransformDef() != null)
         {
         builder.append( " -x ").append( getTransformDef().getPath());
@@ -752,6 +793,7 @@ public class Tcases
     private Long seed_;
     private Integer defaultTupleSize_;
     private File workingDir_;
+    private boolean showVersion_;
     }
   
   /**
@@ -790,6 +832,12 @@ public class Tcases
    */
   public void run( Options options) throws Exception
     {
+    if( options.showVersion())
+      {
+      System.out.println( getVersion());
+      return;
+      }
+    
     // Identify the system input definition file.
     File inputDefOption = options.getInputDef();
     if( inputDefOption != null && !inputDefOption.isAbsolute())
@@ -1079,5 +1127,19 @@ public class Tcases
       }
     }
 
+  /**
+   * Returns a description of the current version.
+   */
+  public static String getVersion()
+    {
+    Pattern versionDatePattern = Pattern.compile( "Date: (\\S*)");
+    Matcher versionDateMatcher = versionDatePattern.matcher( VERSION_DATE);
+    versionDateMatcher.find();
+    
+    return "Tcases " + VERSION + " (" + versionDateMatcher.group(1) + ")";
+    }
+
+  public static final String VERSION = "0.0.1";
+  public static final String VERSION_DATE = "$Date$";
   private static final Logger logger_ = LoggerFactory.getLogger( Tcases.class);
   }
