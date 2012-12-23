@@ -490,6 +490,7 @@ public class Tcases
         new RuntimeException
         ( "Usage: "
           + Tcases.class.getSimpleName()
+          + " [-v]"
           + " [-c tupleSize]"
           + " [-f outFile]"
           + " [-g genDef]"
