@@ -52,6 +52,7 @@
     <copy todir="${release.dir}/bin">
       <fileset dir="${bin.dir}">
         <include name="*.sh"/>
+        <include name="*.bat"/>
       </fileset>
     </copy>
 

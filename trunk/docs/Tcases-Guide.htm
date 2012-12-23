@@ -203,16 +203,32 @@
         </DIV>
       </P>
       <P>
-        For details about the interface to the <SPAN class="code">tcases.sh</SPAN> command, see the
-        Javadoc
-        for the <A href="api/org/cornutum/tcases/Tcases.Options.html"><SPAN class="code">Tcases.Options</SPAN></A> class.
-        To get help at the command line, run <SPAN class="code">tcases.sh -help</SPAN>.
+        Alternatively, if you are using a Windows command line, you can run Tcases using the <SPAN class="code">tcases.bat</SPAN> command.
+        For example:
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs\examples <BR/>
+          &gt; tcases &lt; find-Input.xml <BR/>
+        </DIV>
+      </P>
+      <P>
+        In this guide, examples are illustrated using the UNIX-style <SPAN class="code">tcases.sh</SPAN>
+        command. But if you prefer, you can substitute the Windows-style <SPAN class="code">tcases.bat</SPAN>
+        command, and everything will work exactly the same.
+      </P>
+      <P>
+        For details about the interface to the <SPAN class="code">tcases.sh</SPAN> command (and
+        the <SPAN class="code">tcases.bat</SPAN> command, too), see the Javadoc for
+        the <A href="api/org/cornutum/tcases/Tcases.Options.html"><SPAN class="code">Tcases.Options</SPAN></A>
+        class.  To get help at the command line, run <SPAN class="code">tcases.sh -help</SPAN>.
       </P>
 
       <H3><A name="run-ant">Running With Ant</A></H3>
       <P>
-        You can also run Tcases as an Ant task. For an example of how this works, take a look at <SPAN class="code">docs/examples/ant-tcases.xml</SPAN>.
-        Want to try it out? Run the the following commands.
+        You can also run Tcases as an Ant task (requires Ant 1.8.2 or later). For an example of how this works,
+        take a look at <SPAN class="code">docs/examples/ant-tcases.xml</SPAN>.  Want to try it out? Run the the
+        following commands.
         
         <DIV class="exampleCode">
           &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
