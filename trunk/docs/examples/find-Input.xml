@@ -58,7 +58,7 @@
           <Value name="yes" property="fileExists"/>
           <Value name="no" failure="true"/>
         </Var>
-        <VarSet name="contents" when="fileExists">
+        <VarSet name="contents" when="fileExists" whenNot="empty">
           <Var name="linesLongerThanPattern">
             <Value name="one" property="matchable" once="true"/>
             <Value name="many" property="matchable"/>
