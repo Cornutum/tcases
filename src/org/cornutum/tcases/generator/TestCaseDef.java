@@ -118,6 +118,31 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Returns true if this test case uses all the bindings in the given tuple.
+   */
+  public boolean usesTuple( Tuple tuple)
+    {
+    Iterator<VarBindingDef> tupleBindings;
+    boolean uses;
+    for( tupleBindings = tuple.getBindings(),
+           uses = tuple.size() > 0;
+
+         uses && tupleBindings.hasNext();
+
+         uses = usesBinding( tupleBindings.next()));
+
+    return uses;
+    }
+
+  /**
+   * Returns true if this test case uses the given binding.
+   */
+  public boolean usesBinding( VarBindingDef binding)
+    {
+    return binding.getValueDef().equals( getValue( binding.getVarDef()));
+    }
+
+  /**
    * If the given tuple is compatible with the current test case definition, adds any
    * new bindings. Returns null if the tuple is incompatible. Otherwise, returns a new
    * tuple containing the new bindings actually added.
