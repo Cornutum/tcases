@@ -133,6 +133,29 @@ public class VarTupleSet
     }
 
   /**
+   * Asserts use of all tuples contained in the given test case.
+   */
+  public void used( final TestCaseDef testCase)
+    {
+    List<Tuple> usedTuples =
+      IteratorUtils.toList
+      ( IteratorUtils.filteredIterator
+        ( unused_.iterator(),
+          new Predicate<Tuple>()
+            {
+            public boolean evaluate( Tuple tuple)
+              {
+              return testCase.usesTuple( tuple);
+              }
+            }));
+
+    for( Tuple tuple : usedTuples)
+      {
+      used( tuple);
+      }
+    }
+
+  /**
    * Asserts that the given tuple has been used in a test case.
    */
   public void used( Tuple tuple)

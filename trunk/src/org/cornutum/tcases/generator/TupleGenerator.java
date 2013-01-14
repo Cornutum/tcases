@@ -244,49 +244,12 @@ public class TupleGenerator implements ITestCaseGenerator
       TestCaseDef testCase = baseCases.next();
       logger_.debug( "Extending base test case={}", testCase);
 
-      // Record any unused tuples consumed by initial bindings.
-      Set<VarDef> testCaseBindings = new HashSet<VarDef>( IteratorUtils.toList( testCase.getVars()));
-      List<Tuple> usedInit = new ArrayList<Tuple>();
-      for( Iterator<Tuple> unused = validTuples.getUnused();
-           !testCaseBindings.isEmpty() && unused.hasNext();)
-        {
-        Tuple tuple = unused.next();
-
-        // All tuple bindings used by this test case?
-        boolean consumed;
-        VarBindingDef tupleBinding;
-        Iterator<VarBindingDef> tupleBindings;
-        
-        for( tupleBindings = tuple.getBindings(),
-               consumed = true;
-
-             consumed
-               && tupleBindings.hasNext()
-               && (tupleBinding = tupleBindings.next()) != null;
-
-             consumed = 
-               tupleBinding.getValueDef()
-               .equals( testCase.getBinding( tupleBinding.getVarDef())));
-
-        if( consumed)
-          {
-          // Yes, consume this tuple.
-          usedInit.add( tuple);
-          for( tupleBindings = tuple.getBindings();
-               tupleBindings.hasNext();
-               testCaseBindings.remove( tupleBindings.next().getVarDef()));
-          }
-        }
-
       // Complete all variable bindings.
       if( completeBindings( testCase, validTuples, getVarsRemaining( inputDef, testCase)))
         {
         logger_.debug( "Completed test case={}", testCase);
+        validTuples.used( testCase);
         testCases.add( testCase);
-        for( Tuple tuple : usedInit)
-          {
-          validTuples.used( tuple);
-          }
         }
       else
         {
@@ -370,7 +333,7 @@ public class TupleGenerator implements ITestCaseGenerator
       if( validCase != null)
         {
         // Yes, add new valid test case.
-        validTuples.used( nextUnused);
+        validTuples.used( validCase);
         validCases.add( validCase);
         }
 
