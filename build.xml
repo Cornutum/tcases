@@ -34,6 +34,7 @@
         <include name="*.xsd"/>
         <include name="*.htm"/>
         <include name="*.css"/>
+        <include name="*.png"/>
       </fileset>
     </copy>
     <mkdir dir="${release.dir}/docs/api"/>
@@ -51,8 +52,8 @@
     <mkdir dir="${release.dir}/bin"/>
     <copy todir="${release.dir}/bin">
       <fileset dir="${bin.dir}">
-        <include name="*.sh"/>
-        <include name="*.bat"/>
+        <include name="tcases"/>
+        <include name="tcases.bat"/>
       </fileset>
     </copy>
 
