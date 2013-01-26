@@ -838,6 +838,7 @@ public class Tcases
       System.out.println( getVersion());
       return;
       }
+    logger_.info( "{}", getVersion());
     
     // Identify the system input definition file.
     File inputDefOption = options.getInputDef();
@@ -1136,11 +1137,22 @@ public class Tcases
     Pattern versionDatePattern = Pattern.compile( "Date: (\\S*)");
     Matcher versionDateMatcher = versionDatePattern.matcher( VERSION_DATE);
     versionDateMatcher.find();
+
+    Pattern versionRevPattern = Pattern.compile( "Revision: (\\S*)");
+    Matcher versionRevMatcher = versionRevPattern.matcher( VERSION_REV);
+    versionRevMatcher.find();
     
-    return "Tcases " + VERSION + " (" + versionDateMatcher.group(1) + ")";
+    return
+      "Tcases "
+      + VERSION + " ("
+      + versionDateMatcher.group(1)
+      + ", rev="
+      + versionRevMatcher.group(1)
+      + ")";
     }
 
-  public static final String VERSION = "0.0.1";
+  public static final String VERSION = "1.0.0";
   public static final String VERSION_DATE = "$Date$";
+  public static final String VERSION_REV = "$Revision$";
   private static final Logger logger_ = LoggerFactory.getLogger( Tcases.class);
   }
