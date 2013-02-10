@@ -884,18 +884,12 @@ public class Tcases
       }
 
     // Test definition defined?
+    String projectName = getProjectName( inputDefFile);
     File testDefFile = options.getTestDef();
     if( testDefFile == null && inputDefFile != null)
       {
       // No, derive default from input file.
-      String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
-
-      String testDefBase =
-        inputBase.toLowerCase().endsWith( "-input")
-        ? inputBase.substring( 0, inputBase.length() - "-input".length())
-        : inputBase;
-
-      testDefFile = new File( testDefBase + "-Test.xml");
+      testDefFile = new File( inputDir, projectName + "-Test.xml");
       }
 
     // Identify base test definition file.
@@ -911,8 +905,14 @@ public class Tcases
     File outputFile = options.getOutFile();
     if ( outputFile == null)
       {
-      // No, defaults to test definition file.
-      outputFile = testDefFile;
+      // No, defaults to...
+      outputFile =
+        // ... JUnit test class file, if generating JUnit
+        options.isJUnit() && inputDefFile != null
+        ? new File( inputDir, projectName + "Test.java")
+
+        // ... else test definition file.
+        : testDefFile;
       }
     if( outputFile != null)
       {
@@ -969,14 +969,7 @@ public class Tcases
       }
     else if( inputDefFile != null)
       {
-      String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
-
-      String genDefBase =
-        inputBase.toLowerCase().endsWith( "-input")
-        ? inputBase.substring( 0, inputBase.length() - "-input".length())
-        : inputBase;
-
-      genDefDefault = new File( inputDir, genDefBase + "-Generators.xml");
+      genDefDefault = new File( inputDir, projectName + "-Generators.xml");
       if( genDefDefault.exists())
         {
         genDefFile = genDefDefault;
@@ -1127,6 +1120,25 @@ public class Tcases
           }
         }
       }
+    }
+
+  /**
+   * Returns the name of the project for the given input definition file.
+   */
+  public static String getProjectName( File inputDefFile)
+    {
+    String projectName = null;
+    if( inputDefFile != null)
+      {
+      String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
+
+      projectName =
+        inputBase.toLowerCase().endsWith( "-input")
+        ? inputBase.substring( 0, inputBase.length() - "-input".length())
+        : inputBase;
+      }
+
+    return projectName;
     }
 
   /**
