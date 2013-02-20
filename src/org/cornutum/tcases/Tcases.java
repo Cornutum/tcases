@@ -909,7 +909,7 @@ public class Tcases
       outputFile =
         // ... JUnit test class file, if generating JUnit
         options.isJUnit() && inputDefFile != null
-        ? new File( inputDir, projectName + "Test.java")
+        ? new File( inputDir, projectName.replaceAll( "\\W+", "") + "Test.java")
 
         // ... else test definition file.
         : testDefFile;
