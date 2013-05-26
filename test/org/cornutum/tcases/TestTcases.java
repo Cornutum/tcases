@@ -1041,7 +1041,6 @@ public class TestTcases
     {
     // Given...
     File inFile = getResourceFile( "run-transform-7");
-    File transformFile = getResourceFile( "run-transform-3.xsl");
     File testDefFile = getResourceFile( "run-transform-7-Test.xml");
     File outFilePath = testDefFile;
 
@@ -1156,8 +1155,7 @@ public class TestTcases
     {
     // Given...
     File inFile = getResourceFile( "run-transform-7");
-    File testDefFile = getResourceFile( "run-transform-7-Test.xml");
-    File outFilePath = getResourceFile( "run-transform-7Test.java");
+    File outFilePath = getResourceFile( "runtransform7Test.java");
 
     String[] args =
       {
