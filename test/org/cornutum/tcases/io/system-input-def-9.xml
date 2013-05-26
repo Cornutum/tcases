@@ -2,15 +2,15 @@
   <Function name="Function-0">
 
     <Input type="arg">
-      <Var name="arg-0-0" when="P1,P2,P3 " whenNot="P4">
-        <Value name="value-0" when="P5,P6" whenNot="P7" property=" P8, P9, ">
+      <Var name="arg-0-0">
+        <Value name="value-0" property=" P8, P9, ">
           <Property name="P10, P11"/>
           <Property name="P11, P12"/>
           <Property name="P12, P13"/>
         </Value>
-        <Value name="value-1" when="P14,P15" whenNot="P16" failure="yes">
+        <Value name="value-1" failure="yes">
         </Value>
-        <Value name="value-2" when="P17, P18" whenNot="P19" property="P20, P20, P21" once="true">
+        <Value name="value-2" property="P20, P20, P21" once="true">
           <Property name="P22,P23,P24,"/>
           <Property name=",P25"/>
         </Value>
@@ -31,22 +31,22 @@
     </Input>
 
     <Input type="env">
-      <VarSet name="env-0-0" whenNot="P26">
+      <VarSet name="env-0-0">
         <Var name="member-0">
           <Value name="value-7"/>
           <Value name="value-8"/>
         </Var>
       </VarSet>
-      <VarSet name="env-0-1" whenNot="P27">
-        <Var name="member-0" when="P1,P2,P3 " whenhNot="P4">
-          <Value name="value-9" when="P14,P15" whenNot="P16" failure="yes">
+      <VarSet name="env-0-1">
+        <Var name="member-0">
+          <Value name="value-9" failure="yes">
           </Value>
-          <Value name="value-10" when="P5,P6" whenNot="P7" property=" P8, P9, ">
+          <Value name="value-10" property=" P8, P9, ">
             <Property name="P10, P11"/>
             <Property name="P11, P12"/>
             <Property name="P12, P13"/>
           </Value>
-          <Value name="value-11" when="P17, P18" whenNot="P19" property="P20, P20, P21" once="true">
+          <Value name="value-11" property="P20, P20, P21" once="true">
             <Property name="P22,P23,P24,"/>
             <Property name=",P25"/>
           </Value>

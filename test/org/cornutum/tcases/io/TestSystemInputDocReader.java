@@ -1475,6 +1475,48 @@ public class TestSystemInputDocReader
     }
 
   /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 38.  getSystemInputDef (Failure: Var.WhenProperties, undefined property) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_38()
+    {
+    assertException( "system-input-def-38.xml", 13, "Property=XXX is undefined");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 39.  getSystemInputDef (Failure: Value.WhenNotProperties, undefined property) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_39()
+    {
+    assertException( "system-input-def-39.xml", 7, "Property=XXX is undefined");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 40.  getSystemInputDef (Failure: Value.Condition, undefined property) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_40()
+    {
+    assertException( "system-input-def-40.xml", 19, "Property=XXX is undefined");
+    }
+
+  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)

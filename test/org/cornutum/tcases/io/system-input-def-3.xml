@@ -2,12 +2,12 @@
   <Function name="Function-0">
 
     <Input type="arg">
-      <VarSet name="arg-0-0" when="P1,P2,P3 " whenNot="P4,P5">
+      <VarSet name="arg-0-0">
         <Var name="member-0">
           <Value name="value_0"/>
         </Var>
       </VarSet>
-      <VarSet name="arg-0-1" when="P8,P9" whenNot="P10,P11,P12">
+      <VarSet name="arg-0-1">
         <Var name="member-0">
           <Value name="value_1"/>
         </Var>

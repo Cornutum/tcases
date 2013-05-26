@@ -4,7 +4,7 @@
     <Input type="state">
 
       <Var name="state-0-0" when="R1," whenNot=",,R2,,R3 ,R3 ,">
-        <Value name="value-0" when="R4" whenNot=" R5, R1 " property=" P1 ">
+        <Value name="value-0" when="R4" whenNot=" R5, XXX " property=" P1 ">
           <Property name="P2, P3, P4, P5"/>
         </Value>
       </Var>

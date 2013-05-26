@@ -16,10 +16,10 @@
     <Input type="env">
       <VarSet name="env-0-0">
         <When>
-          <AnyOf property="P8"/>
+          <AnyOf property="P1"/>
         </When>
         <Var name="member-0">
-          <Value name="value-1"/>
+          <Value name="value-1" property="P2,P3,P4,P5,P6,P7"/>
         </Var>
       </VarSet>
     </Input>    

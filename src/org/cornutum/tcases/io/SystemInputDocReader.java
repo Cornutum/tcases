@@ -21,13 +21,20 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import org.apache.commons.collections15.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -113,6 +120,42 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       }
 
     /**
+     * Records and returns a set of property definitions.
+     */
+    public Set<String> propertiesDefined( Set<String> properties)
+      {
+      if( properties != null)
+        {
+        FunctionHandler functionHandler = getFunctionHandler();
+        Integer currentLine = getDocumentLocator().getLineNumber();
+        for( String property : properties)
+          {
+          functionHandler.addPropertyDef( property, currentLine);
+          }
+        }
+      
+      return properties;
+      }
+
+    /**
+     * Records and returns a set of property references.
+     */
+    public Set<String> propertiesReferenced( Set<String> properties)
+      {
+      if( properties != null)
+        {
+        FunctionHandler functionHandler = getFunctionHandler();
+        Integer currentLine = getDocumentLocator().getLineNumber();
+        for( String property : properties)
+          {
+          functionHandler.addPropertyRef( property, currentLine);
+          }
+        }
+      
+      return properties;
+      }
+
+    /**
      * Converts the given attribute value to a set of property names.
      */
     public Set<String> toProperties( Attributes attributes, String attributeName) throws SAXParseException
@@ -168,6 +211,18 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     public ElementHandler getParent()
       {
       return parent_;
+      }
+
+    /**
+     * Returns the handler for the Function element containing this element.
+     */
+    public FunctionHandler getFunctionHandler()
+      {
+      // By default, same as parent's FunctionHandler.
+      return
+        getParent() == null
+        ? null
+        : getParent().getFunctionHandler();
       }
 
     private ElementHandler parent_;
@@ -237,6 +292,31 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
         {
         throw new SAXParseException( "No input variables defined for " + functionInputDef, getDocumentLocator()); 
         }
+
+      // Any properties defined but not referenced?
+      List<String> propertiesUnused = getPropertiesUnexpected( propertyRefs_, propertyDefs_);
+      for( String property : propertiesUnused)
+        {
+        // Yes, log a warning.
+        int lineNumber = propertyDefs_.get( property);
+        logger_.warn( "line={}: property={} is defined but never used", lineNumber, property);
+        }
+      
+      // Any properties referenced but not defined?
+      List<String> propertiesUnknown = getPropertiesUnexpected( propertyDefs_, propertyRefs_);
+      for( String property : propertiesUnknown)
+        {
+        // Yes, report a failure.
+        int lineNumber = propertyRefs_.get( property);
+        throw
+          new SAXParseException
+          ( "Property=" + property + " is undefined",
+            getDocumentLocator().getPublicId(),
+            getDocumentLocator().getSystemId(),
+            lineNumber,
+            1);
+        }
+      
       SystemHandler parent = (SystemHandler) getParent();
       try
         {
@@ -264,7 +344,59 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       return functionInputDef_;
       }
 
+    /**
+     * Returns the handler for the Function element containing this element.
+     */
+    public FunctionHandler getFunctionHandler()
+      {
+      return this;
+      }
+
+    /**
+     * Records the location of a property definition.
+     */
+    public void addPropertyDef( String property, Integer lineNum)
+      {
+      if( !propertyDefs_.containsKey( property))
+        {
+        propertyDefs_.put( property, lineNum);
+        }
+      }
+
+    /**
+     * Records the location of a property reference.
+     */
+    public void addPropertyRef( String property, Integer lineNum)
+      {
+      if( !propertyRefs_.containsKey( property))
+        {
+        propertyRefs_.put( property, lineNum);
+        }
+      }
+
+    /**
+     * Returns the set of unexpected property names, ordered by increasing line number.
+     */
+    private List<String> getPropertiesUnexpected( Map<String,Integer> expected, final Map<String,Integer> actual)
+      {
+      List<String> unexpected = new ArrayList<String>( CollectionUtils.subtract( actual.keySet(), expected.keySet()));
+      Collections.sort
+        ( unexpected,
+          new Comparator<String>()
+            {
+            public int compare( String property1, String property2)
+              {
+              int line1 = actual.get( property1);
+              int line2 = actual.get( property2);
+              return line1 - line2;
+              }
+            });
+      return unexpected;
+      }
+
     private FunctionInputDef functionInputDef_;
+    private Map<String,Integer> propertyDefs_ = new HashMap<String,Integer>();
+    private Map<String,Integer> propertyRefs_ = new HashMap<String,Integer>();
     }
   
   /**
@@ -337,13 +469,13 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       ICondition condition = null;
       
-      Set<String> when = toProperties( attributes, WHEN_ATR);
+      Set<String> when = propertiesReferenced( toProperties( attributes, WHEN_ATR));
       if( when != null)
         {
         condition = new ContainsAll( when);
         }
 
-      Set<String> whenNot = toProperties( attributes, WHENNOT_ATR);
+      Set<String> whenNot = propertiesReferenced( toProperties( attributes, WHENNOT_ATR));
       if( whenNot != null)
         {
         ICondition excludes = new Not().add( new ContainsAny( whenNot));
@@ -456,7 +588,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     {
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      Set<String> properties = toProperties( attributes, PROPERTY_ATR);
+      Set<String> properties = propertiesReferenced( toProperties( attributes, PROPERTY_ATR));
       if( properties != null)
         {
         withProperties( properties);
@@ -787,7 +919,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
         throw new SAXParseException( "Can't define properties for a failure value", getDocumentLocator()); 
         }
 
-      value.addProperties( toProperties( attributes, PROPERTY_ATR));
+      value.addProperties( propertiesDefined( toProperties( attributes, PROPERTY_ATR)));
       }
 
     public void endElement( String uri, String localName, String qName) throws SAXException
@@ -843,7 +975,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       ValueHandler parent = (ValueHandler) getParent();
       VarValueDef value = parent.getValue();
 
-      Set<String> properties = toProperties( attributes, NAME_ATR);
+      Set<String> properties = propertiesDefined( toProperties( attributes, NAME_ATR));
       if( properties == null || properties.isEmpty())
         {
         throw new SAXParseException( "No property names specified", getDocumentLocator()); 
@@ -1038,4 +1170,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   private static final String TYPE_ATR      = "type";
   private static final String WHENNOT_ATR   = "whenNot";
   private static final String WHEN_ATR      = "when";
+
+  private static final Logger logger_ = LoggerFactory.getLogger( SystemInputDocReader.class);
   }
