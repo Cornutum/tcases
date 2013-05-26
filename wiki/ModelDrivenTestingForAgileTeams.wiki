@@ -1,5 +1,5 @@
-#labels Featured
+#summary Slides from an Agile Austin workshop on model-driven testing
+
 Agile teams know that defects are a drag. Literally! The effort to fix defects bottlenecks the pipeline and busts the sprint. And when defects are reported in production, things really bog down. Looking for a better way? 
 
 Model-driven testing offers a systematic way to answer some important questions. Such as “Are my tests good enough?” And “How many tests do I need?” [http://www.cornutum.org/tcases/docs/Model-Driven-Testing.pdf This presentation] shows how to use open source model-driven testing tools to quickly create small but powerful test suites. 
-
