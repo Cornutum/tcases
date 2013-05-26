@@ -5,7 +5,7 @@
       <Var name="arg-0-0">
         <Value name="value-0" property="P1">
           <When>
-            <AllOf property="P2"/>
+            <AllOf property="R1"/>
           </When>
           <Property name="P3, P4, P5"/>
           <Property name="P6,P7"/>
@@ -16,10 +16,10 @@
     <Input type="env">
       <VarSet name="env-0-0">
         <When>
-          <AnyOf property="P8"/>
+          <AnyOf property="P1"/>
         </When>
         <Var name="member-0">
-          <Value name="value-1"/>
+          <Value name="value-1" property="R1"/>
         </Var>
       </VarSet>
     </Input>    

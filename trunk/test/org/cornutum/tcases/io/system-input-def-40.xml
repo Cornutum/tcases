@@ -16,7 +16,7 @@
             <AllOf property="P1, P2, P3">
               <Not property="P4"/>
               <AllOf property="P5"/>
-              <AnyOf property="P6"/>
+              <AnyOf property="XXX"/>
             </AllOf>
           </When>
         </Value>

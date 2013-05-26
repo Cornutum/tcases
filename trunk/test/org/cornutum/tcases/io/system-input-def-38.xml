@@ -10,7 +10,7 @@
       </Var>
 
       <VarSet name="state-0-1" when="P1">
-        <Var name="member-0" when="P2," whenNot=",,P3,,P4 ,P4 ,">
+        <Var name="member-0" when="XXX," whenNot=",,P3,,P4 ,P4 ,">
           <Value name="value-0" when="P5" whenNot=" P3, P4 " property=" R1 ">
             <Property name="R2, R3, R4, R5"/>
           </Value>
