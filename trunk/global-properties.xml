@@ -12,7 +12,7 @@
   </pathconvert>
 
   <!-- Release tag -->
-  <property name="release.id" value="1.0.0"/>
+  <property name="release.id" value="1.0.1"/>
   <property name="release.tag" value="tcases-${release.id}"/>
   
   <!-- Source directories -->
