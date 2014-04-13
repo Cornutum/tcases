@@ -10,7 +10,7 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.ArrayList;

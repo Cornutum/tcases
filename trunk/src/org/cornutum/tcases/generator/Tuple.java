@@ -13,8 +13,8 @@ import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.VarValueDef;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -205,6 +205,7 @@ public class Tuple
     return compatible;
     }
 
+  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     Tuple other =

@@ -8,7 +8,7 @@
 
 package org.cornutum.tcases.generator;
 
-import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections4.IteratorUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;

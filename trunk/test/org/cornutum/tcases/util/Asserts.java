@@ -10,9 +10,9 @@ package org.cornutum.tcases.util;
 
 import static org.junit.Assert.*;
 
-import org.apache.commons.collections15.CollectionUtils;
-import org.apache.commons.collections15.IteratorUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Collection;

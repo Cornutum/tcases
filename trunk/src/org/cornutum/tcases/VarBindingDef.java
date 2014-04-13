@@ -11,7 +11,7 @@ import org.cornutum.tcases.conditions.AllOf;
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.ObjectUtils;
 
 /**
  * Defines a selection of a {@link VarValueDef value definition} for an {@link VarDef input variable definition}.
@@ -104,6 +104,7 @@ public class VarBindingDef
     return VarValueDef.isNA( valueDef_);
     }
 
+  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     VarBindingDef other =
@@ -117,12 +118,13 @@ public class VarBindingDef
       && ObjectUtils.equals( other.getValueDef(), getValueDef());
     }
 
+  @SuppressWarnings("deprecation")
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ (getVarDef()==null? 0 : getVarDef().hashCode())
-      ^ (getValueDef()==null? 0 : getValueDef().hashCode());
+      ^ ObjectUtils.hashCode( getVarDef())
+      ^ ObjectUtils.hashCode( getValueDef());
     }
 
   public String toString()

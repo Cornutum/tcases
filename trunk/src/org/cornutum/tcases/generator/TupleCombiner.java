@@ -10,8 +10,8 @@ package org.cornutum.tcases.generator;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections15.IteratorUtils;
-import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.collections4.Transformer;
 
 import java.util.ArrayList;
 import java.util.Collection;

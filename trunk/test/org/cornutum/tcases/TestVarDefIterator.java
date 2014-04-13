@@ -11,8 +11,8 @@ package org.cornutum.tcases;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.apache.commons.collections15.IteratorUtils;
-import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.collections4.Transformer;
 
 /**
  * Runs tests for {@link VarDefIterator}.

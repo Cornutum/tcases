@@ -12,7 +12,7 @@ import org.cornutum.tcases.PropertySet;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections4.IteratorUtils;
 
 /**
  * Runs tests for {@link Cnf} methods.

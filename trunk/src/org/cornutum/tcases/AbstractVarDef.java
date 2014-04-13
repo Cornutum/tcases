@@ -12,7 +12,7 @@ import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;

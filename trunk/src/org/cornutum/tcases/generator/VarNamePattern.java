@@ -9,7 +9,7 @@ package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Iterator;

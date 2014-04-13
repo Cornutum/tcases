@@ -12,8 +12,8 @@ import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.VarValueDef;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections15.IteratorUtils;
-import org.apache.commons.collections15.Predicate;
+import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
 import java.util.Iterator;

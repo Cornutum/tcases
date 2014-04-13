@@ -11,7 +11,7 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.util.XmlWriter;
 import static org.cornutum.tcases.io.SystemTestDoc.*;
 
-import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections4.IteratorUtils;
 
 import java.io.OutputStream;
 import java.io.Writer;

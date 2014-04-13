@@ -9,8 +9,8 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections15.bag.HashBag;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.bag.HashBag;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
