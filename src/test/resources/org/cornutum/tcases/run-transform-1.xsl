@@ -10,7 +10,7 @@
   //////////////////////////////////////////////////////////////////////////////
   -->
   <!-- Transforms system test definitions into JUnit test source code -->
-  <!-- $Revision: 173 $, $Date: 2012-01-31 17:43:17 -0600 (Tue, 31 Jan 2012) $ -->
+  <!-- $Revision$, $Date$ -->
 
   <xsl:output method="text"/>
 
