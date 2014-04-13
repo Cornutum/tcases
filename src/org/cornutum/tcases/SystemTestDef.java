@@ -10,7 +10,7 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
-import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,14 +115,16 @@ public class SystemTestDef
     return i < functionCount? i : -1;
     }
 
+  @SuppressWarnings("deprecation")
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ (getName() == null? 0 : getName().hashCode())
+      ^ ObjectUtils.hashCode( getName())
       ^ functionTestDefs_.hashCode();
     }
 
+  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     SystemTestDef other =

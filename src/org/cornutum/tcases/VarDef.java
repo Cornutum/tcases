@@ -7,8 +7,8 @@
 
 package org.cornutum.tcases;
 
-import org.apache.commons.collections15.IteratorUtils;
-import org.apache.commons.collections15.Predicate;
+import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
 import java.util.Iterator;

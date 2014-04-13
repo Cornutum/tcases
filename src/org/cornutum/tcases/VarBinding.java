@@ -10,8 +10,8 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Defines the binding of an input variable to a specific value.
@@ -184,16 +184,18 @@ public class VarBinding implements Comparable<VarBinding>
       getVar().compareTo( other.getVar());
     }
 
+  @SuppressWarnings("deprecation")
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ (getVar()==null? 0 : getVar().hashCode())
-      ^ (getType()==null? 0 : getType().hashCode())
-      ^ (getValue()==null? 0 : getValue().hashCode())
+      ^ ObjectUtils.hashCode( getVar())
+      ^ ObjectUtils.hashCode( getType())
+      ^ ObjectUtils.hashCode( getValue())
       ^ (isValueValid()? Boolean.TRUE.hashCode() : Boolean.FALSE.hashCode());
     }
 
+  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     VarBinding other =

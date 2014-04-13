@@ -10,9 +10,9 @@ package org.cornutum.tcases.generator;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections15.IteratorUtils;
-import org.apache.commons.collections15.Predicate;
-import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.collections4.Predicate;
+import org.apache.commons.lang3.ObjectUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -671,6 +671,7 @@ public class TupleGenerator implements ITestCaseGenerator
       .toString();
     }
 
+  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     TupleGenerator other =
@@ -685,11 +686,12 @@ public class TupleGenerator implements ITestCaseGenerator
       && other.getCombiners().equals( getCombiners()); 
     }
 
+  @SuppressWarnings("deprecation")
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ (getRandomSeed()==null? 0 : getRandomSeed().hashCode())
+      ^ ObjectUtils.hashCode( getRandomSeed())
       ^ getDefaultTupleSize()
       ^ getCombiners().hashCode();
     }

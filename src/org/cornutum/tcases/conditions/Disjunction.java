@@ -10,8 +10,8 @@ package org.cornutum.tcases.conditions;
 import org.cornutum.tcases.PropertySet;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections15.IteratorUtils;
-import org.apache.commons.collections15.iterators.SingletonIterator;
+import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.collections4.iterators.SingletonIterator;
 
 import java.util.HashSet;
 import java.util.Iterator;

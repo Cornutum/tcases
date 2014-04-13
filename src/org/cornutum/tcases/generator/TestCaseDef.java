@@ -11,7 +11,7 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections15.Predicate;
+import org.apache.commons.collections4.Predicate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

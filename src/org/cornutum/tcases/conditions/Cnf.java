@@ -9,7 +9,7 @@ package org.cornutum.tcases.conditions;
 
 import org.cornutum.tcases.PropertySet;
 
-import org.apache.commons.collections15.IteratorUtils;
+import org.apache.commons.collections4.IteratorUtils;
 
 import java.util.Iterator;
 

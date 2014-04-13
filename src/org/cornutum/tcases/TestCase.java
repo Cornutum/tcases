@@ -9,9 +9,9 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections15.IteratorUtils;
-import org.apache.commons.collections15.Predicate;
-import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.collections4.Predicate;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -150,6 +150,7 @@ public class TestCase implements Comparable<TestCase>
       ( varBindings_.values().iterator(),
         new Predicate<VarBinding>()
         {
+        @SuppressWarnings("deprecation")
         public boolean evaluate( VarBinding binding)
           {
           return ObjectUtils.equals( binding.getType(), type);
