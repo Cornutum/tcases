@@ -60,7 +60,7 @@
         </LI>
         <LI><A href="#transform">Transforming Test Cases</A>
           <UL>
-            <LI><A href="#junit">Creating JUnit Tests</A></LI>
+            <LI><A href="#junit">Creating JUnit/TestNG Tests</A></LI>
             <LI><A href="#xslt">Using XSLT Transforms</A></LI>
           </UL>
         </LI>
@@ -135,7 +135,7 @@
         follows a well-defined XML schema, which means you can use a variety of XML transformation tools to
         convert it into a form that it suitable for testing your system. For example, Tcases comes with a
         built-in transformer that converts a system test definition into a Java source code template
-        for a <A href="#junit">JUnit test class</A>.
+        for a <A href="#junit">JUnit or TestNG test class</A>.
         
       </P>
 
@@ -157,11 +157,38 @@
           </LI>
           <P/>
           <LI><B>If you are building unit tests...</B>
-            <P>(TBD)</P>
+            <P>
+              If you are practicing <A href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development
+              (TDD)</A>, congratulations! &mdash; you are building unit tests to guide the design of your system. But when it
+              comes to actually <EM>testing</EM> your system &mdash; that is, systematically seeking out and removing every
+              defect &mdash; your TDD unit tests are almost certainly insufficient. Each TDD unit test is usually built to
+              demonstrate a single specific feature of the system. But a large number of defects (perhaps more than 50%) are
+              caused by interactions among multiple features.  (For an interesting discussion of the interactions that cause
+              software failures, see <A href="http://csrc.nist.gov/groups/SNS/acts/ftfi.html">this research study<A>). Even
+              if you've made the effort to create unit tests that produce 100% code coverage, you are still likely to miss
+              many of those interactions between explicit unit inputs and implicit inputs such as internal state variables.
+            </P>
+            <P>
+              Instead, you need a more powerful approach &mdash; like Tcases. By generating test cases from
+              a <A href="#input">complete model of all input variables</A>, you can systematically cover interactions
+              among inputs to a specified degree. And you can do it with a small set of unit tests, typically not much more
+              than you would have done with TDD.
+            </P>
           </LI>
           <P/>
-          <LI><B>If you are building system tests...</B>
-            <P>(TBD)</P>
+          <LI><B>If you are building integration tests or system tests...</B>
+            <P>
+              Unit tests are not enough to find all of the defects in your system. You also need integration tests and even
+              full system tests. But how many of them do you need? You certainly don't need to replicate the same test cases already
+              covered by your unit tests. 
+            </P>
+            <P>
+              With these higher-level tests, the game has changed. There is a new input space with
+              new dimensions of variation to consider. So you can use Tcases to <A href="#input">model these inputs</A> and
+              generate new test cases that cover the interactions among them. For example, system tests often need to
+              consider variations in the settings of key deployment configuration parameters. Tcases gives you a way to gain
+              confidence about the interactions among multiple configuration parameters with a small number of test cases.
+            </P>
           </LI>
           <P/>
         </UL>
@@ -1546,11 +1573,11 @@
         a more concrete form. This section describes the options Tcases offers for output transformations.
       </P>
 
-      <H3><A name="junit">Creating JUnit Tests</A></H3>
+      <H3><A name="junit">Creating JUnit/TestNG Tests</A></H3>
       <P>
-        Transforming test cases into JUnit code is a capability that is built into the <SPAN class="code">tcases</SPAN> command. How does it work?
+        Transforming test cases into JUnit or TestNG code is a capability that is built into the <SPAN class="code">tcases</SPAN> command. How does it work?
         Just add the <SPAN class="code">-J</SPAN> option, and Tcases will automatically writes test case definitions in the form of Java code for
-        a JUnit test.
+        a JUnit test. The same code works for TestNG, too.
       </P>
       <P>
         Here's a simple example. Try out these commands:
@@ -1563,7 +1590,7 @@
       </P>
       <P>
         Here's what you'll see printed to standard output: 
-        each test case definition has been transformed into a JUnit4 <SPAN class="code">@Test</SPAN> method. The name of the method
+        each test case definition has been transformed into a <SPAN class="code">@Test</SPAN> method. The name of the method
         is based on the <SPAN class="code">Function</SPAN> name. And the Javadoc comments describe the input values for this test case. The
         body of the method is empty, waiting for the implementation to be filled in by you.
 
@@ -1713,6 +1740,24 @@
         </DIV>
       </P>
 
+      <P>
+        Using the <SPAN class="code">-J</SPAN> option also changes the default output file for
+        the <SPAN class="code">tcases</SPAN> command.  Normally, when you're working with a Tcases <A href="#files">project</A>,
+        generated test case definitions are written by default to a file
+        named <SPAN class="code">${projectName}-Test.xml</SPAN>. But with <SPAN class="code">-J</SPAN>, the
+        generated <SPAN class="code">@Test</SPAN> methods are written by default to a file
+        named <SPAN class="code">${projectName}Test.java</SPAN>. Exception: if your <SPAN class="code">${projectName}</SPAN> is
+        not a valid Java class identifier, a slightly modified form of the project name is used instead.
+      </P>
+      <P>
+        For example, the following command will write generated test definitions in the form of <SPAN class="code">@Test</SPAN> methods to a file named
+        <SPAN class="code">findTest.java</SPAN>
+
+        <DIV class="exampleCode">
+          &gt; tcases <SPAN class="codeEmph">-J</SPAN> find <BR/>
+        </DIV>
+      </P>
+
       <H3><A name="xslt">Using XSLT Transforms</A></H3>
       <P>
         The JUnit output transform is implemented using <A href="http://en.wikipedia.org/wiki/XSLT">XSLT</A> templates. If you've created
@@ -1730,12 +1775,10 @@
       </P>
       <P>
         Because the transformed document is a different kind of document, you'll usually want to write it to a different type of file,
-        using the <SPAN class="code">-f</SPAN> option. For this reason, the <SPAN class="code">-f</SPAN> and <SPAN class="code">-J</SPAN>
-        are typically used together, too.        
+        using the <SPAN class="code">-f</SPAN> option.
 
         <DIV class="exampleCode">
-          &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-f myOutputDoc</SPAN> ${projectName} <BR/>
-          &gt; tcases <SPAN class="codeEmph">-J -f findTest.java</SPAN> find <BR/>
+          &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-f myOutputDoc.type</SPAN> ${projectName} <BR/>
         </DIV>
       </P>
       <P>
