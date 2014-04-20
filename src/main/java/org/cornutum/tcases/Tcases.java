@@ -25,6 +25,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1146,25 +1147,39 @@ public class Tcases
    */
   public static String getVersion()
     {
+    Properties tcasesProperties = new Properties();
+    String tcasesPropertyFileName = "/tcases.properties";
+    InputStream tcasesPropertyFile = null;
+    try
+      {
+      tcasesPropertyFile = Tcases.class.getResourceAsStream( tcasesPropertyFileName);
+      tcasesProperties.load( tcasesPropertyFile);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read " + tcasesPropertyFileName, e);
+      }
+    finally
+      {
+      IOUtils.closeQuietly( tcasesPropertyFile);
+      }
+    
     Pattern versionDatePattern = Pattern.compile( "Date: (\\S*)");
-    Matcher versionDateMatcher = versionDatePattern.matcher( VERSION_DATE);
+    Matcher versionDateMatcher = versionDatePattern.matcher( tcasesProperties.getProperty( "tcases.date"));
     versionDateMatcher.find();
 
     Pattern versionRevPattern = Pattern.compile( "Revision: (\\S*)");
-    Matcher versionRevMatcher = versionRevPattern.matcher( VERSION_REV);
+    Matcher versionRevMatcher = versionRevPattern.matcher( tcasesProperties.getProperty( "tcases.revision"));
     versionRevMatcher.find();
     
     return
       "Tcases "
-      + VERSION + " ("
+      + tcasesProperties.getProperty( "tcases.version") + " ("
       + versionDateMatcher.group(1)
       + ", rev="
       + versionRevMatcher.group(1)
       + ")";
     }
 
-  public static final String VERSION = "1.0.1";
-  public static final String VERSION_DATE = "$Date$";
-  public static final String VERSION_REV = "$Revision$";
   private static final Logger logger_ = LoggerFactory.getLogger( Tcases.class);
   }
