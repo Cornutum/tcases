@@ -13,7 +13,7 @@
   //////////////////////////////////////////////////////////////////////////////
   -->
   <!-- Defines the schema for a system test case specification document -->
-  <!-- $Revision: 92 $, $Date: 2012-01-02 19:50:23 -0600 (Mon, 02 Jan 2012) $ -->
+  <!-- $Revision$, $Date$ -->
 
   <!-- System functions -->
   <xs:element name="TestCases">
