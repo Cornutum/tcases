@@ -3,14 +3,20 @@ package org.cornutum.tcases.maven;
 import org.cornutum.tcases.Tcases;
 import org.cornutum.tcases.Tcases.Options;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.UnsynchronizedAppenderBase;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Map;
@@ -25,12 +31,61 @@ import java.util.regex.Pattern;
 @Mojo(name="tcases",defaultPhase=LifecyclePhase.GENERATE_TEST_RESOURCES)
 public class TcasesMojo extends AbstractMojo
   {
+  /**
+   * Appends log messages to the plugin logger.
+   */
+  private static class PluginLogAppender extends UnsynchronizedAppenderBase<ILoggingEvent>
+    {
+    /**
+     * Creates a new PluginLogAppender object.
+     */
+    public PluginLogAppender( Log pluginLogger)
+      {
+      pluginLogger_ = pluginLogger;
+      setName( "PluginLog");
+      start();
+      }
+
+    protected void append( ILoggingEvent event)
+      {
+      Level level = event.getLevel();
+      if( Level.ERROR.equals( level))
+        {
+        if( pluginLogger_.isErrorEnabled())
+          {
+          pluginLogger_.error( event.getFormattedMessage());
+          }
+        }
+      else if( Level.WARN.equals( level))
+        {
+        if( pluginLogger_.isWarnEnabled())
+          {
+          pluginLogger_.warn( event.getFormattedMessage());
+          }
+        }
+      else if( Level.INFO.equals( level))
+        {
+        if( pluginLogger_.isInfoEnabled())
+          {
+          pluginLogger_.info( event.getFormattedMessage());
+          }
+        }
+      else if( pluginLogger_.isDebugEnabled())
+        {
+        pluginLogger_.debug( event.getFormattedMessage());
+        }
+      }
+
+    private Log pluginLogger_;
+    }
+
+
   public void execute() throws MojoExecutionException
     {
     try
       {
-      // Initialize Tcase log file
-      System.setProperty( "tcases.log.file", getLogFile().getAbsolutePath());
+      // Initialize Tcases logging.
+      configureLogs();
       
       // Gather input definition files
       DirectoryScanner inputScanner = new DirectoryScanner();
@@ -103,7 +158,6 @@ public class TcasesMojo extends AbstractMojo
         options.setTransformParams( getTransformParams());
 
         // Generate test cases for this Tcases project.
-        getLog().info( "Generating tests for " + inputFile);
         tcases.run( options);
         }
       }
@@ -111,6 +165,16 @@ public class TcasesMojo extends AbstractMojo
       {
       throw new MojoExecutionException( "Can't generate test cases", e);
       }
+    }
+
+  /**
+   * Configure Tcases logging for Maven plugin.
+   */
+  private void configureLogs()
+    {
+    Logger rootLogger = (Logger) LoggerFactory.getLogger( Logger.ROOT_LOGGER_NAME);
+    rootLogger.detachAndStopAllAppenders();
+    rootLogger.addAppender( new PluginLogAppender( getLog()));
     }
 
   /**
@@ -248,22 +312,6 @@ public class TcasesMojo extends AbstractMojo
     }
 
   /**
-   * Changes the log output file for Tcases.
-   */
-  public void setLogFile( File logFile)
-    {
-    this.logFile = logFile;
-    }
-
-  /**
-   * Returns the log output file for Tcases.
-   */
-  public File getLogFile()
-    {
-    return logFile;
-    }
-
-  /**
    * Changes if previous contents of the test definition file are ignored.
    * If false, new test definitions are based on the previous test definitions.
    */
@@ -361,12 +409,6 @@ public class TcasesMojo extends AbstractMojo
     {
     return testDef;
     }
-
-  /**
-   * Defines the path to the Tcases log file.
-   */
-  @Parameter(property="logFile",defaultValue="${project.build.directory}/logs/tcases.log")
-  private File logFile;
   
   /**
    * Defines a set of patterns that match the system input definition files read by Tcases.
