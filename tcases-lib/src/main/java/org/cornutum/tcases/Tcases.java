@@ -890,7 +890,7 @@ public class Tcases
     if( testDefFile == null && inputDefFile != null)
       {
       // No, derive default from input file.
-      testDefFile = new File( inputDir, projectName + "-Test.xml");
+      testDefFile = new File( projectName + "-Test.xml");
       }
 
     // Identify base test definition file.
@@ -910,7 +910,7 @@ public class Tcases
       outputFile =
         // ... JUnit test class file, if generating JUnit
         options.isJUnit() && inputDefFile != null
-        ? new File( inputDir, projectName.replaceAll( "\\W+", "") + "Test.java")
+        ? new File( projectName.replaceAll( "\\W+", "") + "Test.java")
 
         // ... else test definition file.
         : testDefFile;
