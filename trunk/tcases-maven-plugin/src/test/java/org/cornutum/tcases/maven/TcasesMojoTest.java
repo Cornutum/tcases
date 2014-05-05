@@ -29,10 +29,10 @@ public class TcasesMojoTest
 
     // Then...
     File expectedInputDir = new File( baseDirTest, "src/test/tcases");
-    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDir());
+    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
 
     File expectedOutDir = new File( baseDirTest, "target/tcases");
-    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDir());
+    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/*-Input.xml");
     assertEquals( "Input defs", 1, expectedInputDefs.length);
@@ -43,6 +43,29 @@ public class TcasesMojoTest
     File expectedInputDef = new File( expectedInputDefs[0]);
     File expectedTestDef = new File( expectedInputDef.getParent(), Tcases.getProjectName( expectedInputDef) + "-Test.xml");
     assertEquals( "Test def", expectedTestDef.getPath(), expectedTestDefs[0]);
+    }
+  @Test
+  public void withConfigCustom() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "tcases-project-custom");
+
+    // When...
+    TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    tcasesMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "custom");
+    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
+
+    File expectedOutDir = new File( baseDirTest, "target/custom");
+    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
+
+    String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/Input.xml", "**/InputModel");
+    assertEquals( "Input defs", 2, expectedInputDefs.length);
+
+    String[] expectedTestDefs = findPathsMatching( expectedOutDir, "**/*");
+    assertEquals( "Test defs", 2, expectedTestDefs.length);
     }
 
   /**

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<TestCases system="System-1">
+  <Function name="Function-1">
+    <TestCase id="0">
+      <Input type="arg">
+        <Var name="VarSet-1.Var-1" value="0"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>
