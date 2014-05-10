@@ -22,7 +22,7 @@
           <inputDir>tcases/input</inputDir>
           <inputDefs>
             <inputDef>Input.xml</inputDef>
-            <inputDef>*/*Def.xml</inputDef>
+            <inputDef>*/Inputs*.xml</inputDef>
             <inputDef>**/Other.xml</inputDef>
           </inputDefs>
           <outDir>tcases/output</outDir>
