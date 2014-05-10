@@ -1,0 +1,3 @@
+<Generators> 
+  <TupleGenerator function="*" tuples="3"/> 
+</Generators> 
