@@ -90,16 +90,15 @@ public class TcasesMojo extends AbstractMojo
         File transformDef = getTransformDefFile();
         if( transformDef != null)
           {
-          if( !transformDef.isAbsolute())
+          String projectTransformDef = getProjectFile( projectName, transformDef.getPath());
+          if( projectTransformDef == null)
             {
-            String projectTransformDef = getProjectFile( projectName, transformDef.getPath());
-            if( projectTransformDef == null)
-              {
-              throw new IllegalArgumentException( "Invalid transformDef pattern='" + transformDef + "'");
-              }
-            transformDef = new File( inputDir, projectTransformDef);
+            throw new IllegalArgumentException( "Invalid transformDef pattern='" + transformDef + "'");
             }
-          options.setTransformDef( transformDef);
+          options.setTransformDef
+            ( transformDef.isAbsolute()
+              ? new File( projectTransformDef)
+              : new File( inputDir, projectTransformDef));
           }
         options.setTransformParams( getTransformParams());
 
