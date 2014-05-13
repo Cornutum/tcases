@@ -1,0 +1,45 @@
+ ------
+ Introduction
+ ------
+
+Tcases Plugin
+
+  The Tcases Plugin runs Tcases, a model-based test case generator. With Tcases, you define a model
+  of the input space for your system-under-test and a model of the coverage that you want. Then
+  Tcases generates a minimal set of test cases that meets your requirements.
+
+  What is the "input space" of the system? The simplest way to look at it is this: the set of all
+  (combinations of) input values that could possibly be applied. Easy to say, but hard to do! For
+  all but the simplest systems, such a set is enormous, perhaps even infinite. You could never
+  afford to build and run all those test cases.  Instead, you have to select test cases from a
+  small sample of the input space. But how? If your sample is too big, you'll run out of time
+  before you finish. But if your sample is too small \-\-\- or, worse, if it's the <wrong>
+  subset \-\-\- you'll miss lots of defects.
+
+  That is the test design problem: given a limited amount of testing effort, how can you minimize
+  the risk of defects?  Tcases offers a solution. Tcases gives you a way to define the
+  input space for your system in a form that is concise but comprehensive.  Then Tcases allows you
+  to control the number of test cases in your sample subset by specifying the level of coverage you
+  want. You can start with a basic level of coverage, and Tcases will generate a small set of test
+  cases that touches every significant element of the input space. Then you can improve your tests
+  by selectively adding coverage in specific high-risk areas.  For example, you can specify 
+  {{{http://en.wikipedia.org/wiki/All-pairs_testing}pairwise coverage}} or higher-order
+  combinations of selected input variables.
+
+* Goals Overview
+
+  * {{{./tcases-mojo.html}tcases:tcases}} Implements the Tcases Maven plugin.
+
+* Usage
+
+  General instructions on how to use the Tcases Plugin can be found on the {{{./usage.html}usage page}}.  
+  For full details on Tcases \-\-\- what it does and how it works \-\-\- see
+  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm}Tcases: The Complete Guide}} at
+  {{http://www.cornutum.org}}.
+
+  If you feel this plugin is missing a feature or has a defect, you can submit the issue
+  {{{./issue-tracking.html}here}}. When creating a new issue, please provide a comprehensive
+  description of your concern. Especially for fixing defects it is crucial that the developers can
+  reproduce your problem. For this reason, entire debug logs, POMs or most preferably little demo
+  projects attached to the issue are very much appreciated.  Of course, patches are welcome,
+  too. Contributors can check out the project {{{./source-repository.html}source repository}}.
