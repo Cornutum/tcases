@@ -18,7 +18,7 @@ Usage
 
   * <<$\{projectName\}-Generators.xml>>: the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#higherCoverage} generator definition}} file (optional)
   
-  * <<$\{projectName\}-Test.xml>>: the {{{Extending_Previous_Test_Cases} base test case definition}} file (optional)
+  * <<$\{projectName\}-Test.xml>>: the {{{Extending_Previous_Test_Cases_Or_Not} base test case definition}} file (optional)
 
   []
 
@@ -320,7 +320,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   to fill out the remaining test cases needed to complete the test suite. In some situations, this
   can be a bit of a pain. Sometimes there is a <<Value>> that you need to test at least once, but for
   various reasons, including it multiple times adds complexity without really increasing the
-  likelihood of finding new failures. In this case, you can use the once attribute as a hint to
+  likelihood of finding new failures. In this case, you can use the <<once>> attribute as a hint to
   avoiding reusing a value more than once.
 
   For example, consider the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#exampleFind}find
@@ -374,7 +374,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   well-defined XML document, it's not hard to transform them into a more concrete form, using XSLT
   stylesheets. 
 
-  For example, the following configuration output to an output file named
+  For example, the following configuration sends Tcases output to a file named
   <<$\{projectName\}-Output.doc>>. But first it transforms the standard test case definition
   output document using the XSLT stylesheet in the myStylesheet.xsl file.
 
