@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.3.1</version>
+  </skin>
+
   <body>
     <menu name="Overview">
       <item name="Introduction" href="index.html"/>
@@ -7,7 +13,7 @@
       <item name="Usage" href="usage.html"/>
       <item name="Project" href="project-info.html"/>
     </menu>
-   
+    
     <menu name="Examples">
       <item name="Generating Test Cases" href="usage.html#Generating_Test_Cases"/>
       <item name="Generating JUnit Tests" href="usage.html#Generating_JUnitTestNG_Tests"/>
@@ -19,7 +25,7 @@
       <item name="More Tips" href="usage.html#More_Tips"/>
 
     </menu>
-   
+    
     <menu name="Project Information">
       <item name="Summary" href="project-summary.html"/>
       <item name="Dependency Info" href="dependency-info.html"/>
