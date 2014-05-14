@@ -23,7 +23,9 @@
         </LI>
         <LI> <A href="#start"> Getting Started </A>
           <UL>
-            <LI><A href="#install">Installing Tcases</A></LI>     
+            <LI><A href="#about">About This Guide</A></LI>  
+            <LI><A href="#maven">Installing The Tcases Maven Plugin</A></LI>  
+            <LI><A href="#install">Installing The Tcases Distribution</A></LI>  
             <LI><A href="#run">Running From the Command Line</A></LI> 
             <LI><A href="#run-ant">Running With Ant</A></LI>      
             <LI><A href="#results">Understanding Tcases Results</A></LI>      
@@ -120,15 +122,17 @@
       </P>
       <P>
         Finally, you run Tcases. Tcases is a Java program that you can run from the command line or
-        from your favorite IDE.  Tcases comes with built-in support for running using
-        a <SPAN class="code">bash</SPAN> shell script or an <SPAN class="code">ant</SPAN> target.
-        Using your input definition and your generator definition, Tcases generates
-        a <A href="#systemTestDef">system test definition</A>.  The system test definition is an XML
-        document that lists, for each system function, a set of test cases that provides the
-        specified level of coverage. Each test case defines a specific value for every function
-        input variable. Tcases generates not only valid input values that define successful test
-        cases but also invalid values for the tests cases that are needed to verify expected error
-        handling.
+        from your favorite IDE.  Tcases comes with built-in support for running using a shell
+        script or an <SPAN class="code">ant</SPAN> target.  You can also run Tcases with Maven
+        using
+        the <A href="http://www.cornutum.org/tcases/docs/tcases-maven-plugin/index.html">Tcases
+        Maven Plugin</A>.  Using your input definition and your generator definition, Tcases
+        generates a <A href="#systemTestDef">system test definition</A>.  The system test
+        definition is an XML document that lists, for each system function, a set of test cases
+        that provides the specified level of coverage. Each test case defines a specific value for
+        every function input variable. Tcases generates not only valid input values that define
+        successful test cases but also invalid values for the tests cases that are needed to verify
+        expected error handling.
       </P>
       <P>
         Of course, the system test definition is not something you can execute directly. But it
@@ -195,11 +199,30 @@
       </P>
 
       <H2><A name="start">Getting Started</A></H2>
-      <H3><A name="install">Installing Tcases</A></H3>
+
+      <H3><A name="about">About This Guide</A></H3>
       <P>
-        Your first move is to <A href="http://code.google.com/p/tcases/downloads/list">download the Tcases
-        binary distribution file</A>. You can choose to download this in either of two different forms: a ZIP
-        file or a compressed (<SPAN class="code">gzip</SPAN>)
+        This guide explains everything about how Tcases works. And when it comes to examples,
+        this guide shows how to do things when running Tcases as a shell command. If you run Tcases
+        using
+        the <A href="http://www.cornutum.org/tcases/docs/tcases-maven-plugin/index.html">Tcases
+        Maven Plugin</A>, the command line details will be slightly different, but all of the
+        concepts remain the same.
+      </P>
+
+      <H3><A name="maven">Installing The Tcases Maven Plugin</A></H3>
+      <P>
+        To get dependency info for the Tcases Maven Plugin, visit the
+        plugin <A href="http://www.cornutum.org/tcases/docs/tcases-maven-plugin/dependency-info.html">documentation
+        site</A>.
+      </P>
+
+      <H3><A name="install">Installing The Tcases Distribution</A></H3>
+      <P>
+        To get the command line version of Tcases, your first move is
+        to <A href="http://code.google.com/p/tcases/downloads/list">download the Tcases binary
+        distribution file</A>. You can choose to download this in either of two different forms: a
+        ZIP file or a compressed (<SPAN class="code">gzip</SPAN>)
         <SPAN class="code">tar</SPAN> file. Extract the contents of the distribution file to any
         directory you like &mdash; this is now your <EM>"Tcases home directory"</EM>. Unpacking the distribution file will
         create a <EM>"Tcases release directory"</EM> &mdash; a subdirectory of the
