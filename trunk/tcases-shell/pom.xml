@@ -12,12 +12,57 @@
 
   <artifactId>tcases-shell</artifactId>
 
+  <name>Tcases Shell</name>
+  <description>Generates test cases from system input space models</description>
+  <url>https://code.google.com/p/tcases</url>
+
+  <developers>
+    <developer>
+      <name>Kerry Kimbrough</name>
+      <email>tcases@cornutum.org</email>
+      <organization>The Cornutum Project</organization>
+      <organizationUrl>http://www.cornutum.org</organizationUrl>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>http://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>The Cornutum Project</name>
+    <url>http://www.cornutum.org/</url>
+  </organization>    
+
+  <scm>
+    <connection>scm:svn:http://tcases.googlecode.com/svn/trunk</connection>
+    <developerConnection>scm:svn:https://tcases.googlecode.com/svn/trunk</developerConnection>
+    <url>http://code.google.com/p/tcases/source/browse/</url>
+  </scm>
+
+  <issueManagement>
+    <system>Google Code</system>
+    <url>https://code.google.com/p/tcases/issues/list</url>
+  </issueManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>Tcases Forum</name>
+      <subscribe>https://groups.google.com/d/forum/tcases</subscribe>
+      <unsubscribe>https://groups.google.com/d/forum/tcases</unsubscribe>
+      <post>https://groups.google.com/d/forum/tcases</post>
+    </mailingList>  
+  </mailingLists>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <build>
-
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -40,8 +85,39 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>javadoc</classifier>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>sources</classifier>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
-
   </build>
 
   <dependencies>
