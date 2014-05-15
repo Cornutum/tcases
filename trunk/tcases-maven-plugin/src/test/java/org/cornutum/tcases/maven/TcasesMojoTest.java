@@ -6,6 +6,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.DirectoryScanner;
+import org.codehaus.plexus.util.FileUtils;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,6 +28,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
     tcasesMojo.execute();
 
     // Then...
@@ -55,6 +57,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
     tcasesMojo.execute();
 
     // Then...
@@ -109,6 +112,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
     tcasesMojo.execute();
 
     // Then...
@@ -163,6 +167,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
     tcasesMojo.execute();
 
     // Then...
@@ -221,6 +226,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
     tcasesMojo.execute();
 
     // Then...
@@ -284,6 +290,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
     tcasesMojo.execute();
 
     // Then...
@@ -334,6 +341,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
     tcasesMojo.execute();
 
     // Then...
@@ -436,6 +444,25 @@ public class TcasesMojoTest
     scanner.setIncludes( patterns);
     scanner.scan();
     return scanner.getIncludedFiles();
+    }
+
+  /**
+   * Clean configured output directory.
+   */
+  private void clean( TcasesMojo tcasesMojo)
+    {
+    File outDir = tcasesMojo.getOutDirFile();
+    if( outDir.exists())
+      {
+      try
+        {
+        FileUtils.cleanDirectory( outDir);
+        }
+      catch( Exception e)
+        {
+        throw new RuntimeException( "Can't clear outDir=" + outDir, e);
+        }
+      }
     }
 
   /**
