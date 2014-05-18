@@ -61,6 +61,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <tcases.revision>$Revision$</tcases.revision>
+    <tcases.date>$Date$</tcases.date>
   </properties>
 
   <build>
