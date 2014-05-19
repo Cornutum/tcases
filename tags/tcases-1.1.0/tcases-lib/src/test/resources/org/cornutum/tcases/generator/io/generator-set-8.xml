@@ -1,0 +1,11 @@
+<Generators>
+
+  <TupleGenerator seed="12345" tuples="3">
+
+    <Combine tuples="WTF!!">
+      <Include var="X"/>
+    </Combine>
+
+  </TupleGenerator>
+
+</Generators>

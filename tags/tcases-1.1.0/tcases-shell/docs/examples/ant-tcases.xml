@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- Version: $Revision$ $Date$ -->
+
+<project name="tcases" default="tcases" basedir=".">
+
+  <property name="tcases.dir" location="../.."/>
+
+  <!-- Defines the 'tcases' task -->
+  <taskdef name="tcases" classname="org.cornutum.tcases.ant.TcasesTask">
+    <classpath>
+      <pathelement location="${tcases.dir}/lib"/> <!-- Include this to locate standard logging configuration -->
+      <fileset dir="${tcases.dir}/lib" includes="*.jar"/>
+    </classpath>
+  </taskdef>
+
+  <property name="tcases.out.dir" location="${java.io.tmpdir}/tcases"/>
+  <mkdir dir="${tcases.out.dir}"/>
+
+  <!-- Runs the tcases task to generate test definitions. -->
+  <!-- For a detailed description of task attributes, see Javadoc for -->
+  <!-- TcasesTask and Tcases.Options -->
+  <target name="tcases">
+    <tcases 
+       inputDef="${tcases.dir}/docs/examples/tcases-Input.xml" 
+       outFile="${tcases.out.dir}/TcasesTest.java"
+       junit="true"
+       logFile="${tcases.out.dir}/tcases.log"
+       >
+      <param name="throws" value="true"/>
+    </tcases>
+    <echo>See results in ${tcases.out.dir}</echo>
+
+  </target>
+
+</project>

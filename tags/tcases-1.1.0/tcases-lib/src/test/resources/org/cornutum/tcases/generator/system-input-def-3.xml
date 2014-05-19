@@ -1,0 +1,56 @@
+<System name="Things">
+
+  <Function name="Make">
+    <Input>
+
+      <VarSet name="Color" when="small" whenNot="polygon">
+        <Var name="Hue">
+          <Value name="Red"/>
+          <Value name="Green"/>
+          <Value name="Blue"/>
+        </Var>
+        <Var name="Lightness">
+          <Value name="Bright" when="round"/>
+          <Value name="Normal"/>
+          <Value name="Dark" whenNot="round"/>
+          <Value name="Transparent" failure="true" whenNot="round"/>
+        </Var>
+        <Var name="Saturation">
+          <Value name="Pale"/>
+          <Value name="Even"/>
+          <Value name="Intense"/>
+          <Value name="Undefined" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <Var name="Size">
+        <Value name="Ginormous" failure="true"/>
+        <Value name="Small">
+          <Property name="small"/>
+        </Value>
+        <Value name="Medium">
+          <When>
+            <AllOf property="polygon"/>
+          </When>
+        </Value>
+        <Value name="Large">
+          <When>
+            <Not property="polygon"/>
+          </When>
+        </Value>
+      </Var>
+
+      <Var name="Shape">
+        <Value name="Square">
+          <Property name="polygon"/>
+        </Value>
+        <Value name="Circle">
+          <Property name="round"/>
+        </Value>
+        <Value name="Heart"/>
+      </Var>
+
+    </Input>
+  </Function>
+
+</System>

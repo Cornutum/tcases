@@ -1,0 +1,10 @@
+<Generators>
+
+  <TupleGenerator function="F1" seed="1234" tuples="3">
+    <Combine>
+      <Exclude var="exclude1.var"/>
+      <Exclude var="exclude2.var.**"/>
+    </Combine>
+  </TupleGenerator>
+
+</Generators>

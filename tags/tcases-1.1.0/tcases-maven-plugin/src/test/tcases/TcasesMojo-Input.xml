@@ -1,0 +1,139 @@
+<System name="TcasesMojo">
+  <Function name="execute">
+
+    <Input type="arg">
+
+      <VarSet name="InputDefPatterns">
+        <Var name="Count">
+          <Value name="None"/>
+          <Value name="One"/>
+          <Value name="Many"/>
+        </Var>
+        <Var name="Matched">
+          <Value name="None" once="true"/>
+          <Value name="One" property="inputDef"/>
+          <Value name="Many" property="inputDef"/>
+        </Var>
+      </VarSet>
+
+      <Var name="InputDir">
+        <Value name="Default"/>
+        <Value name="Other" once="true"/>
+      </Var>
+
+      <Var name="OutDir" when="inputDef">
+        <Value name="Default"/>
+        <Value name="Other" once="true"/>
+      </Var>
+
+      <VarSet name="OutFile" when="inputDef">
+        <Var name="Defined">
+          <Value name="Yes" property="outfile"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Wildcard" when="outfile">
+          <Value name="None"/>
+          <Value name="One"/>
+          <Value name="Many" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="TestDef" when="inputDef" whenNot="newTests">
+        <Var name="Defined">
+          <Value name="Yes" property="testDef"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Wildcard" when="testDef">
+          <Value name="None"/>
+          <Value name="One"/>
+          <Value name="Many" failure="true"/>
+        </Var>
+        <Var name="Exists" when="testDef">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="GenDef" when="inputDef">
+        <Var name="Defined">
+          <Value name="Yes" property="genDef"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Wildcard" when="genDef">
+          <Value name="None"/>
+          <Value name="One"/>
+          <Value name="Many" failure="true"/>
+        </Var>
+        <Var name="Exists" when="genDef">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="TransformDef" when="inputDef">
+        <Var name="Defined">
+          <Value name="Yes" property="transformDef"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Relative" when="transformDef">
+          <Value name="Yes"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Wildcard" when="transformDef">
+          <Value name="None"/>
+          <Value name="One"/>
+          <Value name="Many" failure="true"/>
+        </Var>
+        <Var name="Exists" when="transformDef">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="TransformParams">
+        <When>
+          <AllOf property="inputDef">
+            <AnyOf property="transformDef,junit"/>
+          </AllOf>
+        </When>
+        <Var name="Defined">
+          <Value name="Yes"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <Var name="Junit" when="inputDef">
+        <Value name="Default"/>
+        <Value name="Yes" once="true" property="junit"/>
+        <Value name="No"/>
+      </Var>
+
+      <Var name="NewTests" when="inputDef">
+        <Value name="Default" once="true"/>
+        <Value name="Yes" property="newTests"/>
+        <Value name="No" once="true"/>
+      </Var>
+
+      <VarSet name="Seed" when="inputDef">
+        <Var name="Defined">
+          <Value name="Yes"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="DefaultTupleSize" when="inputDef">
+        <Var name="Defined">
+          <Value name="Yes" once="true"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+    </Input>
+
+    <Input type="env">
+
+      
+
+    </Input>
+  </Function>
+</System>
