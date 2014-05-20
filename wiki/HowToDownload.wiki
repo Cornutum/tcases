@@ -1,3 +1,5 @@
+#summary How to download the latest version
+
 = How To Download Tcases =
 
 Due to a change in the Google Code project hosting service, you can no longer download the latest version of Tcases from this site.
