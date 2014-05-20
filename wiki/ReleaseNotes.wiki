@@ -1,6 +1,12 @@
 #summary A summary of the changes for each release
 #labels Featured
 
+= 1.1.0 =
+
+  * Restructured as Maven project containing multiple modules, all downloadable from the Maven Central repository.
+
+  * Now available as a [http://www.cornutum.org/tcases/docs/tcases-maven-plugin/ Maven plugin], so you can use Maven to generate test cases directly from the system input definitions for your Maven project.
+
 = 1.0.1 =
 
   * If generating JUnit (using the -J option), use a more useful default output file name of the form *${projectName}Test.java*. If necessary, convert the *${projectName}* part of the file name into a valid Java identifier. Consequently, -J does not have to be accompanied by -f to get good results.
