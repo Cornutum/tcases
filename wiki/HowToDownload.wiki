@@ -9,3 +9,8 @@ Instead, to get the command line version of Tcases, download the Tcases binary d
   # Visit the [http://search.maven.org/#search%7Cga%7C1%7Ctcases-shell Central Repository search page].
   # Search for "tcases-shell".
   # Download the most recent version for the artifact named "tcases-shell". You can choose to download this either as a ZIP file or a compressed tar file (tar.gz)
+
+From the Maven Central repository, you can also download other Tcases modules, typically by listing them as dependencies in your project POM.
+
+  * *tcases-maven-plugin*: A Maven plugin to run Tcases. For details, see the [http://www.cornutum.org/tcases/docs/tcases-maven-plugin/ plugin documentation site].
+  * *tcases-lib*: The core Tcases JAR
