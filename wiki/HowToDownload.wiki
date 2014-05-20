@@ -7,7 +7,5 @@ Due to a change in the Google Code project hosting service, you can no longer do
 Instead, to get the command line version of Tcases, download the Tcases binary distribution file from the Maven Central Repository, using the following procedure.
 
   # Visit the [http://search.maven.org/#search%7Cga%7C1%7Ctcases-shell Central Repository search page].
-
   # Search for "tcases-shell".
-
   # Download the most recent version for the artifact named "tcases-shell". You can choose to download this either as a ZIP file or a compressed tar file (tar.gz)
