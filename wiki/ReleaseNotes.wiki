@@ -3,7 +3,7 @@
 
 = 1.1.0 =
 
-  * Restructured as Maven project containing multiple modules, all downloadable from the Maven Central repository.
+  * Restructured as Maven project containing multiple modules, all downloadable from the Maven Central repository. See [HowToDownload].
 
   * Now available as a [http://www.cornutum.org/tcases/docs/tcases-maven-plugin/ Maven plugin], so you can use Maven to generate test cases directly from the system input definitions for your Maven project.
 
