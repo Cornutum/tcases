@@ -25,7 +25,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * An {@link IGeneratorSetSource} that reads from an XML document.
@@ -39,7 +42,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
    *
    * @version $Revision$, $Date$
    */
-  protected class ElementHandler extends DefaultHandler
+  protected abstract class ElementHandler extends DefaultHandler
     {
     /**
      * Returns the value of the given attribute. Throws a SAXException if the attribute is not defined.
@@ -112,6 +115,51 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     public String getAttribute( Attributes attributes, String attributeName)
       {
       return StringUtils.trimToNull( attributes.getValue( attributeName));
+      }
+      
+    /**
+     * Reports an error if the any of the given attributes are not valid for this element.
+     */
+    public void validateAttributes( String elementName, Attributes attributes) throws SAXException
+      {
+      Set<String> validAttributes = getValidAttributes();
+      for( int i = attributes.getLength() - 1; i >= 0; i--)
+        {
+        if( !validAttributes.contains( attributes.getLocalName(i)))
+          {
+          throw
+            new SAXParseException
+            ( "Attribute=" + attributes.getLocalName(i)
+              + " is not allowed for " + elementName + " elements",
+              getDocumentLocator());
+          }
+        }
+      }
+      
+    /**
+     * Returns the valid attributes for this element.
+     */
+    protected Set<String> getValidAttributes()
+      {
+      return addAttributes( new HashSet<String>());
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      // No attributes to add.
+      return attributes;
+      }
+      
+    /**
+     * Adds the given attribute list.
+     */
+    protected Set<String> addAttributeList( Set<String> attributes, String... attributeList)
+      {
+      Collections.addAll( attributes, attributeList);
+      return attributes;
       }
 
     /**
@@ -248,6 +296,14 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       {
       return tupleGenerator_;
       }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), SEED_ATR, TUPLES_ATR, FUNCTION_ATR);
+      }
 
     private TupleGenerator tupleGenerator_;
     }
@@ -304,6 +360,14 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       {
       return tupleCombiner_;
       }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), TUPLES_ATR);
+      }
 
     private TupleCombiner tupleCombiner_;
     }
@@ -327,6 +391,14 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
         throw new SAXParseException( "Invalid \"" + VAR_ATR + "\" attribute", getDocumentLocator(), e); 
         }
       }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), VAR_ATR);
+      }
     }
   
   /**
@@ -347,6 +419,14 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
         {
         throw new SAXParseException( "Invalid \"" + VAR_ATR + "\" attribute", getDocumentLocator(), e); 
         }
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), VAR_ATR);
       }
     }
   
@@ -463,6 +543,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       throw new SAXParseException( "The " + qName + " element is not allowed at this location", getDocumentLocator()); 
       }
 
+    handler.validateAttributes( qName, attributes);
     handler.setParent( parentHandler);
     pushElementHandler( handler);
     handler.startElement( uri, localName, qName, attributes);

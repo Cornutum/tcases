@@ -1517,6 +1517,20 @@ public class TestSystemInputDocReader
     }
 
   /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 41.  getSystemInputDef (Failure: Invalid attribute) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_41()
+    {
+    assertException( "system-input-def-41.xml", 23, "Attribute=type is not allowed for Value elements");
+    }
+
+  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)

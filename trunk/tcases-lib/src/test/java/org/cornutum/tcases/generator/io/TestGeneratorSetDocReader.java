@@ -571,6 +571,20 @@ public class TestGeneratorSetDocReader
     }
 
   /**
+   * Tests {@link GeneratorSetDocReader#getGeneratorSet getGeneratorSet()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 16.   getGeneratorSet (Failure: Invalid attribute) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetGeneratorSet_16()
+    {
+    assertException( "generator-set-16.xml", 3, "Attribute=var is not allowed for TupleGenerator elements");
+    }
+
+  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)
