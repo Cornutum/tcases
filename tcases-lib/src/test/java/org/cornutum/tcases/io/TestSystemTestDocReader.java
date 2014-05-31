@@ -665,6 +665,20 @@ public class TestSystemTestDocReader
     }
 
   /**
+   * Tests {@link SystemTestDocReader#getSystemTestDef getSystemTestDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 23.  getSystemTestDef (Failure: Invalid attribute) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemTestDef_23()
+    {
+    assertException( "system-test-def-23.xml", 7, "Attribute=type is not allowed for Var elements");
+    }
+
+  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)

@@ -25,7 +25,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * An {@link ISystemTestSource} that reads from an XML document.
@@ -39,7 +42,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
    *
    * @version $Revision$, $Date$
    */
-  protected class ElementHandler extends DefaultHandler
+  protected abstract class ElementHandler extends DefaultHandler
     {
     /**
      * Returns the value of the given attribute. Throws a SAXException if the attribute is not defined.
@@ -196,6 +199,51 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       String value = attributes.getValue( attributeName);
       return StringUtils.isBlank( value)? null : value;
       }
+      
+    /**
+     * Reports an error if the any of the given attributes are not valid for this element.
+     */
+    public void validateAttributes( String elementName, Attributes attributes) throws SAXException
+      {
+      Set<String> validAttributes = getValidAttributes();
+      for( int i = attributes.getLength() - 1; i >= 0; i--)
+        {
+        if( !validAttributes.contains( attributes.getLocalName(i)))
+          {
+          throw
+            new SAXParseException
+            ( "Attribute=" + attributes.getLocalName(i)
+              + " is not allowed for " + elementName + " elements",
+              getDocumentLocator());
+          }
+        }
+      }
+      
+    /**
+     * Returns the valid attributes for this element.
+     */
+    protected Set<String> getValidAttributes()
+      {
+      return addAttributes( new HashSet<String>());
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      // No attributes to add.
+      return attributes;
+      }
+      
+    /**
+     * Adds the given attribute list.
+     */
+    protected Set<String> addAttributeList( Set<String> attributes, String... attributeList)
+      {
+      Collections.addAll( attributes, attributeList);
+      return attributes;
+      }
 
     /**
      * Returns true if the given element is a valid member of this element.
@@ -259,6 +307,14 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       {
       return systemTestDef_;
       }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), SYSTEM_ATR);
+      }
     }
   
   /**
@@ -310,6 +366,14 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
     public FunctionTestDef getFunctionTestDef()
       {
       return functionTestDef_;
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), NAME_ATR);
       }
 
     private FunctionTestDef functionTestDef_;
@@ -393,6 +457,14 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       {
       return failure_;
       }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), ID_ATR, FAILURE_ATR);
+      }
 
     private TestCase testCase_;
     private boolean failure_;
@@ -441,6 +513,14 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
     public TestCaseHandler getTestCaseHandler()
       {
       return (TestCaseHandler) getParent();
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), TYPE_ATR);
       }
 
     private String type_;
@@ -494,6 +574,14 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
     public TestCaseHandler getTestCaseHandler()
       {
       return (TestCaseHandler) getParent().getParent();
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), NAME_ATR, VALUE_ATR, FAILURE_ATR);
       }
     }
   
@@ -613,6 +701,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       throw new SAXParseException( "The " + qName + " element is not allowed at this location", getDocumentLocator()); 
       }
 
+    handler.validateAttributes( qName, attributes);
     handler.setParent( parentHandler);
     pushElementHandler( handler);
     handler.startElement( uri, localName, qName, attributes);
