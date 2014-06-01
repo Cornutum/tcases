@@ -1,0 +1,12 @@
+<TestCases system="System-2">
+
+  <Function name="Function-0">
+    <TestCase id="0">
+      <Input type="env">
+      </Input>
+      <Input type="state">
+      </Input>
+    </TestCase>
+  </Function>
+
+</TestCases>

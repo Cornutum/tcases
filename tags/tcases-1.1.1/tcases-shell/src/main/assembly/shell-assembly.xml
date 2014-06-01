@@ -1,0 +1,59 @@
+<assembly 
+    xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+
+  <id>shell</id>
+  <formats>
+    <format>tar.gz</format>
+    <format>zip</format>
+  </formats>
+
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>lib</outputDirectory>
+      <useProjectArtifact>false</useProjectArtifact>
+      <excludes>
+        <exclude>org.cornutum.tcases:tcases-lib:jar:javadoc</exclude>
+      </excludes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>docs/api</outputDirectory>
+      <includes>
+        <include>org.cornutum.tcases:tcases-lib:jar:javadoc</include>
+      </includes>
+      <unpack>true</unpack>
+    </dependencySet>
+  </dependencySets>
+
+  <fileSets>
+    <fileSet>
+      <directory>${project.basedir}/docs</directory>
+      <outputDirectory>docs</outputDirectory>
+      <includes>
+        <include>*.xsd</include>
+        <include>*.htm</include>
+        <include>*.css</include>
+        <include>*.png</include>
+        <include>examples/**/*</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>${project.basedir}/bin</directory>
+      <outputDirectory>bin</outputDirectory>
+      <includes>
+        <include>tcases</include>
+        <include>tcases.bat</include>
+      </includes>
+      <fileMode>0755</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>${project.basedir}/src/main/resources</directory>
+      <outputDirectory>lib</outputDirectory>
+      <includes>
+        <include>logback.xml</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+
+</assembly>

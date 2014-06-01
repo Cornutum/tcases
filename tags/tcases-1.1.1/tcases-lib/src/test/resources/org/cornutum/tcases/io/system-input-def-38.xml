@@ -1,0 +1,32 @@
+<System name="System-0">
+  <Function name="Function-0">
+
+    <Input type="state">
+
+      <Var name="state-0-0" when="R1," whenNot=",,R2,,R3 ,R3 ,">
+        <Value name="value-0" when="R4" whenNot=" R5, R1 " property=" P1 ">
+          <Property name="P2, P3, P4, P5"/>
+        </Value>
+      </Var>
+
+      <VarSet name="state-0-1" when="P1">
+        <Var name="member-0" when="XXX," whenNot=",,P3,,P4 ,P4 ,">
+          <Value name="value-0" when="P5" whenNot=" P3, P4 " property=" R1 ">
+            <Property name="R2, R3, R4, R5"/>
+          </Value>
+        </Var>
+
+        <VarSet name="member-1">
+          <Var name="member-1-0">
+            <Value name="value-1-0"/>
+          </Var>
+          <Var name="member-1-1">
+            <Value name="value-1-1"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+    </Input>
+
+  </Function>
+</System>

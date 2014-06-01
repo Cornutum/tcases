@@ -1,0 +1,37 @@
+<TestCases system="System-4">
+
+  <Function name="Function-0">
+    <TestCase id="0">
+      <Input>
+        <Var name="Var-00" value="Value-00"/>
+        <Var name="Var-01" value="Value-01" failure="no"/>
+        <Var name="Var-02.Defined?" value="Value-02"/>
+      </Input>      
+    </TestCase>
+    <TestCase id="1">
+      <Input>
+        <Var name="Var-10" value="Value-10" failure="false"/>
+        <Var name="Var-11" value="Value-11"/>
+        <Var name="Var-12" value="Value-12"/>
+      </Input>      
+    </TestCase>
+  </Function>
+
+  <Function name="Function-1">
+    <TestCase id="2">
+      <Input>
+        <Var name="Var-00" value="Value-00" failure="no"/>
+        <Var name="Var-01" value="Value-01"/>
+        <Var name="Var-02" value="Value-02"/>
+      </Input>      
+    </TestCase>
+    <TestCase id="3">
+      <Input>
+        <Var name="Var-10" value="Value-10"/>
+        <Var name="Var-11" value="Value-11"/>
+        <Var name="Var-12" value="Value-12" failure="false"/>
+      </Input>      
+    </TestCase>
+  </Function>
+
+</TestCases>

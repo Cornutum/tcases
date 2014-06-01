@@ -1,0 +1,40 @@
+<System name="System-6">
+  <Function name="Function-0">
+
+    <Input>
+      <VarSet name="arg-0-0">
+        <Var name="member-0">
+          <Value name="value-0" property="P1"/>
+        </Var>
+        <Var name="member-1">
+          <Value name="value-1" property="P2,P3"/>
+        </Var>
+        <When>
+          <Not>
+            <AnyOf property="R1,R2"/>
+          </Not>
+        </When>
+      </VarSet>
+
+      <Var name="arg-0-1">
+        <When>
+          <Not>
+            <AllOf property="P1"/>
+          </Not>
+        </When>
+        <Value name="value-2" once="yes">
+          <When>
+            <Not>
+              <Not property="P2"/>
+            </Not>
+          </When>
+        </Value>
+        <Value name="value-3" once="no">
+          <Property name="R1, R2, R3"/>
+        </Value>
+        <Value name="value-4" once="no" failure="true"/>
+      </Var>
+    </Input>
+
+  </Function>
+</System>
