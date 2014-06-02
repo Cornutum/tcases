@@ -1,3 +1,7 @@
+#summary And more
+
 = Getting Started =
 
   * [http://www.cornutum.org/tcases/docs/Tcases-Guide.htm Tcases: The Complete Guide]
+
+  * [http://www.cornutum.org/tcases/docs/tcases-maven-plugin/ The Tcases Maven Plugin]
