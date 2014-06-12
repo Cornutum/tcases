@@ -636,11 +636,13 @@ public class Reducer
     // Find a seed that generates minimum test cases for the specified function(s).
     int initialCount = getTestCaseCount( baseDef, genDef, functionInputDefs);
     int samples;
+    int round;
     int minCount;
     long minSeed;
     boolean reducing;
     Random random;
     for( samples = options.getSamples(),
+           round = 1,
            minCount = initialCount,
            minSeed = 0L,
            reducing = true,
@@ -649,7 +651,8 @@ public class Reducer
          samples > 0
            && reducing;
          
-         samples = (int) Math.round( samples * ( 1 + options.getResampleFactor())))
+         samples = (int) Math.floor( samples * ( 1 + options.getResampleFactor())),
+           round++)
       {
       // Perform next round of samples.
       int roundCount;
@@ -668,13 +671,17 @@ public class Reducer
                      (roundSeed = (long) (random.nextDouble() * Long.MAX_VALUE))))
                  >= minCount;
            i++);
-      logger_.info( "After {} samples, reached {} test cases", Math.min( i+1, samples), Math.min( roundCount, minCount));
 
       reducing = i < samples;
       if( reducing)
         {
+        logger_.info( "Round {}: after {} samples, reached {} test cases", new Object[]{ round, i+1, roundCount});
         minCount = roundCount;
         minSeed = roundSeed;
+        }
+      else
+        {
+        logger_.info( "Round {}: after {} samples, terminating", round, samples);
         }
       } 
 
