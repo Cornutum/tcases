@@ -569,22 +569,18 @@ public class Reducer
 
     // Identify the generator definition file.
     File genDefFile = options.getGenDef();
-    File genDefDefault = null;
     if( genDefFile == null)
       {
-      if( (genDefDefault = new File( inputDir, Tcases.getProjectName( inputDefFile) + "-Generators.xml")).exists())
-        {
-        genDefFile = genDefDefault;
-        }
+      genDefFile = new File( inputDir, Tcases.getProjectName( inputDefFile) + "-Generators.xml");
       }
     else if( !genDefFile.isAbsolute())
       {
       genDefFile = new File( inputDir, genDefFile.getPath());
       }
       
-    // Generator definitions specified?
+    // Previous generator definitions exist?
     IGeneratorSet genDef = null;
-    if( genDefFile != null)
+    if( genDefFile.exists())
       {
       // Yes, read generator definitions.
       InputStream genStream = null;
@@ -689,17 +685,16 @@ public class Reducer
       {
       // Write updates to generator definitions.
       setRandomSeed( genDef, functionInputDefs, minSeed);
-      File genUpdateFile = genDefFile != null? genDefFile : genDefDefault;
       GeneratorSetDocWriter genWriter = null;
       try
         {
-        logger_.info( "Updating generator definition={}", genUpdateFile);
-        genWriter = new GeneratorSetDocWriter( new FileOutputStream( genUpdateFile));
+        logger_.info( "Updating generator definition={}", genDefFile);
+        genWriter = new GeneratorSetDocWriter( new FileOutputStream( genDefFile));
         genWriter.write( genDef);
         }
       catch( Exception e)
         {
-        throw new RuntimeException( "Can't write generator definition file=" + genUpdateFile, e);
+        throw new RuntimeException( "Can't write generator definition file=" + genDefFile, e);
         }
       finally
         {
