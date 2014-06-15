@@ -1,0 +1,85 @@
+<System name="Reducer">
+  <Function name="run">
+
+    <Input type="arg">
+
+      <VarSet name="Function">
+        <Var name="Defined">
+          <Value name="Yes" property="function"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Exists" when="function">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Has-Generator">
+          <Value name="Yes" when="function, genDefExisting"/>
+          <Value name="No"  when="function" whenNot="genDefExisting" failure="true"/>
+          <Value name="NA" whenNot="function"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="GenDef">
+        <Var name="Defined">
+          <Value name="Yes" property="genDef"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Exists" when="genDef">
+          <Value name="Yes" property="genDefExisting"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="ResampleFactor">
+        <Var name="Defined">
+          <Value name="Yes" property="resampleFactor"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Numeric" when="resampleFactor">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="SampleCount">
+        <Var name="Defined">
+          <Value name="Yes" property="sampleCount"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Numeric" when="sampleCount">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="TestDef">
+        <Var name="Defined">
+          <Value name="Yes" property="testDef"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Exists" when="testDef">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Absolute" when="testDef">
+          <Value name="Yes"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="InputDef">
+        <Var name="Exists">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Matches">
+          <Value name="Full-Path"/>
+          <Value name="Project-Input"/>
+          <Value name="Project-Xml"/>
+        </Var>
+      </VarSet>
+
+    </Input>
+
+  </Function>
+</System>
