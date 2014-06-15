@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="find-1"/>
+  <TupleGenerator function="find-2"/>
+</Generators>
