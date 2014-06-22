@@ -44,6 +44,8 @@
       <includes>
         <include>tcases</include>
         <include>tcases.bat</include>
+        <include>tcases-reducer</include>
+        <include>tcases-reducer.bat</include>
       </includes>
       <fileMode>0755</fileMode>
     </fileSet>

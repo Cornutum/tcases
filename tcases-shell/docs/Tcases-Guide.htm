@@ -55,6 +55,7 @@
             <LI><A href="#files">Managing Project Files</A></LI>
             <LI><A href="#reuse">Reusing Previous Test Cases</A></LI>
             <LI><A href="#random">Mix It Up: Random Combinations</A></LI>
+            <LI><A href="#reduce">Reducing Test Cases: A Random Walk</A></LI>
             <LI><A href="#once">Avoiding Unneeded Combinations</A></LI>
             <LI><A href="#simpleGenDef">Simple Generator Definitions</A></LI>
             <LI><A href="#trouble">Troubleshooting FAQs</A></LI>
@@ -1478,8 +1479,79 @@
         combinations. Tcases does not attempt to spend the enormous effort needed to guarantee an optimally
         minimal set of test cases. It simply starts at the beginning and does its best to get quickly to the
         end. But a random walk through the combinations may lead Tcases to a more efficient path. If you're concerned about
-        the size of your test suite, it may be a good idea to compare results for several different <SPAN class="code">seed</SPAN>
-        values.
+        the size of your test suite, try the <A href="#reduce">Tcases Reducer</A>.
+      </P>
+
+      <H3><A name="reduce">Reducing Test Cases: A Random Walk</A></H3>
+      <P>
+        A random walk through the combinations may lead Tcases to a smaller set of test cases. So you could try repeatedly altering your
+        generator definition with a bunch of different <SPAN class="code">seed</SPAN> values, searching for one that minimizes
+        the size of the generated test definition file. Sounds tedious, huh? So, don't do that &mdash; use the Tcases Reducer instead.
+      </P>
+      <P>
+        Here how to do it, using the <SPAN class="code">tcases-reducer</SPAN> command.
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases-reducer find-Input.xml <BR/>
+        </DIV>
+      </P>
+      <P>
+        And the result? Now there is a <SPAN class="code">find-Generators.xml</SPAN> file that looks something like this:
+        a generator definition that uses a random seed for all functions.
+      </P>
+
+        <DIV class="exampleDoc">
+          &lt;?xml version="1.0"?&gt;<BR/>
+          &lt;Generators&gt;<BR/>
+          &nbsp; &lt;TupleGenerator function="*" <SPAN class="exampleEmph">seed="1909310132352748544"</SPAN> tuples="1"&gt;<BR/>
+          &nbsp; &lt;/TupleGenerator&gt;<BR/>
+          &lt;/Generators&gt;<BR/>
+        </DIV>
+      <P>
+        But why this seed value? For a detailed view, look at the
+        resulting <SPAN class="code">tcases-reducer.log</SPAN> file (see example below). First, the
+        Reducer generates test cases without using a random seed, producing 10 test cases.  Then,
+        the Reducer tries again, and it reduces the results to 9 test cases.  Then, the Reducer
+        tries several more time, each time using a different random seed. Finally, the
+        Reducer cannot find a greater reduction, so it terminates.
+      </P>
+
+      <DIV class="exampleDoc">
+        INFO  org.cornutum.tcases.Reducer - Reading system input definition=find-Input.xml<BR/>
+        INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: generating test cases<BR/>
+        ...<BR/>
+        INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: completed 10 test cases<BR/>
+        INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: generating test cases<BR/>
+        ...<BR/>
+        INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: completed 9 test cases<BR/>
+        INFO  org.cornutum.tcases.Reducer - Round 1: after 2 samples, reached 9 test cases<BR/>
+        ...<BR/>
+        INFO  org.cornutum.tcases.Reducer - Round 2: after 10 samples, terminating<BR/>
+        INFO  org.cornutum.tcases.Reducer - Updating generator definition=find-Generators.xml<BR/>
+      </DIV>
+
+      <P>
+        The Reducer handles all the work of searching for the best random seed, without overwriting
+        any existing test definition files.  Here's how it works.  The reducing process operates as
+        a sequence of "rounds". Each round consists of a series of test case generations executions
+        called "samples". Each sample uses a new random seed to generate test cases for a specified
+        function (or, by default, all functions) in an attempt to find a seed that produces the
+        fewest test cases. If all samples in a round complete without reducing the current minimum
+        test case count, the reducing process terminates. Otherwise, as soon as a new minimum is
+        reached, a new round begins. The number of samples in each subsequent round is determined
+        using a "resample factor". At the end of the reducing process, the generator definition file
+        for the given system input definition is updated with the random seed value that produces
+        the minimum test case count.
+
+      </P>
+
+      <P>
+        For details about all the options for the <SPAN class="code">tcases-reducer</SPAN> command (and
+        its Windows counterpart  <SPAN class="code">tcases-reducer.bat</SPAN>), see the Javadoc for
+        the <A href="api/org/cornutum/tcases/Reducer.Options.html"><SPAN class="code">Reducer.Options</SPAN></A>
+        class.  To get help at the command line, run <SPAN class="code">tcases-reducer -help</SPAN>.
       </P>
         
       <H3><A name="once">Avoiding Unneeded Combinations</A></H3>
