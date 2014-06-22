@@ -1,0 +1,100 @@
+#######################################################################
+#
+#                     Copyright 2014, Cornutum Project
+#                              www.cornutum.org
+# 
+#                         $Revision: 243 $
+#      $Date: 2013-01-19 18:24:18 -0600 (Sat, 19 Jan 2013) $
+# 
+#######################################################################
+
+pgm=`basename $0`
+
+usage()
+{
+  echo Usage: $pgm "[-f function] [-g genDef] [-r resampleFactor] [-s sampleCount] [-t testDef] inputDef" >&2
+  echo "" >&2
+  echo "  For a system input definition, updates the associated test case generators to reduce the number" >&2
+  echo "  of generated test cases, using the given command line options." >&2
+  echo "" >&2
+  echo "  inputDef           The system input definition is read from the given inputDef." >&2
+  echo "" >&2
+  echo "  -f function        If -f is defined, update only the test case generator for the given function." >&2
+  echo "                     Otherwise, update the test case generators for all functions." >&2
+  echo "" >&2
+ 	echo "  -g genDef          If -g is defined, update the generator specified in the given genDef file." >&2
+  echo "                     Otherwise, update the default generate definition file: the corresponding" >&2
+  echo "                     *-Generators.xml file in the same directory as the inputDef." >&2
+  echo "" >&2
+  echo "  -l logFile         If -l is defined, log output is written to the given file. If omitted," >&2
+  echo "                     log output is written to a file named ${pgm}.log in the current working" >&2
+  echo "                     directory." >&2
+  echo "" >&2
+  echo "  -r resampleFactor  If -r is defined, use the given resampleFactor to determine the number" >&2
+  echo "                     of samples in the next round of reducing. Depending on the resampleFactor," >&2
+  echo "                     the next round may use more or fewer samples. If the previous round called" >&2
+  echo "                     for N samples and produced a reduction, then the number of samples for the " >&2
+  echo "                     next round will be N * ( 1 + resampleFactor). To increase sample count with" >&2
+  echo "                     each round, define resampleFactor > 0. To decrease sample count with each round," >&2
+  echo "                     define -1 < resampleFactor < 0. If resampleFactor is omitted, the default value is 0." >&2
+  echo "" >&2
+ 	echo "  -s sampleCount     Defines the number of samples for the initial round of reducing. If omitted," >&2
+  echo "                     the default sampleCount is 10." >&2
+  echo "" >&2
+ 	echo "  -t testDef         If -t is defined, generate test cases based on the test definitions in the" >&2
+  echo "                     specified testDef file, relative to the directory containing the inputDef." >&2
+}
+
+while [ $# -gt 0 ] ; do
+  case $1 in
+    -f) shift; function="$1";;
+    -g) shift; genDef="$1";;
+    -l) shift; logFile="$1";;
+    -r) shift; resmpf="$1";;
+    -s) shift; smpc="$1";;
+    -t) shift; testDef="$1";;
+    -*) usage; exit 1;;
+     *) break;;
+  esac
+  shift
+done
+
+logFile=${logFile:-${pgm}.log}
+inputDef="$1"
+shift
+
+if [ $# -ne 0 ] ; then
+  usage; exit 1
+fi
+
+binDir=`dirname $0`
+releaseDir=`cd $binDir/..; pwd`
+libDir=${releaseDir}/lib
+
+classPath=${libDir}
+for jar in ${libDir}/*.jar; do
+  classPath="${classPath}:${jar}"
+done
+
+uname=`uname`
+cygwin=`expr $uname : 'CYGWIN'`
+if [ $cygwin -gt 0 ] ; then
+  classPath=`cygpath --path -m "$classPath"`
+  genDef=${genDef:+`cygpath -m "$genDef"`}
+  inputDef=${inputDef:+`cygpath -m "$inputDef"`}
+  logFile=`cygpath -m "$logFile"`
+  testDef=${testDef:+`cygpath -m "$testDef"`}
+fi
+
+
+java \
+  -cp "$classPath" \
+  -Dtcases.log.file="$logFile" \
+  org.cornutum.tcases.Reducer \
+  ${genDef:+-g "$genDef"} \
+  ${resmpf:+-r "$resmpf"} \
+  ${smpc:+-s "$smpc"} \
+  ${function:+-f "$function"} \
+  ${testDef:+-t "$testDef"} \
+  $inputDef
+
