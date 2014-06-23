@@ -350,7 +350,7 @@ public class Reducer
       }
 
     /**
-     * Changes the output file for generated test definitions.
+     * Changes the base test definition file.
      */
     public void setTestDef( File testDef)
       {
@@ -358,7 +358,7 @@ public class Reducer
       }
 
     /**
-     * Returns the output file for generated test definitions.
+     * Returns the base test definition file.
      */
     public File getTestDef()
       {
