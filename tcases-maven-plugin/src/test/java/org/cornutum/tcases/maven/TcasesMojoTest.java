@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.Arrays;
 
 /**
- * Runs tests for the {@link TcaseMojo} plugin.
+ * Runs tests for the {@link TcasesMojo} plugin.
  */
 public class TcasesMojoTest
   {
