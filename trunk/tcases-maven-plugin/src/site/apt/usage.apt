@@ -4,7 +4,7 @@
 
 Usage
 
-  The Tcases Plugin runs Tcases on the
+  The {{{./tcases-mojo.html}tcases:tcases}} goal runs Tcases on the
   {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#functions} system input definition}} for
   all of the Tcases {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#project}projects}}
   found in the <<inputDir>> specified by the plugin configuration. By default, the <<inputDir>> is
@@ -222,6 +222,47 @@ mvn tcases:tcases -DinputDef="**/My-Project-Input.xml"
 mvn tcases:tcases -DnewTests=true
 +--------
 
+* {Reducing Test Cases}
+
+  A {{{Random_Combinations} random walk through the combinations}} may lead Tcases to a smaller set
+  of test cases. So you could try repeatedly altering your generator definition with a bunch of
+  different seed values, searching for one that minimizes the size of the generated test definition
+  file. Sounds tedious, huh? So, don't do that -- use the {{{./reduce-mojo.html} tcases:reduce}}
+  goal instead.
+
+  For example, let's assume you are using the default Tcases configuration, and you have a Tcases
+  project defined by a system input definition file named
+  <<<$\{basedir\}/src/test/tcases/org/cornutum/tcases/find-Input.xml>>>. What happens when you run the following command?
+
++--------
+mvn tcases:reduce -DinputDef="**/find-Input.xml"
++--------
+
+  Now there is a new <<<find-Generators.xml>>> file that looks something like this: a
+  generator definition that uses a random seed for all functions.
+
++--------
+<Generators>
+  <TupleGenerator function="*" seed="1909310132352748544" tuples="1">
+  </TupleGenerator>
+</Generators>
++--------
+
+  But why this seed value? Because, after trying several different values, this one produced the
+  fewest test cases.
+
+  The {{{./reduce-mojo.html} tcases:reduce}} goal runs the
+  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#reduce} Tcases Reducer}}, and here's how
+  it works.  The reducing process operates as a sequence of "rounds". Each round consists of a
+  series of test case generations executions called "samples". Each sample uses a new random seed
+  to generate test cases for a specified function (or, by default, all functions) in an attempt to
+  find a seed that produces the fewest test cases. If all samples in a round complete without
+  reducing the current minimum test case count, the reducing process terminates. Otherwise, as soon
+  as a new minimum is reached, a new round begins. The number of samples in each subsequent round
+  is determined using a "resample factor". At the end of the reducing process, the generator
+  definition file for each specified system input definition is updated with the random seed value
+  that produces the minimum test case count.
+
 * {Simple Generator Definitions}
 
    The Tcases Plugin provides configuration parameters to make it easier to create and update a
@@ -284,7 +325,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#higherCoverage} generator definition}} by
   using the seed attribute \-\-\- see the example below. This integer value acts as the seed for a
   random number generator that controls the combination process. Alternatively, you can (re)define
-  the seed value using {{{Defining_A_Random Seed}a configuration parameter}}. By specifying the
+  the seed value using {{{Defining_A_Random_Seed} a configuration parameter}}. By specifying the
   seed explicitly, you ensure that exactly the same random combinations will be used every time you
   run Tcases with this generator definition.
 
@@ -310,7 +351,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   effort needed to guarantee an optimally minimal set of test cases. It simply starts at the
   beginning and does its best to get quickly to the end. But a random walk through the combinations
   may lead Tcases to a more efficient path. If you're concerned about the size of your test suite,
-  it may be a good idea to compare results for several different seed values.
+  try using the {{{Reducing_Test_Cases} tcases:reduce}} goal.
 
 ** Avoiding Unneeded Combinations
 
