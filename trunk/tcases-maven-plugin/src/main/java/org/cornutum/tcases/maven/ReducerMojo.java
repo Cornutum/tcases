@@ -338,12 +338,7 @@ public class ReducerMojo extends AbstractMojo
   private double resampleFactor;
 
   /**
-   * Defines the name for the updated generator definition file written by Reducer for an input definition file.
-   * This file name may contain at most one "*" wildcard character, in which case
-   * the "*" is replaced by the <EM>project name</EM> of the corresponding
-   * input definition file &mdash; see the <B><CODE>inputDef</CODE></B> parameter for
-   * details.
-   * The default value is "*-Generators.xml".
+   * Defines the number of samples for the initial round of reducing.
    */
   @Parameter(property="samples",defaultValue="10")
   private int samples;
