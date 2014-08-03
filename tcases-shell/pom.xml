@@ -84,7 +84,7 @@
                 <descriptor>src/main/assembly/shell-assembly.xml</descriptor>
               </descriptors>
               <filters>
-                <filter>src/main/assembly/shell.properties</filter>
+                <filter>${basedir}/src/main/assembly/shell.properties</filter>
               </filters>
             </configuration>
           </execution>
