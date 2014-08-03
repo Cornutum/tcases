@@ -82,8 +82,8 @@ public class Reducer
    * <NOBR>-g <I>genDef</I> </NOBR>
    * </TD>
    * <TD>
-   * If <I>-g</I> is defined, update the generator specified in the given <I>genDef</I> file. Otherwise, update the default generate definition file:
-   * the corresponding <CODE>*-Generators.xml</CODE> file in the same directory as the <I>inputDef</I>.
+   * If <I>-g</I> is defined, update the generator specified in the given <I>genDef</I> file. Otherwise, update the default generator definition file:
+   * the corresponding <NOBR><CODE>*-Generators.xml</CODE></NOBR> file in the same directory as the <I>inputDef</I>.
    * </TD>
    * </TR>
    * 
@@ -413,7 +413,7 @@ public class Reducer
       }
 
     /**
-     * Returns the {@link setResampleFactor resample factor}.
+     * Returns the {@link #setResampleFactor resample factor}.
      */
     public double getResampleFactor()
       {
