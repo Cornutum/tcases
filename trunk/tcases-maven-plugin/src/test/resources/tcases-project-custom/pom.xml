@@ -6,7 +6,7 @@
 
   <groupId>org.cornutum.tcases</groupId>
   <artifactId>tcases-project-custom</artifactId>
-  <version>1.1.1</version>
+  <version>1.2.0</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
