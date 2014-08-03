@@ -60,6 +60,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <build.timestamp>${maven.build.timestamp}</build.timestamp>
+    <maven.build.timestamp.format>MMM d, yyyy</maven.build.timestamp.format>
   </properties>
 
   <build>
@@ -81,6 +83,9 @@
               <descriptors>
                 <descriptor>src/main/assembly/shell-assembly.xml</descriptor>
               </descriptors>
+              <filters>
+                <filter>src/main/assembly/shell.properties</filter>
+              </filters>
             </configuration>
           </execution>
         </executions>

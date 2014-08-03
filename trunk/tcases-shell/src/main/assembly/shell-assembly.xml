@@ -37,6 +37,9 @@
         <include>*.png</include>
         <include>examples/**/*</include>
       </includes>
+      <excludes>
+        <exclude>Tcases-Guide.htm</exclude>
+      </excludes>
     </fileSet>
     <fileSet>
       <directory>${project.basedir}/bin</directory>
@@ -57,5 +60,13 @@
       </includes>
     </fileSet>
   </fileSets>
+
+  <files>
+    <file>
+      <source>${project.basedir}/docs/Tcases-Guide.htm</source>
+      <outputDirectory>docs</outputDirectory>
+      <filtered>true</filtered>
+    </file>
+  </files>
 
 </assembly>
