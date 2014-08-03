@@ -30,6 +30,8 @@ Tcases Plugin
 
   * {{{./tcases-mojo.html}tcases:tcases}} Implements the Tcases Maven plugin.
 
+  * {{{./reduce-mojo.html}tcases:reduce}} Runs the {{{./usage.html#Reducing_Test_Cases}Tcases Reducer}}.
+
 * Usage
 
   General instructions on how to use the Tcases Plugin can be found on the {{{./usage.html}usage page}}.  

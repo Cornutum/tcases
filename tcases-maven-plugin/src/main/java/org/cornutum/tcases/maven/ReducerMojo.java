@@ -245,7 +245,7 @@ public class ReducerMojo extends AbstractMojo
     }
 
   /**
-   * Returns the {@link setResampleFactor resample factor}.
+   * Returns the {@link #setResampleFactor resample factor}.
    */
   public double getResampleFactor()
     {
