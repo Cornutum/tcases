@@ -1,0 +1,96 @@
+<System name="System-5">
+  <Function name="Function-0">
+
+    <Input type="env">
+      <Var name="env-0-0">
+        <When>
+          <AllOf property="P1, P2, P3">
+            <Not property="P4"/>
+            <AllOf property="P5"/>
+            <AnyOf property="P6"/>
+          </AllOf>
+        </When>
+
+        <Value name="value-0" failure="true">
+          <When>
+            <AllOf property="P1, P2, P3">
+              <Not property="P4"/>
+              <AllOf property="P5"/>
+              <AnyOf property="P6"/>
+            </AllOf>
+          </When>
+        </Value>
+
+        <Value name="value-1" failure="false" once="true">
+          <When>
+            <AllOf property="P1, P2, P3">
+              <Not property="P4"/>
+              <AllOf property="P5"/>
+              <AnyOf property="P6"/>
+            </AllOf>
+          </When>
+        </Value>
+      </Var>
+
+      <Var name="env-0-1">
+        <When>
+          <AllOf property="P1, P2, P3">
+            <Not property="P4"/>
+            <AllOf property="P5"/>
+            <AnyOf property="P6"/>
+          </AllOf>
+        </When>
+
+        <Value name="value-2" failure="true">
+          <When>
+            <AllOf property="P1, P2, P3">
+              <Not property="P4"/>
+              <AllOf property="P5"/>
+              <AnyOf property="P6"/>
+            </AllOf>
+          </When>
+        </Value>
+
+        <Value name="value-3" failure="false" once="true">
+          <When>
+            <AllOf property="P1, P2, P3">
+              <Not property="P4"/>
+              <AllOf property="P5"/>
+              <AnyOf property="P6"/>
+            </AllOf>
+          </When>
+        </Value>
+      </Var>
+
+      <VarSet name="env-0-2">
+        <When>
+          <AllOf property="P1, P2, P3">
+            <Not property="P4"/>
+            <AllOf property="P5"/>
+            <AnyOf property="P6"/>
+          </AllOf>
+        </When>
+        <Var name="member-0">
+          <Value name="value-4"/>
+        </Var>
+        <When>
+          <Not property="X2"/>
+        </When>
+      </VarSet>
+
+      <VarSet name="env-0-3">
+        <When>
+          <AllOf property="P1, P2, P3">
+            <Not property="P4"/>
+            <AllOf property="P5"/>
+            <AnyOf property="P6"/>
+          </AllOf>
+        </When>
+        <Var name="member-0">
+          <Value name="value-5"/>
+        </Var>
+      </VarSet>
+    </Input>
+
+  </Function>
+</System>

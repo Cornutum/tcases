@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<xs:schema 
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="http://www.cornutum.org/tcases"
+   xmlns="http://www.cornutum.org/tcases"
+   >
+  <!-- 
+  //////////////////////////////////////////////////////////////////////////////
+  // 
+  //                    Copyright 2012, Cornutum Project
+  //                             www.cornutum.org
+  //
+  //////////////////////////////////////////////////////////////////////////////
+  -->
+  <!-- Defines the schema for a generator definition document -->
+  <!-- $Revision$, $Date$ -->
+
+  <!-- System functions -->
+  <xs:element name="Generators">
+    <xs:complexType>
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+
+        <xs:element name="TupleGenerator">
+          <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+
+              <xs:element name="Combine">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:choice>
+
+                      <xs:element name="Include">
+                        <xs:complexType>
+                          <xs:attribute name="var" type="xs:string" use="required"/>
+                        </xs:complexType>
+                      </xs:element>
+
+                      <xs:element name="Exclude">
+                        <xs:complexType>
+                          <xs:attribute name="var" type="xs:string" use="required"/>
+                        </xs:complexType>
+                      </xs:element>
+
+                    </xs:choice>
+                  </xs:sequence>
+
+                  <xs:attribute name="tuples" type="xs:nonNegativeInteger"/>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+
+            <xs:attribute name="function" type="xs:string"/>
+            <xs:attribute name="seed" type="xs:integer"/>
+            <xs:attribute name="tuples" type="xs:nonNegativeInteger"/>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
