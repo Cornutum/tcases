@@ -1,6 +1,10 @@
 #summary A summary of the changes for each release
 #labels Featured
 
+= 1.2.0 =
+
+  * Introducing the [http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#reduce Tcases Reducer], which helps automate the search for a smaller set of test cases.
+
 = 1.1.1 =
 
   * For XML input files, Tcases now validates the attributes specified for all elements. Tcases reports an error if any attribute is unknown or invalid.
