@@ -630,6 +630,7 @@ public class Reducer
       }
 
     // Find a seed that generates minimum test cases for the specified function(s).
+    logger_.info( "Initializing test cases to be reduced");
     int initialCount = getTestCaseCount( baseDef, genDef, functionInputDefs);
     int samples;
     int round;
@@ -651,6 +652,7 @@ public class Reducer
            round++)
       {
       // Perform next round of samples.
+      logger_.info( "Round {}: starting", round);
       int roundCount;
       long roundSeed;
       int i;
@@ -671,13 +673,13 @@ public class Reducer
       reducing = i < samples;
       if( reducing)
         {
-        logger_.info( "Round {}: after {} samples, reached {} test cases", new Object[]{ round, i+1, roundCount});
+        logger_.info( "Round {}: after {} samples, reached {} test cases with seed={}", new Object[]{ round, i+1, roundCount, roundSeed});
         minCount = roundCount;
         minSeed = roundSeed;
         }
       else
         {
-        logger_.info( "Round {}: after {} samples, terminating", round, samples);
+        logger_.info( "Round {}: after {} samples, terminating with {} test cases, seed={}", new Object[]{ round, samples, minCount, minSeed});
         }
       } 
 
@@ -729,7 +731,7 @@ public class Reducer
     }
 
   /**
-   * Returns the total number of test cases generated for the given functions.
+   * Returns the total number of test cases generated for the given functions using the given seed.
    */
   private int getTestCaseCount( SystemTestDef baseDef, IGeneratorSet genDef, FunctionInputDef[] functionInputDefs, long seed)
     {
@@ -738,7 +740,7 @@ public class Reducer
     }
 
   /**
-   * Returns the total number of test cases generated for the given functions.
+   * Changes the random seed used to generate test cases for the given functions.
    */
   private void setRandomSeed( IGeneratorSet genDef, FunctionInputDef[] functionInputDefs, long seed)
     {
