@@ -652,7 +652,7 @@ public class Reducer
            round++)
       {
       // Perform next round of samples.
-      logger_.info( "Round {}: starting", round);
+      logger_.info( "Round {}: starting next {} samples", round, samples);
       int roundCount;
       long roundSeed;
       int i;
@@ -679,18 +679,22 @@ public class Reducer
         }
       else
         {
-        logger_.info( "Round {}: after {} samples, terminating with {} test cases, seed={}", new Object[]{ round, samples, minCount, minSeed});
+        logger_.info( "Round {}: after {} samples, terminating with {} test cases", new Object[]{ round, samples, minCount});
         }
       } 
 
-    if( minCount < initialCount)
+    if( minCount >= initialCount)
+      {
+      logger_.info( "Could not reduce initial {} test cases -- generator definition not changed", initialCount);
+      }
+    else
       {
       // Write updates to generator definitions.
       setRandomSeed( genDef, functionInputDefs, minSeed);
       GeneratorSetDocWriter genWriter = null;
       try
         {
-        logger_.info( "Updating generator definition={}", genDefFile);
+        logger_.info( "Reduced to {} test cases with seed={} -- updating generator definition={}", new Object[]{ minCount, minSeed, genDefFile});
         genWriter = new GeneratorSetDocWriter( new FileOutputStream( genDefFile));
         genWriter.write( genDef);
         }
