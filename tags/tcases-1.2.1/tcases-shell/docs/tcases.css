@@ -1,0 +1,158 @@
+BODY
+{
+    font-family: Verdana, Century Gothic, Tahoma, Helvetica;
+    background-color: white;
+    margin: 0;
+}
+
+DIV.page
+{
+    margin-left: 54pt;
+    margin-right: 54pt;
+    margin-top: 36pt;
+    margin-bottom: 36pt;
+    font-size: 11pt;
+}
+
+DIV.title
+{
+    width: 100%;
+}
+
+SPAN.title
+{
+    font-size: 18pt;
+    font-weight: bold;
+    margin-left: 16pt;
+}
+
+SPAN.subtitle
+{
+    font-size: 8pt;
+    font-weight: normal;
+    margin-left: 16pt;
+}
+
+DIV.title IMG
+{
+    width: 45px;
+    height: 64px;
+    right: 100%;
+    border-style: solid;
+    border-width: 1;
+    float: left;
+}
+
+DIV.page H2
+{
+    margin: 2em 0 0 0;
+    font-size: 14pt;
+    font-weight: bold;
+    width: 100%;
+    padding: 4pt;
+    background-color: #EAD095;
+    border-style: solid;
+    border-width: 1;
+    border-color: #D2AD57 #594411 #594411 #D2AD57;
+}
+
+DIV.page H3
+{
+    margin: 1.5em 0 0 0;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+DIV.page H4
+{
+    margin: 1.5em 0 0 0;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+DIV.page P
+{
+    margin-left: 1em;
+}
+
+SPAN.code
+{
+    font-family: Courier New, Courier;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+SPAN.codeEmph
+{
+    font-family: Courier New, Courier;
+    font-weight: bold;
+    font-size: 12pt;
+    padding: 1px;
+    background-color: #F0F0F0;
+    border-style: solid;
+    border-width: 1;
+    border-color: black;
+}
+
+DIV.exampleCode
+{
+    font-family: Courier New, Courier;
+    font-weight: bold;
+    font-size: 12pt;
+    margin-left: 3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+SPAN.exampleDoc
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #101080;
+}
+
+DIV.exampleDoc
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #101080;
+    padding: .5em;
+    background-color: #F0F0F0;
+    border-style: solid;
+    border-width: 1;
+    border-color: black;
+    margin-left: 3em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    width: 75%;
+    max-height: 21em;
+    overflow: auto;
+}
+
+SPAN.exampleComment
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #A81717;
+}
+
+SPAN.exampleEmph
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: black;
+    background-color: #F8F88A;
+}
+
+SPAN.exampleError
+{
+    font-family: Courier New, Courier;
+    font-weight: normal;
+    font-size: 12pt;
+    color: black;
+    background-color: #FFA078;
+}

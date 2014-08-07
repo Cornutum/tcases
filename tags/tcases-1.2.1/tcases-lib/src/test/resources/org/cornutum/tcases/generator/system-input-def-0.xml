@@ -1,0 +1,39 @@
+<System name="Things">
+
+  <Function name="Make">
+    <Input type="arg">
+
+      <VarSet name="Color">
+        <Var name="Hue">
+          <Value name="Red"/>
+          <Value name="Green"/>
+          <Value name="Blue"/>
+        </Var>
+        <Var name="Lightness">
+          <Value name="Bright"/>
+          <Value name="Normal"/>
+          <Value name="Dark"/>
+        </Var>
+        <Var name="Saturation">
+          <Value name="Pale"/>
+          <Value name="Even"/>
+          <Value name="Intense"/>
+        </Var>
+      </VarSet>
+
+      <Var name="Size">
+        <Value name="Small"/>
+        <Value name="Medium"/>
+        <Value name="Large"/>
+      </Var>
+
+      <Var name="Shape">
+        <Value name="Square"/>
+        <Value name="Circle"/>
+        <Value name="Heart"/>
+      </Var>
+
+    </Input>
+  </Function>
+
+</System>

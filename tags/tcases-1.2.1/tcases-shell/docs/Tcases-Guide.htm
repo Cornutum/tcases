@@ -1,0 +1,1921 @@
+<HTML>
+  <HEAD>
+    <LINK rel="stylesheet" type="text/css" href="tcases.css"/>
+    <TITLE>Tcases: The Complete Guide</TITLE>
+  </HEAD>
+  <BODY>
+
+    <DIV class="page">
+      <DIV class="title">
+        <IMG src="cornutum-logo.png"/>
+        <SPAN class="title"> Tcases: The Complete Guide </SPAN> <BR/>
+        <SPAN class="subtitle">Version ${shell.version} (${shell.timestamp})</SPAN><BR/>
+        <SPAN class="subtitle">&copy; 2012 Cornutum Project</SPAN>
+      </DIV>
+
+      <H2>Contents</H2>
+      <UL>
+        <LI> <A href="#intro"> Introduction </A>
+          <UL>
+            <LI><A href="#what">What Does It Do?</A></LI>     
+            <LI><A href="#how">How Does It Work?</A></LI> 
+            <LI><A href="#why">Why Tcases?</A></LI>      
+          </UL>
+        </LI>
+        <LI> <A href="#start"> Getting Started </A>
+          <UL>
+            <LI><A href="#about">About This Guide</A></LI>  
+            <LI><A href="#maven">Installing The Tcases Maven Plugin</A></LI>  
+            <LI><A href="#install">Installing The Tcases Distribution</A></LI>  
+            <LI><A href="#run">Running From the Command Line</A></LI> 
+            <LI><A href="#run-ant">Running With Ant</A></LI>      
+            <LI><A href="#results">Understanding Tcases Results</A></LI>      
+          </UL>
+        </LI>
+        <LI><A href="#input">Modeling The Input Space</A>
+          <UL>
+            <LI><A href="#exampleFind">An Example: The find Command</A></LI> 
+            <LI><A href="#functions">Defining System Functions</A></LI> 
+            <LI><A href="#vars">Defining Input Variables</A></LI>
+            <LI><A href="#values">Defining Input Values</A></LI>
+            <LI><A href="#varSets">Defining Variable Sets</A></LI>
+            <LI><A href="#constraints">Defining Constraints: Properties and Conditions</A></LI>
+          </UL>
+        </LI>
+        <LI><A href="#coverage">Defining Input Coverage</A>
+          <UL>
+            <LI><A href="#combinations">Combinatorial Testing Basics</A></LI>
+            <LI><A href="#failureCoverage">Failure Cases Are Different! </A></LI>
+            <LI><A href="#defaultCoverage">Default Coverage</A></LI>
+            <LI><A href="#higherCoverage">Defining Higher Coverage</A></LI>
+            <LI><A href="#multiCoverage">Defining Multiple Levels Of Coverage</A></LI>
+          </UL>
+        </LI>
+        <LI><A href="#project">Managing A Tcases Project</A>
+          <UL>
+            <LI><A href="#files">Managing Project Files</A></LI>
+            <LI><A href="#reuse">Reusing Previous Test Cases</A></LI>
+            <LI><A href="#random">Mix It Up: Random Combinations</A></LI>
+            <LI><A href="#reduce">Reducing Test Cases: A Random Walk</A></LI>
+            <LI><A href="#once">Avoiding Unneeded Combinations</A></LI>
+            <LI><A href="#simpleGenDef">Simple Generator Definitions</A></LI>
+            <LI><A href="#trouble">Troubleshooting FAQs</A></LI>
+          </UL>
+        </LI>
+        <LI><A href="#transform">Transforming Test Cases</A>
+          <UL>
+            <LI><A href="#junit">Creating JUnit/TestNG Tests</A></LI>
+            <LI><A href="#xslt">Using XSLT Transforms</A></LI>
+          </UL>
+        </LI>
+        <LI><A href="#reference">Further Reference</A></LI>
+      </UL>
+
+      <H2><A name="intro">Introduction</A></H2>
+      <H3><A name="what">What Does It Do?</A></H3>     
+      <P>
+        Tcases is a tool for designing tests. It doesn't matter what kind of system you are
+        testing. Nor does it matter what level of the system you are testing &mdash; unit, subsystem,
+        or full system. You can use Tcases to design your tests in any of these situations. With
+        Tcases, you define the input space for your system-under-test and the level of coverage that
+        you want. Then Tcases generates a minimal set of test cases that meets your requirements.
+      </P>
+      <P>
+        Tcases is primarily a tool
+        for <A href="http://en.wikipedia.org/wiki/Black-box_testing">black-box test design</A>. For
+        such tests, the concept of "coverage" is different from structural testing critieria such as
+        line coverage, branch converage, etc. Instead, Tcases is guided by coverage of the input
+        space of your system.  
+      </P>
+      <P>
+        What is the "input space" of the system? The simplest way to look at
+        it is this: the set of all (combinations of) input values that could possibly be
+        applied. Easy to say, but hard to do! For all but the simplest systems, such a set is
+        enormous, perhaps even infinite. You could never afford to build and run all those test
+        cases.  Instead, you have to select test cases from a small sample of the input space. But
+        how? If your sample is too big, you'll run out of time before you finish. But if your
+        sample is too small &mdash; or, worse, if it's the <EM>wrong</EM> subset &mdash; you'll miss lots
+        of defects. 
+      </P>
+      <P>
+        That is the test design problem: given a limited amount of testing effort, how can you
+        minimize the risk of defects?  And Tcases is the tool for the job. Tcases gives you a way to
+        define the input space for your system in a form that is concise but comprehensive.  Then Tcases
+        allows you to control the number of test cases in your sample subset by specifying the level
+        of coverage you want. You can start with a basic level of coverage, and Tcases will generate
+        a small set of test cases that touches every significant element of the input space. Then
+        you can improve your tests by selectively adding coverage in specific high-risk areas.  For
+        example, you can specify <A href="http://en.wikipedia.org/wiki/All-pairs_testing">pairwise
+        coverage</A> or higher-order combinations of selected input variables.
+      </P>
+
+
+      <H3><A name="how">How Does It Work?</A></H3> 
+      <P>
+        First, you create a <A href="#systemInputDef">system input definition</A>, an XML document
+        that defines your system as a set of <A href="#functionInputDef">functions</A>. For each
+        system function, the system input definition defines the <A href="#varDef">variables</A>
+        that characterize the function input space.
+      </P> 
+      <P>
+        Then, you can create a <A href="#genDef">generator definition</A>. That's another XML
+        document that defines the coverage you want for each system function. The generator
+        definition is optional. You can skip this step and still get a basic level of coverage.
+      </P>
+      <P>
+        Finally, you run Tcases. Tcases is a Java program that you can run from the command line or
+        from your favorite IDE.  Tcases comes with built-in support for running using a shell
+        script or an <SPAN class="code">ant</SPAN> target.  You can also run Tcases with Maven
+        using
+        the <A href="http://www.cornutum.org/tcases/docs/tcases-maven-plugin/index.html">Tcases
+        Maven Plugin</A>.  Using your input definition and your generator definition, Tcases
+        generates a <A href="#systemTestDef">system test definition</A>.  The system test
+        definition is an XML document that lists, for each system function, a set of test cases
+        that provides the specified level of coverage. Each test case defines a specific value for
+        every function input variable. Tcases generates not only valid input values that define
+        successful test cases but also invalid values for the tests cases that are needed to verify
+        expected error handling.
+      </P>
+      <P>
+        Of course, the system test definition is not something you can execute directly. But it
+        follows a well-defined XML schema, which means you can use a variety of XML transformation tools to
+        convert it into a form that is suitable for testing your system. For example, Tcases comes with a
+        built-in transformer that converts a system test definition into a Java source code template
+        for a <A href="#junit">JUnit or TestNG test class</A>.
+        
+      </P>
+
+      <H3><A name="why">Why Tcases?</A></H3>      
+      <P>
+        <UL>
+          <LI><B>If you are defining acceptance for a new story...</B>
+            <P>
+              Tcases gives you a powerful technique for crystallizing your understanding of a new story: 
+              <A href="#input">modeling the input space</A>. This is especially helpful if you are following a
+              <A href="http://en.wikipedia.org/wiki/Behavior_Driven_Development">behavior-driven
+              development (BDD)</A> process. BDD captures the intended system behavior using a few
+              key examples, each of which is expressed in the form of a test case. BDD examples
+              naturally identify important system input variables.  Input modeling then leads to a
+              deeper and broader understanding of the inputs that the system must handle. Quickly
+              creating a high-level <A href="#input">system input definition</A> is a great way to
+              check if you've identified all the examples you need.
+            </P>
+          </LI>
+          <P/>
+          <LI><B>If you are building unit tests...</B>
+            <P>
+              If you are practicing <A href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development
+              (TDD)</A>, congratulations! &mdash; you are building unit tests to guide the design of your system. But when it
+              comes to actually <EM>testing</EM> your system &mdash; that is, systematically seeking out and removing every
+              defect &mdash; your TDD unit tests are almost certainly insufficient. Each TDD unit test is usually built to
+              demonstrate a single specific feature of the system. But a large number of defects (perhaps more than 50%) are
+              caused by interactions among multiple features.  (For an interesting discussion of the interactions that cause
+              software failures, see <A href="http://csrc.nist.gov/groups/SNS/acts/ftfi.html">this research study<A>). Even
+              if you've made the effort to create unit tests that produce 100% code coverage, you are still likely to miss
+              many of those interactions between explicit unit inputs and implicit inputs such as internal state variables.
+            </P>
+            <P>
+              Instead, you need a more powerful approach &mdash; like Tcases. By generating test cases from
+              a <A href="#input">complete model of all input variables</A>, you can systematically cover interactions
+              among inputs to a specified degree. And you can do it with a small set of unit tests, typically not much more
+              than you would have done with TDD.
+            </P>
+          </LI>
+          <P/>
+          <LI><B>If you are building integration tests or system tests...</B>
+            <P>
+              Unit tests are not enough to find all of the defects in your system. You also need integration tests and even
+              full system tests. But how many of them do you need? You certainly don't need to replicate the same test cases already
+              covered by your unit tests. 
+            </P>
+            <P>
+              With these higher-level tests, the game has changed. There is a new input space with
+              new dimensions of variation to consider. So you can use Tcases to <A href="#input">model these inputs</A> and
+              generate new test cases that cover the interactions among them. For example, system tests often need to
+              consider variations in the settings of key deployment configuration parameters. Tcases gives you a way to gain
+              confidence about the interactions among multiple configuration parameters with a small number of test cases.
+            </P>
+          </LI>
+          <P/>
+        </UL>
+      </P>
+
+      <H2><A name="start">Getting Started</A></H2>
+
+      <H3><A name="about">About This Guide</A></H3>
+      <P>
+        This guide explains everything about how Tcases works. And when it comes to examples,
+        this guide shows how to do things when running Tcases as a shell command. If you run Tcases
+        using
+        the <A href="http://www.cornutum.org/tcases/docs/tcases-maven-plugin/index.html">Tcases
+        Maven Plugin</A>, the command line details will be slightly different, but all of the
+        concepts remain the same.
+      </P>
+
+      <H3><A name="maven">Installing The Tcases Maven Plugin</A></H3>
+      <P>
+        To get dependency info for the Tcases Maven Plugin, visit the
+        plugin <A href="http://www.cornutum.org/tcases/docs/tcases-maven-plugin/dependency-info.html">documentation
+        site</A>.
+      </P>
+
+      <H3><A name="install">Installing The Tcases Distribution</A></H3>
+      <P>
+        To get the command line version of Tcases, download the Tcases binary distribution file from
+        the Maven Central Repository, using the following procedure.
+      </P>
+      <OL>
+        <LI> Visit the <A href="http://search.maven.org/#search%7Cga%7C1%7Ctcases-shell">Central Repository search page</A>. </LI><P/>
+        <LI> Search for "tcases-shell".</LI><P/>
+        <LI> Download the most recent version for the artifact named "tcases-shell". You can choose to download this
+        either as a ZIP file or a compressed <SPAN class="code">tar</SPAN> file (<SPAN class="code">tar.gz</SPAN>).</LI>
+      </OL>
+      <P>
+        Extract the contents of the distribution file to any
+        directory you like &mdash; this is now your <EM>"Tcases home directory"</EM>. Unpacking the distribution file will
+        create a <EM>"Tcases release directory"</EM> &mdash; a subdirectory of the
+        form <SPAN class="code">tcases-<I>m</I>.<I>n</I>.<I>r</I></SPAN> &mdash; that contains all
+        the files for this release of Tcases. The release directory contains the following subdirectories.
+      </P>
+
+      <UL>
+        <LI> <SPAN class="code">bin</SPAN>: Executable shell scripts used to run Tcases </LI><P/>
+        <LI> <SPAN class="code">docs</SPAN>: User guide, examples, and Javadoc </LI><P/>
+        <LI> <SPAN class="code">lib</SPAN>: All JAR files needed to run Tcases </LI><P/>
+      </UL>
+
+      <P>
+        One more step and you're ready to go: add the path to the <SPAN class="code">bin</SPAN> subdirectory to the
+        <SPAN class="code">PATH</SPAN> environment variable for your system.
+      </P>
+
+      <H3><A name="run">Running From the Command Line</A></H3>
+      <P>
+        You can run Tcases directly from your shell command line. If you use <SPAN class="code">bash</SPAN> or a similar
+        UNIX shell, you can run the <SPAN class="code">tcases</SPAN> command.
+        Or if you are using a Windows command line, you can run Tcases with the <SPAN class="code">tcases.bat</SPAN> command
+        file, using exactly the same syntax.
+      </P>
+      <P>
+        For example, for a quick check, you can run one of the examples that comes with Tcases, using the following commands.
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases &lt; find-Input.xml <BR/>
+        </DIV>
+      </P>
+      <P>
+        For details about the interface to the <SPAN class="code">tcases</SPAN> command (and
+        the <SPAN class="code">tcases.bat</SPAN> command, too), see the Javadoc for
+        the <A href="api/org/cornutum/tcases/Tcases.Options.html"><SPAN class="code">Tcases.Options</SPAN></A>
+        class.  To get help at the command line, run <SPAN class="code">tcases -help</SPAN>.
+      </P>
+
+      <H3><A name="run-ant">Running With Ant</A></H3>
+      <P>
+        You can also run Tcases as an Ant task (requires Ant 1.8.2 or later). For an example of how this works,
+        take a look at <SPAN class="code">docs/examples/ant-tcases.xml</SPAN>.  Want to try it out? Run the the
+        following commands.
+        
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; ant -f ant-tcases.xml <BR/>
+        </DIV>
+
+      </P>
+      <P>
+        For details about the interface to the <SPAN class="code">tcases</SPAN> task, see the
+        Javadoc
+        for the <A href="api/org/cornutum/tcases/ant/TcasesTask.html"><SPAN class="code">TcasesTask</SPAN></A> class.
+      </P>
+      
+      <H3><A name="results">Understanding Tcases Results</A></H3>
+      <P>
+        What happens when you run Tcases? Tcases reads a <A href="#systemInputDef">system input definition</A>, an XML document
+        that defines the "input space" of the system function to be tested. From this, Tcases produces a different XML document
+        called a <A name="systemTestDef"><EM>system test definition</EM></A>, which describes a set of test cases.
+      </P>
+
+      <P>
+        Try running Tcases on one of the example system input definitions. The following commands will generate
+        test cases for the <SPAN class="code">find</SPAN> command <A href="#exampleFind">example</A>, which is
+        explained in <A href="#input">full detail</A> later in this guide.
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases &lt; find-Input.xml <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        The resulting system test definition is written to standard output. Here's what it looks like: for
+        the "find" <A href="#functions">function</A>, a list of test case definitions, each of which defines values for all of
+        the function's input <A href="#vars">variables</A>.
+
+        <DIV class="exampleDoc">
+          &lt;?xml version="1.0"?&gt; <BR/>
+          &lt;TestCases system="Examples"&gt; <BR/>
+          &nbsp; &lt;<SPAN class="exampleEmph">Function</SPAN> name="find"&gt; <BR/>
+          &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">TestCase</SPAN> id="0"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Var</SPAN> name="pattern.size" <SPAN class="exampleEmph">value</SPAN>="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="NA"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="NA"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="NA"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="NA"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &lt;/TestCases&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H2><A name="input">Modeling The Input Space</A></H2>
+      <P>
+        Tcases creates test definitions based on a <EM>system input definition</EM> that you create. But how
+        do you do that? That's what this section aims to explain.
+      </P>
+      <P>
+        A <EM>system input definition</EM> is an XML document that models the
+        "input space" of the system-under-test (SUT). We say it "models" system inputs because it doesn't
+        literally itemize all possible input values. Instead, a system input definition lists all the
+        important aspects of system inputs that affect system results. Think of this as
+        describing the "dimensions of variation" in the "input space" of your system. Some dimensions of
+        variation are obvious. If you are testing the <SPAN class="code">add</SPAN> function, you know there
+        are at least two dimensions of variation &mdash; the two different numbers being added. But to find
+        all of the key dimensions, you may have to take a deeper look.
+      </P>
+
+      <P>
+        For example, consider how you might test a simple "list files" command, like
+        the <SPAN class="code">ls</SPAN> command in <SPAN class="code">UNIX</SPAN>. (And to keep it simple,
+        let's assume there are no command options or switches to worry about.) Clearly, one dimension of
+        variation is the number of file names given. <SPAN class="code">ls</SPAN> should handle not just one
+        file name but also a list of many file names. And if no file names are
+        given, <SPAN class="code">ls</SPAN> is expected to have a completely different result. But what about each
+        file name itself? <SPAN class="code">ls</SPAN> will produce a different result, depending on whether
+        the name identifies a simple file or a directory. So, the type of the file identified by each file name is an
+        additional dimension of variation. But that's not all! Some file names could identify actual files,
+        but others could be bogus names for files that don't exist, and this difference has a big effect of
+        what <SPAN class="code">ls</SPAN> is expected to do. So, here's another dimension of variation that
+        has nothing to do with the file names themselves but instead concerns the state of the environment in
+        which <SPAN class="code">ls</SPAN> runs.
+      </P>
+
+      <P>
+        You can see that modeling the input space demands careful thought about the SUT. That's a job that no
+        tool can do for you. But Tcases gives you a way to capture that knowledge and to translate it into
+        effective test cases.
+      </P>
+
+      <H3><A name="exampleFind">An Example: The find Command</A></H3>
+      <P>
+        To understand input modeling with Tcases, it helps to see an example in action. In this guide, we're
+        going to explain how Tcases works by showing how we can use it to test a hypothetical <SPAN class="code">find</SPAN>
+        command. The complete input definition for <SPAN class="code">find</SPAN> is included with this guide &mdash; you can
+        see it <A href="examples/find-Input.xml">here</A>.
+      </P>
+
+      <P>
+        Take a look at the <SPAN class="code">find</SPAN> specification below. What test cases would you use to test it?
+        
+        <BLOCKQUOTE>
+          Usage: <SPAN class="code">find pattern file</SPAN>
+          <BR/><BR/>
+          Locates one or more instances of a given pattern in a text file. 
+          <BR/><BR/>
+          All lines in the file that contain the pattern are written to standard output. A
+          line containing the pattern is written only once, regardless of the number of
+          times the pattern occurs in it.
+          <BR/><BR/>
+          The pattern is any sequence of characters whose length does not exceed the
+          maximum length of a line in the file. To include a blank in the pattern, the
+          entire pattern must be enclosed in quotes (&quot;). To include a quotation mark in the
+          pattern, two quotes in a row ("") must be used.
+        </BLOCKQUOTE>
+      </P>
+
+      <H3><A name="functions">Defining System Functions</A></H3>
+      <P>
+        A <A name="systemInputDef">system input definition</A> describes a specific system-under-test, so the root element of the document looks like this:
+
+        <DIV class="exampleDoc">
+          &lt;System name="<SPAN class="exampleEmph">${mySystemName}</SPAN>"&gt; <BR>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions go here --&gt;</SPAN> <BR/>
+          &lt;/System&gt; <BR/>
+        </DIV>
+
+        In general, the SUT has one or more operations or "functions" to be tested. Accordingly,
+        the <SPAN class="code">System</SPAN> element contains
+        a <A name="functionInputDef"><SPAN class="code">Function</SPAN></A> element for each of them.
+
+        <DIV class="exampleDoc">
+          &lt;System name="${mySystemName}"&gt; <BR/>
+          &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-1}</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-1} go here --&gt;</SPAN> <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          <BR/>
+          &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-2}</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-2} go here --&gt;</SPAN> <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &nbsp; ... <BR/>
+          &lt;/System&gt; <BR/>
+        </DIV>
+      </P> 
+      
+      <P>
+        Obviously, what constitutes a "system" or a "function" depends entirely on what you're testing. If your "system" is a Java class, then your
+        "functions" might be its methods. If your "system" is an application, then your "functions" might be use cases. If your "system" is a Web site,
+        then your "functions" might be pages. In any case, the process of input modeling is exactly the same.
+      </P>
+      
+      <P>
+        For our example, we'll build an input definition for a system named "Examples" which has only one function named "find".
+
+        <DIV class="exampleDoc">
+          &lt;System name="Examples"&gt; <BR/>
+          &nbsp; &lt;Function name="<SPAN class="exampleEmph">find</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &lt;/System&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H3><A name="vars">Defining Input Variables</A></H3>
+      <P>
+        For each function to be tested, you need to define all of the dimensions of variation in its input
+        space. For simplicity, Tcases refers to each such dimension as a "variable" and each basic variable is
+        represented by a <A name="varDef"><SPAN class="code">Var</SPAN></A> element.  In addition,
+        Tcases organizes input variables by type, using an <SPAN class="code">Input</SPAN> element.
+      </P>
+      <P>
+        The <SPAN class="code">find</SPAN> command has two different types of input variables. There are direct input
+        arguments, such as the file name, which have input type <SPAN class="code">arg</SPAN>. There are also other factors, such as
+        the state of the file, which act as indirect "environmental" input variables and are given input type <SPAN class="code">env</SPAN>.
+        (More details about these are shown in a <A href="#exampleEnv">later section</A>.)
+
+        <DIV class="exampleDoc">
+          &lt;System name="Examples"&gt; <BR/>
+          &nbsp; &lt;Function name="find"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Input type="<SPAN class="exampleEmph">arg</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- arg: Direct input arguments (the default) --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">fileName</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; ... <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt;<BR/>
+          &nbsp; &nbsp; &nbsp; ... <BR/>
+          &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          <BR/>
+          &nbsp; &nbsp; &lt;Input type="<SPAN class="exampleEmph">env</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- env: Environment state variables --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; ... <BR/>
+          &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &lt;/System&gt; <BR/>
+        </DIV>
+      </P>
+      
+      <P>
+        Actually, the <SPAN class="code">type</SPAN> attribute of the <SPAN class="code">Input</SPAN>
+        element is just a tag that can be any value you want. And it is optional &mdash; if omitted, the
+        default is <SPAN class="code">arg</SPAN>.  This grouping of inputs by type is available if you find it
+        helpful. There is no limit to the number of different <SPAN class="code">Input</SPAN> types that you
+        can define.
+      </P>
+
+      <H3><A name="values">Defining Input Values</A></H3>
+      <P>
+        For Tcases to create a test case, it must choose values for all of the input variables. How can it do
+        that? Because we describe all of the possible values for each input variable using one or
+        more <SPAN class="code">Value</SPAN> elements. 
+      </P>
+      <P>
+        By default, a <SPAN class="code">Value</SPAN> element
+        defines a valid value, one that the function-under-test is expected to accept. But we can use the
+        optional <SPAN class="code">failure</SPAN> attribute to identify an value that is invalid and expected
+        to cause the function to produce some kind of failure response.  Tcases uses these input
+        values to generate two types of test cases &mdash; "success" cases, which use only valid values for all
+        variables, and "failure" cases, which use a <SPAN class="code">failure</SPAN> value for exactly one
+        variable.
+      </P>
+      <P>
+        For example, we can define two possible values for the <SPAN class="code">fileName</SPAN> argument to <SPAN class="code">find</SPAN>.
+
+        <DIV class="exampleDoc">
+          &lt;Function name="find"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- The required file name is defined --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="<SPAN class="exampleEmph">defined</SPAN>"/&gt; <BR/>
+          <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- The required file name is missing -- an error --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="<SPAN class="exampleEmph">missing</SPAN>" <B>failure="true"</B>/&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; ... <BR/>
+          &lt;/Function&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        That's it? Your only choices for the file name are "missing" or not? Good question! What's happening
+        here is a very important part of input space modeling. It would be silly to list every possible
+        file name as a <SPAN class="code">Value</SPAN> here.  Why? Because it just doesn't matter. At least for
+        this particular function, the letters and format of the file name have no bearing on the
+        behavior of the function. Instead, what's needed is a <U>model</U> of the value domain for this variable that
+        characterizes the <U>types</U> of values that are significant to the test. This is a well-known test design
+        technique known as <A href="http://en.wikipedia.org/wiki/Equivalence_partitioning">equivalence class
+        partitioning</A>. You use each <SPAN class="code">Value</SPAN> element to identify a <U>class</U> of
+        values. By definition, all specific values in this class are test-equivalent. We don't need to test them all &mdash; 
+        any one of them will do.
+      </P>
+
+      <P>
+        In the case of the <SPAN class="code">fileName</SPAN> variable, we've decided that the significance of
+        file name itself is whether it is present or not, and we've chosen to identify those two variations as
+        "defined" and "missing".  But the name you use to identify each <SPAN class="code">Value</SPAN> class is entirely up to you
+        &mdash; it is part of the input model you design to describe your tests and it appears in the test case
+        definitions that Tcases generates, to guide your test implementation.
+      </P>
+
+      <H3><A name="varSets">Defining Variable Sets</A></H3>
+      <P>
+        It's common to find that a single logical input actually has lots of different characteristics, each of
+        which creates a different "dimension of variation" in the input space. For example, consider the file
+        that is searched by the <SPAN class="code">find</SPAN> command. Does it even exist? Maybe yes, maybe no
+        &mdash; that's one dimension of variation that the tests must cover. And what about its contents? Of
+        course, you'd like to test the case where the file contains lines that match the pattern, as well the
+        case where there are no matches. So, that's another dimension of variation. The spec says that each
+        matching line is printed exactly once, even when it contain multiple matches. Wouldn't you want to test
+        a file that has lines with different numbers of matches? Well, there's yet another dimension of
+        variation. One file &mdash; so many dimensions!
+      </P>
+
+      <P>
+        You can model this complex sort of input as a "variable set", using a <SPAN class="code">VarSet</SPAN>
+        element.  With a <SPAN class="code">VarSet</SPAN>, you can describe a single logical input as a set of
+        multiple <SPAN class="code">Var</SPAN> definitions.  A <SPAN class="code">VarSet</SPAN> can even
+        contain another <SPAN class="code">VarSet</SPAN>, creating a hierarchy of logical inputs that can be
+        extended to any number of levels.
+      </P>
+
+      <P>
+        For example, the single <SPAN class="code">file</SPAN> input to the <SPAN class="code">find</SPAN> command
+        can modeled by the following <A name="exampleEnv">variable set definition</A>.
+
+        <DIV class="exampleDoc">
+          &lt;Function name="find"&gt; <BR/>
+          &nbsp; ... <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;VarSet name="<SPAN class="exampleEmph">file</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Does the file exist? --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">exists</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="no" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Does the file contain... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;VarSet name="<SPAN class="exampleEmph">contents</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... any lines longer that the pattern? --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">linesLongerThanPattern</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... any matching lines? --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">patterns</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... multiple matches in a line? --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleEmph">patternsInLine</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; ... <BR/>
+          &lt;/Function&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        Isn't this hierarchy really just the same as four <SPAN class="code">Var</SPAN> elements, something like the following?
+
+        <DIV class="exampleDoc">
+          &lt;Var name="file.exists"&gt; <BR/>
+          ... <BR/>
+          &lt;Var name="file.contents.linesLongerThanPattern"&gt; <BR/>
+          ... <BR/>
+          &lt;Var name="file.contents.patterns"&gt; <BR/>
+          ... <BR/>
+          &lt;Var name="file.contents.patternsInLine"&gt; <BR/>
+          ... <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        Yes, and when generating test cases, that's essentially how Tcases handles it. But defining a complex
+        input as a <SPAN class="code">VarSet</SPAN> makes the input model simpler to create, read, and maintain. Also,
+        it allows you to apply constraints to an entire tree of variables at once, at you'll see in the next section.
+      </P>
+
+      <H3><A name="constraints">Defining Constraints: Properties and Conditions</A></H3>
+      <P>
+        We've seen how to define the value choices for all of the input variables of each function-under-test,
+        including complex input variables with multiple dimensions. That's enough for us to complete a 
+        system input definition for the <SPAN class="code">find</SPAN> command that looks something like the following.
+
+        <DIV class="exampleDoc">
+          &lt;Function name="find"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;VarSet name="pattern"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="size"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="manyChars"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="quoted"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="no"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="unterminated" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="blanks"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="embeddedQuotes"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="defined"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="missing" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;VarSet name="file"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Var name="exists"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="no" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;VarSet name="contents"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="linesLongerThanPattern"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="patterns"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="patternsInLine"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="many"/&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &nbsp; &lt;/VarSet&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/Function&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        When we run Tcases with this input document, we'll get a list of test case definitions like this:
+
+        <DIV class="exampleDoc">
+          &lt;TestCases system="Examples"&gt; <BR/>
+          &nbsp; &lt;Function name="find"&gt; <BR/>
+          &nbsp; &nbsp; &lt;TestCase id="0"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.size" value="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+          <BR/>
+          &nbsp; &nbsp; &lt;TestCase id="1"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.size" value="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="no"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="many"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/Function&gt; <BR/>
+          &lt;/TestCases&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        But wait up a second &mdash; something doesn't look right here. Take a closer look at test case 0 below. It's telling us
+        to try a test case using a file that contains no instances of the test pattern. Oh, and at the same time, the file
+        should contain a line that has one match for the test pattern. That seems sort of ... impossible.
+
+        <DIV class="exampleDoc">
+          &lt;TestCase id="0"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.size" value="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.blanks" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" value="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">file.contents.patterns</SPAN>" value="<SPAN class="exampleError">none</SPAN>"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">file.contents.patternsInLine</SPAN>" value="<SPAN class="exampleError">one</SPAN>"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/TestCase&gt; <BR/>
+        </DIV>
+      </P>
+      
+      <P>
+        And look at test case 1 below. It looks equally problematic. For this test case, the pattern should be
+        a single character. And the pattern should contain one blank. <U>And</U> the pattern should contain one
+        embedded quote character! No way!
+
+        <DIV class="exampleDoc">
+          &lt;TestCase id="1"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">pattern.size</SPAN>" value="<SPAN class="exampleError">singleChar</SPAN>"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="no"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">pattern.blanks</SPAN>" value="<SPAN class="exampleError">one</SPAN>"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="<SPAN class="exampleError">pattern.embeddedQuotes</SPAN>" value="<SPAN class="exampleError">one</SPAN>"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="many"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patterns" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" value="many"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/TestCase&gt; <BR/>
+        </DIV>
+      </P>
+      
+      <P>
+        What's happening here? Clearly, some of the "dimensions of variation" described by these <SPAN class="code">Var</SPAN> definitions
+        are not entirely independent of each other. Instead, there are relationships among these variables that <EM>constrain</EM> which
+        combinations of values are feasible. We need a way to define those relationships so that infeasible combinations can be excluded from
+        our test cases. And that's where <EM>properties</EM> and <EM>conditions</EM> come into play.
+      </P>
+
+      <H4><A name="properties">Value properties</A></H4>
+      <P>
+        Any <SPAN class="code">Value</SPAN> definition can declare a <SPAN class="code">property</SPAN> list that
+        specifies one or more "properties" for this value. For example:
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="pattern"&gt; <BR/>
+          &nbsp; &lt;Var name="size"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="empty" <SPAN class="exampleEmph">property="empty"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="singleChar" <SPAN class="exampleEmph">property="singleChar"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="manyChars"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="quoted"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="yes" <SPAN class="exampleEmph">property="quoted"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="no"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="unterminated" failure="true"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="blanks"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="embeddedQuotes"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        A <SPAN class="code">property</SPAN> list is a comma-separated list of identifiers, each of which defines a "property" for this value.
+        A property is just a name that you invent for yourself to identify an important characteristic of this value. The concept is that 
+        when this value is included in a test case, it contributes all of its properties &mdash; these now become properties of the test case itself.
+        That makes it possible for us to later define "conditions" on the properties that a test case must (or must not!) have for certain values
+        to be included.
+      </P>
+
+      <P>
+        For example, the definition above for the <SPAN class="code">pattern.size</SPAN> variable says that
+        when we choose the value <SPAN class="code">empty</SPAN> for a test case, the test case acquires a
+        property named <SPAN class="code">empty</SPAN>.  But if we choose the
+        value <SPAN class="code">singleChar</SPAN>, the test case acquires a different property
+        named <SPAN class="code">singleChar</SPAN>. And if we choose the
+        value <SPAN class="code">manyChars</SPAN>, no new properties are added to the test case. Note that the
+        correspondence between these particular names of the values and properties is not exactly accidental
+        &mdash; it helps us understand what these elements mean &mdash; but it has no special significance. We
+        could have named any of them differently if we wanted to.
+      </P>
+
+      <H4><A name="valueConditions">Value conditions</A></H4>
+      <P>
+        We can define the conditions required for a <SPAN class="code">Value</SPAN> to be included in a test case using the
+        <SPAN class="code">when</SPAN> and <SPAN class="code">whenNot</SPAN> attributes. Each of these defines
+        a comma-separated list of property identifiers. Adding a <SPAN class="code">when</SPAN> list means "for
+        this value to be included in a test case, the test case must have <U>all</U> of these
+        properties". Similarly, a <SPAN class="code">whenNot</SPAN> list means "for this value to be included
+        in a test case, the test case must <U>not</U> have <U>any</U> of these properties".
+      </P>
+
+      <P>
+        For example, consider the conditions we can define for the various characteristics of the <SPAN class="code">pattern</SPAN>
+        input.
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="pattern"&gt; <BR/>
+          &nbsp; &lt;Var name="size"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="empty" property="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="singleChar" property="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="manyChars"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="quoted"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="yes" property="quoted"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="no" <SPAN class="exampleEmph">whenNot="empty"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="unterminated" failure="true"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="blanks"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one" <SPAN class="exampleEmph">when="quoted, singleChar"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many" <SPAN class="exampleEmph">when="quoted"</SPAN> <SPAN class="exampleEmph">whenNot="singleChar"</SPAN>/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="embeddedQuotes"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        This defines a <EM>constraint</EM> on the <SPAN class="code">pattern.quoted</SPAN> variable. We want to
+        have a test case in which the value for this variable is <SPAN class="code">no</SPAN>, i.e. the pattern
+        string is not quoted. But in this case, the <SPAN class="code">pattern.size</SPAN> cannot
+        be <SPAN class="code">empty</SPAN>. Because that combination doesn't make sense, we want to exclude it from the test cases
+        generated by Tcases.
+      </P>
+
+      <P>
+        Similarly, we define a constraint on the <SPAN class="code">pattern.blanks</SPAN> variable, which specifies how many blanks
+        should be in the pattern string. We want a test case in which the value is <SPAN class="code">many</SPAN>. But in such 
+        a test case, the pattern must be quoted (otherwise, a blank is not possible) and it must <U>not</U> be a single character
+        (which would contradict the requirement for multiple blanks).
+      </P>
+
+      <P>
+        This also defines another constraint on any test case in which the value of <SPAN class="code">pattern.blanks</SPAN> is
+        <SPAN class="code">one</SPAN>. In such a test case, of course, the pattern must be quoted. And we've declared also
+        that the pattern size must be a single character. But why? That doesn't seem strictly necessary. What's wrong with
+        a pattern that has multiple characters and only one blank? Well, nothing &mdash; that's a perfectly good combination.
+        But isn't a pattern that is exactly one blank character a more <U>interesting</U> test case? Isn't that a case that could expose
+        a certain kind of defect in the pattern matching logic? And isn't the case of many-chars-one-blank unlikely to expose
+        any defects not visible in the many-chars-many-blanks case? This demonstrates another way for a smart tester to use properties and conditions:
+        to steer toward test cases with more potent combinations and away from combinations that add little defect-fighting power.
+      </P>
+
+      <P>
+        It's important to note that there are no conditions attached to choosing a value of <SPAN class="code">none</SPAN> for
+        <SPAN class="code">pattern.blanks</SPAN>. A test case can use this value in combination with any
+        others. And that's a good thing.  We want to model the reality of the input space for the function,
+        without eliminating any test cases that are actually feasible. Otherwise, our tests will have a blind
+        spot that could allow defects to slip by undetected. Rule of thumb: Use conditions sparingly and only when necessary
+        to avoid infeasible or unproductive test cases.
+      </P>
+
+      <H4><A name="varConditions">Variable conditions</A></H4>
+      <P>
+        You may find that, under certain conditions, an input variable becomes irrelevant. It doesn't matter
+        which value you choose &mdash; none of them make a difference in function behavior. It's easy to model
+        this situation &mdash; just define a condition on the <SPAN class="code">Var</SPAN> definition itself.
+      </P>
+
+      <P>
+        For example, when we're testing the <SPAN class="code">find</SPAN> command, we want to try all of the
+        values defined for every dimension of the <SPAN class="code">pattern</SPAN> variable set. But, in the
+        case when the pattern string is empty, the question of how many blanks it contains is pointless.  In
+        this case, the <SPAN class="code">pattern.blanks</SPAN> variable is irrelevant. Similarly, when we test
+        a pattern string that is only one character, the <SPAN class="code">pattern.embeddedQuotes</SPAN>
+        variable is meaningless. We can capture these facts about the input space by adding <SPAN class="code">Var</SPAN>
+        constraints, as shown below.
+
+        <DIV class="exampleDoc">
+          &lt;<SPAN class="exampleEmph">VarSet name="pattern" when="fileExists"</SPAN>&gt; <BR/>
+          &nbsp; &lt;Var name="size"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="empty" property="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="singleChar" property="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="manyChars"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;Var name="quoted"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="yes" property="quoted"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="no" whenNot="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="unterminated" failure="true"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;<SPAN class="exampleEmph">Var name="blanks" whenNot="empty"</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one" when="quoted, singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many" when="quoted" whenNot="singleChar"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &lt;<SPAN class="exampleEmph">Var name="embeddedQuotes" whenNot="empty, singleChar"</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"/&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        You can define variable constraints at any level of a variable set hierarchy. For example, you can see in the example above
+        that a constraint is defined for the entire <SPAN class="code">pattern</SPAN> variable set. This constraint models the
+        fact that the pattern is irrelevant when the file specified to search doesn't even exist.
+      </P>
+
+      <P>
+        How does a variable constraint affect the test cases generated by Tcases? In a test case where a
+        variable is irrelevant, it is assigned the value "NA", meaning "not applicable". For example, test case
+        0 belows shows how testing an empty pattern causes <SPAN class="code">pattern.blanks</SPAN>
+        and <SPAN class="code">pattern.embeddedQuotes</SPAN> to be irrelevant. Similarly, test case 8 shows how testing
+        with a non-existent file makes nearly every other variable irrelevant.
+
+        <DIV class="exampleDoc">
+          &lt;TestCase id="0"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.size" value="empty"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.blanks" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.exists" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" value="one"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patterns" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/TestCase&gt; <BR/>
+          ... <BR/>
+          &lt;TestCase id="8" failure="true"&gt; <BR/>
+          &nbsp; &lt;Input type="arg"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.size" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.quoted" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.blanks" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="pattern.embeddedQuotes" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="fileName" value="defined"/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &nbsp; &lt;Input type="env"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.exists" value="no" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.linesLongerThanPattern" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patterns" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="file.contents.patternsInLine" <SPAN class="exampleEmph">value="NA"</SPAN>/&gt; <BR/>
+          &nbsp; &lt;/Input&gt; <BR/>
+          &lt;/TestCase&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H4><A name="complexConditions">Complex conditions</A></H4>
+      <P>
+        The <SPAN class="code">when</SPAN> and <SPAN class="code">whenNot</SPAN> attributes are sufficient to express the most common
+        constraints on <SPAN class="code">Var</SPAN> and <SPAN class="code">Value</SPAN> definitions. But what if the condition you need is
+        more complicated? For example, what about a <SPAN class="code">Value</SPAN> that can be included only if a test case has either
+        property X <U>or</U> property Y? For such situations, you can define conditions using a <SPAN class="code">When</SPAN> element.
+        A <SPAN class="code">When</SPAN> element can appear as a subelement of any definition that allows a condition: <SPAN class="code">Value</SPAN>,
+        <SPAN class="code">Var</SPAN>, or <SPAN class="code">VarSet</SPAN>.
+      </P>
+
+      <P>
+        For example, the condition for a test case to include a pattern with many blank characters can be expressed with a <SPAN class="code">When</SPAN>
+        element like this:
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="pattern" when="fileExists"&gt; <BR/>
+          &nbsp; ...  <BR/>
+          &nbsp; &lt;Var name="blanks" whenNot="empty"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="none"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="one" when="quoted, singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;Value name="many"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleEmph">&lt;When&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All of the condition below are true... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;AllOf&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... all of the following properties are present... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;AllOf property="quoted"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... and none of&nbsp; the following properties are present. --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Not property="singleChar"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;/AllOf&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/When&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &lt;/Value&gt; <BR/>
+          &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; ... <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        A <SPAN class="code">When</SPAN> element contains a single subelement that defines a boolean expression. The boolean expressions are:
+        
+        <UL>
+          <LI> <SPAN class="code">AllOf</SPAN>: a logical "AND" expression
+          </LI><P/>
+          <LI> <SPAN class="code">AnyOf</SPAN>: a logical "OR" expression
+          </LI><P/>
+          <LI> <SPAN class="code">Not</SPAN>: a logical negation expression
+          </LI><P/>
+        </UL>
+      </P>
+
+      <P>
+        All of these elements have a similar structure. They can have an optional <SPAN class="code">property</SPAN> list, which specifies the
+        properties that are subject to this expression. Also, they can contain any number of additional boolean expressions as subelements.
+        For example:
+
+        <DIV class="exampleDoc">
+          &lt;When&gt; <BR/>
+          &nbsp; &lt;Not property="A"&gt; <BR/>
+          &nbsp; &nbsp; &lt;AnyOf property="B"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;AllOf property="C, D"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/AnyOf&gt; <BR/>
+          &nbsp; &lt;/Not&gt; <BR/>
+          &lt;/When&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        This <SPAN class="code">When</SPAN> expression is equivalent to the following boolean expression in Java.
+
+        <DIV class="exampleDoc">
+          !A && !(B || (C && D))
+        </DIV>
+      </P>
+
+      <P>
+        The <SPAN class="code">when</SPAN> and <SPAN class="code">whenNot</SPAN> attributes are shorthand for the equivalent
+        <SPAN class="code">When</SPAN> expression, and these alternatives are mutually exclusive. If you use either of these attributes, you
+        can't specify a <SPAN class="code">When</SPAN> element in the same definition and vice versa.
+      </P>
+
+      <H2><A name="coverage">Defining Input Coverage</A></H2>
+      <P>
+        Tcases generates test case definitions by creating combinations of values for all input variables. But
+        how does it come up with these combinations? And why these particular combinations and not others? And
+        just how good are these test cases? Can you rely on them to test your system thoroughly?
+      </P>
+
+      <P>
+        Good questions. And here's the basic answer: Tcases generates the minimum number of test cases needed to meet the coverage
+        requirements that you specify. But to understand what that means, you need to understand how Tcases measures coverage.
+      </P>
+
+      <H3><A name="combinations">Combinatorial Testing Basics</A></H3>
+      <P>
+        Tcases is concerned with input space coverage &mdash; how many of the feasible combinations of input
+        values are tested. To measure input space coverage, Tcases is guided by concepts from the field of
+        <A href="http://csrc.nist.gov/groups/SNS/acts/index.html">combinatorial testing</A>. As testers, we're
+        looking for combinations of input values that will trigger a <EM>failure</EM>, thus exposing a <EM>defect</EM> in
+        the SUT. But, in general, we can't afford the effort to test every combination. We have to settle for some
+        subset. But how?
+      </P>
+
+      <P>
+        Suppose we tried the following approach. For the first test case, just pick a valid value for every
+        input variable. Then, for the next test case, pick a different valid value for every variable. Continue
+        this until we've used every valid value of every variable at least once. Of course, as we do this,
+        we'll skip over any infeasible combinations that don't satisfy our constraints. The result will be a
+        fairly small number of test cases. In fact, the number of "success" case created by this procedure will
+        be S, where S is the maximum number of valid values defined for any one variable. For the failure
+        cases, we can do something similar by creating a new test case for each invalid value, substituting it
+        into an otherwise-valid combination of other values. That gives us F more test cases, where F is the
+        total number of invalid values for all variables. So that's S+F tests cases, a pretty small test suite
+        that ought to be quite doable. But what is the coverage? Well, we've guaranteed that every value of
+        every variable is used at least once. That is what is known as "1-way coverage" or "1-tuple coverage" &mdash; all
+        "combinations" of 1 variable. (This is also known as "each choice coverage".)
+      </P>
+      
+      <P>
+        But is that good enough? Experience
+        (and <A href="http://csrc.nist.gov/groups/SNS/acts/ftfi.html">research<A>) teaches us that many
+        failures are triggered by the interaction of two or more variables. So maybe we should aim for a higher
+        level of input coverage. We could iterate over every pair of input variables and consider every combination of
+        their values. For example, the <SPAN class="code">pattern.size</SPAN> variable has 3 valid values and
+        the <SPAN class="code">pattern.quoted</SPAN> variable has 2 valid values. That makes 6 combinations for
+        this pair of variables (ignoring constraints). For each pair, create a test case and fill it out with
+        values for all of the other variables. In the end, we'll have a test suite that uses every such pair at
+        least once &mdash; that's "2-way coverage" or "2-tuple coverage" (also known as "pairwise
+        coverage"). This is a much stronger test suite &mdash; more likely to find many defects &mdash; but
+        it's also a larger number of test cases.
+      </P>
+      
+      <P>
+        We can extend the same approach to even higher levels of combinatorial coverage &mdash; 3-way coverage,
+        4-way coverage, etc. With each higher level, our tests become more powerful. But the price is that the
+        number of test cases increases rapidly with each additional level. At some point, the gain is not worth
+        the pain. In fact, research indicates that very few failures are caused by the interaction of 4 or more variables,
+        and failures that require an interaction of 6 or more variables are virtually unknown. Most failures appear to
+        be triggered by 1- or 2-way interactions. But that doesn't necessarily mean you should stop at 2-way coverage.
+        Every system has its own unique risks. Also, not all variables interact equally &mdash; you may have some
+        sets of variables that need a higher level of coverage than the rest.
+      </P>
+
+      <H3><A name="failureCoverage">Failure Cases Are Different! </A></H3>
+      <P>
+        Notice that when we talk about the various levels of N-way variable combinations, we are careful to apply these combinations
+        only to <EM>valid</EM> values of these variables. Why? Because failures cases are different!
+      </P>
+      <P>
+        Clearly, for every variable, each invalid value (i.e. with <SPAN class="code">failure="true"</SPAN>) deserves its own test case.
+        A "failure" case like this should have an invalid value for exactly one variable and valid values for all of the other variables.
+        That's the only sure way to verify that an expected failure can be attributed to solely to this invalid value. Consequently, it should
+        be understood that <U>the number of failure cases generated by Tcases will always be equal to the number of invalid values</U>, 
+        regardless of the combinatorial coverage level used.
+      </P>
+      <P>
+        Of course, for any given level of N-way valid combinations, the set of failure cases will nearly always include some of those
+        combinations. But that doesn't count! For true N-tuple coverage, a test set must include every valid combination in at least one "success" case.
+        Again, the reason for this should be clear. That's the only sure way to verify the expectation that this combination leads to a valid result.
+      </P>
+
+      <H3><A name="defaultCoverage">Default Coverage</A></H3>
+      <P>
+        For the record, the default for Tcases is 1-tuple coverage. In other words, unless you specify otherwise, Tcases
+        will translate your system input definition into a minimal set of test case definitions that uses every value of every
+        variable &mdash; every "1-tuple" &mdash; at least once, while satisfying all constraints.
+      </P>
+      
+      <P>
+        Is that good enough? Maybe. If you've built your system input definition carefully, you're likely to
+        find that a 1-tuple coverage test suite also achieves upward of 75% basic block (line) coverage of the
+        SUT. In fact, using Tcases in tandem with a structural coverage tool like Emma or Cobertura can be
+        very effective. Tip: Use Tcases to create a 1-tuple coverage test suite, then measure structural coverage
+        to identify any gaps in the system input definition. You can repeat this process to quickly reach a
+        small but powerful set of test cases.
+      </P>
+
+      <P>
+        But to get the tests you need faster, you may need to selectively apply 2-tuple coverage or higher. The next section
+        explains how.
+      </P>
+
+      <H3><A name="higherCoverage">Defining Higher Coverage</A></H3>
+      <P>
+        For higher levels of coverage, you need to create a <A name="genDef"><EM>generator definition</EM></A>
+        that specifies your coverage requirements in detail. A generator definition, which is another XML document
+        that Tcases applies to your system input definition, defines a set of "generators".
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; &lt;TupleGenerator function="${function-1}"&gt; <BR/>
+        &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Coverage requirements for ${function-1} go here --&gt;</SPAN> <BR/>
+        &nbsp; &lt;/TupleGenerator&gt; <BR/>
+         <BR/>
+        &nbsp; &lt;TupleGenerator function="${function-2}"&gt; <BR/>
+        &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Coverage requirements for ${function-2} go here --&gt;</SPAN> <BR/>
+        &nbsp; &lt;/TupleGenerator&gt; <BR/>
+        &nbsp; ... <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        The simplest possible generator definition looks like this:
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; <SPAN class="exampleComment">&lt;!--For all functions (the default), generate 1-tuple coverage (the default)--&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        To require 2-tuple coverage for all variables of all functions, you would create a generator definition like this:
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all functions --&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">tuples="2"</SPAN>/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        To require 3-tuple coverage only for the function named <SPAN class="code">F</SPAN>, while generating 2-tuple
+        converage for all other functions, you would create a generator definition like the one below. Notice that you can
+        explicitly identify "all functions" using the special function name <SPAN class="code">*</SPAN>. Or you can just
+        leave the <SPAN class="code">function</SPAN> attribute undefined, which has the same effect.
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; <SPAN class="exampleComment">&lt;!-- By default, generate 2-tuple coverage for all functions --&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">function="*"</SPAN> tuples="2"/&gt; <BR/>
+         <BR/>
+        &nbsp; <SPAN class="exampleComment">&lt;!-- But  generate 3-tuple coverage for F --&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">function="F"</SPAN> tuples="3"/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+      
+      <H3><A name="multiCoverage">Defining Multiple Levels Of Coverage</A></H3>
+      <P>
+        When you look carefully at the functions of your system-under-test, you may well find that some of them
+        call for more intense testing than others. That's what a generator definition allows you to do. In
+        fact, when you look carefully at a single function, you may be more concerned about the interactions
+        between certain specific variables. You may even want to test every possible permutation for a small subset of key
+        variables. Is it possible to get high coverage in a few areas and basic coverage everywhere else? Why, yes, you
+        can. This section explains how.
+      </P>
+
+      <P>
+        You've already seen how you can specify different levels of coverage for different functions. For finer
+        control, you can use one or more <SPAN class="code">Combine</SPAN> elements.  A <SPAN class="code">Combine</SPAN>
+        element defines the level of coverage generated for a specific subset of <SPAN class="code">Var</SPAN>
+        definitions. You specify which variables to combine using a variable "path pattern". For example:
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 1-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleEmph">&lt;Combine tuples="2"&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... but 2-tuple coverage for Vars in the "pattern" variable set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Include var="pattern.*"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        A variable path pattern describes a path to a specific <SPAN class="code">Var</SPAN>, possibly nested within a <SPAN class="code">VarSet</SPAN>
+        hierarchy. Wildcards allow you to match all immediate children (<SPAN class="code">*</SPAN>) or all descendants (<SPAN class="code">**</SPAN>)
+        of a <SPAN class="code">VarSet</SPAN>. Note that a pattern can contain at most one wildcard, which can appear only at the end of the path.
+      </P>
+
+      <P>
+        You can use a combination of <SPAN class="code">Include</SPAN> and <SPAN class="code">Exclude</SPAN>
+        elements to concisely describe exactly which variables to combine. You can specify as many <SPAN class="code">Include</SPAN>
+        or <SPAN class="code">Exclude</SPAN> elements as you need. For example:
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &lt;Combine tuples="2"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...except for Vars in the "file" set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Exclude var="file.**"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &lt;TupleGenerator function="find" tuples="2"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...but 1-tuple coverage (the default) for... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Combine</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...all Vars in the "pattern" variable set... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Include var="pattern.*"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...except "embeddedQuotes" --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Exclude var="pattern.embeddedQuotes"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+      <P>
+        A <SPAN class="code">Combine</SPAN> element that specifies the special value <SPAN class="code">tuples="0"</SPAN>
+        generates test cases that include all possible value permutations of the included variables. 
+        Obviously, this setting has the potential to create a huge number of test cases, so it should be used
+        sparingly and only for small sets of variables.
+        For example:
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Include all permutations of the "pattern" variable set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &lt;Combine <SPAN class="exampleEmph">tuples="0"</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Include var="pattern.*"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H2><A name="project">Managing A Tcases Project</A></H2>
+      <P>
+        Using Tcases to design a test suite means:
+        
+        <UL>
+          <LI>Learning about the expected behavior of the SUT</LI>
+          <LI>Creating an initial system input definition</LI>
+          <LI>Generating, evaluating, and improving test case definitions</LI>
+          <LI>Evaluating and improving coverage requirements</LI>
+          <LI>Changing input definitions to handle new cases</LI>
+        </UL>
+      </P>
+      <P>
+        You might finish all these tasks very quickly. Or this effort might extend over a significant period of time. Either way, that's a project.
+        This section offers some tips to help you complete your Tcases project more effectively.
+      </P>
+
+      <H3><A name="files">Managing Project Files</A></H3>
+      <P>
+        A Tcases project must deal with several closely-related files: a system input definition, zero or more generator definitions, and
+        the test case definition document that is generated from them (possibly in multiple forms). The <SPAN class="code">tcases</SPAN>
+        command implements some conventions that make it easier to keep these files organized.
+      </P>
+      <P>
+        The <SPAN class="code">tcases</SPAN> command allows you to refer to all of the files for a project
+        named <SPAN class="code">${projectName}</SPAN> using the following conventions.
+        
+        <UL>
+          <LI><SPAN class="code">${projectName}-Input.xml</SPAN>: the system input definition file</LI>
+          <LI><SPAN class="code">${projectName}-Generators.xml</SPAN>: the generator definition file</LI>
+          <LI><SPAN class="code">${projectName}-Test.xml</SPAN>: the test case definition file</LI>
+        </UL>
+      </P>
+      <P>
+        For example, here's a simple way to run Tcases.
+
+        <DIV class="exampleCode">
+          &gt; tcases ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        This command performs the following actions.
+        
+        <OL>
+          <LI>Reads the system input definition from <SPAN class="code">${projectName}-Input.xml</SPAN></LI>
+          <LI>Reads the generator definition from <SPAN class="code">${projectName}-Generators.xml</SPAN>, if it exists</LI>
+          <LI>Writes test case definitions to <SPAN class="code">${projectName}-Test.xml</SPAN></LI>
+        </OL>
+      </P>
+      <P>
+        Of course, you can use various options for the <SPAN class="code">tcases</SPAN> command to customize this default
+        pattern. For details, see the <A href="api/org/cornutum/tcases/Tcases.Options.html"><SPAN class="code">Tcases.Options</SPAN></A> class,
+        or run <SPAN class="code">tcases -help</SPAN>.
+      </P>
+
+      <H3><A name="reuse">Reusing Previous Test Cases</A></H3>
+      <P>
+        You know the feeling. You've spent days figuring out a minimal set of test cases that covers all test
+        requirements. Then the developer walks up with the great news: they've decided to add a new feature
+        with some new parameters. And they've changed their minds about some things. You know that required
+        parameter? Well, it's optional now &mdash; leaving it blank is no longer an error. Sometimes is seems
+        they're doing this just to torture you. But, honestly, most of the time it's just the normal progression
+        of a development project. After a few iterations, you've gained more knowledge that you need to apply to 
+        the system you're building. Or after a release or two, it's time to make the system do new tricks.
+      </P> 
+      <P>
+        Either way, it's back to the ol' test drawing board. Or is it? You're not changing everything. Why can't you just tweak the
+        test cases you already have? Funny you should ask. Because that's exactly what Tcases can do. In fact, it's the default
+        way of working. Remember that simple <SPAN class="code">tcases</SPAN> command line?
+
+        <DIV class="exampleCode">
+          &gt; tcases ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        Here's what it <U>really</U> does:
+        
+        <OL>
+          <LI>Reads the system input definition from <SPAN class="code">${projectName}-Input.xml</SPAN></LI>
+          <LI>Reads the generator definition from <SPAN class="code">${projectName}-Generators.xml</SPAN>, if it exists</LI>
+          <LI><U>And reads previous test cases</U>  from <SPAN class="code">${projectName}-Test.xml</SPAN>, if it exists</LI>
+          <LI> <U>Then writes new test case definitions</U> to <SPAN class="code">${projectName}-Test.xml</SPAN> which
+          reuse as much of the previous test cases as possible, extending or modifying them as needed</LI>
+        </OL>
+      </P>
+      <P>
+        You might prefer to ignore previous test cases and just create new ones from scratch. That's especially
+        true in the early stages of your project while you're still working out the details of the system input
+        definition. If so, you can use the <SPAN class="code">-n</SPAN> option to always create new tests cases, ignoring
+        any previous ones.
+
+        <DIV class="exampleCode">
+          &gt; tcases <SPAN class="codeEmph">-n</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+        
+      <H3><A name="random">Mix It Up: Random Combinations</A></H3>
+      <P>
+        By default, Tcases creates combinations of input variables by marching through the system input definition top-to-bottom, picking things
+        up in the order in which it finds them. You might try to exploit that natural order, although satisfying constraints
+        can take things off a predictable sequence. That's why you really shouldn't care too much about which combinations Tcases comes up with.
+        Even better? Ask Tcases to randomize its combination procedure.
+      </P>
+      <P>
+        You can define random combinations in your generator definition by using the <SPAN class="code">seed</SPAN> attribute
+        &mdash; see the example below.
+        This integer value acts as the seed for a random number generator that controls the combination process. Alternatively,
+        you can (re)define the seed value using <A href="#simpleGenDef">command line options</A> described in later sections.
+        By specifying the seed explicitly, you ensure that <U>exactly the same</U> random combinations will be used every
+        time you run Tcases with this generator definition.
+
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          <BR/>
+          &nbsp; &lt;TupleGenerator function="find" <SPAN class="exampleEmph">seed="200712190644"</SPAN>&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+      <P>
+        The results of random combination can be very interesting. First, you can end up with test cases that
+        you might not have considered, even though they are perfectly valid and produce the same
+        coverage. Sometimes that's just enough to expose a defect that might otherwise have been overlooked,
+        simply because no one thought to try that case. This is an application of the principle of "gratuitous
+        variety" to improve your tests. This also produces another benefit &mdash; sometimes an unusual
+        combination can demonstrate a flaw in your test design. If a combination just doesn't make sense, then
+        it's likely that a constraint is missing or incorrect. 
+      </P>
+      <P>
+        Finally, random combinations can occasionally
+        reduce the number of test cases needed to meet your coverage requirements. That's because some
+        combinations may "consume" variable tuples more efficiently than other equally-valid
+        combinations. Tcases does not attempt to spend the enormous effort needed to guarantee an optimally
+        minimal set of test cases. It simply starts at the beginning and does its best to get quickly to the
+        end. But a random walk through the combinations may lead Tcases to a more efficient path. If you're concerned about
+        the size of your test suite, try the <A href="#reduce">Tcases Reducer</A>.
+      </P>
+
+      <H3><A name="reduce">Reducing Test Cases: A Random Walk</A></H3>
+      <P>
+        A random walk through the combinations may lead Tcases to a smaller set of test cases. So you could try repeatedly altering your
+        generator definition with a bunch of different <SPAN class="code">seed</SPAN> values, searching for one that minimizes
+        the size of the generated test definition file. Sounds tedious, huh? So, don't do that &mdash; use the Tcases Reducer instead.
+      </P>
+      <P>
+        Here how to do it, using the <SPAN class="code">tcases-reducer</SPAN> command.
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases-reducer find-Input.xml <BR/>
+        </DIV>
+      </P>
+      <P>
+        And the result? Now there is a <SPAN class="code">find-Generators.xml</SPAN> file that looks something like this:
+        a generator definition that uses a random seed for all functions.
+      </P>
+
+        <DIV class="exampleDoc">
+          &lt;?xml version="1.0"?&gt;<BR/>
+          &lt;Generators&gt;<BR/>
+          &nbsp; &lt;TupleGenerator function="*" <SPAN class="exampleEmph">seed="1909310132352748544"</SPAN> tuples="1"&gt;<BR/>
+          &nbsp; &lt;/TupleGenerator&gt;<BR/>
+          &lt;/Generators&gt;<BR/>
+        </DIV>
+      <P>
+        But why this seed value? For a detailed view, look at the
+        resulting <SPAN class="code">tcases-reducer.log</SPAN> file (see example below). First, the
+        Reducer generates test cases without using a random seed, producing 10 test cases.  Then,
+        the Reducer tries again, and it reduces the results to 9 test cases.  Then, the Reducer
+        tries several more time, each time using a different random seed. Finally, the
+        Reducer cannot find a greater reduction, so it terminates.
+      </P>
+
+      <DIV class="exampleDoc">
+        INFO  org.cornutum.tcases.Reducer - Reading system input definition=find-Input.xml<BR/>
+        INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: generating test cases<BR/>
+        ...<BR/>
+        INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: completed 10 test cases<BR/>
+        INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: generating test cases<BR/>
+        ...<BR/>
+        INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: completed 9 test cases<BR/>
+        INFO  org.cornutum.tcases.Reducer - Round 1: after 2 samples, reached 9 test cases<BR/>
+        ...<BR/>
+        INFO  org.cornutum.tcases.Reducer - Round 2: after 10 samples, terminating<BR/>
+        INFO  org.cornutum.tcases.Reducer - Updating generator definition=find-Generators.xml<BR/>
+      </DIV>
+
+      <P>
+        The Reducer handles all the work of searching for the best random seed, without overwriting
+        any existing test definition files.  Here's how it works.  The reducing process operates as
+        a sequence of "rounds". Each round consists of a series of test case generations executions
+        called "samples". Each sample uses a new random seed to generate test cases for a specified
+        function (or, by default, all functions) in an attempt to find a seed that produces the
+        fewest test cases. If all samples in a round complete without reducing the current minimum
+        test case count, the reducing process terminates. Otherwise, as soon as a new minimum is
+        reached, a new round begins. The number of samples in each subsequent round is determined
+        using a "resample factor". At the end of the reducing process, the generator definition file
+        for the given system input definition is updated with the random seed value that produces
+        the minimum test case count.
+
+      </P>
+
+      <P>
+        For details about all the options for the <SPAN class="code">tcases-reducer</SPAN> command (and
+        its Windows counterpart  <SPAN class="code">tcases-reducer.bat</SPAN>), see the Javadoc for
+        the <A href="api/org/cornutum/tcases/Reducer.Options.html"><SPAN class="code">Reducer.Options</SPAN></A>
+        class.  To get help at the command line, run <SPAN class="code">tcases-reducer -help</SPAN>.
+      </P>
+        
+      <H3><A name="once">Avoiding Unneeded Combinations</A></H3>
+      <P>
+        Even when Tcases is generating test cases for the default 1-tuple coverage, it's typical to see some input values used
+        many times. This is most likely for those <SPAN class="code">Var</SPAN> elements that contain only a few 
+        <SPAN class="code">Value</SPAN> definitions. Even after these values have been used, Tcases will continue to reuse them
+        to fill out the remaining test cases needed to complete the test suite. In some situations, this can be a bit of a 
+        pain. Sometimes there is a <SPAN class="code">Value</SPAN> that you need to test at least once, but for various reasons,
+        including it multiple times adds complexity without really increasing the likelihood of finding new failures.
+        In this case, you can use the <SPAN class="code">once</SPAN> attribute as a hint to avoiding reusing a value more than once.
+      </P>
+      <P>
+        For example, the <SPAN class="code">find</SPAN> command requires that the <SPAN class="code">pattern</SPAN> must
+        not exceed the maximum length of a line in the file. Even one line longer than the pattern would be enough to
+        avoid this error condition. In fact, the principles of boundary value testing suggest that it's a good idea
+        to have a test case that has <U>exactly</U> one line longer. Therefore:
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="file" when="fileName"&gt; <BR/>
+          &nbsp; ... <BR/>
+          &nbsp; &lt;VarSet name="contents" when="fileExists"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="linesLongerThanPattern"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Value name="one" property="matchable"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="many" property="matchable"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/VarSet&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+      <P>
+        But this is a corner case that doesn't bear repeating. It's a chore to create a test file that meets this special condition, and it's
+        complicated to stretch such a file to meet additional conditions. Moreover, it's unlikely that this special condition 
+        will have higher-order interactions with other variable combinations. So let's add <SPAN class="code">once="true"</SPAN> to
+        request Tcases to include this value in only one test case.
+
+        <DIV class="exampleDoc">
+          &lt;VarSet name="file" when="fileName"&gt; <BR/>
+          &nbsp; ... <BR/>
+          &nbsp; &lt;VarSet name="contents" when="fileExists"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Var name="linesLongerThanPattern"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="one" property="matchable"<SPAN class="exampleEmph"> once="true"</SPAN>/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="many" property="matchable"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Value name="none" failure="true"/&gt; <BR/>
+          &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+          &nbsp; &nbsp; ... <BR/>
+          &nbsp; &lt;/VarSet&gt; <BR/>
+          &lt;/VarSet&gt; <BR/>
+        </DIV>
+      </P>
+      <P>
+        Nice! But keep in mind that the <SPAN class="code">once</SPAN> hint may not always be respected.
+        
+        <UL>
+          <LI>The <SPAN class="code">once</SPAN> attribute applies only when using 1-tuple coverage. For 
+          higher-order coverage, multiple uses will be required and <SPAN class="code">once</SPAN> is ignored. </LI><P/>
+
+          <LI>Even when <SPAN class="code">once="true"</SPAN>, a <SPAN class="code">Value</SPAN> may be used more than once
+            if it is needed to satisfy a constraint in remaining test cases. </LI><P/>
+        </UL>
+      </P>
+
+      <H3><A name="simpleGenDef">Simple Generator Definitions</A></H3>
+      <P>
+        Tcases provides some options to make it easier to create and update a simple <A href="#genDef">generator definition</A>
+        document.
+      </P>
+
+      <H4>Defining A Random Seed</H4>
+      <P>
+        To define a random combination seed, use the <SPAN class="code">-r</SPAN> option. For example, the following command
+        generates test cases with a default <SPAN class="code">TupleGenerator</SPAN> that uses the specified seed value.
+
+        <DIV class="exampleCode">
+          &gt; tcases <SPAN class="codeEmph">-r 299293214</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        If you already have a <SPAN class="code">${projectName}-Generators.xml</SPAN> file, this command will
+        update the file by adding or changing the default <SPAN class="code">seed</SPAN> value, as shown
+        below. If no <SPAN class="code">${projectName}-Generators.xml</SPAN> file exists, it will create one.
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">seed="299293214"</SPAN>/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H4>Defining The Default Coverage Level</H4>
+      <P>
+        To define the default coverage level for all functions, use the <SPAN class="code">-c</SPAN> option. For example, the following command
+        generates test cases with a default <SPAN class="code">TupleGenerator</SPAN> that uses the specified coverage level.
+
+        <DIV class="exampleCode">
+          &gt; tcases <SPAN class="codeEmph">-c 2</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        If you already have a <SPAN class="code">${projectName}-Generators.xml</SPAN> file, this command will
+        update the file by adding or changing the default <SPAN class="code">tuples</SPAN> value, as shown
+        below. If no <SPAN class="code">${projectName}-Generators.xml</SPAN> file exists, it will create one.
+
+        <DIV class="exampleDoc">
+        &lt;Generators&gt; <BR/>
+        &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">tuples="2"</SPAN>/&gt; <BR/>
+        &lt;/Generators&gt; <BR/>
+        </DIV>
+      </P>
+
+      <H3><A name="trouble">Troubleshooting FAQs</A></H3>
+      <P>(TBD)</P>
+
+      <H2><A name="transform">Transforming Test Cases</A></H2>
+      <P>
+        The test case definitions that Tcases produces are not directly executable. Their purpose is to specify and guide the construction
+        of actual tests. But because test case definitions appear in a well-defined XML document, it's not hard to transform them into
+        a more concrete form. This section describes the options Tcases offers for output transformations.
+      </P>
+
+      <H3><A name="junit">Creating JUnit/TestNG Tests</A></H3>
+      <P>
+        Transforming test cases into JUnit or TestNG code is a capability that is built into the <SPAN class="code">tcases</SPAN> command. How does it work?
+        Just add the <SPAN class="code">-J</SPAN> option, and Tcases will automatically writes test case definitions in the form of Java code for
+        a JUnit test. The same code works for TestNG, too.
+      </P>
+      <P>
+        Here's a simple example. Try out these commands:
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases <SPAN class="codeEmph">-J</SPAN> &lt; find-Input.xml <BR/>
+        </DIV>
+      </P>
+      <P>
+        Here's what you'll see printed to standard output: 
+        each test case definition has been transformed into a <SPAN class="code">@Test</SPAN> method. The name of the method
+        is based on the <SPAN class="code">Function</SPAN> name. And the Javadoc comments describe the input values for this test case. The
+        body of the method is empty, waiting for the implementation to be filled in by you.
+
+        <DIV class="exampleDoc">
+          <SPAN class="exampleComment">
+          &nbsp; /** <BR/>
+          &nbsp;  * Tests <SPAN class="exampleEmph">{@link Examples#find find()}</SPAN> using the following inputs.<BR/>
+          &nbsp;  * &lt;P&gt;<BR/>
+          &nbsp;  * &lt;TABLE border="1" cellpadding="8"&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; 0. find (Success) &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH&gt; Input Choice &lt;/TH&gt; &lt;TH&gt; Value &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.size &lt;/TD&gt; &lt;TD&gt; empty &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.quoted &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.blanks &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.embeddedQuotes &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; fileName &lt;/TD&gt; &lt;TD&gt; defined &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.exists &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.linesLongerThanPattern &lt;/TD&gt; &lt;TD&gt; one &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patterns &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patternsInLine &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;/TABLE&gt;<BR/>
+          &nbsp;  * &lt;/P&gt;<BR/>
+          &nbsp;  */<BR/>
+          </SPAN>
+          &nbsp; @Test<BR/>
+          &nbsp; public void find_0()<BR/>
+          &nbsp; &nbsp; {<BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Then...</SPAN><BR/>
+          &nbsp; &nbsp; } <BR/>
+          &nbsp; ...<BR/>
+        </DIV>
+      </P>
+      <P>
+        For failure test cases, the Javadoc highlights the single invalid value that defines the case.
+
+        <DIV class="exampleDoc">
+          &nbsp; ...<BR/>
+          <SPAN class="exampleComment">
+          &nbsp; /** <BR/>
+          &nbsp;  * Tests <SPAN class="exampleEmph">{@link Examples#find find()}</SPAN> using the following inputs. <BR/>
+          &nbsp;  * &lt;P&gt; <BR/>
+          &nbsp;  * &lt;TABLE border="1" cellpadding="8"&gt; <BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; 6. find <SPAN class="exampleEmph">(&lt;FONT color="red"&gt;Failure&lt;/FONT&gt;)</SPAN> &lt;/TH&gt;&lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH&gt; Input Choice &lt;/TH&gt; &lt;TH&gt; Value &lt;/TH&gt;&lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.size &lt;/TD&gt; &lt;TD&gt; empty &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.quoted &lt;/TD&gt; &lt;TD&gt; <SPAN class="exampleEmph">&lt;FONT color="red"&gt; unterminated&nbsp; &lt;/FONT&gt; &lt;/TD&gt; &lt;/TR&gt;</SPAN> <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.blanks &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.embeddedQuotes &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; fileName &lt;/TD&gt; &lt;TD&gt; defined &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.exists &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.linesLongerThanPattern &lt;/TD&gt; &lt;TD&gt; many &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patterns &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patternsInLine &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt; <BR/>
+          &nbsp;  * &lt;/TABLE&gt; <BR/>
+          &nbsp;  * &lt;/P&gt; <BR/>
+          &nbsp;  */ <BR/>
+          </SPAN> 
+          &nbsp; @Test <BR/>
+          &nbsp; public void find_6() <BR/>
+          &nbsp; &nbsp; { <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN> <BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN> <BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Then...</SPAN> <BR/>
+          &nbsp; &nbsp; } <BR/>
+          &nbsp; ...<BR/>
+        </DIV>
+      </P>
+      <P>
+        The <SPAN class="code">-J</SPAN> option is most useful when the <SPAN class="code">System</SPAN> corresponds to a class and each
+        <SPAN class="code">Function</SPAN> corresponds to a class method to be tested. Accordingly, the Javadoc includes an <SPAN class="code">@link</SPAN>
+        to the method-under-test, as shown above. You can customize the form of this <SPAN class="code">@link</SPAN> by defining either the
+        <SPAN class="code">class</SPAN> parameter or the <SPAN class="code">system</SPAN> parameter. For example, if you use the options "<SPAN class="code">-J -p class=MyClass</SPAN>", then the output looks like this:
+
+        <DIV class="exampleDoc">
+          <SPAN class="exampleComment">
+          &nbsp; /** <BR/>
+          &nbsp;  * Tests <SPAN class="exampleEmph">{@link MyClass#find find()}</SPAN> using the following inputs.<BR/>
+          &nbsp;  * &lt;P&gt;<BR/>
+          &nbsp;  * &lt;TABLE border="1" cellpadding="8"&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; 0. find (Success) &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH&gt; Input Choice &lt;/TH&gt; &lt;TH&gt; Value &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.size &lt;/TD&gt; &lt;TD&gt; empty &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.quoted &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.blanks &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.embeddedQuotes &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; fileName &lt;/TD&gt; &lt;TD&gt; defined &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.exists &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.linesLongerThanPattern &lt;/TD&gt; &lt;TD&gt; one &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patterns &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patternsInLine &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;/TABLE&gt;<BR/>
+          &nbsp;  * &lt;/P&gt;<BR/>
+          &nbsp;  */<BR/>
+          </SPAN>
+          &nbsp; @Test<BR/>
+          &nbsp; public void find_0()<BR/>
+          &nbsp; &nbsp; {<BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Then...</SPAN><BR/>
+          &nbsp; &nbsp; } <BR/>
+          &nbsp; ...<BR/>
+        </DIV>
+      </P>
+      <P>
+        Alternatively, if you use the options "<SPAN class="code">-J -p system=MySystem</SPAN>", then the output looks like this:
+
+        <DIV class="exampleDoc">
+          <SPAN class="exampleComment">
+          &nbsp; /** <BR/>
+          &nbsp;  * Tests <SPAN class="exampleEmph">MySystem</SPAN> using the following inputs.<BR/>
+          &nbsp;  * &lt;P&gt;<BR/>
+          &nbsp;  * &lt;TABLE border="1" cellpadding="8"&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH colspan=2&gt; 0. find (Success) &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR align="left"&gt;&lt;TH&gt; Input Choice &lt;/TH&gt; &lt;TH&gt; Value &lt;/TH&gt;&lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.size &lt;/TD&gt; &lt;TD&gt; empty &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.quoted &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.blanks &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; pattern.embeddedQuotes &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; fileName &lt;/TD&gt; &lt;TD&gt; defined &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.exists &lt;/TD&gt; &lt;TD&gt; yes &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.linesLongerThanPattern &lt;/TD&gt; &lt;TD&gt; one &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patterns &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;TR&gt;&lt;TD&gt; file.contents.patternsInLine &lt;/TD&gt; &lt;TD&gt; NA &lt;/TD&gt; &lt;/TR&gt;<BR/>
+          &nbsp;  * &lt;/TABLE&gt;<BR/>
+          &nbsp;  * &lt;/P&gt;<BR/>
+          &nbsp;  */<BR/>
+          </SPAN>
+          &nbsp; @Test<BR/>
+          &nbsp; public void find_0()<BR/>
+          &nbsp; &nbsp; {<BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
+          <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// Then...</SPAN><BR/>
+          &nbsp; &nbsp; } <BR/>
+          &nbsp; ...<BR/>
+        </DIV>
+      </P>
+
+      <P>
+        Using the <SPAN class="code">-J</SPAN> option also changes the default output file for
+        the <SPAN class="code">tcases</SPAN> command.  Normally, when you're working with a Tcases <A href="#files">project</A>,
+        generated test case definitions are written by default to a file
+        named <SPAN class="code">${projectName}-Test.xml</SPAN>. But with <SPAN class="code">-J</SPAN>, the
+        generated <SPAN class="code">@Test</SPAN> methods are written by default to a file
+        named <SPAN class="code">${projectName}Test.java</SPAN>. Exception: if your <SPAN class="code">${projectName}</SPAN> is
+        not a valid Java class identifier, a slightly modified form of the project name is used instead.
+      </P>
+      <P>
+        For example, the following command will write generated test definitions in the form of <SPAN class="code">@Test</SPAN> methods to a file named
+        <SPAN class="code">findTest.java</SPAN>
+
+        <DIV class="exampleCode">
+          &gt; tcases <SPAN class="codeEmph">-J</SPAN> find <BR/>
+        </DIV>
+      </P>
+
+      <H3><A name="xslt">Using XSLT Transforms</A></H3>
+      <P>
+        The JUnit output transform is implemented using <A href="http://en.wikipedia.org/wiki/XSLT">XSLT</A> templates. If you've created
+        your own XSLT stylesheet to transform test case definitions, you can apply it using the <SPAN class="code">-x</SPAN> option.
+      </P>
+      <P>
+        For example, 
+        the following command will still send its output to the default test case definition file for the
+        project, <SPAN class="code">${projectName}-Test.xml</SPAN>. But first it transforms the standard test
+        case definition document using the XSLT stylesheet in the <SPAN class="code">myStylesheet.xml</SPAN> file.
+
+        <DIV class="exampleCode">
+          &gt; tcases <SPAN class="codeEmph">-x myStylesheet.xml</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        Because the transformed document is a different kind of document, you'll usually want to write it to a different type of file,
+        using the <SPAN class="code">-f</SPAN> option.
+
+        <DIV class="exampleCode">
+          &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-f myOutputDoc.type</SPAN> ${projectName} <BR/>
+        </DIV>
+      </P>
+      <P>
+        If your XSLT stylesheet uses parameters, you can assign them values using one or more instances of the <SPAN class="code">-p</SPAN>
+        option. For example:       
+
+        <DIV class="exampleCode">
+          &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-p <I>&lt;name&gt;</I>=<I>&lt;value&gt;</I></SPAN> -f myOutputDoc ${projectName} <BR/>
+        </DIV>
+      </P>
+
+      <H2><A name="reference">Further Reference</A></H2>
+      <P>
+        Want more technical details about Tcases? Here are links to some additional information.
+
+        <UL>
+          <LI> The <SPAN class="code">find</SPAN> command <A href="examples/find-Input.xml">example</A></LI><P/>
+          <LI> The <SPAN class="code">tcases</SPAN> <A href="api/org/cornutum/tcases/Tcases.Options.html">command line</A></LI><P/>
+          <LI> Document schemas <P/>
+            <UL>
+              <LI> The <A href="system-input.xsd">system input definition document schema</A> </LI><P/>
+              <LI> The <A href="generators.xsd">generator definition document schema</A> </LI><P/>
+              <LI> The <A href="system-test.xsd">test case definition document schema</A> </LI><P/>
+            </UL>
+          <LI> Related testing techniques <P/>
+            <UL>
+              <LI> <A href="http://en.wikipedia.org/wiki/Black-box_testing">Black-box test design</A> </LI><P/>
+              <LI> <A href="http://en.wikipedia.org/wiki/Equivalence_partitioning">Equivalence class partitioning</A> </LI><P/>
+              <LI> <A href="http://csrc.nist.gov/groups/SNS/acts/index.html">Combinatorial testing</A> </LI><P/>
+            </UL>
+          </LI><P/>
+        </UL>
+      </P>
+
+    </DIV>
+
+  </BODY>
+</HTML>

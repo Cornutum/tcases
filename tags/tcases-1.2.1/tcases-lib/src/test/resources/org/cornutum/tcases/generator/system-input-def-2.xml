@@ -1,0 +1,30 @@
+<System name="Things">
+
+  <Function name="Make">
+    <Input>
+
+      <Var name="Color">
+        <Value name="Red" property="primary"/>
+        <Value name="Green" property="primary"/>
+        <Value name="Blue" property="primary"/>
+        <Value name="Cyan"/>
+        <Value name="Magenta"/>
+        <Value name="Yellow"/>
+      </Var>
+
+      <Var name="Shape">
+        <Value name="Square" when="primary"/>
+        <Value name="Heart"  when="primary"    once="true"/>
+        <Value name="Circle" whenNot="primary" once="true"/>
+      </Var>
+
+      <Var name="Size">
+        <Value name="Small" once="true"/>
+        <Value name="Medium"/>
+        <Value name="Large"/>
+      </Var>
+
+    </Input>
+  </Function>
+
+</System>

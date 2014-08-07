@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<TestCases system="System-20">
+  <Function name="Function-20">
+    <TestCase id="0">
+      <Input type="arg">
+        <Var name="VarSet-20.Var-20" value="20"/>
+        <Var name="VarSet-20.Var-21" value="23"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Input type="arg">
+        <Var name="VarSet-20.Var-20" value="21"/>
+        <Var name="VarSet-20.Var-21" value="24"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Input type="arg">
+        <Var name="VarSet-20.Var-20" value="22"/>
+        <Var name="VarSet-20.Var-21" value="25"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>
