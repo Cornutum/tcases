@@ -514,6 +514,7 @@ public class Reducer
         }
 
     File inputDir = inputDefFile.getParentFile();
+    String project = Tcases.getProjectName( inputDefFile);
     
     // Read the system input definition.
     SystemInputDef inputDef = null;
@@ -571,7 +572,7 @@ public class Reducer
     File genDefFile = options.getGenDef();
     if( genDefFile == null)
       {
-      genDefFile = new File( inputDir, Tcases.getProjectName( inputDefFile) + "-Generators.xml");
+      genDefFile = new File( inputDir, project + "-Generators.xml");
       }
     else if( !genDefFile.isAbsolute())
       {
@@ -630,7 +631,7 @@ public class Reducer
       }
 
     // Find a seed that generates minimum test cases for the specified function(s).
-    logger_.info( "Initializing test cases to be reduced");
+    logger_.info( "[{}] Initializing test cases to be reduced", project);
     int initialCount = getTestCaseCount( baseDef, genDef, functionInputDefs);
     int samples;
     int round;
@@ -652,7 +653,7 @@ public class Reducer
            round++)
       {
       // Perform next round of samples.
-      logger_.info( "Round {}: starting next {} samples", round, samples);
+      logger_.info( "[{}] Round {}: starting next {} samples", new Object[]{ project, round, samples});
       int roundCount;
       long roundSeed;
       int i;
@@ -673,19 +674,19 @@ public class Reducer
       reducing = i < samples;
       if( reducing)
         {
-        logger_.info( "Round {}: after {} samples, reached {} test cases with seed={}", new Object[]{ round, i+1, roundCount, roundSeed});
+        logger_.info( "[{}] Round {}: after {} samples, reached {} test cases with seed={}", new Object[]{ project, round, i+1, roundCount, roundSeed});
         minCount = roundCount;
         minSeed = roundSeed;
         }
       else
         {
-        logger_.info( "Round {}: after {} samples, terminating with {} test cases", new Object[]{ round, samples, minCount});
+        logger_.info( "[{}] Round {}: after {} samples, terminating with {} test cases", new Object[]{ project, round, samples, minCount});
         }
       } 
 
     if( minCount >= initialCount)
       {
-      logger_.info( "Could not reduce initial {} test cases -- generator definition not changed", initialCount);
+      logger_.info( "[{}] Could not reduce initial {} test cases -- generator definition not changed", project, initialCount);
       }
     else
       {
@@ -694,7 +695,7 @@ public class Reducer
       GeneratorSetDocWriter genWriter = null;
       try
         {
-        logger_.info( "Reduced to {} test cases with seed={} -- updating generator definition={}", new Object[]{ minCount, minSeed, genDefFile});
+        logger_.info( "[{}] Reduced to {} test cases with seed={} -- updating generator definition", new Object[]{ project, minCount, minSeed});
         genWriter = new GeneratorSetDocWriter( new FileOutputStream( genDefFile));
         genWriter.write( genDef);
         }
