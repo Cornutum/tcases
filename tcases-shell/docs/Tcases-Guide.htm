@@ -421,12 +421,12 @@
 
         <DIV class="exampleDoc">
           &lt;System name="${mySystemName}"&gt; <BR/>
-          &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-1}</SPAN>"&gt; <BR/>
-          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-1} go here --&gt;</SPAN> <BR/>
+          &nbsp; &lt;Function name="<SPAN class="exampleEmph">${myFunction-1}</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${myFunction-1} go here --&gt;</SPAN> <BR/>
           &nbsp; &lt;/Function&gt; <BR/>
           <BR/>
-          &nbsp; &lt;Function name="<SPAN class="exampleEmph">${function-2}</SPAN>"&gt; <BR/>
-          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${function-2} go here --&gt;</SPAN> <BR/>
+          &nbsp; &lt;Function name="<SPAN class="exampleEmph">${myFunction-2}</SPAN>"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- All input definitions for ${myFunction-2} go here --&gt;</SPAN> <BR/>
           &nbsp; &lt;/Function&gt; <BR/>
           &nbsp; ... <BR/>
           &lt;/System&gt; <BR/>
@@ -1198,12 +1198,12 @@
 
         <DIV class="exampleDoc">
         &lt;Generators&gt; <BR/>
-        &nbsp; &lt;TupleGenerator function="${function-1}"&gt; <BR/>
-        &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Coverage requirements for ${function-1} go here --&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator function="${myFunction-1}"&gt; <BR/>
+        &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Coverage requirements for ${myFunction-1} go here --&gt;</SPAN> <BR/>
         &nbsp; &lt;/TupleGenerator&gt; <BR/>
          <BR/>
-        &nbsp; &lt;TupleGenerator function="${function-2}"&gt; <BR/>
-        &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Coverage requirements for ${function-2} go here --&gt;</SPAN> <BR/>
+        &nbsp; &lt;TupleGenerator function="${myFunction-2}"&gt; <BR/>
+        &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Coverage requirements for ${myFunction-2} go here --&gt;</SPAN> <BR/>
         &nbsp; &lt;/TupleGenerator&gt; <BR/>
         &nbsp; ... <BR/>
         &lt;/Generators&gt; <BR/>
@@ -1368,28 +1368,28 @@
       </P>
       <P>
         The <SPAN class="code">tcases</SPAN> command allows you to refer to all of the files for a project
-        named <SPAN class="code">${projectName}</SPAN> using the following conventions.
+        named <SPAN class="code">${myProjectName}</SPAN> using the following conventions.
         
         <UL>
-          <LI><SPAN class="code">${projectName}-Input.xml</SPAN>: the system input definition file</LI>
-          <LI><SPAN class="code">${projectName}-Generators.xml</SPAN>: the generator definition file</LI>
-          <LI><SPAN class="code">${projectName}-Test.xml</SPAN>: the test case definition file</LI>
+          <LI><SPAN class="code">${myProjectName}-Input.xml</SPAN>: the system input definition file</LI>
+          <LI><SPAN class="code">${myProjectName}-Generators.xml</SPAN>: the generator definition file</LI>
+          <LI><SPAN class="code">${myProjectName}-Test.xml</SPAN>: the test case definition file</LI>
         </UL>
       </P>
       <P>
         For example, here's a simple way to run Tcases.
 
         <DIV class="exampleCode">
-          &gt; tcases ${projectName} <BR/>
+          &gt; tcases ${myProjectName} <BR/>
         </DIV>
       </P>
       <P>
         This command performs the following actions.
         
         <OL>
-          <LI>Reads the system input definition from <SPAN class="code">${projectName}-Input.xml</SPAN></LI>
-          <LI>Reads the generator definition from <SPAN class="code">${projectName}-Generators.xml</SPAN>, if it exists</LI>
-          <LI>Writes test case definitions to <SPAN class="code">${projectName}-Test.xml</SPAN></LI>
+          <LI>Reads the system input definition from <SPAN class="code">${myProjectName}-Input.xml</SPAN></LI>
+          <LI>Reads the generator definition from <SPAN class="code">${myProjectName}-Generators.xml</SPAN>, if it exists</LI>
+          <LI>Writes test case definitions to <SPAN class="code">${myProjectName}-Test.xml</SPAN></LI>
         </OL>
       </P>
       <P>
@@ -1414,17 +1414,17 @@
         way of working. Remember that simple <SPAN class="code">tcases</SPAN> command line?
 
         <DIV class="exampleCode">
-          &gt; tcases ${projectName} <BR/>
+          &gt; tcases ${myProjectName} <BR/>
         </DIV>
       </P>
       <P>
         Here's what it <U>really</U> does:
         
         <OL>
-          <LI>Reads the system input definition from <SPAN class="code">${projectName}-Input.xml</SPAN></LI>
-          <LI>Reads the generator definition from <SPAN class="code">${projectName}-Generators.xml</SPAN>, if it exists</LI>
-          <LI><U>And reads previous test cases</U>  from <SPAN class="code">${projectName}-Test.xml</SPAN>, if it exists</LI>
-          <LI> <U>Then writes new test case definitions</U> to <SPAN class="code">${projectName}-Test.xml</SPAN> which
+          <LI>Reads the system input definition from <SPAN class="code">${myProjectName}-Input.xml</SPAN></LI>
+          <LI>Reads the generator definition from <SPAN class="code">${myProjectName}-Generators.xml</SPAN>, if it exists</LI>
+          <LI><U>And reads previous test cases</U>  from <SPAN class="code">${myProjectName}-Test.xml</SPAN>, if it exists</LI>
+          <LI> <U>Then writes new test case definitions</U> to <SPAN class="code">${myProjectName}-Test.xml</SPAN> which
           reuse as much of the previous test cases as possible, extending or modifying them as needed</LI>
         </OL>
       </P>
@@ -1435,7 +1435,7 @@
         any previous ones.
 
         <DIV class="exampleCode">
-          &gt; tcases <SPAN class="codeEmph">-n</SPAN> ${projectName} <BR/>
+          &gt; tcases <SPAN class="codeEmph">-n</SPAN> ${myProjectName} <BR/>
         </DIV>
       </P>
         
@@ -1629,13 +1629,13 @@
         generates test cases with a default <SPAN class="code">TupleGenerator</SPAN> that uses the specified seed value.
 
         <DIV class="exampleCode">
-          &gt; tcases <SPAN class="codeEmph">-r 299293214</SPAN> ${projectName} <BR/>
+          &gt; tcases <SPAN class="codeEmph">-r 299293214</SPAN> ${myProjectName} <BR/>
         </DIV>
       </P>
       <P>
-        If you already have a <SPAN class="code">${projectName}-Generators.xml</SPAN> file, this command will
+        If you already have a <SPAN class="code">${myProjectName}-Generators.xml</SPAN> file, this command will
         update the file by adding or changing the default <SPAN class="code">seed</SPAN> value, as shown
-        below. If no <SPAN class="code">${projectName}-Generators.xml</SPAN> file exists, it will create one.
+        below. If no <SPAN class="code">${myProjectName}-Generators.xml</SPAN> file exists, it will create one.
 
         <DIV class="exampleDoc">
         &lt;Generators&gt; <BR/>
@@ -1650,13 +1650,13 @@
         generates test cases with a default <SPAN class="code">TupleGenerator</SPAN> that uses the specified coverage level.
 
         <DIV class="exampleCode">
-          &gt; tcases <SPAN class="codeEmph">-c 2</SPAN> ${projectName} <BR/>
+          &gt; tcases <SPAN class="codeEmph">-c 2</SPAN> ${myProjectName} <BR/>
         </DIV>
       </P>
       <P>
-        If you already have a <SPAN class="code">${projectName}-Generators.xml</SPAN> file, this command will
+        If you already have a <SPAN class="code">${myProjectName}-Generators.xml</SPAN> file, this command will
         update the file by adding or changing the default <SPAN class="code">tuples</SPAN> value, as shown
-        below. If no <SPAN class="code">${projectName}-Generators.xml</SPAN> file exists, it will create one.
+        below. If no <SPAN class="code">${myProjectName}-Generators.xml</SPAN> file exists, it will create one.
 
         <DIV class="exampleDoc">
         &lt;Generators&gt; <BR/>
@@ -1846,9 +1846,9 @@
         Using the <SPAN class="code">-J</SPAN> option also changes the default output file for
         the <SPAN class="code">tcases</SPAN> command.  Normally, when you're working with a Tcases <A href="#files">project</A>,
         generated test case definitions are written by default to a file
-        named <SPAN class="code">${projectName}-Test.xml</SPAN>. But with <SPAN class="code">-J</SPAN>, the
+        named <SPAN class="code">${myProjectName}-Test.xml</SPAN>. But with <SPAN class="code">-J</SPAN>, the
         generated <SPAN class="code">@Test</SPAN> methods are written by default to a file
-        named <SPAN class="code">${projectName}Test.java</SPAN>. Exception: if your <SPAN class="code">${projectName}</SPAN> is
+        named <SPAN class="code">${myProjectName}Test.java</SPAN>. Exception: if your <SPAN class="code">${myProjectName}</SPAN> is
         not a valid Java class identifier, a slightly modified form of the project name is used instead.
       </P>
       <P>
@@ -1868,11 +1868,11 @@
       <P>
         For example, 
         the following command will still send its output to the default test case definition file for the
-        project, <SPAN class="code">${projectName}-Test.xml</SPAN>. But first it transforms the standard test
+        project, <SPAN class="code">${myProjectName}-Test.xml</SPAN>. But first it transforms the standard test
         case definition document using the XSLT stylesheet in the <SPAN class="code">myStylesheet.xml</SPAN> file.
 
         <DIV class="exampleCode">
-          &gt; tcases <SPAN class="codeEmph">-x myStylesheet.xml</SPAN> ${projectName} <BR/>
+          &gt; tcases <SPAN class="codeEmph">-x myStylesheet.xml</SPAN> ${myProjectName} <BR/>
         </DIV>
       </P>
       <P>
@@ -1880,7 +1880,7 @@
         using the <SPAN class="code">-f</SPAN> option.
 
         <DIV class="exampleCode">
-          &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-f myOutputDoc.type</SPAN> ${projectName} <BR/>
+          &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-f myOutputDoc.type</SPAN> ${myProjectName} <BR/>
         </DIV>
       </P>
       <P>
@@ -1888,7 +1888,7 @@
         option. For example:       
 
         <DIV class="exampleCode">
-          &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-p <I>&lt;name&gt;</I>=<I>&lt;value&gt;</I></SPAN> -f myOutputDoc ${projectName} <BR/>
+          &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-p <I>&lt;name&gt;</I>=<I>&lt;value&gt;</I></SPAN> -f myOutputDoc ${myProjectName} <BR/>
         </DIV>
       </P>
 
