@@ -1,6 +1,10 @@
 #summary A summary of the changes for each release
 #labels Featured
 
+= 1.2.2 =
+
+  * Tcases Guide: Rework to avoid inadvertent substitution of Maven properties.
+
 = 1.2.1 =
 
   * Reducer: Improvements to logging make it easier to track progress.
