@@ -1,0 +1,20 @@
+<System name="System-20">
+  <Function name="Function-20">
+
+    <Input type="arg">
+      <VarSet name="VarSet-20">
+        <Var name="Var-20">
+          <Value name="20"/>
+          <Value name="21"/>
+          <Value name="22"/>
+        </Var>
+        <Var name="Var-21">
+          <Value name="23"/>
+          <Value name="24"/>
+          <Value name="25"/>
+        </Var>
+      </VarSet>
+    </Input>
+
+  </Function>
+</System>

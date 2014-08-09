@@ -1,0 +1,73 @@
+<System name="System-4">
+  <Function name="Function-0">
+
+    <Input type="state">
+      <Var name="state-0-0">
+        <When>
+          <AnyOf property="P1"/>
+        </When>
+
+        <Value name="value-0" failure="TRUE">
+          <When>
+            <AnyOf property=" P2 "/>
+          </When>
+        </Value>
+
+        <Value name="value-1" once="YES" failure="no">
+          <When>
+            <AnyOf property=",,P3"/>
+          </When>
+        </Value>
+
+        <Value name="value-2" failure="yes">
+          <When>
+            <AnyOf property="P4, "/>
+          </When>
+        </Value>
+
+        <Value name="value-3">
+          <When>
+            <AnyOf property="P5, P5"/>
+          </When>
+        </Value>
+      </Var>
+    </Input>
+
+  </Function>
+
+  <Function name="Function-1">
+
+    <Input>
+      <Var name="state-1-0">
+        <Value name="value-0" failure="no">
+          <When>
+            <AnyOf property="P5, P5"/>
+          </When>
+        </Value>
+
+        <Value name="value-1" once="true">
+          <When>
+            <AnyOf property=",,P3"/>
+          </When>
+        </Value>
+
+        <Value name="value-2" failure="true">
+          <When>
+            <AnyOf property="P4, "/>
+          </When>
+        </Value>
+
+        <Value name="value-3" failure="YES">
+          <When>
+            <AnyOf property=" P2 "/>
+          </When>
+        </Value>
+
+        <When>
+          <AnyOf property="P1"/>
+        </When>
+      </Var>
+    </Input>
+
+  </Function>
+</System>

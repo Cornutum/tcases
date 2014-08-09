@@ -1,0 +1,202 @@
+<System name="Tcases">
+  <!-- Version: $Revision$ $Date$ -->
+
+  <Function name="run">
+    <Input>
+
+      <!-- Option: -c -->
+      <VarSet name="defaultTupleSize">
+        <Var name="defined">
+          <Value name="Yes" property="defaultTupleSize"/>
+          <Value name="No"/>
+        </Var>
+
+        <Var name="isNumber" when="defaultTupleSize">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <!-- Option: -f -->
+      <VarSet name="outFile">
+        <Var name="defined">
+          <Value name="Yes" property="outFile"/>
+          <Value name="No"/>
+          <Value name="TransformOutputUndefined" failure="true" when="transformedOut, testFileExists"/>
+        </Var>
+
+        <VarSet name="path" when="outFile">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists">
+            <Value name="Yes" property="outFileExists"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+      <!-- Option: -g -->
+      <VarSet name="genFile">
+        <Var name="defined">
+          <Value name="Yes" property="genFile"/>
+          <Value name="No"/>
+        </Var>
+
+        <VarSet name="path" when="genFile">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+
+        <Var name="default" whenNot="genFile">
+          <Value name="ForInputExists" when="inFile"/>
+          <Value name="ForInputNone" when="inFile"/>
+          <Value name="Standard" whenNot="inFile"/>
+        </Var>
+      </VarSet>
+
+      <!-- Option: -J -->
+      <Var name="isJUnit">
+        <Value name="Yes" property="isJUnit, transformedOut" whenNot="transform"/>
+        <Value name="No" when="transform"/>
+        <Value name="NotAllowed" when="transform" failure="true"/>
+      </Var>
+
+      <!-- Option: -n -->
+      <VarSet name="newTests">
+        <Var name="defined" when="testFileExists">
+          <Value name="Yes"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <!-- Option: -o -->
+      <VarSet name="outDir">
+        <Var name="defined">
+          <Value name="Yes" property="outDir"/>
+          <Value name="No"/>
+        </Var>
+
+        <VarSet name="path" when="outDir">
+          <Var name="exists">
+            <Value name="Yes" property="outDirExists"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="isDirectory" when="outDirExists">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+      <!-- Option: -p -->
+      <VarSet name="transformParams">
+        <When>
+          <AnyOf property="transform, isJUnit"/>
+        </When>
+        <Var name="count">
+          <Value name="One" property="params"/>
+          <Value name="Many" property="params"/>
+          <Value name="None"/>
+        </Var>
+        <Var name="assignsValue" when="params">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="nameDefined" when="params">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="valueDefined" when="params">
+          <Value name="Yes"/>
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+
+      <!-- Option: -r -->
+      <VarSet name="seed">
+        <Var name="defined">
+          <Value name="Yes" property="random"/>
+          <Value name="No"/>
+        </Var>
+
+        <Var name="isNumber" when="random">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+      </VarSet>
+
+      <!-- Option: -t -->
+      <VarSet name="testFile">
+        <Var name="defined">
+          <Value name="Yes" property="testFile"/>
+          <Value name="No"/>
+        </Var>
+
+        <VarSet name="path" when="testFile">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists">
+            <Value name="Yes" property="testFileExists"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+
+        <VarSet name="default" whenNot="testFile">
+          <Var name="exists">
+            <Value name="Yes" property="testFileExists"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+      <!-- Option: -x -->
+      <VarSet name="transform">
+        <Var name="defined">
+          <Value name="Yes" property="transform, transformedOut"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="path" when="transform">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+      <!-- Input definition file -->
+      <VarSet name="inFile">
+        <Var name="defined">
+          <Value name="Yes" property="inFile"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="path" when="inFile">
+          <Var name="isAbsolute">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+          <Var name="exists">
+            <Value name="asDefined"/>
+            <Value name="withInputXml"/>
+            <Value name="withXml"/>
+            <Value name="No" failure="true"/>
+          </Var>          
+        </VarSet>
+      </VarSet>
+
+    </Input>
+  </Function>
+</System>

@@ -1,0 +1,18 @@
+<Generators>
+
+  <TupleGenerator function="*" tuples="WTF!!">
+
+    <Combine tuples="1">
+      <Include var="A.**"/>
+      <Exclude var="A.B"/>
+      <Include var="C"/>
+    </Combine>
+
+    <Combine>
+      <Include var="D.**"/>
+      <Exclude var="D.E.*"/>
+    </Combine>
+
+  </TupleGenerator>
+
+</Generators>

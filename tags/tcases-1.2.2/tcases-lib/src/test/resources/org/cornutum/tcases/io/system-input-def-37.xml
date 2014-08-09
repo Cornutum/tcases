@@ -1,0 +1,61 @@
+<System name="System-3">
+  <Function name="Function-0">
+
+    <Input type="arg">
+      <VarSet name="arg-0-0">
+        <Var name="member-0">
+          <Value name="value_0"/>
+        </Var>
+      </VarSet>
+      <VarSet name="arg-0-1">
+        <Var name="member-0">
+          <Value name="value_1"/>
+        </Var>
+      </VarSet>
+    </Input>
+
+    <Input type="env">
+      <VarSet name="env-0-0">
+        <Var name="member-0">
+          <Value name="value_2"/>
+        </Var>
+      </VarSet>
+      <VarSet name="env-0-1">
+        <Var name="member-0">
+          <Value name="value_3"/>
+        </Var>
+      </VarSet>
+    </Input>
+
+  </Function>
+
+  <Function name="Function-1">
+
+    <Input type="arg">
+      <VarSet name="arg-1-0">
+        <Var name="member-0">
+          <Value name="value_4"/>
+        </Var>
+      </VarSet>
+      <VarSet name="arg-1-1">
+        <Var name="member-0">
+          <Value name="value_5"/>
+        </Var>
+      </VarSet>
+    </Input>
+
+    <Input type="env">
+      <VarSet name="env-1-0">
+        <Var name="member-0">
+          <Value name="value_6"/>
+        </Var>
+      </VarSet>
+      <VarSet name="env-1-1">
+        <Var name="member-0">
+          <Value name="value.7"/>
+        </Var>
+      </VarSet>
+    </Input>
+
+  </Function>
+</System>

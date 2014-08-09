@@ -1,0 +1,81 @@
+<System name="System-4">
+  <Function name="Function-0">
+
+    <Input type="state">
+      <Var name="state-0-0">
+        <When>
+          <AnyOf property="R1"/>
+        </When>
+
+        <Value name="value-0" failure="TRUE">
+          <When>
+            <AnyOf property=" R2 "/>
+          </When>
+        </Value>
+
+        <Value name="value-1" once="YES" failure="no" property="P1,P5">
+          <When>
+            <AnyOf property=",,R3"/>
+          </When>
+        </Value>
+
+        <Value name="value-2" failure="yes">
+          <When>
+            <AnyOf property="R4, "/>
+          </When>
+        </Value>
+
+        <Value name="value-3" property="P2,P3, P4,">
+          <When>
+            <AnyOf property="R5, R5"/>
+          </When>
+        </Value>
+      </Var>
+      
+      <Var name="state-0-1">
+        <Value name="value-4" property="R1, R2, R3, R4, R5"/>
+      </Var>
+    </Input>
+
+  </Function>
+
+  <Function name="Function-1">
+
+    <Input type="state">
+      <Var name="state-1-0">
+        <Value name="value-0" failure="no" property="R1,R2">
+          <When>
+            <AnyOf property="P5, P5"/>
+          </When>
+        </Value>
+
+        <Value name="value-1" once="true" property="R3,R4,R5">
+          <When>
+            <AnyOf property=",,P3"/>
+          </When>
+        </Value>
+
+        <Value name="value-2" failure="true">
+          <When>
+            <AnyOf property="P4, "/>
+          </When>
+        </Value>
+
+        <Value name="value-3" failure="YES">
+          <When>
+            <AnyOf property=" P2 "/>
+          </When>
+        </Value>
+
+        <When>
+          <AnyOf property="P1"/>
+        </When>
+      </Var>
+      
+      <Var name="state-1-1">
+        <Value name="value-4" property="P1, P2, P3, P4, P5"/>
+      </Var>
+    </Input>
+
+  </Function>
+</System>
