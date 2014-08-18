@@ -434,6 +434,31 @@ public class TcasesMojoTest
       }
     }
   
+  @Test
+  public void whenProjectName() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "tcases-project-name");
+
+    // When...
+    TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
+    tcasesMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases");
+    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases");
+    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
+
+    String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/Other*.xml");
+    assertEquals( "Input defs", 2, expectedInputDefs.length);
+
+    String[] expectedTestDefs = findPathsMatching( expectedOutDir, "**/*");
+    assertEquals( "Test defs", 2, expectedTestDefs.length);
+    }
+  
   /**
    * Returns the set of paths relative to the given base directory matching any of the given patterns.
    */
