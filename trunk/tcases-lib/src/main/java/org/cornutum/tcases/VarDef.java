@@ -148,7 +148,8 @@ public class VarDef extends AbstractVarDef
   /**
    * Returns the value definition with the given name.
    */
-  public VarValueDef getValue( String name)    {
+  public VarValueDef getValue( String name)
+    {
     int i = findValue( name);
     return i >= 0? values_.get(i) : null;
     }

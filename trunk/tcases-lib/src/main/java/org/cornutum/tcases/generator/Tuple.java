@@ -44,6 +44,7 @@ public class Tuple
     {
     this();
     addAll( other);
+    setOnce( other.isOnce());
     }
   
   /**
@@ -51,7 +52,7 @@ public class Tuple
    */
   public Tuple( VarBindingDef ... bindings)
     {
-    setBindings( Arrays.asList( bindings));
+    this( Arrays.asList( bindings));
     }
   
   /**
@@ -174,6 +175,22 @@ public class Tuple
     }
 
   /**
+   * Changes if this tuple should be used in at most one test case.
+   */
+  public void setOnce( boolean once)
+    {
+    once_ = once;
+    }
+
+  /**
+   * Returns if this tuple should be used in at most one test case.
+   */
+  public boolean isOnce()
+    {
+    return once_;
+    }
+
+  /**
    * Returns true if this tuple contains compatible variable bindings.
    */
   public boolean isCompatible()
@@ -237,5 +254,6 @@ public class Tuple
 
   private Map<VarDef,VarBindingDef> bindings_;
   private PropertySet properties_;
+  private boolean once_;
   }
 

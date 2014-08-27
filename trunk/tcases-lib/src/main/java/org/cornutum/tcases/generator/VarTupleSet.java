@@ -9,7 +9,6 @@ package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.VarBindingDef;
 import org.cornutum.tcases.VarDef;
-import org.cornutum.tcases.VarValueDef;
 import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections4.IteratorUtils;
@@ -84,52 +83,27 @@ public class VarTupleSet
 
   /**
    * Returns input tuples already used in a test case that bind any of the given variables.
+   * Returns only tuples for which <CODE>isOnce() == once</CODE>.
    */
-  public Iterator<Tuple> getUsed( List<VarDef> vars)
+  public Iterator<Tuple> getUsed( final List<VarDef> vars, final boolean once)
     {
-    return getUsed( vars, null);
-    }
-
-  /**
-   * Returns input tuples already used in a test case that bind any of the given variables.
-   * <P/>
-   * If <CODE>once</CODE> is non-null, the tuples returned depends on the {@link
-   * VarValueDef#getType type} of the value bound. If <CODE>once</CODE> is true, returns only
-   * 1-tuples that bind the variable to a value of type {@link
-   * org.cornutum.tcases.VarValueDef.Type#ONCE ONCE}. Otherwise, returns n-tuples where n
-   * &gt; 1 or where the value type is {@link org.cornutum.tcases.VarValueDef.Type#VALID
-   * VALID}.
-   */
-  public Iterator<Tuple> getUsed( final List<VarDef> vars, final Boolean once)
-    {
-    final boolean onceValue = once != null && once.booleanValue();
-    
     return
       IteratorUtils.filteredIterator
       ( used_.iterator(),
         new Predicate<Tuple>()
-        {
-        public boolean evaluate( Tuple tuple)
           {
-          boolean singleton = tuple.size() == 1;
-
-          VarValueDef value;
-          boolean binds;
-          Iterator<VarDef> bindVars;
-          for( binds = false,
-                 bindVars = vars.iterator();
-               
-               !binds && bindVars.hasNext();
-               
-               binds =
-                 (value = tuple.getBinding( bindVars.next())) != null
-                 && (once == null
-                     ||
-                     onceValue == (singleton && value.getType()==VarValueDef.Type.ONCE)));
-          
-          return binds;
-          }
-        });
+          public boolean evaluate( Tuple tuple)
+            {
+            boolean binds = false;
+            if( tuple.isOnce() == once)
+              {
+              for( Iterator<VarDef> bindVars = vars.iterator();
+                   !binds && bindVars.hasNext();
+                   binds = tuple.getBinding( bindVars.next()) != null);
+              }
+            return binds;
+            }
+          });
     }
 
   /**
@@ -172,6 +146,7 @@ public class VarTupleSet
       for( Iterator<VarBindingDef> bindings = tuple.getBindings(); bindings.hasNext();)
         {
         Tuple tuple1 = new Tuple( bindings.next());
+        tuple1.setOnce( tuple.size() == 1 && tuple.isOnce());
         if( used_.indexOf( tuple1) < 0)
           {
           used_.add( tuple1);
