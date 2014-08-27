@@ -43,6 +43,7 @@ public class TupleCombiner
     setTupleSize( tupleSize);
     setIncludedVars( new HashSet<VarNamePattern>());
     setExcludedVars( new HashSet<VarNamePattern>());
+    setOnceTuples( new HashSet<TupleRef>());
     }
 
   /**
@@ -188,11 +189,55 @@ public class TupleCombiner
     }
 
   /**
+   * Changes the set of once-only tuples in this combination.
+   */
+  private void setOnceTuples( Set<TupleRef> tupleRefs)
+    {
+    onceTuples_ = tupleRefs;
+    }
+
+  /**
+   * Returns an iterator for the set of once-only tuples in this combination.
+   */
+  public Iterator<TupleRef> getOnceTuples()
+    {
+    return onceTuples_.iterator();
+    }
+
+  /**
+   * Adds a pattern matching input variables to be included in this combination.
+   */
+  public TupleCombiner addOnceTuple( TupleRef tupleRef)
+    {
+    onceTuples_.add( tupleRef);
+    return this;
+    }
+
+  /**
+   * Removes a pattern matching input variables to be included in this combination.
+   */
+  public TupleCombiner removeOnceTuple( TupleRef tupleRef)
+    {
+    onceTuples_.remove( tupleRef);
+    return this;
+    }
+
+  /**
+   * Removes all patterns matching input variables to be included in this combination.
+   */
+  public TupleCombiner removeAllOnceTuples()
+    {
+    onceTuples_.clear();
+    return this;
+    }
+
+  /**
    * Returns all valid N-tuples of values for the included input variables.
    */
   public Collection<Tuple> getTuples( FunctionInputDef inputDef)
     {
-    return getTuples( getCombinedVars( inputDef), getTupleSize());
+    List<VarDef> combinedVars = getCombinedVars( inputDef);
+    return getCombinedTuples( combinedVars, getTuples( combinedVars, getTupleSize()));
     }
 
   /**
@@ -267,6 +312,104 @@ public class TupleCombiner
       }
     
     return tuples;
+    }
+
+  /**
+   * Returns all fully-combined N-tuples of values for the included input variables.
+   */
+  private Collection<Tuple> getCombinedTuples( List<VarDef> combinedVars, Collection<Tuple> tuples)
+    {
+    // Apply any once-only constraints.
+    Set<Tuple> onceTuples = getOnceTupleDefs( combinedVars);
+    if( !onceTuples.isEmpty())
+      {
+      for( Tuple tuple : tuples)
+        {
+        tuple.setOnce( onceTuples.contains( tuple));
+        }
+      }
+    
+    return tuples;
+    }
+
+  /**
+   * Returns the set of once-only tuple definitions for this combiner.
+   */
+  private Set<Tuple> getOnceTupleDefs( final List<VarDef> combinedVars)
+    {
+    try
+      {
+      return
+        new HashSet<Tuple>
+        ( IteratorUtils.toList
+          ( IteratorUtils.transformedIterator
+            ( getOnceTuples(),
+              new Transformer<TupleRef,Tuple>()
+                {
+                public Tuple transform( TupleRef tupleRef)
+                  {
+                  return toTuple( combinedVars, tupleRef);
+                  }
+                })));
+      }
+    catch( Exception e)
+      {
+      throw new IllegalStateException( "Invalid once-only tuple definition", e);
+      }
+    }
+
+  /**
+   * Converts a reference to a tuple of combined variables.
+   */
+  private Tuple toTuple( List<VarDef> combinedVars, TupleRef tupleRef)
+    {
+    if( tupleRef.size() != getTupleSize())
+      {
+      throw new IllegalStateException( String.valueOf( tupleRef) + " does not match combiner tuple size=" + getTupleSize());
+      }
+
+    Tuple tuple = new Tuple();
+    for( Iterator<VarBinding> bindings = tupleRef.getVarBindings(); bindings.hasNext(); )
+      {
+      VarBinding binding = bindings.next();
+      VarDef var = findVarPath( combinedVars, binding.getVar());
+      if( var == null)
+        {
+        throw new IllegalStateException( "Var=" + binding.getVar() + " is not included in this combination");
+        }
+
+      VarValueDef value = var.getValue( binding.getValue());
+      if( value == null)
+        {
+        throw new IllegalStateException( "Value=" + binding.getValue() + " is not defined for var=" + binding.getVar());
+        }
+
+      if( !value.isValid())
+        {
+        throw new IllegalStateException( "Value=" + binding.getValue() + " is a failure value for var=" + binding.getVar());
+        }
+
+      tuple.add( new VarBindingDef( var, value));
+      }
+
+    return tuple;
+    }
+
+  /**
+   * Returns the member of the given variable list with the given path.
+   */
+  private VarDef findVarPath( List<VarDef> combinedVars, String varPath)
+    {
+    int i;
+    for( i = 0;
+         i < combinedVars.size()
+           && !varPath.equals( combinedVars.get(i).getPathName());
+         i++);
+
+    return
+      i < combinedVars.size()
+      ? combinedVars.get(i)
+      : null;
     }
 
   /**
@@ -418,4 +561,5 @@ public class TupleCombiner
   private int tupleSize_;
   private Set<VarNamePattern> includedVars_;
   private Set<VarNamePattern> excludedVars_;
+  private Set<TupleRef> onceTuples_;
   }

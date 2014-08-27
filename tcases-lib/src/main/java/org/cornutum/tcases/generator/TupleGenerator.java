@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -606,7 +607,7 @@ public class TupleGenerator implements ITestCaseGenerator
       validTuples.addAll
         ( RandSeq.order
           ( randSeq,
-            TupleCombiner.getTuples
+            getUncombinedTuples
             ( uncombinedVars,
               Math.min
               ( varCount,
@@ -614,6 +615,23 @@ public class TupleGenerator implements ITestCaseGenerator
       }
     
     return new VarTupleSet( validTuples);
+    }
+
+  /**
+   * Returns default tuples for all uncombined variables.
+   */
+  private Collection<Tuple> getUncombinedTuples( List<VarDef> uncombinedVars, int defaultTupleSize)
+    {
+    Collection<Tuple> tuples = TupleCombiner.getTuples( uncombinedVars, defaultTupleSize);
+    if( defaultTupleSize == 1)
+      {
+      for( Tuple tuple : tuples)
+        {
+        VarValueDef value = tuple.getBindings().next().getValueDef();
+        tuple.setOnce( value.getType() == VarValueDef.Type.ONCE);
+        }
+      }
+    return tuples;
     }
 
   /**
