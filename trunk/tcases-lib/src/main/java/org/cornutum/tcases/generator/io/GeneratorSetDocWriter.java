@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.generator.io;
 
+import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.util.XmlWriter;
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
@@ -15,6 +16,7 @@ import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * Writes a {@link IGeneratorSet} in the form of an XML document.
@@ -143,10 +145,41 @@ public class GeneratorSetDocWriter
       {
       writeExcluded( excluded[i]);
       }
+
+    for( Iterator<TupleRef> onceTuples = combiner.getOnceTuples(); onceTuples.hasNext(); )
+      {
+      writeOnceTuple( onceTuples.next());
+      }
     
     writer_.unindent();
     
     writer_.writeElementEnd( COMBINE_TAG);
+    }
+
+  /**
+   * Writes the given once-only tuple definition.
+   */
+  protected void writeOnceTuple( TupleRef tuple)
+    {
+    writer_.writeElementStart( ONCE_TAG);
+    writer_.indent();
+    for( Iterator<VarBinding> varBindings = tuple.getVarBindings(); varBindings.hasNext(); )
+      {
+      writeVarBinding( varBindings.next());
+      }
+    writer_.unindent();
+    writer_.writeElementEnd( ONCE_TAG);
+    }
+
+  /**
+   * Writes the given variable binding definition.
+   */
+  protected void writeVarBinding( VarBinding binding)
+    {
+    writer_.writeTagStart( VAR_TAG);
+    writer_.writeAttribute( NAME_ATR, binding.getVar());      
+    writer_.writeAttribute( VALUE_ATR, binding.getValue());      
+    writer_.writeEmptyElementEnd();
     }
 
   /**
