@@ -31,11 +31,23 @@ public class ReducerMojo extends AbstractMojo
       {
       // Gather input definition files
       DirectoryScanner inputScanner = new DirectoryScanner();
-      if( getInputDefs().isEmpty())
+      Set<String> inputDefPatterns = getInputDefs();
+      if( !inputDefPatterns.isEmpty())
         {
-        getInputDefs().add( getInputDef());
+        // Use all specified input definition patterns.
         }
-      inputScanner.setIncludes( getInputDefs().toArray( new String[0]));
+      else if( !StringUtils.isBlank( getProject()))
+        {
+        // Use input definition(s) for specified project name.
+        inputDefPatterns.add( "**/" + getProject() + "-Input.xml");
+        inputDefPatterns.add( "**/" + getProject() + ".xml");
+        }
+      else
+        {
+        // Use specified input definition pattern.
+        inputDefPatterns.add( getInputDef());
+        }
+      inputScanner.setIncludes( inputDefPatterns.toArray( new String[0]));
 
       File inputRootDir = getInputDirFile();
       inputScanner.setBasedir( inputRootDir);
@@ -154,6 +166,22 @@ public class ReducerMojo extends AbstractMojo
   public String getInputDef()
     {
     return inputDef;
+    }
+
+  /**
+   * Changes the system input definition paths.
+   */
+  public void setProject( String project)
+    {
+    this.project = project;
+    }
+
+  /**
+   * Returns the system input definition paths.
+   */
+  public String getProject()
+    {
+    return project;
     }
 
   /**
@@ -286,6 +314,14 @@ public class ReducerMojo extends AbstractMojo
    */
   @Parameter(property="inputDef",defaultValue="**/*-Input.xml")
   private String inputDef;
+  
+  /**
+   * A short-hand form of the <B><CODE>inputDefs</CODE></B> parameter that makes it easier
+   * to select the system input definition for a specific project. Equivalent to setting
+   * <B><CODE>inputDefs</CODE></B> to <NOBR><CODE>&lowast;&lowast;/${project}-Input.xml,&lowast;&lowast;/${project}.xml</CODE></NOBR>.
+   */
+  @Parameter(property="project")
+  private String project;
 
   /**
    * Defines the path to the directory where system input definition files are located.
