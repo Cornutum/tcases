@@ -195,7 +195,7 @@ public class TcasesMojo extends AbstractMojo
     }
 
   /**
-   * Changes the system input definition paths.
+   * Changes the system input definition path.
    */
   public void setInputDef( String inputDef)
     {
@@ -203,7 +203,7 @@ public class TcasesMojo extends AbstractMojo
     }
 
   /**
-   * Returns the system input definition paths.
+   * Returns the system input definition path.
    */
   public String getInputDef()
     {
@@ -211,7 +211,7 @@ public class TcasesMojo extends AbstractMojo
     }
 
   /**
-   * Changes the system input definition paths.
+   * Changes the system input definition project name.
    */
   public void setProject( String project)
     {
@@ -219,7 +219,7 @@ public class TcasesMojo extends AbstractMojo
     }
 
   /**
-   * Returns the system input definition paths.
+   * Returns the system input definition project name.
    */
   public String getProject()
     {
