@@ -73,14 +73,14 @@
     </TestCase>
     <TestCase id="10" failure="true">
       <Input type="arg">
-        <Var name="Color" value="Green"/>
+        <Var name="Color" value="Red"/>
         <Var name="Shape" value="Undefined" failure="true"/>
-        <Var name="Size" value="Medium"/>
+        <Var name="Size" value="Small"/>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
       <Input type="arg">
-        <Var name="Color" value="Blue"/>
+        <Var name="Color" value="Green"/>
         <Var name="Shape" value="Square"/>
         <Var name="Size" value="Undefined" failure="true"/>
       </Input>
