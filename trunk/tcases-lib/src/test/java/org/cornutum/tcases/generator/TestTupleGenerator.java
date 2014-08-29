@@ -577,13 +577,13 @@ public class TestTupleGenerator
           .start()
           .bind( "Color", "Red")
           .bind( "Shape", "Undefined", false)
-          .bind( "Size", "Medium")
+          .bind( "Size", "Small")
           .build(),
           
           tc
           .start()
           .bind( "Color", "Green")
-          .bind( "Shape", "Heart")
+          .bind( "Shape", "Square")
           .bind( "Size", "Undefined", false)
           .build() 
           ),
@@ -641,17 +641,9 @@ public class TestTupleGenerator
           
           tc
           .start()
-          .id(10)
-          .bind( "Color", "Green")
-          .bind( "Shape", "Undefined", false)
-          .bind( "Size", "Medium")
-          .build(),
-          
-          tc
-          .start()
           .id(11)
-          .bind( "Color", "Blue")
-          .bind( "Shape", "Heart")
+          .bind( "Color", "Green")
+          .bind( "Shape", "Diamond")
           .bind( "Size", "Undefined", false)
           .build(),
           
@@ -715,7 +707,15 @@ public class TestTupleGenerator
           .start()
           .id(19)
           .bind( "Color", "Blue")
-          .bind( "Shape", "Circle")
+          .bind( "Shape", "Undefined", false)
+          .bind( "Size", "Medium")
+          .build(),
+          
+          tc
+          .start()
+          .id(20)
+          .bind( "Color", "Undefined")
+          .bind( "Shape", "Heart")
           .bind( "Size", "Large", false)
           .build()
         },

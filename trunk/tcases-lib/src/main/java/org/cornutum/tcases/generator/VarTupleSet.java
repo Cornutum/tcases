@@ -140,19 +140,17 @@ public class VarTupleSet
       {
       // Yes, relocate to used list. 
       unused_.remove( i);
+      used_.add( tuple);
 
-      if( tuple.isOnce())
+      if( tuple.size() > 1)
         {
-        used_.add( tuple);
-        }
-      else
-        {
-        // Once used, unconstrained N-tuples can be reduced to 1-tuples.  This enables different combinations
+        // Once used, N-tuples can be reduced to 1-tuples.  This enables different combinations
         // that may be required to complete tests for other tuples. In particular, it allows for an
         // NA binding of an optional variable, which will never appear in N-tuples.
         for( Iterator<VarBindingDef> bindings = tuple.getBindings(); bindings.hasNext();)
           {
           Tuple tuple1 = new Tuple( bindings.next());
+          tuple1.setOnce( tuple.isOnce());
           if( used_.indexOf( tuple1) < 0)
             {
             used_.add( tuple1);
