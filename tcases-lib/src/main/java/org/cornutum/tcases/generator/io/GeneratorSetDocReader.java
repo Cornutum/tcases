@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.generator.io;
 
+import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.generator.*;
 import static org.cornutum.tcases.DefUtils.*;
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
@@ -322,7 +323,8 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       {
       return
         INCLUDE_TAG.equals( memberQname)
-        || EXCLUDE_TAG.equals( memberQname);
+        || EXCLUDE_TAG.equals( memberQname)
+        || ONCE_TAG.equals( memberQname);
       }
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
@@ -431,6 +433,82 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     }
   
   /**
+   * Handles tuple elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected abstract class TupleHandler extends ElementHandler
+    {
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      addTuple( getTuple());
+      }
+    
+    protected abstract void addTuple( TupleRef tuple);
+
+    /**
+     * Retuns the TupleRef for this handler.
+     */
+    public TupleRef getTuple()
+      {
+      return tuple_;
+      }
+
+    private TupleRef tuple_ =  new TupleRef();
+    }
+  
+  /**
+   * Handles Once elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class OnceHandler extends TupleHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return VAR_TAG.equals( memberQname);
+      }
+    
+    protected void addTuple( TupleRef tuple)
+      {
+      CombineHandler parent = (CombineHandler) getParent();
+      parent.getTupleCombiner().addOnceTuple( tuple);
+      }
+    }
+  
+  /**
+   * Handles Var elements.
+   *
+   * @version $Revision$, $Date$
+   */
+  protected class VarHandler extends ElementHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      TupleHandler parent = (TupleHandler) getParent();
+      try
+        {
+        parent.getTuple().addVarBinding( new VarBinding( requireAttribute( attributes, NAME_ATR), requireAttribute( attributes, VALUE_ATR)));
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Invalid variable binding", getDocumentLocator(), e); 
+        }
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), NAME_ATR, VALUE_ATR);
+      }
+    }
+  
+  /**
    * Creates a new GeneratorSetDocReader object.
    */
   public GeneratorSetDocReader()
@@ -527,7 +605,9 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       qName.equals( EXCLUDE_TAG)?         (ElementHandler) new ExcludeHandler() :
       qName.equals( GENERATORS_TAG)?      (ElementHandler) new GeneratorsHandler() :
       qName.equals( INCLUDE_TAG)?         (ElementHandler) new IncludeHandler() :
+      qName.equals( ONCE_TAG)?            (ElementHandler) new OnceHandler() :
       qName.equals( TUPLEGENERATOR_TAG)?  (ElementHandler) new TupleGeneratorHandler() :
+      qName.equals( VAR_TAG)?             (ElementHandler) new VarHandler() :
       null;
 
     if( handler == null)
