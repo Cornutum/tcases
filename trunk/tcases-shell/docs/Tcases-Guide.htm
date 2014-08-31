@@ -1607,14 +1607,35 @@
       </P>
       <P>
         Nice! But keep in mind that the <SPAN class="code">once</SPAN> hint may not always be respected.
-        
-        <UL>
-          <LI>The <SPAN class="code">once</SPAN> attribute applies only when using 1-tuple coverage. For 
-          higher-order coverage, multiple uses will be required and <SPAN class="code">once</SPAN> is ignored. </LI><P/>
+        Even when <SPAN class="code">once="true"</SPAN>, a <SPAN class="code">Value</SPAN> may be used more than once
+        if it is needed to satisfy a constraint in remaining test cases.
+      </P>
+      <P>
+        The <A name="once-tuples"><SPAN class="code">once</SPAN> hint is actually a shortcut</A> that applies
+        only to a 1-tuple for a single variable <SPAN class="code">Value</SPAN>. If the <A href="#genDef">generator
+        definition</A> includes this variable in higher-order tuples, <SPAN class="code">once</SPAN> has no
+        effect. But the same situation can occur with higher-order combinations, too. For example, although you may
+        want pairwise coverage for a certain set of variables, one or more of these 2-tuples may be special cases
+        that should be used at most once. To define such exceptions you can add one or
+        more <SPAN class="code">Once</SPAN> elements to your generator definition. For example:
 
-          <LI>Even when <SPAN class="code">once="true"</SPAN>, a <SPAN class="code">Value</SPAN> may be used more than once
-            if it is needed to satisfy a constraint in remaining test cases. </LI><P/>
-        </UL>
+        <DIV class="exampleDoc">
+          &lt;Generators&gt; <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 1-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; &lt;Combine tuples="2"&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... but 2-tuple coverage for Vars in the "pattern" variable set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Include var="pattern.*"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleEmph"><SPAN class="exampleComment">&lt;!-- ... using the following 2-tuple at most once --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;Once&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.size" value="manyChars"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="pattern.quoted" value="yes"/&gt; <BR/>
+          &nbsp; &nbsp; &nbsp; &lt;/Once&gt; </SPAN> <BR/>
+          &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
+          &nbsp; &lt;/TupleGenerator&gt; <BR/>
+          <BR/>
+          &lt;/Generators&gt; <BR/>
+        </DIV>
       </P>
 
       <H3><A name="simpleGenDef">Simple Generator Definitions</A></H3>

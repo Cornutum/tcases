@@ -402,10 +402,13 @@ mvn tcases:tcases -DdefaultTupleSize=2
 </VarSet> 
 +--------
   
-  Nice! But keep in mind that this hint may not always be respected. The <<once>> attribute applies
-  only when using 1-tuple coverage. For higher-order coverage, multiple uses will be required and
-  <<once>> is ignored. And even when <<once="true">>, a <<Value>> may be used more than once if it is needed to
-  satisfy a constraint in remaining test cases.
+  Nice! But keep in mind that this hint may not always be respected. Even when <<once="true">>, a <<Value>>
+  may be used more than once if it is needed to satisfy a constraint in remaining test cases.
+
+  Although the <<once>> shortcut applies only to a default 1-tuple for a single variable, there is also a more
+  general way to define once-only exceptions to higher-order combinations, by adding
+  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#once-tuples} <<Once>>}} elements to your generator
+  definition.
 
 
 ** Transforming Test Cases
