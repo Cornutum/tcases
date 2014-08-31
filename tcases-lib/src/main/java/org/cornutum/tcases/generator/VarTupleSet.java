@@ -15,6 +15,8 @@ import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -78,6 +80,14 @@ public class VarTupleSet
    */
   public Iterator<Tuple> getUsed()
     {
+    if( usedChanged_)
+      {
+      // Order to prefer reuse of larger tuples first. By preferring "intact" tuples over post-reduction singletons,
+      // we hope to minimize reoccurrence of once-only tuples.
+      Collections.sort( used_, tupleSizeDescending_);
+      usedChanged_ = false;
+      }
+    
     return used_.iterator();
     }
 
@@ -89,7 +99,7 @@ public class VarTupleSet
     {
     return
       IteratorUtils.filteredIterator
-      ( used_.iterator(),
+      ( getUsed(),
         new Predicate<Tuple>()
           {
           public boolean evaluate( Tuple tuple)
@@ -140,7 +150,7 @@ public class VarTupleSet
       {
       // Yes, relocate to used list. 
       unused_.remove( i);
-      used_.add( tuple);
+      addUsed( tuple);
 
       if( tuple.size() > 1)
         {
@@ -153,7 +163,7 @@ public class VarTupleSet
           tuple1.setOnce( tuple.isOnce());
           if( used_.indexOf( tuple1) < 0)
             {
-            used_.add( tuple1);
+            addUsed( tuple1);
             }
           }
         }
@@ -164,8 +174,17 @@ public class VarTupleSet
       {
       // Yes, move to the end of the list. This acts to keep the used list
       // in least-recently-used-first order.
-      used_.add( used_.remove( i));
+      addUsed( used_.remove( i));
       }
+    }
+
+  /**
+   * Add the given tuple to the list of those used in a test case.
+   */
+  private void addUsed( Tuple tuple)
+    {
+    used_.add( tuple);
+    usedChanged_ = true;
     }
 
   /**
@@ -212,4 +231,14 @@ public class VarTupleSet
 
   private List<Tuple> unused_;
   private List<Tuple> used_;
+  private boolean usedChanged_;
+
+  private static final Comparator<Tuple> tupleSizeDescending_ =
+    new Comparator<Tuple>()
+    {
+      public int compare( Tuple tuple1, Tuple tuple2)
+        {
+         return tuple2.size() - tuple1.size();
+        }
+    };
   }
