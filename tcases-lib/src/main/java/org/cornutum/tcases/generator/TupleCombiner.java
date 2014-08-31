@@ -40,7 +40,7 @@ public class TupleCombiner
    */
   public TupleCombiner( int tupleSize)
     {
-    setTupleSize( tupleSize);
+    tupleSize_ = tupleSize;
     setIncludedVars( new HashSet<VarNamePattern>());
     setExcludedVars( new HashSet<VarNamePattern>());
     setOnceTuples( new HashSet<TupleRef>());
@@ -52,6 +52,16 @@ public class TupleCombiner
    */
   public void setTupleSize( int tupleSize)
     {
+    Integer onceSize =
+      onceTuples_.isEmpty()
+      ? null
+      : getOnceTuples().next().size();
+
+    if( !(onceSize == null || onceSize == tupleSize))
+      {
+      throw new IllegalArgumentException( "Tuple size=" + tupleSize + " is not compatible with existing once-only tuple size=" + onceSize);
+      }
+    
     tupleSize_ = tupleSize;
     }
 
@@ -209,7 +219,15 @@ public class TupleCombiner
    */
   public TupleCombiner addOnceTuple( TupleRef tupleRef)
     {
-    onceTuples_.add( tupleRef);
+    if( tupleRef != null)
+      {
+      if( tupleRef.size() != getTupleSize())
+        {
+        throw new IllegalArgumentException( "Once-only tuple=" + tupleRef + " has size=" + tupleRef.size() + ", expected size=" + getTupleSize());
+        }
+      onceTuples_.add( tupleRef);
+      }
+    
     return this;
     }
 
@@ -546,7 +564,9 @@ public class TupleCombiner
       other != null
       && other.getTupleSize() == getTupleSize()
       && other.getIncludedVars().equals( getIncludedVars())
-      && other.getExcludedVars().equals( getExcludedVars()); 
+      && other.getExcludedVars().equals( getExcludedVars())
+      && other.onceTuples_.equals( onceTuples_)
+      ; 
     }
 
   public int hashCode()
@@ -555,7 +575,8 @@ public class TupleCombiner
       getClass().hashCode()
       ^ getTupleSize()
       ^ getIncludedVars().hashCode()
-      ^ getExcludedVars().hashCode();
+      ^ getExcludedVars().hashCode()
+      ^ onceTuples_.hashCode();
     }
   
   private int tupleSize_;

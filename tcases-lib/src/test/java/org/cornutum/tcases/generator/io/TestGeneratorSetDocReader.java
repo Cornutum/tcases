@@ -8,9 +8,11 @@
 package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.IVarDef;
+import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.VarSet;
 import org.cornutum.tcases.generator.*;
+import static org.cornutum.tcases.util.Asserts.*;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -236,6 +238,8 @@ public class TestGeneratorSetDocReader
 
     combiner = combiners[0];
     assertEquals( "Combiner[0], tupleSize", 1, combiner.getTupleSize());
+
+    assertEquals( "Combiner[0], onceTuples", 0, IteratorUtils.toArray( combiner.getOnceTuples(), TupleRef.class).length);
 
     varSet =
       new VarSet( "A")
@@ -582,6 +586,45 @@ public class TestGeneratorSetDocReader
   public void testGetGeneratorSet_16()
     {
     assertException( "generator-set-16.xml", 3, "Attribute=var is not allowed for TupleGenerator elements");
+    }
+  
+  @Test
+  public void testOnceTuples()
+    {
+    IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-once.xml");
+    ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
+    assertEquals( "Generators", 1, generators.length);
+
+    TupleGenerator  tupleGenerator;
+    TupleCombiner[] combiners;
+    TupleCombiner   combiner;
+    
+    tupleGenerator = (TupleGenerator ) generators[0];
+    combiners = tupleGenerator.getCombiners().toArray( new TupleCombiner[ tupleGenerator.getCombiners().size()]);
+    assertEquals( "Default generator, combiners", 1, tupleGenerator.getCombiners().size());
+
+    combiner = combiners[0];
+    assertSetEquals
+      ( "Other tuples",
+        new TupleRef[]
+          {
+            new TupleRef()
+            .addVarBinding( new VarBinding( "X1", "V1"))
+            .addVarBinding( new VarBinding( "X2", "V2"))
+            .addVarBinding( new VarBinding( "X3", "V3")),
+
+            new TupleRef()
+            .addVarBinding( new VarBinding( "X4", "V4"))
+            .addVarBinding( new VarBinding( "X5", "V5"))
+            .addVarBinding( new VarBinding( "X6", "V6"))
+          },
+        combiner.getOnceTuples());
+    }
+  
+  @Test
+  public void testOnceTupleSize()
+    {
+    assertException( "generator-set-once-size.xml", 8, "Once-only tuple=TupleRef[{}] has size=0, expected size=3");
     }
 
   /**
