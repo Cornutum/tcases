@@ -444,7 +444,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       addTuple( getTuple());
       }
     
-    protected abstract void addTuple( TupleRef tuple);
+    protected abstract void addTuple( TupleRef tuple) throws SAXParseException;
 
     /**
      * Retuns the TupleRef for this handler.
@@ -472,10 +472,17 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       return VAR_TAG.equals( memberQname);
       }
     
-    protected void addTuple( TupleRef tuple)
+    protected void addTuple( TupleRef tuple) throws SAXParseException
       {
       CombineHandler parent = (CombineHandler) getParent();
-      parent.getTupleCombiner().addOnceTuple( tuple);
+      try
+        {
+        parent.getTupleCombiner().addOnceTuple( tuple);
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException ( "Invalid once-only tuple", getDocumentLocator(), e);
+        }
       }
     }
   

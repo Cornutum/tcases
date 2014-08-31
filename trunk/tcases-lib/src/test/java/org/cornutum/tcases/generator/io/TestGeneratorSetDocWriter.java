@@ -50,6 +50,12 @@ public class TestGeneratorSetDocWriter
     {
     testWriteResource( "generator-set-4.xml");
     }
+
+  @Test
+  public void testWrite_5()
+    {
+    testWriteResource( "generator-set-once.xml");
+    }
   
   public void testWriteResource( String generatorSetResource)
     {
