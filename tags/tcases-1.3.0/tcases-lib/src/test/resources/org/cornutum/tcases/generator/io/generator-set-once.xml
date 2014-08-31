@@ -1,0 +1,23 @@
+<Generators>
+
+  <TupleGenerator function="*" tuples="2">
+
+    <Combine tuples="3">
+      <Include var="A.**"/>
+      <Once>
+        <Var name="X1" value="V1"/>
+        <Var name="X2" value="V2"/>
+        <Var name="X3" value="V3"/>
+      </Once>
+      <Exclude var="A.B"/>
+      <Include var="C"/>
+      <Once>
+        <Var name="X4" value="V4"/>
+        <Var name="X5" value="V5"/>
+        <Var name="X6" value="V6"/>
+      </Once>
+    </Combine>
+
+  </TupleGenerator>
+
+</Generators>

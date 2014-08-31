@@ -1,0 +1,35 @@
+<System name="System-0">
+  <Function name="Function-0">
+
+    <Input type="state">
+
+      <Var name="state-0-0" when="P1," whenNot=",,P2,,P3 ,P3 ,">
+        <Value name="value-0" when="P4" whenNot=" P5, P6 " property=" P7 ">
+          <Property name="P8, P9, P10, P8"/>
+        </Value>
+      </Var>
+
+      <VarSet name="state-0-1" when="P11">
+        <Var name="member-0" when="P1," whenNot=",,P2,,P3 ,P3 ,">
+          <When>
+            <AllOf property="C1"></AllOf>
+          </When>
+          <Value name="value-0" when="P4" whenNot=" P5, P6 " property=" P7 ">
+            <Property name="P8, P9, P10, P8"/>
+          </Value>
+        </Var>
+
+        <VarSet name="member-1">
+          <Var name="member-1-0">
+            <Value name="value-1-0"/>
+          </Var>
+          <Var name="member-1-1">
+            <Value name="value-1-1"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+
+    </Input>
+
+  </Function>
+</System>

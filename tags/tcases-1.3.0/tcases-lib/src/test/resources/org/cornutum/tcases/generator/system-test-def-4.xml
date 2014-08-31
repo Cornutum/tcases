@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<TestCases system="Things">
+  <Function name="Make">
+    <TestCase id="0">
+      <Input type="arg">
+        <Var name="Color" value="Red"/>
+        <Var name="Shape" value="Square"/>
+        <Var name="Size" value="Small"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Input type="arg">
+        <Var name="Color" value="Green"/>
+        <Var name="Shape" value="Square"/>
+        <Var name="Size" value="Medium"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Input type="arg">
+        <Var name="Color" value="Blue"/>
+        <Var name="Shape" value="Square"/>
+        <Var name="Size" value="Large"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Input type="arg">
+        <Var name="Color" value="Red"/>
+        <Var name="Shape" value="Heart"/>
+        <Var name="Size" value="Small"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Input type="arg">
+        <Var name="Color" value="Green"/>
+        <Var name="Shape" value="Heart"/>
+        <Var name="Size" value="Medium"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5">
+      <Input type="arg">
+        <Var name="Color" value="Blue"/>
+        <Var name="Shape" value="Heart"/>
+        <Var name="Size" value="Large"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6">
+      <Input type="arg">
+        <Var name="Color" value="Red"/>
+        <Var name="Shape" value="Circle"/>
+        <Var name="Size" value="Small"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7">
+      <Input type="arg">
+        <Var name="Color" value="Green"/>
+        <Var name="Shape" value="Circle"/>
+        <Var name="Size" value="Medium"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8">
+      <Input type="arg">
+        <Var name="Color" value="Blue"/>
+        <Var name="Shape" value="Circle"/>
+        <Var name="Size" value="Large"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Input type="arg">
+        <Var name="Color" value="Undefined" failure="true"/>
+        <Var name="Shape" value="Square"/>
+        <Var name="Size" value="Small"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Input type="arg">
+        <Var name="Color" value="Red"/>
+        <Var name="Shape" value="Undefined" failure="true"/>
+        <Var name="Size" value="Small"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true">
+      <Input type="arg">
+        <Var name="Color" value="Green"/>
+        <Var name="Shape" value="Square"/>
+        <Var name="Size" value="Undefined" failure="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

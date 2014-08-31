@@ -1,0 +1,22 @@
+<System name="System-2">
+  <Function name="Function-0">
+  </Function>
+
+  <Function name="Function-1">
+
+    <Input type="arg">
+      <VarSet name="arg-1-0">
+        <Var name="member-0">
+          <Value name="value-13"/>
+        </Var>
+      </VarSet>
+      <Var name="arg-1-1">
+        <Value name="value-14"/>
+      </Var>
+    </Input>
+
+    <Input type="env">
+    </Input>
+
+  </Function>
+</System>

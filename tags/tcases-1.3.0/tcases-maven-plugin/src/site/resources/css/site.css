@@ -1,0 +1,15 @@
+#banner {
+    background-color: #08c;
+}
+
+#bannerLeft h2 {
+    vertical-align: middle;
+    color: white;
+}
+
+#bannerLeft h2:before {
+    content:url(http://www.cornutum.org/tcases/docs/cornutum-logo.png);
+    vertical-align: middle;
+    margin-left: 0.5em;
+    margin-right: 1em;
+}

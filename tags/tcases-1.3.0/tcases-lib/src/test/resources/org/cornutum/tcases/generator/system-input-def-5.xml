@@ -1,0 +1,41 @@
+<System name="Things">
+
+  <Function name="Make">
+    <Input>
+
+      <Var name="Color">
+        <!-- Constraint changed -->
+        <Value name="Red" when="medium"/>
+        <Value name="Green"/>
+        <Value name="Blue"/>
+
+        <!-- Type changed to valid -->
+        <Value name="Undefined" failure="false"/>
+
+      </Var>
+
+      <Var name="Shape">
+        <!-- Value renamed -->
+        <Value name="Diamond"/> <!-- <Value name="Square"/> -->
+        <Value name="Heart"/>
+        <Value name="Circle"/>
+        <Value name="Undefined" failure="true"/>
+      </Var>
+
+      <Var name="Size">
+        <Value name="Small"/>
+        <Value name="Medium" property="medium"/>
+
+        <!-- Value added -->
+        <Value name="Ginormous"/>
+
+        <!-- Type changed to invalid -->
+        <Value name="Large" failure="true"/>
+
+        <Value name="Undefined" failure="true"/>
+      </Var>
+
+    </Input>
+  </Function>
+
+</System>

@@ -1,0 +1,131 @@
+<System name="TestReducer">
+
+  <Function name="find-1">
+    <Input type="arg">
+      <VarSet name="pattern" when="fileExists">
+        <Var name="size">
+          <Value name="empty" property="empty"/>
+          <Value name="singleChar" property="singleChar"/>
+          <Value name="manyChars"/>
+        </Var>
+        <Var name="quoted">
+          <Value name="yes" property="quoted"/>
+          <Value name="no" whenNot="empty"/>
+          <Value name="unterminated" failure="true"/>
+        </Var>
+        <Var name="blanks" whenNot="empty">
+          <Value name="none"/>
+          <Value name="one" when="quoted, singleChar"/>
+          <Value name="many">
+            <When>
+              <AllOf property="quoted">
+                <Not property="singleChar"/>
+              </AllOf>
+            </When>
+          </Value>
+        </Var>
+        <Var name="embeddedQuotes" whenNot="empty, singleChar">
+          <Value name="none"/>
+          <Value name="one"/>
+          <Value name="many" once="true"/>
+        </Var>
+      </VarSet>
+
+      <Var name="fileName">
+        <Value name="defined" property="fileName"/>
+        <Value name="missing" failure="true"/>
+      </Var>
+    </Input>
+
+    <Input type="env">
+      <VarSet name="file" when="fileName">
+        <Var name="exists">
+          <Value name="yes" property="fileExists"/>
+          <Value name="no" failure="true"/>
+        </Var>
+        <VarSet name="contents" when="fileExists" whenNot="empty">
+          <Var name="linesLongerThanPattern">
+            <Value name="one" property="matchable" once="true"/>
+            <Value name="many" property="matchable"/>
+            <Value name="none" failure="true"/>
+          </Var>
+          <Var name="patterns" when="matchable" whenNot="empty">
+            <Value name="none" once="true"/>
+            <Value name="one" property="match"/>
+            <Value name="many" property="match, many"/>          
+          </Var>
+          <Var name="patternsInLine" when="match">
+            <Value name="one"/>
+            <Value name="many" once="true" when="many"/>          
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+
+  </Function>
+
+  <Function name="find-2">
+    <Input type="arg">
+      <VarSet name="pattern" when="fileExists">
+        <Var name="size">
+          <Value name="empty" property="empty"/>
+          <Value name="singleChar" property="singleChar"/>
+          <Value name="manyChars"/>
+        </Var>
+        <Var name="quoted">
+          <Value name="yes" property="quoted"/>
+          <Value name="no" whenNot="empty"/>
+          <Value name="unterminated" failure="true"/>
+        </Var>
+        <Var name="blanks" whenNot="empty">
+          <Value name="none"/>
+          <Value name="one" when="quoted, singleChar"/>
+          <Value name="many">
+            <When>
+              <AllOf property="quoted">
+                <Not property="singleChar"/>
+              </AllOf>
+            </When>
+          </Value>
+        </Var>
+        <Var name="embeddedQuotes" whenNot="empty, singleChar">
+          <Value name="none"/>
+          <Value name="one"/>
+          <Value name="many" once="true"/>
+        </Var>
+      </VarSet>
+
+      <Var name="fileName">
+        <Value name="defined" property="fileName"/>
+        <Value name="missing" failure="true"/>
+      </Var>
+    </Input>
+
+    <Input type="env">
+      <VarSet name="file" when="fileName">
+        <Var name="exists">
+          <Value name="yes" property="fileExists"/>
+          <Value name="no" failure="true"/>
+        </Var>
+        <VarSet name="contents" when="fileExists" whenNot="empty">
+          <Var name="linesLongerThanPattern">
+            <Value name="one" property="matchable" once="true"/>
+            <Value name="many" property="matchable"/>
+            <Value name="none" failure="true"/>
+          </Var>
+          <Var name="patterns" when="matchable" whenNot="empty">
+            <Value name="none" once="true"/>
+            <Value name="one" property="match"/>
+            <Value name="many" property="match, many"/>          
+          </Var>
+          <Var name="patternsInLine" when="match">
+            <Value name="one"/>
+            <Value name="many" once="true" when="many"/>          
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+
+  </Function>
+
+</System>
