@@ -158,6 +158,13 @@ mvn tcases:tcases -Djunit=true
 +--------
 mvn tcases:tcases -DinputDef="**/My-Project-Input.xml"
 +--------
+
+  You can do the same thing even more simply using the <<project>> parameter, which matches the input definition for the
+  given {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#project}project}} anywhere in the <<inputDir>>. For example:
+
++--------
+mvn tcases:tcases -Dproject=My-Project
++--------
   
 * {Modeling The Input Space}
 
