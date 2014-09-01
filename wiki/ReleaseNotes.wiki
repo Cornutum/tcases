@@ -5,7 +5,7 @@
 
   * The *once* attribute applies only to a default 1-tuple for a single variable. But now there is now a more general way to define once-only exceptions to higher-order combinations, by adding [http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#once-tuples Once elements] to your generator definition.
 
-  * Tcases Maven Plugin: Add parameter=project to make it easier to select a single project.
+  * Tcases Maven Plugin: Use parameter=project to more easily select a single project.
 
 = 1.2.2 =
 
