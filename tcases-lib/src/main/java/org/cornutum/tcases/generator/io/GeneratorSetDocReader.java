@@ -34,14 +34,12 @@ import java.util.Set;
 /**
  * An {@link IGeneratorSetSource} that reads from an XML document.
  *
- * @version $Revision$, $Date$
  */
 public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorSetSource
   {
   /**
    * The base class for element handlers used by this parser.
    *
-   * @version $Revision$, $Date$
    */
   protected abstract class ElementHandler extends DefaultHandler
     {
@@ -193,7 +191,6 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Handles Generators elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class GeneratorsHandler extends ElementHandler
     {
@@ -230,7 +227,6 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Handles TupleGenerator elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class TupleGeneratorHandler extends ElementHandler
     {
@@ -312,7 +308,6 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Handles Combine elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class CombineHandler extends ElementHandler
     {
@@ -377,7 +372,6 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Handles Include elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class IncludeHandler extends ElementHandler
     {
@@ -406,7 +400,6 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Handles Exclude elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class ExcludeHandler extends ElementHandler
     {
@@ -435,7 +428,6 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Handles tuple elements.
    *
-   * @version $Revision$, $Date$
    */
   protected abstract class TupleHandler extends ElementHandler
     {
@@ -460,7 +452,6 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Handles Once elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class OnceHandler extends TupleHandler
     {
@@ -489,7 +480,6 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Handles Var elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class VarHandler extends ElementHandler
     {

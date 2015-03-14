@@ -21,7 +21,6 @@ import java.util.TreeSet;
 /**
  * Defines the input space for a specific function.
  *
- * @version $Revision$, $Date$
  */
 public class FunctionInputDef
   {

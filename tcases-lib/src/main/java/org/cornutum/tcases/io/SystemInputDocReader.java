@@ -40,14 +40,12 @@ import java.util.Set;
 /**
  * An {@link ISystemInputSource} that reads from an XML document.
  *
- * @version $Revision$, $Date$
  */
 public class SystemInputDocReader extends DefaultHandler implements ISystemInputSource
   {
   /**
    * The base class for element handlers used by this parser.
    *
-   * @version $Revision$, $Date$
    */
   protected abstract class ElementHandler extends DefaultHandler
     {
@@ -276,7 +274,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles System elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class SystemHandler extends ElementHandler
     {
@@ -321,7 +318,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles Function elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class FunctionHandler extends ElementHandler
     {
@@ -463,7 +459,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles Input elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class InputHandler extends ElementHandler
     {
@@ -522,7 +517,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Base class for conditional elements.
    *
-   * @version $Revision$, $Date$
    */
   protected abstract class ConditionalHandler extends ElementHandler
     {
@@ -575,7 +569,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Base class for elements that can contain one or more conditions.
    *
-   * @version $Revision$, $Date$
    */
   protected abstract class ConditionContainer extends ElementHandler
     {
@@ -612,7 +605,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles When elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class WhenHandler extends ConditionContainer
     {
@@ -659,7 +651,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Base class for {@link ConditionSet} elements.
    *
-   * @version $Revision$, $Date$
    */
   protected abstract class ConditionSetHandler extends ConditionContainer
     {
@@ -723,7 +714,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles AllOf elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class AllOfHandler extends ConditionSetHandler
     {
@@ -752,7 +742,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles AnyOf elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class AnyOfHandler extends ConditionSetHandler
     {
@@ -781,7 +770,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles Not elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class NotHandler extends ConditionSetHandler
     {
@@ -810,7 +798,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Base class for variable definition elements.
    *
-   * @version $Revision$, $Date$
    */
   protected abstract class VarDefHandler extends ConditionalHandler
     {
@@ -886,7 +873,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles Var elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class VarHandler extends VarDefHandler
     {
@@ -930,7 +916,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles VarSet elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class VarSetHandler extends VarDefHandler
     {
@@ -975,7 +960,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles Value elements
    *
-   * @version $Revision$, $Date$
    */
   protected class ValueHandler extends ConditionalHandler
     {
@@ -1067,7 +1051,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   /**
    * Handles Property elements
    *
-   * @version $Revision$, $Date$
    */
   protected class PropertyHandler extends ElementHandler
     {    

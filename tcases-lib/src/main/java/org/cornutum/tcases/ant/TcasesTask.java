@@ -23,7 +23,6 @@ import java.io.File;
  * <P/>
  * To define a transform parameter (see the {@link Options -p option}), use a nested <CODE>&lt;param&gt;</CODE> element.
  *
- * @version $Revision$, $Date$
  */
 public class TcasesTask extends Task
   {

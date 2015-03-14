@@ -17,7 +17,6 @@ import java.util.List;
 /**
  * Defines the input space for all functions of a system.
  *
- * @version $Revision$, $Date$
  */
 public class SystemInputDef
   {

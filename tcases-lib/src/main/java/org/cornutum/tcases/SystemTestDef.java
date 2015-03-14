@@ -19,7 +19,6 @@ import java.util.Iterator;
 /**
  * Defines the test cases for all functions of a system.
  *
- * @version $Revision$, $Date$
  */
 public class SystemTestDef
   {

@@ -12,7 +12,6 @@ import org.cornutum.tcases.generator.IGeneratorSet;
 /**
  * Interface for reading an {@link IGeneratorSet} instance.
  *
- * @version $Revision$, $Date$
  */
 public interface IGeneratorSetSource
   {

@@ -21,7 +21,6 @@ import java.util.Set;
  * A {@link org.cornutum.tcases.conditions.ICondition condition} that defined by the disjunction (logical OR) of one or
  * more {@link IAssertion assertions}.
  *
- * @version $Revision$, $Date$
  */
 public class Disjunction implements IDisjunct
   {

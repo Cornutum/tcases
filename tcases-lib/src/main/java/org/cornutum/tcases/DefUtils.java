@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 /**
  * Defines utility methods for constructing test definitions.
  *
- * @version $Revision$, $Date$
  */
 public abstract class DefUtils
   {

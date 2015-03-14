@@ -15,7 +15,6 @@ import java.util.Iterator;
  * A {@link ICondition condition} that is satisfied if and only if all members of a given set
  * of conditions are satisfied. Defines a logical "and" condition.
  *
- * @version $Revision$, $Date$
  */
 public class AllOf extends ConditionSet
   {

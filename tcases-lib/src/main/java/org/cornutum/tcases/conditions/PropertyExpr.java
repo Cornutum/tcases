@@ -20,7 +20,6 @@ import java.util.Set;
 /**
  * Base class for {@link org.cornutum.tcases.conditions.ICondition conditions} that evaluate a predicate on a set of properties.
  *
- * @version $Revision$, $Date$
  */
 public abstract class PropertyExpr
   {

@@ -18,7 +18,6 @@ import java.util.Iterator;
 /**
  * Base class for {@link IAssertion assertions}.
  *
- * @version $Revision$, $Date$
  */
 public abstract class AbstractAssertion implements IAssertion
   {

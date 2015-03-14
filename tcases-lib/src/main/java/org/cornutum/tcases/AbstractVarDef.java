@@ -20,14 +20,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Base class for {@link IVarDef} implementations.
  *
- * @version $Revision$, $Date$
  */
 public abstract class AbstractVarDef extends Conditional implements IVarDef
   {
   /**
    * Defines the position of a variable definition within a function input definition.
    *
-   * @version $Revision$, $Date$
    */
   private static class Position implements IVarDef.Position
     {    

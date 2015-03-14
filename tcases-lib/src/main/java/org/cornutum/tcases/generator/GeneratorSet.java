@@ -18,7 +18,6 @@ import java.util.Map;
 /**
  * Defines a set of {@link ITestCaseGenerator test case generators}.
  *
- * @version $Revision$, $Date$
  */
 public class GeneratorSet implements IGeneratorSet
   {

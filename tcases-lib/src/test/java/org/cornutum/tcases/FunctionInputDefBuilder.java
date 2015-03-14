@@ -13,7 +13,6 @@ import java.util.Arrays;
 /**
  * Builds {@link FunctionInputDef} instances.
  *
- * @version $Revision$, $Date$
  */
 public class FunctionInputDefBuilder
   {

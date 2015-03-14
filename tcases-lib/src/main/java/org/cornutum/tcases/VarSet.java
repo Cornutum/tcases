@@ -18,7 +18,6 @@ import java.util.List;
 /**
  * Defines a named set of input variables.
  *
- * @version $Revision$, $Date$
  */
 public class VarSet extends AbstractVarDef
   {

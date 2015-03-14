@@ -23,7 +23,6 @@ import java.util.Set;
 /**
  * Generates a combination of values for a specific set of input variables.
  *
- * @version $Revision$, $Date$
  */
 public class TupleCombiner
   {

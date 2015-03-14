@@ -20,7 +20,6 @@ import java.net.URL;
 /**
  * Runs tests for {@link Tcases#main}.
  *
- * @version $Revision$, $Date$
  */
 public class TestTcases
   {

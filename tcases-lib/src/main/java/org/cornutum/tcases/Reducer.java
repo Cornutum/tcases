@@ -27,7 +27,6 @@ import java.util.Random;
  * For a {@link SystemInputDef system input definition}, updates the associated {@link GeneratorSet test case generators}
  * to reduce the number of generated test cases.
  *
- * @version $Revision: 268 $, $Date: 2014-05-04 14:10:36 -0500 (Sun, 04 May 2014) $
  */
 public class Reducer
   {
@@ -151,7 +150,6 @@ public class Reducer
    * </BLOCKQUOTE>
    * <P/> 
    *
-   * @version $Revision: 268 $, $Date: 2014-05-04 14:10:36 -0500 (Sun, 04 May 2014) $
    */
   public static class Options
     {

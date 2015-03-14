@@ -13,7 +13,6 @@ import java.util.Arrays;
 /**
  * Builds {@link VarSet} instances.
  *
- * @version $Revision$, $Date$
  */
 public class VarSetBuilder
   {

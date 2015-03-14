@@ -19,7 +19,6 @@ import java.util.Iterator;
 /**
  * Defines a set of test case properties.
  *
- * @version $Revision$, $Date$
  */
 public class PropertySet
   {

@@ -11,7 +11,6 @@ package org.cornutum.tcases.io;
 /**
  * Defines constants for the identifiers in a system test definition document.
  *
- * @version $Revision$, $Date$
  */
 public final class SystemTestDoc
   {

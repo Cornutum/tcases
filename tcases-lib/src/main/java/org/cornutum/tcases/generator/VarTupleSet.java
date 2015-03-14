@@ -23,7 +23,6 @@ import java.util.List;
 /**
  * Defines a set of input variable combinations used for test cases.
  *
- * @version $Revision$, $Date$
  */
 public class VarTupleSet
   {

@@ -17,7 +17,6 @@ import java.util.Iterator;
 /**
  * Represents a pattern matching one or more input variable names.
  *
- * @version $Revision$, $Date$
  */
 public class VarNamePattern
   {

@@ -15,7 +15,6 @@ import java.util.Iterator;
  * A {@link ICondition condition} that is satisfied if any member of a given set
  * of conditions is satisfied. Defines a logical "or" condition.
  *
- * @version $Revision$, $Date$
  */
 public class AnyOf extends ConditionSet
   {

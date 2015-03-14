@@ -13,7 +13,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * Defines methods to construct standard string representations.
  *
- * @version $Revision$, $Date$
  */
 public abstract class ToString
   {

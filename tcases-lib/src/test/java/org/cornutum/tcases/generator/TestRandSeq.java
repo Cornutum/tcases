@@ -20,7 +20,6 @@ import java.util.Random;
 /**
  * Runs tests for {@link RandSeq}
  *
- * @version $Revision$, $Date$
  */
 public class TestRandSeq
   {

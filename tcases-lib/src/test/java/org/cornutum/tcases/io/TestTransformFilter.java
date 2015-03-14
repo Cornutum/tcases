@@ -20,7 +20,6 @@ import java.util.regex.Pattern;
 /**
  * Runs tests for the {@link TransformFilter}.
  *
- * @version $Revision$, $Date$
  */
 public class TestTransformFilter
   {

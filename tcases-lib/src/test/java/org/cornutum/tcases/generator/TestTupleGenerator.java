@@ -17,7 +17,6 @@ import org.junit.Test;
 /**
  * Runs tests for {@link TupleGenerator}
  *
- * @version $Revision$, $Date$
  */
 public class TestTupleGenerator
   {

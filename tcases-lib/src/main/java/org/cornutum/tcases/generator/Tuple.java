@@ -25,7 +25,6 @@ import java.util.Map;
 /**
  * Represents a set of {@link VarBindingDef input variable bindings}.
  *
- * @version $Revision$, $Date$
  */
 public class Tuple
   {

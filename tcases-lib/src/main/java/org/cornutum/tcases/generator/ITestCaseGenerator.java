@@ -12,7 +12,6 @@ import org.cornutum.tcases.*;
 /**
  * Generates {@link TestCase test cases} for a {@link FunctionInputDef function}.
  *
- * @version $Revision$, $Date$
  */
 public interface ITestCaseGenerator
   {

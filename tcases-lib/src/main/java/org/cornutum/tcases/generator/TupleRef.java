@@ -18,7 +18,6 @@ import java.util.Map;
 /**
  * Represents a reference to a set of input variable bindings.
  *
- * @version $Revision: 262 $, $Date: 2014-04-20 22:21:33 -0500 (Sun, 20 Apr 2014) $
  */
 public class TupleRef
   {

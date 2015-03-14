@@ -17,7 +17,6 @@ import java.util.List;
 /**
  * Defines an individual input variable.
  *
- * @version $Revision$, $Date$
  */
 public class VarDef extends AbstractVarDef
   {

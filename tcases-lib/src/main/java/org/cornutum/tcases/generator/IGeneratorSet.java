@@ -12,7 +12,6 @@ import java.util.Iterator;
 /**
  * Defines a set of {@link ITestCaseGenerator test case generators}.
  *
- * @version $Revision$, $Date$
  */
 public interface IGeneratorSet
   {

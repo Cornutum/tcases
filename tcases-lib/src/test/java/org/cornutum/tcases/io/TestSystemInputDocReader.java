@@ -19,7 +19,6 @@ import org.xml.sax.SAXParseException;
 /**
  * Runs tests for the {@link SystemInputDocReader}.
  *
- * @version $Revision$, $Date$
  */
 public class TestSystemInputDocReader
   {

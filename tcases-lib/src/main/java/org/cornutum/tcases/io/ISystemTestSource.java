@@ -12,7 +12,6 @@ import org.cornutum.tcases.SystemTestDef;
 /**
  * Interface for reading a {@link SystemTestDef} instance.
  *
- * @version $Revision$, $Date$
  */
 public interface ISystemTestSource
   {

@@ -14,7 +14,6 @@ import org.cornutum.tcases.PropertySet;
  * Thrown when the conditions required for an input variable are inconsistent
  * with the properties of a test case.
  *
- * @version $Revision$, $Date$
  */
 public class VarNotApplicableException extends BindingException
   {

@@ -21,7 +21,6 @@ import java.util.Iterator;
 /**
  * Writes a {@link IGeneratorSet} in the form of an XML document.
  *
- * @version $Revision$, $Date$
  */
 public class GeneratorSetDocWriter
   {

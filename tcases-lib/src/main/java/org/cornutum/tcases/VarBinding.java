@@ -16,7 +16,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 /**
  * Defines the binding of an input variable to a specific value.
  *
- * @version $Revision$, $Date$
  */
 public class VarBinding implements Comparable<VarBinding>
   {

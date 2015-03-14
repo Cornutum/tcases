@@ -19,7 +19,6 @@ import java.io.InputStream;
 /**
  * Provides access to system test definition resources.
  *
- * @version $Revision$, $Date$
  */
 public class SystemTestResources
   {

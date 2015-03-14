@@ -28,7 +28,6 @@ import java.util.List;
 /**
  * Runs tests for {@link TupleCombiner}
  *
- * @version $Revision$, $Date$
  */
 public class TestTupleCombiner
   {

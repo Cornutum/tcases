@@ -12,7 +12,6 @@ import org.cornutum.tcases.SystemInputDef;
 /**
  * Interface for reading a {@link SystemInputDef} instance.
  *
- * @version $Revision$, $Date$
  */
 public interface ISystemInputSource
   {

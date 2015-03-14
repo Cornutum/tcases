@@ -15,7 +15,6 @@ import java.util.Iterator;
  * A {@link ICondition condition} that is satisfied if and only if all members of a given set
  * of conditions are <EM>not</EM> satisfied. Defines a logical negation condition.
  *
- * @version $Revision$, $Date$
  */
 public class Not extends ConditionSet
   {

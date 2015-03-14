@@ -12,7 +12,6 @@ import org.cornutum.tcases.PropertySet;
 /**
  * An {@link IAssertion assertion} that asserts the non-existence of a single property.
  *
- * @version $Revision$, $Date$
  */
 public class AssertNot extends AbstractAssertion
   {

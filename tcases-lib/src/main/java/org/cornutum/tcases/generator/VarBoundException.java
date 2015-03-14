@@ -13,7 +13,6 @@ import org.cornutum.tcases.VarValueDef;
 /**
  * Thrown when binding a variable that is already bound to a different value.
  *
- * @version $Revision$, $Date$
  */
 public class VarBoundException extends BindingException
   {

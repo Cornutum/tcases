@@ -14,7 +14,6 @@ import java.util.Iterator;
  * A {@link ICondition condition} that defined by the disjunction (logical OR) of one or
  * more {@link IAssertion assertions}.
  *
- * @version $Revision$, $Date$
  */
 public interface IDisjunct extends IConjunct
   {

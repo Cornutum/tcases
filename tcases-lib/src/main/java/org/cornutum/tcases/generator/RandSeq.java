@@ -19,7 +19,6 @@ import java.util.Random;
 /**
  * Returns a random permutation of a sequence.
  *
- * @version $Revision$, $Date$
  */
 public class RandSeq
   {

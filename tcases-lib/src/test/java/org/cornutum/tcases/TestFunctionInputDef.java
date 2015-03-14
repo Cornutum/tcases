@@ -13,7 +13,6 @@ import static org.junit.Assert.*;
 /**
  * Runs tests for {@link FunctionInputDef}.
  *
- * @version $Revision$, $Date$
  */
 public class TestFunctionInputDef
   {

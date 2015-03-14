@@ -19,7 +19,6 @@ import java.util.Set;
 /**
  * A {@link ICondition condition} in conjunctive normal form.
  *
- * @version $Revision$, $Date$
  */
 public class Conjunction implements IConjunct
   {

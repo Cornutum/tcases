@@ -17,7 +17,6 @@ import java.io.File;
 /**
  * Runs tests for the {@link SystemTestDocWriter}.
  *
- * @version $Revision$, $Date$
  */
 public class TestSystemTestDocWriter
   {

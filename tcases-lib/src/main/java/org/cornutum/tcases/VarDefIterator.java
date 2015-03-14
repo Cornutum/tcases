@@ -14,7 +14,6 @@ import java.util.NoSuchElementException;
  * Iterates over all {@link VarDef individual variable definitions}, using a depth-first traversal of any
  * {@link VarSet variable sets}.
  *
- * @version $Revision$, $Date$
  */
 public class VarDefIterator implements Iterator<VarDef>
   {

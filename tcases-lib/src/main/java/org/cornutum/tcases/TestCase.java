@@ -22,14 +22,12 @@ import java.util.TreeSet;
 /**
  * Represents a test case for a system function, defining a set of input variable bindings.
  *
- * @version $Revision$, $Date$
  */
 public class TestCase implements Comparable<TestCase>
   {
   /**
    * Defines the type of a {@link TestCase}
    *
-   * @version $Revision$, $Date$
    */
   public enum Type
     {

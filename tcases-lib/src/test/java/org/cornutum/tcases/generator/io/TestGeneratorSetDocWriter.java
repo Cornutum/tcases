@@ -17,7 +17,6 @@ import java.io.File;
 /**
  * Runs tests for the {@link GeneratorSetDocWriter}.
  *
- * @version $Revision$, $Date$
  */
 public class TestGeneratorSetDocWriter
   {

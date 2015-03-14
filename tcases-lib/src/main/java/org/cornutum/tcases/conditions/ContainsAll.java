@@ -16,7 +16,6 @@ import java.util.Iterator;
  * A {@link ICondition condition} that is satisfied by a {@link PropertySet} that contains
  * all members of a set of properties.
  *
- * @version $Revision$, $Date$
  */
 public class ContainsAll extends PropertyExpr implements ICondition 
   {

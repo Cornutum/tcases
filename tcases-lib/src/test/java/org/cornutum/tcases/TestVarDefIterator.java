@@ -17,7 +17,6 @@ import org.apache.commons.collections4.Transformer;
 /**
  * Runs tests for {@link VarDefIterator}.
  *
- * @version $Revision$, $Date$
  */
 public class TestVarDefIterator
   {

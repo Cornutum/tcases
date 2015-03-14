@@ -12,7 +12,6 @@ import org.cornutum.tcases.conditions.ICondition;
 /**
  * A conditional element.
  *
- * @version $Revision$, $Date$
  */
 public interface IConditional
   {

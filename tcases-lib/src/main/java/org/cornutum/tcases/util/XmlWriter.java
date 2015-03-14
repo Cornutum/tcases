@@ -13,7 +13,6 @@ import java.io.Writer;
 /**
  * Supports creation of an XML document stream.
  *
- * @version $Revision$, $Date$
  */
 public class XmlWriter extends IndentedWriter
   {

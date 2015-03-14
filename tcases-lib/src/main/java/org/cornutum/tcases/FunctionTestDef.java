@@ -19,7 +19,6 @@ import java.util.List;
 /**
  * Defines test cases for a specific function.
  *
- * @version $Revision$, $Date$
  */
 public class FunctionTestDef
   {

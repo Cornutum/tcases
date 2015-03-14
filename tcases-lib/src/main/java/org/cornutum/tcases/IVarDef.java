@@ -14,7 +14,6 @@ import org.cornutum.tcases.conditions.ICondition;
 /**
  * Defines an input variable.
  *
- * @version $Revision$, $Date$
  */
 public interface IVarDef extends IConditional
   {

@@ -29,7 +29,6 @@ import java.util.List;
  * Generates {@link TestCase test cases} for a {@link FunctionInputDef function} that use
  * all specified N-tuples of valid variable values.
  *
- * @version $Revision$, $Date$
  */
 public class TupleGenerator implements ITestCaseGenerator
   {

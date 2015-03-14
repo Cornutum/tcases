@@ -12,7 +12,6 @@ import org.cornutum.tcases.PropertySet;
 /**
  * A condition that evaluates a set of test case properties.
  *
- * @version $Revision$, $Date$
  */
 public interface ICondition
   {

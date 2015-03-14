@@ -10,7 +10,6 @@ package org.cornutum.tcases.conditions;
 /**
  * Defines the Visitor pattern for {@link ICondition condition} objects.
  *
- * @version $Revision$, $Date$
  */
 public interface IConditionVisitor
   {

@@ -11,7 +11,6 @@ package org.cornutum.tcases;
 /**
  * Builds {@link VarDef} instances.
  *
- * @version $Revision$, $Date$
  */
 public class VarDefBuilder
   {

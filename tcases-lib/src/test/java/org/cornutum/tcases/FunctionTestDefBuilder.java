@@ -11,7 +11,6 @@ package org.cornutum.tcases;
 /**
  * Builds {@link FunctionTestDef} instances.
  *
- * @version $Revision$, $Date$
  */
 public class FunctionTestDefBuilder
   {

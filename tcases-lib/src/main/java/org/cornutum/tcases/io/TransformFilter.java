@@ -34,14 +34,12 @@ import javax.xml.transform.stream.StreamSource;
  * Applies an XSLT transform, transforming data written to a {@link #getSource source}
  * stream into results written to a {@link #getTarget target}.
  *
- * @version $Revision$, $Date$
  */
 public class TransformFilter implements Runnable, ErrorListener
   {
   /**
    * Receives the input data to be transformed.
    *
-   * @version $Revision$, $Date$
    */
   private class TransformSourceStream extends FilterOutputStream
     {

@@ -22,7 +22,6 @@ import java.util.List;
 /**
  * Runs tests for {@link TupleIterator}
  *
- * @version $Revision$, $Date$
  */
 public class TestTupleIterator
   {

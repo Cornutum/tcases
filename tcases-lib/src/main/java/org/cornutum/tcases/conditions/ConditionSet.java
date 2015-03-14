@@ -17,7 +17,6 @@ import java.util.List;
 /**
  * Defines a set of {@link ICondition conditions}.
  *
- * @version $Revision$, $Date$
  */
 public abstract class ConditionSet implements ICondition
   {

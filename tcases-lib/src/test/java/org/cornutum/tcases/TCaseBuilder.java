@@ -11,7 +11,6 @@ package org.cornutum.tcases;
 /**
  * Builds {@link TestCase} instances.
  *
- * @version $Revision$, $Date$
  */
 public class TCaseBuilder
   {

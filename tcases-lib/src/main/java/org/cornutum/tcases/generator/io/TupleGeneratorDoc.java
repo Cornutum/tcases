@@ -12,7 +12,6 @@ package org.cornutum.tcases.generator.io;
  * Defines constants for the identifiers in a {@link org.cornutum.tcases.generator.TupleGenerator}
  * definition document.
  *
- * @version $Revision$, $Date$
  */
 public final class TupleGeneratorDoc
   {

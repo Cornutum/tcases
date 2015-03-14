@@ -19,7 +19,6 @@ import java.util.NoSuchElementException;
 /**
  * Iterates over all N-tuples of compatible values for a given set of input variables.
  *
- * @version $Revision$, $Date$
  */
 public class TupleIterator implements Iterator<Tuple>
   {

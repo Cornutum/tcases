@@ -13,7 +13,6 @@ import java.io.InputStream;
  * A {@link TransformFilter} that transforms a system test definition document
  * into Java source for JUnit tests.
  *
- * @version $Revision$, $Date$
  */
 public class TestDefToJUnitFilter extends TransformFilter
   {

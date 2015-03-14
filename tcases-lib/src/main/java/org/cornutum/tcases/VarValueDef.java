@@ -20,14 +20,12 @@ import java.util.Collection;
 /**
  * Defines the properties of a value for an {@link IVarDef input variable}.
  *
- * @version $Revision$, $Date$
  */
 public class VarValueDef extends Conditional
   {
   /**
    * Defines the type of an input value.
    *
-   * @version $Revision$, $Date$
    */
   public enum Type
     {

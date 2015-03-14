@@ -16,14 +16,12 @@ import java.util.Iterator;
 /**
  * Defines methods for handling conditions in conjunctive normal form.
  *
- * @version $Revision$, $Date$
  */
 public abstract class Cnf
   {
   /**
    * Converts a {@link ICondition condition} into conjunctive normal form.
    *
-   * @version $Revision$, $Date$
    */
   public static class Converter implements IConditionVisitor
     {

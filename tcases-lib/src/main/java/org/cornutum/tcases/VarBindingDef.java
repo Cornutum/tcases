@@ -16,7 +16,6 @@ import org.apache.commons.lang3.ObjectUtils;
 /**
  * Defines a selection of a {@link VarValueDef value definition} for an {@link VarDef input variable definition}.
  *
- * @version $Revision$, $Date$
  */
 public class VarBindingDef
   {

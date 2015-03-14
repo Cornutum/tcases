@@ -12,7 +12,6 @@ package org.cornutum.tcases;
 /**
  * Builds {@link SystemTestDef} instances.
  *
- * @version $Revision$, $Date$
  */
 public class SystemTestDefBuilder
   {

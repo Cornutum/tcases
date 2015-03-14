@@ -26,7 +26,6 @@ import java.util.Map;
 /**
  * Constructs a definition of a {@link TestCase test case}.
  *
- * @version $Revision$, $Date$
  */
 public class TestCaseDef implements Comparable<TestCaseDef>
   {
@@ -34,7 +33,6 @@ public class TestCaseDef implements Comparable<TestCaseDef>
    * A Predicate that returns true for a variable that can partially satisfy the
    * current {@link #getRequired required condition} for this test case.
    *
-   * @version $Revision$, $Date$
    */
   private class VarSatisfies implements Predicate<VarDef>
     {
@@ -61,7 +59,6 @@ public class TestCaseDef implements Comparable<TestCaseDef>
    * A Predicate that returns true for a tuple that can partially satisfy the
    * current {@link #getRequired required condition} for this test case.
    *
-   * @version $Revision$, $Date$
    */
   private class TupleSatisfies implements Predicate<Tuple>
     {

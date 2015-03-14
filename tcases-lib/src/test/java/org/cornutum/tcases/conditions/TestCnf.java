@@ -17,7 +17,6 @@ import org.apache.commons.collections4.IteratorUtils;
 /**
  * Runs tests for {@link Cnf} methods.
  *
- * @version $Revision$, $Date$
  */
 public class TestCnf
   {

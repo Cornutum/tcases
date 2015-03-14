@@ -33,14 +33,12 @@ import java.util.Set;
 /**
  * An {@link ISystemTestSource} that reads from an XML document.
  *
- * @version $Revision$, $Date$
  */
 public class SystemTestDocReader extends DefaultHandler implements ISystemTestSource
   {
   /**
    * The base class for element handlers used by this parser.
    *
-   * @version $Revision$, $Date$
    */
   protected abstract class ElementHandler extends DefaultHandler
     {
@@ -275,7 +273,6 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
   /**
    * Handles TestCases elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class TestCasesHandler extends ElementHandler
     {
@@ -320,7 +317,6 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
   /**
    * Handles Function elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class FunctionHandler extends ElementHandler
     {
@@ -382,7 +378,6 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
   /**
    * Handles TestCase elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class TestCaseHandler extends ElementHandler
     {
@@ -473,7 +468,6 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
   /**
    * Handles Input elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class InputHandler extends ElementHandler
     {
@@ -529,7 +523,6 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
   /**
    * Handles Var elements.
    *
-   * @version $Revision$, $Date$
    */
   protected class VarHandler extends ElementHandler
     {    

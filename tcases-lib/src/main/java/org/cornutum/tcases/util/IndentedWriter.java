@@ -16,7 +16,6 @@ import java.io.Writer;
 /**
  * Prints indented lines.
  *
- * @version $Revision$, $Date$
  */
 public class IndentedWriter
   {

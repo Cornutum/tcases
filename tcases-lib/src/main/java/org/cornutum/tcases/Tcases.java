@@ -30,7 +30,6 @@ import java.util.Properties;
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
  *
- * @version $Revision$, $Date$
  */
 public class Tcases
   {
@@ -268,7 +267,6 @@ public class Tcases
    * </BLOCKQUOTE>
    * <P/> 
    *
-   * @version $Revision$, $Date$
    */
   public static class Options
     {

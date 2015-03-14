@@ -24,7 +24,6 @@ import org.xml.sax.SAXParseException;
 /**
  * Runs tests for the {@link GeneratorSetDocReader}.
  *
- * @version $Revision$, $Date$
  */
 public class TestGeneratorSetDocReader
   {

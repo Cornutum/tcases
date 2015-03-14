@@ -10,7 +10,6 @@ package org.cornutum.tcases.conditions;
 /**
  * A {@link org.cornutum.tcases.conditions.ICondition condition} that asserts the (non)existence of a single property.
  *
- * @version $Revision$, $Date$
  */
 public interface IAssertion extends IDisjunct
   {

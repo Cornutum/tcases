@@ -16,7 +16,6 @@ import java.io.InputStream;
 /**
  * Provides access to system input definition resources.
  *
- * @version $Revision$, $Date$
  */
 public class SystemInputResources
   {

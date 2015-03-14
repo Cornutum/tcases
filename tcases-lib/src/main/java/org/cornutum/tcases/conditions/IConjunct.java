@@ -14,7 +14,6 @@ import java.util.Iterator;
  * A {@link ICondition condition} that defined by the conjunction (logical AND) of one or
  * more {@link IDisjunct disjunctions}.
  *
- * @version $Revision$, $Date$
  */
 public interface IConjunct extends ICondition
   {

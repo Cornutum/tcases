@@ -12,7 +12,6 @@ import org.cornutum.tcases.VarBindingDef;
 /**
  * Base class for exceptions that occur when binding input variables.
  *
- * @version $Revision$, $Date$
  */
 public abstract class BindingException extends Exception
   {

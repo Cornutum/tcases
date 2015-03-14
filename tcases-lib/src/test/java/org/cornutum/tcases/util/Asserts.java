@@ -22,7 +22,6 @@ import java.util.List;
 /**
  * Defines test assertion utilities.
  *
- * @version $Revision$, $Date$
  */
 public abstract class Asserts
   {

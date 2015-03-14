@@ -14,7 +14,6 @@ import org.cornutum.tcases.VarDef;
  * Thrown when an input variable binding makes an currently bound variable
  * inapplicable.
  *
- * @version $Revision$, $Date$
  */
 public class ValueNotApplicableException extends BindingException
   {
