@@ -61,8 +61,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <tcases.revision>$Revision$</tcases.revision>
-    <tcases.date>$Date$</tcases.date>
+    <project.build.date>${maven.build.timestamp}</project.build.date>
+    <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
   </properties>
 
   <build>

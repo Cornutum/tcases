@@ -26,8 +26,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -1164,20 +1162,10 @@ public class Tcases
       IOUtils.closeQuietly( tcasesPropertyFile);
       }
     
-    Pattern versionDatePattern = Pattern.compile( "Date: (\\S*)");
-    Matcher versionDateMatcher = versionDatePattern.matcher( tcasesProperties.getProperty( "tcases.date"));
-    versionDateMatcher.find();
-
-    Pattern versionRevPattern = Pattern.compile( "Revision: (\\S*)");
-    Matcher versionRevMatcher = versionRevPattern.matcher( tcasesProperties.getProperty( "tcases.revision"));
-    versionRevMatcher.find();
-    
     return
       "Tcases "
       + tcasesProperties.getProperty( "tcases.version") + " ("
-      + versionDateMatcher.group(1)
-      + ", rev="
-      + versionRevMatcher.group(1)
+      + tcasesProperties.getProperty( "tcases.date")
       + ")";
     }
 
