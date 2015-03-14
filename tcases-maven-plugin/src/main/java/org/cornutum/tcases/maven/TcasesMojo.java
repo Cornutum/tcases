@@ -11,6 +11,8 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Map;
@@ -30,91 +32,99 @@ public class TcasesMojo extends AbstractMojo
     {
     try
       {
-      // Gather input definition files
-      DirectoryScanner inputScanner = new DirectoryScanner();
-      Set<String> inputDefPatterns = getInputDefs();
-      if( !inputDefPatterns.isEmpty())
+      File inputRootDir = getInputDirFile();
+      if( !inputRootDir.exists())
         {
-        // Use all specified input definition patterns.
+        logger_.warn( "Input directory={} does not exist", inputRootDir);
         }
-      else if( !StringUtils.isBlank( getProject()))
-        {
-        // Use input definition(s) for specified project name.
-        inputDefPatterns.add( "**/" + getProject() + "-Input.xml");
-        inputDefPatterns.add( "**/" + getProject() + ".xml");
-        }
+
       else
         {
-        // Use specified input definition pattern.
-        inputDefPatterns.add( getInputDef());
-        }
-      inputScanner.setIncludes( inputDefPatterns.toArray( new String[0]));
+        // Gather input definition files
+        DirectoryScanner inputScanner = new DirectoryScanner();
+        inputScanner.setBasedir( inputRootDir);
 
-      File inputRootDir = getInputDirFile();
-      inputScanner.setBasedir( inputRootDir);
-      inputScanner.scan();
-
-      // Generate test cases for each input definition file.
-      File outRootDir = getOutDirFile();
-      String[] inputDefs = inputScanner.getIncludedFiles();
-      for( int i = 0; i < inputDefs.length; i++)
-        {
-        // Define input and output paths for this Tcases project.
-        String inputFile = inputDefs[i];
-        String inputPath = FileUtils.dirname( inputFile);
-        File inputDef = new File( inputRootDir, inputFile);
-        File inputDir = new File( inputRootDir, inputPath);
-        File outDir = new File( outRootDir, inputPath);
-
-        String projectName = Tcases.getProjectName( inputDef);
-        String outFile = getOutFile();
-        if( outFile != null && (outFile = getProjectFile( projectName, outFile)) == null)
+        Set<String> inputDefPatterns = getInputDefs();
+        if( !inputDefPatterns.isEmpty())
           {
-          throw new IllegalArgumentException( "Invalid outFile pattern='" + getOutFile() + "'");
+          // Use all specified input definition patterns.
           }
-
-        String testDef = getTestDef();
-        if( testDef != null && (testDef = getProjectFile( projectName, testDef)) == null)
+        else if( !StringUtils.isBlank( getProject()))
           {
-          throw new IllegalArgumentException( "Invalid testDef pattern='" + getTestDef() + "'");
+          // Use input definition(s) for specified project name.
+          inputDefPatterns.add( "**/" + getProject() + "-Input.xml");
+          inputDefPatterns.add( "**/" + getProject() + ".xml");
           }
-
-        String genDef = getGenDef();
-        if( genDef != null && (genDef = getProjectFile( projectName, genDef)) == null)
+        else
           {
-          throw new IllegalArgumentException( "Invalid genDef pattern='" + getGenDef() + "'");
+          // Use specified input definition pattern.
+          inputDefPatterns.add( getInputDef());
           }
+        inputScanner.setIncludes( inputDefPatterns.toArray( new String[0]));
+        inputScanner.scan();
 
-
-        // Set options for this Tcases project.
-        Options options = new Options();
-        options.setInputDef( inputDef);
-        options.setGenDef( genDef==null? null : new File( inputDir, genDef));
-        options.setOutDir( outDir);
-        options.setTestDef( testDef==null? null : new File( inputDir, testDef));
-        options.setOutFile( outFile==null? null : new File( outDir, outFile));
-        options.setJUnit( isJunit());
-        options.setExtended( !isNewTests());
-        options.setRandomSeed( getSeed());
-        options.setDefaultTupleSize( getTuples());
-
-        File transformDef = getTransformDefFile();
-        if( transformDef != null)
+        // Generate test cases for each input definition file.
+        File outRootDir = getOutDirFile();
+        String[] inputDefs = inputScanner.getIncludedFiles();
+        for( int i = 0; i < inputDefs.length; i++)
           {
-          String projectTransformDef = getProjectFile( projectName, transformDef.getPath());
-          if( projectTransformDef == null)
+          // Define input and output paths for this Tcases project.
+          String inputFile = inputDefs[i];
+          String inputPath = FileUtils.dirname( inputFile);
+          File inputDef = new File( inputRootDir, inputFile);
+          File inputDir = new File( inputRootDir, inputPath);
+          File outDir = new File( outRootDir, inputPath);
+
+          String projectName = Tcases.getProjectName( inputDef);
+          String outFile = getOutFile();
+          if( outFile != null && (outFile = getProjectFile( projectName, outFile)) == null)
             {
-            throw new IllegalArgumentException( "Invalid transformDef pattern='" + transformDef + "'");
+            throw new IllegalArgumentException( "Invalid outFile pattern='" + getOutFile() + "'");
             }
-          options.setTransformDef
-            ( transformDef.isAbsolute()
-              ? new File( projectTransformDef)
-              : new File( inputDir, projectTransformDef));
-          }
-        options.setTransformParams( getTransformParams());
 
-        // Generate test cases for this Tcases project.
-        Tcases.run( options);
+          String testDef = getTestDef();
+          if( testDef != null && (testDef = getProjectFile( projectName, testDef)) == null)
+            {
+            throw new IllegalArgumentException( "Invalid testDef pattern='" + getTestDef() + "'");
+            }
+
+          String genDef = getGenDef();
+          if( genDef != null && (genDef = getProjectFile( projectName, genDef)) == null)
+            {
+            throw new IllegalArgumentException( "Invalid genDef pattern='" + getGenDef() + "'");
+            }
+
+
+          // Set options for this Tcases project.
+          Options options = new Options();
+          options.setInputDef( inputDef);
+          options.setGenDef( genDef==null? null : new File( inputDir, genDef));
+          options.setOutDir( outDir);
+          options.setTestDef( testDef==null? null : new File( inputDir, testDef));
+          options.setOutFile( outFile==null? null : new File( outDir, outFile));
+          options.setJUnit( isJunit());
+          options.setExtended( !isNewTests());
+          options.setRandomSeed( getSeed());
+          options.setDefaultTupleSize( getTuples());
+
+          File transformDef = getTransformDefFile();
+          if( transformDef != null)
+            {
+            String projectTransformDef = getProjectFile( projectName, transformDef.getPath());
+            if( projectTransformDef == null)
+              {
+              throw new IllegalArgumentException( "Invalid transformDef pattern='" + transformDef + "'");
+              }
+            options.setTransformDef
+              ( transformDef.isAbsolute()
+                ? new File( projectTransformDef)
+                : new File( inputDir, projectTransformDef));
+            }
+          options.setTransformParams( getTransformParams());
+
+          // Generate test cases for this Tcases project.
+          Tcases.run( options);
+          }
         }
       }
     catch( Exception e)
@@ -560,4 +570,5 @@ public class TcasesMojo extends AbstractMojo
   private File targetDir_;
 
   private static final Pattern projectFilePattern_ = Pattern.compile( "([^\\*]*)(\\*?)([^\\*]*)");
+  private static final Logger logger_ = LoggerFactory.getLogger( TcasesMojo.class);
   }
