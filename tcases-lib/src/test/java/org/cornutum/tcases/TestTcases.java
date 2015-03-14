@@ -74,8 +74,7 @@ public class TestTcases
       };
     
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
@@ -130,8 +129,7 @@ public class TestTcases
     /* Must run interactively: uses standard input.
      
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
@@ -185,8 +183,7 @@ public class TestTcases
 
     /* Must run interactively: uses standard input
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     File outFile = new File( outDir, testDefFile.getName());
@@ -242,8 +239,7 @@ public class TestTcases
     options.setWorkingDir( inFile.getParentFile());
     
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( options);
+    Tcases.run( options);
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
@@ -295,8 +291,7 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
@@ -346,8 +341,7 @@ public class TestTcases
   
     /* Must run interactively: uses standard input
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
@@ -401,19 +395,15 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
-    Exception failure = null;
     try
       {
-      tcases.run( new Options( args));
+      Tcases.run( new Options( args));
+      fail( "Expected exception not thrown");
       }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
+    catch( Exception ignore)
+      {
+      }
     }
 
   /**
@@ -458,19 +448,15 @@ public class TestTcases
     options.setWorkingDir( inFile.getParentFile());
 
     // When...
-    Tcases tcases = new Tcases();
-    Exception failure = null;
     try
       {
-      tcases.run( options);
+      Tcases.run( new Options( args));
+      fail( "Expected exception not thrown");
       }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
+    catch( Exception ignore)
+      {
+      }
     }
 
   /**
@@ -513,19 +499,15 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
-    Exception failure = null;
     try
       {
-      tcases.run( new Options( args));
+      Tcases.run( new Options( args));
+      fail( "Expected exception not thrown");
       }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
+    catch( Exception ignore)
+      {
+      }
     }
 
   /**
@@ -572,22 +554,17 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
-    Exception failure = null;
     try
       {
       Options options = new Options( args);
       options.setWorkingDir( inFile.getParentFile());
-    
-      tcases.run( options);
+      Tcases.run( options);
+      fail( "Expected exception not thrown");
       }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
+    catch( Exception ignore)
+      {
+      }
     }
 
   /**
@@ -635,19 +612,15 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
-    Exception failure = null;
     try
       {
-      tcases.run( new Options( args));
+      Tcases.run( new Options( args));
+      fail( "Expected exception not thrown");
       }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
+    catch( Exception ignore)
+      {
+      }
     }
 
   /**
@@ -693,8 +666,7 @@ public class TestTcases
       };
     
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -740,8 +712,7 @@ public class TestTcases
     
     /* Must run interactively: uses standard input.
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( options);
+    Tcases.run( options);
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -793,8 +764,7 @@ public class TestTcases
       };
     
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -840,8 +810,7 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -885,11 +854,10 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
     Exception failure = null;
     try
       {
-      tcases.run( new Options( args));
+      Tcases.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -941,19 +909,15 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
-    Exception failure = null;
     try
       {
-      tcases.run( new Options( args));
+      Tcases.run( new Options( args));
+      fail( "Expected exception not thrown");
       }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
+    catch( Exception ignore)
+      {
+      }
     }
 
   /**
@@ -994,11 +958,10 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
     Exception failure = null;
     try
       {
-      tcases.run( new Options( args));
+      Tcases.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1053,21 +1016,17 @@ public class TestTcases
         "-p", "class=Run_Transform_7",
         inFile.getPath()
       };
-    
+
     // When...
-    Tcases tcases = new Tcases();
-    Exception failure = null;
     try
       {
-      tcases.run( new Options( args));
+      Tcases.run( new Options( args));
+      fail( "Expected exception not thrown");
       }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
+    catch( Exception ignore)
+      {
+      }
     }
 
   /**
@@ -1108,11 +1067,10 @@ public class TestTcases
       };
 
     // When...
-    Tcases tcases = new Tcases();
     Exception failure = null;
     try
       {
-      tcases.run( new Options( args));
+      Tcases.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1166,8 +1124,7 @@ public class TestTcases
       };
     
     // When...
-    Tcases tcases = new Tcases();
-    tcases.run( new Options( args));
+    Tcases.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());

@@ -55,7 +55,6 @@ public class TcasesMojo extends AbstractMojo
       inputScanner.scan();
 
       // Generate test cases for each input definition file.
-      Tcases tcases = new Tcases();
       File outRootDir = getOutDirFile();
       String[] inputDefs = inputScanner.getIncludedFiles();
       for( int i = 0; i < inputDefs.length; i++)
@@ -115,7 +114,7 @@ public class TcasesMojo extends AbstractMojo
         options.setTransformParams( getTransformParams());
 
         // Generate test cases for this Tcases project.
-        tcases.run( options);
+        Tcases.run( options);
         }
       }
     catch( Exception e)

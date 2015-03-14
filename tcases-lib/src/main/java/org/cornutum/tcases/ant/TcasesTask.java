@@ -43,8 +43,7 @@ public class TcasesTask extends Task
         log( "For details, see " + logFile.getAbsolutePath());
         }
 
-      Tcases tcases = new Tcases();
-      tcases.run( options_);
+      Tcases.run( options_);
       }
     catch( Exception e)
       {

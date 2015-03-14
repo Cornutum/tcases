@@ -812,8 +812,7 @@ public class Tcases
     int exitCode = 0;
     try
       {
-      Tcases tcases = new Tcases();
-      tcases.run( new Options( args));
+      run( new Options( args));
       }
     catch( Exception e)
       {
@@ -830,7 +829,7 @@ public class Tcases
    * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}
    * using the given {@link Options command line options}.
    */
-  public void run( Options options) throws Exception
+  public static void run( Options options) throws Exception
     {
     if( options.showVersion())
       {
