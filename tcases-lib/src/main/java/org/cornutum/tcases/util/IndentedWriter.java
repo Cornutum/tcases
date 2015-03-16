@@ -9,6 +9,8 @@ package org.cornutum.tcases.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -17,7 +19,7 @@ import java.io.Writer;
  * Prints indented lines.
  *
  */
-public class IndentedWriter
+public class IndentedWriter implements Closeable
   {
   /**
    * Creates a new IndentedWriter object.
@@ -112,7 +114,7 @@ public class IndentedWriter
   /**
    * Closes the writer.
    */
-  public void close()
+  public void close() throws IOException
     {
     writer_.close();
     }

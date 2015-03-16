@@ -13,6 +13,8 @@ import org.cornutum.tcases.util.XmlWriter;
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
 import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
@@ -22,7 +24,7 @@ import java.util.Iterator;
  * Writes a {@link IGeneratorSet} in the form of an XML document.
  *
  */
-public class GeneratorSetDocWriter
+public class GeneratorSetDocWriter implements Closeable
   {
   /**
    * Creates a new GeneratorSetDocWriter object that writes to standard output.
@@ -212,7 +214,7 @@ public class GeneratorSetDocWriter
   /**
    * Closes the writer.
    */
-  public void close()
+  public void close() throws IOException
     {
     writer_.close();
     }

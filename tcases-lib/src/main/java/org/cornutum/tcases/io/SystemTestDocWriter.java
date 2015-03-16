@@ -13,6 +13,8 @@ import static org.cornutum.tcases.io.SystemTestDoc.*;
 
 import org.apache.commons.collections4.IteratorUtils;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
@@ -22,7 +24,7 @@ import java.util.Iterator;
  * Writes a {@link SystemTestDef} in the form of an XML document.
  *
  */
-public class SystemTestDocWriter
+public class SystemTestDocWriter implements Closeable
   {
   /**
    * Creates a new SystemTestDocWriter object that writes to standard output.
@@ -170,7 +172,7 @@ public class SystemTestDocWriter
   /**
    * Closes the writer.
    */
-  public void close()
+  public void close() throws IOException
     {
     writer_.close();
     }

@@ -104,7 +104,7 @@ public class GeneratorSetResources
       }
     finally
       {
-      writer.close();
+      IOUtils.closeQuietly( writer);
       }
     }
 
