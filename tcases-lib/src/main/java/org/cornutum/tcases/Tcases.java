@@ -997,9 +997,7 @@ public class Tcases
     else
       {
       // No, use default TupleGenerator.
-      GeneratorSet genSet = new GeneratorSet();
-      genSet.addGenerator( GeneratorSet.ALL, new TupleGenerator());
-      genDef = genSet;
+      genDef = GeneratorSet.basicGenerator();
       } 
 
     // Generate new test definitions.
@@ -1115,6 +1113,82 @@ public class Tcases
           genWriter.close();
           }
         }
+      }
+    }
+
+  /**
+   * Returns test case definitions for the given system input definition, using the given generator set and
+   * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.
+   * If <CODE>baseDef</CODE> is null, no base test definitions are used.
+   */
+  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef)
+    {
+    if( genDef == null)
+      {
+      genDef = GeneratorSet.basicGenerator();
+      }
+
+    SystemTestDef testDef = new SystemTestDef( inputDef.getName());
+    for( Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs(); functionDefs.hasNext();)
+      {
+      FunctionInputDef functionDef = functionDefs.next();
+      FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
+      TupleGenerator functionGen = (TupleGenerator) genDef.getGenerator( functionDef.getName());
+      if( functionGen == null)
+        {
+        throw new RuntimeException( "No generator for function=" + functionDef.getName());
+        }
+      
+      testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
+      }
+
+    return testDef;
+    }
+
+  /**
+   * Returns test case definitions for the given system input definition, using the given generator set and
+   * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.
+   * If <CODE>baseDef</CODE> is null, no base test definitions are used.
+   */
+  public static SystemTestDef getTests( InputStream inputDefStream, InputStream genDefStream, InputStream baseDefStream)
+    {
+    try
+      {
+      return
+        getTests
+        ( new SystemInputDocReader( inputDefStream).getSystemInputDef(),
+          genDefStream==null? null : new GeneratorSetDocReader( genDefStream).getGeneratorSet(),
+          baseDefStream==null? null : new SystemTestDocReader( baseDefStream).getSystemTestDef());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't get test definitions", e);
+      }
+    }
+
+  /**
+   * Returns new test case definitions for the given system input definition, using the default generator.
+   */
+  public static SystemTestDef getTests( InputStream inputDefStream)
+    {
+    return getTests( inputDefStream, null, null);
+    }
+
+  /**
+   * Writes an XML document describing given test case definitions to the given output stream.
+   */
+  @SuppressWarnings("resource")
+  public static void writeTests( SystemTestDef testDef, OutputStream outputStream)
+    {
+    try
+      {
+      SystemTestDocWriter writer = new SystemTestDocWriter( outputStream);
+      writer.write( testDef);
+      writer.flush();
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write test definitions", e);
       }
     }
 

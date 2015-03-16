@@ -8,13 +8,17 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.Tcases.Options;
+import org.cornutum.tcases.io.SystemTestResources;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import org.apache.commons.io.FileUtils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -1129,6 +1133,59 @@ public class TestTcases
     assertEquals( "Test def created", true, outFilePath.exists());
     }
 
+  @Test
+  public void getTests_whenInputOnly() throws Exception
+    {
+    // Given...
+    InputStream inputDef = getClass().getResourceAsStream( "tcases-Transform-Input.xml");
+    
+    // When...
+    SystemTestDef testDef = Tcases.getTests( inputDef);
+    
+    // Then...
+    SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Test.xml");
+    assertEquals( "Test def generated", expectedTestDef, testDef);
+
+    // When...
+    ByteArrayOutputStream testDefOut = new ByteArrayOutputStream();
+    Tcases.writeTests( testDef, testDefOut);
+
+    // Then...
+    ByteArrayInputStream testDefString = new ByteArrayInputStream( testDefOut.toByteArray());
+    assertEquals( "Test def written", expectedTestDef, testResources_.read( testDefString));
+    }
+
+  @Test
+  public void getTests_whenGenerator()
+    {
+    // Given...
+    InputStream inputDef = getClass().getResourceAsStream( "tcases-Transform-Input.xml");
+    InputStream genDef = getClass().getResourceAsStream( "tcases-Transform-Generators.xml");
+    
+    // When...
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, null);
+    
+    // Then...
+    SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Gen-Test.xml");
+    assertEquals( "Test def generated", expectedTestDef, testDef);
+    }
+
+  @Test
+  public void getTests_whenBaseTests()
+    {
+    // Given...
+    InputStream inputDef = getClass().getResourceAsStream( "tcases-Transform-Input.xml");
+    InputStream genDef = getClass().getResourceAsStream( "tcases-Transform-Generators.xml");
+    InputStream baseDef = getClass().getResourceAsStream( "tcases-Transform-Test.xml");
+    
+    // When...
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, baseDef);
+    
+    // Then...
+    SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Regen-Test.xml");
+    assertEquals( "Test def generated", expectedTestDef, testDef);
+    }
+
   /**
    * Return the file for the given resource.
    */
@@ -1138,4 +1195,5 @@ public class TestTcases
     return new File( new File( classUrl.getFile()).getParent(), resource);
     }
 
+  private SystemTestResources testResources_ = new SystemTestResources( getClass());
   }
