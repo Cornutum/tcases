@@ -80,6 +80,16 @@ public class GeneratorSet implements IGeneratorSet
     }
 
   /**
+   * Returns a GeneratorSet that uses the default TupleGenerator for all functions.
+   */
+  public static GeneratorSet basicGenerator()
+    {
+    GeneratorSet genSet = new GeneratorSet();
+    genSet.addGenerator( GeneratorSet.ALL, new TupleGenerator());
+    return genSet;
+    }
+
+  /**
    * Returns the key used to find the test case generator for the given system function.
    */
   private String getFunctionKey( String functionName)
