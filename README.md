@@ -2,11 +2,9 @@
 
 ## What's New? ##
 
-  * The latest version (Tcases 1.3.0) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
+  * The latest version (Tcases 1.3.1) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
 
-  * The **once** attribute applies only to a default 1-tuple for a single variable. But now there is now a more general way to define once-only exceptions to higher-order combinations, by adding [Once elements](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#once-tuples) to your generator definition.
-
-  * Tcases Maven Plugin: Use parameter=project to more easily select a single project.
+  * To better support embedding in other apps, add stream-based methods for generating ([Tcases.getTests](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/Tcases.html)) and exporting ([Tcases.writeTests](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/Tcases.html)) test case definitions.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
