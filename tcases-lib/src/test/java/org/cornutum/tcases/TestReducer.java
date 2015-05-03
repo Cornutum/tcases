@@ -39,6 +39,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
@@ -64,6 +67,7 @@ public class TestReducer
       {
         "-f", function2,
         "-g", genFile.getName(),
+        "-G", TupleGeneratorFactory.class.getName(),
         "-r", "0.5",
         "-s", "8",
         inFile.getPath()
@@ -76,10 +80,15 @@ public class TestReducer
     // Then...
     IGeneratorSet generators = getGenerators( genFile);
 
-    TupleGenerator gen1 = (TupleGenerator) generators.getGenerator( function1);
+    TupleGenerator gen = getDefaultTupleGenerator( generators);
+    assertEquals( "Default, generator defined", false, gen != null);
+
+    TupleGenerator gen1 = getTupleGenerator( generators, function1);
+    assertEquals( function1 + ", generator defined", true, gen1 != null);
     assertEquals( function1 + ", seed defined", false, gen1.getRandomSeed() != null);
 
-    TupleGenerator gen2 = (TupleGenerator) generators.getGenerator( function2);
+    TupleGenerator gen2 = getTupleGenerator( generators, function2);
+    assertEquals( function2 + ", generator defined", true, gen2 != null);
     assertEquals( function2 + ", seed defined", true, gen2.getRandomSeed() != null);
     }
 
@@ -94,6 +103,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
@@ -125,8 +137,20 @@ public class TestReducer
     // Then...
     IGeneratorSet generators = getGenerators( genFile);
 
-    TupleGenerator gen = (TupleGenerator) generators.getGenerator( null);
-    assertEquals( "Default, seed defined", true, gen.getRandomSeed() != null);
+    TupleGenerator gen = getDefaultTupleGenerator( generators);
+    assertEquals( "Default, generator defined", true, gen != null);
+    assertEquals( "Default, seed defined", false, gen.getRandomSeed() != null);
+
+    String function1 = "find-1";
+    String function2 = "find-2";
+
+    TupleGenerator gen1 = getTupleGenerator( generators, function1);
+    assertEquals( function1 + ", generator defined", true, gen1 != null);
+    assertEquals( function1 + ", seed defined", true, gen1.getRandomSeed() != null);
+
+    TupleGenerator gen2 = getTupleGenerator( generators, function2);
+    assertEquals( function2 + ", generator defined", true, gen2 != null);
+    assertEquals( function2 + ", seed defined", true, gen2.getRandomSeed() != null);
     }
 
   /**
@@ -140,6 +164,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
@@ -174,8 +201,20 @@ public class TestReducer
     File genFile = new File( inFile.getParentFile(), genFileName);
     IGeneratorSet generators = getGenerators( genFile);
 
-    TupleGenerator gen = (TupleGenerator) generators.getGenerator( null);
-    assertEquals( "Default, seed defined", true, gen.getRandomSeed() != null);
+    TupleGenerator gen = getDefaultTupleGenerator( generators);
+    assertEquals( "Default, generator defined", true, gen != null);
+    assertEquals( "Default, seed defined", false, gen.getRandomSeed() != null);
+
+    String function1 = "find-1";
+    String function2 = "find-2";
+
+    TupleGenerator gen1 = getTupleGenerator( generators, function1);
+    assertEquals( function1 + ", generator defined", true, gen1 != null);
+    assertEquals( function1 + ", seed defined", true, gen1.getRandomSeed() != null);
+
+    TupleGenerator gen2 = getTupleGenerator( generators, function2);
+    assertEquals( function2 + ", generator defined", true, gen2 != null);
+    assertEquals( function2 + ", seed defined", true, gen2.getRandomSeed() != null);
     }
 
   /**
@@ -189,6 +228,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
@@ -222,6 +264,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
@@ -240,6 +285,7 @@ public class TestReducer
     // Given...
     File inFile = getResourceFile( "Reducer-whenNoFunctionGenerator-Input.xml");
     String function1 = "find-1";
+    String function2 = "find-2";
     
     String[] args =
       {
@@ -251,19 +297,22 @@ public class TestReducer
     
     // When...
     Reducer reducer = new Reducer();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "No generator defined for function=" + function1, expected.getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
+    reducer.run( new Options( args));
+        
+    // Then...
+    File genFile = new File( inFile.getParentFile(), "Reducer-whenNoFunctionGenerator-Generators.xml");
+    IGeneratorSet generators = getGenerators( genFile);
+
+    TupleGenerator gen = getDefaultTupleGenerator( generators);
+    assertEquals( "Default, generator defined", true, gen != null);
+    assertEquals( "Default, seed defined", false, gen.getRandomSeed() != null);
+
+    TupleGenerator gen1 = getTupleGenerator( generators, function1);
+    assertEquals( function1 + ", generator defined", true, gen1 != null);
+    assertEquals( function1 + ", seed defined", true, gen1.getRandomSeed() != null);
+
+    TupleGenerator gen2 = getTupleGenerator( generators, function2);
+    assertEquals( function2 + ", generator defined", false, gen2 != null);
     }
 
   /**
@@ -277,6 +326,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
@@ -331,6 +383,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
@@ -387,6 +442,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
@@ -444,6 +502,9 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
@@ -482,6 +543,136 @@ public class TestReducer
       {
       throw new RuntimeException( "Unxepected exception", e);
       }
+    }
+
+  /**
+   * Tests {@link Reducer#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 9. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Function.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Function.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
+   * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
+   * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> InputDef.Matches </TD> <TD> Project-Xml </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void whenGenFactoryUndefined() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "Reducer-whenMatchesProjectXml.xml");
+    String[] args =
+      {
+        "-G", "UnknownClass",
+        new File( inFile.getParentFile(), FilenameUtils.getBaseName( inFile.getName())).getPath()
+      };
+    
+    // When...
+    Reducer reducer = new Reducer();
+    try
+      {
+      reducer.run( new Options( args));
+      fail( "No expected failure");
+      }
+    catch( RuntimeException expected)
+      {
+      assertEquals( "Expected failure", "Invalid generator factory", expected.getCause().getMessage());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Unxepected exception", e);
+      }
+    }
+
+  /**
+   * Tests {@link Reducer#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 10. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Function.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Function.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenFactory.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Class-Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenFactory.Class-Valid </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
+   * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
+   * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> InputDef.Matches </TD> <TD> Project-Xml </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void whenGenFactoryInvalid() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "Reducer-whenMatchesProjectXml.xml");
+    String[] args =
+      {
+        "-G", Reducer.class.getName(),
+        new File( inFile.getParentFile(), FilenameUtils.getBaseName( inFile.getName())).getPath()
+      };
+    
+    // When...
+    Reducer reducer = new Reducer();
+    try
+      {
+      reducer.run( new Options( args));
+      fail( "No expected failure");
+      }
+    catch( RuntimeException expected)
+      {
+      assertEquals( "Expected failure", "Invalid generator factory", expected.getCause().getMessage());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Unxepected exception", e);
+      }
+    }
+
+  /**
+   * Returns the TupleGenerator defined for the given function. Returns null if only the default generator
+   * applies to this function.
+   */
+  private TupleGenerator getTupleGenerator( IGeneratorSet generators, String function)
+    {
+    ITestCaseGenerator generator = generators.getGenerator( function);
+    return
+      generator != null && generator != generators.getGenerator( null)
+      ? (TupleGenerator) generator
+      : null;
+    }
+
+  /**
+   * Returns the default TupleGenerator.
+   * applies to this function.
+   */
+  private TupleGenerator getDefaultTupleGenerator( IGeneratorSet generators)
+    {
+    return (TupleGenerator) generators.getGenerator( null);
     }
 
   /**

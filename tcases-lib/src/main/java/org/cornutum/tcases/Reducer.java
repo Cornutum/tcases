@@ -10,7 +10,6 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 import org.cornutum.tcases.io.*;
-
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -43,6 +42,7 @@ public class Reducer
    * <NOBR>
    * [-f <I>function</I>]
    * [-g <I>genDef</I>]
+   * [-G <I>genFactory</I>]
    * [-r <I>resampleFactor</I>]
    * [-s <I>sampleCount</I>]
    * [-t <I>baseTestDef</I>]
@@ -83,6 +83,19 @@ public class Reducer
    * <TD>
    * If <I>-g</I> is defined, update the generator specified in the given <I>genDef</I> file. Otherwise, update the default generator definition file:
    * the corresponding <NOBR><CODE>*-Generators.xml</CODE></NOBR> file in the same directory as the <I>inputDef</I>.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-G <I>genFactory</I> </NOBR>
+   * </TD>
+   * <TD>
+   * Defines the fully-qualified class name for the {@link ITestCaseGeneratorFactory} used to create any new function-specific test case generators.
+   * If <I>-G</I> is omitted, the default is {@link TupleGeneratorFactory}.
    * </TD>
    * </TR>
    * 
@@ -160,6 +173,7 @@ public class Reducer
       {
       setSamples( 10);
       setResampleFactor( 0.0);
+      setGenFactory( new TupleGeneratorFactory());
       }
     
     /**
@@ -203,6 +217,23 @@ public class Reducer
           throwUsageException();
           }
         setGenDef( new File( args[i]));
+        }
+
+      else if( arg.equals( "-G"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        try
+          {
+          setGenFactory( (ITestCaseGeneratorFactory) Class.forName( args[i]).newInstance());
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid generator factory", e);
+          }
         }
 
       else if( arg.equals( "-r"))
@@ -308,6 +339,7 @@ public class Reducer
           + Reducer.class.getSimpleName()
           + " [-f function]"
           + " [-g genDef]"
+          + " [-G genFactory]"
           + " [-r resampleFactor]"
           + " [-s sampleCount]"
           + " [-t testDef]"
@@ -380,6 +412,22 @@ public class Reducer
       }
 
     /**
+     * Changes the test case generator factory.
+     */
+    public void setGenFactory( ITestCaseGeneratorFactory genFactory)
+      {
+      genFactory_ = genFactory;
+      }
+
+    /**
+     * Returns the test case generator factory.
+     */
+    public ITestCaseGeneratorFactory getGenFactory()
+      {
+      return genFactory_;
+      }
+
+    /**
      * Changes the input definition file
      */
     public void setInputDef( File inputDef)
@@ -432,6 +480,11 @@ public class Reducer
         builder.append( " -g ").append( getGenDef().getPath());
         }
 
+      if( getGenFactory() != null)
+        {
+        builder.append( " -G ").append( getGenFactory().getClass().getName());
+        }
+
       builder.append( " -r ").append( getResampleFactor());
       builder.append( " -s ").append( getSamples());
 
@@ -447,6 +500,7 @@ public class Reducer
     private String function_;
     private File testDef_;
     private File genDef_;
+    private ITestCaseGeneratorFactory genFactory_;
     private double resampleFactor_;
     private int samples_;
     }
@@ -578,7 +632,7 @@ public class Reducer
       }
       
     // Previous generator definitions exist?
-    IGeneratorSet genDef = null;
+    GeneratorSet genDef = null;
     if( genDefFile.exists())
       {
       // Yes, read generator definitions.
@@ -588,7 +642,7 @@ public class Reducer
         logger_.info( "Reading generator definition={}", genDefFile);
         genStream = new FileInputStream( genDefFile);
         GeneratorSetDocReader reader = new GeneratorSetDocReader( genStream);
-        genDef = reader.getGeneratorSet();
+        genDef = (GeneratorSet) reader.getGeneratorSet();
         }
       catch( Exception e)
         {
@@ -609,7 +663,6 @@ public class Reducer
 
     // Identify generators to reduce.
     String function = options.getFunction();
-    ITestCaseGenerator functionGenerator = genDef.getGenerator( function);
     FunctionInputDef[] functionInputDefs;
     if( function == null)
       {
@@ -619,81 +672,101 @@ public class Reducer
       {
       throw new RuntimeException( "Function=" + function + " is not defined");
       }
-    else if( functionGenerator == null || functionGenerator.equals( genDef.getGenerator( null)))
-      {
-      throw new RuntimeException( "No generator defined for function=" + function);
-      }
     else
       {
       functionInputDefs = new FunctionInputDef[]{ inputDef.getFunctionInputDef( function) };
       }
 
-    // Find a seed that generates minimum test cases for the specified function(s).
-    logger_.info( "[{}] Initializing test cases to be reduced", project);
-    int initialCount = getTestCaseCount( baseDef, genDef, functionInputDefs);
-    int samples;
-    int round;
-    int minCount;
-    long minSeed;
-    boolean reducing;
-    Random random;
-    for( samples = options.getSamples(),
-           round = 1,
-           minCount = initialCount,
-           minSeed = 0L,
-           reducing = true,
-           random = new Random();
-         
-         samples > 0
-           && reducing;
-         
-         samples = (int) Math.floor( samples * ( 1 + options.getResampleFactor())),
-           round++)
+    // For each of the specified function(s), find a seed that generates minimum test cases 
+    boolean reduced = false;
+    ITestCaseGenerator defaultGenerator = genDef.getGenerator( null);
+    for( int f = 0; f < functionInputDefs.length; f++)
       {
-      // Perform next round of samples.
-      logger_.info( "[{}] Round {}: starting next {} samples", new Object[]{ project, round, samples});
-      int roundCount;
-      long roundSeed;
-      int i;
-      for( i = 0,
-             roundCount = 0,
-             roundSeed = 0;
+      FunctionInputDef functionInputDef = functionInputDefs[f];
+      function = functionInputDef.getName();
+
+      ITestCaseGenerator generator = genDef.getGenerator( function);
+      if( generator == null || generator.equals( defaultGenerator))
+        {
+        generator = options.getGenFactory().newGenerator( defaultGenerator);
+        genDef.addGenerator( function, generator);
+        }
+      
+      logger_.info( "[{}, {}] Initializing test cases to be reduced", project, function);
+      int initialCount = getTestCaseCount( baseDef, generator, functionInputDef);
+      int samples;
+      int round;
+      int minCount;
+      long minSeed;
+      boolean reducing;
+      Random random;
+      for( samples = options.getSamples(),
+             round = 1,
+             minCount = initialCount,
+             minSeed = 0L,
+             reducing = true,
+             random = new Random();
+         
+           samples > 0
+             && reducing;
+         
+           samples = (int) Math.floor( samples * ( 1 + options.getResampleFactor())),
+             round++)
+        {
+        // Perform next round of samples.
+        logger_.info( "[{}, {}] Round {}: starting next {} samples", new Object[]{ project, function, round, samples});
+        int roundCount;
+        long roundSeed;
+        int i;
+        for( i = 0,
+               roundCount = 0,
+               roundSeed = 0;
            
-           i < samples
-             && (roundCount =
+             i < samples
+               && (roundCount =
                    getTestCaseCount
                    ( baseDef,
-                     genDef,
-                     functionInputDefs,
+                     generator,
+                     functionInputDef,
                      (roundSeed = (long) (random.nextDouble() * Long.MAX_VALUE))))
-                 >= minCount;
-           i++);
+               >= minCount;
+             i++);
 
-      reducing = i < samples;
-      if( reducing)
+        reducing = i < samples;
+        if( reducing)
+          {
+          logger_.info( "[{}, {}] Round {}: after {} samples, reached {} test cases with seed={}", new Object[]{ project, function, round, i+1, roundCount, roundSeed});
+          minCount = roundCount;
+          minSeed = roundSeed;
+          }
+        else
+          {
+          logger_.info( "[{}, {}] Round {}: after {} samples, terminating with {} test cases", new Object[]{ project, function, round, samples, minCount});
+          }
+        }
+
+      if( minCount >= initialCount)
         {
-        logger_.info( "[{}] Round {}: after {} samples, reached {} test cases with seed={}", new Object[]{ project, round, i+1, roundCount, roundSeed});
-        minCount = roundCount;
-        minSeed = roundSeed;
+        logger_.info( "[{}, {}] Could not reduce initial {} test cases", new Object[]{ project, function, initialCount});
         }
       else
         {
-        logger_.info( "[{}] Round {}: after {} samples, terminating with {} test cases", new Object[]{ project, round, samples, minCount});
+        logger_.info( "[{}, {}] Reduced to {} test cases with seed={} -- updating generator definition", new Object[]{ project, function, minCount, minSeed});
+        generator.setRandomSeed( minSeed);
+        reduced = true;
         }
-      } 
+      }
 
-    if( minCount >= initialCount)
+    if( !reduced)
       {
-      logger_.info( "[{}] Could not reduce initial {} test cases -- generator definition not changed", project, initialCount);
+      logger_.info( "[{}] Generator definition not changed", project);
       }
     else
       {
       // Write updates to generator definitions.
-      setRandomSeed( genDef, functionInputDefs, minSeed);
       GeneratorSetDocWriter genWriter = null;
       try
         {
-        logger_.info( "[{}] Reduced to {} test cases with seed={} -- updating generator definition", new Object[]{ project, minCount, minSeed});
         genWriter = new GeneratorSetDocWriter( new FileOutputStream( genDefFile));
         genWriter.write( genDef);
         }
@@ -712,47 +785,29 @@ public class Reducer
     }
 
   /**
-   * Returns the total number of test cases generated for the given functions.
+   * Returns the total number of test cases generated for the given function.
    */
-  private int getTestCaseCount( SystemTestDef baseDef, IGeneratorSet genDef, FunctionInputDef[] functionInputDefs)
+  private int getTestCaseCount( SystemTestDef baseDef, ITestCaseGenerator generator, FunctionInputDef functionInputDef)
     {
+    FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionInputDef.getName());
+    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, functionBase);
+
     int testCaseCount = 0;
-
-    for( int i = 0; i < functionInputDefs.length; i++)
-      {
-      FunctionInputDef functionInputDef = functionInputDefs[i];
-      FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionInputDef.getName());
-      TupleGenerator functionGen = (TupleGenerator) genDef.getGenerator( functionInputDef.getName());
-      FunctionTestDef functionTestDef = functionGen.getTests( functionInputDef, functionBase);
-
-      for( Iterator<TestCase> testCases = functionTestDef.getTestCases();
-           testCases.hasNext();
-           testCaseCount++, testCases.next());
-      }
+    for( Iterator<TestCase> testCases = functionTestDef.getTestCases();
+         testCases.hasNext();
+         testCaseCount++, testCases.next());
 
     return testCaseCount;
     }
 
-  /**
-   * Returns the total number of test cases generated for the given functions using the given seed.
-   */
-  private int getTestCaseCount( SystemTestDef baseDef, IGeneratorSet genDef, FunctionInputDef[] functionInputDefs, long seed)
-    {
-    setRandomSeed( genDef, functionInputDefs, seed);
-    return getTestCaseCount( baseDef, genDef, functionInputDefs);
-    }
 
   /**
-   * Changes the random seed used to generate test cases for the given functions.
+   * Returns the total number of test cases generated for the given function using the given seed.
    */
-  private void setRandomSeed( IGeneratorSet genDef, FunctionInputDef[] functionInputDefs, long seed)
+  private int getTestCaseCount( SystemTestDef baseDef, ITestCaseGenerator generator, FunctionInputDef functionInputDef, long seed)
     {
-    for( int i = 0; i < functionInputDefs.length; i++)
-      {
-      FunctionInputDef functionInputDef = functionInputDefs[i];
-      TupleGenerator functionGen = (TupleGenerator) genDef.getGenerator( functionInputDef.getName());
-      functionGen.setRandomSeed( seed);
-      }
+    generator.setRandomSeed( seed);
+    return getTestCaseCount( baseDef, generator, functionInputDef);
     }
 
   private static final Logger logger_ = LoggerFactory.getLogger( Reducer.class);

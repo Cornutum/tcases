@@ -30,6 +30,21 @@
         </Var>
       </VarSet>
 
+      <VarSet name="GenFactory">
+        <Var name="Defined">
+          <Value name="Yes" property="genFactory" once="true"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Class-Defined" when="genFactory">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Class-Valid" when="genFactory">
+          <Value name="Yes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+      </VarSet>
+
       <VarSet name="ResampleFactor">
         <Var name="Defined">
           <Value name="Yes" property="resampleFactor"/>
