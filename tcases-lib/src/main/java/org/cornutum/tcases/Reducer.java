@@ -173,7 +173,7 @@ public class Reducer
       {
       setSamples( 10);
       setResampleFactor( 0.0);
-      setGenFactory( new TupleGeneratorFactory());
+      setGenFactory( null);
       }
     
     /**
@@ -416,7 +416,10 @@ public class Reducer
      */
     public void setGenFactory( ITestCaseGeneratorFactory genFactory)
       {
-      genFactory_ = genFactory;
+      genFactory_ =
+          genFactory == null
+          ? new TupleGeneratorFactory()
+          : genFactory;
       }
 
     /**
