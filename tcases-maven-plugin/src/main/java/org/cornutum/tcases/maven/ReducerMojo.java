@@ -1,8 +1,9 @@
 package org.cornutum.tcases.maven;
 
-import org.cornutum.tcases.Tcases;
-import org.cornutum.tcases.Reducer;
 import org.cornutum.tcases.Reducer.Options;
+import org.cornutum.tcases.Reducer;
+import org.cornutum.tcases.Tcases;
+import org.cornutum.tcases.generator.ITestCaseGeneratorFactory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
@@ -78,11 +79,24 @@ public class ReducerMojo extends AbstractMojo
           throw new IllegalArgumentException( "Invalid genDef pattern='" + getGenDef() + "'");
           }
 
-
+        ITestCaseGeneratorFactory genFactory = null;
+        if( getGenFactory() != null)
+          {
+          try
+            {
+            genFactory = (ITestCaseGeneratorFactory) Class.forName( getGenFactory()).newInstance();
+            }
+          catch( Exception e)
+            {
+            throw new IllegalArgumentException( "Invalid generator factory=" + getGenFactory(), e);
+            }
+          }
+        
         // Set Reducer options for this Tcases project.
         Options options = new Options();
         options.setInputDef( inputDef);
         options.setGenDef( genDef==null? null : new File( inputDir, genDef));
+        options.setGenFactory( genFactory);
         options.setTestDef( testDef==null? null : new File( inputDir, testDef));
         options.setFunction( getFunction());
         options.setSamples( getSamples());
@@ -225,6 +239,22 @@ public class ReducerMojo extends AbstractMojo
     }
 
   /**
+   * Changes the generator factory class.
+   */
+  public void setGenFactory( String genFactory)
+    {
+    this.genFactory = genFactory;
+    }
+
+  /**
+   * Returns the generator factory class.
+   */
+  public String getGenFactory()
+    {
+    return genFactory;
+    }
+
+  /**
 
    * Changes the base test definition input file pattern.
    */
@@ -352,6 +382,13 @@ public class ReducerMojo extends AbstractMojo
    */
   @Parameter(property="genDef")
   private String genDef;
+
+  /**
+   * Defines the fully-qualified class name for the ITestCaseGeneratorFactory class used to create any new function-specific test case generators.
+   * The default value is "org.cornutum.tcases.generator.TupleGeneratorFactory".
+   */
+  @Parameter(property="genFactory")
+  private String genFactory;
 
   /**
    * Defines the function for which tests cases are reduced.
