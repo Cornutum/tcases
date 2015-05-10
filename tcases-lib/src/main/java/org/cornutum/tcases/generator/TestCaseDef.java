@@ -417,20 +417,28 @@ public class TestCaseDef implements Comparable<TestCaseDef>
    */
   public boolean isInfeasible()
     {
-    boolean feasible;
+    IAssertion unsatisfiable; 
     Iterator<IDisjunct> disjuncts;
-    for( feasible = true,
+    for( unsatisfiable = null,
            disjuncts = getRequired().getDisjuncts();
 
-         feasible
+         unsatisfiable == null
            && disjuncts.hasNext();)
       {
       for( Iterator<IAssertion> assertions = disjuncts.next().getAssertions();
-           feasible && assertions.hasNext();
-           feasible = !assertions.next().getClass().equals( AssertNot.class));
+
+           assertions.hasNext()
+             && !(unsatisfiable = assertions.next()).getClass().equals( AssertNot.class);
+
+           unsatisfiable = null);
       }
+
+    if( unsatisfiable != null)
+        {
+        logger_.debug( "{}: infeasible, can no longer satisfy {}", this, unsatisfiable);
+        }
     
-    return !feasible;
+    return unsatisfiable != null;
     }
 
   /**

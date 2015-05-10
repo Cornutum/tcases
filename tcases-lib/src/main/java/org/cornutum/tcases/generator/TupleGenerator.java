@@ -403,11 +403,6 @@ public class TupleGenerator implements ITestCaseGenerator
       complete = testCase.isSatisfied();
       }
 
-    else if( testCase.isInfeasible())
-      {
-      complete = false;
-      }
-
     else
       {
       // No, look for a compatible tuple to add that will bind more variables.    
@@ -449,10 +444,13 @@ public class TupleGenerator implements ITestCaseGenerator
              // More tuples to try?
              satisfyingTuples.hasNext()
                && !( // Compatible tuple found?
-                    (tupleAdded = testCase.addCompatible( (tuple = satisfyingTuples.next()))) != null
+                     (tupleAdded = testCase.addCompatible( (tuple = satisfyingTuples.next()))) != null
 
-                    // Can we complete bindings for remaining variables?
-                    && (complete = completeBindings( testCase, tuples, getVarsRemaining( vars, tupleAdded))));
+                     // Did this tuple create an feasible combination?
+                     && !testCase.isInfeasible()
+
+                     // Can we complete bindings for remaining variables?
+                     && (complete = completeBindings( testCase, tuples, getVarsRemaining( vars, tupleAdded))));
              
              tupleAdded = null)
           {
