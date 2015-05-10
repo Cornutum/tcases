@@ -790,7 +790,12 @@
         What's happening here? Clearly, some of the "dimensions of variation" described by these <SPAN class="code">Var</SPAN> definitions
         are not entirely independent of each other. Instead, there are relationships among these variables that <EM>constrain</EM> which
         combinations of values are feasible. We need a way to define those relationships so that infeasible combinations can be excluded from
-        our test cases. And that's where <EM>properties</EM> and <EM>conditions</EM> come into play.
+        our test cases.
+      </P>
+      
+      <P>
+        With Tcases, you can do that using <EM>properties</EM> and <EM>conditions</EM>. The following sections explain how, including
+        some tips about how to avoid certain <A href="#conditionTips">problems that constraints can introduce</A>.
       </P>
 
       <H4><A name="properties">Value properties</A></H4>
@@ -1087,6 +1092,59 @@
         The <SPAN class="code">when</SPAN> and <SPAN class="code">whenNot</SPAN> attributes are shorthand for the equivalent
         <SPAN class="code">When</SPAN> expression, and these alternatives are mutually exclusive. If you use either of these attributes, you
         can't specify a <SPAN class="code">When</SPAN> element in the same definition and vice versa.
+      </P>
+
+      <H4><A name="conditionTips">But be careful!</A></H4>
+      <P>
+        With the contraints defined by properties and conditions comes great power. Use it carefully! It's possible to over-constrain your input model, so
+        that it becomes infeasible. In other words, it might become impossible to generate the test cases you want because some of them can't satisfy all
+        the constraints. 
+      </P>
+      <P>
+        In some cases, Tcases can quickly detect when constraints are infeasible and report the error immediately. But in many cases, especially when
+        there are chains of conditions involving multiple variable, Tcases can find the error only after trying and eliminating all possible combinations.
+        Even for input models of modest size, that can take a really long time! If it looks to you like Tcases is frozen, that's probably what's going on.
+        Tcases is not frozen &mdash; it's busy with a long, exhaustive, and ultimately fruitless search.
+      </P>
+      <P>
+        To avoid such problems, it helps to remember this simple rule: every "success" test case must define a valid value for all variables. For any individual
+        variable <SPAN class="code">V</SPAN>, no matter which values are chosen for the other variables in a success test case, there must be at least one valid
+        value of <SPAN class="code">V</SPAN> that is compatible with them. 
+      <P>
+        For example, the following variable definitions are infeasible. There is no way
+        to complete a success test case containing <SPAN class="code">Shape=Square</SPAN> because there is no valid value for <SPAN class="code">Color</SPAN>
+        that is compatible with it.
+      </P>
+
+        <DIV class="exampleDoc">
+          &lt;Var name="Shape"&gt; <BR/>
+          &nbsp; &lt;Value name="Square" property="quadrilateral"/&gt; <BR/>
+          &nbsp; &lt;Value name="Circle"/&gt; <BR/>
+          &lt;/Var&gt; <BR/>
+          &lt;Var name="Color"&gt; <BR/>
+          &nbsp; &lt;Value name="Red" whenNot="quadrilateral"/&gt; <BR/>
+          &nbsp; &lt;Value name="Green" whenNot="quadrilateral"/&gt; <BR/>
+          &nbsp; &lt;Value name="Blue" whenNot="quadrilateral"/&gt; <BR/>
+          &nbsp; &lt;Value name="Chartreuse" failure="true"/&gt; <BR/>
+          &lt;/Var&gt; <BR/>
+        </DIV>
+      </P>
+      <P>
+        The only exception is for conditions in which a variable is defined to be entirely irrelevant ("NA"). For example, the following definitions are OK,
+        because they explicitly declare that <SPAN class="code">Color</SPAN> is incompatible with <SPAN class="code">Shape=Square</SPAN>.
+
+        <DIV class="exampleDoc">
+          &lt;Var name="Shape"&gt; <BR/>
+          &nbsp; &lt;Value name="Square" property="quadrilateral"/&gt; <BR/>
+          &nbsp; &lt;Value name="Circle"/&gt; <BR/>
+          &lt;/Var&gt; <BR/>
+          &lt;Var name="Color" whenNot="quadrilateral"&gt; <BR/>
+          &nbsp; &lt;Value name="Red"/&gt; <BR/>
+          &nbsp; &lt;Value name="Green"/&gt; <BR/>
+          &nbsp; &lt;Value name="Blue"/&gt; <BR/>
+          &nbsp; &lt;Value name="Chartreuse" failure="true"/&gt; <BR/>
+          &lt;/Var&gt; <BR/>
+        </DIV>
       </P>
 
       <H2><A name="coverage">Defining Input Coverage</A></H2>
