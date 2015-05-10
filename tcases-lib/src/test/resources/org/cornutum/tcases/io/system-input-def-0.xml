@@ -1,4 +1,5 @@
 <System name="System-0">
+  <Has name="A0" value="AV0"/>
   <Function name="Function-0">
 
     <Input type="state">

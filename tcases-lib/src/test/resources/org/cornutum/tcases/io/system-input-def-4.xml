@@ -37,11 +37,13 @@
       </Var>
     </Input>
 
+    <Has name="A0" value="AV0"/>
   </Function>
 
   <Function name="Function-1">
 
     <Input type="state">
+      <Has name="A1" value="AV1"/>
       <Var name="state-1-0">
         <Value name="value-0" failure="no" property="R1,R2">
           <When>

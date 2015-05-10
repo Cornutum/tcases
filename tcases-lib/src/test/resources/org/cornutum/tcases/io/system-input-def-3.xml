@@ -1,6 +1,6 @@
 <System name="System-3">
   <Function name="Function-0">
-
+    <Has name="A0" value="AV0"/>
     <Input type="arg">
       <VarSet name="arg-0-0">
         <Var name="member-0">
@@ -13,7 +13,7 @@
         </Var>
       </VarSet>
     </Input>
-
+    <Has name="A1" value="AV1"/>
     <Input type="env">
       <VarSet name="env-0-0">
         <Var name="member-0">

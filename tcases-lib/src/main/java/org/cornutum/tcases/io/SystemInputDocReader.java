@@ -272,17 +272,88 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     }
   
   /**
-   * Handles System elements.
+   * Base class for annotated elements.
    *
    */
-  protected class SystemHandler extends ElementHandler
+  protected abstract class AnnotatedHandler extends ElementHandler
     {
     /**
      * Returns true if the given element is a valid member of this element.
      */
     public boolean isMember( String memberQname)
       {
-      return FUNCTION_TAG.equals( memberQname);
+      return HAS_TAG.equals( memberQname);
+      }
+
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected abstract Annotated getAnnotated();
+    
+    /**
+     * Changes the value of the given annotation.
+     */
+    public void setAnnotation( String name, String value)
+      {
+      getAnnotated().setAnnotation( name, value);
+      }
+
+    /**
+     * Returns the value of the given annotation.
+     */
+    public String getAnnotation( String name)
+      {
+      return getAnnotated().getAnnotation( name);
+      }
+    }
+  
+  /**
+   * Handles Has elements
+   */
+  protected class HasHandler extends ElementHandler
+    {    
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      AnnotatedHandler parent = (AnnotatedHandler) getParent();
+      try
+        {
+        String annotation = requireAttribute( attributes, NAME_ATR);
+        String value = parent.getAnnotation( annotation);
+        if( value != null)
+          {
+          throw new IllegalArgumentException( "Annotation=" + annotation + " already set to '" + value + "'");
+          }
+        parent.setAnnotation( annotation, requireAttribute( attributes, VALUE_ATR));
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Can't add annotation: " + e.getMessage(), getDocumentLocator()); 
+        }
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), NAME_ATR, VALUE_ATR);
+      }
+    }
+  
+  /**
+   * Handles System elements.
+   *
+   */
+  protected class SystemHandler extends AnnotatedHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return
+        super.isMember( memberQname)
+        || FUNCTION_TAG.equals( memberQname);
       }
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
@@ -313,20 +384,30 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       return addAttributeList( super.addAttributes( attributes), NAME_ATR);
       }
+
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected Annotated getAnnotated()
+      {
+      return getSystemInputDef();
+      }
     }
   
   /**
    * Handles Function elements.
    *
    */
-  protected class FunctionHandler extends ElementHandler
+  protected class FunctionHandler extends AnnotatedHandler
     {
     /**
      * Returns true if the given element is a valid member of this element.
      */
     public boolean isMember( String memberQname)
       {
-      return INPUT_TAG.equals( memberQname);
+      return
+        super.isMember( memberQname)
+        ||  INPUT_TAG.equals( memberQname);
       }
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
@@ -451,6 +532,14 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       return addAttributeList( super.addAttributes( attributes), NAME_ATR);
       }
 
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected Annotated getAnnotated()
+      {
+      return getFunctionInputDef();
+      }
+
     private FunctionInputDef functionInputDef_;
     private Map<String,Integer> propertyDefs_ = new HashMap<String,Integer>();
     private Map<String,Integer> propertyRefs_ = new HashMap<String,Integer>();
@@ -460,7 +549,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
    * Handles Input elements.
    *
    */
-  protected class InputHandler extends ElementHandler
+  protected class InputHandler extends AnnotatedHandler
     {
     /**
      * Returns true if the given element is a valid member of this element.
@@ -468,7 +557,8 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     public boolean isMember( String memberQname)
       {
       return
-        VAR_TAG.equals( memberQname)
+        super.isMember( memberQname)
+        || VAR_TAG.equals( memberQname)
         || VARSET_TAG.equals( memberQname);
       }
     
@@ -476,6 +566,14 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       String type = getIdentifier( attributes, TYPE_ATR);
       setType( type == null? IVarDef.ARG : type);
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      for( AbstractVarDef varDef : getVarDefs())
+        {
+        varDef.addAnnotations( getAnnotated());
+        }
       }
 
     /**
@@ -511,21 +609,41 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       return addAttributeList( super.addAttributes( attributes), TYPE_ATR);
       }
 
+    /**
+     * Returns variable definitions for this element.
+     */
+    protected List<AbstractVarDef> getVarDefs()
+      {
+      return varDefs_;
+      }
+
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected Annotated getAnnotated()
+      {
+      return annotated_;
+      }
+
     private String type_;
+    private List<AbstractVarDef> varDefs_ = new ArrayList<AbstractVarDef>();
+    private Annotated annotated_ = new Annotated(){};
     }
   
   /**
    * Base class for conditional elements.
    *
    */
-  protected abstract class ConditionalHandler extends ElementHandler
+  protected abstract class ConditionalHandler extends AnnotatedHandler
     {
     /**
      * Returns true if the given element is a valid member of this element.
      */
     public boolean isMember( String memberQname)
       {
-      return WHEN_TAG.equals( memberQname);
+      return
+        super.isMember( memberQname)
+        ||  WHEN_TAG.equals( memberQname);
       }
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
@@ -563,6 +681,14 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     protected Set<String> addAttributes( Set<String> attributes)
       {
       return addAttributeList( super.addAttributes( attributes), WHEN_ATR, WHENNOT_ATR);
+      }
+
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected Annotated getAnnotated()
+      {
+      return getConditional();
       }
     }
   
@@ -816,6 +942,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
           {
           InputHandler parent = (InputHandler) getParent();
           varDef.setType( parent.getType());
+          parent.getVarDefs().add( varDef);
           parent.getFunctionInputDef().addVarDef( varDef);
           }
         else
@@ -1181,6 +1308,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       qName.equals( ALLOF_TAG)?       (ElementHandler) new AllOfHandler() :
       qName.equals( ANYOF_TAG)?       (ElementHandler) new AnyOfHandler() :
       qName.equals( FUNCTION_TAG)?    (ElementHandler) new FunctionHandler() :
+      qName.equals( HAS_TAG)?         (ElementHandler) new HasHandler() :
       qName.equals( INPUT_TAG)?       (ElementHandler) new InputHandler() :
       qName.equals( NOT_TAG)?         (ElementHandler) new NotHandler() :
       qName.equals( PROPERTY_TAG)?    (ElementHandler) new PropertyHandler() :
@@ -1247,6 +1375,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   private static final String ALLOF_TAG     = "AllOf";
   private static final String ANYOF_TAG     = "AnyOf";
   private static final String FUNCTION_TAG  = "Function";
+  private static final String HAS_TAG       = "Has";
   private static final String INPUT_TAG     = "Input";
   private static final String NOT_TAG       = "Not";
   private static final String PROPERTY_TAG  = "Property";
@@ -1261,6 +1390,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   private static final String ONCE_ATR      = "once";
   private static final String PROPERTY_ATR  = "property";
   private static final String TYPE_ATR      = "type";
+  private static final String VALUE_ATR     = "value";
   private static final String WHENNOT_ATR   = "whenNot";
   private static final String WHEN_ATR      = "when";
 
