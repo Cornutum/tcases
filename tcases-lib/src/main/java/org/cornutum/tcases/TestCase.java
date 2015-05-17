@@ -23,7 +23,7 @@ import java.util.TreeSet;
  * Represents a test case for a system function, defining a set of input variable bindings.
  *
  */
-public class TestCase implements Comparable<TestCase>
+public class TestCase extends Annotated implements Comparable<TestCase>
   {
   /**
    * Defines the type of a {@link TestCase}

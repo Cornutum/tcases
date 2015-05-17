@@ -1,0 +1,90 @@
+<System name="System-5">
+  <Function name="Function-0">
+
+    <Input type="env">
+      <Var name="env-0-0">
+        <Has name="A0" value="AV0"/>
+        <When>
+          <AllOf property="P1, P2, P3">
+            <Not property="P4"/>
+            <AllOf property="P5"/>
+            <AnyOf property="P6"/>
+          </AllOf>
+        </When>
+
+        <Value name="value-0" failure="true">
+          <Has name="A5" value="AV5"/>
+          <When>
+            <AllOf property="P1, P2, P3">
+              <Not property="P4"/>
+              <AllOf property="P5"/>
+              <AnyOf property="P6"/>
+            </AllOf>
+          </When>
+          <Has name="A6" value="AV6"/>
+        </Value>
+
+        <Value name="value-1" failure="false" once="true">
+          <When>
+            <AllOf property="P1, P2, P3">
+              <Not property="P4"/>
+              <AllOf property="P5"/>
+              <AnyOf property="P6"/>
+            </AllOf>
+          </When>
+        </Value>
+      </Var>
+
+      <Var name="env-0-1">
+        <When>
+          <AllOf property="P1, P2, P3">
+            <Not property="P4"/>
+            <AllOf property="P5"/>
+            <AnyOf property="P6"/>
+          </AllOf>
+        </When>
+
+        <Value name="value-2" failure="true">
+          <When>
+            <AllOf property="P1, P2, P3">
+              <Not property="P4"/>
+              <AllOf property="P5"/>
+              <AnyOf property="P6"/>
+            </AllOf>
+          </When>
+        </Value>
+
+        <Value name="value-3" failure="false" once="true">
+          <When>
+            <AllOf property="P1, P2, P3">
+              <Not property="P4"/>
+              <AllOf property="P5"/>
+              <AnyOf property="P6"/>
+            </AllOf>
+          </When>
+        </Value>
+      </Var>
+
+      <VarSet name="env-0-2">
+        <Has name="A1" value="AV1"/>
+        <Var name="member-0">
+          <Value name="value-4" property="P1,P2,P3"/>
+          <Has name="A2" value="AV2"/>
+          <Has name="A3" value="AV3"/>
+          <Has name="A3" value="Duplicate"/>
+        </Var>
+      </VarSet>
+
+      <VarSet name="env-0-3">
+        <Var name="member-0">
+          <Value name="value-5" property="P4,P5,P6">
+            <Has name="A4" value="AV4"/>
+          </Value>
+        </Var>
+        <Has name="A7" value="AV7"/>
+        <Has name="A8" value="AV8"/>
+      </VarSet>
+    </Input>
+
+  </Function>
+</System>

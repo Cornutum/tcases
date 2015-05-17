@@ -70,6 +70,14 @@ public abstract class Annotated
     {
     return annotations_.keySet().iterator();
     }
+
+  /**
+   * Returns the number of annotations defined.
+   */
+  public int getAnnotationCount()
+    {
+    return annotations_.size();
+    }
   
   private Map<String,String> annotations_ = new HashMap<String,String>();
   }
