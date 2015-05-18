@@ -1131,7 +1131,7 @@ public class Tcases
         ((TupleGenerator) functionGen).setDefaultTupleSize( defaultTupleSize);
         }
       
-      testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
+      testDef.addFunctionTestDef( annotateTests( inputDef, functionGen.getTests( functionDef, functionBase)));
       }
 
     return testDef;
@@ -1174,6 +1174,46 @@ public class Tcases
   public static SystemTestDef getTests( InputStream inputDefStream)
     {
     return getTests( inputDefStream, null, null);
+    }
+
+  /**
+   * Updates the given test definitions by adding all applicable annotations from the given input definition.
+   */
+  public static FunctionTestDef annotateTests( SystemInputDef inputDef, FunctionTestDef functionTestDef)
+    {
+    FunctionInputDef functionInputDef = inputDef.getFunctionInputDef( functionTestDef.getName());
+    for( Iterator<TestCase> testCases = functionTestDef.getTestCases(); testCases.hasNext(); )
+      {
+      // Add test case annotations.
+      TestCase testCase = testCases.next();
+      testCase.addAnnotations( functionInputDef);
+      testCase.addAnnotations( inputDef);
+
+      // Add variable binding annotations.
+      for( Iterator<VarBinding> varBindings = testCase.getVarBindings(); varBindings.hasNext(); )
+        {
+        VarBinding binding = varBindings.next();
+        VarDef varDef = functionInputDef.findVarDefPath( binding.getVar());
+        VarValueDef valueDef = varDef.getValue( binding.getValue());
+
+        // Add value annotations...
+        binding.addAnnotations( valueDef);
+
+        // ...and any other annotations for this variable...
+        binding.addAnnotations( varDef);
+
+        // ...and any other annotations for variable sets that contain this variable.
+        for( IVarDef ancestor = varDef.getParent(); ancestor != null; ancestor = ancestor.getParent())
+          {
+          if( ancestor instanceof Annotated)
+            {
+            binding.addAnnotations( (Annotated) ancestor);
+            }
+          }
+        }
+      }
+
+    return functionTestDef;
     }
 
   /**
