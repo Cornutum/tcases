@@ -1194,10 +1194,14 @@ public class Tcases
         {
         VarBinding binding = varBindings.next();
         VarDef varDef = functionInputDef.findVarDefPath( binding.getVar());
-        VarValueDef valueDef = varDef.getValue( binding.getValue());
+        String value = binding.getValue();
 
         // Add value annotations...
-        binding.addAnnotations( valueDef);
+        if( !value.equals( VarValueDef.NA.getName()))
+          {
+          VarValueDef valueDef = varDef.getValue( value);
+          binding.addAnnotations( valueDef);
+          }
 
         // ...and any other annotations for this variable...
         binding.addAnnotations( varDef);
