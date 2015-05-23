@@ -1772,7 +1772,8 @@
       <P>
         Here's what you'll see printed to standard output: 
         each test case definition has been transformed into a <SPAN class="code">@Test</SPAN> method. The name of the method
-        is based on the <SPAN class="code">Function</SPAN> name. And the Javadoc comments describe the input values for this test case. The
+        is based on the <SPAN class="code">Function</SPAN> name. And the Javadoc comments describe the input values for this test case. 
+        Similarly, all input value assignments are shown in the body of the method. Otherwise, the
         body of the method is empty, waiting for the implementation to be filled in by you.
 
         <DIV class="exampleDoc">
@@ -1800,6 +1801,15 @@
           &nbsp; public void find_0()<BR/>
           &nbsp; &nbsp; {<BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;pattern.size = empty</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;pattern.quoted = yes</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;pattern.blanks = NA</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;pattern.embeddedQuotes = NA</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;fileName = defined</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;file.exists = yes</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;file.contents.linesLongerThanPattern = one</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;file.contents.patterns = NA</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;file.contents.patternsInLine = NA</SPAN><BR/>
           <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
           <BR/>
@@ -1837,6 +1847,7 @@
           &nbsp; public void find_6() <BR/>
           &nbsp; &nbsp; { <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN> <BR/>
+          &nbsp; &nbsp; ... <BR/>
           <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN> <BR/>
           <BR/>
@@ -1876,6 +1887,7 @@
           &nbsp; public void find_0()<BR/>
           &nbsp; &nbsp; {<BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          &nbsp; &nbsp; ... <BR/>
           <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
           <BR/>
@@ -1912,6 +1924,7 @@
           &nbsp; public void find_0()<BR/>
           &nbsp; &nbsp; {<BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          &nbsp; &nbsp; ... <BR/>
           <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
           <BR/>
@@ -1919,6 +1932,11 @@
           &nbsp; &nbsp; } <BR/>
           &nbsp; ...<BR/>
         </DIV>
+      </P>
+
+      <P>
+        And, if you'd rather not have input value assignments shown in the test method body, you can exclude them by adding the option
+        <NOBR><SPAN class="code">-p values=false</SPAN></NOBR>.
       </P>
 
       <P>
