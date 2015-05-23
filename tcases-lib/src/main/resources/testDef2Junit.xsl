@@ -21,8 +21,8 @@
   <xsl:variable name="throwsValue" select="translate($throws,$uppercase,$lowercase)"/>
   <xsl:param name="system" select=""/>
   <xsl:param name="class" select=""/>
-  <xsl:param name="vars" select="'true'"/>
-  <xsl:variable name="varsValue" select="translate($vars,$uppercase,$lowercase)"/>
+  <xsl:param name="values" select="'true'"/>
+  <xsl:variable name="valuesValue" select="translate($values,$uppercase,$lowercase)"/>
 
   <xsl:template match="TestCases">
     <xsl:variable name="systemId" select="@system"/>
@@ -123,7 +123,7 @@
         </xsl:if>
         <xsl:text>
     // Given...</xsl:text>
-        <xsl:if test="count(Input/Var/Has) > 0 or $varsValue='true' or $varsValue='yes'">
+        <xsl:if test="count(Input/Var/Has) > 0 or $valuesValue='true' or $valuesValue='yes'">
           <xsl:for-each select="Input/Var">
               <xsl:text>
     //</xsl:text>
