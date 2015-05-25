@@ -14,7 +14,7 @@
 
   <name>Tcases Shell</name>
   <description>Generates test cases from system input space models</description>
-  <url>https://code.google.com/p/tcases</url>
+  <url>https://github.com/Cornutum/tcases</url>
 
   <developers>
     <developer>
@@ -36,17 +36,17 @@
   <organization>
     <name>The Cornutum Project</name>
     <url>http://www.cornutum.org/</url>
-  </organization>    
+  </organization>
 
   <scm>
-    <connection>scm:svn:http://tcases.googlecode.com/svn/trunk</connection>
-    <developerConnection>scm:svn:https://tcases.googlecode.com/svn/trunk</developerConnection>
-    <url>http://code.google.com/p/tcases/source/browse/</url>
+    <connection>scm:git:https://github.com/Cornutum/tcases</connection>
+    <developerConnection>scm:git:https://github.com/Cornutum/tcases</developerConnection>
+    <url>https://github.com/Cornutum/tcases</url>
   </scm>
 
   <issueManagement>
-    <system>Google Code</system>
-    <url>https://code.google.com/p/tcases/issues/list</url>
+    <system>GitHub</system>
+    <url>https://github.com/Cornutum/tcases/issues</url>
   </issueManagement>
 
   <mailingLists>
