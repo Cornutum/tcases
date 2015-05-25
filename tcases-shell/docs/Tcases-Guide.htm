@@ -1107,6 +1107,11 @@
         Tcases is not frozen &mdash; it's busy with a long, exhaustive, and ultimately fruitless search.
       </P>
       <P>
+        (Tip: To help find the bad constraint that's giving you grief, try <A href="#logging">changing the logging level</A> to 
+        <SPAN class="code">DEBUG</SPAN> or <SPAN class="code">TRACE</SPAN>.)
+      </P>
+
+      <P>
         To avoid such problems, it helps to remember this simple rule: every "success" test case must define a valid value for all variables. For any individual
         variable <SPAN class="code">V</SPAN>, no matter which values are chosen for the other variables in a success test case, there must be at least one valid
         value of <SPAN class="code">V</SPAN> that is compatible with them. 
@@ -1745,7 +1750,31 @@
       </P>
 
       <H3><A name="trouble">Troubleshooting FAQs</A></H3>
-      <P>(TBD)</P>
+      <OL>
+        <LI> <B>Help! Tcases keeps running and never finishes!</B>
+          <BLOCKQUOTE>
+            You have probably over-constrained your input model, making it impossible to generate test cases that satisfy all of the 
+            constraints. But that won't stop Tcases from trying until it has eliminated all possible combinations.
+            Which, even for input models of modest size, can take a <EM>very</EM> long time. 
+            Tcases is not frozen &mdash; it's busy with a long, exhaustive, and ultimately fruitless search.
+            <BR/><BR/>
+              To fix this, check your <SPAN class="code">condition</SPAN> and <SPAN class="code">property</SPAN> settings until you find
+              the problem. You can find more details about this situation <A href="#conditionTips">here</A>.
+          </BLOCKQUOTE>
+        </LI> 
+
+        <LI> <A name="logging"><B>How can I see more details about what Tcases is doing?</B></A>
+          <BLOCKQUOTE>
+            Tcases uses the <A href="http://logback.qos.ch/">Logback</A> system for producing a log of its actions. By default, log
+            messages are written to a file named <SPAN class="code">tcases.log</SPAN> in the current working directory,
+            although you can redirect them to standard output by using the <NOBR><SPAN class="code">-l stdout</SPAN></NOBR> option.
+            <BR/><BR/>
+            The default logging level is <SPAN class="code">INFO</SPAN>, which shows only basic progress and error information.
+            To see more details, change the logging level to <SPAN class="code">DEBUG</SPAN> using the <SPAN class="code">-L</SPAN> option.
+            To see even more details, change the logging level to <SPAN class="code">TRACE</SPAN>.
+          </BLOCKQUOTE>
+        </LI>
+      </OL>
 
       <H2><A name="transform">Transforming Test Cases</A></H2>
       <P>
