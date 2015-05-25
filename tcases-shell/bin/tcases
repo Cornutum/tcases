@@ -3,16 +3,13 @@
 #                     Copyright 2012, Cornutum Project
 #                              www.cornutum.org
 # 
-#                         $Revision: 243 $
-#      $Date: 2013-01-19 18:24:18 -0600 (Sat, 19 Jan 2013) $
-# 
 #######################################################################
 
 pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-o outDir] [-p name=value] [-r seed] [-t testDef] [-v] [-x transformDef | -J] [inputDef]" >&2
+  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-t testDef] [-v] [-x transformDef | -J] [inputDef]" >&2
   echo "" >&2
   echo "  Generates a set of test cases from a system input definition, according" >&2
   echo "  to the given command line arguments." >&2
@@ -34,7 +31,7 @@ usage()
   echo "              written to the file specified by the -t option. If an output path cannot" >&2
   echo "              be derived, output is written to standard output." >&2
   echo "" >&2
- 	echo "  -g genDef   If -g is defined, test definitions are created using the generator(s)" >&2
+  echo "  -g genDef   If -g is defined, test definitions are created using the generator(s)" >&2
   echo "              specified by the given genDef file. If omitted, the default generator" >&2
   echo "              definition is used. The default generator definition is read from the" >&2
   echo "              corresponding *-Generators.xml file in the same directory as the inputDef," >&2
@@ -47,12 +44,15 @@ usage()
   echo "" >&2
   echo "  -l logFile  If -l is defined, log output is written to the given file. If omitted," >&2
   echo "              log output is written to a file named ${pgm}.log in the current working" >&2
-  echo "              directory" >&2
+  echo "              directory. If logFile is \"stdout\", log output is written to standard output." >&2
+  echo "" >&2
+  echo "  -L logLevel Defines the level for Tcases log output. If omitted, the default level is INFO" >&2
+  echo "              Tcases logging uses the configuration and levels defined by the Logback system." >&2
   echo "" >&2
   echo "  -n          If -n is defined, any previous contents of the testDef are ignored." >&2
   echo "              If omitted, new test definitions are based on the previous testDef." >&2
   echo "" >&2
-	echo "  -o outDir   If -o is defined, test definition output is written to the specified" >&2
+  echo "  -o outDir   If -o is defined, test definition output is written to the specified" >&2
   echo "              directory. If omitted, the default outDir is the directory containing" >&2
   echo "              the inputDef or, if reading from standard input, the current working" >&2
   echo "              directory. If an output path cannot be derived, output is written to" >&2
@@ -64,12 +64,12 @@ usage()
   echo "  -r seed     If -r is defined, use the given random number seed for all generators." >&2
   echo "              This updates the generator definitions specified by the genDef file." >&2
   echo "" >&2
- 	echo "  -t testDef  If -t is defined, test definition output is written to the specified" >&2
+  echo "  -t testDef  If -t is defined, test definition output is written to the specified" >&2
   echo "              testDef path, relative to the outDir. If omitted, the default testDef" >&2
   echo "              name is derived from the inputDef name. If an output path cannot be" >&2
   echo "              derived, output is written to standard output." >&2
   echo "" >&2
- 	echo "  -v          Shows the current Tcases version. If this option is given, no other" >&2
+  echo "  -v          Shows the current Tcases version. If this option is given, no other" >&2
   echo "              action is performed." >&2
   echo "" >&2
   echo "  -x xltDef   If -x is defined, test definition output is transformed according to the" >&2
@@ -84,6 +84,7 @@ while [ $# -gt 0 ] ; do
     -g) shift; genDef="$1";;
     -J) isJUnit="$1";;
     -l) shift; logFile="$1";;
+    -L) shift; logLevel="$1";;
     -n) noExtend="$1";;
     -o) shift; outDir="$1";;
     -p) shift; params="$params -p $1";;
@@ -98,6 +99,13 @@ while [ $# -gt 0 ] ; do
 done
 
 logFile=${logFile:-${pgm}.log}
+logLevel=${logLevel:-INFO}
+if [ $logFile = "stdout" ] ; then
+  logDest=tcases.log.dest
+  logFile=STDOUT
+else
+  logDest=tcases.log.file
+fi
 inputDef="$1"
 shift
 
@@ -130,7 +138,8 @@ fi
 
 java \
   -cp "$classPath" \
-  -Dtcases.log.file="$logFile" \
+  -D${logDest}="$logFile" \
+  -Dtcases.log.level="$logLevel" \
   org.cornutum.tcases.Tcases \
   $showVersion \
   ${genDef:+-g "$genDef"} \
