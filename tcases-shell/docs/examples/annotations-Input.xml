@@ -1,0 +1,44 @@
+<System name="Examples">
+    <Function name="addShape">
+        <!-- Test case annotations -->
+        <Has name="pageType" value="Page"/>
+        <Has name="pageName" value="page"/>
+        <Has name="pageValue" value="new Page()"/>
+
+        <Input>
+
+            <Var name="Type">
+                <!-- Variable binding annotations -->
+                <Has name="varType" value="Shape"/>
+                <Has name="varName" value="shape"/>
+                <Has name="varEval" value="new Shape"/>
+
+                <Value name="SQUARE"/>
+                <Value name="CIRCLE"/>
+                <Value name="LINE"/>
+            </Var>
+
+            <Var name="Size">
+                <!-- Variable binding annotations -->
+                <Has name="varType" value="int"/>
+                <Has name="varName" value="size"/>
+                <Has name="varApply" value="setSize"/>
+
+                <Value name="1"/>
+                <Value name="10"/>
+                <Value name="100"/>
+            </Var>
+
+            <Var name="Color">
+                <!-- Variable binding annotations -->
+                <Has name="varType" value="String"/>
+                <Has name="varName" value="color"/>
+                <Has name="varApply" value="setColor"/>
+
+                <Value name="red"/>
+                <Value name="green"/>
+                <Value name="blue"/>
+            </Var>
+        </Input>
+    </Function>
+</System>
