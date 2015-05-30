@@ -5,10 +5,16 @@
     <encoder> 
       <pattern>%d{HH:mm:ss.SSS} %-5level %logger{32} - %msg%n</pattern> 
     </encoder> 
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
+    <encoder> 
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{32} - %msg%n</pattern> 
+    </encoder> 
   </appender> 
   
-  <root level="debug"> 
-    <appender-ref ref="FILE" /> 
+  <root level="${tcases.log.level:-debug}"> 
+    <appender-ref ref="${tcases.log.dest:-FILE}" /> 
   </root> 
 
 </configuration>
