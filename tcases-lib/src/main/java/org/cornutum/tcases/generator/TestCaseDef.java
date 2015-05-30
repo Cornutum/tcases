@@ -151,14 +151,14 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     try
       {
       newBindings = addBindings( tuple);
-      logger_.debug( "{}: adding tuple={}", this, tuple);
+      logger_.debug( "Adding tuple={}, testCase={}", tuple, this);
 
       }
     catch( BindingException be)
       {
       logger_.debug
-        ( "{}, can't add tuple={}: {}",
-          new Object[]{ this, tuple, be.getMessage()});
+        ( "Can't add tuple={}: {}, testCase={}",
+          new Object[]{ tuple, be.getMessage(), this});
       }
 
     return newBindings;
@@ -435,7 +435,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
 
     if( unsatisfiable != null)
         {
-        logger_.debug( "{}: infeasible, can no longer satisfy {}", this, unsatisfiable);
+        logger_.debug( "Infeasible, can no longer satisfy {}, testCase={}", unsatisfiable, this);
         }
     
     return unsatisfiable != null;
@@ -464,22 +464,34 @@ public class TestCaseDef implements Comparable<TestCaseDef>
 
   public String toString()
     {
-    ArrayList<Map.Entry<VarDef,VarValueDef>> bindings = new ArrayList<Map.Entry<VarDef,VarValueDef>>( bindings_.entrySet());
+    ArrayList<VarDef> vars = new ArrayList<VarDef>( bindings_.keySet());
     Collections.sort
-      ( bindings,
-        new Comparator<Map.Entry<VarDef,VarValueDef>>()
+      ( vars,
+        new Comparator<VarDef>()
         {
-        public int compare( Map.Entry<VarDef,VarValueDef> e1, Map.Entry<VarDef,VarValueDef> e2)
+        public int compare( VarDef v1, VarDef v2)
           {
-          IVarDef.Position pos1 = e1.getKey().getPosition();
-          IVarDef.Position pos2 = e2.getKey().getPosition();
-          return pos1.compareTo( pos2);
+          return v1.getPosition().compareTo( v2.getPosition());
           }
-        }); 
+        });
+    StringBuilder bindings = new StringBuilder( "[");
+    for( VarDef var : vars)
+      {
+      if( bindings.length() > 1)
+        {
+        bindings.append( ", ");
+        }
+      bindings
+        .append( var.getName())
+        .append( '=')
+        .append( bindings_.get( var).getName());
+      }
+    bindings.append( ']');
+        
     return
       ToString.getBuilder( this)
       .append( "id", getId())
-      .append( "bindings", bindings)
+      .append( "bindings", bindings.toString())
       .append( "properties", properties_)
       .toString();
     }

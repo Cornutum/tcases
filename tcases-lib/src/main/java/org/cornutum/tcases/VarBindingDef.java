@@ -9,7 +9,6 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.conditions.AllOf;
 import org.cornutum.tcases.conditions.ICondition;
-import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.lang3.ObjectUtils;
 
@@ -129,9 +128,10 @@ public class VarBindingDef
   public String toString()
     {
     return
-      ToString.getBuilder( this)
-      .append( "var", getVarDef())
-      .append( "value", getValueDef())
+      new StringBuilder()
+      .append( getVarDef()==null? ":" : getVarDef().getName())
+      .append( '=')
+      .append( getValueDef()==null? ":" : getValueDef().getName())
       .toString();
     }
 
