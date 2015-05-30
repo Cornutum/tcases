@@ -1,6 +1,7 @@
 <System name="System-2">
   <Function name="Function-0">
-
+    <Has name="A0" value="AV0"/>
+    <Has name="A1" value="AV1"/>
     <Input type="arg">
       <Var name="arg-0-0" when="E1,E2,E3 " whenNot="E4">
         <Value name="value-0" when="E5,E6" whenNot="E7" property=" A1, A2, ">
@@ -59,6 +60,8 @@
 
   </Function>
 
+  <Has name="A0" value="AV0"/>
+  
   <Function name="Function-1">
 
     <Input type="arg">
@@ -76,4 +79,6 @@
     </Input>
 
   </Function>
+
+  <Has name="A1" value="AV1"/>
 </System>

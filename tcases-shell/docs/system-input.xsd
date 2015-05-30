@@ -15,6 +15,12 @@
   <!-- Defines the schema for a system input specification document -->
   <!-- $Revision$, $Date$ -->
 
+  <!-- Annotations -->
+  <xs:complexType name="annotationType">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+
   <!-- Conditions -->
   <xs:complexType name="conditionExprType">
     <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -47,11 +53,15 @@
 
       <xs:element name="When" minOccurs="0" maxOccurs="1" type="conditionType"/>
 
+      <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+
       <xs:element name="Value" maxOccurs="unbounded">
         <xs:complexType>
           <xs:sequence>
 
             <xs:element name="When" minOccurs="0" maxOccurs="1" type="conditionType"/>
+
+            <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
 
             <xs:element name="Property" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
@@ -80,6 +90,8 @@
 
       <xs:element name="When" minOccurs="0" maxOccurs="1" type="conditionType"/>
 
+      <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+
       <xs:sequence maxOccurs="unbounded">
         <xs:choice>
           <xs:element name="Var" type="varType"/>
@@ -95,14 +107,23 @@
   <!-- System functions -->
   <xs:element name="System">
     <xs:complexType>
+
+      <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+
       <xs:sequence maxOccurs="unbounded">
 
         <xs:element name="Function">
           <xs:complexType>
+
+            <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+              
             <xs:sequence maxOccurs="unbounded">
 
               <xs:element name="Input">
                 <xs:complexType>
+
+                  <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+
                   <xs:sequence maxOccurs="unbounded">
 
                     <xs:choice>

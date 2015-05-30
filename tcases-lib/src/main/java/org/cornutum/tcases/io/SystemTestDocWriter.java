@@ -115,6 +115,7 @@ public class SystemTestDocWriter implements Closeable
     writer_.writeTagEnd();
 
     writer_.indent();
+    writeAnnotations( testCase);
     String[] types = testCase.getVarTypes();
     for( int i = 0; i < types.length; i++)
       {
@@ -158,7 +159,35 @@ public class SystemTestDocWriter implements Closeable
       {
       writer_.writeAttribute( FAILURE_ATR, "true");
       }
-    writer_.writeEmptyElementEnd();
+
+    if( binding.getAnnotationCount() == 0)
+      {
+      writer_.writeEmptyElementEnd();
+      }
+    else
+      {
+      writer_.writeTagEnd();
+      writer_.indent();
+      writeAnnotations( binding);
+      writer_.unindent();
+      writer_.writeElementEnd( VAR_TAG);
+      }
+    }
+
+  /**
+   * Writes the given annotation definitions.
+   */
+  protected void writeAnnotations( Annotated annotated)
+    {
+    String[] annotations = IteratorUtils.toArray( annotated.getAnnotations(), String.class);
+    Arrays.sort( annotations);
+    for( int i = 0; i < annotations.length; i++)
+      {
+      writer_.writeTagStart( HAS_TAG);
+      writer_.writeAttribute( NAME_ATR, annotations[i]);
+      writer_.writeAttribute( VALUE_ATR, annotated.getAnnotation( annotations[i]));
+      writer_.writeEmptyElementEnd();
+      } 
     }
 
   /**

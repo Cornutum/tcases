@@ -376,17 +376,88 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
     }
   
   /**
-   * Handles TestCase elements.
+   * Base class for annotated elements.
    *
    */
-  protected class TestCaseHandler extends ElementHandler
+  protected abstract class AnnotatedHandler extends ElementHandler
     {
     /**
      * Returns true if the given element is a valid member of this element.
      */
     public boolean isMember( String memberQname)
       {
-      return INPUT_TAG.equals( memberQname);
+      return HAS_TAG.equals( memberQname);
+      }
+
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected abstract Annotated getAnnotated();
+    
+    /**
+     * Changes the value of the given annotation.
+     */
+    public void setAnnotation( String name, String value)
+      {
+      getAnnotated().setAnnotation( name, value);
+      }
+
+    /**
+     * Returns the value of the given annotation.
+     */
+    public String getAnnotation( String name)
+      {
+      return getAnnotated().getAnnotation( name);
+      }
+    }
+  
+  /**
+   * Handles Has elements
+   */
+  protected class HasHandler extends ElementHandler
+    {    
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      AnnotatedHandler parent = (AnnotatedHandler) getParent();
+      try
+        {
+        String annotation = requireAttribute( attributes, NAME_ATR);
+        String value = parent.getAnnotation( annotation);
+        if( value != null)
+          {
+          throw new IllegalArgumentException( "Annotation=" + annotation + " already set to '" + value + "'");
+          }
+        parent.setAnnotation( annotation, requireAttribute( attributes, VALUE_ATR));
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Can't add annotation: " + e.getMessage(), getDocumentLocator()); 
+        }
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), NAME_ATR, VALUE_ATR);
+      }
+    }
+  
+  /**
+   * Handles TestCase elements.
+   *
+   */
+  protected class TestCaseHandler extends AnnotatedHandler
+    {
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    public boolean isMember( String memberQname)
+      {
+      return
+        super.isMember( memberQname)
+        || INPUT_TAG.equals( memberQname);
       }
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
@@ -461,6 +532,14 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       return addAttributeList( super.addAttributes( attributes), ID_ATR, FAILURE_ATR);
       }
 
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected Annotated getAnnotated()
+      {
+      return getTestCase();
+      }
+
     private TestCase testCase_;
     private boolean failure_;
     }
@@ -524,7 +603,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
    * Handles Var elements.
    *
    */
-  protected class VarHandler extends ElementHandler
+  protected class VarHandler extends AnnotatedHandler
     {    
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
@@ -559,6 +638,32 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
         {
         throw new SAXParseException( e.getMessage(), getDocumentLocator());
         }
+
+      setVarBinding( binding);
+      }
+
+    /**
+     * Returns the VarBinding instance for this handler.
+     */
+    protected void setVarBinding( VarBinding binding)
+      {
+      binding_ = binding;
+      }
+
+    /**
+     * Returns the VarBinding instance for this handler.
+     */
+    public VarBinding getVarBinding()
+      {
+      return binding_;
+      }
+
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected Annotated getAnnotated()
+      {
+      return getVarBinding();
       }
 
     /**
@@ -576,6 +681,8 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       {
       return addAttributeList( super.addAttributes( attributes), NAME_ATR, VALUE_ATR, FAILURE_ATR);
       }
+
+    private VarBinding binding_;
     }
   
   /**
@@ -675,6 +782,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
     {
     ElementHandler handler =
       qName.equals( FUNCTION_TAG)?    (ElementHandler) new FunctionHandler() :
+      qName.equals( HAS_TAG)?         (ElementHandler) new HasHandler() :
       qName.equals( INPUT_TAG)?       (ElementHandler) new InputHandler() :
       qName.equals( TESTCASES_TAG)?   (ElementHandler) new TestCasesHandler() :
       qName.equals( TESTCASE_TAG)?    (ElementHandler) new TestCaseHandler() :

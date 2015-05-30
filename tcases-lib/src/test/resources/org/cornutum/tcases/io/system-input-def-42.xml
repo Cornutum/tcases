@@ -71,6 +71,7 @@
           <Value name="value-4" property="P1,P2,P3"/>
           <Has name="A2" value="AV2"/>
           <Has name="A3" value="AV3"/>
+          <Has name="A3" value="Duplicate"/>
         </Var>
       </VarSet>
 

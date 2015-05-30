@@ -15,6 +15,12 @@
   <!-- Defines the schema for a system test case specification document -->
   <!-- $Revision$, $Date$ -->
 
+  <!-- Annotations -->
+  <xs:complexType name="annotationType">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+
   <!-- System functions -->
   <xs:element name="TestCases">
     <xs:complexType>
@@ -26,6 +32,9 @@
 
               <xs:element name="TestCase">
                 <xs:complexType>
+
+                  <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+
                   <xs:sequence maxOccurs="unbounded">
 
                     <xs:element name="Input">
@@ -34,6 +43,7 @@
 
                           <xs:element name="Var">
                             <xs:complexType>
+                              <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
                               <xs:attribute name="name" type="xs:string" use="required"/>
                               <xs:attribute name="value" type="xs:string" use="required"/>
                               <xs:attribute name="failure" type="xs:boolean"/>

@@ -1530,6 +1530,20 @@ public class TestSystemInputDocReader
     }
 
   /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 42.  getSystemInputDef (Failure: Duplicate annotation) </TH></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemInputDef_42()
+    {
+    assertException( "system-input-def-42.xml", 74, "Can't add annotation: Annotation=A3 already set to 'AV3'");
+    }
+
+  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)

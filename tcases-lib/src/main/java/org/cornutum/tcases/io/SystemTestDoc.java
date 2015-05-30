@@ -19,6 +19,7 @@ public final class SystemTestDoc
     }
 
   public static final String FUNCTION_TAG  = "Function";
+  public static final String HAS_TAG       = "Has";
   public static final String INPUT_TAG     = "Input";
   public static final String TESTCASES_TAG = "TestCases";
   public static final String TESTCASE_TAG  = "TestCase";

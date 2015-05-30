@@ -66,6 +66,7 @@
           <UL>
             <LI><A href="#junit">Creating JUnit/TestNG Tests</A></LI>
             <LI><A href="#xslt">Using XSLT Transforms</A></LI>
+            <LI><A href="#annotations">Using Output Annotations</A></LI>
           </UL>
         </LI>
         <LI><A href="#reference">Further Reference</A></LI>
@@ -1801,7 +1802,8 @@
       <P>
         Here's what you'll see printed to standard output: 
         each test case definition has been transformed into a <SPAN class="code">@Test</SPAN> method. The name of the method
-        is based on the <SPAN class="code">Function</SPAN> name. And the Javadoc comments describe the input values for this test case. The
+        is based on the <SPAN class="code">Function</SPAN> name. And the Javadoc comments describe the input values for this test case. 
+        Similarly, all input value assignments are shown in the body of the method. Otherwise, the
         body of the method is empty, waiting for the implementation to be filled in by you.
 
         <DIV class="exampleDoc">
@@ -1829,6 +1831,15 @@
           &nbsp; public void find_0()<BR/>
           &nbsp; &nbsp; {<BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;pattern.size = empty</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;pattern.quoted = yes</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;pattern.blanks = NA</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;pattern.embeddedQuotes = NA</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;fileName = defined</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;file.exists = yes</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;file.contents.linesLongerThanPattern = one</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;file.contents.patterns = NA</SPAN><BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">// &nbsp; &nbsp;file.contents.patternsInLine = NA</SPAN><BR/>
           <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
           <BR/>
@@ -1866,6 +1877,7 @@
           &nbsp; public void find_6() <BR/>
           &nbsp; &nbsp; { <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN> <BR/>
+          &nbsp; &nbsp; ... <BR/>
           <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN> <BR/>
           <BR/>
@@ -1905,6 +1917,7 @@
           &nbsp; public void find_0()<BR/>
           &nbsp; &nbsp; {<BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          &nbsp; &nbsp; ... <BR/>
           <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
           <BR/>
@@ -1941,6 +1954,7 @@
           &nbsp; public void find_0()<BR/>
           &nbsp; &nbsp; {<BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// Given...</SPAN><BR/>
+          &nbsp; &nbsp; ... <BR/>
           <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">// When...</SPAN><BR/>
           <BR/>
@@ -1948,6 +1962,11 @@
           &nbsp; &nbsp; } <BR/>
           &nbsp; ...<BR/>
         </DIV>
+      </P>
+
+      <P>
+        And, if you'd rather not have input value assignments shown in the test method body, you can exclude them by adding the option
+        <NOBR><SPAN class="code">-p values=false</SPAN></NOBR>.
       </P>
 
       <P>
@@ -1999,6 +2018,220 @@
           &gt; tcases -x myStylesheet.xml <SPAN class="codeEmph">-p <I>&lt;name&gt;</I>=<I>&lt;value&gt;</I></SPAN> -f myOutputDoc ${myProjectName} <BR/>
         </DIV>
       </P>
+
+      <H3><A name="annotations">Using Output Annotations</A></H3>
+
+      <P>
+        For a transformation to produce the concrete test cases, sometimes the basic information in the input model &mdash;
+        functions, variables, and values &mdash; is not enough. You need to add extra information that is not important
+        for generating the test cases but is necessary to form the final output. That's what <EM>output
+        annotations</EM> are for.
+      </P>
+      <P>
+        An output annotation is a special property setting &mdash; a name-value pair &mdash; that you can add to various
+        elements of a system input definition.  It has no effect on test cases that Tcases generates. But Tcases will
+        accumulate output annotations and attach them to the resulting system test definition document. From there,
+        your XSLT output transform can use these output annotations to complete tests cases in their final form.
+      </P>
+
+      <P>
+        For an example of how this works, consider the following input model for a graphics function involving shapes
+        with different properties, such as size and color.
+      </P>
+
+        <DIV class="exampleDoc">
+&lt;System name="Examples"&gt; <BR/>
+&nbsp; &lt;Function name="addShape"&gt; <BR/>
+&nbsp; &nbsp; &lt;Input&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Type"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="SQUARE"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="CIRCLE"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="LINE"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Size"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="1"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="10"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="100"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Color"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="red"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="green"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="blue"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &lt;/Input&gt; <BR/>
+&nbsp; &lt;/Function&gt; <BR/>
+&lt;/System&gt; <BR/>
+        </DIV>
+
+        <P>
+          Suppose we wanted to transform test cases generated from this input model into executable code. To do so, we annotate this input model with
+          extra <SPAN class="code">Has</SPAN> elements. 
+        </P>
+        <P>
+          Each <SPAN class="code">Has</SPAN> element defines an output annotation with a <SPAN class="code">name</SPAN>
+          and a <SPAN class="code">value</SPAN>. We can add two kinds of output annotations.
+        </P>
+        <UL>
+          <LI><B>Test case annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element to
+            a <SPAN class="code">System</SPAN> element or a <SPAN class="code">Function</SPAN> element. Each test case
+            annotation is transferred to the output document by applying it to all <SPAN class="code">TestCase</SPAN> elements
+            within its scope.
+
+            Annotations for a <SPAN class="code">Function</SPAN> override any annotations of the same name defined for
+            the <SPAN class="code">System</SPAN>.
+          </LI>
+          <P/>
+          <LI><B>Variable binding annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element to
+            a <SPAN class="code">Var</SPAN> or a <SPAN class="code">VarSet</SPAN> element. You can also create a
+            variable binding annotation that applies to a group of variables by adding a <SPAN class="code">Has</SPAN>
+            element to an <SPAN class="code">Input</SPAN>. Or you can create a variable binding annotation that is
+            value-specific by adding a <SPAN class="code">Has</SPAN> element to
+            a <SPAN class="code">Value</SPAN> element. Each variable binding annotation is transferred to the output
+            document by applying it to all <SPAN class="code">Var</SPAN> elements within its scope.
+            
+            Annotations for a <SPAN class="code">Value</SPAN> override any annotations of the same name defined for
+            a <SPAN class="code">Var</SPAN>, which override annotations for a <SPAN class="code">VarSet</SPAN>, which
+            override annotations for an
+            <SPAN class="code">Input</SPAN>.
+          </LI>
+        </UL>
+
+        <P>
+          For example, let's add the following output annotations.
+        </P>
+
+        <DIV class="exampleDoc">
+&lt;System name="Examples"&gt; <BR/>
+&nbsp; &lt;Function name="addShape"&gt; <BR/>
+&nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Test case annotations --&gt;</SPAN> <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
+&nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
+&nbsp; &nbsp; &lt;Has name="pageValue" value="new Page()"/&gt; <BR/>
+</SPAN>
+ <BR/>
+&nbsp; &nbsp; &lt;Input&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Type"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Variable binding annotations --&gt;</SPAN> <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="Shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varEval" value="new Shape"/&gt; <BR/>
+</SPAN>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="SQUARE"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="CIRCLE"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="LINE"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Size"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Variable binding annotations --&gt;</SPAN> <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="int"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="size"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varApply" value="setSize"/&gt; <BR/>
+</SPAN>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="1"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="10"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="100"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Color"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Variable binding annotations --&gt;</SPAN> <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="String"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="color"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varApply" value="setColor"/&gt; <BR/>
+</SPAN>
+<BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="red"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="green"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="blue"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &lt;/Input&gt; <BR/>
+&nbsp; &lt;/Function&gt; <BR/>
+&lt;/System&gt; <BR/>
+        </DIV>
+
+        <P>
+          Now when we run <SPAN class="code">tcases</SPAN>, we see that these output annotations have been propagated to the
+          generated test cases.
+        </P>
+        
+        <DIV class="exampleDoc">
+&lt;TestCases system="Examples"&gt; <BR/>
+&nbsp; &lt;Function name="addShape"&gt; <BR/>
+&nbsp; &nbsp; &lt;TestCase id="0"&gt; <BR/>
+&nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Test case annotations --&gt;</SPAN> <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Has name="pageValue" value="new Page()"/&gt; <BR/>
+</SPAN>
+&nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="Type" value="SQUARE"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment"> &lt;!-- Variable binding annotations --&gt;</SPAN> <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varEval" value="new Shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="Shape"/&gt; <BR/>
+</SPAN>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="Size" value="1"&gt; <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varApply" value="setSize"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="size"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="int"/&gt; <BR/>
+</SPAN>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="Color" value="red"&gt; <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varApply" value="setColor"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="color"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="String"/&gt; <BR/>
+</SPAN>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+&nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+&nbsp; &nbsp; ... <BR/>
+&nbsp; &lt;/Function&gt; <BR/>
+&lt;/TestCases&gt; <BR/>
+        </DIV>
+
+        <P>
+          So, what's so special about these annotated test cases? In one sense, nothing &mdash; they describe exactly
+          the same set of input variable choices as before. But they set the stage for the next phase of test case
+          generation, using an output transform. For example, by
+          applying <SPAN class="code">annotations-Transform.xsl</SPAN>
+          (shown <A href="annotations-Transform.xsl">here</A> and in the <SPAN class="code">docs/examples</SPAN>
+          directory), we can use these annotations to transform the system test definition document into executable
+          source code that looks like this:
+        </P>
+
+        <DIV class="exampleDoc">
+public class Examples { <BR/>
+ <BR/>
+&nbsp; @Test <BR/>
+&nbsp; public void test_addShape_0() { <BR/>
+&nbsp; &nbsp; Page page = new Page(); <BR/>
+ <BR/>
+&nbsp; &nbsp; Shape shape = new Shape(SQUARE); <BR/>
+ <BR/>
+&nbsp; &nbsp; int size = 1; <BR/>
+&nbsp; &nbsp; shape.setSize(size); <BR/>
+ <BR/>
+&nbsp; &nbsp; String color = "red"; <BR/>
+&nbsp; &nbsp; shape.setColor(color); <BR/>
+ <BR/>
+&nbsp; &nbsp; page.addShape(shape); <BR/>
+&nbsp; } <BR/>
+&nbsp; ... <BR/>
+} <BR/>
+        </DIV>
 
       <H2><A name="reference">Further Reference</A></H2>
       <P>

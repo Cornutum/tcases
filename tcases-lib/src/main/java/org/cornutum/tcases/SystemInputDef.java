@@ -18,7 +18,7 @@ import java.util.List;
  * Defines the input space for all functions of a system.
  *
  */
-public class SystemInputDef
+public class SystemInputDef extends Annotated
   {
   /**
    * Creates a new SystemInputDef object.

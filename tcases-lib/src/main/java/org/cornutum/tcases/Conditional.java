@@ -13,7 +13,7 @@ import org.cornutum.tcases.conditions.ICondition;
  * Base class for conditional elements.
  *
  */
-public abstract class Conditional implements IConditional
+public abstract class Conditional extends Annotated implements IConditional
   {
   /**
    * Changes the condition that defines when this element is applicable.

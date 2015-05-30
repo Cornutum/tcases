@@ -2,6 +2,8 @@
   <Function name="Function-0">
 
     <Input type="arg">
+      <Has name="A0" value="AV0"/>
+      <Has name="A1" value="AV1"/>
       <Var name="arg-0-0">
         <Value name="value-0" property="P1">
           <When>
@@ -14,7 +16,10 @@
     </Input>
     
     <Input type="env">
+      <Has name="A3" value="AV3"/>
+      <Has name="A4" value="AV4"/>
       <VarSet name="env-0-0">
+        <Has name="A3" value="NV3"/>
         <When>
           <AnyOf property="P1"/>
         </When>

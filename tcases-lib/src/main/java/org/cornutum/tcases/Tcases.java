@@ -1001,28 +1001,7 @@ public class Tcases
       } 
 
     // Generate new test definitions.
-    SystemTestDef testDef = new SystemTestDef( inputDef.getName());
-    for( Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs(); functionDefs.hasNext();)
-      {
-      FunctionInputDef functionDef = functionDefs.next();
-      FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
-      TupleGenerator functionGen = (TupleGenerator) genDef.getGenerator( functionDef.getName());
-      if( functionGen == null)
-        {
-        throw new RuntimeException( "No generator for function=" + functionDef.getName() + " defined in generator definition=" + genDefFile);
-        }
-
-      if( options.getRandomSeed() != null)
-        {
-        functionGen.setRandomSeed( options.getRandomSeed());
-        }
-      if( options.getDefaultTupleSize() != null)
-        {
-        functionGen.setDefaultTupleSize( options.getDefaultTupleSize());
-        }
-      
-      testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
-      }
+    SystemTestDef testDef = getTests( inputDef, genDef, baseDef, options);
 
     // Identify test definition transformations.
     TransformFilter transformer = null;
@@ -1121,28 +1100,51 @@ public class Tcases
    * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.
    * If <CODE>baseDef</CODE> is null, no base test definitions are used.
    */
-  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef)
+  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef, Options options)
     {
     if( genDef == null)
       {
       genDef = GeneratorSet.basicGenerator();
       }
 
+    Long seed = options==null? null : options.getRandomSeed();
+    Integer defaultTupleSize = options==null? null : options.getDefaultTupleSize();
+
     SystemTestDef testDef = new SystemTestDef( inputDef.getName());
     for( Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs(); functionDefs.hasNext();)
       {
       FunctionInputDef functionDef = functionDefs.next();
       FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
-      TupleGenerator functionGen = (TupleGenerator) genDef.getGenerator( functionDef.getName());
+      ITestCaseGenerator functionGen = genDef.getGenerator( functionDef.getName());
       if( functionGen == null)
         {
         throw new RuntimeException( "No generator for function=" + functionDef.getName());
         }
+
+      // If applicable, apply specified generator options.
+      if( seed != null)
+        {
+        functionGen.setRandomSeed( seed);
+        }
+      if( defaultTupleSize != null && functionGen instanceof TupleGenerator)
+        {
+        ((TupleGenerator) functionGen).setDefaultTupleSize( defaultTupleSize);
+        }
       
-      testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
+      testDef.addFunctionTestDef( annotateTests( inputDef, functionGen.getTests( functionDef, functionBase)));
       }
 
     return testDef;
+    }
+
+  /**
+   * Returns test case definitions for the given system input definition, using the given generator set and
+   * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.
+   * If <CODE>baseDef</CODE> is null, no base test definitions are used.
+   */
+  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef)
+    {
+    return getTests( inputDef, genDef, baseDef, null);
     }
 
   /**
@@ -1172,6 +1174,50 @@ public class Tcases
   public static SystemTestDef getTests( InputStream inputDefStream)
     {
     return getTests( inputDefStream, null, null);
+    }
+
+  /**
+   * Updates the given test definitions by adding all applicable annotations from the given input definition.
+   */
+  public static FunctionTestDef annotateTests( SystemInputDef inputDef, FunctionTestDef functionTestDef)
+    {
+    FunctionInputDef functionInputDef = inputDef.getFunctionInputDef( functionTestDef.getName());
+    for( Iterator<TestCase> testCases = functionTestDef.getTestCases(); testCases.hasNext(); )
+      {
+      // Add test case annotations.
+      TestCase testCase = testCases.next();
+      testCase.addAnnotations( functionInputDef);
+      testCase.addAnnotations( inputDef);
+
+      // Add variable binding annotations.
+      for( Iterator<VarBinding> varBindings = testCase.getVarBindings(); varBindings.hasNext(); )
+        {
+        VarBinding binding = varBindings.next();
+        VarDef varDef = functionInputDef.findVarDefPath( binding.getVar());
+        String value = binding.getValue();
+
+        // Add value annotations...
+        if( !value.equals( VarValueDef.NA.getName()))
+          {
+          VarValueDef valueDef = varDef.getValue( value);
+          binding.addAnnotations( valueDef);
+          }
+
+        // ...and any other annotations for this variable...
+        binding.addAnnotations( varDef);
+
+        // ...and any other annotations for variable sets that contain this variable.
+        for( IVarDef ancestor = varDef.getParent(); ancestor != null; ancestor = ancestor.getParent())
+          {
+          if( ancestor instanceof Annotated)
+            {
+            binding.addAnnotations( (Annotated) ancestor);
+            }
+          }
+        }
+      }
+
+    return functionTestDef;
     }
 
   /**

@@ -22,7 +22,7 @@ import java.util.TreeSet;
  * Defines the input space for a specific function.
  *
  */
-public class FunctionInputDef
+public class FunctionInputDef extends Annotated
   {
   /**
    * Creates a new FunctionInputDef object.

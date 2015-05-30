@@ -467,3 +467,8 @@ mvn tcases:tcases -DdefaultTupleSize=2
 </plugins>
 +--------
 
+  You can even transform test case definitions into executable source code! But to do so, you may need more information
+  about the functions, variables, and values in your input model.  Try extending your input model with
+  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#annotations} output annotations}} that are propagated to your
+  XSLT transform.
+

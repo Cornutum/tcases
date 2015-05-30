@@ -17,7 +17,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * Defines the binding of an input variable to a specific value.
  *
  */
-public class VarBinding implements Comparable<VarBinding>
+public class VarBinding extends Annotated implements Comparable<VarBinding>
   {
   /**
    * Creates a new VarBinding object.
