@@ -423,7 +423,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   The test case definitions that Tcases produces are not directly executable. Their purpose is to
   specify and guide the construction of actual tests. But because test case definitions appear in a
   well-defined XML document, it's not hard to transform them into a more concrete form, using XSLT
-  stylesheets. 
+  stylesheets and {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#annotations} output annotations}}. 
 
   For example, the following configuration sends Tcases output to a file named
   <<$\{projectName\}-Output.doc>>. But first it transforms the standard test case definition
