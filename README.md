@@ -33,3 +33,10 @@ Of course, the system test definition is not something you can execute directly.
   * [How To Download Using Maven](HowToDownload.md)
   * [Model-Driven Testing Using Tcases](ModelDrivenTestingForAgileTeams.md)
   * [Release Notes](ReleaseNotes.md)
+
+## Contributors ##
+
+Thanks to the following people, who have contributed significant improvements to Tcases.
+
+  * Kerry Kimbrough (project founder)
+  * Juglar
