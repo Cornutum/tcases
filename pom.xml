@@ -13,7 +13,7 @@
   <groupId>org.cornutum.tcases</groupId>
   <artifactId>tcases</artifactId>
   <packaging>pom</packaging>
-  <version>1.4.0</version>
+  <version>1.4.0-SNAPSHOT</version>
 
   <name>Tcases</name>
   <description>Generates test cases from system input space models</description>
