@@ -22,6 +22,7 @@
       <item name="Defining Coverage" href="usage.html#Defining_Input_Coverage"/>
       <item name="Extending Tests" href="usage.html#Extending_Previous_Test_Cases_Or_Not"/>
       <item name="Reducing Test Cases" href="usage.html#Reducing_Test_Cases"/>
+      <item name="Transforming Test Cases" href="usage.html#Transforming_Test_Cases"/>
       <item name="Simple Generators" href="usage.html#Simple_Generator_Definitions"/>
       <item name="More Tips" href="usage.html#More_Tips"/>
 

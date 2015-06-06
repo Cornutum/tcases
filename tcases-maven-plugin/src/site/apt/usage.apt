@@ -418,7 +418,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   definition.
 
 
-** Transforming Test Cases
+** {Transforming Test Cases}
 
   The test case definitions that Tcases produces are not directly executable. Their purpose is to
   specify and guide the construction of actual tests. But because test case definitions appear in a
