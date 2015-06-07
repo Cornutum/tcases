@@ -144,6 +144,14 @@ public class Tcases
    * If omitted, the default is false.
    * </TD>
    * </TR>
+   * <TR valign="baseline">
+   * <TD><B> values </B></TD>
+   * <TD>
+   * A boolean value (true/false, yes/no). If true, comments listing all input variable assignments
+   * are included in the body of each test method.
+   * If omitted, the default is true.
+   * </TD>
+   * </TR>
    * </TABLE>   
    * </BLOCKQUOTE>
    * </TD>
