@@ -8,7 +8,9 @@
 package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.util.Cloneable;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.util.CollectionUtils.clonedList;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
@@ -30,7 +32,7 @@ import java.util.List;
  * all specified N-tuples of valid variable values.
  *
  */
-public class TupleGenerator implements ITestCaseGenerator
+public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenerator>
   {
   /**
    * Creates a new TupleGenerator that, by default, uses all 1-tuples of valid variable values.
@@ -684,6 +686,18 @@ public class TupleGenerator implements ITestCaseGenerator
       .append( "defaultTuples", getDefaultTupleSize())
       .append( "seed", getRandomSeed())
       .toString();
+    }
+  
+  /**
+   * Returns a copy of this object.
+   */
+  public TupleGenerator cloneOf()
+    {
+    TupleGenerator other = new TupleGenerator();
+    other.setRandomSeed( getRandomSeed());
+    other.setDefaultTupleSize( getDefaultTupleSize());
+    other.setCombiners( clonedList( getCombiners()));
+    return other;
     }
 
   @SuppressWarnings("deprecation")

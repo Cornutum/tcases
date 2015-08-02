@@ -59,8 +59,11 @@ public class GeneratorSet implements IGeneratorSet
       {
       throw new IllegalArgumentException( "Generator already defined for function=" + functionName);
       }
-    
-    generators_.put( functionKey, generator);
+
+    if( generator != null)
+      {
+      generators_.put( functionKey, generator);
+      }
     }
 
   /**

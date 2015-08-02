@@ -8,6 +8,7 @@
 package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.util.Cloneable;
 import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections4.IteratorUtils;
@@ -24,7 +25,7 @@ import java.util.Set;
  * Generates a combination of values for a specific set of input variables.
  *
  */
-public class TupleCombiner
+public class TupleCombiner implements Cloneable<TupleCombiner>
   {
   /**
    * Creates a new TupleCombiner that specifies 1-tuples of values of all input variables.
@@ -550,6 +551,19 @@ public class TupleCombiner
       .append( "included", getIncludedVars())
       .append( "excluded", getExcludedVars())
       .toString();
+    }
+  
+  /**
+   * Returns a copy of this object.
+   */
+  public TupleCombiner cloneOf()
+    {
+    TupleCombiner other = new TupleCombiner();
+    other.setTupleSize( getTupleSize());
+    other.setIncludedVars( new HashSet<VarNamePattern>( getIncludedVars()));
+    other.setExcludedVars( new HashSet<VarNamePattern>( getExcludedVars()));
+    other.setOnceTuples( new HashSet<TupleRef>( IteratorUtils.toList( getOnceTuples())));
+    return other;
     }
 
   public boolean equals( Object object)
