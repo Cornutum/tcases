@@ -1333,10 +1333,11 @@
         <DIV class="exampleDoc">
           &lt;Generators&gt; <BR/>
           <BR/>
-          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 1-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- With 1-tuple coverage (the default) for un-Combine-ed variables... --&gt;</SPAN> <BR/>
           &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...Generate 2-tuple coverage for... --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; <SPAN class="exampleEmph">&lt;Combine tuples="2"&gt;</SPAN> <BR/>
-          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... but 2-tuple coverage for Vars in the "pattern" variable set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... all Vars in the "pattern" variable set --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Include var="pattern.*"</SPAN>/&gt; <BR/>
           &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
           &nbsp; &lt;/TupleGenerator&gt; <BR/>
@@ -1359,10 +1360,11 @@
         <DIV class="exampleDoc">
           &lt;Generators&gt; <BR/>
           <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- With 1-tuple coverage (the default) for un-Combine-ed variables... --&gt;</SPAN> <BR/>
           &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
-          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...Generate 2-tuple coverage for... --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &lt;Combine tuples="2"&gt; <BR/>
-          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...except for Vars in the "file" set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... all variables except for Vars in the "file" set --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Exclude var="file.**"</SPAN>/&gt; <BR/>
           &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
           &nbsp; &lt;/TupleGenerator&gt; <BR/>
@@ -1373,9 +1375,9 @@
         <DIV class="exampleDoc">
           &lt;Generators&gt; <BR/>
           <BR/>
-          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- With 2-tuple coverage for un-Combine-ed variables... --&gt;</SPAN> <BR/>
           &nbsp; &lt;TupleGenerator function="find" tuples="2"&gt; <BR/>
-          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...but 1-tuple coverage (the default) for... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...Generate 1-tuple coverage (the default) for... --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Combine</SPAN>&gt; <BR/>
           &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...all Vars in the "pattern" variable set... --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Include var="pattern.*"</SPAN>/&gt; <BR/>
@@ -1397,6 +1399,7 @@
         <DIV class="exampleDoc">
           &lt;Generators&gt; <BR/>
           <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- With 1-tuple coverage (the default) for un-Combine-ed variables... --&gt;</SPAN> <BR/>
           &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Include all permutations of the "pattern" variable set --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &lt;Combine <SPAN class="exampleEmph">tuples="0"</SPAN>&gt; <BR/>
@@ -1408,6 +1411,15 @@
         </DIV>
       </P>
 
+      <P>
+        Each <SPAN class="code">Combine</SPAN> element defines how to combine a specific set of
+        variables. But what about the variables that are not included in
+        any <SPAN class="code">Combine</SPAN>? For these, Tcases automatically creates a
+        default <SPAN class="code">Combine</SPAN> group, using the
+        default <SPAN class="code">tuples</SPAN> defined for
+        the <SPAN class="code">TupleGenerator.</SPAN>
+      </P>
+      
       <H2><A name="project">Managing A Tcases Project</A></H2>
       <P>
         Using Tcases to design a test suite means:
