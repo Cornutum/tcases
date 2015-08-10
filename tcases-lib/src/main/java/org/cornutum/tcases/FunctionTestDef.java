@@ -20,7 +20,7 @@ import java.util.List;
  * Defines test cases for a specific function.
  *
  */
-public class FunctionTestDef
+public class FunctionTestDef extends Annotated
   {
   /**
    * Creates a new FunctionTestDef object.

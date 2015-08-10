@@ -70,6 +70,7 @@ public class SystemTestDocWriter implements Closeable
     writer_.writeTagEnd();
 
     writer_.indent();
+    writeAnnotations( systemTest);
     for( Iterator<FunctionTestDef> functions =systemTest.getFunctionTestDefs();
          functions.hasNext();)
       {
@@ -90,6 +91,7 @@ public class SystemTestDocWriter implements Closeable
     writer_.writeTagEnd();
 
     writer_.indent();
+    writeAnnotations( function);
     TestCase[] testCases = IteratorUtils.toArray( function.getTestCases(), TestCase.class);
     Arrays.sort( testCases);
     for( int i = 0; i < testCases.length; i++)

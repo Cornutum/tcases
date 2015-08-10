@@ -1,0 +1,59 @@
+<System name="S">
+    <Has name="AS0" value="VS0"/>
+    <Has name="AS1" value="VS1"/>
+    
+    <Function name="F1">
+        <Has name="AS0" value="VF0"/>
+        <Has name="AF1" value="VF1"/>
+        
+        <Input type="T1">
+            <Has name="AT0" value="VT0"/>
+            <Has name="AT1" value="VT1"/>
+            
+            <Var name="Var-1">
+                <Has name="AV0" value="VV0"/>
+                <Has name="AT1" value="VV1"/>
+
+                <Value name="Value-1-1">
+                    <Has name="AV0" value="VL0"/>
+                    <Has name="AL1" value="VL1"/>
+                </Value>
+                
+                <Value name="Value-1-2"/>
+            </Var>
+            <Var name="Var-2">
+                <Value name="Value-2-1"/>
+            </Var>
+        </Input>
+        
+        <Input type="T2">
+            <Var name="Var-3">
+                <Value name="Value-3-1"/>
+            </Var>
+        </Input>
+        
+    </Function>
+    
+    <Function name="F2">
+        <Input>
+            <Has name="AT3" value="VT3"/>
+            <Has name="AT4" value="VT4"/>
+
+            <VarSet name="VarSet-3">
+                <Has name="AVS3" value="VVS3"/>
+                <Has name="AT4" value="VVS4"/>
+                
+                <Var name="Var-1">
+                    <Value name="Value-1-1"/>
+                </Var>
+            </VarSet>
+        </Input>
+        <Input>
+            <Var name="Var-2">
+                <Value name="Value-2-1"/>
+            </Var>
+        </Input>
+        
+    </Function>
+    
+</System>

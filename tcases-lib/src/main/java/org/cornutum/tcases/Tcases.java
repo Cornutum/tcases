@@ -1139,9 +1139,11 @@ public class Tcases
         ((TupleGenerator) functionGen).setDefaultTupleSize( defaultTupleSize);
         }
       
-      testDef.addFunctionTestDef( annotateTests( inputDef, functionGen.getTests( functionDef, functionBase)));
+      testDef.addFunctionTestDef( functionGen.getTests( functionDef, functionBase));
       }
 
+    annotateTests( inputDef, testDef);
+    
     return testDef;
     }
 
@@ -1187,45 +1189,54 @@ public class Tcases
   /**
    * Updates the given test definitions by adding all applicable annotations from the given input definition.
    */
-  public static FunctionTestDef annotateTests( SystemInputDef inputDef, FunctionTestDef functionTestDef)
+  public static void annotateTests( SystemInputDef inputDef, SystemTestDef testDef)
     {
-    FunctionInputDef functionInputDef = inputDef.getFunctionInputDef( functionTestDef.getName());
-    for( Iterator<TestCase> testCases = functionTestDef.getTestCases(); testCases.hasNext(); )
+    // Add system annotations
+    testDef.addAnnotations( inputDef);
+
+    for( Iterator<FunctionTestDef> functionTestDefs = testDef.getFunctionTestDefs(); functionTestDefs.hasNext();)
       {
+      // Add function annotations
+      FunctionTestDef functionTestDef = functionTestDefs.next();
+      FunctionInputDef functionInputDef = inputDef.getFunctionInputDef( functionTestDef.getName());
+      functionTestDef.addAnnotations( functionInputDef);
+      functionTestDef.addAnnotations( inputDef);
+      
       // Add test case annotations.
-      TestCase testCase = testCases.next();
-      testCase.addAnnotations( functionInputDef);
-      testCase.addAnnotations( inputDef);
-
-      // Add variable binding annotations.
-      for( Iterator<VarBinding> varBindings = testCase.getVarBindings(); varBindings.hasNext(); )
+      for( Iterator<TestCase> testCases = functionTestDef.getTestCases(); testCases.hasNext(); )
         {
-        VarBinding binding = varBindings.next();
-        VarDef varDef = functionInputDef.findVarDefPath( binding.getVar());
-        String value = binding.getValue();
+        TestCase testCase = testCases.next();
+        testCase.addAnnotations( functionInputDef);
+        testCase.addAnnotations( inputDef);
 
-        // Add value annotations...
-        if( !value.equals( VarValueDef.NA.getName()))
+        // Add variable binding annotations.
+        for( Iterator<VarBinding> varBindings = testCase.getVarBindings(); varBindings.hasNext(); )
           {
-          VarValueDef valueDef = varDef.getValue( value);
-          binding.addAnnotations( valueDef);
-          }
+          VarBinding binding = varBindings.next();
+          VarDef varDef = functionInputDef.findVarDefPath( binding.getVar());
+          String value = binding.getValue();
 
-        // ...and any other annotations for this variable...
-        binding.addAnnotations( varDef);
-
-        // ...and any other annotations for variable sets that contain this variable.
-        for( IVarDef ancestor = varDef.getParent(); ancestor != null; ancestor = ancestor.getParent())
-          {
-          if( ancestor instanceof Annotated)
+          // Add value annotations...
+          if( !value.equals( VarValueDef.NA.getName()))
             {
-            binding.addAnnotations( (Annotated) ancestor);
+            VarValueDef valueDef = varDef.getValue( value);
+            binding.addAnnotations( valueDef);
+            }
+
+          // ...and any other annotations for this variable...
+          binding.addAnnotations( varDef);
+
+          // ...and any other annotations for variable sets that contain this variable.
+          for( IVarDef ancestor = varDef.getParent(); ancestor != null; ancestor = ancestor.getParent())
+            {
+            if( ancestor instanceof Annotated)
+              {
+              binding.addAnnotations( (Annotated) ancestor);
+              }
             }
           }
         }
       }
-
-    return functionTestDef;
     }
 
   /**

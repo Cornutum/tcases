@@ -2084,14 +2084,24 @@
         </P>
         <P>
           Each <SPAN class="code">Has</SPAN> element defines an output annotation with a <SPAN class="code">name</SPAN>
-          and a <SPAN class="code">value</SPAN>. We can add two kinds of output annotations.
+          and a <SPAN class="code">value</SPAN>. We can add the following kinds of output annotations.
         </P>
         <UL>
-          <LI><B>Test case annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element to
-            a <SPAN class="code">System</SPAN> element or a <SPAN class="code">Function</SPAN> element. Each test case
-            annotation is transferred to the output document by applying it to all <SPAN class="code">TestCase</SPAN> elements
-            within its scope.
-
+          <LI>
+            <B>System annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element
+            to a <SPAN class="code">System</SPAN> element. Each system annotation is transferred
+            to the output document by applying it to the
+            top-level <SPAN class="code">TestCases</SPAN> element.  In addition, each system
+            annotation is added to
+            all <SPAN class="code">Function</SPAN> and <SPAN class="code">TestCase</SPAN> elements.
+          </LI>
+          <P/>
+          <LI>
+            <B>Function annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element
+            to a <SPAN class="code">Function</SPAN> element. Each function annotation is transferred
+            to the output document by applying it to the
+            corresponding output <SPAN class="code">Function</SPAN> element.  In addition, each function
+            annotation is added to all <SPAN class="code">TestCase</SPAN> elements within its scope.
             Annotations for a <SPAN class="code">Function</SPAN> override any annotations of the same name defined for
             the <SPAN class="code">System</SPAN>.
           </LI>
@@ -2118,7 +2128,7 @@
         <DIV class="exampleDoc">
 &lt;System name="Examples"&gt; <BR/>
 &nbsp; &lt;Function name="addShape"&gt; <BR/>
-&nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Test case annotations --&gt;</SPAN> <BR/>
+&nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Function annotations --&gt;</SPAN> <BR/>
 <SPAN class="exampleEmph">
 &nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
 &nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
@@ -2178,8 +2188,14 @@
         <DIV class="exampleDoc">
 &lt;TestCases system="Examples"&gt; <BR/>
 &nbsp; &lt;Function name="addShape"&gt; <BR/>
+&nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Function annotations --&gt;</SPAN> <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
+&nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
+&nbsp; &nbsp; &lt;Has name="pageValue" value="new Page()"/&gt; <BR/>
+</SPAN>
 &nbsp; &nbsp; &lt;TestCase id="0"&gt; <BR/>
-&nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Test case annotations --&gt;</SPAN> <BR/>
+&nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Function annotations --&gt;</SPAN> <BR/>
 <SPAN class="exampleEmph">
 &nbsp; &nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
 &nbsp; &nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
@@ -2214,6 +2230,13 @@
 &nbsp; &lt;/Function&gt; <BR/>
 &lt;/TestCases&gt; <BR/>
         </DIV>
+
+        <P>
+          Why are system and function annotations also copied to all of the associated <SPAN class="code">TestCase</SPAN>
+          elements? Because such annotations can have multiple purposes. In some cases, these annotations can be used to
+          form the corresponding level of the transformed output document. In other cases, these annotations can be used to
+          define system- or function-wide defaults for values used to form individual concrete test cases.
+        </P>
 
         <P>
           So, what's so special about these annotated test cases? In one sense, nothing &mdash; they describe exactly
