@@ -28,43 +28,26 @@ import java.util.Map;
  *
  */
 public class TestCaseDef implements Comparable<TestCaseDef>
-  {
+  {  
   /**
-   * A Predicate that returns true for a variable that can partially satisfy the
-   * current {@link #getRequired required condition} for this test case.
+   * A Predicate that returns true for a binding that is compatible with this test case.
    *
    */
-  private class VarSatisfies implements Predicate<VarDef>
+  private class BindingCompatible implements Predicate<VarBindingDef>
     {
-    public boolean evaluate( VarDef var)
+    public boolean evaluate( VarBindingDef binding)
       {
-      boolean satisfies;
-      Iterator<VarValueDef> values;
-      IConjunct required;
+      boolean compatible = true;
+      try
+        {
+        checkCompatible( binding);
+        }
+      catch( BindingException e)
+        {
+        compatible = false;
+        }
 
-      for( values = var.getValues(),
-             required = getRequired(),
-             satisfies = false;
-
-           !satisfies
-             && values.hasNext();
-
-           satisfies = Cnf.satisfiesSome( required, values.next().getProperties()));
-      
-      return satisfies;
-      }
-    }
-  
-  /**
-   * A Predicate that returns true for a tuple that can partially satisfy the
-   * current {@link #getRequired required condition} for this test case.
-   *
-   */
-  private class TupleSatisfies implements Predicate<Tuple>
-    {
-    public boolean evaluate( Tuple tuple)
-      {
-      return Cnf.satisfiesSome( getRequired(), tuple.getProperties());
+      return compatible;
       }
     }
 
@@ -151,12 +134,12 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     try
       {
       newBindings = addBindings( tuple);
-      logger_.debug( "Adding tuple={}, testCase={}", tuple, this);
+      logger_.trace( "Adding tuple={}, testCase={}", tuple, this);
 
       }
     catch( BindingException be)
       {
-      logger_.debug
+      logger_.trace
         ( "Can't add tuple={}: {}, testCase={}",
           new Object[]{ tuple, be.getMessage(), this});
       }
@@ -376,31 +359,16 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Returns the Predicate that returns true for a variable that partially satisfies the
-   * current {@link #getRequired required condition} for this test case.
+   * Returns the Predicate that returns true for a binding that is compatible with this test case.
    */
-  public Predicate<VarDef> getVarSatisfies()
+  public Predicate<VarBindingDef> getBindingCompatible()
     {
-    if( varSatisfies_ == null)
+    if( bindingCompatible_ == null)
       {
-      varSatisfies_ = new VarSatisfies();
+      bindingCompatible_ = new BindingCompatible();
       }
 
-    return varSatisfies_;
-    }
-
-  /**
-   * Returns the Predicate that returns true for a tuple that partially satisfies the
-   * current {@link #getRequired required condition} for this test case.
-   */
-  public Predicate<Tuple> getTupleSatisfies()
-    {
-    if( tupleSatisfies_ == null)
-      {
-      tupleSatisfies_ = new TupleSatisfies();
-      }
-
-    return tupleSatisfies_;
+    return bindingCompatible_;
     }
 
   /**
@@ -435,7 +403,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
 
     if( unsatisfiable != null)
         {
-        logger_.debug( "Infeasible, can no longer satisfy {}, testCase={}", unsatisfiable, this);
+        logger_.trace( "Infeasible, can no longer satisfy {}, testCase={}", unsatisfiable, this);
         }
     
     return unsatisfiable != null;
@@ -500,8 +468,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private Map<VarDef,VarValueDef> bindings_ = new HashMap<VarDef,VarValueDef>();
   private PropertySet properties_ = new PropertySet();
   private IConjunct required_;
-  private Predicate<VarDef> varSatisfies_;
-  private Predicate<Tuple> tupleSatisfies_;
+  private Predicate<VarBindingDef> bindingCompatible_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TestCaseDef.class);
   }

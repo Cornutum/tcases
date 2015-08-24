@@ -15,6 +15,7 @@ import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -49,29 +50,19 @@ public class VarTupleSet
     }
 
   /**
-   * Returns input tuples not yet used in a test case that bind any of the given variables.
+   * Returns input tuples not yet used in a test case that bind the given variable.
    */
-  public Iterator<Tuple> getUnused( final List<VarDef> vars)
+  public Iterator<Tuple> getUnused( VarDef var)
     {
-    return
-      IteratorUtils.filteredIterator
-      ( unused_.iterator(),
-        new Predicate<Tuple>()
-        {
-        public boolean evaluate( Tuple tuple)
-          {
-          boolean binds;
-          Iterator<VarDef> bindVars;
-          for( binds = false,
-                 bindVars = vars.iterator();
-               
-               !binds && bindVars.hasNext();
-               
-               binds = tuple.getBinding( bindVars.next()) != null);
-          
-          return binds;
-          }
-        });
+    return getBinds( unused_.iterator(), var);
+    }
+
+  /**
+   * Returns input tuples not yet used that contain any of the given variable bindings.
+   */
+  public Iterator<Tuple> getUnused( Collection<VarBindingDef> bindings)
+    {
+    return getBinds( unused_.iterator(), bindings);
     }
 
   /**
@@ -91,25 +82,63 @@ public class VarTupleSet
     }
 
   /**
-   * Returns input tuples already used in a test case that bind any of the given variables.
-   * Returns only tuples for which <CODE>isOnce() == once</CODE>.
+   * Returns input tuples already used in a test case that bind the given variable.
    */
-  public Iterator<Tuple> getUsed( final List<VarDef> vars, final boolean once)
+  public Iterator<Tuple> getUsed( VarDef var)
+    {
+    return getBinds( used_.iterator(), var);
+    }
+
+  /**
+   * Returns input tuples already used that contain any of the given variable bindings.
+   */
+  public Iterator<Tuple> getUsed( Collection<VarBindingDef> bindings)
+    {
+    return getBinds( used_.iterator(), bindings);
+    }
+
+  /**
+   * Returns input tuples that bind the given variable.
+   */
+  private Iterator<Tuple> getBinds( Iterator<Tuple> tuples, final VarDef var)
     {
     return
       IteratorUtils.filteredIterator
-      ( getUsed(),
+      ( tuples,
         new Predicate<Tuple>()
           {
           public boolean evaluate( Tuple tuple)
             {
-            boolean binds = false;
-            if( tuple.isOnce() == once)
+            return tuple.getBinding( var) != null;
+            }
+          });
+    }
+
+  /**
+   * Returns input tuples that contain any of the given variable bindings.
+   */
+  private Iterator<Tuple> getBinds( Iterator<Tuple> tuples, final Collection<VarBindingDef> bindingDefs)
+    {
+    return
+      IteratorUtils.filteredIterator
+      ( tuples,
+        new Predicate<Tuple>()
+          {
+          public boolean evaluate( Tuple tuple)
+            {
+            boolean binds;
+            Iterator<VarBindingDef> bindings;
+            for( binds = false,
+                   bindings = bindingDefs.iterator();
+
+                 !binds
+                   && bindings.hasNext();
+                 )
               {
-              for( Iterator<VarDef> bindVars = vars.iterator();
-                   !binds && bindVars.hasNext();
-                   binds = tuple.getBinding( bindVars.next()) != null);
+              VarBindingDef binding = bindings.next();
+              binds = binding.getValueDef().equals( tuple.getBinding( binding.getVarDef()));
               }
+
             return binds;
             }
           });
@@ -196,14 +225,6 @@ public class VarTupleSet
       {
       unused_.remove( tuple);
       }
-    }
-
-  /**
-   * Returns true if all members of this set have been used in test cases.
-   */
-  public boolean isConsumed()
-    {
-    return unused_.isEmpty();
     }
 
   /**
