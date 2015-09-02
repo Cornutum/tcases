@@ -8,7 +8,8 @@
 package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.conditions.IAssertion;
+import org.cornutum.tcases.conditions.*;
+import org.cornutum.tcases.util.CartesianProduct;
 import org.cornutum.tcases.util.Cloneable;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.clonedList;
@@ -32,6 +33,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Generates {@link TestCase test cases} for a {@link FunctionInputDef function} that use
@@ -470,43 +472,33 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
   private boolean makeSatisfied( TestCaseDef testCase, VarTupleSet tuples)
     {
     // Test case still missing a required property?
-    Set<String> properties = getRequiredPropertyChoices( testCase);
-    boolean satisfied = properties.isEmpty();
+    boolean satisfied = testCase.isSatisfied();
     if( !satisfied)
       {
-      // Are there compatible bindings that satisfy this condition?
-      Set<VarBindingDef> propertyProviders = getPropertyProviders( properties);
-      CollectionUtils.filter( propertyProviders, testCase.getBindingCompatible());
-      if( !propertyProviders.isEmpty())
-        {
-        // Yes, find tuples that contain satisfying bindings.
-        Iterator<Tuple> satisfyingTuples =
-          IteratorUtils.chainedIterator
-          ( tuples.getUnused( propertyProviders),
-            tuples.getUsed( propertyProviders));
+      // Yes, find tuples that contain satisfying bindings.
+      Iterator<Tuple> satisfyingTuples = getSatisfyingTuples( testCase);
 
-        Tuple tupleAdded;
-        for( tupleAdded = null;
+      Tuple tupleAdded;
+      for( tupleAdded = null;
 
-             // More tuples to try?
-             satisfyingTuples.hasNext()
-               && !( // Compatible tuple found?
-                     (tupleAdded = testCase.addCompatible( (satisfyingTuples.next()))) != null
+           // More tuples to try?
+           satisfyingTuples.hasNext()
+             && !( // Compatible tuple found?
+                  (tupleAdded = testCase.addCompatible( (satisfyingTuples.next()))) != null
 
-                     // Did this tuple create an infeasible combination?
-                     && !testCase.isInfeasible()
+                  // Did this tuple create an infeasible combination?
+                  && !testCase.isInfeasible()
 
-                     // Can also we satisfy any new conditions?
-                     && (satisfied = makeSatisfied( testCase, tuples)));
+                  // Can also we satisfy any new conditions?
+                  && (satisfied = makeSatisfied( testCase, tuples)));
              
-             tupleAdded = null)
+           tupleAdded = null)
+        {
+        // No path to satisfaction with this tuple -- try the next one.
+        if( tupleAdded != null)
           {
-          // No path to satisfaction with this tuple -- try the next one.
-          if( tupleAdded != null)
-            {
-            logger_.trace( "Removing tuple={}", tupleAdded);
-            testCase.removeBindings( tupleAdded);
-            }
+          logger_.trace( "Removing tuple={}", tupleAdded);
+          testCase.removeBindings( tupleAdded);
           }
         }
       }
@@ -515,26 +507,55 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
     }
 
   /**
-   * If the given test case has no unsatisfied conditions, returns an empty set.
-   * Otherwise, since there must be at least one condition that could be satisfied by adding any
-   * member of a certain set of properties, returns the first such set.
+   * Returns the set of tuples that could satisfy conditions required by the given test case.
    */
-  private Set<String> getRequiredPropertyChoices( TestCaseDef testCase)
+  private Iterator<Tuple> getSatisfyingTuples( final TestCaseDef testCase)
     {
     return
-      testCase.isSatisfied()
-      ? Collections.<String>emptySet()
-      
-      : CollectionUtils.collect
-        ( testCase.getRequired().getDisjuncts().next().getAssertions(),
-          new Transformer<IAssertion,String>()
+      IteratorUtils.filteredIterator
+      ( IteratorUtils.transformedIterator
+        ( new CartesianProduct<VarBindingDef>
+          ( new ArrayList<Set<VarBindingDef>>
+            ( CollectionUtils.collect
+              ( testCase.getRequired().getDisjuncts(),
+                
+                new Transformer<IDisjunct,Set<VarBindingDef>>()
+                  {
+                  public Set<VarBindingDef> transform( IDisjunct disjunct)
+                    {
+                    return
+                      getPropertyProviders
+                      ( CollectionUtils.collect
+                        ( disjunct.getAssertions(),
+                          new Transformer<IAssertion,String>()
+                            {
+                            public String transform( IAssertion assertion)
+                              {
+                              return assertion.getProperty();
+                              }
+                            },
+                          new HashSet<String>()));
+                    }
+                },
+
+                // For repeatable combinations, ensure set members have a well-defined order.
+                new TreeSet<Set<VarBindingDef>>( varBindingSetSorter_)))),
+
+          new Transformer<List<VarBindingDef>,Tuple>()
             {
-            public String transform( IAssertion assertion)
+            public Tuple transform( List<VarBindingDef> bindings)
               {
-              return assertion.getProperty();
+              return Tuple.of( bindings);
               }
-            },
-          new HashSet<String>());
+            }),
+        
+        new Predicate<Tuple>()
+          {
+          public boolean evaluate( Tuple tuple)
+            {
+            return tuple != null && testCase.isCompatible( tuple);
+            }
+          });
     }
 
   /**
@@ -760,7 +781,8 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
    */
   private Set<VarBindingDef> getPropertyProviders( Set<String> properties)
     {
-    Set<VarBindingDef> bindings = new HashSet<VarBindingDef>();
+    // For repeatable combinations, ensure set members have a well-defined order.
+    Set<VarBindingDef> bindings = new TreeSet<VarBindingDef>( varBindingDefSorter_);
     for( String property : properties)
       {
       bindings.addAll( propertyProviders_.getCollection( property));
@@ -821,5 +843,46 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
   private MultiValueMap<String,VarBindingDef> propertyProviders_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TupleGenerator.class);
+
+  private static final Comparator<VarBindingDef> varBindingDefSorter_ =
+    new Comparator<VarBindingDef>()
+      {
+      public int compare( VarBindingDef binding1, VarBindingDef binding2)
+        {
+        String var1 = binding1.getVarDef().getPathName();
+        String var2 = binding2.getVarDef().getPathName();
+        int result = var1.compareTo( var2);
+        if( result == 0)
+          {
+          String value1 = binding1.getValueDef().getName();
+          String value2 = binding2.getValueDef().getName();
+          result = value1.compareTo( value2);
+          }
+          
+        return result;
+        }
+      };
+
+  private static final Comparator<Set<VarBindingDef>> varBindingSetSorter_ =
+    new Comparator<Set<VarBindingDef>>()
+      {
+      public int compare( Set<VarBindingDef> bindingSet1, Set<VarBindingDef> bindingSet2)
+        {
+        int result = bindingSet1.size() - bindingSet2.size();
+        if( result == 0)
+          {
+          Iterator<VarBindingDef> bindings1; 
+          Iterator<VarBindingDef> bindings2; 
+          for( bindings1 = bindingSet1.iterator(),
+                 bindings2 = bindingSet2.iterator();
+
+               bindings1.hasNext()
+                 && (result = varBindingDefSorter_.compare( bindings1.next(), bindings2.next())) == 0;
+               );
+          }
+          
+        return result;
+        }
+      };
   }
 

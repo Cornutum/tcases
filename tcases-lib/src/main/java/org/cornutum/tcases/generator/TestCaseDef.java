@@ -148,14 +148,31 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Returns if the given tuple is compatible with the current test case definition.
+   */
+  public boolean isCompatible( Tuple tuple)
+    {
+    boolean compatible = true;
+
+    try
+      {
+      checkCompatible( tuple);
+      }
+    catch( BindingException be)
+      {
+      compatible = false;
+      }
+
+    return compatible;
+    }
+
+  /**
    * Adds the variable bindings defined by the given tuple.
    * Returns a new tuple containing the new bindings actually added.
    */
   public Tuple addBindings( Tuple tuple) throws BindingException
     {
-    for( Iterator<VarBindingDef> bindings = tuple.getBindings();
-         bindings.hasNext();
-         checkCompatible( bindings.next()));
+    checkCompatible( tuple);
 
     Tuple newBindings = new Tuple();
     for( Iterator<VarBindingDef> bindings = tuple.getBindings();
@@ -183,6 +200,17 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Throws an exception if the tuple is not
+   * compatible with the current test case definition.
+   */
+  private void checkCompatible( Tuple tuple) throws BindingException
+    {
+    for( Iterator<VarBindingDef> bindings = tuple.getBindings();
+         bindings.hasNext();
+         checkCompatible( bindings.next()));
+    }
+
+  /**
    * Throws an exception if the given variable binding is not
    * compatible with the current test case definition.
    */
@@ -195,7 +223,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     // Is this variable already bound to a different valid value?
     if( prevValue != null)
       {
-      if( prevValue.isValid() && !value.equals( prevValue))
+      if( !value.equals( prevValue))
         {
         throw new VarBoundException( binding, prevValue);
         }
