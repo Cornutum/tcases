@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.util;
 
+import org.apache.commons.collections4.Predicate;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,6 +27,14 @@ public class CartesianProduct<T> implements Iterator<List<T>>
    */
   public CartesianProduct( List<? extends Set<T>> sets)
     {
+    this( sets, null);
+    }
+  /**
+   * Creates a new iterator for the CartesianProduct of the given sets, ignoring any resulting
+   * list that does not satisfy the given {@link Predicate}.
+   */
+  public CartesianProduct( List<? extends Set<T>> sets, Predicate<List<T>> filter)
+    {
     int setCount = sets.size();
 
     Set<T> firstSet =
@@ -38,6 +48,8 @@ public class CartesianProduct<T> implements Iterator<List<T>>
       setCount < 2
       ? Collections.<Set<T>>emptyList()
       : sets.subList( 1, setCount);
+
+    filter_ = filter;
     }
 
   public boolean hasNext()
@@ -64,6 +76,21 @@ public class CartesianProduct<T> implements Iterator<List<T>>
   
   private List<T> getNext()
     {
+    List<T> next;
+    for( next = getNextCandidate();
+
+         next != null
+           && filter_ != null
+           && !filter_.evaluate( next);
+
+         next_ = null,
+           next = getNextCandidate());
+
+    return next;
+    }
+  
+  private List<T> getNextCandidate()
+    {
     if( next_ == null)
       {
       if( firstSetNext_ != null && otherSetsProduct_.hasNext())
@@ -79,9 +106,9 @@ public class CartesianProduct<T> implements Iterator<List<T>>
         otherSetsProduct_ =
             otherSets_.isEmpty()
             ? Arrays.asList( Collections.<T>emptyList()).iterator()
-            : new CartesianProduct<T>( otherSets_);
+            : new CartesianProduct<T>( otherSets_, filter_);
 
-        next_ = getNext();
+        next_ = getNextCandidate();
         }
       }
 
@@ -95,4 +122,6 @@ public class CartesianProduct<T> implements Iterator<List<T>>
   private Iterator<? extends List<T>> otherSetsProduct_;
 
   private List<T> next_;
+
+  private Predicate<List<T>> filter_;
   }

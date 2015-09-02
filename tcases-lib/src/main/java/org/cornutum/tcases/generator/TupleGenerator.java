@@ -513,57 +513,50 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
   private Iterator<Tuple> getSatisfyingTuples( final TestCaseDef testCase)
     {
     return
-      IteratorUtils.filteredIterator
-      ( IteratorUtils.transformedIterator
-        ( // Iterate over all combinations of bindings...
-          new CartesianProduct<VarBindingDef>
-          ( // ...combining members from all sets...
-            new ArrayList<Set<VarBindingDef>>
-            ( CollectionUtils.collect
-              ( // ...where each set of bindings is derived from a disjunct of unsatisfied test case conditions....
-                testCase.getRequired().getDisjuncts(),
+      IteratorUtils.transformedIterator
+      ( // Iterate over all combinations of bindings...
+        new CartesianProduct<VarBindingDef>
+        ( // ...combining members from all sets...
+          new ArrayList<Set<VarBindingDef>>
+          ( CollectionUtils.collect
+           
+            ( // ...where each set of bindings is derived from a disjunct of unsatisfied test case conditions....
+              testCase.getRequired().getDisjuncts(),
 
-                // ...and contains the set of compatible bindings that could satisfy this disjunct...
-                new Transformer<IDisjunct,Set<VarBindingDef>>()
+              // ...and contains the set of compatible bindings that could satisfy this disjunct...
+              new Transformer<IDisjunct,Set<VarBindingDef>>()
+                {
+                public Set<VarBindingDef> transform( IDisjunct disjunct)
                   {
-                  public Set<VarBindingDef> transform( IDisjunct disjunct)
-                    {
-                    return
-                      filtered
-                        ( getPropertyProviders
-                          ( CollectionUtils.collect
-                            ( disjunct.getAssertions(),
-                              new Transformer<IAssertion,String>()
+                  return
+                    filtered
+                      ( getPropertyProviders
+                        ( CollectionUtils.collect
+                          ( disjunct.getAssertions(),
+                            new Transformer<IAssertion,String>()
+                              {
+                              public String transform( IAssertion assertion)
                                 {
-                                public String transform( IAssertion assertion)
-                                  {
-                                  return assertion.getProperty();
-                                  }
-                                },
-                              new HashSet<String>())),
-                          
-                          testCase.getBindingCompatible());
-                    }
-                },
-
-                // For repeatable combinations, ensure set members have a well-defined order.
-                new TreeSet<Set<VarBindingDef>>( varBindingSetSorter_)))),
-
-          // ... forming each combination of satisfying bindings into a tuple...
-          new Transformer<List<VarBindingDef>,Tuple>()
-            {
-            public Tuple transform( List<VarBindingDef> bindings)
-              {
-              return Tuple.of( bindings);
-              }
-            }),
+                                return assertion.getProperty();
+                                }
+                              },
+                            new HashSet<String>())),
+                        
+                        testCase.getBindingCompatible());
+                  }
+              },
+              // For repeatable combinations, ensure set members have a well-defined order.
+              new TreeSet<Set<VarBindingDef>>( varBindingSetSorter_))),
+          
+          // ...ignoring any infeasible combinations...
+          isFeasibleTuple_),
         
-        new Predicate<Tuple>()
+         // ... forming each combination of satisfying bindings into a tuple...
+        new Transformer<List<VarBindingDef>,Tuple>()
           {
-          public boolean evaluate( Tuple tuple)
+          public Tuple transform( List<VarBindingDef> bindings)
             {
-            // ...ignoring any infeasible tuples, of course!
-            return tuple != null;
+            return Tuple.of( bindings);
             }
           });
     }
@@ -893,6 +886,14 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
           
         return result;
         }
+      }; 
+
+  private static final Predicate<List<VarBindingDef>> isFeasibleTuple_ =
+    new Predicate<List<VarBindingDef>>()
+      {
+      public boolean evaluate( List<VarBindingDef> bindings)
+        {
+        return Tuple.of( bindings) != null;
+        }
       };
   }
-
