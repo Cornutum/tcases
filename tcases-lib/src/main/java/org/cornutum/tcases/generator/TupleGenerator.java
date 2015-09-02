@@ -13,6 +13,7 @@ import org.cornutum.tcases.util.CartesianProduct;
 import org.cornutum.tcases.util.Cloneable;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.clonedList;
+import static org.cornutum.tcases.util.CollectionUtils.filtered;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
@@ -514,33 +515,41 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
     return
       IteratorUtils.filteredIterator
       ( IteratorUtils.transformedIterator
-        ( new CartesianProduct<VarBindingDef>
-          ( new ArrayList<Set<VarBindingDef>>
+        ( // Iterate over all combinations of bindings...
+          new CartesianProduct<VarBindingDef>
+          ( // ...combining members from all sets...
+            new ArrayList<Set<VarBindingDef>>
             ( CollectionUtils.collect
-              ( testCase.getRequired().getDisjuncts(),
-                
+              ( // ...where each set of bindings is derived from a disjunct of unsatisfied test case conditions....
+                testCase.getRequired().getDisjuncts(),
+
+                // ...and contains the set of compatible bindings that could satisfy this disjunct...
                 new Transformer<IDisjunct,Set<VarBindingDef>>()
                   {
                   public Set<VarBindingDef> transform( IDisjunct disjunct)
                     {
                     return
-                      getPropertyProviders
-                      ( CollectionUtils.collect
-                        ( disjunct.getAssertions(),
-                          new Transformer<IAssertion,String>()
-                            {
-                            public String transform( IAssertion assertion)
-                              {
-                              return assertion.getProperty();
-                              }
-                            },
-                          new HashSet<String>()));
+                      filtered
+                        ( getPropertyProviders
+                          ( CollectionUtils.collect
+                            ( disjunct.getAssertions(),
+                              new Transformer<IAssertion,String>()
+                                {
+                                public String transform( IAssertion assertion)
+                                  {
+                                  return assertion.getProperty();
+                                  }
+                                },
+                              new HashSet<String>())),
+                          
+                          testCase.getBindingCompatible());
                     }
                 },
 
                 // For repeatable combinations, ensure set members have a well-defined order.
                 new TreeSet<Set<VarBindingDef>>( varBindingSetSorter_)))),
 
+          // ... forming each combination of satisfying bindings into a tuple...
           new Transformer<List<VarBindingDef>,Tuple>()
             {
             public Tuple transform( List<VarBindingDef> bindings)
@@ -553,7 +562,8 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
           {
           public boolean evaluate( Tuple tuple)
             {
-            return tuple != null && testCase.isCompatible( tuple);
+            // ...ignoring any infeasible tuples, of course!
+            return tuple != null;
             }
           });
     }

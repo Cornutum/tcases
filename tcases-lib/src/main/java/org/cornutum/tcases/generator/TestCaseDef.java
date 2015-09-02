@@ -254,7 +254,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Returns null if the given value would make not make any currently bound variable inapplicable.
+   * Returns null if the given value would not make any currently bound variable inapplicable.
    * Otherwise, return a variable that is inapplicable with this value.
    */
   private VarDef getVarInapplicable( VarValueDef value)
