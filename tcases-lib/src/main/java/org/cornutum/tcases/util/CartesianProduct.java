@@ -9,7 +9,6 @@ package org.cornutum.tcases.util;
 
 import org.apache.commons.collections4.Predicate;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -29,12 +28,25 @@ public class CartesianProduct<T> implements Iterator<List<T>>
     {
     this( sets, null);
     }
+
   /**
    * Creates a new iterator for the CartesianProduct of the given sets, ignoring any resulting
    * list that does not satisfy the given {@link Predicate}.
    */
   public CartesianProduct( List<? extends Set<T>> sets, Predicate<List<T>> filter)
     {
+    this( Collections.<T>emptyList(), sets, filter);
+    }
+
+  /**
+   * Creates a new iterator for the CartesianProduct of the given sets, ignoring any resulting
+   * list that does not satisfy the given {@link Predicate}.
+   */
+  private CartesianProduct( List<T> addedTo, List<? extends Set<T>> sets, Predicate<List<T>> filter)
+    {
+    addedTo_ = addedTo;
+    filter_ = filter;
+    
     int setCount = sets.size();
 
     Set<T> firstSet =
@@ -48,8 +60,6 @@ public class CartesianProduct<T> implements Iterator<List<T>>
       setCount < 2
       ? Collections.<Set<T>>emptyList()
       : sets.subList( 1, setCount);
-
-    filter_ = filter;
     }
 
   public boolean hasNext()
@@ -76,45 +86,51 @@ public class CartesianProduct<T> implements Iterator<List<T>>
   
   private List<T> getNext()
     {
-    List<T> next;
-    for( next = getNextCandidate();
-
-         next != null
-           && filter_ != null
-           && !filter_.evaluate( next);
-
-         next_ = null,
-           next = getNextCandidate());
-
-    return next;
-    }
-  
-  private List<T> getNextCandidate()
-    {
     if( next_ == null)
       {
       if( firstSetNext_ != null && otherSetsProduct_.hasNext())
         {
-        next_ = new ArrayList<T>();
-        next_.add( firstSetNext_);
-        next_.addAll( otherSetsProduct_.next());
+        next_ =
+          ListBuilder.<T>to()
+          .add( firstSetNext_)
+          .addAll( otherSetsProduct_.next())
+          .build();
         }          
       else if( firstSetIterator_.hasNext())
         {
-        firstSetNext_ = firstSetIterator_.next();
+        List<T> nextAddedTo = null;
+        while( firstSetIterator_.hasNext() && (nextAddedTo = getNextAddedTo( (firstSetNext_ = firstSetIterator_.next()))) == null);
 
-        otherSetsProduct_ =
+        if( nextAddedTo != null)
+          {
+          otherSetsProduct_ =
             otherSets_.isEmpty()
             ? Arrays.asList( Collections.<T>emptyList()).iterator()
-            : new CartesianProduct<T>( otherSets_, filter_);
+            : new CartesianProduct<T>( nextAddedTo, otherSets_, filter_);
 
-        next_ = getNextCandidate();
+          next_ = getNext();
+          }
         }
       }
 
     return next_;
     }
 
+  private List<T> getNextAddedTo( T firstSetNext)
+    {
+    ListBuilder<T> builder;
+
+    return
+      filter_ == null?
+      addedTo_ :
+
+      filter_.evaluate( (builder = ListBuilder.<T>to().addAll( addedTo_).add( firstSetNext)).build())?
+      builder.build() :
+
+      null;
+    }
+  
+  private List<T> addedTo_;
   private Iterator<T> firstSetIterator_;
   private T firstSetNext_;
 

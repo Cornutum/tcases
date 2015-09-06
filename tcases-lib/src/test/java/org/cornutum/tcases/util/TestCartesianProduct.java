@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.util;
 
+import org.apache.commons.collections4.Predicate;
 import static org.cornutum.tcases.util.Asserts.*;
 
 import java.util.ArrayList;
@@ -56,6 +57,59 @@ public class TestCartesianProduct
       .build();
     
     assertSeqEquals( "When many sets", expected, product);
+    }
+
+  @Test
+  public void whenFiltered()
+    {
+    // Given...
+    List<Set<String>> sets =
+      new ListBuilder<Set<String>>()
+      .add( new TreeSet<String>( Arrays.asList( "A", "B", "C")))
+      .add( new TreeSet<String>( Arrays.asList( "1", "2", "3", "4")))
+      .add( new TreeSet<String>( Arrays.asList( "X")))
+      .build();
+      
+    // When...
+    CartesianProduct<String> product =
+      new CartesianProduct<String>
+      ( sets,
+        new Predicate<List<String>>()
+            {
+            public boolean evaluate( List<String> candidate)
+              {
+              return !(candidate.contains( "3") || candidate.contains( "B"));
+              }
+            });
+    
+    // Then...
+    List<List<String>> expected =
+      new ListBuilder<List<String>>()
+      .add( new ArrayList<String>( Arrays.asList( "A", "1", "X")))
+      .add( new ArrayList<String>( Arrays.asList( "A", "2", "X")))
+      .add( new ArrayList<String>( Arrays.asList( "A", "4", "X")))
+      .add( new ArrayList<String>( Arrays.asList( "C", "1", "X")))
+      .add( new ArrayList<String>( Arrays.asList( "C", "2", "X")))
+      .add( new ArrayList<String>( Arrays.asList( "C", "4", "X")))
+      .build();
+    
+    assertSeqEquals( "When filtered", expected, product);
+      
+    // When...
+    product =
+      new CartesianProduct<String>
+      ( sets,
+        new Predicate<List<String>>()
+            {
+            public boolean evaluate( List<String> candidate)
+              {
+              return !candidate.contains( "X");
+              }
+            });
+    
+    // Then...
+    expected = Collections.<List<String>>emptyList();
+    assertSeqEquals( "When filtered to empty", expected, product);
     }
 
 
