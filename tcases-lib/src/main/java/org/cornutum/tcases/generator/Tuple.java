@@ -122,6 +122,14 @@ public class Tuple
     }
 
   /**
+   * Returns true if this tuple contains the given binding.
+   */
+  public boolean contains( VarBindingDef binding)
+    {
+    return binding.equals( bindings_.get( binding.getVarDef()));
+    }
+
+  /**
    * Returns the value bound by this tuple for the given variable.
    */
   public VarValueDef getBinding( VarDef var)
@@ -289,4 +297,3 @@ public class Tuple
   private PropertySet properties_;
   private boolean once_;
   }
-
