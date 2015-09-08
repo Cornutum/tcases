@@ -21,6 +21,7 @@ import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.collections4.map.MultiValueMap;
 import org.apache.commons.lang3.ObjectUtils;
+import static org.apache.commons.collections4.functors.NOPTransformer.nopTransformer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,9 +31,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -435,7 +438,9 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
         ( tuples.getUnused( nextVar),
           IteratorUtils.chainedIterator
           ( tuples.getUsed( nextVar),
-            getNA( nextVar)));
+            IteratorUtils.chainedIterator
+            ( tuples.getUsedOnce( nextVar),
+              getNA( nextVar))));
         
       Tuple tupleAdded;
       for( complete = false,
@@ -477,7 +482,7 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
     if( !satisfied)
       {
       // Yes, find tuples that contain satisfying bindings.
-      Iterator<Tuple> satisfyingTuples = getSatisfyingTuples( testCase);
+      Iterator<Tuple> satisfyingTuples = getSatisfyingTuples( testCase, tuples);
 
       Tuple tupleAdded;
       for( tupleAdded = null;
@@ -510,8 +515,10 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
   /**
    * Returns the set of tuples that could satisfy conditions required by the given test case.
    */
-  private Iterator<Tuple> getSatisfyingTuples( final TestCaseDef testCase)
+  private Iterator<Tuple> getSatisfyingTuples( final TestCaseDef testCase, VarTupleSet varTupleSet)
     {
+    final Comparator<VarBindingDef> byUsage = byUsage( varTupleSet);
+
     return
       IteratorUtils.transformedIterator
       ( // Iterate over all combinations of bindings...
@@ -529,7 +536,8 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
                 public Set<VarBindingDef> transform( IDisjunct disjunct)
                   {
                   return
-                    filtered
+                    CollectionUtils.collect
+                    ( filtered
                       ( getPropertyProviders
                         ( CollectionUtils.collect
                           ( disjunct.getAssertions(),
@@ -542,7 +550,11 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
                               },
                             new HashSet<String>())),
                         
-                        testCase.getBindingCompatible());
+                        testCase.getBindingCompatible()),
+
+                      sameBinding_,
+
+                      new TreeSet<VarBindingDef>( byUsage));
                   }
               },
               // For repeatable combinations, ensure set members have a well-defined order.
@@ -784,8 +796,7 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
    */
   private Set<VarBindingDef> getPropertyProviders( Set<String> properties)
     {
-    // For repeatable combinations, ensure set members have a well-defined order.
-    Set<VarBindingDef> bindings = new TreeSet<VarBindingDef>( varBindingDefSorter_);
+    Set<VarBindingDef> bindings = new HashSet<VarBindingDef>();
     for( String property : properties)
       {
       bindings.addAll( propertyProviders_.getCollection( property));
@@ -801,6 +812,47 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
       .append( "defaultTuples", getDefaultTupleSize())
       .append( "seed", getRandomSeed())
       .toString();
+    }
+
+  /**
+   * Returns a comparator that orders bindings by decreasing preference, preferring bindings that are
+   * less used.
+   */
+  private Comparator<VarBindingDef> byUsage( final VarTupleSet varTupleSet)
+    {
+    return
+      new Comparator<VarBindingDef>()
+        {
+        public int compare( VarBindingDef binding1, VarBindingDef binding2)
+          {
+          // Compare by usage score: higher score is preferred.
+          int resultScore = getScore( binding2).compareTo( getScore( binding1));
+          return
+            // If equal usage score...
+            resultScore == 0
+            // ...then compare lexigraphically
+            ? varBindingDefSorter_.compare( binding1, binding2)
+            : resultScore;
+          }
+
+        private Integer getScore( VarBindingDef binding)
+          {
+          Integer score = bindingScores_.get( binding);
+          if( score == null)
+            {
+            // Preferred higher "unused-ness" and lower "used-ness" (especially among once-only tuples)
+            int maxScore = 1000;
+            int unusedScore = (int) (varTupleSet.getUnusedScore( binding) * maxScore);
+            int usedScore = (int) ((1.0 - varTupleSet.getUsedScore( binding)) * (maxScore - 1));
+            int usedOnceScore = (int) ((1.0 - varTupleSet.getUsedOnceScore( binding)) * (maxScore - 1));
+            score = ((unusedScore * maxScore) + usedOnceScore) * maxScore + usedScore;
+            bindingScores_.put( binding, score);
+            }
+          
+          return score;
+          }
+        private Map<VarBindingDef,Integer> bindingScores_ = new HashMap<VarBindingDef,Integer>();
+      };
     }
   
   /**
@@ -840,12 +892,14 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
       ^ getCombiners().hashCode();
     }
   
-  private Long        seed_;
-  private int         defaultTupleSize_;
+  private Long seed_;
+  private int defaultTupleSize_;
   private List<TupleCombiner> combiners_;
   private MultiValueMap<String,VarBindingDef> propertyProviders_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TupleGenerator.class);
+
+  private static final Transformer<VarBindingDef,VarBindingDef> sameBinding_ = nopTransformer();
 
   private static final Comparator<VarBindingDef> varBindingDefSorter_ =
     new Comparator<VarBindingDef>()

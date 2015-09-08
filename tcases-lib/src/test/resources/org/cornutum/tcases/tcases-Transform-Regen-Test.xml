@@ -99,14 +99,14 @@
         <Var name="outFile.isTestFile" value="No"/>
         <Var name="testFile.defined" value="Yes"/>
         <Var name="inFile.defined" value="Yes"/>
-        <Var name="transform.defined" value="No"/>
-        <Var name="transform.path.isAbsolute" value="NA"/>
-        <Var name="transform.path.exists" value="NA"/>
-        <Var name="transformParams.count" value="Many"/>
+        <Var name="transform.defined" value="Yes"/>
+        <Var name="transform.path.isAbsolute" value="Yes"/>
+        <Var name="transform.path.exists" value="Yes"/>
+        <Var name="transformParams.count" value="One"/>
         <Var name="transformParams.assignsValue" value="No" failure="true"/>
         <Var name="transformParams.nameDefined" value="Yes"/>
         <Var name="transformParams.valueDefined" value="Yes"/>
-        <Var name="isJUnit" value="Yes"/>
+        <Var name="isJUnit" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -117,14 +117,14 @@
         <Var name="outFile.isTestFile" value="No"/>
         <Var name="testFile.defined" value="Yes"/>
         <Var name="inFile.defined" value="Yes"/>
-        <Var name="transform.defined" value="No"/>
-        <Var name="transform.path.isAbsolute" value="NA"/>
-        <Var name="transform.path.exists" value="NA"/>
-        <Var name="transformParams.count" value="Many"/>
+        <Var name="transform.defined" value="Yes"/>
+        <Var name="transform.path.isAbsolute" value="Yes"/>
+        <Var name="transform.path.exists" value="Yes"/>
+        <Var name="transformParams.count" value="One"/>
         <Var name="transformParams.assignsValue" value="Yes"/>
         <Var name="transformParams.nameDefined" value="No" failure="true"/>
         <Var name="transformParams.valueDefined" value="Yes"/>
-        <Var name="isJUnit" value="Yes"/>
+        <Var name="isJUnit" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -318,7 +318,7 @@
         <Var name="transform.defined" value="No"/>
         <Var name="transform.path.isAbsolute" value="NA"/>
         <Var name="transform.path.exists" value="NA"/>
-        <Var name="transformParams.count" value="Many"/>
+        <Var name="transformParams.count" value="One"/>
         <Var name="transformParams.assignsValue" value="Yes"/>
         <Var name="transformParams.nameDefined" value="Yes"/>
         <Var name="transformParams.valueDefined" value="Yes"/>
@@ -372,7 +372,7 @@
         <Var name="transform.defined" value="Yes"/>
         <Var name="transform.path.isAbsolute" value="Yes"/>
         <Var name="transform.path.exists" value="Yes"/>
-        <Var name="transformParams.count" value="Many"/>
+        <Var name="transformParams.count" value="One"/>
         <Var name="transformParams.assignsValue" value="Yes"/>
         <Var name="transformParams.nameDefined" value="Yes"/>
         <Var name="transformParams.valueDefined" value="No"/>

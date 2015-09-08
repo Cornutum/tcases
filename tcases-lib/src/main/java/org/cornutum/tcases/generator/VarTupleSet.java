@@ -11,11 +11,11 @@ import org.cornutum.tcases.VarBindingDef;
 import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.util.ToString;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -58,11 +58,27 @@ public class VarTupleSet
     }
 
   /**
-   * Returns input tuples not yet used that contain any of the given variable bindings.
+   * Returns a measure of the "unused-ness" of the given binding.
+   * Returns a value between 0 and 1 (exclusive) -- a higher value means a binding is more unused.
    */
-  public Iterator<Tuple> getUnused( Collection<VarBindingDef> bindings)
+  public double getUnusedScore( final VarBindingDef binding)
     {
-    return getBinds( unused_.iterator(), bindings);
+    // Returns the percentage of unused tuples that include this binding.
+    return
+      unused_.isEmpty()
+      ? 0.0
+
+      : (double)
+        CollectionUtils.countMatches
+        ( unused_,
+          new Predicate<Tuple>()
+            {
+            public boolean evaluate( Tuple tuple)
+              {
+              return tuple.contains( binding);
+              }
+            })
+        / unused_.size();
     }
 
   /**
@@ -82,19 +98,86 @@ public class VarTupleSet
     }
 
   /**
-   * Returns input tuples already used in a test case that bind the given variable.
+   * Returns input tuples already used in a test case that bind the given variable,
+   * excluding once-only tuples.
    */
   public Iterator<Tuple> getUsed( VarDef var)
     {
-    return getBinds( used_.iterator(), var);
+    return getUsed( var, false);
     }
 
   /**
-   * Returns input tuples already used that contain any of the given variable bindings.
+   * Returns once-only input tuples already used in a test case that bind the given variable.
    */
-  public Iterator<Tuple> getUsed( Collection<VarBindingDef> bindings)
+  public Iterator<Tuple> getUsedOnce( VarDef var)
     {
-    return getBinds( used_.iterator(), bindings);
+    return getUsed( var, true);
+    }
+
+  /**
+   * Returns input tuples already used in a test case that bind the given variable, considering
+   * only tuples that are (not) once-only
+   */
+  public Iterator<Tuple> getUsed( VarDef var, final boolean onceOnly)
+    {
+    return
+      getBinds
+      ( IteratorUtils.filteredIterator
+        ( used_.iterator(),
+          new Predicate<Tuple>()
+            {
+            public boolean evaluate( Tuple tuple)
+              {
+              return tuple.isOnce() == onceOnly;
+              }
+            }),
+        var);
+    }
+
+  /**
+   * Returns a measure of the "used-ness" of the given binding.
+   * Returns a value between 0 and 1 (exclusive) -- a higher value means a binding is more used.
+   */
+  public double getUsedScore( VarBindingDef binding)
+    {
+    return getUsedScore( binding, false);
+    }
+
+  /**
+   * Returns a measure of the "used-ness" of the given binding among once-only tuples.
+   * Returns a value between 0 and 1 (exclusive) -- a higher value means a binding is more used among once-only tuples.
+   */
+  public double getUsedOnceScore( VarBindingDef binding)
+    {
+    return getUsedScore( binding, true);
+    }
+
+  /**
+   * Returns a measure of the "used-ness" of the given binding. If <CODE>onceOnly</CODE> is true, consider only once-only tuples.
+   * Returns a value between 0 and 1 (exclusive) -- a higher value means a binding is more used.
+   */
+  private double getUsedScore( VarBindingDef binding, boolean onceOnly)
+    {
+    // Since used tuples are in least-recently-used-first order, start from the end of the list and look
+    // for the first tuple that includes this binding. This is the most recent use of this binding.
+    // Return the distance of this tuple from the start of the list, as percentage of the size of the list.
+    int index;
+    int usedCount;
+    Tuple nextTuple;
+    for( usedCount = used_.size(),
+           index = usedCount - 1;
+
+         index >= 0
+           && (nextTuple = used_.get( index)) != null
+           && !((!onceOnly || nextTuple.isOnce()) && nextTuple.contains( binding));
+
+         index--);
+
+    return
+      index < 0
+      ? 0.0
+
+      : (double)(index + 1) / (usedCount + 1);
     }
 
   /**
@@ -110,36 +193,6 @@ public class VarTupleSet
           public boolean evaluate( Tuple tuple)
             {
             return tuple.getBinding( var) != null;
-            }
-          });
-    }
-
-  /**
-   * Returns input tuples that contain any of the given variable bindings.
-   */
-  private Iterator<Tuple> getBinds( Iterator<Tuple> tuples, final Collection<VarBindingDef> bindingDefs)
-    {
-    return
-      IteratorUtils.filteredIterator
-      ( tuples,
-        new Predicate<Tuple>()
-          {
-          public boolean evaluate( Tuple tuple)
-            {
-            boolean binds;
-            Iterator<VarBindingDef> bindings;
-            for( binds = false,
-                   bindings = bindingDefs.iterator();
-
-                 !binds
-                   && bindings.hasNext();
-                 )
-              {
-              VarBindingDef binding = bindings.next();
-              binds = binding.getValueDef().equals( tuple.getBinding( binding.getVarDef()));
-              }
-
-            return binds;
             }
           });
     }
