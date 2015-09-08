@@ -7,7 +7,10 @@
 
 package org.cornutum.tcases.util;
 
+import org.apache.commons.collections4.Predicate;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -34,5 +37,21 @@ public final class CollectionUtils
       }
     
     return other;
+    }
+
+  /**
+   * Returns the given collection after removing any member that does not satisfy the given predicate.
+   */
+  static public <T,C extends Iterable<T>> C filtered( C collection, Predicate<T> predicate)
+    {
+    for( Iterator<T> members = collection.iterator(); members.hasNext(); )
+      {
+      if( !predicate.evaluate( members.next()))
+        {
+        members.remove();
+        }
+      }
+
+    return collection;
     }
   }

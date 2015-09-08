@@ -61,6 +61,40 @@ public class Tuple
     {
     setBindings( bindings);
     }
+  
+  /**
+   * Returns null if all of the given bindings cannot be included in compatible Tuple.
+   * Otherwise, returns a new compatible Tuple containing all of the given bindings.
+   */
+  public static Tuple of( Collection<VarBindingDef> tupleBindings)
+    {
+    Tuple tuple = new Tuple();
+    
+    boolean bindingsCompatible;
+    Iterator<VarBindingDef> bindings;
+    VarBindingDef nextBinding;
+    for( bindings = tupleBindings.iterator(),
+           bindingsCompatible = true; 
+
+         bindings.hasNext()
+           && (bindingsCompatible = isBindingCompatible( tuple, (nextBinding = bindings.next())));
+
+         tuple.add( nextBinding));
+    
+    return
+      bindingsCompatible && tuple.isCompatible()
+      ? tuple
+      : null;
+    }
+
+  /**
+   * Returns true if the given binding can be added to the give tuple.
+   */
+  private static boolean isBindingCompatible( Tuple tuple, VarBindingDef binding)
+    {
+    VarValueDef currentValue = tuple.getBinding( binding.getVarDef());
+    return (currentValue == null || currentValue.equals( binding.getValueDef()));
+    }
 
   /**
    * Changes the variable bindings for this tuple.
@@ -85,6 +119,14 @@ public class Tuple
   public Iterator< VarBindingDef> getBindings()
     {
     return bindings_.values().iterator();
+    }
+
+  /**
+   * Returns true if this tuple contains the given binding.
+   */
+  public boolean contains( VarBindingDef binding)
+    {
+    return binding.equals( bindings_.get( binding.getVarDef()));
     }
 
   /**
@@ -255,4 +297,3 @@ public class Tuple
   private PropertySet properties_;
   private boolean once_;
   }
-

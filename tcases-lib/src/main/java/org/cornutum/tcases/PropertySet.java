@@ -195,6 +195,14 @@ public class PropertySet
     return properties_.uniqueSet().iterator();
     }
 
+  /**
+   * Returns true if this set has no members.
+   */
+  public boolean isEmpty()
+    {
+    return properties_.isEmpty();
+    }
+
   public String toString()
     {
     return

@@ -48,7 +48,7 @@ public class VarBoundException extends BindingException
       .append( "Can't add binding=")
       .append( getBinding())
       .append( ": variable already bound to value=")
-      .append( getValue())
+      .append( getValue().getName())
       .toString();
     }
 
