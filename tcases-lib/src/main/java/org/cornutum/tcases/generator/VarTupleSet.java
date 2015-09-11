@@ -242,10 +242,15 @@ public class VarTupleSet
           {
           Tuple tuple1 = new Tuple( bindings.next());
           tuple1.setOnce( tuple.isOnce());
-          if( used_.indexOf( tuple1) < 0)
+
+          // 1-tuple already used?
+          if( (i = used_.indexOf( tuple1)) >= 0)
             {
-            addUsed( tuple1);
+            // Yes, move to the end of the list. This acts to keep the used list
+            // in least-recently-used-first order.
+            used_.remove( i);
             }
+          addUsed( tuple1);
           }
         }
       }
