@@ -10,7 +10,7 @@
         <IMG src="cornutum-logo.png"/>
         <SPAN class="title"> Tcases: The Complete Guide </SPAN> <BR/>
         <SPAN class="subtitle">Version ${shell.version} (${shell.timestamp})</SPAN><BR/>
-        <SPAN class="subtitle">&copy; 2012 Cornutum Project</SPAN>
+        <SPAN class="subtitle">&copy; 2012-2015 Cornutum Project</SPAN>
       </DIV>
 
       <H2>Contents</H2>
@@ -490,7 +490,8 @@
         Actually, the <SPAN class="code">type</SPAN> attribute of the <SPAN class="code">Input</SPAN>
         element is just a tag that can be any value you want. And it is optional &mdash; if omitted, the
         default is <SPAN class="code">arg</SPAN>.  This grouping of inputs by type is available if you find it
-        helpful. There is no limit to the number of different <SPAN class="code">Input</SPAN> types that you
+        helpful. You can even define multiple <SPAN class="code">Input</SPAN> elements with the same <SPAN class="code">type</SPAN> if
+        you want to. There is no limit to the number of different <SPAN class="code">Input</SPAN> types that you
         can define.
       </P>
 
@@ -1332,10 +1333,11 @@
         <DIV class="exampleDoc">
           &lt;Generators&gt; <BR/>
           <BR/>
-          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 1-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- With 1-tuple coverage (the default) for un-Combine-ed variables... --&gt;</SPAN> <BR/>
           &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...Generate 2-tuple coverage for... --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; <SPAN class="exampleEmph">&lt;Combine tuples="2"&gt;</SPAN> <BR/>
-          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... but 2-tuple coverage for Vars in the "pattern" variable set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... all Vars in the "pattern" variable set --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Include var="pattern.*"</SPAN>/&gt; <BR/>
           &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
           &nbsp; &lt;/TupleGenerator&gt; <BR/>
@@ -1358,10 +1360,11 @@
         <DIV class="exampleDoc">
           &lt;Generators&gt; <BR/>
           <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- With 1-tuple coverage (the default) for un-Combine-ed variables... --&gt;</SPAN> <BR/>
           &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
-          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...Generate 2-tuple coverage for... --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &lt;Combine tuples="2"&gt; <BR/>
-          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...except for Vars in the "file" set --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ... all variables except for Vars in the "file" set --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Exclude var="file.**"</SPAN>/&gt; <BR/>
           &nbsp; &nbsp; &lt;/Combine&gt; <BR/>
           &nbsp; &lt;/TupleGenerator&gt; <BR/>
@@ -1372,9 +1375,9 @@
         <DIV class="exampleDoc">
           &lt;Generators&gt; <BR/>
           <BR/>
-          &nbsp; <SPAN class="exampleComment">&lt;!-- Generate 2-tuple coverage for all variables... --&gt;</SPAN> <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- With 2-tuple coverage for un-Combine-ed variables... --&gt;</SPAN> <BR/>
           &nbsp; &lt;TupleGenerator function="find" tuples="2"&gt; <BR/>
-          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...but 1-tuple coverage (the default) for... --&gt;</SPAN> <BR/>
+          &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...Generate 1-tuple coverage (the default) for... --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Combine</SPAN>&gt; <BR/>
           &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- ...all Vars in the "pattern" variable set... --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &nbsp; &lt;<SPAN class="exampleEmph">Include var="pattern.*"</SPAN>/&gt; <BR/>
@@ -1396,6 +1399,7 @@
         <DIV class="exampleDoc">
           &lt;Generators&gt; <BR/>
           <BR/>
+          &nbsp; <SPAN class="exampleComment">&lt;!-- With 1-tuple coverage (the default) for un-Combine-ed variables... --&gt;</SPAN> <BR/>
           &nbsp; &lt;TupleGenerator function="find"&gt; <BR/>
           &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Include all permutations of the "pattern" variable set --&gt;</SPAN> <BR/>
           &nbsp; &nbsp; &lt;Combine <SPAN class="exampleEmph">tuples="0"</SPAN>&gt; <BR/>
@@ -1407,6 +1411,15 @@
         </DIV>
       </P>
 
+      <P>
+        Each <SPAN class="code">Combine</SPAN> element defines how to combine a specific set of
+        variables. But what about the variables that are not included in
+        any <SPAN class="code">Combine</SPAN>? For these, Tcases automatically creates a
+        default <SPAN class="code">Combine</SPAN> group, using the
+        default <SPAN class="code">tuples</SPAN> defined for
+        the <SPAN class="code">TupleGenerator.</SPAN>
+      </P>
+      
       <H2><A name="project">Managing A Tcases Project</A></H2>
       <P>
         Using Tcases to design a test suite means:
@@ -2071,14 +2084,24 @@
         </P>
         <P>
           Each <SPAN class="code">Has</SPAN> element defines an output annotation with a <SPAN class="code">name</SPAN>
-          and a <SPAN class="code">value</SPAN>. We can add two kinds of output annotations.
+          and a <SPAN class="code">value</SPAN>. We can add the following kinds of output annotations.
         </P>
         <UL>
-          <LI><B>Test case annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element to
-            a <SPAN class="code">System</SPAN> element or a <SPAN class="code">Function</SPAN> element. Each test case
-            annotation is transferred to the output document by applying it to all <SPAN class="code">TestCase</SPAN> elements
-            within its scope.
-
+          <LI>
+            <B>System annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element
+            to a <SPAN class="code">System</SPAN> element. Each system annotation is transferred
+            to the output document by applying it to the
+            top-level <SPAN class="code">TestCases</SPAN> element.  In addition, each system
+            annotation is added to
+            all <SPAN class="code">Function</SPAN> and <SPAN class="code">TestCase</SPAN> elements.
+          </LI>
+          <P/>
+          <LI>
+            <B>Function annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element
+            to a <SPAN class="code">Function</SPAN> element. Each function annotation is transferred
+            to the output document by applying it to the
+            corresponding output <SPAN class="code">Function</SPAN> element.  In addition, each function
+            annotation is added to all <SPAN class="code">TestCase</SPAN> elements within its scope.
             Annotations for a <SPAN class="code">Function</SPAN> override any annotations of the same name defined for
             the <SPAN class="code">System</SPAN>.
           </LI>
@@ -2105,7 +2128,7 @@
         <DIV class="exampleDoc">
 &lt;System name="Examples"&gt; <BR/>
 &nbsp; &lt;Function name="addShape"&gt; <BR/>
-&nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Test case annotations --&gt;</SPAN> <BR/>
+&nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Function annotations --&gt;</SPAN> <BR/>
 <SPAN class="exampleEmph">
 &nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
 &nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
@@ -2165,8 +2188,14 @@
         <DIV class="exampleDoc">
 &lt;TestCases system="Examples"&gt; <BR/>
 &nbsp; &lt;Function name="addShape"&gt; <BR/>
+&nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Function annotations --&gt;</SPAN> <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
+&nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
+&nbsp; &nbsp; &lt;Has name="pageValue" value="new Page()"/&gt; <BR/>
+</SPAN>
 &nbsp; &nbsp; &lt;TestCase id="0"&gt; <BR/>
-&nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Test case annotations --&gt;</SPAN> <BR/>
+&nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Function annotations --&gt;</SPAN> <BR/>
 <SPAN class="exampleEmph">
 &nbsp; &nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
 &nbsp; &nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
@@ -2203,11 +2232,18 @@
         </DIV>
 
         <P>
+          Why are system and function annotations also copied to all of the associated <SPAN class="code">TestCase</SPAN>
+          elements? Because such annotations can have multiple purposes. In some cases, these annotations can be used to
+          form the corresponding level of the transformed output document. In other cases, these annotations can be used to
+          define system- or function-wide defaults for values used to form individual concrete test cases.
+        </P>
+
+        <P>
           So, what's so special about these annotated test cases? In one sense, nothing &mdash; they describe exactly
           the same set of input variable choices as before. But they set the stage for the next phase of test case
           generation, using an output transform. For example, by
           applying <SPAN class="code">annotations-Transform.xsl</SPAN>
-          (shown <A href="annotations-Transform.xsl">here</A> and in the <SPAN class="code">docs/examples</SPAN>
+          (shown <A href="examples/annotations-Transform.xsl">here</A> and in the <SPAN class="code">docs/examples</SPAN>
           directory), we can use these annotations to transform the system test definition document into executable
           source code that looks like this:
         </P>

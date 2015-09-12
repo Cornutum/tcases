@@ -25,6 +25,9 @@ public class TupleGeneratorFactory implements ITestCaseGeneratorFactory
       ? (TupleGenerator) defaultGenerator
       : null;
     
-    return new TupleGenerator( defaultTupleGenerator==null? 1 : defaultTupleGenerator.getDefaultTupleSize());
+    return
+        defaultTupleGenerator==null
+        ? new TupleGenerator()
+        : defaultTupleGenerator.cloneOf();
     }
   }

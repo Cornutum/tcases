@@ -274,14 +274,16 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
    * Handles TestCases elements.
    *
    */
-  protected class TestCasesHandler extends ElementHandler
+  protected class TestCasesHandler extends AnnotatedHandler
     {
     /**
      * Returns true if the given element is a valid member of this element.
      */
     public boolean isMember( String memberQname)
       {
-      return FUNCTION_TAG.equals( memberQname);
+      return
+        super.isMember( memberQname)
+        || FUNCTION_TAG.equals( memberQname);
       }
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
@@ -312,20 +314,30 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       {
       return addAttributeList( super.addAttributes( attributes), SYSTEM_ATR);
       }
+
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected Annotated getAnnotated()
+      {
+      return getSystemTestDef();
+      }
     }
   
   /**
    * Handles Function elements.
    *
    */
-  protected class FunctionHandler extends ElementHandler
+  protected class FunctionHandler extends AnnotatedHandler
     {
     /**
      * Returns true if the given element is a valid member of this element.
      */
     public boolean isMember( String memberQname)
       {
-      return TESTCASE_TAG.equals( memberQname);
+      return
+        super.isMember( memberQname)
+        || TESTCASE_TAG.equals( memberQname);
       }
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
@@ -370,6 +382,14 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
     protected Set<String> addAttributes( Set<String> attributes)
       {
       return addAttributeList( super.addAttributes( attributes), NAME_ATR);
+      }
+
+    /**
+     * Returns the Annotated instance for this handler.
+     */
+    protected Annotated getAnnotated()
+      {
+      return getFunctionTestDef();
       }
 
     private FunctionTestDef functionTestDef_;

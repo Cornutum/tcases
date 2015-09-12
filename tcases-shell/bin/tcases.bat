@@ -22,16 +22,16 @@ goto argsNext
 
 :argsLogFile
 shift
-TCASES_LOG_DEST=tcases.log.file
-TCASES_LOG=%1
+set TCASES_LOG_DEST=tcases.log.file
+set TCASES_LOG=%1
 if not "%1"=="stdout" goto argsNext
-TCASES_LOG_DEST=tcases.log.dest
-TCASES_LOG=STDOUT
+set TCASES_LOG_DEST=tcases.log.dest
+set TCASES_LOG=STDOUT
 goto argsNext
 
 :argsLogLevel
 shift
-TCASES_LOG_LEVEL=%1
+set TCASES_LOG_LEVEL=%1
 goto argsNext
 
 :argsNext

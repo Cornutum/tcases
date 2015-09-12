@@ -3,9 +3,6 @@
 #                     Copyright 2014, Cornutum Project
 #                              www.cornutum.org
 # 
-#                         $Revision: 243 $
-#      $Date: 2013-01-19 18:24:18 -0600 (Sat, 19 Jan 2013) $
-# 
 #######################################################################
 
 pgm=`basename $0`
@@ -22,13 +19,16 @@ usage()
   echo "  -f function        If -f is defined, update only the test case generator for the given function." >&2
   echo "                     Otherwise, update the test case generators for all functions." >&2
   echo "" >&2
- 	echo "  -g genDef          If -g is defined, update the generator specified in the given genDef file." >&2
+  echo "  -g genDef          If -g is defined, update the generator specified in the given genDef file." >&2
   echo "                     Otherwise, update the default generate definition file: the corresponding" >&2
   echo "                     *-Generators.xml file in the same directory as the inputDef." >&2
   echo "" >&2
   echo "  -l logFile         If -l is defined, log output is written to the given file. If omitted," >&2
   echo "                     log output is written to a file named ${pgm}.log in the current working" >&2
-  echo "                     directory." >&2
+  echo "                     directory. If logFile is \"stdout\", log output is written to standard output." >&2  
+  echo "" >&2
+  echo "  -L logLevel        Defines the level for Tcases log output. If omitted, the default level is INFO" >&2
+  echo "                     Tcases logging uses the configuration and levels defined by the Logback system." >&2
   echo "" >&2
   echo "  -r resampleFactor  If -r is defined, use the given resampleFactor to determine the number" >&2
   echo "                     of samples in the next round of reducing. Depending on the resampleFactor," >&2
@@ -38,10 +38,10 @@ usage()
   echo "                     each round, define resampleFactor > 0. To decrease sample count with each round," >&2
   echo "                     define -1 < resampleFactor < 0. If resampleFactor is omitted, the default value is 0." >&2
   echo "" >&2
- 	echo "  -s sampleCount     Defines the number of samples for the initial round of reducing. If omitted," >&2
+  echo "  -s sampleCount     Defines the number of samples for the initial round of reducing. If omitted," >&2
   echo "                     the default sampleCount is 10." >&2
   echo "" >&2
- 	echo "  -t testDef         If -t is defined, generate test cases based on the test definitions in the" >&2
+  echo "  -t testDef         If -t is defined, generate test cases based on the test definitions in the" >&2
   echo "                     specified testDef file, relative to the directory containing the inputDef." >&2
 }
 
@@ -50,6 +50,7 @@ while [ $# -gt 0 ] ; do
     -f) shift; function="$1";;
     -g) shift; genDef="$1";;
     -l) shift; logFile="$1";;
+    -L) shift; logLevel="$1";;
     -r) shift; resmpf="$1";;
     -s) shift; smpc="$1";;
     -t) shift; testDef="$1";;
@@ -60,6 +61,13 @@ while [ $# -gt 0 ] ; do
 done
 
 logFile=${logFile:-${pgm}.log}
+logLevel=${logLevel:-INFO}
+if [ $logFile = "stdout" ] ; then
+  logDest=tcases.log.dest
+  logFile=STDOUT
+else
+  logDest=tcases.log.file
+fi
 inputDef="$1"
 shift
 
@@ -89,7 +97,8 @@ fi
 
 java \
   -cp "$classPath" \
-  -Dtcases.log.file="$logFile" \
+  -D${logDest}="$logFile" \
+  -Dtcases.log.level="$logLevel" \
   org.cornutum.tcases.Reducer \
   ${genDef:+-g "$genDef"} \
   ${resmpf:+-r "$resmpf"} \

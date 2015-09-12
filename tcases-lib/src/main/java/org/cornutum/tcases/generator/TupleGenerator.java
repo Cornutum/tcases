@@ -8,29 +8,43 @@
 package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.conditions.*;
+import org.cornutum.tcases.util.CartesianProduct;
+import org.cornutum.tcases.util.Cloneable;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.util.CollectionUtils.clonedList;
+import static org.cornutum.tcases.util.CollectionUtils.filtered;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
+import org.apache.commons.collections4.Transformer;
+import org.apache.commons.collections4.map.MultiValueMap;
 import org.apache.commons.lang3.ObjectUtils;
+import static org.apache.commons.collections4.functors.NOPTransformer.nopTransformer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Generates {@link TestCase test cases} for a {@link FunctionInputDef function} that use
  * all specified N-tuples of valid variable values.
  *
  */
-public class TupleGenerator implements ITestCaseGenerator
+public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenerator>
   {
   /**
    * Creates a new TupleGenerator that, by default, uses all 1-tuples of valid variable values.
@@ -120,6 +134,9 @@ public class TupleGenerator implements ITestCaseGenerator
     {
     try
       {
+      logger_.info( "{}: Preparing constraint info", inputDef);
+      createPropertyProviders( inputDef);
+      
       logger_.info( "{}: Generating test cases", inputDef);
 
       List<TestCaseDef> baseCases = getBaseCases( inputDef, baseTests);
@@ -243,7 +260,7 @@ public class TupleGenerator implements ITestCaseGenerator
       logger_.debug( "Extending base test case={}", testCase);
 
       // Complete all variable bindings.
-      if( completeBindings( testCase, validTuples, getVarsRemaining( inputDef, testCase)))
+      if( makeComplete( testCase, validTuples, getVarsRemaining( inputDef, testCase)))
         {
         logger_.debug( "Completed test case={}", testCase);
         validTuples.used( testCase);
@@ -365,7 +382,7 @@ public class TupleGenerator implements ITestCaseGenerator
       }
 
     // Completed bindings for remaining variables?
-    if( completeBindings( newCase, validTuples, getVarsRemaining( inputDef, newCase)))
+    if( makeComplete( newCase, validTuples, getVarsRemaining( inputDef, newCase)))
       {
       // Yes, return new test case.
       logger_.debug( "Completed test case={}", newCase);
@@ -389,106 +406,171 @@ public class TupleGenerator implements ITestCaseGenerator
     }
 
   /**
-   * Using selections from the given set of tuples, completes binding for all remaining variables,
-   * starting with the given index. Returns true if all variables have been bound.
+   * Using selections from the given set of tuples, completes binding for all remaining variables.
+   * Returns true if all variables have been bound.
    */
-  private boolean completeBindings( TestCaseDef testCase, VarTupleSet tuples, List<VarDef> vars)
+  private boolean makeComplete( TestCaseDef testCase, VarTupleSet tuples, List<VarDef> vars)
     {
-    boolean complete;
+    boolean complete; 
+    List<VarDef> varsRemaining;
 
-    // All variables bound?
-    if( vars.isEmpty())
+    // Can this test case reach satisfaction of all conditions currently required?
+    if( !makeSatisfied( testCase, tuples))
       {
-      // Yes, all conditions satisified?
-      complete = testCase.isSatisfied();
+      // No, can't complete this test case.
+      logger_.trace( "Conditions can't be satisfied for testCase={}", testCase);
+      complete = false;
       }
 
+    // Any variables remaining unbound?
+    else if( (varsRemaining = getVarsRemaining( vars, testCase)).isEmpty())
+      {
+      // No, this test case is complete.
+      complete = true;
+      }
+    
     else
       {
-      // No, look for a compatible tuple to add that will bind more variables.    
-      complete = false;
-    
-      List<VarDef> reqVars = getSatisfyingVars( testCase, vars);
-      logger_.trace
-        ( "Complete bindings for vars={}, required={}, reqVars={}",
-          new Object[]{ vars, testCase.getRequired(), reqVars});
-
-      // Continue only if some unbound vars can satisfy the current test case conditions.
-      if( !reqVars.isEmpty())
-        {
-        // Evaluate all potentially-satisfying tuples.
-        Iterator<Tuple> satisfyingTuples =
+      // Complete the binding for next variable.
+      VarDef nextVar = varsRemaining.get(0);
+      Iterator<Tuple> bindingTuples =
+        IteratorUtils.chainedIterator
+        ( tuples.getUnused( nextVar),
           IteratorUtils.chainedIterator
-          ( getSatisfyingTuples( testCase, tuples.getUnused( reqVars)),
-            
+          ( tuples.getUsed( nextVar),
             IteratorUtils.chainedIterator
-            ( getSatisfyingTuples( testCase, tuples.getUsed( reqVars, false)),
-
-              getSatisfyingTuples( testCase, tuples.getUsed( reqVars, true))));
-
-        if( testCase.isSatisfied())
-          {
-          // If all current test case conditions satisfied, allow NA bindings for optional variables.
-          satisfyingTuples =
-            IteratorUtils.chainedIterator
-            ( satisfyingTuples,
-              getNA( vars));
-          }
+            ( tuples.getUsedOnce( nextVar),
+              getNA( nextVar))));
         
-        Tuple tuple;
-        Tuple tupleAdded;
-        for( complete = false,
-               tuple = null,
-               tupleAdded = null;
+      Tuple tupleAdded;
+      for( complete = false,
+             tupleAdded = null;
 
-             // More tuples to try?
-             satisfyingTuples.hasNext()
-               && !( // Compatible tuple found?
-                     (tupleAdded = testCase.addCompatible( (tuple = satisfyingTuples.next()))) != null
+           // More tuples to try?
+           bindingTuples.hasNext()
+             && !( // Compatible tuple found?
+                   (tupleAdded = testCase.addCompatible( (bindingTuples.next()))) != null
 
-                     // Did this tuple create an feasible combination?
-                     && !testCase.isInfeasible()
+                   // Did this tuple create an infeasible combination?
+                   && !testCase.isInfeasible()
 
-                     // Can we complete bindings for remaining variables?
-                     && (complete = completeBindings( testCase, tuples, getVarsRemaining( vars, tupleAdded))));
+                   // Can we complete bindings for remaining variables?
+                   && (complete = makeComplete( testCase, tuples, varsRemaining.subList( 1, varsRemaining.size()))));
              
-             tupleAdded = null)
+           tupleAdded = null)
+        {
+        if( tupleAdded != null)
           {
-          if( tupleAdded != null)
-            {
-            logger_.debug( "Removing tuple={}", tupleAdded);
-            testCase.removeBindings( tupleAdded);
-            }
-          }
-
-        if( complete)
-          {
-          // Test case is complete -- mark any tuple added used.
-          tuples.used( tuple);
+          // No path to completion with this tuple -- try the next one.
+          logger_.trace( "Removing tuple={}", tupleAdded);
+          testCase.removeBindings( tupleAdded);
           }
         }
       }
     
     return complete;
-    }    
-
-  /**
-   * Returns the members of the given list of variables that could partially satisfy conditions for the given test case.
-   */
-  private List<VarDef> getSatisfyingVars( TestCaseDef testCase, List<VarDef> vars)
-    {
-    return IteratorUtils.toList( IteratorUtils.filteredIterator( vars.iterator(), testCase.getVarSatisfies()));
     }
 
   /**
-   * Returns an iterator for the members of the given list of tuples that could partially satisfy conditions for the given test case.
+   * Using selections from the given set of tuples, completes binding for all remaining variables.
+   * Returns true if all variables have been bound.
    */
-  private Iterator<Tuple> getSatisfyingTuples( TestCaseDef testCase, Iterator<Tuple> tuples)
+  private boolean makeSatisfied( TestCaseDef testCase, VarTupleSet tuples)
     {
+    // Test case still missing a required property?
+    boolean satisfied = testCase.isSatisfied();
+    if( !satisfied)
+      {
+      // Yes, find tuples that contain satisfying bindings.
+      Iterator<Tuple> satisfyingTuples = getSatisfyingTuples( testCase, tuples);
+
+      Tuple tupleAdded;
+      for( tupleAdded = null;
+
+           // More tuples to try?
+           satisfyingTuples.hasNext()
+             && !( // Compatible tuple found?
+                  (tupleAdded = testCase.addCompatible( (satisfyingTuples.next()))) != null
+
+                  // Did this tuple create an infeasible combination?
+                  && !testCase.isInfeasible()
+
+                  // Can also we satisfy any new conditions?
+                  && (satisfied = makeSatisfied( testCase, tuples)));
+             
+           tupleAdded = null)
+        {
+        // No path to satisfaction with this tuple -- try the next one.
+        if( tupleAdded != null)
+          {
+          logger_.trace( "Removing tuple={}", tupleAdded);
+          testCase.removeBindings( tupleAdded);
+          }
+        }
+      }
+    
+    return satisfied;
+    }
+
+  /**
+   * Returns the set of tuples that could satisfy conditions required by the given test case.
+   */
+  private Iterator<Tuple> getSatisfyingTuples( final TestCaseDef testCase, VarTupleSet varTupleSet)
+    {
+    final Comparator<VarBindingDef> byUsage = byUsage( varTupleSet);
+
     return
-      testCase.isSatisfied()
-      ? tuples
-      : IteratorUtils.filteredIterator( tuples, testCase.getTupleSatisfies());
+      IteratorUtils.transformedIterator
+      ( // Iterate over all combinations of bindings...
+        new CartesianProduct<VarBindingDef>
+        ( // ...combining members from all sets...
+          new ArrayList<Set<VarBindingDef>>
+          ( CollectionUtils.collect
+           
+            ( // ...where each set of bindings is derived from a disjunct of unsatisfied test case conditions....
+              testCase.getRequired().getDisjuncts(),
+
+              // ...and contains the set of compatible bindings that could satisfy this disjunct...
+              new Transformer<IDisjunct,Set<VarBindingDef>>()
+                {
+                public Set<VarBindingDef> transform( IDisjunct disjunct)
+                  {
+                  return
+                    CollectionUtils.collect
+                    ( filtered
+                      ( getPropertyProviders
+                        ( CollectionUtils.collect
+                          ( disjunct.getAssertions(),
+                            new Transformer<IAssertion,String>()
+                              {
+                              public String transform( IAssertion assertion)
+                                {
+                                return assertion.getProperty();
+                                }
+                              },
+                            new HashSet<String>())),
+                        
+                        testCase.getBindingCompatible()),
+
+                      sameBinding_,
+
+                      new TreeSet<VarBindingDef>( byUsage));
+                  }
+              },
+              // For repeatable combinations, ensure set members have a well-defined order.
+              new TreeSet<Set<VarBindingDef>>( varBindingSetSorter_))),
+          
+          // ...ignoring any infeasible combinations...
+          isFeasibleTuple_),
+        
+         // ... forming each combination of satisfying bindings into a tuple...
+        new Transformer<List<VarBindingDef>,Tuple>()
+          {
+          public Tuple transform( List<VarBindingDef> bindings)
+            {
+            return Tuple.of( bindings);
+            }
+          });
     }
 
   /**
@@ -512,13 +594,38 @@ public class TupleGenerator implements ITestCaseGenerator
     }
 
   /**
+   * Returns an iterator that contains the "not applicable" binding for any of the given variables
+   * that is {@link VarDef#isOptional optional}.
+   */
+  private Iterator<Tuple> getNA( VarDef var)
+    {
+    return getNA( Arrays.asList( var));
+    }
+
+  /**
    * Returns the set of input variables not yet bound by the given test case.
    */
-  private List<VarDef> getVarsRemaining( FunctionInputDef inputDef, final TestCaseDef testCase)
+  private List<VarDef> getVarsRemaining( FunctionInputDef inputDef, TestCaseDef testCase)
+    {
+    return getVarsRemaining( new VarDefIterator( inputDef), testCase);
+    }
+
+  /**
+   * Returns the members of the given set of input variables not bound by the given test case.
+   */
+  private List<VarDef> getVarsRemaining( List<VarDef> vars, TestCaseDef testCase)
+    {
+    return getVarsRemaining( vars.iterator(), testCase);
+    }
+
+  /**
+   * Returns the members of the given set of input variables not bound by the given test case.
+   */
+  private List<VarDef> getVarsRemaining( Iterator<VarDef> vars, final TestCaseDef testCase)
     {
     return IteratorUtils.toList
       ( IteratorUtils.filteredIterator
-        ( new VarDefIterator( inputDef),
+        ( vars,
           new Predicate<VarDef>()
             {
             public boolean evaluate( VarDef var)
@@ -526,25 +633,6 @@ public class TupleGenerator implements ITestCaseGenerator
               return testCase.getBinding( var) == null;
               }
             }));
-    }
-
-  /**
-   * Returns the members of the given set of input variables not bound by the given tuple.
-   */
-  private List<VarDef> getVarsRemaining( List<VarDef> vars, final Tuple tuple)
-    {
-    return
-      IteratorUtils.toList
-      ( IteratorUtils.filteredIterator
-        ( vars.iterator(),
-          new Predicate<VarDef>()
-            {
-            public boolean evaluate( VarDef varDef)
-              {
-              return tuple.getBinding( varDef) == null;
-              }
-            }
-          ));
     }
 
   /**
@@ -677,6 +765,46 @@ public class TupleGenerator implements ITestCaseGenerator
     return new VarTupleSet( RandSeq.reorderIf( randSeq, failureTuples));
     }
 
+  /**
+   * Return a map that associates each value property with the set of bindings that provide it.
+   */
+  private MultiValueMap<String,VarBindingDef> createPropertyProviders( FunctionInputDef inputDef)
+    {
+    propertyProviders_ = new MultiValueMap<String,VarBindingDef>();
+    for( VarDefIterator varDefs = new VarDefIterator( inputDef.getVarDefs()); varDefs.hasNext(); )
+      {
+      VarDef varDef = varDefs.next();
+      for( Iterator<VarValueDef> values = varDef.getValidValues(); values.hasNext(); )
+        {
+        VarValueDef value = values.next();
+        if( !value.getProperties().isEmpty())
+          {
+          VarBindingDef binding = new VarBindingDef( varDef, value);
+          for( Iterator<String> properties = value.getProperties().getProperties(); properties.hasNext(); )
+            {
+            propertyProviders_.put( properties.next(), binding);
+            }
+          }
+        }
+      }
+
+    return propertyProviders_;
+    }
+
+  /**
+   * Returns the set of bindings that provide at least one of the given properties
+   */
+  private Set<VarBindingDef> getPropertyProviders( Set<String> properties)
+    {
+    Set<VarBindingDef> bindings = new HashSet<VarBindingDef>();
+    for( String property : properties)
+      {
+      bindings.addAll( propertyProviders_.getCollection( property));
+      }
+
+    return bindings;
+    }
+
   public String toString()
     {
     return
@@ -684,6 +812,59 @@ public class TupleGenerator implements ITestCaseGenerator
       .append( "defaultTuples", getDefaultTupleSize())
       .append( "seed", getRandomSeed())
       .toString();
+    }
+
+  /**
+   * Returns a comparator that orders bindings by decreasing preference, preferring bindings that are
+   * less used.
+   */
+  private Comparator<VarBindingDef> byUsage( final VarTupleSet varTupleSet)
+    {
+    return
+      new Comparator<VarBindingDef>()
+        {
+        public int compare( VarBindingDef binding1, VarBindingDef binding2)
+          {
+          // Compare by usage score: higher score is preferred.
+          int resultScore = getScore( binding2).compareTo( getScore( binding1));
+          return
+            // If equal usage score...
+            resultScore == 0
+            // ...then compare lexigraphically
+            ? varBindingDefSorter_.compare( binding1, binding2)
+            : resultScore;
+          }
+
+        private Integer getScore( VarBindingDef binding)
+          {
+          Integer score = bindingScores_.get( binding);
+          if( score == null)
+            {
+            // Preferred higher "unused-ness" and lower "used-ness" (especially among once-only tuples)
+            int maxScore = 1000;
+            int unusedScore = (int) (varTupleSet.getUnusedScore( binding) * maxScore);
+            int usedScore = (int) ((1.0 - varTupleSet.getUsedScore( binding)) * (maxScore - 1));
+            int usedOnceScore = (int) ((1.0 - varTupleSet.getUsedOnceScore( binding)) * (maxScore - 1));
+            score = ((unusedScore * maxScore) + usedOnceScore) * maxScore + usedScore;
+            bindingScores_.put( binding, score);
+            }
+          
+          return score;
+          }
+        private Map<VarBindingDef,Integer> bindingScores_ = new HashMap<VarBindingDef,Integer>();
+      };
+    }
+  
+  /**
+   * Returns a copy of this object.
+   */
+  public TupleGenerator cloneOf()
+    {
+    TupleGenerator other = new TupleGenerator();
+    other.setRandomSeed( getRandomSeed());
+    other.setDefaultTupleSize( getDefaultTupleSize());
+    other.setCombiners( clonedList( getCombiners()));
+    return other;
     }
 
   @SuppressWarnings("deprecation")
@@ -711,10 +892,62 @@ public class TupleGenerator implements ITestCaseGenerator
       ^ getCombiners().hashCode();
     }
   
-  private Long        seed_;
-  private int         defaultTupleSize_;
+  private Long seed_;
+  private int defaultTupleSize_;
   private List<TupleCombiner> combiners_;
+  private MultiValueMap<String,VarBindingDef> propertyProviders_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TupleGenerator.class);
-  }
 
+  private static final Transformer<VarBindingDef,VarBindingDef> sameBinding_ = nopTransformer();
+
+  private static final Comparator<VarBindingDef> varBindingDefSorter_ =
+    new Comparator<VarBindingDef>()
+      {
+      public int compare( VarBindingDef binding1, VarBindingDef binding2)
+        {
+        String var1 = binding1.getVarDef().getPathName();
+        String var2 = binding2.getVarDef().getPathName();
+        int result = var1.compareTo( var2);
+        if( result == 0)
+          {
+          String value1 = binding1.getValueDef().getName();
+          String value2 = binding2.getValueDef().getName();
+          result = value1.compareTo( value2);
+          }
+          
+        return result;
+        }
+      };
+
+  private static final Comparator<Set<VarBindingDef>> varBindingSetSorter_ =
+    new Comparator<Set<VarBindingDef>>()
+      {
+      public int compare( Set<VarBindingDef> bindingSet1, Set<VarBindingDef> bindingSet2)
+        {
+        int result = bindingSet1.size() - bindingSet2.size();
+        if( result == 0)
+          {
+          Iterator<VarBindingDef> bindings1; 
+          Iterator<VarBindingDef> bindings2; 
+          for( bindings1 = bindingSet1.iterator(),
+                 bindings2 = bindingSet2.iterator();
+
+               bindings1.hasNext()
+                 && (result = varBindingDefSorter_.compare( bindings1.next(), bindings2.next())) == 0;
+               );
+          }
+          
+        return result;
+        }
+      }; 
+
+  private static final Predicate<List<VarBindingDef>> isFeasibleTuple_ =
+    new Predicate<List<VarBindingDef>>()
+      {
+      public boolean evaluate( List<VarBindingDef> bindings)
+        {
+        return Tuple.of( bindings) != null;
+        }
+      };
+  }

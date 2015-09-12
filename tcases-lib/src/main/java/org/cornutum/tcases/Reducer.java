@@ -682,18 +682,12 @@ public class Reducer
 
     // For each of the specified function(s), find a seed that generates minimum test cases 
     boolean reduced = false;
-    ITestCaseGenerator defaultGenerator = genDef.getGenerator( null);
     for( int f = 0; f < functionInputDefs.length; f++)
       {
       FunctionInputDef functionInputDef = functionInputDefs[f];
       function = functionInputDef.getName();
 
-      ITestCaseGenerator generator = genDef.getGenerator( function);
-      if( generator == null || generator.equals( defaultGenerator))
-        {
-        generator = options.getGenFactory().newGenerator( defaultGenerator);
-        genDef.addGenerator( function, generator);
-        }
+      ITestCaseGenerator generator = options.getGenFactory().newGenerator( genDef.getGenerator( function));
       
       logger_.info( "[{}, {}] Initializing test cases to be reduced", project, function);
       int initialCount = getTestCaseCount( baseDef, generator, functionInputDef);
@@ -756,6 +750,7 @@ public class Reducer
         {
         logger_.info( "[{}, {}] Reduced to {} test cases with seed={} -- updating generator definition", new Object[]{ project, function, minCount, minSeed});
         generator.setRandomSeed( minSeed);
+        genDef.setGenerator( function, generator);
         reduced = true;
         }
       }
