@@ -851,6 +851,41 @@
         could have named any of them differently if we wanted to.
       </P>
 
+      <P>
+        When a <SPAN class="code">Value</SPAN> has a large set of properties, defining them in a long comma-separated list may look a little messy.
+        In which case, you may find it tidier to define properties one at a time using the <SPAN class="code">Property</SPAN> element. For example,
+        instead of this:
+
+        <DIV class="exampleDoc">
+          &lt;Var name="A"&gt; <BR/>
+          &nbsp;&lt;Value name="V1" property="this,is,a,ridiculously,long,list,of,property,names"/&gt; <BR/>
+          &nbsp;... <BR/>
+          &lt;/Var&gt; <BR/>
+        </DIV>
+        
+      </P>
+
+      <P>
+        You could create an equivalent definition like this:
+
+        <DIV class="exampleDoc">
+          &lt;Var name="A"&gt; <BR/>
+          &nbsp;&lt;Value name="V1"&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="this"/&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="is"/&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="a"/&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="ridiculously"/&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="long"/&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="list"/&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="of"/&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="property"/&gt; <BR/>
+          &nbsp;&nbsp;&lt;Property name="names"/&gt; <BR/>
+          &nbsp;&lt;/Value&gt; <BR/>
+          &nbsp;... <BR/>
+          &lt;/Var&gt; <BR/>
+        </DIV>
+      </P>
+
       <H4><A name="valueConditions">Value conditions</A></H4>
       <P>
         We can define the conditions required for a <SPAN class="code">Value</SPAN> to be included in a test case using the
