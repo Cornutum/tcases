@@ -1181,7 +1181,8 @@
         input variable. Then, for the next test case, pick a different valid value for every variable. Continue
         this until we've used every valid value of every variable at least once. Of course, as we do this,
         we'll skip over any infeasible combinations that don't satisfy our constraints. The result will be a
-        fairly small number of test cases. In fact, the number of "success" case created by this procedure will
+        fairly small number of test cases. In fact, assuming there are no contraints on input values,
+        the number of "success" case created by this procedure will
         be S, where S is the maximum number of valid values defined for any one variable. For the failure
         cases, we can do something similar by creating a new test case for each invalid value, substituting it
         into an otherwise-valid combination of other values. That gives us F more test cases, where F is the
@@ -1214,6 +1215,17 @@
         be triggered by 1- or 2-way interactions. But that doesn't necessarily mean you should stop at 2-way coverage.
         Every system has its own unique risks. Also, not all variables interact equally &mdash; you may have some
         sets of variables that need a higher level of coverage than the rest.
+      </P>
+
+      <P>
+        Note that the number of test cases required to meet a specific level of coverage depends on
+        many factors. Naturally, the number of test cases needed for N-way coverage increases for
+        larger values of N. Also, variables that have a large number of values create more
+        combinations to be covered, which may demand more test cases. Also, when there are
+        constraints among input values, the number of test cases tends to increase. For example,
+        a <A href="#varConditions">variable condition</A> means that some test cases must use "NA" as
+        the value for that variable, which means that additional test cases are needed to cover the
+        real values.
       </P>
 
       <H3><A name="failureCoverage">Failure Cases Are Different! </A></H3>
