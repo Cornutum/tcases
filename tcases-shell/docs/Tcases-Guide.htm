@@ -39,7 +39,16 @@
             <LI><A href="#vars">Defining Input Variables</A></LI>
             <LI><A href="#values">Defining Input Values</A></LI>
             <LI><A href="#varSets">Defining Variable Sets</A></LI>
-            <LI><A href="#constraints">Defining Constraints: Properties and Conditions</A></LI>
+            <LI><A href="#constraints">Defining Constraints: Properties and Conditions</A>
+              <UL>
+                <LI><A href="#properties">Value properties</A></LI>
+                <LI><A href="#valueConditions">Value conditions</A></LI>
+                <LI><A href="#failureValues">Failure values are different!</A></LI>
+                <LI><A href="#varConditions">Variable conditions</A></LI>
+                <LI><A href="#complexConditions">Complex conditions</A></LI>
+                <LI><A href="#conditionTips">But be careful!</A></LI>
+              </UL>
+            </LI>
           </UL>
         </LI>
         <LI><A href="#coverage">Defining Input Coverage</A>
@@ -1161,19 +1170,36 @@
 
       <H4><A name="conditionTips">But be careful!</A></H4>
       <P>
-        With the contraints defined by properties and conditions comes great power. Use it carefully! It's possible to over-constrain your input model, so
-        that it becomes infeasible. In other words, it might become impossible to generate the test cases you want because some of them can't satisfy all
-        the constraints. 
+        With the contraints defined by properties and conditions comes great power. Use it
+        carefully! It's possible to define constraints that make it very difficult or even
+        impossible for Tcases to generate the test cases you want.  If it looks to you like Tcases
+        is frozen, that's probably what's going on.  Tcases is not frozen &mdash; it's busy with a
+        very long and perhaps fruitless search for a combination of values that will satisfy your
+        constraints.
       </P>
       <P>
-        In some cases, Tcases can quickly detect when constraints are infeasible and report the error immediately. But in many cases, especially when
-        there are chains of conditions involving multiple variables, Tcases can find the error only after trying and eliminating all possible combinations.
-        Even for input models of modest size, that can take a <EM>very</EM> long time! If it looks to you like Tcases is frozen, that's probably what's going on.
-        Tcases is not frozen &mdash; it's busy with a long, exhaustive, and ultimately fruitless search.
+        The following sections describe some of the situations to watch out for.
+      </P>
+
+      <H5>Infeasible combinations</H5>
+      <P>
+        Tcases always generates test cases that include specific combinations of values, based on
+        the <A href="#coverage">coverage level</A> you've specified.  But what if you've defined
+        contraints that make some intended value combination impossible? If so, we say that this
+        combination is "infeasible". For combinations of 2 or more variables (2-tuples, 3-tuples,
+        etc.), this may be expected, so Tcases will simply <A href="#logging">log</A> a warning and
+        keep going. For "combinations" of a single variable (the default coverage level), this is an
+        error, and you must fix the offending contraints before Tcases can continue.
       </P>
       <P>
         (Tip: To help find the bad constraint that's giving you grief, try <A href="#logging">changing the logging level</A> to 
         <SPAN class="code">DEBUG</SPAN> or <SPAN class="code">TRACE</SPAN>.)
+      </P>
+      <P>
+        Usually, Tcases can quickly report when combinations are infeasible. But in some cases,
+        Tcases can find the problem only after trying and eliminating all possibilities.  If it
+        looks to you like Tcases is frozen, that's probably what's going on.  Tcases is not frozen
+        &mdash; it's busy with a long, exhaustive, and ultimately fruitless search.
       </P>
 
       <P>
@@ -1215,6 +1241,23 @@
           &nbsp; &lt;Value name="Chartreuse" failure="true"/&gt; <BR/>
           &lt;/Var&gt; <BR/>
         </DIV>
+      </P>
+
+      <H5>Large <SPAN class="code">AnyOf</SPAN> conditions</H5>
+      <P>
+        You can use an <A href="#complexConditions"><SPAN class="code">AnyOf</SPAN> condition</A> to
+        define a logical "OR" expression. But beware an <SPAN class="code">AnyOf</SPAN> that
+        contains a large number of subexpressions. When Tcases is looking for value combinations to
+        satisfy such a condition, it must evaluate a large number of possibilities. As the number of
+        subexpressions increases, the number of possibilities increases exponentially! This can
+        quickly get out of hand, even when a satisfying combination exists. And things go from bad
+        to worse if this <SPAN class="code">AnyOf</SPAN> makes an intended test case infeasible.  If
+        it looks to you like Tcases is slow or frozen, that may be what's going on.
+      </P>
+      <P>
+        If you face this situation, you should try to find a way simplify the
+        large <SPAN class="code">AnyOf</SPAN> condition. For example, you may be able to eliminate
+        subexpressions by assigning special properties that produce an equivalent result.
       </P>
 
       <H2><A name="coverage">Defining Input Coverage</A></H2>
@@ -1842,10 +1885,10 @@
       <OL>
         <LI> <B>Help! Tcases keeps running and never finishes!</B>
           <BLOCKQUOTE>
-            You have probably over-constrained your input model, making it impossible to generate test cases that satisfy all of the 
+            You have probably over-constrained your input model, making it difficult or impossible to generate test cases that satisfy all of the 
             constraints. But that won't stop Tcases from trying until it has eliminated all possible combinations.
-            Which, even for input models of modest size, can take a <EM>very</EM> long time. 
-            Tcases is not frozen &mdash; it's busy with a long, exhaustive, and ultimately fruitless search.
+            Which, in some cases, can take a <EM>very</EM> long time. 
+            Tcases is not frozen &mdash; it's busy with a long, exhaustive, and possibly fruitless search.
             <BR/><BR/>
               To fix this, check your <SPAN class="code">condition</SPAN> and <SPAN class="code">property</SPAN> settings until you find
               the problem. You can find more details about this situation <A href="#conditionTips">here</A>.
