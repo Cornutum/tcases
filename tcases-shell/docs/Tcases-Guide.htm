@@ -802,7 +802,7 @@
 
       <H4><A name="properties">Value properties</A></H4>
       <P>
-        Any <SPAN class="code">Value</SPAN> definition can declare a <SPAN class="code">property</SPAN> list that
+        A <SPAN class="code">Value</SPAN> definition can declare a <SPAN class="code">property</SPAN> list that
         specifies one or more "properties" for this value. For example:
 
         <DIV class="exampleDoc">
@@ -851,6 +851,12 @@
         could have named any of them differently if we wanted to.
       </P>
 
+      <P>
+        But note that all of this applies <EM>only</EM> to valid <SPAN class="code">Value</SPAN>
+        definitions, not to failure <SPAN class="code">Value</SPAN> definitions that specify
+        <SPAN class="code">failure="true"</SPAN>. Why? Because <A href="#failureValues">failure values are different!</A>.
+      </P>
+      
       <P>
         When a <SPAN class="code">Value</SPAN> has a large set of properties, defining them in a long comma-separated list may look a little messy.
         In which case, you may find it tidier to define properties one at a time using the <SPAN class="code">Property</SPAN> element. For example,
@@ -959,6 +965,28 @@
         without eliminating any test cases that are actually feasible. Otherwise, our tests will have a blind
         spot that could allow defects to slip by undetected. Rule of thumb: Use conditions sparingly and only when necessary
         to avoid infeasible or unproductive test cases.
+      </P>
+
+      <H4><A name="failureValues">Failure values are different!</A></H4>
+      <P>
+        Different? Yes, because failure <SPAN class="code">Value</SPAN> definitions &mdash; i.e. those that specify
+        <SPAN class="code">failure="true"</SPAN> &mdash; <EM>cannot</EM> define properties.
+      </P>
+      <P>
+        If you think about it, you can see that there is a fundamental reason why this is so.
+        Suppose you declare that some value=V defines a property=P. Why would you do that? There
+        really is only one reason: so that some other value=O can require combination with V (or, to
+        be precise, with any value that defines P). But if V
+        declares <SPAN class="code">failure="true"</SPAN>, that doesn't make sense. If the other value
+        O is valid, it can't demand combination with a failure value &mdash; otherwise, O could
+        never appear in a success case. And if O is a failure value itself, it can't demand
+        combination with a different failure value &mdash; at most one failure value can appear in a
+        <A href="#failureCoverage">failure case</A>.
+      </P>
+      <P>
+        But note that a failure <SPAN class="code">Value</SPAN> <EM>can</EM> define a condition.  In
+        other words, it can demand combination with specific values from other variables. By working
+        from this direction, you can control the other values used in a failure case.
       </P>
 
       <H4><A name="varConditions">Variable conditions</A></H4>
