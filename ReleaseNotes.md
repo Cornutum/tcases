@@ -1,5 +1,15 @@
 # Release Notes #
 
+## 1.5.0 ##
+
+  * Better performance: Due to an improved constraint solver, Tcases generates results much faster, even for large and complex input models that previously caused Tcases to "freeze". Although some models may still face problematic performance, these cases are now better described in the [Troubleshooting FAQs](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#trouble), along with suggestions for fixes. But note that this change is not completely backward-compatible. The test cases produced by this version may not be identical to those produced by previous versions of Tcases, although they will be equivalent in coverage. Also, as a result of the new algorithm, Tcases is slightly less likely to honor "once-only" hints, although this will not affect most input models.
+
+  * Output transformations: For more flexibility when transforming the test definition hierarchy, replace "test case annotations" with "system annotations" and "function annotations".
+
+  * Windows *.bat scripts: Fix initialization of logging control variables.
+
+  * Reducer: Fix a defect that caused Reducer to ignore the actual generator definition during its test case generation rounds.
+  
 ## 1.4.0 ##
 
   * Introducing [Output Annotations](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#annotations): For an output transformation to produce concrete test cases, sometimes the basic information in the input model is not enough. You need to add extra information that is not important for generating the test cases but is necessary to form the final output. That's what output annotations are for.
