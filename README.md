@@ -2,15 +2,9 @@
 
 ## What's New? ##
 
-  * The latest version (Tcases 1.4.0) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
+  * The latest version (Tcases 1.5.0) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
 
-  * Introducing [Output Annotations](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#annotations): For an output transformation to produce concrete test cases, sometimes the basic information in the input model is not enough. You need to add extra information that is not important for generating the test cases but is necessary to form the final output. That's what output annotations are for.
-
-  * JUnit output: To assist completion of test case code, Tcases now adds comments listing all input variable values in the Given section of each @Test method body. But if you prefer the previous output format, you can exclude these comments using the command line option `-p values=false`.
-
-  * See [Troubleshooting FAQs](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#trouble) for more help on what to do when things go wrong. This includes more info on how to control Tcases logging output, including how to redirect logging to standard output. Also, logging messages have been improved to make it easier to understand what's going on.
-
-  * Reducer: For better performance, reduce test cases for each function independently
+  * Better performance: Due to an improved constraint solver, Tcases generates results much faster, even for large and complex input models that previously caused Tcases to "freeze". [More about the latest release...](ReleaseNotes.md)
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
