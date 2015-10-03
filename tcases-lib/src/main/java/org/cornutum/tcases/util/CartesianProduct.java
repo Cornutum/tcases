@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
- * Iterates of the Cartesian product of a list of sets.
+ * Iterates over the Cartesian product of a list of sets.
  */
 public class CartesianProduct<T> implements Iterator<List<T>> 
   {
