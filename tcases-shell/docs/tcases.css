@@ -70,6 +70,13 @@ DIV.page H4
     font-weight: bold;
 }
 
+DIV.page H5
+{
+    margin: 1.5em 0 0 1em;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
 DIV.page P
 {
     margin-left: 1em;
