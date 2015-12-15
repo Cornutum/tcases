@@ -132,6 +132,14 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     }
 
   /**
+   * Returns true if this variable is bound to the standard {@link VarValueDef#NA "not applicable"} value.
+   */
+  public boolean isValueNA()
+    {
+    return VarValueDef.NA.getName().equals( getValue());
+    }
+
+  /**
    * Changes the variable definition for this binding, if any.
    */
   private void setVarDef( IVarDef varDef)
