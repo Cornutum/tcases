@@ -9,14 +9,16 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.util.ToString;
 
+import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
+import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.ObjectUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 import java.util.TreeSet;
 
 /**
@@ -86,12 +88,12 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     assert varBinding.getVar() != null;
 
     String varName = varBinding.getVar();
-    if( varBindings_.containsKey( varName))
+    if( findBinding( varName) >= 0)
       {
       throw new IllegalStateException( "Binding for " + varName + " already defined for testCase=" + getId());
       }
     
-    varBindings_.put( varName, varBinding);
+    varBindings_.add( varBinding);
     return this;
     }
 
@@ -100,7 +102,12 @@ public class TestCase extends Annotated implements Comparable<TestCase>
    */
   public TestCase removeVarBinding( String name)
     {
-    varBindings_.remove( name);
+    int i = findBinding( name);
+    if( i >= 0)
+      {
+      varBindings_.remove( i);
+      }
+    
     return this;
     }
 
@@ -109,7 +116,11 @@ public class TestCase extends Annotated implements Comparable<TestCase>
    */
   public VarBinding getVarBinding( String name)
     {
-    return varBindings_.get( name);
+    int i = findBinding( name);
+    return
+      i >= 0
+      ? varBindings_.get( i)
+      : null;
     }
 
   /**
@@ -120,7 +131,7 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     VarBinding invalidBinding;
     Iterator<VarBinding> bindings;
     for( invalidBinding = null,
-           bindings = varBindings_.values().iterator();
+           bindings = varBindings_.iterator();
 
          bindings.hasNext()
            && (invalidBinding = bindings.next()).isValueValid();
@@ -135,7 +146,7 @@ public class TestCase extends Annotated implements Comparable<TestCase>
    */
   public Iterator<VarBinding> getVarBindings()
     {
-    return varBindings_.values().iterator();
+    return varBindings_.iterator();
     }
 
   /**
@@ -145,13 +156,31 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     {
     return
       IteratorUtils.filteredIterator
-      ( varBindings_.values().iterator(),
+      ( varBindings_.iterator(),
         new Predicate<VarBinding>()
         {
         @SuppressWarnings("deprecation")
         public boolean evaluate( VarBinding binding)
           {
           return ObjectUtils.equals( binding.getType(), type);
+          }
+        });
+    }
+
+  /**
+   * Returns the index of the binding for the given variable.
+   */
+  public int findBinding( final String name)
+    {
+    return
+      IterableUtils.indexOf
+      ( varBindings_,
+        new Predicate<VarBinding>()
+        {
+        @SuppressWarnings("deprecation")
+        public boolean evaluate( VarBinding binding)
+          {
+          return ObjectUtils.equals( binding.getVar(), name);
           }
         });
     }
@@ -175,7 +204,7 @@ public class TestCase extends Annotated implements Comparable<TestCase>
   public String toString()
     {
     VarBinding[] bindings = new VarBinding[ varBindings_.size()];
-    Arrays.sort( varBindings_.values().toArray( bindings));
+    Arrays.sort( varBindings_.toArray( bindings));
     
     return
       ToString.getBuilder( this)
@@ -208,10 +237,10 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     return
       other != null
       && id_ == other.id_
-      && varBindings_.equals( other.varBindings_);
+      && SetUtils.isEqualSet( varBindings_, other.varBindings_);
     }
 
   private int id_;
-  private Map<String,VarBinding> varBindings_ = new HashMap<String,VarBinding>();
+  private List<VarBinding> varBindings_ = new ArrayList<VarBinding>();
   }
 
