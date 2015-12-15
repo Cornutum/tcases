@@ -73,6 +73,18 @@ public class XmlWriter extends IndentedWriter
     }
 
   /**
+   * Writes an element on a single line.
+   */
+  public void writeElement( String tag, String content)
+    {
+    startLine();
+    print( "<"); print( tag); print( ">");
+    print( content);
+    print( "</"); print( tag); print( ">");
+    println();
+    }
+
+  /**
    * Writes an element start tag.
    */
   public void writeElementStart( String tag)
