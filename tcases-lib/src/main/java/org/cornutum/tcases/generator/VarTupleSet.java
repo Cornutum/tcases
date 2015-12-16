@@ -11,7 +11,7 @@ import org.cornutum.tcases.VarBindingDef;
 import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
 
@@ -69,7 +69,7 @@ public class VarTupleSet
       ? 0.0
 
       : (double)
-        CollectionUtils.countMatches
+        IterableUtils.countMatches
         ( unused_,
           new Predicate<Tuple>()
             {

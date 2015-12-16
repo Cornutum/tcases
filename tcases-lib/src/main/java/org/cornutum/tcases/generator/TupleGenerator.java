@@ -17,9 +17,10 @@ import static org.cornutum.tcases.util.CollectionUtils.filtered;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.collections4.MultiMapUtils;
+import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
-import org.apache.commons.collections4.map.MultiValueMap;
 import org.apache.commons.lang3.ObjectUtils;
 import static org.apache.commons.collections4.functors.NOPTransformer.nopTransformer;
 
@@ -768,9 +769,9 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
   /**
    * Return a map that associates each value property with the set of bindings that provide it.
    */
-  private MultiValueMap<String,VarBindingDef> createPropertyProviders( FunctionInputDef inputDef)
+  private MultiValuedMap<String,VarBindingDef> createPropertyProviders( FunctionInputDef inputDef)
     {
-    propertyProviders_ = new MultiValueMap<String,VarBindingDef>();
+    propertyProviders_ = MultiMapUtils.newListValuedHashMap();
     for( VarDefIterator varDefs = new VarDefIterator( inputDef.getVarDefs()); varDefs.hasNext(); )
       {
       VarDef varDef = varDefs.next();
@@ -799,7 +800,7 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
     Set<VarBindingDef> bindings = new HashSet<VarBindingDef>();
     for( String property : properties)
       {
-      bindings.addAll( propertyProviders_.getCollection( property));
+      bindings.addAll( propertyProviders_.get( property));
       }
 
     return bindings;
@@ -895,7 +896,7 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
   private Long seed_;
   private int defaultTupleSize_;
   private List<TupleCombiner> combiners_;
-  private MultiValueMap<String,VarBindingDef> propertyProviders_;
+  private MultiValuedMap<String,VarBindingDef> propertyProviders_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TupleGenerator.class);
 

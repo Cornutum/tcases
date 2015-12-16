@@ -10,7 +10,7 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.generator.*;
 import static org.cornutum.tcases.util.Asserts.*;
 
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
@@ -137,7 +137,8 @@ public final class AssertTestDef
   private static int getTestCasesIncluding( FunctionTestDef testDef, final VarBinding binding)
     {
     return
-      CollectionUtils.countMatches
+      (int)
+      IterableUtils.countMatches
       ( IteratorUtils.toList( testDef.getTestCases()),
         new Predicate<TestCase>()
           {
@@ -154,7 +155,8 @@ public final class AssertTestDef
   private static int getTestCasesIncluding( FunctionTestDef testDef, final Tuple tuple)
     {
     return
-      CollectionUtils.countMatches
+      (int)
+      IterableUtils.countMatches
       ( IteratorUtils.toList( testDef.getTestCases()),
         new Predicate<TestCase>()
           {
