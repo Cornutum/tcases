@@ -37,7 +37,7 @@ public class TransformFilter extends AbstractFilter implements ErrorListener
    */
   public TransformFilter()
     {
-    this( (Source) null);
+    this( (Source) null, null);
     }
   
   /**
@@ -45,7 +45,7 @@ public class TransformFilter extends AbstractFilter implements ErrorListener
    */
   public TransformFilter( Source transform)
     {
-    setTransform( transform);
+    this( transform, null);
     }
   
   /**
@@ -53,7 +53,7 @@ public class TransformFilter extends AbstractFilter implements ErrorListener
    */
   public TransformFilter( InputStream transform)
     {
-    this( new StreamSource( transform));
+    this( new StreamSource( transform), null);
     }
   
   /**
@@ -61,7 +61,32 @@ public class TransformFilter extends AbstractFilter implements ErrorListener
    */
   public TransformFilter( File transform)
     {
-    this( new StreamSource( transform));
+    this( new StreamSource( transform), null);
+    }
+  
+  /**
+   * Creates a new TransformFilter to apply the given XSLT transform.
+   */
+  public TransformFilter( Source transform, Map<String,Object> params)
+    {
+    setTransform( transform);
+    setParams( params);
+    }
+  
+  /**
+   * Creates a new TransformFilter to apply the given XSLT transform.
+   */
+  public TransformFilter( InputStream transform, Map<String,Object> params)
+    {
+    this( new StreamSource( transform), params);
+    }
+  
+  /**
+   * Creates a new TransformFilter to apply the given XSLT transform.
+   */
+  public TransformFilter( File transform, Map<String,Object> params)
+    {
+    this( new StreamSource( transform), params);
     }
 
   /**

@@ -8,6 +8,7 @@
 package org.cornutum.tcases.io;
 
 import java.io.InputStream;
+import java.util.Map;
 
 /**
  * A {@link TransformFilter} that transforms a system test definition document
@@ -22,6 +23,14 @@ public class TestDefToJUnitFilter extends TransformFilter
   public TestDefToJUnitFilter()
     {
     super( getTransformDef());
+    }
+  
+  /**
+   * Creates a new TestDefToJUnitFilter object.
+   */
+  public TestDefToJUnitFilter( Map<String,Object> params)
+    {
+    super( getTransformDef(), params);
     }
 
   /**
