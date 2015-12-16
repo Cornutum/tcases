@@ -13,7 +13,6 @@ import static org.cornutum.tcases.io.SystemTestDoc.*;
 
 import org.apache.commons.collections4.IteratorUtils;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
@@ -24,14 +23,14 @@ import java.util.Iterator;
  * Writes a {@link SystemTestDef} in the form of an XML document.
  *
  */
-public class SystemTestDocWriter implements Closeable
+public class SystemTestDocWriter extends AbstractSystemTestWriter
   {
   /**
    * Creates a new SystemTestDocWriter object that writes to standard output.
    */
   public SystemTestDocWriter()
     {
-    this( System.out);
+    super();
     }
   
   /**
@@ -39,7 +38,7 @@ public class SystemTestDocWriter implements Closeable
    */
   public SystemTestDocWriter( OutputStream stream)
     {
-    this( new XmlWriter( stream));
+    super( stream);
     }
   
   /**
@@ -47,15 +46,7 @@ public class SystemTestDocWriter implements Closeable
    */
   public SystemTestDocWriter( Writer writer)
     {
-    this( new XmlWriter( writer));
-    }
-  
-  /**
-   * Creates a new SystemTestDocWriter object that writes to the given stream.
-   */
-  protected SystemTestDocWriter( XmlWriter writer)
-    {
-    writer_ = writer;
+    super( writer);
     }
 
   /**
@@ -63,22 +54,22 @@ public class SystemTestDocWriter implements Closeable
    */
   public void write( SystemTestDef systemTest)
     {
-    writer_.writeDeclaration();
+    xmlWriter_.writeDeclaration();
 
-    writer_.writeTagStart( TESTCASES_TAG);
-    writer_.writeAttribute( SYSTEM_ATR, systemTest.getName());
-    writer_.writeTagEnd();
+    xmlWriter_.writeTagStart( TESTCASES_TAG);
+    xmlWriter_.writeAttribute( SYSTEM_ATR, systemTest.getName());
+    xmlWriter_.writeTagEnd();
 
-    writer_.indent();
+    xmlWriter_.indent();
     writeAnnotations( systemTest);
     for( Iterator<FunctionTestDef> functions =systemTest.getFunctionTestDefs();
          functions.hasNext();)
       {
       writeFunction( functions.next());
       }
-    writer_.unindent();
+    xmlWriter_.unindent();
     
-    writer_.writeElementEnd( TESTCASES_TAG);
+    xmlWriter_.writeElementEnd( TESTCASES_TAG);
     }
 
   /**
@@ -86,11 +77,11 @@ public class SystemTestDocWriter implements Closeable
    */
   protected void writeFunction( FunctionTestDef function)
     {
-    writer_.writeTagStart( FUNCTION_TAG);
-    writer_.writeAttribute( NAME_ATR, function.getName());
-    writer_.writeTagEnd();
+    xmlWriter_.writeTagStart( FUNCTION_TAG);
+    xmlWriter_.writeAttribute( NAME_ATR, function.getName());
+    xmlWriter_.writeTagEnd();
 
-    writer_.indent();
+    xmlWriter_.indent();
     writeAnnotations( function);
     TestCase[] testCases = IteratorUtils.toArray( function.getTestCases(), TestCase.class);
     Arrays.sort( testCases);
@@ -98,9 +89,9 @@ public class SystemTestDocWriter implements Closeable
       {
       writeTestCase( testCases[i]);
       }
-    writer_.unindent();
+    xmlWriter_.unindent();
     
-    writer_.writeElementEnd( FUNCTION_TAG);
+    xmlWriter_.writeElementEnd( FUNCTION_TAG);
     }
 
   /**
@@ -108,24 +99,24 @@ public class SystemTestDocWriter implements Closeable
    */
   protected void writeTestCase( TestCase testCase)
     {
-    writer_.writeTagStart( TESTCASE_TAG);
-    writer_.writeAttribute( ID_ATR, String.valueOf( testCase.getId()));
+    xmlWriter_.writeTagStart( TESTCASE_TAG);
+    xmlWriter_.writeAttribute( ID_ATR, String.valueOf( testCase.getId()));
     if( testCase.getType() == TestCase.Type.FAILURE)
       {
-      writer_.writeAttribute( FAILURE_ATR, "true");
+      xmlWriter_.writeAttribute( FAILURE_ATR, "true");
       }
-    writer_.writeTagEnd();
+    xmlWriter_.writeTagEnd();
 
-    writer_.indent();
+    xmlWriter_.indent();
     writeAnnotations( testCase);
     String[] types = testCase.getVarTypes();
     for( int i = 0; i < types.length; i++)
       {
       writeInputs( testCase, types[i]);
       }
-    writer_.unindent();
+    xmlWriter_.unindent();
     
-    writer_.writeElementEnd( TESTCASE_TAG);
+    xmlWriter_.writeElementEnd( TESTCASE_TAG);
     }
 
   /**
@@ -133,20 +124,20 @@ public class SystemTestDocWriter implements Closeable
    */
   protected void writeInputs( TestCase testCase, String type)
     {
-    writer_.writeTagStart( INPUT_TAG);
-    writer_.writeAttribute( TYPE_ATR, type);
-    writer_.writeTagEnd();
+    xmlWriter_.writeTagStart( INPUT_TAG);
+    xmlWriter_.writeAttribute( TYPE_ATR, type);
+    xmlWriter_.writeTagEnd();
 
-    writer_.indent();
+    xmlWriter_.indent();
     VarBinding[] bindings = IteratorUtils.toArray( testCase.getVarBindings( type), VarBinding.class);
     Arrays.sort( bindings);
     for( int i = 0; i < bindings.length; i++)
       {
       writeBinding( bindings[i]);
       }
-    writer_.unindent();
+    xmlWriter_.unindent();
     
-    writer_.writeElementEnd( INPUT_TAG);
+    xmlWriter_.writeElementEnd( INPUT_TAG);
     }
 
   /**
@@ -154,25 +145,25 @@ public class SystemTestDocWriter implements Closeable
    */
   protected void writeBinding( VarBinding binding)
     {
-    writer_.writeTagStart( VAR_TAG);
-    writer_.writeAttribute( NAME_ATR, binding.getVar());
-    writer_.writeAttribute( VALUE_ATR, binding.getValue());
+    xmlWriter_.writeTagStart( VAR_TAG);
+    xmlWriter_.writeAttribute( NAME_ATR, binding.getVar());
+    xmlWriter_.writeAttribute( VALUE_ATR, binding.getValue());
     if( !binding.isValueValid())
       {
-      writer_.writeAttribute( FAILURE_ATR, "true");
+      xmlWriter_.writeAttribute( FAILURE_ATR, "true");
       }
 
     if( binding.getAnnotationCount() == 0)
       {
-      writer_.writeEmptyElementEnd();
+      xmlWriter_.writeEmptyElementEnd();
       }
     else
       {
-      writer_.writeTagEnd();
-      writer_.indent();
+      xmlWriter_.writeTagEnd();
+      xmlWriter_.indent();
       writeAnnotations( binding);
-      writer_.unindent();
-      writer_.writeElementEnd( VAR_TAG);
+      xmlWriter_.unindent();
+      xmlWriter_.writeElementEnd( VAR_TAG);
       }
     }
 
@@ -185,19 +176,19 @@ public class SystemTestDocWriter implements Closeable
     Arrays.sort( annotations);
     for( int i = 0; i < annotations.length; i++)
       {
-      writer_.writeTagStart( HAS_TAG);
-      writer_.writeAttribute( NAME_ATR, annotations[i]);
-      writer_.writeAttribute( VALUE_ATR, annotated.getAnnotation( annotations[i]));
-      writer_.writeEmptyElementEnd();
+      xmlWriter_.writeTagStart( HAS_TAG);
+      xmlWriter_.writeAttribute( NAME_ATR, annotations[i]);
+      xmlWriter_.writeAttribute( VALUE_ATR, annotated.getAnnotation( annotations[i]));
+      xmlWriter_.writeEmptyElementEnd();
       } 
     }
 
   /**
    * Flushes the writer.
    */
-  public void flush()
+  public void flush() throws IOException
     {
-    writer_.flush();
+    getXmlWriter().flush();
     }
 
   /**
@@ -205,8 +196,32 @@ public class SystemTestDocWriter implements Closeable
    */
   public void close() throws IOException
     {
-    writer_.close();
+    getXmlWriter().close();
     }
 
-  private XmlWriter writer_;
+  /**
+   * Changes the output stream for this writer.
+   */
+  protected void setWriter( Writer writer)
+    {
+    setXmlWriter( new XmlWriter( writer));
+    }
+
+  /**
+   * Changes the XmlWriter for this writer.
+   */
+  private void setXmlWriter( XmlWriter xmlWriter)
+    {
+    xmlWriter_ = xmlWriter;
+    }
+
+  /**
+   * Returns the XmlWriter for this writer.
+   */
+  private XmlWriter getXmlWriter()
+    {
+    return xmlWriter_;
+    }
+
+  private XmlWriter xmlWriter_;
   }
