@@ -17,6 +17,7 @@ import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
@@ -224,7 +225,7 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     return
       getClass().hashCode()
       ^ id_
-      ^ varBindings_.hashCode();
+      ^ new HashSet<VarBinding>(varBindings_).hashCode();
     }
 
   public boolean equals( Object object)
