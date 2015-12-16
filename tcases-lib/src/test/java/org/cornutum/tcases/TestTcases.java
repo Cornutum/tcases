@@ -1133,6 +1133,27 @@ public class TestTcases
     assertEquals( "Test def created", true, outFilePath.exists());
     }
 
+      
+  @Test
+  public void run_Transform_Html() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-transform-html");
+    File outFilePath = new File( inFile.getParentFile(), Tcases.getProjectName( inFile) + "-Test.htm");
+
+    String[] args =
+      {
+        "-H",
+        inFile.getPath()
+      };
+    
+    // When...
+    Tcases.run( new Options( args));
+        
+    // Then...
+    assertEquals( "Test def created", true, outFilePath.exists());
+    }
+
   @Test
   public void getTests_whenInputOnly() throws Exception
     {

@@ -119,7 +119,10 @@ public class TcasesTask extends Task
    */
   public void setJunit( boolean junit)
     {
-    options_.setJUnit( junit);
+    if( junit)
+      {
+      options_.setTransformType( Options.TransformType.JUNIT);
+      }
     }
 
   /**
@@ -127,7 +130,26 @@ public class TcasesTask extends Task
    */
   public boolean isJunit()
     {
-    return options_.isJUnit();
+    return options_.getTransformType() == Options.TransformType.JUNIT;
+    }
+
+  /**
+   * Changes if using the HTML transform.
+   */
+  public void setHtml( boolean html)
+    {
+    if( html)
+      {
+      options_.setTransformType( Options.TransformType.HTML);
+      }
+    }
+
+  /**
+   * Returns if using the HTML transform.
+   */
+  public boolean isHtml()
+    {
+    return options_.getTransformType() == Options.TransformType.HTML;
     }
 
   /**
@@ -210,6 +232,10 @@ public class TcasesTask extends Task
   public void setTransformDef( File transformDef)
     {
     options_.setTransformDef( transformDef);
+    if( transformDef != null)
+      {
+      options_.setTransformType( Options.TransformType.CUSTOM);
+      }
     }
 
   /**

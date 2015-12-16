@@ -82,6 +82,7 @@ while [ $# -gt 0 ] ; do
     -c) shift; defTupleSize="$1";;
     -f) shift; outFile="$1";;
     -g) shift; genDef="$1";;
+    -H) isHtml="$1";;
     -J) isJUnit="$1";;
     -l) shift; logFile="$1";;
     -L) shift; logLevel="$1";;
@@ -147,6 +148,7 @@ java \
   ${defTupleSize:+-c "$defTupleSize"} \
   $noExtend \
   $isJUnit \
+  $isHtml \
   ${outDir:+-o "$outDir"} \
   ${outFile:+-f "$outFile"} \
   ${params} \

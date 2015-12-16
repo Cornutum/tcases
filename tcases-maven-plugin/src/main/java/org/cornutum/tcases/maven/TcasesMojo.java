@@ -102,7 +102,6 @@ public class TcasesMojo extends AbstractMojo
           options.setOutDir( outDir);
           options.setTestDef( testDef==null? null : new File( inputDir, testDef));
           options.setOutFile( outFile==null? null : new File( outDir, outFile));
-          options.setJUnit( isJunit());
           options.setExtended( !isNewTests());
           options.setRandomSeed( getSeed());
           options.setDefaultTupleSize( getTuples());
@@ -110,6 +109,7 @@ public class TcasesMojo extends AbstractMojo
           File transformDef = getTransformDefFile();
           if( transformDef != null)
             {
+            options.setTransformType( Options.TransformType.CUSTOM);
             String projectTransformDef = getProjectFile( projectName, transformDef.getPath());
             if( projectTransformDef == null)
               {
@@ -120,6 +120,15 @@ public class TcasesMojo extends AbstractMojo
                 ? new File( projectTransformDef)
                 : new File( inputDir, projectTransformDef));
             }
+          else if( isJunit())
+            {
+            options.setTransformType( Options.TransformType.JUNIT);
+            }
+          else if( isHtml())
+            {
+            options.setTransformType( Options.TransformType.HTML);
+            }
+          
           options.setTransformParams( getTransformParams());
 
           // Generate test cases for this Tcases project.
@@ -321,6 +330,22 @@ public class TcasesMojo extends AbstractMojo
   public boolean isJunit()
     {
     return junit;
+    }
+
+  /**
+   * Changes if using the Html transform.
+   */
+  public void setHtml( boolean html)
+    {
+    this.html = html;
+    }
+
+  /**
+   * Returns if using the Html transform.
+   */
+  public boolean isHtml()
+    {
+    return html;
     }
 
   /**
@@ -540,6 +565,12 @@ public class TcasesMojo extends AbstractMojo
    */
   @Parameter(property="junit",defaultValue="false")
   private boolean junit;
+
+  /**
+   * If true, generate test cases in the form of an HTML report.
+   */
+  @Parameter(property="html",defaultValue="false")
+  private boolean html;
 
   /**
    * If true, ignore any initial test definitions. Otherwise, generate new test definitions
