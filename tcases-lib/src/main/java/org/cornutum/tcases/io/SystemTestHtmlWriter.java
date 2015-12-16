@@ -75,8 +75,11 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
 
   /**
    * Writes the given system test definition the form of an HTML document.
+   * If <CODE>isStyled</CODE> is false, no style is defined for this HTML document.
+   * Otherwise, if a stylesheet URI is defined, includes a link to this stylesheet.
+   * Otherwise, use the default stylesheet.
    */
-  protected void write( SystemTestDef systemTest, boolean isStyled, URI stylesheet)
+  public void write( SystemTestDef systemTest, boolean isStyled, URI stylesheet)
     {
     xmlWriter_.writeElementStart( "HTML");
     xmlWriter_.indent();
@@ -85,18 +88,21 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
     xmlWriter_.indent();
 
     xmlWriter_.writeElement( "TITLE", "Test Cases: " + systemTest.getName());
-    
-    if( stylesheet != null)
+
+    if( isStyled)
       {
-      xmlWriter_.writeTagStart( "LINK");
-      xmlWriter_.writeAttribute( "rel", "stylesheet");
-      xmlWriter_.writeAttribute( "type", "text/css");
-      xmlWriter_.writeAttribute( "href", String.valueOf( stylesheet));
-      xmlWriter_.writeTagEnd();
-      }
-    else if( isStyled)
-      {
-      writeDefaultStyle();
+      if( stylesheet != null)
+        {
+        xmlWriter_.writeTagStart( "LINK");
+        xmlWriter_.writeAttribute( "rel", "stylesheet");
+        xmlWriter_.writeAttribute( "type", "text/css");
+        xmlWriter_.writeAttribute( "href", String.valueOf( stylesheet));
+        xmlWriter_.writeTagEnd();
+        }
+      else
+        {
+        writeDefaultStyle();
+        }
       }
     
     xmlWriter_.unindent();
@@ -180,19 +186,8 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   protected void writeInputs( TestCase testCase, String type)
     {
-    xmlWriter_.writeTagStart( "DIV");
-    xmlWriter_.writeAttribute( "class", "input " + type);
-    xmlWriter_.writeTagEnd();
-    xmlWriter_.indent();
-
-    if( !IVarDef.ARG.equals( type))
-      {
-      xmlWriter_.writeElement( "H3", type);
-      }
-    
-    writeVarSets
-      ( 0,
-        IteratorUtils.filteredIterator
+    Iterator<VarBinding> varBindings =
+      IteratorUtils.filteredIterator
         ( testCase.getVarBindings( type),
           new Predicate<VarBinding>()
              {
@@ -200,10 +195,25 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
                 {
                 return !binding.isValueNA();
                 }
-            }));
+            });
+
+    if( varBindings.hasNext())
+      {
+      xmlWriter_.writeTagStart( "DIV");
+      xmlWriter_.writeAttribute( "class", "input " + type);
+      xmlWriter_.writeTagEnd();
+      xmlWriter_.indent();
+
+      if( !IVarDef.ARG.equals( type))
+        {
+        xmlWriter_.writeElement( "H3", type);
+        }
     
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "DIV");
+      writeVarSets( 0, varBindings);
+    
+      xmlWriter_.unindent();
+      xmlWriter_.writeElementEnd( "DIV");
+      }
     }
 
   /**
