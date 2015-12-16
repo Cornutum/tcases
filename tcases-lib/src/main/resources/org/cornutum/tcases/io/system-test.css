@@ -51,24 +51,13 @@ TH, TD
 {
     margin: 0 0 0 0;
     padding: 0.5em;
-}
-
-TH
-{
-    text-align: right;
-    vertical-align: top;
+    text-align: left;
+    vertical-align: baseline;
 }
 
 DIV.testCase
 {
     margin-left: 4em;
-}
-
-H2.failure
-{
-    background-color: #FF9999;
-    border-style: solid;
-    border-width: 1;
 }
 
 TR.failure
