@@ -22,40 +22,42 @@ public class TestDefToHtmlFilter extends AbstractFilter
    */
   public TestDefToHtmlFilter()
     {
-    this( true, null);
+    this( true, null, null);
     }
   
   /**
-   * Creates a new TestDefToHtmlFilter, using the given CSS stylesheet.
+   * Creates a new TestDefToHtmlFilter, using the given CSS stylesheet and JavaScript resources.
    */
-  public TestDefToHtmlFilter( URI stylesheet)
+  public TestDefToHtmlFilter( URI stylesheet, URI script)
     {
-    this( stylesheet != null, stylesheet);
+    this( false, stylesheet, script);
     }
   
   /**
-   * Creates a new TestDefToHtmlFilter, using the given CSS stylesheet.
+   * Creates a new TestDefToHtmlFilter. If <CODE>defaultStyle</CODE> is true, uses the default CSS stylesheet.
+   * Otherwise, uses the given CSS stylesheet and JavaScript resources.
    */
-  private TestDefToHtmlFilter( boolean styled, URI stylesheet)
+  private TestDefToHtmlFilter( boolean defaultStyle, URI stylesheet, URI script)
     {
-    setStyled( styled);
+    setDefaultStyle( defaultStyle);
     setStylesheet( stylesheet);
+    setScript( script);
     }
 
   /**
-   * Changes if this filter uses a CSS stylesheet.
+   * Changes if this filter uses the default CSS stylesheet.
    */
-  public void setStyled( boolean styled)
+  public void setDefaultStyle( boolean defaultStyle)
     {
-    styled_ = styled;
+    defaultStyle_ = defaultStyle;
     }
 
   /**
-   * Returns if this filter uses a CSS stylesheet.
+   * Returns if this filter uses the default CSS stylesheet.
    */
-  public boolean isStyled()
+  public boolean isDefaultStyle()
     {
-    return styled_;
+    return defaultStyle_;
     }
 
   /**
@@ -75,6 +77,22 @@ public class TestDefToHtmlFilter extends AbstractFilter
     }
 
   /**
+   * Changes the reference to the JavaScript resource used by this filter.
+   */
+  public void setScript( URI script)
+    {
+    script_ = script;
+    }
+
+  /**
+   * Returns the reference to the JavaScript resource used by this filter.
+   */
+  public URI getScript()
+    {
+    return script_;
+    }
+
+  /**
    * Reads data to be transformed from the {@link #getFilterInput filter input stream} and
    * write transformed data to the {@link #getFilterOutput filter output stream}.
    */
@@ -85,8 +103,9 @@ public class TestDefToHtmlFilter extends AbstractFilter
 
     htmlWriter.write
       ( new SystemTestDocReader( getFilterInput()).getSystemTestDef(),
-        isStyled(),
-        getStylesheet());
+        isDefaultStyle(),
+        getStylesheet(),
+        getScript());
 
     htmlWriter.flush();
     }
@@ -96,9 +115,11 @@ public class TestDefToHtmlFilter extends AbstractFilter
     return
       ToString.getBuilder( this)
       .append( "stylesheet", getStylesheet())
+      .append( "script", getScript())
       .toString();
     }
 
-  private boolean styled_;
+  private boolean defaultStyle_;
   private URI stylesheet_;
+  private URI script_;
   }

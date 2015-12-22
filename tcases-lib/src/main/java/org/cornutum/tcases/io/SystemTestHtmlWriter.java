@@ -57,12 +57,14 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
 
   /**
    * Writes the given system test definition the form of an HTML document.
-   * If a stylesheet URI is defined, includes a link to this stylesheet.
+   * If a stylesheet URI is defined, includes a link to this stylesheet resource.
    * Otherwise, no style is defined for this HTML document.
+   * If a JavaScript URI is defined, includes a link to this script resource.
+   * Otherwise, no JavaScript is defined for this HTML document.
    */
-  public void write( SystemTestDef systemTest, URI stylesheet)
+  public void write( SystemTestDef systemTest, URI stylesheet, URI script)
     {
-    write( systemTest, stylesheet != null, stylesheet);
+    write( systemTest, false, stylesheet, script);
     }
 
   /**
@@ -70,16 +72,17 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   public void write( SystemTestDef systemTest)
     {
-    write( systemTest, true, null);
+    write( systemTest, true, null, null);
     }
 
   /**
    * Writes the given system test definition the form of an HTML document.
-   * If <CODE>isStyled</CODE> is false, no style is defined for this HTML document.
-   * Otherwise, if a stylesheet URI is defined, includes a link to this stylesheet.
-   * Otherwise, use the default stylesheet.
+   * If <CODE>defaultStyle</CODE> is true, uses the default stylesheet and ignores the given <CODE>stylesheet</CODE>
+   * and <CODE>script</CODE> parameters.
+   * Otherwise, if a stylesheet URI is defined, includes a link to this stylesheet resource and if a
+   * JavaScript URI is defined, includes a link to this script resource.
    */
-  public void write( SystemTestDef systemTest, boolean isStyled, URI stylesheet)
+  public void write( SystemTestDef systemTest, boolean defaultStyle, URI stylesheet, URI script)
     {
     xmlWriter_.writeElementStart( "HTML");
     xmlWriter_.indent();
@@ -89,20 +92,17 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
 
     xmlWriter_.writeElement( "TITLE", "Test Cases: " + systemTest.getName());
 
-    if( isStyled)
+    if( defaultStyle)
       {
-      if( stylesheet != null)
-        {
-        xmlWriter_.writeTagStart( "LINK");
-        xmlWriter_.writeAttribute( "rel", "stylesheet");
-        xmlWriter_.writeAttribute( "type", "text/css");
-        xmlWriter_.writeAttribute( "href", String.valueOf( stylesheet));
-        xmlWriter_.writeTagEnd();
-        }
-      else
-        {
-        writeDefaultStyle();
-        }
+      writeDefaultStyle();
+      }
+    else if( stylesheet != null)
+      {
+      xmlWriter_.writeTagStart( "LINK");
+      xmlWriter_.writeAttribute( "rel", "stylesheet");
+      xmlWriter_.writeAttribute( "type", "text/css");
+      xmlWriter_.writeAttribute( "href", String.valueOf( stylesheet));
+      xmlWriter_.writeTagEnd();
       }
     
     xmlWriter_.unindent();
@@ -114,6 +114,17 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
     for( Iterator<FunctionTestDef> functions =systemTest.getFunctionTestDefs(); functions.hasNext();)
       {
       writeFunction( functions.next());
+      }
+
+    if( defaultStyle)
+      {
+      writeDefaultScript();
+      }
+    else if( script != null)
+      {
+      xmlWriter_.writeTagStart( "SCRIPT");
+      xmlWriter_.writeAttribute( "src", String.valueOf( script));
+      xmlWriter_.writeTagEnd();
       }
     
     xmlWriter_.unindent();
@@ -150,25 +161,15 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
     for( Iterator<TestCase> testCases = function.getTestCases(); testCases.hasNext();)
       {
       TestCase testCase = testCases.next();
-
+      String testCaseType = testCase.getType()==TestCase.Type.FAILURE? "failure" : "success";
+      
       xmlWriter_.writeTagStart( "DIV");
       xmlWriter_.writeAttribute( "id", function.getName() + "." + testCase.getId());
-      xmlWriter_.writeAttribute( "class", "testCase");
+      xmlWriter_.writeAttribute( "class", "testCase " + testCaseType);
       xmlWriter_.writeTagEnd();
       xmlWriter_.indent();
 
-      xmlWriter_.writeTagStart( "H2");
-      if( testCase.getType()==TestCase.Type.FAILURE)
-        {
-        xmlWriter_.writeAttribute( "class", "failure");
-        }
-      xmlWriter_.writeTagEnd();
-      xmlWriter_.indent();
-
-      xmlWriter_.println( "Test Case " + testCase.getId());
-
-      xmlWriter_.unindent();
-      xmlWriter_.writeElementEnd( "H2");
+      xmlWriter_.writeElement( "H2", "Test Case " + testCase.getId());
       
       String[] types = testCase.getVarTypes();
       for( int i = 0; i < types.length; i++)
@@ -301,14 +302,6 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
     }
 
   /**
-   * Writes the given valid input variable binding.
-   */
-  protected void writeBinding( String var, String value)
-    {
-    writeBinding( var, value, true);
-    }
-
-  /**
    * Writes the default system test style definition.
    */
   protected void writeDefaultStyle()
@@ -325,7 +318,7 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
       }
     catch( Exception e)
       {
-      throw new RuntimeException( "", e);
+      throw new RuntimeException( "Can't write resource=system-test.css", e);
       }
     finally
       {
@@ -334,6 +327,34 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
     
     xmlWriter_.unindent();
     xmlWriter_.writeElementEnd( "STYLE");
+    }
+
+  /**
+   * Writes the default system test presentation script.
+   */
+  protected void writeDefaultScript()
+    {
+    xmlWriter_.writeElementStart( "SCRIPT");
+    xmlWriter_.indent();
+
+    LineIterator scriptLines = null;
+    try
+      {
+      for( scriptLines = IOUtils.lineIterator( getClass().getResourceAsStream( "system-test.js"), "UTF-8");
+           scriptLines.hasNext();
+           xmlWriter_.println( scriptLines.next()));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write resource=system-test.js", e);
+      }
+    finally
+      {
+      LineIterator.closeQuietly( scriptLines);
+      }
+    
+    xmlWriter_.unindent();
+    xmlWriter_.writeElementEnd( "SCRIPT");
     }
 
   /**
