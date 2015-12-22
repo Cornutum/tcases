@@ -163,3 +163,9 @@ SPAN.exampleError
     color: black;
     background-color: #FFA078;
 }
+
+IMG
+{
+    border-style: solid;
+    border-width: 1;
+}

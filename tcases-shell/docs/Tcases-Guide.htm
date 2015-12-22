@@ -73,6 +73,7 @@
         </LI>
         <LI><A href="#transform">Transforming Test Cases</A>
           <UL>
+            <LI><A href="#html">Creating An HTML Report</A></LI>
             <LI><A href="#junit">Creating JUnit/TestNG Tests</A></LI>
             <LI><A href="#xslt">Using XSLT Transforms</A></LI>
             <LI><A href="#annotations">Using Output Annotations</A></LI>
@@ -152,7 +153,7 @@
         convert it into a form that is suitable for testing your system. For example, Tcases comes with a
         built-in transformer that converts a system test definition into a Java source code template
         for a <A href="#junit">JUnit or TestNG test class</A>.
-        
+        You can also automatically transform a system test definition into a simple <A href="#html">HTML report</A>.
       </P>
 
       <H3><A name="why">Why Tcases?</A></H3>      
@@ -1915,6 +1916,42 @@
         a more concrete form. This section describes the options Tcases offers for output transformations.
       </P>
 
+      <H3><A name="html">Creating An HTML Report</A></H3>
+      <P>
+        The XML form for test case definitions is pretty simple. But let's face it &mdash; reading XML is not always a lot of fun. It's not necessarily what you'd want
+        to hand someone for guidance during manual testing. So how about looking at the same information in a nice Web page on your browser?
+        To do that, just add the <SPAN class="code">-H</SPAN> option to your <SPAN class="code">tcases</SPAN> command,
+        and Tcases will automatically write test case definitions in the form of an HTML file.
+      </P>
+      <P>
+        Here's a simple example. Try out these commands:
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples <BR/>
+          &gt; tcases <SPAN class="codeEmph">-H</SPAN> find <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        This runs Tcases on the input definitions in <SPAN class="code">find-Input.xml</SPAN> and
+        produces a file named <SPAN class="code">find-Test.htm</SPAN>.  Open this file with your
+        browser and you'll see something like the simple HTML report below. This report allows you
+        to browse through all of the test cases and look at each one of them in detail. You'll see
+        all of the input values needed for the selected test case (omitting any "NA" values for
+        input variables that are irrelevant for this test case).
+
+        <BLOCKQUOTE>
+          <IMG src="find-Test-Html.png"/>
+        </BLOCKQUOTE>
+      </P>
+
+      <P>
+        Don't particularly care for this report format? You can define and apply your own presentation format using the 
+        <A href="api/org/cornutum/tcases/io/TestDefToHtmlFilter.html"><SPAN class="code">TestDefToHtmlFilter</SPAN></A>
+        class.
+      </P>
+      
       <H3><A name="junit">Creating JUnit/TestNG Tests</A></H3>
       <P>
         Transforming test cases into JUnit or TestNG code is a capability that is built into the <SPAN class="code">tcases</SPAN> command. How does it work?

@@ -16,6 +16,7 @@
     
     <menu name="Examples">
       <item name="Generating Test Cases" href="usage.html#Generating_Test_Cases"/>
+      <item name="Generating An HTML Report" href="usage.html#Generating_An_HTML_Report"/>
       <item name="Generating JUnit Tests" href="usage.html#Generating_JUnitTestNG_Tests"/>
       <item name="Selecting Projects" href="usage.html#Selecting_Projects_To_Execute"/>
       <item name="Modeling Inputs" href="usage.html#Modeling_The_Input_Space"/>
