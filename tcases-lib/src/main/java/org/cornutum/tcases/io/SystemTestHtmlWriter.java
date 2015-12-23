@@ -102,7 +102,7 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
       xmlWriter_.writeAttribute( "rel", "stylesheet");
       xmlWriter_.writeAttribute( "type", "text/css");
       xmlWriter_.writeAttribute( "href", String.valueOf( stylesheet));
-      xmlWriter_.writeTagEnd();
+      xmlWriter_.writeEmptyElementEnd();
       }
     
     xmlWriter_.unindent();
@@ -124,7 +124,9 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
       {
       xmlWriter_.writeTagStart( "SCRIPT");
       xmlWriter_.writeAttribute( "src", String.valueOf( script));
+      xmlWriter_.writeAttribute( "type", "text/javascript");
       xmlWriter_.writeTagEnd();
+      xmlWriter_.writeElementEnd( "SCRIPT");
       }
     
     xmlWriter_.unindent();
