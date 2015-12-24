@@ -1,5 +1,9 @@
 # Release Notes #
 
+## 1.5.1 ##
+
+  * HTML test case reports: Tcases output is often used to guide manual testing. But let's face it -- reading XML is not a lot of fun. So now you can ask Tcases to produce test case definitions in the form of an [HTML report](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#html).
+
 ## 1.5.0 ##
 
   * Better performance: Due to an improved constraint solver, Tcases generates results much faster, even for large and complex input models that previously caused Tcases to "freeze". Although some models may still face problematic performance, these cases are now better described in the [Troubleshooting FAQs](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#trouble), along with suggestions for fixes. But note that this change is not completely backward-compatible. The test cases produced by this version may not be identical to those produced by previous versions of Tcases, although they will be equivalent in coverage. Also, as a result of the new algorithm, Tcases is slightly less likely to honor "once-only" hints, although this will not affect most input models.
