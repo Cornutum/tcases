@@ -1085,7 +1085,59 @@ public class TestTcases
     assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
 
     String cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertEquals( "Cause", "Can't specify both -J and -x", cause);
+    assertEquals( "Cause", "Can't specify multiple output transforms", cause);
+
+    // Given...
+    args = new String[]
+      {
+        "-H",
+        "-x", transformFile.getPath(),
+        inFile.getPath()
+      };
+
+    // When...
+    failure = null;
+    try
+      {
+      Tcases.run( new Options( args));
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+
+    cause = failure.getCause()==null? null : failure.getCause().getMessage();
+    assertEquals( "Cause", "Can't specify multiple output transforms", cause);
+
+    // Given...
+    args = new String[]
+      {
+        "-H",
+        "-J",
+        inFile.getPath()
+      };
+
+    // When...
+    failure = null;
+    try
+      {
+      Tcases.run( new Options( args));
+      }
+    catch( Exception expected)
+      {
+      failure = expected;
+      }
+
+    // Then...
+    assertEquals( "Exception thrown", true, failure != null);
+    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+
+    cause = failure.getCause()==null? null : failure.getCause().getMessage();
+    assertEquals( "Cause", "Can't specify multiple output transforms", cause);
     }
 
   /**
