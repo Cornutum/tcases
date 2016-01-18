@@ -44,6 +44,7 @@ public class Reducer
    * [-g <I>genDef</I>]
    * [-G <I>genFactory</I>]
    * [-r <I>resampleFactor</I>]
+   * [-R]
    * [-s <I>sampleCount</I>]
    * [-t <I>baseTestDef</I>]
    * <I>inputDef</I>
@@ -113,6 +114,18 @@ public class Reducer
    * <CODE>N * ( 1 + resampleFactor)</CODE>. To increase sample count with each round, define <I>resampleFactor</I> &gt; 0.
    * To decrease sample count with each round, define -1 &lt; <I>resampleFactor</I> &lt; 0. If <I>resampleFactor</I> is omitted,
    * the default value is 0.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-R </NOBR>
+   * </TD>
+   * <TD>
+   * Ignore any random seed defined in the <I>genDef</I> file and search for a new seed to reduce test cases.
    * </TD>
    * </TR>
    * 
@@ -253,6 +266,11 @@ public class Reducer
           }
         }
 
+      else if( arg.equals( "-R"))
+        {
+        setNewSeed( true);
+        }
+
       else if( arg.equals( "-s"))
         {
         i++;
@@ -341,6 +359,7 @@ public class Reducer
           + " [-g genDef]"
           + " [-G genFactory]"
           + " [-r resampleFactor]"
+          + " [-R]"
           + " [-s sampleCount]"
           + " [-t testDef]"
           + " inputDef",
@@ -469,6 +488,22 @@ public class Reducer
       return resampleFactor_;
       }
 
+    /**
+     * Changes if ignoring current random seed used by generators.
+     */
+    public void setNewSeed( boolean newSeed)
+      {
+      newSeed_ = newSeed;
+      }
+
+    /**
+     * Returns if ignoring current random seed used by generators.
+     */
+    public boolean isNewSeed()
+      {
+      return newSeed_;
+      }
+
     public String toString()
       {
       StringBuilder builder = new StringBuilder();
@@ -491,6 +526,11 @@ public class Reducer
       builder.append( " -r ").append( getResampleFactor());
       builder.append( " -s ").append( getSamples());
 
+      if( isNewSeed())
+        {
+        builder.append( " -R");
+        }
+
       if( getTestDef() != null)
         {
         builder.append( " -t ").append( getTestDef().getPath());
@@ -505,6 +545,7 @@ public class Reducer
     private File genDef_;
     private ITestCaseGeneratorFactory genFactory_;
     private double resampleFactor_;
+    private boolean newSeed_;
     private int samples_;
     }
   
@@ -688,6 +729,10 @@ public class Reducer
       function = functionInputDef.getName();
 
       ITestCaseGenerator generator = options.getGenFactory().newGenerator( genDef.getGenerator( function));
+      if( options.isNewSeed())
+        {
+        generator.setRandomSeed( null);
+        }
       
       logger_.info( "[{}, {}] Initializing test cases to be reduced", project, function);
       int initialCount = getTestCaseCount( baseDef, generator, functionInputDef);

@@ -104,6 +104,7 @@ public class TcasesMojo extends AbstractMojo
           options.setOutFile( outFile==null? null : new File( outDir, outFile));
           options.setExtended( !isNewTests());
           options.setRandomSeed( getSeed());
+          options.setNewSeed( isNewSeed());
           options.setDefaultTupleSize( getTuples());
 
           File transformDef = getTransformDefFile();
@@ -423,6 +424,22 @@ public class TcasesMojo extends AbstractMojo
     }
 
   /**
+   * Changes if choosing a new random seed used by generators.
+   */
+  public void setNewSeed( boolean newSeed)
+    {
+    this.newSeed = newSeed;
+    }
+
+  /**
+   * Returns if choosing a new random seed used by generators.
+   */
+  public boolean isNewSeed()
+    {
+    return newSeed;
+    }
+
+  /**
    * Changes the transform file.
    */
   public void setTransformDef( String transformDef)
@@ -586,6 +603,13 @@ public class TcasesMojo extends AbstractMojo
    */
   @Parameter(property="seed")
   private Long seed;
+
+  /**
+   * If true, choose a new random number for all generators. This updates the generator definitions specified
+   * by the <B><CODE>genDef</CODE></B> parameter.
+   */
+  @Parameter(property="newSeed",defaultValue="false")
+  private boolean newSeed;
 
   /**
    * If defined, use the given default tuple size for all generators. This updates the generator definitions specified

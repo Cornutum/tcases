@@ -227,6 +227,22 @@ public class TcasesTask extends Task
     }
 
   /**
+   * If true, automatically chooses a new random seed used by generators.
+   */
+  public void setNewSeed( boolean newSeed)
+    {
+    options_.setNewSeed( newSeed);
+    }
+
+  /**
+   * Returns if automatically choosing a new random seed used by generators.
+   */
+  public boolean isNewSeed()
+    {
+    return options_.isNewSeed();
+    }
+
+  /**
    * Changes the transform file.
    */
   public void setTransformDef( File transformDef)

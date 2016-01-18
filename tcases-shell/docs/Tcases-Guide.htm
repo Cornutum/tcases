@@ -1741,7 +1741,14 @@
         using a "resample factor". At the end of the reducing process, the generator definition file
         for the given system input definition is updated with the random seed value that produces
         the minimum test case count.
+      </P>
 
+      <P>
+        Even though the Reducer produces a random seed that minimizes test cases, you still have to
+        consider if these test cases are satisfactory. You might wonder if a different seed might
+        produce an equally small but more interesting set of test cases. If so, try using the
+        <SPAN class="code">-R</SPAN> option. This tells the Reducer to ignore any previous random seed
+        in the generator definition and to search for a new seed value.
       </P>
 
       <P>
@@ -1859,6 +1866,11 @@
         &nbsp; &lt;TupleGenerator <SPAN class="exampleEmph">seed="299293214"</SPAN>/&gt; <BR/>
         &lt;/Generators&gt; <BR/>
         </DIV>
+      </P>
+      <P>
+        If you'd like to randomize combinations but you're not particular about the seed value, 
+        use the <SPAN class="code">-R</SPAN> option, and Tcases will choose a random seed value for you. This option can be handy
+        when you want to see if a different seed value might produce more interesting test case combinations.
       </P>
 
       <H4>Defining The Default Coverage Level</H4>

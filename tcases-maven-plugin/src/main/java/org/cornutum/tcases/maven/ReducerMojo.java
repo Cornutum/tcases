@@ -101,6 +101,7 @@ public class ReducerMojo extends AbstractMojo
         options.setFunction( getFunction());
         options.setSamples( getSamples());
         options.setResampleFactor( getResampleFactor());
+        options.setNewSeed( isNewSeed());
 
         // Reduce test cases for this Tcases project.
         reducer.run( options);
@@ -325,6 +326,22 @@ public class ReducerMojo extends AbstractMojo
     {
     return samples;
     }
+
+  /**
+   * Changes if ignoring current random seed used by generators.
+   */
+  public void setNewSeed( boolean newSeed)
+    {
+    this.newSeed = newSeed;
+    }
+
+  /**
+   * Returns if ignoring current random seed used by generators.
+   */
+  public boolean isNewSeed()
+    {
+    return newSeed;
+    }
   
   /**
    * Defines a set of patterns that match the system input definition files read by Reducer.
@@ -409,6 +426,12 @@ public class ReducerMojo extends AbstractMojo
    */
   @Parameter(property="resampleFactor",defaultValue="0.0")
   private double resampleFactor;
+
+  /**
+   * If true, ignore any random seed defined by generators and search for a new seed to reduce test cases.
+   */
+  @Parameter(property="newSeed",defaultValue="false")
+  private boolean newSeed;
 
   /**
    * Defines the number of samples for the initial round of reducing.

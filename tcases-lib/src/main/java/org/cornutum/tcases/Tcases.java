@@ -50,7 +50,7 @@ public class Tcases
    * [-n]
    * [-o <I>outDir</I>]
    * [-p <I>name</I>=<I>value</I>]
-   * [-r <I>seed</I>]
+   * [-r <I>seed</I>] [-R]
    * [-t <I>testDef</I>]
    * [-v]
    * [-x <I>transformDef</I> | -J | -H]
@@ -228,6 +228,19 @@ public class Tcases
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-R </NOBR>
+   * </TD>
+   * <TD>
+   * Choose a new random number seed for all generators. This updates the generator definitions specified by the
+   * <I>genDef</I> file.
+   * </TD>
+   * </TR>
+   * 
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-x <I>transformDef</I> </NOBR>
    * </TD>
    * <TD>
@@ -386,6 +399,11 @@ public class Tcases
           }
         }
 
+      else if( arg.equals( "-R"))
+        {
+        setNewSeed( true);
+        }
+
       else if( arg.equals( "-c"))
         {
         i++;
@@ -527,7 +545,7 @@ public class Tcases
           + " [-n]"
           + " [-o outDir]"
           + " [-p name=value]"
-          + " [-r seed]"
+          + " [-r seed] [-R]"
           + " [-t testDef]"
           + " [-x transformDef | -J | -H]"
           + " [inputDef]",
@@ -693,7 +711,28 @@ public class Tcases
      */
     public Long getRandomSeed()
       {
+      if( seed_ == null && isNewSeed())
+        {
+        setRandomSeed( (long) (Math.random() * Long.MAX_VALUE));
+        }
+      
       return seed_;
+      }
+
+    /**
+     * Changes if choosing a new random seed used by generators.
+     */
+    public void setNewSeed( boolean newSeed)
+      {
+      newSeed_ = newSeed;
+      }
+
+    /**
+     * Returns if choosing a new random seed used by generators.
+     */
+    public boolean isNewSeed()
+      {
+      return newSeed_;
       }
 
     /**
@@ -789,6 +828,11 @@ public class Tcases
         builder.append( " -r ").append( getRandomSeed());
         }
 
+      if( isNewSeed())
+        {
+        builder.append( " -R");
+        }
+
       if( getTestDef() != null)
         {
         builder.append( " -t ").append( getTestDef().getPath());
@@ -827,6 +871,7 @@ public class Tcases
     private TransformType transformType_;
     private boolean extended_;
     private Long seed_;
+    private boolean newSeed_;
     private Integer defaultTupleSize_;
     private File workingDir_;
     private boolean showVersion_;

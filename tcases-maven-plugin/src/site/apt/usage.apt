@@ -317,6 +317,11 @@ mvn tcases:tcases -Dseed=299293214
 </Generators> 
 +--------
 
+  If you'd like to randomize combinations but you're not particular about the seed value, set the
+  <<newSeed>> parameter to true, and Tcases will choose a random seed value for you. This
+  option can be handy when you want to see if a different seed value might produce more interesting
+  test case combinations.
+
 ** Defining The Default Coverage Level
 
   To define the default coverage level for all functions, use the <<defaultTupleSize>>
