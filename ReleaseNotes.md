@@ -1,5 +1,13 @@
 # Release Notes #
 
+## 1.5.2 ##
+
+Ever wonder if a different random seed might lead to more interesting test cases? Now it's easier to find out: try the ```-R``` option at the ```tcases``` command line. Or, if you're using the Tcases Maven Plugin, the ```newSeed``` parameter does the same thing. This is like the ```-r``` option (or the ```seed``` parameter), except that Tcases picks the seed value for you.
+
+Similarly, when using the Tcases Reducer, you might wonder if a different seed might produce an equally small but more interesting set of test cases.
+So you can also use ```-R``` (or ```newSeed```) with the Tcases Reducer, which tells it to ignore any previous random seed
+in the current generator definition and to search for a new minimizing seed value.
+
 ## 1.5.1 ##
 
   * HTML test case reports: Tcases output is often used to guide manual testing. But let's face it -- reading XML is not a lot of fun. So now you can ask Tcases to produce test case definitions in the form of an [HTML report](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#html).
