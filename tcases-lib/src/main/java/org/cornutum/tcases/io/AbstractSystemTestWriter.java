@@ -71,7 +71,10 @@ public abstract class AbstractSystemTestWriter implements Closeable
    */
   protected void setWriter( Writer writer)
     {
-    writer_ = writer;
+    writer_ =
+      writer == null
+      ? writerFor( System.out)
+      : writer;
     }
 
   /**
@@ -89,7 +92,10 @@ public abstract class AbstractSystemTestWriter implements Closeable
     {
     try
       {
-      return new OutputStreamWriter( stream, "UTF-8");
+      return
+        stream == null
+        ? null
+        : new OutputStreamWriter( stream, "UTF-8");
       }
     catch( Exception e)
       {

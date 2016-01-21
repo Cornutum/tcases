@@ -14,12 +14,16 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.net.URL;
+import java.nio.charset.Charset;
 
 /**
  * Runs tests for {@link Tcases#main}.
@@ -114,9 +118,11 @@ public class TestTcases
   public void run_1() throws Exception
     {
     // Given...
-    File testDefFile = getResourceFile( "run-1-test-other.xml");
+    File inFile = getResourceFile( "run-1-Input.xml");
+    File testDefFile = new File( "target/run-1-Test.xml");
     File genFile = getResourceFile( "run-1-gen-other.xml");
-    testDefFile.delete();
+
+    FileUtils.copyFile( getResourceFile( "run-1-test-other.xml"), testDefFile);
     
     String[] args =
       {
@@ -124,19 +130,14 @@ public class TestTcases
         "-c", "12345",
         "-r", "45678",
         "-g", genFile.getPath(),
-        "-t", testDefFile.getName()
+        "-t", testDefFile.getPath()
       };
 
-    new Options( args);
-    
-    /* Must run interactively: uses standard input.
-     
     // When...
-    Tcases.run( new Options( args));
+    runWithStdIO( new Options( args), inFile, null);
         
     // Then...
-    assertEquals( "Test def created", true, outFile.exists());
-    */
+    assertEquals( "Test def created", true, testDefFile.exists());
     }
 
   /**
@@ -170,6 +171,7 @@ public class TestTcases
   public void run_2() throws Exception
     {
     // Given...
+    File inFile = getResourceFile( "run-2-Input.xml");
     File outDir = getResourceFile( "run-2-outDir");
     File testDefFile = getResourceFile( "run-2-test-other.xml");
 
@@ -182,16 +184,12 @@ public class TestTcases
         "-t", testDefFile.getName()
       };
 
-    new Options( args);
-
-    /* Must run interactively: uses standard input
     // When...
-    Tcases.run( new Options( args));
+    runWithStdIO( new Options( args), inFile, null);
         
     // Then...
     File outFile = new File( outDir, testDefFile.getName());
     assertEquals( "Test def created", true, outFile.exists());
-    */
     }
 
   /**
@@ -331,6 +329,7 @@ public class TestTcases
   public void run_5() throws Exception
     {
     // Given...
+    File inFile = getResourceFile( "run-5-Input.xml");
     File genFile = getResourceFile( "run-5-gen-other.xml");
     
     String[] args =
@@ -340,15 +339,12 @@ public class TestTcases
         "-c", "45678"
       };
 
-    new Options( args);
-  
-    /* Must run interactively: uses standard input
     // When...
-    Tcases.run( new Options( args));
+    StringBuffer outFile = new StringBuffer();
+    runWithStdIO( new Options( args), inFile, outFile);
         
     // Then...
-    assertEquals( "Test def created", true, outFile.exists());
-    */
+    assertEquals( "Test def created", true, outFile.length() > 0);
     }
 
   /**
@@ -702,6 +698,7 @@ public class TestTcases
   public void run_Transform_1() throws Exception
     {
     // Given...
+    File inFile = getResourceFile( "run-1-Input.xml");
     File transformFile = getResourceFile( "run-transform-1.xsl");
 
     String[] args =
@@ -710,16 +707,12 @@ public class TestTcases
         "-p", "system=Run_Transform_1"
       };
 
-    Options options = new Options( args);
-    assertNotNull( options);
-    
-    /* Must run interactively: uses standard input.
     // When...
-    Tcases.run( options);
+    StringBuffer outFile = new StringBuffer();
+    runWithStdIO( new Options( args), inFile, outFile);
         
     // Then...
-    assertEquals( "Test def created", true, outFilePath.exists());
-    */
+    assertEquals( "Test def created", true, outFile.length() > 0);
     }
 
   /**
@@ -1266,6 +1259,54 @@ public class TestTcases
     {
     URL classUrl = getClass().getResource( getClass().getSimpleName() + ".class");
     return new File( new File( classUrl.getFile()).getParent(), resource);
+    }
+
+  /**
+   * Run Tcases with the given options, using the given standard input/output.
+   * If <CODE>stdIn</CODE> is non-null, redirect standard input to read from the given file.
+   * If <CODE>stdOut</CODE> is non-null, redirect standard output to write to the given buffer.
+   */
+  private void runWithStdIO( Options options, File stdIn, StringBuffer stdOut)
+    {
+    InputStream prevIn = System.in;
+    PrintStream prevOut = System.out;
+
+    InputStream newIn = null;
+    PrintStream newOut = null;
+    ByteArrayOutputStream newOutBytes = null;
+    
+    try
+      {
+      if( stdIn != null)
+        {
+        System.setIn( (newIn = new FileInputStream( stdIn)));
+        }
+
+      if( stdOut != null)
+        {
+        stdOut.delete( 0, stdOut.length());
+        System.setOut( (newOut = new PrintStream( (newOutBytes = new ByteArrayOutputStream()))));
+        }
+
+      Tcases.run( options);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't run with options=" + options, e);
+      }
+    finally
+      {
+      IOUtils.closeQuietly( newIn);
+      IOUtils.closeQuietly( newOut);
+
+      System.setIn( prevIn);
+      System.setOut( prevOut);
+
+      if( newOutBytes != null)
+        {
+        stdOut.append( new String( newOutBytes.toByteArray(), Charset.forName( "UTF-8")));
+        }
+      }
     }
 
   private SystemTestResources testResources_ = new SystemTestResources( getClass());

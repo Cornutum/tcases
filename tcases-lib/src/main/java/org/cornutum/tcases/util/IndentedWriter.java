@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 
@@ -35,8 +36,7 @@ public class IndentedWriter implements Closeable
    */
   public IndentedWriter( OutputStream output)
     {
-    this();
-    writer_ = new PrintWriter( output==null? System.out : output);
+    this( writerFor( output));
     }
 
   /**
@@ -45,7 +45,12 @@ public class IndentedWriter implements Closeable
   public IndentedWriter( Writer writer)
     {
     this();
-    writer_ = new PrintWriter( writer);
+
+    writer_ =
+      new PrintWriter
+      ( writer == null
+        ? writerFor( System.out)
+        : writer);
     }
 
   /**
@@ -134,6 +139,24 @@ public class IndentedWriter implements Closeable
   public int getIndent()
     {
     return indent_.length();
+    }
+
+  /**
+   * Returns a Writer for the given output stream;
+   */
+  private static Writer writerFor( OutputStream stream)
+    {
+    try
+      {
+      return
+        stream == null
+        ? null
+        : new OutputStreamWriter( stream, "UTF-8");
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't create writer", e);
+      }
     }
 
   private int         level_;
