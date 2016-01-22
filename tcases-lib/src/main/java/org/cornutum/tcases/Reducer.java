@@ -740,12 +740,14 @@ public class Reducer
       int round;
       int minCount;
       long minSeed;
+      long eqSeed;
       boolean reducing;
       Random random;
       for( samples = options.getSamples(),
              round = 1,
              minCount = initialCount,
              minSeed = 0L,
+             eqSeed = 0L,
              reducing = true,
              random = new Random();
          
@@ -771,8 +773,10 @@ public class Reducer
                      generator,
                      functionInputDef,
                      (roundSeed = (long) (random.nextDouble() * Long.MAX_VALUE))))
-               >= minCount;
-             i++);
+                  >= minCount;
+             
+             eqSeed = roundCount==minCount? roundSeed : eqSeed,
+               i++);
 
         reducing = i < samples;
         if( reducing)
@@ -787,16 +791,17 @@ public class Reducer
           }
         }
 
-      if( minCount >= initialCount)
+      if( minCount < initialCount || (options.isNewSeed() && eqSeed != 0))
         {
-        logger_.info( "[{}, {}] Could not reduce initial {} test cases", new Object[]{ project, function, initialCount});
-        }
-      else
-        {
+        minSeed = minSeed==0? eqSeed : minSeed;
         logger_.info( "[{}, {}] Reduced to {} test cases with seed={} -- updating generator definition", new Object[]{ project, function, minCount, minSeed});
         generator.setRandomSeed( minSeed);
         genDef.setGenerator( function, generator);
         reduced = true;
+        }
+      else
+        {
+        logger_.info( "[{}, {}] Could not reduce initial {} test cases", new Object[]{ project, function, initialCount});
         }
       }
 
