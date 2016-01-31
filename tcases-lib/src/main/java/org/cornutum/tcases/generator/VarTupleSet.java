@@ -123,7 +123,7 @@ public class VarTupleSet
     return
       getBinds
       ( IteratorUtils.filteredIterator
-        ( used_.iterator(),
+        ( getUsed(),
           new Predicate<Tuple>()
             {
             public boolean evaluate( Tuple tuple)
@@ -202,10 +202,13 @@ public class VarTupleSet
    */
   public void used( final TestCaseDef testCase)
     {
+    // Note: must accumulate tuples into a separate list to avoid ConcurrentModificationException when updating used/unused membership.
     List<Tuple> usedTuples =
       IteratorUtils.toList
       ( IteratorUtils.filteredIterator
-        ( unused_.iterator(),
+        ( IteratorUtils.chainedIterator
+          ( unused_.iterator(),
+            used_.iterator()),
           new Predicate<Tuple>()
             {
             public boolean evaluate( Tuple tuple)
