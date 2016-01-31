@@ -1,5 +1,18 @@
 # Release Notes #
 
+## 1.5.3 ##
+
+This release includes the following improvements.
+
+  * Fixes a defect that caused the ```tcases``` command to fail when reading a system input definition from standard input.
+
+  * Reducer: When ```newSeed``` is true, ensure that a new seed is written even when the initial round is already minimal.
+
+  * Suppose a variable only has N values, but the number of test cases generated is more than N. Assuming there are no constraints on these N values, you'd like
+    for each of them to be used by roughly the same number of test cases. 
+    This release fixes a defect that was blocking that even distribution of values.
+    Why does this matter? Because this increases test case variety, which could make it more likely that some test case will expose a defect.
+
 ## 1.5.2 ##
 
 Ever wonder if a different random seed might lead to more interesting test cases? Now it's easier to find out: try the ```-R``` option at the ```tcases``` command line. Or, if you're using the Tcases Maven Plugin, the ```newSeed``` parameter does the same thing. This is like the ```-r``` option (or the ```seed``` parameter), except that Tcases picks the seed value for you.
