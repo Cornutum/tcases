@@ -2,9 +2,9 @@
 
 ## What's New? ##
 
-  * The latest version (Tcases 1.5.2) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
+  * The latest version (Tcases 1.5.3) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
 
-  * Ever wonder if a different random seed might lead to more interesting test cases? Try this [one weird trick](ReleaseNotes.md).
+  * Tcases 1.5.3 includes [several improvements](ReleaseNotes.md) to existing features.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
