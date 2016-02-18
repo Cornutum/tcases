@@ -38,6 +38,8 @@ usage()
   echo "                     each round, define resampleFactor > 0. To decrease sample count with each round," >&2
   echo "                     define -1 < resampleFactor < 0. If resampleFactor is omitted, the default value is 0." >&2
   echo "" >&2
+  echo "  -R                 If defined, ignore any random seed defined in the genDef file and search for a new seed." >&2
+  echo "" >&2
   echo "  -s sampleCount     Defines the number of samples for the initial round of reducing. If omitted," >&2
   echo "                     the default sampleCount is 10." >&2
   echo "" >&2
@@ -52,6 +54,7 @@ while [ $# -gt 0 ] ; do
     -l) shift; logFile="$1";;
     -L) shift; logLevel="$1";;
     -r) shift; resmpf="$1";;
+    -R) newSeed="$1";;
     -s) shift; smpc="$1";;
     -t) shift; testDef="$1";;
     -*) usage; exit 1;;
@@ -102,6 +105,7 @@ java \
   org.cornutum.tcases.Reducer \
   ${genDef:+-g "$genDef"} \
   ${resmpf:+-r "$resmpf"} \
+  $newSeed \
   ${smpc:+-s "$smpc"} \
   ${function:+-f "$function"} \
   ${testDef:+-t "$testDef"} \

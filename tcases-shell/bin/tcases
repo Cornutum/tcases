@@ -64,6 +64,9 @@ usage()
   echo "  -r seed     If -r is defined, use the given random number seed for all generators." >&2
   echo "              This updates the generator definitions specified by the genDef file." >&2
   echo "" >&2
+  echo "  -R          If -R is defined, choose a new random number seed for all generators." >&2
+  echo "              This updates the generator definitions specified by the genDef file." >&2  
+  echo "" >&2
   echo "  -t testDef  If -t is defined, test definition output is written to the specified" >&2
   echo "              testDef path, relative to the outDir. If omitted, the default testDef" >&2
   echo "              name is derived from the inputDef name. If an output path cannot be" >&2
@@ -90,6 +93,7 @@ while [ $# -gt 0 ] ; do
     -o) shift; outDir="$1";;
     -p) shift; params="$params -p $1";;
     -r) shift; seed="$1";;
+    -R) newSeed="$1";;
     -t) shift; testDef="$1";;
     -v) showVersion="$1";;
     -x) shift; xsltDef="$1";;
@@ -145,6 +149,7 @@ java \
   $showVersion \
   ${genDef:+-g "$genDef"} \
   ${seed:+-r "$seed"} \
+  $newSeed \
   ${defTupleSize:+-c "$defTupleSize"} \
   $noExtend \
   $isJUnit \
