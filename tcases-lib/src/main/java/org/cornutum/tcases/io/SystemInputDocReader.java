@@ -125,11 +125,11 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       Set<String> validAttributes = getValidAttributes();
       for( int i = attributes.getLength() - 1; i >= 0; i--)
         {
-        if( !validAttributes.contains( attributes.getLocalName(i)))
+        if( !validAttributes.contains( attributes.getQName(i)))
           {
           throw
             new SAXParseException
-            ( "Attribute=" + attributes.getLocalName(i)
+            ( "Attribute=" + attributes.getQName(i)
               + " is not allowed for " + elementName + " elements",
               getDocumentLocator());
           }
