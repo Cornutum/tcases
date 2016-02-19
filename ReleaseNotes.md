@@ -1,8 +1,13 @@
 # Release Notes #
 
-## 1.5.3 ##
+## 1.5.4 ##
 
-This release includes the following improvements.
+  * Fixes the ```tcases``` and ```tcases-reducer``` commands to correctly support the ```-R``` option.
+
+  * Refactor XML document readers to use ```org.xml.sax.Attributes.getQName()```. This is more correct than ```getLocalName()```,
+    which can return an empty string in some JVM implementations, resulting in a parser failure.
+
+## 1.5.3 ##
 
   * Fixes a defect that caused the ```tcases``` command to fail when reading a system input definition from standard input.
 
