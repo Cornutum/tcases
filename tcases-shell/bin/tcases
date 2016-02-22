@@ -9,7 +9,7 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-t testDef] [-v] [-x transformDef | -J] [inputDef]" >&2
+  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-R] [-t testDef] [-v] [-x transformDef | -J] [inputDef]" >&2
   echo "" >&2
   echo "  Generates a set of test cases from a system input definition, according" >&2
   echo "  to the given command line arguments." >&2

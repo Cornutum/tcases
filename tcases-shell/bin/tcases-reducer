@@ -9,7 +9,7 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-f function] [-g genDef] [-r resampleFactor] [-s sampleCount] [-t testDef] inputDef" >&2
+  echo Usage: $pgm "[-f function] [-g genDef] [-r resampleFactor] [-R] [-s sampleCount] [-t testDef] inputDef" >&2
   echo "" >&2
   echo "  For a system input definition, updates the associated test case generators to reduce the number" >&2
   echo "  of generated test cases, using the given command line options." >&2
