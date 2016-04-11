@@ -1,12 +1,17 @@
 
 function selectTestCase( functionName, testCaseNum) {
+    var i;
+    var functions = document.querySelectorAll( ".function");
+    for( i = 0; i < functions.length; i++) {
+        functions[i].style.display = "none";
+    }
     var fdiv = document.getElementById( functionName);
     var testCases = fdiv.querySelectorAll( ".testCase");
-    var i;
     for( i = 0; i < testCases.length; i++) {
         testCases[i].style.display = "none";
     }
     document.getElementById( functionName + "." + testCaseNum).style.display = "block";
+    fdiv.style.display = "block";
 }
 
 function makeSelectTestCase( functionName, testCaseNum) {
