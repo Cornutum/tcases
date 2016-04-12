@@ -1192,10 +1192,24 @@
         keep going. For "combinations" of a single variable (the default coverage level), this is an
         error, and you must fix the offending contraints before Tcases can continue.
       </P>
-      <P>
-        (Tip: To help find the bad constraint that's giving you grief, try <A href="#logging">changing the logging level</A> to 
-        <SPAN class="code">DEBUG</SPAN> or <SPAN class="code">TRACE</SPAN>.)
-      </P>
+      
+      <DIV class="tips">
+        Tips:
+        <UL>
+          <LI>
+            To help find the bad constraint that's giving you grief, try <A href="#logging">changing the logging level</A> to 
+            <SPAN class="code">DEBUG</SPAN> or <SPAN class="code">TRACE</SPAN>.
+          </LI>
+          <P/>
+          <LI>
+            Are you using <A href="#higherCoverage">higher coverage levels</A> (2-tuples, 3-tuples, etc.)?
+            If so, try running a quick check using only the default coverage. An easy way to do that is
+            to run Tcases like this: <NOBR><SPAN class="code">tcases &lt; <EM>&lt;myInputModelFile&gt;</EM></SPAN></NOBR>.
+            If there is an infeasible value, this check can sometimes show you the error.
+          </LI>
+        </UL>
+      </DIV>
+      
       <P>
         Usually, Tcases can quickly report when combinations are infeasible. But in some cases,
         Tcases can find the problem only after trying and eliminating all possibilities.  If it
