@@ -179,6 +179,7 @@
 
   <modules>
     <module>tcases-lib</module>
+    <module>tcases-annotation</module>
     <module>tcases-shell</module>
     <module>tcases-maven-plugin</module>
   </modules>
