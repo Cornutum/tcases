@@ -17,11 +17,34 @@ public class Find {
     @Var(values = {@Value("true"), @Value(value = "false", failure = true)})
     private Boolean exists;
 
+    private FileContents contents;
+
     @Override
     public String toString() {
       return "EnvFile{" +
-        "exists=" + exists +
-        '}';
+              "exists=" + exists +
+              ", contents=" + contents +
+              '}';
+    }
+  }
+
+  public static class FileContents {
+    @Var(values = {@Value("one"), @Value("many"), @Value(value = "none", failure = true)})
+    String linesLongerThanPattern;
+
+    @Var(values = {@Value("none"), @Value("one"), @Value(value = "many")})
+    String patterns;
+
+    @Var(values = {@Value("one"), @Value(value = "many")})
+    String patternsInLine;
+
+    @Override
+    public String toString() {
+      return "FileContents{" +
+              "linesLongerThanPattern='" + linesLongerThanPattern + '\'' +
+              ", patterns='" + patterns + '\'' +
+              ", patternsInLine='" + patternsInLine + '\'' +
+              '}';
     }
   }
 

@@ -1,5 +1,6 @@
 package org.cornutum.tcases.annotation;
 
+import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.TestCase;
 import org.cornutum.tcases.VarBinding;
 
@@ -14,18 +15,22 @@ public class TestInstanceCreator {
     try {
       // TODO: Consider util library for convenient reflection like objenesis
       instance = functionDefClass.getConstructor().newInstance();
-      fillValues("", instance, testCase.getVarBindings());
+      fillValues(0, instance, IteratorUtils.toList(testCase.getVarBindings()));
     } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
       throw new RuntimeException(e);
     }
     return instance;
   }
 
-  private static <T> void fillValues(String prefix, final T instance, Iterator<VarBinding> varBindings) {
+  /**
+   * recursively create and fill instance from varbinding values
+   * @param prefixLength the initial varbinding key part to discard because of nesting depth
+   */
+  private static <T> void fillValues(int prefixLength, final T instance, Collection<VarBinding> varBindings) {
     Map<String, List<VarBinding>> unbound = new HashMap<>();
-    varBindings.forEachRemaining(binding -> {
+    varBindings.stream().forEach(binding -> {
       try {
-        String name = binding.getVar();
+        String name = binding.getVar().substring(prefixLength);
         int firstDotPos = name.indexOf('.');
         if (firstDotPos >= 0) {
           String mapKey = name.substring(0, firstDotPos);
@@ -35,7 +40,12 @@ public class TestInstanceCreator {
         } else {
           Field f = instance.getClass().getDeclaredField(name);
           f.setAccessible(true);
-          f.set(instance, binding.getValue());
+          // TODO: Find better way to handle types, also primitive types
+          if (f.getType() == Boolean.class) {
+            f.set(instance, Boolean.valueOf(binding.getValue()));
+          } else {
+            f.set(instance, binding.getValue());
+          }
         }
       } catch (NoSuchFieldException | IllegalAccessException e) {
         throw new RuntimeException(e);
@@ -51,18 +61,7 @@ public class TestInstanceCreator {
           fieldInstance = f.getType().getConstructor().newInstance();
           f.set(instance, fieldInstance);
         }
-        for (VarBinding binding : entry.getValue()) {
-          // TODO: properly compute nested field name
-          String fieldName = binding.getVar().substring(entry.getKey().length() + 1);
-          Field nestedField = fieldInstance.getClass().getDeclaredField(fieldName);
-          nestedField.setAccessible(true);
-          // TODO: Find better way to handle types, also primitive types
-          if (nestedField.getType() == Boolean.class) {
-            nestedField.set(fieldInstance, Boolean.valueOf(binding.getValue()));
-          } else {
-            nestedField.set(fieldInstance, binding.getValue());
-          }
-        }
+        fillValues(prefixLength + entry.getKey().length() + 1, fieldInstance, entry.getValue());
       } catch (NoSuchFieldException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
         throw new RuntimeException(e);
       }

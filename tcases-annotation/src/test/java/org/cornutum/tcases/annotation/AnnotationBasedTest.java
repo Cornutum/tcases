@@ -58,7 +58,7 @@ public class AnnotationBasedTest {
     assertThat(fun1TestDef.getName(), equalTo(Find.class.getSimpleName()));
 
     List<TestCase> testCaseList = IteratorUtils.toList(fun1TestDef.getTestCases());
-    assertThat(testCaseList.size(), equalTo(5));
+    assertThat(testCaseList.size(), equalTo(6));
 
     /** generate test instances */
 
