@@ -5,8 +5,18 @@ import org.cornutum.tcases.Annotated;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * To contain the collected output annotations from a systemTestDef.
+ */
 public class OutputAnnotationContainer {
+    /**
+     * testCase annotations include default Values from the system and function level, unless they have been overridden
+     */
     public final Map<String, String> testCaseAnnotations = new HashMap<>();
+
+    /**
+     * variable binding annotations with the variable path
+     */
     public final Map<String, String> varBindingAnnotations = new HashMap<>();
 
     public void addTestCaseAnnotations(Annotated systemTestDef) {

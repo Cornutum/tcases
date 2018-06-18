@@ -11,6 +11,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
+/**
+ * Given the output of Tcases, creates an instance of a JavaBean with fields filled according to VarBindings.
+ */
 public class TestInstanceCreator {
 
   public static <T> List<T> createDefs(SystemTestDef systemDef, String funName, Class<T> targetClass) {
@@ -32,7 +35,6 @@ public class TestInstanceCreator {
   public static <T> T createDef(TestCase testCase, Class<T> functionDefClass, OutputAnnotationContainer outputAnnotations) {
     T instance;
     try {
-      // TODO: Consider util library for convenient reflection like objenesis
       instance = functionDefClass.getConstructor().newInstance();
       outputAnnotations.addTestCaseAnnotations(testCase);
       fillValues(0, instance, IteratorUtils.toList(testCase.getVarBindings()), outputAnnotations);

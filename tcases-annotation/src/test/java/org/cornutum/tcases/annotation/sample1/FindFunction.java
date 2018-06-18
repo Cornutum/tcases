@@ -5,8 +5,6 @@ import org.cornutum.tcases.TestCase;
 import org.cornutum.tcases.annotation.*;
 import org.cornutum.tcases.annotation.util.CustomToStringStyle;
 
-import java.util.Collection;
-
 /**
  * Usage: find pattern file
  *

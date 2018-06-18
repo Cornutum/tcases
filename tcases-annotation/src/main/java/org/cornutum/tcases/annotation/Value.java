@@ -4,7 +4,10 @@ import org.cornutum.tcases.TestCase;
 
 import java.lang.annotation.*;
 
-@Target(ElementType.TYPE)
+/**
+ * Container annotation single value for a variable within a @Var annotation.
+ * Can be used on Fields of Type Enum, String, Boolean (Maybe more in the future).
+ */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Value {
 

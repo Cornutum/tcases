@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Output Annotation (only passed through to output)
+ * Output Annotation (only passed through to output).
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

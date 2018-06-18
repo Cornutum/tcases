@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Gien a Java Bean classes annotated with Tcases annotations, created a SystemInputDef
+ */
 public class AnnotationReader
   {
     private AnnotationReader() {

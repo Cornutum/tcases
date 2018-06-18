@@ -16,6 +16,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Comprehensive Test using the sample1.FindFunction class as SystemTestDefinition/FunctionDefinition
+ */
 public class AnnotationBasedTest {
 
 

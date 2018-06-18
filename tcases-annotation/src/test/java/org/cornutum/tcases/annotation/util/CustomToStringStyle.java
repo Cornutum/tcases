@@ -2,6 +2,10 @@ package org.cornutum.tcases.annotation.util;
 
 import org.apache.commons.lang3.builder.RecursiveToStringStyle;
 
+/**
+ * helper for reflection-based toString
+ * TODO: Replace with proper toString once Model became stable
+ */
 public class CustomToStringStyle extends RecursiveToStringStyle {
     public static CustomToStringStyle INSTANCE = new CustomToStringStyle();
     // for Json-like toString
@@ -13,7 +17,7 @@ public class CustomToStringStyle extends RecursiveToStringStyle {
         super.setContentEnd("}");
         super.setArrayStart("[");
         super.setArrayEnd("]");
-        super.setFieldSeparator(",");
+        super.setFieldSeparator(", ");
         super.setFieldNameValueSeparator(":");
         super.setNullText("null");
         super.setSummaryObjectStartText("\"<");
