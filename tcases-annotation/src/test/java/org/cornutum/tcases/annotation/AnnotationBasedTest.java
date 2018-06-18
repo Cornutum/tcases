@@ -2,8 +2,8 @@ package org.cornutum.tcases.annotation;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.annotation.parser.AnnotationReader;
 import org.cornutum.tcases.annotation.generator.TestInstanceCreator;
+import org.cornutum.tcases.annotation.parser.AnnotationReader;
 import org.cornutum.tcases.annotation.sample1.FindFunction;
 import org.cornutum.tcases.generator.GeneratorSet;
 import org.cornutum.tcases.generator.TupleGenerator;
@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
@@ -99,10 +98,7 @@ public class AnnotationBasedTest {
     List<TestCase> testCaseList = IteratorUtils.toList(fun1TestDef.getTestCases());
 
     /* generate test instances */
-
-    List<FindFunction> findList = testCaseList.stream()
-            .map(tcase -> TestInstanceCreator.createDef(tcase, FindFunction.class))
-            .collect(Collectors.toList());
+    List<FindFunction> findList = TestInstanceCreator.createDefs(testDef, "Find", FindFunction.class);
 
     assertThat(findList.size(), equalTo(testCaseList.size()));
     // check failure number

@@ -33,4 +33,6 @@ public @interface Value {
    * hint to use this value only once in all vaid testcases
    */
   boolean once() default false;
+
+  Has[] having() default {};
 }

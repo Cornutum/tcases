@@ -5,6 +5,8 @@ import org.cornutum.tcases.TestCase;
 import org.cornutum.tcases.annotation.*;
 import org.cornutum.tcases.annotation.util.CustomToStringStyle;
 
+import java.util.Collection;
+
 /**
  * Usage: find pattern file
  *
@@ -19,7 +21,7 @@ import org.cornutum.tcases.annotation.util.CustomToStringStyle;
  * To include a blank in the pattern, the entire pattern must be enclosed in quotes (").
  * To include a quotation mark in the pattern, two quotes in a row ("") must be used.
  */
-@Function("Find") // name/value defaults to class name
+@Function(value = "Find", having = @Has(name = "description", value = "The find function")) // name/value defaults to class name
 public class FindFunction {
 
   // properties for value conditions
@@ -34,6 +36,9 @@ public class FindFunction {
   @IsFailure // presence is optional, will be filled based on VarDefs
   public boolean isFailure;
 
+  @OutputAnnotations // presence is optional, will be filled based on Output annotations
+  public OutputAnnotationContainer having;
+
   /**
    * Input argument
    */
@@ -43,7 +48,7 @@ public class FindFunction {
   /**
    * Input argument
    */
-  @Var(values = {@Value(value = "false", type = TestCase.Type.FAILURE)})
+  @Var(values = {@Value(value = "false", type = TestCase.Type.FAILURE, having = @Has(name = "type", value = "FileNotFound"))})
   public Boolean filenameDefined; // boolean always has values true, false
 
   /**

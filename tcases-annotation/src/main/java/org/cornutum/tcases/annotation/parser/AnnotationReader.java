@@ -31,6 +31,11 @@ public class AnnotationReader
         Function functionAnnotation = annotatedClass.getAnnotation(Function.class);
         String functionName = (functionAnnotation == null || StringUtils.isBlank(functionAnnotation.value())) ? annotatedClass.getSimpleName(): functionAnnotation.value();
         FunctionInputDef functionDef = new FunctionInputDef(functionName);
+        if (functionAnnotation != null) {
+          for (Has has : functionAnnotation.having()) {
+            functionDef.setAnnotation(has.name(), has.value());
+          }
+        }
         inputDef.addFunctionInputDef(functionDef);
         for (Field field: annotatedClass.getDeclaredFields()) {
           if (!Modifier.isStatic(field.getModifiers())) {
@@ -50,6 +55,9 @@ public class AnnotationReader
 
       if (varAnnotation != null) {
         VarDef varDef = new VarDef(field.getName());
+        for (Has has : varAnnotation.having()) {
+          varDef.setAnnotation(has.name(), has.value());
+        }
         varDef.setCondition(getCondition(varAnnotation.when(), varAnnotation.whenNot()));
         if (field.getType().isPrimitive()) {
           throw new UnsupportedOperationException("TODO implement support of primitive types");
@@ -105,6 +113,7 @@ public class AnnotationReader
         }
         varDefs.add(varDef);
       } else if (field.getAnnotation(IsFailure.class) != null
+              || field.getAnnotation(OutputAnnotations.class) != null
               || field.getAnnotation(TestCaseId.class) != null) {
         // ignore for system def
         // TODO: Check type, raise exception if unusable
@@ -112,6 +121,9 @@ public class AnnotationReader
         org.cornutum.tcases.VarSet varSet = new org.cornutum.tcases.VarSet(field.getName());
         VarSet varSetAnnotation = field.getAnnotation(VarSet.class);
         varSet.setCondition(getCondition(varSetAnnotation.when(), varSetAnnotation.whenNot()));
+        for (Has has : varSetAnnotation.having()) {
+          varSet.setAnnotation(has.name(), has.value());
+        }
         Class<?> fieldClass = field.getType();
         // recursion, TODO: make sure not circular
         if (fieldClass.isEnum()) {
@@ -131,6 +143,9 @@ public class AnnotationReader
 
     private static VarValueDef createVarValueDef(String name, Value varValue) {
       VarValueDef varValueDef = new VarValueDef(name, typeOf(varValue));
+      for (Has has : varValue.having()) {
+        varValueDef.setAnnotation(has.name(), has.value());
+      }
       varValueDef.addProperties(varValue.properties());
       varValueDef.setCondition(getCondition(varValue.when(), varValue.whenNot()));
       return varValueDef;

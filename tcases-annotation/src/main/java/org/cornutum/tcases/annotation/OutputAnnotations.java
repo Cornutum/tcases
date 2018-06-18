@@ -7,14 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface VarSet {
+public @interface OutputAnnotations {
 
-  Value[] values() default {};
-
-  String tag() default "arg"; // Input type from docs, TODO: not sure what to do with it
-
-  String[] when() default {};
-  String[] whenNot() default {};
-
-  Has[] having() default {};
 }

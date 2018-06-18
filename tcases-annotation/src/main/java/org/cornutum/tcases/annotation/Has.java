@@ -5,11 +5,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Output Annotation (only passed through to output)
+ */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Function {
+public @interface Has {
 
-  String value() default ""; // allows custom name
+  String name();
+  String value();
 
-  Has[] having() default {};
 }

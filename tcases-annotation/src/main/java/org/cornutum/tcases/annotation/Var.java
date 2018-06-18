@@ -15,4 +15,6 @@ public @interface Var {
 
   String[] when() default {};
   String[] whenNot() default {};
+
+  Has[] having() default {};
 }
