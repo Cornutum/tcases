@@ -64,13 +64,16 @@ public class TestInstanceCreator {
         } else {
           Field f = instance.getClass().getDeclaredField(name);
           f.setAccessible(true);
-          // TODO: Find better way to handle types, also primitive types
-          if (f.getType() == Boolean.class) {
-            f.set(instance, Boolean.valueOf(binding.getValue()));
-          } else if (f.getType().isEnum()) {
-              f.set(instance, Enum.valueOf((Class<Enum>)f.getType(), binding.getValue()));
-          } else {
-            f.set(instance, binding.getValue());
+          // TODO: warn user when using "NA" somewhere :-(
+          if (!"NA".equals(binding.getValue())) {
+            // TODO: Find better way to handle types, also primitive types
+            if (f.getType() == Boolean.class) {
+              f.set(instance, Boolean.valueOf(binding.getValue()));
+            } else if (f.getType().isEnum()) {
+              f.set(instance, Enum.valueOf((Class<Enum>) f.getType(), binding.getValue()));
+            } else {
+              f.set(instance, binding.getValue());
+            }
           }
         }
       } catch (NoSuchFieldException | IllegalAccessException e) {

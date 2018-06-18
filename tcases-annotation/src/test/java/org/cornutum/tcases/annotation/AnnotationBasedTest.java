@@ -65,7 +65,7 @@ public class AnnotationBasedTest {
 
     List<TestCase> testCaseList = IteratorUtils.toList(fun1TestDef.getTestCases());
     // check total number
-    assertThat(testCaseList.size(), equalTo(7));
+    assertThat(testCaseList.size(), equalTo(10));
     // check failure number
     assertThat(testCaseList.stream().filter(testCase -> testCase.getType() == TestCase.Type.FAILURE).count(), equalTo(4L));
     // Check id
@@ -79,7 +79,7 @@ public class AnnotationBasedTest {
             .map(tcase -> TestInstanceCreator.createDef(tcase, Find.class))
             .collect(Collectors.toList());
 
-    assertThat(findList.size(), equalTo(7));
+    assertThat(findList.size(), equalTo(testCaseList.size()));
     // check failure number
     assertThat(findList.stream().filter(testCase -> testCase.isFailure).count(), equalTo(4L));
     // Check id

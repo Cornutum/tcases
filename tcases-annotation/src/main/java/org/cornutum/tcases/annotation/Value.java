@@ -13,4 +13,6 @@ public @interface Value {
   TestCase.Type type() default TestCase.Type.SUCCESS;
 
   String[] properties() default {};
+  String[] when() default {};
+  String[] whenNot() default {};
 }
