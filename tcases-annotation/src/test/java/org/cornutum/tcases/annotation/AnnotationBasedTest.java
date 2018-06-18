@@ -4,8 +4,9 @@ import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.annotation.parser.AnnotationReader;
 import org.cornutum.tcases.annotation.generator.TestInstanceCreator;
-import org.cornutum.tcases.annotation.sample1.Find;
+import org.cornutum.tcases.annotation.sample1.FindFunction;
 import org.cornutum.tcases.generator.GeneratorSet;
+import org.cornutum.tcases.generator.TupleGenerator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,12 +33,13 @@ public class AnnotationBasedTest {
     options = new Tcases.Options();
   }
 
+
   /**
    * TODO: proper unit tests after code cleanup
    */
   @Test
-  public void testFindSample() {
-    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", Find.class);
+  public void testSystemDefFromAnnotations() {
+    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", FindFunction.class);
     assertNotNull(systemDef);
     assertThat(systemDef.getName(), equalTo(SYSTEM));
     List<FunctionInputDef> functionInputDefs = IteratorUtils.toList(systemDef.getFunctionInputDefs());
@@ -52,6 +54,14 @@ public class AnnotationBasedTest {
     assertNotNull(fun1Def.findVarPath("filenameDefined"));
     assertNotNull(fun1Def.findVarPath("pattern.size"));
     assertNotNull(fun1Def.findVarPath("file.exists"));
+  }
+
+  /**
+   * TODO: proper unit tests after code cleanup
+   */
+  @Test
+  public void testTestDefFromAnnotations() {
+    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", FindFunction.class);
 
     /* generate testcases */
 
@@ -61,7 +71,7 @@ public class AnnotationBasedTest {
     List<FunctionTestDef> testDefsList = IteratorUtils.toList(testDef.getFunctionTestDefs());
     assertThat(toString(testDef), testDefsList.size(), equalTo(1));
     FunctionTestDef fun1TestDef = testDefsList.get(0);
-    assertThat(fun1TestDef.getName(), equalTo(Find.class.getSimpleName()));
+    assertThat(fun1TestDef.getName(), equalTo("Find"));
 
     List<TestCase> testCaseList = IteratorUtils.toList(fun1TestDef.getTestCases());
     // check total number
@@ -72,11 +82,26 @@ public class AnnotationBasedTest {
     for (int i = 0; i < testCaseList.size(); i++) {
       assertThat(testCaseList.get(i).getId(), equalTo(i));
     }
+  }
+
+  /**
+   * TODO: proper unit tests after code cleanup
+   */
+  @Test
+  public void testInstanceCreation() {
+    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", FindFunction.class);
+
+    /* generate testcases */
+
+    SystemTestDef testDef = Tcases.getTests(systemDef, genDef, baseDef, options);
+    List<FunctionTestDef> testDefsList = IteratorUtils.toList(testDef.getFunctionTestDefs());
+    FunctionTestDef fun1TestDef = testDefsList.get(0);
+    List<TestCase> testCaseList = IteratorUtils.toList(fun1TestDef.getTestCases());
 
     /* generate test instances */
 
-    List<Find> findList = testCaseList.stream()
-            .map(tcase -> TestInstanceCreator.createDef(tcase, Find.class))
+    List<FindFunction> findList = testCaseList.stream()
+            .map(tcase -> TestInstanceCreator.createDef(tcase, FindFunction.class))
             .collect(Collectors.toList());
 
     assertThat(findList.size(), equalTo(testCaseList.size()));
@@ -86,6 +111,34 @@ public class AnnotationBasedTest {
     for (int i = 0; i < findList.size(); i++) {
       assertThat(findList.get(i).testCaseId, equalTo(i));
       System.out.println(findList.get(i));
+    }
+  }
+
+  /**
+   * TODO: proper unit tests after code cleanup
+   */
+  @Test
+  public void testTestDefFromAnnotations2Tupel() {
+    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", FindFunction.class);
+
+    /* generate testcases */
+    genDef.addGenerator("Find", new TupleGenerator(2));
+    SystemTestDef testDef = Tcases.getTests(systemDef, genDef, baseDef, options);
+    assertThat(testDef.getName(), equalTo("findSystem"));
+
+    List<FunctionTestDef> testDefsList = IteratorUtils.toList(testDef.getFunctionTestDefs());
+    assertThat(toString(testDef), testDefsList.size(), equalTo(1));
+    FunctionTestDef fun1TestDef = testDefsList.get(0);
+    assertThat(fun1TestDef.getName(), equalTo("Find"));
+
+    List<TestCase> testCaseList = IteratorUtils.toList(fun1TestDef.getTestCases());
+    // check total number
+    assertThat(testCaseList.size(), equalTo(24));
+    // check failure number
+    assertThat(testCaseList.stream().filter(testCase -> testCase.getType() == TestCase.Type.FAILURE).count(), equalTo(4L));
+    // Check id
+    for (int i = 0; i < testCaseList.size(); i++) {
+      assertThat(testCaseList.get(i).getId(), equalTo(i));
     }
   }
 

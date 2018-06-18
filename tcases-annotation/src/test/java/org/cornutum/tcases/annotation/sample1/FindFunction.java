@@ -19,8 +19,8 @@ import org.cornutum.tcases.annotation.util.CustomToStringStyle;
  * To include a blank in the pattern, the entire pattern must be enclosed in quotes (").
  * To include a quotation mark in the pattern, two quotes in a row ("") must be used.
  */
-@Function // name/value defaults to class name
-public class Find {
+@Function("Find") // name/value defaults to class name
+public class FindFunction {
 
   // properties for value conditions
   public static final String PATTERN_EMPTY = "empty";
@@ -38,19 +38,19 @@ public class Find {
    * Input argument
    */
   @VarSet(when = FILE_EXISTS)
-  private Pattern pattern;
+  public Pattern pattern;
 
   /**
    * Input argument
    */
   @Var(values = {@Value(value = "false", type = TestCase.Type.FAILURE)})
-  private Boolean filenameDefined; // boolean always has values true, false
+  public Boolean filenameDefined; // boolean always has values true, false
 
   /**
    * Test environment (target file)
    */
   @VarSet
-  private FileWithPatternedLines file;
+  public FileWithPatternedLines file;
 
   /**
    * A file with contents to be searched with a pattern
@@ -61,10 +61,10 @@ public class Find {
             @Value(value = "true", properties = FILE_EXISTS),
             @Value(value = "false", type = TestCase.Type.FAILURE)
     })
-    private Boolean exists; // boolean always has values true, false
+    public Boolean exists; // boolean always has values true, false
 
     @VarSet
-    private FileContentsWithPattern contents;
+    public FileContentsWithPattern contents;
 
     /**
      * file content type
@@ -72,13 +72,13 @@ public class Find {
     // Nested VarSet
     public static class FileContentsWithPattern {
       @Var(values = {@Value(value = "NONE", type = TestCase.Type.FAILURE)})
-      private CardinalityZeroToN linesLongerThanPattern;
+      public CardinalityZeroToN linesLongerThanPattern;
 
       @Var
-      private CardinalityZeroToN patterns;
+      public CardinalityZeroToN patterns;
 
       @Var
-      private PatternsInLine patternsInLine;
+      public PatternsInLine patternsInLine;
 
       public enum PatternsInLine {
         ONE,
@@ -93,25 +93,25 @@ public class Find {
             @Value(value = "NONE", properties = {PATTERN_EMPTY}),
             @Value(value = "ONE", properties = {PATTERN_SINGLE_CHAR})
     })
-    private CardinalityZeroToN size;
+    public CardinalityZeroToN size;
 
     @Var(values = {
             @Value(value = "YES", properties = PATTERN_QUOTED),
             @Value(value = "NO", whenNot = PATTERN_EMPTY),
             @Value(value = "UNTERMINATED", type = TestCase.Type.FAILURE)
     })
-    private QuotedType quoted;
+    public QuotedType quoted;
 
     @Var(values = {
             @Value(value = "ONE", when = {PATTERN_QUOTED, PATTERN_SINGLE_CHAR}),
             @Value(value = "MANY", when = {PATTERN_QUOTED}, whenNot = {PATTERN_SINGLE_CHAR})
     }, whenNot = PATTERN_EMPTY)
-    private CardinalityZeroToN blanks;
+    public CardinalityZeroToN blanks;
 
     @Var(whenNot = {PATTERN_EMPTY, PATTERN_SINGLE_CHAR})
-    private CardinalityZeroToN embeddedQuotes;
+    public CardinalityZeroToN embeddedQuotes;
 
-    private enum QuotedType {
+    public enum QuotedType {
       YES,
       NO,
       UNTERMINATED;
