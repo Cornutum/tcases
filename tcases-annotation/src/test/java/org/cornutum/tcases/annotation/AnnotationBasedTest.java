@@ -2,12 +2,15 @@ package org.cornutum.tcases.annotation;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.annotation.parser.AnnotationReader;
+import org.cornutum.tcases.annotation.generator.TestInstanceCreator;
 import org.cornutum.tcases.annotation.sample1.Find;
 import org.cornutum.tcases.generator.GeneratorSet;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
@@ -29,6 +32,9 @@ public class AnnotationBasedTest {
     options = new Tcases.Options();
   }
 
+  /**
+   * TODO: proper unit tests after code cleanup
+   */
   @Test
   public void testFindSample() {
     SystemInputDef systemDef = AnnotationReader.createDef("findSystem", Find.class);
@@ -43,11 +49,11 @@ public class AnnotationBasedTest {
     List<IVarDef> varDefs = IteratorUtils.toList(fun1Def.getVarDefs());
     assertThat(varDefs.size(), equalTo(3));
 
-    assertNotNull(fun1Def.findVarPath("filename"));
+    assertNotNull(fun1Def.findVarPath("filenameDefined"));
     assertNotNull(fun1Def.findVarPath("pattern.size"));
     assertNotNull(fun1Def.findVarPath("file.exists"));
 
-    /** generate testcases */
+    /* generate testcases */
 
     SystemTestDef testDef = Tcases.getTests(systemDef, genDef, baseDef, options);
     assertThat(testDef.getName(), equalTo("findSystem"));
@@ -58,16 +64,29 @@ public class AnnotationBasedTest {
     assertThat(fun1TestDef.getName(), equalTo(Find.class.getSimpleName()));
 
     List<TestCase> testCaseList = IteratorUtils.toList(fun1TestDef.getTestCases());
-    assertThat(testCaseList.size(), equalTo(6));
-
-    /** generate test instances */
-
-    for (TestCase tcase : testCaseList) {
-      Find f = TestInstanceCreator.createDef(tcase, Find.class);
-      assertNotNull(f);
-      System.out.println(f);
+    // check total number
+    assertThat(testCaseList.size(), equalTo(7));
+    // check failure number
+    assertThat(testCaseList.stream().filter(testCase -> testCase.getType() == TestCase.Type.FAILURE).count(), equalTo(4L));
+    // Check id
+    for (int i = 0; i < testCaseList.size(); i++) {
+      assertThat(testCaseList.get(i).getId(), equalTo(i));
     }
 
+    /* generate test instances */
+
+    List<Find> findList = testCaseList.stream()
+            .map(tcase -> TestInstanceCreator.createDef(tcase, Find.class))
+            .collect(Collectors.toList());
+
+    assertThat(findList.size(), equalTo(7));
+    // check failure number
+    assertThat(findList.stream().filter(testCase -> testCase.isFailure).count(), equalTo(4L));
+    // Check id
+    for (int i = 0; i < findList.size(); i++) {
+      assertThat(findList.get(i).testCaseId, equalTo(i));
+      System.out.println(findList.get(i));
+    }
   }
 
   private static String toString(SystemInputDef def) {

@@ -1,76 +1,83 @@
 package org.cornutum.tcases.annotation.sample1;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.cornutum.tcases.TestCase;
 import org.cornutum.tcases.annotation.*;
+import org.cornutum.tcases.annotation.util.CustomToStringStyle;
 
 @Function // name/value defaults to class name
 public class Find {
 
+  @TestCaseId // presence is optional
+  public int testCaseId;
+
+  @IsFailure // presence is optional, will be filled based on VarDefs
+  public boolean isFailure;
+
   private Pattern pattern;
 
-  @Var(values = {@Value("defined"), @Value(value = "missing", failure = true)})
-  private String filename;
+  @Var(values = {@Value(value = "false", type = TestCase.Type.FAILURE)})
+  private Boolean filenameDefined; // boolean always has values true, false
 
-  private EnvFile file;
+  private FileWithPatternedLines file;
 
-  @VarSet
-  public static class EnvFile {
-    @Var(values = {@Value("true"), @Value(value = "false", failure = true)})
-    private Boolean exists;
+  // VarSet
+  public static class FileWithPatternedLines {
+    @Var(values = {@Value(value = "false", type = TestCase.Type.FAILURE)})
+    private Boolean exists; // boolean always has values true, false
 
-    private FileContents contents;
+    private FileContentsWithPattern contents;
 
-    @Override
-    public String toString() {
-      return "EnvFile{" +
-              "exists=" + exists +
-              ", contents=" + contents +
-              '}';
+  }
+
+  // VarSet
+  public static class FileContentsWithPattern {
+    @Var(values = {@Value(value = "NONE", type = TestCase.Type.FAILURE)})
+    private CardinalityZeroToN linesLongerThanPattern;
+
+    @Var
+    private CardinalityZeroToN patterns;
+
+    @Var
+    private PatternsInLine patternsInLine;
+
+    public enum PatternsInLine {
+      ONE,
+      MANY;
     }
   }
 
-  public static class FileContents {
-    @Var(values = {@Value("one"), @Value("many"), @Value(value = "none", failure = true)})
-    String linesLongerThanPattern;
-
-    @Var(values = {@Value("none"), @Value("one"), @Value(value = "many")})
-    String patterns;
-
-    @Var(values = {@Value("one"), @Value(value = "many")})
-    String patternsInLine;
-
-    @Override
-    public String toString() {
-      return "FileContents{" +
-              "linesLongerThanPattern='" + linesLongerThanPattern + '\'' +
-              ", patterns='" + patterns + '\'' +
-              ", patternsInLine='" + patternsInLine + '\'' +
-              '}';
-    }
-  }
-
-  @VarSet
+  // VarSet
   public static class Pattern {
-    @Var(values = {
-      @Value("empty"),
-      @Value("singleChar"),
-      @Value("manyChars")
-    })
-    private String size;
+    @Var
+    private CardinalityZeroToN size;
 
-    @Override
-    public String toString() {
-      return "Pattern{" +
-        "size='" + size + '\'' +
-        '}';
+    @Var(values = {@Value(value = "UNTERMINATED", type = TestCase.Type.FAILURE)})
+    private QuotedType quoted;
+
+    @Var
+    private CardinalityZeroToN blanks;
+
+    @Var
+    private CardinalityZeroToN embeddedQuotes;
+
+    private enum QuotedType {
+      YES,
+      NO,
+      UNTERMINATED;
     }
+
+  }
+
+  // ValueSet, reusable
+  public enum CardinalityZeroToN {
+    NONE,
+    ONE,
+    MANY;
   }
 
   @Override
   public String toString() {
-    return "Find{" +
-      "pattern=" + pattern +
-      ", filename='" + filename + '\'' +
-      ", file=" + file +
-      '}';
+    return ReflectionToStringBuilder.toString(this, CustomToStringStyle.INSTANCE);
   }
 }

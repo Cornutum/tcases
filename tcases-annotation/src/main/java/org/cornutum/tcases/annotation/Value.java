@@ -1,13 +1,16 @@
 package org.cornutum.tcases.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.cornutum.tcases.TestCase;
+
+import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Value {
+
   String value();
-  boolean failure() default false;
+
+  TestCase.Type type() default TestCase.Type.SUCCESS;
+
+  String[] properties() default {};
 }

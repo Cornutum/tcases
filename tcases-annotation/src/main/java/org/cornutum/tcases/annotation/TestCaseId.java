@@ -7,10 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Var {
-
-  Value[] values() default {};
-
-  String tag() default "arg"; // Input type from docs, TODO: not sure what to do with it
+public @interface TestCaseId {
 
 }

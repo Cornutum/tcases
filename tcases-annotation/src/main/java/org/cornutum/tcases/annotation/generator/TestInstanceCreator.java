@@ -1,8 +1,10 @@
-package org.cornutum.tcases.annotation;
+package org.cornutum.tcases.annotation.generator;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.TestCase;
 import org.cornutum.tcases.VarBinding;
+import org.cornutum.tcases.annotation.IsFailure;
+import org.cornutum.tcases.annotation.TestCaseId;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -16,10 +18,32 @@ public class TestInstanceCreator {
       // TODO: Consider util library for convenient reflection like objenesis
       instance = functionDefClass.getConstructor().newInstance();
       fillValues(0, instance, IteratorUtils.toList(testCase.getVarBindings()));
+      fillSpecialValues(instance, testCase);
     } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
       throw new RuntimeException(e);
     }
     return instance;
+  }
+
+  private static <T> void fillSpecialValues(T instance, TestCase testCase) {
+    for (Field f: instance.getClass().getDeclaredFields()) {
+      if (f.getAnnotation(IsFailure.class) != null) {
+        f.setAccessible(true);
+        try {
+          f.set(instance, testCase.getType() == TestCase.Type.FAILURE);
+        } catch (IllegalAccessException e) {
+          throw new RuntimeException(e);
+        }
+      }
+      if (f.getAnnotation(TestCaseId.class) != null) {
+        f.setAccessible(true);
+        try {
+          f.set(instance, testCase.getId());
+        } catch (IllegalAccessException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    }
   }
 
   /**
@@ -43,6 +67,8 @@ public class TestInstanceCreator {
           // TODO: Find better way to handle types, also primitive types
           if (f.getType() == Boolean.class) {
             f.set(instance, Boolean.valueOf(binding.getValue()));
+          } else if (f.getType().isEnum()) {
+              f.set(instance, Enum.valueOf((Class<Enum>)f.getType(), binding.getValue()));
           } else {
             f.set(instance, binding.getValue());
           }
