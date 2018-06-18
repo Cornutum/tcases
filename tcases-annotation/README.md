@@ -4,7 +4,6 @@ Java annotation based definition of systems and generation of testcase instances
 
 ## TODO
 
-* Support once attribute
 * Support Conditions AllOf, AnyOf, Not: Annotation vs DSL...
 * Define Generators as JUnit TestRule
 * Map to Junit4 / Junit5 ParametrizedTests

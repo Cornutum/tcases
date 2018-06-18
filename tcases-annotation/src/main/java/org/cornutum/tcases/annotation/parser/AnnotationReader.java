@@ -140,6 +140,9 @@ public class AnnotationReader
       if (varValue.type() == TestCase.Type.FAILURE) {
         return VarValueDef.Type.FAILURE;
       }
+      if (varValue.once()) {
+        return VarValueDef.Type.ONCE;
+      }
       return VarValueDef.Type.VALID;
     }
 
