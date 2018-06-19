@@ -16,6 +16,9 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.cornutum.tcases.annotation.parser.ConditionReader.getCondition;
+import static org.cornutum.tcases.annotation.parser.VarValueDefReader.getVarValueDefs;
+
 /**
  * Given a Java Bean classes annotated with Tcases annotations, created an IVarDef
  */
@@ -46,7 +49,7 @@ public class AnnotatedVarDefReader {
   private static org.cornutum.tcases.VarSet createVarSet(Field field) {
     org.cornutum.tcases.VarSet varSet = new org.cornutum.tcases.VarSet(field.getName());
     VarSet varSetAnnotation = field.getAnnotation(VarSet.class);
-    varSet.setCondition(ConditionReader.getCondition(varSetAnnotation.when(), varSetAnnotation.whenNot()));
+    varSet.setCondition(getCondition(varSetAnnotation.when(), varSetAnnotation.whenNot()));
     for (Has has : varSetAnnotation.having()) {
       varSet.setAnnotation(has.name(), has.value());
     }
@@ -75,9 +78,9 @@ public class AnnotatedVarDefReader {
       for (Has has : varAnnotation.having()) {
         varDef.setAnnotation(has.name(), has.value());
       }
-      varDef.setCondition(ConditionReader.getCondition(varAnnotation.when(), varAnnotation.whenNot()));
+      varDef.setCondition(getCondition(varAnnotation.when(), varAnnotation.whenNot()));
     }
-    VarValueDefReader.getVarValueDefs(field).forEach(varDef::addValue);
+    getVarValueDefs(field).forEach(varDef::addValue);
     return varDef;
   }
 

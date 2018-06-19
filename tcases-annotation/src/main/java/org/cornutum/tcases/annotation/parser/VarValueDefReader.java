@@ -14,10 +14,9 @@ import org.cornutum.tcases.annotation.Value;
 import org.cornutum.tcases.annotation.Var;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
+
+import static org.cornutum.tcases.annotation.parser.ConditionReader.getCondition;
 
 /**
  * Given a Java Bean classes annotated with Tcases annotations, created an IVarDef
@@ -34,19 +33,25 @@ public class VarValueDefReader {
   static List<VarValueDef> getVarValueDefs(Field field) {
     List<VarValueDef> varValueDefs;
     Var varAnnotation = field.getAnnotation(Var.class);
-    if (field.getType().isPrimitive()) {
-      throw new UnsupportedOperationException("TODO implement support of primitive types");
-    } else if (field.getType() == Boolean.class) {
-      varValueDefs = VarValueDefReader.getVarValueDefsForBoolean(varAnnotation);
+    if (field.getType() == Boolean.class) {
+      varValueDefs = getVarValueDefsForBoolean(varAnnotation);
     } else if (field.getType().isEnum()) {
-      varValueDefs = VarValueDefReader.getVarValueDefsForEnumField((Class<? extends Enum>) field.getType(), varAnnotation);
+      varValueDefs = getVarValueDefsForEnumField((Class<? extends Enum>) field.getType(), varAnnotation);
     } else {
+      if (field.getType() != String.class) {
+        throw new IllegalStateException("Annotations not supported for other types than String, Boolean, Enum");
+      }
       if (varAnnotation != null && varAnnotation.values().length > 0) {
-        varValueDefs = Arrays.stream(varAnnotation.values())
-                .map(varValue -> VarValueDefReader.createVarValueDef(varValue.value(), varValue))
-                .collect(Collectors.toList());
+        Set<String> values = new HashSet<>();
+        varValueDefs = new ArrayList<>();
+        for (Value varValue : varAnnotation.values()) {
+          varValueDefs.add(createVarValueDef(varValue.value(), varValue));
+          if (!values.add(varValue.value())) {
+            throw new IllegalStateException("@Value value '" + varValue.value() + "' duplicate");
+          }
+        }
       } else {
-        throw new IllegalStateException("@Var field must be enum, boolean or define values");
+        throw new IllegalStateException("Fields must be enum, boolean or define values using @Var");
       }
     }
     return varValueDefs;
@@ -55,11 +60,16 @@ public class VarValueDefReader {
   /**
    * Creates VarValue for each enum constant, with additional properties if the Var annotation provides any.
    */
-  static List<VarValueDef> getVarValueDefsForEnumField(Class<? extends Enum> enumClass, Var varAnnotation) {
+  private static List<VarValueDef> getVarValueDefsForEnumField(Class<? extends Enum> enumClass, Var varAnnotation) {
     List<VarValueDef> varValueDefs = new ArrayList<>();
+    if (enumClass.getFields().length == 0) {
+      throw new IllegalStateException("Enum '" + enumClass
+              + "' has no values.");
+    }
     for (Field enumField : enumClass.getFields()) {
       VarValueDef value = null;
-      if (varAnnotation.values().length > 0) {
+      if (varAnnotation != null && varAnnotation.values().length > 0) {
+        Set<String> values = new HashSet<>();
         for (Value varValue : varAnnotation.values()) {
           try {
             enumClass.getField(varValue.value());
@@ -68,8 +78,10 @@ public class VarValueDefReader {
                     + "' not a known key in Enum " + enumClass.getName());
           }
           if (enumField.getName().equals(varValue.value())) {
-            value = VarValueDefReader.createVarValueDef(enumField.getName(), varValue);
-            break;
+            value = createVarValueDef(enumField.getName(), varValue);
+            if (!values.add(varValue.value())) {
+              throw new IllegalStateException("@Value value '" + varValue.value() + "' duplicate");
+            }
           }
         }
       }
@@ -89,14 +101,18 @@ public class VarValueDefReader {
     for (String boolname : Arrays.asList("true", "false")) {
       VarValueDef value = null;
       if (varAnnotation != null && varAnnotation.values().length > 0) {
+        Set<String> values = new HashSet<>();
         for (Value varValue : varAnnotation.values()) {
           if (!"true".equalsIgnoreCase(varValue.value())
                   && !"false".equalsIgnoreCase(varValue.value())) {
-            throw new IllegalStateException("@Value value '" + varValue.value() + "' not a valid Boolean value");
+            throw new IllegalStateException("@Value value '" + varValue.value()
+                    + "' not a valid Boolean value");
           }
           if (boolname.equalsIgnoreCase(varValue.value())) {
-            value = VarValueDefReader.createVarValueDef(boolname, varValue);
-            break;
+            value = createVarValueDef(boolname, varValue);
+            if (!values.add(varValue.value())) {
+              throw new IllegalStateException("@Value value '" + varValue.value() + "' duplicate");
+            }
           }
         }
       }
@@ -108,13 +124,13 @@ public class VarValueDefReader {
     return varValues;
   }
 
-  static VarValueDef createVarValueDef(String name, Value varValue) {
+  private static VarValueDef createVarValueDef(String name, Value varValue) {
     VarValueDef varValueDef = new VarValueDef(name, typeOf(varValue));
     for (Has has : varValue.having()) {
       varValueDef.setAnnotation(has.name(), has.value());
     }
     varValueDef.addProperties(varValue.properties());
-    varValueDef.setCondition(ConditionReader.getCondition(varValue.when(), varValue.whenNot()));
+    varValueDef.setCondition(getCondition(varValue.when(), varValue.whenNot()));
     return varValueDef;
   }
 

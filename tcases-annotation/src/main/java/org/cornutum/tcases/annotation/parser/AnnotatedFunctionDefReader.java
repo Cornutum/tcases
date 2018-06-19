@@ -41,7 +41,8 @@ public class AnnotatedFunctionDefReader {
    */
   static FunctionInputDef createFunctionInputDef(Class<?> annotatedClass) {
     Function functionAnnotation = annotatedClass.getAnnotation(Function.class);
-    FunctionInputDef functionDef = new FunctionInputDef(getFunctionDefName(annotatedClass, functionAnnotation));
+    FunctionInputDef functionDef
+            = new FunctionInputDef(getFunctionDefName(annotatedClass, functionAnnotation));
     if (functionAnnotation != null) {
       for (Has has : functionAnnotation.having()) {
         functionDef.setAnnotation(has.name(), has.value());
