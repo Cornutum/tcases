@@ -3,7 +3,7 @@ package org.cornutum.tcases.annotation;
 import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.annotation.generator.TestInstanceCreator;
-import org.cornutum.tcases.annotation.parser.AnnotationReader;
+import org.cornutum.tcases.annotation.parser.AnnotatedFunctionDefReader;
 import org.cornutum.tcases.annotation.sample1.FindFunction;
 import org.cornutum.tcases.generator.GeneratorSet;
 import org.cornutum.tcases.generator.TupleGenerator;
@@ -41,7 +41,7 @@ public class AnnotationBasedTest {
    */
   @Test
   public void testSystemDefFromAnnotations() {
-    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", FindFunction.class);
+    SystemInputDef systemDef = AnnotatedFunctionDefReader.createSystemDef("findSystem", FindFunction.class);
     assertNotNull(systemDef);
     assertThat(systemDef.getName(), equalTo(SYSTEM));
     List<FunctionInputDef> functionInputDefs = IteratorUtils.toList(systemDef.getFunctionInputDefs());
@@ -63,7 +63,7 @@ public class AnnotationBasedTest {
    */
   @Test
   public void testTestDefFromAnnotations() {
-    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", FindFunction.class);
+    SystemInputDef systemDef = AnnotatedFunctionDefReader.createSystemDef("findSystem", FindFunction.class);
 
     /* generate testcases */
 
@@ -91,7 +91,7 @@ public class AnnotationBasedTest {
    */
   @Test
   public void testInstanceCreation() {
-    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", FindFunction.class);
+    SystemInputDef systemDef = AnnotatedFunctionDefReader.createSystemDef("findSystem", FindFunction.class);
 
     /* generate testcases */
 
@@ -118,7 +118,7 @@ public class AnnotationBasedTest {
    */
   @Test
   public void testTestDefFromAnnotations2Tupel() {
-    SystemInputDef systemDef = AnnotationReader.createDef("findSystem", FindFunction.class);
+    SystemInputDef systemDef = AnnotatedFunctionDefReader.createSystemDef("findSystem", FindFunction.class);
 
     /* generate testcases */
     genDef.addGenerator("Find", new TupleGenerator(2));

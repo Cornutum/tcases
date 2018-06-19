@@ -20,8 +20,10 @@ Java annotation based definition of systems and generation of testcase instances
   * properly support bean getters/setters (Consider Jackson-databind?)
   * Require each non-static field to have one Tcases annotation (Var, VarSet, TestCaseId, IsFailure)?
   * Support primitives (boolean, int, char)
+  * Try out SystemDef with Java inheritence and composition for maximum reuse
   * Cleanup code
   * Unit tests
+  * Provide all testcase data in the output (varvalue properties)?
 
 * Nice to have
   * Allows comma-separated String value for value properties?

@@ -3,6 +3,7 @@ package org.cornutum.tcases.annotation.sample1;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.cornutum.tcases.TestCase;
 import org.cornutum.tcases.annotation.*;
+import org.cornutum.tcases.annotation.generator.OutputAnnotationContainer;
 import org.cornutum.tcases.annotation.util.CustomToStringStyle;
 
 /**
