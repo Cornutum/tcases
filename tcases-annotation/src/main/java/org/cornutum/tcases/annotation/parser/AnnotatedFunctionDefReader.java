@@ -9,13 +9,14 @@ package org.cornutum.tcases.annotation.parser;
 
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.FunctionInputDef;
-import org.cornutum.tcases.IVarDef;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.annotation.Function;
 import org.cornutum.tcases.annotation.Has;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+
+import static org.cornutum.tcases.annotation.parser.AnnotatedVarDefReader.createVarDef;
 
 /**
  * Given a Java Bean classes annotated with Tcases annotations, created a SystemInputDef
@@ -51,9 +52,7 @@ public class AnnotatedFunctionDefReader {
 
     for (Field field: annotatedClass.getDeclaredFields()) {
       if (!Modifier.isStatic(field.getModifiers())) {
-        for (IVarDef varDef : AnnotatedVarDefReader.createVarDefs(field)) {
-          functionDef.addVarDef(varDef);
-        }
+        functionDef.addVarDef(createVarDef(field));
       }
     }
     return functionDef;

@@ -13,8 +13,6 @@ import org.cornutum.tcases.annotation.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.cornutum.tcases.annotation.parser.ConditionReader.getCondition;
 import static org.cornutum.tcases.annotation.parser.VarValueDefReader.getVarValueDefs;
@@ -30,17 +28,17 @@ public class AnnotatedVarDefReader {
   /**
    * create VarSet of VarDef for a field depending on the annotations.
    */
-  static List<IVarDef> createVarDefs(Field field) {
-    List<IVarDef> varDefs = new ArrayList<>();
+  static IVarDef createVarDef(Field field) {
+    IVarDef varDef = null;
     
     if (field.getAnnotation(Var.class) != null) {
-      varDefs.add(getVarDefFromVarField(field));
+      varDef = getVarDefFromVarField(field);
     } else if (field.getAnnotation(IsFailure.class) == null
             && field.getAnnotation(OutputAnnotations.class) == null
             && field.getAnnotation(TestCaseId.class) == null) {
-      varDefs.add(createVarSet(field));
+      varDef = createVarSet(field);
     }
-    return varDefs;
+    return varDef;
   }
 
   /**
@@ -49,9 +47,11 @@ public class AnnotatedVarDefReader {
   private static org.cornutum.tcases.VarSet createVarSet(Field field) {
     org.cornutum.tcases.VarSet varSet = new org.cornutum.tcases.VarSet(field.getName());
     VarSet varSetAnnotation = field.getAnnotation(VarSet.class);
-    varSet.setCondition(getCondition(varSetAnnotation.when(), varSetAnnotation.whenNot()));
-    for (Has has : varSetAnnotation.having()) {
-      varSet.setAnnotation(has.name(), has.value());
+    if (varSetAnnotation != null) {
+      varSet.setCondition(getCondition(varSetAnnotation.when(), varSetAnnotation.whenNot()));
+      for (Has has : varSetAnnotation.having()) {
+        varSet.setAnnotation(has.name(), has.value());
+      }
     }
     Class<?> fieldClass = field.getType();
     // recursion, TODO: make sure not circular
@@ -63,7 +63,8 @@ public class AnnotatedVarDefReader {
     }
     for (Field nestedField: fieldClass.getDeclaredFields()) {
       if (!Modifier.isStatic(nestedField.getModifiers())) {
-        for (IVarDef varDef : createVarDefs(nestedField)) {
+        IVarDef varDef = createVarDef(nestedField);
+        if (varDef != null) {
           varSet.addMember(varDef);
         }
       }
