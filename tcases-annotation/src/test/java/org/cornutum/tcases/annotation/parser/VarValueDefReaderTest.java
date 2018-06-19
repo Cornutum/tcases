@@ -50,6 +50,33 @@ public class VarValueDefReaderTest {
         } catch (IllegalStateException e) {
             // pass
         }
+
+        List<VarValueDef> aStringWithVar2Value
+                = getVarValueDefs(fieldSamplesClass.getField("aStringWithVar2Value"));
+        assertThat(aStringWithVar2Value, hasSize(2));
+        VarValueDef fooValue = aStringWithVar2Value.get(0);
+        VarValueDef barValue = aStringWithVar2Value.get(1);
+
+        assertThat(fooValue.getType(), equalTo(VarValueDef.Type.ONCE));
+        assertThat(barValue.getType(), equalTo(VarValueDef.Type.FAILURE));
+
+        assertTrue(fooValue.getProperties().contains("fooProp"));
+        assertFalse(fooValue.getProperties().contains("barProp"));
+        assertFalse(barValue.getProperties().contains("fooProp"));
+        assertTrue(barValue.getProperties().contains("barProp"));
+
+        List<String> fooAnnotations = IteratorUtils.toList(fooValue.getAnnotations());
+        assertThat(fooAnnotations, equalTo(Arrays.asList("fooHasKey")));
+        assertThat(fooValue.getAnnotation("fooHasKey"), equalTo("fooHasValue"));
+
+        List<String> barAnnotations = IteratorUtils.toList(barValue.getAnnotations());
+        assertThat(barAnnotations, equalTo(Arrays.asList("barHasKey")));
+        assertThat(barValue.getAnnotation("barHasKey"), equalTo("barHasValue"));
+
+        assertTrue(fooValue.getCondition().satisfied(new PropertySet("fooWhen")));
+        assertFalse(fooValue.getCondition().satisfied(new PropertySet()));
+        assertFalse(barValue.getCondition().satisfied(new PropertySet("fooWhen")));
+        assertTrue(barValue.getCondition().satisfied(new PropertySet()));
     }
 
     private static class StringSamples {
@@ -58,20 +85,20 @@ public class VarValueDefReaderTest {
         @Var
         public String invalidNoValue;
 
-        @Var(values = @Value("true"))
+        @Var(values = @Value("foo"))
         public String aStringWithVar1Value;
 
         @Var(values = {
-                @Value(value = "true",
-                        properties = {"trueProp"},
+                @Value(value = "foo",
+                        properties = {"fooProp"},
                         once = true,
-                        when = "trueWhen",
-                        having = @Has(name = "trueHasKey", value = "trueHasValue")),
-                @Value(value = "false",
-                        properties = {"falseProp"},
-                        whenNot = "trueWhen",
+                        when = "fooWhen",
+                        having = @Has(name = "fooHasKey", value = "fooHasValue")),
+                @Value(value = "bar",
+                        properties = {"barProp"},
+                        whenNot = "fooWhen",
                         type = TestCase.Type.FAILURE,
-                        having = @Has(name = "falseHasKey", value = "falseHasValue"))
+                        having = @Has(name = "barHasKey", value = "barHasValue"))
         })
         public String aStringWithVar2Value;
 
