@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 /**
  * Given a Java Bean classes annotated with Tcases annotations, created an IVarDef
  */
-public class VarValueDefReader
-{
+public class VarValueDefReader {
+
   private VarValueDefReader() {
   }
 
@@ -31,8 +31,9 @@ public class VarValueDefReader
    * Creates values for a var field depending on the type and annotations.
    */
   @SuppressWarnings("unchecked")
-  static List<VarValueDef> getVarValueDefs(Field field, Var varAnnotation) {
+  static List<VarValueDef> getVarValueDefs(Field field) {
     List<VarValueDef> varValueDefs;
+    Var varAnnotation = field.getAnnotation(Var.class);
     if (field.getType().isPrimitive()) {
       throw new UnsupportedOperationException("TODO implement support of primitive types");
     } else if (field.getType() == Boolean.class) {
@@ -40,7 +41,7 @@ public class VarValueDefReader
     } else if (field.getType().isEnum()) {
       varValueDefs = VarValueDefReader.getVarValueDefsForEnumField((Class<? extends Enum>) field.getType(), varAnnotation);
     } else {
-      if (varAnnotation.values().length > 0) {
+      if (varAnnotation != null && varAnnotation.values().length > 0) {
         varValueDefs = Arrays.stream(varAnnotation.values())
                 .map(varValue -> VarValueDefReader.createVarValueDef(varValue.value(), varValue))
                 .collect(Collectors.toList());
@@ -83,11 +84,11 @@ public class VarValueDefReader
   /**
    * Creates a true and a false VarValue, with additional properties if the Var annotation provides any.
    */
-  static List<VarValueDef> getVarValueDefsForBoolean(Var varAnnotation) {
+  private static List<VarValueDef> getVarValueDefsForBoolean(Var varAnnotation) {
     List<VarValueDef> varValues = new ArrayList<>();
-    if (varAnnotation.values().length > 0) {
-      for (String boolname : Arrays.asList("true", "false")) {
-        VarValueDef value = null;
+    for (String boolname : Arrays.asList("true", "false")) {
+      VarValueDef value = null;
+      if (varAnnotation != null && varAnnotation.values().length > 0) {
         for (Value varValue : varAnnotation.values()) {
           if (!"true".equalsIgnoreCase(varValue.value())
                   && !"false".equalsIgnoreCase(varValue.value())) {
@@ -98,12 +99,11 @@ public class VarValueDefReader
             break;
           }
         }
-        if (value == null) {
-          value = new VarValueDef(boolname, VarValueDef.Type.VALID);
-
-        }
-        varValues.add(value);
       }
+      if (value == null) {
+        value = new VarValueDef(boolname, VarValueDef.Type.VALID);
+      }
+      varValues.add(value);
     }
     return varValues;
   }

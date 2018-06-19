@@ -19,8 +19,8 @@ import java.util.List;
 /**
  * Given a Java Bean classes annotated with Tcases annotations, created an IVarDef
  */
-public class AnnotatedVarDefReader
-{
+public class AnnotatedVarDefReader {
+
   private AnnotatedVarDefReader() {
   }
 
@@ -29,10 +29,9 @@ public class AnnotatedVarDefReader
    */
   static List<IVarDef> createVarDefs(Field field) {
     List<IVarDef> varDefs = new ArrayList<>();
-    Var varAnnotation = field.getAnnotation(Var.class);
-
-    if (varAnnotation != null) {
-      varDefs.add(getVarDefFromVarField(field, varAnnotation));
+    
+    if (field.getAnnotation(Var.class) != null) {
+      varDefs.add(getVarDefFromVarField(field));
     } else if (field.getAnnotation(IsFailure.class) == null
             && field.getAnnotation(OutputAnnotations.class) == null
             && field.getAnnotation(TestCaseId.class) == null) {
@@ -69,13 +68,16 @@ public class AnnotatedVarDefReader
     return varSet;
   }
 
-  private static VarDef getVarDefFromVarField(Field field, Var varAnnotation) {
+  private static VarDef getVarDefFromVarField(Field field) {
     VarDef varDef = new VarDef(field.getName());
-    for (Has has : varAnnotation.having()) {
-      varDef.setAnnotation(has.name(), has.value());
+    Var varAnnotation = field.getAnnotation(Var.class);
+    if (varAnnotation != null) {
+      for (Has has : varAnnotation.having()) {
+        varDef.setAnnotation(has.name(), has.value());
+      }
+      varDef.setCondition(ConditionReader.getCondition(varAnnotation.when(), varAnnotation.whenNot()));
     }
-    varDef.setCondition(ConditionReader.getCondition(varAnnotation.when(), varAnnotation.whenNot()));
-    VarValueDefReader.getVarValueDefs(field, varAnnotation).forEach(varDef::addValue);
+    VarValueDefReader.getVarValueDefs(field).forEach(varDef::addValue);
     return varDef;
   }
 

@@ -20,8 +20,8 @@ import java.lang.reflect.Modifier;
 /**
  * Given a Java Bean classes annotated with Tcases annotations, created a SystemInputDef
  */
-public class AnnotatedFunctionDefReader
-{
+public class AnnotatedFunctionDefReader {
+
   private AnnotatedFunctionDefReader() {
   }
 
