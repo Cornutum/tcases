@@ -55,9 +55,6 @@ public class AnnotatedFunctionDefReader {
       if (Modifier.isStatic(field.getModifiers())) {
         if (field.getAnnotation(Var.class) != null
                 || field.getAnnotation(VarSet.class) != null
-                || field.getAnnotation(IsFailure.class) != null
-                || field.getAnnotation(TestCaseId.class) != null
-                || field.getAnnotation(OutputAnnotations.class) != null
                 || field.getAnnotation(Var.class) != null) {
           throw new IllegalStateException("Annotation not valid on static field");
         }

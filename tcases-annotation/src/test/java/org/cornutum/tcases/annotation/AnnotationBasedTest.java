@@ -115,15 +115,15 @@ public class AnnotationBasedTest {
 
     assertThat(findList.size(), equalTo(testCaseList.size()));
     // check failure number
-    List<FindFunction> failures = findList.stream().filter(testCase -> testCase.isFailure).collect(Collectors.toList());
+    List<FindFunction> failures = findList.stream().filter(AbstractTestCase::isFailure).collect(Collectors.toList());
     assertThat(failures, hasSize(4));
     failures.forEach(findFunction -> {
-      assertTrue(findFunction.having.getVarBindingAnnotationKeys().hasNext());
+      assertTrue(findFunction.having().getVarBindingAnnotationKeys().hasNext());
     });
 
     // Check id
     for (int i = 0; i < findList.size(); i++) {
-      assertThat(findList.get(i).testCaseId, equalTo(i));
+      assertThat(findList.get(i).getTestCaseId(), equalTo(i));
       System.out.println(findList.get(i));
     }
   }

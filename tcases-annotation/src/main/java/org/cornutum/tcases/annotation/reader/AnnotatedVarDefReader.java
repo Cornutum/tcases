@@ -33,9 +33,7 @@ public class AnnotatedVarDefReader {
     
     if (field.getAnnotation(Var.class) != null) {
       varDef = readVarDefFromVarField(field);
-    } else if (field.getAnnotation(IsFailure.class) == null
-            && field.getAnnotation(OutputAnnotations.class) == null
-            && field.getAnnotation(TestCaseId.class) == null) {
+    } else {
       varDef = readVarSet(field);
     }
     return varDef;

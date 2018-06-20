@@ -9,9 +9,8 @@ package org.cornutum.tcases.annotation.creator;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.annotation.IsFailure;
-import org.cornutum.tcases.annotation.OutputAnnotations;
-import org.cornutum.tcases.annotation.TestCaseId;
+import org.cornutum.tcases.annotation.TestMetadataAware;
+
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -67,31 +66,12 @@ public class TestInstanceCreator {
   private static <T> void fillSpecialValues(T instance,
                                             TestCase testCase,
                                             OutputAnnotationContainer outputAnnotations) {
-    for (Field f: instance.getClass().getDeclaredFields()) {
-      if (f.getAnnotation(IsFailure.class) != null) {
-        f.setAccessible(true);
-        try {
-          f.set(instance, testCase.getType() == TestCase.Type.FAILURE);
-        } catch (IllegalAccessException e) {
-          throw new RuntimeException(e);
-        }
-      }
-      if (f.getAnnotation(TestCaseId.class) != null) {
-        f.setAccessible(true);
-        try {
-          f.set(instance, testCase.getId());
-        } catch (IllegalAccessException e) {
-          throw new RuntimeException(e);
-        }
-      }
-      if (f.getAnnotation(OutputAnnotations.class) != null) {
-        f.setAccessible(true);
-        try {
-          f.set(instance, outputAnnotations);
-        } catch (IllegalAccessException e) {
-          throw new RuntimeException(e);
-        }
-      }
+    if (TestMetadataAware.class.isAssignableFrom(instance.getClass())) {
+      TestMetadataAware testMetadataAware = (TestMetadataAware) instance;
+      testMetadataAware.setTestMetadata(
+              testCase.getId(),
+              testCase.getType() == TestCase.Type.FAILURE,
+              outputAnnotations);
     }
   }
 

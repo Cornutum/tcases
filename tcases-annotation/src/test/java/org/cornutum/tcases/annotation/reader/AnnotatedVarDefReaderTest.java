@@ -23,10 +23,6 @@ public class AnnotatedVarDefReaderTest {
     @Test
     public void testReadVarDefs() throws Exception {
         Class<Samples> samplesClass = Samples.class;
-        assertNull(readVarDef(samplesClass.getField("testCaseId")));
-        assertNull(readVarDef(samplesClass.getField("isFailure")));
-        assertNull(readVarDef(samplesClass.getField("having")));
-
         assertThat(readVarDef(samplesClass.getField("stringValue")), instanceOf(VarDef.class));
         assertThat(readVarDef(samplesClass.getField("enumValue")), instanceOf(VarDef.class));
         // TODO check annotations/conditions
@@ -36,14 +32,6 @@ public class AnnotatedVarDefReaderTest {
     }
 
     private static class Samples {
-        @TestCaseId // presence is optional
-        public int testCaseId;
-
-        @IsFailure // presence is optional, will be filled based on VarDefs
-        public boolean isFailure;
-
-        @OutputAnnotations // presence is optional, will be filled based on Output annotations
-        public OutputAnnotationContainer having;
 
         @Var(@Value("foo"))
         public String stringValue;

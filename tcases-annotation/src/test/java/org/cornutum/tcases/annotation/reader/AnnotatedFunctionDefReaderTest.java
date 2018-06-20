@@ -82,15 +82,6 @@ public class AnnotatedFunctionDefReaderTest {
     private static class Sample1 {
         private static Boolean ignoreStatic;
 
-        @IsFailure
-        private Boolean ignoreFailure;
-
-        @OutputAnnotations
-        private Boolean outputAnnotation;
-
-        @TestCaseId
-        private Boolean ignoretestCaseId;
-
         @Var
         private Boolean varDef;
 

@@ -9,7 +9,6 @@ package org.cornutum.tcases.annotation.sample1;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.cornutum.tcases.annotation.*;
-import org.cornutum.tcases.annotation.creator.OutputAnnotationContainer;
 import org.cornutum.tcases.annotation.util.CustomToStringStyle;
 
 import static org.cornutum.tcases.TestCase.Type.FAILURE;
@@ -28,23 +27,15 @@ import static org.cornutum.tcases.TestCase.Type.FAILURE;
  * To include a blank in the pattern, the entire pattern must be enclosed in quotes (").
  * To include a quotation mark in the pattern, two quotes in a row ("") must be used.
  */
-@Function(value = "Find", having = @Has(name = "description", value = "The find function")) // name/value defaults to class name
-public class FindFunction {
+@Function(value = "Find",
+          having = @Has(name = "description", value = "The find function"))
+public class FindFunction extends AbstractTestCase {
 
   // properties for value conditions
   public static final String PATTERN_EMPTY = "empty";
   public static final String PATTERN_SINGLE_CHAR = "singleChar";
   public static final String PATTERN_QUOTED = "quoted";
   public static final String FILE_EXISTS = "fileExists";
-
-  @TestCaseId // presence is optional
-  public int testCaseId;
-
-  @IsFailure // presence is optional, will be filled based on VarDefs
-  public boolean isFailure;
-
-  @OutputAnnotations // presence is optional, will be filled based on Output annotations
-  public OutputAnnotationContainer having;
 
   /**
    * Input argument
@@ -111,7 +102,10 @@ public class FindFunction {
 
     @Var({@Value(value = "YES", properties = PATTERN_QUOTED, whenNot = PATTERN_EMPTY),
           @Value(value = "NO", whenNot = PATTERN_EMPTY),
-          @Value(value = "UNTERMINATED", type = FAILURE, whenNot = PATTERN_EMPTY, having = @Has(name = "type", value = "QuoteMismatch"))
+          @Value(value = "UNTERMINATED",
+                  type = FAILURE,
+                  whenNot = PATTERN_EMPTY,
+                  having = @Has(name = "type", value = "QuoteMismatch"))
     })
     public QuotedType quoted;
 
