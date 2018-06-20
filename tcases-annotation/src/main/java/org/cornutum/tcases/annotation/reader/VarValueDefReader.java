@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.annotation.parser;
+package org.cornutum.tcases.annotation.reader;
 
 import org.cornutum.tcases.TestCase;
 import org.cornutum.tcases.VarValueDef;
@@ -16,7 +16,7 @@ import org.cornutum.tcases.annotation.Var;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static org.cornutum.tcases.annotation.parser.ConditionReader.getCondition;
+import static org.cornutum.tcases.annotation.reader.ConditionReader.getCondition;
 
 /**
  * Given a Java Bean classes annotated with Tcases annotations, created an IVarDef
@@ -30,13 +30,13 @@ public class VarValueDefReader {
    * Creates values for a var field depending on the type and annotations.
    */
   @SuppressWarnings("unchecked")
-  static List<VarValueDef> getVarValueDefs(Field field) {
+  static List<VarValueDef> readVarValueDefs(Field field) {
     List<VarValueDef> varValueDefs;
     Var varAnnotation = field.getAnnotation(Var.class);
     if (field.getType() == Boolean.class) {
-      varValueDefs = getVarValueDefsForBoolean(varAnnotation);
+      varValueDefs = readVarValueDefsForBoolean(varAnnotation);
     } else if (field.getType().isEnum()) {
-      varValueDefs = getVarValueDefsForEnumField((Class<? extends Enum>) field.getType(), varAnnotation);
+      varValueDefs = readVarValueDefsForEnumField((Class<? extends Enum>) field.getType(), varAnnotation);
     } else {
       if (field.getType() != String.class) {
         throw new IllegalStateException("Annotations not supported for other types than String, Boolean, Enum");
@@ -60,7 +60,7 @@ public class VarValueDefReader {
   /**
    * Creates VarValue for each enum constant, with additional properties if the Var annotation provides any.
    */
-  private static List<VarValueDef> getVarValueDefsForEnumField(Class<? extends Enum> enumClass, Var varAnnotation) {
+  private static List<VarValueDef> readVarValueDefsForEnumField(Class<? extends Enum> enumClass, Var varAnnotation) {
     List<VarValueDef> varValueDefs = new ArrayList<>();
     if (enumClass.getFields().length == 0) {
       throw new IllegalStateException("Enum '" + enumClass
@@ -96,7 +96,7 @@ public class VarValueDefReader {
   /**
    * Creates a true and a false VarValue, with additional properties if the Var annotation provides any.
    */
-  private static List<VarValueDef> getVarValueDefsForBoolean(Var varAnnotation) {
+  private static List<VarValueDef> readVarValueDefsForBoolean(Var varAnnotation) {
     List<VarValueDef> varValues = new ArrayList<>();
     for (String boolname : Arrays.asList("true", "false")) {
       VarValueDef value = null;

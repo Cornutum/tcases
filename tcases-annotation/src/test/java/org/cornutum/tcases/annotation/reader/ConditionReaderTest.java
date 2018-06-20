@@ -1,4 +1,4 @@
-package org.cornutum.tcases.annotation.parser;
+package org.cornutum.tcases.annotation.reader;
 
 import org.cornutum.tcases.conditions.ContainsAll;
 import org.cornutum.tcases.conditions.ContainsAny;

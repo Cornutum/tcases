@@ -1,4 +1,4 @@
-package org.cornutum.tcases.annotation.generator;
+package org.cornutum.tcases.annotation.creator;
 
 import org.cornutum.tcases.Annotated;
 

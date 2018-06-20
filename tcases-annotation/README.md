@@ -27,7 +27,7 @@ Java annotation based definition of systems and generation of testcase instances
 
 * Nice to have
   * Allows comma-separated String value for value properties?
-  * Define Generators as JUnit TestRule
+  * Define Generators as JUnit TestRule (consider invocation order, or providing seed, for output matching inputs)
   * @Value annotation attribute for Enum values not to be used for a given @Var
   * Map to Junit4 / Junit5 ParametrizedTests
   * Map concepts of arg vs. env to JUnit @Before vs. @Test

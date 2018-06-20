@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.annotation.parser;
+package org.cornutum.tcases.annotation.reader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.FunctionInputDef;
@@ -16,7 +16,7 @@ import org.cornutum.tcases.annotation.Has;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import static org.cornutum.tcases.annotation.parser.AnnotatedVarDefReader.createVarDef;
+import static org.cornutum.tcases.annotation.reader.AnnotatedVarDefReader.readVarDef;
 
 /**
  * Given a Java Bean classes annotated with Tcases annotations, created a SystemInputDef
@@ -29,10 +29,10 @@ public class AnnotatedFunctionDefReader {
   /**
    * create System Def from given classes as FunctionDefs with given name.
    */
-  public static SystemInputDef createSystemDef(String systemName, Class<?>... functionDefClass) {
+  public static SystemInputDef readSystemDef(String systemName, Class<?>... functionDefClass) {
     SystemInputDef inputDef = new SystemInputDef(systemName);
     for (Class<?> annotatedClass: functionDefClass) {
-      inputDef.addFunctionInputDef(createFunctionInputDef(annotatedClass));
+      inputDef.addFunctionInputDef(readFunctionInputDef(annotatedClass));
     }
     return inputDef;
   }
@@ -40,10 +40,10 @@ public class AnnotatedFunctionDefReader {
   /**
    * create FunctionInputDef from given annotated class.
    */
-  static FunctionInputDef createFunctionInputDef(Class<?> annotatedClass) {
+  static FunctionInputDef readFunctionInputDef(Class<?> annotatedClass) {
     Function functionAnnotation = annotatedClass.getAnnotation(Function.class);
     FunctionInputDef functionDef
-            = new FunctionInputDef(getFunctionDefName(annotatedClass, functionAnnotation));
+            = new FunctionInputDef(readFunctionDefName(annotatedClass, functionAnnotation));
     if (functionAnnotation != null) {
       for (Has has : functionAnnotation.having()) {
         functionDef.setAnnotation(has.name(), has.value());
@@ -52,7 +52,7 @@ public class AnnotatedFunctionDefReader {
 
     for (Field field: annotatedClass.getDeclaredFields()) {
       if (!Modifier.isStatic(field.getModifiers())) {
-        functionDef.addVarDef(createVarDef(field));
+        functionDef.addVarDef(readVarDef(field));
       }
     }
     return functionDef;
@@ -61,7 +61,7 @@ public class AnnotatedFunctionDefReader {
   /**
    * returns the name given wth the Function annotation, else the SimpleClassName.
    */
-  static String getFunctionDefName(Class<?> annotatedClass, Function functionAnnotation) {
+  private static String readFunctionDefName(Class<?> annotatedClass, Function functionAnnotation) {
     String functionName;
     if (functionAnnotation == null || StringUtils.isBlank(functionAnnotation.value())) {
       functionName = annotatedClass.getSimpleName();

@@ -44,7 +44,7 @@ import java.util.Set;
 public class SystemInputDocReader extends DefaultHandler implements ISystemInputSource
   {
   /**
-   * The base class for element handlers used by this parser.
+   * The base class for element handlers used by this reader.
    *
    */
   protected abstract class ElementHandler extends DefaultHandler

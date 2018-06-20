@@ -1,12 +1,12 @@
-package org.cornutum.tcases.annotation.parser;
+package org.cornutum.tcases.annotation.reader;
 
 import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.VarSet;
 import org.cornutum.tcases.annotation.*;
-import org.cornutum.tcases.annotation.generator.OutputAnnotationContainer;
+import org.cornutum.tcases.annotation.creator.OutputAnnotationContainer;
 import org.junit.Test;
 
-import static org.cornutum.tcases.annotation.parser.AnnotatedVarDefReader.createVarDef;
+import static org.cornutum.tcases.annotation.reader.AnnotatedVarDefReader.readVarDef;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -14,17 +14,17 @@ import static org.junit.Assert.assertThat;
 public class AnnotatedVarDefReaderTest {
 
     @Test
-    public void createVarDefs() throws Exception {
+    public void testReadVarDefs() throws Exception {
         Class<Samples> samplesClass = Samples.class;
-        assertNull(createVarDef(samplesClass.getField("testCaseId")));
-        assertNull(createVarDef(samplesClass.getField("isFailure")));
-        assertNull(createVarDef(samplesClass.getField("having")));
+        assertNull(readVarDef(samplesClass.getField("testCaseId")));
+        assertNull(readVarDef(samplesClass.getField("isFailure")));
+        assertNull(readVarDef(samplesClass.getField("having")));
 
-        assertThat(createVarDef(samplesClass.getField("stringValue")), instanceOf(VarDef.class));
-        assertThat(createVarDef(samplesClass.getField("enumValue")), instanceOf(VarDef.class));
+        assertThat(readVarDef(samplesClass.getField("stringValue")), instanceOf(VarDef.class));
+        assertThat(readVarDef(samplesClass.getField("enumValue")), instanceOf(VarDef.class));
         // TODO check annotations/conditions
 
-        assertThat(createVarDef(samplesClass.getField("innerSamples")), instanceOf(VarSet.class));
+        assertThat(readVarDef(samplesClass.getField("innerSamples")), instanceOf(VarSet.class));
         // TODO check annotations/conditions
     }
 

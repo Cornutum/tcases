@@ -1,4 +1,4 @@
-package org.cornutum.tcases.annotation.parser;
+package org.cornutum.tcases.annotation.reader;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.PropertySet;
@@ -12,7 +12,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.cornutum.tcases.annotation.parser.VarValueDefReader.getVarValueDefs;
+import static org.cornutum.tcases.annotation.reader.VarValueDefReader.readVarValueDefs;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.*;
@@ -20,39 +20,39 @@ import static org.junit.Assert.*;
 public class VarValueDefReaderTest {
 
     @Test
-    public void testGetVarValueDefsString() throws Exception {
+    public void testReadVarValueDefsString() throws Exception {
         Class<StringSamples> fieldSamplesClass = StringSamples.class;
 
         try {
-            getVarValueDefs(fieldSamplesClass.getField("invalidNoVar"));
+            readVarValueDefs(fieldSamplesClass.getField("invalidNoVar"));
             fail("expected IllegalStateException");
         } catch (IllegalStateException e) {
             // pass
         }
 
         try {
-            getVarValueDefs(fieldSamplesClass.getField("invalidNoValue"));
+            readVarValueDefs(fieldSamplesClass.getField("invalidNoValue"));
             fail("expected IllegalStateException");
         } catch (IllegalStateException e) {
             // pass
         }
 
-        assertThat(getVarValueDefs(fieldSamplesClass.getField("aStringWithVar1Value")),
+        assertThat(readVarValueDefs(fieldSamplesClass.getField("aStringWithVar1Value")),
                 hasSize(1));
 
-        List<VarValueDef> aBooleanOnceFailure = getVarValueDefs(fieldSamplesClass.getField("aStringOnceFailure"));
+        List<VarValueDef> aBooleanOnceFailure = readVarValueDefs(fieldSamplesClass.getField("aStringOnceFailure"));
         assertThat(aBooleanOnceFailure, hasSize(1));
         assertThat(aBooleanOnceFailure.get(0).getType(), equalTo(VarValueDef.Type.FAILURE));
 
         try {
-            getVarValueDefs(fieldSamplesClass.getField("invalidDuplicate"));
+            readVarValueDefs(fieldSamplesClass.getField("invalidDuplicate"));
             fail("expected IllegalStateException");
         } catch (IllegalStateException e) {
             // pass
         }
 
         List<VarValueDef> aStringWithVar2Value
-                = getVarValueDefs(fieldSamplesClass.getField("aStringWithVar2Value"));
+                = readVarValueDefs(fieldSamplesClass.getField("aStringWithVar2Value"));
         assertThat(aStringWithVar2Value, hasSize(2));
         VarValueDef fooValue = aStringWithVar2Value.get(0);
         VarValueDef barValue = aStringWithVar2Value.get(1);
@@ -110,35 +110,35 @@ public class VarValueDefReaderTest {
     }
 
     @Test
-    public void testGetVarValueDefsBoolean() throws Exception {
+    public void testReadVarValueDefsBoolean() throws Exception {
         Class<BooleanFieldSamples> fieldSamplesClass = BooleanFieldSamples.class;
-        assertThat(getVarValueDefs(fieldSamplesClass.getField("aBoolean")),
+        assertThat(readVarValueDefs(fieldSamplesClass.getField("aBoolean")),
                 hasSize(2));
-        assertThat(getVarValueDefs(fieldSamplesClass.getField("aBooleanWithVar")),
+        assertThat(readVarValueDefs(fieldSamplesClass.getField("aBooleanWithVar")),
                 hasSize(2));
-        assertThat(getVarValueDefs(fieldSamplesClass.getField("aBooleanWithVar1Value")),
+        assertThat(readVarValueDefs(fieldSamplesClass.getField("aBooleanWithVar1Value")),
                 hasSize(2));
 
-        List<VarValueDef> aBooleanOnceFailure = getVarValueDefs(fieldSamplesClass.getField("aBooleanOnceFailure"));
+        List<VarValueDef> aBooleanOnceFailure = readVarValueDefs(fieldSamplesClass.getField("aBooleanOnceFailure"));
         assertThat(aBooleanOnceFailure, hasSize(2));
         assertThat(aBooleanOnceFailure.get(0).getType(), equalTo(VarValueDef.Type.FAILURE));
 
         try {
-            getVarValueDefs(fieldSamplesClass.getField("invalidDuplicate"));
+            readVarValueDefs(fieldSamplesClass.getField("invalidDuplicate"));
             fail("expected IllegalStateException");
         } catch (IllegalStateException e) {
             // pass
         }
 
         try {
-            getVarValueDefs(fieldSamplesClass.getField("invalidUnknown"));
+            readVarValueDefs(fieldSamplesClass.getField("invalidUnknown"));
             fail("expected IllegalStateException");
         } catch (IllegalStateException e) {
             // pass
         }
 
         List<VarValueDef> aBooleanWithVar2Value
-                = getVarValueDefs(fieldSamplesClass.getField("aBooleanWithVar2Value"));
+                = readVarValueDefs(fieldSamplesClass.getField("aBooleanWithVar2Value"));
         assertThat(aBooleanWithVar2Value, hasSize(2));
         VarValueDef trueValue = aBooleanWithVar2Value.get(0);
         VarValueDef falseValue = aBooleanWithVar2Value.get(1);
@@ -200,37 +200,37 @@ public class VarValueDefReaderTest {
     }
 
     @Test
-    public void testGetVarValueDefsEnum() throws Exception {
+    public void testReadVarValueDefsEnum() throws Exception {
         Class<EnumFieldSamples> fieldSamplesClass = EnumFieldSamples.class;
 
         try {
-            getVarValueDefs(fieldSamplesClass.getField("enum0Field"));
+            readVarValueDefs(fieldSamplesClass.getField("enum0Field"));
             fail("expected IllegalStateException");
         } catch (IllegalStateException e) {
             // pass
         }
 
-        assertThat(getVarValueDefs(fieldSamplesClass.getField("enum1Field")),
+        assertThat(readVarValueDefs(fieldSamplesClass.getField("enum1Field")),
                 hasSize(1));
-        assertThat(getVarValueDefs(fieldSamplesClass.getField("enum3Field")),
+        assertThat(readVarValueDefs(fieldSamplesClass.getField("enum3Field")),
                 hasSize(3));
-        assertThat(getVarValueDefs(fieldSamplesClass.getField("enum3FieldVar")),
+        assertThat(readVarValueDefs(fieldSamplesClass.getField("enum3FieldVar")),
                 hasSize(3));
 
-        List<VarValueDef> aBooleanOnceFailure = getVarValueDefs(fieldSamplesClass.getField("aBooleanOnceFailure"));
+        List<VarValueDef> aBooleanOnceFailure = readVarValueDefs(fieldSamplesClass.getField("aBooleanOnceFailure"));
         assertThat(aBooleanOnceFailure, hasSize(1));
         assertThat(aBooleanOnceFailure.get(0).getType(), equalTo(VarValueDef.Type.FAILURE));
 
 
         try {
-            getVarValueDefs(fieldSamplesClass.getField("invalidDuplicate"));
+            readVarValueDefs(fieldSamplesClass.getField("invalidDuplicate"));
             fail("expected IllegalStateException");
         } catch (IllegalStateException e) {
             // pass
         }
 
         try {
-            getVarValueDefs(fieldSamplesClass.getField("invalidUnknown"));
+            readVarValueDefs(fieldSamplesClass.getField("invalidUnknown"));
             fail("expected IllegalStateException");
         } catch (IllegalStateException e) {
             // pass
@@ -238,7 +238,7 @@ public class VarValueDefReaderTest {
         }
 
         List<VarValueDef> aEnumWithVar2Value
-                = getVarValueDefs(fieldSamplesClass.getField("enum3FieldVarFull"));
+                = readVarValueDefs(fieldSamplesClass.getField("enum3FieldVarFull"));
         assertThat(aEnumWithVar2Value, hasSize(3));
         VarValueDef a1Value = aEnumWithVar2Value.get(0);
         VarValueDef a2Value = aEnumWithVar2Value.get(1);
