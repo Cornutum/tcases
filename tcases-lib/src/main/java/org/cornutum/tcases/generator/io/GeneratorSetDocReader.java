@@ -38,7 +38,7 @@ import java.util.Set;
 public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorSetSource
   {
   /**
-   * The base class for element handlers used by this parser.
+   * The base class for element handlers used by this reader.
    *
    */
   protected abstract class ElementHandler extends DefaultHandler

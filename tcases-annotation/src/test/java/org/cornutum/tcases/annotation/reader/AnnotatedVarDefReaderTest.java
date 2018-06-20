@@ -1,0 +1,59 @@
+//////////////////////////////////////////////////////////////////////////////
+//
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
+//
+//////////////////////////////////////////////////////////////////////////////
+
+package org.cornutum.tcases.annotation.reader;
+
+import org.cornutum.tcases.VarDef;
+import org.cornutum.tcases.VarSet;
+import org.cornutum.tcases.annotation.*;
+import org.cornutum.tcases.annotation.creator.OutputAnnotationContainer;
+import org.junit.Test;
+
+import static org.cornutum.tcases.annotation.reader.AnnotatedVarDefReader.readVarDef;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+
+public class AnnotatedVarDefReaderTest {
+
+    @Test
+    public void testReadVarDefs() throws Exception {
+        Class<Samples> samplesClass = Samples.class;
+        assertThat(readVarDef(samplesClass.getField("stringValue")), instanceOf(VarDef.class));
+        assertThat(readVarDef(samplesClass.getField("enumValue")), instanceOf(VarDef.class));
+        // TODO check annotations/conditions
+
+        assertThat(readVarDef(samplesClass.getField("innerSamples")), instanceOf(VarSet.class));
+        // TODO check annotations/conditions
+    }
+
+    private static class Samples {
+
+        @Var(@Value("foo"))
+        public String stringValue;
+
+        @Var
+        public CardinalityZeroToN enumValue;
+
+        public InnerSamples innerSamples;
+
+        public enum CardinalityZeroToN {
+            NONE,
+            ONE,
+            MANY;
+        }
+
+        private static class InnerSamples {
+
+            public InnerSamples2 innerSamples2;
+
+            private static class InnerSamples2 {
+
+            }
+        }
+    }
+}
