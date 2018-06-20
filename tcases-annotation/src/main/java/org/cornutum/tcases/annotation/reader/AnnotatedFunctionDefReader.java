@@ -9,6 +9,7 @@ package org.cornutum.tcases.annotation.reader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.FunctionInputDef;
+import org.cornutum.tcases.IVarDef;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.annotation.*;
 
@@ -61,7 +62,10 @@ public class AnnotatedFunctionDefReader {
           throw new IllegalStateException("Annotation not valid on static field");
         }
       } else {
-        functionDef.addVarDef(readVarDef(field));
+        IVarDef varDef = readVarDef(field);
+        if (varDef != null) {
+          functionDef.addVarDef(varDef);
+        }
       }
     }
     return functionDef;

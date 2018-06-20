@@ -4,9 +4,7 @@ import org.apache.commons.collections4.IteratorUtils;
 import org.cornutum.tcases.FunctionInputDef;
 import org.cornutum.tcases.IVarDef;
 import org.cornutum.tcases.SystemInputDef;
-import org.cornutum.tcases.annotation.Function;
-import org.cornutum.tcases.annotation.Has;
-import org.cornutum.tcases.annotation.Var;
+import org.cornutum.tcases.annotation.*;
 import org.junit.Test;
 
 import java.util.List;
@@ -76,6 +74,16 @@ public class AnnotatedFunctionDefReaderTest {
     })
     private static class Sample1 {
         private static Boolean ignoreStatic;
+
+        @IsFailure
+        private Boolean ignoreFailure;
+
+        @OutputAnnotations
+        private Boolean outputAnnotation;
+
+        @TestCaseId
+        private Boolean ignoretestCaseId;
+
         @Var
         private Boolean varDef;
 
