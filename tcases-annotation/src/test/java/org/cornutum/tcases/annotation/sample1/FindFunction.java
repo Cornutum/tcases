@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////////////
+//
+//                    Copyright 2012, Cornutum Project
+//                             www.cornutum.org
+//
+//////////////////////////////////////////////////////////////////////////////
+
 package org.cornutum.tcases.annotation.sample1;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
