@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Output Annotation (only passed through to output).
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Has {
 

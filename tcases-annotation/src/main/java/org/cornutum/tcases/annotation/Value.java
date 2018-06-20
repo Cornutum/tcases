@@ -8,6 +8,7 @@ import java.lang.annotation.*;
  * Container annotation single value for a variable within a @Var annotation.
  * Can be used on Fields of Type Enum, String, Boolean (Maybe more in the future).
  */
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Value {
 

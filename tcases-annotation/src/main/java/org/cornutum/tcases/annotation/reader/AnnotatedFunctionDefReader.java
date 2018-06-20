@@ -10,8 +10,7 @@ package org.cornutum.tcases.annotation.reader;
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.FunctionInputDef;
 import org.cornutum.tcases.SystemInputDef;
-import org.cornutum.tcases.annotation.Function;
-import org.cornutum.tcases.annotation.Has;
+import org.cornutum.tcases.annotation.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -30,6 +29,7 @@ public class AnnotatedFunctionDefReader {
    * create System Def from given classes as FunctionDefs with given name.
    */
   public static SystemInputDef readSystemDef(String systemName, Class<?>... functionDefClass) {
+    // TODO: Where to define System output annotations? Method arg vs. new TYPE annotation?
     SystemInputDef inputDef = new SystemInputDef(systemName);
     for (Class<?> annotatedClass: functionDefClass) {
       inputDef.addFunctionInputDef(readFunctionInputDef(annotatedClass));
@@ -51,7 +51,16 @@ public class AnnotatedFunctionDefReader {
     }
 
     for (Field field: annotatedClass.getDeclaredFields()) {
-      if (!Modifier.isStatic(field.getModifiers())) {
+      if (Modifier.isStatic(field.getModifiers())) {
+        if (field.getAnnotation(Var.class) != null
+                || field.getAnnotation(VarSet.class) != null
+                || field.getAnnotation(IsFailure.class) != null
+                || field.getAnnotation(TestCaseId.class) != null
+                || field.getAnnotation(OutputAnnotations.class) != null
+                || field.getAnnotation(Var.class) != null) {
+          throw new IllegalStateException("Annotation not valid on static field");
+        }
+      } else {
         functionDef.addVarDef(readVarDef(field));
       }
     }

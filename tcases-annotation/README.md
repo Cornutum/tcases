@@ -15,6 +15,7 @@ Java annotation based definition of systems and generation of testcase instances
 
 * Urgent
   * Support Conditions AllOf, AnyOf, Not: Annotation vs DSL...
+  * New @System annotation to support System output Annotations?
   * Throw exceptions for invalid Function annotation combinations
   * Allow annotating enum values for varvalue defaults
   * properly support bean getters/setters (Consider Jackson-databind?)
