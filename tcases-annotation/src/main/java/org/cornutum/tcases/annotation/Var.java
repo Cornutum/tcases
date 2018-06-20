@@ -20,7 +20,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Var {
 
-  Value[] values() default {}; // For Enum / Boolean, the values add properties to the value Defs.
+  Value[] value() default {}; // For Enum / Boolean, the values add properties to the value Defs.
 
   String tag() default "arg"; // Input type from docs, TODO: not sure what to do with it
 

@@ -26,11 +26,11 @@ public class OutputAnnotationContainerTest {
     public void testOutputContainer() {
         OutputAnnotationContainer container = new OutputAnnotationContainer();
         assertThat(IteratorUtils.toList(container.getTestCaseAnnotationKeys()), hasSize(0));
-        assertThat(IteratorUtils.toList(container.getVarBindingAnnotation()), hasSize(0));
+        assertThat(IteratorUtils.toList(container.getVarBindingAnnotationKeys()), hasSize(0));
 
         container.addTestCaseAnnotations(new SystemTestDef("foo1"));
         assertThat(IteratorUtils.toList(container.getTestCaseAnnotationKeys()), hasSize(0));
-        assertThat(IteratorUtils.toList(container.getVarBindingAnnotation()), hasSize(0));
+        assertThat(IteratorUtils.toList(container.getVarBindingAnnotationKeys()), hasSize(0));
 
         SystemTestDef systemTestDef = new SystemTestDef("foo1");
         systemTestDef.setAnnotation( "sysKey", "sysValue");
@@ -45,14 +45,14 @@ public class OutputAnnotationContainerTest {
                 equalTo(Arrays.asList("sysKey")));
         assertThat(container.getTestCaseAnnotation("sysKey"),
                 equalTo("sysValue"));
-        assertThat(IteratorUtils.toList(container.getVarBindingAnnotation()), hasSize(0));
+        assertThat(IteratorUtils.toList(container.getVarBindingAnnotationKeys()), hasSize(0));
 
         container.addTestCaseAnnotations(fooFun);
         container.addTestCaseAnnotations(barFun);
         // not adding functionAnnotations
         assertThat(IteratorUtils.toList(container.getTestCaseAnnotationKeys()),
                 containsInAnyOrder("sysKey", "fooFunKey", "barFunKey"));
-        assertThat(IteratorUtils.toList(container.getVarBindingAnnotation()), hasSize(0));
+        assertThat(IteratorUtils.toList(container.getVarBindingAnnotationKeys()), hasSize(0));
 
         VarBinding varBinding1 = createVarBinding("v1");
         VarBinding varBinding2 = createVarBinding("v2");
@@ -61,7 +61,7 @@ public class OutputAnnotationContainerTest {
         container.addVarBindingAnnotations("", varBinding2);
         assertThat(IteratorUtils.toList(container.getTestCaseAnnotationKeys()),
                 containsInAnyOrder("sysKey", "fooFunKey", "barFunKey"));
-        assertThat(IteratorUtils.toList(container.getVarBindingAnnotation()),
+        assertThat(IteratorUtils.toList(container.getVarBindingAnnotationKeys()),
                 containsInAnyOrder("nested.v1AnnoKey", "v1AnnoKey", "v2AnnoKey"));
         assertThat(container.getVarBindingAnnotation("v2AnnoKey"),
                 equalTo("v2AnnoValue"));

@@ -46,4 +46,5 @@ public @interface Value {
   boolean once() default false;
 
   Has[] having() default {};
+
 }

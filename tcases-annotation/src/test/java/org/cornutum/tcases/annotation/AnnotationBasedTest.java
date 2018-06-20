@@ -18,10 +18,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Comprehensive Test using the sample1.FindFunction class as SystemTestDefinition/FunctionDefinition
@@ -112,7 +115,12 @@ public class AnnotationBasedTest {
 
     assertThat(findList.size(), equalTo(testCaseList.size()));
     // check failure number
-    assertThat(findList.stream().filter(testCase -> testCase.isFailure).count(), equalTo(4L));
+    List<FindFunction> failures = findList.stream().filter(testCase -> testCase.isFailure).collect(Collectors.toList());
+    assertThat(failures, hasSize(4));
+    failures.forEach(findFunction -> {
+      assertTrue(findFunction.having.getVarBindingAnnotationKeys().hasNext());
+    });
+
     // Check id
     for (int i = 0; i < findList.size(); i++) {
       assertThat(findList.get(i).testCaseId, equalTo(i));

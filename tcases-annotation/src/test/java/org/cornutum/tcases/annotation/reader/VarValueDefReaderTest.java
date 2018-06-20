@@ -92,10 +92,10 @@ public class VarValueDefReaderTest {
         @Var
         public String invalidNoValue;
 
-        @Var(values = @Value("foo"))
+        @Var(@Value("foo"))
         public String aStringWithVar1Value;
 
-        @Var(values = {
+        @Var({
                 @Value(value = "foo",
                         properties = {"fooProp"},
                         once = true,
@@ -109,10 +109,10 @@ public class VarValueDefReaderTest {
         })
         public String aStringWithVar2Value;
 
-        @Var(values = {@Value(value = "fail", once = true, type = TestCase.Type.FAILURE)})
+        @Var({@Value(value = "fail", once = true, type = TestCase.Type.FAILURE)})
         public String aStringOnceFailure;
 
-        @Var(values = {@Value("fail"), @Value("fail")})
+        @Var({@Value("fail"), @Value("fail")})
         public String invalidDuplicate;
     }
 
@@ -179,10 +179,10 @@ public class VarValueDefReaderTest {
         @Var
         public Boolean aBooleanWithVar;
 
-        @Var(values = @Value("true"))
+        @Var(@Value("true"))
         public Boolean aBooleanWithVar1Value;
 
-        @Var(values = {
+        @Var({
                 @Value(value = "true",
                         properties = {"trueProp"},
                         once = true,
@@ -196,13 +196,13 @@ public class VarValueDefReaderTest {
         })
         public Boolean aBooleanWithVar2Value;
 
-        @Var(values = {@Value(value = "true", once = true, type = TestCase.Type.FAILURE)})
+        @Var({@Value(value = "true", once = true, type = TestCase.Type.FAILURE)})
         public Boolean aBooleanOnceFailure;
 
-        @Var(values = {@Value("true"), @Value("true")})
+        @Var({@Value("true"), @Value("true")})
         public Boolean invalidDuplicate;
 
-        @Var(values = {@Value("unknown")})
+        @Var({@Value("unknown")})
         public Boolean invalidUnknown;
     }
 
@@ -286,7 +286,7 @@ public class VarValueDefReaderTest {
         @Var
         public Enum3Sample enum3FieldVar;
 
-        @Var(values = {
+        @Var({
                 @Value(value = "A1",
                         properties = {"a1Prop"},
                         once = true,
@@ -311,13 +311,13 @@ public class VarValueDefReaderTest {
             A1, A2, A3
         }
 
-        @Var(values = {@Value(value = "A1", once = true, type = TestCase.Type.FAILURE)})
+        @Var({@Value(value = "A1", once = true, type = TestCase.Type.FAILURE)})
         public Enum1Sample aBooleanOnceFailure;
 
-        @Var(values = {@Value("A1"), @Value("A1")})
+        @Var({@Value("A1"), @Value("A1")})
         public Enum3Sample invalidDuplicate;
 
-        @Var(values = {@Value("A4")})
+        @Var({@Value("A4")})
         public Enum3Sample invalidUnknown;
     }
 }

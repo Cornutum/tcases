@@ -8,10 +8,11 @@
 package org.cornutum.tcases.annotation.sample1;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.cornutum.tcases.TestCase;
 import org.cornutum.tcases.annotation.*;
 import org.cornutum.tcases.annotation.creator.OutputAnnotationContainer;
 import org.cornutum.tcases.annotation.util.CustomToStringStyle;
+
+import static org.cornutum.tcases.TestCase.Type.FAILURE;
 
 /**
  * Usage: find pattern file
@@ -54,7 +55,9 @@ public class FindFunction {
   /**
    * Input argument
    */
-  @Var(values = {@Value(value = "false", type = TestCase.Type.FAILURE, having = @Has(name = "type", value = "FileNotFound"))})
+  @Var({@Value(value = "false",
+        type = FAILURE,
+        having = @Has(name = "type", value = "No Filename"))})
   public Boolean filenameDefined; // boolean always has values true, false
 
   /**
@@ -68,9 +71,8 @@ public class FindFunction {
    */
   // VarSet
   public static class FileWithPatternedLines {
-    @Var(values = {
-            @Value(value = "true", properties = FILE_EXISTS),
-            @Value(value = "false", type = TestCase.Type.FAILURE)
+    @Var({@Value(value = "true", properties = FILE_EXISTS),
+          @Value(value = "false", type = FAILURE, having = @Has(name = "type", value = "FileNotFound"))
     })
     public Boolean exists; // boolean always has values true, false
 
@@ -82,8 +84,10 @@ public class FindFunction {
      */
     // Nested VarSet
     public static class FileContentsWithPattern {
-      @Var(values = {@Value(value = "NONE", type = TestCase.Type.FAILURE)})
-      public CardinalityZeroToN linesLongerThanPattern;
+      @Var(@Value(value = "false", type = FAILURE,
+              having = @Has(name = "type", value = "PatternTooLong"),
+              whenNot = PATTERN_EMPTY))
+      public Boolean linesLongerThanPattern;
 
       @Var
       public CardinalityZeroToN patterns;
@@ -100,23 +104,22 @@ public class FindFunction {
 
   // VarSet
   public static class Pattern {
-    @Var(values = {
-            @Value(value = "NONE", properties = {PATTERN_EMPTY}),
-            @Value(value = "ONE", properties = {PATTERN_SINGLE_CHAR})
+    @Var({@Value(value = "NONE", properties = {PATTERN_EMPTY}),
+          @Value(value = "ONE", properties = {PATTERN_SINGLE_CHAR})
     })
     public CardinalityZeroToN size;
 
-    @Var(values = {
-            @Value(value = "YES", properties = PATTERN_QUOTED),
-            @Value(value = "NO", whenNot = PATTERN_EMPTY),
-            @Value(value = "UNTERMINATED", type = TestCase.Type.FAILURE)
+    @Var({@Value(value = "YES", properties = PATTERN_QUOTED, whenNot = PATTERN_EMPTY),
+          @Value(value = "NO", whenNot = PATTERN_EMPTY),
+          @Value(value = "UNTERMINATED", type = FAILURE, whenNot = PATTERN_EMPTY, having = @Has(name = "type", value = "QuoteMismatch"))
     })
     public QuotedType quoted;
 
-    @Var(values = {
-            @Value(value = "ONE", when = {PATTERN_QUOTED, PATTERN_SINGLE_CHAR}),
-            @Value(value = "MANY", when = {PATTERN_QUOTED}, whenNot = {PATTERN_SINGLE_CHAR})
-    }, whenNot = PATTERN_EMPTY)
+    @Var(value = {
+           @Value(value = "ONE", when = {PATTERN_QUOTED, PATTERN_SINGLE_CHAR}),
+           @Value(value = "MANY", when = {PATTERN_QUOTED}, whenNot = {PATTERN_SINGLE_CHAR})
+         },
+           whenNot = PATTERN_EMPTY)
     public CardinalityZeroToN blanks;
 
     @Var(whenNot = {PATTERN_EMPTY, PATTERN_SINGLE_CHAR})

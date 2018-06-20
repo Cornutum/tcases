@@ -48,7 +48,7 @@ public class OutputAnnotationContainer {
         return testCaseAnnotations.get(key);
     }
 
-    public Iterator<String> getVarBindingAnnotation() {
+    public Iterator<String> getVarBindingAnnotationKeys() {
         return varBindingAnnotations.keySet().iterator();
     }
 

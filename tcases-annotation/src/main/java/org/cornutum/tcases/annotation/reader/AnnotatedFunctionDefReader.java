@@ -41,7 +41,7 @@ public class AnnotatedFunctionDefReader {
   /**
    * create FunctionInputDef from given annotated class.
    */
-  static FunctionInputDef readFunctionInputDef(Class<?> annotatedClass) {
+  public static FunctionInputDef readFunctionInputDef(Class<?> annotatedClass) {
     Function functionAnnotation = annotatedClass.getAnnotation(Function.class);
     FunctionInputDef functionDef
             = new FunctionInputDef(readFunctionDefName(annotatedClass, functionAnnotation));

@@ -27,9 +27,14 @@ Java annotation based definition of systems and generation of testcase instances
   * Provide all testcase data in the output (varvalue properties)?
 
 * Nice to have
+  * Generator configuration inside FunctionInputDef (In particular for Combine)?
+  * ShortCut to define a Failure value with an annotation (failure = "fileNotFound")
+  * ShortCut annotation for Annotations (@Having("foo:bar,foo2:baz2")
+  * ShortCut annotation (@SimpleVar(value = "foo;bar;baz", fail = "bam;bim;bum")
   * Allows comma-separated String value for value properties?
   * Define Generators as JUnit TestRule (consider invocation order, or providing seed, for output matching inputs)
   * @Value annotation attribute for Enum values not to be used for a given @Var
+  * Refactor TCases to allow getTests() for FunctionInputDef without SystemInputDef?
   * Map to Junit4 / Junit5 ParametrizedTests
   * Map concepts of arg vs. env to JUnit @Before vs. @Test
   * Support special non-primitives (Time, date, ..?)

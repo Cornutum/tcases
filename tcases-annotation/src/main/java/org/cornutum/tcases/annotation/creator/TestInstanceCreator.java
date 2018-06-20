@@ -40,6 +40,9 @@ public class TestInstanceCreator {
     return result;
   }
 
+  /**
+   * @param outputAnnotations prefilled with System/Function Output values, to be added to T if annotation present
+   */
   public static <T> T createDef(TestCase testCase,
                                 Class<T> functionDefClass,
                                 OutputAnnotationContainer outputAnnotations) {

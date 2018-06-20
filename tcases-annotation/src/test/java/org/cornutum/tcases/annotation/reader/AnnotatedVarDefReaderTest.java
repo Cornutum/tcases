@@ -45,7 +45,7 @@ public class AnnotatedVarDefReaderTest {
         @OutputAnnotations // presence is optional, will be filled based on Output annotations
         public OutputAnnotationContainer having;
 
-        @Var(values = @Value("foo"))
+        @Var(@Value("foo"))
         public String stringValue;
 
         @Var

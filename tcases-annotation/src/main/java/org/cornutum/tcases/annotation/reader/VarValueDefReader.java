@@ -41,10 +41,10 @@ public class VarValueDefReader {
       if (field.getType() != String.class) {
         throw new IllegalStateException("Annotations not supported for other types than String, Boolean, Enum");
       }
-      if (varAnnotation != null && varAnnotation.values().length > 0) {
+      if (varAnnotation != null && varAnnotation.value().length > 0) {
         Set<String> values = new HashSet<>();
         varValueDefs = new ArrayList<>();
-        for (Value varValue : varAnnotation.values()) {
+        for (Value varValue : varAnnotation.value()) {
           varValueDefs.add(createVarValueDef(varValue.value(), varValue));
           if (!values.add(varValue.value())) {
             throw new IllegalStateException("@Value value '" + varValue.value() + "' duplicate");
@@ -68,9 +68,9 @@ public class VarValueDefReader {
     }
     for (Field enumField : enumClass.getFields()) {
       VarValueDef value = null;
-      if (varAnnotation != null && varAnnotation.values().length > 0) {
+      if (varAnnotation != null && varAnnotation.value().length > 0) {
         Set<String> values = new HashSet<>();
-        for (Value varValue : varAnnotation.values()) {
+        for (Value varValue : varAnnotation.value()) {
           try {
             enumClass.getField(varValue.value());
           } catch (NoSuchFieldException e) {
@@ -100,9 +100,9 @@ public class VarValueDefReader {
     List<VarValueDef> varValues = new ArrayList<>();
     for (String boolname : Arrays.asList("true", "false")) {
       VarValueDef value = null;
-      if (varAnnotation != null && varAnnotation.values().length > 0) {
+      if (varAnnotation != null && varAnnotation.value().length > 0) {
         Set<String> values = new HashSet<>();
-        for (Value varValue : varAnnotation.values()) {
+        for (Value varValue : varAnnotation.value()) {
           if (!"true".equalsIgnoreCase(varValue.value())
                   && !"false".equalsIgnoreCase(varValue.value())) {
             throw new IllegalStateException("@Value value '" + varValue.value()
