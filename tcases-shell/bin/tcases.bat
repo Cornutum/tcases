@@ -49,4 +49,4 @@ set TCASES_CP=%TCASES_CP%;%1
 goto :eof
 
 :tcasesRun
-java -cp "%TCASES_CP%" -D%TCASES_LOG_DEST%=%TCASES_LOG% -Dtcases.log.level=%TCASES_LOG_LEVEL% org.cornutum.tcases.Tcases %TCASES_ARGS%
+java -cp "%TCASES_CP%" -D%TCASES_LOG_DEST%=%TCASES_LOG% -Dtcases.log.level=%TCASES_LOG_LEVEL% org.cornutum.tcases.TcasesCommand %TCASES_ARGS%

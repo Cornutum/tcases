@@ -10,10 +10,11 @@
     <version>1.5.5-SNAPSHOT</version>
   </parent>
 
-  <artifactId>tcases-shell</artifactId>
+  <artifactId>tcases-ant</artifactId>
+  <packaging>jar</packaging>
 
-  <name>Tcases Shell</name>
-  <description>Generates test cases from system input space models</description>
+  <name>Tcases Ant</name>
+  <description>Ant support for Tcases</description>
   <url>https://github.com/Cornutum/tcases</url>
 
   <developers>
@@ -55,65 +56,51 @@
       <subscribe>https://groups.google.com/d/forum/tcases</subscribe>
       <unsubscribe>https://groups.google.com/d/forum/tcases</unsubscribe>
       <post>https://groups.google.com/d/forum/tcases</post>
-    </mailingList>  
+    </mailingList>
   </mailingLists>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <build.timestamp>${maven.build.timestamp}</build.timestamp>
-    <maven.build.timestamp.format>MMM d, yyyy</maven.build.timestamp.format>
+    <project.build.date>${maven.build.timestamp}</project.build.date>
+    <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
   </properties>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.4</version>
-        <executions>
-          <execution>
-            <id>assemble</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <finalName>tcases-${project.version}</finalName>
-              <appendAssemblyId>false</appendAssemblyId>
-              <descriptors>
-                <descriptor>src/main/assembly/shell-assembly.xml</descriptor>
-              </descriptors>
-              <filters>
-                <filter>${basedir}/src/main/assembly/shell.properties</filter>
-              </filters>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+
   </build>
 
   <dependencies>
 
     <dependency>
-      <groupId>org.cornutum.tcases</groupId>
-      <artifactId>tcases-lib</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <scope>runtime</scope>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
     </dependency>
 
     <dependency>
       <groupId>org.cornutum.tcases</groupId>
       <artifactId>tcases-lib</artifactId>
       <version>${project.version}</version>
-      <classifier>javadoc</classifier>
     </dependency>
-    
+
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.8.2</version>
+    </dependency>
+
   </dependencies>
 
 </project>
