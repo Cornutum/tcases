@@ -39,5 +39,5 @@ Of course, the system test definition is not something you can execute directly.
 
 Thanks to the following people, who have contributed significant improvements to Tcases.
 
-  * Kerry Kimbrough (project founder)
-  * Juglar
+  * [Kerry Kimbrough](https://github.com/kerrykimbrough) (project founder)
+  * [Juglar](https://github.com/juglar)
