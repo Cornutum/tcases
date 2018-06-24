@@ -205,7 +205,7 @@
 
       <dependency>
         <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
+        <artifactId>logback-core</artifactId>
         <version>1.1.1</version>
         <scope>runtime</scope>
       </dependency>
