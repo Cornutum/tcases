@@ -8,7 +8,7 @@
 package org.cornutum.tcases.ant;
 
 import org.cornutum.tcases.Tcases;
-import org.cornutum.tcases.Tcases.Options;
+import org.cornutum.tcases.TcasesCommand.Options;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;

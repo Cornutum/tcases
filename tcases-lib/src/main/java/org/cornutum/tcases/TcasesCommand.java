@@ -21,6 +21,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -30,7 +32,7 @@ import java.util.Properties;
 public class TcasesCommand extends Tcases
   {
   /**
-   * Returns the {@link Options} represented by a set of command line arguments.
+   * Represents a set of command line options.
    *
    * Command line arguments have the following form.
    * <P/>
@@ -54,7 +56,7 @@ public class TcasesCommand extends Tcases
    * </NOBR>
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp; where:
@@ -64,7 +66,7 @@ public class TcasesCommand extends Tcases
    * <TD>
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -77,7 +79,7 @@ public class TcasesCommand extends Tcases
    * <I>genDef</I> file.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -91,7 +93,7 @@ public class TcasesCommand extends Tcases
    * If an output path cannot be derived, output is written to standard output.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -106,7 +108,7 @@ public class TcasesCommand extends Tcases
    * if it exists. Otherwise, the default {@link TupleGenerator} is used for all functions.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -118,7 +120,7 @@ public class TcasesCommand extends Tcases
    * If <I>-H</I> is defined, test definition output is transformed into an HTML report. The resulting HTML file is written to the specified <I>outDir</I>.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -160,11 +162,11 @@ public class TcasesCommand extends Tcases
    * If omitted, the default is true.
    * </TD>
    * </TR>
-   * </TABLE>   
+   * </TABLE>
    * </BLOCKQUOTE>
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -177,7 +179,7 @@ public class TcasesCommand extends Tcases
    * If omitted, new test definitions are based on the previous <I>testDef</I>.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -192,7 +194,7 @@ public class TcasesCommand extends Tcases
    * derived, output is written to standard output.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -205,7 +207,7 @@ public class TcasesCommand extends Tcases
    * This option is meaningful only if the <I>-x</I> or <I>-J</I> option is given.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -218,7 +220,7 @@ public class TcasesCommand extends Tcases
    * <I>genDef</I> file.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -231,7 +233,7 @@ public class TcasesCommand extends Tcases
    * <I>genDef</I> file.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -245,7 +247,7 @@ public class TcasesCommand extends Tcases
    * directory containing the <I>inputDef</I>.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -261,7 +263,7 @@ public class TcasesCommand extends Tcases
    * If omitted, the default <I>testDef</I> name is derived from the <I>inputDef</I> name.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -273,7 +275,7 @@ public class TcasesCommand extends Tcases
    * Prints the current Tcases version identifier to standard output.
    * </TD>
    * </TR>
-   * 
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -285,41 +287,51 @@ public class TcasesCommand extends Tcases
    * The system input definition is read from the given <I>inputDef</I>. If omitted, the system input definition is
    * read from standard input. Otherwise, the system input definition is read from the first one of the following files
    * that can be located.
-   * <OL> 
+   * <OL>
    * <LI> <I>inputDef</I> </LI>
    * <LI> <I>inputDef</I>-Input.xml </LI>
    * <LI> <I>inputDef</I>.xml </LI>
    * </OL>
-   * 
+   *
    * </TABLE>
    * </CODE>
    * </BLOCKQUOTE>
-   * <P/> 
+   * <P/>
    *
    */
-  public static class OptionsFactory
+  public static class Options
     {
+    public enum TransformType { HTML, JUNIT, CUSTOM };
 
     /**
      * Creates a new Options object.
      */
-    public static Options parseOptions( String[] args)
+    public Options()
       {
-      Options options = new Options();
+      setExtended( true);
+      setWorkingDir( null);
+      }
+
+    /**
+     * Creates a new Options object.
+     */
+    public Options( String[] args)
+      {
+      this();
+
       int i;
 
       // Handle options
-      for( i = 0; i < args.length && args[i].charAt(0) == '-'; i = handleOption( options, args, i));
+      for( i = 0; i < args.length && args[i].charAt(0) == '-'; i = handleOption( args, i));
 
       // Handle additional arguments.
-      handleArgs( options, args, i);
-      return options;
+      handleArgs( args, i);
       }
 
     /**
      * Handles the i'th option and return the index of the next argument.
      */
-    protected static int handleOption( Options options, String[] args, int i)
+    protected int handleOption( String[] args, int i)
       {
       String arg = args[i];
 
@@ -330,7 +342,7 @@ public class TcasesCommand extends Tcases
           {
           throwUsageException();
           }
-        options.setOutDir( new File( args[i]));
+        setOutDir( new File( args[i]));
         }
 
       else if( arg.equals( "-f"))
@@ -340,7 +352,7 @@ public class TcasesCommand extends Tcases
           {
           throwUsageException();
           }
-        options.setOutFile( new File( args[i]));
+        setOutFile( new File( args[i]));
         }
 
       else if( arg.equals( "-t"))
@@ -350,12 +362,12 @@ public class TcasesCommand extends Tcases
           {
           throwUsageException();
           }
-        options.setTestDef( new File( args[i]));
+        setTestDef( new File( args[i]));
         }
 
       else if( arg.equals( "-v"))
         {
-        options.setShowVersion( true);
+        setShowVersion( true);
         }
 
       else if( arg.equals( "-g"))
@@ -365,7 +377,7 @@ public class TcasesCommand extends Tcases
           {
           throwUsageException();
           }
-        options.setGenDef( new File( args[i]));
+        setGenDef( new File( args[i]));
         }
 
       else if( arg.equals( "-r"))
@@ -377,7 +389,7 @@ public class TcasesCommand extends Tcases
           }
         try
           {
-          options.setRandomSeed( Long.valueOf( args[i]));
+          setRandomSeed( Long.valueOf( args[i]));
           }
         catch( Exception e)
           {
@@ -387,7 +399,7 @@ public class TcasesCommand extends Tcases
 
       else if( arg.equals( "-R"))
         {
-        options.setNewSeed( true);
+        setNewSeed( true);
         }
 
       else if( arg.equals( "-c"))
@@ -399,7 +411,7 @@ public class TcasesCommand extends Tcases
           }
         try
           {
-          options.setDefaultTupleSize( Integer.valueOf( args[i]));
+          setDefaultTupleSize( Integer.valueOf( args[i]));
           }
         catch( Exception e)
           {
@@ -409,41 +421,41 @@ public class TcasesCommand extends Tcases
 
       else if( arg.equals( "-n"))
         {
-        options.setExtended( false);
+        setExtended( false);
         }
 
       else if( arg.equals( "-J"))
         {
-        if( options.getTransformType() != null)
+        if( getTransformType() != null)
           {
           throwUsageException( "Can't specify multiple output transforms");
           }
-        options.setTransformType( Options.TransformType.JUNIT);
+        setTransformType( TransformType.JUNIT);
         }
 
       else if( arg.equals( "-H"))
         {
-        if( options.getTransformType() != null)
+        if( getTransformType() != null)
           {
           throwUsageException( "Can't specify multiple output transforms");
           }
-        options.setTransformType( Options.TransformType.HTML);
+        setTransformType( TransformType.HTML);
         }
 
       else if( arg.equals( "-x"))
         {
-        if( options.getTransformType() != null)
+        if( getTransformType() != null)
           {
           throwUsageException( "Can't specify multiple output transforms");
           }
-        options.setTransformType( Options.TransformType.CUSTOM);
+        setTransformType( TransformType.CUSTOM);
 
         i++;
         if( i >= args.length)
           {
           throwUsageException();
           }
-        options.setTransformDef( new File( args[i]));
+        setTransformDef( new File( args[i]));
         }
 
       else if( arg.equals( "-p"))
@@ -465,21 +477,21 @@ public class TcasesCommand extends Tcases
           throwUsageException( "Invalid -p option: parameter name undefined");
           }
         String value = binding.substring( valuePos+1);
-        options.getTransformParams().put( name, value);
+        getTransformParams().put( name, value);
         }
-      
+
       else
         {
         throwUsageException();
         }
-      
+
       return i + 1;
       }
 
     /**
      * Handles the non-option arguments i, i+1, ...
      */
-    protected static void handleArgs( Options options, String[] args, int i)
+    protected void handleArgs( String[] args, int i)
       {
       int nargs = args.length - i;
 
@@ -490,22 +502,22 @@ public class TcasesCommand extends Tcases
 
       if( nargs > 0)
         {
-        options.setInputDef( new File( args[i]));
+        setInputDef( new File( args[i]));
         }
       }
 
     /**
      * Throws a RuntimeException reporting a command line error.
      */
-    protected static void throwUsageException()
+    protected void throwUsageException()
       {
-      throwUsageException( null, null); 
+      throwUsageException( null, null);
       }
 
     /**
      * Throws a RuntimeException reporting a command line error.
      */
-    protected static void throwUsageException( String detail)
+    protected void throwUsageException( String detail)
       {
       throwUsageException( detail, null);
       }
@@ -513,17 +525,17 @@ public class TcasesCommand extends Tcases
     /**
      * Throws a RuntimeException reporting a command line error.
      */
-    protected static void throwUsageException( String detail, Exception cause)
+    protected void throwUsageException( String detail, Exception cause)
       {
       if( detail != null)
         {
         cause = new RuntimeException( detail, cause);
         }
-      
+
       throw
         new RuntimeException
         ( "Usage: "
-          + TcasesCommand.class.getSimpleName()
+          + Tcases.class.getSimpleName()
           + " [-v]"
           + " [-c tupleSize]"
           + " [-f outFile]"
@@ -537,6 +549,330 @@ public class TcasesCommand extends Tcases
           + " [inputDef]",
           cause);
       }
+
+    /**
+     * Changes the output directory for generated test definitions.
+     */
+    public void setOutDir( File outDir)
+      {
+      outDir_ = outDir;
+      }
+
+    /**
+     * Returns the output directory for generated test definitions.
+     */
+    public File getOutDir()
+      {
+      return outDir_;
+      }
+
+    /**
+     * Changes the output file for generated test definitions.
+     */
+    public void setOutFile( File outFile)
+      {
+      outFile_ = outFile;
+      }
+
+    /**
+     * Returns the output file for generated test definitions.
+     */
+    public File getOutFile()
+      {
+      return outFile_;
+      }
+
+    /**
+     * Changes the output file for generated test definitions.
+     */
+    public void setTestDef( File testDef)
+      {
+      testDef_ = testDef;
+      }
+
+    /**
+     * Returns the output file for generated test definitions.
+     */
+    public File getTestDef()
+      {
+      return testDef_;
+      }
+
+    /**
+     * Changes the generator definition file.
+     */
+    public void setGenDef( File genDef)
+      {
+      genDef_ = genDef;
+      }
+
+    /**
+     * Returns the generator definition file.
+     */
+    public File getGenDef()
+      {
+      return genDef_;
+      }
+
+    /**
+     * Changes the transform file.
+     */
+    public void setTransformDef( File transformDef)
+      {
+      transformDef_ = transformDef;
+      }
+
+    /**
+     * Returns the transform file.
+     */
+    public File getTransformDef()
+      {
+      return transformDef_;
+      }
+
+    /**
+     * Changes the output transform type.
+     */
+    public void setTransformType( TransformType transformType)
+      {
+      transformType_ = transformType;
+      }
+
+    /**
+     * Returns the output transform type.
+     */
+    public TransformType getTransformType()
+      {
+      return transformType_;
+      }
+
+    /**
+     * Changes the transform parameter bindings.
+     */
+    public void setTransformParams( Map<String,Object> params)
+      {
+      transformParams_ = params;
+      }
+
+    /**
+     * Returns the transform parameter bindings.
+     */
+    public Map<String,Object> getTransformParams()
+      {
+      return transformParams_;
+      }
+
+    /**
+     * Changes the input definition file
+     */
+    public void setInputDef( File inputDef)
+      {
+      inputDef_ = inputDef;
+      }
+
+    /**
+     * Returns the input definition file
+     */
+    public File getInputDef()
+      {
+      return inputDef_;
+      }
+
+    /**
+     * Changes if new test definitions are generated by extending the
+     * previous {@link #getTestDef test definitions}.
+     */
+    public void setExtended( boolean extended)
+      {
+      extended_ = extended;
+      }
+
+    /**
+     * Returns if new test definitions are generated by extending the
+     * previous {@link #getTestDef test definitions}.
+     */
+    public boolean isExtended()
+      {
+      return extended_;
+      }
+
+    /**
+     * Changes the random seed used by generators.
+     */
+    public void setRandomSeed( Long seed)
+      {
+      seed_ = seed;
+      }
+
+    /**
+     * Returns the random seed used by generators.
+     */
+    public Long getRandomSeed()
+      {
+      if( seed_ == null && isNewSeed())
+        {
+        setRandomSeed( (long) (Math.random() * Long.MAX_VALUE));
+        }
+
+      return seed_;
+      }
+
+    /**
+     * Changes if choosing a new random seed used by generators.
+     */
+    public void setNewSeed( boolean newSeed)
+      {
+      newSeed_ = newSeed;
+      }
+
+    /**
+     * Returns if choosing a new random seed used by generators.
+     */
+    public boolean isNewSeed()
+      {
+      return newSeed_;
+      }
+
+    /**
+     * Changes the default tuple size used by generators.
+     */
+    public void setDefaultTupleSize( Integer tupleSize)
+      {
+      defaultTupleSize_ = tupleSize;
+      }
+
+    /**
+     * Returns the default tuple size used by generators.
+     */
+    public Integer getDefaultTupleSize()
+      {
+      return defaultTupleSize_;
+      }
+
+    /**
+     * Changes the current working directory used to complete relative path names.
+     */
+    public void setWorkingDir( File workingDir)
+      {
+      workingDir_ =
+        workingDir == null
+        ? new File( ".")
+        : workingDir;
+      }
+
+    /**
+     * Returns the current working directory used to complete relative path names.
+     */
+    public File getWorkingDir()
+      {
+      return workingDir_;
+      }
+
+    /**
+     * Changes if the current version should be shown.
+     */
+    public void setShowVersion( boolean showVersion)
+      {
+      showVersion_ = showVersion;
+      }
+
+    /**
+     * Returns if the current version should be shown.
+     */
+    public boolean showVersion()
+      {
+      return showVersion_;
+      }
+
+    public String toString()
+      {
+      StringBuilder builder = new StringBuilder();
+
+      if( getDefaultTupleSize() != null)
+        {
+        builder.append( " -c ").append( getDefaultTupleSize());
+        }
+
+      if( getOutFile() != null)
+        {
+        builder.append( " -f ").append( getOutFile().getPath());
+        }
+
+      if( getGenDef() != null)
+        {
+        builder.append( " -g ").append( getGenDef().getPath());
+        }
+
+      if( !isExtended())
+        {
+        builder.append( " -n");
+        }
+
+      if( getOutDir() != null)
+        {
+        builder.append( " -o ").append( getOutDir().getPath());
+        }
+
+      if( getTransformParams() != null)
+        {
+        for( String name : getTransformParams().keySet())
+          {
+          builder.append( " -p ").append( name).append( '=').append( getTransformParams().get( name));
+          }
+        }
+
+      if( getRandomSeed() != null)
+        {
+        builder.append( " -r ").append( getRandomSeed());
+        }
+
+      if( isNewSeed())
+        {
+        builder.append( " -R");
+        }
+
+      if( getTestDef() != null)
+        {
+        builder.append( " -t ").append( getTestDef().getPath());
+        }
+
+      if( showVersion())
+        {
+        builder.append( " -v");
+        }
+
+      if( getTransformDef() != null)
+        {
+        builder.append( " -x ").append( getTransformDef().getPath());
+        }
+
+      if( getTransformType() == TransformType.JUNIT)
+        {
+        builder.append( " -J");
+        }
+
+      if( getTransformType() == TransformType.HTML)
+        {
+        builder.append( " -H");
+        }
+
+      return builder.toString();
+      }
+
+    private File inputDef_;
+    private File outDir_;
+    private File outFile_;
+    private File testDef_;
+    private File genDef_;
+    private File transformDef_;
+    private Map<String,Object> transformParams_ = new HashMap<String,Object>();
+    private TransformType transformType_;
+    private boolean extended_;
+    private Long seed_;
+    private boolean newSeed_;
+    private Integer defaultTupleSize_;
+    private File workingDir_;
+    private boolean showVersion_;
     }
   
   /**
@@ -555,7 +891,7 @@ public class TcasesCommand extends Tcases
     int exitCode = 0;
     try
       {
-      run( OptionsFactory.parseOptions( args));
+      run( new Options( args));
       }
     catch( Exception e)
       {
@@ -750,7 +1086,9 @@ public class TcasesCommand extends Tcases
       }
 
     // Generate new test definitions.
-    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, baseDef, options);
+    Long seed = options==null? null : options.getRandomSeed();
+    Integer defaultTupleSize = options==null? null : options.getDefaultTupleSize();
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, baseDef, seed, defaultTupleSize);
 
     // Identify test definition transformations.
     AbstractFilter transformer = null;

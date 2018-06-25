@@ -7,9 +7,8 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.Tcases.Options;
+import org.cornutum.tcases.TcasesCommand.Options;
 import org.cornutum.tcases.io.SystemTestResources;
-import static org.cornutum.tcases.TcasesCommand.OptionsFactory.parseOptions;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -81,7 +80,7 @@ public class TestTcasesCommand
       };
     
     // When...
-    TcasesCommand.run( parseOptions( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
@@ -134,7 +133,7 @@ public class TestTcasesCommand
       };
 
     // When...
-    runWithStdIO( parseOptions( args), inFile, null);
+    runWithStdIO( new Options( args), inFile, null);
         
     // Then...
     assertEquals( "Test def created", true, testDefFile.exists());
@@ -185,7 +184,7 @@ public class TestTcasesCommand
       };
 
     // When...
-    runWithStdIO( parseOptions( args), inFile, null);
+    runWithStdIO( new Options( args), inFile, null);
         
     // Then...
     File outFile = new File( outDir, testDefFile.getName());
@@ -236,7 +235,7 @@ public class TestTcasesCommand
         "run-3"
       };
 
-    Options options = parseOptions( args);
+    Options options = new Options( args);
     options.setWorkingDir( inFile.getParentFile());
     
     // When...
@@ -292,7 +291,7 @@ public class TestTcasesCommand
       };
 
     // When...
-    TcasesCommand.run( parseOptions( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
@@ -341,7 +340,7 @@ public class TestTcasesCommand
 
     // When...
     StringBuffer outFile = new StringBuffer();
-    runWithStdIO( parseOptions( args), inFile, outFile);
+    runWithStdIO( new Options( args), inFile, outFile);
         
     // Then...
     assertEquals( "Test def created", true, outFile.length() > 0);
@@ -396,7 +395,7 @@ public class TestTcasesCommand
     // When...
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -443,13 +442,13 @@ public class TestTcasesCommand
         "run-7"
       };
 
-    Options options = parseOptions( args);
+    Options options = new Options( args);
     options.setWorkingDir( inFile.getParentFile());
 
     // When...
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -500,7 +499,7 @@ public class TestTcasesCommand
     // When...
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -555,7 +554,7 @@ public class TestTcasesCommand
     // When...
     try
       {
-      Options options = parseOptions( args);
+      Options options = new Options( args);
       options.setWorkingDir( inFile.getParentFile());
       TcasesCommand.run( options);
       fail( "Expected exception not thrown");
@@ -613,7 +612,7 @@ public class TestTcasesCommand
     // When...
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -665,7 +664,7 @@ public class TestTcasesCommand
       };
     
     // When...
-    TcasesCommand.run( parseOptions( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -709,7 +708,7 @@ public class TestTcasesCommand
 
     // When...
     StringBuffer outFile = new StringBuffer();
-    runWithStdIO( parseOptions( args), inFile, outFile);
+    runWithStdIO( new Options( args), inFile, outFile);
         
     // Then...
     assertEquals( "Test def created", true, outFile.length() > 0);
@@ -760,7 +759,7 @@ public class TestTcasesCommand
       };
     
     // When...
-    TcasesCommand.run( parseOptions( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -806,7 +805,7 @@ public class TestTcasesCommand
       };
 
     // When...
-    TcasesCommand.run( parseOptions( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -853,7 +852,7 @@ public class TestTcasesCommand
     Exception failure = null;
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -907,7 +906,7 @@ public class TestTcasesCommand
     // When...
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -957,7 +956,7 @@ public class TestTcasesCommand
     Exception failure = null;
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1016,7 +1015,7 @@ public class TestTcasesCommand
     // When...
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -1066,7 +1065,7 @@ public class TestTcasesCommand
     Exception failure = null;
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1092,7 +1091,7 @@ public class TestTcasesCommand
     failure = null;
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1118,7 +1117,7 @@ public class TestTcasesCommand
     failure = null;
     try
       {
-      TcasesCommand.run( parseOptions( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1172,7 +1171,7 @@ public class TestTcasesCommand
       };
     
     // When...
-    TcasesCommand.run( parseOptions( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -1193,7 +1192,7 @@ public class TestTcasesCommand
       };
     
     // When...
-    TcasesCommand.run( parseOptions( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());

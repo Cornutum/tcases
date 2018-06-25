@@ -1,6 +1,6 @@
 package org.cornutum.tcases.maven;
 
-import org.cornutum.tcases.Tcases.Options;
+import org.cornutum.tcases.TcasesCommand.Options;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
