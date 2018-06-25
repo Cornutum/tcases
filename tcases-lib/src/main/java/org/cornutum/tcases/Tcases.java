@@ -34,7 +34,7 @@ public class Tcases
    * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.
    * If <CODE>baseDef</CODE> is null, no base test definitions are used.
    */
-  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef, Long seed, Integer defaultTupleSize)
+  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef, GeneratorOptions options)
     {
     if( genDef == null)
       {
@@ -53,6 +53,8 @@ public class Tcases
         }
 
       // If applicable, apply specified generator options.
+      Long seed = options==null? null : options.getRandomSeed();
+      Integer defaultTupleSize = options==null? null : options.getDefaultTupleSize();
       if( seed != null)
         {
         functionGen.setRandomSeed( seed);
@@ -77,7 +79,7 @@ public class Tcases
    */
   public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef)
     {
-    return getTests( inputDef, genDef, baseDef, null, null);
+    return getTests( inputDef, genDef, baseDef, null);
     }
 
   /**

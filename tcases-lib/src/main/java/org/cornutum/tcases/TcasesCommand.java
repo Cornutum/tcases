@@ -701,7 +701,7 @@ public class TcasesCommand extends Tcases
      */
     public void setRandomSeed( Long seed)
       {
-      seed_ = seed;
+      getGeneratorOptions().setRandomSeed( seed);
       }
 
     /**
@@ -709,12 +709,12 @@ public class TcasesCommand extends Tcases
      */
     public Long getRandomSeed()
       {
-      if( seed_ == null && isNewSeed())
+      if( getGeneratorOptions().getRandomSeed() == null && isNewSeed())
         {
         setRandomSeed( (long) (Math.random() * Long.MAX_VALUE));
         }
 
-      return seed_;
+      return getGeneratorOptions().getRandomSeed();
       }
 
     /**
@@ -738,7 +738,7 @@ public class TcasesCommand extends Tcases
      */
     public void setDefaultTupleSize( Integer tupleSize)
       {
-      defaultTupleSize_ = tupleSize;
+      getGeneratorOptions().setDefaultTupleSize( tupleSize);
       }
 
     /**
@@ -746,7 +746,15 @@ public class TcasesCommand extends Tcases
      */
     public Integer getDefaultTupleSize()
       {
-      return defaultTupleSize_;
+      return getGeneratorOptions().getDefaultTupleSize();
+      }
+
+    /**
+     * Returns the options used by generators.
+     */
+    public GeneratorOptions getGeneratorOptions()
+      {
+      return generatorOptions_;
       }
 
     /**
@@ -868,11 +876,10 @@ public class TcasesCommand extends Tcases
     private Map<String,Object> transformParams_ = new HashMap<String,Object>();
     private TransformType transformType_;
     private boolean extended_;
-    private Long seed_;
     private boolean newSeed_;
-    private Integer defaultTupleSize_;
     private File workingDir_;
     private boolean showVersion_;
+    private GeneratorOptions generatorOptions_ = new GeneratorOptions();
     }
   
   /**
@@ -1086,9 +1093,7 @@ public class TcasesCommand extends Tcases
       }
 
     // Generate new test definitions.
-    Long seed = options==null? null : options.getRandomSeed();
-    Integer defaultTupleSize = options==null? null : options.getDefaultTupleSize();
-    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, baseDef, seed, defaultTupleSize);
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, baseDef, options.getGeneratorOptions());
 
     // Identify test definition transformations.
     AbstractFilter transformer = null;
