@@ -1,6 +1,5 @@
 package org.cornutum.tcases.maven;
 
-import org.cornutum.tcases.Tcases;
 import org.cornutum.tcases.Tcases.Options;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +10,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
+import org.cornutum.tcases.TcasesCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -75,7 +75,7 @@ public class TcasesMojo extends AbstractMojo
           File inputDir = new File( inputRootDir, inputPath);
           File outDir = new File( outRootDir, inputPath);
 
-          String projectName = Tcases.getProjectName( inputDef);
+          String projectName = TcasesCommand.getProjectName( inputDef);
           String outFile = getOutFile();
           if( outFile != null && (outFile = getProjectFile( projectName, outFile)) == null)
             {
@@ -133,7 +133,7 @@ public class TcasesMojo extends AbstractMojo
           options.setTransformParams( getTransformParams());
 
           // Generate test cases for this Tcases project.
-          Tcases.run( options);
+          TcasesCommand.run( options);
           }
         }
       }

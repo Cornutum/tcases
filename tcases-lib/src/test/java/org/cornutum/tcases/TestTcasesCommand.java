@@ -1184,7 +1184,7 @@ public class TestTcasesCommand
     {
     // Given...
     File inFile = getResourceFile( "run-transform-html");
-    File outFilePath = new File( inFile.getParentFile(), Tcases.getProjectName( inFile) + "-Test.htm");
+    File outFilePath = new File( inFile.getParentFile(), TcasesCommand.getProjectName( inFile) + "-Test.htm");
 
     String[] args =
       {
@@ -1193,7 +1193,7 @@ public class TestTcasesCommand
       };
     
     // When...
-    Tcases.run( parseOptions( args));
+    TcasesCommand.run( parseOptions( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -1206,7 +1206,7 @@ public class TestTcasesCommand
     InputStream inputDef = getClass().getResourceAsStream( "tcases-Transform-Input.xml");
     
     // When...
-    SystemTestDef testDef = TcasesCommand.getTests( inputDef);
+    SystemTestDef testDef = Tcases.getTests( inputDef);
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Test.xml");
@@ -1214,7 +1214,7 @@ public class TestTcasesCommand
 
     // When...
     ByteArrayOutputStream testDefOut = new ByteArrayOutputStream();
-    TcasesCommand.writeTests( testDef, testDefOut);
+    Tcases.writeTests( testDef, testDefOut);
 
     // Then...
     ByteArrayInputStream testDefString = new ByteArrayInputStream( testDefOut.toByteArray());
@@ -1229,7 +1229,7 @@ public class TestTcasesCommand
     InputStream genDef = getClass().getResourceAsStream( "tcases-Transform-Generators.xml");
     
     // When...
-    SystemTestDef testDef = TcasesCommand.getTests( inputDef, genDef, null);
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, null);
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Gen-Test.xml");
@@ -1245,7 +1245,7 @@ public class TestTcasesCommand
     InputStream baseDef = getClass().getResourceAsStream( "tcases-Transform-Test.xml");
     
     // When...
-    SystemTestDef testDef = TcasesCommand.getTests( inputDef, genDef, baseDef);
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, baseDef);
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Regen-Test.xml");

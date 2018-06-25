@@ -13,6 +13,7 @@ import org.cornutum.tcases.Tcases.Options;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.Parameter;
+import org.cornutum.tcases.TcasesCommand;
 
 import java.io.File;
 
@@ -42,7 +43,7 @@ public class TcasesTask extends Task
         log( "For details, see " + logFile.getAbsolutePath());
         }
 
-      Tcases.run( options_);
+      TcasesCommand.run( options_);
       }
     catch( Exception e)
       {

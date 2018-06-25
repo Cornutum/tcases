@@ -610,7 +610,7 @@ public class Reducer
         }
 
     File inputDir = inputDefFile.getParentFile();
-    String project = Tcases.getProjectName( inputDefFile);
+    String project = TcasesCommand.getProjectName( inputDefFile);
     
     // Read the system input definition.
     SystemInputDef inputDef = null;
