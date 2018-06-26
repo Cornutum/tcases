@@ -41,3 +41,4 @@ Thanks to the following people, who have contributed significant improvements to
 
   * [Kerry Kimbrough](https://github.com/kerrykimbrough) (project founder)
   * [Juglar](https://github.com/juglar)
+  * [Thibault Kruse](https://github.com/tkruse)
