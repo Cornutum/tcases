@@ -86,7 +86,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public void setValue( String valueName)
     {
-    assertIdentifier( valueName);
+    assertVarValue( valueName);
     value_ = valueName;
     }
 
