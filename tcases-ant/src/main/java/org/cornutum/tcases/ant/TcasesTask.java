@@ -7,20 +7,19 @@
 
 package org.cornutum.tcases.ant;
 
-import org.cornutum.tcases.Tcases;
+import org.cornutum.tcases.TcasesCommand;
 import org.cornutum.tcases.TcasesCommand.Options;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.Parameter;
-import org.cornutum.tcases.TcasesCommand;
 
 import java.io.File;
 
 /**
- * Defines an Ant task for {@link Tcases}. The properties of this class define the attributes of the task.
+ * Defines an Ant task for {@link TcasesCommand Tcases}. The properties of this class define the attributes of the task.
  * For example, the {@link #setInputDef setInputDef} method defines a task attribute named "inputDef".
- * For a detailed description of these properties, see {@link Options Tcases.Options}. 
+ * For a detailed description of these properties, see {@link Options TcasesCommand.Options}.
  * <P/>
  * To define a transform parameter (see the {@link Options -p option}), use a nested <CODE>&lt;param&gt;</CODE> element.
  *
@@ -28,7 +27,7 @@ import java.io.File;
 public class TcasesTask extends Task
   {
   /**
-   * Runs {@link Tcases} with the specified options.
+   * Runs {@link TcasesCommand Tcases} with the specified options.
    */
   public void execute() throws BuildException
     {

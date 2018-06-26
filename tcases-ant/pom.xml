@@ -80,6 +80,27 @@
       </testResource>
     </testResources>
 
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <links>
+                <link>http://www.cornutum.org/tcases/docs/api/core</link>
+              </links>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>        
+    </plugins>
+
   </build>
 
   <dependencies>
