@@ -63,6 +63,14 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       return requireAttribute( attributes, attributeName, getAttribute( attributes, attributeName));
       }
 
+/**
+     * Returns the value of the given attribute. Throws a SAXException if the attribute is undefined or empty.
+     */
+    public String requireNonBlankAttribute( Attributes attributes, String attributeName) throws SAXException
+      {
+      return requireAttribute( attributes, attributeName, StringUtils.trimToNull(getAttribute( attributes, attributeName)));
+      }
+
     /**
      * Returns the value of the given integer attribute or null if undefined. Throws a SAXException if the attribute is invalid.
      */
@@ -76,7 +84,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
      */
     public Integer requireInteger( Attributes attributes, String attributeName) throws SAXException
       {
-      return toInteger( attributeName, requireAttribute( attributes, attributeName));
+      return toInteger( attributeName, requireNonBlankAttribute( attributes, attributeName));
       }
 
     /**
@@ -126,7 +134,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
      */
     public String requireIdentifier( Attributes attributes, String attributeName) throws SAXException
       {
-      return toIdentifier( attributeName, requireAttribute( attributes, attributeName));
+      return toIdentifier( attributeName, requireNonBlankAttribute( attributes, attributeName));
       }
 
     /**
@@ -164,7 +172,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
      */
     public String requireIdPath( Attributes attributes, String attributeName) throws SAXException
       {
-      return toIdPath( attributeName, requireAttribute( attributes, attributeName));
+      return toIdPath( attributeName, requireNonBlankAttribute( attributes, attributeName));
       }
 
     /**
@@ -194,8 +202,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
      */
     public String getAttribute( Attributes attributes, String attributeName)
       {
-      String value = attributes.getValue( attributeName);
-      return StringUtils.isBlank( value)? null : value;
+      return attributes.getValue( attributeName);
       }
       
     /**
