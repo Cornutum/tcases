@@ -1,13 +1,12 @@
 package org.cornutum.tcases.maven;
 
-import org.cornutum.tcases.Tcases;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
 
+import org.cornutum.tcases.TcasesCommand;
 import org.junit.Rule;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -42,7 +41,7 @@ public class ReducerMojoTest
     assertEquals( "Gen defs", 1, expectedGenDefs.length);
 
     File expectedInputDef = new File( expectedInputDefs[0]);
-    File expectedGenDef = new File( expectedInputDef.getParent(), Tcases.getProjectName( expectedInputDef) + "-Generators.xml");
+    File expectedGenDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "-Generators.xml");
     assertEquals( "Gen def", expectedGenDef.getPath(), expectedGenDefs[0]);
     }
   
@@ -181,7 +180,7 @@ public class ReducerMojoTest
     assertEquals( "Test defs", 1, expectedTestDefs.length);
 
     File expectedInputDef = new File( expectedInputDefs[0]);
-    File expectedTestDef = new File( expectedInputDef.getParent(), Tcases.getProjectName( expectedInputDef) + "Test.java");
+    File expectedTestDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "Test.java");
     assertEquals( "Test def", expectedTestDef.getPath(), expectedTestDefs[0]);
     }
 
@@ -244,7 +243,7 @@ public class ReducerMojoTest
     for( int i = 0; i < expectedInputDefs.length; i++)
       {
       File expectedInputDef = new File( expectedInputDefs[i]);
-      File expectedTestDef = new File( expectedInputDef.getParent(), "Tests-For-" + Tcases.getProjectName( expectedInputDef) + ".xml");
+      File expectedTestDef = new File( expectedInputDef.getParent(), "Tests-For-" + TcasesCommand.getProjectName( expectedInputDef) + ".xml");
       assertEquals( "Test def", expectedTestDef.getPath(), expectedTestDefs[i]);
       }
     }

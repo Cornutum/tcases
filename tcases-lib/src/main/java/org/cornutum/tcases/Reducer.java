@@ -11,7 +11,7 @@ import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 import org.cornutum.tcases.io.*;
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.io.IOUtils;
+import org.cornutum.tcases.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -610,7 +610,7 @@ public class Reducer
         }
 
     File inputDir = inputDefFile.getParentFile();
-    String project = Tcases.getProjectName( inputDefFile);
+    String project = TcasesCommand.getProjectName( inputDefFile);
     
     // Read the system input definition.
     SystemInputDef inputDef = null;

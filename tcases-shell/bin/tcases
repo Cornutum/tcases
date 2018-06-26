@@ -145,7 +145,7 @@ java \
   -cp "$classPath" \
   -D${logDest}="$logFile" \
   -Dtcases.log.level="$logLevel" \
-  org.cornutum.tcases.Tcases \
+  org.cornutum.tcases.TcasesCommand \
   $showVersion \
   ${genDef:+-g "$genDef"} \
   ${seed:+-r "$seed"} \
