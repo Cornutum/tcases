@@ -42,24 +42,15 @@ public class Tcases
       }
 
     SystemTestDef testDef = new SystemTestDef( inputDef.getName());
-    testDef.addAnnotations( inputDef);
     for( Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs(); functionDefs.hasNext();)
       {
       FunctionTestDef functionTestDef = getTests( functionDefs.next(), genDef, baseDef, options);
+      annotateTests( inputDef, functionTestDef);
 
       testDef.addFunctionTestDef(functionTestDef);
-
-      // Add system input def annotations to function test def
-      functionTestDef.addAnnotations( inputDef);
-
-      // Add system input def annotations to test case def
-      for( Iterator<TestCase> testCases = functionTestDef.getTestCases(); testCases.hasNext(); )
-        {
-        TestCase testCase = testCases.next();
-        testCase.addAnnotations(inputDef);
-        }
       }
 
+    testDef.addAnnotations( inputDef);
     return testDef;
     }
 
@@ -169,6 +160,19 @@ public class Tcases
             }
           }
         }
+      }
+    }
+
+  /**
+   * Updates the given test definitions by adding all applicable annotations from the given input definition.
+   */
+  static void annotateTests( SystemInputDef inputDef, FunctionTestDef functionTestDef)
+    {
+    functionTestDef.addAnnotations( inputDef);
+    for( Iterator<TestCase> testCases = functionTestDef.getTestCases(); testCases.hasNext(); )
+      {
+      TestCase testCase = testCases.next();
+      testCase.addAnnotations(inputDef);
       }
     }
 
