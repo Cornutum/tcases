@@ -1,4 +1,4 @@
-<project
+<project 
     xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -10,11 +10,11 @@
     <version>1.5.5-SNAPSHOT</version>
   </parent>
 
-  <artifactId>tcases-lib</artifactId>
+  <artifactId>tcases-ant</artifactId>
   <packaging>jar</packaging>
 
-  <name>Tcases Core</name>
-  <description>Generates test cases from system input space models</description>
+  <name>Tcases Ant</name>
+  <description>Ant support for Tcases</description>
   <url>https://github.com/Cornutum/tcases</url>
 
   <developers>
@@ -79,6 +79,28 @@
         <filtering>true</filtering>
       </testResource>
     </testResources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <links>
+                <link>http://www.cornutum.org/tcases/docs/api/core</link>
+              </links>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>        
+    </plugins>
+
   </build>
 
   <dependencies>
@@ -89,30 +111,15 @@
     </dependency>
 
     <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <scope>test</scope>
+      <groupId>org.cornutum.tcases</groupId>
+      <artifactId>tcases-lib</artifactId>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-collections4</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
-      <scope>test</scope>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.8.2</version>
     </dependency>
 
   </dependencies>

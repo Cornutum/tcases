@@ -7,9 +7,8 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.Tcases.Options;
+import org.cornutum.tcases.TcasesCommand.Options;
 import org.cornutum.tcases.io.SystemTestResources;
-
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,13 +25,13 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 /**
- * Runs tests for {@link Tcases#main}.
+ * Runs tests for {@link TcasesCommand#main}.
  *
  */
-public class TestTcases
+public class TestTcasesCommand
   {
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
@@ -81,14 +80,14 @@ public class TestTcases
       };
     
     // When...
-    Tcases.run( new Options( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 1. run (Success) </TH></TR>
@@ -141,7 +140,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 2. run (Success) </TH></TR>
@@ -193,7 +192,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 3. run (Success) </TH></TR>
@@ -240,14 +239,14 @@ public class TestTcases
     options.setWorkingDir( inFile.getParentFile());
     
     // When...
-    Tcases.run( options);
+    TcasesCommand.run( options);
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 4. run (Success) </TH></TR>
@@ -292,14 +291,14 @@ public class TestTcases
       };
 
     // When...
-    Tcases.run( new Options( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFile.exists());
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 5. run (Success) </TH></TR>
@@ -348,7 +347,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 6. run (Failure) </TH></TR>
@@ -396,7 +395,7 @@ public class TestTcases
     // When...
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -406,7 +405,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 7. run (Failure) </TH></TR>
@@ -449,7 +448,7 @@ public class TestTcases
     // When...
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -459,7 +458,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 8. run (Failure) </TH></TR>
@@ -500,7 +499,7 @@ public class TestTcases
     // When...
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -510,7 +509,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 9. run (Failure) </TH></TR>
@@ -557,7 +556,7 @@ public class TestTcases
       {
       Options options = new Options( args);
       options.setWorkingDir( inFile.getParentFile());
-      Tcases.run( options);
+      TcasesCommand.run( options);
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -567,7 +566,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 10. run (Success) </TH></TR>
@@ -613,7 +612,7 @@ public class TestTcases
     // When...
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -623,7 +622,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
@@ -665,14 +664,14 @@ public class TestTcases
       };
     
     // When...
-    Tcases.run( new Options( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
     }
   
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 1. run (Success) </TH></TR>
@@ -716,7 +715,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 2. run (Success) </TH></TR>
@@ -760,14 +759,14 @@ public class TestTcases
       };
     
     // When...
-    Tcases.run( new Options( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
     }
   
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 3. run (Success) </TH></TR>
@@ -806,14 +805,14 @@ public class TestTcases
       };
 
     // When...
-    Tcases.run( new Options( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 4. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -853,7 +852,7 @@ public class TestTcases
     Exception failure = null;
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -869,7 +868,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 5. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -907,7 +906,7 @@ public class TestTcases
     // When...
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -917,7 +916,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 6. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -957,7 +956,7 @@ public class TestTcases
     Exception failure = null;
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -973,7 +972,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 7. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -1016,7 +1015,7 @@ public class TestTcases
     // When...
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       fail( "Expected exception not thrown");
       }
     // Then...
@@ -1026,7 +1025,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 8. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -1066,7 +1065,7 @@ public class TestTcases
     Exception failure = null;
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1092,7 +1091,7 @@ public class TestTcases
     failure = null;
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1118,7 +1117,7 @@ public class TestTcases
     failure = null;
     try
       {
-      Tcases.run( new Options( args));
+      TcasesCommand.run( new Options( args));
       }
     catch( Exception expected)
       {
@@ -1134,7 +1133,7 @@ public class TestTcases
     }
 
   /**
-   * Tests {@link Tcases#run run()} using the following inputs.
+   * Tests {@link TcasesCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 9. run (Success) </TH></TR>
@@ -1172,7 +1171,7 @@ public class TestTcases
       };
     
     // When...
-    Tcases.run( new Options( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -1184,7 +1183,7 @@ public class TestTcases
     {
     // Given...
     File inFile = getResourceFile( "run-transform-html");
-    File outFilePath = new File( inFile.getParentFile(), Tcases.getProjectName( inFile) + "-Test.htm");
+    File outFilePath = new File( inFile.getParentFile(), TcasesCommand.getProjectName( inFile) + "-Test.htm");
 
     String[] args =
       {
@@ -1193,7 +1192,7 @@ public class TestTcases
       };
     
     // When...
-    Tcases.run( new Options( args));
+    TcasesCommand.run( new Options( args));
         
     // Then...
     assertEquals( "Test def created", true, outFilePath.exists());
@@ -1288,7 +1287,7 @@ public class TestTcases
         System.setOut( (newOut = new PrintStream( (newOutBytes = new ByteArrayOutputStream()))));
         }
 
-      Tcases.run( options);
+      TcasesCommand.run( options);
       }
     catch( Exception e)
       {

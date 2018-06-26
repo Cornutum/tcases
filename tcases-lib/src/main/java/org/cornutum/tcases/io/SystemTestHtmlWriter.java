@@ -13,11 +13,11 @@ import org.cornutum.tcases.util.XmlWriter;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.iterators.PeekingIterator;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.net.URI;
@@ -311,20 +311,18 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
     xmlWriter_.writeElementStart( "STYLE");
     xmlWriter_.indent();
 
-    LineIterator styleLines = null;
-    try
+    try( BufferedReader in = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "system-test.css"), "UTF-8")))
       {
-      for( styleLines = IOUtils.lineIterator( getClass().getResourceAsStream( "system-test.css"), "UTF-8");
-           styleLines.hasNext();
-           xmlWriter_.println( styleLines.next()));
+
+      String line;
+      while(( line = in.readLine()) != null)
+        {
+        xmlWriter_.println( line);
+        }
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't write resource=system-test.css", e);
-      }
-    finally
-      {
-      LineIterator.closeQuietly( styleLines);
       }
     
     xmlWriter_.unindent();
@@ -339,20 +337,19 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
     xmlWriter_.writeElementStart( "SCRIPT");
     xmlWriter_.indent();
 
-    LineIterator scriptLines = null;
-    try
+
+
+    try( BufferedReader in = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "system-test.js"), "UTF-8"));)
       {
-      for( scriptLines = IOUtils.lineIterator( getClass().getResourceAsStream( "system-test.js"), "UTF-8");
-           scriptLines.hasNext();
-           xmlWriter_.println( scriptLines.next()));
+      String line;
+      while(( line = in.readLine()) != null)
+        {
+        xmlWriter_.println( line);
+        }
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't write resource=system-test.js", e);
-      }
-    finally
-      {
-      LineIterator.closeQuietly( scriptLines);
       }
     
     xmlWriter_.unindent();
