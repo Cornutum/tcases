@@ -22,6 +22,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * Constructs a definition of a {@link TestCase test case}.
@@ -448,7 +450,24 @@ public class TestCaseDef implements Comparable<TestCaseDef>
       testCase.addVarBinding( new VarBinding( var, bindings_.get( var)));
       }
 
+    // Annotate test case with its property set
+    propertyStream()
+        .reduce( (properties, property) -> properties + "," + property)
+        .ifPresent( properties -> testCase.setAnnotation( Annotated.TEST_CASE_PROPERTIES, properties));
+    
     return testCase;
+    }
+
+  /**
+   * Returns a Stream containing the properties defined for this test case.
+   */
+  private Stream<String> propertyStream()
+    {
+    Iterable<String> propertyList = () -> properties_.getProperties();
+
+    return
+      StreamSupport.stream( propertyList.spliterator(), false)
+      .sorted( String.CASE_INSENSITIVE_ORDER);
     }
 
   public int compareTo( TestCaseDef other)

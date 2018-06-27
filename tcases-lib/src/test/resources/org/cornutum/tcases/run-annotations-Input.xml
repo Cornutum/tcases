@@ -19,7 +19,7 @@
                     <Has name="AL1" value="VL1"/>
                 </Value>
                 
-                <Value name="Value-1-2"/>
+                <Value name="Value-1-2" property="property-1-2"/>
             </Var>
             <Var name="Var-2">
                 <Value name="Value-2-1"/>
@@ -35,6 +35,9 @@
     </Function>
     
     <Function name="F2">
+        <!-- Special case: allowed but should not override TestCase "properties" annotations added automatically -->
+        <Has name="properties" value="functionProperties"/>
+        
         <Input>
             <Has name="AT3" value="VT3"/>
             <Has name="AT4" value="VT4"/>
@@ -44,13 +47,13 @@
                 <Has name="AT4" value="VVS4"/>
                 
                 <Var name="Var-1">
-                    <Value name="Value-1-1"/>
+                    <Value name="Value-1-1" property="charlie, easy"/>
                 </Var>
             </VarSet>
         </Input>
         <Input>
             <Var name="Var-2">
-                <Value name="Value-2-1"/>
+                <Value name="Value-2-1" property="easy, Bravo, Delta, Alpha"/>
             </Var>
         </Input>
         

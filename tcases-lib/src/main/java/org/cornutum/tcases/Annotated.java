@@ -78,6 +78,11 @@ public abstract class Annotated
     {
     return annotations_.size();
     }
+
+  /**
+   * The standard annotation for test case properties.
+   */
+  public static final String TEST_CASE_PROPERTIES = "properties";
   
   private Map<String,String> annotations_ = new HashMap<String,String>();
   }

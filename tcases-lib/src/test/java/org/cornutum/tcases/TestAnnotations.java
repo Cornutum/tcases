@@ -101,7 +101,8 @@ public class TestAnnotations
     
     TestCase f1_tc1 = f1.getTestCase(1);
     assertEquals( "F1, test=1 defined", true, f1_tc1 != null);
-    assertSetEquals( "F1, test=1 annotations", f1Annotations, getAnnotations( f1_tc1));
+    Collection<Entry<String,String>> f1tc1Annotations = expectedAnnotations( f1Annotations, new String[]{ Annotated.TEST_CASE_PROPERTIES, "property-1-2"});
+    assertSetEquals( "F1, test=1 annotations", f1tc1Annotations, getAnnotations( f1_tc1));
 
     v1 = f1_tc1.getVarBinding( "Var-1");
     assertEquals( "Var-1 defined ", true, v1 != null);
@@ -127,11 +128,13 @@ public class TestAnnotations
     
     FunctionTestDef f2 = testDef.getFunctionTestDef( "F2");
     assertEquals( "F2 defined", true, f2 != null);
-    assertSetEquals( "F2 annotations", sysAnnotations, getAnnotations( f2));
+    Collection<Entry<String,String>> f2Annotations = expectedAnnotations( sysAnnotations, new String[]{ Annotated.TEST_CASE_PROPERTIES, "functionProperties"});
+    assertSetEquals( "F2 annotations", f2Annotations, getAnnotations( f2));
 
     TestCase f2_tc0 = f2.getTestCase(0);
     assertEquals( "F2, test=0 defined", true, f2_tc0 != null);
-    assertSetEquals( "F2, test=0 annotations", sysAnnotations, getAnnotations( f2_tc0));
+    Collection<Entry<String,String>> f2tc0Annotations = expectedAnnotations( sysAnnotations, new String[]{ Annotated.TEST_CASE_PROPERTIES, "Alpha,Bravo,charlie,Delta,easy"});
+    assertSetEquals( "F2, test=0 annotations", f2tc0Annotations, getAnnotations( f2_tc0));
 
     v1 = f2_tc0.getVarBinding( "VarSet-3.Var-1");
     assertEquals( "VarSet-3.Var-1 defined ", true, v1 != null);
@@ -165,11 +168,29 @@ public class TestAnnotations
     }
 
   /**
-   * Returns the given set of expected annotation bindings..
+   * Returns the given set of expected annotation bindings.
    */
   private Collection<Entry<String,String>> expectedAnnotations( String[]... bindings)
     {
+    return expectedAnnotations( new HashMap<String,String>(), bindings);
+    }
+
+  /**
+   * Returns the given set of expected annotation bindings.
+   */
+  private Collection<Entry<String,String>> expectedAnnotations( Collection<Entry<String,String>> bindings, String[]... moreBindings)
+    {
     Map<String,String> annotations = new HashMap<String,String>();
+    bindings.forEach( binding -> annotations.put( binding.getKey(), binding.getValue()));
+
+    return expectedAnnotations( annotations, moreBindings);
+    }
+
+  /**
+   * Returns the given set of expected annotation bindings.
+   */
+  private Collection<Entry<String,String>> expectedAnnotations( Map<String,String> annotations, String[]... bindings)
+    {
     for( int i = 0; i < bindings.length; i++)
       {
       String name = bindings[i][0];
