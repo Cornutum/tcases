@@ -15,7 +15,7 @@
 
                 <Value name="SQUARE"/>
                 <Value name="CIRCLE"/>
-                <Value name="LINE"/>
+                <Value name="LINE" property="1D"/>
             </Var>
 
             <Var name="Size">
@@ -26,7 +26,7 @@
 
                 <Value name="1"/>
                 <Value name="10"/>
-                <Value name="100"/>
+                <Value name="100" property="Large"/>
             </Var>
 
             <Var name="Color">

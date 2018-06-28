@@ -77,6 +77,11 @@
             <LI><A href="#junit">Creating JUnit/TestNG Tests</A></LI>
             <LI><A href="#xslt">Using XSLT Transforms</A></LI>
             <LI><A href="#annotations">Using Output Annotations</A></LI>
+              <UL>
+                <LI><A href="#annotationExample">Example: Generating test code</A></LI>
+                <LI><A href="#annotationHow">How it works</A></LI>
+                <LI><A href="#annotationProperties">Property annotations</A></LI>
+              </UL>
           </UL>
         </LI>
         <LI><A href="#reference">Further Reference</A></LI>
@@ -2224,10 +2229,14 @@
       <P>
         An output annotation is a special property setting &mdash; a name-value pair &mdash; that you can add to various
         elements of a system input definition.  It has no effect on test cases that Tcases generates. But Tcases will
-        accumulate output annotations and attach them to the resulting system test definition document. From there,
-        your XSLT output transform can use these output annotations to complete tests cases in their final form.
+        accumulate output annotations and attach them to the resulting system test definition document.
+        In addition, Tcases will automatically attach <A href="#annotationProperties">output annotations listing the properties of each
+        <SPAN class="code">TestCase</SPAN></A>.
+        From there, your XSLT output transform can use these output annotations to complete tests cases in their final form.
       </P>
 
+      <H4><A name="annotationExample">Example: Generating test code</A></H4>
+      
       <P>
         For an example of how this works, consider the following input model for a graphics function involving shapes
         with different properties, such as size and color.
@@ -2262,45 +2271,10 @@
         <P>
           Suppose we wanted to transform test cases generated from this input model into executable code. To do so, we annotate this input model with
           extra <SPAN class="code">Has</SPAN> elements. 
-        </P>
-        <P>
+
           Each <SPAN class="code">Has</SPAN> element defines an output annotation with a <SPAN class="code">name</SPAN>
-          and a <SPAN class="code">value</SPAN>. We can add the following kinds of output annotations.
+          and a <SPAN class="code">value</SPAN>.
         </P>
-        <UL>
-          <LI>
-            <B>System annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element
-            to a <SPAN class="code">System</SPAN> element. Each system annotation is transferred
-            to the output document by applying it to the
-            top-level <SPAN class="code">TestCases</SPAN> element.  In addition, each system
-            annotation is added to
-            all <SPAN class="code">Function</SPAN> and <SPAN class="code">TestCase</SPAN> elements.
-          </LI>
-          <P/>
-          <LI>
-            <B>Function annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element
-            to a <SPAN class="code">Function</SPAN> element. Each function annotation is transferred
-            to the output document by applying it to the
-            corresponding output <SPAN class="code">Function</SPAN> element.  In addition, each function
-            annotation is added to all <SPAN class="code">TestCase</SPAN> elements within its scope.
-            Annotations for a <SPAN class="code">Function</SPAN> override any annotations of the same name defined for
-            the <SPAN class="code">System</SPAN>.
-          </LI>
-          <P/>
-          <LI><B>Variable binding annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element to
-            a <SPAN class="code">Var</SPAN> or a <SPAN class="code">VarSet</SPAN> element. You can also create a
-            variable binding annotation that applies to a group of variables by adding a <SPAN class="code">Has</SPAN>
-            element to an <SPAN class="code">Input</SPAN>. Or you can create a variable binding annotation that is
-            value-specific by adding a <SPAN class="code">Has</SPAN> element to
-            a <SPAN class="code">Value</SPAN> element. Each variable binding annotation is transferred to the output
-            document by applying it to all <SPAN class="code">Var</SPAN> elements within its scope.
-            
-            Annotations for a <SPAN class="code">Value</SPAN> override any annotations of the same name defined for
-            a <SPAN class="code">Var</SPAN>, which override annotations for a <SPAN class="code">VarSet</SPAN>, which
-            override annotations for an
-            <SPAN class="code">Input</SPAN>.
-          </LI>
-        </UL>
 
         <P>
           For example, let's add the following output annotations.
@@ -2413,13 +2387,6 @@
         </DIV>
 
         <P>
-          Why are system and function annotations also copied to all of the associated <SPAN class="code">TestCase</SPAN>
-          elements? Because such annotations can have multiple purposes. In some cases, these annotations can be used to
-          form the corresponding level of the transformed output document. In other cases, these annotations can be used to
-          define system- or function-wide defaults for values used to form individual concrete test cases.
-        </P>
-
-        <P>
           So, what's so special about these annotated test cases? In one sense, nothing &mdash; they describe exactly
           the same set of input variable choices as before. But they set the stage for the next phase of test case
           generation, using an output transform. For example, by
@@ -2450,6 +2417,148 @@ public class Examples { <BR/>
 } <BR/>
         </DIV>
 
+        <H4><A name="annotationHow">How it works</A></H4>
+
+        <P>
+          We can add the following kinds of output annotations.
+        </P>
+
+        <UL>
+          <LI>
+            <B>System annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element
+            to a <SPAN class="code">System</SPAN> element. Each system annotation is transferred
+            to the output document by applying it to the
+            top-level <SPAN class="code">TestCases</SPAN> element.  In addition, each system
+            annotation is added to
+            all <SPAN class="code">Function</SPAN> and <SPAN class="code">TestCase</SPAN> elements.
+          </LI>
+          <P/>
+          <LI>
+            <B>Function annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element
+            to a <SPAN class="code">Function</SPAN> element. Each function annotation is transferred
+            to the output document by applying it to the
+            corresponding output <SPAN class="code">Function</SPAN> element.  In addition, each function
+            annotation is added to all <SPAN class="code">TestCase</SPAN> elements within its scope.
+            Annotations for a <SPAN class="code">Function</SPAN> override any annotations of the same name defined for
+            the <SPAN class="code">System</SPAN>.
+          </LI>
+          <P/>
+          <LI><B>Variable binding annotations</B> are created by adding a <SPAN class="code">Has</SPAN> element to
+            a <SPAN class="code">Var</SPAN> or a <SPAN class="code">VarSet</SPAN> element. You can also create a
+            variable binding annotation that applies to a group of variables by adding a <SPAN class="code">Has</SPAN>
+            element to an <SPAN class="code">Input</SPAN>. Or you can create a variable binding annotation that is
+            value-specific by adding a <SPAN class="code">Has</SPAN> element to
+            a <SPAN class="code">Value</SPAN> element. Each variable binding annotation is transferred to the output
+            document by applying it to all <SPAN class="code">Var</SPAN> elements within its scope.
+            
+            Annotations for a <SPAN class="code">Value</SPAN> override any annotations of the same name defined for
+            a <SPAN class="code">Var</SPAN>, which override annotations for a <SPAN class="code">VarSet</SPAN>, which
+            override annotations for an
+            <SPAN class="code">Input</SPAN>.
+          </LI>
+        </UL>
+
+        <P>
+          Why are system and function annotations also copied to all of the associated <SPAN class="code">TestCase</SPAN>
+          elements? Because such annotations can have multiple purposes. In some cases, these annotations can be used to
+          form the corresponding level of the transformed output document. In other cases, these annotations can be used to
+          define system- or function-wide defaults for values used to form individual concrete test cases.
+        </P>
+
+        <H4><A name="annotationProperties">Property annotations</A></H4>
+        <P>
+          The <A href="#properties">value properties</A> that characterize a test case can be useful meta-data for further transformations of test case data.
+          For this reason, Tcases automatically attaches them to each generated <SPAN class="code">TestCase</SPAN> using a special output annotation
+          named "properties".
+        </P>
+        <P>
+          For example, if we add the following value properties to our input model:
+        </P>
+
+        <DIV class="exampleDoc">
+&lt;System name="Examples"&gt; <BR/>
+&nbsp; &lt;Function name="addShape"&gt; <BR/>
+&nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Function annotations --&gt;</SPAN> <BR/>
+&nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
+&nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
+&nbsp; &nbsp; &lt;Has name="pageValue" value="new Page()"/&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &lt;Input&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Type"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; <SPAN class="exampleComment">&lt;!-- Variable binding annotations --&gt;</SPAN> <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="Shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varEval" value="new Shape"/&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="SQUARE"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="CIRCLE"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="LINE" <SPAN class="exampleEmph">property="1D"</SPAN> /&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Size"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Variable binding annotations --&gt;</SPAN> <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="int"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="size"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varApply" value="setSize"/&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="1"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="10"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="100" <SPAN class="exampleEmph">property="Large"</SPAN>/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+ <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Var name="Color"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp;<SPAN class="exampleComment"> &lt;!-- Variable binding annotations --&gt;</SPAN> <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="String"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="color"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varApply" value="setColor"/&gt; <BR/>
+<BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="red"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="green"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Value name="blue"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &lt;/Input&gt; <BR/>
+&nbsp; &lt;/Function&gt; <BR/>
+&lt;/System&gt; <BR/>
+        </DIV>
+
+      <P>
+        Then when we run <SPAN class="code">tcases</SPAN>, we see the following "properties" annotation added to the output:
+      </P>
+        
+        <DIV class="exampleDoc">
+&lt;TestCases system="Examples"&gt; <BR/>
+&nbsp; &lt;Function name="addShape"&gt; <BR/>
+&nbsp; &nbsp; ... <BR/>
+&nbsp; &nbsp; &lt;TestCase id="2"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Has name="pageName" value="page"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Has name="pageType" value="Page"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;Has name="pageValue" value="new Page()"/&gt; <BR/>
+<SPAN class="exampleEmph">
+&nbsp; &nbsp; &nbsp; &lt;Has name="properties" value="1D,Large"/&gt; <BR/>
+</SPAN>
+&nbsp; &nbsp; &nbsp; &lt;Input type="arg"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="Type" value="LINE"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varEval" value="new Shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="Shape"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="Size" value="100"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varApply" value="setSize"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="size"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="int"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Var name="Color" value="blue"&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varApply" value="setColor"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varName" value="color"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Has name="varType" value="String"/&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/Var&gt; <BR/>
+&nbsp; &nbsp; &nbsp; &lt;/Input&gt; <BR/>
+&nbsp; &nbsp; &lt;/TestCase&gt; <BR/>
+&nbsp; &lt;/Function&gt; <BR/>
+&lt;/TestCases&gt; <BR/>
+        </DIV>
+        
       <H2><A name="reference">Further Reference</A></H2>
       <P>
         Want more technical details about Tcases? Here are links to some additional information.
