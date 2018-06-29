@@ -1,5 +1,6 @@
 package org.cornutum.tcases;
 
+import org.cornutum.tcases.util.XmlWriterFactory;
 import org.cornutum.tcases.validation.DefinitionsValidator;
 
 /**
@@ -11,7 +12,21 @@ public abstract class Globals
   private static DefinitionsValidator validator;
   private static String notApplicableName;
   private static VarValueDef notApplicableVarValue;
+  private static XmlWriterFactory xmlWriterFactory;
 
+  public static XmlWriterFactory getXmlWriterFactory()
+    {
+    if (xmlWriterFactory == null)
+      {
+      xmlWriterFactory = new XmlWriterFactory();
+      }
+    return xmlWriterFactory;
+    }
+
+  public static void setXmlWriterFactory(XmlWriterFactory xmlWriterFactory)
+    {
+    Globals.xmlWriterFactory = xmlWriterFactory;
+    }
 
   public static DefinitionsValidator getInputDefValidator()
     {
