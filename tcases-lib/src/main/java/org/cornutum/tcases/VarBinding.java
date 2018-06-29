@@ -8,7 +8,7 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.DefUtils.*;
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -69,7 +69,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public void setVar( String varName)
     {
-    assertPath( varName);
+    getInputDefValidator().assertVarBindingName( varName);
     var_ = varName;
     }
 
@@ -86,7 +86,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public void setValue( String valueName)
     {
-    assertIdentifier( valueName);
+    getInputDefValidator().assertVarBindingValue( valueName);
     value_ = valueName;
     }
 
@@ -103,7 +103,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public void setType( String type)
     {
-    assertIdentifier( type);
+    getInputDefValidator().assertVarBindingType( type);
     varType_ = type;
     }
 

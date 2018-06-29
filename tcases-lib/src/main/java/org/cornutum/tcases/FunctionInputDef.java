@@ -8,9 +8,11 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.DefUtils.*;
+
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 
 import org.apache.commons.lang3.StringUtils;
+import org.cornutum.tcases.validation.DefUtils;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -47,7 +49,7 @@ public class FunctionInputDef extends Annotated
     {
     if( name != null)
       {
-      assertIdentifier( name);
+      getInputDefValidator().assertFunctionName( name);
       }
     name_ = name;
     }

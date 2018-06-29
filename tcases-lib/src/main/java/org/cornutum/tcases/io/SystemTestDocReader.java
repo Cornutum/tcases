@@ -8,7 +8,8 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
-import static org.cornutum.tcases.DefUtils.*;
+
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 import static org.cornutum.tcases.io.SystemTestDoc.*;
 
 import javax.xml.parsers.SAXParser;
@@ -140,7 +141,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
         {
         try
           {
-          assertIdentifier( id);
+          getInputDefValidator().assertAttributeValue( attributeName, id);
           }
         catch( Exception e)
           {
@@ -178,7 +179,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
         {
         try
           {
-          assertPath( id);
+          getInputDefValidator().assertAttributeValueAsPath( attributeName, id);
           }
         catch( Exception e)
           {

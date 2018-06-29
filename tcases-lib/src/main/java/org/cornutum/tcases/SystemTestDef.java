@@ -8,13 +8,14 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.DefUtils.*;
 
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 
 /**
  * Defines the test cases for all functions of a system.
@@ -43,7 +44,7 @@ public class SystemTestDef extends Annotated
    */
   public void setName( String name)
     {
-    assertIdentifier( name);
+    getInputDefValidator().assertSystemName( name);
     name_ = name;
     }
 

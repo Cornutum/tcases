@@ -10,12 +10,13 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.conditions.AllOf;
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.DefUtils.*;
 
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 
 /**
  * Base class for {@link IVarDef} implementations.
@@ -103,7 +104,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    */
   public void setName( String name)
     {
-    assertIdentifier( name);
+    getInputDefValidator().assertVarDefName( name);
     name_ = name;
     pathName_ = null;
     }
@@ -150,7 +151,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    */
   public void setType( String type)
     {
-    assertIdentifier( type);
+    getInputDefValidator().assertVarDefType( type);
     type_ = type;
     }
 

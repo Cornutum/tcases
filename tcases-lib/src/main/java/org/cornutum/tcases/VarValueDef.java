@@ -9,13 +9,14 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.DefUtils.*;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
+
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 
 /**
  * Defines the properties of a value for an {@link IVarDef input variable}.
@@ -92,7 +93,7 @@ public class VarValueDef extends Conditional
    */
   public void setName( String name)
     {
-    assertIdentifier( name);
+    getInputDefValidator().assertValueName( name);
     name_ = name;
     }
 
@@ -161,7 +162,7 @@ public class VarValueDef extends Conditional
     {
     if( properties != null)
       {
-      assertPropertyIdentifiers( properties);
+      getInputDefValidator().assertPropertyIdentifiers( properties);
       getProperties().addAll( properties);
       }
 
