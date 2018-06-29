@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.generator.io;
 
+import org.cornutum.tcases.Globals;
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.util.XmlWriter;
@@ -39,7 +40,7 @@ public class GeneratorSetDocWriter implements Closeable
    */
   public GeneratorSetDocWriter( OutputStream stream)
     {
-    this( new XmlWriter( stream));
+    this(Globals.getXmlWriterFactory().forStream(stream));
     }
   
   /**
@@ -47,7 +48,7 @@ public class GeneratorSetDocWriter implements Closeable
    */
   public GeneratorSetDocWriter( Writer writer)
     {
-    this( new XmlWriter( writer));
+    this( Globals.getXmlWriterFactory().forWriter( writer));
     }
   
   /**
