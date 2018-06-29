@@ -63,7 +63,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       return requireAttribute( attributes, attributeName, getAttribute( attributes, attributeName));
       }
 
-/**
+    /**
      * Returns the value of the given attribute. Throws a SAXException if the attribute is undefined or empty.
      */
     public String requireNonBlankAttribute( Attributes attributes, String attributeName) throws SAXException
@@ -160,41 +160,22 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       }
 
     /**
-     * Returns the value of the given identifier path or null if undefined. Throws a SAXException if the attribute is invalid.
-     */
-    public String getIdPath( Attributes attributes, String attributeName) throws SAXException
-      {
-      return toIdPath( attributeName, getAttribute( attributes, attributeName));
-      }
-
-    /**
      * Returns the value of the given identifier path. Throws a SAXException if the attribute is undefined, empty, or invalid.
      */
     public String requireIdPath( Attributes attributes, String attributeName) throws SAXException
       {
-      return toIdPath( attributeName, requireNonBlankAttribute( attributes, attributeName));
-      }
+      String path = requireNonBlankAttribute( attributes, attributeName);
 
-    /**
-     * Returns the given attribute value as an identifier path. Throws a SAXException if the attribute is not a valid identifier path.
-     */
-    public String toIdPath( String attributeName, String attributeValue) throws SAXException
-      {
-      String id = StringUtils.trimToNull( attributeValue);
-
-      if( id != null)
+      try
         {
-        try
-          {
-          assertPath( id);
-          }
-        catch( Exception e)
-          {
-          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute: " + e.getMessage(), getDocumentLocator()); 
-          }
+        assertPath( path);
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute: " + e.getMessage(), getDocumentLocator()); 
         }
 
-      return id;
+      return path;
       }
       
     /**
