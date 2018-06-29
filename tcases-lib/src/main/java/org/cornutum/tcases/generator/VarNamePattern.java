@@ -10,6 +10,7 @@ package org.cornutum.tcases.generator;
 import org.cornutum.tcases.*;
 
 import org.apache.commons.lang3.StringUtils;
+import org.cornutum.tcases.validation.DefUtils;
 
 import java.util.Arrays;
 import java.util.Iterator;

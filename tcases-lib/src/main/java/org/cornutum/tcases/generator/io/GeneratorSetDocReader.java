@@ -9,7 +9,8 @@ package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.generator.*;
-import static org.cornutum.tcases.DefUtils.*;
+
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
 import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
 
@@ -73,7 +74,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
 
       try
         {
-        assertIdentifier( id);
+        getInputDefValidator().assertAttributeValue( attributeName, id);
         }
       catch( Exception e)
         {
@@ -259,7 +260,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
         {
         try
           {
-          assertIdentifier( functionName);
+          getInputDefValidator().assertFunctionName( functionName);
           }
         catch( Exception e)
           {

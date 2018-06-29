@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases;
+package org.cornutum.tcases.validation;
 
 import java.util.Collection;
 import java.util.regex.Pattern;
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * Defines utility methods for constructing test definitions.
  *
  */
-public abstract class DefUtils
+public class DefUtils
   {
   /**
    * Returns true if the given string is a valid identifier.
@@ -39,7 +39,7 @@ public abstract class DefUtils
   /**
    * Throws an exception if the given string is not a valid identifier.
    */
-  public static void assertIdentifier( String id) throws IllegalArgumentException
+  static void assertIdentifier( String id) throws IllegalArgumentException
     {
     if( !isIdentifier( id))
       {
@@ -53,7 +53,7 @@ public abstract class DefUtils
   /**
    * Throws an exception if the given string is not a valid identifier path name.
    */
-  public static void assertPath( String pathName) throws IllegalArgumentException
+  static void assertPath( String pathName) throws IllegalArgumentException
     {
     String ids[] = toPath( pathName);
     for( int i = 0; i < ids.length; i++)
@@ -65,7 +65,7 @@ public abstract class DefUtils
   /**
    * Throws an exception if any member of the given set of properties is not a valid identifier.
    */
-  public static void assertPropertyIdentifiers( Collection<String> properties) throws IllegalArgumentException
+  static void assertPropertyIdentifiers( Collection<String> properties) throws IllegalArgumentException
     {
     if( properties != null)
       {

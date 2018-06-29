@@ -8,6 +8,8 @@
 
 package org.cornutum.tcases;
 
+import org.cornutum.tcases.validation.DefUtils;
+
 import java.util.Arrays;
 
 /**

@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static org.cornutum.tcases.Globals.isNA;
+
 /**
  * Defines an individual input variable.
  *
@@ -160,7 +162,7 @@ public class VarDef extends AbstractVarDef
     {
     return
       getValue( value.getName()) != null
-      || (VarValueDef.isNA( value) && isOptional());
+      || (isNA( value) && isOptional());
     }
 
   /**

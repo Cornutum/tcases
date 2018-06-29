@@ -8,11 +8,12 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.DefUtils.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 
 /**
  * Defines the input space for all functions of a system.
@@ -41,7 +42,7 @@ public class SystemInputDef extends Annotated
    */
   public void setName( String name)
     {
-    assertIdentifier( name);
+    getInputDefValidator().assertSystemName( name);
     name_ = name;
     }
 

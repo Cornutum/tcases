@@ -10,7 +10,7 @@ package org.cornutum.tcases.io;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 
-import static org.cornutum.tcases.DefUtils.*;
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -97,7 +97,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
         {
         try
           {
-          assertIdentifier( id);
+          getInputDefValidator().assertAttributeValue( attributeName, id);
           }
         catch( Exception e)
           {
@@ -221,7 +221,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
 
         try
           {
-          assertPropertyIdentifiers( propertySet);
+          getInputDefValidator().assertPropertyIdentifiers( propertySet);
           }
         catch( Exception e)
           {

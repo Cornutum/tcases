@@ -9,13 +9,14 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.DefUtils.*;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
+
+import static org.cornutum.tcases.Globals.getInputDefValidator;
 
 /**
  * Defines the properties of a value for an {@link IVarDef input variable}.
@@ -92,7 +93,7 @@ public class VarValueDef extends Conditional
    */
   public void setName( String name)
     {
-    assertIdentifier( name);
+    getInputDefValidator().assertValueName( name);
     name_ = name;
     }
 
@@ -161,7 +162,7 @@ public class VarValueDef extends Conditional
     {
     if( properties != null)
       {
-      assertPropertyIdentifiers( properties);
+      getInputDefValidator().assertPropertyIdentifiers( properties);
       getProperties().addAll( properties);
       }
 
@@ -219,20 +220,6 @@ public class VarValueDef extends Conditional
       .append( getName())
       .toString();
     }
-
-  /**
-   * Returns true if the given value is the standard {@link #NA "not applicable"} value.
-   */
-  public static boolean isNA( VarValueDef value)
-    {
-    return value == NA;
-    }
-
-  /**
-   * The standard "not applicable" value. This value is valid for any variable that is
-   * "optional", i.e. that (has an ancestor that) defines a condition.
-   */
-  public static final VarValueDef NA = new VarValueDef( "NA");
 
   private String name_;
   private Type type_;

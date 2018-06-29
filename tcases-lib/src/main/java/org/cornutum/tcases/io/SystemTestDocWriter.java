@@ -204,7 +204,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void setWriter( Writer writer)
     {
-    setXmlWriter( new XmlWriter( writer));
+    setXmlWriter( Globals.getXmlWriterFactory().forWriter( writer));
     }
 
   /**

@@ -19,7 +19,7 @@ public class XmlWriter extends IndentedWriter
   /**
    * Creates a new XmlWriter object.
    */
-  public XmlWriter( OutputStream output)
+  protected XmlWriter( OutputStream output)
     {
     super( output);
     }
@@ -27,7 +27,7 @@ public class XmlWriter extends IndentedWriter
   /**
    * Creates a new XmlWriter object.
    */
-  public XmlWriter( Writer writer)
+  protected XmlWriter( Writer writer)
     {
     super( writer);
     }
