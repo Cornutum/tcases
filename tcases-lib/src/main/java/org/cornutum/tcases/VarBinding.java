@@ -136,7 +136,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public boolean isValueNA()
     {
-    return VarValueDef.NA.getName().equals( getValue());
+    return Globals.getNotApplicableName().equals( getValue());
     }
 
   /**

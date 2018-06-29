@@ -142,7 +142,7 @@ public class Tcases
         String value = binding.getValue();
 
         // Add value annotations...
-        if( !value.equals( VarValueDef.NA.getName()))
+        if( !value.equals( Globals.getNotApplicableName()))
           {
           VarValueDef valueDef = varDef.getValue( value);
           binding.addAnnotations( valueDef);

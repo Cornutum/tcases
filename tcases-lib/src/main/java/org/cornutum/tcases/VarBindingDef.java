@@ -99,7 +99,7 @@ public class VarBindingDef
    */
   public boolean isNA()
     {
-    return VarValueDef.isNA( valueDef_);
+    return Globals.isNA( valueDef_);
     }
 
   @SuppressWarnings("deprecation")
