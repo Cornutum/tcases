@@ -1547,11 +1547,15 @@ public class TestSystemInputDocReader
    * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
-   * <TR align="left"><TH colspan=2> 42.  getSystemInputDef (Failure: Duplicate annotation) </TH></TR>
+   * <TR align="left"><TH colspan=2> 43.   getSystemInputDef (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Value.Name </TD> <TD> Empty </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Blank </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Non-alphanumeric </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Non-ASCII </TD></TR>
    * </TABLE>
    * </P>
    */
-  @Test
   public void testGetSystemInputDef_43()
     {
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-43.xml");
