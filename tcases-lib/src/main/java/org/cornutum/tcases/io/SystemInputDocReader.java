@@ -71,6 +71,14 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       }
 
     /**
+     * Returns the value of the given attribute. Throws a SAXException if the attribute is undefined or empty.
+     */
+    public String requireNonBlankAttribute( Attributes attributes, String attributeName) throws SAXException
+      {
+      return requireAttribute( attributes, attributeName, StringUtils.trimToNull(getAttribute( attributes, attributeName)));
+      }
+
+    /**
      * Returns the value of the given identifier attribute or null if undefined. Throws a SAXException if the attribute is invalid.
      */
     public String getIdentifier( Attributes attributes, String attributeName) throws SAXException
@@ -83,7 +91,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
      */
     public String requireIdentifier( Attributes attributes, String attributeName) throws SAXException
       {
-      return toIdentifier( attributeName, requireAttribute( attributes, attributeName));
+      return toIdentifier( attributeName, requireNonBlankAttribute( attributes, attributeName));
       }
 
     /**
@@ -113,8 +121,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
      */
     public String getAttribute( Attributes attributes, String attributeName)
       {
-      String value = attributes.getValue( attributeName);
-      return StringUtils.isBlank( value)? null : value;
+      return attributes.getValue( attributeName);
       }
       
     /**
@@ -1102,7 +1109,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      VarValueDef value = new VarValueDef( requireIdentifier( attributes, NAME_ATR));
+      VarValueDef value = new VarValueDef( requireAttribute( attributes, NAME_ATR));
       setValue( value);
 
       super.startElement( uri, localName, qName, attributes);

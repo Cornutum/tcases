@@ -49,7 +49,13 @@ public class TestSystemTestDocWriter
     {
     testWriteResource( "system-test-def-4.xml");
     }
-  
+
+  @Test
+  public void testWrite_24()
+    {
+    testWriteResource( "system-test-def-24.xml");
+    }
+
   public void testWriteResource( String systemTestResource)
     {
     // Given...

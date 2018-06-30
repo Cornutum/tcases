@@ -1,0 +1,16 @@
+<System name="System-43">
+  <Function name="Function-0">
+
+    <Input type="env">
+      <Var name="env-0-0">
+        <Value name=""/>
+        <Value name=" "/>
+        <Value name="大丈夫"/>
+        <Value name="&quot;&lt;&gt;"/>
+        <Value name="!#+-)[{"/>
+      </Var>
+
+    </Input>
+
+  </Function>
+</System>

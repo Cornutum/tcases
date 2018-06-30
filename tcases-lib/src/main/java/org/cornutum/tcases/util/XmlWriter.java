@@ -8,6 +8,7 @@
 package org.cornutum.tcases.util;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
 
 import java.io.OutputStream;
 import java.io.Writer;
@@ -127,7 +128,7 @@ public class XmlWriter extends IndentedWriter
     print( " ");
     print( name);
     print( "=\"");
-    print( StringEscapeUtils.escapeXml10(value));
+    print( NumericEntityEscaper.below(0x20).translate(StringEscapeUtils.escapeXml11(value)));
     print( "\"");
     }
   }

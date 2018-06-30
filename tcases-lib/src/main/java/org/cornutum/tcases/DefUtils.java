@@ -100,6 +100,6 @@ public abstract class DefUtils
     }
 
   private static final Pattern identifierRegex_ = Pattern.compile( "[\\w\\-]+");
-  private static final Pattern varValueRegex_ = Pattern.compile( "[^\\p{Cntrl}]*");
+  private static final Pattern varValueRegex_ = Pattern.compile( "([^\\p{Cntrl}]|\\s)*");
   }
 
