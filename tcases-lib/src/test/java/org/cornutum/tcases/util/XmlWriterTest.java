@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.StringWriter;
 
+import org.apache.commons.io.IOUtils;
 import static org.junit.Assert.assertEquals;
 
 public class XmlWriterTest
@@ -24,8 +25,17 @@ public class XmlWriterTest
 
   private static String writeAttributeWithValue(String input)
     {
-    StringWriter writer = new StringWriter();
-    new XmlWriter(writer).writeAttribute("foo", input);
-    return writer.toString();
+    XmlWriter xmlWriter = null;
+    try
+      {
+      StringWriter writer = new StringWriter();
+      xmlWriter = new XmlWriter(writer);
+      xmlWriter.writeAttribute("foo", input);
+      return writer.toString();
+      }
+    finally
+      {
+      IOUtils.closeQuietly(xmlWriter);
+      }
     }
   }
