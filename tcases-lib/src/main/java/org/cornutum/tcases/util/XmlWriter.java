@@ -128,6 +128,8 @@ public class XmlWriter extends IndentedWriter
     print( " ");
     print( name);
     print( "=\"");
+    // StringEscapeUtils escapes symbols ', < >, &, ", and some control characters
+    // NumericEntityEscaper translates additional control characters \n, \t, ...
     print( NumericEntityEscaper.below(0x20).translate(StringEscapeUtils.escapeXml11(value)));
     print( "\"");
     }
