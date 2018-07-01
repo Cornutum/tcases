@@ -52,7 +52,7 @@
       </VarSet>
       <VarSet name="env-1-1">
         <Var name="member-0">
-          <Value name="value.7"/>
+          <Value/>
         </Var>
       </VarSet>
     </Input>

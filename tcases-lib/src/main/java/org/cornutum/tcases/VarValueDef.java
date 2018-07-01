@@ -92,7 +92,7 @@ public class VarValueDef extends Conditional
    */
   public void setName( String name)
     {
-    assertIdentifier( name);
+    assertVarValue( name);
     name_ = name;
     }
 

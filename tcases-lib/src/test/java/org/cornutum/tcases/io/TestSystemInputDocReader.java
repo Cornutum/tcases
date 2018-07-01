@@ -1470,7 +1470,7 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_37()
     {
-    assertException( "system-input-def-37.xml", 55, "Invalid \"name\" attribute: \"value.7\" is not a valid identifier");
+    assertException( "system-input-def-37.xml", 55, "No \"name\" attribute specified");
     }
 
   /**
@@ -1541,6 +1541,28 @@ public class TestSystemInputDocReader
   public void testGetSystemInputDef_42()
     {
     assertException( "system-input-def-42.xml", 74, "Can't add annotation: Annotation=A3 already set to 'AV3'");
+    }
+
+  /**
+   * Tests {@link SystemInputDocReader#getSystemInputDef getSystemInputDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 43.   getSystemInputDef (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Value.Name </TD> <TD> Empty </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Blank </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Non-alphanumeric </TD></TR>
+   * <TR><TD> Value.Name </TD> <TD> Non-ASCII </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  public void testGetSystemInputDef_43()
+    {
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-43.xml");
+    assertEquals( "System name", "System-43", systemInputDef.getName());
+
+    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
+    assertEquals( "Function input defs", 1, functionInputDefs.length);
     }
 
   /**

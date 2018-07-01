@@ -49,8 +49,31 @@ public abstract class DefUtils
           + " is not a valid identifier");
       }
     }
-  
+
   /**
+   * Returns true if the given string is a valid identifier.
+   */
+  public static boolean isVarValue( String val)
+    {
+    return val != null && varValueRegex_.matcher( val).matches();
+    }
+
+  /**
+    * Throws an exception if the given string is not a valid variable value.
+    */
+  public static void assertVarValue( String val) throws IllegalArgumentException
+    {
+    if( !isVarValue( val))
+      {
+      throw
+        new IllegalArgumentException
+        ( (val==null? "null" : ("\"" + String.valueOf( val) + "\""))
+          + " is not a valid variable value");
+      }
+    }
+
+
+    /**
    * Throws an exception if the given string is not a valid identifier path name.
    */
   public static void assertPath( String pathName) throws IllegalArgumentException
@@ -77,5 +100,6 @@ public abstract class DefUtils
     }
 
   private static final Pattern identifierRegex_ = Pattern.compile( "[\\w\\-]+");
+  private static final Pattern varValueRegex_ = Pattern.compile( "([^\\p{Cntrl}]|\\s)*");
   }
 
