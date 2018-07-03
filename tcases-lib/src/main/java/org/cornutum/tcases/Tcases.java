@@ -139,12 +139,11 @@ public class Tcases
         {
         VarBinding binding = varBindings.next();
         VarDef varDef = functionInputDef.findVarDefPath( binding.getVar());
-        String value = binding.getValue();
 
         // Add value annotations...
-        if( !value.equals( VarValueDef.NA.getName()))
+        if( !binding.isValueNA())
           {
-          VarValueDef valueDef = varDef.getValue( value);
+          VarValueDef valueDef = varDef.getValue( binding.getValue());
           binding.addAnnotations( valueDef);
           }
 

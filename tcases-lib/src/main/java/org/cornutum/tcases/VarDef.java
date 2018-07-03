@@ -159,8 +159,9 @@ public class VarDef extends AbstractVarDef
   public boolean isApplicable( VarValueDef value)
     {
     return
-      getValue( value.getName()) != null
-      || (VarValueDef.isNA( value) && isOptional());
+      value.isNA()
+      ? isOptional()
+      : getValue( value.getName()) != null;
     }
 
   /**

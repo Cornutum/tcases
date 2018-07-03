@@ -41,10 +41,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public VarBinding( String varName, String varType, String valueName)
     {
-    setVar( varName);
-    setType( varType);
-    setValue( valueName);
-    setValueValid( true);
+    this( varName, varType, valueName, false);
     }
   
   /**
@@ -52,9 +49,32 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public VarBinding( IVarDef varDef, VarValueDef valueDef)
     {
-    this( varDef.getPathName(), varDef.getType(), valueDef.getName());
+    this( varDef.getPathName(), varDef.getType(), valueDef.getName(), valueDef.isNA());
     setValueValid( valueDef.getType().isValid());
     setVarDef( varDef);
+    }
+  
+  /**
+   * Creates a new "not applicable" VarBinding object.
+   */
+  public static VarBinding notApplicable( String varName, String varType)
+    {
+    return new VarBinding( varName, varType, null, true);
+    }
+  
+  /**
+   * Creates a new VarBinding object.
+   */
+  private VarBinding( String varName, String varType, String valueName, boolean valueNA)
+    {
+    setVar( varName);
+    setType( varType);
+    if( !valueNA)
+      {
+      setValue( valueName);
+      }
+    setValueValid( true);
+    valueNA_ = valueNA;
     }
   
   /**
@@ -89,6 +109,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     {
     assertVarValue( valueName);
     value_ = valueName;
+    valueNA_ = false;
     }
 
   /**
@@ -133,11 +154,11 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     }
 
   /**
-   * Returns true if this variable is bound to the standard {@link VarValueDef#NA "not applicable"} value.
+   * Returns true if this binding indicates a "not applicable" condition for this variable.
    */
   public boolean isValueNA()
     {
-    return VarValueDef.NA.getName().equals( getValue());
+    return valueNA_;
     }
 
   /**
@@ -215,5 +236,6 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   private String varType_;
   private String value_;
   private boolean valueValid_;
+  private boolean valueNA_;
   private IVarDef varDef_;
   }

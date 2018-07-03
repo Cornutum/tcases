@@ -81,7 +81,18 @@ public class VarValueDef extends Conditional
    */
   public VarValueDef( String name, Type type)
     {
-    setName( name);
+    this( name, type, false);
+    }
+
+  /**
+   * Creates a new VarValueDef object.
+   */
+  private VarValueDef( String name, Type type, boolean isNA)
+    {
+    if( !isNA)
+      {
+      setName( name);
+      }
     setType( type);
     setCondition( ICondition.ALWAYS);
     setProperties( (PropertySet) null);
@@ -219,18 +230,18 @@ public class VarValueDef extends Conditional
     }
 
   /**
-   * Returns true if the given value is the standard {@link #NA "not applicable"} value.
+   * Returns true if this value indicates a "not applicable" condition for an optional variable.
    */
-  public static boolean isNA( VarValueDef value)
+  public boolean isNA()
     {
-    return value == NA;
+    return getName() == null;
     }
 
   /**
    * The standard "not applicable" value. This value is valid for any variable that is
    * "optional", i.e. that (has an ancestor that) defines a condition.
    */
-  public static final VarValueDef NA = new VarValueDef( "NA");
+  public static final VarValueDef NA = new VarValueDef( null, Type.VALID, true);
 
   private String name_;
   private Type type_;

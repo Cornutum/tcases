@@ -99,7 +99,7 @@ public class VarBindingDef
    */
   public boolean isNA()
     {
-    return VarValueDef.isNA( valueDef_);
+    return valueDef_ != null && valueDef_.isNA();
     }
 
   public boolean equals( Object object)

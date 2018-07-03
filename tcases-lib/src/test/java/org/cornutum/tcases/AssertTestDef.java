@@ -134,7 +134,8 @@ public final class AssertTestDef
       testCaseBinding != null
       && Objects.equals( binding.getType(), testCaseBinding.getType())
       && Objects.equals( binding.getValue(), testCaseBinding.getValue())
-      && Objects.equals( binding.isValueValid(), testCaseBinding.isValueValid());
+      && Objects.equals( binding.isValueValid(), testCaseBinding.isValueValid())
+      && Objects.equals( binding.isValueNA(), testCaseBinding.isValueNA());
     }
 
   /**

@@ -147,7 +147,14 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
     {
     xmlWriter_.writeTagStart( VAR_TAG);
     xmlWriter_.writeAttribute( NAME_ATR, binding.getVar());
-    xmlWriter_.writeAttribute( VALUE_ATR, binding.getValue());
+    if( binding.isValueNA())
+      {
+      xmlWriter_.writeAttribute( NA_ATR, "true");
+      }
+    else
+      {
+      xmlWriter_.writeAttribute( VALUE_ATR, binding.getValue());
+      }
     if( !binding.isValueValid())
       {
       xmlWriter_.writeAttribute( FAILURE_ATR, "true");

@@ -27,6 +27,7 @@ public final class SystemTestDoc
 
   public static final String FAILURE_ATR   = "failure";
   public static final String ID_ATR        = "id";
+  public static final String NA_ATR        = "NA";
   public static final String NAME_ATR      = "name";
   public static final String SYSTEM_ATR    = "system";
   public static final String TYPE_ATR      = "type";
