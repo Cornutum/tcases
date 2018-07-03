@@ -10,11 +10,10 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
-import org.apache.commons.lang3.ObjectUtils;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Defines test cases for a specific function.
@@ -113,16 +112,13 @@ public class FunctionTestDef extends Annotated
     return i < testCount? i : -1;
     }
 
-  @SuppressWarnings("deprecation")
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ ObjectUtils.hashCode( getName())
-      ^ testCases_.hashCode();
+      ^ Objects.hashCode( getName());
     }
 
-  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     FunctionTestDef other =
@@ -132,8 +128,7 @@ public class FunctionTestDef extends Annotated
 
     return
       other != null
-      && ObjectUtils.equals( getName(), other.getName())
-      && testCases_.equals( other.testCases_);
+      && Objects.equals( getName(), other.getName());
     }
 
   public String toString()

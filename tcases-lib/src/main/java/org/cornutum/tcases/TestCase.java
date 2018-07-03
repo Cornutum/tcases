@@ -12,13 +12,11 @@ import org.cornutum.tcases.util.ToString;
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
-import org.apache.commons.collections4.SetUtils;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -160,10 +158,9 @@ public class TestCase extends Annotated implements Comparable<TestCase>
       ( varBindings_.iterator(),
         new Predicate<VarBinding>()
         {
-        @SuppressWarnings("deprecation")
         public boolean evaluate( VarBinding binding)
           {
-          return ObjectUtils.equals( binding.getType(), type);
+          return Objects.equals( binding.getType(), type);
           }
         });
     }
@@ -178,10 +175,9 @@ public class TestCase extends Annotated implements Comparable<TestCase>
       ( varBindings_,
         new Predicate<VarBinding>()
         {
-        @SuppressWarnings("deprecation")
         public boolean evaluate( VarBinding binding)
           {
-          return ObjectUtils.equals( binding.getVar(), name);
+          return Objects.equals( binding.getVar(), name);
           }
         });
     }
@@ -224,8 +220,7 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     {
     return
       getClass().hashCode()
-      ^ id_
-      ^ new HashSet<VarBinding>(varBindings_).hashCode();
+      ^ id_;
     }
 
   public boolean equals( Object object)
@@ -237,8 +232,7 @@ public class TestCase extends Annotated implements Comparable<TestCase>
 
     return
       other != null
-      && id_ == other.id_
-      && SetUtils.isEqualSet( varBindings_, other.varBindings_);
+      && id_ == other.id_;
     }
 
   private int id_;

@@ -12,10 +12,10 @@ import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Defines the properties of a value for an {@link IVarDef input variable}.
@@ -189,7 +189,6 @@ public class VarValueDef extends Conditional
     return addProperties( Arrays.asList( properties));
     }
 
-  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     VarValueDef other =
@@ -199,17 +198,16 @@ public class VarValueDef extends Conditional
 
     return
       other != null
-      && ObjectUtils.equals( other.getName(), getName())
-      && ObjectUtils.equals( other.getType(), getType());
+      && Objects.equals( other.getName(), getName())
+      && Objects.equals( other.getType(), getType());
     }
 
-  @SuppressWarnings("deprecation")
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ ObjectUtils.hashCode( getName())
-      ^ ObjectUtils.hashCode( getType());
+      ^ Objects.hashCode( getName())
+      ^ Objects.hashCode( getType());
     }
   
   public String toString()

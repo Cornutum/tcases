@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Provides methods for verifying test cases definitions.
@@ -117,7 +118,7 @@ public final class AssertTestDef
          )
       {
       VarBindingDef binding = bindings.next();
-      includes = testCaseIncludes( testCase, new VarBinding( binding.getVarDef(), binding.getValueDef()));
+      includes = testCaseIncludes( testCase, new VarBinding( binding));
       }
 
     return includes;
@@ -128,7 +129,12 @@ public final class AssertTestDef
    */
   private static boolean testCaseIncludes( TestCase testCase, VarBinding binding)
     {
-    return binding.equals( testCase.getVarBinding( binding.getVar()));
+    VarBinding testCaseBinding = testCase.getVarBinding( binding.getVar());
+    return
+      testCaseBinding != null
+      && Objects.equals( binding.getType(), testCaseBinding.getType())
+      && Objects.equals( binding.getValue(), testCaseBinding.getValue())
+      && Objects.equals( binding.isValueValid(), testCaseBinding.isValueValid());
     }
 
   /**

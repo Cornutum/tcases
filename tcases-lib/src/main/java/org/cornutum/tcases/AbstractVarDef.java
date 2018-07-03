@@ -15,6 +15,7 @@ import static org.cornutum.tcases.DefUtils.*;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -310,6 +311,25 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
       ToString.getBuilder( this)
       .append( getPathName())
       .toString();
+    }
+
+  public boolean equals( Object object)
+    {
+    AbstractVarDef other =
+      object != null && object.getClass().equals( getClass())
+      ? (AbstractVarDef) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( other.getPathName(), getPathName());
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( getPathName());
     }
   
   private String name_;

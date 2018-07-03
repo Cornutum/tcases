@@ -9,6 +9,8 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.TcasesCommand.Options;
 import org.cornutum.tcases.io.SystemTestResources;
+import static org.cornutum.tcases.util.Asserts.*;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -1232,7 +1234,7 @@ public class TestTcasesCommand
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Gen-Test.xml");
-    assertEquals( "Test def generated", expectedTestDef, testDef);
+    assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
     }
 
   @Test
