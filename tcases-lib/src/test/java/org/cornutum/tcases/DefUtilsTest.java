@@ -13,12 +13,16 @@ public class DefUtilsTest
     {
     assertTrue(DefUtils.isIdentifier("x"));
     assertTrue(DefUtils.isIdentifier("1_Bar-1"));
+    assertTrue(DefUtils.isIdentifier("あ"));
+    assertTrue(DefUtils.isIdentifier("Mañana_Schrödinger"));
+    assertTrue(DefUtils.isIdentifier("123456789"));
 
     assertFalse(DefUtils.isIdentifier(null));
     assertFalse(DefUtils.isIdentifier(""));
     assertFalse(DefUtils.isIdentifier("+"));
     assertFalse(DefUtils.isIdentifier("("));
-    assertFalse(DefUtils.isIdentifier("あ"));
+    assertFalse(DefUtils.isIdentifier("Mañana, Schrödinger"));
+    assertFalse(DefUtils.isIdentifier("123456789¥"));
     }
 
   @Test

@@ -99,7 +99,7 @@ public abstract class DefUtils
       }
     }
 
-  private static final Pattern identifierRegex_ = Pattern.compile( "[\\w\\-]+");
+  private static final Pattern identifierRegex_ = Pattern.compile( "[\\p{Alpha}\\p{Digit}_\\-]+", Pattern.UNICODE_CHARACTER_CLASS);
   private static final Pattern varValueRegex_ = Pattern.compile( "([^\\p{Cntrl}]|\\s)*");
   }
 
