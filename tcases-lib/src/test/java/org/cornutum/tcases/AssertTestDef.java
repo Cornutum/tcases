@@ -118,7 +118,7 @@ public final class AssertTestDef
          )
       {
       VarBindingDef binding = bindings.next();
-      includes = testCaseIncludes( testCase, new VarBinding( binding));
+      includes = testCaseIncludes( testCase, VarBinding.create( binding));
       }
 
     return includes;
@@ -134,8 +134,7 @@ public final class AssertTestDef
       testCaseBinding != null
       && Objects.equals( binding.getType(), testCaseBinding.getType())
       && Objects.equals( binding.getValue(), testCaseBinding.getValue())
-      && Objects.equals( binding.isValueValid(), testCaseBinding.isValueValid())
-      && Objects.equals( binding.isValueNA(), testCaseBinding.isValueNA());
+      && Objects.equals( binding.isValueValid(), testCaseBinding.isValueValid());
     }
 
   /**

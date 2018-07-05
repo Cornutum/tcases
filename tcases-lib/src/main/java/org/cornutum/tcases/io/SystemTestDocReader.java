@@ -638,7 +638,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
 
       VarBinding binding =
         na
-        ? VarBinding.notApplicable( requireIdPath( attributes, NAME_ATR), parent.getType())
+        ? new VarNaBinding( requireIdPath( attributes, NAME_ATR), parent.getType())
         : new VarBinding( requireIdPath( attributes, NAME_ATR), parent.getType(), valueAtr);
 
       TestCaseHandler testCaseHandler = getTestCaseHandler();

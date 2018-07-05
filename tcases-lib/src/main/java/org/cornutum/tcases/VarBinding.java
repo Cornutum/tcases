@@ -41,48 +41,34 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public VarBinding( String varName, String varType, String valueName)
     {
-    this( varName, varType, valueName, false);
-    }
-  
-  /**
-   * Creates a new VarBinding object.
-   */
-  public VarBinding( IVarDef varDef, VarValueDef valueDef)
-    {
-    this( varDef.getPathName(), varDef.getType(), valueDef.getName(), valueDef.isNA());
-    setValueValid( valueDef.getType().isValid());
-    setVarDef( varDef);
-    }
-  
-  /**
-   * Creates a new "not applicable" VarBinding object.
-   */
-  public static VarBinding notApplicable( String varName, String varType)
-    {
-    return new VarBinding( varName, varType, null, true);
-    }
-  
-  /**
-   * Creates a new VarBinding object.
-   */
-  private VarBinding( String varName, String varType, String valueName, boolean valueNA)
-    {
     setVar( varName);
     setType( varType);
-    if( !valueNA)
-      {
-      setValue( valueName);
-      }
+    setValue( valueName);
     setValueValid( true);
-    valueNA_ = valueNA;
     }
   
   /**
    * Creates a new VarBinding object.
    */
-  public VarBinding( VarBindingDef def)
+  public static VarBinding create( IVarDef varDef, VarValueDef valueDef)
     {
-    this( def.getVarDef(), def.getValueDef());
+    VarBinding binding = 
+      valueDef.isNA()
+      ? new VarNaBinding( varDef.getPathName(), varDef.getType())
+      : new VarBinding( varDef.getPathName(), varDef.getType(), valueDef.getName());
+
+    binding.setValueValid( valueDef.isValid());
+    binding.setVarDef( varDef);
+
+    return binding;
+    }
+  
+  /**
+   * Creates a new VarBinding object.
+   */
+  public static VarBinding create( VarBindingDef def)
+    {
+    return create( def.getVarDef(), def.getValueDef());
     }
 
   /**
@@ -109,7 +95,6 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     {
     assertVarValue( valueName);
     value_ = valueName;
-    valueNA_ = false;
     }
 
   /**
@@ -158,7 +143,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
    */
   public boolean isValueNA()
     {
-    return valueNA_;
+    return false;
     }
 
   /**
@@ -236,6 +221,5 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   private String varType_;
   private String value_;
   private boolean valueValid_;
-  private boolean valueNA_;
   private IVarDef varDef_;
   }

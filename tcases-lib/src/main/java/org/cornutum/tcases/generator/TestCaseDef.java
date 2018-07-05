@@ -447,7 +447,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     TestCase testCase = new TestCase( id);
     for( VarDef var : bindings_.keySet())
       {
-      testCase.addVarBinding( new VarBinding( var, bindings_.get( var)));
+      testCase.addVarBinding( VarBinding.create( var, bindings_.get( var)));
       }
 
     // Annotate test case with its property set
