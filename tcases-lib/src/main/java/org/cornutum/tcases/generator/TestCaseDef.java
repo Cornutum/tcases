@@ -232,7 +232,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
       }
 
     // Adding "not applicable" binding?
-    else if( value != VarValueDef.NA)
+    else if( !value.isNA())
       {
       // No, is this variable applicable to the current test case?
       if( !var.getEffectiveCondition().compatible( properties_))
@@ -341,7 +341,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
    */
   public boolean isNA( VarDef var)
     {
-    return VarValueDef.isNA( getBinding( var));
+    return getBinding( var).isNA();
     }
 
   /**
@@ -375,7 +375,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
         {
         VarDef var = vars.next();
         VarValueDef value = getBinding( var);
-        if( !VarValueDef.isNA( value))
+        if( !value.isNA())
           {
           conditions.add( var.getEffectiveCondition());
           conditions.add( Conditional.acquireCondition( value));
@@ -447,7 +447,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     TestCase testCase = new TestCase( id);
     for( VarDef var : bindings_.keySet())
       {
-      testCase.addVarBinding( new VarBinding( var, bindings_.get( var)));
+      testCase.addVarBinding( VarBinding.create( var, bindings_.get( var)));
       }
 
     // Annotate test case with its property set

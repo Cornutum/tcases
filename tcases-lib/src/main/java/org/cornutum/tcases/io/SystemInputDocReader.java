@@ -1125,7 +1125,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
           once? VarValueDef.Type.ONCE :
           VarValueDef.Type.VALID);
 
-      if( getAttribute( attributes, PROPERTY_ATR) != null && !value.getType().isValid())
+      if( getAttribute( attributes, PROPERTY_ATR) != null && !value.isValid())
         {
         throw new SAXParseException( "Can't define properties for a failure value", getDocumentLocator()); 
         }
@@ -1199,7 +1199,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
         throw new SAXParseException( "No property names specified", getDocumentLocator()); 
         }
 
-      if( !value.getType().isValid())
+      if( !value.isValid())
         {
         throw new SAXParseException( "Can't define properties for a failure value", getDocumentLocator()); 
         }

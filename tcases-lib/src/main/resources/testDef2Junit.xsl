@@ -82,6 +82,7 @@
 
         <xsl:for-each select="Input/Var">
           <xsl:variable name="failureValue" select="translate(@failure,$uppercase,$lowercase)"/>
+          <xsl:variable name="naValue" select="translate(@NA,$uppercase,$lowercase)"/>
           <xsl:text>   * &lt;TR&gt;&lt;TD&gt; </xsl:text>
           <xsl:value-of select="@name"/>
           <xsl:text> &lt;/TD&gt; &lt;TD&gt; </xsl:text>
@@ -90,6 +91,9 @@
               <xsl:text>&lt;FONT color="red"&gt; </xsl:text>
               <xsl:value-of select="@value"/>
               <xsl:text>  &lt;/FONT&gt;</xsl:text>
+            </xsl:when>
+            <xsl:when test="$naValue='true' or $naValue='yes'">
+                <xsl:text>(not applicable)</xsl:text>
             </xsl:when>
             <xsl:otherwise>
               <xsl:value-of select="@value"/>
@@ -125,11 +129,20 @@
     // Given...</xsl:text>
         <xsl:if test="count(Input/Var/Has) > 0 or $valuesValue='true' or $valuesValue='yes'">
           <xsl:for-each select="Input/Var">
+              <xsl:variable name="naValue" select="translate(@NA,$uppercase,$lowercase)"/>
               <xsl:text>
     //</xsl:text>
               <xsl:text>
-    //   </xsl:text> <xsl:value-of select="@name"/> <xsl:text> = </xsl:text> <xsl:value-of select="@value"/>
-              <xsl:for-each select="Has">
+    //   </xsl:text> <xsl:value-of select="@name"/> <xsl:text> = </xsl:text>
+          <xsl:choose>
+            <xsl:when test="$naValue='true' or $naValue='yes'">
+                <xsl:text>(not applicable)</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="@value"/>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:for-each select="Has">
                   <xsl:text>
     //     </xsl:text> <xsl:value-of select="@name"/> <xsl:text> = </xsl:text> <xsl:value-of select="@value"/>
               </xsl:for-each>

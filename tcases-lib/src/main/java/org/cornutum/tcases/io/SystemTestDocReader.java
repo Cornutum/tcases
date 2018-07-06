@@ -617,11 +617,29 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       {
       InputHandler parent = (InputHandler) getParent();
 
+      String valueAtr = getAttribute( attributes, VALUE_ATR);
+      String naAtr = StringUtils.trimToNull( getAttribute( attributes, NA_ATR));
+      boolean na = naAtr != null && BooleanUtils.toBoolean( naAtr);
+
+      if( valueAtr == null && !na)
+        {
+        throw
+          new SAXParseException
+          ( "No \"value\" attribute specified",
+            getDocumentLocator()); 
+        }
+      else if( valueAtr != null && na)
+        {
+        throw
+          new SAXParseException
+          ( "No \"value\" attribute allowed for a variable that is \"not applicable\"",
+            getDocumentLocator()); 
+        }
+
       VarBinding binding =
-        new VarBinding
-        ( requireIdPath( attributes, NAME_ATR),
-          parent.getType(),
-          requireAttribute( attributes, VALUE_ATR));
+        na
+        ? new VarNaBinding( requireIdPath( attributes, NAME_ATR), parent.getType())
+        : new VarBinding( requireIdPath( attributes, NAME_ATR), parent.getType(), valueAtr);
 
       TestCaseHandler testCaseHandler = getTestCaseHandler();
       TestCase testCase = testCaseHandler.getTestCase();
@@ -687,7 +705,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
      */
     protected Set<String> addAttributes( Set<String> attributes)
       {
-      return addAttributeList( super.addAttributes( attributes), NAME_ATR, VALUE_ATR, FAILURE_ATR);
+      return addAttributeList( super.addAttributes( attributes), NAME_ATR, VALUE_ATR, FAILURE_ATR, NA_ATR);
       }
 
     private VarBinding binding_;

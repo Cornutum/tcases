@@ -587,7 +587,7 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
       VarDef var = naVars.next();
       if( var.isOptional())
         {
-        na.add( new Tuple( new VarBindingDef( var, VarValueDef.NA)));
+        na.add( new Tuple( new VarBindingDef( var, VarNaDef.NA)));
         }
       }
 

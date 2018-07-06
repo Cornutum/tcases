@@ -12,7 +12,6 @@ public class DefUtilsTest
   public void isIdentifier()
     {
     assertTrue(DefUtils.isIdentifier("x"));
-    assertTrue(DefUtils.isIdentifier(VarValueDef.NA.getName()));
     assertTrue(DefUtils.isIdentifier("1_Bar-1"));
     assertTrue(DefUtils.isIdentifier("あ"));
     assertTrue(DefUtils.isIdentifier("Mañana_Schrödinger"));
@@ -36,7 +35,6 @@ public class DefUtilsTest
     assertTrue(DefUtils.isVarValue("\t"));
 
     assertTrue(DefUtils.isVarValue("x"));
-    assertTrue(DefUtils.isVarValue(VarValueDef.NA.getName()));
     assertTrue(DefUtils.isVarValue("1_Bar-1"));
     assertTrue(DefUtils.isVarValue(""));
     assertTrue(DefUtils.isVarValue(" "));

@@ -50,19 +50,25 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   /**
    * Creates a new VarBinding object.
    */
-  public VarBinding( IVarDef varDef, VarValueDef valueDef)
+  public static VarBinding create( IVarDef varDef, VarValueDef valueDef)
     {
-    this( varDef.getPathName(), varDef.getType(), valueDef.getName());
-    setValueValid( valueDef.getType().isValid());
-    setVarDef( varDef);
+    VarBinding binding = 
+      valueDef.isNA()
+      ? new VarNaBinding( varDef.getPathName(), varDef.getType())
+      : new VarBinding( varDef.getPathName(), varDef.getType(), valueDef.getName());
+
+    binding.setValueValid( valueDef.isValid());
+    binding.setVarDef( varDef);
+
+    return binding;
     }
   
   /**
    * Creates a new VarBinding object.
    */
-  public VarBinding( VarBindingDef def)
+  public static VarBinding create( VarBindingDef def)
     {
-    this( def.getVarDef(), def.getValueDef());
+    return create( def.getVarDef(), def.getValueDef());
     }
 
   /**
@@ -133,11 +139,11 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     }
 
   /**
-   * Returns true if this variable is bound to the standard {@link VarValueDef#NA "not applicable"} value.
+   * Returns true if this binding indicates a "not applicable" condition for this variable.
    */
   public boolean isValueNA()
     {
-    return VarValueDef.NA.getName().equals( getValue());
+    return false;
     }
 
   /**

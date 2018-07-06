@@ -99,7 +99,7 @@ public class VarBindingDef
    */
   public boolean isNA()
     {
-    return VarValueDef.isNA( valueDef_);
+    return valueDef_ != null && valueDef_.isNA();
     }
 
   public boolean equals( Object object)
@@ -129,7 +129,7 @@ public class VarBindingDef
       new StringBuilder()
       .append( getVarDef()==null? ":" : getVarDef().getName())
       .append( '=')
-      .append( getValueDef()==null? ":" : getValueDef().getName())
+      .append( getValueDef()==null? ":" : getValueDef().isNA()? "N/A" :getValueDef().getName())
       .toString();
     }
 

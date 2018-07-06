@@ -118,7 +118,7 @@ public final class AssertTestDef
          )
       {
       VarBindingDef binding = bindings.next();
-      includes = testCaseIncludes( testCase, new VarBinding( binding));
+      includes = testCaseIncludes( testCase, VarBinding.create( binding));
       }
 
     return includes;
