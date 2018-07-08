@@ -15,8 +15,10 @@
 
   * **Expanded characters allowed in names and values**
     * Names for input model elements like `System`, `Function`, and `Var` can now contain any Unicode alphabetic character.
+      (See [DefUtils.isIdentifier()](tcases-lib/src/main/java/org/cornutum/tcases/DefUtils.java#L22).)
     * Names for variable `Value` elements can now contain nearly any character -- only XML markup characters disallowed.
       Even empty strings are allowed.
+      (See [DefUtils.isVarValue()](tcases-lib/src/main/java/org/cornutum/tcases/DefUtils.java#L56).)
 
   * **Property annotations**: The `Value` properties that characterize a test case can be useful metadata for further transformations of test case definitions.
     So Tcases now automatially attaches an output annotation named `properties` to each `TestCase`.

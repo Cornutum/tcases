@@ -51,7 +51,7 @@ public abstract class DefUtils
     }
 
   /**
-   * Returns true if the given string is a valid identifier.
+   * Returns true if the given string is a valid variable value.
    */
   public static boolean isVarValue( String val)
     {
