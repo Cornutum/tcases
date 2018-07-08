@@ -2,9 +2,11 @@
 
 ## What's New? ##
 
-  * The latest version (Tcases 1.5.4) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
+  * The latest version (Tcases 2.0.0) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
 
-  * Tcases 1.5.4 includes [several improvements](ReleaseNotes.md) to existing features.
+  * Tcases 2.0.0 is a major release designed to open Tcases up to a much broader community of applications. The [features included](ReleaseNotes.md)
+    will be especially helpful for applications that use the Tcases API to embed Tcases capabilities into larger programs.
+    Some changes are not compatible with previous releases.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
