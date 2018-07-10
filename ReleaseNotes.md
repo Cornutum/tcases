@@ -21,7 +21,7 @@
       (See [DefUtils.isVarValue()](tcases-lib/src/main/java/org/cornutum/tcases/DefUtils.java#L56).)
 
   * **Property annotations**: The `Value` properties that characterize a test case can be useful metadata for further transformations of test case definitions.
-    So Tcases now automatially attaches an output annotation named `properties` to each `TestCase`.
+    So Tcases now automatically attaches an output annotation named `properties` to each `TestCase`.
 
   * **"Not applicable" variables**: Tcases may designate a variable as ["not applicable"](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#varConditions)
     to a test case. But the way this was done was a bit of a hack. Previously, such variables would just be assigned a special value of `"NA"`. But
@@ -42,6 +42,9 @@
       * To designate "not applicable" variables, replace all instances of `<Var name="..." value="NA"/>` with `<Var name="..." NA="true"/>`.
         Otherwise, for system test documents used to define base test case inputs, test cases containing `"NA"` values may not be
         preserved.
+    * XSLT transforms
+      * See previous note. System test documents now use a different XML markup to designate "not applicable" variable. Any transform
+        that gives special treatment to `value="NA"` attributes should change to recognize the `NA="true"` attribute instead.
 
 ## 1.5.4 ##
 
