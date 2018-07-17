@@ -8,6 +8,8 @@
 
 package org.cornutum.tcases;
 
+import org.cornutum.tcases.conditions.ICondition;
+
 /**
  * Builds {@link VarDef} instances.
  *
@@ -60,11 +62,41 @@ public class VarDefBuilder
     }
 
   /**
-   * Changes the function name.
+   * Changes the variable name.
    */
   public VarDefBuilder name( String name)
     {
     varDef_.setName( name);
+    return this;
+    }
+
+  /**
+   * Changes the variable type.
+   */
+  public VarDefBuilder type( String type)
+    {
+    varDef_.setType( type);
+    return this;
+    }
+
+  /**
+   * Changes the variable condition.
+   */
+  public VarDefBuilder when( ICondition condition)
+    {
+    varDef_.setCondition( condition);
+    return this;
+    }
+
+  /**
+   * Adds variable values.
+   */
+  public VarDefBuilder values( VarValueDef... values)
+    {
+    for( VarValueDef value : values)
+      {
+      varDef_.addValue( value);
+      }
     return this;
     }
 
