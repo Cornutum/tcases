@@ -24,7 +24,7 @@ public class SystemTestDefBuilder
     }
 
   /**
-   * Returns the current function input definition.
+   * Returns the current system test definition.
    */
   public SystemTestDef build()
     {
@@ -32,7 +32,7 @@ public class SystemTestDefBuilder
     }
 
   /**
-   * Starts building a new function input definition.
+   * Starts building a new system test definition.
    */
   public SystemTestDefBuilder start()
     {
@@ -41,7 +41,7 @@ public class SystemTestDefBuilder
     }
 
   /**
-   * Changes the function name.
+   * Changes the system name.
    */
   public SystemTestDefBuilder name( String name)
     {

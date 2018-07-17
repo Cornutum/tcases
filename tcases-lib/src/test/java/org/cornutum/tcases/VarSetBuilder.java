@@ -62,7 +62,7 @@ public class VarSetBuilder
     }
 
   /**
-   * Changes the function name.
+   * Changes the variable set name.
    */
   public VarSetBuilder name( String name)
     {
