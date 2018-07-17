@@ -12,12 +12,12 @@ package org.cornutum.tcases;
  * Builds {@link TestCase} instances.
  *
  */
-public class TCaseBuilder
+public class TestCaseBuilder
   {
   /**
    * Creates a new TCaseBuilder object.
    */
-  public TCaseBuilder()
+  public TestCaseBuilder()
     {
     start();
     }
@@ -33,7 +33,7 @@ public class TCaseBuilder
   /**
    * Starts building a new test case.
    */
-  public TCaseBuilder start()
+  public TestCaseBuilder start()
     {
     testCase_ = new TestCase(0);
     return this;
@@ -42,7 +42,7 @@ public class TCaseBuilder
   /**
    * Changes the test case id.
    */
-  public TCaseBuilder id( int id)
+  public TestCaseBuilder id( int id)
     {
     testCase_.setId( id);
     return this;
@@ -51,7 +51,7 @@ public class TCaseBuilder
   /**
    * Adds a variable binding to the test case.
    */
-  public TCaseBuilder bind( VarBinding binding)
+  public TestCaseBuilder bind( VarBinding binding)
     {
     testCase_.addVarBinding( binding);
     return this;
@@ -60,7 +60,7 @@ public class TCaseBuilder
   /**
    * Adds a variable binding to the test case.
    */
-  public TCaseBuilder bind( String name, String value, String type, boolean isValid)
+  public TestCaseBuilder bind( String name, String value, String type, boolean isValid)
     {
     VarBinding binding = new VarBinding( name, type, value);
     binding.setValueValid( isValid);
@@ -70,7 +70,7 @@ public class TCaseBuilder
   /**
    * Adds a variable binding to the test case.
    */
-  public TCaseBuilder bind( String name, String value)
+  public TestCaseBuilder bind( String name, String value)
     {
     return bind( name, value, IVarDef.ARG);
     }
@@ -78,7 +78,7 @@ public class TCaseBuilder
   /**
    * Adds a variable binding to the test case.
    */
-  public TCaseBuilder bind( String name, String value, String type)
+  public TestCaseBuilder bind( String name, String value, String type)
     {
     return bind( name, value, type, true);
     }
@@ -86,9 +86,25 @@ public class TCaseBuilder
   /**
    * Adds a variable binding to the test case.
    */
-  public TCaseBuilder bind( String name, String value, boolean isValid)
+  public TestCaseBuilder bind( String name, String value, boolean isValid)
     {
     return bind( name, value, IVarDef.ARG, isValid);
+    }
+
+  /**
+   * Declares a variable "not applicable" to the test case.
+   */
+  public TestCaseBuilder notApplicable( String name)
+    {
+    return notApplicable( name, IVarDef.ARG);
+    }
+
+  /**
+   * Declares a variable "not applicable" to the test case.
+   */
+  public TestCaseBuilder notApplicable( String name, String type)
+    {
+    return bind( new VarNaBinding( name, type));
     }
 
   /**
