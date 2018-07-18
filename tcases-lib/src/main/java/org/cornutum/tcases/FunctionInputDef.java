@@ -45,10 +45,7 @@ public class FunctionInputDef extends Annotated
    */
   public void setName( String name)
     {
-    if( name != null)
-      {
-      assertIdentifier( name);
-      }
+    assertIdentifier( name);
     name_ = name;
     }
 

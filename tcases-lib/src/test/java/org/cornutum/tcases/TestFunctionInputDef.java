@@ -21,7 +21,7 @@ public class TestFunctionInputDef
     {
     // Given...
     FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDef( "A.B.C.D");
+    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
     
     FunctionInputDef functionInputDef = functionInputDefBuilder.build();
     IVarDef var;
@@ -56,7 +56,7 @@ public class TestFunctionInputDef
     {
     // Given...
     FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDef( "A.B.C.D");
+    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
     
     FunctionInputDef functionInputDef = functionInputDefBuilder.build();
     IVarDef var;
@@ -68,7 +68,7 @@ public class TestFunctionInputDef
     assertEquals( "Descendant", true, var != null);
 
     // Given...
-    functionInputDefBuilder.varDef( "X");
+    functionInputDefBuilder.varDefAtPath( "X");
     functionInputDef = functionInputDefBuilder.build();
 
     // When...
@@ -83,7 +83,7 @@ public class TestFunctionInputDef
     {
     // Given...
     FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDef( "A.B.C.D");
+    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
     
     FunctionInputDef functionInputDef = functionInputDefBuilder.build();
     IVarDef var;
@@ -106,7 +106,7 @@ public class TestFunctionInputDef
     {
     // Given...
     FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDef( "A.B.C.D");
+    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
     
     FunctionInputDef functionInputDef = functionInputDefBuilder.build();
     VarDef var;
@@ -135,7 +135,7 @@ public class TestFunctionInputDef
     {
     // Given...
     FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDef( "A.B.C.D");
+    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
     
     FunctionInputDef functionInputDef = functionInputDefBuilder.build();
     VarDef var;
@@ -147,7 +147,7 @@ public class TestFunctionInputDef
     assertEquals( "Descendant", true, var != null);
 
     // Given...
-    functionInputDefBuilder.varDef( "X");
+    functionInputDefBuilder.varDefAtPath( "X");
     functionInputDef = functionInputDefBuilder.build();
 
     // When...

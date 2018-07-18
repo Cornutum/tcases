@@ -55,7 +55,7 @@ public class VarDefBuilder
     {
     varDef_ =
       varDef == null
-      ? new VarDef()
+      ? new VarDef( "V")
       : varDef;
     
     return this;

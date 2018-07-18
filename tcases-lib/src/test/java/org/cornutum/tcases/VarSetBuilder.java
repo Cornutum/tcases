@@ -10,6 +10,8 @@ package org.cornutum.tcases;
 
 import java.util.Arrays;
 
+import org.cornutum.tcases.conditions.ICondition;
+
 /**
  * Builds {@link VarSet} instances.
  *
@@ -55,7 +57,7 @@ public class VarSetBuilder
     {
     varSet_ =
       varSet == null
-      ? new VarSet()
+      ? new VarSet( "V")
       : varSet;
     
     return this;
@@ -71,9 +73,49 @@ public class VarSetBuilder
     }
 
   /**
-   * Adds a new {@link VarSet} with the given path name.
+   * Changes the variable set type.
    */
-  public VarSetBuilder varSet( String[] path)
+  public VarSetBuilder type( String type)
+    {
+    varSet_.setType( type);
+    return this;
+    }
+
+  /**
+   * Changes the variable set condition.
+   */
+  public VarSetBuilder when( ICondition condition)
+    {
+    varSet_.setCondition( condition);
+    return this;
+    }
+
+  /**
+   * Adds variable set members.
+   */
+  public VarSetBuilder members( IVarDef... members)
+    {
+    for( IVarDef member : members)
+      {
+      varSet_.addMember( member);
+      }
+    return this;
+    }
+
+  /**
+   * Adds a new {@link VarSet} with the given path name and returns a builder
+   * for the new <CODE>VarSet</CODE>.
+   */
+  public VarSetBuilder varSetAtPath( String pathName)
+    {
+    return varSetAtPath( DefUtils.toPath( pathName));
+    }
+
+  /**
+   * Adds a new {@link VarSet} with the given path name and returns a builder
+   * for the new <CODE>VarSet</CODE>.
+   */
+  public VarSetBuilder varSetAtPath( String[] path)
     {
     VarSet varSet = null;
     if( path != null && path.length > 0)
@@ -96,19 +138,28 @@ public class VarSetBuilder
     }
 
   /**
-   * Adds a new {@link VarDef} with the given path name.
+   * Adds a new {@link VarDef} with the given path name and returns a builder
+   * for the new <CODE>VarDef</CODE>.
    */
-  public VarDefBuilder varDef( String pathName)
+  public VarDefBuilder varDefAtPath( String pathName)
+    {
+    return varDefAtPath( DefUtils.toPath( pathName));
+    }
+
+  /**
+   * Adds a new {@link VarDef} with the given path name and returns a builder
+   * for the new <CODE>VarDef</CODE>.
+   */
+  public VarDefBuilder varDefAtPath( String[] path)
     {
     VarDefBuilder varDefBuilder = null;
-    String[] path = DefUtils.toPath( pathName);
     if( path != null && path.length > 0)
       {
       String varDefName = path[ path.length - 1];
-      VarSetBuilder parentBuilder = varSet( Arrays.copyOfRange( path, 0, path.length - 1));
+      VarSetBuilder parentBuilder = varSetAtPath( Arrays.copyOfRange( path, 0, path.length - 1));
       if( parentBuilder != null)
         {
-        varDefBuilder = parentBuilder.varDef( varDefName);
+        varDefBuilder = parentBuilder.varDefAtPath( varDefName);
         }
       else
         {

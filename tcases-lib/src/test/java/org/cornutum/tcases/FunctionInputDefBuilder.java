@@ -21,7 +21,15 @@ public class FunctionInputDefBuilder
    */
   public FunctionInputDefBuilder()
     {
-    start();
+    this( null);
+    }
+  
+  /**
+   * Creates a new FunctionInputDefBuilder object.
+   */
+  public FunctionInputDefBuilder( FunctionInputDef functionInputDef)
+    {
+    start( functionInputDef);
     }
 
   /**
@@ -37,7 +45,19 @@ public class FunctionInputDefBuilder
    */
   public FunctionInputDefBuilder start()
     {
-    functionInputDef_ = new FunctionInputDef();
+    return start( null);
+    }
+
+  /**
+   * Starts building a new function input definition.
+   */
+  public FunctionInputDefBuilder start( FunctionInputDef functionInputDef)
+    {
+    functionInputDef_ =
+      functionInputDef == null
+      ? new FunctionInputDef( "F")
+      : functionInputDef;
+
     return this;
     }
 
@@ -51,17 +71,31 @@ public class FunctionInputDefBuilder
     }
 
   /**
-   * Adds a new {@link VarSet} with the given path name.
+   * Adds function input variables.
    */
-  public VarSetBuilder varSet( String pathName)
+  public FunctionInputDefBuilder vars( IVarDef... vars)
     {
-    return varSet( DefUtils.toPath( pathName));
+    for( IVarDef var : vars)
+      {
+      functionInputDef_.addVarDef( var);
+      }
+    return this;
     }
 
   /**
-   * Adds a new {@link VarSet} with the given path name.
+   * Adds a new {@link VarSet} with the given path name and returns a builder
+   * for the new <CODE>VarSet</CODE>.
    */
-  public VarSetBuilder varSet( String[] path)
+  public VarSetBuilder varSetAtPath( String pathName)
+    {
+    return varSetAtPath( DefUtils.toPath( pathName));
+    }
+
+  /**
+   * Adds a new {@link VarSet} with the given path name and returns a builder
+   * for the new <CODE>VarSet</CODE>.
+   */
+  public VarSetBuilder varSetAtPath( String[] path)
     {
     VarSet varSet = null;
     if( path != null && path.length > 0)
@@ -84,19 +118,28 @@ public class FunctionInputDefBuilder
     }
 
   /**
-   * Adds a new {@link VarDef} with the given path name.
+   * Adds a new {@link VarDef} with the given path name and returns a builder
+   * for the new <CODE>VarDef</CODE>.
    */
-  public VarDefBuilder varDef( String pathName)
+  public VarDefBuilder varDefAtPath( String pathName)
+    {
+    return varDefAtPath( DefUtils.toPath( pathName));
+    }
+
+  /**
+   * Adds a new {@link VarDef} with the given path name and returns a builder
+   * for the new <CODE>VarDef</CODE>.
+   */
+  public VarDefBuilder varDefAtPath( String[] path)
     {
     VarDefBuilder varDefBuilder = null;
-    String[] path = DefUtils.toPath( pathName);
     if( path != null && path.length > 0)
       {
       String varDefName = path[ path.length - 1];
-      VarSetBuilder parentBuilder = varSet( Arrays.copyOfRange( path, 0, path.length - 1));
+      VarSetBuilder parentBuilder = varSetAtPath( Arrays.copyOfRange( path, 0, path.length - 1));
       if( parentBuilder != null)
         {
-        varDefBuilder = parentBuilder.varDef( varDefName);
+        varDefBuilder = parentBuilder.varDefAtPath( varDefName);
         }
       else
         {
