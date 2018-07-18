@@ -8,7 +8,6 @@
 
 package org.cornutum.tcases;
 
-
 /**
  * Builds {@link SystemTestDef} instances.
  *
@@ -20,7 +19,15 @@ public class SystemTestDefBuilder
    */
   public SystemTestDefBuilder()
     {
-    start();
+    this( null);
+    }
+  
+  /**
+   * Creates a new SystemTestDefBuilder object.
+   */
+  public SystemTestDefBuilder( SystemTestDef systemTestDef)
+    {
+    start( systemTestDef);
     }
 
   /**
@@ -36,7 +43,19 @@ public class SystemTestDefBuilder
    */
   public SystemTestDefBuilder start()
     {
-    systemTestDef_ = new SystemTestDef();
+    return start( null);
+    }
+
+  /**
+   * Starts building a new system test definition.
+   */
+  public SystemTestDefBuilder start( SystemTestDef systemTestDef)
+    {
+    systemTestDef_ =
+      systemTestDef == null
+      ? new SystemTestDef( "S")
+      : systemTestDef;
+    
     return this;
     }
 
@@ -50,12 +69,15 @@ public class SystemTestDefBuilder
     }
 
   /**
-   * Adds the given function test definition.
+   * Adds system functions.
    */
-  public FunctionTestDefBuilder function( FunctionTestDef function)
+  public SystemTestDefBuilder functions( FunctionTestDef... functions)
     {
-    systemTestDef_.addFunctionTestDef( function);
-    return new FunctionTestDefBuilder( function);
+    for( FunctionTestDef function : functions)
+      {
+      systemTestDef_.addFunctionTestDef( function);
+      }
+    return this;
     }
 
   SystemTestDef systemTestDef_;

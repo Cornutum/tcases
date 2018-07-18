@@ -49,11 +49,27 @@ public class TestCaseBuilder
     }
 
   /**
-   * Adds a variable binding to the test case.
+   * Adds variable bindings to the test case.
    */
-  public TestCaseBuilder bind( VarBinding binding)
+  public TestCaseBuilder bind( VarBinding... bindings)
     {
-    testCase_.addVarBinding( binding);
+    for( VarBinding binding : bindings)
+      {
+      testCase_.addVarBinding( binding);
+      }
+    return this;
+    }
+
+  /**
+   * Adds variable bindings of the given type to the test case.
+   */
+  public TestCaseBuilder bind( String type, VarBinding... bindings)
+    {
+    for( VarBinding binding : bindings)
+      {
+      binding.setType( type);
+      testCase_.addVarBinding( binding);
+      }
     return this;
     }
 

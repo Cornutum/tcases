@@ -45,7 +45,7 @@ public class FunctionTestDefBuilder
     {
     functionTestDef_ =
       function == null
-      ? new FunctionTestDef()
+      ? new FunctionTestDef( "F")
       : function;
     return this;
     }
@@ -64,6 +64,18 @@ public class FunctionTestDefBuilder
   public FunctionTestDefBuilder name( String name)
     {
     functionTestDef_.setName( name);
+    return this;
+    }
+
+  /**
+   * Adds function test cases.
+   */
+  public FunctionTestDefBuilder testCases( TestCase... testCases)
+    {
+    for( TestCase testCase : testCases)
+      {
+      functionTestDef_.addTestCase( testCase);
+      }
     return this;
     }
 
