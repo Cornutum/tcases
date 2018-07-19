@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeSet;
 
 /**
@@ -160,6 +161,25 @@ public class FunctionInputDef extends Annotated
       var != null && var.getClass().equals( VarDef.class)
       ? (VarDef) var
       : null;
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( getName());
+    }
+
+  public boolean equals( Object object)
+    {
+    FunctionInputDef other =
+      object != null && object.getClass().equals( getClass())
+      ? (FunctionInputDef) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( getName(), other.getName());
     }
 
   public String toString()

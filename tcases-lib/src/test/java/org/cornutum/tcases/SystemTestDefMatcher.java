@@ -24,6 +24,7 @@ public class SystemTestDefMatcher implements Matcher<SystemTestDef>
   public void assertEqual( String label, SystemTestDef expected, SystemTestDef actual)
     {
     assertEquals( label + ", name", expected.getName(), actual.getName());
-    assertSetEquals( label + ", system=" + expected.getName(), expected.getFunctionTestDefs(), actual.getFunctionTestDefs(), Matchers.functionTestDefMatcher);
+    assertSetEquals( label + ", system=" + expected.getName() + ", functions", expected.getFunctionTestDefs(), actual.getFunctionTestDefs(), Matchers.functionTestDefMatcher);
+    assertMatches( label + ", system=" + expected.getName(), expected, actual, Matchers.annotatedMatcher);
     }
   }

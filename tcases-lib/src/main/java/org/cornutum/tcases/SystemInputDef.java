@@ -13,6 +13,7 @@ import static org.cornutum.tcases.DefUtils.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Defines the input space for all functions of a system.
@@ -110,6 +111,25 @@ public class SystemInputDef extends Annotated
     int i;
     for( i = 0; i < functionCount && !name.equals( functionInputDefs_.get(i).getName()); i++);
     return i < functionCount? i : -1;
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( getName());
+    }
+
+  public boolean equals( Object object)
+    {
+    SystemInputDef other =
+      object != null && object.getClass().equals( getClass())
+      ? (SystemInputDef) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( getName(), other.getName());
     }
 
   public String toString()
