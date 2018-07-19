@@ -56,7 +56,7 @@ public abstract class Asserts
     }
 
   /**
-   * Reports a failure if the actual set contains a different set of values than the expected collection.
+   * Reports a failure if the actual collection contains a different set of values than the expected collection.
    */
   public static <T> void assertSetEquals( String label, Iterable<T> expected, Iterable<T> actual)
     {
@@ -64,7 +64,7 @@ public abstract class Asserts
     }
 
   /**
-   * Reports a failure if the actual set contains a different set of values than the expected collection.
+   * Reports a failure if the actual collection contains a different set of values than the expected collection.
    */
   public static <T> void assertSetEquals( String label, Iterable<T> expected, Iterable<T> actual, Matcher<T> matcher)
     {
@@ -72,7 +72,7 @@ public abstract class Asserts
     }
   
   /**
-   * Reports a failure if the actual set contains a different set of values than the expected set.
+   * Reports a failure if the actual Collection contains a different set of values than the expected Collection.
    */
   public static <T> void assertSetsEqual( String label, Collection<T> expected, Collection<T> actual)
     {
@@ -173,7 +173,15 @@ public abstract class Asserts
     }
 
   /**
-   * Reports a failure if the actual collection contains a different set of values than the expected array.
+   * Reports a failure if the actual collection contains a different set of values than the expected collection.
+   */
+  public static <T> void assertSetEquals( String label, Iterator<T> expected, Iterator<T> actual)
+    {
+    assertSetEquals( label, expected, actual, null);
+    }
+
+  /**
+   * Reports a failure if the actual collection contains a different set of values than the expected collection.
    */
   public static <T> void assertSetEquals( String label, Iterator<T> expected, Iterator<T> actual, Matcher<T> matcher)
     {
