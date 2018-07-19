@@ -13,7 +13,6 @@ import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.VarValueDef;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Arrays;
@@ -21,6 +20,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Represents a set of {@link VarBindingDef input variable bindings}.
@@ -263,7 +263,6 @@ public class Tuple
     return compatible;
     }
 
-  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     Tuple other =
@@ -273,7 +272,7 @@ public class Tuple
 
     return
       other != null
-      && ObjectUtils.equals( other.bindings_, bindings_);
+      && Objects.equals( other.bindings_, bindings_);
     }
 
   public int hashCode()

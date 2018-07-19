@@ -11,9 +11,9 @@ import org.cornutum.tcases.PropertySet;
 import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections4.iterators.SingletonIterator;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * Base class for {@link IAssertion assertions}.
@@ -128,21 +128,19 @@ public abstract class AbstractAssertion implements IAssertion
       .toString();
     }
 
-  @SuppressWarnings("deprecation")
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ ObjectUtils.hashCode( property_);
+      ^ Objects.hashCode( property_);
     }
 
-  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     return
       object != null
       && object.getClass().equals( getClass())
-      && ObjectUtils.equals( ((AbstractAssertion) object).property_, property_);
+      && Objects.equals( ((AbstractAssertion) object).property_, property_);
     }
   
   private String property_;

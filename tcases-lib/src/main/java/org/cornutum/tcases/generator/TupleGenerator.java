@@ -21,7 +21,6 @@ import org.apache.commons.collections4.MultiMapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
-import org.apache.commons.lang3.ObjectUtils;
 import static org.apache.commons.collections4.functors.NOPTransformer.nopTransformer;
 
 import org.slf4j.Logger;
@@ -37,6 +36,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -868,7 +868,6 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
     return other;
     }
 
-  @SuppressWarnings("deprecation")
   public boolean equals( Object object)
     {
     TupleGenerator other =
@@ -878,17 +877,16 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
 
     return
       other != null
-      && ObjectUtils.equals( other.getRandomSeed(), getRandomSeed())
+      && Objects.equals( other.getRandomSeed(), getRandomSeed())
       && other.getDefaultTupleSize() == getDefaultTupleSize()
       && other.getCombiners().equals( getCombiners()); 
     }
 
-  @SuppressWarnings("deprecation")
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ ObjectUtils.hashCode( getRandomSeed())
+      ^ Objects.hashCode( getRandomSeed())
       ^ getDefaultTupleSize()
       ^ getCombiners().hashCode();
     }
