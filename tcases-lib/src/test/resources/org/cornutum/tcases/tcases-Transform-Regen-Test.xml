@@ -2,6 +2,7 @@
 <TestCases system="Tcases">
   <Function name="run">
     <TestCase id="0">
+      <Has name="properties" value="inFile,outDir,outFile,params,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -20,6 +21,7 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="properties" value="isJUnit,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="No"/>
@@ -38,6 +40,7 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="properties" value="inFile,outDir,outFile,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -56,6 +59,7 @@
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
+      <Has name="properties" value="isJUnit,outFile,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -74,6 +78,7 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="properties" value="params,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="No"/>
@@ -92,6 +97,7 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
+      <Has name="properties" value="isJUnit,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="No"/>
@@ -110,6 +116,7 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
+      <Has name="properties" value="isJUnit,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="No"/>
@@ -128,6 +135,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
+      <Has name="properties" value="params,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="No"/>
@@ -146,6 +154,7 @@
       </Input>
     </TestCase>
     <TestCase id="8">
+      <Has name="properties" value="isJUnit,outDir,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="No"/>
@@ -164,6 +173,7 @@
       </Input>
     </TestCase>
     <TestCase id="9">
+      <Has name="properties" value="inFile,outFile,params,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -182,6 +192,7 @@
       </Input>
     </TestCase>
     <TestCase id="10">
+      <Has name="properties" value="isJUnit,outFile"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -200,6 +211,7 @@
       </Input>
     </TestCase>
     <TestCase id="11">
+      <Has name="properties" value="outFile,params,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -218,6 +230,7 @@
       </Input>
     </TestCase>
     <TestCase id="12">
+      <Has name="properties" value="inFile,outDir,params,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="No"/>
@@ -236,6 +249,7 @@
       </Input>
     </TestCase>
     <TestCase id="13">
+      <Has name="properties" value="testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="No"/>
@@ -254,6 +268,7 @@
       </Input>
     </TestCase>
     <TestCase id="14">
+      <Has name="properties" value="inFile,isJUnit,outDir,outFile,testFile"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -272,6 +287,7 @@
       </Input>
     </TestCase>
     <TestCase id="15">
+      <Has name="properties" value="inFile,outDir,outFile,params,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -290,6 +306,7 @@
       </Input>
     </TestCase>
     <TestCase id="16">
+      <Has name="properties" value="inFile,isJUnit,outDir,outFile,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -308,6 +325,7 @@
       </Input>
     </TestCase>
     <TestCase id="17">
+      <Has name="properties" value="isJUnit,outDir,params,testFile"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="No"/>
@@ -326,6 +344,7 @@
       </Input>
     </TestCase>
     <TestCase id="18">
+      <Has name="properties" value="inFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="No"/>
@@ -344,6 +363,7 @@
       </Input>
     </TestCase>
     <TestCase id="19">
+      <Has name="properties" value="isJUnit,outFile,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -362,6 +382,7 @@
       </Input>
     </TestCase>
     <TestCase id="20">
+      <Has name="properties" value="outFile,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -380,6 +401,7 @@
       </Input>
     </TestCase>
     <TestCase id="21">
+      <Has name="properties" value="inFile,outFile,params,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
         <Var name="outFile.defined" value="Yes"/>
@@ -398,6 +420,7 @@
       </Input>
     </TestCase>
     <TestCase id="22">
+      <Has name="properties" value="inFile,outDir,outFile,params,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
         <Var name="outFile.defined" value="Yes"/>

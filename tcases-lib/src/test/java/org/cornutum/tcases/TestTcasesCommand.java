@@ -1211,7 +1211,7 @@ public class TestTcasesCommand
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Test.xml");
-    assertEquals( "Test def generated", expectedTestDef, testDef);
+    assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
 
     // When...
     ByteArrayOutputStream testDefOut = new ByteArrayOutputStream();
@@ -1219,7 +1219,7 @@ public class TestTcasesCommand
 
     // Then...
     ByteArrayInputStream testDefString = new ByteArrayInputStream( testDefOut.toByteArray());
-    assertEquals( "Test def written", expectedTestDef, testResources_.read( testDefString));
+    assertMatches( "Test def written", expectedTestDef, testResources_.read( testDefString), Matchers.systemTestDefMatcher);
     }
 
   @Test
@@ -1250,7 +1250,7 @@ public class TestTcasesCommand
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Regen-Test.xml");
-    assertEquals( "Test def generated", expectedTestDef, testDef);
+    assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
     }
 
   /**
