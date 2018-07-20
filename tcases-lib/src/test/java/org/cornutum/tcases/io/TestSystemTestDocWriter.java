@@ -8,9 +8,9 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
+import static org.cornutum.tcases.util.Asserts.*;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import java.io.File;
 
@@ -76,7 +76,7 @@ public class TestSystemTestDocWriter
       throw new RuntimeException( "Can't read file=" + doc, e);
       }
 
-    assertEquals( "Output from definition=" + systemTestResource, systemTestBefore, systemTestAfter);
+    assertMatches( "Output from definition=" + systemTestResource, systemTestBefore, systemTestAfter, Matchers.systemTestDefMatcher);
     }
 
   /**
