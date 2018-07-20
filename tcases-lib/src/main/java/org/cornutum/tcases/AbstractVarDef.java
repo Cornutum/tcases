@@ -95,7 +95,6 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
     {
     setName( name);
     setType( IVarDef.ARG);
-    setCondition( ICondition.ALWAYS);
     setSeqNum( getNextSeqNum());
     }
   
