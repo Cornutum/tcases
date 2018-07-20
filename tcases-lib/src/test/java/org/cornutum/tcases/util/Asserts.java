@@ -84,12 +84,7 @@ public abstract class Asserts
    */
   public static <T> void assertSetsEqual( String label, Collection<T> expected, Collection<T> actual, Matcher<T> matcher)
     {
-    if( (expected == null) != (actual == null))
-      {
-      assertEquals( label, expected, actual);
-      }
-
-    else if( expected != null)
+    if( Matcher.matchable( label, expected, actual))
       {
       Collection<T> unexpected = CollectionUtils.subtract( actual, expected);
       Collection<T> missing = CollectionUtils.subtract( expected, actual);
@@ -110,14 +105,14 @@ public abstract class Asserts
 
         fail( msg.toString());
         }
-      }
 
-    if( matcher != null)
-      {
-      Map<T,T> actualMembers = mapSelf( actual);
-      for( T member : expected)
+      if( matcher != null)
         {
-        assertMatches( label, member, actualMembers.get( member), matcher);
+        Map<T,T> actualMembers = mapSelf( actual);
+        for( T member : expected)
+          {
+          assertMatches( label, member, actualMembers.get( member), matcher);
+          }
         }
       }
     }
