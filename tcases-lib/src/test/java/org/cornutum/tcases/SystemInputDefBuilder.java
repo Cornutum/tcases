@@ -15,6 +15,23 @@ package org.cornutum.tcases;
 public class SystemInputDefBuilder
   {
   /**
+   * Creates a new builder for a SystemInputDef with the given name.
+   */
+  public static SystemInputDefBuilder with( String name)
+    {
+    return new SystemInputDefBuilder().name( name);
+    }
+  
+  /**
+   * Creates a new builder for the given SystemInputDef.
+   */
+  public static SystemInputDefBuilder with( SystemInputDef systemInputDef)
+    {
+    return new SystemInputDefBuilder( systemInputDef);
+    }
+
+
+  /**
    * Creates a new SystemInputDefBuilder object.
    */
   public SystemInputDefBuilder()

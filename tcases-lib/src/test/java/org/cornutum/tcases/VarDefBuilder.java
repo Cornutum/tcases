@@ -17,6 +17,23 @@ import org.cornutum.tcases.conditions.ICondition;
 public class VarDefBuilder
   {
   /**
+   * Creates a new builder for a VarDef with the given name.
+   */
+  public static VarDefBuilder with( String name)
+    {
+    return new VarDefBuilder().name( name);
+    }
+  
+  /**
+   * Creates a new builder for the given VarDef.
+   */
+  public static VarDefBuilder with( VarDef varDef)
+    {
+    return new VarDefBuilder( varDef);
+    }
+
+
+  /**
    * Creates a new VarDefBuilder object.
    */
   public VarDefBuilder()

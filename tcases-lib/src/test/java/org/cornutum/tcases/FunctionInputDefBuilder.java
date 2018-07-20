@@ -17,6 +17,22 @@ import java.util.Arrays;
 public class FunctionInputDefBuilder
   {
   /**
+   * Creates a new builder for a FunctionInputDef with the given name.
+   */
+  public static FunctionInputDefBuilder with( String name)
+    {
+    return new FunctionInputDefBuilder().name( name);
+    }
+  
+  /**
+   * Creates a new builder for the given FunctionInputDef.
+   */
+  public static FunctionInputDefBuilder with( FunctionInputDef functionInputDef)
+    {
+    return new FunctionInputDefBuilder( functionInputDef);
+    }
+
+  /**
    * Creates a new FunctionInputDefBuilder object.
    */
   public FunctionInputDefBuilder()

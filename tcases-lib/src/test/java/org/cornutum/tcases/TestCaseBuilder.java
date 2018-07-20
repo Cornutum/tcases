@@ -15,12 +15,30 @@ package org.cornutum.tcases;
 public class TestCaseBuilder
   {
   /**
+   * Creates a new builder for a TestCase with the given id.
+   */
+  public static TestCaseBuilder with( int id)
+    {
+    return new TestCaseBuilder().id( id);
+    }
+  
+  /**
+   * Creates a new builder for the given TestCase.
+   */
+  public static TestCaseBuilder with( TestCase testCase)
+    {
+    return new TestCaseBuilder( testCase);
+    }
+
+
+  /**
    * Creates a new TestCaseBuilder object.
    */
   public TestCaseBuilder()
     {
     start();
     }
+
   /**
    * Creates a new TestCaseBuilder object.
    */

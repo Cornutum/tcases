@@ -15,6 +15,23 @@ package org.cornutum.tcases;
 public class FunctionTestDefBuilder
   {
   /**
+   * Creates a new builder for a FunctionTestDef with the given name.
+   */
+  public static FunctionTestDefBuilder with( String name)
+    {
+    return new FunctionTestDefBuilder().name( name);
+    }
+  
+  /**
+   * Creates a new builder for the given FunctionTestDef.
+   */
+  public static FunctionTestDefBuilder with( FunctionTestDef functionTestDef)
+    {
+    return new FunctionTestDefBuilder( functionTestDef);
+    }
+
+
+  /**
    * Creates a new FunctionTestDefBuilder object.
    */
   public FunctionTestDefBuilder()

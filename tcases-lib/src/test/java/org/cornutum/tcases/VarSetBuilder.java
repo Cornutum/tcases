@@ -19,6 +19,23 @@ import org.cornutum.tcases.conditions.ICondition;
 public class VarSetBuilder
   {
   /**
+   * Creates a new builder for a VarSet with the given name.
+   */
+  public static VarSetBuilder with( String name)
+    {
+    return new VarSetBuilder().name( name);
+    }
+  
+  /**
+   * Creates a new builder for the given VarSet.
+   */
+  public static VarSetBuilder with( VarSet varSet)
+    {
+    return new VarSetBuilder( varSet);
+    }
+
+
+  /**
    * Creates a new VarSetBuilder object.
    */
   public VarSetBuilder()

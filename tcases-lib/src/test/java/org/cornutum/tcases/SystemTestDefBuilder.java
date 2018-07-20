@@ -15,6 +15,23 @@ package org.cornutum.tcases;
 public class SystemTestDefBuilder
   {
   /**
+   * Creates a new builder for a SystemTestDef with the given name.
+   */
+  public static SystemTestDefBuilder with( String name)
+    {
+    return new SystemTestDefBuilder().name( name);
+    }
+  
+  /**
+   * Creates a new builder for the given SystemTestDef.
+   */
+  public static SystemTestDefBuilder with( SystemTestDef systemTestDef)
+    {
+    return new SystemTestDefBuilder( systemTestDef);
+    }
+
+
+  /**
    * Creates a new SystemTestDefBuilder object.
    */
   public SystemTestDefBuilder()

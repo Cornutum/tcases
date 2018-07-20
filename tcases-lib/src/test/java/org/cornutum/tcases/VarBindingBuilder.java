@@ -15,12 +15,30 @@ package org.cornutum.tcases;
 public class VarBindingBuilder
   {
   /**
+   * Creates a new builder for a VarBinding with the given variable name.
+   */
+  public static VarBindingBuilder with( String var)
+    {
+    return new VarBindingBuilder().var( var);
+    }
+  
+  /**
+   * Creates a new builder for the given VarBinding.
+   */
+  public static VarBindingBuilder with( VarBinding varBinding)
+    {
+    return new VarBindingBuilder( varBinding);
+    }
+
+
+  /**
    * Creates a new VarBindingBuilder object.
    */
   public VarBindingBuilder()
     {
     start();
     }
+
   /**
    * Creates a new VarBindingBuilder object.
    */
