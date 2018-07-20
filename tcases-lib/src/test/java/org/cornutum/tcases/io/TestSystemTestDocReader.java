@@ -678,6 +678,37 @@ public class TestSystemTestDocReader
     }
 
   /**
+   * Tests {@link SystemTestDocReader#getSystemTestDef getSystemTestDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 24.   getSystemTestDef (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> TestCases.System </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Function.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> TestCase.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> TestCase.Id </TD> <TD> Defined </TD></TR>
+   * <TR><TD> TestCase.Failure </TD> <TD> Yes </TD></TR>
+   * <TR><TD> Input.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Input.Type </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.Value </TD> <TD> Non-ASCII </TD></TR>
+   * <TR><TD> Var.Failure </TD> <TD> Yes </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemTestDef_24()
+    {
+    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-24.xml");
+    assertEquals( "System name", "System-24", systemTestDef.getName());
+
+    FunctionTestDef[] functionTestDefs = IteratorUtils.toArray( systemTestDef.getFunctionTestDefs(), FunctionTestDef.class);
+    assertEquals( "Function test defs", 1, functionTestDefs.length);
+    }
+
+  /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)

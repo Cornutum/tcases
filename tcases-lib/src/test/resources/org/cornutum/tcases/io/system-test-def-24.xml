@@ -1,15 +1,16 @@
-<TestCases system="System-2">
+<TestCases system="System-24">
 
   <Function name="Function-0">
     <TestCase id="0" failure="true">
       <Input type="env">
-        <Var name="VarSet-00.1.2.3" value=""/>
-        <Var name="VarSet-01" value=" " failure="yes"/>
+        <Var name="Var-00.1.2.3" value=""/>
+        <Var name="Var-01" value=" " failure="yes"/>
       </Input>
       <Input type="state">
-        <Var name="VarSet-02" value="!#"/>
-        <Var name="VarSet-03" value="大丈夫"/>
-        <Var name="VarSet-04" value="&#x0009;"/>
+        <Var name="Var-02" value="!#"/>
+        <Var name="Var-03" value="大丈夫"/>
+        <Var name="Var-04" value="&#x0009;"/>
+        <Var name="Var-05" NA="true"/>
       </Input>
     </TestCase>
   </Function>
