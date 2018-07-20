@@ -80,5 +80,14 @@ public class SystemInputDefBuilder
     return this;
     }
 
+  /**
+   * Add a system annotation.
+   */
+  public SystemInputDefBuilder has( String name, String value)
+    {
+    systemInputDef_.setAnnotation( name, value);
+    return this;
+    }
+
   SystemInputDef systemInputDef_;
   }

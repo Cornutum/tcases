@@ -15,11 +15,18 @@ package org.cornutum.tcases;
 public class TestCaseBuilder
   {
   /**
-   * Creates a new TCaseBuilder object.
+   * Creates a new TestCaseBuilder object.
    */
   public TestCaseBuilder()
     {
     start();
+    }
+  /**
+   * Creates a new TestCaseBuilder object.
+   */
+  public TestCaseBuilder( TestCase testCase)
+    {
+    start( testCase);
     }
 
   /**
@@ -35,7 +42,19 @@ public class TestCaseBuilder
    */
   public TestCaseBuilder start()
     {
-    testCase_ = new TestCase(0);
+    return start( null);
+    }
+
+  /**
+   * Starts building a new test case.
+   */
+  public TestCaseBuilder start( TestCase testCase)
+    {
+    testCase_ =
+      testCase == null
+      ? new TestCase(0)
+      : testCase;
+    
     return this;
     }
 
@@ -74,53 +93,12 @@ public class TestCaseBuilder
     }
 
   /**
-   * Adds a variable binding to the test case.
+   * Add a test case annotation.
    */
-  public TestCaseBuilder bind( String name, String value, String type, boolean isValid)
+  public TestCaseBuilder has( String name, String value)
     {
-    VarBinding binding = new VarBinding( name, type, value);
-    binding.setValueValid( isValid);
-    return bind( binding);
-    }
-
-  /**
-   * Adds a variable binding to the test case.
-   */
-  public TestCaseBuilder bind( String name, String value)
-    {
-    return bind( name, value, IVarDef.ARG);
-    }
-
-  /**
-   * Adds a variable binding to the test case.
-   */
-  public TestCaseBuilder bind( String name, String value, String type)
-    {
-    return bind( name, value, type, true);
-    }
-
-  /**
-   * Adds a variable binding to the test case.
-   */
-  public TestCaseBuilder bind( String name, String value, boolean isValid)
-    {
-    return bind( name, value, IVarDef.ARG, isValid);
-    }
-
-  /**
-   * Declares a variable "not applicable" to the test case.
-   */
-  public TestCaseBuilder notApplicable( String name)
-    {
-    return notApplicable( name, IVarDef.ARG);
-    }
-
-  /**
-   * Declares a variable "not applicable" to the test case.
-   */
-  public TestCaseBuilder notApplicable( String name, String type)
-    {
-    return bind( new VarNaBinding( name, type));
+    testCase_.setAnnotation( name, value);
+    return this;
     }
 
   /**

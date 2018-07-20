@@ -53,7 +53,7 @@ public class VarSetBuilder
   /**
    * Starts building a VarSet definition.
    */
-  private VarSetBuilder start( VarSet varSet)
+  public VarSetBuilder start( VarSet varSet)
     {
     varSet_ =
       varSet == null
@@ -87,6 +87,15 @@ public class VarSetBuilder
   public VarSetBuilder when( ICondition condition)
     {
     varSet_.setCondition( condition);
+    return this;
+    }
+
+  /**
+   * Add a variable set annotation.
+   */
+  public VarSetBuilder has( String name, String value)
+    {
+    varSet_.setAnnotation( name, value);
     return this;
     }
 

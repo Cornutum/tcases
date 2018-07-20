@@ -51,7 +51,7 @@ public class VarDefBuilder
   /**
    * Starts building a VarDef definition.
    */
-  private VarDefBuilder start( VarDef varDef)
+  public VarDefBuilder start( VarDef varDef)
     {
     varDef_ =
       varDef == null
@@ -85,6 +85,15 @@ public class VarDefBuilder
   public VarDefBuilder when( ICondition condition)
     {
     varDef_.setCondition( condition);
+    return this;
+    }
+
+  /**
+   * Add a variable annotation.
+   */
+  public VarDefBuilder has( String name, String value)
+    {
+    varDef_.setAnnotation( name, value);
     return this;
     }
 

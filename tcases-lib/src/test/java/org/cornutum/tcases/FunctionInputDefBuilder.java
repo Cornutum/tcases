@@ -83,6 +83,28 @@ public class FunctionInputDefBuilder
     }
 
   /**
+   * Adds function input variables of the given type.
+   */
+  public FunctionInputDefBuilder vars( String type, AbstractVarDef... vars)
+    {
+    for( AbstractVarDef var : vars)
+      {
+      var.setType( type);
+      functionInputDef_.addVarDef( var);
+      }
+    return this;
+    }
+
+  /**
+   * Add a function annotation.
+   */
+  public FunctionInputDefBuilder has( String name, String value)
+    {
+    functionInputDef_.setAnnotation( name, value);
+    return this;
+    }
+
+  /**
    * Adds a new {@link VarSet} with the given path name and returns a builder
    * for the new <CODE>VarSet</CODE>.
    */

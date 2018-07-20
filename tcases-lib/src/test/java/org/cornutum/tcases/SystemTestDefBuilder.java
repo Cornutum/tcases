@@ -80,5 +80,14 @@ public class SystemTestDefBuilder
     return this;
     }
 
+  /**
+   * Add a system annotation.
+   */
+  public SystemTestDefBuilder has( String name, String value)
+    {
+    systemTestDef_.setAnnotation( name, value);
+    return this;
+    }
+
   SystemTestDef systemTestDef_;
   }

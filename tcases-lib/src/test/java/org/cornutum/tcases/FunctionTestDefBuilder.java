@@ -79,5 +79,14 @@ public class FunctionTestDefBuilder
     return this;
     }
 
+  /**
+   * Add a function annotation.
+   */
+  public FunctionTestDefBuilder has( String name, String value)
+    {
+    functionTestDef_.setAnnotation( name, value);
+    return this;
+    }
+
   FunctionTestDef functionTestDef_;
   }

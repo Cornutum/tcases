@@ -52,7 +52,7 @@ public class VarValueDefBuilder
   /**
    * Starts building a VarValueDef definition.
    */
-  private VarValueDefBuilder start( VarValueDef varValueDef)
+  public VarValueDefBuilder start( VarValueDef varValueDef)
     {
     varValueDef_ =
       varValueDef == null
@@ -86,6 +86,15 @@ public class VarValueDefBuilder
   public VarValueDefBuilder when( ICondition condition)
     {
     varValueDef_.setCondition( condition);
+    return this;
+    }
+
+  /**
+   * Add a value annotation.
+   */
+  public VarValueDefBuilder has( String name, String value)
+    {
+    varValueDef_.setAnnotation( name, value);
     return this;
     }
 
