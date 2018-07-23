@@ -1,5 +1,4 @@
 <TestCases system="System-4">
-
   <Function name="Function-0">
     <TestCase id="0">
       <Has name="AT00" value="VT00"/>
@@ -24,6 +23,8 @@
     </TestCase>
   </Function>
 
+  <Has name="AS00" value="VS00"/>
+
   <Function name="Function-1">
     <TestCase id="2">
       <Input>
@@ -44,6 +45,7 @@
         <Var name="Var-12" value="Value-12" failure="false"/>
       </Input>      
     </TestCase>
+    <Has name="AF01" value="VF01"/>
   </Function>
 
 </TestCases>
