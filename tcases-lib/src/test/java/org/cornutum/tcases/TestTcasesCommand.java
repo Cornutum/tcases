@@ -1253,6 +1253,20 @@ public class TestTcasesCommand
     assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
     }
 
+  @Test
+  public void getTests_find()
+    {
+    // Given...
+    InputStream inputDef = getClass().getResourceAsStream( "find-Input.xml");
+    
+    // When...
+    SystemTestDef testDef = Tcases.getTests( inputDef);
+    
+    // Then...
+    SystemTestDef expectedTestDef = testResources_.read( "find-Test.xml");
+    assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
+    }
+
   /**
    * Return the file for the given resource.
    */
