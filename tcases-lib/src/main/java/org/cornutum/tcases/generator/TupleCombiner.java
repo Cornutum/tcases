@@ -215,7 +215,7 @@ public class TupleCombiner implements Cloneable<TupleCombiner>
     }
 
   /**
-   * Adds a pattern matching input variables to be included in this combination.
+   * Adds a once-only tuple to this combination.
    */
   public TupleCombiner addOnceTuple( TupleRef tupleRef)
     {
@@ -232,7 +232,7 @@ public class TupleCombiner implements Cloneable<TupleCombiner>
     }
 
   /**
-   * Removes a pattern matching input variables to be included in this combination.
+   * Removes a once-only tuple from this combination.
    */
   public TupleCombiner removeOnceTuple( TupleRef tupleRef)
     {
@@ -241,7 +241,7 @@ public class TupleCombiner implements Cloneable<TupleCombiner>
     }
 
   /**
-   * Removes all patterns matching input variables to be included in this combination.
+   * Removes all once-only tuples from this combination.
    */
   public TupleCombiner removeAllOnceTuples()
     {
