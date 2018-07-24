@@ -792,6 +792,14 @@ public class TcasesCommand extends Tcases
       return showVersion_;
       }
 
+    /**
+     * Returns a new Options builder.
+     */
+    public static Builder builder()
+      {
+      return new Builder();
+      }
+
     public String toString()
       {
       StringBuilder builder = new StringBuilder();
@@ -880,6 +888,93 @@ public class TcasesCommand extends Tcases
     private File workingDir_;
     private boolean showVersion_;
     private GeneratorOptions generatorOptions_ = new GeneratorOptions();
+
+    public static class Builder
+      {
+      public Builder()
+        {
+        options_ = new Options();
+        }
+
+      public Builder inputDef( File inputDef)
+        {
+        options_.setInputDef( inputDef);
+        return this;
+        }
+
+      public Builder outDir( File outDir)
+        {
+        options_.setOutDir( outDir);
+        return this;
+        }
+
+      public Builder outFile( File outFile)
+        {
+        options_.setOutFile( outFile);
+        return this;
+        }
+
+      public Builder testDef( File testDef)
+        {
+        options_.setTestDef( testDef);
+        return this;
+        }
+
+      public Builder genDef( File genDef)
+        {
+        options_.setGenDef( genDef);
+        return this;
+        }
+
+      public Builder transformDef( File transformDef)
+        {
+        options_.setTransformDef( transformDef);
+        return this;
+        }
+
+      public Builder transformType( TransformType transformType)
+        {
+        options_.setTransformType( transformType);
+        return this;
+        }
+
+      public Builder transformParam( String name, String value)
+        {
+        options_.getTransformParams().put( name, value);
+        return this;
+        }
+
+      public Builder newSeed()
+        {
+        options_.setNewSeed( true);
+        return this;
+        }
+
+      public Builder extended()
+        {
+        options_.setExtended( true);
+        return this;
+        }
+
+      public Builder seed( Long seed)
+        {
+        options_.setRandomSeed( seed);
+        return this;
+        }
+
+      public Builder tuples( int tuples)
+        {
+        options_.setDefaultTupleSize( tuples);
+        return this;
+        }
+
+      public Options build()
+        {
+        return options_;
+        }
+      
+      private Options options_;
+      }
     }
   
   /**

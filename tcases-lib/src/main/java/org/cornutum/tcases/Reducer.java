@@ -504,6 +504,14 @@ public class Reducer
       return newSeed_;
       }
 
+    /**
+     * Returns a new Options builder.
+     */
+    public static Builder builder()
+      {
+      return new Builder();
+      }
+
     public String toString()
       {
       StringBuilder builder = new StringBuilder();
@@ -547,6 +555,69 @@ public class Reducer
     private double resampleFactor_;
     private boolean newSeed_;
     private int samples_;
+
+    public static class Builder
+      {
+      public Builder()
+        {
+        options_ = new Options();
+        }
+
+      public Builder inputDef( File inputDef)
+        {
+        options_.setInputDef( inputDef);
+        return this;
+        }
+
+      public Builder testDef( File testDef)
+        {
+        options_.setTestDef( testDef);
+        return this;
+        }
+
+      public Builder genDef( File genDef)
+        {
+        options_.setGenDef( genDef);
+        return this;
+        }
+
+      public Builder function( String function)
+        {
+        options_.setFunction( function);
+        return this;
+        }
+
+      public Builder genFactory( ITestCaseGeneratorFactory genFactory)
+        {
+        options_.setGenFactory( genFactory);
+        return this;
+        }
+
+      public Builder resampleFactor( double resampleFactor)
+        {
+        options_.setResampleFactor( resampleFactor);
+        return this;
+        }
+
+      public Builder newSeed()
+        {
+        options_.setNewSeed( true);
+        return this;
+        }
+
+      public Builder samples( int samples)
+        {
+        options_.setSamples( samples);
+        return this;
+        }
+
+      public Options build()
+        {
+        return options_;
+        }
+      
+      private Options options_;
+      }
     }
   
   /**
