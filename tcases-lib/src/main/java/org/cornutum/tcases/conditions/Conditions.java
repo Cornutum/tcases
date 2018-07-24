@@ -45,7 +45,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link PropertySet} that contains
+   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * all of the given properties.
    */
   public static ContainsAll has( String... properties)
@@ -54,7 +54,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link PropertySet} that contains
+   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * any of the given properties.
    */
   public static ContainsAny hasAny( String... properties)
@@ -63,7 +63,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link PropertySet} that contains
+   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * all of the given properties.
    */
   public static AllOf allOf( String... properties)
@@ -72,7 +72,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link PropertySet} that contains
+   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * any of the given properties.
    */
   public static AnyOf anyOf( String... properties)
@@ -81,7 +81,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link PropertySet} that contains
+   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * none of the given properties.
    */
   public static Not not( String... properties)
