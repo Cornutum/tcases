@@ -24,6 +24,7 @@ public class FunctionTestDefMatcher implements Matcher<FunctionTestDef>
   public void assertEqual( String label, FunctionTestDef expected, FunctionTestDef actual)
     {
     assertEquals( label + ", name", expected.getName(), actual.getName());
-    assertSetEquals( label + ", function=" + expected.getName(), expected.getTestCases(), actual.getTestCases(), Matchers.testCaseMatcher);
+    assertSetEquals( label + ", function=" + expected.getName() + ", testCases", expected.getTestCases(), actual.getTestCases(), Matchers.testCaseMatcher);
+    assertMatches( label + ", function=" + expected.getName(), expected, actual, Matchers.annotatedMatcher);
     }
   }

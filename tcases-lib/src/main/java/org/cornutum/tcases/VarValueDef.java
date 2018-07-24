@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
@@ -83,7 +82,6 @@ public class VarValueDef extends Conditional
     {
     setName( name);
     setType( type);
-    setCondition( ICondition.ALWAYS);
     setProperties( (PropertySet) null);
     }
 

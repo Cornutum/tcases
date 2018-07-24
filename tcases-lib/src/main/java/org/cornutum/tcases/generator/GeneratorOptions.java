@@ -45,6 +45,14 @@ public class GeneratorOptions
   public Integer getDefaultTupleSize()
     {
     return defaultTupleSize_;
+    }    
+
+  /**
+   * Returns a new GeneratorOptions builder.
+   */
+  public static Builder builder()
+    {
+    return new Builder();
     }
 
   public String toString()
@@ -57,6 +65,33 @@ public class GeneratorOptions
     }
 
   private Long seed_;
-  private Integer defaultTupleSize_;
+  private Integer defaultTupleSize_;    
+
+  public static class Builder
+    {
+    public Builder()
+      {
+      options_ = new GeneratorOptions();
+      }
+
+    public Builder seed( Long seed)
+      {
+      options_.setRandomSeed( seed);
+      return this;
+      }
+
+    public Builder tuples( int tuples)
+      {
+      options_.setDefaultTupleSize( tuples);
+      return this;
+      } 
+
+    public GeneratorOptions build()
+      {
+      return options_;
+      }
+      
+    private GeneratorOptions options_;
+    }
   }
 

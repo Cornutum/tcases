@@ -15,6 +15,23 @@ package org.cornutum.tcases;
 public class FunctionTestDefBuilder
   {
   /**
+   * Creates a new builder for a FunctionTestDef with the given name.
+   */
+  public static FunctionTestDefBuilder with( String name)
+    {
+    return new FunctionTestDefBuilder().name( name);
+    }
+  
+  /**
+   * Creates a new builder for the given FunctionTestDef.
+   */
+  public static FunctionTestDefBuilder with( FunctionTestDef functionTestDef)
+    {
+    return new FunctionTestDefBuilder( functionTestDef);
+    }
+
+
+  /**
    * Creates a new FunctionTestDefBuilder object.
    */
   public FunctionTestDefBuilder()
@@ -45,7 +62,7 @@ public class FunctionTestDefBuilder
     {
     functionTestDef_ =
       function == null
-      ? new FunctionTestDef()
+      ? new FunctionTestDef( "F")
       : function;
     return this;
     }
@@ -64,6 +81,27 @@ public class FunctionTestDefBuilder
   public FunctionTestDefBuilder name( String name)
     {
     functionTestDef_.setName( name);
+    return this;
+    }
+
+  /**
+   * Adds function test cases.
+   */
+  public FunctionTestDefBuilder testCases( TestCase... testCases)
+    {
+    for( TestCase testCase : testCases)
+      {
+      functionTestDef_.addTestCase( testCase);
+      }
+    return this;
+    }
+
+  /**
+   * Add a function annotation.
+   */
+  public FunctionTestDefBuilder has( String name, String value)
+    {
+    functionTestDef_.setAnnotation( name, value);
     return this;
     }
 

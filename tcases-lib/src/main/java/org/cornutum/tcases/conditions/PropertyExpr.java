@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -79,6 +80,25 @@ public abstract class PropertyExpr
     return properties_.iterator();
     }
 
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( properties_);
+    }
+
+  public boolean equals( Object object)
+    {
+    PropertyExpr other =
+      object != null && object.getClass().equals( getClass())
+      ? (PropertyExpr) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( other.properties_, properties_);
+    }
+  
   public String toString()
     {
     return
@@ -89,4 +109,3 @@ public abstract class PropertyExpr
 
   private Set<String> properties_;
   }
-

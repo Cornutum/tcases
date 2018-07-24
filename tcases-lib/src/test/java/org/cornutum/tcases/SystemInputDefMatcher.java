@@ -14,17 +14,17 @@ import static org.cornutum.tcases.util.Asserts.*;
 import static org.junit.Assert.*;
 
 /**
- * A {@link Matcher} for {@link TestCase} objects.
+ * A {@link Matcher} for {@link SystemInputDef} objects.
  */
-public class TestCaseMatcher implements Matcher<TestCase>
+public class SystemInputDefMatcher implements Matcher<SystemInputDef>
   {
   /**
    * Reports a failure if the expected object does not match the actual object.
    */
-  public void assertEqual( String label, TestCase expected, TestCase actual)
+  public void assertEqual( String label, SystemInputDef expected, SystemInputDef actual)
     {
-    assertEquals( label + ", id", expected.getId(), actual.getId());
-    assertSetEquals( label + ", testCase=" + expected.getId() + ", bindings", expected.getVarBindings(), actual.getVarBindings(), Matchers.varBindingMatcher);
-    assertMatches( label + ", testCase=" + expected.getId(), expected, actual, Matchers.annotatedMatcher);
+    assertEquals( label + ", name", expected.getName(), actual.getName());
+    assertSetEquals( label+", system="+expected.getName()+", functions", expected.getFunctionInputDefs(), actual.getFunctionInputDefs(), Matchers.functionInputDefMatcher);
+    assertMatches( label + ", system=" + expected.getName(), expected, actual, Matchers.annotatedMatcher);
     }
   }

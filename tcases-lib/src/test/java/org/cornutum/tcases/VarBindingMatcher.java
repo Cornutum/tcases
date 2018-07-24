@@ -9,6 +9,7 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.util.Asserts.Matcher;
+import static org.cornutum.tcases.util.Asserts.*;
 
 import static org.junit.Assert.*;
 
@@ -27,5 +28,6 @@ public class VarBindingMatcher implements Matcher<VarBinding>
     assertEquals( label + ", var=" + expected.getVar() + ", value", expected.getValue(), actual.getValue());
     assertEquals( label + ", var=" + expected.getVar() + ", applicable", !expected.isValueNA(), !actual.isValueNA());
     assertEquals( label + ", var=" + expected.getVar() + ", valid", expected.isValueValid(), actual.isValueValid());
+    assertMatches( label + ", var=" + expected.getVar(), expected, actual, Matchers.annotatedMatcher);
     }
   }

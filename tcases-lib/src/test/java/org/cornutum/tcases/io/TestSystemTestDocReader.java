@@ -8,11 +8,10 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
+import static org.cornutum.tcases.util.Asserts.*;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import org.apache.commons.collections4.IteratorUtils;
 
 import org.xml.sax.SAXParseException;
 
@@ -46,11 +45,70 @@ public class TestSystemTestDocReader
   @Test
   public void testGetSystemTestDef_0()
     {
-    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-0.xml");
-    assertEquals( "System name", "System-0", systemTestDef.getName());
+    // Given...
+    SystemTestDef expected =
+      SystemTestDefBuilder.with( "System-0")
+        .functions(
+          FunctionTestDefBuilder.with( "Function-0")
+          .testCases(
+            TestCaseBuilder.with( 0)
+            .bind(
+              "arg",
+              VarBindingBuilder.with( "Var-00")
+              .value( "Value-00")
+              .build())
+            .build(),
+            TestCaseBuilder.with( 1)
+            .bind(
+              "arg",
+              VarBindingBuilder.with( "Var-10")
+              .value( "Value-10")
+              .build())
+            .build())
+          .build(),
+          
+          FunctionTestDefBuilder.with( "Function-1")
+          .testCases(
+            TestCaseBuilder.with( 0)
+            .bind(
+              "arg",
+              VarBindingBuilder.with( "Var-00")
+              .value( "Value-00")
+              .build())
+            .build(),
+            TestCaseBuilder.with( 1)
+            .bind(
+              "arg",
+              VarBindingBuilder.with( "Var-10")
+              .value( "Value-10")
+              .build())
+            .build())
+          .build(),
+          
+          FunctionTestDefBuilder.with( "Function-2")
+          .testCases(
+            TestCaseBuilder.with( 0)
+            .bind(
+              "arg",
+              VarBindingBuilder.with( "Var-00")
+              .value( "Value-00")
+              .build())
+            .build(),
+            TestCaseBuilder.with( 1)
+            .bind(
+              "arg",
+              VarBindingBuilder.with( "Var-10")
+              .value( "Value-10")
+              .build())
+            .build())
+          .build())
+      .build();
 
-    FunctionTestDef[] functionTestDefs = IteratorUtils.toArray( systemTestDef.getFunctionTestDefs(), FunctionTestDef.class);
-    assertEquals( "Function test defs", 3, functionTestDefs.length);
+    // When...
+    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-0.xml");
+
+    // Then...
+    assertMatches( "system-test-def-0.xml", expected, systemTestDef, Matchers.systemTestDefMatcher);
     }
 
   /**
@@ -77,11 +135,16 @@ public class TestSystemTestDocReader
   @Test
   public void testGetSystemTestDef_1()
     {
-    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-1.xml");
-    assertEquals( "System name", "System-1", systemTestDef.getName());
+    // Given...
+    SystemTestDef expected =
+      SystemTestDefBuilder.with( "System-1")
+      .build();
 
-    FunctionTestDef[] functionTestDefs = IteratorUtils.toArray( systemTestDef.getFunctionTestDefs(), FunctionTestDef.class);
-    assertEquals( "Function test defs", 0, functionTestDefs.length);
+    // When...
+    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-1.xml");
+
+    // Then...
+    assertMatches( "system-test-def-1.xml", expected, systemTestDef, Matchers.systemTestDefMatcher);
     }
 
   /**
@@ -108,11 +171,36 @@ public class TestSystemTestDocReader
   @Test
   public void testGetSystemTestDef_2()
     {
-    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-2.xml");
-    assertEquals( "System name", "System-2", systemTestDef.getName());
+    // Given...
+    SystemTestDef expected =
+      SystemTestDefBuilder.with( "System-2")
+      .functions(
+        FunctionTestDefBuilder.with( "Function-0")
+        .testCases(
+          TestCaseBuilder.with( 0)
+          .bind(
+            "env",
+            VarBindingBuilder.with( "VarSet-00.1.2.3")
+            .value( "Value-00")
+            .build(),
+            VarBindingBuilder.with( "VarSet-01")
+            .value( "Value-01")
+            .valid( false)
+            .build())
+          .bind(
+            "state",
+            VarBindingBuilder.with( "VarSet-02")
+            .value( "Value-02")
+            .build())
+          .build())
+        .build())
+      .build();
 
-    FunctionTestDef[] functionTestDefs = IteratorUtils.toArray( systemTestDef.getFunctionTestDefs(), FunctionTestDef.class);
-    assertEquals( "Function test defs", 1, functionTestDefs.length);
+    // When...
+    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-2.xml");
+
+    // Then...
+    assertMatches( "system-test-def-2.xml", expected, systemTestDef, Matchers.systemTestDefMatcher);
     }
 
   /**
@@ -139,11 +227,19 @@ public class TestSystemTestDocReader
   @Test
   public void testGetSystemTestDef_3()
     {
-    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-3.xml");
-    assertEquals( "System name", "System-3", systemTestDef.getName());
+    // Given...
+    SystemTestDef expected =
+      SystemTestDefBuilder.with( "System-3")
+        .functions(
+          FunctionTestDefBuilder.with( "Function-0").build(),
+          FunctionTestDefBuilder.with( "Function-1").build())
+      .build();
 
-    FunctionTestDef[] functionTestDefs = IteratorUtils.toArray( systemTestDef.getFunctionTestDefs(), FunctionTestDef.class);
-    assertEquals( "Function test defs", 2, functionTestDefs.length);
+    // When...
+    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-3.xml");
+
+    // Then...
+    assertMatches( "system-test-def-3.xml", expected, systemTestDef, Matchers.systemTestDefMatcher);
     }
 
   /**
@@ -170,11 +266,89 @@ public class TestSystemTestDocReader
   @Test
   public void testGetSystemTestDef_4()
     {
-    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-4.xml");
-    assertEquals( "System name", "System-4", systemTestDef.getName());
+    // Given...
+    SystemTestDef expected =
+      SystemTestDefBuilder.with( "System-4")
+      .has( "AS00", "VS00")
+      .functions(
+        FunctionTestDefBuilder.with( "Function-0")
+        .testCases(
+          TestCaseBuilder.with( 0)
+          .has( "AT00", "VT00")
+          .bind(
+            "arg",
+            VarBindingBuilder.with( "Var-00")
+            .has( "AV00", "VV00")
+            .value( "Value-00")
+            .build(),
+            VarBindingBuilder.with( "Var-01")
+            .value( "Value-01")
+            .build(),
+            VarBindingBuilder.with( "Var-02")
+            .value( "Value-02")
+            .build())
+          .build(),
 
-    FunctionTestDef[] functionTestDefs = IteratorUtils.toArray( systemTestDef.getFunctionTestDefs(), FunctionTestDef.class);
-    assertEquals( "Function test defs", 2, functionTestDefs.length);
+          TestCaseBuilder.with( 1)
+          .bind(
+            "arg",
+            VarBindingBuilder.with( "Var-10")
+            .has( "AV10", "VV10")
+            .has( "AV11", "VV11")
+            .has( "AV12", "VV12")
+            .value( "Value-10")
+            .build(),
+            VarBindingBuilder.with( "Var-11")
+            .value( "Value-11")
+            .build(),
+            VarBindingBuilder.with( "Var-12")
+            .value( "Value-12")
+            .build())
+          .build())
+        .build(),
+        
+        FunctionTestDefBuilder.with( "Function-1")
+        .has( "AF01", "VF01")
+        .testCases(
+          TestCaseBuilder.with( 2)
+          .bind(
+            "arg",
+            VarBindingBuilder.with( "Var-00")
+            .value( "Value-00")
+            .build(),
+            VarBindingBuilder.with( "Var-01")
+            .has( "AV20", "VV20")
+            .value( "Value-01")
+            .build(),
+            VarBindingBuilder.with( "Var-02")
+            .value( "Value-02")
+            .build())
+          .build(),
+
+          TestCaseBuilder.with( 3)
+          .has( "AT30", "VT30")
+          .has( "AT31", "VT31")
+          .has( "AT32", "VT32")
+          .bind(
+            "arg",
+            VarBindingBuilder.with( "Var-10")
+            .value( "Value-10")
+            .build(),
+            VarBindingBuilder.with( "Var-11")
+            .value( "Value-11")
+            .build(),
+            VarBindingBuilder.with( "Var-12")
+            .value( "Value-12")
+            .build())
+          .build())
+        .build())
+      .build();
+
+    // When...
+    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-4.xml");
+
+    // Then...
+    assertMatches( "system-test-def-4.xml", expected, systemTestDef, Matchers.systemTestDefMatcher);
     }
 
   /**
@@ -675,6 +849,71 @@ public class TestSystemTestDocReader
   public void testGetSystemTestDef_23()
     {
     assertException( "system-test-def-23.xml", 7, "Attribute=type is not allowed for Var elements");
+    }
+
+  /**
+   * Tests {@link SystemTestDocReader#getSystemTestDef getSystemTestDef()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 24.   getSystemTestDef (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> TestCases.System </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Function.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> Function.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> TestCase.Count </TD> <TD> One </TD></TR>
+   * <TR><TD> TestCase.Id </TD> <TD> Defined </TD></TR>
+   * <TR><TD> TestCase.Failure </TD> <TD> Yes </TD></TR>
+   * <TR><TD> Input.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Input.Type </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.Count </TD> <TD> Many </TD></TR>
+   * <TR><TD> Var.Name </TD> <TD> Defined </TD></TR>
+   * <TR><TD> Var.Value </TD> <TD> Non-ASCII </TD></TR>
+   * <TR><TD> Var.Failure </TD> <TD> Yes </TD></TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void testGetSystemTestDef_24()
+    {
+    // Given...
+    SystemTestDef expected =
+      SystemTestDefBuilder.with( "System-24")
+      .functions(
+        FunctionTestDefBuilder.with( "Function-0")
+        .testCases(
+          TestCaseBuilder.with( 0)
+          .bind(
+            "env",
+            VarBindingBuilder.with( "Var-00.1.2.3")
+            .value( "")
+            .build(),
+            VarBindingBuilder.with( "Var-01")
+            .value( " ")
+            .valid( false)
+            .build())
+          .bind(
+            "state",
+            VarBindingBuilder.with( "Var-02")
+            .value( "!#")
+            .build(),
+            VarBindingBuilder.with( "Var-03")
+            .value( "大丈夫")
+            .build(),
+            VarBindingBuilder.with( "Var-04")
+            .value( "\t")
+            .build(),
+            VarBindingBuilder.with( "Var-05")
+            .notApplicable()
+            .build())
+          .build())
+        .build())
+      .build();
+
+    // When...
+    SystemTestDef systemTestDef = systemTestResources_.read( "system-test-def-24.xml");
+
+    // Then...
+    assertMatches( "system-test-def-24.xml", expected, systemTestDef, Matchers.systemTestDefMatcher);
     }
 
   /**

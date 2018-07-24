@@ -13,6 +13,7 @@ import org.cornutum.tcases.util.ToString;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Defines a set of {@link ICondition conditions}.
@@ -67,6 +68,25 @@ public abstract class ConditionSet implements ICondition
   public Iterator<ICondition> getConditions()
     {
     return conditions_.iterator();
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( conditions_);
+    }
+
+  public boolean equals( Object object)
+    {
+    ConditionSet other =
+      object != null && object.getClass().equals( getClass())
+      ? (ConditionSet) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( other.conditions_, conditions_);
     }
 
   public String toString()

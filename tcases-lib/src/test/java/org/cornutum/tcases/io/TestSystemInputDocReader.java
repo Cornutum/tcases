@@ -8,11 +8,12 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
+import static org.cornutum.tcases.conditions.Conditions.*;
+import static org.cornutum.tcases.util.Asserts.*;
+import static org.cornutum.tcases.VarValueDef.Type.*;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import org.apache.commons.collections4.IteratorUtils;
 
 import org.xml.sax.SAXParseException;
 
@@ -62,11 +63,58 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_0()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
-    assertEquals( "System name", "System-0", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-0")
+      .has( "A0", "AV0")
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 1, functionInputDefs.length);
+      .functions(
+        FunctionInputDefBuilder.with( "Function-0")
+        .vars(
+          "state",
+
+          VarDefBuilder.with( "state-0-0")
+          .when( allOf( has( "R1"), not( "R2", "R3")))
+          .values(
+            VarValueDefBuilder.with( "value-0")
+            .when( allOf( has( "R4"), not( "R5", "R1")))
+            .properties( "P1", "P2", "P3", "P4", "P5")
+            .build())
+          .build(),
+
+          VarSetBuilder.with( "state-0-1")
+          .when( has( "P1"))
+          .members(
+            VarDefBuilder.with( "member-0")
+            .when( allOf( has( "P2"), not( "P3", "P4")))
+            .values(
+              VarValueDefBuilder.with( "value-0")
+              .when( allOf( has( "P5"), not( "P3", "P4")))
+              .properties( "R1", "R2", "R3", "R4", "R5")
+              .build())
+            .build(),
+
+            VarSetBuilder.with( "member-1")
+            .members(
+              VarDefBuilder.with( "member-1-0")
+              .values(
+                VarValueDefBuilder.with( "value-1-0").build())
+              .build(),
+              
+              VarDefBuilder.with( "member-1-1")
+              .values(
+                VarValueDefBuilder.with( "value-1-1").build())
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();               
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+
+    // Then...
+    assertMatches( "system-input-def-0.xml", expected, systemInputDef, Matchers.systemInputDefMatcher);
     }
 
   /**
@@ -109,11 +157,16 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_1()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-1.xml");
-    assertEquals( "System name", "System-1", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-1")
+      .build();
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 0, functionInputDefs.length);
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-1.xml");
+
+    // Then...
+    assertMatches( "system-input-def-1.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**
@@ -156,11 +209,133 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_2()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-2.xml");
-    assertEquals( "System name", "System-2", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-2")
+      .has( "A0", "AV0")
+      .has( "A1", "AV1")
+      .functions(
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 2, functionInputDefs.length);
+        FunctionInputDefBuilder.with( "Function-0")
+        .has( "A0", "AV0")
+        .has( "A1", "AV1")
+        .vars(
+          "arg",
+          VarDefBuilder.with( "arg-0-0")
+          .when( allOf( has( "E1", "E2", "E3"), not( "E4")))
+          .values(
+            VarValueDefBuilder.with( "value-0")
+            .when( allOf( has( "E5", "E6"), not( "E7")))
+            .properties( "A1", "A2", "A3", "A4", "A5", "A6")
+            .build(),
+
+            VarValueDefBuilder.with( "value-1")
+            .when( allOf( has( "E8", "E9"), not( "E10")))
+            .type( FAILURE)
+            .build(),
+
+            VarValueDefBuilder.with( "value-2")
+            .when( allOf( has( "E11", "E12"), not( "E1")))
+            .type( ONCE)
+            .properties( "A7", "A8", "A9", "A10", "A11", "A12")
+            .build())
+          .build(),
+          
+          VarDefBuilder.with( "arg-0-1")
+          .values(
+            VarValueDefBuilder.with( "value-3")
+            .type( ONCE)
+            .build(),
+
+            VarValueDefBuilder.with( "value-4")
+            .build(),
+
+            VarValueDefBuilder.with( "value-5")
+            .type( FAILURE)
+            .build())
+          .build(),
+
+          VarSetBuilder.with( "arg-0-2")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value-6")
+              .build())
+            .build())
+          .build())
+
+        .vars(
+          "env",
+          VarSetBuilder.with( "env-0-0")
+          .when( not( "A1"))
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value-7")
+              .build(),
+
+              VarValueDefBuilder.with( "value-8")
+              .build())
+            .build())
+          .build(),
+
+          VarSetBuilder.with( "env-0-1")
+          .when( not( "A2"))
+          .members(
+            VarDefBuilder.with( "member-0")
+            .when( allOf( has( "A3", "A4", "A5"), not( "A6")))
+            .values(
+              VarValueDefBuilder.with( "value-9")
+              .when( allOf( has( "A7", "A8"), not( "A9")))
+              .type( FAILURE)
+              .build(),
+
+              VarValueDefBuilder.with( "value-10")
+              .when( allOf( has( "A10", "A11"), not( "A12")))
+              .properties( "E1", "E2", "E3", "E4", "E5", "E6")
+              .build(),
+
+              VarValueDefBuilder.with( "value-11")
+              .when( allOf( has( "A12", "A11"), not( "A10")))
+              .type( ONCE)
+              .properties( "E7", "E8", "E9", "E10", "E11", "E12")
+              .build())
+            .build())
+          .build(),
+
+          VarDefBuilder.with( "env-0-2")
+            .values(
+              VarValueDefBuilder.with( "value-12")
+              .build())
+          .build())
+        .build(),
+
+        FunctionInputDefBuilder.with( "Function-1")
+        .vars(
+          "arg",
+          VarDefBuilder.with( "arg-1-1")
+          .values(
+            VarValueDefBuilder.with( "value-14")
+            .build())
+          .build(),
+
+          VarSetBuilder.with( "arg-1-0")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value-13")
+              .build())
+            .build())
+          .build())
+        .build())
+        
+      .build();
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-2.xml");
+
+    // Then...
+    assertMatches( "system-input-def-2.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**
@@ -203,11 +378,102 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_3()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-3.xml");
-    assertEquals( "System name", "System-3", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-3")
+      .functions(
+        FunctionInputDefBuilder.with( "Function-0")
+        .has( "A0", "AV0")
+        .has( "A1", "AV1")
+        .vars(
+          "arg",
+          VarSetBuilder.with( "arg-0-0")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value_0")
+              .build())
+            .build())
+          .build(),
+          
+          VarSetBuilder.with( "arg-0-1")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value_1")
+              .build())
+            .build())
+          .build())
+        
+        .vars(
+          "env",
+          VarSetBuilder.with( "env-0-0")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value_2")
+              .build())
+            .build())
+          .build(),
+          
+          VarSetBuilder.with( "env-0-1")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value_3")
+              .build())
+            .build())
+          .build())
+        .build(),
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 2, functionInputDefs.length);
+        FunctionInputDefBuilder.with( "Function-1")
+        .vars(
+          "arg",
+          VarSetBuilder.with( "arg-1-0")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value_4")
+              .build())
+            .build())
+          .build(),
+          
+          VarSetBuilder.with( "arg-1-1")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value_5")
+              .build())
+            .build())
+          .build())
+        
+        .vars(
+          "env",
+          VarSetBuilder.with( "env-1-0")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value_6")
+              .build())
+            .build())
+          .build(),
+          
+          VarSetBuilder.with( "env-1-1")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value_7")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-3.xml");
+
+    // Then...
+    assertMatches( "system-input-def-3.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**
@@ -250,11 +516,91 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_4()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-4.xml");
-    assertEquals( "System name", "System-4", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-4")
+      .functions(
+        FunctionInputDefBuilder.with( "Function-0")
+        .has( "A0", "AV0")
+        .vars(
+          "state",
+          VarDefBuilder.with( "state-0-0")
+          .when( anyOf( hasAny( "R1")))
+          .values(
+            VarValueDefBuilder.with( "value-0")
+            .type( FAILURE)
+            .when( anyOf( hasAny( "R2")))
+            .build(),
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 2, functionInputDefs.length);
+            VarValueDefBuilder.with( "value-1")
+            .type( ONCE)
+            .when( anyOf( hasAny( "R3")))
+            .properties( "P1", "P5")
+            .build(),
+
+            VarValueDefBuilder.with( "value-2")
+            .type( FAILURE)
+            .when( anyOf( hasAny( "R4")))
+            .build(),
+            
+            VarValueDefBuilder.with( "value-3")
+            .when( anyOf( hasAny( "R5")))
+            .properties( "P2", "P3", "P4")
+            .build())
+          .build(),
+
+          VarDefBuilder.with( "state-0-1")
+          .values(
+            VarValueDefBuilder.with( "value-4")
+            .properties( "R1", "R2", "R3", "R4", "R5")
+            .build())
+          .build())
+        .build(),
+        
+        FunctionInputDefBuilder.with( "Function-1")
+        .vars(
+          "state",
+          VarDefBuilder.with( "state-1-0")
+          .has( "A1", "AV1")
+          .when( anyOf( hasAny( "P1")))
+          .values(
+            VarValueDefBuilder.with( "value-0")
+            .when( anyOf( hasAny( "P5")))
+            .properties( "R1", "R2")
+            .build(),
+
+            VarValueDefBuilder.with( "value-1")
+            .type( ONCE)
+            .when( anyOf( hasAny( "P3")))
+            .properties( "R3", "R4", "R5")
+            .build(),
+
+            VarValueDefBuilder.with( "value-2")
+            .type( FAILURE)
+            .when( anyOf( hasAny( "P4")))
+            .build(),
+            
+            VarValueDefBuilder.with( "value-3")
+            .type( FAILURE)
+            .when( anyOf( hasAny( "P2")))
+            .build())
+          .build(),
+
+          VarDefBuilder.with( "state-1-1")
+          .has( "A1", "AV1")
+          .values(
+            VarValueDefBuilder.with( "value-4")
+            .properties( "P1", "P2", "P3", "P4", "P5")
+            .build())
+          .build())
+        .build())
+      .build();
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-4.xml");
+
+    // Then...
+    assertMatches( "system-input-def-4.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**
@@ -297,11 +643,77 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_5()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-5.xml");
-    assertEquals( "System name", "System-5", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-5")
+      .functions(
+        FunctionInputDefBuilder.with( "Function-0")
+        .vars(
+          "env",
+          VarDefBuilder.with( "env-0-0")
+          .has( "A0", "AV0")
+          .when( allOf( has( "P1", "P2", "P3"), not( "P4"), allOf( "P5"), anyOf( "P6")))
+          .values(
+            VarValueDefBuilder.with( "value-0")
+            .has( "A5", "AV5")
+            .has( "A6", "AV6")
+            .type( FAILURE)
+            .when( allOf( has( "P1", "P2", "P3"), not( "P4"), allOf( "P5"), anyOf( "P6")))
+            .build(),
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 1, functionInputDefs.length);
+            VarValueDefBuilder.with( "value-1")
+            .type( ONCE)
+            .when( allOf( has( "P1", "P2", "P3"), not( "P4"), allOf( "P5"), anyOf( "P6")))
+            .build())
+          .build(),
+
+          VarDefBuilder.with( "env-0-1")
+          .when( allOf( has( "P1", "P2", "P3"), not( "P4"), allOf( "P5"), anyOf( "P6")))
+          .values(
+            VarValueDefBuilder.with( "value-2")
+            .type( FAILURE)
+            .when( allOf( has( "P1", "P2", "P3"), not( "P4"), allOf( "P5"), anyOf( "P6")))
+            .build(),
+
+            VarValueDefBuilder.with( "value-3")
+            .type( ONCE)
+            .when( allOf( has( "P1", "P2", "P3"), not( "P4"), allOf( "P5"), anyOf( "P6")))
+            .build())
+          .build(),
+
+          VarSetBuilder.with( "env-0-2")
+          .has( "A1", "AV1")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .has( "A2", "AV2")
+            .has( "A3", "AV3")
+            .values(
+              VarValueDefBuilder.with( "value-4")
+              .properties( "P1", "P2", "P3")
+              .build())
+            .build())
+          .build(),
+
+          VarSetBuilder.with( "env-0-3")
+          .has( "A7", "AV7")
+          .has( "A8", "AV8")
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value-5")
+              .has( "A4", "AV4")
+              .properties( "P4", "P5", "P6")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-5.xml");
+
+    // Then...
+    assertMatches( "system-input-def-5.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**
@@ -344,11 +756,52 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_6()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-6.xml");
-    assertEquals( "System name", "System-6", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-6")
+      .functions(
+        FunctionInputDefBuilder.with( "Function-0")
+        .vars(
+          "arg",
+          VarSetBuilder.with( "arg-0-0")
+          .when( not( anyOf( "R1", "R2")))
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value-0")
+              .properties( "P1")
+              .build())
+            .build(),
+            VarDefBuilder.with( "member-1")
+            .values(
+              VarValueDefBuilder.with( "value-1")
+              .properties( "P2", "P3")
+              .build())
+            .build())
+          .build(),
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 1, functionInputDefs.length);
+          VarDefBuilder.with( "arg-0-1")
+          .when( not( allOf( "P1")))
+          .values(
+            VarValueDefBuilder.with( "value-2")
+            .type( ONCE)
+            .when( not( not( "P2")))
+            .build(),
+            VarValueDefBuilder.with( "value-3")
+            .properties( "R1", "R2", "R3")
+            .build(),
+            VarValueDefBuilder.with( "value-4")
+            .type( FAILURE)
+            .build())
+          .build())
+        .build())
+      .build();
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-6.xml");
+
+    // Then...
+    assertMatches( "system-input-def-6.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**
@@ -391,11 +844,46 @@ public class TestSystemInputDocReader
   @Test
   public void testGetSystemInputDef_7()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-7.xml");
-    assertEquals( "System name", "System-7", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-7")
+      .functions(
+        FunctionInputDefBuilder.with( "Function-0")
+        .vars(
+          "arg",
+          VarDefBuilder.with( "arg-0-0")
+          .has( "A0", "AV0")
+          .has( "A1", "AV1")
+          .values(
+            VarValueDefBuilder.with( "value-0")
+            .properties( "P1", "P3", "P4", "P5", "P6", "P7")
+            .when( allOf( "R1"))
+            .build())
+          .build())
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 1, functionInputDefs.length);
+        .vars(
+          "env",
+          VarSetBuilder.with( "env-0-0")
+          .has( "A3", "NV3")
+          .has( "A4", "AV4")
+          .when( anyOf( "P1"))
+          .members(
+            VarDefBuilder.with( "member-0")
+            .values(
+              VarValueDefBuilder.with( "value-1")
+              .properties( "R1")
+              .build())
+            .build())
+          .build())
+        
+        .build())
+      .build();
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-7.xml");
+
+    // Then...
+    assertMatches( "system-input-def-7.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**
@@ -1556,13 +2044,32 @@ public class TestSystemInputDocReader
    * </TABLE>
    * </P>
    */
+  @Test
   public void testGetSystemInputDef_43()
     {
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-43.xml");
-    assertEquals( "System name", "System-43", systemInputDef.getName());
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-43")
+      .functions(
+        FunctionInputDefBuilder.with( "Function-0")
+        .vars(
+          "env",
+          VarDefBuilder.with( "env-0-0")
+          .values(
+            VarValueDefBuilder.with( "").build(),
+            VarValueDefBuilder.with( " ").build(),
+            VarValueDefBuilder.with( "大丈夫").build(),
+            VarValueDefBuilder.with( "\"<>").build(),
+            VarValueDefBuilder.with( "!#+-)[{").build())
+          .build())
+        .build())
+      .build();
 
-    FunctionInputDef[] functionInputDefs = IteratorUtils.toArray( systemInputDef.getFunctionInputDefs(), FunctionInputDef.class);
-    assertEquals( "Function input defs", 1, functionInputDefs.length);
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-43.xml");
+
+    // Then...
+    assertMatches( "system-input-def-43.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**

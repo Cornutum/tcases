@@ -15,7 +15,7 @@ import org.cornutum.tcases.conditions.ICondition;
  * Defines an input variable.
  *
  */
-public interface IVarDef extends IConditional
+public interface IVarDef extends IConditional, IAnnotated
   {
   /**
    * Defines an ordering of variable definitions.

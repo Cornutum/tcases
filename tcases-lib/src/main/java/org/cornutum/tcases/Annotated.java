@@ -17,7 +17,7 @@ import java.util.Map;
  * Base class for annotated elements.
  *
  */
-public abstract class Annotated
+public abstract class Annotated implements IAnnotated
   {
   /**
    * Changes the value of the given annotation.

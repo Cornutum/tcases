@@ -7,17 +7,11 @@
 
 package org.cornutum.tcases.generator.io;
 
-import org.cornutum.tcases.IVarDef;
-import org.cornutum.tcases.VarBinding;
-import org.cornutum.tcases.VarDef;
-import org.cornutum.tcases.VarSet;
 import org.cornutum.tcases.generator.*;
-import static org.cornutum.tcases.util.Asserts.*;
+import static org.cornutum.tcases.generator.GeneratorSet.ALL;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import org.apache.commons.collections4.IteratorUtils;
 
 import org.xml.sax.SAXParseException;
 
@@ -49,9 +43,16 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_0()
     {
+    // Given...
+    GeneratorSet expected =
+      new GeneratorSetBuilder()
+      .build();
+
+    // When...
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-0.xml");
-    ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
-    assertEquals( "Generators", 0, generators.length);    
+
+    // Then...
+    assertEquals( "generator-set-0.xml", expected, generatorSet);
     }
 
   /**
@@ -76,60 +77,27 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_1()
     {
+    // Given...
+    GeneratorSet expected =
+      new GeneratorSetBuilder()
+      .generator(
+        "F1",
+        new TupleGeneratorBuilder()
+        .seed( 1234L)
+        .tuples( 3)
+        .combiners(
+          new TupleCombinerBuilder()
+          .tuples( 3)
+          .exclude( "exclude1.var", "exclude2.var.**")
+          .build())
+        .build())
+      .build();
+
+    // When...
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-1.xml");
-    ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
-    assertEquals( "Generators", 1, generators.length);
 
-    TupleGenerator  tupleGenerator;
-    String          functionName;
-    TupleCombiner[] combiners;
-    TupleCombiner   combiner;
-    VarSet          varSet;
-    IVarDef         varDef;
-    
-    tupleGenerator = (TupleGenerator ) generators[0];
-    assertEquals( "Generator 0, seed", new Long( 1234L), tupleGenerator.getRandomSeed());
-    assertEquals( "Generator 0, defaultTupleSize", 3, tupleGenerator.getDefaultTupleSize());
-
-    functionName = "F1";
-    assertEquals( "getGenerator, function=" + functionName, tupleGenerator, generatorSet.getGenerator( functionName));
-
-    functionName = null;
-    assertEquals( "getGenerator, function=" + functionName, null, generatorSet.getGenerator( functionName));
-    
-    combiners = tupleGenerator.getCombiners().toArray( new TupleCombiner[ tupleGenerator.getCombiners().size()]);
-    assertEquals( "Generator 0, combiners", 1, combiners.length);
-
-    combiner = combiners[0];
-
-    varSet =
-      new VarSet( "include1")
-      .addMember( new VarSet( "B").addMember( new VarDef( "C")));
-    
-    varDef = varSet.getDescendant( "B.C");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
-    
-    varDef = new VarDef( "include2");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
-
-    varSet =
-      new VarSet( "exclude1")
-      .addMember( new VarDef( "var"))
-      .addMember( new VarDef( "var2"));
-    
-    varDef = varSet.getDescendant( "var");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
-    
-    varDef = varSet.getDescendant( "var2");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
-
-    varSet =
-      new VarSet( "exclude2")
-      .addMember( new VarSet( "var").addMember( new VarSet( "A").addMember( new VarDef( "B"))))
-      .addMember( new VarDef( "var2"));
-    
-    varDef = varSet.getDescendant( "var.A.B");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
+    // Then...
+    assertEquals( "generator-set-1.xml", expected, generatorSet);
     }
 
   /**
@@ -154,43 +122,36 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_2()
     {
+    // Given...
+    GeneratorSet expected =
+      new GeneratorSetBuilder()
+      .generator(
+        ALL,
+        new TupleGeneratorBuilder()
+        .tuples(1)
+        .build())
+      .generator(
+        "F1",
+        new TupleGeneratorBuilder()
+        .tuples(1)
+        .build())
+      .generator(
+        "F2",
+        new TupleGeneratorBuilder()
+        .tuples(1)
+        .build())
+      .generator(
+        "F3",
+        new TupleGeneratorBuilder()
+        .tuples(1)
+        .build())
+      .build();
+
+    // When...
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-2.xml");
-    ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
-    assertEquals( "Generators", 4, generators.length);
 
-    TupleGenerator  tupleGenerator;
-    String          functionName;
-    
-    functionName = "F1";
-    tupleGenerator = (TupleGenerator ) generatorSet.getGenerator( functionName);
-    assertEquals( "getGenerator, function=" + functionName, true, tupleGenerator != null);
-    assertEquals( "Generator(" + functionName + "), seed", null, tupleGenerator.getRandomSeed());
-    assertEquals( "Generator(" + functionName + "), defaultTupleSize", 1, tupleGenerator.getDefaultTupleSize());
-    assertEquals( "Generator(" + functionName + "), combiners", 0, tupleGenerator.getCombiners().size());
-    
-    functionName = "F2";
-    tupleGenerator = (TupleGenerator ) generatorSet.getGenerator( functionName);
-    assertEquals( "getGenerator, function=" + functionName, true, tupleGenerator != null);
-    assertEquals( "Generator(" + functionName + "), seed", null, tupleGenerator.getRandomSeed());
-    assertEquals( "Generator(" + functionName + "), defaultTupleSize", 1, tupleGenerator.getDefaultTupleSize());
-    assertEquals( "Generator(" + functionName + "), combiners", 0, tupleGenerator.getCombiners().size());
-    
-    functionName = "F3";
-    tupleGenerator = (TupleGenerator ) generatorSet.getGenerator( functionName);
-    assertEquals( "getGenerator, function=" + functionName, true, tupleGenerator != null);
-    assertEquals( "Generator(" + functionName + "), seed", null, tupleGenerator.getRandomSeed());
-    assertEquals( "Generator(" + functionName + "), defaultTupleSize", 1, tupleGenerator.getDefaultTupleSize());
-    assertEquals( "Generator(" + functionName + "), combiners", 0, tupleGenerator.getCombiners().size());
-    
-    functionName = null;
-    tupleGenerator = (TupleGenerator ) generatorSet.getGenerator( functionName);
-    assertEquals( "getGenerator, function=" + functionName, true, tupleGenerator != null);
-    assertEquals( "Generator(" + functionName + "), seed", null, tupleGenerator.getRandomSeed());
-    assertEquals( "Generator(" + functionName + "), defaultTupleSize", 1, tupleGenerator.getDefaultTupleSize());
-    assertEquals( "Generator(" + functionName + "), combiners", 0, tupleGenerator.getCombiners().size());
-
-    functionName = "F4";
-    assertEquals( "Found default generator for function=" + functionName, true, tupleGenerator == generatorSet.getGenerator( functionName));
+    // Then...
+    assertEquals( "generator-set-2.xml", expected, generatorSet);
     }
 
   /**
@@ -215,68 +176,32 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_3()
     {
+    // Given...
+    GeneratorSet expected =
+      new GeneratorSetBuilder()
+      .generator(
+        ALL,
+        new TupleGeneratorBuilder()
+        .tuples( 3)
+        .combiners(
+          new TupleCombinerBuilder()
+          .tuples( 1)
+          .include( "A.**", "C")
+          .exclude( "A.B")
+          .build(),
+          new TupleCombinerBuilder()
+          .tuples( 3)
+          .include( "D.**")
+          .exclude( "D.E.*")
+          .build())
+        .build())          
+      .build();
+
+    // When...
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-3.xml");
-    ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
-    assertEquals( "Generators", 1, generators.length);
 
-    TupleGenerator  tupleGenerator;
-    String          functionName;
-    TupleCombiner[] combiners;
-    TupleCombiner   combiner;
-    VarSet          varSet;
-    IVarDef         varDef;
-    
-    tupleGenerator = (TupleGenerator ) generators[0];
-    functionName = "F4";
-    assertEquals( "Found default generator for function=" + functionName, true, tupleGenerator == generatorSet.getGenerator( functionName));
-    assertEquals( "Default generator, seed", null, tupleGenerator.getRandomSeed());
-    assertEquals( "Default generator, defaultTupleSize", 3, tupleGenerator.getDefaultTupleSize());
-
-    combiners = tupleGenerator.getCombiners().toArray( new TupleCombiner[ tupleGenerator.getCombiners().size()]);
-    assertEquals( "Default generator, combiners", 2, tupleGenerator.getCombiners().size());
-
-    combiner = combiners[0];
-    assertEquals( "Combiner[0], tupleSize", 1, combiner.getTupleSize());
-
-    assertEquals( "Combiner[0], onceTuples", 0, IteratorUtils.toArray( combiner.getOnceTuples(), TupleRef.class).length);
-
-    varSet =
-      new VarSet( "A")
-      .addMember( new VarDef( "B"))
-      .addMember( new VarSet( "X").addMember( new VarDef( "Y")));
-    
-    varDef = varSet.getDescendant( "X.Y");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
-    
-    varDef = varSet.getDescendant( "B");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
-    
-    varDef = new VarDef( "C");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
-
-    varDef = new VarDef( "D");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
-
-    combiner = combiners[1];
-    assertEquals( "Combiner[1], tupleSize", 3, combiner.getTupleSize());
-
-    varSet =
-      new VarSet( "D")
-      .addMember( new VarSet( "X").addMember( new VarDef( "Y")))
-      .addMember( new VarDef( "Z"))
-      .addMember( new VarSet( "E").addMember( new VarDef( "E1")));
-    
-    varDef = varSet.getDescendant( "X.Y");
-    assertEquals( "Combiner[1], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
-    
-    varDef = varSet.getDescendant( "Z");
-    assertEquals( "Combiner[1], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
-    
-    varDef = varSet.getDescendant( "E.E1");
-    assertEquals( "Combiner[1], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
-
-    varDef = new VarDef( "F");
-    assertEquals( "Combiner[1], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
+    // Then...
+    assertEquals( "generator-set-3.xml", expected, generatorSet);
     }
 
   /**
@@ -301,39 +226,27 @@ public class TestGeneratorSetDocReader
   @Test
   public void testGetGeneratorSet_4()
     {
+    // Given...
+    GeneratorSet expected =
+      new GeneratorSetBuilder()
+      .generator(
+        ALL,
+        new TupleGeneratorBuilder()
+        .tuples( 3)
+        .seed( 12345L)
+        .combiners(
+          new TupleCombinerBuilder()
+          .tuples( 3)
+          .include( "X")
+          .build())
+        .build())
+      .build();
+
+    // When...
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-4.xml");
-    ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
-    assertEquals( "Generators", 1, generators.length);
 
-    TupleGenerator  tupleGenerator;
-    String          functionName;
-    TupleCombiner[] combiners;
-    TupleCombiner   combiner;
-    VarSet          varSet;
-    IVarDef         varDef;
-    
-    tupleGenerator = (TupleGenerator ) generators[0];
-    functionName = "F4";
-    assertEquals( "Found default generator for function=" + functionName, true, tupleGenerator == generatorSet.getGenerator( functionName));
-    assertEquals( "Default generator, seed", new Long( 12345L), tupleGenerator.getRandomSeed());
-    assertEquals( "Default generator, defaultTupleSize", 3, tupleGenerator.getDefaultTupleSize());
-
-    combiners = tupleGenerator.getCombiners().toArray( new TupleCombiner[ tupleGenerator.getCombiners().size()]);
-    assertEquals( "Default generator, combiners", 1, tupleGenerator.getCombiners().size());
-
-    combiner = combiners[0];
-    assertEquals( "Combiner[0], tupleSize", tupleGenerator.getDefaultTupleSize(), combiner.getTupleSize());
-
-    varSet = new VarSet( "A").addMember( new VarSet( "X").addMember( new VarDef( "Y")));
-    
-    varDef = varSet.getDescendant( "X");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
-    
-    varDef = new VarDef( "B");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", false, combiner.isEligible( varDef));
-
-    varDef = new VarDef( "X");
-    assertEquals( "Combiner[0], var=" + varDef + ", eligible", true, combiner.isEligible( varDef));
+    // Then...
+    assertEquals( "generator-set-4.xml", expected, generatorSet);
     }
 
   /**
@@ -590,34 +503,38 @@ public class TestGeneratorSetDocReader
   @Test
   public void testOnceTuples()
     {
+    // Given...
+    GeneratorSet expected =
+      new GeneratorSetBuilder()
+      .generator(
+        ALL,
+        new TupleGeneratorBuilder()
+        .tuples( 2)
+        .combiners(
+          new TupleCombinerBuilder()
+          .tuples( 3)
+          .include( "A.**", "C")
+          .exclude( "A.B")
+          .once(
+            new TupleRefBuilder()
+            .bind( "X1", "V1")
+            .bind( "X2", "V2")
+            .bind( "X3", "V3")
+            .build(),
+            new TupleRefBuilder()
+            .bind( "X4", "V4")
+            .bind( "X5", "V5")
+            .bind( "X6", "V6")
+            .build())
+          .build())
+        .build())
+      .build();
+
+    // When...
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-once.xml");
-    ITestCaseGenerator[] generators = IteratorUtils.toArray( generatorSet.getGenerators(), ITestCaseGenerator.class);
-    assertEquals( "Generators", 1, generators.length);
 
-    TupleGenerator  tupleGenerator;
-    TupleCombiner[] combiners;
-    TupleCombiner   combiner;
-    
-    tupleGenerator = (TupleGenerator ) generators[0];
-    combiners = tupleGenerator.getCombiners().toArray( new TupleCombiner[ tupleGenerator.getCombiners().size()]);
-    assertEquals( "Default generator, combiners", 1, tupleGenerator.getCombiners().size());
-
-    combiner = combiners[0];
-    assertSetEquals
-      ( "Other tuples",
-        new TupleRef[]
-          {
-            new TupleRef()
-            .addVarBinding( new VarBinding( "X1", "V1"))
-            .addVarBinding( new VarBinding( "X2", "V2"))
-            .addVarBinding( new VarBinding( "X3", "V3")),
-
-            new TupleRef()
-            .addVarBinding( new VarBinding( "X4", "V4"))
-            .addVarBinding( new VarBinding( "X5", "V5"))
-            .addVarBinding( new VarBinding( "X6", "V6"))
-          },
-        combiner.getOnceTuples());
+    // Then...
+    assertEquals( "generator-set-once.xml", expected, generatorSet);
     }
   
   @Test
