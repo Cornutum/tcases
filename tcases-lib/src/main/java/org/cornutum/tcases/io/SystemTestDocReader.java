@@ -9,6 +9,7 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import static org.cornutum.tcases.DefUtils.*;
+import static org.cornutum.tcases.io.ObjectUtils.toObject;
 import static org.cornutum.tcases.io.SystemTestDoc.*;
 
 import javax.xml.parsers.SAXParser;
@@ -639,7 +640,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
       VarBinding binding =
         na
         ? new VarNaBinding( requireIdPath( attributes, NAME_ATR), parent.getType())
-        : new VarBinding( requireIdPath( attributes, NAME_ATR), parent.getType(), valueAtr);
+        : new VarBinding( requireIdPath( attributes, NAME_ATR), parent.getType(), toObject( valueAtr));
 
       TestCaseHandler testCaseHandler = getTestCaseHandler();
       TestCase testCase = testCaseHandler.getTestCase();

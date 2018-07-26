@@ -13,6 +13,7 @@ import org.apache.commons.collections4.Predicate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Defines an individual input variable.
@@ -119,7 +120,6 @@ public class VarDef extends AbstractVarDef
   public VarDef addValue( VarValueDef value)
     {
     assert value != null;
-    assert value.getName() != null;
 
     if( findValue( value.getName()) >= 0)
       {
@@ -147,7 +147,7 @@ public class VarDef extends AbstractVarDef
   /**
    * Returns the value definition with the given name.
    */
-  public VarValueDef getValue( String name)
+  public VarValueDef getValue( Object name)
     {
     int i = findValue( name);
     return i >= 0? values_.get(i) : null;
@@ -167,11 +167,11 @@ public class VarDef extends AbstractVarDef
   /**
    * Returns the index of the value definition with the given name.
    */
-  protected int findValue( String name)
+  protected int findValue( Object name)
     {
-    int valueCount = name==null? 0 : values_.size();
+    int valueCount = values_.size();
     int i;
-    for( i = 0; i < valueCount && !name.equals( values_.get(i).getName()); i++);
+    for( i = 0; i < valueCount && !Objects.equals( name, values_.get(i).getName()); i++);
     return i < valueCount? i : -1;
     }
   

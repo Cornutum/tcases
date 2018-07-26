@@ -910,8 +910,8 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
         int result = var1.compareTo( var2);
         if( result == 0)
           {
-          String value1 = binding1.getValueDef().getName();
-          String value2 = binding2.getValueDef().getName();
+          String value1 = String.valueOf( binding1.getValueDef().getName());
+          String value2 = String.valueOf( binding2.getValueDef().getName());
           result = value1.compareTo( value2);
           }
           
