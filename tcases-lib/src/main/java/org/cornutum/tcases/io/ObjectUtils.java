@@ -8,6 +8,7 @@
 package org.cornutum.tcases.io;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -41,7 +42,7 @@ public final class ObjectUtils
     return
       Stream.of( converters)
       .map( converter -> converter.apply( value))
-      .filter( object -> object != null)
+      .filter( Objects::nonNull)
       .findFirst()
       .orElse( null);
     }
@@ -50,123 +51,94 @@ public final class ObjectUtils
    * Returns the Boolean represented by the given string, or null if not a boolean value.
    */
   private static Function<String,Object> toBoolean =
-    new Function<String,Object>()
-      {
-      public Object apply( String value)
-        {
-        return
-          "true".equalsIgnoreCase( value)?
-          Boolean.TRUE :
+    value ->
+      "true".equalsIgnoreCase( value)?
+      Boolean.TRUE :
 
-          "false".equalsIgnoreCase( value)?
-          Boolean.FALSE :
+      "false".equalsIgnoreCase( value)?
+      Boolean.FALSE :
 
-          null;
-        }
-      };
+      null;
 
   /**
    * Returns the given String value.
    */
   private static Function<String,Object> toString =
-    new Function<String, Object>()
-      {
-      public Object apply( String value)
-        {
-        // "null" is string representation of null
-        return
-          "null".equals( value)
-          ? null
-          : value;
-        }
-      };
-
-  /**
-   * Returns the Number represented by the given string, or null if not a numeric value.
-   */
-  private static Function<String,Object> toNumber =
-    new Function<String,Object>()
-      {
-      public Object apply( String value)
-        {
-        Object number;
-
-        try
-          {
-          number = toObject( new BigDecimal( value), toInt, toLong, toDecimal);
-          }
-        catch( Exception e)
-          {
-          number = null;
-          }
-
-        return number;
-        }
-      };
+    value ->
+      // "null" is string representation of null
+      "null".equals( value)
+      ? null
+      : value;
 
   /**
    * Returns the Integer represented by the given value, or null if not an integer value.
    */
   private static Function<BigDecimal,Object> toInt =
-    new Function<BigDecimal, Object>()
+    value ->
       {
-      public Object apply( BigDecimal value)
+      Object number;
+        
+      try
         {
-        Object number;
-        
-        try
-          {
-          number =
-            value.scale() == 0
-            ? Integer.valueOf( value.intValueExact())
-            : null;
-          }
-        catch( Exception e)
-          {
-          number = null;
-          }
-        
-        return number;
+        number =
+          value.scale() == 0
+          ? Integer.valueOf( value.intValueExact())
+          : null;
         }
+      catch( Exception e)
+        {
+        number = null;
+        }
+        
+      return number;
       };
 
   /**
    * Returns the Long represented by the given value, or null if not an long value.
    */
   private static Function<BigDecimal,Object> toLong =
-    new Function<BigDecimal, Object>()
+    value ->
       {
-      public Object apply( BigDecimal value)
+      Object number;
+        
+      try
         {
-        Object number;
-        
-        try
-          {
-          number =
-            value.scale() == 0
-            ? Long.valueOf( value.longValueExact())
-            : null;
-          }
-        catch( Exception e)
-          {
-          number = null;
-          }
-        
-        return number;
+        number =
+          value.scale() == 0
+          ? Long.valueOf( value.longValueExact())
+          : null;
         }
+      catch( Exception e)
+        {
+        number = null;
+        }
+        
+      return number;
       };
 
   /**
    * Returns the given BigDecimal value.
    */
   private static Function<BigDecimal,Object> toDecimal =
-    new Function<BigDecimal, Object>()
+    value -> value;
+
+  /**
+   * Returns the Number represented by the given string, or null if not a numeric value.
+   */
+  private static Function<String,Object> toNumber =
+    value ->
       {
-      public Object apply( BigDecimal value)
+      Object number;
+
+      try
         {
-        return value;
+        number = toObject( new BigDecimal( value), toInt, toLong, toDecimal);
         }
+      catch( Exception e)
+        {
+        number = null;
+        }
+
+      return number;
       };
   }
-
-
