@@ -15,7 +15,7 @@ import org.cornutum.tcases.conditions.ICondition;
  * Defines an input variable.
  *
  */
-public interface IVarDef extends IConditional, IAnnotated
+public interface IVarDef extends IConditional, IAnnotated, Comparable<IVarDef>
   {
   /**
    * Defines an ordering of variable definitions.
@@ -90,6 +90,13 @@ public interface IVarDef extends IConditional, IAnnotated
    */
   ICondition getCondition();
 
+  /**
+   * Returns the condition that defines when values for this variable are applicable.
+   */
+  default int compareTo( IVarDef other)
+    {
+    return getPosition().compareTo( other.getPosition());
+    }
 
   /**
    * {@link #getType Identifies} an input variable that is a formal argument of a function.

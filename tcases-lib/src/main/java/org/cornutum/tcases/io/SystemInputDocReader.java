@@ -11,6 +11,7 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 
 import static org.cornutum.tcases.DefUtils.*;
+import static org.cornutum.tcases.io.SystemInputDoc.*;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -1378,28 +1379,6 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
   private Locator               locator_;
   private List<ElementHandler>  elementHandlers_  = new ArrayList<ElementHandler>();
   private SystemInputDef        systemInputDef_;
-
-  private static final String ALLOF_TAG     = "AllOf";
-  private static final String ANYOF_TAG     = "AnyOf";
-  private static final String FUNCTION_TAG  = "Function";
-  private static final String HAS_TAG       = "Has";
-  private static final String INPUT_TAG     = "Input";
-  private static final String NOT_TAG       = "Not";
-  private static final String PROPERTY_TAG  = "Property";
-  private static final String SYSTEM_TAG    = "System";
-  private static final String VALUE_TAG     = "Value";
-  private static final String VARSET_TAG    = "VarSet";
-  private static final String VAR_TAG       = "Var";
-  private static final String WHEN_TAG      = "When";
-
-  private static final String FAILURE_ATR   = "failure";
-  private static final String NAME_ATR      = "name";
-  private static final String ONCE_ATR      = "once";
-  private static final String PROPERTY_ATR  = "property";
-  private static final String TYPE_ATR      = "type";
-  private static final String VALUE_ATR     = "value";
-  private static final String WHENNOT_ATR   = "whenNot";
-  private static final String WHEN_ATR      = "when";
 
   private static final Logger logger_ = LoggerFactory.getLogger( SystemInputDocReader.class);
   }

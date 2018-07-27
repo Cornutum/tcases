@@ -9,6 +9,7 @@ package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
+import org.cornutum.tcases.util.CollectionUtils;
 import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections4.Predicate;
@@ -23,7 +24,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 /**
  * Constructs a definition of a {@link TestCase test case}.
@@ -463,10 +463,8 @@ public class TestCaseDef implements Comparable<TestCaseDef>
    */
   private Stream<String> propertyStream()
     {
-    Iterable<String> propertyList = () -> properties_.getProperties();
-
     return
-      StreamSupport.stream( propertyList.spliterator(), false)
+      CollectionUtils.toStream( properties_.getProperties())
       .sorted( String.CASE_INSENSITIVE_ORDER);
     }
 

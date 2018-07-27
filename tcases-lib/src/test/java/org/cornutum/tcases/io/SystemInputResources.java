@@ -11,6 +11,9 @@ import org.cornutum.tcases.SystemInputDef;
 
 import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 
 /**
@@ -26,6 +29,41 @@ public class SystemInputResources
   public SystemInputResources( Class<?> type)
     {
     class_ = type;
+    }
+
+  /**
+   * Writes the {@link SystemInputDef} to the the given file.
+   */
+  public void write( SystemInputDef systemInput, File file)
+    {
+    SystemInputDocWriter writer = createWriter( file);
+    try
+      {
+      writer.write( systemInput);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write " + systemInput + " to file=" + file, e);
+      }
+    finally
+      {
+      IOUtils.closeQuietly( writer);
+      }
+    }
+
+  /**
+   * Creates a {@link SystemInputDocWriter} for the given file.
+   */
+  private SystemInputDocWriter createWriter( File file)
+    {
+    try
+      {
+      return new SystemInputDocWriter( new FileWriter( file));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't open file=" + file, e);
+      }
     }
 
   /**
@@ -52,6 +90,41 @@ public class SystemInputResources
     catch( Exception e)
       {
       throw new RuntimeException( "Can't read resource=" + resource, e);
+      }
+    finally
+      {
+      IOUtils.closeQuietly( stream);
+      }
+
+    return systemInputDef;
+    }
+
+  /**
+   * Returns the {@link SystemInputDef} defined by the given file.
+   */
+  public SystemInputDef read( File file)
+    {
+    try
+      {
+      return read( new FileInputStream( file));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read file=" + file, e);
+      }
+    }
+
+  /**
+   * Returns the {@link SystemInputDef} defined by the given stream.
+   */
+  public SystemInputDef read( InputStream stream) throws Exception
+    {
+    SystemInputDef systemInputDef = null;
+    
+    try
+      {
+      SystemInputDocReader reader = new SystemInputDocReader( stream);
+      systemInputDef = reader.getSystemInputDef();
       }
     finally
       {

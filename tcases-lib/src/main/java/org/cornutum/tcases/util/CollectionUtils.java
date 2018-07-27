@@ -12,6 +12,8 @@ import org.apache.commons.collections4.Predicate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * Defines methods for handling collections.
@@ -53,5 +55,14 @@ public final class CollectionUtils
       }
 
     return collection;
+    }
+
+  /**
+   * Returns a stream that produces the sequence defined by the given Iterator.
+   */
+  static public <T> Stream<T> toStream( Iterator<T> iterator)
+    {
+    Iterable<T> iterable = () -> iterator;
+    return StreamSupport.stream( iterable.spliterator(), false);
     }
   }
