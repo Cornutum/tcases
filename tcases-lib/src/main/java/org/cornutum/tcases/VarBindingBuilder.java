@@ -88,7 +88,7 @@ public class VarBindingBuilder
   /**
    * Changes the binding variable value.
    */
-  public VarBindingBuilder value( String value)
+  public VarBindingBuilder value( Object value)
     {
     varBinding_.setValue( value);
     return this;

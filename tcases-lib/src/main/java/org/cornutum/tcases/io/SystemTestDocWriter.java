@@ -153,7 +153,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
       }
     else
       {
-      xmlWriter_.writeAttribute( VALUE_ATR, binding.getValue());
+      xmlWriter_.writeAttribute( VALUE_ATR, String.valueOf( binding.getValue()));
       }
     if( !binding.isValueValid())
       {

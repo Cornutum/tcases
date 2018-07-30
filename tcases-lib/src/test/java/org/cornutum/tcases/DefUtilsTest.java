@@ -28,7 +28,8 @@ public class DefUtilsTest
   @Test
   public void isVarValue()
     {
-    assertFalse(DefUtils.isVarValue(null));
+    assertTrue(DefUtils.isVarValue(null));
+
     assertFalse(DefUtils.isVarValue("\u0007"));
 
     assertTrue(DefUtils.isVarValue("\n"));

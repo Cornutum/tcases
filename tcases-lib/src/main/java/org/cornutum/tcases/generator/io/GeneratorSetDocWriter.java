@@ -179,7 +179,7 @@ public class GeneratorSetDocWriter implements Closeable
     {
     writer_.writeTagStart( VAR_TAG);
     writer_.writeAttribute( NAME_ATR, binding.getVar());      
-    writer_.writeAttribute( VALUE_ATR, binding.getValue());      
+    writer_.writeAttribute( VALUE_ATR, String.valueOf( binding.getValue()));      
     writer_.writeEmptyElementEnd();
     }
 

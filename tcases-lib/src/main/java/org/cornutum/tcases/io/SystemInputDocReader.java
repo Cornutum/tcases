@@ -12,6 +12,7 @@ import org.cornutum.tcases.conditions.*;
 
 import static org.cornutum.tcases.DefUtils.*;
 import static org.cornutum.tcases.io.SystemInputDoc.*;
+import static org.cornutum.tcases.io.ObjectUtils.toObject;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -1110,7 +1111,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      VarValueDef value = new VarValueDef( requireAttribute( attributes, NAME_ATR));
+      VarValueDef value = new VarValueDef( toObject( requireAttribute( attributes, NAME_ATR)));
       setValue( value);
 
       super.startElement( uri, localName, qName, attributes);

@@ -53,22 +53,22 @@ public abstract class DefUtils
   /**
    * Returns true if the given string is a valid variable value.
    */
-  public static boolean isVarValue( String val)
+  public static boolean isVarValue( Object val)
     {
-    return val != null && varValueRegex_.matcher( val).matches();
+    return
+      val == null
+      || !val.getClass().equals( String.class)
+      || varValueRegex_.matcher( val.toString()).matches();
     }
 
   /**
     * Throws an exception if the given string is not a valid variable value.
     */
-  public static void assertVarValue( String val) throws IllegalArgumentException
+  public static void assertVarValue( Object val) throws IllegalArgumentException
     {
     if( !isVarValue( val))
       {
-      throw
-        new IllegalArgumentException
-        ( (val==null? "null" : ("\"" + String.valueOf( val) + "\""))
-          + " is not a valid variable value");
+      throw new IllegalArgumentException( "\"" + String.valueOf( val) + "\"" + " is not a valid variable value");
       }
     }
 

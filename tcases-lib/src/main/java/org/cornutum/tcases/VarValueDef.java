@@ -70,7 +70,7 @@ public class VarValueDef extends Conditional
   /**
    * Creates a new VarValueDef object.
    */
-  public VarValueDef( String name)
+  public VarValueDef( Object name)
     {
     this( name, Type.VALID);
     }
@@ -78,7 +78,7 @@ public class VarValueDef extends Conditional
   /**
    * Creates a new VarValueDef object.
    */
-  public VarValueDef( String name, Type type)
+  public VarValueDef( Object name, Type type)
     {
     setName( name);
     setType( type);
@@ -88,7 +88,7 @@ public class VarValueDef extends Conditional
   /**
    * Changes the name of this value.
    */
-  public void setName( String name)
+  public void setName( Object name)
     {
     assertVarValue( name);
     name_ = name;
@@ -97,7 +97,7 @@ public class VarValueDef extends Conditional
   /**
    * Returns the name of this value.
    */
-  public String getName()
+  public Object getName()
     {
     return name_;
     }
@@ -224,7 +224,7 @@ public class VarValueDef extends Conditional
     return false;
     }
 
-  private String name_;
+  private Object name_;
   private Type type_;
   private PropertySet properties_;
   }
