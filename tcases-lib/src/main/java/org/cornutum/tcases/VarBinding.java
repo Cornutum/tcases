@@ -31,7 +31,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   /**
    * Creates a new VarBinding object.
    */
-  public VarBinding( String varName, String valueName)
+  public VarBinding( String varName, Object valueName)
     {
     this( varName, IVarDef.ARG, valueName);
     }
@@ -39,7 +39,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   /**
    * Creates a new VarBinding object.
    */
-  public VarBinding( String varName, String varType, String valueName)
+  public VarBinding( String varName, String varType, Object valueName)
     {
     setVar( varName);
     setType( varType);
@@ -91,7 +91,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   /**
    * Changes the value name for this binding.
    */
-  public void setValue( String valueName)
+  public void setValue( Object valueName)
     {
     assertVarValue( valueName);
     value_ = valueName;
@@ -100,7 +100,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   /**
    * Returns the value name for this binding.
    */
-  public String getValue()
+  public Object getValue()
     {
     return value_;
     }
@@ -219,7 +219,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
 
   private String var_;
   private String varType_;
-  private String value_;
+  private Object value_;
   private boolean valueValid_;
   private IVarDef varDef_;
   }

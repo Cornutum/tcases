@@ -15,6 +15,8 @@ import static org.cornutum.tcases.VarValueDef.Type.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+
 import org.xml.sax.SAXParseException;
 
 /**
@@ -2070,6 +2072,35 @@ public class TestSystemInputDocReader
 
     // Then...
     assertMatches( "system-input-def-43.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    }
+
+  
+  @Test
+  public void testGetSystemInputDef_valueObjects()
+    {
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "System-Objects")
+      .functions(
+        FunctionInputDefBuilder.with( "Function-Objects")
+        .vars(
+          VarDefBuilder.with( "Var-Objects")
+          .values(
+            VarValueDefBuilder.with( Integer.MIN_VALUE).build(),
+            VarValueDefBuilder.with( Boolean.TRUE).build(),
+            VarValueDefBuilder.with( (Object) null).type( FAILURE).build(),
+            VarValueDefBuilder.with( Long.MAX_VALUE).build(),
+            VarValueDefBuilder.with( new BigDecimal( "0.12345")).build(),
+            VarValueDefBuilder.with( new BigDecimal( "12345.0")).build())
+          .build())
+        .build())
+      .build();
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-objects.xml");
+
+    // Then...
+    assertMatches( "system-input-def-objects.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
     }
 
   /**

@@ -12,6 +12,7 @@ import org.cornutum.tcases.generator.*;
 import static org.cornutum.tcases.DefUtils.*;
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
 import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
+import static org.cornutum.tcases.io.ObjectUtils.toObject;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -488,7 +489,11 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       TupleHandler parent = (TupleHandler) getParent();
       try
         {
-        parent.getTuple().addVarBinding( new VarBinding( requireAttribute( attributes, NAME_ATR), requireAttribute( attributes, VALUE_ATR)));
+        parent.getTuple()
+          .addVarBinding(
+            new VarBinding(
+              requireAttribute( attributes, NAME_ATR),
+              toObject( requireAttribute( attributes, VALUE_ATR))));
         }
       catch( Exception e)
         {

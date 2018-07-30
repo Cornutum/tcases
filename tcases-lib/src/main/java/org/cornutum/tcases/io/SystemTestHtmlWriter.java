@@ -229,7 +229,7 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
       while( varBindings.hasNext())
         {
         VarBinding varBinding = varBindings.next();
-        writeBinding( getVar( varBinding), varBinding.getValue(), varBinding.isValueValid());
+        writeBinding( getVar( varBinding), String.valueOf( varBinding.getValue()), varBinding.isValueValid());
         }
       }
     else

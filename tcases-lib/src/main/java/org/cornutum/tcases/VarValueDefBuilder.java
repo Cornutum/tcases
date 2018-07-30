@@ -20,7 +20,7 @@ public class VarValueDefBuilder
   /**
    * Creates a new builder for a VarValueDef with the given name.
    */
-  public static VarValueDefBuilder with( String name)
+  public static VarValueDefBuilder with( Object name)
     {
     return new VarValueDefBuilder().name( name);
     }
@@ -82,7 +82,7 @@ public class VarValueDefBuilder
   /**
    * Changes the value name.
    */
-  public VarValueDefBuilder name( String name)
+  public VarValueDefBuilder name( Object name)
     {
     varValueDef_.setName( name);
     return this;

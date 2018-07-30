@@ -273,7 +273,7 @@ public final class AssertTestDef
       return this;
       }
 
-    public TupleBuilder bind( String var, String value)
+    public TupleBuilder bind( String var, Object value)
       {
       VarDef varDef = inputDef_.findVarDefPath( var);
       tuple_.add( new VarBindingDef( varDef, varDef.getValue( value)));
