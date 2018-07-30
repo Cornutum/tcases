@@ -28,7 +28,12 @@ public final class ObjectUtils
    */
   public static Object toObject( String value)
     {
-    return toObject( value, toBoolean, toNumber, toString);
+    return
+      toObject(
+        value,
+        ObjectUtils::toBoolean,
+        ObjectUtils::toNumber,
+        ObjectUtils::fromString);
     }
   
   
@@ -50,8 +55,9 @@ public final class ObjectUtils
   /**
    * Returns the Boolean represented by the given string, or null if not a boolean value.
    */
-  private static Function<String,Object> toBoolean =
-    value ->
+  private static Object toBoolean( String value)
+    {
+    return
       "true".equalsIgnoreCase( value)?
       Boolean.TRUE :
 
@@ -59,86 +65,93 @@ public final class ObjectUtils
       Boolean.FALSE :
 
       null;
-
-  /**
-   * Returns the given String value.
-   */
-  private static Function<String,Object> toString =
-    value ->
-      // "null" is string representation of null
-      "null".equals( value)
-      ? null
-      : value;
-
-  /**
-   * Returns the Integer represented by the given value, or null if not an integer value.
-   */
-  private static Function<BigDecimal,Object> toInt =
-    value ->
-      {
-      Object number;
-        
-      try
-        {
-        number =
-          value.scale() == 0
-          ? Integer.valueOf( value.intValueExact())
-          : null;
-        }
-      catch( Exception e)
-        {
-        number = null;
-        }
-        
-      return number;
-      };
-
-  /**
-   * Returns the Long represented by the given value, or null if not an long value.
-   */
-  private static Function<BigDecimal,Object> toLong =
-    value ->
-      {
-      Object number;
-        
-      try
-        {
-        number =
-          value.scale() == 0
-          ? Long.valueOf( value.longValueExact())
-          : null;
-        }
-      catch( Exception e)
-        {
-        number = null;
-        }
-        
-      return number;
-      };
-
-  /**
-   * Returns the given BigDecimal value.
-   */
-  private static Function<BigDecimal,Object> toDecimal =
-    value -> value;
+    }
 
   /**
    * Returns the Number represented by the given string, or null if not a numeric value.
    */
-  private static Function<String,Object> toNumber =
-    value ->
+  private static Object toNumber( String value)
+    {
+    Object number;
+
+    try
       {
-      Object number;
+      number =
+        toObject(
+          new BigDecimal( value),
+          ObjectUtils::toInt,
+          ObjectUtils::toLong,
+          ObjectUtils::fromDecimal);
+      }
+    catch( Exception e)
+      {
+      number = null;
+      }
 
-      try
-        {
-        number = toObject( new BigDecimal( value), toInt, toLong, toDecimal);
-        }
-      catch( Exception e)
-        {
-        number = null;
-        }
+    return number;
+    }
 
-      return number;
-      };
+  /**
+   * Returns the given String value.
+   */
+  private static Object fromString( String value)
+    {
+    return
+      // "null" is the external string representation of null
+      "null".equals( value)
+      ? null
+      : value;
+    }
+
+  /**
+   * Returns the Integer represented by the given value, or null if not an integer value.
+   */
+  private static Object toInt( BigDecimal value)
+    {
+    Object number;
+        
+    try
+      {
+      number =
+        value.scale() == 0
+        ? Integer.valueOf( value.intValueExact())
+        : null;
+      }
+    catch( Exception e)
+      {
+      number = null;
+      }
+        
+    return number;
+    };
+
+  /**
+   * Returns the Long represented by the given value, or null if not an long value.
+   */
+  private static Object toLong( BigDecimal value)
+    {
+    Object number;
+        
+    try
+      {
+      number =
+        value.scale() == 0
+        ? Long.valueOf( value.longValueExact())
+        : null;
+      }
+    catch( Exception e)
+      {
+      number = null;
+      }
+        
+    return number;
+    };
+
+  /**
+   * Returns the given BigDecimal value.
+   */
+  private static Object fromDecimal( BigDecimal value)
+    {
+    return value;
+    }
   }
