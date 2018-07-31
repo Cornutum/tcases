@@ -74,6 +74,12 @@ public class TestSystemInputDocWriter
     testWriteResource( "system-input-def-43.xml");
     }
 
+  @Test
+  public void testWrite_objects()
+    {
+    testWriteResource( "system-input-def-objects.xml");
+    }
+
   public void testWriteResource( String systemInputResource)
     {
     // Given...
