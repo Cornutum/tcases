@@ -50,6 +50,12 @@ public class TestSystemTestHtmlWriter
     {
     testWriteResource( "system-test-def-4.xml");
     }
+
+  @Test
+  public void testWrite_find()
+    {
+    testWriteResource( "find-Test.xml");
+    }
   
   public void testWriteResource( String systemTestResource)
     {
@@ -57,7 +63,7 @@ public class TestSystemTestHtmlWriter
     SystemTestDef systemTest = systemTestResources_.read( systemTestResource);
 
     // When...
-    File doc = getDocPath();
+    File doc = getDocPath( systemTestResource);
 
     SystemTestHtmlWriter writer = null;
     try
@@ -85,12 +91,9 @@ public class TestSystemTestHtmlWriter
   /**
    * Returns the path to the test output file.
    */
-  private File getDocPath()
+  private File getDocPath( String systemTestResource)
     {
-    return
-      new File
-      ( System.getProperty( "java.io.tmpdir"),
-        "TestSystemTestHtmlWriter-Output.htm");
+    return new File( System.getProperty( "java.io.tmpdir"), systemTestResource.replaceAll( "\\.xml", ".htm"));
     }
 
   private SystemTestResources systemTestResources_ = new SystemTestResources( TestSystemTestHtmlWriter.class);
