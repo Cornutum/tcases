@@ -8,7 +8,9 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.XmlWriter;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.Predicate;
@@ -22,8 +24,10 @@ import java.io.OutputStream;
 import java.io.Writer;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Writes a {@link SystemTestDef} in the form of an HTML document.
@@ -84,56 +88,49 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   public void write( SystemTestDef systemTest, boolean defaultStyle, URI stylesheet, URI script)
     {
-    xmlWriter_.writeElementStart( "HTML");
-    xmlWriter_.indent();
+    xmlWriter_.writeElement(
+      "HTML",
+      () ->
+        {
+        xmlWriter_.writeElement(
+          "HEAD",
+          () ->
+            {
+            xmlWriter_.writeElement( "TITLE", "Test Cases: " + systemTest.getName());
 
-    xmlWriter_.writeElementStart( "HEAD");
-    xmlWriter_.indent();
+            if( defaultStyle)
+              {
+              writeDefaultStyle();
+              }
+            else if( stylesheet != null)
+              {
+              xmlWriter_.writeElement(
+                "LINK",
+                MapBuilder
+                  .of( "rel", "stylesheet")
+                  .put( "type", "text/css")
+                  .put( "href", String.valueOf( stylesheet))
+                  .build());
+              }
+            });
 
-    xmlWriter_.writeElement( "TITLE", "Test Cases: " + systemTest.getName());
-
-    if( defaultStyle)
-      {
-      writeDefaultStyle();
-      }
-    else if( stylesheet != null)
-      {
-      xmlWriter_.writeTagStart( "LINK");
-      xmlWriter_.writeAttribute( "rel", "stylesheet");
-      xmlWriter_.writeAttribute( "type", "text/css");
-      xmlWriter_.writeAttribute( "href", String.valueOf( stylesheet));
-      xmlWriter_.writeEmptyElementEnd();
-      }
-    
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "HEAD");
-    
-    xmlWriter_.writeElementStart( "BODY");
-    xmlWriter_.indent();
-    
-    for( Iterator<FunctionTestDef> functions =systemTest.getFunctionTestDefs(); functions.hasNext();)
-      {
-      writeFunction( functions.next());
-      }
-
-    if( defaultStyle)
-      {
-      writeDefaultScript();
-      }
-    else if( script != null)
-      {
-      xmlWriter_.writeTagStart( "SCRIPT");
-      xmlWriter_.writeAttribute( "src", String.valueOf( script));
-      xmlWriter_.writeAttribute( "type", "text/javascript");
-      xmlWriter_.writeTagEnd();
-      xmlWriter_.writeElementEnd( "SCRIPT");
-      }
-    
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "BODY");
-
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "HTML");
+        xmlWriter_.writeElement(
+          "BODY",
+          () ->
+            {
+            toStream( systemTest.getFunctionTestDefs()).forEach( function -> writeFunction( function));
+            if( defaultStyle)
+              {
+              writeDefaultScript();
+              }
+            else if( script != null)
+              {
+              xmlWriter_.writeElement(
+                "SCRIPT",
+                MapBuilder.of( "src", String.valueOf( script)).put( "type", "text/javascript").build());
+              }
+            });
+        });
     }
 
   /**
@@ -141,18 +138,14 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   protected void writeFunction( FunctionTestDef function)
     {
-    xmlWriter_.writeTagStart( "DIV");
-    xmlWriter_.writeAttribute( "id", function.getName());
-    xmlWriter_.writeAttribute( "class", "function");
-    xmlWriter_.writeTagEnd();
-    xmlWriter_.indent();
-
-    xmlWriter_.writeElement( "H1", function.getName());
-
-    writeTestCases( function);
-    
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "DIV");
+    xmlWriter_.writeElement(
+      "DIV",
+      MapBuilder.of( "id", function.getName()).put( "class", "function").build(),
+      () ->
+        {
+        xmlWriter_.writeElement( "H1", function.getName());
+        writeTestCases( function);
+        });
     }
 
   /**
@@ -160,28 +153,25 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   protected void writeTestCases( FunctionTestDef function)
     {
-    for( Iterator<TestCase> testCases = function.getTestCases(); testCases.hasNext();)
-      {
-      TestCase testCase = testCases.next();
-      String testCaseType = testCase.getType()==TestCase.Type.FAILURE? "failure" : "success";
-      
-      xmlWriter_.writeTagStart( "DIV");
-      xmlWriter_.writeAttribute( "id", function.getName() + "." + testCase.getId());
-      xmlWriter_.writeAttribute( "class", "testCase " + testCaseType);
-      xmlWriter_.writeTagEnd();
-      xmlWriter_.indent();
+    toStream( function.getTestCases())
+      .forEach( testCase ->
+          {
+          String testCaseType = testCase.getType()==TestCase.Type.FAILURE? "failure" : "success";
 
-      xmlWriter_.writeElement( "H2", "Test Case " + testCase.getId());
-      
-      String[] types = testCase.getVarTypes();
-      for( int i = 0; i < types.length; i++)
-        {
-        writeInputs( testCase, types[i]);
-        }
-      
-      xmlWriter_.unindent();
-      xmlWriter_.writeElementEnd( "DIV");
-      }
+          xmlWriter_.writeElement(
+            "DIV",
+
+            MapBuilder
+              .of( "id", function.getName() + "." + testCase.getId())
+              .put( "class", "testCase " + testCaseType)
+              .build(),
+            
+            () ->
+              {
+              xmlWriter_.writeElement( "H2", "Test Case " + testCase.getId());
+              Arrays.stream( testCase.getVarTypes()).forEach( type -> writeInputs( testCase, type));
+              });
+          });
     }
 
   /**
@@ -202,20 +192,18 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
 
     if( varBindings.hasNext())
       {
-      xmlWriter_.writeTagStart( "DIV");
-      xmlWriter_.writeAttribute( "class", "input " + type);
-      xmlWriter_.writeTagEnd();
-      xmlWriter_.indent();
-
-      if( !IVarDef.ARG.equals( type))
-        {
-        xmlWriter_.writeElement( "H3", type);
-        }
+      xmlWriter_.writeElement(
+        "DIV",
+        MapBuilder.of( "class", "input " + type).build(),
+        () ->
+          {
+          if( !IVarDef.ARG.equals( type))
+            {
+            xmlWriter_.writeElement( "H3", type);
+            }
     
-      writeVarSets( 0, varBindings);
-    
-      xmlWriter_.unindent();
-      xmlWriter_.writeElementEnd( "DIV");
+          writeVarSets( 0, varBindings);
+          });
       }
     }
 
@@ -234,21 +222,19 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
       }
     else
       {
-      xmlWriter_.writeElementStart( "TR");
-      xmlWriter_.indent();
+      xmlWriter_.writeElement(
+        "TR",
+        () ->
+          {
+          xmlWriter_.writeElement( "TH", varSet);
 
-      xmlWriter_.writeElement( "TH", varSet);
-
-      xmlWriter_.writeElementStart( "TD");
-      xmlWriter_.indent();
-
-      writeVarSets( varSetLevel + 1, varBindings);
-        
-      xmlWriter_.unindent();
-      xmlWriter_.writeElementEnd( "TD");
-
-      xmlWriter_.unindent();
-      xmlWriter_.writeElementEnd( "TR");
+          xmlWriter_.writeElement(
+            "TD",
+            () ->
+              {
+              writeVarSets( varSetLevel + 1, varBindings);
+              });
+          });
       }
     }
 
@@ -257,30 +243,28 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   protected void writeVarSets( int varSetLevel, Iterator<VarBinding> varBindings)
     {
-    xmlWriter_.writeTagStart( "TABLE");
-    xmlWriter_.writeAttribute( "class", varSetLevel % 2 == 0? "light" : "dark");
-    xmlWriter_.writeTagEnd();
-    xmlWriter_.indent();
-    
-    String varSet = "";
-    String varSetNext = "";
-    for( PeekingIterator<VarBinding> peekBindings = new PeekingIterator<VarBinding>( varBindings);
-         peekBindings.hasNext();
-         varSet = varSetNext)
-      {
-      List<VarBinding> varSetBindings = new ArrayList<VarBinding>();
-      for( varSetNext = "";
+    xmlWriter_.writeElement(
+      "TABLE",
+      MapBuilder.of( "class", varSetLevel % 2 == 0? "light" : "dark").build(),
+      () ->
+        {
+        String varSet = "";
+        String varSetNext = "";
+        for( PeekingIterator<VarBinding> peekBindings = new PeekingIterator<VarBinding>( varBindings);
+             peekBindings.hasNext();
+             varSet = varSetNext)
+          {
+          List<VarBinding> varSetBindings = new ArrayList<VarBinding>();
+          for( varSetNext = "";
 
-           peekBindings.hasNext()
-             && (varSetNext = getVarSet( varSetLevel, peekBindings.peek())).equals( varSet);
+               peekBindings.hasNext()
+                 && (varSetNext = getVarSet( varSetLevel, peekBindings.peek())).equals( varSet);
 
-           varSetBindings.add( peekBindings.next()));
+               varSetBindings.add( peekBindings.next()));
 
-      writeVarSet( varSet, varSetLevel, varSetBindings.iterator());
-      }
-
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "TABLE");
+          writeVarSet( varSet, varSetLevel, varSetBindings.iterator());
+          }
+        });
     }
 
   /**
@@ -288,19 +272,14 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   protected void writeBinding( String var, String value, boolean isValid)
     {
-    xmlWriter_.writeTagStart( "TR");
-    if( !isValid)
-      {
-      xmlWriter_.writeAttribute( "class", "failure");
-      }
-    xmlWriter_.writeTagEnd();
-    xmlWriter_.indent();
-
-    xmlWriter_.writeElement( "TH", var);
-    xmlWriter_.writeElement( "TD", value);
-
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "TR");
+    xmlWriter_.writeElement(
+      "TR",
+      MapBuilder.optionalOf( "class", Optional.ofNullable( !isValid? "failure" : null)),
+      Optional.of( () ->
+        {
+        xmlWriter_.writeElement( "TH", var);
+        xmlWriter_.writeElement( "TD", value);
+        }));
     }
 
   /**
@@ -308,25 +287,23 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   protected void writeDefaultStyle()
     {
-    xmlWriter_.writeElementStart( "STYLE");
-    xmlWriter_.indent();
-
-    try( BufferedReader in = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "system-test.css"), "UTF-8")))
-      {
-
-      String line;
-      while(( line = in.readLine()) != null)
+    xmlWriter_.writeElement(
+      "STYLE",
+      () ->
         {
-        xmlWriter_.println( line);
-        }
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't write resource=system-test.css", e);
-      }
-    
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "STYLE");
+        try( BufferedReader in = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "system-test.css"), "UTF-8")))
+          {
+          String line;
+          while(( line = in.readLine()) != null)
+            {
+            xmlWriter_.println( line);
+            }
+          }
+        catch( Exception e)
+          {
+          throw new RuntimeException( "Can't write resource=system-test.css", e);
+          }
+        });
     }
 
   /**
@@ -334,26 +311,23 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    */
   protected void writeDefaultScript()
     {
-    xmlWriter_.writeElementStart( "SCRIPT");
-    xmlWriter_.indent();
-
-
-
-    try( BufferedReader in = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "system-test.js"), "UTF-8"));)
-      {
-      String line;
-      while(( line = in.readLine()) != null)
+    xmlWriter_.writeElement(
+      "SCRIPT",
+      () ->
         {
-        xmlWriter_.println( line);
-        }
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't write resource=system-test.js", e);
-      }
-    
-    xmlWriter_.unindent();
-    xmlWriter_.writeElementEnd( "SCRIPT");
+        try( BufferedReader in = new BufferedReader( new InputStreamReader( getClass().getResourceAsStream( "system-test.js"), "UTF-8"));)
+          {
+          String line;
+          while(( line = in.readLine()) != null)
+            {
+            xmlWriter_.println( line);
+            }
+          }
+        catch( Exception e)
+          {
+          throw new RuntimeException( "Can't write resource=system-test.js", e);
+          }
+        });
     }
 
   /**

@@ -12,6 +12,8 @@ import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
 
 import java.io.OutputStream;
 import java.io.Writer;
+import java.util.Map;
+import java.util.Optional;
   
 /**
  * Supports creation of an XML document stream.
@@ -59,7 +61,7 @@ public class XmlWriter extends IndentedWriter
   /**
    * Begins an element start tag.
    */
-  public void writeTagStart( String tag)
+  protected void writeTagStart( String tag)
     {
     startLine();
     print( "<");
@@ -69,7 +71,7 @@ public class XmlWriter extends IndentedWriter
   /**
    * Completes an element start tag.
    */
-  public void writeTagEnd()
+  protected void writeTagEnd()
     {
     print( ">");
     println();
@@ -88,21 +90,63 @@ public class XmlWriter extends IndentedWriter
     }
 
   /**
-   * Writes an element start tag.
+   * Writes an element with the given attributes and content.
    */
-  public void writeElementStart( String tag)
+  public void writeElement( String tag, Optional<Map<String,String>> attributes, Optional<Runnable> contentWriter)
     {
-    startLine();
-    print( "<");
-    print( tag);
-    print( ">");
-    println();
+    writeTagStart( tag);
+    attributes.ifPresent( m -> m.forEach( (k,v) -> writeAttribute( k, v)));
+
+    if( contentWriter.isPresent())
+      {
+      writeTagEnd();
+      indent();
+      contentWriter.get().run();
+      unindent();
+      writeElementEnd( tag);
+      }
+    else
+      {
+      writeEmptyElementEnd();
+      }
+    }
+
+  /**
+   * Writes an empty element.
+   */
+  public void writeElement( String tag)
+    {
+    writeElement( tag, Optional.empty(), Optional.empty());
+    }
+
+  /**
+   * Writes an element with the given attributes.
+   */
+  public void writeElement( String tag, Map<String,String> attributes)
+    {
+    writeElement( tag, Optional.of( attributes), Optional.empty());
+    }
+
+  /**
+   * Writes an element with the given content.
+   */
+  public void writeElement( String tag, Runnable contentWriter)
+    {
+    writeElement( tag, Optional.empty(), Optional.of( contentWriter));
+    }
+
+  /**
+   * Writes an element with the given attributes and content.
+   */
+  public void writeElement( String tag, Map<String,String> attributes, Runnable contentWriter)
+    {
+    writeElement( tag, Optional.of( attributes), Optional.of( contentWriter));
     }
 
   /**
    * Writes an element end tag.
    */
-  public void writeElementEnd( String tag)
+  protected void writeElementEnd( String tag)
     {
     startLine();
     print( "</");
@@ -114,7 +158,7 @@ public class XmlWriter extends IndentedWriter
   /**
    * Writes the end of an empty element.
    */
-  public void writeEmptyElementEnd()
+  protected void writeEmptyElementEnd()
     {
     print( "/>");
     println();
@@ -123,7 +167,7 @@ public class XmlWriter extends IndentedWriter
   /**
    * Writes an attribute definition.
    */
-  public void writeAttribute( String name, String value)
+  protected void writeAttribute( String name, String value)
     {
     print( " ");
     print( name);

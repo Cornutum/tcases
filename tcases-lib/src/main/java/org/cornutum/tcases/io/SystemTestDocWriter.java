@@ -8,16 +8,16 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.XmlWriter;
 import static org.cornutum.tcases.io.SystemTestDoc.*;
-
-import org.apache.commons.collections4.IteratorUtils;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Writes a {@link SystemTestDef} in the form of an XML document.
@@ -56,20 +56,14 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
     {
     xmlWriter_.writeDeclaration();
 
-    xmlWriter_.writeTagStart( TESTCASES_TAG);
-    xmlWriter_.writeAttribute( SYSTEM_ATR, systemTest.getName());
-    xmlWriter_.writeTagEnd();
-
-    xmlWriter_.indent();
-    writeAnnotations( systemTest);
-    for( Iterator<FunctionTestDef> functions =systemTest.getFunctionTestDefs();
-         functions.hasNext();)
-      {
-      writeFunction( functions.next());
-      }
-    xmlWriter_.unindent();
-    
-    xmlWriter_.writeElementEnd( TESTCASES_TAG);
+    xmlWriter_.writeElement(
+      TESTCASES_TAG,
+      MapBuilder.of( SYSTEM_ATR, systemTest.getName()).build(),
+      () ->
+        {
+        writeAnnotations( systemTest);
+        toStream( systemTest.getFunctionTestDefs()).forEach( function -> writeFunction( function));
+        });
     }
 
   /**
@@ -77,21 +71,16 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeFunction( FunctionTestDef function)
     {
-    xmlWriter_.writeTagStart( FUNCTION_TAG);
-    xmlWriter_.writeAttribute( NAME_ATR, function.getName());
-    xmlWriter_.writeTagEnd();
-
-    xmlWriter_.indent();
-    writeAnnotations( function);
-    TestCase[] testCases = IteratorUtils.toArray( function.getTestCases(), TestCase.class);
-    Arrays.sort( testCases);
-    for( int i = 0; i < testCases.length; i++)
-      {
-      writeTestCase( testCases[i]);
-      }
-    xmlWriter_.unindent();
-    
-    xmlWriter_.writeElementEnd( FUNCTION_TAG);
+    xmlWriter_.writeElement(
+      FUNCTION_TAG,
+      MapBuilder.of( NAME_ATR, function.getName()).build(),
+      () ->
+        {
+        writeAnnotations( function);
+        toStream( function.getTestCases())
+          .sorted()
+          .forEach( testCase -> writeTestCase( testCase));
+        });
     }
 
   /**
@@ -99,24 +88,19 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeTestCase( TestCase testCase)
     {
-    xmlWriter_.writeTagStart( TESTCASE_TAG);
-    xmlWriter_.writeAttribute( ID_ATR, String.valueOf( testCase.getId()));
-    if( testCase.getType() == TestCase.Type.FAILURE)
-      {
-      xmlWriter_.writeAttribute( FAILURE_ATR, "true");
-      }
-    xmlWriter_.writeTagEnd();
+    xmlWriter_.writeElement(
+      TESTCASE_TAG,
 
-    xmlWriter_.indent();
-    writeAnnotations( testCase);
-    String[] types = testCase.getVarTypes();
-    for( int i = 0; i < types.length; i++)
-      {
-      writeInputs( testCase, types[i]);
-      }
-    xmlWriter_.unindent();
-    
-    xmlWriter_.writeElementEnd( TESTCASE_TAG);
+      MapBuilder
+        .of( ID_ATR, String.valueOf( testCase.getId()))
+        .putIf( FAILURE_ATR, Optional.ofNullable( testCase.getType() == TestCase.Type.FAILURE? "true" : null))
+        .build(),
+
+      () ->
+        {
+        writeAnnotations( testCase);
+        Arrays.stream( testCase.getVarTypes()).forEach( type -> writeInputs( testCase, type));
+        });
     }
 
   /**
@@ -124,20 +108,15 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeInputs( TestCase testCase, String type)
     {
-    xmlWriter_.writeTagStart( INPUT_TAG);
-    xmlWriter_.writeAttribute( TYPE_ATR, type);
-    xmlWriter_.writeTagEnd();
-
-    xmlWriter_.indent();
-    VarBinding[] bindings = IteratorUtils.toArray( testCase.getVarBindings( type), VarBinding.class);
-    Arrays.sort( bindings);
-    for( int i = 0; i < bindings.length; i++)
-      {
-      writeBinding( bindings[i]);
-      }
-    xmlWriter_.unindent();
-    
-    xmlWriter_.writeElementEnd( INPUT_TAG);
+    xmlWriter_.writeElement(
+      INPUT_TAG,
+      MapBuilder.of( TYPE_ATR, type).build(),
+      () ->
+        {
+        toStream( testCase.getVarBindings( type))
+          .sorted()
+          .forEach( binding -> writeBinding( binding));
+        });
     }
 
   /**
@@ -145,33 +124,18 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeBinding( VarBinding binding)
     {
-    xmlWriter_.writeTagStart( VAR_TAG);
-    xmlWriter_.writeAttribute( NAME_ATR, binding.getVar());
-    if( binding.isValueNA())
-      {
-      xmlWriter_.writeAttribute( NA_ATR, "true");
-      }
-    else
-      {
-      xmlWriter_.writeAttribute( VALUE_ATR, String.valueOf( binding.getValue()));
-      }
-    if( !binding.isValueValid())
-      {
-      xmlWriter_.writeAttribute( FAILURE_ATR, "true");
-      }
-
-    if( binding.getAnnotationCount() == 0)
-      {
-      xmlWriter_.writeEmptyElementEnd();
-      }
-    else
-      {
-      xmlWriter_.writeTagEnd();
-      xmlWriter_.indent();
-      writeAnnotations( binding);
-      xmlWriter_.unindent();
-      xmlWriter_.writeElementEnd( VAR_TAG);
-      }
+    xmlWriter_.writeElement(
+      VAR_TAG,
+      MapBuilder
+        .of( NAME_ATR, binding.getVar())
+        .putIf( NA_ATR, Optional.ofNullable( binding.isValueNA()? "true" : null))
+        .putIf( VALUE_ATR, Optional.ofNullable( binding.isValueNA()? null : String.valueOf( binding.getValue())))
+        .putIf( FAILURE_ATR, Optional.ofNullable( binding.isValueValid()? null : "true"))
+        .build(),
+      () ->
+        {
+        writeAnnotations( binding);
+        });
     }
 
   /**
@@ -179,15 +143,13 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeAnnotations( Annotated annotated)
     {
-    String[] annotations = IteratorUtils.toArray( annotated.getAnnotations(), String.class);
-    Arrays.sort( annotations);
-    for( int i = 0; i < annotations.length; i++)
-      {
-      xmlWriter_.writeTagStart( HAS_TAG);
-      xmlWriter_.writeAttribute( NAME_ATR, annotations[i]);
-      xmlWriter_.writeAttribute( VALUE_ATR, annotated.getAnnotation( annotations[i]));
-      xmlWriter_.writeEmptyElementEnd();
-      } 
+    toStream( annotated.getAnnotations())
+      .sorted()
+      .forEach( annotation -> {
+        xmlWriter_.writeElement(
+          HAS_TAG,
+          MapBuilder.of( NAME_ATR, annotation).put( VALUE_ATR, annotated.getAnnotation( annotation)).build());
+        }); 
     }
 
   /**

@@ -9,6 +9,7 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
+import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.XmlWriter;
 import static org.cornutum.tcases.VarValueDef.Type.*;
 import static org.cornutum.tcases.io.SystemInputDoc.*;
@@ -57,16 +58,14 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
     {
     xmlWriter_.writeDeclaration();
 
-    xmlWriter_.writeTagStart( SYSTEM_TAG);
-    xmlWriter_.writeAttribute( NAME_ATR, systemInput.getName());
-    xmlWriter_.writeTagEnd();
-
-    xmlWriter_.indent();
-    writeAnnotations( systemInput);
-    toStream( systemInput.getFunctionInputDefs()).forEach( function -> writeFunction( function));
-    xmlWriter_.unindent();
-    
-    xmlWriter_.writeElementEnd( SYSTEM_TAG);
+    xmlWriter_.writeElement(
+      SYSTEM_TAG,
+      MapBuilder.of( NAME_ATR, systemInput.getName()).build(),
+      () ->
+        {
+        writeAnnotations( systemInput);
+        toStream( systemInput.getFunctionInputDefs()).forEach( function -> writeFunction( function));
+        });
     }
 
   /**
@@ -74,23 +73,21 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
    */
   protected void writeFunction( FunctionInputDef function)
     {
-    xmlWriter_.writeTagStart( FUNCTION_TAG);
-    xmlWriter_.writeAttribute( NAME_ATR, function.getName());
-    xmlWriter_.writeTagEnd();
-
-    xmlWriter_.indent();
-    writeAnnotations( function);
-    for( String varType : function.getVarTypes())
-      {
-      writeInputs(
-        varType,
-        toStream( function.getVarDefs())
-        .filter( varDef -> varDef.getType().equals( varType))
-        .sorted());
-      }
-    xmlWriter_.unindent();
-    
-    xmlWriter_.writeElementEnd( FUNCTION_TAG);
+    xmlWriter_.writeElement(
+      FUNCTION_TAG,
+      MapBuilder.of( NAME_ATR, function.getName()).build(),
+      () ->
+        {
+        writeAnnotations( function);
+        for( String varType : function.getVarTypes())
+          {
+          writeInputs(
+            varType,
+            toStream( function.getVarDefs())
+            .filter( varDef -> varDef.getType().equals( varType))
+            .sorted());
+          }
+        });
     }
 
   /**
@@ -98,15 +95,13 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
    */
   protected void writeInputs( String varType, Stream<IVarDef> varDefs)
     {
-    xmlWriter_.writeTagStart( INPUT_TAG);
-    xmlWriter_.writeAttribute( TYPE_ATR, varType);
-    xmlWriter_.writeTagEnd();
-
-    xmlWriter_.indent();
-    varDefs.forEach( varDef -> writeVarDef( varDef));
-    xmlWriter_.unindent();
-    
-    xmlWriter_.writeElementEnd( INPUT_TAG);
+    xmlWriter_.writeElement(
+      INPUT_TAG,
+      MapBuilder.of( TYPE_ATR, varType).build(),
+      () ->
+        {
+        varDefs.forEach( varDef -> writeVarDef( varDef));
+        });
     }
 
   /**
@@ -131,25 +126,22 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
 
     ConditionWriter conditionWriter = new ConditionWriter( varDef.getCondition());
 
-    xmlWriter_.writeTagStart( varTag);
-    xmlWriter_.writeAttribute( NAME_ATR, varDef.getName());
-    conditionWriter.writeWhenAttribute();
-    xmlWriter_.writeTagEnd();
-
-    xmlWriter_.indent();
-    writeAnnotations( varDef);
-    conditionWriter.writeWhenElement();
-    if( varTag.equals( VAR_TAG))
-      {
-      values.forEach( value -> writeValue( value));
-      }
-    else
-      {
-      members.forEach( member -> writeVarDef( member));
-      }
-    xmlWriter_.unindent();
-
-    xmlWriter_.writeElementEnd( varTag);
+    xmlWriter_.writeElement(
+      varTag,
+      MapBuilder.of( NAME_ATR, varDef.getName()).putIf( WHEN_ATR, conditionWriter.getWhenAttribute()).build(),
+      () ->
+        {
+        writeAnnotations( varDef);
+        conditionWriter.writeWhenElement();
+        if( varTag.equals( VAR_TAG))
+          {
+          values.forEach( value -> writeValue( value));
+          }
+        else
+          {
+          members.forEach( member -> writeVarDef( member));
+          }
+        });
     }
 
   /**
@@ -159,26 +151,22 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
     {
     ConditionWriter conditionWriter = new ConditionWriter( value.getCondition());
 
-    xmlWriter_.writeTagStart( VALUE_TAG);
-    xmlWriter_.writeAttribute( NAME_ATR, String.valueOf( value.getName()));
-    conditionWriter.writeWhenAttribute();
-    if( value.getType() == FAILURE)
-      {
-      xmlWriter_.writeAttribute( FAILURE_ATR, "true");  
-      }
-    else if( value.getType() == ONCE)
-      {
-      xmlWriter_.writeAttribute( ONCE_ATR, "true");  
-      }
-    writeProperties( propertyList( toStream( value.getProperties().getProperties())));
-    xmlWriter_.writeTagEnd();
+    xmlWriter_.writeElement(
+      VALUE_TAG,
 
-    xmlWriter_.indent();
-    writeAnnotations( value);
-    conditionWriter.writeWhenElement();
-    xmlWriter_.unindent();
-    
-    xmlWriter_.writeElementEnd( VALUE_TAG);
+      MapBuilder
+        .of( NAME_ATR, String.valueOf( value.getName()))
+        .putIf( FAILURE_ATR, Optional.ofNullable( value.getType() == FAILURE? "true" : null))
+        .putIf( ONCE_ATR, Optional.ofNullable( value.getType() == ONCE? "true" : null))
+        .putIf( WHEN_ATR, conditionWriter.getWhenAttribute())
+        .putIf( PROPERTY_ATR, propertyList( toStream( value.getProperties().getProperties())))
+        .build(),
+
+      () ->
+        {
+        writeAnnotations( value);
+        conditionWriter.writeWhenElement();
+        });
     }
 
   /**
@@ -189,16 +177,10 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
     toStream( annotated.getAnnotations())
       .sorted()
       .forEach( annotation -> {
-        xmlWriter_.writeTagStart( HAS_TAG);
-        xmlWriter_.writeAttribute( NAME_ATR, annotation);
-        xmlWriter_.writeAttribute( VALUE_ATR, annotated.getAnnotation( annotation));
-        xmlWriter_.writeEmptyElementEnd();
+        xmlWriter_.writeElement(
+          HAS_TAG,
+          MapBuilder.of( NAME_ATR, annotation).put( VALUE_ATR, annotated.getAnnotation( annotation)).build());
         }); 
-    }
-
-  private void writeProperties( Optional<String> properties)
-    {
-    properties.ifPresent( p -> xmlWriter_.writeAttribute( PROPERTY_ATR, p));
     }
 
   private Optional<String> propertyList( Stream<String> properties)
@@ -266,64 +248,54 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
       {
       if( condition_ != null && containsAll_ == null)
         {
-        xmlWriter_.writeTagStart( WHEN_TAG);
-        xmlWriter_.writeTagEnd();
-
-        xmlWriter_.indent();
-        condition_.accept( this);
-        xmlWriter_.unindent();
-
-        xmlWriter_.writeElementEnd( WHEN_TAG);
+        xmlWriter_.writeElement( WHEN_TAG, () -> { condition_.accept( this); });
         }
       }
 
-    public void writeWhenAttribute()
+    public Optional<String> getWhenAttribute()
       {
-      if( containsAll_ != null)
-        {
-        propertyList( toStream( containsAll_.getProperties()))
-          .ifPresent( p -> xmlWriter_.writeAttribute( WHEN_ATR, p));
-        }
+      return
+        containsAll_ != null
+        ? propertyList( toStream( containsAll_.getProperties()))
+        : Optional.empty();
       }
     
     public void visit( AllOf condition)
       {
-      xmlWriter_.writeTagStart( ALLOF_TAG);
-      writeProperties( propertiesOf( condition, ContainsAll.class));
-      xmlWriter_.writeTagEnd();
-
-      xmlWriter_.indent();
-      visit( withoutPropertiesOf( condition, ContainsAll.class));
-      xmlWriter_.unindent();
-
-      xmlWriter_.writeElementEnd( ALLOF_TAG);
+      xmlWriter_.writeElement(
+        ALLOF_TAG,
+        MapBuilder.optionalOf( PROPERTY_ATR, propertiesOf( condition, ContainsAll.class)),
+        Optional.of( () ->
+          {
+          visit( withoutPropertiesOf( condition, ContainsAll.class));
+          }));
       }
   
     public void visit( AnyOf condition)
       {
-      xmlWriter_.writeTagStart( ANYOF_TAG);
-      writeProperties( propertiesOf( condition, ContainsAny.class));
-      xmlWriter_.writeTagEnd();
-
-      xmlWriter_.indent();
-      visit( withoutPropertiesOf( condition, ContainsAny.class));
-      xmlWriter_.unindent();
-
-      xmlWriter_.writeElementEnd( ANYOF_TAG);
+      xmlWriter_.writeElement(
+        ANYOF_TAG,
+        MapBuilder.optionalOf( PROPERTY_ATR, propertiesOf( condition, ContainsAny.class)),
+        Optional.of( () ->
+          {
+          visit( withoutPropertiesOf( condition, ContainsAny.class));
+          }));
       }
   
     public void visit( ContainsAll condition)
       {
-      xmlWriter_.writeTagStart( ALLOF_TAG);
-      writeProperties( propertyList( toStream( condition.getProperties())));
-      xmlWriter_.writeEmptyElementEnd();
+      xmlWriter_.writeElement(
+        ALLOF_TAG,
+        MapBuilder.optionalOf( PROPERTY_ATR, propertyList( toStream( condition.getProperties()))),
+        Optional.empty());
       }
   
     public void visit( ContainsAny condition)
       {
-      xmlWriter_.writeTagStart( ANYOF_TAG);
-      writeProperties( propertyList( toStream( condition.getProperties())));
-      xmlWriter_.writeEmptyElementEnd();
+      xmlWriter_.writeElement(
+        ANYOF_TAG,
+        MapBuilder.optionalOf( PROPERTY_ATR, propertyList( toStream( condition.getProperties()))),
+        Optional.empty());
       }
   
     public void visit( IConjunct condition)
@@ -333,15 +305,13 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
   
     public void visit( Not condition)
       {
-      xmlWriter_.writeTagStart( NOT_TAG);
-      writeProperties( propertiesOf( condition, ContainsAny.class));
-      xmlWriter_.writeTagEnd();
-
-      xmlWriter_.indent();
-      visit( withoutPropertiesOf( condition, ContainsAny.class));
-      xmlWriter_.unindent();
-
-      xmlWriter_.writeElementEnd( NOT_TAG);
+      xmlWriter_.writeElement(
+        NOT_TAG,
+        MapBuilder.optionalOf( PROPERTY_ATR, propertiesOf( condition, ContainsAny.class)),
+        Optional.of( () ->
+          {
+          visit( withoutPropertiesOf( condition, ContainsAny.class));
+          }));
       }
   
     private void visit( Stream<ICondition> conditions)

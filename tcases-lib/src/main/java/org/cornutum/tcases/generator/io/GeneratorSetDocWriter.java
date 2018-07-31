@@ -9,16 +9,18 @@ package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.generator.*;
+import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.XmlWriter;
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
 import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Writes a {@link IGeneratorSet} in the form of an XML document.
@@ -65,18 +67,14 @@ public class GeneratorSetDocWriter implements Closeable
     {
     writer_.writeDeclaration();
 
-    writer_.writeElementStart( GENERATORS_TAG);
-
-    writer_.indent();
-    String[] functions = generatorSet.getGeneratorFunctions();
-    Arrays.sort( functions);
-    for( int i = 0; i < functions.length; i++)
-      {
-      writeGenerator( functions[i], generatorSet.getGenerator( functions[i]));
-      }
-    writer_.unindent();
-    
-    writer_.writeElementEnd( GENERATORS_TAG);
+    writer_.writeElement(
+      GENERATORS_TAG,
+      () ->
+        {
+        Arrays.stream( generatorSet.getGeneratorFunctions())
+          .sorted()
+          .forEach( function -> writeGenerator( function, generatorSet.getGenerator( function)));
+        });
     }
 
   /**
@@ -100,26 +98,24 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeTupleGenerator( String function, TupleGenerator generator)
     {
-    writer_.writeTagStart( TUPLEGENERATOR_TAG);
-    writer_.writeAttribute( FUNCTION_ATR, function);
-
     Long seed = generator.getRandomSeed();
-    if( seed != null)
-      {
-      writer_.writeAttribute( SEED_ATR, String.valueOf( seed));      
-      }
-
-    writer_.writeAttribute( TUPLES_ATR, String.valueOf( generator.getDefaultTupleSize()));      
-    writer_.writeTagEnd();
-
-    writer_.indent();
-    for( TupleCombiner combiner : generator.getCombiners())
-      {
-      writeCombiner( combiner);
-      }
-    writer_.unindent();
     
-    writer_.writeElementEnd( TUPLEGENERATOR_TAG);
+    writer_.writeElement(
+      TUPLEGENERATOR_TAG,
+
+      MapBuilder
+        .of( FUNCTION_ATR, function)
+        .putIf( SEED_ATR, Optional.ofNullable( seed != null? String.valueOf( seed) : null))
+        .put( TUPLES_ATR, String.valueOf( generator.getDefaultTupleSize()))
+        .build(),
+      
+      () ->
+        {
+        for( TupleCombiner combiner : generator.getCombiners())
+          {
+          writeCombiner( combiner);
+          }
+        });
     }
 
   /**
@@ -127,34 +123,21 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeCombiner( TupleCombiner combiner)
     {
-    writer_.writeTagStart( COMBINE_TAG);
-    writer_.writeAttribute( TUPLES_ATR, String.valueOf( combiner.getTupleSize()));      
-    writer_.writeTagEnd();
+    writer_.writeElement(
+      COMBINE_TAG,
+      MapBuilder.of( TUPLES_ATR, String.valueOf( combiner.getTupleSize())).build(),
+      () ->
+        {
+        Arrays.stream( combiner.getIncluded())
+          .sorted()
+          .forEach( included -> writeIncluded( included));
+        
+        Arrays.stream( combiner.getExcluded())
+          .sorted()
+          .forEach( excluded -> writeExcluded( excluded));
 
-    writer_.indent();
-    
-    String[] included = combiner.getIncluded();
-    Arrays.sort( included);
-    for( int i = 0; i < included.length; i++)
-      {
-      writeIncluded( included[i]);
-      }
-    
-    String[] excluded = combiner.getExcluded();
-    Arrays.sort( excluded);
-    for( int i = 0; i < excluded.length; i++)
-      {
-      writeExcluded( excluded[i]);
-      }
-
-    for( Iterator<TupleRef> onceTuples = combiner.getOnceTuples(); onceTuples.hasNext(); )
-      {
-      writeOnceTuple( onceTuples.next());
-      }
-    
-    writer_.unindent();
-    
-    writer_.writeElementEnd( COMBINE_TAG);
+        toStream( combiner.getOnceTuples()).forEach( tuple -> writeOnceTuple( tuple));
+        });
     }
 
   /**
@@ -162,14 +145,12 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeOnceTuple( TupleRef tuple)
     {
-    writer_.writeElementStart( ONCE_TAG);
-    writer_.indent();
-    for( Iterator<VarBinding> varBindings = tuple.getVarBindings(); varBindings.hasNext(); )
-      {
-      writeVarBinding( varBindings.next());
-      }
-    writer_.unindent();
-    writer_.writeElementEnd( ONCE_TAG);
+    writer_.writeElement(
+      ONCE_TAG,
+      () ->
+        {
+        toStream( tuple.getVarBindings()).forEach( varBinding -> writeVarBinding( varBinding));
+        });
     }
 
   /**
@@ -177,10 +158,9 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeVarBinding( VarBinding binding)
     {
-    writer_.writeTagStart( VAR_TAG);
-    writer_.writeAttribute( NAME_ATR, binding.getVar());      
-    writer_.writeAttribute( VALUE_ATR, String.valueOf( binding.getValue()));      
-    writer_.writeEmptyElementEnd();
+    writer_.writeElement(
+      VAR_TAG,
+      MapBuilder.of( NAME_ATR, binding.getVar()).put( VALUE_ATR, String.valueOf( binding.getValue())).build());
     }
 
   /**
@@ -188,9 +168,9 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeIncluded( String var)
     {
-    writer_.writeTagStart( INCLUDE_TAG);
-    writer_.writeAttribute( VAR_ATR, var);      
-    writer_.writeEmptyElementEnd();
+    writer_.writeElement(
+      INCLUDE_TAG,
+      MapBuilder.of( VAR_ATR, var).build());
     }
 
   /**
@@ -198,9 +178,9 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeExcluded( String var)
     {
-    writer_.writeTagStart( EXCLUDE_TAG);
-    writer_.writeAttribute( VAR_ATR, var);      
-    writer_.writeEmptyElementEnd();
+    writer_.writeElement(
+      EXCLUDE_TAG,
+      MapBuilder.of( VAR_ATR, var).build());
     }
 
   /**
