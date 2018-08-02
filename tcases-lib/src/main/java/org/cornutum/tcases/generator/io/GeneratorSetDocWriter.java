@@ -9,7 +9,6 @@ package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.generator.*;
-import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.XmlWriter;
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
 import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
@@ -20,7 +19,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * Writes a {@link IGeneratorSet} in the form of an XML document.
@@ -67,14 +65,15 @@ public class GeneratorSetDocWriter implements Closeable
     {
     writer_.writeDeclaration();
 
-    writer_.writeElement(
-      GENERATORS_TAG,
-      () ->
+    writer_
+      .element( GENERATORS_TAG)
+      .content( () ->
         {
         Arrays.stream( generatorSet.getGeneratorFunctions())
           .sorted()
           .forEach( function -> writeGenerator( function, generatorSet.getGenerator( function)));
-        });
+        })
+      .write();
     }
 
   /**
@@ -100,22 +99,19 @@ public class GeneratorSetDocWriter implements Closeable
     {
     Long seed = generator.getRandomSeed();
     
-    writer_.writeElement(
-      TUPLEGENERATOR_TAG,
-
-      MapBuilder
-        .of( FUNCTION_ATR, function)
-        .putIf( SEED_ATR, Optional.ofNullable( seed != null? String.valueOf( seed) : null))
-        .put( TUPLES_ATR, String.valueOf( generator.getDefaultTupleSize()))
-        .build(),
-      
-      () ->
+    writer_
+      .element( TUPLEGENERATOR_TAG)
+      .attribute( FUNCTION_ATR, function)
+      .attributeIf( seed != null, SEED_ATR, String.valueOf( seed))
+      .attribute( TUPLES_ATR, String.valueOf( generator.getDefaultTupleSize()))
+      .content( () ->
         {
         for( TupleCombiner combiner : generator.getCombiners())
           {
           writeCombiner( combiner);
           }
-        });
+        })
+      .write();
     }
 
   /**
@@ -123,10 +119,10 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeCombiner( TupleCombiner combiner)
     {
-    writer_.writeElement(
-      COMBINE_TAG,
-      MapBuilder.of( TUPLES_ATR, String.valueOf( combiner.getTupleSize())).build(),
-      () ->
+    writer_
+      .element( COMBINE_TAG)
+      .attribute( TUPLES_ATR, String.valueOf( combiner.getTupleSize()))
+      .content( () ->
         {
         Arrays.stream( combiner.getIncluded())
           .sorted()
@@ -137,7 +133,8 @@ public class GeneratorSetDocWriter implements Closeable
           .forEach( excluded -> writeExcluded( excluded));
 
         toStream( combiner.getOnceTuples()).forEach( tuple -> writeOnceTuple( tuple));
-        });
+        })
+      .write();
     }
 
   /**
@@ -145,12 +142,13 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeOnceTuple( TupleRef tuple)
     {
-    writer_.writeElement(
-      ONCE_TAG,
-      () ->
+    writer_
+      .element( ONCE_TAG)
+      .content( () ->
         {
         toStream( tuple.getVarBindings()).forEach( varBinding -> writeVarBinding( varBinding));
-        });
+        })
+      .write();
     }
 
   /**
@@ -158,9 +156,11 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeVarBinding( VarBinding binding)
     {
-    writer_.writeElement(
-      VAR_TAG,
-      MapBuilder.of( NAME_ATR, binding.getVar()).put( VALUE_ATR, String.valueOf( binding.getValue())).build());
+    writer_
+      .element( VAR_TAG)
+      .attribute( NAME_ATR, binding.getVar())
+      .attribute( VALUE_ATR, String.valueOf( binding.getValue()))
+      .write();
     }
 
   /**
@@ -168,9 +168,10 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeIncluded( String var)
     {
-    writer_.writeElement(
-      INCLUDE_TAG,
-      MapBuilder.of( VAR_ATR, var).build());
+    writer_
+      .element( INCLUDE_TAG)
+      .attribute( VAR_ATR, var)
+      .write();
     }
 
   /**
@@ -178,9 +179,10 @@ public class GeneratorSetDocWriter implements Closeable
    */
   protected void writeExcluded( String var)
     {
-    writer_.writeElement(
-      EXCLUDE_TAG,
-      MapBuilder.of( VAR_ATR, var).build());
+    writer_
+      .element( EXCLUDE_TAG)
+      .attribute( VAR_ATR, var)
+      .write();
     }
 
   /**

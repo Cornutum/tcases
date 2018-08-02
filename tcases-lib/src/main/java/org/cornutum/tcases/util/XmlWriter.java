@@ -12,6 +12,7 @@ import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
 
 import java.io.OutputStream;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
   
@@ -78,72 +79,6 @@ public class XmlWriter extends IndentedWriter
     }
 
   /**
-   * Writes an element on a single line.
-   */
-  public void writeElement( String tag, String content)
-    {
-    startLine();
-    print( "<"); print( tag); print( ">");
-    print( content);
-    print( "</"); print( tag); print( ">");
-    println();
-    }
-
-  /**
-   * Writes an element with the given attributes and content.
-   */
-  public void writeElement( String tag, Optional<Map<String,String>> attributes, Optional<Runnable> contentWriter)
-    {
-    writeTagStart( tag);
-    attributes.ifPresent( m -> m.forEach( (k,v) -> writeAttribute( k, v)));
-
-    if( contentWriter.isPresent())
-      {
-      writeTagEnd();
-      indent();
-      contentWriter.get().run();
-      unindent();
-      writeElementEnd( tag);
-      }
-    else
-      {
-      writeEmptyElementEnd();
-      }
-    }
-
-  /**
-   * Writes an empty element.
-   */
-  public void writeElement( String tag)
-    {
-    writeElement( tag, Optional.empty(), Optional.empty());
-    }
-
-  /**
-   * Writes an element with the given attributes.
-   */
-  public void writeElement( String tag, Map<String,String> attributes)
-    {
-    writeElement( tag, Optional.of( attributes), Optional.empty());
-    }
-
-  /**
-   * Writes an element with the given content.
-   */
-  public void writeElement( String tag, Runnable contentWriter)
-    {
-    writeElement( tag, Optional.empty(), Optional.of( contentWriter));
-    }
-
-  /**
-   * Writes an element with the given attributes and content.
-   */
-  public void writeElement( String tag, Map<String,String> attributes, Runnable contentWriter)
-    {
-    writeElement( tag, Optional.of( attributes), Optional.of( contentWriter));
-    }
-
-  /**
    * Writes an element end tag.
    */
   protected void writeElementEnd( String tag)
@@ -177,4 +112,107 @@ public class XmlWriter extends IndentedWriter
     print( NumericEntityEscaper.below(0x20).translate(StringEscapeUtils.escapeXml11(value)));
     print( "\"");
     }
+
+  /**
+   * Creates a new ElementWriter with the given tag.
+   */
+  public ElementWriter element( String tag)
+    {
+    return new ElementWriter().tag( tag);
+    }
+
+  public class ElementWriter
+    {
+    public ElementWriter()
+      {
+      tag( null);
+      attributes( new HashMap<String,String>());
+      content( (String) null);
+      }
+
+    public ElementWriter tag( String tag)
+      {
+      tag_ = tag;
+      return this;
+      }
+
+    public ElementWriter attributes( Map<String,String> attributes)
+      {
+      attributes_ = attributes;
+      return this;
+      }
+
+    public ElementWriter attribute( String name, String value)
+      {
+      attributes_.put( name, value);
+      return this;
+      }
+
+    public ElementWriter attributeIf( boolean condition, String name, String value)
+      {
+      if( condition)
+        {
+        attributes_.put( name, value);
+        }
+      return this;
+      }
+
+    public ElementWriter attributeIf( String name, Optional<String> value)
+      {
+      if( value.isPresent())
+        {
+        attributes_.put( name, value.get());
+        }
+      return this;
+      }
+
+    public ElementWriter content( String content)
+      {
+      content_ = content;
+      contentWriter_ = null;
+      return this;
+      }
+
+    public ElementWriter content( Runnable contentWriter)
+      {
+      content_ = null;
+      contentWriter_ = contentWriter;
+      return this;
+      }
+
+    public void write()
+      {
+      if( content_ != null)
+        {
+        startLine();
+        print( "<"); print( tag_); print( ">");
+        print( content_);
+        print( "</"); print( tag_); print( ">");
+        println();
+        }
+      else
+        {
+        writeTagStart( tag_);
+        attributes_.forEach( (k,v) -> writeAttribute( k, v));
+
+        if( contentWriter_ != null)
+          {
+          writeTagEnd();
+          indent();
+          contentWriter_.run();
+          unindent();
+          writeElementEnd( tag_);
+          }
+        else
+          {
+          writeEmptyElementEnd();
+          }
+        }
+      }
+    
+    private String tag_;
+    private Map<String,String> attributes_;
+    private String content_;
+    private Runnable contentWriter_;
+    } 
   }

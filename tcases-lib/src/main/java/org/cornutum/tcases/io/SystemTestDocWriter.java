@@ -8,7 +8,6 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.XmlWriter;
 import static org.cornutum.tcases.io.SystemTestDoc.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * Writes a {@link SystemTestDef} in the form of an XML document.
@@ -56,14 +54,15 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
     {
     xmlWriter_.writeDeclaration();
 
-    xmlWriter_.writeElement(
-      TESTCASES_TAG,
-      MapBuilder.of( SYSTEM_ATR, systemTest.getName()).build(),
-      () ->
+    xmlWriter_
+      .element( TESTCASES_TAG)
+      .attribute( SYSTEM_ATR, systemTest.getName())
+      .content( () ->
         {
         writeAnnotations( systemTest);
         toStream( systemTest.getFunctionTestDefs()).forEach( function -> writeFunction( function));
-        });
+        })
+      .write();
     }
 
   /**
@@ -71,16 +70,17 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeFunction( FunctionTestDef function)
     {
-    xmlWriter_.writeElement(
-      FUNCTION_TAG,
-      MapBuilder.of( NAME_ATR, function.getName()).build(),
-      () ->
+    xmlWriter_
+      .element( FUNCTION_TAG)
+      .attribute( NAME_ATR, function.getName())
+      .content( () ->
         {
         writeAnnotations( function);
         toStream( function.getTestCases())
           .sorted()
           .forEach( testCase -> writeTestCase( testCase));
-        });
+        })
+      .write();
     }
 
   /**
@@ -88,19 +88,16 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeTestCase( TestCase testCase)
     {
-    xmlWriter_.writeElement(
-      TESTCASE_TAG,
-
-      MapBuilder
-        .of( ID_ATR, String.valueOf( testCase.getId()))
-        .putIf( FAILURE_ATR, Optional.ofNullable( testCase.getType() == TestCase.Type.FAILURE? "true" : null))
-        .build(),
-
-      () ->
+    xmlWriter_
+      .element( TESTCASE_TAG)
+      .attribute( ID_ATR, String.valueOf( testCase.getId()))
+      .attributeIf( testCase.getType() == TestCase.Type.FAILURE, FAILURE_ATR, "true")
+      .content( () ->
         {
         writeAnnotations( testCase);
         Arrays.stream( testCase.getVarTypes()).forEach( type -> writeInputs( testCase, type));
-        });
+        })
+      .write();
     }
 
   /**
@@ -108,15 +105,16 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeInputs( TestCase testCase, String type)
     {
-    xmlWriter_.writeElement(
-      INPUT_TAG,
-      MapBuilder.of( TYPE_ATR, type).build(),
-      () ->
+    xmlWriter_
+      .element( INPUT_TAG)
+      .attribute( TYPE_ATR, type)
+      .content( () ->
         {
         toStream( testCase.getVarBindings( type))
           .sorted()
           .forEach( binding -> writeBinding( binding));
-        });
+        })
+      .write();
     }
 
   /**
@@ -124,18 +122,17 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    */
   protected void writeBinding( VarBinding binding)
     {
-    xmlWriter_.writeElement(
-      VAR_TAG,
-      MapBuilder
-        .of( NAME_ATR, binding.getVar())
-        .putIf( NA_ATR, Optional.ofNullable( binding.isValueNA()? "true" : null))
-        .putIf( VALUE_ATR, Optional.ofNullable( binding.isValueNA()? null : String.valueOf( binding.getValue())))
-        .putIf( FAILURE_ATR, Optional.ofNullable( binding.isValueValid()? null : "true"))
-        .build(),
-      () ->
+    xmlWriter_
+      .element( VAR_TAG)
+      .attribute( NAME_ATR, binding.getVar())
+      .attributeIf( binding.isValueNA(), NA_ATR, "true")
+      .attributeIf( !binding.isValueNA(), VALUE_ATR, String.valueOf( binding.getValue()))
+      .attributeIf( !binding.isValueValid(), FAILURE_ATR, "true")
+      .content( () ->
         {
         writeAnnotations( binding);
-        });
+        })
+      .write();
     }
 
   /**
@@ -146,9 +143,11 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
     toStream( annotated.getAnnotations())
       .sorted()
       .forEach( annotation -> {
-        xmlWriter_.writeElement(
-          HAS_TAG,
-          MapBuilder.of( NAME_ATR, annotation).put( VALUE_ATR, annotated.getAnnotation( annotation)).build());
+        xmlWriter_
+          .element( HAS_TAG)
+          .attribute( NAME_ATR, annotation)
+          .attribute( VALUE_ATR, annotated.getAnnotation( annotation))
+          .write();
         }); 
     }
 
