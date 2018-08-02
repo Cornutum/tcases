@@ -42,7 +42,6 @@ public class Reducer
    * <NOBR>
    * [-f <I>function</I>]
    * [-g <I>genDef</I>]
-   * [-G <I>genFactory</I>]
    * [-r <I>resampleFactor</I>]
    * [-R]
    * [-s <I>sampleCount</I>]
@@ -84,19 +83,6 @@ public class Reducer
    * <TD>
    * If <I>-g</I> is defined, update the generator specified in the given <I>genDef</I> file. Otherwise, update the default generator definition file:
    * the corresponding <NOBR><CODE>*-Generators.xml</CODE></NOBR> file in the same directory as the <I>inputDef</I>.
-   * </TD>
-   * </TR>
-   * 
-   * <TR valign="top">
-   * <TD>
-   * &nbsp;
-   * </TD>
-   * <TD>
-   * <NOBR>-G <I>genFactory</I> </NOBR>
-   * </TD>
-   * <TD>
-   * Defines the fully-qualified class name for the {@link ITestCaseGeneratorFactory} used to create any new function-specific test case generators.
-   * If <I>-G</I> is omitted, the default is {@link TupleGeneratorFactory}.
    * </TD>
    * </TR>
    * 
@@ -186,7 +172,6 @@ public class Reducer
       {
       setSamples( 10);
       setResampleFactor( 0.0);
-      setGenFactory( null);
       }
     
     /**
@@ -230,23 +215,6 @@ public class Reducer
           throwUsageException();
           }
         setGenDef( new File( args[i]));
-        }
-
-      else if( arg.equals( "-G"))
-        {
-        i++;
-        if( i >= args.length)
-          {
-          throwUsageException();
-          }
-        try
-          {
-          setGenFactory( (ITestCaseGeneratorFactory) Class.forName( args[i]).newInstance());
-          }
-        catch( Exception e)
-          {
-          throwUsageException( "Invalid generator factory", e);
-          }
         }
 
       else if( arg.equals( "-r"))
@@ -357,7 +325,6 @@ public class Reducer
           + Reducer.class.getSimpleName()
           + " [-f function]"
           + " [-g genDef]"
-          + " [-G genFactory]"
           + " [-r resampleFactor]"
           + " [-R]"
           + " [-s sampleCount]"
@@ -428,25 +395,6 @@ public class Reducer
     public File getGenDef()
       {
       return genDef_;
-      }
-
-    /**
-     * Changes the test case generator factory.
-     */
-    public void setGenFactory( ITestCaseGeneratorFactory genFactory)
-      {
-      genFactory_ =
-          genFactory == null
-          ? new TupleGeneratorFactory()
-          : genFactory;
-      }
-
-    /**
-     * Returns the test case generator factory.
-     */
-    public ITestCaseGeneratorFactory getGenFactory()
-      {
-      return genFactory_;
       }
 
     /**
@@ -526,11 +474,6 @@ public class Reducer
         builder.append( " -g ").append( getGenDef().getPath());
         }
 
-      if( getGenFactory() != null)
-        {
-        builder.append( " -G ").append( getGenFactory().getClass().getName());
-        }
-
       builder.append( " -r ").append( getResampleFactor());
       builder.append( " -s ").append( getSamples());
 
@@ -551,7 +494,6 @@ public class Reducer
     private String function_;
     private File testDef_;
     private File genDef_;
-    private ITestCaseGeneratorFactory genFactory_;
     private double resampleFactor_;
     private boolean newSeed_;
     private int samples_;
@@ -584,12 +526,6 @@ public class Reducer
       public Builder function( String function)
         {
         options_.setFunction( function);
-        return this;
-        }
-
-      public Builder genFactory( ITestCaseGeneratorFactory genFactory)
-        {
-        options_.setGenFactory( genFactory);
         return this;
         }
 
@@ -799,7 +735,7 @@ public class Reducer
       FunctionInputDef functionInputDef = functionInputDefs[f];
       function = functionInputDef.getName();
 
-      ITestCaseGenerator generator = options.getGenFactory().newGenerator( genDef.getGenerator( function));
+      ITestCaseGenerator generator = genDef.getGenerator( function).cloneOf();
       if( options.isNewSeed())
         {
         generator.setRandomSeed( null);

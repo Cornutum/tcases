@@ -10,7 +10,6 @@ package org.cornutum.tcases.generator;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.util.CartesianProduct;
-import org.cornutum.tcases.util.Cloneable;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.clonedList;
 import static org.cornutum.tcases.util.CollectionUtils.filtered;
@@ -45,7 +44,7 @@ import java.util.TreeSet;
  * all specified N-tuples of valid variable values.
  *
  */
-public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenerator>
+public class TupleGenerator implements ITestCaseGenerator
   {
   /**
    * Creates a new TupleGenerator that, by default, uses all 1-tuples of valid variable values.
@@ -859,7 +858,7 @@ public class TupleGenerator implements ITestCaseGenerator, Cloneable<TupleGenera
   /**
    * Returns a copy of this object.
    */
-  public TupleGenerator cloneOf()
+  public ITestCaseGenerator cloneOf()
     {
     TupleGenerator other = new TupleGenerator();
     other.setRandomSeed( getRandomSeed());
