@@ -75,7 +75,7 @@ public abstract class PropertyExpr
   /**
    * Returns the set of properties to evaluate.
    */
-  protected Iterator<String> getProperties()
+  public Iterator<String> getProperties()
     {
     return properties_.iterator();
     }

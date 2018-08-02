@@ -56,6 +56,12 @@ public class TestSystemTestDocWriter
     testWriteResource( "system-test-def-24.xml");
     }
 
+  @Test
+  public void testWrite_find()
+    {
+    testWriteResource( "find-Test.xml");
+    }
+
   public void testWriteResource( String systemTestResource)
     {
     // Given...
