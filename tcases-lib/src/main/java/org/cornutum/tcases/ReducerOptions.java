@@ -68,6 +68,10 @@ public class ReducerOptions
    */
   public void setResampleFactor( double resampleFactor)
     {
+    if( resampleFactor < -1.0)
+      {
+      throw new IllegalArgumentException( "Resample factor must be >= -1.0");
+      }
     resampleFactor_ = resampleFactor;
     }
 

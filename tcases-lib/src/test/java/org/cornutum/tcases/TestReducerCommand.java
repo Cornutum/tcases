@@ -357,6 +357,64 @@ public class TestReducerCommand
    * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 5. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Function.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Function.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenDef.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> ResampleFactor.Numeric </TD> <TD> <FONT color="red"> Below-Min </FONT> </TD> </TR>
+   * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void whenResampleFactorBelowMin() throws Exception
+    {
+     // Given...
+    File inFile = getResourceFile( "Reducer-whenGeneratorsNew-Input.xml");
+    String genFileName = "Reducer-Generators-New.xml";
+    
+    String[] args =
+      {
+        "-g", genFileName,
+        "-r", "-1.1",
+        new File( inFile.getParentFile(), "Reducer-whenGeneratorsNew").getPath()
+      };
+    
+    // When...
+    ReducerCommand reducer = new ReducerCommand();
+    try
+      {
+      reducer.run( new Options( args));
+      fail( "No expected failure");
+      }
+    catch( RuntimeException expected)
+      {
+      assertEquals( "Expected failure", "Invalid resample factor", expected.getCause().getMessage());
+
+      Throwable cause = expected.getCause().getCause();
+      assertEquals( "Expected cause", IllegalArgumentException.class, cause == null? null : cause.getClass());
+      assertEquals( "Expected cause", "Resample factor must be >= -1.0", cause.getMessage());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Unxepected exception", e);
+      }
+    }
+
+  /**
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 6. run (<FONT color="red">Failure</FONT>) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> Function.Defined </TD> <TD> Yes </TD> </TR>
