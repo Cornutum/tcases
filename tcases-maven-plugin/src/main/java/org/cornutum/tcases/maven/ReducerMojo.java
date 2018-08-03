@@ -1,7 +1,7 @@
 package org.cornutum.tcases.maven;
 
-import org.cornutum.tcases.Reducer.Options;
-import org.cornutum.tcases.Reducer;
+import org.cornutum.tcases.ReducerCommand.Options;
+import org.cornutum.tcases.ReducerCommand;
 import org.cornutum.tcases.TcasesCommand;
 
 import org.apache.commons.lang3.StringUtils;
@@ -54,7 +54,7 @@ public class ReducerMojo extends AbstractMojo
       inputScanner.scan();
 
       // Reduce test cases for each input definition file.
-      Reducer reducer = new Reducer();
+      ReducerCommand reducer = new ReducerCommand();
       String[] inputDefs = inputScanner.getIncludedFiles();
       for( int i = 0; i < inputDefs.length; i++)
         {

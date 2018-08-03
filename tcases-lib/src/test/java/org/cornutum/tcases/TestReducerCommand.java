@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.Reducer.Options;
+import org.cornutum.tcases.ReducerCommand.Options;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 
@@ -23,13 +23,13 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * Runs tests for {@link Reducer}.
+ * Runs tests for {@link ReducerCommand}.
  *
  */
-public class TestReducer
+public class TestReducerCommand
   {
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
@@ -70,7 +70,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     reducer.run( new Options( args));
         
     // Then...
@@ -89,7 +89,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 1. run (Success) </TH></TR>
@@ -124,7 +124,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     reducer.run( new Options( args));
         
     // Then...
@@ -147,7 +147,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 2. run (Success) </TH></TR>
@@ -184,7 +184,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     reducer.run( new Options( args));
         
     // Then...
@@ -208,7 +208,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 3. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -241,7 +241,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 4. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -280,7 +280,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     reducer.run( new Options( args));
         
     // Then...
@@ -300,7 +300,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 5. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -337,7 +337,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     try
       {
       reducer.run( new Options( args));
@@ -354,7 +354,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 6. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -393,7 +393,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     try
       {
       reducer.run( new Options( args));
@@ -410,7 +410,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 7. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -450,7 +450,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     try
       {
       reducer.run( new Options( args));
@@ -467,7 +467,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 8. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -501,7 +501,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     try
       {
       reducer.run( new Options( args));
