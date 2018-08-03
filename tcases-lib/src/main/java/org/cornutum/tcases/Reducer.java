@@ -91,6 +91,17 @@ public class Reducer
     }
 
   /**
+   * For a {@link SystemInputDef system input definition}, returns a set of {@link GeneratorSet test case generators}
+   * that {@link #reduce( SystemInputDef, GeneratorSet, SystemTestDef, ReducerOptions) reduces}
+   * the number of test cases normally generated, using default {@link ReducerOptions options}.
+   * Returns <CODE>Optional.empty()</CODE> if test cases were not reduced.
+   */
+  public static Optional<GeneratorSet> reduce( SystemInputDef inputDef)
+    {
+    return reduce( inputDef, GeneratorSet.basicGenerator(), null, new ReducerOptions());
+    }
+
+  /**
    * For a {@link FunctionInputDef function input definition}, updates the given {@link ITestCaseGenerator test case generator}
    * to reduce the number of generated test cases, using the given {@link ReducerOptions options}.
    * <P/>
@@ -191,6 +202,17 @@ public class Reducer
       }
 
     return reduced;
+    }
+
+  /**
+   * For a {@link FunctionInputDef function input definition}, returns a {@link ITestCaseGenerator test case generator}
+   * that {@link #reduce( FunctionInputDef, ITestCaseGenerator, FunctionTestDef, ReducerOptions) reduces}
+   * the number of test cases normally generated, using default {@link ReducerOptions options}.
+   * Returns <CODE>Optional.empty()</CODE> if test cases were not reduced.
+   */
+  public static Optional<ITestCaseGenerator> reduce( FunctionInputDef inputDef)
+    {
+    return reduce( inputDef, new TupleGenerator(), null, new ReducerOptions());
     }
 
   /**
