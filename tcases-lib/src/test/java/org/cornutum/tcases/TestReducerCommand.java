@@ -43,9 +43,9 @@ public class TestReducerCommand
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Full-Path </TD> </TR>
    * </TABLE>
@@ -161,9 +161,9 @@ public class TestReducerCommand
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
    * </TABLE>
@@ -234,10 +234,34 @@ public class TestReducerCommand
   public void whenTestDefNotExists() throws Exception
     {
     // Given...
-
+    File inFile = getResourceFile( "Reducer-whenFunctionDefined-Input.xml");
+    File genFile = getResourceFile( "Reducer-whenFunctionDefined-Generators.xml");
+    File testFile = new File( inFile.getParent(), "Undefined");
+    String function1 = "find-1";
+    
+    String[] args =
+      {
+        "-f", function1,
+        "-g", genFile.getName(),
+        "-t", testFile.getPath(),
+        inFile.getPath()
+      };
+    
     // When...
-
-    // Then...
+    ReducerCommand reducer = new ReducerCommand();
+    try
+      {
+      reducer.run( new Options( args));
+      fail( "No expected failure");
+      }
+    catch( RuntimeException expected)
+      {
+      assertEquals( "Expected failure", "Can't read test definition file=" + testFile, expected.getMessage());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Unxepected exception", e);
+      }
     }
 
   /**
@@ -314,9 +338,9 @@ public class TestReducerCommand
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
    * </TABLE>
@@ -368,9 +392,9 @@ public class TestReducerCommand
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> <FONT color="red"> Below-Min </FONT> </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
    * </TABLE>
@@ -426,9 +450,9 @@ public class TestReducerCommand
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Full-Path </TD> </TR>
    * </TABLE>
@@ -501,7 +525,7 @@ public class TestReducerCommand
     String[] args =
       {
         "-f", function3,
-        "-g", genFile.getName(),
+        "-g", genFile.getPath(),
         "-r", "0.5",
         "-s", "2",
         inFile.getPath()
@@ -539,9 +563,9 @@ public class TestReducerCommand
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
    * </TABLE>
@@ -573,6 +597,53 @@ public class TestReducerCommand
       {
       throw new RuntimeException( "Unxepected exception", e);
       }
+    }
+  /**
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 9. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Function.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Function.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> SampleCount.Numeric </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> InputDef.Matches </TD> <TD> Full-Path </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void whenReducedTestFileDefined() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "Reducer-whenBaseTests-Input.xml");
+    String function2 = "find-2";
+    
+    String[] args =
+      {
+        "-f", function2,
+        "-r", "0.5",
+        "-s", "8",
+        "-t", "Reducer-whenBaseTests-Test.xml",
+        inFile.getPath()
+      };
+    
+    // When...
+    ReducerCommand reducer = new ReducerCommand();
+    reducer.run( new Options( args));
+        
+    // Then...
+    File genFile = getResourceFile( "Reducer-whenBaseTests-Generators.xml");
+    assertEquals( "Generator file created", false, genFile.exists());
     }
 
   /**
