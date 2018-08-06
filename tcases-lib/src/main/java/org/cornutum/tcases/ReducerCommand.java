@@ -654,7 +654,7 @@ public class ReducerCommand extends Reducer
       }
 
     SystemTestDef baseDef = null;
-    if( baseDefFile != null && baseDefFile.exists())
+    if( baseDefFile != null)
       {
       // Read the previous base test definitions.
       InputStream testStream = null;
