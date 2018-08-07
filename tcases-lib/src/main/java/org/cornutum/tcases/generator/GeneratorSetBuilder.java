@@ -69,12 +69,20 @@ public class GeneratorSetBuilder
     }
 
   /**
-   * Adds a generator to this set.
+   * Adds a generator to this set for the given function.
    */
   public GeneratorSetBuilder generator( String functionName, ITestCaseGenerator generator)
     {
     generatorSet_.addGenerator( functionName, generator);
     return this;
+    }
+
+  /**
+   * Adds a default generator to this set.
+   */
+  public GeneratorSetBuilder defaultGenerator( ITestCaseGenerator generator)
+    {
+    return generator( null, generator);
     }
 
   GeneratorSet generatorSet_;

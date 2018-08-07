@@ -8,12 +8,13 @@
 package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.util.Cloneable;
 
 /**
  * Generates {@link TestCase test cases} for a {@link FunctionInputDef function}.
  *
  */
-public interface ITestCaseGenerator
+public interface ITestCaseGenerator extends Cloneable<ITestCaseGenerator>
   {
   /**
    * Changes the random number sequence seed for this generator.

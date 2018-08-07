@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.generator;
 
+import org.cornutum.tcases.util.Cloneable;
+
 import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +21,7 @@ import java.util.Map;
  * Defines a set of {@link ITestCaseGenerator test case generators}.
  *
  */
-public class GeneratorSet implements IGeneratorSet
+public class GeneratorSet implements IGeneratorSet, Cloneable<GeneratorSet>
   {
   /**
    * Returns the test case generator for the given system function.
@@ -99,6 +101,13 @@ public class GeneratorSet implements IGeneratorSet
     {
     functionName = StringUtils.trimToNull( functionName);
     return functionName==null? ALL : functionName;
+    }
+
+  public GeneratorSet cloneOf()
+    {
+    GeneratorSet clone = new GeneratorSet();
+    generators_.forEach( (f, g) -> clone.setGenerator( f, g.cloneOf()));
+    return clone;
     }
 
   public int hashCode()

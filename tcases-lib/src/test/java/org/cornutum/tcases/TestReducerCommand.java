@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.Reducer.Options;
+import org.cornutum.tcases.ReducerCommand.Options;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 
@@ -23,13 +23,13 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * Runs tests for {@link Reducer}.
+ * Runs tests for {@link ReducerCommand}.
  *
  */
-public class TestReducer
+public class TestReducerCommand
   {
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
@@ -39,16 +39,13 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Full-Path </TD> </TR>
    * </TABLE>
@@ -67,14 +64,13 @@ public class TestReducer
       {
         "-f", function2,
         "-g", genFile.getName(),
-        "-G", TupleGeneratorFactory.class.getName(),
         "-r", "0.5",
         "-s", "8",
         inFile.getPath()
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     reducer.run( new Options( args));
         
     // Then...
@@ -93,7 +89,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 1. run (Success) </TH></TR>
@@ -103,9 +99,6 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
@@ -131,7 +124,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     reducer.run( new Options( args));
         
     // Then...
@@ -154,7 +147,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 2. run (Success) </TH></TR>
@@ -164,16 +157,13 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
    * </TABLE>
@@ -194,7 +184,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     reducer.run( new Options( args));
         
     // Then...
@@ -218,7 +208,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 3. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -228,9 +218,6 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
@@ -247,14 +234,38 @@ public class TestReducer
   public void whenTestDefNotExists() throws Exception
     {
     // Given...
-
+    File inFile = getResourceFile( "Reducer-whenFunctionDefined-Input.xml");
+    File genFile = getResourceFile( "Reducer-whenFunctionDefined-Generators.xml");
+    File testFile = new File( inFile.getParent(), "Undefined");
+    String function1 = "find-1";
+    
+    String[] args =
+      {
+        "-f", function1,
+        "-g", genFile.getName(),
+        "-t", testFile.getPath(),
+        inFile.getPath()
+      };
+    
     // When...
-
-    // Then...
+    ReducerCommand reducer = new ReducerCommand();
+    try
+      {
+      reducer.run( new Options( args));
+      fail( "No expected failure");
+      }
+    catch( RuntimeException expected)
+      {
+      assertEquals( "Expected failure", "Can't read test definition file=" + testFile, expected.getMessage());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Unxepected exception", e);
+      }
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 4. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -264,9 +275,6 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
@@ -296,7 +304,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     reducer.run( new Options( args));
         
     // Then...
@@ -316,7 +324,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 5. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -326,16 +334,13 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
    * </TABLE>
@@ -356,7 +361,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     try
       {
       reducer.run( new Options( args));
@@ -373,7 +378,65 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 5. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Function.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Function.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
+   * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> GenDef.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> ResampleFactor.Numeric </TD> <TD> <FONT color="red"> Below-Min </FONT> </TD> </TR>
+   * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void whenResampleFactorBelowMin() throws Exception
+    {
+     // Given...
+    File inFile = getResourceFile( "Reducer-whenGeneratorsNew-Input.xml");
+    String genFileName = "Reducer-Generators-New.xml";
+    
+    String[] args =
+      {
+        "-g", genFileName,
+        "-r", "-1.1",
+        new File( inFile.getParentFile(), "Reducer-whenGeneratorsNew").getPath()
+      };
+    
+    // When...
+    ReducerCommand reducer = new ReducerCommand();
+    try
+      {
+      reducer.run( new Options( args));
+      fail( "No expected failure");
+      }
+    catch( RuntimeException expected)
+      {
+      assertEquals( "Expected failure", "Invalid resample factor", expected.getCause().getMessage());
+
+      Throwable cause = expected.getCause().getCause();
+      assertEquals( "Expected cause", IllegalArgumentException.class, cause == null? null : cause.getClass());
+      assertEquals( "Expected cause", "Resample factor must be >= -1.0", cause.getMessage());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Unxepected exception", e);
+      }
+    }
+
+  /**
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 6. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -383,16 +446,13 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Full-Path </TD> </TR>
    * </TABLE>
@@ -415,7 +475,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     try
       {
       reducer.run( new Options( args));
@@ -432,7 +492,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 7. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -442,9 +502,6 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
@@ -468,14 +525,14 @@ public class TestReducer
     String[] args =
       {
         "-f", function3,
-        "-g", genFile.getName(),
+        "-g", genFile.getPath(),
         "-r", "0.5",
         "-s", "2",
         inFile.getPath()
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     try
       {
       reducer.run( new Options( args));
@@ -492,7 +549,7 @@ public class TestReducer
     }
 
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 8. run (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -502,16 +559,13 @@ public class TestReducer
    * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
    * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
    * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
    * <TR><TD> InputDef.Matches </TD> <TD> Project-Input </TD> </TR>
    * </TABLE>
@@ -529,7 +583,7 @@ public class TestReducer
       };
     
     // When...
-    Reducer reducer = new Reducer();
+    ReducerCommand reducer = new ReducerCommand();
     try
       {
       reducer.run( new Options( args));
@@ -544,113 +598,52 @@ public class TestReducer
       throw new RuntimeException( "Unxepected exception", e);
       }
     }
-
   /**
-   * Tests {@link Reducer#run run()} using the following inputs.
+   * Tests {@link ReducerCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
-   * <TR align="left"><TH colspan=2> 9. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH colspan=2> 9. run (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Function.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> Function.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
+   * <TR><TD> Function.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Function.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Function.Has-Generator </TD> <TD> Yes </TD> </TR>
    * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> NA </TD> </TR>
-   * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
+   * <TR><TD> ResampleFactor.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> ResampleFactor.Numeric </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> SampleCount.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> SampleCount.Numeric </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TestDef.Absolute </TD> <TD> No </TD> </TR>
    * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> InputDef.Matches </TD> <TD> Project-Xml </TD> </TR>
+   * <TR><TD> InputDef.Matches </TD> <TD> Full-Path </TD> </TR>
    * </TABLE>
    * </P>
    */
   @Test
-  public void whenGenFactoryUndefined() throws Exception
+  public void whenReducedTestFileDefined() throws Exception
     {
     // Given...
-    File inFile = getResourceFile( "Reducer-whenMatchesProjectXml.xml");
+    File inFile = getResourceFile( "Reducer-whenBaseTests-Input.xml");
+    String function2 = "find-2";
+    
     String[] args =
       {
-        "-G", "UnknownClass",
-        new File( inFile.getParentFile(), FilenameUtils.getBaseName( inFile.getName())).getPath()
+        "-f", function2,
+        "-r", "0.5",
+        "-s", "8",
+        "-t", "Reducer-whenBaseTests-Test.xml",
+        inFile.getPath()
       };
     
     // When...
-    Reducer reducer = new Reducer();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "Invalid generator factory", expected.getCause().getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
-    }
-
-  /**
-   * Tests {@link Reducer#run run()} using the following inputs.
-   * <P>
-   * <TABLE border="1" cellpadding="8">
-   * <TR align="left"><TH colspan=2> 10. run (<FONT color="red">Failure</FONT>) </TH></TR>
-   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Function.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> Function.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> Function.Has-Generator </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenDef.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> GenDef.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> GenFactory.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Class-Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> GenFactory.Class-Valid </TD> <TD> <FONT color="red"> No  </FONT> </TD> </TR>
-   * <TR><TD> ResampleFactor.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> ResampleFactor.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> SampleCount.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> SampleCount.Numeric </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> TestDef.Exists </TD> <TD> NA </TD> </TR>
-   * <TR><TD> TestDef.Absolute </TD> <TD> NA </TD> </TR>
-   * <TR><TD> InputDef.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> InputDef.Matches </TD> <TD> Project-Xml </TD> </TR>
-   * </TABLE>
-   * </P>
-   */
-  @Test
-  public void whenGenFactoryInvalid() throws Exception
-    {
-    // Given...
-    File inFile = getResourceFile( "Reducer-whenMatchesProjectXml.xml");
-    String[] args =
-      {
-        "-G", Reducer.class.getName(),
-        new File( inFile.getParentFile(), FilenameUtils.getBaseName( inFile.getName())).getPath()
-      };
-    
-    // When...
-    Reducer reducer = new Reducer();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "Invalid generator factory", expected.getCause().getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
+    ReducerCommand reducer = new ReducerCommand();
+    reducer.run( new Options( args));
+        
+    // Then...
+    File genFile = getResourceFile( "Reducer-whenBaseTests-Generators.xml");
+    assertEquals( "Generator file created", false, genFile.exists());
     }
 
   /**
