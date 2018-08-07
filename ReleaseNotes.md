@@ -1,5 +1,42 @@
 # Release Notes #
 
+## 2.1.0 ##
+
+Following release 2.0.0, this release adds further improvements to the Tcases API. If your application uses the Tcases API, some minor changes will be required.
+But if you use Tcases only from the command line or with Maven, you won't see any differences.
+
+  * Thanks to [Thibault Kruse](https://github.com/tkruse) for his suggestions and feedback on all of the key features of this release.
+
+  * **The "name" of a variable value can be any Java object, including `null`**
+    * The Java object that represents a variable value is no longer limited to a `String`. Accessor data types have changed from `String` to `Object`.
+      Null values are now allowed.
+    * This affects the public interface to `VarDef`, `VarValueDef`, and `VarBinding`.
+    * When reading the XML representation of a system input definition (`*-Input.xml`), the `name` attribute of a `Value` element is automatically converted
+      to an appropriate Java object.
+      * A numeric value is converted to either an `Integer`, a `Long`, or a `BigDecimal` object.
+      * The strings `"true"` and `"false"` (in any combination of upper- and lower-case) are converted to `Boolean` objects.
+      * The string `"null"` is converted to a null `Object`.
+      * All other values are converted to `String` objects.
+    * When reading the XML representation of a system test definition (`*-Test.xml`), the same conversions are applied to the `value` attribute of a `Var` element.
+
+  * **Reducer API**
+    * The `Reducer` class now provides `reduce` methods that operate directly at the API level.
+    * Command line support for the Reducer has been relocated to a new `ReducerCommand` class.
+    * The command line option for defining a "generator factory" -- the `-G` option and corresponding Maven property `genFactory` -- is now obsolete and has been removed.
+
+  * **Saving system input definitions**
+    * The new `SystemInputDocWriter` class now makes it possible to save a system input definition as an XML document compatible with
+      `SystemInputDocReader`.
+
+  * **Builders! Matchers!**
+    * For each of the major entities in the Tcases API there is now a `*Builder` class that provides a "fluent" API for simpler construction of a complex object.
+    * Let's show some love for unit tests, too! For most Tcase entities, there is now a `*Matcher` class that enables more powerful test
+      assertions. By using `Asserts.assertMatches()` with a `Matcher` instead of `assertEquals`, you get more than a yes/no answer. Instead, you
+      see exactly which field in a complex object contains the discrepancy. By using `Asserts.assertSetEquals()` with a `Matcher`, you see exactly
+      which elements of a collection of complex objects are wrong and why.
+    * With detailed comparison now handled by the `Matcher` classes, the corresponding `equals`
+      methods have changed to provide a narrower "primary key" definition of equality.
+    
 ## 2.0.0 ##
 
   * This is a major release designed to open Tcases up to a much broader community of applications. The features included will be
