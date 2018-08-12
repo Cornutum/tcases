@@ -116,7 +116,7 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
           .element( "BODY")
           .content( () ->
             {
-            toStream( systemTest.getFunctionTestDefs()).forEach( function -> writeFunction( function));
+            toStream( systemTest.getFunctionTestDefs()).forEach( this::writeFunction);
             if( defaultStyle)
               {
               writeDefaultScript();
@@ -183,13 +183,7 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
     Iterator<VarBinding> varBindings =
       IteratorUtils.filteredIterator
         ( testCase.getVarBindings( type),
-          new Predicate<VarBinding>()
-             {
-             public boolean evaluate( VarBinding binding)
-                {
-                return !binding.isValueNA();
-                }
-            });
+          binding -> !binding.isValueNA());
 
     if( varBindings.hasNext())
       {
@@ -232,10 +226,7 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
 
           xmlWriter_
             .element( "TD")
-            .content( () ->
-              {
-              writeVarSets( varSetLevel + 1, varBindings);
-              })
+            .content( () -> writeVarSets( varSetLevel + 1, varBindings))
             .write();
           })
         .write();
@@ -254,11 +245,11 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
         {
         String varSet = "";
         String varSetNext = "";
-        for( PeekingIterator<VarBinding> peekBindings = new PeekingIterator<VarBinding>( varBindings);
+        for( PeekingIterator<VarBinding> peekBindings = new PeekingIterator<>( varBindings);
              peekBindings.hasNext();
              varSet = varSetNext)
           {
-          List<VarBinding> varSetBindings = new ArrayList<VarBinding>();
+          List<VarBinding> varSetBindings = new ArrayList<>();
           for( varSetNext = "";
 
                peekBindings.hasNext()
@@ -363,7 +354,7 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
   /**
    * Flushes the writer.
    */
-  public void flush() throws IOException
+  public void flush()
     {
     getXmlWriter().flush();
     }

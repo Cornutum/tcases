@@ -63,7 +63,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
       .content( () ->
         {
         writeAnnotations( systemInput);
-        toStream( systemInput.getFunctionInputDefs()).forEach( function -> writeFunction( function));
+        toStream( systemInput.getFunctionInputDefs()).forEach( this::writeFunction);
         })
       .write();
     }
@@ -99,10 +99,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
     xmlWriter_
       .element( INPUT_TAG)
       .attribute( TYPE_ATR, varType)
-      .content( () ->
-        {
-        varDefs.forEach( varDef -> writeVarDef( varDef));
-        })
+      .content( () -> varDefs.forEach( this::writeVarDef))
       .write();
     }
 
@@ -138,11 +135,11 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         conditionWriter.writeWhenElement();
         if( varTag.equals( VAR_TAG))
           {
-          values.forEach( value -> writeValue( value));
+          values.forEach( this::writeValue);
           }
         else
           {
-          members.forEach( member -> writeVarDef( member));
+          members.forEach( this::writeVarDef);
           }
         })
       .write();
@@ -183,7 +180,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
           .attribute( NAME_ATR, annotation)
           .attribute( VALUE_ATR, annotated.getAnnotation( annotation))
           .write();
-        }); 
+        });
     }
 
   private Optional<String> propertyList( Stream<String> properties)
@@ -198,7 +195,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
   /**
    * Flushes the writer.
    */
-  public void flush() throws IOException
+  public void flush()
     {
     getXmlWriter().flush();
     }
@@ -253,7 +250,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         {
         xmlWriter_
           .element( WHEN_TAG)
-          .content( () -> { condition_.accept( this); })
+          .content( () -> condition_.accept( this))
           .write();
         }
       }
@@ -272,9 +269,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .element( ALLOF_TAG)
         .attributeIf( PROPERTY_ATR, propertiesOf( condition, ContainsAll.class))
         .content( () ->
-          {
-          visit( withoutPropertiesOf( condition, ContainsAll.class));
-          })
+                visit( withoutPropertiesOf( condition, ContainsAll.class)))
         .write();
       }
   
@@ -284,9 +279,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .element( ANYOF_TAG)
         .attributeIf( PROPERTY_ATR, propertiesOf( condition, ContainsAny.class))
         .content( () ->
-          {
-          visit( withoutPropertiesOf( condition, ContainsAny.class));
-          })
+                visit( withoutPropertiesOf( condition, ContainsAny.class)))
         .write();
       }
   
@@ -317,9 +310,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .element( NOT_TAG)
         .attributeIf( PROPERTY_ATR, propertiesOf( condition, ContainsAny.class))
         .content( () ->
-          {
-          visit( withoutPropertiesOf( condition, ContainsAny.class));
-          })
+                visit( withoutPropertiesOf( condition, ContainsAny.class)))
         .write();
       }
   

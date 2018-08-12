@@ -126,13 +126,13 @@ public class GeneratorSetDocWriter implements Closeable
         {
         Arrays.stream( combiner.getIncluded())
           .sorted()
-          .forEach( included -> writeIncluded( included));
+          .forEach( this::writeIncluded);
         
         Arrays.stream( combiner.getExcluded())
           .sorted()
-          .forEach( excluded -> writeExcluded( excluded));
+          .forEach( this::writeExcluded);
 
-        toStream( combiner.getOnceTuples()).forEach( tuple -> writeOnceTuple( tuple));
+        toStream( combiner.getOnceTuples()).forEach( this::writeOnceTuple);
         })
       .write();
     }
@@ -144,10 +144,7 @@ public class GeneratorSetDocWriter implements Closeable
     {
     writer_
       .element( ONCE_TAG)
-      .content( () ->
-        {
-        toStream( tuple.getVarBindings()).forEach( varBinding -> writeVarBinding( varBinding));
-        })
+      .content( () -> toStream( tuple.getVarBindings()).forEach( this::writeVarBinding))
       .write();
     }
 
