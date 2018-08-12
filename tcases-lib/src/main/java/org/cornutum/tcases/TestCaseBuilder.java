@@ -119,18 +119,6 @@ public class TestCaseBuilder
     return this;
     }
 
-  /**
-   * Resets ids for the given sequence of test cases.
-   */
-  public static TestCase[] sequence( TestCase ... testCases)
-    {
-    for( int i = 0; i < testCases.length; i++)
-      {
-      testCases[i].setId( i);
-      }
-    return testCases;
-    }
-
   TestCase testCase_;
   }
 
