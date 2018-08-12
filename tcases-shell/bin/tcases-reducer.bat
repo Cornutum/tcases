@@ -49,4 +49,4 @@ set REDUCER_CP=%REDUCER_CP%;%1
 goto :eof
 
 :reducerRun
-java -cp "%REDUCER_CP%" -D%REDUCER_LOG_DEST%=%REDUCER_LOG% -Dtcases.log.level=%REDUCER_LOG_LEVEL% org.cornutum.tcases.Reducer %REDUCER_ARGS%
+java -cp "%REDUCER_CP%" -D%REDUCER_LOG_DEST%=%REDUCER_LOG% -Dtcases.log.level=%REDUCER_LOG_LEVEL% org.cornutum.tcases.ReducerCommand %REDUCER_ARGS%

@@ -102,7 +102,7 @@ java \
   -cp "$classPath" \
   -D${logDest}="$logFile" \
   -Dtcases.log.level="$logLevel" \
-  org.cornutum.tcases.Reducer \
+  org.cornutum.tcases.ReducerCommand \
   ${genDef:+-g "$genDef"} \
   ${resmpf:+-r "$resmpf"} \
   $newSeed \
