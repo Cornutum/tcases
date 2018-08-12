@@ -1,5 +1,9 @@
 # Release Notes #
 
+## 2.1.1 ##
+
+This release is a quick patch for [Tcases 2.1.0](#210) to ensure that the `tcases-reducer` command correctly uses the new `ReducerCommand` class.
+
 ## 2.1.0 ##
 
 Following release 2.0.0, this release adds further improvements to the Tcases API. If your application uses the Tcases API, some minor changes will be required.
