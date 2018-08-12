@@ -60,7 +60,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
       .content( () ->
         {
         writeAnnotations( systemTest);
-        toStream( systemTest.getFunctionTestDefs()).forEach( function -> writeFunction( function));
+        toStream( systemTest.getFunctionTestDefs()).forEach( this::writeFunction);
         })
       .write();
     }
@@ -78,7 +78,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
         writeAnnotations( function);
         toStream( function.getTestCases())
           .sorted()
-          .forEach( testCase -> writeTestCase( testCase));
+          .forEach( this::writeTestCase);
         })
       .write();
     }
@@ -112,7 +112,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
         {
         toStream( testCase.getVarBindings( type))
           .sorted()
-          .forEach( binding -> writeBinding( binding));
+          .forEach( this::writeBinding);
         })
       .write();
     }
@@ -128,10 +128,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
       .attributeIf( binding.isValueNA(), NA_ATR, "true")
       .attributeIf( !binding.isValueNA(), VALUE_ATR, String.valueOf( binding.getValue()))
       .attributeIf( !binding.isValueValid(), FAILURE_ATR, "true")
-      .content( () ->
-        {
-        writeAnnotations( binding);
-        })
+      .content( () -> writeAnnotations( binding))
       .write();
     }
 
@@ -154,7 +151,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
   /**
    * Flushes the writer.
    */
-  public void flush() throws IOException
+  public void flush()
     {
     getXmlWriter().flush();
     }
