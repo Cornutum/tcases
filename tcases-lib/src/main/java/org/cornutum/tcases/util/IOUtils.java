@@ -3,9 +3,13 @@ package org.cornutum.tcases.util;
 import java.io.Closeable;
 import java.io.IOException;
 
-public class IOUtils
+public final class IOUtils
   {
-
+  private IOUtils()
+    {
+    // Static methods only
+    }
+  
   public static void closeQuietly( Closeable closeable)
     {
     try
@@ -14,7 +18,9 @@ public class IOUtils
         {
         closeable.close();
         }
-      } catch ( IOException var2) {
+      }
+    catch ( IOException ignore)
+      {
       }
     }
   }

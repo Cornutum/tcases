@@ -1,7 +1,11 @@
 package org.cornutum.tcases.util;
 
-public class FilenameUtils
+public final class FilenameUtils
   {
+  private FilenameUtils()
+    {
+    // Static methods only
+    }
 
   public static String getBaseName( String filepath)
     {

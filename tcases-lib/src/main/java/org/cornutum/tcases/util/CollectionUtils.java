@@ -25,6 +25,7 @@ public final class CollectionUtils
    */
   private CollectionUtils()
     {
+    // Static methods only
     }
 
   /**

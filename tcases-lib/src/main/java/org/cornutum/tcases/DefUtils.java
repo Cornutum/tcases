@@ -14,8 +14,13 @@ import java.util.regex.Pattern;
  * Defines utility methods for constructing test definitions.
  *
  */
-public abstract class DefUtils
+public final class DefUtils
   {
+  private DefUtils()
+    {
+    // Static methods only
+    }
+      
   /**
    * Returns true if the given string is a valid identifier.
    */
