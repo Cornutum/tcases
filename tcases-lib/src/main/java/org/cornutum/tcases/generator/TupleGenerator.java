@@ -11,8 +11,6 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.util.CartesianProduct;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.util.CollectionUtils.clonedList;
-import static org.cornutum.tcases.util.CollectionUtils.filtered;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
@@ -38,6 +36,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Generates {@link TestCase test cases} for a {@link FunctionInputDef function} that use
@@ -520,14 +519,14 @@ public class TupleGenerator implements ITestCaseGenerator
     final Comparator<VarBindingDef> byUsage = byUsage( varTupleSet);
 
     return
-      IteratorUtils.transformedIterator
-      ( // Iterate over all combinations of bindings...
-        new CartesianProduct<VarBindingDef>
-        ( // ...combining members from all sets...
-          new ArrayList<Set<VarBindingDef>>
-          ( CollectionUtils.collect
-           
-            ( // ...where each set of bindings is derived from a disjunct of unsatisfied test case conditions....
+      IteratorUtils.transformedIterator(
+        // Iterate over all combinations of bindings...
+        new CartesianProduct<VarBindingDef>(
+
+          // ...combining members from all sets of bindings...
+          new ArrayList<Set<VarBindingDef>>(
+            CollectionUtils.collect(
+              // ...where each set of bindings is derived from a disjunct of unsatisfied test case conditions....
               testCase.getRequired().getDisjuncts(),
 
               // ...and contains the set of compatible bindings that could satisfy this disjunct...
@@ -535,29 +534,33 @@ public class TupleGenerator implements ITestCaseGenerator
                 {
                 public Set<VarBindingDef> transform( IDisjunct disjunct)
                   {
+                  Set<String> unsatisfied =
+                    CollectionUtils.collect(
+                      disjunct.getAssertions(),
+                      new Transformer<IAssertion,String>()
+                        {
+                        public String transform( IAssertion assertion)
+                          {
+                          return assertion.getProperty();
+                          }
+                        },
+                      new HashSet<String>());
+
+                  Iterator<VarBindingDef> satisfyingBindings =
+                    IteratorUtils.filteredIterator(
+                      getPropertyProviders( unsatisfied).iterator(),
+                      testCase.getBindingCompatible());
+
+                  // ...arranging satisfying bindings in order of decreasing preference...
                   return
-                    CollectionUtils.collect
-                    ( filtered
-                      ( getPropertyProviders
-                        ( CollectionUtils.collect
-                          ( disjunct.getAssertions(),
-                            new Transformer<IAssertion,String>()
-                              {
-                              public String transform( IAssertion assertion)
-                                {
-                                return assertion.getProperty();
-                                }
-                              },
-                            new HashSet<String>())),
-                        
-                        testCase.getBindingCompatible()),
-
-                      sameBinding_,
-
+                    CollectionUtils.collect(
+                      satisfyingBindings,
+                      nopTransformer(),
                       new TreeSet<VarBindingDef>( byUsage));
                   }
               },
-              // For repeatable combinations, ensure set members have a well-defined order.
+
+              // ...arranging sets in a well-defined order for repeatable combinations...
               new TreeSet<Set<VarBindingDef>>( varBindingSetSorter_))),
           
           // ...ignoring any infeasible combinations...
@@ -863,7 +866,7 @@ public class TupleGenerator implements ITestCaseGenerator
     TupleGenerator other = new TupleGenerator();
     other.setRandomSeed( getRandomSeed());
     other.setDefaultTupleSize( getDefaultTupleSize());
-    other.setCombiners( clonedList( getCombiners()));
+    other.setCombiners( getCombiners().stream().map( TupleCombiner::cloneOf).collect( toList()));
     return other;
     }
 
@@ -896,8 +899,6 @@ public class TupleGenerator implements ITestCaseGenerator
   private MultiValuedMap<String,VarBindingDef> propertyProviders_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TupleGenerator.class);
-
-  private static final Transformer<VarBindingDef,VarBindingDef> sameBinding_ = nopTransformer();
 
   private static final Comparator<VarBindingDef> varBindingDefSorter_ =
     new Comparator<VarBindingDef>()
