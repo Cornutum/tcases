@@ -11,7 +11,6 @@ import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -154,32 +153,20 @@ public class TestCase extends Annotated implements Comparable<TestCase>
   public Iterator<VarBinding> getVarBindings( final String type)
     {
     return
-      IteratorUtils.filteredIterator
-      ( varBindings_.iterator(),
-        new Predicate<VarBinding>()
-        {
-        public boolean evaluate( VarBinding binding)
-          {
-          return Objects.equals( binding.getType(), type);
-          }
-        });
+      IteratorUtils.filteredIterator(
+        varBindings_.iterator(),
+        binding -> Objects.equals( binding.getType(), type));
     }
 
   /**
    * Returns the index of the binding for the given variable.
    */
-  public int findBinding( final String name)
+  private int findBinding( final String name)
     {
     return
-      IterableUtils.indexOf
-      ( varBindings_,
-        new Predicate<VarBinding>()
-        {
-        public boolean evaluate( VarBinding binding)
-          {
-          return Objects.equals( binding.getVar(), name);
-          }
-        });
+      IterableUtils.indexOf(
+        varBindings_,
+        binding -> Objects.equals( binding.getVar(), name));
     }
 
   /**

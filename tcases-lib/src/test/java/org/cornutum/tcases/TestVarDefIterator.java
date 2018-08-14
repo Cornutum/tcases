@@ -12,7 +12,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.collections4.Transformer;
 
 /**
  * Runs tests for {@link VarDefIterator}.
@@ -48,16 +47,10 @@ public class TestVarDefIterator
 
     // When...
     String[] varDefNames =
-      IteratorUtils.toArray
-      ( IteratorUtils.transformedIterator
-        ( new VarDefIterator( inputDef),
-          new Transformer<VarDef,String>()
-            {
-              public String transform( VarDef varDef)
-                {
-                return varDef.getPathName();
-                }
-            }),
+      IteratorUtils.toArray(
+        IteratorUtils.transformedIterator(
+          new VarDefIterator( inputDef),
+          VarDef::getPathName),
         String.class);
     
     // Then...
@@ -104,16 +97,10 @@ public class TestVarDefIterator
 
     // When...
     String[] varDefNames =
-      IteratorUtils.toArray
-      ( IteratorUtils.transformedIterator
-        ( new VarDefIterator( inputDef),
-          new Transformer<VarDef,String>()
-            {
-              public String transform( VarDef varDef)
-                {
-                return varDef.getPathName();
-                }
-            }),
+      IteratorUtils.toArray(
+        IteratorUtils.transformedIterator(
+          new VarDefIterator( inputDef),
+          VarDef::getPathName),
         String.class);
     
     // Then...

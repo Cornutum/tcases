@@ -8,7 +8,6 @@
 package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.util.CartesianProduct;
 import org.cornutum.tcases.util.ToString;
 
@@ -16,8 +15,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.MultiMapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
-import org.apache.commons.collections4.Predicate;
-import org.apache.commons.collections4.Transformer;
 import static org.apache.commons.collections4.functors.NOPTransformer.nopTransformer;
 
 import org.slf4j.Logger;
@@ -282,15 +279,9 @@ public class TupleGenerator implements ITestCaseGenerator
     logger_.debug( "{}: Extending valid base test cases", inputDef);
 
     Iterator<TestCaseDef> validBaseCases =
-      IteratorUtils.filteredIterator
-      ( baseCases.iterator(),
-        new Predicate<TestCaseDef>()
-          {
-          public boolean evaluate( TestCaseDef testCase)
-            {
-            return testCase.getInvalidVar() == null;
-            }
-          });
+      IteratorUtils.filteredIterator(
+        baseCases.iterator(),
+        testCase -> testCase.getInvalidVar() == null);
 
     List<TestCaseDef> testCases = extendBaseCases( inputDef, validTuples, validBaseCases);
 
@@ -306,15 +297,9 @@ public class TupleGenerator implements ITestCaseGenerator
     logger_.debug( "{}: Extending base failure test cases", inputDef);
 
     Iterator<TestCaseDef> failureBaseCases =
-      IteratorUtils.filteredIterator
-      ( baseCases.iterator(),
-        new Predicate<TestCaseDef>()
-          {
-          public boolean evaluate( TestCaseDef testCase)
-            {
-            return testCase.getInvalidVar() != null;
-            }
-          });
+      IteratorUtils.filteredIterator(
+        baseCases.iterator(),
+        testCase -> testCase.getInvalidVar() != null);
 
     List<TestCaseDef> testCases = extendBaseCases( inputDef, validTuples, failureBaseCases);
 
@@ -530,50 +515,35 @@ public class TupleGenerator implements ITestCaseGenerator
               testCase.getRequired().getDisjuncts(),
 
               // ...and contains the set of compatible bindings that could satisfy this disjunct...
-              new Transformer<IDisjunct,Set<VarBindingDef>>()
+              disjunct ->
                 {
-                public Set<VarBindingDef> transform( IDisjunct disjunct)
-                  {
-                  Set<String> unsatisfied =
-                    CollectionUtils.collect(
-                      disjunct.getAssertions(),
-                      new Transformer<IAssertion,String>()
-                        {
-                        public String transform( IAssertion assertion)
-                          {
-                          return assertion.getProperty();
-                          }
-                        },
-                      new HashSet<String>());
+                Set<String> unsatisfied =
+                  CollectionUtils.collect(
+                    disjunct.getAssertions(),
+                    assertion -> assertion.getProperty(),
+                    new HashSet<String>());
 
-                  Iterator<VarBindingDef> satisfyingBindings =
-                    IteratorUtils.filteredIterator(
-                      getPropertyProviders( unsatisfied).iterator(),
-                      testCase.getBindingCompatible());
+                Iterator<VarBindingDef> satisfyingBindings =
+                  IteratorUtils.filteredIterator(
+                    getPropertyProviders( unsatisfied).iterator(),
+                    binding -> testCase.isCompatible( binding));
 
-                  // ...arranging satisfying bindings in order of decreasing preference...
-                  return
-                    CollectionUtils.collect(
-                      satisfyingBindings,
-                      nopTransformer(),
-                      new TreeSet<VarBindingDef>( byUsage));
-                  }
-              },
+                // ...arranging satisfying bindings in order of decreasing preference...
+                return
+                  CollectionUtils.collect(
+                    satisfyingBindings,
+                    nopTransformer(),
+                    new TreeSet<VarBindingDef>( byUsage));
+                },
 
               // ...arranging sets in a well-defined order for repeatable combinations...
               new TreeSet<Set<VarBindingDef>>( varBindingSetSorter_))),
           
           // ...ignoring any infeasible combinations...
-          isFeasibleTuple_),
+          bindings -> Tuple.of( bindings) != null),
         
          // ... forming each combination of satisfying bindings into a tuple...
-        new Transformer<List<VarBindingDef>,Tuple>()
-          {
-          public Tuple transform( List<VarBindingDef> bindings)
-            {
-            return Tuple.of( bindings);
-            }
-          });
+        Tuple::of);
     }
 
   /**
@@ -626,16 +596,11 @@ public class TupleGenerator implements ITestCaseGenerator
    */
   private List<VarDef> getVarsRemaining( Iterator<VarDef> vars, final TestCaseDef testCase)
     {
-    return IteratorUtils.toList
-      ( IteratorUtils.filteredIterator
-        ( vars,
-          new Predicate<VarDef>()
-            {
-            public boolean evaluate( VarDef var)
-              {
-              return testCase.getBinding( var) == null;
-              }
-            }));
+    return
+      IteratorUtils.toList(
+        IteratorUtils.filteredIterator(
+          vars,
+          var -> testCase.getBinding( var) == null));
     }
 
   /**
@@ -645,64 +610,44 @@ public class TupleGenerator implements ITestCaseGenerator
     {
     List<Tuple> validTuples = new ArrayList<Tuple>();
 
-    // Get tuple sets required for each specified combiner,
-    // ordered for "greedy" processing, i.e. biggest tuples first.
-    // For this purpose, "all permutations" is considered the maximum tuple size,
-    // even though in practice it might not be.
-    final TupleCombiner[] combiners = new TupleCombiner[ getCombiners().size()];
-    getCombiners().toArray( combiners);
-    Arrays.sort
-      ( combiners,
-        new Comparator<TupleCombiner>()
-          {
-          public int compare( TupleCombiner combiner1, TupleCombiner combiner2)
-            {
-            return
-              effectiveTupleSize( combiner2.getTupleSize())
-              - effectiveTupleSize( combiner1.getTupleSize());
-            }
-
-          private int effectiveTupleSize( int tupleSize)
-            {
-            return tupleSize < 1? Integer.MAX_VALUE : tupleSize;
-            }
-          });
-    for( int i = 0; i < combiners.length; i++)
-      {
-      validTuples.addAll( RandSeq.order( randSeq, combiners[i].getTuples( inputDef)));
-      }
+    // Get tuple sets required for each specified combiner, ordered for "greedy" processing, i.e. biggest tuples first.
+    // For this purpose, "all permutations" is considered the maximum tuple size, even though in practice it might not be.
+    getCombiners()
+      .stream()
+      .sorted( byTupleSize_)
+      .forEach( combiner -> validTuples.addAll( RandSeq.order( randSeq, combiner.getTuples( inputDef))));
 
     // For all input variables that do not belong to a combiner tuple set...
     List<VarDef> uncombinedVars =
-      IteratorUtils.toList
-      ( IteratorUtils.filteredIterator
-        ( new VarDefIterator( inputDef),
-          new Predicate<VarDef>()
-            {
-            public boolean evaluate( VarDef var)
-              {
-              int i;
-              for( i = 0; i < combiners.length && !combiners[i].isEligible( var); i++);
-              return i >= combiners.length;
-              }
-            }));
+      IteratorUtils.toList(
+        IteratorUtils.filteredIterator(
+          new VarDefIterator( inputDef),
+          this::isUncombined));
 
     if( !uncombinedVars.isEmpty())
       {
       // ... add the default tuples.
       int defaultTupleSize = getDefaultTupleSize();
       int varCount = uncombinedVars.size();
-      validTuples.addAll
-        ( RandSeq.order
-          ( randSeq,
-            getUncombinedTuples
-            ( uncombinedVars,
-              Math.min
-              ( varCount,
-                defaultTupleSize < 1? varCount : defaultTupleSize))));
+      validTuples.addAll(
+        RandSeq.order(
+          randSeq,
+          getUncombinedTuples(
+            uncombinedVars,
+            Math.min(
+              varCount,
+              defaultTupleSize < 1? varCount : defaultTupleSize))));
       }
     
     return new VarTupleSet( validTuples);
+    }
+
+  /**
+   * Returns if the given variable does not belong to any combiner tuple set.
+   */
+  private boolean isUncombined( VarDef var)
+    {
+    return combiners_.stream().noneMatch( combiner -> combiner.isEligible( var));
     }
 
   /**
@@ -939,14 +884,21 @@ public class TupleGenerator implements ITestCaseGenerator
           
         return result;
         }
-      }; 
+      };
 
-  private static final Predicate<List<VarBindingDef>> isFeasibleTuple_ =
-    new Predicate<List<VarBindingDef>>()
+  private static final Comparator<TupleCombiner> byTupleSize_ =
+    new Comparator<TupleCombiner>()
       {
-      public boolean evaluate( List<VarBindingDef> bindings)
+      public int compare( TupleCombiner combiner1, TupleCombiner combiner2)
         {
-        return Tuple.of( bindings) != null;
+        return
+          effectiveTupleSize( combiner2.getTupleSize())
+          - effectiveTupleSize( combiner1.getTupleSize());
+        }
+
+      private int effectiveTupleSize( int tupleSize)
+        {
+        return tupleSize < 1? Integer.MAX_VALUE : tupleSize;
         }
       };
   }

@@ -12,8 +12,6 @@ import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.util.CollectionUtils;
 import org.cornutum.tcases.util.ToString;
 
-import org.apache.commons.collections4.Predicate;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,29 +28,7 @@ import java.util.stream.Stream;
  *
  */
 public class TestCaseDef implements Comparable<TestCaseDef>
-  {  
-  /**
-   * A Predicate that returns true for a binding that is compatible with this test case.
-   *
-   */
-  private class BindingCompatible implements Predicate<VarBindingDef>
-    {
-    public boolean evaluate( VarBindingDef binding)
-      {
-      boolean compatible = true;
-      try
-        {
-        checkCompatible( binding);
-        }
-      catch( BindingException e)
-        {
-        compatible = false;
-        }
-
-      return compatible;
-      }
-    }
-
+  {
   /**
    * Creates a new TestCaseDef object.
    */
@@ -154,13 +130,34 @@ public class TestCaseDef implements Comparable<TestCaseDef>
    */
   public boolean isCompatible( Tuple tuple)
     {
-    boolean compatible = true;
+    boolean compatible;
 
     try
       {
       checkCompatible( tuple);
+      compatible = true;
       }
     catch( BindingException be)
+      {
+      compatible = false;
+      }
+
+    return compatible;
+    }
+
+  /**
+   * Returns if the given binding is compatible with the current test case definition.
+   */
+  public boolean isCompatible( VarBindingDef binding)
+    {
+    boolean compatible;
+
+    try
+      {
+      checkCompatible( binding);
+      compatible = true;
+      }
+    catch( BindingException e)
       {
       compatible = false;
       }
@@ -389,19 +386,6 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Returns the Predicate that returns true for a binding that is compatible with this test case.
-   */
-  public Predicate<VarBindingDef> getBindingCompatible()
-    {
-    if( bindingCompatible_ == null)
-      {
-      bindingCompatible_ = new BindingCompatible();
-      }
-
-    return bindingCompatible_;
-    }
-
-  /**
    * Returns true if all conditions for current bindings are satisfied.
    */
   public boolean isSatisfied()
@@ -513,7 +497,6 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private Map<VarDef,VarValueDef> bindings_ = new HashMap<VarDef,VarValueDef>();
   private PropertySet properties_ = new PropertySet();
   private IConjunct required_;
-  private Predicate<VarBindingDef> bindingCompatible_;
 
   private static final Logger logger_ = LoggerFactory.getLogger( TestCaseDef.class);
   }

@@ -8,7 +8,6 @@
 package org.cornutum.tcases;
 
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -86,15 +85,9 @@ public class VarDef extends AbstractVarDef
   public Iterator<VarValueDef> getValidValues()
     {
     return
-      IteratorUtils.filteredIterator
-      ( getValues(),
-        new Predicate<VarValueDef>()
-          {
-          public boolean evaluate( VarValueDef valueDef)
-            {
-            return valueDef.isValid();
-            }
-          });
+      IteratorUtils.filteredIterator(
+        getValues(),
+        VarValueDef::isValid);
     }
 
   /**
@@ -103,15 +96,9 @@ public class VarDef extends AbstractVarDef
   public Iterator<VarValueDef> getFailureValues()
     {
     return
-      IteratorUtils.filteredIterator
-      ( getValues(),
-        new Predicate<VarValueDef>()
-          {
-          public boolean evaluate( VarValueDef valueDef)
-            {
-            return !valueDef.isValid();
-            }
-          });
+      IteratorUtils.filteredIterator(
+        getValues(),
+        valueDef -> !valueDef.isValid());
     }
 
   /**

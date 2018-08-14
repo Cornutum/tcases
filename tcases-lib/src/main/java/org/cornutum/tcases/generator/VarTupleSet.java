@@ -13,7 +13,6 @@ import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.collections4.Predicate;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -69,15 +68,9 @@ public class VarTupleSet
       ? 0.0
 
       : (double)
-        IterableUtils.countMatches
-        ( unused_,
-          new Predicate<Tuple>()
-            {
-            public boolean evaluate( Tuple tuple)
-              {
-              return tuple.contains( binding);
-              }
-            })
+        IterableUtils.countMatches(
+          unused_,
+          tuple -> tuple.contains( binding))
         / unused_.size();
     }
 
@@ -121,16 +114,10 @@ public class VarTupleSet
   public Iterator<Tuple> getUsed( VarDef var, final boolean onceOnly)
     {
     return
-      getBinds
-      ( IteratorUtils.filteredIterator
-        ( getUsed(),
-          new Predicate<Tuple>()
-            {
-            public boolean evaluate( Tuple tuple)
-              {
-              return tuple.isOnce() == onceOnly;
-              }
-            }),
+      getBinds(
+        IteratorUtils.filteredIterator(
+          getUsed(),
+          tuple -> tuple.isOnce() == onceOnly),
         var);
     }
 
@@ -186,15 +173,9 @@ public class VarTupleSet
   private Iterator<Tuple> getBinds( Iterator<Tuple> tuples, final VarDef var)
     {
     return
-      IteratorUtils.filteredIterator
-      ( tuples,
-        new Predicate<Tuple>()
-          {
-          public boolean evaluate( Tuple tuple)
-            {
-            return tuple.getBinding( var) != null;
-            }
-          });
+      IteratorUtils.filteredIterator(
+        tuples,
+        tuple -> tuple.getBinding( var) != null);
     }
 
   /**
@@ -204,18 +185,12 @@ public class VarTupleSet
     {
     // Note: must accumulate tuples into a separate list to avoid ConcurrentModificationException when updating used/unused membership.
     List<Tuple> usedTuples =
-      IteratorUtils.toList
-      ( IteratorUtils.filteredIterator
-        ( IteratorUtils.chainedIterator
-          ( unused_.iterator(),
+      IteratorUtils.toList(
+        IteratorUtils.filteredIterator(
+          IteratorUtils.chainedIterator(
+            unused_.iterator(),
             used_.iterator()),
-          new Predicate<Tuple>()
-            {
-            public boolean evaluate( Tuple tuple)
-              {
-              return testCase.usesTuple( tuple);
-              }
-            }));
+          tuple -> testCase.usesTuple( tuple)));
 
     for( Tuple tuple : usedTuples)
       {

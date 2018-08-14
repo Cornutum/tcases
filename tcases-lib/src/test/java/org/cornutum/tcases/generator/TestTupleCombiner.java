@@ -19,7 +19,6 @@ import org.cornutum.tcases.util.Asserts;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.collections4.Transformer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -362,25 +361,19 @@ public class TestTupleCombiner
     List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
     
     // Then...
-    Asserts.assertSetEquals
-      ( "Combined vars",
-        new String[]  
+    Asserts.assertSetEquals(
+      "Combined vars",
+      new String[]  
         {
-          "Color.Hue",
-          "Color.Lightness",
-          "Color.Saturation",
-          "Shape",
-          "Size"
+        "Color.Hue",
+        "Color.Lightness",
+        "Color.Saturation",
+        "Shape",
+        "Size"
         },
-        IteratorUtils.transformedIterator
-        ( combined.iterator(),
-          new Transformer<VarDef,String>()
-            {
-            public String transform( VarDef var)
-              {
-              return var.getPathName();
-              }
-            }));
+      IteratorUtils.transformedIterator(
+        combined.iterator(),
+        VarDef::getPathName));
     }
   
   @Test
@@ -395,21 +388,15 @@ public class TestTupleCombiner
     List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
     
     // Then...
-    Asserts.assertSetEquals
-      ( "Combined vars",
-        new String[]  
+    Asserts.assertSetEquals(
+      "Combined vars",
+      new String[]  
         {
-          "Size"
+        "Size"
         },
-        IteratorUtils.transformedIterator
-        ( combined.iterator(),
-          new Transformer<VarDef,String>()
-            {
-            public String transform( VarDef var)
-              {
-              return var.getPathName();
-              }
-            }));
+      IteratorUtils.transformedIterator(
+        combined.iterator(),
+        VarDef::getPathName));
     }
   
   @Test
@@ -424,24 +411,18 @@ public class TestTupleCombiner
     List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
     
     // Then...
-    Asserts.assertSetEquals
-      ( "Combined vars",
-        new String[]  
+    Asserts.assertSetEquals(
+      "Combined vars",
+      new String[]  
         {
-          "Color.Hue",
-          "Color.Lightness",
-          "Color.Saturation",
-          "Shape"
+        "Color.Hue",
+        "Color.Lightness",
+        "Color.Saturation",
+        "Shape"
         },
-        IteratorUtils.transformedIterator
-        ( combined.iterator(),
-          new Transformer<VarDef,String>()
-            {
-            public String transform( VarDef var)
-              {
-              return var.getPathName();
-              }
-            }));
+      IteratorUtils.transformedIterator(
+        combined.iterator(),
+        VarDef::getPathName));
     }
   
   @Test
@@ -456,22 +437,16 @@ public class TestTupleCombiner
     List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
     
     // Then...
-    Asserts.assertSetEquals
-      ( "Combined vars",
-        new String[]  
+    Asserts.assertSetEquals(
+      "Combined vars",
+      new String[]  
         {
-          "Color.Lightness",
-          "Color.Saturation"
+        "Color.Lightness",
+        "Color.Saturation"
         },
-        IteratorUtils.transformedIterator
-        ( combined.iterator(),
-          new Transformer<VarDef,String>()
-            {
-            public String transform( VarDef var)
-              {
-              return var.getPathName();
-              }
-            }));
+      IteratorUtils.transformedIterator(
+        combined.iterator(),
+        VarDef::getPathName));
     }
   
   @Test

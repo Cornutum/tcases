@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.util;
 
-import org.apache.commons.collections4.Predicate;
 import static org.cornutum.tcases.util.Asserts.*;
 
 import java.util.ArrayList;
@@ -72,15 +71,9 @@ public class TestCartesianProduct
       
     // When...
     CartesianProduct<String> product =
-      new CartesianProduct<String>
-      ( sets,
-        new Predicate<List<String>>()
-            {
-            public boolean evaluate( List<String> candidate)
-              {
-              return !(candidate.contains( "3") || candidate.contains( "B"));
-              }
-            });
+      new CartesianProduct<String>(
+        sets,
+        candidate -> !(candidate.contains( "3") || candidate.contains( "B")));
     
     // Then...
     List<List<String>> expected =
@@ -97,15 +90,9 @@ public class TestCartesianProduct
       
     // When...
     product =
-      new CartesianProduct<String>
-      ( sets,
-        new Predicate<List<String>>()
-            {
-            public boolean evaluate( List<String> candidate)
-              {
-              return !candidate.contains( "X");
-              }
-            });
+      new CartesianProduct<String>(
+        sets,
+        candidate -> !candidate.contains( "X"));
     
     // Then...
     expected = Collections.<List<String>>emptyList();

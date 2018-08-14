@@ -9,11 +9,9 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.generator.*;
 import static org.cornutum.tcases.util.Asserts.*;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
-import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.collections4.Predicate;
-import org.apache.commons.collections4.Transformer;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -34,32 +32,20 @@ public final class AssertTestDef
   public static void assertTestCasesComplete( FunctionInputDef inputDef, FunctionTestDef testDef)
     {
     List<String> vars =
-      IteratorUtils.toList
-      ( IteratorUtils.transformedIterator
-        ( new VarDefIterator( inputDef),
-          new Transformer<VarDef,String>()
-            {
-            public String transform( VarDef varDef)
-              {
-              return varDef.getPathName();
-              }
-            }));
+      IteratorUtils.toList(
+        IteratorUtils.transformedIterator(
+          new VarDefIterator( inputDef),
+          VarDef::getPathName));
     
     for( Iterator<TestCase> testCases = testDef.getTestCases(); testCases.hasNext(); )
       {
       TestCase testCase = testCases.next();
-      assertSetEquals
-        ( "Vars, testCase=" + testCase.getId(),
-          vars,
-          IteratorUtils.transformedIterator
-          ( testCase.getVarBindings(),
-            new Transformer<VarBinding,String>()
-              {
-              public String transform( VarBinding varBinding)
-                {
-                return varBinding.getVar();
-                }
-              }));
+      assertSetEquals(
+        "Vars, testCase=" + testCase.getId(),
+        vars,
+        IteratorUtils.transformedIterator(
+          testCase.getVarBindings(),
+          VarBinding::getVar));
       }
     }
 
@@ -81,26 +67,14 @@ public final class AssertTestDef
   private static Collection<Tuple> getTuplesIncluded( Collection<Tuple> tuples, final FunctionTestDef testDef, final boolean included)
     {
     return
-      IteratorUtils.toList
-      ( IteratorUtils.filteredIterator
-        ( tuples.iterator(),
-          new Predicate<Tuple>()
-            {
-            public boolean evaluate( final Tuple tuple)
-              {
-              return
-                IteratorUtils.filteredIterator
-                ( testDef.getTestCases(),
-                  new Predicate<TestCase>()
-                  {
-                  public boolean evaluate( TestCase testCase)
-                    {
-                    return testCaseIncludes( testCase, tuple);
-                    }
-                  })
-                .hasNext() == included;
-              }
-            }));
+      IteratorUtils.toList(
+        IteratorUtils.filteredIterator(
+          tuples.iterator(),
+          tuple ->
+            IteratorUtils.filteredIterator(
+              testDef.getTestCases(),
+              testCase -> testCaseIncludes( testCase, tuple))
+            .hasNext() == included));
       }
 
   /**
@@ -108,20 +82,9 @@ public final class AssertTestDef
    */
   private static boolean testCaseIncludes( TestCase testCase, Tuple tuple)
     {
-    Iterator<VarBindingDef> bindings;
-    boolean includes;
-    for( bindings = tuple.getBindings(),
-           includes = true;
-
-         bindings.hasNext()
-           && includes;
-         )
-      {
-      VarBindingDef binding = bindings.next();
-      includes = testCaseIncludes( testCase, VarBinding.create( binding));
-      }
-
-    return includes;
+    return
+      toStream( tuple.getBindings())
+      .allMatch( binding -> testCaseIncludes( testCase, VarBinding.create( binding)));
     }
 
   /**
@@ -144,15 +107,9 @@ public final class AssertTestDef
     {
     return
       (int)
-      IterableUtils.countMatches
-      ( IteratorUtils.toList( testDef.getTestCases()),
-        new Predicate<TestCase>()
-          {
-          public boolean evaluate( TestCase testCase)
-            {
-            return testCaseIncludes( testCase, binding);
-            }
-          });
+      toStream( testDef.getTestCases())
+      .filter( testCase -> testCaseIncludes( testCase, binding))
+      .count();
     }
 
   /**
@@ -162,15 +119,9 @@ public final class AssertTestDef
     {
     return
       (int)
-      IterableUtils.countMatches
-      ( IteratorUtils.toList( testDef.getTestCases()),
-        new Predicate<TestCase>()
-          {
-          public boolean evaluate( TestCase testCase)
-            {
-            return testCaseIncludes( testCase, tuple);
-            }
-          });
+      toStream( testDef.getTestCases())
+      .filter( testCase -> testCaseIncludes( testCase, tuple))
+      .count();
     }
 
   /**

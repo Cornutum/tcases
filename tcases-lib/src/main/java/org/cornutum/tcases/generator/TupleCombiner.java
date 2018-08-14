@@ -12,8 +12,6 @@ import org.cornutum.tcases.util.Cloneable;
 import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.collections4.Transformer;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -96,16 +94,10 @@ public class TupleCombiner implements Cloneable<TupleCombiner>
   public String[] getIncluded()
     {
     return
-      IteratorUtils.toArray
-      ( IteratorUtils.transformedIterator
-        ( includedVars_.iterator(),
-          new Transformer<VarNamePattern,String>()
-            {
-            public String transform( VarNamePattern pattern)
-              {
-              return pattern.toString();
-              }
-            }),
+      IteratorUtils.toArray(
+        IteratorUtils.transformedIterator(
+          includedVars_.iterator(),
+          VarNamePattern::toString),
         String.class);
     }
 
@@ -158,16 +150,10 @@ public class TupleCombiner implements Cloneable<TupleCombiner>
   public String[] getExcluded()
     {
     return
-      IteratorUtils.toArray
-      ( IteratorUtils.transformedIterator
-        ( excludedVars_.iterator(),
-          new Transformer<VarNamePattern,String>()
-            {
-            public String transform( VarNamePattern pattern)
-              {
-              return pattern.toString();
-              }
-            }),
+      IteratorUtils.toArray(
+        IteratorUtils.transformedIterator(
+          excludedVars_.iterator(),
+          VarNamePattern::toString),
         String.class);
     }
 
@@ -358,17 +344,11 @@ public class TupleCombiner implements Cloneable<TupleCombiner>
     try
       {
       return
-        new HashSet<Tuple>
-        ( IteratorUtils.toList
-          ( IteratorUtils.transformedIterator
-            ( getOnceTuples(),
-              new Transformer<TupleRef,Tuple>()
-                {
-                public Tuple transform( TupleRef tupleRef)
-                  {
-                  return toTuple( combinedVars, tupleRef);
-                  }
-                })));
+        new HashSet<Tuple>(
+          IteratorUtils.toList(
+            IteratorUtils.transformedIterator(
+              getOnceTuples(),
+              tupleRef -> toTuple( combinedVars, tupleRef))));
       }
     catch( Exception e)
       {
