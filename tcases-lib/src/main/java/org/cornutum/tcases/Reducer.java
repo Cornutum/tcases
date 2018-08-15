@@ -36,11 +36,13 @@ public class Reducer
     }
 
   /**
-   * For a {@link SystemInputDef system input definition}, updates the given {@link GeneratorSet test case generators}
-   * to reduce the number of generated test cases, using the given {@link ReducerOptions options}.
+   * For a {@link SystemInputDef system input definition}, returns a set of {@link GeneratorSet test case generators}
+   * that reduces the number of test cases normally generated, using the given {@link ReducerOptions options}.
+   * Returns <CODE>Optional.empty()</CODE> if test cases were not reduced.
    * <P/>
-   * The {@link ITestCaseGenerator generator} for each function specified by the given {@link ReducerOptions options}
-   * is updated according the procedure defined {@link #reduce( FunctionInputDef, ITestCaseGenerator, FunctionTestDef, ReducerOptions) here}.
+   * When a new {@link GeneratorSet} is returned, the {@link ITestCaseGenerator generator} for each function specified
+   * by the given {@link ReducerOptions#getFunction options} is updated according the procedure defined
+   * {@link #reduce( FunctionInputDef, ITestCaseGenerator, FunctionTestDef, ReducerOptions) here}.
    */
   public static Optional<GeneratorSet> reduce( SystemInputDef inputDef, GeneratorSet genDef, SystemTestDef baseDef, ReducerOptions options)
     {
