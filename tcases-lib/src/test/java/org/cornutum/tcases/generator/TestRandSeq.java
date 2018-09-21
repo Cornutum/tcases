@@ -7,9 +7,9 @@
 
 package org.cornutum.tcases.generator;
 
-import org.cornutum.tcases.util.Asserts;
-
 import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.hamcrest.MatcherAssert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +34,7 @@ public class TestRandSeq
     List<Integer> sequence1 = randSeq1.reorder( new ArrayList<Integer>( Arrays.asList( elements)));
 
     // Then...
-    Asserts.assertSetEquals( "New sequence", elements, sequence1);
+    assertThat( "New sequence", sequence1, containsMembers( elements));
 
     // Given...
     RandSeq randSeq2 = new RandSeq( new Random( getClass().hashCode()));
@@ -43,7 +43,7 @@ public class TestRandSeq
     List<Integer> sequence2 = randSeq2.reorder( new ArrayList<Integer>( Arrays.asList( elements)));
 
     // Then...
-    Asserts.assertSeqEquals( "Same seed", sequence1, sequence2); 
+    assertThat( "Same seed", sequence2, listsMembers( sequence1)); 
     }
   
   @Test
@@ -57,9 +57,6 @@ public class TestRandSeq
     Iterator<Integer> sequence = randSeq.reorder( Arrays.asList( elements).iterator());
 
     // Then...
-    Asserts.assertSetEquals( "New sequence", elements, sequence);
+    assertThat( "New sequence", sequence, visitsMembers( elements));
     }
   }
-
-
-

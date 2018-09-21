@@ -8,7 +8,8 @@
 package org.cornutum.tcases.generator;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 /**
  * Runs tests for {@link VarNamePattern}
@@ -35,7 +36,7 @@ public class TestVarNamePattern
   public void testIsValid_0()
     {
     VarNamePattern pattern = new VarNamePattern ( "1two.THREE4.5-6.seven_Eight.**");
-    assertEquals( "pattern=" + pattern + " valid", true, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( true));
     }
 
   /**
@@ -57,7 +58,7 @@ public class TestVarNamePattern
   public void testIsValid_1()
     {
     VarNamePattern pattern = new VarNamePattern ( "var");
-    assertEquals( "pattern=" + pattern + " valid", true, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( true));
     }
 
   /**
@@ -79,7 +80,7 @@ public class TestVarNamePattern
   public void testIsValid_2()
     {
     VarNamePattern pattern = new VarNamePattern ( "*");
-    assertEquals( "pattern=" + pattern + " valid", true, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( true));
     }
 
   /**
@@ -101,7 +102,7 @@ public class TestVarNamePattern
   public void testIsValid_3()
     {
     VarNamePattern pattern = new VarNamePattern ( null);
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
     }
 
   /**
@@ -123,7 +124,7 @@ public class TestVarNamePattern
   public void testIsValid_4()
     {
     VarNamePattern pattern = new VarNamePattern ( "");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
     }
 
   /**
@@ -145,7 +146,7 @@ public class TestVarNamePattern
   public void testIsValid_5()
     {
     VarNamePattern pattern = new VarNamePattern ( "   ");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
     }
 
   /**
@@ -169,16 +170,16 @@ public class TestVarNamePattern
     VarNamePattern pattern;
 
     pattern = new VarNamePattern ( "first.");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( "first..last");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( "first.last.");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( ".first.last");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
     }
 
   /**
@@ -202,16 +203,16 @@ public class TestVarNamePattern
     VarNamePattern pattern;
 
     pattern = new VarNamePattern ( " foo.bar");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( "foo .bar");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( "foo:bar");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( "foo.bar ");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
     }
 
   /**
@@ -235,10 +236,10 @@ public class TestVarNamePattern
     VarNamePattern pattern;
 
     pattern = new VarNamePattern ( "foo.*.bar.**");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( "foo.**.bar.*");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
     }
 
   /**
@@ -262,10 +263,10 @@ public class TestVarNamePattern
     VarNamePattern pattern;
 
     pattern = new VarNamePattern ( "*.foo.bar");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( "**.foo");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
     }
 
   /**
@@ -289,10 +290,10 @@ public class TestVarNamePattern
     VarNamePattern pattern;
 
     pattern = new VarNamePattern ( "foo.*.bar");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
 
     pattern = new VarNamePattern ( "foo.bar.**.baz");
-    assertEquals( "pattern=" + pattern + " valid", false, pattern.isValid());
+    assertThat( "pattern=" + pattern + " valid", pattern.isValid(), is( false));
     }
 
   /**
@@ -315,10 +316,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "var");
     String string = "var";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        true,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( true));
     }
 
   /**
@@ -341,10 +342,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "1.2.3.*");
     String string = "1.2.3.4";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        true,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( true));
     }
 
   /**
@@ -367,10 +368,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "**");
     String string = "1.2.3.4";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        true,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( true));
     }
 
   /**
@@ -393,10 +394,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "1.2.3.*");
     String string = "1.2";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        false,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( false));
     }
 
   /**
@@ -419,10 +420,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "var");
     String string = "var.extra";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        false,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( false));
     }
 
   /**
@@ -445,10 +446,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "1.2.3.*");
     String string = "1.2.4.5";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        false,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( false));
     }
 
   /**
@@ -471,10 +472,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "1.2.3.*");
     String string = "1.2.3";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        false,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( false));
     }
 
   /**
@@ -497,10 +498,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "1.2.3.*");
     String string = "1.2.3.4.5";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        false,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( false));
     }
 
   /**
@@ -523,10 +524,10 @@ public class TestVarNamePattern
     VarNamePattern pattern = new VarNamePattern ( "1.2.3.**");
     String string = "1.2.3";
 
-    assertEquals
+    assertThat
       ( "pattern=" + pattern + " matches string=" + string,
-        true,
-        pattern.matches( string));
+        pattern.matches( string),
+        is( true));
     }
   }
 

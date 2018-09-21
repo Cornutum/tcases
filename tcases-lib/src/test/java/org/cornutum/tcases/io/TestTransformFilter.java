@@ -8,7 +8,8 @@
 package org.cornutum.tcases.io;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -39,17 +40,17 @@ public class TestTransformFilter
     filter.getSource().close();
     
     // Then...
-    assertEquals( "Output written", true, target.length() > 0);
+    assertThat( "Output written", target.length() > 0, is( true));
 
     String result = FileUtils.readFileToString( target);
-    assertEquals
+    assertThat
       ( "System tested=default",
-        true,
-        contains( result, "Tests \\{@link System-2#Function-0 Function-0\\(\\)\\}"));
-    assertEquals
+        contains( result, "Tests \\{@link System-2#Function-0 Function-0\\(\\)\\}") ,
+        is( true));
+    assertThat
       ( "Throws=default",
-        true,
-        contains( result, "public void Function-0_0\\(\\)$"));
+        contains( result, "public void Function-0_0\\(\\)$"),
+        is( true));
     }
   
   @Test
@@ -93,17 +94,17 @@ public class TestTransformFilter
     filter.getSource().close();
     
     // Then...
-    assertEquals( "Output written", true, target.length() > 0);
+    assertThat( "Output written", target.length() > 0, is( true));
 
     String result = FileUtils.readFileToString( target);
-    assertEquals
+    assertThat
       ( "System tested=SUT",
-        true,
-        contains( result, "Tests \\{@link SUT#Function-0 Function-0\\(\\)\\}"));
-    assertEquals
+        contains( result, "Tests \\{@link SUT#Function-0 Function-0\\(\\)\\}"),
+        is( true));
+    assertThat
       ( "Throws=Exception",
-        true,
-        contains( result, "public void Function-0_0\\(\\) throws Exception$"));
+        contains( result, "public void Function-0_0\\(\\) throws Exception$"),
+        is( true));
     }
 
   /**

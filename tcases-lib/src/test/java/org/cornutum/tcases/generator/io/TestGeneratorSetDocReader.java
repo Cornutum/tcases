@@ -11,7 +11,9 @@ import org.cornutum.tcases.generator.*;
 import static org.cornutum.tcases.generator.GeneratorSet.ALL;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import org.xml.sax.SAXParseException;
 
@@ -52,7 +54,7 @@ public class TestGeneratorSetDocReader
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-0.xml");
 
     // Then...
-    assertEquals( "generator-set-0.xml", expected, generatorSet);
+    assertThat( "generator-set-0.xml", generatorSet, is( expected));
     }
 
   /**
@@ -97,7 +99,7 @@ public class TestGeneratorSetDocReader
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-1.xml");
 
     // Then...
-    assertEquals( "generator-set-1.xml", expected, generatorSet);
+    assertThat( "generator-set-1.xml", generatorSet, is( expected));
     }
 
   /**
@@ -151,7 +153,7 @@ public class TestGeneratorSetDocReader
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-2.xml");
 
     // Then...
-    assertEquals( "generator-set-2.xml", expected, generatorSet);
+    assertThat( "generator-set-2.xml", generatorSet, is( expected));
     }
 
   /**
@@ -201,7 +203,7 @@ public class TestGeneratorSetDocReader
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-3.xml");
 
     // Then...
-    assertEquals( "generator-set-3.xml", expected, generatorSet);
+    assertThat( "generator-set-3.xml", generatorSet, is( expected));
     }
 
   /**
@@ -246,7 +248,7 @@ public class TestGeneratorSetDocReader
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-4.xml");
 
     // Then...
-    assertEquals( "generator-set-4.xml", expected, generatorSet);
+    assertThat( "generator-set-4.xml", generatorSet, is( expected));
     }
 
   /**
@@ -534,7 +536,7 @@ public class TestGeneratorSetDocReader
     IGeneratorSet generatorSet = generatorSetResources_.read( "generator-set-once.xml");
 
     // Then...
-    assertEquals( "generator-set-once.xml", expected, generatorSet);
+    assertThat( "generator-set-once.xml", generatorSet, is( expected));
     }
   
   @Test
@@ -548,36 +550,23 @@ public class TestGeneratorSetDocReader
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)
     {
-    Throwable failure = null;
-    try
-      {
-      generatorSetResources_.read( resource);
-      }
-    catch( Throwable t)
-      {
-      failure = t;
-      }
+    expectFailure( Throwable.class)
+      .when( () -> generatorSetResources_.read( resource))
+      .then( failure -> {
 
-    if( failure == null)
-      {
-      fail( "Expected exception not thrown.");
-      }
-    
-    Throwable cause;
-    for( cause = failure.getCause();
-         !(cause == null || cause instanceof SAXParseException);
-         cause = cause.getCause());
+        Throwable cause;
+        for( cause = failure.getCause();
+             !(cause == null || cause instanceof SAXParseException);
+             cause = cause.getCause());
 
-    if( cause == null)
-      {
-      throw new RuntimeException( "Unexpected exception thrown", failure);
-      }
+        assertThat( "SAXParseException thrown", cause != null, is( true));
+        
+        SAXParseException spe = (SAXParseException) cause;
+        assertThat( "Exception line", spe.getLineNumber(), is( expectedLine));
 
-    SAXParseException spe = (SAXParseException) cause;
-    assertEquals( "Exception line", expectedLine, spe.getLineNumber());
-
-    String actualMsg = spe.getException()==null? spe.getMessage() : spe.getException().getMessage();
-    assertEquals( "Exception message", expectedMsg, actualMsg);
+        String actualMsg = spe.getException()==null? spe.getMessage() : spe.getException().getMessage();
+        assertThat( "Exception message", actualMsg, is( expectedMsg));
+        });
     }
 
   private GeneratorSetResources generatorSetResources_ = new GeneratorSetResources( TestGeneratorSetDocReader.class);

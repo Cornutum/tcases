@@ -8,23 +8,23 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.util.Asserts.Matcher;
-import static org.cornutum.tcases.util.Asserts.*;
-
-import static org.junit.Assert.*;
+import org.cornutum.hamcrest.BaseCompositeMatcher;
+import org.hamcrest.Matchers;
 
 /**
- * A {@link Matcher} for {@link FunctionInputDef} objects.
+ * A composite matcher for {@link FunctionInputDef} objects.
  */
-public class FunctionInputDefMatcher implements Matcher<FunctionInputDef>
+public class FunctionInputDefMatcher extends BaseCompositeMatcher<FunctionInputDef>
   {
   /**
-   * Reports a failure if the expected object does not match the actual object.
+   * Creates a new FunctionInputDefMatcher instance.
    */
-  public void assertEqual( String label, FunctionInputDef expected, FunctionInputDef actual)
+  public FunctionInputDefMatcher( FunctionInputDef expected)
     {
-    assertEquals( label + ", name", expected.getName(), actual.getName());
-    assertSetEquals( label + ", function=" + expected.getName() + ", vars", expected.getVarDefs(), actual.getVarDefs(), Matchers.varDefMatcher);
-    assertMatches( label + ", function=" + expected.getName(), expected, actual, Matchers.annotatedMatcher);
+    super( expected);
+
+    expectThat( valueOf( "name", FunctionInputDef::getName).matches( Matchers::equalTo));
+    expectThat( valueOf( "vars", FunctionInputDef::getVarDefs).matches( visitsMembersMatching( VarDefMatcher::new)));
+    expectThat( matches( AnnotatedMatcher::new));
     }
   }

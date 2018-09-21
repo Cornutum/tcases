@@ -10,10 +10,11 @@ package org.cornutum.tcases.generator;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.io.SystemInputResources;
 import static org.cornutum.tcases.AssertTestDef.*;
-import static org.cornutum.tcases.util.Asserts.*;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.hamcrest.MatcherAssert.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -40,10 +41,10 @@ public class TestTupleGenerator
 
     TupleCombiner combiner = new TupleCombiner();
     Collection<Tuple> tuplesExpected = combiner.getTuples( functionInputDef);
-    assertSetEquals
-      ( "Tuples included", 
-        tuplesExpected,
-        getTuplesIncluded( tuplesExpected, functionTestDef));
+    assertThat
+      ( "Tuples included",
+        getTuplesIncluded( tuplesExpected, functionTestDef),
+        containsMembers( tuplesExpected));
     }
   
   @Test
@@ -62,10 +63,10 @@ public class TestTupleGenerator
 
     TupleCombiner combiner = new TupleCombiner();
     Collection<Tuple> tuplesExpected = combiner.getTuples( functionInputDef);
-    assertSetEquals
-      ( "Tuples included", 
-        tuplesExpected,
-        getTuplesIncluded( tuplesExpected, functionTestDef));
+    assertThat
+      ( "Tuples included",
+        getTuplesIncluded( tuplesExpected, functionTestDef),
+        containsMembers( tuplesExpected));
 
     assertIncluded( functionTestDef, 0, tuplesFor( functionInputDef, "Shape", "Square", "Color"));
     assertIncluded( functionTestDef, 0, tuplesFor( functionInputDef, "Size", "Medium", "Color"));
@@ -103,16 +104,16 @@ public class TestTupleGenerator
     Collection<Tuple> tuplesExpected;
 
     tuplesExpected = combiner1.getTuples( functionInputDef);
-    assertSetEquals
-      ( "Tuples included, combiner=" + combiner1, 
-        tuplesExpected,
-        getTuplesIncluded( tuplesExpected, functionTestDef));
+    assertThat
+      ( "Tuples included, combiner=" + combiner1,
+        getTuplesIncluded( tuplesExpected, functionTestDef),
+        containsMembers( tuplesExpected));
 
     tuplesExpected = combiner2.getTuples( functionInputDef);
-    assertSetEquals
-      ( "Tuples included, combiner=" + combiner2, 
-        tuplesExpected,
-        getTuplesIncluded( tuplesExpected, functionTestDef));
+    assertThat
+      ( "Tuples included, combiner=" + combiner2,
+        getTuplesIncluded( tuplesExpected, functionTestDef),
+        containsMembers( tuplesExpected));
     }
   
   @Test
@@ -133,10 +134,10 @@ public class TestTupleGenerator
     assertTestCasesComplete( functionInputDef, functionTestDef);
 
     Collection<Tuple> tuplesExpected = combiner.getTuples( functionInputDef);
-    assertSetEquals
-      ( "Tuples included", 
-        tuplesExpected,
-        getTuplesIncluded( tuplesExpected, functionTestDef));
+    assertThat
+      ( "Tuples included",
+        getTuplesIncluded( tuplesExpected, functionTestDef),
+        containsMembers( tuplesExpected));
         
     assertIncluded( functionTestDef, 1, "Shape", "Heart");
     assertIncluded( functionTestDef, 9, "Shape", "Circle");
@@ -158,10 +159,10 @@ public class TestTupleGenerator
 
     TupleCombiner combiner = new TupleCombiner();
     Collection<Tuple> tuplesExpected = combiner.getTuples( functionInputDef);
-    assertSetEquals
-      ( "Tuples included", 
-        tuplesExpected,
-        getTuplesIncluded( tuplesExpected, functionTestDef));
+    assertThat
+      ( "Tuples included",
+        getTuplesIncluded( tuplesExpected, functionTestDef),
+        containsMembers( tuplesExpected));
 
     assertIncluded( functionTestDef, 1, "Color.Lightness", "Transparent", false);
     assertIncluded( functionTestDef, 1, "Color.Saturation", "Undefined", false);
@@ -188,7 +189,7 @@ public class TestTupleGenerator
     // Expect...
     List<TestCase> expectedTestCases = IteratorUtils.toList( baseTestDef.getTestCases());
     List<TestCase> actualTestCases = IteratorUtils.toList( functionTestDef.getTestCases());
-    assertSetEquals( "When base tests same", expectedTestCases, actualTestCases);
+    assertThat( "When base tests same", actualTestCases, containsMembers( expectedTestCases));
     }
   
   @Test

@@ -10,7 +10,8 @@ package org.cornutum.tcases.conditions;
 import org.cornutum.tcases.PropertySet;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import org.apache.commons.collections4.IteratorUtils;
 
@@ -34,15 +35,15 @@ public class TestCnf
     
     // Then...
     IDisjunct[] disjuncts = IteratorUtils.toArray( conjunct.getDisjuncts(), IDisjunct.class);
-    assertEquals( "Disjuncts", 2, disjuncts.length);
-    assertEquals( "Satisfied:  A,  B,  C", true, conjunct.satisfied( new PropertySet( "A", "B", "C")));
-    assertEquals( "Satisfied:  A,  B, !C", true, conjunct.satisfied( new PropertySet( "A", "B")));
-    assertEquals( "Satisfied:  A, !B,  C", true, conjunct.satisfied( new PropertySet( "A", "C")));
-    assertEquals( "Satisfied:  A, !B, !C", false, conjunct.satisfied( new PropertySet( "A")));
-    assertEquals( "Satisfied: !A,  B,  C", true, conjunct.satisfied( new PropertySet( "B", "C")));
-    assertEquals( "Satisfied: !A, !B,  C", true, conjunct.satisfied( new PropertySet( "C")));
-    assertEquals( "Satisfied: !A,  B, !C", false, conjunct.satisfied( new PropertySet( "B")));
-    assertEquals( "Satisfied: !A, !B, !C", false, conjunct.satisfied( new PropertySet()));
+    assertThat( "Disjuncts", disjuncts.length, is( 2));
+    assertThat( "Satisfied:  A,  B,  C", conjunct.satisfied( new PropertySet( "A", "B", "C")), is( true));
+    assertThat( "Satisfied:  A,  B, !C", conjunct.satisfied( new PropertySet( "A", "B")), is( true));
+    assertThat( "Satisfied:  A, !B,  C", conjunct.satisfied( new PropertySet( "A", "C")), is( true));
+    assertThat( "Satisfied:  A, !B, !C", conjunct.satisfied( new PropertySet( "A")), is( false));
+    assertThat( "Satisfied: !A,  B,  C", conjunct.satisfied( new PropertySet( "B", "C")), is( true));
+    assertThat( "Satisfied: !A, !B,  C", conjunct.satisfied( new PropertySet( "C")), is( true));
+    assertThat( "Satisfied: !A,  B, !C", conjunct.satisfied( new PropertySet( "B")), is( false));
+    assertThat( "Satisfied: !A, !B, !C", conjunct.satisfied( new PropertySet()), is( false));
 
     // Given...
     condition = new Not( condition);
@@ -52,15 +53,15 @@ public class TestCnf
     
     // Then...
     disjuncts = IteratorUtils.toArray( conjunct.getDisjuncts(), IDisjunct.class);
-    assertEquals( "Disjuncts", 2, disjuncts.length);
-    assertEquals( "Satisfied:  A,  B,  C", false, conjunct.satisfied( new PropertySet( "A", "B", "C")));
-    assertEquals( "Satisfied:  A,  B, !C", false, conjunct.satisfied( new PropertySet( "A", "B")));
-    assertEquals( "Satisfied:  A, !B,  C", false, conjunct.satisfied( new PropertySet( "A", "C")));
-    assertEquals( "Satisfied:  A, !B, !C", true, conjunct.satisfied( new PropertySet( "A")));
-    assertEquals( "Satisfied: !A,  B,  C", false, conjunct.satisfied( new PropertySet( "B", "C")));
-    assertEquals( "Satisfied: !A, !B,  C", false, conjunct.satisfied( new PropertySet( "C")));
-    assertEquals( "Satisfied: !A,  B, !C", true, conjunct.satisfied( new PropertySet( "B")));
-    assertEquals( "Satisfied: !A, !B, !C", true, conjunct.satisfied( new PropertySet()));
+    assertThat( "Disjuncts", disjuncts.length, is( 2));
+    assertThat( "Satisfied:  A,  B,  C", conjunct.satisfied( new PropertySet( "A", "B", "C")), is( false));
+    assertThat( "Satisfied:  A,  B, !C", conjunct.satisfied( new PropertySet( "A", "B")), is( false));
+    assertThat( "Satisfied:  A, !B,  C", conjunct.satisfied( new PropertySet( "A", "C")), is( false));
+    assertThat( "Satisfied:  A, !B, !C", conjunct.satisfied( new PropertySet( "A")), is( true));
+    assertThat( "Satisfied: !A,  B,  C", conjunct.satisfied( new PropertySet( "B", "C")), is( false));
+    assertThat( "Satisfied: !A, !B,  C", conjunct.satisfied( new PropertySet( "C")), is( false));
+    assertThat( "Satisfied: !A,  B, !C", conjunct.satisfied( new PropertySet( "B")), is( true));
+    assertThat( "Satisfied: !A, !B, !C", conjunct.satisfied( new PropertySet()), is( true));
     }
   
   @Test
@@ -76,15 +77,15 @@ public class TestCnf
     
     // Then...
     IDisjunct[] disjuncts = IteratorUtils.toArray( conjunct.getDisjuncts(), IDisjunct.class);
-    assertEquals( "Disjuncts", 3, disjuncts.length);
-    assertEquals( "Satisfied:  A,  B,  C", false, conjunct.satisfied( new PropertySet( "A", "B", "C")));
-    assertEquals( "Satisfied:  A,  B, !C", false, conjunct.satisfied( new PropertySet( "A", "B")));
-    assertEquals( "Satisfied:  A, !B,  C", false, conjunct.satisfied( new PropertySet( "A", "C")));
-    assertEquals( "Satisfied:  A, !B, !C", false, conjunct.satisfied( new PropertySet( "A")));
-    assertEquals( "Satisfied: !A,  B,  C", false, conjunct.satisfied( new PropertySet( "B", "C")));
-    assertEquals( "Satisfied: !A, !B,  C", false, conjunct.satisfied( new PropertySet( "C")));
-    assertEquals( "Satisfied: !A,  B, !C", false, conjunct.satisfied( new PropertySet( "B")));
-    assertEquals( "Satisfied: !A, !B, !C", true, conjunct.satisfied( new PropertySet()));
+    assertThat( "Disjuncts", disjuncts.length, is( 3));
+    assertThat( "Satisfied:  A,  B,  C", conjunct.satisfied( new PropertySet( "A", "B", "C")), is( false));
+    assertThat( "Satisfied:  A,  B, !C", conjunct.satisfied( new PropertySet( "A", "B")), is( false));
+    assertThat( "Satisfied:  A, !B,  C", conjunct.satisfied( new PropertySet( "A", "C")), is( false));
+    assertThat( "Satisfied:  A, !B, !C", conjunct.satisfied( new PropertySet( "A")), is( false));
+    assertThat( "Satisfied: !A,  B,  C", conjunct.satisfied( new PropertySet( "B", "C")), is( false));
+    assertThat( "Satisfied: !A, !B,  C", conjunct.satisfied( new PropertySet( "C")), is( false));
+    assertThat( "Satisfied: !A,  B, !C", conjunct.satisfied( new PropertySet( "B")), is( false));
+    assertThat( "Satisfied: !A, !B, !C", conjunct.satisfied( new PropertySet()), is( true));
 
     // Given...
     condition = new Not( condition);
@@ -94,15 +95,15 @@ public class TestCnf
     
     // Then...
     disjuncts = IteratorUtils.toArray( conjunct.getDisjuncts(), IDisjunct.class);
-    assertEquals( "Disjuncts", 1, disjuncts.length);
-    assertEquals( "Satisfied:  A,  B,  C", true, conjunct.satisfied( new PropertySet( "A", "B", "C")));
-    assertEquals( "Satisfied:  A,  B, !C", true, conjunct.satisfied( new PropertySet( "A", "B")));
-    assertEquals( "Satisfied:  A, !B,  C", true, conjunct.satisfied( new PropertySet( "A", "C")));
-    assertEquals( "Satisfied:  A, !B, !C", true, conjunct.satisfied( new PropertySet( "A")));
-    assertEquals( "Satisfied: !A,  B,  C", true, conjunct.satisfied( new PropertySet( "B", "C")));
-    assertEquals( "Satisfied: !A, !B,  C", true, conjunct.satisfied( new PropertySet( "C")));
-    assertEquals( "Satisfied: !A,  B, !C", true, conjunct.satisfied( new PropertySet( "B")));
-    assertEquals( "Satisfied: !A, !B, !C", false, conjunct.satisfied( new PropertySet()));
+    assertThat( "Disjuncts", disjuncts.length, is( 1));
+    assertThat( "Satisfied:  A,  B,  C", conjunct.satisfied( new PropertySet( "A", "B", "C")), is( true));
+    assertThat( "Satisfied:  A,  B, !C", conjunct.satisfied( new PropertySet( "A", "B")), is( true));
+    assertThat( "Satisfied:  A, !B,  C", conjunct.satisfied( new PropertySet( "A", "C")), is( true));
+    assertThat( "Satisfied:  A, !B, !C", conjunct.satisfied( new PropertySet( "A")), is( true));
+    assertThat( "Satisfied: !A,  B,  C", conjunct.satisfied( new PropertySet( "B", "C")), is( true));
+    assertThat( "Satisfied: !A, !B,  C", conjunct.satisfied( new PropertySet( "C")), is( true));
+    assertThat( "Satisfied: !A,  B, !C", conjunct.satisfied( new PropertySet( "B")), is( true));
+    assertThat( "Satisfied: !A, !B, !C", conjunct.satisfied( new PropertySet()), is( false));
     }
   
   @Test
@@ -127,14 +128,14 @@ public class TestCnf
     IConjunct conjunct = Cnf.convert( condition);
     
     // Then...
-    assertEquals( "Satisfied:  A,  B,  C", true, conjunct.satisfied( new PropertySet( "A", "B", "C")));
-    assertEquals( "Satisfied:  A,  B, !C", true, conjunct.satisfied( new PropertySet( "A", "B")));
-    assertEquals( "Satisfied:  A, !B,  C", false, conjunct.satisfied( new PropertySet( "A", "C")));
-    assertEquals( "Satisfied:  A, !B, !C", true, conjunct.satisfied( new PropertySet( "A")));
-    assertEquals( "Satisfied: !A,  B,  C", true, conjunct.satisfied( new PropertySet( "B", "C")));
-    assertEquals( "Satisfied: !A, !B,  C", false, conjunct.satisfied( new PropertySet( "C")));
-    assertEquals( "Satisfied: !A,  B, !C", true, conjunct.satisfied( new PropertySet( "B")));
-    assertEquals( "Satisfied: !A, !B, !C", true, conjunct.satisfied( new PropertySet()));
+    assertThat( "Satisfied:  A,  B,  C", conjunct.satisfied( new PropertySet( "A", "B", "C")), is( true));
+    assertThat( "Satisfied:  A,  B, !C", conjunct.satisfied( new PropertySet( "A", "B")), is( true));
+    assertThat( "Satisfied:  A, !B,  C", conjunct.satisfied( new PropertySet( "A", "C")), is( false));
+    assertThat( "Satisfied:  A, !B, !C", conjunct.satisfied( new PropertySet( "A")), is( true));
+    assertThat( "Satisfied: !A,  B,  C", conjunct.satisfied( new PropertySet( "B", "C")), is( true));
+    assertThat( "Satisfied: !A, !B,  C", conjunct.satisfied( new PropertySet( "C")), is( false));
+    assertThat( "Satisfied: !A,  B, !C", conjunct.satisfied( new PropertySet( "B")), is( true));
+    assertThat( "Satisfied: !A, !B, !C", conjunct.satisfied( new PropertySet()), is( true));
 
     // Given...
     condition = new Not( condition);
@@ -143,14 +144,14 @@ public class TestCnf
     conjunct = Cnf.convert( condition);
     
     // Then...
-    assertEquals( "Satisfied:  A,  B,  C", false, conjunct.satisfied( new PropertySet( "A", "B", "C")));
-    assertEquals( "Satisfied:  A,  B, !C", false, conjunct.satisfied( new PropertySet( "A", "B")));
-    assertEquals( "Satisfied:  A, !B,  C", true, conjunct.satisfied( new PropertySet( "A", "C")));
-    assertEquals( "Satisfied:  A, !B, !C", false, conjunct.satisfied( new PropertySet( "A")));
-    assertEquals( "Satisfied: !A,  B,  C", false, conjunct.satisfied( new PropertySet( "B", "C")));
-    assertEquals( "Satisfied: !A, !B,  C", true, conjunct.satisfied( new PropertySet( "C")));
-    assertEquals( "Satisfied: !A,  B, !C", false, conjunct.satisfied( new PropertySet( "B")));
-    assertEquals( "Satisfied: !A, !B, !C", false, conjunct.satisfied( new PropertySet()));
+    assertThat( "Satisfied:  A,  B,  C", conjunct.satisfied( new PropertySet( "A", "B", "C")), is( false));
+    assertThat( "Satisfied:  A,  B, !C", conjunct.satisfied( new PropertySet( "A", "B")), is( false));
+    assertThat( "Satisfied:  A, !B,  C", conjunct.satisfied( new PropertySet( "A", "C")), is( true));
+    assertThat( "Satisfied:  A, !B, !C", conjunct.satisfied( new PropertySet( "A")), is( false));
+    assertThat( "Satisfied: !A,  B,  C", conjunct.satisfied( new PropertySet( "B", "C")), is( false));
+    assertThat( "Satisfied: !A, !B,  C", conjunct.satisfied( new PropertySet( "C")), is( true));
+    assertThat( "Satisfied: !A,  B, !C", conjunct.satisfied( new PropertySet( "B")), is( false));
+    assertThat( "Satisfied: !A, !B, !C", conjunct.satisfied( new PropertySet()), is( false));
     }
 
   }

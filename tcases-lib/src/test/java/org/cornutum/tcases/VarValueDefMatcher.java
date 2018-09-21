@@ -8,25 +8,36 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.util.Asserts.Matcher;
-import static org.cornutum.tcases.util.Asserts.*;
+import org.cornutum.hamcrest.BaseCompositeMatcher;
+import org.cornutum.hamcrest.Composites;
+import org.hamcrest.Matchers;
 
-import static org.junit.Assert.*;
+import java.util.Iterator;
 
 /**
- * A {@link Matcher} for {@link VarValueDef} objects.
+ * A composite matcher for {@link VarValueDef} objects.
  */
-public class VarValueDefMatcher implements Matcher<VarValueDef>
+public class VarValueDefMatcher extends BaseCompositeMatcher<VarValueDef>
   {
   /**
-   * Reports a failure if the expected object does not match the actual object.
+   * Creates a new VarValueDefMatcher instance.
    */
-  public void assertEqual( String label, VarValueDef expected, VarValueDef actual)
+  public VarValueDefMatcher( VarValueDef expected)
     {
-    assertEquals( label + ", name", expected.getName(), actual.getName());
-    assertEquals( label + ", value=" + expected.getName() + ", type", expected.getType(), actual.getType());
-    assertEquals( label + ", value=" + expected.getName() + ", condition", expected.getCondition(), actual.getCondition());
-    assertSetEquals( label + ", value=" + expected.getName() + ", properties", expected.getProperties().getProperties(), actual.getProperties().getProperties());
-    assertMatches( label + ", value=" + expected.getName(), expected, actual, Matchers.annotatedMatcher);
+    super( expected);
+
+    expectThat( valueOf( "name", VarValueDef::getName).matches( Matchers::equalTo));
+    expectThat( valueOf( "type", VarValueDef::getType).matches( Matchers::equalTo));
+    expectThat( valueOf( "condition", VarValueDef::getCondition).matches( Matchers::equalTo));
+    expectThat( valueOf( "properties", this::getProperties).matches( Composites::visitsMembers));
+    expectThat( matches( AnnotatedMatcher::new));
+    }
+
+  /**
+   * Returns an Iterator that visits all property identifers for a VarValueDef.
+   */
+  private Iterator<String> getProperties( VarValueDef varValueDef)
+    {
+    return varValueDef.getProperties().getProperties();
     }
   }

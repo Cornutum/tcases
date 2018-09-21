@@ -9,15 +9,16 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import static org.cornutum.tcases.conditions.Conditions.*;
-import static org.cornutum.tcases.util.Asserts.*;
 import static org.cornutum.tcases.VarValueDef.Type.*;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.xml.sax.SAXParseException;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.is;
 
 import java.math.BigDecimal;
-
-import org.xml.sax.SAXParseException;
 
 /**
  * Runs tests for the {@link SystemInputDocReader}.
@@ -116,7 +117,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
 
     // Then...
-    assertMatches( "system-input-def-0.xml", expected, systemInputDef, Matchers.systemInputDefMatcher);
+    assertThat( "system-input-def-0.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -168,7 +169,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-1.xml");
 
     // Then...
-    assertMatches( "system-input-def-1.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-1.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   /**
@@ -337,7 +338,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-2.xml");
 
     // Then...
-    assertMatches( "system-input-def-2.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-2.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   /**
@@ -475,7 +476,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-3.xml");
 
     // Then...
-    assertMatches( "system-input-def-3.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-3.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   /**
@@ -602,7 +603,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-4.xml");
 
     // Then...
-    assertMatches( "system-input-def-4.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-4.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   /**
@@ -715,7 +716,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-5.xml");
 
     // Then...
-    assertMatches( "system-input-def-5.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-5.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   /**
@@ -803,7 +804,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-6.xml");
 
     // Then...
-    assertMatches( "system-input-def-6.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-6.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   /**
@@ -885,7 +886,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-7.xml");
 
     // Then...
-    assertMatches( "system-input-def-7.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-7.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   /**
@@ -2071,7 +2072,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-43.xml");
 
     // Then...
-    assertMatches( "system-input-def-43.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-43.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   
@@ -2100,7 +2101,7 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-objects.xml");
 
     // Then...
-    assertMatches( "system-input-def-objects.xml", expected, systemInputDef, Matchers.systemInputDefMatcher); 
+    assertThat( "system-input-def-objects.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
   /**
@@ -2108,36 +2109,23 @@ public class TestSystemInputDocReader
    */
   private void assertException( String resource, int expectedLine, String expectedMsg)
     {
-    Throwable failure = null;
-    try
-      {
-      systemInputResources_.read( resource);
-      }
-    catch( Throwable t)
-      {
-      failure = t;
-      }
+    expectFailure( Throwable.class)
+      .when( () -> systemInputResources_.read( resource))
+      .then( failure -> {
 
-    if( failure == null)
-      {
-      fail( "Expected exception not thrown.");
-      }
-    
-    Throwable cause;
-    for( cause = failure.getCause();
-         !(cause == null || cause instanceof SAXParseException);
-         cause = cause.getCause());
+        Throwable cause;
+        for( cause = failure.getCause();
+             !(cause == null || cause instanceof SAXParseException);
+             cause = cause.getCause());
 
-    if( cause == null)
-      {
-      throw new RuntimeException( "Unexpected exception thrown", failure);
-      }
+        assertThat( "SAXParseException thrown", cause != null, is( true));
+        
+        SAXParseException spe = (SAXParseException) cause;
+        assertThat( "Exception line", spe.getLineNumber(), is( expectedLine));
 
-    SAXParseException spe = (SAXParseException) cause;
-    assertEquals( "Exception line", expectedLine, spe.getLineNumber());
-
-    String actualMsg = spe.getException()==null? spe.getMessage() : spe.getException().getMessage();
-    assertEquals( "Exception message", expectedMsg, actualMsg);
+        String actualMsg = spe.getException()==null? spe.getMessage() : spe.getException().getMessage();
+        assertThat( "Exception message", actualMsg, is( expectedMsg));
+        });
     }
 
   private SystemInputResources systemInputResources_ = new SystemInputResources( TestSystemInputDocReader.class);

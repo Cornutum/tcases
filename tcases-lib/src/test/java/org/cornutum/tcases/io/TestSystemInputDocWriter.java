@@ -8,9 +8,10 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
-import static org.cornutum.tcases.util.Asserts.*;
 
 import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.hamcrest.MatcherAssert.*;
 
 import java.io.File;
 
@@ -100,7 +101,7 @@ public class TestSystemInputDocWriter
       throw new RuntimeException( "Can't read file=" + doc, e);
       }
 
-    assertMatches( "Output from definition=" + systemInputResource, systemInputBefore, systemInputAfter, Matchers.systemInputDefMatcher);
+    assertThat( "Output from definition=" + systemInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputBefore)));
     }
 
   /**

@@ -8,11 +8,12 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.generator.*;
-import static org.cornutum.tcases.util.Asserts.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.apache.commons.collections4.IteratorUtils;
-import static org.junit.Assert.*;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,12 +41,12 @@ public final class AssertTestDef
     for( Iterator<TestCase> testCases = testDef.getTestCases(); testCases.hasNext(); )
       {
       TestCase testCase = testCases.next();
-      assertSetEquals(
+      assertThat(
         "Vars, testCase=" + testCase.getId(),
-        vars,
         IteratorUtils.transformedIterator(
           testCase.getVarBindings(),
-          VarBinding::getVar));
+          VarBinding::getVar),
+        visitsMembers( vars));
       }
     }
 
@@ -147,7 +148,7 @@ public final class AssertTestDef
    */
   public static void assertIncluded( FunctionTestDef testDef, int expectedCount, VarBinding binding)
     {
-    assertEquals( "Test cases including " + binding, expectedCount, getTestCasesIncluding( testDef, binding));
+    assertThat( "Test cases including " + binding, getTestCasesIncluding( testDef, binding), is( expectedCount));
     }
 
   /**
@@ -155,7 +156,7 @@ public final class AssertTestDef
    */
   public static void assertIncluded( FunctionTestDef testDef, int expectedCount, Tuple tuple)
     {
-    assertEquals( "Test cases including " + tuple, expectedCount, getTestCasesIncluding( testDef, tuple));
+    assertThat( "Test cases including " + tuple, getTestCasesIncluding( testDef, tuple), is( expectedCount));
     }
 
   /**
@@ -165,7 +166,7 @@ public final class AssertTestDef
     {
     for( Tuple tuple : tuples)
       {
-      assertEquals( "Test cases including " + tuple, expectedCount, getTestCasesIncluding( testDef, tuple));
+      assertThat( "Test cases including " + tuple, getTestCasesIncluding( testDef, tuple), is( expectedCount));
       }
     }
 

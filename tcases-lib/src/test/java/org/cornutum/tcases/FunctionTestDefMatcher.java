@@ -8,23 +8,23 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.util.Asserts.Matcher;
-import static org.cornutum.tcases.util.Asserts.*;
-
-import static org.junit.Assert.*;
+import org.cornutum.hamcrest.BaseCompositeMatcher;
+import org.hamcrest.Matchers;
 
 /**
- * A {@link Matcher} for {@link FunctionTestDef} objects.
+ * A composite matcher for {@link FunctionTestDef} objects.
  */
-public class FunctionTestDefMatcher implements Matcher<FunctionTestDef>
+public class FunctionTestDefMatcher extends BaseCompositeMatcher<FunctionTestDef>
   {
   /**
-   * Reports a failure if the expected object does not match the actual object.
+   * Creates a new FunctionTestDefMatcher instance.
    */
-  public void assertEqual( String label, FunctionTestDef expected, FunctionTestDef actual)
+  public FunctionTestDefMatcher( FunctionTestDef expected)
     {
-    assertEquals( label + ", name", expected.getName(), actual.getName());
-    assertSetEquals( label + ", function=" + expected.getName() + ", testCases", expected.getTestCases(), actual.getTestCases(), Matchers.testCaseMatcher);
-    assertMatches( label + ", function=" + expected.getName(), expected, actual, Matchers.annotatedMatcher);
+    super( expected);
+
+    expectThat( valueOf( "name", FunctionTestDef::getName).matches( Matchers::equalTo));
+    expectThat( valueOf( "testCases", FunctionTestDef::getTestCases).matches( visitsMembersMatching( TestCaseMatcher::new)));
+    expectThat( matches( AnnotatedMatcher::new));
     }
   }

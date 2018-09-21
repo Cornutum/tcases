@@ -10,7 +10,8 @@ package org.cornutum.tcases.generator.io;
 import org.cornutum.tcases.generator.*;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.io.File;
 
@@ -76,7 +77,7 @@ public class TestGeneratorSetDocWriter
       throw new RuntimeException( "Can't read file=" + doc, e);
       }
 
-    assertEquals( "Output from definition=" + generatorSetResource, generatorSetBefore, generatorSetAfter);
+    assertThat( "Output from definition=" + generatorSetResource, generatorSetAfter, is( generatorSetBefore));
     }
 
   /**

@@ -8,28 +8,37 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.util.Asserts.Matcher;
-import static org.cornutum.tcases.util.Asserts.*;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
-import static org.junit.Assert.*;
+import org.cornutum.hamcrest.BaseCompositeMatcher;
+import org.cornutum.hamcrest.Composites;
 
-import java.util.Iterator;
+import java.util.Map.Entry;
+import static java.util.stream.Collectors.toMap;
 
 /**
- * A {@link Matcher} for {@link IAnnotated} objects.
+ * A composite matcher for {@link Annotated} objects.
  */
-public class AnnotatedMatcher implements Matcher<IAnnotated>
+public class AnnotatedMatcher extends BaseCompositeMatcher<IAnnotated>
   {
   /**
-   * Reports a failure if the expected object does not match the actual object.
+   * Creates a new AnnotatedMatcher instance.
    */
-  public void assertEqual( String label, IAnnotated expected, IAnnotated actual)
+  public AnnotatedMatcher( IAnnotated expected)
     {
-    assertSetEquals( label + ", annotations", expected.getAnnotations(), actual.getAnnotations());
-    for( Iterator<String> annotations = expected.getAnnotations(); annotations.hasNext(); )
-      {
-      String annotation = annotations.next();
-      assertEquals( label + ", annotation=" + annotation, expected.getAnnotation( annotation), actual.getAnnotation( annotation));
-      }
+    super( expected);
+
+    expectThat( valueOf( "annotations", this::getAnnotationMappings).matches( Composites::containsMembers));
+    }
+
+  /**
+   * Returns the annotation name/value mappings for the given IAnnotated instance.
+   */
+  private Iterable<Entry<String,String>> getAnnotationMappings( IAnnotated annotated)
+    {
+    return
+      toStream( annotated.getAnnotations())
+      .collect( toMap( name -> name, name -> annotated.getAnnotation( name)))
+      .entrySet();
     }
   }

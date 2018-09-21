@@ -29,7 +29,10 @@ public abstract class Asserts
   {
   /**
    * Defines a procedure for comparing two objects.
+   *
+   * @deprecated Replace using <CODE>BaseCompositeMatcher</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public interface Matcher<T>
     {
     /**
@@ -57,7 +60,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected collection.
+   *
+   * @deprecated Replace using <CODE>Composites::containsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, Iterable<T> expected, Iterable<T> actual)
     {
     assertSetEquals( label, expected, actual, null);
@@ -65,7 +71,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected collection.
+   *
+   * @deprecated Replace using <CODE>Composites::containsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, Iterable<T> expected, Iterable<T> actual, Matcher<T> matcher)
     {
     assertSetsEqual( label, toList( expected), toList( actual), matcher);
@@ -73,7 +82,10 @@ public abstract class Asserts
   
   /**
    * Reports a failure if the actual Collection contains a different set of values than the expected Collection.
+   *
+   * @deprecated Replace using <CODE>Composites::containsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetsEqual( String label, Collection<T> expected, Collection<T> actual)
     {
     assertSetsEqual( label, expected, actual, null);
@@ -81,7 +93,10 @@ public abstract class Asserts
   
   /**
    * Reports a failure if the actual Collection contains a different set of values than the expected Collection.
+   *
+   * @deprecated Replace using <CODE>Composites::containsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetsEqual( String label, Collection<T> expected, Collection<T> actual, Matcher<T> matcher)
     {
     if( Matcher.matchable( label, expected, actual))
@@ -119,7 +134,10 @@ public abstract class Asserts
   
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected collection.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, Iterable<T> expected, Iterator<T> actual)
     {
     assertSetEquals( label, expected, actual, null);
@@ -127,7 +145,10 @@ public abstract class Asserts
   
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected collection.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, Iterable<T> expected, Iterator<T> actual, Matcher<T> matcher)
     {
     assertSetEquals( label, expected, toList( actual), matcher);
@@ -135,7 +156,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected array.
+   *
+   * @deprecated Replace using <CODE>Composites::containsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, T[] expected, Iterable<T> actual)
     {
     assertSetEquals( label, expected, actual, null);
@@ -143,7 +167,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected array.
+   *
+   * @deprecated Replace using <CODE>Composites::containsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, T[] expected, Iterable<T> actual, Matcher<T> matcher)
     {
     List<T> expectedList = expected == null ? null : Arrays.asList( expected);
@@ -152,7 +179,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected array.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, T[] expected, Iterator<T> actual)
     {
     assertSetEquals( label, expected, actual, null);
@@ -160,7 +190,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected array.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, T[] expected, Iterator<T> actual, Matcher<T> matcher)
     {
     List<T> expectedList = expected == null ? null : Arrays.asList( expected);
@@ -169,7 +202,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected collection.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, Iterator<T> expected, Iterator<T> actual)
     {
     assertSetEquals( label, expected, actual, null);
@@ -177,7 +213,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual collection contains a different set of values than the expected collection.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSetEquals( String label, Iterator<T> expected, Iterator<T> actual, Matcher<T> matcher)
     {
     assertSetEquals( label, toList( expected), actual, matcher);
@@ -185,7 +224,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual Iterator contains a different sequence of values than the expected List.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsList</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSeqEquals( String label, List<T> expected, Iterator<T> actual)
     {
     assertSeqEquals( label, expected, actual, null);
@@ -193,7 +235,10 @@ public abstract class Asserts
   
   /**
    * Reports a failure if the actual Iterator contains a different sequence of values than the expected List.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsList</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSeqEquals( String label, List<T> expected, Iterator<T> actual, Matcher<T> matcher)
     {
     if( (expected == null) != (actual == null))
@@ -242,7 +287,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual List contains a different sequence of values than the expected List.
+   *
+   * @deprecated Replace using <CODE>Composites::listsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSeqEquals( String label, List<T> expected, List<T> actual)
     {
     assertSeqEquals( label, expected, actual, null);
@@ -250,7 +298,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual List contains a different sequence of values than the expected List.
+   *
+   * @deprecated Replace using <CODE>Composites::listsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSeqEquals( String label, List<T> expected, List<T> actual, Matcher<T> matcher)  
     {
     Iterator<T> actualIterator = actual == null ? null : actual.iterator();
@@ -259,7 +310,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual Iterator contains a different sequence of values than the expected array.
+   *
+   * @deprecated Replace using <CODE>Composites::visitsList</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSeqEquals( String label, T[] expected, Iterator<T> actual)
     {
     List<T> expectedList = expected == null ? null : Arrays.asList( expected);
@@ -268,7 +322,10 @@ public abstract class Asserts
 
   /**
    * Reports a failure if the actual List contains a different sequence of values than the expected array.
+   *
+   * @deprecated Replace using <CODE>Composites::listsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSeqEquals( String label, T[] expected, List<T> actual)
     {
     List<T> expectedList = expected == null ? null : Arrays.asList( expected);
@@ -278,7 +335,10 @@ public abstract class Asserts
   /**
    * Reports a failure if the actual List contains a different sequence of values than the expected array. Objects are compared
    * using the given Matcher or, if none defined, using equals().
+   *
+   * @deprecated Replace using <CODE>Composites::listsMembers</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertSeqEquals( String label, T[] expected, List<T> actual, Matcher<T> matcher)
     {
     List<T> expectedList = expected == null ? null : Arrays.asList( expected);
@@ -288,7 +348,10 @@ public abstract class Asserts
   /**
    * Reports a failure if the actual object does not match the expected object. Objects are compared
    * using the given Matcher or, if none defined, using equals().
+   *
+   * @deprecated Replace using <CODE>BaseCompositeMatcher</CODE> from <A href="https://github.com/Cornutum/hamcrest-composites">Hamcrest Composites</A>.
    */
+  @Deprecated
   public static <T> void assertMatches( String label, T expected, T actual, Matcher<T> matcher)
     {
     // Matcher defined?

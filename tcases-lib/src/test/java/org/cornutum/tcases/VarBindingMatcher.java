@@ -8,26 +8,26 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.util.Asserts.Matcher;
-import static org.cornutum.tcases.util.Asserts.*;
-
-import static org.junit.Assert.*;
+import org.cornutum.hamcrest.BaseCompositeMatcher;
+import org.hamcrest.Matchers;
 
 /**
- * A {@link Matcher} for {@link VarBinding} objects.
+ * A composite matcher for {@link VarBinding} objects.
  */
-public class VarBindingMatcher implements Matcher<VarBinding>
+public class VarBindingMatcher extends BaseCompositeMatcher<VarBinding>
   {
   /**
-   * Reports a failure if the expected object does not match the actual object.
+   * Creates a new VarBindingMatcher instance.
    */
-  public void assertEqual( String label, VarBinding expected, VarBinding actual)
+  public VarBindingMatcher( VarBinding expected)
     {
-    assertEquals( label + ", var", expected.getVar(), actual.getVar());
-    assertEquals( label + ", var=" + expected.getVar() + ", type", expected.getType(), actual.getType());
-    assertEquals( label + ", var=" + expected.getVar() + ", value", expected.getValue(), actual.getValue());
-    assertEquals( label + ", var=" + expected.getVar() + ", applicable", !expected.isValueNA(), !actual.isValueNA());
-    assertEquals( label + ", var=" + expected.getVar() + ", valid", expected.isValueValid(), actual.isValueValid());
-    assertMatches( label + ", var=" + expected.getVar(), expected, actual, Matchers.annotatedMatcher);
+    super( expected);
+
+    expectThat( valueOf( "var", VarBinding::getVar).matches( Matchers::equalTo));
+    expectThat( valueOf( "type", VarBinding::getType).matches( Matchers::equalTo));
+    expectThat( valueOf( "value", VarBinding::getValue).matches( Matchers::equalTo));
+    expectThat( valueOf( "applicable", (VarBinding vb) -> !vb.isValueNA()).matches( Matchers::equalTo));
+    expectThat( valueOf( "valid", VarBinding::isValueValid).matches( Matchers::equalTo));
+    expectThat( matches( AnnotatedMatcher::new));
     }
   }

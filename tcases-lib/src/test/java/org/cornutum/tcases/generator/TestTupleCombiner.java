@@ -14,11 +14,13 @@ import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.VarValueDef;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.io.SystemInputResources;
-import org.cornutum.tcases.util.Asserts;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.apache.commons.collections4.IteratorUtils;
+import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -78,7 +80,7 @@ public class TestTupleCombiner
           new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
+    assertThat( "Tuples", tuples, containsMembers( expectedTuples));
     }
   
   @Test
@@ -156,7 +158,7 @@ public class TestTupleCombiner
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
+    assertThat( "Tuples", tuples, containsMembers( expectedTuples));
     }
   
   @Test
@@ -226,7 +228,7 @@ public class TestTupleCombiner
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
+    assertThat( "Tuples", tuples, containsMembers( expectedTuples));
     }
 
   @Test
@@ -296,7 +298,7 @@ public class TestTupleCombiner
           new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
+    assertThat( "Tuples", tuples, containsMembers( expectedTuples));
     }
 
   @Test
@@ -307,21 +309,11 @@ public class TestTupleCombiner
     varDefs.add( new VarDef( "var-1").addValue( new VarValueDef( "value-1-1")));
     varDefs.add( new VarDef( "var-2").addValue( new VarValueDef( "value-2-1")));
     
-    // When...
-    try
-      {
-      Collection<Tuple> tuples = TupleCombiner.getTuples( varDefs, 3);
-      fail( "Unexpected TupleCombiner=" + tuples);
-      }
-
-    // Then...
-    catch( IllegalArgumentException iae)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected exception", e);
-      }
+    expectFailure( IllegalArgumentException.class)
+      .when( () -> TupleCombiner.getTuples( varDefs, 3))
+      .then( failure -> {
+        assertThat( "Failure message", failure.getMessage(), is( "Can't create 3-tuples for 2 combined variables"));
+        });
     }
 
   @Test
@@ -332,21 +324,11 @@ public class TestTupleCombiner
     varDefs.add( new VarDef( "var-1").addValue( new VarValueDef( "value-1-1")));
     varDefs.add( new VarDef( "var-2").addValue( new VarValueDef( "value-2-1", VarValueDef.Type.FAILURE)));
     
-    // When...
-    try
-      {
-      Collection<Tuple> tuples = TupleCombiner.getTuples( varDefs, 2);
-      Asserts.assertSetEquals( "Tuples", (Collection<Tuple>)null, tuples);
-      }
-
-    // Then...
-    catch( IllegalStateException ise)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected exception", e);
-      }
+    expectFailure( IllegalStateException.class)
+      .when( () -> TupleCombiner.getTuples( varDefs, 2))
+      .then( failure -> {
+        assertThat( "Failure message", failure.getMessage(), is( "Can't complete tuples -- no valid values defined for var=VarDef[var-2]"));
+        });
     }
   
   @Test
@@ -361,19 +343,17 @@ public class TestTupleCombiner
     List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
     
     // Then...
-    Asserts.assertSetEquals(
+    assertThat(
       "Combined vars",
-      new String[]  
-        {
+      IteratorUtils.transformedIterator(
+        combined.iterator(),
+        VarDef::getPathName),
+      visitsMembers(
         "Color.Hue",
         "Color.Lightness",
         "Color.Saturation",
         "Shape",
-        "Size"
-        },
-      IteratorUtils.transformedIterator(
-        combined.iterator(),
-        VarDef::getPathName));
+        "Size"));
     }
   
   @Test
@@ -388,15 +368,12 @@ public class TestTupleCombiner
     List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
     
     // Then...
-    Asserts.assertSetEquals(
+    assertThat(
       "Combined vars",
-      new String[]  
-        {
-        "Size"
-        },
       IteratorUtils.transformedIterator(
         combined.iterator(),
-        VarDef::getPathName));
+        VarDef::getPathName),
+      visitsMembers( "Size"));
     }
   
   @Test
@@ -411,18 +388,16 @@ public class TestTupleCombiner
     List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
     
     // Then...
-    Asserts.assertSetEquals(
+    assertThat(
       "Combined vars",
-      new String[]  
-        {
+      IteratorUtils.transformedIterator(
+        combined.iterator(),
+        VarDef::getPathName),
+      visitsMembers(
         "Color.Hue",
         "Color.Lightness",
         "Color.Saturation",
-        "Shape"
-        },
-      IteratorUtils.transformedIterator(
-        combined.iterator(),
-        VarDef::getPathName));
+        "Shape"));
     }
   
   @Test
@@ -437,16 +412,14 @@ public class TestTupleCombiner
     List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
     
     // Then...
-    Asserts.assertSetEquals(
+    assertThat(
       "Combined vars",
-      new String[]  
-        {
-        "Color.Lightness",
-        "Color.Saturation"
-        },
       IteratorUtils.transformedIterator(
         combined.iterator(),
-        VarDef::getPathName));
+        VarDef::getPathName),
+      visitsMembers(
+        "Color.Lightness",
+        "Color.Saturation"));
     }
   
   @Test
@@ -457,22 +430,11 @@ public class TestTupleCombiner
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleCombiner combiner = new TupleCombiner().addIncludedVar( "Size.*").addExcludedVar( "Color.Hue");
     
-    // When...
-    try
-      {
-      List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
-
-      fail( "Unexpected vars=" + combined);
-      }
-
-    // Then...
-    catch( IllegalArgumentException iae)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected exception", e);
-      }
+    expectFailure( IllegalArgumentException.class)
+      .when( () -> combiner.getCombinedVars( functionInputDef))
+      .then( failure -> {
+        assertThat( "Failure message", failure.getMessage(), is( "Can't apply " + combiner + " to FunctionInputDef[Make]"));
+        });
     }
   
   @Test
@@ -483,22 +445,11 @@ public class TestTupleCombiner
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleCombiner combiner = new TupleCombiner().addExcludedVar( "Color.Red");
     
-    // When...
-    try
-      {
-      List<VarDef> combined = combiner.getCombinedVars( functionInputDef);
-
-      fail( "Unexpected vars=" + combined);
-      }
-
-    // Then...
-    catch( IllegalArgumentException iae)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected exception", e);
-      }
+    expectFailure( IllegalArgumentException.class)
+      .when( () -> combiner.getCombinedVars( functionInputDef))
+      .then( failure -> {
+        assertThat( "Failure message", failure.getMessage(), is( "Can't apply " + combiner + " to FunctionInputDef[Make]"));
+        });
     }
 
   private SystemInputResources systemInputResources_ = new SystemInputResources( TestTupleCombiner.class);

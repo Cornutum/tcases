@@ -7,7 +7,8 @@
 
 package org.cornutum.tcases.util;
 
-import static org.cornutum.tcases.util.Asserts.*;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.hamcrest.MatcherAssert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,7 +56,7 @@ public class TestCartesianProduct
       .add( new ArrayList<String>( Arrays.asList( "C", "4", "X")))
       .build();
     
-    assertSeqEquals( "When many sets", expected, product);
+    assertThat( "When many sets", product, visitsList( expected));
     }
 
   @Test
@@ -86,7 +87,7 @@ public class TestCartesianProduct
       .add( new ArrayList<String>( Arrays.asList( "C", "4", "X")))
       .build();
     
-    assertSeqEquals( "When filtered", expected, product);
+    assertThat( "When filtered", product, visitsList( expected));
       
     // When...
     product =
@@ -96,7 +97,7 @@ public class TestCartesianProduct
     
     // Then...
     expected = Collections.<List<String>>emptyList();
-    assertSeqEquals( "When filtered to empty", expected, product);
+    assertThat( "When filtered to empty", product, visitsList( expected));
     }
 
 
@@ -117,7 +118,7 @@ public class TestCartesianProduct
     // Then...
     List<List<String>> expected = Collections.<List<String>>emptyList();
     
-    assertSeqEquals( "When empty set", expected, product);
+    assertThat( "When empty set", product, visitsList( expected));
     }
 
 
@@ -141,7 +142,7 @@ public class TestCartesianProduct
       .add( new ArrayList<String>( Arrays.asList( "C")))
       .build();
     
-    assertSeqEquals( "When one set", expected, product);
+    assertThat( "When one set", product, visitsList( expected));
     }
 
 
@@ -157,7 +158,7 @@ public class TestCartesianProduct
     // Then...
     List<List<String>> expected = Collections.<List<String>>emptyList();
     
-    assertSeqEquals( "When no sets", expected, product);
+    assertThat( "When no sets", product, visitsList( expected));
     }
 
   private class ListBuilder<T>

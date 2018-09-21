@@ -8,10 +8,10 @@
 
 package org.cornutum.tcases;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 import org.apache.commons.collections4.IteratorUtils;
+import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.hamcrest.MatcherAssert.*;
 
 /**
  * Runs tests for {@link VarDefIterator}.
@@ -54,10 +54,10 @@ public class TestVarDefIterator
         String.class);
     
     // Then...
-    assertArrayEquals
+    assertThat
       ( "VarDef sequence",
-        new String[]{ "1", "2.1", "2.2", "2.3", "3"},
-        varDefNames);
+        varDefNames,
+        listsElements( "1", "2.1", "2.2", "2.3", "3"));
     }
   /**
    * Test when traversing a tree of  {@link VarSet variable sets}.
@@ -104,10 +104,10 @@ public class TestVarDefIterator
         String.class);
     
     // Then...
-    assertArrayEquals
+    assertThat
       ( "VarDef sequence",
-        new String[]{ "1.1.1.1", "1.1.1.2", "1.1.2", "1.2.1", "2.1", "2.2.1", "2.2.2"},
-        varDefNames);
+        varDefNames,
+        listsElements( "1.1.1.1", "1.1.1.2", "1.1.2", "1.2.1", "2.1", "2.2.1", "2.2.2"));
     }
   }
 

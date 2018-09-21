@@ -9,13 +9,14 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.TcasesCommand.Options;
 import org.cornutum.tcases.io.SystemTestResources;
-import static org.cornutum.tcases.util.Asserts.*;
-
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -85,7 +86,7 @@ public class TestTcasesCommand
     TcasesCommand.run( new Options( args));
         
     // Then...
-    assertEquals( "Test def created", true, outFile.exists());
+    assertThat( "Test def created", outFile.exists(), is( true));
     }
 
   /**
@@ -138,7 +139,7 @@ public class TestTcasesCommand
     runWithStdIO( new Options( args), inFile, null);
         
     // Then...
-    assertEquals( "Test def created", true, testDefFile.exists());
+    assertThat( "Test def created", testDefFile.exists(), is( true));
     }
 
   /**
@@ -190,7 +191,7 @@ public class TestTcasesCommand
         
     // Then...
     File outFile = new File( outDir, testDefFile.getName());
-    assertEquals( "Test def created", true, outFile.exists());
+    assertThat( "Test def created", outFile.exists(), is( true));
     }
 
   /**
@@ -244,7 +245,7 @@ public class TestTcasesCommand
     TcasesCommand.run( options);
         
     // Then...
-    assertEquals( "Test def created", true, outFile.exists());
+    assertThat( "Test def created", outFile.exists(), is( true));
     }
 
   /**
@@ -296,7 +297,7 @@ public class TestTcasesCommand
     TcasesCommand.run( new Options( args));
         
     // Then...
-    assertEquals( "Test def created", true, outFile.exists());
+    assertThat( "Test def created", outFile.exists(), is( true));
     }
 
   /**
@@ -345,7 +346,7 @@ public class TestTcasesCommand
     runWithStdIO( new Options( args), inFile, outFile);
         
     // Then...
-    assertEquals( "Test def created", true, outFile.length() > 0);
+    assertThat( "Test def created", outFile.length() > 0, is( true));
     }
 
   /**
@@ -394,16 +395,8 @@ public class TestTcasesCommand
         inFile.getPath()
       };
 
-    // When...
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      fail( "Expected exception not thrown");
-      }
-    // Then...
-    catch( Exception ignore)
-      {
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> TcasesCommand.run( new Options( args)));
     }
 
   /**
@@ -447,16 +440,8 @@ public class TestTcasesCommand
     Options options = new Options( args);
     options.setWorkingDir( inFile.getParentFile());
 
-    // When...
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      fail( "Expected exception not thrown");
-      }
-    // Then...
-    catch( Exception ignore)
-      {
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> TcasesCommand.run( new Options( args)));
     }
 
   /**
@@ -498,16 +483,8 @@ public class TestTcasesCommand
         inFile.getPath()
       };
 
-    // When...
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      fail( "Expected exception not thrown");
-      }
-    // Then...
-    catch( Exception ignore)
-      {
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> TcasesCommand.run( new Options( args)));
     }
 
   /**
@@ -553,18 +530,12 @@ public class TestTcasesCommand
         "run-3"
       };
 
-    // When...
-    try
-      {
-      Options options = new Options( args);
-      options.setWorkingDir( inFile.getParentFile());
-      TcasesCommand.run( options);
-      fail( "Expected exception not thrown");
-      }
-    // Then...
-    catch( Exception ignore)
-      {
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> {
+        Options options = new Options( args);
+        options.setWorkingDir( inFile.getParentFile());
+        TcasesCommand.run( options);
+        });
     }
 
   /**
@@ -611,16 +582,8 @@ public class TestTcasesCommand
         inFile.getPath()
       };
 
-    // When...
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      fail( "Expected exception not thrown");
-      }
-    // Then...
-    catch( Exception ignore)
-      {
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> TcasesCommand.run( new Options( args)));
     }
 
   /**
@@ -669,7 +632,7 @@ public class TestTcasesCommand
     TcasesCommand.run( new Options( args));
         
     // Then...
-    assertEquals( "Test def created", true, outFilePath.exists());
+    assertThat( "Test def created", outFilePath.exists(), is( true));
     }
   
   /**
@@ -713,7 +676,7 @@ public class TestTcasesCommand
     runWithStdIO( new Options( args), inFile, outFile);
         
     // Then...
-    assertEquals( "Test def created", true, outFile.length() > 0);
+    assertThat( "Test def created", outFile.length() > 0, is( true));
     }
 
   /**
@@ -764,7 +727,7 @@ public class TestTcasesCommand
     TcasesCommand.run( new Options( args));
         
     // Then...
-    assertEquals( "Test def created", true, outFilePath.exists());
+    assertThat( "Test def created", outFilePath.exists(), is( true));
     }
   
   /**
@@ -810,7 +773,7 @@ public class TestTcasesCommand
     TcasesCommand.run( new Options( args));
         
     // Then...
-    assertEquals( "Test def created", true, outFilePath.exists());
+    assertThat( "Test def created", outFilePath.exists(), is( true));
     }
 
   /**
@@ -862,11 +825,11 @@ public class TestTcasesCommand
       }
 
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
-    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+    assertThat( "Exception thrown", failure != null, is( true));
+    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
 
     String cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertEquals( "Cause", "Invalid -p option: parameter name undefined", cause);
+    assertThat( "Cause", cause, is( "Invalid -p option: parameter name undefined"));
     }
 
   /**
@@ -905,16 +868,8 @@ public class TestTcasesCommand
         inFile.getPath()
       };
 
-    // When...
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      fail( "Expected exception not thrown");
-      }
-    // Then...
-    catch( Exception ignore)
-      {
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> TcasesCommand.run( new Options( args)));
     }
 
   /**
@@ -966,11 +921,11 @@ public class TestTcasesCommand
       }
 
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
-    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+    assertThat( "Exception thrown", failure != null, is( true));
+    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
 
     String cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertEquals( "Cause", "Invalid -p option: must be name=value", cause);
+    assertThat( "Cause", cause, is( "Invalid -p option: must be name=value"));
     }
 
   /**
@@ -1004,7 +959,7 @@ public class TestTcasesCommand
     File testDefFile = getResourceFile( "run-transform-7-Test.xml");
     File outFilePath = testDefFile;
 
-    assertEquals( "Default output file exists", true, outFilePath.exists());
+    assertThat( "Default output file exists", outFilePath.exists(), is( true));
     
     String[] args =
       {
@@ -1014,16 +969,8 @@ public class TestTcasesCommand
         inFile.getPath()
       };
 
-    // When...
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      fail( "Expected exception not thrown");
-      }
-    // Then...
-    catch( Exception ignore)
-      {
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> TcasesCommand.run( new Options( args)));
     }
 
   /**
@@ -1075,11 +1022,11 @@ public class TestTcasesCommand
       }
 
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
-    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+    assertThat( "Exception thrown", failure != null, is( true));
+    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
 
     String cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertEquals( "Cause", "Can't specify multiple output transforms", cause);
+    assertThat( "Cause", cause, is( "Can't specify multiple output transforms"));
 
     // Given...
     args = new String[]
@@ -1101,11 +1048,11 @@ public class TestTcasesCommand
       }
 
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
-    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+    assertThat( "Exception thrown", failure != null, is( true));
+    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
 
     cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertEquals( "Cause", "Can't specify multiple output transforms", cause);
+    assertThat( "Cause", cause, is( "Can't specify multiple output transforms"));
 
     // Given...
     args = new String[]
@@ -1127,11 +1074,11 @@ public class TestTcasesCommand
       }
 
     // Then...
-    assertEquals( "Exception thrown", true, failure != null);
-    assertEquals( "Usage exception", true, failure.getMessage().startsWith( "Usage: "));
+    assertThat( "Exception thrown", failure != null, is( true));
+    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
 
     cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertEquals( "Cause", "Can't specify multiple output transforms", cause);
+    assertThat( "Cause", cause, is( "Can't specify multiple output transforms"));
     }
 
   /**
@@ -1176,7 +1123,7 @@ public class TestTcasesCommand
     TcasesCommand.run( new Options( args));
         
     // Then...
-    assertEquals( "Test def created", true, outFilePath.exists());
+    assertThat( "Test def created", outFilePath.exists(), is( true));
     }
 
       
@@ -1197,7 +1144,7 @@ public class TestTcasesCommand
     TcasesCommand.run( new Options( args));
         
     // Then...
-    assertEquals( "Test def created", true, outFilePath.exists());
+    assertThat( "Test def created", outFilePath.exists(), is( true));
     }
 
   @Test
@@ -1211,7 +1158,7 @@ public class TestTcasesCommand
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Test.xml");
-    assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
+    assertThat( "Test def generated", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
 
     // When...
     ByteArrayOutputStream testDefOut = new ByteArrayOutputStream();
@@ -1219,7 +1166,7 @@ public class TestTcasesCommand
 
     // Then...
     ByteArrayInputStream testDefString = new ByteArrayInputStream( testDefOut.toByteArray());
-    assertMatches( "Test def written", expectedTestDef, testResources_.read( testDefString), Matchers.systemTestDefMatcher);
+    assertThat( "Test def written", testResources_.read( testDefString), matches( new SystemTestDefMatcher( expectedTestDef)));
     }
 
   @Test
@@ -1234,7 +1181,7 @@ public class TestTcasesCommand
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Gen-Test.xml");
-    assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
+    assertThat( "Test def generated", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
     }
 
   @Test
@@ -1250,7 +1197,7 @@ public class TestTcasesCommand
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Regen-Test.xml");
-    assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
+    assertThat( "Test def generated", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
     }
 
   @Test
@@ -1264,7 +1211,7 @@ public class TestTcasesCommand
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "find-Test.xml");
-    assertMatches( "Test def generated", expectedTestDef, testDef, Matchers.systemTestDefMatcher);
+    assertThat( "Test def generated", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
     }
 
   /**
