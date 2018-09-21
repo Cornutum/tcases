@@ -533,7 +533,7 @@ public class TcasesCommand extends Tcases
         }
 
       throw
-        new RuntimeException
+        new IllegalArgumentException
         ( "Usage: "
           + Tcases.class.getSimpleName()
           + " [-v]"

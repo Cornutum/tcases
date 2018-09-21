@@ -8,7 +8,8 @@
 package org.cornutum.tcases;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 /**
  * Runs tests for {@link FunctionInputDef}.
@@ -30,25 +31,25 @@ public class TestFunctionInputDef
     var = functionInputDef.findVarPath( "X");
     
     // Then...
-    assertEquals( "Unknown start", null, var);
+    assertThat( "Unknown start", var, is( (Object) null));
 
     // When...
     var = functionInputDef.findVarPath( "A.B.D");
     
     // Then...
-    assertEquals( "Unknown middle", null, var);
+    assertThat( "Unknown middle", var, is( (Object) null));
 
     // When...
     var = functionInputDef.findVarPath( "A.B.C.D.E");
     
     // Then...
-    assertEquals( "Unknown end", null, var);
+    assertThat( "Unknown end", var, is( (Object) null));
 
     // When...
     var = functionInputDef.findVarPath( null);
     
     // Then...
-    assertEquals( "Null", null, var);
+    assertThat( "Null", var, is( (Object) null));
     }
 
   @Test
@@ -65,7 +66,7 @@ public class TestFunctionInputDef
     var = functionInputDef.findVarPath( "A.B.C.D");
     
     // Then...
-    assertEquals( "Descendant", "A.B.C.D", var.getPathName());
+    assertThat( "Descendant", var.getPathName(), is( "A.B.C.D"));
 
     // Given...
     functionInputDefBuilder.varDefAtPath( "X");
@@ -75,7 +76,7 @@ public class TestFunctionInputDef
     var = functionInputDef.findVarPath( "X");
     
     // Then...
-    assertEquals( "Top-level", "X", var.getPathName());
+    assertThat( "Top-level", var.getPathName(), is( "X"));
     }
 
   @Test
@@ -92,13 +93,13 @@ public class TestFunctionInputDef
     var = functionInputDef.findVarPath( "A.B.C");
     
     // Then...
-    assertEquals( "Descendant", "A.B.C", var.getPathName());
+    assertThat( "Descendant", var.getPathName(), is( "A.B.C"));
 
     // When...
     var = functionInputDef.findVarPath( "A");
     
     // Then...
-    assertEquals( "Top-level", "A", var.getPathName());
+    assertThat( "Top-level", var.getPathName(), is( "A"));
     }
   
   @Test
@@ -115,19 +116,19 @@ public class TestFunctionInputDef
     var = functionInputDef.findVarDefPath( "A");
     
     // Then...
-    assertEquals( "Top-level VarSet", null, var);
+    assertThat( "Top-level VarSet", var, is( (Object) null));
 
     // When...
     var = functionInputDef.findVarDefPath( "A.B.C");
     
     // Then...
-    assertEquals( "Ancestor VarSet", null, var);
+    assertThat( "Ancestor VarSet", var, is( (Object) null));
 
     // When...
     var = functionInputDef.findVarDefPath( "A.B.C.E");
     
     // Then...
-    assertEquals( "Unknown end", null, var);
+    assertThat( "Unknown end", var, is( (Object) null));
     }
 
   @Test
@@ -144,7 +145,7 @@ public class TestFunctionInputDef
     var = functionInputDef.findVarDefPath( "A.B.C.D");
     
     // Then...
-    assertEquals( "Descendant", "A.B.C.D", var.getPathName());
+    assertThat( "Descendant", var.getPathName(), is( "A.B.C.D"));
 
     // Given...
     functionInputDefBuilder.varDefAtPath( "X");
@@ -154,7 +155,7 @@ public class TestFunctionInputDef
     var = functionInputDef.findVarDefPath( "X");
     
     // Then...
-    assertEquals( "Top-level", true, var != null);
+    assertThat( "Top-level", var != null, is( true));
     }
 
   }

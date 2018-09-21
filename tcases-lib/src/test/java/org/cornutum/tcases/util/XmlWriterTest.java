@@ -5,7 +5,8 @@ import org.junit.Test;
 import java.io.StringWriter;
 
 import org.apache.commons.io.IOUtils;
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 public class XmlWriterTest
   {
@@ -13,14 +14,14 @@ public class XmlWriterTest
   @Test
   public void writeAttributeWithValue()
     {
-    assertEquals(" foo=\"\"", writeAttributeWithValue(""));
-    assertEquals(" foo=\"bar\"", writeAttributeWithValue("bar"));
-    assertEquals(" foo=\"&#9;\"", writeAttributeWithValue("\t"));
-    assertEquals(" foo=\"&lt;\"", writeAttributeWithValue("<"));
-    assertEquals(" foo=\"&amp;\"", writeAttributeWithValue("&"));
-    assertEquals(" foo=\"&quot;\"", writeAttributeWithValue("\""));
-    assertEquals(" foo=\"&#13;\"", writeAttributeWithValue("\r"));
-    assertEquals(" foo=\"あ\"", writeAttributeWithValue("あ"));
+    assertThat( writeAttributeWithValue(""), is(" foo=\"\""));
+    assertThat( writeAttributeWithValue("bar"), is(" foo=\"bar\""));
+    assertThat( writeAttributeWithValue("\t"), is(" foo=\"&#9;\""));
+    assertThat( writeAttributeWithValue("<"), is(" foo=\"&lt;\""));
+    assertThat( writeAttributeWithValue("&"), is(" foo=\"&amp;\""));
+    assertThat( writeAttributeWithValue("\""), is(" foo=\"&quot;\""));
+    assertThat( writeAttributeWithValue("\r"), is(" foo=\"&#13;\""));
+    assertThat( writeAttributeWithValue("あ"), is(" foo=\"あ\""));
     }
 
   private static String writeAttributeWithValue(String input)

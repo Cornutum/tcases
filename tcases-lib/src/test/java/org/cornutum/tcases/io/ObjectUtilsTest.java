@@ -1,8 +1,8 @@
 package org.cornutum.tcases.io;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.math.BigDecimal;
 
@@ -18,7 +18,7 @@ public class ObjectUtilsTest
     Object object = ObjectUtils.toObject( value);
     
     // Then...
-    assertEquals( "Null", null, object);
+    assertThat( "Null", object, is( (Object) null));
 
     // Given...
     value = "null";
@@ -27,7 +27,7 @@ public class ObjectUtilsTest
     object = ObjectUtils.toObject( value);
     
     // Then...
-    assertEquals( "Null", null, object);
+    assertThat( "Null", object, is( (Object) null));
     }
 
   @Test
@@ -40,7 +40,7 @@ public class ObjectUtilsTest
     Object object = ObjectUtils.toObject( value);
     
     // Then...
-    assertEquals( "String", value, object);
+    assertThat( "String", object, is( value));
     }
 
   @Test
@@ -53,7 +53,7 @@ public class ObjectUtilsTest
     Object object = ObjectUtils.toObject( value);
     
     // Then...
-    assertEquals( "Integer", Integer.MAX_VALUE, object);
+    assertThat( "Integer", object, is( Integer.MAX_VALUE));
     }
 
   @Test
@@ -66,7 +66,7 @@ public class ObjectUtilsTest
     Object object = ObjectUtils.toObject( value);
     
     // Then...
-    assertEquals( "Long", Long.MIN_VALUE, object);
+    assertThat( "Long", object, is( Long.MIN_VALUE));
     }
 
   @Test
@@ -80,7 +80,7 @@ public class ObjectUtilsTest
     Object object = ObjectUtils.toObject( value);
     
     // Then...
-    assertEquals( "Long", decimal, object);
+    assertThat( "Long", object, is( decimal));
     }
 
   @Test
@@ -93,7 +93,7 @@ public class ObjectUtilsTest
     Object object = ObjectUtils.toObject( value);
     
     // Then...
-    assertEquals( "Boolean", Boolean.TRUE, object);
+    assertThat( "Boolean", object, is( Boolean.TRUE));
 
     // Given...
     value = "false";
@@ -102,6 +102,6 @@ public class ObjectUtilsTest
     object = ObjectUtils.toObject( value);
     
     // Then...
-    assertEquals( "Boolean", Boolean.FALSE, object);
+    assertThat( "Boolean", object, is( Boolean.FALSE));
     }
   }

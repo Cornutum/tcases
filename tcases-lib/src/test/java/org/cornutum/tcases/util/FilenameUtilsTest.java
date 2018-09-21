@@ -2,8 +2,8 @@ package org.cornutum.tcases.util;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 public class FilenameUtilsTest
   {
@@ -11,26 +11,26 @@ public class FilenameUtilsTest
   @Test
   public void testGetBaseName()
     {
-    assertNull(FilenameUtils.getBaseName( null));
-    assertThat(FilenameUtils.getBaseName( ""), equalTo(""));
-    assertThat(FilenameUtils.getBaseName( "."), equalTo(""));
-    assertThat(FilenameUtils.getBaseName( "/"), equalTo(""));
-    assertThat(FilenameUtils.getBaseName( "\\"), equalTo(""));
+    assertThat( FilenameUtils.getBaseName( null), nullValue());
+    assertThat( FilenameUtils.getBaseName( ""), is(""));
+    assertThat( FilenameUtils.getBaseName( "."), is(""));
+    assertThat( FilenameUtils.getBaseName( "/"), is(""));
+    assertThat( FilenameUtils.getBaseName( "\\"), is(""));
 
-    assertThat(FilenameUtils.getBaseName( "foo"), equalTo("foo"));
-    assertThat(FilenameUtils.getBaseName( "foo."), equalTo("foo"));
-    assertThat(FilenameUtils.getBaseName( "/foo"), equalTo("foo"));
-    assertThat(FilenameUtils.getBaseName( "\\foo"), equalTo("foo"));
+    assertThat( FilenameUtils.getBaseName( "foo"), is("foo"));
+    assertThat( FilenameUtils.getBaseName( "foo."), is("foo"));
+    assertThat( FilenameUtils.getBaseName( "/foo"), is("foo"));
+    assertThat( FilenameUtils.getBaseName( "\\foo"), is("foo"));
 
-    assertThat(FilenameUtils.getBaseName( "bim.bam/foo"), equalTo("foo"));
-    assertThat(FilenameUtils.getBaseName( "bim.bam\\foo"), equalTo("foo"));
+    assertThat( FilenameUtils.getBaseName( "bim.bam/foo"), is("foo"));
+    assertThat( FilenameUtils.getBaseName( "bim.bam\\foo"), is("foo"));
 
-    assertThat(FilenameUtils.getBaseName( "foo.bar.txt"), equalTo("foo.bar"));
-    assertThat(FilenameUtils.getBaseName( ".foo.bar.txt"), equalTo(".foo.bar"));
-    assertThat(FilenameUtils.getBaseName( "/foo.bar.txt"), equalTo("foo.bar"));
-    assertThat(FilenameUtils.getBaseName( "\\foo.bar.txt"), equalTo("foo.bar"));
+    assertThat( FilenameUtils.getBaseName( "foo.bar.txt"), is("foo.bar"));
+    assertThat( FilenameUtils.getBaseName( ".foo.bar.txt"), is(".foo.bar"));
+    assertThat( FilenameUtils.getBaseName( "/foo.bar.txt"), is("foo.bar"));
+    assertThat( FilenameUtils.getBaseName( "\\foo.bar.txt"), is("foo.bar"));
 
-    assertThat(FilenameUtils.getBaseName( "bim.bam/foo.bar.txt"), equalTo("foo.bar"));
-    assertThat(FilenameUtils.getBaseName( "bim.bam\\foo.bar.txt"), equalTo("foo.bar"));
+    assertThat( FilenameUtils.getBaseName( "bim.bam/foo.bar.txt"), is("foo.bar"));
+    assertThat( FilenameUtils.getBaseName( "bim.bam\\foo.bar.txt"), is("foo.bar"));
     }
   }

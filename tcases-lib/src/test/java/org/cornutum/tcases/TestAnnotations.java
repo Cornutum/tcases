@@ -9,10 +9,11 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.io.SystemInputResources;
 import org.cornutum.tcases.io.SystemTestResources;
-import static org.cornutum.tcases.util.Asserts.*;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.io.File;
 import java.net.URL;
@@ -60,95 +61,95 @@ public class TestAnnotations
       expectedAnnotations
       ( new String[]{ "AS0", "VS0"},
         new String[]{ "AS1", "VS1"});
-    assertSetEquals( "System annotations", sysAnnotations, getAnnotations( testDef));
+    assertThat( "System annotations", getAnnotations( testDef), containsMembers( sysAnnotations));
     
     FunctionTestDef f1 = testDef.getFunctionTestDef( "F1");
-    assertEquals( "F1 defined", true, f1 != null);
+    assertThat( "F1 defined", f1 != null, is( true));
 
     Collection<Entry<String,String>> f1Annotations =
       expectedAnnotations
       ( new String[]{ "AF1", "VF1"},
         new String[]{ "AS0", "VF0"},
         new String[]{ "AS1", "VS1"});
-    assertSetEquals( "F1, annotations", f1Annotations, getAnnotations( f1));
+    assertThat( "F1, annotations", getAnnotations( f1), containsMembers( f1Annotations));
 
     TestCase f1_tc0 = f1.getTestCase(0);
-    assertEquals( "F1, test=0 defined", true, f1_tc0 != null);
-    assertSetEquals( "F1, test=0 annotations", f1Annotations, getAnnotations( f1_tc0));
+    assertThat( "F1, test=0 defined", f1_tc0 != null, is( true));
+    assertThat( "F1, test=0 annotations", getAnnotations( f1_tc0), containsMembers( f1Annotations));
 
     VarBinding v1 = f1_tc0.getVarBinding( "Var-1");
-    assertEquals( "Var-1 defined ", true, v1 != null);
+    assertThat( "Var-1 defined ", v1 != null, is( true));
     Collection<Entry<String,String>> v1Annotations =
       expectedAnnotations
       ( new String[]{ "AL1", "VL1"},
         new String[]{ "AT0", "VT0"},
         new String[]{ "AT1", "VV1"},
         new String[]{ "AV0", "VL0"});
-    assertSetEquals( "Var-1 annotations", v1Annotations, getAnnotations( v1));
+    assertThat( "Var-1 annotations", getAnnotations( v1), containsMembers( v1Annotations));
 
     VarBinding v2 = f1_tc0.getVarBinding( "Var-2");
-    assertEquals( "Var-2 defined ", true, v2 != null);
+    assertThat( "Var-2 defined ", v2 != null, is( true));
     Collection<Entry<String,String>> v2Annotations =
       expectedAnnotations
       ( new String[]{ "AT0", "VT0"},
         new String[]{ "AT1", "VT1"});
-    assertSetEquals( "Var-2 annotations", v2Annotations, getAnnotations( v2));
+    assertThat( "Var-2 annotations", getAnnotations( v2), containsMembers( v2Annotations));
 
     VarBinding v3 = f1_tc0.getVarBinding( "Var-3");
-    assertEquals( "Var-3 defined ", true, v3 != null);
+    assertThat( "Var-3 defined ", v3 != null, is( true));
     Collection<Entry<String,String>> v3Annotations = expectedAnnotations();
-    assertSetEquals( "Var-3 annotations", v3Annotations, getAnnotations( v3));
+    assertThat( "Var-3 annotations", getAnnotations( v3), containsMembers( v3Annotations));
     
     TestCase f1_tc1 = f1.getTestCase(1);
-    assertEquals( "F1, test=1 defined", true, f1_tc1 != null);
+    assertThat( "F1, test=1 defined", f1_tc1 != null, is( true));
     Collection<Entry<String,String>> f1tc1Annotations = expectedAnnotations( f1Annotations, new String[]{ Annotated.TEST_CASE_PROPERTIES, "property-1-2"});
-    assertSetEquals( "F1, test=1 annotations", f1tc1Annotations, getAnnotations( f1_tc1));
+    assertThat( "F1, test=1 annotations", getAnnotations( f1_tc1), containsMembers( f1tc1Annotations));
 
     v1 = f1_tc1.getVarBinding( "Var-1");
-    assertEquals( "Var-1 defined ", true, v1 != null);
+    assertThat( "Var-1 defined ", v1 != null, is( true));
     v1Annotations =
       expectedAnnotations
       ( new String[]{ "AT0", "VT0"},
         new String[]{ "AT1", "VV1"},
         new String[]{ "AV0", "VV0"});
-    assertSetEquals( "Var-1 annotations", v1Annotations, getAnnotations( v1));
+    assertThat( "Var-1 annotations", getAnnotations( v1), containsMembers( v1Annotations));
 
     v2 = f1_tc1.getVarBinding( "Var-2");
-    assertEquals( "Var-2 defined ", true, v2 != null);
+    assertThat( "Var-2 defined ", v2 != null, is( true));
     v2Annotations =
       expectedAnnotations
       ( new String[]{ "AT0", "VT0"},
         new String[]{ "AT1", "VT1"});
-    assertSetEquals( "Var-2 annotations", v2Annotations, getAnnotations( v2));
+    assertThat( "Var-2 annotations", getAnnotations( v2), containsMembers( v2Annotations));
 
     v3 = f1_tc1.getVarBinding( "Var-3");
-    assertEquals( "Var-3 defined ", true, v3 != null);
+    assertThat( "Var-3 defined ", v3 != null, is( true));
     v3Annotations = expectedAnnotations();
-    assertSetEquals( "Var-3 annotations", v3Annotations, getAnnotations( v3));
+    assertThat( "Var-3 annotations", getAnnotations( v3), containsMembers( v3Annotations));
     
     FunctionTestDef f2 = testDef.getFunctionTestDef( "F2");
-    assertEquals( "F2 defined", true, f2 != null);
+    assertThat( "F2 defined", f2 != null, is( true));
     Collection<Entry<String,String>> f2Annotations = expectedAnnotations( sysAnnotations, new String[]{ Annotated.TEST_CASE_PROPERTIES, "functionProperties"});
-    assertSetEquals( "F2 annotations", f2Annotations, getAnnotations( f2));
+    assertThat( "F2 annotations", getAnnotations( f2), containsMembers( f2Annotations));
 
     TestCase f2_tc0 = f2.getTestCase(0);
-    assertEquals( "F2, test=0 defined", true, f2_tc0 != null);
+    assertThat( "F2, test=0 defined", f2_tc0 != null, is( true));
     Collection<Entry<String,String>> f2tc0Annotations = expectedAnnotations( sysAnnotations, new String[]{ Annotated.TEST_CASE_PROPERTIES, "Alpha,Bravo,charlie,Delta,easy"});
-    assertSetEquals( "F2, test=0 annotations", f2tc0Annotations, getAnnotations( f2_tc0));
+    assertThat( "F2, test=0 annotations", getAnnotations( f2_tc0), containsMembers( f2tc0Annotations));
 
     v1 = f2_tc0.getVarBinding( "VarSet-3.Var-1");
-    assertEquals( "VarSet-3.Var-1 defined ", true, v1 != null);
+    assertThat( "VarSet-3.Var-1 defined ", v1 != null, is( true));
     v1Annotations =
       expectedAnnotations
       ( new String[]{ "AT3", "VT3"},
         new String[]{ "AT4", "VVS4"},
         new String[]{ "AVS3", "VVS3"});
-    assertSetEquals( "VarSet-3.Var-1 annotations", v1Annotations, getAnnotations( v1));
+    assertThat( "VarSet-3.Var-1 annotations", getAnnotations( v1), containsMembers( v1Annotations));
 
     v2 = f2_tc0.getVarBinding( "Var-2");
-    assertEquals( "Var-2 defined ", true, v2 != null);
+    assertThat( "Var-2 defined ", v2 != null, is( true));
     v2Annotations = expectedAnnotations();
-    assertSetEquals( "Var-2 annotations", v2Annotations, getAnnotations( v2));
+    assertThat( "Var-2 annotations", getAnnotations( v2), containsMembers( v2Annotations));
     }
 
   /**

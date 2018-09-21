@@ -5,11 +5,12 @@ import org.apache.maven.plugin.testing.MojoRule;
 import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
-
 import org.cornutum.tcases.TcasesCommand;
 import org.junit.Rule;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.io.File;
 import java.util.Arrays;
@@ -32,17 +33,17 @@ public class ReducerMojoTest
 
     // Then...
     File expectedInputDir = new File( baseDirTest, "src/test/tcases");
-    assertEquals( "Input dir", expectedInputDir, reducerMojo.getInputDirFile());
+    assertThat( "Input dir", reducerMojo.getInputDirFile(), is( expectedInputDir));
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/*-Input.xml");
-    assertEquals( "Input defs", 1, expectedInputDefs.length);
+    assertThat( "Input defs", expectedInputDefs.length, is( 1));
 
     String[] expectedGenDefs = findPathsMatching( expectedInputDir, "**/*-Generators.xml");
-    assertEquals( "Gen defs", 1, expectedGenDefs.length);
+    assertThat( "Gen defs", expectedGenDefs.length, is( 1));
 
     File expectedInputDef = new File( expectedInputDefs[0]);
     File expectedGenDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "-Generators.xml");
-    assertEquals( "Gen def", expectedGenDef.getPath(), expectedGenDefs[0]);
+    assertThat( "Gen def", expectedGenDefs[0], is( expectedGenDef.getPath()));
     }
   
   //@Test
@@ -58,16 +59,16 @@ public class ReducerMojoTest
 
     // Then...
     File expectedInputDir = new File( baseDirTest, "custom");
-    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
+    assertThat( "Input dir", tcasesMojo.getInputDirFile(), is( expectedInputDir));
 
     File expectedOutDir = new File( baseDirTest, "target/custom");
-    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
+    assertThat( "Out dir", tcasesMojo.getOutDirFile(), is( expectedOutDir));
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/Input.xml", "**/InputModel");
-    assertEquals( "Input defs", 2, expectedInputDefs.length);
+    assertThat( "Input defs", expectedInputDefs.length, is( 2));
 
     String[] expectedTestDefs = findPathsMatching( expectedOutDir, "**/*");
-    assertEquals( "Test defs", 2, expectedTestDefs.length);
+    assertThat( "Test defs", expectedTestDefs.length, is( 2));
     }
   
   /**
@@ -113,16 +114,16 @@ public class ReducerMojoTest
 
     // Then...
     File expectedInputDir = new File( baseDirTest, "tcases/input");
-    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
+    assertThat( "Input dir", tcasesMojo.getInputDirFile(), is( expectedInputDir));
 
     File expectedOutDir = new File( baseDirTest, "target/tcases/output");
-    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
+    assertThat( "Out dir", tcasesMojo.getOutDirFile(), is( expectedOutDir));
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "Input.xml", "*/The*Input.xml", "**/Other.xml");
-    assertEquals( "Input defs", 3, expectedInputDefs.length);
+    assertThat( "Input defs", expectedInputDefs.length, is( 3));
 
     String[] expectedTestDefs = findPathsMatching( expectedOutDir, "**/*");
-    assertEquals( "Test defs", 3, expectedTestDefs.length);
+    assertThat( "Test defs", expectedTestDefs.length, is( 3));
     }
 
   /**
@@ -168,20 +169,20 @@ public class ReducerMojoTest
 
     // Then...
     File expectedInputDir = new File( baseDirTest, "src/test/tcases");
-    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
+    assertThat( "Input dir", tcasesMojo.getInputDirFile(), is( expectedInputDir));
 
     File expectedOutDir = new File( baseDirTest, "target/tcases");
-    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
+    assertThat( "Out dir", tcasesMojo.getOutDirFile(), is( expectedOutDir));
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/*-Input.xml");
-    assertEquals( "Input defs", 1, expectedInputDefs.length);
+    assertThat( "Input defs", expectedInputDefs.length, is( 1));
 
     String[] expectedTestDefs = findPathsMatching( expectedOutDir, "**/*");
-    assertEquals( "Test defs", 1, expectedTestDefs.length);
+    assertThat( "Test defs", expectedTestDefs.length, is( 1));
 
     File expectedInputDef = new File( expectedInputDefs[0]);
     File expectedTestDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "Test.java");
-    assertEquals( "Test def", expectedTestDef.getPath(), expectedTestDefs[0]);
+    assertThat( "Test def", expectedTestDefs[0], is( expectedTestDef.getPath()));
     }
 
   /**
@@ -227,16 +228,16 @@ public class ReducerMojoTest
 
     // Then...
     File expectedInputDir = new File( baseDirTest, "src/test/tcases");
-    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
+    assertThat( "Input dir", tcasesMojo.getInputDirFile(), is( expectedInputDir));
 
     File expectedOutDir = new File( baseDirTest, "target/tcases");
-    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
+    assertThat( "Out dir", tcasesMojo.getOutDirFile(), is( expectedOutDir));
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/Project-*-Inputs.xml");
-    assertEquals( "Input defs", 3, expectedInputDefs.length);
+    assertThat( "Input defs", expectedInputDefs.length, is( 3));
 
     String[] expectedTestDefs = findPathsMatching( expectedOutDir, "**/*");
-    assertEquals( "Test defs", 3, expectedTestDefs.length);
+    assertThat( "Test defs", expectedTestDefs.length, is( 3));
 
     Arrays.sort( expectedInputDefs);
     Arrays.sort( expectedTestDefs);
@@ -244,7 +245,7 @@ public class ReducerMojoTest
       {
       File expectedInputDef = new File( expectedInputDefs[i]);
       File expectedTestDef = new File( expectedInputDef.getParent(), "Tests-For-" + TcasesCommand.getProjectName( expectedInputDef) + ".xml");
-      assertEquals( "Test def", expectedTestDef.getPath(), expectedTestDefs[i]);
+      assertThat( "Test def", expectedTestDefs[i], is( expectedTestDef.getPath()));
       }
     }
 
@@ -291,12 +292,12 @@ public class ReducerMojoTest
 
     // Then...
     File expectedInputDir = new File( baseDirTest, "src/test/tcases");
-    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
+    assertThat( "Input dir", tcasesMojo.getInputDirFile(), is( expectedInputDir));
 
     File expectedOutDir = new File( baseDirTest, "target/tcases");
-    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
+    assertThat( "Out dir", tcasesMojo.getOutDirFile(), is( expectedOutDir));
 
-    assertEquals( "Out dir created", false, expectedOutDir.exists());
+    assertThat( "Out dir created", expectedOutDir.exists(), is( false));
     }
 
   /**
@@ -342,20 +343,20 @@ public class ReducerMojoTest
 
     // Then...
     File expectedInputDir = new File( baseDirTest, "src/test/tcases");
-    assertEquals( "Input dir", expectedInputDir, tcasesMojo.getInputDirFile());
+    assertThat( "Input dir", tcasesMojo.getInputDirFile(), is( expectedInputDir));
 
     File expectedOutDir = new File( baseDirTest, "target/tcases");
-    assertEquals( "Out dir", expectedOutDir, tcasesMojo.getOutDirFile());
+    assertThat( "Out dir", tcasesMojo.getOutDirFile(), is( expectedOutDir));
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/*-Input.xml");
-    assertEquals( "Input defs", 1, expectedInputDefs.length);
+    assertThat( "Input defs", expectedInputDefs.length, is( 1));
 
     String[] expectedTestDefs = findPathsMatching( expectedOutDir, "**/*");
-    assertEquals( "Test defs", 1, expectedTestDefs.length);
+    assertThat( "Test defs", expectedTestDefs.length, is( 1));
 
     File expectedInputDef = new File( expectedInputDefs[0]);
     File expectedTestDef = new File( expectedInputDef.getParent(), "TestCases.xml");
-    assertEquals( "Test def", expectedTestDef.getPath(), expectedTestDefs[0]);
+    assertThat( "Test def", expectedTestDefs[0], is( expectedTestDef.getPath()));
     }
 
   /**
@@ -377,21 +378,8 @@ public class ReducerMojoTest
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
     tcasesMojo.setTestDef( "*-Test-*.xml");
 
-    
-    // When...
-    try
-      {
-      tcasesMojo.execute();
-      fail( "Expected failure missing");
-      }
-    // Then...
-    catch( MojoExecutionException expected)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected failure", e);
-      }
+    expectFailure( MojoExecutionException.class)
+      .when( () -> tcasesMojo.execute());
     }
 
   /**
@@ -413,21 +401,8 @@ public class ReducerMojoTest
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
     tcasesMojo.setTransformDef( "Transform.xsl");
 
-    
-    // When...
-    try
-      {
-      tcasesMojo.execute();
-      fail( "Expected failure missing");
-      }
-    // Then...
-    catch( MojoExecutionException expected)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected failure", e);
-      }
+    expectFailure( MojoExecutionException.class)
+      .when( () -> tcasesMojo.execute());
     }
   
   /**

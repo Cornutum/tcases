@@ -8,26 +8,26 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.util.Asserts.Matcher;
-import static org.cornutum.tcases.util.Asserts.*;
-
-import static org.junit.Assert.*;
+import org.cornutum.hamcrest.BaseCompositeMatcher;
+import org.hamcrest.Matchers;
 
 /**
- * A {@link Matcher} for {@link IVarDef} objects.
+ * A composite matcher for {@link IVarDef} objects.
  */
-public class VarDefMatcher implements Matcher<IVarDef>
+public class VarDefMatcher extends BaseCompositeMatcher<IVarDef>
   {
   /**
-   * Reports a failure if the expected object does not match the actual object.
+   * Creates a new VarDefMatcher instance.
    */
-  public void assertEqual( String label, IVarDef expected, IVarDef actual)
+  public VarDefMatcher( IVarDef expected)
     {
-    assertEquals( label + ", name", expected.getName(), actual.getName());
-    assertEquals( label + ", var=" + expected.getName() + ", type", expected.getType(), actual.getType());
-    assertEquals( label + ", var=" + expected.getName() + ", condition", expected.getCondition(), actual.getCondition());
-    assertSetEquals( label + ", var=" + expected.getName() + ", values", expected.getValues(), actual.getValues(), Matchers.varValueDefMatcher);
-    assertSetEquals( label + ", var=" + expected.getName() + ", members", expected.getMembers(), actual.getMembers(), Matchers.varDefMatcher);
-    assertMatches( label + ", var=" + expected.getName(), expected, actual, Matchers.annotatedMatcher);
+    super( expected);
+
+    expectThat( valueOf( "name", IVarDef::getName).matches( Matchers::equalTo));
+    expectThat( valueOf( "type", IVarDef::getType).matches( Matchers::equalTo));
+    expectThat( valueOf( "condition", IVarDef::getCondition).matches( Matchers::equalTo));
+    expectThat( valueOf( "values", IVarDef::getValues).matches( visitsMembersMatching( VarValueDefMatcher::new)));
+    expectThat( valueOf( "members", IVarDef::getMembers).matches( visitsMembersMatching( VarDefMatcher::new)));
+    expectThat( matches( AnnotatedMatcher::new));
     }
   }

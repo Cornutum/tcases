@@ -11,11 +11,12 @@ import org.cornutum.tcases.ReducerCommand.Options;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.junit.Test;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -77,15 +78,15 @@ public class TestReducerCommand
     IGeneratorSet generators = getGenerators( genFile);
 
     TupleGenerator gen = getDefaultTupleGenerator( generators);
-    assertEquals( "Default, generator defined", false, gen != null);
+    assertThat( "Default, generator defined", gen != null, is( false));
 
     TupleGenerator gen1 = getTupleGenerator( generators, function1);
-    assertEquals( function1 + ", generator defined", true, gen1 != null);
-    assertEquals( function1 + ", seed defined", false, gen1.getRandomSeed() != null);
+    assertThat( function1 + ", generator defined", gen1 != null, is( true));
+    assertThat( function1 + ", seed defined", gen1.getRandomSeed() != null, is( false));
 
     TupleGenerator gen2 = getTupleGenerator( generators, function2);
-    assertEquals( function2 + ", generator defined", true, gen2 != null);
-    assertEquals( function2 + ", seed defined", true, gen2.getRandomSeed() != null);
+    assertThat( function2 + ", generator defined", gen2 != null, is( true));
+    assertThat( function2 + ", seed defined", gen2.getRandomSeed() != null, is( true));
     }
 
   /**
@@ -131,19 +132,19 @@ public class TestReducerCommand
     IGeneratorSet generators = getGenerators( genFile);
 
     TupleGenerator gen = getDefaultTupleGenerator( generators);
-    assertEquals( "Default, generator defined", true, gen != null);
-    assertEquals( "Default, seed defined", false, gen.getRandomSeed() != null);
+    assertThat( "Default, generator defined", gen != null, is( true));
+    assertThat( "Default, seed defined", gen.getRandomSeed() != null, is( false));
 
     String function1 = "find-1";
     String function2 = "find-2";
 
     TupleGenerator gen1 = getTupleGenerator( generators, function1);
-    assertEquals( function1 + ", generator defined", true, gen1 != null);
-    assertEquals( function1 + ", seed defined", true, gen1.getRandomSeed() != null);
+    assertThat( function1 + ", generator defined", gen1 != null, is( true));
+    assertThat( function1 + ", seed defined", gen1.getRandomSeed() != null, is( true));
 
     TupleGenerator gen2 = getTupleGenerator( generators, function2);
-    assertEquals( function2 + ", generator defined", true, gen2 != null);
-    assertEquals( function2 + ", seed defined", true, gen2.getRandomSeed() != null);
+    assertThat( function2 + ", generator defined", gen2 != null, is( true));
+    assertThat( function2 + ", seed defined", gen2.getRandomSeed() != null, is( true));
     }
 
   /**
@@ -192,19 +193,19 @@ public class TestReducerCommand
     IGeneratorSet generators = getGenerators( genFile);
 
     TupleGenerator gen = getDefaultTupleGenerator( generators);
-    assertEquals( "Default, generator defined", true, gen != null);
-    assertEquals( "Default, seed defined", false, gen.getRandomSeed() != null);
+    assertThat( "Default, generator defined", gen != null, is( true));
+    assertThat( "Default, seed defined", gen.getRandomSeed() != null, is( false));
 
     String function1 = "find-1";
     String function2 = "find-2";
 
     TupleGenerator gen1 = getTupleGenerator( generators, function1);
-    assertEquals( function1 + ", generator defined", true, gen1 != null);
-    assertEquals( function1 + ", seed defined", true, gen1.getRandomSeed() != null);
+    assertThat( function1 + ", generator defined", gen1 != null, is( true));
+    assertThat( function1 + ", seed defined", gen1.getRandomSeed() != null, is( true));
 
     TupleGenerator gen2 = getTupleGenerator( generators, function2);
-    assertEquals( function2 + ", generator defined", true, gen2 != null);
-    assertEquals( function2 + ", seed defined", true, gen2.getRandomSeed() != null);
+    assertThat( function2 + ", generator defined", gen2 != null, is( true));
+    assertThat( function2 + ", seed defined", gen2.getRandomSeed() != null, is( true));
     }
 
   /**
@@ -247,21 +248,9 @@ public class TestReducerCommand
         inFile.getPath()
       };
     
-    // When...
-    ReducerCommand reducer = new ReducerCommand();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "Can't read test definition file=" + testFile, expected.getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> new ReducerCommand().run( new Options( args)))
+      .then( failure -> assertThat( "Expected failure", failure.getMessage(), is( "Can't read test definition file=" + testFile)));
     }
 
   /**
@@ -312,15 +301,15 @@ public class TestReducerCommand
     IGeneratorSet generators = getGenerators( genFile);
 
     TupleGenerator gen = getDefaultTupleGenerator( generators);
-    assertEquals( "Default, generator defined", true, gen != null);
-    assertEquals( "Default, seed defined", false, gen.getRandomSeed() != null);
+    assertThat( "Default, generator defined", gen != null, is( true));
+    assertThat( "Default, seed defined", gen.getRandomSeed() != null, is( false));
 
     TupleGenerator gen1 = getTupleGenerator( generators, function1);
-    assertEquals( function1 + ", generator defined", true, gen1 != null);
-    assertEquals( function1 + ", seed defined", true, gen1.getRandomSeed() != null);
+    assertThat( function1 + ", generator defined", gen1 != null, is( true));
+    assertThat( function1 + ", seed defined", gen1.getRandomSeed() != null, is( true));
 
     TupleGenerator gen2 = getTupleGenerator( generators, function2);
-    assertEquals( function2 + ", generator defined", false, gen2 != null);
+    assertThat( function2 + ", generator defined", gen2 != null, is( false));
     }
 
   /**
@@ -360,21 +349,9 @@ public class TestReducerCommand
         new File( inFile.getParentFile(), "Reducer-whenGeneratorsNew").getPath()
       };
     
-    // When...
-    ReducerCommand reducer = new ReducerCommand();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "Invalid resample factor", expected.getCause().getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> new ReducerCommand().run( new Options( args)))
+      .then( failure -> assertThat( "Expected failure", failure.getCause().getMessage(), is( "Invalid resample factor")));
     }
 
   /**
@@ -414,25 +391,15 @@ public class TestReducerCommand
         new File( inFile.getParentFile(), "Reducer-whenGeneratorsNew").getPath()
       };
     
-    // When...
-    ReducerCommand reducer = new ReducerCommand();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "Invalid resample factor", expected.getCause().getMessage());
+    expectFailure( RuntimeException.class)
+      .when( () -> new ReducerCommand().run( new Options( args)))
+      .then( failure -> {
+        assertThat( "Expected failure", failure.getCause().getMessage(), is( "Invalid resample factor"));
 
-      Throwable cause = expected.getCause().getCause();
-      assertEquals( "Expected cause", IllegalArgumentException.class, cause == null? null : cause.getClass());
-      assertEquals( "Expected cause", "Resample factor must be >= -1.0", cause.getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
+        Throwable cause = failure.getCause().getCause();
+        assertThat( "Expected cause", cause == null? null : cause.getClass(), equalTo( IllegalArgumentException.class));
+        assertThat( "Expected cause", cause.getMessage(), is( "Resample factor must be >= -1.0"));
+        });
     }
 
   /**
@@ -474,21 +441,9 @@ public class TestReducerCommand
         inFile.getPath()
       };
     
-    // When...
-    ReducerCommand reducer = new ReducerCommand();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "Invalid sample count", expected.getCause().getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> new ReducerCommand().run( new Options( args)))
+      .then( failure -> assertThat( "Expected failure", failure.getCause().getMessage(), is( "Invalid sample count")));
     }
 
   /**
@@ -531,21 +486,9 @@ public class TestReducerCommand
         inFile.getPath()
       };
     
-    // When...
-    ReducerCommand reducer = new ReducerCommand();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "Function=" + function3 + " is not defined", expected.getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> new ReducerCommand().run( new Options( args)))
+      .then( failure -> assertThat( "Expected failure", failure.getMessage(), is( "Function=" + function3 + " is not defined")));
     }
 
   /**
@@ -582,21 +525,9 @@ public class TestReducerCommand
         inFile.getPath()
       };
     
-    // When...
-    ReducerCommand reducer = new ReducerCommand();
-    try
-      {
-      reducer.run( new Options( args));
-      fail( "No expected failure");
-      }
-    catch( RuntimeException expected)
-      {
-      assertEquals( "Expected failure", "Can't locate input file for path=" + inFile, expected.getMessage());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unxepected exception", e);
-      }
+    expectFailure( RuntimeException.class)
+      .when( () -> new ReducerCommand().run( new Options( args)))
+      .then( failure -> assertThat( "Expected failure", failure.getMessage(), is( "Can't locate input file for path=" + inFile)));
     }
   /**
    * Tests {@link ReducerCommand#run run()} using the following inputs.
@@ -643,7 +574,7 @@ public class TestReducerCommand
         
     // Then...
     File genFile = getResourceFile( "Reducer-whenBaseTests-Generators.xml");
-    assertEquals( "Generator file created", false, genFile.exists());
+    assertThat( "Generator file created", genFile.exists(), is( false));
     }
 
   /**

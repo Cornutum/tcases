@@ -11,10 +11,13 @@ import org.cornutum.tcases.VarBindingDef;
 import org.cornutum.tcases.VarDef;
 import org.cornutum.tcases.VarValueDef;
 import org.cornutum.tcases.conditions.*;
-import org.cornutum.tcases.util.Asserts;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +76,7 @@ public class TestTupleIterator
           new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSeqEquals( "Tuples", expectedTuples, tuples);
+    assertThat( "Tuples", tuples, visitsList( expectedTuples));
     }
   
   @Test
@@ -151,7 +154,7 @@ public class TestTupleIterator
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSeqEquals( "Tuples", expectedTuples, tuples);
+    assertThat( "Tuples", tuples, visitsList( expectedTuples));
     }
   
   @Test
@@ -221,7 +224,7 @@ public class TestTupleIterator
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSeqEquals( "Tuples", expectedTuples, tuples);
+    assertThat( "Tuples", tuples, visitsList( expectedTuples));
     }
   
   @Test
@@ -300,7 +303,7 @@ public class TestTupleIterator
         ( new VarBindingDef( var2, value22),
           new VarBindingDef( var3, value32)));
 
-    Asserts.assertSetEquals( "Tuples", expectedTuples, tuples);
+    assertThat( "Tuples", tuples, visitsMembers( expectedTuples));
     }
 
   @Test
@@ -311,21 +314,11 @@ public class TestTupleIterator
     varDefs.add( new VarDef( "var-1").addValue( new VarValueDef( "value-1-1")));
     varDefs.add( new VarDef( "var-2").addValue( new VarValueDef( "value-2-1")));
     
-    // When...
-    try
-      {
-      TupleIterator tuples = new TupleIterator( 0, varDefs);
-      fail( "Unexpected TupleIterator=" + tuples);
-      }
-
-    // Then...
-    catch( IllegalArgumentException iae)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected exception", e);
-      }
+    expectFailure( IllegalArgumentException.class)
+      .when( () -> new TupleIterator( 0, varDefs))
+      .then( failure -> {
+        assertThat( "Failure message", failure.getMessage(), is( "Can't create 0-tuples for a list of size=2"));
+        });
     }
 
   @Test
@@ -336,21 +329,11 @@ public class TestTupleIterator
     varDefs.add( new VarDef( "var-1").addValue( new VarValueDef( "value-1-1")));
     varDefs.add( new VarDef( "var-2").addValue( new VarValueDef( "value-2-1")));
     
-    // When...
-    try
-      {
-      TupleIterator tuples = new TupleIterator( 3, varDefs);
-      fail( "Unexpected TupleIterator=" + tuples);
-      }
-
-    // Then...
-    catch( IllegalArgumentException iae)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected exception", e);
-      }
+    expectFailure( IllegalArgumentException.class)
+      .when( () -> new TupleIterator( 3, varDefs))
+      .then( failure -> {
+        assertThat( "Failure message", failure.getMessage(), is( "Can't create 3-tuples for a list of size=2"));
+        });
     }
 
   @Test
@@ -360,22 +343,12 @@ public class TestTupleIterator
     List<VarDef> varDefs = new ArrayList<VarDef>();
     varDefs.add( new VarDef( "var-1").addValue( new VarValueDef( "value-1-1")));
     varDefs.add( new VarDef( "var-2").addValue( new VarValueDef( "value-2-1", VarValueDef.Type.FAILURE)));
-    
-    // When...
-    try
-      {
-      TupleIterator tuples = new TupleIterator( 2, varDefs);
-      Asserts.assertSeqEquals( "Tuples", (List<Tuple>)null, tuples);
-      }
 
-    // Then...
-    catch( IllegalStateException ise)
-      {
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Unexpected exception", e);
-      }
+    expectFailure( IllegalStateException.class)
+      .when( () -> toStream( new TupleIterator( 2, varDefs)).count())
+      .then( failure -> {
+        assertThat( "Failure message", failure.getMessage(), is( "Can't complete tuples -- no valid values defined for var=VarDef[var-2]"));
+        });
     }
   }
 
