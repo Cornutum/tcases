@@ -2,10 +2,8 @@
 
 ## What's New? ##
 
-  * The latest version (Tcases 2.1.1) is now available at the Maven Central Repository. See [HowToDownload](HowToDownload.md) for download instructions. 
-
-  * This release is a quick patch for [Tcases 2.1.0](ReleaseNotes.md#210) to ensure that the `tcases-reducer` command correctly uses the new
-    `ReducerCommand` class.
+  * The latest version ([Tcases 2.1.2](ReleaseNotes.md#212)) is now available at the Maven Central Repository.
+    See [HowToDownload](HowToDownload.md) for download instructions. 
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
