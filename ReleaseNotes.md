@@ -1,5 +1,12 @@
 # Release Notes #
 
+## 2.1.2 ##
+
+Minor improvements, including some documentation touch-ups and some refactoring using functional expressions to simplify and clarify the code.
+
+The most extensive change: reworking all tests using Hamcrest matchers to clarify all assertions. This became doable after the recent release
+of [`hamcrest-composites`](https://github.com/Cornutum/hamcrest-composites), which provides new matchers for comparing complex Java objects with better testability.
+
 ## 2.1.1 ##
 
 This release is a quick patch for [Tcases 2.1.0](#210) to ensure that the `tcases-reducer` command correctly uses the new `ReducerCommand` class.
