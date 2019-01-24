@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.io;
 
-import org.cornutum.tcases.util.IOUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
