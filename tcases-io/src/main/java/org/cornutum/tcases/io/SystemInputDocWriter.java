@@ -9,7 +9,7 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
-import org.cornutum.tcases.util.XmlWriter;
+
 import static org.cornutum.tcases.VarValueDef.Type.*;
 import static org.cornutum.tcases.io.SystemInputDoc.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;

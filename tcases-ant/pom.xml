@@ -112,7 +112,7 @@
 
     <dependency>
       <groupId>org.cornutum.tcases</groupId>
-      <artifactId>tcases-lib</artifactId>
+      <artifactId>tcases-cli</artifactId>
       <version>${project.version}</version>
     </dependency>
 

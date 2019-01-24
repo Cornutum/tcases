@@ -112,6 +112,11 @@
                 <autoReleaseAfterClose>true</autoReleaseAfterClose>
             </configuration>
         </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.1.1</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -233,6 +238,8 @@
   <modules>
     <module>tcases-ant</module>
     <module>tcases-lib</module>
+    <module>tcases-io</module>
+    <module>tcases-cli</module>
     <module>tcases-shell</module>
     <module>tcases-maven-plugin</module>
   </modules>

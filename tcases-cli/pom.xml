@@ -1,0 +1,117 @@
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.cornutum.tcases</groupId>
+        <artifactId>tcases</artifactId>
+        <version>2.1.3-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>tcases-cli</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Tcases CLI</name>
+    <description>Command line support for Tcases</description>
+    <url>https://github.com/Cornutum/tcases</url>
+
+    <developers>
+        <developer>
+            <name>Kerry Kimbrough</name>
+            <email>tcases@cornutum.org</email>
+            <organization>The Cornutum Project</organization>
+            <organizationUrl>http://www.cornutum.org</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <url>http://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>The Cornutum Project</name>
+        <url>http://www.cornutum.org/</url>
+    </organization>
+
+    <scm>
+        <connection>scm:git:https://github.com/Cornutum/tcases</connection>
+        <developerConnection>scm:git:https://github.com/Cornutum/tcases</developerConnection>
+        <url>https://github.com/Cornutum/tcases</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Cornutum/tcases/issues</url>
+    </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+            <name>Tcases Forum</name>
+            <subscribe>https://groups.google.com/d/forum/tcases</subscribe>
+            <unsubscribe>https://groups.google.com/d/forum/tcases</unsubscribe>
+            <post>https://groups.google.com/d/forum/tcases</post>
+        </mailingList>
+    </mailingLists>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.date>${maven.build.timestamp}</project.build.date>
+        <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-io</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.cornutum.testing</groupId>
+            <artifactId>hamcrest-composites</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-lib</artifactId>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-io</artifactId>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1154,7 +1154,7 @@ public class TestTcasesCommand
     InputStream inputDef = getClass().getResourceAsStream( "tcases-Transform-Input.xml");
     
     // When...
-    SystemTestDef testDef = Tcases.getTests( inputDef);
+    SystemTestDef testDef = TcasesCommand.getTests( inputDef);
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Test.xml");
@@ -1162,7 +1162,7 @@ public class TestTcasesCommand
 
     // When...
     ByteArrayOutputStream testDefOut = new ByteArrayOutputStream();
-    Tcases.writeTests( testDef, testDefOut);
+    TcasesCommand.writeTests( testDef, testDefOut);
 
     // Then...
     ByteArrayInputStream testDefString = new ByteArrayInputStream( testDefOut.toByteArray());
@@ -1177,7 +1177,7 @@ public class TestTcasesCommand
     InputStream genDef = getClass().getResourceAsStream( "tcases-Transform-Generators.xml");
     
     // When...
-    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, null);
+    SystemTestDef testDef = TcasesCommand.getTests( inputDef, genDef, null);
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Gen-Test.xml");
@@ -1193,7 +1193,7 @@ public class TestTcasesCommand
     InputStream baseDef = getClass().getResourceAsStream( "tcases-Transform-Test.xml");
     
     // When...
-    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, baseDef);
+    SystemTestDef testDef = TcasesCommand.getTests( inputDef, genDef, baseDef);
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "tcases-Transform-Regen-Test.xml");
@@ -1207,7 +1207,7 @@ public class TestTcasesCommand
     InputStream inputDef = getClass().getResourceAsStream( "find-Input.xml");
     
     // When...
-    SystemTestDef testDef = Tcases.getTests( inputDef);
+    SystemTestDef testDef = TcasesCommand.getTests( inputDef);
     
     // Then...
     SystemTestDef expectedTestDef = testResources_.read( "find-Test.xml");

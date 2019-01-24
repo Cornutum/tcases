@@ -9,7 +9,8 @@ package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.generator.*;
-import org.cornutum.tcases.util.XmlWriter;
+import org.cornutum.tcases.io.XmlWriter;
+
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
 import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;

@@ -7,16 +7,11 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.io.SystemInputResources;
-import org.cornutum.tcases.io.SystemTestResources;
-
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import java.io.File;
-import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,23 +28,13 @@ public class TestAnnotations
   public void runWhenOutputAnnotations()
     {
     // Given...
-    SystemInputDef inputDef = inputResources_.read( "run-annotations-Input.xml");
+    SystemInputDef inputDef = getSystemInputDefAnnotated();
     
     // When...
     SystemTestDef testDef = Tcases.getTests( inputDef, null, null);
     
     // Then...
     verifyAnnotations( testDef);
-
-    // Given...
-    File testDefFile = getResourceFile( "run-annotations-Test.xml");
-    testResources_.write( testDef, testDefFile);
-
-    // When...
-    SystemTestDef testDefOut = testResources_.read( testDefFile);
-
-    // Then...
-    verifyAnnotations( testDefOut);
     }
 
   /**
@@ -202,15 +187,78 @@ public class TestAnnotations
     return annotations.entrySet();
     }
 
-  /**
-   * Return the file for the given resource.
-   */
-  private File getResourceFile( String resource)
+  private SystemInputDef getSystemInputDefAnnotated()
     {
-    URL classUrl = getClass().getResource( getClass().getSimpleName() + ".class");
-    return new File( new File( classUrl.getFile()).getParent(), resource);
-    }
+    return
+      SystemInputDefBuilder.with( "S")
+      .has( "AS0", "VS0")
+      .has( "AS1", "VS1")
 
-  private SystemInputResources inputResources_ = new SystemInputResources( getClass());
-  private SystemTestResources testResources_ = new SystemTestResources( getClass());
+      .functions(
+        FunctionInputDefBuilder.with( "F1")
+        .has( "AS0", "VF0")
+        .has( "AF1", "VF1")
+        .vars(
+          "T1",
+
+          VarDefBuilder.with( "Var-1")
+          .has( "AT0", "VT0")
+          .has( "AV0", "VV0")
+          .has( "AT1", "VV1")
+          .values(
+            VarValueDefBuilder.with( "Value-1-1")
+            .has( "AV0", "VL0")
+            .has( "AL1", "VL1")
+            .build(),
+            VarValueDefBuilder.with( "Value-1-2")
+            .properties( "property-1-2")
+            .build())
+          .build(),
+
+          VarDefBuilder.with( "Var-2")
+          .has( "AT0", "VT0")
+          .has( "AT1", "VT1")
+          .values(
+            VarValueDefBuilder.with( "Value-2-1")
+            .build())
+          .build())
+        
+        .vars(
+          "T2",
+
+          VarDefBuilder.with( "Var-3")
+          .values(
+            VarValueDefBuilder.with( "Value-3-1")
+            .build())
+          .build())
+        .build(),
+
+        FunctionInputDefBuilder.with( "F2")
+        // Special case: allowed but should not override TestCase "properties" annotations added automatically
+        .has( "properties", "functionProperties")
+        
+        .vars(
+          VarSetBuilder.with( "VarSet-3")
+          .has( "AT3", "VT3")
+          .has( "AVS3", "VVS3")
+          .has( "AT4", "VVS4")
+          .members(
+            VarDefBuilder.with( "Var-1")
+            .values(
+              VarValueDefBuilder.with( "Value-1-1")
+              .properties( "charlie", "easy")
+              .build())
+            .build())
+          .build(),
+
+          VarDefBuilder.with( "Var-2")
+          .values(
+            VarValueDefBuilder.with( "Value-2-1")
+            .properties( "easy", "Bravo", "Delta", "Alpha")
+            .build())
+          .build())
+        .build())
+      
+      .build();               
+    }
   }

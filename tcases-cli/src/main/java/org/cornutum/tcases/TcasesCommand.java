@@ -1286,6 +1286,53 @@ public class TcasesCommand extends Tcases
     }
 
   /**
+   * Returns test case definitions for the given system input definition, using the given generator set and
+   * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.
+   * If <CODE>baseDef</CODE> is null, no base test definitions are used.
+   */
+  public static SystemTestDef getTests( InputStream inputDefStream, InputStream genDefStream, InputStream baseDefStream)
+    {
+    try
+      {
+      return
+        getTests
+        ( new SystemInputDocReader( inputDefStream).getSystemInputDef(),
+          genDefStream==null? null : new GeneratorSetDocReader( genDefStream).getGeneratorSet(),
+          baseDefStream==null? null : new SystemTestDocReader( baseDefStream).getSystemTestDef());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't get test definitions", e);
+      }
+    }
+
+  /**
+   * Returns new test case definitions for the given system input definition, using the default generator.
+   */
+  public static SystemTestDef getTests( InputStream inputDefStream)
+    {
+    return getTests( inputDefStream, null, null);
+    }
+
+  /**
+   * Writes an XML document describing given test case definitions to the given output stream.
+   */
+  @SuppressWarnings("resource")
+  public static void writeTests( SystemTestDef testDef, OutputStream outputStream)
+    {
+    try
+      {
+      SystemTestDocWriter writer = new SystemTestDocWriter( outputStream);
+      writer.write( testDef);
+      writer.flush();
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write test definitions", e);
+      }
+    }
+
+  /**
    * Returns the name of the project for the given input definition file.
    */
   public static String getProjectName( File inputDefFile)

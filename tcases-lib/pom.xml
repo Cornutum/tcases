@@ -79,6 +79,25 @@
         <filtering>true</filtering>
       </testResource>
     </testResources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+                <goal>test-jar</goal>
+            </goals>
+              <configuration>
+                <includes>
+                  <include>org/cornutum/tcases/*Matcher.class</include>
+                </includes>
+              </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
   <dependencies>
@@ -91,12 +110,6 @@
     <dependency>
       <groupId>org.cornutum.testing</groupId>
       <artifactId>hamcrest-composites</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <scope>test</scope>
     </dependency>
 
     <dependency>
