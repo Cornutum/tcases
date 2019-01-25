@@ -90,6 +90,30 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>javadoc</classifier>
+              <doclint>none</doclint>
+              <doctitle>Tcases ${project.version} API</doctitle>
+              <windowtitle>Tcases ${project.version} API</windowtitle>
+              <includeDependencySources>true</includeDependencySources>
+              <includeTransitiveDependencySources>true</includeTransitiveDependencySources>
+              <dependencySourceIncludes>
+                <dependencySourceInclude>org.cornutum.tcases:*</dependencySourceInclude>
+              </dependencySourceIncludes>
+            </configuration>
+          </execution>
+        </executions>
+    </plugin>
     </plugins>
   </build>
 
@@ -111,20 +135,6 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.cornutum.tcases</groupId>
-      <artifactId>tcases-lib</artifactId>
-      <version>${project.version}</version>
-      <classifier>javadoc</classifier>
-    </dependency>
-
-    <dependency>
-      <groupId>org.cornutum.tcases</groupId>
-      <artifactId>tcases-ant</artifactId>
-      <version>${project.version}</version>
-      <classifier>javadoc</classifier>
     </dependency>
     
   </dependencies>

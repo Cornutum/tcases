@@ -132,12 +132,16 @@
         <executions>
           <execution>
             <id>attach-javadocs</id>
+            <phase>prepare-package</phase>
             <goals>
               <goal>jar</goal>
             </goals>
             <configuration>
               <classifier>javadoc</classifier>
               <doclint>none</doclint>
+              <links>
+                <link>http://www.cornutum.org/tcases/docs/api</link>
+              </links>
             </configuration>
           </execution>
         </executions>

@@ -13,24 +13,6 @@
     <dependencySet>
       <outputDirectory>lib</outputDirectory>
       <useProjectArtifact>false</useProjectArtifact>
-      <excludes>
-        <exclude>org.cornutum.tcases:tcases-lib:jar:javadoc</exclude>
-        <exclude>org.cornutum.tcases:tcases-ant:jar:javadoc</exclude>
-      </excludes>
-    </dependencySet>
-    <dependencySet>
-      <outputDirectory>docs/api/core</outputDirectory>
-      <includes>
-        <include>org.cornutum.tcases:tcases-lib:jar:javadoc</include>
-      </includes>
-      <unpack>true</unpack>
-    </dependencySet>
-    <dependencySet>
-      <outputDirectory>docs/api/ant</outputDirectory>
-      <includes>
-        <include>org.cornutum.tcases:tcases-ant:jar:javadoc</include>
-      </includes>
-      <unpack>true</unpack>
     </dependencySet>
   </dependencySets>
 
@@ -66,6 +48,10 @@
       <includes>
         <include>logback.xml</include>
       </includes>
+    </fileSet>
+    <fileSet>
+      <directory>${project.basedir}/target/apidocs</directory>
+      <outputDirectory>docs/api</outputDirectory>
     </fileSet>
   </fileSets>
 
