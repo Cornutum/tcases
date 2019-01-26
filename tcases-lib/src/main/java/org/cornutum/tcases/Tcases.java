@@ -21,8 +21,9 @@ public class Tcases
   /**
    * Creates a new Tcases object.
    */
-  public Tcases()
+  private Tcases()
     {
+    // Static methods only
     }
 
   /**
