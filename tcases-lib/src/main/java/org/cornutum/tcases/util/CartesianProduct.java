@@ -17,12 +17,12 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
- * Iterates over the Cartesian product of a list of sets.
+ * Iterates over the <A href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian product</A> of a list of sets.
  */
 public class CartesianProduct<T> implements Iterator<List<T>> 
   {
   /**
-   * Creates a new iterator for the CartesianProduct of the given sets.
+   * Creates a new iterator for the Cartesian product of the given sets.
    */
   public CartesianProduct( List<? extends Set<T>> sets)
     {
@@ -30,7 +30,7 @@ public class CartesianProduct<T> implements Iterator<List<T>>
     }
 
   /**
-   * Creates a new iterator for the CartesianProduct of the given sets, ignoring any resulting
+   * Creates a new iterator for the Cartesian product of the given sets, ignoring any resulting
    * list that does not satisfy the given {@link Predicate}.
    */
   public CartesianProduct( List<? extends Set<T>> sets, Predicate<List<T>> filter)
@@ -39,7 +39,7 @@ public class CartesianProduct<T> implements Iterator<List<T>>
     }
 
   /**
-   * Creates a new iterator for the CartesianProduct of the given sets, ignoring any resulting
+   * Creates a new iterator for the Cartesian product of the given sets, ignoring any resulting
    * list that does not satisfy the given {@link Predicate}.
    */
   private CartesianProduct( List<T> addedTo, List<? extends Set<T>> sets, Predicate<List<T>> filter)
