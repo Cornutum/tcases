@@ -32,7 +32,7 @@ Of course, the system test definition is not something you can execute directly.
   * [How To Download Using Maven](HowToDownload.md)
   * [Model-Driven Testing Using Tcases](ModelDrivenTestingForAgileTeams.md)
   * [Release Notes](ReleaseNotes.md)
-  * Javadoc: [Tcases Core API](http://www.cornutum.org/tcases/docs/api/core/)
+  * Javadoc: [Tcases API](http://www.cornutum.org/tcases/docs/api/)
 
 ## Contributors ##
 

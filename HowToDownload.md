@@ -1,9 +1,6 @@
 # How To Download Tcases Using Maven #
 
-You can download Tcases from the Maven Central Repository. For the following components, you can simply list them as dependencies in your project POM.
-
-  * **tcases-maven-plugin**: A Maven plugin to run Tcases. For details, see the [plugin documentation site](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/).
-  * **tcases-lib**: The core Tcases JAR. Use the same groupId and version shown [here](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/dependency-info.html) to get the JAR for artifactId=tcases-lib.
+## Tcases Command Line Tools
 
 To get the command line version of Tcases, download the Tcases binary distribution file from the Maven Central Repository, using the following procedure.
 
@@ -11,3 +8,56 @@ To get the command line version of Tcases, download the Tcases binary distributi
   1. Search for "tcases-shell".
   1. You will see the most recent release of `tcases-shell`. (To see all N previous versions, select `(N)` under "Latest Version".)
   1. Use the :arrow_down: button to select the type of file you want to download. Choose either a ZIP file or a compressed tar file (tar.gz).
+
+
+## Tcases Libraries
+
+You can download the following Tcases libraries as JARs from the Maven Central Repository. Depending on how you want to use Tcases, list one
+of the following dependencies in your project POM.
+
+#### tcases-maven-plugin
+A Maven plugin to run Tcases. For details, see the [plugin documentation site](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/).
+
+#### tcases-lib
+The core models for Tcases objects. For the current version, see the [release notes](ReleaseNotes.md). Prior to 3.0.0, this JAR also contained all other Tcases APIs.
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-lib</artifactId>
+  <version>...</version>
+</dependency>
+```
+
+#### tcases-io
+(Since 3.0.0) Supports reading and writing Tcases objects from external documents. For the current version, see the [release notes](ReleaseNotes.md).
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-io</artifactId>
+  <version>...</version>
+</dependency>
+```
+
+#### tcases-cli
+(Since 3.0.0) Command line tools for running Tcases. For the current version, see the [release notes](ReleaseNotes.md).
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-cli</artifactId>
+  <version>...</version>
+</dependency>
+```
+
+#### tcases-ant
+(Since 2.0.0) Provides an Ant task for running Tcases. For the current version, see the [release notes](ReleaseNotes.md).
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-ant</artifactId>
+  <version>...</version>
+</dependency>
+```

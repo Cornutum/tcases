@@ -7,13 +7,8 @@
 
 package org.cornutum.tcases.generator;
 
-import org.cornutum.tcases.FunctionInputDef;
-import org.cornutum.tcases.SystemInputDef;
-import org.cornutum.tcases.VarBindingDef;
-import org.cornutum.tcases.VarDef;
-import org.cornutum.tcases.VarValueDef;
+import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
-import org.cornutum.tcases.io.SystemInputResources;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.junit.Test;
@@ -335,7 +330,7 @@ public class TestTupleCombiner
   public void getCombinedVars_All()
     {
     // Given...
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    SystemInputDef systemInputDef = getSystemInputDef();
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleCombiner combiner = new TupleCombiner();
     
@@ -360,7 +355,7 @@ public class TestTupleCombiner
   public void getCombinedVars_Included()
     {
     // Given...
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    SystemInputDef systemInputDef = getSystemInputDef();
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleCombiner combiner = new TupleCombiner().addIncludedVar( "Size");
     
@@ -380,7 +375,7 @@ public class TestTupleCombiner
   public void getCombinedVars_Excluded()
     {
     // Given...
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    SystemInputDef systemInputDef = getSystemInputDef();
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleCombiner combiner = new TupleCombiner().addExcludedVar( "Size");
     
@@ -404,7 +399,7 @@ public class TestTupleCombiner
   public void getCombinedVars_Some()
     {
     // Given...
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    SystemInputDef systemInputDef = getSystemInputDef();
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleCombiner combiner = new TupleCombiner().addIncludedVar( "Color.*").addExcludedVar( "Color.Hue");
     
@@ -426,7 +421,7 @@ public class TestTupleCombiner
   public void getCombinedVars_IncludedNotApplicable()
     {
     // Given...
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    SystemInputDef systemInputDef = getSystemInputDef();
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleCombiner combiner = new TupleCombiner().addIncludedVar( "Size.*").addExcludedVar( "Color.Hue");
     
@@ -441,7 +436,7 @@ public class TestTupleCombiner
   public void getCombinedVars_ExcludedNotApplicable()
     {
     // Given...
-    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-0.xml");
+    SystemInputDef systemInputDef = getSystemInputDef();
     FunctionInputDef functionInputDef = systemInputDef.getFunctionInputDef( "Make");
     TupleCombiner combiner = new TupleCombiner().addExcludedVar( "Color.Red");
     
@@ -452,5 +447,69 @@ public class TestTupleCombiner
         });
     }
 
-  private SystemInputResources systemInputResources_ = new SystemInputResources( TestTupleCombiner.class);
+  private SystemInputDef getSystemInputDef()
+    {
+    return
+      SystemInputDefBuilder.with( "Things")
+
+      .functions(
+        FunctionInputDefBuilder.with( "Make")
+        .vars(
+          "arg",
+
+          VarSetBuilder.with( "Color")
+          .members(
+            VarDefBuilder.with( "Hue")
+            .values(
+              VarValueDefBuilder.with( "Red")
+              .build(),
+              VarValueDefBuilder.with( "Green")
+              .build(),
+              VarValueDefBuilder.with( "Blue")
+              .build())
+            .build(),
+
+            VarDefBuilder.with( "Lightness")
+            .values(
+              VarValueDefBuilder.with( "Bright")
+              .build(),
+              VarValueDefBuilder.with( "Normal")
+              .build(),
+              VarValueDefBuilder.with( "Dark")
+              .build())
+            .build(),
+
+            VarDefBuilder.with( "Saturation")
+            .values(
+              VarValueDefBuilder.with( "Pale")
+              .build(),
+              VarValueDefBuilder.with( "Even")
+              .build(),
+              VarValueDefBuilder.with( "Intense")
+              .build())
+            .build())
+          .build(),
+
+          VarDefBuilder.with( "Size")
+          .values(
+            VarValueDefBuilder.with( "Small")
+            .build(),
+            VarValueDefBuilder.with( "Medium")
+            .build(),
+            VarValueDefBuilder.with( "Large")
+            .build())
+          .build(),
+
+          VarDefBuilder.with( "Shape")
+          .values(
+            VarValueDefBuilder.with( "Square")
+            .build(),
+            VarValueDefBuilder.with( "Circle")
+            .build(),
+            VarValueDefBuilder.with( "Heart")
+            .build())
+          .build())
+        .build())
+      .build();               
+    }
   }

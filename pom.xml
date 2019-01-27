@@ -7,7 +7,7 @@
   <groupId>org.cornutum.tcases</groupId>
   <artifactId>tcases</artifactId>
   <packaging>pom</packaging>
-  <version>2.1.3-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
 
   <name>Tcases</name>
   <description>Generates test cases from system input space models</description>
@@ -112,6 +112,11 @@
                 <autoReleaseAfterClose>true</autoReleaseAfterClose>
             </configuration>
         </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.1.1</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -127,12 +132,16 @@
         <executions>
           <execution>
             <id>attach-javadocs</id>
+            <phase>prepare-package</phase>
             <goals>
               <goal>jar</goal>
             </goals>
             <configuration>
               <classifier>javadoc</classifier>
               <doclint>none</doclint>
+              <links>
+                <link>http://www.cornutum.org/tcases/docs/api</link>
+              </links>
             </configuration>
           </execution>
         </executions>
@@ -233,6 +242,8 @@
   <modules>
     <module>tcases-ant</module>
     <module>tcases-lib</module>
+    <module>tcases-io</module>
+    <module>tcases-cli</module>
     <module>tcases-shell</module>
     <module>tcases-maven-plugin</module>
   </modules>
