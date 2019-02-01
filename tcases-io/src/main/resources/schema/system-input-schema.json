@@ -54,15 +54,14 @@
             }
         },
         "varDef": {
-            "oneOf": [
-                { "$ref": "#/definitions/var"},
-                { "$ref": "#/definitions/varSet"}
-            ]
-        },
-        "var": {
-            "description": "Defines a simple input variable",
-            "allOf": [ { "$ref": "#/definitions/varBase"} ],
+            "type": "object",
             "properties": {
+                "has": {
+                    "$ref": "#/definitions/annotation"
+                },
+                "when": {
+                    "$ref": "#/definitions/condition"
+                },
                 "values": {
                     "type": "object",
                     "minProperties": 1,
@@ -71,14 +70,7 @@
                             "$ref": "#/definitions/valueDef"
                         }
                     }
-                }
-            },
-            "required": [ "values" ]
-        },
-        "varSet": {
-            "description": "Defines a complex input variable",
-            "allOf": [ { "$ref": "#/definitions/varBase"} ],
-            "properties": {
+                },
                 "members": {
                     "type": "object",
                     "minProperties": 1,
@@ -89,19 +81,21 @@
                     }
                 }
             },
-            "required": [ "members" ]
-        },
-        "varBase": {
-            "description": "Defines the common properties of any input variable",
-            "type": "object",
-            "properties": {
-                "has": {
-                    "$ref": "#/definitions/annotation"
+            "additionalProperties": false,
+            "oneOf": [
+                {
+                    "required": [ "values" ],
+                    "properties": {
+                        "members": false
+                    }
                 },
-                "when": {
-                    "$ref": "#/definitions/condition"
+                {
+                    "required": [ "members" ],
+                    "properties": {
+                        "values": false
+                    }
                 }
-            }
+            ]
         },
         "valueDef": {
             "description": "Defines a value for an input variable",

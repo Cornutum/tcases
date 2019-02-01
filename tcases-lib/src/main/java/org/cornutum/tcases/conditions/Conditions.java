@@ -7,6 +7,10 @@
 
 package org.cornutum.tcases.conditions;
 
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
+import java.util.stream.Stream;
+
 /**
  * Defines methods for handling conditions.
  */
@@ -87,6 +91,64 @@ public final class Conditions
   public static Not not( String... properties)
     {
     return not( hasAny( properties));
+    }
+
+  /**
+   * Returns the properties referenced by the given condition.
+   */
+  public static Stream<String> propertiesReferenced( ICondition condition)
+    {
+    if( condition == null)
+      {
+      return Stream.empty();
+      }
+    
+    PropertyVisitor propertyVisitor = new PropertyVisitor();
+    condition.accept( propertyVisitor);
+    return propertyVisitor.propertiesVisited();
+    }
+
+  /**
+   * An {@link IConditionVisitor} that creates a stream of properties referenced.
+   */
+  private static class PropertyVisitor implements IConditionVisitor
+    {
+    private Stream.Builder<String> refBuilder_ = Stream.builder();
+
+    public void visit( AllOf condition)
+      {
+      toStream( condition.getConditions()).flatMap( c -> propertiesReferenced( c)).forEach( p -> refBuilder_.add( p));
+      }
+  
+    public void visit( AnyOf condition)
+      {
+      toStream( condition.getConditions()).flatMap( c -> propertiesReferenced( c)).forEach( p -> refBuilder_.add( p));
+      }
+  
+    public void visit( ContainsAll condition)
+      {
+      toStream( condition.getProperties()).forEach( p -> refBuilder_.add( p));
+      }
+  
+    public void visit( ContainsAny condition)
+      {
+      toStream( condition.getProperties()).forEach( p -> refBuilder_.add( p));
+      }
+  
+    public void visit( IConjunct condition)
+      {
+      // NA
+      }
+  
+    public void visit( Not condition)
+      {
+      toStream( condition.getConditions()).flatMap( c -> propertiesReferenced( c)).forEach( p -> refBuilder_.add( p));
+      }
+
+    public Stream<String> propertiesVisited()
+      {
+      return refBuilder_.build().distinct();
+      }
     }
   }
 
