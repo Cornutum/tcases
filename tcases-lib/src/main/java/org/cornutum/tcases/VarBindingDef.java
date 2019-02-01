@@ -16,7 +16,7 @@ import java.util.Objects;
  * Defines a selection of a {@link VarValueDef value definition} for an {@link VarDef input variable definition}.
  *
  */
-public class VarBindingDef
+public class VarBindingDef implements IConditional
   {
   /**
    * Creates a new VarBindingDef object.
@@ -73,6 +73,14 @@ public class VarBindingDef
   public VarValueDef getValueDef()
     {
     return valueDef_;
+    }
+
+  /**
+   * Returns the condition that defines when this binding is applicable.
+   */
+  public ICondition getCondition()
+    {
+    return valueDef_ == null? null : valueDef_.getCondition();
     }
 
   /**
