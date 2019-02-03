@@ -24,6 +24,8 @@
   <!-- System functions -->
   <xs:element name="TestCases">
     <xs:complexType>
+      <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+
       <xs:sequence maxOccurs="unbounded">
 
         <xs:element name="Function">
@@ -47,6 +49,7 @@
                               <xs:attribute name="name" type="xs:string" use="required"/>
                               <xs:attribute name="value" type="xs:string" use="required"/>
                               <xs:attribute name="failure" type="xs:boolean"/>
+                              <xs:attribute name="NA" type="xs:boolean"/>
                             </xs:complexType>
                           </xs:element>
 

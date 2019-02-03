@@ -422,7 +422,7 @@ public class SystemInputJsonReader implements ISystemInputSource, Closeable
   /**
    * Reports a SystemInputException if the given string is not a valid identifier. Otherwise, returns this string.
    */
-  public String validIdentifier( String string)
+  private String validIdentifier( String string)
     {
     try
       {
