@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://org.cornutum/tcases/generators.json",
+    "title": "System Test Coverage Model",
+    "description": "Defines the test coverage generators for a system",
+
+    "type": "object",
+    "additionalProperties": {
+        "$ref": "#/definitions/tupleGenerator"
+    },
+
+    "definitions": {
+        "tupleGenerator": {
+            "description": "Defines a tuple coverage generator",
+            "type": "object",
+            "properties": {
+                "tuples": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "seed": {
+                    "type": "integer"
+                },
+                "combiners": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/combiner"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "combiner": {
+            "description": "Defines tuple combinations for a set of variables",
+            "type": "object",
+            "minProperties": 1,
+            "properties": {
+                "tuples": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "include": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "exclude": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "once": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "minProperties": 1
+                    },
+                    "minItems": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}

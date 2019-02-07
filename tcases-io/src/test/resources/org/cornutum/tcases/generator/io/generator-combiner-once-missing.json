@@ -1,0 +1,20 @@
+{
+    
+    "*": {
+        "tuples": 1
+    },
+
+    "find": {
+        "tuples": 2,
+        "seed": 7502311452031152128,
+        "combiners": [
+            {
+                "tuples": 3,
+                "include": ["A.**", "C"],
+                "exclude": ["A.B"],
+                "once": [
+                ]
+            }
+        ]
+    }
+}
