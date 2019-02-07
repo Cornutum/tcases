@@ -15,7 +15,6 @@
   <!-- Defines the schema for a generator definition document -->
   <!-- $Revision$, $Date$ -->
 
-  <!-- System functions -->
   <xs:element name="Generators">
     <xs:complexType>
       <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -37,6 +36,20 @@
 
                       <xs:element name="Exclude">
                         <xs:complexType>
+                          <xs:attribute name="var" type="xs:string" use="required"/>
+                        </xs:complexType>
+                      </xs:element>
+
+                      <xs:element name="Once">
+                        <xs:complexType>
+                          <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:element name="Var">
+                              <xs:complexType>
+                                <xs:attribute name="name" type="xs:string" use="required"/>
+                                <xs:attribute name="value" type="xs:string" use="required"/>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
                           <xs:attribute name="var" type="xs:string" use="required"/>
                         </xs:complexType>
                       </xs:element>
