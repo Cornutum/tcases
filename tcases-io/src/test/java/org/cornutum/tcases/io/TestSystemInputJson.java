@@ -194,7 +194,7 @@ public class TestSystemInputJson
   @Test
   public void testSystemInput_Property_Undefined()
     {
-    assertDefinitionError( "system-input-property-undefined.json", "Property=round is undefined, but referenced by variable=Color.Lightness, value=Dark");
+    assertDefinitionError( "system-input-property-undefined.json", "Property=small is undefined, but referenced by variable=Color");
     }
 
   @Test

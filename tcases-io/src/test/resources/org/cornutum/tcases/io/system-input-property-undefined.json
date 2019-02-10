@@ -55,7 +55,7 @@
                         "failure": true
                     },
                     "Small": {
-                        "properties": ["small"]
+                        "properties": ["smallish"]
                     },
                     "Medium": {
                         "when": {"allOf": [{"hasAll": ["polygon"]}]}
@@ -72,7 +72,7 @@
                         "properties": ["polygon"]
                     },
                     "Circle": {
-                        "properties": ["Unused"]
+                        "properties": ["round"]
                     },
                     "Heart": {
                     }
