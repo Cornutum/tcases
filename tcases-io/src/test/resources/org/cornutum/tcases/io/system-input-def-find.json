@@ -1,0 +1,167 @@
+{
+    "system": "Examples",
+    "has": {
+        "AS0": "ASV0",
+        "AS1": "ASV1"
+    },
+    "find" : {
+        "has": {
+            "AF0": "AFV0",
+            "AF1": "AFV1"
+        },
+        "args": {
+            "has": {
+                "AI0": "AIV0",
+                "AI1": "AIV1"
+            },
+            "pattern": {
+                "when": {"hasAll": ["fileExists"]},
+                "has": {
+                    "AV0": "AVV0",
+                    "AV1": "AVV1"
+                },
+                "members": {
+                    "size": {
+                        "values": {
+                            "empty": {
+                                "properties": ["empty"]
+                            },
+                            "singleChar": {
+                                "properties": ["singleChar"]
+                            },
+                            "manyChars": {
+                                "has": {
+                                    "AL0": "ALV0",
+                                    "AL1": "ALV1"
+                                }
+                            }
+                        }
+                    },
+                    "quoted": {
+                        "has": {
+                            "AV0": "AVV0",
+                            "AV1": "AVV1"
+                        },
+                        "values": {
+                            "yes": {
+                                "properties": ["quoted"]
+                            },
+                            "no": {
+                                "when": {"not": {"hasAny": ["empty"]}}
+                            },
+                            "unterminated": {
+                                "failure": true
+                            }
+                        }
+                    },
+                    "blanks": {
+                        "when": {"not": {"hasAny": ["empty"]}},
+                        "values": {
+                            "none": {
+                            },
+                            "one": {
+                                "when": {"hasAll": ["quoted", "singleChar"]}
+                            },
+                            "many": {
+                                "when": {
+                                    "allOf": [
+                                        {"hasAll": ["quoted"]},
+                                        {"not": {"hasAny": ["singleChar"]}}
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "embeddedQuotes": {
+                        "when": {"not": {"hasAny": ["empty", "singleChar"]}},
+                        "values": {
+                            "none": {
+                            },
+                            "one": {
+                            },
+                            "many": {
+                                "once": true
+                            }
+                        }
+                    }
+                }
+            },
+            "fileName": {
+                "values": {
+                    "defined": {
+                        "properties": ["fileName"]
+                    },
+                    "missing": {
+                        "failure": true
+                    }
+                }
+            }
+        },
+        "env": {
+            "file": {
+                "when": {"hasAll": ["fileName"]},
+                "members": {
+                    "exists": {
+                        "values": {
+                            "yes": {
+                                "properties": ["fileExists"]
+                            },
+                            "no": {
+                                "failure": true
+                            }
+                        }
+                    },
+                    "contents": {
+                        "when": {
+                            "allOf": [
+                                {"hasAll": ["fileExists"]},
+                                {"not": {"hasAny": ["empty"]}}
+                            ]
+                        },
+                        "members": {
+                            "linesLongerThanPattern": {
+                                "values": {
+                                    "one": {
+                                        "properties": ["matchable"],
+                                        "once": true
+                                    },
+                                    "many": {
+                                        "properties": ["matchable"]
+                                    },
+                                    "none": {
+                                        "failure": true
+                                    }
+                                }
+                            },
+                            "patterns": {
+                                "when": {"hasAll": ["matchable"]},
+                                "values": {
+                                    "none": {
+                                        "once": true
+                                    },
+                                    "one": {
+                                        "properties": ["match"]
+                                    },
+                                    "many": {
+                                        "properties": ["match", "many"]
+                                    }
+                                }
+                            },
+                            "patternsInLine": {
+                                "when": {"hasAll": ["match"]},
+                                "values": {
+                                    "one": {
+                                    },
+                                    "many": {
+                                        "when": {"hasAll": ["many"]},
+                                        "once": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
