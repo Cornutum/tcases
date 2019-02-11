@@ -123,5 +123,29 @@ public class SystemTestResources
     return systemTestDef;
     }
 
+  /**
+   * Returns the {@link SystemTestDef} defined by the given JSON resource.
+   */
+  public SystemTestDef readJson( String resource)
+    {
+    SystemTestDef  systemTestDef  = null;
+    InputStream     stream          = null;
+    
+    stream = TestSystemTestJson.class.getResourceAsStream( resource);
+    if( stream == null)
+      {
+      throw
+        new RuntimeException
+        ( "Can't find resource=" + class_.getName() + "." + resource);
+      }
+
+    try( SystemTestJsonReader reader = new SystemTestJsonReader( stream))
+      {
+      systemTestDef = reader.getSystemTestDef();
+      }
+
+    return systemTestDef;
+    }
+
   private Class<?> class_;
   }

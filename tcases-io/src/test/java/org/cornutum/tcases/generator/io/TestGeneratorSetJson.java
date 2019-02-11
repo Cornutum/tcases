@@ -19,7 +19,6 @@ import static org.hamcrest.Matchers.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -172,7 +171,7 @@ public class TestGeneratorSetJson
   public void assertDefinitionError( String generatorSetResource, String expected)
     {
     expectFailure( GeneratorSetException.class)
-      .when( () -> readJson( generatorSetResource))
+      .when( () -> generatorSetResources_.readJson( generatorSetResource))
       .then( failure -> {
         while( failure.getCause() != null)
           {
@@ -186,7 +185,7 @@ public class TestGeneratorSetJson
   public void assertValidationFailure( String generatorSetResource, String... expected)
     {
     expectFailure( GeneratorSetException.class)
-      .when( () -> readJson( generatorSetResource))
+      .when( () -> generatorSetResources_.readJson( generatorSetResource))
       .then( failure -> {
         Throwable cause = failure.getCause();
         assertThat( "Cause", cause.getClass(), equalTo( JsonValidatingException.class));
@@ -212,30 +211,6 @@ public class TestGeneratorSetJson
       .flatMap( problems -> problems.stream().flatMap( p -> problems( p))) :
 
       Stream.of( problem);
-    }
-
-  /**
-   * Returns the {@link IGeneratorSet} defined by the given JSON resource.
-   */
-  public IGeneratorSet readJson( String resource)
-    {
-    IGeneratorSet  generatorSet  = null;
-    InputStream     stream          = null;
-    
-    stream = TestGeneratorSetJson.class.getResourceAsStream( resource);
-    if( stream == null)
-      {
-      throw
-        new RuntimeException
-        ( "Can't find resource=" + TestGeneratorSetJson.class.getName() + "." + resource);
-      }
-
-    try( GeneratorSetJsonReader reader = new GeneratorSetJsonReader( stream))
-      {
-      generatorSet = reader.getGeneratorSet();
-      }
-
-    return generatorSet;
     }
 
   private GeneratorSetResources generatorSetResources_ = new GeneratorSetResources( TestGeneratorSetJson.class);

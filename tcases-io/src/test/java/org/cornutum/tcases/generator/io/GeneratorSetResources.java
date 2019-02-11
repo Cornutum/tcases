@@ -89,6 +89,30 @@ public class GeneratorSetResources
     }
 
   /**
+   * Returns the {@link IGeneratorSet} defined by the given JSON resource.
+   */
+  public IGeneratorSet readJson( String resource)
+    {
+    IGeneratorSet  generatorSet  = null;
+    InputStream     stream          = null;
+    
+    stream = TestGeneratorSetJson.class.getResourceAsStream( resource);
+    if( stream == null)
+      {
+      throw
+        new RuntimeException
+        ( "Can't find resource=" + class_.getName() + "." + resource);
+      }
+
+    try( GeneratorSetJsonReader reader = new GeneratorSetJsonReader( stream))
+      {
+      generatorSet = reader.getGeneratorSet();
+      }
+
+    return generatorSet;
+    }
+
+  /**
    * Writes the {@link IGeneratorSet} to the the given file.
    */
   public void write( IGeneratorSet generatorSet, File file)

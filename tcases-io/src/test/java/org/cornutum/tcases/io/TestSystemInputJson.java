@@ -19,7 +19,6 @@ import static org.hamcrest.Matchers.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -229,7 +228,7 @@ public class TestSystemInputJson
   public void assertDefinitionError( String systemInputResource, String expected)
     {
     expectFailure( SystemInputException.class)
-      .when( () -> readJson( systemInputResource))
+      .when( () -> systemInputResources_.readJson( systemInputResource))
       .then( failure -> {
         while( failure.getCause() != null)
           {
@@ -243,7 +242,7 @@ public class TestSystemInputJson
   public void assertValidationFailure( String systemInputResource, String... expected)
     {
     expectFailure( SystemInputException.class)
-      .when( () -> readJson( systemInputResource))
+      .when( () -> systemInputResources_.readJson( systemInputResource))
       .then( failure -> {
         Throwable cause = failure.getCause();
         assertThat( "Cause", cause.getClass(), equalTo( JsonValidatingException.class));
@@ -269,30 +268,6 @@ public class TestSystemInputJson
       .flatMap( problems -> problems.stream().flatMap( p -> problems( p))) :
 
       Stream.of( problem);
-    }
-
-  /**
-   * Returns the {@link SystemInputDef} defined by the given JSON resource.
-   */
-  public SystemInputDef readJson( String resource)
-    {
-    SystemInputDef  systemInputDef  = null;
-    InputStream     stream          = null;
-    
-    stream = TestSystemInputJson.class.getResourceAsStream( resource);
-    if( stream == null)
-      {
-      throw
-        new RuntimeException
-        ( "Can't find resource=" + TestSystemInputJson.class.getName() + "." + resource);
-      }
-
-    try( SystemInputJsonReader reader = new SystemInputJsonReader( stream))
-      {
-      systemInputDef = reader.getSystemInputDef();
-      }
-
-    return systemInputDef;
     }
 
   private SystemInputResources systemInputResources_ = new SystemInputResources( TestSystemInputJson.class);

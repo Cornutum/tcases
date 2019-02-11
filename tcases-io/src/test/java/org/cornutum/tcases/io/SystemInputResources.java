@@ -134,5 +134,29 @@ public class SystemInputResources
     return systemInputDef;
     }
 
+  /**
+   * Returns the {@link SystemInputDef} defined by the given JSON resource.
+   */
+  public SystemInputDef readJson( String resource)
+    {
+    SystemInputDef  systemInputDef  = null;
+    InputStream     stream          = null;
+    
+    stream = class_.getResourceAsStream( resource);
+    if( stream == null)
+      {
+      throw
+        new RuntimeException
+        ( "Can't find resource=" + TestSystemInputJson.class.getName() + "." + resource);
+      }
+
+    try( SystemInputJsonReader reader = new SystemInputJsonReader( stream))
+      {
+      systemInputDef = reader.getSystemInputDef();
+      }
+
+    return systemInputDef;
+    }
+
   private Class<?> class_;
   }

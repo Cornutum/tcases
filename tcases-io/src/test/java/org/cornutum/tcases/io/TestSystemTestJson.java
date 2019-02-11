@@ -19,7 +19,6 @@ import static org.hamcrest.Matchers.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -185,7 +184,7 @@ public class TestSystemTestJson
   public void assertDefinitionError( String systemTestResource, String expected)
     {
     expectFailure( SystemTestException.class)
-      .when( () -> readJson( systemTestResource))
+      .when( () -> systemTestResources_.readJson( systemTestResource))
       .then( failure -> {
         while( failure.getCause() != null)
           {
@@ -199,7 +198,7 @@ public class TestSystemTestJson
   public void assertValidationFailure( String systemTestResource, String... expected)
     {
     expectFailure( SystemTestException.class)
-      .when( () -> readJson( systemTestResource))
+      .when( () -> systemTestResources_.readJson( systemTestResource))
       .then( failure -> {
         Throwable cause = failure.getCause();
         assertThat( "Cause", cause.getClass(), equalTo( JsonValidatingException.class));
@@ -225,30 +224,6 @@ public class TestSystemTestJson
       .flatMap( problems -> problems.stream().flatMap( p -> problems( p))) :
 
       Stream.of( problem);
-    }
-
-  /**
-   * Returns the {@link SystemTestDef} defined by the given JSON resource.
-   */
-  public SystemTestDef readJson( String resource)
-    {
-    SystemTestDef  systemTestDef  = null;
-    InputStream     stream          = null;
-    
-    stream = TestSystemTestJson.class.getResourceAsStream( resource);
-    if( stream == null)
-      {
-      throw
-        new RuntimeException
-        ( "Can't find resource=" + TestSystemTestJson.class.getName() + "." + resource);
-      }
-
-    try( SystemTestJsonReader reader = new SystemTestJsonReader( stream))
-      {
-      systemTestDef = reader.getSystemTestDef();
-      }
-
-    return systemTestDef;
     }
 
   private SystemTestResources systemTestResources_ = new SystemTestResources( TestSystemTestDocWriter.class);
