@@ -29,7 +29,7 @@ public class TcasesJson
 
   /**
    * Returns test case definitions for the {@link SystemInputDef system input model}, {@link IGeneratorSet generator set} and
-   * {@link SystemTestDef base test definitions} defined by the {@link Project} read from the given {@link ProjectJsonReader stream}. 
+   * {@link SystemTestDef base test definitions} defined by the {@link Project} read from the given {@link ProjectJsonReader JSON document stream}. 
    * If no generator set is specified, the default generator is used.  If no base test definitions are specified, new
    * test cases are generated.
    */
@@ -42,7 +42,7 @@ public class TcasesJson
     }
 
   /**
-   * Writes a {@link ProjectJsonWriter JSON document} describing given test case definitions to the given output stream.
+   * Writes a {@link ProjectJsonWriter JSON document} describing the given test case definitions to the given output stream.
    */
   public static void writeTests( SystemTestDef testDef, OutputStream outputStream)
     {

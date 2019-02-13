@@ -32,13 +32,14 @@ public class GeneratorSetResource implements IGeneratorSetSource, Closeable
   /**
    * Returns a {@link IGeneratorSet} instance.
    */
+  @SuppressWarnings("resource")
   public IGeneratorSet getGeneratorSet()
     {
-    String resourceType = FilenameUtils.getExtension( location_.getPath());
-
     IGeneratorSetSource source;
     try
       {
+      String resourceType = FilenameUtils.getExtension( location_.getPath());
+
       if( "json".equalsIgnoreCase( resourceType))
         {
         source = new GeneratorSetJsonReader( (stream_ = location_.openStream()));

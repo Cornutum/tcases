@@ -9,8 +9,6 @@ package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.generator.IGeneratorSet;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -75,14 +73,9 @@ public class GeneratorSetResources
     {
     IGeneratorSet generatorSet = null;
     
-    try
+    try( GeneratorSetDocReader reader = new GeneratorSetDocReader( stream))
       {
-      GeneratorSetDocReader reader = new GeneratorSetDocReader( stream);
       generatorSet = reader.getGeneratorSet();
-      }
-    finally
-      {
-      IOUtils.closeQuietly( stream);
       }
 
     return generatorSet;
@@ -117,18 +110,13 @@ public class GeneratorSetResources
    */
   public void write( IGeneratorSet generatorSet, File file)
     {
-    GeneratorSetDocWriter writer = createWriter( file);
-    try
+    try( GeneratorSetDocWriter writer = createWriter( file))
       {
       writer.write( generatorSet);
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't write " + generatorSet + " to file=" + file, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( writer);
       }
     }
 

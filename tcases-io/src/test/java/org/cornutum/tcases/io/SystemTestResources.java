@@ -108,19 +108,10 @@ public class SystemTestResources
    */
   public SystemTestDef read( InputStream stream) throws Exception
     {
-    SystemTestDef systemTestDef = null;
-    
-    try
+    try( SystemTestDocReader reader = new SystemTestDocReader( stream))
       {
-      SystemTestDocReader reader = new SystemTestDocReader( stream);
-      systemTestDef = reader.getSystemTestDef();
+      return reader.getSystemTestDef();
       }
-    finally
-      {
-      IOUtils.closeQuietly( stream);
-      }
-
-    return systemTestDef;
     }
 
   /**

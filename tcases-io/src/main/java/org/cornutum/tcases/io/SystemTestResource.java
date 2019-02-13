@@ -32,13 +32,14 @@ public class SystemTestResource implements ISystemTestSource, Closeable
   /**
    * Returns a {@link SystemTestDef} instance.
    */
+  @SuppressWarnings("resource")
   public SystemTestDef getSystemTestDef()
     {
-    String resourceType = FilenameUtils.getExtension( location_.getPath());
-
     ISystemTestSource source;
     try
       {
+      String resourceType = FilenameUtils.getExtension( location_.getPath());
+
       if( "json".equalsIgnoreCase( resourceType))
         {
         source = new SystemTestJsonReader( (stream_ = location_.openStream()));

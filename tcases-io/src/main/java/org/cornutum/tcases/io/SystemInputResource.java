@@ -32,13 +32,14 @@ public class SystemInputResource implements ISystemInputSource, Closeable
   /**
    * Returns a {@link SystemInputDef} instance.
    */
+  @SuppressWarnings("resource")
   public SystemInputDef getSystemInputDef()
     {
-    String resourceType = FilenameUtils.getExtension( location_.getPath());
-
     ISystemInputSource source;
     try
       {
+      String resourceType = FilenameUtils.getExtension( location_.getPath());
+
       if( "json".equalsIgnoreCase( resourceType))
         {
         source = new SystemInputJsonReader( (stream_ = location_.openStream()));

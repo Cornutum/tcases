@@ -75,7 +75,7 @@ public class TcasesIO
     }
 
   /**
-   * Writes an XML document describing given test case definitions to the given output stream.
+   * Writes an XML document describing the given test case definitions to the given output stream.
    */
   public static void writeTests( SystemTestDef testDef, OutputStream outputStream)
     {

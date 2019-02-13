@@ -24,11 +24,13 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Closeable;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,7 +45,7 @@ import java.util.Set;
  * An {@link ISystemInputSource} that reads from an XML document.
  *
  */
-public class SystemInputDocReader extends DefaultHandler implements ISystemInputSource
+public class SystemInputDocReader extends DefaultHandler implements ISystemInputSource, Closeable
   {
   /**
    * The base class for element handlers used by this parser.
@@ -1273,10 +1275,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
    */
   public void setInputStream( InputStream stream)
     {
-    stream_ =
-      stream==null
-      ? System.in
-      : stream;
+    stream_ = stream;
     }
 
   /**
@@ -1284,7 +1283,15 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
    */
   protected InputStream getInputStream()
     {
-    return stream_;
+    return
+      stream_==null
+      ? System.in
+      : stream_;
+    }
+
+  public void close()
+    {
+    IOUtils.closeQuietly( stream_);
     }
 
   /**

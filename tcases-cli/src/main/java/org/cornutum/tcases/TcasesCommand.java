@@ -1043,25 +1043,15 @@ public class TcasesCommand
       : inputDefFile.getParentFile();
 
     // Read the system input definition.
+    logger_.info( "Reading system input definition={}", inputDefFile);
     SystemInputDef inputDef = null;
-    InputStream inputStream = null;
-    try
+    try( SystemInputDocReader reader = new SystemInputDocReader( inputDefFile != null ? new FileInputStream( inputDefFile) : null))
       {
-      logger_.info( "Reading system input definition={}", inputDefFile);
-      if( inputDefFile != null)
-        {
-        inputStream = new FileInputStream( inputDefFile);
-        }
-      SystemInputDocReader reader = new SystemInputDocReader( inputStream);
       inputDef = reader.getSystemInputDef();
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't read input definition file=" + inputDefFile, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( inputStream);
       }
 
     // Test definition defined?
@@ -1124,21 +1114,14 @@ public class TcasesCommand
     if( options.isExtended() && baseDefFile != null && baseDefFile.exists())
       {
       // Read the previous base test definitions.
-      InputStream testStream = null;
-      try
+      logger_.info( "Reading base test definition={}", baseDefFile);
+      try( SystemTestDocReader reader = new SystemTestDocReader( new FileInputStream( baseDefFile)))
         {
-        logger_.info( "Reading base test definition={}", baseDefFile);
-        testStream = new FileInputStream( baseDefFile);
-        SystemTestDocReader reader = new SystemTestDocReader( testStream);
         baseDef = reader.getSystemTestDef();
         }
       catch( Exception e)
         {
         throw new RuntimeException( "Can't read test definition file=" + baseDefFile, e);
-        }
-      finally
-        {
-        IOUtils.closeQuietly( testStream);
         }
       }
 
@@ -1166,21 +1149,14 @@ public class TcasesCommand
     if( genDefFile != null)
       {
       // Yes, read generator definitions.
-      InputStream genStream = null;
-      try
+      logger_.info( "Reading generator definition={}", genDefFile);
+      try( GeneratorSetDocReader reader = new GeneratorSetDocReader( new FileInputStream( genDefFile)))
         {
-        logger_.info( "Reading generator definition={}", genDefFile);
-        genStream = new FileInputStream( genDefFile);
-        GeneratorSetDocReader reader = new GeneratorSetDocReader( genStream);
         genDef = reader.getGeneratorSet();
         }
       catch( Exception e)
         {
         throw new RuntimeException( "Can't read generator definition file=" + genDefFile, e);
-        }
-      finally
-        {
-        IOUtils.closeQuietly( genStream);
         }
       }
     else

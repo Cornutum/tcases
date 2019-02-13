@@ -21,9 +21,11 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Closeable;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +37,7 @@ import java.util.Set;
  * An {@link ISystemTestSource} that reads from an XML document.
  *
  */
-public class SystemTestDocReader extends DefaultHandler implements ISystemTestSource
+public class SystemTestDocReader extends DefaultHandler implements ISystemTestSource, Closeable
   {
   /**
    * The base class for element handlers used by this parser.
@@ -767,10 +769,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
    */
   public void setInputStream( InputStream stream)
     {
-    stream_ =
-      stream == null
-      ? System.in
-      : stream;
+    stream_ = stream;
     }
 
   /**
@@ -778,7 +777,15 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
    */
   protected InputStream getInputStream()
     {
-    return stream_;
+    return
+      stream_ == null
+      ? System.in
+      : stream_;
+    }
+
+  public void close()
+    {
+    IOUtils.closeQuietly( stream_);
     }
 
   /**

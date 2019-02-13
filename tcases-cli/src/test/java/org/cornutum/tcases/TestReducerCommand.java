@@ -12,7 +12,6 @@ import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
@@ -20,7 +19,6 @@ import static org.hamcrest.Matchers.*;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -613,23 +611,13 @@ public class TestReducerCommand
    */
   private IGeneratorSet getGenerators( File genDefFile)
     {
-    IGeneratorSet genDef = null;
-    InputStream genStream = null;
-    try
+    try( GeneratorSetDocReader reader = new GeneratorSetDocReader( new FileInputStream( genDefFile)))
       {
-      genStream = new FileInputStream( genDefFile);
-      GeneratorSetDocReader reader = new GeneratorSetDocReader( genStream);
-      genDef = reader.getGeneratorSet();
+      return reader.getGeneratorSet();
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't read generator definition file=" + genDefFile, e);
       }
-    finally
-      {
-      IOUtils.closeQuietly( genStream);
-      }
-
-    return genDef;
     }
   }
