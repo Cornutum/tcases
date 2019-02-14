@@ -7,7 +7,10 @@ public final class FilenameUtils
     // Static methods only
     }
 
-  public static String getBaseName( String filepath)
+  /**
+   * @deprecated Use <CODE>org.apache.commons.io.FilenameUtils.getBaseName</CODE>
+   */
+  @Deprecated public static String getBaseName( String filepath)
     {
     if ( filepath == null)
       {
