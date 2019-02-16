@@ -9,6 +9,8 @@ package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.generator.IGeneratorSet;
 
+import org.apache.commons.lang3.ClassUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -89,12 +91,12 @@ public class GeneratorSetResources
     IGeneratorSet  generatorSet  = null;
     InputStream     stream          = null;
     
-    stream = TestGeneratorSetJson.class.getResourceAsStream( resource);
+    stream = class_.getResourceAsStream( resource);
     if( stream == null)
       {
       throw
         new RuntimeException
-        ( "Can't find resource=" + class_.getName() + "." + resource);
+        ( "Can't find resource=" + ClassUtils.getPackageName( class_) + "." + resource);
       }
 
     try( GeneratorSetJsonReader reader = new GeneratorSetJsonReader( stream))

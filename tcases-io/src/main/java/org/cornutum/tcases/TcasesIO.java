@@ -89,7 +89,22 @@ public class TcasesIO
       }
     }
 
-/**
+  /**
+   * Writes an XML document describing the given generator definitions to the given output stream.
+   */
+  public static void writeGenerators( IGeneratorSet generators, OutputStream outputStream)
+    {
+    try( GeneratorSetDocWriter writer = new GeneratorSetDocWriter( outputStream))
+      {
+      writer.write( generators);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write generator definitions", e);
+      }
+    }
+
+  /**
    * Returns test case definitions for the {@link SystemInputDef system input model}, 
    * {@link IGeneratorSet generator set} and {@link SystemTestDef base test definitions} defined by
    * the given {@link Project}. If no generator set is specified, the default generator is

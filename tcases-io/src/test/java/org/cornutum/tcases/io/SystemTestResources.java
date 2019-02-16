@@ -10,6 +10,7 @@ package org.cornutum.tcases.io;
 import org.cornutum.tcases.SystemTestDef;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ClassUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -122,12 +123,12 @@ public class SystemTestResources
     SystemTestDef  systemTestDef  = null;
     InputStream     stream          = null;
     
-    stream = TestSystemTestJson.class.getResourceAsStream( resource);
+    stream = class_.getResourceAsStream( resource);
     if( stream == null)
       {
       throw
         new RuntimeException
-        ( "Can't find resource=" + class_.getName() + "." + resource);
+        ( "Can't find resource=" + ClassUtils.getPackageName( class_) + "." + resource);
       }
 
     try( SystemTestJsonReader reader = new SystemTestJsonReader( stream))

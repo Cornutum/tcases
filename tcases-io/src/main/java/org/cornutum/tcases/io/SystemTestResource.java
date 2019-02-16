@@ -8,57 +8,41 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.SystemTestDef;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-
-import java.io.Closeable;
-import java.io.InputStream;
+import static org.cornutum.tcases.io.Resource.Type.JSON;
+import java.io.File;
 import java.net.URL;
 
 /**
  * An {@link ISystemTestSource} that returns the {@link SystemTestDef} at the given URL.
  */
-public class SystemTestResource implements ISystemTestSource, Closeable
+public class SystemTestResource extends Resource implements ISystemTestSource
   {
   /**
    * Creates a new SystemTestResource instance.
    */
   public SystemTestResource( URL location)
     {
-    location_ = location;
+    super( location);
+    }
+  
+  /**
+   * Creates a new SystemTestResource instance.
+   */
+  public SystemTestResource( File location)
+    {
+    super( location);
     }
 
   /**
    * Returns a {@link SystemTestDef} instance.
    */
-  @SuppressWarnings("resource")
   public SystemTestDef getSystemTestDef()
     {
-    ISystemTestSource source;
-    try
-      {
-      String resourceType = FilenameUtils.getExtension( location_.getPath());
+    return
+      getType() == JSON?
+      new SystemTestJsonReader( open()).getSystemTestDef() :
 
-      if( "json".equalsIgnoreCase( resourceType))
-        {
-        source = new SystemTestJsonReader( (stream_ = location_.openStream()));
-        }
-      else if( "xml".equalsIgnoreCase( resourceType))
-        {
-        source = new SystemTestDocReader( (stream_ = location_.openStream()));
-        }
-      else
-        {
-        throw new IllegalStateException( String.format( "Unknown resource type='%s'", resourceType));
-        }
-      }
-    catch( Exception e)
-      {
-      throw new IllegalStateException( String.format( "Can't read resource at %s", location_));
-      }
-
-    return source.getSystemTestDef();
+      new SystemTestDocReader( open()).getSystemTestDef();
     }
 
   /**
@@ -69,11 +53,11 @@ public class SystemTestResource implements ISystemTestSource, Closeable
     return new SystemTestResource( location);
     }
 
-  public void close()
+  /**
+   * Returns the {@link SystemTestResource} for the given file.
+   */
+  public static SystemTestResource of( File file)
     {
-    IOUtils.closeQuietly( stream_);
+    return new SystemTestResource( file);
     }
-  
-  private final URL location_;
-  private InputStream stream_;
   }

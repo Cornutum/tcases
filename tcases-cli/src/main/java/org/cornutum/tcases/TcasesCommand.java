@@ -7,18 +7,19 @@
 
 package org.cornutum.tcases;
 
-import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 import org.cornutum.tcases.io.*;
+import static org.cornutum.tcases.io.Resource.withDefaultType;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -51,6 +52,7 @@ public class TcasesCommand
    * [-p <I>name</I>=<I>value</I>]
    * [-r <I>seed</I>] [-R]
    * [-t <I>testDef</I>]
+   * [-T <I>contentType</I>]
    * [-v]
    * [-x <I>transformDef</I> | -J | -H]
    * [<I>inputDef</I>]
@@ -105,7 +107,7 @@ public class TcasesCommand
    * <TD>
    * If <I>-g</I> is defined, test definitions are created using the generator(s) specified
    * by the given <I>genDef</I> file. If omitted, the default generator definition is used.
-   * The default generator definition is read from the corresponding <CODE>*-Generators.xml</CODE> file in the same directory as the <I>inputDef</I>,
+   * The default generator definition is read from the corresponding <CODE>*-Generators</CODE> file in the same directory as the <I>inputDef</I>,
    * if it exists. Otherwise, the default {@link TupleGenerator} is used for all functions.
    * </TD>
    * </TR>
@@ -270,6 +272,20 @@ public class TcasesCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-T <I>contentType</I> </NOBR>
+   * </TD>
+   * <TD>
+   * Defines the default content type for the files read and produced. The <I>contentType</I> must be one of "json" or "xml".
+   * The default content type is assumed for any file that is not specified explicitly or that does not have a recognized extension.
+   * If omitted, the default content type is derived from the <I>inputDef</I> name.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-v </NOBR>
    * </TD>
    * <TD>
@@ -292,6 +308,8 @@ public class TcasesCommand
    * <LI> <I>inputDef</I> </LI>
    * <LI> <I>inputDef</I>-Input.xml </LI>
    * <LI> <I>inputDef</I>.xml </LI>
+   * <LI> <I>inputDef</I>-Input.json </LI>
+   * <LI> <I>inputDef</I>.json </LI>
    * </OL>
    *
    * </TABLE>
@@ -364,6 +382,23 @@ public class TcasesCommand
           throwUsageException();
           }
         setTestDef( new File( args[i]));
+        }
+
+      else if( arg.equals( "-T"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        try
+          {
+          setContentType( args[i]);
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid content type", e);
+          }
         }
 
       else if( arg.equals( "-v"))
@@ -546,6 +581,7 @@ public class TcasesCommand
           + " [-p name=value]"
           + " [-r seed] [-R]"
           + " [-t testDef]"
+          + " [-T contentType]"
           + " [-x transformDef | -J | -H]"
           + " [inputDef]",
           cause);
@@ -794,6 +830,35 @@ public class TcasesCommand
       }
 
     /**
+     * Changes the default file content type.
+     */
+    public void setContentType( String option)
+      {
+      Resource.Type contentType = Resource.Type.of( option);
+      if( option != null && contentType == null)
+        {
+        throw new IllegalArgumentException( String.format( "'%s' is not a valid content type", option));
+        }
+      setContentType( contentType);
+      }
+
+    /**
+     * Changes the default file content type.
+     */
+    public void setContentType( Resource.Type contentType)
+      {
+      contentType_ = contentType;
+      }
+
+    /**
+     * Returns the default file content type.
+     */
+    public Resource.Type getContentType()
+      {
+      return contentType_;
+      }
+
+    /**
      * Returns a new Options builder.
      */
     public static Builder builder()
@@ -853,6 +918,11 @@ public class TcasesCommand
         builder.append( " -t ").append( getTestDef().getPath());
         }
 
+      if( getContentType() != null)
+        {
+        builder.append( " -T ").append( getContentType());
+        }
+
       if( showVersion())
         {
         builder.append( " -v");
@@ -889,6 +959,7 @@ public class TcasesCommand
     private File workingDir_;
     private boolean showVersion_;
     private GeneratorOptions generatorOptions_ = new GeneratorOptions();
+    private Resource.Type contentType_;
 
     public static class Builder
       {
@@ -969,6 +1040,12 @@ public class TcasesCommand
         return this;
         }
 
+      public Builder contentType( String type)
+        {
+        options_.setContentType( type);
+        return this;
+        }
+
       public Options build()
         {
         return options_;
@@ -1032,7 +1109,9 @@ public class TcasesCommand
     if( inputDefFile != null
         && !inputDefFile.exists()
         && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.xml")).exists()
-        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists())
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.json")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".json")).exists())
         {
         throw new RuntimeException( "Can't locate input file for path=" + options.getInputDef());
         }
@@ -1042,10 +1121,16 @@ public class TcasesCommand
       ? options.getWorkingDir()
       : inputDefFile.getParentFile();
 
+    Resource.Type defaultContentType =
+      firstNonNull
+      ( options.getContentType(),
+        Resource.Type.of( inputDefFile),
+        Resource.Type.XML);
+
     // Read the system input definition.
     logger_.info( "Reading system input definition={}", inputDefFile);
     SystemInputDef inputDef = null;
-    try( SystemInputDocReader reader = new SystemInputDocReader( inputDefFile != null ? new FileInputStream( inputDefFile) : null))
+    try( SystemInputResource reader = withDefaultType( SystemInputResource.of( inputDefFile), defaultContentType))
       {
       inputDef = reader.getSystemInputDef();
       }
@@ -1060,7 +1145,7 @@ public class TcasesCommand
     if( testDefFile == null && inputDefFile != null)
       {
       // No, derive default from input file.
-      testDefFile = new File( projectName + "-Test.xml");
+      testDefFile = withDefaultType( new File( projectName + "-Test"), defaultContentType);
       }
 
     // Identify base test definition file.
@@ -1115,7 +1200,7 @@ public class TcasesCommand
       {
       // Read the previous base test definitions.
       logger_.info( "Reading base test definition={}", baseDefFile);
-      try( SystemTestDocReader reader = new SystemTestDocReader( new FileInputStream( baseDefFile)))
+      try( SystemTestResource reader = withDefaultType( SystemTestResource.of( baseDefFile), defaultContentType))
         {
         baseDef = reader.getSystemTestDef();
         }
@@ -1137,7 +1222,7 @@ public class TcasesCommand
       }
     else if( inputDefFile != null)
       {
-      genDefDefault = new File( inputDir, projectName + "-Generators.xml");
+      genDefDefault = withDefaultType( new File( inputDir, projectName + "-Generators"), defaultContentType);
       if( genDefDefault.exists())
         {
         genDefFile = genDefDefault;
@@ -1150,7 +1235,7 @@ public class TcasesCommand
       {
       // Yes, read generator definitions.
       logger_.info( "Reading generator definition={}", genDefFile);
-      try( GeneratorSetDocReader reader = new GeneratorSetDocReader( new FileInputStream( genDefFile)))
+      try( GeneratorSetResource reader = withDefaultType( GeneratorSetResource.of( genDefFile), defaultContentType))
         {
         genDef = reader.getGeneratorSet();
         }
@@ -1198,7 +1283,6 @@ public class TcasesCommand
       }
 
     // Write new test definitions.
-    SystemTestDocWriter writer = null;
     try
       {
       logger_.info( "Updating test definition file={}", outputFile);
@@ -1215,19 +1299,18 @@ public class TcasesCommand
         // Standard output?
         null;
 
-      writer = new SystemTestDocWriter( output);
-      writer.write( testDef);
+      if( Resource.Type.of( withDefaultType( outputFile, defaultContentType)) == Resource.Type.JSON)
+        {
+        TcasesJson.writeTests( testDef, output);
+        }
+      else
+        {
+        TcasesIO.writeTests( testDef, output);
+        }
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't write test definition file=" + outputFile, e);
-      }
-    finally
-      {
-      if( writer != null)
-        {
-        writer.close();
-        }
       }
 
     // Write any updates to generator definitions.
@@ -1242,23 +1325,21 @@ public class TcasesCommand
 
     if( genUpdateFile != null && (options.getRandomSeed() != null || options.getDefaultTupleSize() != null))
       {
-      GeneratorSetDocWriter genWriter = null;
+      logger_.info( "Updating generator definition={}", genUpdateFile);
       try
         {
-        logger_.info( "Updating generator definition={}", genUpdateFile);
-        genWriter = new GeneratorSetDocWriter( new FileOutputStream( genUpdateFile));
-        genWriter.write( genDef);
+        if( Resource.Type.of( withDefaultType( genUpdateFile, defaultContentType)) == Resource.Type.JSON)
+          {
+          TcasesJson.writeGenerators( genDef, new FileOutputStream( genUpdateFile));
+          }
+        else
+          {
+          TcasesIO.writeGenerators( genDef, new FileOutputStream( genUpdateFile));
+          }
         }
       catch( Exception e)
         {
         throw new RuntimeException( "Can't write generator definition file=" + genUpdateFile, e);
-        }
-      finally
-        {
-        if( genWriter != null)
-          {
-          genWriter.close();
-          }
         }
       }
     }

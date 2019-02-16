@@ -8,62 +8,42 @@
 package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.generator.IGeneratorSet;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-
-import java.io.Closeable;
-import java.io.InputStream;
+import org.cornutum.tcases.io.Resource;
+import static org.cornutum.tcases.io.Resource.Type.JSON;
+import java.io.File;
 import java.net.URL;
 
 /**
  * An {@link IGeneratorSetSource} that returns the {@link IGeneratorSet} at the given URL.
  */
-public class GeneratorSetResource implements IGeneratorSetSource, Closeable
+public class GeneratorSetResource extends Resource implements IGeneratorSetSource
   {
   /**
    * Creates a new GeneratorSetResource instance.
    */
   public GeneratorSetResource( URL location)
     {
-    location_ = location;
+    super( location);
+    }
+  
+  /**
+   * Creates a new GeneratorSetResource instance.
+   */
+  public GeneratorSetResource( File location)
+    {
+    super( location);
     }
 
   /**
    * Returns a {@link IGeneratorSet} instance.
    */
-  @SuppressWarnings("resource")
   public IGeneratorSet getGeneratorSet()
     {
-    IGeneratorSetSource source;
-    try
-      {
-      String resourceType = FilenameUtils.getExtension( location_.getPath());
+    return
+      getType() == JSON?
+      new GeneratorSetJsonReader( open()).getGeneratorSet() :
 
-      if( "json".equalsIgnoreCase( resourceType))
-        {
-        source = new GeneratorSetJsonReader( (stream_ = location_.openStream()));
-        }
-      else if( "xml".equalsIgnoreCase( resourceType))
-        {
-        source = new GeneratorSetDocReader( (stream_ = location_.openStream()));
-        }
-      else
-        {
-        throw new IllegalStateException( String.format( "Unknown resource type='%s'", resourceType));
-        }
-      }
-    catch( Exception e)
-      {
-      throw new IllegalStateException( String.format( "Can't read resource at %s", location_));
-      }
-
-    return source.getGeneratorSet();
-    }
-
-  public void close()
-    {
-    IOUtils.closeQuietly( stream_);
+      new GeneratorSetDocReader( open()).getGeneratorSet();
     }
 
   /**
@@ -74,6 +54,11 @@ public class GeneratorSetResource implements IGeneratorSetSource, Closeable
     return new GeneratorSetResource( location);
     }
 
-  private final URL location_;
-  private InputStream stream_;
+  /**
+   * Returns the {@link GeneratorSetResource} for the given file.
+   */
+  public static GeneratorSetResource of( File file)
+    {
+    return new GeneratorSetResource( file);
+    }
   }

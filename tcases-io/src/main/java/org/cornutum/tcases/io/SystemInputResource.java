@@ -8,62 +8,41 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.SystemInputDef;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-
-import java.io.Closeable;
-import java.io.InputStream;
+import static org.cornutum.tcases.io.Resource.Type.JSON;
+import java.io.File;
 import java.net.URL;
 
 /**
  * An {@link ISystemInputSource} that returns the {@link SystemInputDef} at the given URL.
  */
-public class SystemInputResource implements ISystemInputSource, Closeable
+public class SystemInputResource extends Resource implements ISystemInputSource
   {
   /**
    * Creates a new SystemInputResource instance.
    */
   public SystemInputResource( URL location)
     {
-    location_ = location;
+    super( location);
+    }
+  
+  /**
+   * Creates a new SystemInputResource instance.
+   */
+  public SystemInputResource( File location)
+    {
+    super( location);
     }
 
   /**
    * Returns a {@link SystemInputDef} instance.
    */
-  @SuppressWarnings("resource")
   public SystemInputDef getSystemInputDef()
     {
-    ISystemInputSource source;
-    try
-      {
-      String resourceType = FilenameUtils.getExtension( location_.getPath());
+    return
+      getType() == JSON?
+      new SystemInputJsonReader( open()).getSystemInputDef() :
 
-      if( "json".equalsIgnoreCase( resourceType))
-        {
-        source = new SystemInputJsonReader( (stream_ = location_.openStream()));
-        }
-      else if( "xml".equalsIgnoreCase( resourceType))
-        {
-        source = new SystemInputDocReader( (stream_ = location_.openStream()));
-        }
-      else
-        {
-        throw new IllegalStateException( String.format( "Unknown resource type='%s'", resourceType));
-        }
-      }
-    catch( Exception e)
-      {
-      throw new IllegalStateException( String.format( "Can't read resource at %s", location_));
-      }
-
-    return source.getSystemInputDef();
-    }
-
-  public void close()
-    {
-    IOUtils.closeQuietly( stream_);
+      new SystemInputDocReader( open()).getSystemInputDef();
     }
 
   /**
@@ -73,7 +52,12 @@ public class SystemInputResource implements ISystemInputSource, Closeable
     {
     return new SystemInputResource( location);
     }
-  
-  private final URL location_;
-  private InputStream stream_;
+
+  /**
+   * Returns the {@link SystemInputResource} for the given file.
+   */
+  public static SystemInputResource of( File file)
+    {
+    return new SystemInputResource( file);
+    }
   }

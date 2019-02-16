@@ -10,6 +10,7 @@ package org.cornutum.tcases.io;
 import org.cornutum.tcases.SystemInputDef;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ClassUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -128,7 +129,7 @@ public class SystemInputResources
       {
       throw
         new RuntimeException
-        ( "Can't find resource=" + TestSystemInputJson.class.getName() + "." + resource);
+        ( "Can't find resource=" + ClassUtils.getPackageName( class_) + "." + resource);
       }
 
     try( SystemInputJsonReader reader = new SystemInputJsonReader( stream))

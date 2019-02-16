@@ -8,6 +8,7 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.generator.*;
+import org.cornutum.tcases.generator.io.*;
 import org.cornutum.tcases.io.*;
 
 import java.io.InputStream;
@@ -53,6 +54,21 @@ public class TcasesJson
     catch( Exception e)
       {
       throw new RuntimeException( "Can't write test definitions", e);
+      }
+    }
+
+  /**
+   * Writes a JSON document describing the given generator definitions to the given output stream.
+   */
+  public static void writeGenerators( IGeneratorSet generators, OutputStream outputStream)
+    {
+    try( GeneratorSetJsonWriter writer = new GeneratorSetJsonWriter( outputStream))
+      {
+      writer.write( generators);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write generator definitions", e);
       }
     }
   }
