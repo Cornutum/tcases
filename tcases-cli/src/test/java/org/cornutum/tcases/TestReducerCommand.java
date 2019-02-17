@@ -18,7 +18,6 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.net.URL;
 
 /**
@@ -73,7 +72,7 @@ public class TestReducerCommand
     reducer.run( new Options( args));
         
     // Then...
-    IGeneratorSet generators = getGenerators( genFile);
+    IGeneratorSet generators = generatorResources_.read( genFile);
 
     TupleGenerator gen = getDefaultTupleGenerator( generators);
     assertThat( "Default, generator defined", gen != null, is( false));
@@ -127,7 +126,7 @@ public class TestReducerCommand
     reducer.run( new Options( args));
         
     // Then...
-    IGeneratorSet generators = getGenerators( genFile);
+    IGeneratorSet generators = generatorResources_.read( genFile);
 
     TupleGenerator gen = getDefaultTupleGenerator( generators);
     assertThat( "Default, generator defined", gen != null, is( true));
@@ -188,7 +187,7 @@ public class TestReducerCommand
         
     // Then...
     File genFile = new File( inFile.getParentFile(), genFileName);
-    IGeneratorSet generators = getGenerators( genFile);
+    IGeneratorSet generators = generatorResources_.read( genFile);
 
     TupleGenerator gen = getDefaultTupleGenerator( generators);
     assertThat( "Default, generator defined", gen != null, is( true));
@@ -296,7 +295,7 @@ public class TestReducerCommand
         
     // Then...
     File genFile = new File( inFile.getParentFile(), "Reducer-whenNoFunctionGenerator-Generators.xml");
-    IGeneratorSet generators = getGenerators( genFile);
+    IGeneratorSet generators = generatorResources_.read( genFile);
 
     TupleGenerator gen = getDefaultTupleGenerator( generators);
     assertThat( "Default, generator defined", gen != null, is( true));
@@ -576,6 +575,227 @@ public class TestReducerCommand
     }
 
   /**
+   * Tests {@link Reducer#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> XML </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> XML </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withInputXml </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_0() throws Exception
+    {
+    // Given...
+    File genFile = getResourceFile( "Reducer-withContentType-0-GenDef.xml");
+    File inFile = getResourceFile( "Reducer-withContentType-0");
+
+    String[] args =
+      {
+        "-g", genFile.getName(),
+        "-T", "JSON",
+        inFile.getPath()
+      };
+    
+    // When...
+    ReducerCommand reducer = new ReducerCommand();
+    reducer.run( new Options( args));
+        
+    // Then...
+    assertThat( "Generator file content type", generatorResources_.read( genFile), is( notNullValue()));
+    }
+
+  /**
+   * Tests {@link Reducer#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 1. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> XML </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withJson </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_1() throws Exception
+    {
+    // Given...
+    File genFile = getResourceFile( "Reducer-withContentType-1-Generators.json");
+    File testFile = getResourceFile( "Reducer-withContentType-1-Base.xml");
+    File inFile = getResourceFile( "Reducer-withContentType-1.json");
+
+    genFile.delete();
+    
+    String[] args =
+      {
+        "-t", testFile.getName(),
+        inFile.getPath()
+      };
+    
+    // When...
+    ReducerCommand reducer = new ReducerCommand();
+    reducer.run( new Options( args));
+        
+    // Then...
+    assertThat( "Generator file created", genFile.exists(), is( true));
+    assertThat( "Generator file content type", generatorResources_.readJson( genFile.getName()), is( notNullValue()));
+    }
+
+  /**
+   * Tests {@link Reducer#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 2. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> XML </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> asDefined </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_2() throws Exception
+    {
+    // Given...
+    File genFile = getResourceFile( "Reducer-withContentType-2-G.json");
+    File testFile = getResourceFile( "Reducer-withContentType-2-Base.json");
+    File inFile = getResourceFile( "Reducer-withContentType-2");
+
+    String[] args =
+      {
+        "-g", genFile.getPath(),
+        "-t", testFile.getName(),
+        "-T", "XML",
+        inFile.getPath()
+      };
+    
+    // When...
+    ReducerCommand reducer = new ReducerCommand();
+    reducer.run( new Options( args));
+        
+    // Then...
+    assertThat( "Generator file content type", generatorResources_.readJson( genFile.getName()), is( notNullValue()));
+    }
+
+  /**
+   * Tests {@link Reducer#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 3. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withInputJson </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_3() throws Exception
+    {
+    // Given...
+    File genFile = getResourceFile( "Reducer-withContentType-3-Generators.json");
+    File inFile = getResourceFile( "Reducer-withContentType-3");
+
+    genFile.delete();
+    
+    String[] args =
+      {
+        inFile.getPath()
+      };
+    
+    // When...
+    ReducerCommand reducer = new ReducerCommand();
+    reducer.run( new Options( args));
+        
+    // Then...
+    assertThat( "Generator file created", genFile.exists(), is( true));
+    assertThat( "Generator file content type", generatorResources_.readJson( genFile.getName()), is( notNullValue()));
+    }
+
+  /**
+   * Tests {@link Reducer#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 4. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> XML </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withXml </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_4() throws Exception
+    {
+    // Given...
+    File genFile = getResourceFile( "Reducer-withContentType-4-GenDef");
+    File testFile = getResourceFile( "Reducer-withContentType-4-Test");
+    File inFile = getResourceFile( "Reducer-withContentType-4");
+
+    genFile.delete();
+    
+    String[] args =
+      {
+        "-g", genFile.getName(),
+        "-t", testFile.getName(),
+        "-T", "json",
+        inFile.getPath()
+      };
+    
+    // When...
+    ReducerCommand reducer = new ReducerCommand();
+    reducer.run( new Options( args));
+        
+    // Then...
+    assertThat( "Generator file created", genFile.exists(), is( true));
+    assertThat( "Generator file content type", generatorResources_.readJson( genFile.getName()), is( notNullValue()));
+    }
+
+  /**
    * Returns the TupleGenerator defined for the given function. Returns null if only the default generator
    * applies to this function.
    */
@@ -606,18 +826,5 @@ public class TestReducerCommand
     return new File( new File( classUrl.getFile()).getParent(), resource);
     }
 
-  /**
-   * Returns the IGeneratorSet defined by the given file.
-   */
-  private IGeneratorSet getGenerators( File genDefFile)
-    {
-    try( GeneratorSetDocReader reader = new GeneratorSetDocReader( new FileInputStream( genDefFile)))
-      {
-      return reader.getGeneratorSet();
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't read generator definition file=" + genDefFile, e);
-      }
-    }
+  private GeneratorSetResources generatorResources_ = new GeneratorSetResources( getClass());
   }

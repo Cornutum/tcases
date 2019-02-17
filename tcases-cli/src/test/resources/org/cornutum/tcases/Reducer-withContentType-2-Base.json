@@ -1,0 +1,377 @@
+
+{
+    "system": "Examples",
+    "other": [
+        {
+            "id": 0,
+            "has": {
+                "properties": "empty,fileExists,fileName,quoted"
+            },
+            "arg": {
+                "pattern.size": {
+                    "value": "empty"
+                },
+                "pattern.quoted": {
+                    "value": "yes"
+                },
+                "pattern.blanks": {
+                    "NA": true
+                },
+                "pattern.embeddedQuotes": {
+                    "NA": true
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "value": "yes"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "NA": true
+                },
+                "file.contents.patterns": {
+                    "NA": true
+                },
+                "file.contents.patternsInLine": {
+                    "NA": true
+                }
+            }
+        },
+        {
+            "id": 1,
+            "has": {
+                "properties": "fileExists,fileName,matchable,singleChar"
+            },
+            "arg": {
+                "pattern.size": {
+                    "value": "singleChar"
+                },
+                "pattern.quoted": {
+                    "value": "no"
+                },
+                "pattern.blanks": {
+                    "value": "none"
+                },
+                "pattern.embeddedQuotes": {
+                    "NA": true
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "value": "yes"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "value": "one"
+                },
+                "file.contents.patterns": {
+                    "value": "none"
+                },
+                "file.contents.patternsInLine": {
+                    "NA": true
+                }
+            }
+        },
+        {
+            "id": 2,
+            "has": {
+                "properties": "fileExists,fileName,match,matchable,quoted"
+            },
+            "arg": {
+                "pattern.size": {
+                    "value": "manyChars"
+                },
+                "pattern.quoted": {
+                    "value": "yes"
+                },
+                "pattern.blanks": {
+                    "value": "many"
+                },
+                "pattern.embeddedQuotes": {
+                    "value": "none"
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "value": "yes"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "value": "many"
+                },
+                "file.contents.patterns": {
+                    "value": "one"
+                },
+                "file.contents.patternsInLine": {
+                    "value": "one"
+                }
+            }
+        },
+        {
+            "id": 3,
+            "has": {
+                "properties": "fileExists,fileName,many,match,matchable,quoted,singleChar"
+            },
+            "arg": {
+                "pattern.size": {
+                    "value": "singleChar"
+                },
+                "pattern.quoted": {
+                    "value": "yes"
+                },
+                "pattern.blanks": {
+                    "value": "one"
+                },
+                "pattern.embeddedQuotes": {
+                    "NA": true
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "value": "yes"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "value": "many"
+                },
+                "file.contents.patterns": {
+                    "value": "many"
+                },
+                "file.contents.patternsInLine": {
+                    "value": "many"
+                }
+            }
+        },
+        {
+            "id": 4,
+            "has": {
+                "properties": "fileExists,fileName,match,matchable"
+            },
+            "arg": {
+                "pattern.size": {
+                    "value": "manyChars"
+                },
+                "pattern.quoted": {
+                    "value": "no"
+                },
+                "pattern.blanks": {
+                    "value": "none"
+                },
+                "pattern.embeddedQuotes": {
+                    "value": "one"
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "value": "yes"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "value": "many"
+                },
+                "file.contents.patterns": {
+                    "value": "one"
+                },
+                "file.contents.patternsInLine": {
+                    "value": "one"
+                }
+            }
+        },
+        {
+            "id": 5,
+            "has": {
+                "properties": "fileExists,fileName,many,match,matchable,quoted"
+            },
+            "arg": {
+                "pattern.size": {
+                    "value": "manyChars"
+                },
+                "pattern.quoted": {
+                    "value": "yes"
+                },
+                "pattern.blanks": {
+                    "value": "many"
+                },
+                "pattern.embeddedQuotes": {
+                    "value": "many"
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "value": "yes"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "value": "many"
+                },
+                "file.contents.patterns": {
+                    "value": "many"
+                },
+                "file.contents.patternsInLine": {
+                    "value": "one"
+                }
+            }
+        },
+        {
+            "id": 6,
+            "has": {
+                "properties": "empty,fileExists,fileName"
+            },
+            "arg": {
+                "pattern.size": {
+                    "value": "empty"
+                },
+                "pattern.quoted": {
+                    "failure": true,
+                    "value": "unterminated"
+                },
+                "pattern.blanks": {
+                    "NA": true
+                },
+                "pattern.embeddedQuotes": {
+                    "NA": true
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "value": "yes"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "NA": true
+                },
+                "file.contents.patterns": {
+                    "NA": true
+                },
+                "file.contents.patternsInLine": {
+                    "NA": true
+                }
+            }
+        },
+        {
+            "id": 7,
+            "arg": {
+                "pattern.size": {
+                    "NA": true
+                },
+                "pattern.quoted": {
+                    "NA": true
+                },
+                "pattern.blanks": {
+                    "NA": true
+                },
+                "pattern.embeddedQuotes": {
+                    "NA": true
+                },
+                "fileName": {
+                    "failure": true,
+                    "value": "missing"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "NA": true
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "NA": true
+                },
+                "file.contents.patterns": {
+                    "NA": true
+                },
+                "file.contents.patternsInLine": {
+                    "NA": true
+                }
+            }
+        },
+        {
+            "id": 8,
+            "has": {
+                "properties": "fileName"
+            },
+            "arg": {
+                "pattern.size": {
+                    "NA": true
+                },
+                "pattern.quoted": {
+                    "NA": true
+                },
+                "pattern.blanks": {
+                    "NA": true
+                },
+                "pattern.embeddedQuotes": {
+                    "NA": true
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "failure": true,
+                    "value": "no"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "NA": true
+                },
+                "file.contents.patterns": {
+                    "NA": true
+                },
+                "file.contents.patternsInLine": {
+                    "NA": true
+                }
+            }
+        },
+        {
+            "id": 9,
+            "has": {
+                "properties": "fileExists,fileName,singleChar"
+            },
+            "arg": {
+                "pattern.size": {
+                    "value": "singleChar"
+                },
+                "pattern.quoted": {
+                    "value": "no"
+                },
+                "pattern.blanks": {
+                    "value": "none"
+                },
+                "pattern.embeddedQuotes": {
+                    "NA": true
+                },
+                "fileName": {
+                    "value": "defined"
+                }
+            },
+            "env": {
+                "file.exists": {
+                    "value": "yes"
+                },
+                "file.contents.linesLongerThanPattern": {
+                    "failure": true,
+                    "value": "none"
+                },
+                "file.contents.patterns": {
+                    "NA": true
+                },
+                "file.contents.patternsInLine": {
+                    "NA": true
+                }
+            }
+        }
+    ]
+}
