@@ -41,11 +41,19 @@ public class ReducerMojo extends AbstractMojo
         // Use input definition(s) for specified project name.
         inputDefPatterns.add( "**/" + getProject() + "-Input.xml");
         inputDefPatterns.add( "**/" + getProject() + ".xml");
+        inputDefPatterns.add( "**/" + getProject() + "-Input.json");
+        inputDefPatterns.add( "**/" + getProject() + ".json");
         }
-      else
+      else if( !StringUtils.isBlank( getInputDef())) 
         {
         // Use specified input definition pattern.
         inputDefPatterns.add( getInputDef());
+        }
+      else
+        {
+        // Use default patterns
+        inputDefPatterns.add( "**/*-Input.xml");
+        inputDefPatterns.add( "**/*-Input.json");
         }
       inputScanner.setIncludes( inputDefPatterns.toArray( new String[0]));
 
@@ -87,6 +95,7 @@ public class ReducerMojo extends AbstractMojo
         options.setSamples( getSamples());
         options.setResampleFactor( getResampleFactor());
         options.setNewSeed( isNewSeed());
+        options.setContentType( getContentType());
 
         // Reduce test cases for this Tcases project.
         reducer.run( options);
@@ -209,6 +218,22 @@ public class ReducerMojo extends AbstractMojo
     }
 
   /**
+   * Changes the default content type.
+   */
+  public void setContentType( String contentType)
+    {
+    this.contentType = contentType;
+    }
+
+  /**
+   * Returns the default content type.
+   */
+  public String getContentType()
+    {
+    return contentType;
+    }
+
+  /**
    * Changes the generator definition path.
    */
   public void setGenDef( String genDef)
@@ -322,19 +347,21 @@ public class ReducerMojo extends AbstractMojo
   /**
    * Defines a single pattern that matches the system input definition files read by Reducer,
    * relative to the directory specified by the <B><CODE>inputDir</CODE></B>.
+   * If omitted, the default value matches all files of the form "*-Input.xml" or "*-Input.json".
    * <P/>
    * An input definition file defines a <EM>project name</EM> that is used to form the
    * default names for other associated files. For an input definition file of the form
    * "${prefix}-Input.xml", the project name is "${prefix}". Otherwise, the project name
    * is the basename of the input definition file.
    */
-  @Parameter(property="inputDef",defaultValue="**/*-Input.xml")
+  @Parameter(property="inputDef")
   private String inputDef;
   
   /**
    * A short-hand form of the <B><CODE>inputDefs</CODE></B> parameter that makes it easier
    * to select the system input definition for a specific project. Equivalent to setting
-   * <B><CODE>inputDefs</CODE></B> to <NOBR><CODE>&lowast;&lowast;/${project}-Input.xml,&lowast;&lowast;/${project}.xml</CODE></NOBR>.
+   * <B><CODE>inputDefs</CODE></B> to
+   * <CODE>&lowast;&lowast;/${project}-Input.xml,&lowast;&lowast;/${project}.xml,&lowast;&lowast;/${project}-Input.json,&lowast;&lowast;/${project}.json</CODE>.
    */
   @Parameter(property="project")
   private String project;
@@ -348,12 +375,21 @@ public class ReducerMojo extends AbstractMojo
   private String inputDir;
 
   /**
+   * Defines the default content type for files that are read and produced. The <B><CODE>contentType</CODE></B> must be one of "json" or "xml".
+   * The default content type is assumed for any file that is not specified explicitly or that does not have a recognized extension.
+   * If omitted, the default content type is derived from the input definition file name.
+   */
+  @Parameter(property="contentType")
+  private String contentType;
+
+  /**
    * Defines the name for the initial test case definition files read by Reducer for an input definition file.
    * This file name may contain at most one "*" wildcard character, in which case
    * the "*" is replaced by the <EM>project name</EM> of the corresponding
    * input definition file &mdash; see the <B><CODE>inputDef</CODE></B> parameter for
    * details.
-   * The default value is "*-Test.xml".
+   * The default value is "*-Test.xml" or "*-Test.json" (depending on the <B><CODE>contentType</CODE></B>)
+   * or, if the <B><CODE>junit</CODE></B> parameter is true, "*Test.java".
    */
   @Parameter(property="testDef")
   private String testDef;
@@ -364,7 +400,7 @@ public class ReducerMojo extends AbstractMojo
    * the "*" is replaced by the <EM>project name</EM> of the corresponding
    * input definition file &mdash; see the <B><CODE>inputDef</CODE></B> parameter for
    * details.
-   * The default value is "*-Generators.xml".
+   * The default value is "*-Generators.xml or "*-Generators.json" (depending on the <B><CODE>contentType</CODE></B>)".
    */
   @Parameter(property="genDef")
   private String genDef;
