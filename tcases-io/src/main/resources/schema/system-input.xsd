@@ -13,7 +13,7 @@
   //////////////////////////////////////////////////////////////////////////////
   -->
   <!-- Defines the schema for a system input specification document -->
-  <!-- $Revision$, $Date$ -->
+  <!-- Version: ${project.version}  -->
 
   <!-- Annotations -->
   <xs:complexType name="annotationType">

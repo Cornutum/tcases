@@ -13,7 +13,7 @@
   //////////////////////////////////////////////////////////////////////////////
   -->
   <!-- Defines the schema for a generator definition document -->
-  <!-- $Revision$, $Date$ -->
+  <!-- Version: ${project.version}  -->
 
   <xs:element name="Generators">
     <xs:complexType>

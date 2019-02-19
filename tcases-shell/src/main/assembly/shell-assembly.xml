@@ -14,6 +14,19 @@
       <outputDirectory>lib</outputDirectory>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+    <dependencySet>
+      <outputDirectory>docs</outputDirectory>
+      <includes>
+          <include>org.cornutum.tcases:tcases-io</include>
+      </includes>
+      <unpack>true</unpack>
+      <unpackOptions>
+          <includes>
+              <include>schema/*-schema.json</include>
+              <include>schema/*.xsd</include>
+          </includes>
+      </unpackOptions>
+    </dependencySet>
   </dependencySets>
 
   <fileSets>
