@@ -48,6 +48,57 @@ public class TcasesMojoTest
     File expectedTestDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "-Test.xml");
     assertThat( "Test def", expectedTestDefs[0], is( expectedTestDef.getPath()));
     }
+  @Test
+  public void withJson() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "tcases-project-json");
+
+    // When...
+    TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
+    clean( tcasesMojo);
+    tcasesMojo.execute();
+
+    // Then expect XML project results...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases");
+    assertThat( "Input dir", tcasesMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases");
+    assertThat( "Out dir", tcasesMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedXmlInputDefs = findPathsMatching( expectedInputDir, "**/*-Input.xml");
+    assertThat( "XML input defs", expectedXmlInputDefs.length, is( 1));
+    File expectedXmlInputDef = new File( expectedXmlInputDefs[0]);
+
+    String[] expectedXmlTestDefs = findPathsMatching( expectedOutDir, "**/*-Test.xml");
+    assertThat( "XML test defs", expectedXmlTestDefs.length, is( 1));
+    File expectedXmlTestDef = new File( expectedXmlInputDef.getParent(), TcasesCommand.getProjectName( expectedXmlInputDef) + "-Test.xml");
+    assertThat( "XML test def", expectedXmlTestDefs[0], is( expectedXmlTestDef.getPath()));
+    assertThat( "XML test def exists", new File( expectedOutDir, expectedXmlTestDef.getPath()).exists(), is( true));
+
+    String[] expectedXmlGenDefs = findPathsMatching( expectedInputDir, "**/*-Generators.xml");
+    assertThat( "XML generator defs", expectedXmlGenDefs.length, is( 1));
+    File expectedXmlGenDef = new File( expectedXmlInputDef.getParent(), TcasesCommand.getProjectName( expectedXmlInputDef) + "-Generators.xml");
+    assertThat( "XML gen def", expectedXmlGenDefs[0], is( expectedXmlGenDef.getPath()));
+    assertThat( "XML gen def exists", new File( expectedInputDir, expectedXmlGenDef.getPath()).exists(), is( true));
+
+    // And expect JSON project results...
+    String[] expectedJsonInputDefs = findPathsMatching( expectedInputDir, "**/*-Input.json");
+    assertThat( "JSON input defs", expectedJsonInputDefs.length, is( 1));
+    File expectedJsonInputDef = new File( expectedJsonInputDefs[0]);
+
+    String[] expectedJsonTestDefs = findPathsMatching( expectedOutDir, "**/*-Test.json");
+    assertThat( "JSON test defs", expectedJsonTestDefs.length, is( 1));
+    File expectedJsonTestDef = new File( expectedJsonInputDef.getParent(), TcasesCommand.getProjectName( expectedJsonInputDef) + "-Test.json");
+    assertThat( "JSON test def", expectedJsonTestDefs[0], is( expectedJsonTestDef.getPath()));
+    assertThat( "JSON test def exists", new File( expectedOutDir, expectedJsonTestDef.getPath()).exists(), is( true));
+
+    String[] expectedJsonGenDefs = findPathsMatching( expectedInputDir, "**/*-Generators.json");
+    assertThat( "JSON generator defs", expectedJsonGenDefs.length, is( 1));
+    File expectedJsonGenDef = new File( expectedJsonInputDef.getParent(), TcasesCommand.getProjectName( expectedJsonInputDef) + "-Generators.json");
+    assertThat( "JSON gen def", expectedJsonGenDefs[0], is( expectedJsonGenDef.getPath()));
+    assertThat( "JSON gen def exists", new File( expectedInputDir, expectedJsonGenDef.getPath()).exists(), is( true));
+    }
   
   @Test
   public void withConfigCustom() throws Exception
