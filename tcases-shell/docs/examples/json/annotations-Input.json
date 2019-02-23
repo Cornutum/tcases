@@ -1,0 +1,114 @@
+{
+    "system": "Things",
+    "has": {
+        "systemType": "Graphics"
+    },
+    
+    "Make": {
+        "has": {
+            "measurement": "None"
+        },
+        "arg": {
+            "has": {
+                "valueType": "Valid"
+            },
+            "Color": {
+                "has": {
+                    "measurement": "Ordinal"
+                },
+                "when": {
+                    "allOf": [ {"hasAll": ["small"]},  {"not": {"hasAny": ["polygon"]}}
+                    ]
+                },
+                "members": {
+                    "Hue": {
+                        "has": {
+                            "measurement": "Nominal"
+                        },
+                        "values": {
+                            "Red": {
+                            },
+                            "Green": {
+                            },
+                            "Blue": {
+                            }
+                        }
+                    },
+                    "Lightness": {
+                        "values": {
+                            "Bright": {
+                                "when": {"hasAll": ["round"]}
+                            },
+                            "Normal": {
+                            },
+                            "Dark": {
+                                "when": {"not": {"hasAny": ["round"]}}
+                            },
+                            "Transparent": {
+                                "has": {
+                                    "valueType": "Invalid"
+                                },
+                                "failure": true,
+                                "when": {"not": {"hasAny": ["round"]}}
+                            }
+                        }
+                    },
+                    "Saturation": {
+                        "values": {
+                            "Pale": {
+                            },
+                            "Even": {
+                            },
+                            "Intense": {
+                            },
+                            "Undefined": {
+                                "has": {
+                                    "valueType": "Invalid"
+                                },
+                                "failure": true
+                            }
+                        }
+                    }
+                }
+            },
+            "Size": {
+                "has": {
+                    "measurement": "Ordinal"
+                },
+                "values": {
+                    "Ginormous": {
+                        "has": {
+                            "valueType": "Invalid"
+                        },
+                        "failure": true
+                    },
+                    "Small": {
+                        "properties": ["small"]
+                    },
+                    "Medium": {
+                        "when": {"allOf": [{"hasAll": ["polygon"]}]}
+                    },
+                    "Large": {
+                        "when": {"not": {"hasAny": ["polygon"]}
+                        }
+                    }
+                }
+            },
+            "Shape": {
+                "has": {
+                    "measurement": "Nominal"
+                },
+                "values": {
+                    "Square": {
+                        "properties": ["polygon"]
+                    },
+                    "Circle": {
+                        "properties": ["round"]
+                    },
+                    "Heart": {
+                    }
+                }
+            }
+        }
+    }
+}

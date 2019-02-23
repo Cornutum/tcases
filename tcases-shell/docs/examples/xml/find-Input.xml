@@ -1,6 +1,4 @@
 <System name="Examples">
-  <!-- Version: $Revision$ $Date$ -->
-
   <Function name="find">
     <!-- 
          Usage: find pattern file

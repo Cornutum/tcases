@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-<!-- Version: $Revision$ $Date$ -->
 
 <project name="tcases" default="tcases" basedir=".">
 
