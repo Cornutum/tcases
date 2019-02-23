@@ -143,6 +143,14 @@
                         "type": "string"
                     }
                 },
+                "hasNone": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "allOf": {
                     "type": "array",
                     "minItems": 1,

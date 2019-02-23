@@ -92,6 +92,38 @@ public class TestSystemInputJson
     }
 
   @Test
+  public void testSystemInput_hasNone()
+    {
+    // Given...
+    String jsonInputResource = "find-Input.json";
+    SystemInputDef systemInputBefore = systemInputResources_.readJson( jsonInputResource);
+
+    // When...
+    ByteArrayOutputStream systemInputOut = new ByteArrayOutputStream();
+    try( SystemInputJsonWriter writer = new SystemInputJsonWriter( systemInputOut))
+      {
+      writer.write( systemInputBefore);
+      }
+
+    SystemInputDef systemInputAfter;
+    ByteArrayInputStream systemInputIn = new ByteArrayInputStream( systemInputOut.toByteArray());
+    try( SystemInputJsonReader reader = new SystemInputJsonReader( systemInputIn))
+      {
+      systemInputAfter = reader.getSystemInputDef();
+      }    
+
+    // Then...
+    assertThat( "Output from definition=" + jsonInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputBefore)));
+
+    // Given...
+    String xmlInputResource = "find-Input.xml";
+    SystemInputDef systemInputXml = systemInputResources_.read( xmlInputResource);
+
+    // Then...
+    assertThat( "Comparing " + jsonInputResource + " and " + xmlInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputXml)));
+    }
+
+  @Test
   public void testSystemInput_Annotations_Missing()
     {
     assertValidationFailure( "system-input-annotations-missing.json", "The object must have at least 1 property(ies), but actual number is 0");

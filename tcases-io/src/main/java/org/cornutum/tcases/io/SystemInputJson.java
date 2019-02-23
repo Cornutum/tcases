@@ -402,6 +402,7 @@ public final class SystemInputJson
       (
         SystemInputJson::asContainsAll,
         SystemInputJson::asContainsAny,
+        SystemInputJson::asContainsNone,
         SystemInputJson::asNot,
         SystemInputJson::asAnyOf,
         SystemInputJson::asAllOf
@@ -413,7 +414,7 @@ public final class SystemInputJson
       .filter( Optional::isPresent)
       .map( Optional::get)
       .findFirst()
-      .orElse( null)
+      .orElseThrow( () -> new SystemInputException( String.format( "Unknown condition type: %s", json.keySet().iterator().next())))
       ;
     }
 
@@ -438,6 +439,18 @@ public final class SystemInputJson
     return
       json.containsKey( HAS_ANY_KEY)
       ? Optional.of( new ContainsAny( toIdentifiers( json.getJsonArray( HAS_ANY_KEY))))
+      : Optional.empty();
+    }
+
+  /**
+   * Returns the Not( ContainsAny) condition represented by the given JSON object or an empty
+   * value if no such condition is found.
+   */
+  private static Optional<ICondition> asContainsNone( JsonObject json)
+    {
+    return
+      json.containsKey( HAS_NONE_KEY)
+      ? Optional.of( new Not( new ContainsAny( toIdentifiers( json.getJsonArray( HAS_NONE_KEY)))))
       : Optional.empty();
     }
 
@@ -595,14 +608,24 @@ public final class SystemInputJson
       {
       ICondition[] conditions = IteratorUtils.toArray( condition.getConditions(), ICondition.class);
 
-      json_ =
-        Json.createObjectBuilder()
-        .add(
-          NOT_KEY,
-          conditions.length == 1
-          ? toJson( conditions[0])
-          : toJson( new AnyOf( conditions)))
-        .build();
+      JsonObjectBuilder builder = Json.createObjectBuilder();
+      if( conditions.length > 1)
+        {
+        builder.add( NOT_KEY, toJson( new AnyOf( conditions)));
+        }
+      else if( conditions[0].getClass().equals( ContainsAny.class))
+        {
+        // Special case: abbreviate "not:{hasAny:[...]}" as "hasNone:[...]".
+        JsonArrayBuilder properties = Json.createArrayBuilder();
+        toStream( ((ContainsAny) conditions[0]).getProperties()).forEach( property -> properties.add( property));
+        builder.add( HAS_NONE_KEY, properties);
+        }
+      else
+        {
+        builder.add( NOT_KEY, toJson( conditions[0]));
+        }
+      
+      json_ = builder.build();
       }
 
     private ICondition condition_;
@@ -615,6 +638,7 @@ public final class SystemInputJson
   private static final String HAS_ALL_KEY = "hasAll";
   private static final String HAS_ANY_KEY = "hasAny";
   private static final String HAS_KEY = "has";
+  private static final String HAS_NONE_KEY = "hasNone";
   private static final String MEMBERS_KEY = "members";
   private static final String NOT_KEY = "not";
   private static final String ONCE_KEY = "once";
