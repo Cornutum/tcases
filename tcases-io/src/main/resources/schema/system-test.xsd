@@ -13,7 +13,7 @@
   //////////////////////////////////////////////////////////////////////////////
   -->
   <!-- Defines the schema for a system test case specification document -->
-  <!-- $Revision$, $Date$ -->
+  <!-- Version: ${project.version}  -->
 
   <!-- Annotations -->
   <xs:complexType name="annotationType">
@@ -21,10 +21,12 @@
     <xs:attribute name="value" type="xs:string" use="required"/>
   </xs:complexType>
 
-  <!-- System functions -->
+  <!-- System test cases -->
   <xs:element name="TestCases">
     <xs:complexType>
       <xs:sequence maxOccurs="unbounded">
+
+        <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
 
         <xs:element name="Function">
           <xs:complexType>
@@ -33,9 +35,9 @@
               <xs:element name="TestCase">
                 <xs:complexType>
 
-                  <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
-
                   <xs:sequence maxOccurs="unbounded">
+
+                    <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
 
                     <xs:element name="Input">
                       <xs:complexType>
@@ -43,10 +45,14 @@
 
                           <xs:element name="Var">
                             <xs:complexType>
-                              <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+                              <xs:sequence maxOccurs="unbounded">
+                                <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+                              </xs:sequence>
+
                               <xs:attribute name="name" type="xs:string" use="required"/>
                               <xs:attribute name="value" type="xs:string" use="required"/>
                               <xs:attribute name="failure" type="xs:boolean"/>
+                              <xs:attribute name="NA" type="xs:boolean"/>
                             </xs:complexType>
                           </xs:element>
 

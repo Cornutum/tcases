@@ -13,7 +13,7 @@
   //////////////////////////////////////////////////////////////////////////////
   -->
   <!-- Defines the schema for a system input specification document -->
-  <!-- $Revision$, $Date$ -->
+  <!-- Version: ${project.version}  -->
 
   <!-- Annotations -->
   <xs:complexType name="annotationType">
@@ -108,23 +108,21 @@
   <xs:element name="System">
     <xs:complexType>
 
-      <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
-
       <xs:sequence maxOccurs="unbounded">
+        <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
 
         <xs:element name="Function">
           <xs:complexType>
 
-            <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
-              
             <xs:sequence maxOccurs="unbounded">
+              
+              <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
 
               <xs:element name="Input">
                 <xs:complexType>
-
-                  <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
-
                   <xs:sequence maxOccurs="unbounded">
+
+                    <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
 
                     <xs:choice>
                       <xs:element name="Var" type="varType"/>

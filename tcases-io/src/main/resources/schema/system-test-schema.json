@@ -1,0 +1,100 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://org.cornutum/tcases/system-test-schema.json",
+    "title": "System Test Model",
+    "description": "Defines test cases for a system (version: ${project.version})",
+
+    "type": "object",
+    "properties": {
+        "system": {
+            "type": "string"
+        },
+        "has": {
+            "$ref": "#/definitions/annotation"
+        }
+    },
+    "required": [ "system" ],
+    "additionalProperties": {
+        "$ref": "#/definitions/function"
+    },
+
+    "definitions": {
+        "annotation": {
+            "description": "Defines a set of output annotations",
+            "type": "object",
+            "patternProperties": {
+                ".": {
+                    "type": "string"
+                }
+            },
+            "minProperties": 1
+        },
+        "function": {
+            "description": "Defines the test cases for a system function",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/testCase"
+            }
+        },
+        "testCase": {
+            "description": "Defines a test case for a system function",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "has": {
+                    "$ref": "#/definitions/annotation"
+                }
+            },
+            "additionalProperties": {
+                "$ref": "#/definitions/inputDef"
+            },
+            "required": ["id"]
+        },
+        "inputDef": {
+            "description": "Defines bindings for a set of input variables of the same type",
+            "type": "object",
+            "minProperties": 1,
+            "patternProperties": {
+                ".": {
+                    "$ref": "#/definitions/bindingDef"
+                }
+            }
+        },
+        "bindingDef": {
+            "type": "object",
+            "properties": {
+                "has": {
+                    "$ref": "#/definitions/annotation"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "NA": {
+                    "type": "boolean"
+                },
+                "failure": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+                {
+                    "required": ["value"],
+                    "properties": {
+                        "NA": false
+                    }
+                },
+                {
+                    "required": ["NA"],
+                    "properties": {
+                        "value": false,
+                        "failure": false
+                    }
+                }
+            ] 
+        }
+    }
+}

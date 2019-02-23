@@ -10,6 +10,7 @@ package org.cornutum.tcases.io;
 import org.cornutum.tcases.SystemInputDef;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ClassUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -71,12 +72,9 @@ public class SystemInputResources
    */
   public SystemInputDef read( String resource)
     {
-    SystemInputDef  systemInputDef  = null;
-    InputStream     stream          = null;
-    
     try
       {
-      stream = class_.getResourceAsStream( resource);
+      InputStream stream = class_.getResourceAsStream( resource);
       if( stream == null)
         {
         throw
@@ -84,19 +82,12 @@ public class SystemInputResources
           ( "Can't find resource=" + class_.getName() + "." + resource);
         }
 
-      SystemInputDocReader reader = new SystemInputDocReader( stream);
-      systemInputDef = reader.getSystemInputDef();
+      return read( stream);
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't read resource=" + resource, e);
       }
-    finally
-      {
-      IOUtils.closeQuietly( stream);
-      }
-
-    return systemInputDef;
     }
 
   /**
@@ -119,16 +110,31 @@ public class SystemInputResources
    */
   public SystemInputDef read( InputStream stream) throws Exception
     {
-    SystemInputDef systemInputDef = null;
-    
-    try
+    try( SystemInputDocReader reader = new SystemInputDocReader( stream))
       {
-      SystemInputDocReader reader = new SystemInputDocReader( stream);
-      systemInputDef = reader.getSystemInputDef();
+      return reader.getSystemInputDef();
       }
-    finally
+    }
+
+  /**
+   * Returns the {@link SystemInputDef} defined by the given JSON resource.
+   */
+  public SystemInputDef readJson( String resource)
+    {
+    SystemInputDef  systemInputDef  = null;
+    InputStream     stream          = null;
+    
+    stream = class_.getResourceAsStream( resource);
+    if( stream == null)
       {
-      IOUtils.closeQuietly( stream);
+      throw
+        new RuntimeException
+        ( "Can't find resource=" + ClassUtils.getPackageName( class_) + "." + resource);
+      }
+
+    try( SystemInputJsonReader reader = new SystemInputJsonReader( stream))
+      {
+      systemInputDef = reader.getSystemInputDef();
       }
 
     return systemInputDef;

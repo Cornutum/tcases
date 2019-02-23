@@ -1,0 +1,6 @@
+
+{
+    "refBase": "file:/Users/kerrykimbrough/repos/tcases/tcases-io/target/test-classes/org/cornutum/tcases/io/",
+    "inputDef": "system input def 0.xml",
+    "generators": "file:/Users/kerrykimbrough/repos/tcases/tcases-io/target/test-classes/org/cornutum/tcases/generator/io/generator-set-once.xml"
+}

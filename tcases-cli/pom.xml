@@ -65,6 +65,15 @@
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     </properties>
 
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>        
+    </build>
+    
     <dependencies>
         <dependency>
             <groupId>org.cornutum.tcases</groupId>

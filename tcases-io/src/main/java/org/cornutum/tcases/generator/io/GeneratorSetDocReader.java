@@ -23,8 +23,10 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Closeable;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +38,7 @@ import java.util.Set;
  * An {@link IGeneratorSetSource} that reads from an XML document.
  *
  */
-public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorSetSource
+public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorSetSource, Closeable
   {
   /**
    * The base class for element handlers used by this parser.
@@ -573,7 +575,15 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
    */
   protected InputStream getInputStream()
     {
-    return stream_;
+    return
+      stream_==null
+      ? System.in
+      : stream_;
+    }
+
+  public void close()
+    {
+    IOUtils.closeQuietly( stream_);
     }
 
   /**

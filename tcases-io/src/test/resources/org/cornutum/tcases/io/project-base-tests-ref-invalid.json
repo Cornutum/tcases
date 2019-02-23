@@ -1,0 +1,7 @@
+
+{
+    "refBase": "file:/Users/kerrykimbrough/repos/tcases/tcases-io/target/test-classes/org/cornutum/tcases/io/",
+    "inputDef": "file:/Users/kerrykimbrough/repos/tcases/tcases-io/target/test-classes/org/cornutum/tcases/io/system-input-def-0.xml",
+    "generators": "file:/Users/kerrykimbrough/repos/tcases/tcases-io/target/test-classes/org/cornutum/tcases/generator/io/generator-set-once.xml",
+    "baseTests": "Not Really A URI"
+}

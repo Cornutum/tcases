@@ -10,15 +10,14 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 import org.cornutum.tcases.io.*;
+import static org.cornutum.tcases.io.Resource.withDefaultType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.commons.io.IOUtils;
+import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.Optional;
 
 /**
@@ -45,6 +44,7 @@ public class ReducerCommand extends Reducer
    * [-R]
    * [-s <I>sampleCount</I>]
    * [-t <I>baseTestDef</I>]
+   * [-T <I>contentType</I>]
    * <I>inputDef</I>
    * </NOBR>
    * </TD>
@@ -81,7 +81,7 @@ public class ReducerCommand extends Reducer
    * </TD>
    * <TD>
    * If <I>-g</I> is defined, update the generator specified in the given <I>genDef</I> file. Otherwise, update the default generator definition file:
-   * the corresponding <NOBR><CODE>*-Generators.xml</CODE></NOBR> file in the same directory as the <I>inputDef</I>.
+   * the corresponding <NOBR><CODE>*-Generators</CODE></NOBR> file in the same directory as the <I>inputDef</I>.
    * </TD>
    * </TR>
    * 
@@ -139,6 +139,20 @@ public class ReducerCommand extends Reducer
    * relative to the directory containing the <I>inputDef</I>.
    * </TD>
    * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-T <I>contentType</I> </NOBR>
+   * </TD>
+   * <TD>
+   * Defines the default content type for the files read and produced. The <I>contentType</I> must be one of "json" or "xml".
+   * The default content type is assumed for any file that is not specified explicitly or that does not have a recognized extension.
+   * If omitted, the default content type is derived from the <I>inputDef</I> name.
+   * </TD>
+   * </TR>
    * 
    * <TR valign="top">
    * <TD>
@@ -154,6 +168,8 @@ public class ReducerCommand extends Reducer
    * <LI> <I>inputDef</I> </LI>
    * <LI> <I>inputDef</I>-Input.xml </LI>
    * <LI> <I>inputDef</I>.xml </LI>
+   * <LI> <I>inputDef</I>-Input.json </LI>
+   * <LI> <I>inputDef</I>.json </LI>
    * </OL>
    * 
    * </TABLE>
@@ -269,6 +285,23 @@ public class ReducerCommand extends Reducer
           }
         setTestDef( new File( args[i]));
         }
+
+      else if( arg.equals( "-T"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        try
+          {
+          setContentType( args[i]);
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid content type", e);
+          }
+        }
       
       else
         {
@@ -328,6 +361,7 @@ public class ReducerCommand extends Reducer
           + " [-R]"
           + " [-s sampleCount]"
           + " [-t testDef]"
+          + " [-T contentType]"
           + " inputDef",
           cause);
       }
@@ -460,6 +494,35 @@ public class ReducerCommand extends Reducer
       }
 
     /**
+     * Changes the default file content type.
+     */
+    public void setContentType( String option)
+      {
+      Resource.Type contentType = Resource.Type.of( option);
+      if( option != null && contentType == null)
+        {
+        throw new IllegalArgumentException( String.format( "'%s' is not a valid content type", option));
+        }
+      setContentType( contentType);
+      }
+
+    /**
+     * Changes the default file content type.
+     */
+    public void setContentType( Resource.Type contentType)
+      {
+      contentType_ = contentType;
+      }
+
+    /**
+     * Returns the default file content type.
+     */
+    public Resource.Type getContentType()
+      {
+      return contentType_;
+      }
+
+    /**
      * Returns a new Options builder.
      */
     public static Builder builder()
@@ -493,6 +556,11 @@ public class ReducerCommand extends Reducer
         {
         builder.append( " -t ").append( getTestDef().getPath());
         }
+
+      if( getContentType() != null)
+        {
+        builder.append( " -T ").append( getContentType());
+        }
         
       return builder.toString();
       }
@@ -501,6 +569,7 @@ public class ReducerCommand extends Reducer
     private File testDef_;
     private File genDef_;
     private ReducerOptions reducerOptions_ = new ReducerOptions();
+    private Resource.Type contentType_;
 
     public static class Builder
       {
@@ -548,6 +617,12 @@ public class ReducerCommand extends Reducer
       public Builder samples( int samples)
         {
         options_.setSamples( samples);
+        return this;
+        }
+
+      public Builder contentType( String type)
+        {
+        options_.setContentType( type);
         return this;
         }
 
@@ -615,34 +690,32 @@ public class ReducerCommand extends Reducer
     File inputDefFile;
     if( !(inputDefFile = inputDefOption).exists()
         && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.xml")).exists()
-        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists())
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.json")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".json")).exists())
         {
         throw new RuntimeException( "Can't locate input file for path=" + inputDefOption);
-        }
+        };
+
+    Resource.Type defaultContentType =
+      firstNonNull
+      ( options.getContentType(),
+        Resource.Type.of( inputDefFile),
+        Resource.Type.XML);
 
     File inputDir = inputDefFile.getParentFile();
     String project = TcasesCommand.getProjectName( inputDefFile);
     
     // Read the system input definition.
+    logger_.info( "Reading system input definition={}", inputDefFile);
     SystemInputDef inputDef = null;
-    InputStream inputStream = null;
-    try
+    try( SystemInputResource reader = withDefaultType( SystemInputResource.of( inputDefFile), defaultContentType))
       {
-      logger_.info( "Reading system input definition={}", inputDefFile);
-      if( inputDefFile != null)
-        {
-        inputStream = new FileInputStream( inputDefFile);
-        }
-      SystemInputDocReader reader = new SystemInputDocReader( inputStream);
       inputDef = reader.getSystemInputDef();
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't read input definition file=" + inputDefFile, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( inputStream);
       }
 
     // Identify base test definition file.
@@ -657,21 +730,14 @@ public class ReducerCommand extends Reducer
     if( baseDefFile != null)
       {
       // Read the previous base test definitions.
-      InputStream testStream = null;
-      try
+      logger_.info( "Reading base test definition={}", baseDefFile);
+      try( SystemTestResource reader = withDefaultType( SystemTestResource.of( baseDefFile), defaultContentType))
         {
-        logger_.info( "Reading base test definition={}", baseDefFile);
-        testStream = new FileInputStream( baseDefFile);
-        SystemTestDocReader reader = new SystemTestDocReader( testStream);
         baseDef = reader.getSystemTestDef();
         }
       catch( Exception e)
         {
         throw new RuntimeException( "Can't read test definition file=" + baseDefFile, e);
-        }
-      finally
-        {
-        IOUtils.closeQuietly( testStream);
         }
       }
 
@@ -679,7 +745,7 @@ public class ReducerCommand extends Reducer
     File genDefFile = options.getGenDef();
     if( genDefFile == null)
       {
-      genDefFile = new File( inputDir, project + "-Generators.xml");
+      genDefFile = withDefaultType( new File( inputDir, project + "-Generators"), defaultContentType);
       }
     else if( !genDefFile.isAbsolute())
       {
@@ -691,21 +757,14 @@ public class ReducerCommand extends Reducer
     if( genDefFile.exists())
       {
       // Yes, read generator definitions.
-      InputStream genStream = null;
-      try
+      logger_.info( "Reading generator definition={}", genDefFile);
+      try( GeneratorSetResource reader = withDefaultType( GeneratorSetResource.of( genDefFile), defaultContentType))
         {
-        logger_.info( "Reading generator definition={}", genDefFile);
-        genStream = new FileInputStream( genDefFile);
-        GeneratorSetDocReader reader = new GeneratorSetDocReader( genStream);
         genDef = (GeneratorSet) reader.getGeneratorSet();
         }
       catch( Exception e)
         {
         throw new RuntimeException( "Can't read generator definition file=" + genDefFile, e);
-        }
-      finally
-        {
-        IOUtils.closeQuietly( genStream);
         }
       }
     else
@@ -724,23 +783,20 @@ public class ReducerCommand extends Reducer
       }
     else
       {
-      // Write updates to generator definitions.
-      GeneratorSetDocWriter genWriter = null;
       try
         {
-        genWriter = new GeneratorSetDocWriter( new FileOutputStream( genDefFile));
-        genWriter.write( genDefNew.get());
+        if( Resource.Type.of( withDefaultType( genDefFile, defaultContentType)) == Resource.Type.JSON)
+          {
+          TcasesJson.writeGenerators( genDefNew.get(), new FileOutputStream( genDefFile));
+          }
+        else
+          {
+          TcasesIO.writeGenerators( genDefNew.get(), new FileOutputStream( genDefFile));
+          }
         }
       catch( Exception e)
         {
         throw new RuntimeException( "Can't write generator definition file=" + genDefFile, e);
-        }
-      finally
-        {
-        if( genWriter != null)
-          {
-          genWriter.close();
-          }
         }      
       }
     }

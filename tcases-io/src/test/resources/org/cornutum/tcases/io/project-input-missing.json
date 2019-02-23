@@ -1,0 +1,5 @@
+
+{
+    "refBase": "file:/Users/kerrykimbrough/repos/tcases/tcases-io/target/test-classes/org/cornutum/tcases/io/",
+    "generators": "file:/Users/kerrykimbrough/repos/tcases/tcases-io/target/test-classes/org/cornutum/tcases/generator/io/generator-set-once.xml"
+}

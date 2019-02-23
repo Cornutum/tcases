@@ -9,7 +9,7 @@ package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.generator.IGeneratorSet;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ClassUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -75,14 +75,33 @@ public class GeneratorSetResources
     {
     IGeneratorSet generatorSet = null;
     
-    try
+    try( GeneratorSetDocReader reader = new GeneratorSetDocReader( stream))
       {
-      GeneratorSetDocReader reader = new GeneratorSetDocReader( stream);
       generatorSet = reader.getGeneratorSet();
       }
-    finally
+
+    return generatorSet;
+    }
+
+  /**
+   * Returns the {@link IGeneratorSet} defined by the given JSON resource.
+   */
+  public IGeneratorSet readJson( String resource)
+    {
+    IGeneratorSet  generatorSet  = null;
+    InputStream     stream          = null;
+    
+    stream = class_.getResourceAsStream( resource);
+    if( stream == null)
       {
-      IOUtils.closeQuietly( stream);
+      throw
+        new RuntimeException
+        ( "Can't find resource=" + ClassUtils.getPackageName( class_) + "." + resource);
+      }
+
+    try( GeneratorSetJsonReader reader = new GeneratorSetJsonReader( stream))
+      {
+      generatorSet = reader.getGeneratorSet();
       }
 
     return generatorSet;
@@ -93,18 +112,13 @@ public class GeneratorSetResources
    */
   public void write( IGeneratorSet generatorSet, File file)
     {
-    GeneratorSetDocWriter writer = createWriter( file);
-    try
+    try( GeneratorSetDocWriter writer = createWriter( file))
       {
       writer.write( generatorSet);
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't write " + generatorSet + " to file=" + file, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( writer);
       }
     }
 

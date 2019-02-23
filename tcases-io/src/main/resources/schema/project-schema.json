@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://org.cornutum/tcases/project-schema.json",
+    "title": "System Test Project Model",
+    "description": "Defines the collection of resources used to generate test cases for a specific project (version: ${project.version})",
+
+    "type": "object",
+    "properties": {
+        "refBase": {
+            "type": "string",
+            "format": "uri"
+        },
+        "inputDef": {
+            "oneOf": [
+                {
+                    "$ref": "system-input-schema.json"
+                },
+                {
+                    "type": "string",
+                    "format": "uri-reference"
+                }
+            ]
+        },
+        "generators": {
+            "oneOf": [
+                {
+                    "$ref": "generators-schema.json"
+                },
+                {
+                    "type": "string",
+                    "format": "uri-reference"
+                }
+            ]
+        },
+        "baseTests": {
+            "oneOf": [
+                {
+                    "$ref": "system-test-schema.json"
+                },
+                {
+                    "type": "string",
+                    "format": "uri-reference"
+                }
+            ]
+        }
+    },
+    "required": ["inputDef"],
+    "additionalProperties": false
+}

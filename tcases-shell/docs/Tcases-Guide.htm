@@ -10,7 +10,7 @@
         <IMG src="cornutum-logo.png"/>
         <SPAN class="title"> Tcases: The Complete Guide </SPAN> <BR/>
         <SPAN class="subtitle">Version ${shell.version} (${shell.timestamp})</SPAN><BR/>
-        <SPAN class="subtitle">&copy; 2012-2018 Cornutum Project</SPAN>
+        <SPAN class="subtitle">&copy; 2012-2019 Cornutum Project</SPAN>
       </DIV>
 
       <H2>Contents</H2>
@@ -27,6 +27,7 @@
             <LI><A href="#about">About This Guide</A></LI>  
             <LI><A href="#maven">Installing The Tcases Maven Plugin</A></LI>  
             <LI><A href="#install">Installing The Tcases Distribution</A></LI>  
+            <LI><A href="#json">XML or JSON?</A></LI> 
             <LI><A href="#run">Running From the Command Line</A></LI> 
             <LI><A href="#run-ant">Running With Ant</A></LI>      
             <LI><A href="#results">Understanding Tcases Results</A></LI>      
@@ -128,13 +129,13 @@
 
       <H3><A name="how">How Does It Work?</A></H3> 
       <P>
-        First, you create a <A href="#systemInputDef">system input definition</A>, an XML document
+        First, you create a <A href="#systemInputDef">system input definition</A>, a document
         that defines your system as a set of <A href="#functionInputDef">functions</A>. For each
         system function, the system input definition defines the <A href="#varDef">variables</A>
         that characterize the function input space.
       </P> 
       <P>
-        Then, you can create a <A href="#genDef">generator definition</A>. That's another XML
+        Then, you can create a <A href="#genDef">generator definition</A>. That's another
         document that defines the coverage you want for each system function. The generator
         definition is optional. You can skip this step and still get a basic level of coverage.
       </P>
@@ -146,7 +147,7 @@
         the <A href="http://www.cornutum.org/tcases/docs/tcases-maven-plugin/index.html">Tcases
         Maven Plugin</A>.  Using your input definition and your generator definition, Tcases
         generates a <A href="#systemTestDef">system test definition</A>.  The system test
-        definition is an XML document that lists, for each system function, a set of test cases
+        definition is a document that lists, for each system function, a set of test cases
         that provides the specified level of coverage. Each test case defines a specific value for
         every function input variable. Tcases generates not only valid input values that define
         successful test cases but also invalid values for the tests cases that are needed to verify
@@ -154,9 +155,9 @@
       </P>
       <P>
         Of course, the system test definition is not something you can execute directly. But it
-        follows a well-defined XML schema, which means you can use a variety of XML transformation tools to
+        follows a well-defined schema, which means you can use a variety of XML transformation tools to
         convert it into a form that is suitable for testing your system. For example, Tcases comes with a
-        built-in transformer that converts a system test definition into a Java source code template
+        built-in transformer that converts an XML system test definition into a Java source code template
         for a <A href="#junit">JUnit or TestNG test class</A>.
         You can also automatically transform a system test definition into a simple <A href="#html">HTML report</A>.
       </P>
@@ -266,6 +267,13 @@
         <SPAN class="code">PATH</SPAN> environment variable for your system.
       </P>
 
+      <H3><A name="json">XML or JSON?</A></H3>
+      <P>
+        The choice is yours &mdash; Tcases can read and write documents using either XML or JSON data formats. Because XML is the original default format
+        used by Tcases, all of the examples in this guide assume you are using XML. But everything described here can also be done using JSON instead.
+        To learn how, see <A href="Tcases-Json.htm">Tcases: The JSON Guide</A>.
+      </P>
+
       <H3><A name="run">Running From the Command Line</A></H3>
       <P>
         You can run Tcases directly from your shell command line. If you use <SPAN class="code">bash</SPAN> or a similar
@@ -278,7 +286,7 @@
 
         <DIV class="exampleCode">
           &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-          &gt; cd docs/examples <BR/>
+          &gt; cd docs/examples/xml <BR/>
           &gt; tcases &lt; find-Input.xml <BR/>
         </DIV>
       </P>
@@ -292,12 +300,12 @@
       <H3><A name="run-ant">Running With Ant</A></H3>
       <P>
         You can also run Tcases as an Ant task (requires Ant 1.8.2 or later). For an example of how this works,
-        take a look at <SPAN class="code">docs/examples/ant-tcases.xml</SPAN>.  Want to try it out? Run the the
+        take a look at <SPAN class="code">examples/ant/ant-tcases.xml</SPAN>.  Want to try it out? Run the the
         following commands.
         
         <DIV class="exampleCode">
           &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-          &gt; cd docs/examples <BR/>
+          &gt; cd docs/examples/ant <BR/>
           &gt; ant -f ant-tcases.xml <BR/>
         </DIV>
 
@@ -310,8 +318,8 @@
       
       <H3><A name="results">Understanding Tcases Results</A></H3>
       <P>
-        What happens when you run Tcases? Tcases reads a <A href="#systemInputDef">system input definition</A>, an XML document
-        that defines the "input space" of the system function to be tested. From this, Tcases produces a different XML document
+        What happens when you run Tcases? Tcases reads a <A href="#systemInputDef">system input definition</A>, a document
+        that defines the "input space" of the system function to be tested. From this, Tcases produces a different document
         called a <A name="systemTestDef"><EM>system test definition</EM></A>, which describes a set of test cases.
       </P>
 
@@ -322,7 +330,7 @@
 
         <DIV class="exampleCode">
           &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-          &gt; cd docs/examples <BR/>
+          &gt; cd docs/examples/xml <BR/>
           &gt; tcases &lt; find-Input.xml <BR/>
         </DIV>
       </P>
@@ -363,7 +371,7 @@
         do you do that? That's what this section aims to explain.
       </P>
       <P>
-        A <EM>system input definition</EM> is an XML document that models the
+        A <EM>system input definition</EM> is a document that models the
         "input space" of the system-under-test (SUT). We say it "models" system inputs because it doesn't
         literally itemize all possible input values. Instead, a system input definition lists all the
         important aspects of system inputs that affect system results. Think of this as
@@ -400,7 +408,7 @@
         To understand input modeling with Tcases, it helps to see an example in action. In this guide, we're
         going to explain how Tcases works by showing how we can use it to test a hypothetical <SPAN class="code">find</SPAN>
         command. The complete input definition for <SPAN class="code">find</SPAN> is included with this guide &mdash; you can
-        see it <A href="examples/find-Input.xml">here</A>.
+        see it <A href="examples/xml/find-Input.xml">here</A>.
       </P>
 
       <P>
@@ -1398,7 +1406,7 @@
       <H3><A name="higherCoverage">Defining Higher Coverage</A></H3>
       <P>
         For higher levels of coverage, you need to create a <A name="genDef"><EM>generator definition</EM></A>
-        that specifies your coverage requirements in detail. A generator definition, which is another XML document
+        that specifies your coverage requirements in detail. A generator definition, which is another document
         that Tcases applies to your system input definition, defines a set of "generators".
 
         <DIV class="exampleDoc">
@@ -1711,7 +1719,7 @@
 
         <DIV class="exampleCode">
           &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-          &gt; cd docs/examples <BR/>
+          &gt; cd docs/examples/xml <BR/>
           &gt; tcases-reducer find-Input.xml <BR/>
         </DIV>
       </P>
@@ -1945,7 +1953,7 @@
       <H2><A name="transform">Transforming Test Cases</A></H2>
       <P>
         The test case definitions that Tcases produces are not directly executable. Their purpose is to specify and guide the construction
-        of actual tests. But because test case definitions appear in a well-defined XML document, it's not hard to transform them into
+        of actual tests. But because test case definitions can appear in a well-defined XML document, it's not hard to transform them into
         a more concrete form. This section describes the options Tcases offers for output transformations.
       </P>
 
@@ -1961,7 +1969,7 @@
 
         <DIV class="exampleCode">
           &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-          &gt; cd docs/examples <BR/>
+          &gt; cd docs/examples/xml <BR/>
           &gt; tcases <SPAN class="codeEmph">-H</SPAN> find <BR/>
         </DIV>
       </P>
@@ -1996,7 +2004,7 @@
 
         <DIV class="exampleCode">
           &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
-          &gt; cd docs/examples <BR/>
+          &gt; cd docs/examples/xml <BR/>
           &gt; tcases <SPAN class="codeEmph">-J</SPAN> &lt; find-Input.xml <BR/>
         </DIV>
       </P>
@@ -2393,7 +2401,7 @@
           the same set of input variable choices as before. But they set the stage for the next phase of test case
           generation, using an output transform. For example, by
           applying <SPAN class="code">annotations-Transform.xsl</SPAN>
-          (shown <A href="examples/annotations-Transform.xsl">here</A> and in the <SPAN class="code">docs/examples</SPAN>
+          (shown <A href="examples/xml/annotations-Transform.xsl">here</A> and in the <SPAN class="code">docs/examples/xml</SPAN>
           directory), we can use these annotations to transform the system test definition document into executable
           source code that looks like this:
         </P>
@@ -2566,20 +2574,33 @@ public class Examples { <BR/>
         Want more technical details about Tcases? Here are links to some additional information.
 
         <UL>
-          <LI> The <SPAN class="code">find</SPAN> command <A href="examples/find-Input.xml">example</A></LI><P/>
+          <LI> The <SPAN class="code">find</SPAN> command example (<A href="examples/xml/find-Input.xml">XML</A>, <A href="examples/json/find-Input.json">JSON</A>)</LI><P/>
           <LI> The <SPAN class="code">tcases</SPAN> <A href="api/org/cornutum/tcases/TcasesCommand.Options.html">command line</A></LI><P/>
-          <LI> Document schemas <P/>
+          <LI> Document schemas 
             <UL>
-              <LI> The <A href="system-input.xsd">system input definition document schema</A> </LI><P/>
-              <LI> The <A href="generators.xsd">generator definition document schema</A> </LI><P/>
-              <LI> The <A href="system-test.xsd">test case definition document schema</A> </LI><P/>
+              <LI> XML 
+                <UL>
+                  <LI> <A href="http://www.cornutum.org/tcases/system-input.xsd">System input definition</A> </LI>
+                  <LI> <A href="http://www.cornutum.org/tcases/generators.xsd">Generator definitions</A> </LI>
+                  <LI> <A href="http://www.cornutum.org/tcases/system-test.xsd">System test definition</A> </LI>
+                </UL>
+              </LI><P/>
+              <LI> JSON 
+                <UL>
+                  <LI> <A href="http://www.cornutum.org/tcases/system-input-schema.json">System input definition</A> </LI>
+                  <LI> <A href="http://www.cornutum.org/tcases/generators-schema.json">Generator definitions</A> </LI>
+                  <LI> <A href="http://www.cornutum.org/tcases/system-test-schema.json">System test definition</A> </LI>
+                  <LI> <A href="http://www.cornutum.org/tcases/project-schema.json">Test project definition</A> </LI>
+                </UL>
+              </LI><P/>
             </UL>
-          <LI> Related testing techniques <P/>
+          </LI><P/>
+          <LI> Related testing techniques 
             <UL>
-              <LI> <A href="http://en.wikipedia.org/wiki/Black-box_testing">Black-box test design</A> </LI><P/>
-              <LI> <A href="http://en.wikipedia.org/wiki/Equivalence_partitioning">Equivalence class partitioning</A> </LI><P/>
-              <LI> <A href="https://en.wikipedia.org/wiki/All-pairs_testing">Pairwise testing</A> </LI><P/>
-              <LI> <A href="http://csrc.nist.gov/groups/SNS/acts/index.html">Combinatorial testing</A> </LI><P/>
+              <LI> <A href="http://en.wikipedia.org/wiki/Black-box_testing">Black-box test design</A> </LI>
+              <LI> <A href="http://en.wikipedia.org/wiki/Equivalence_partitioning">Equivalence class partitioning</A> </LI>
+              <LI> <A href="https://en.wikipedia.org/wiki/All-pairs_testing">Pairwise testing</A> </LI>
+              <LI> <A href="http://csrc.nist.gov/groups/SNS/acts/index.html">Combinatorial testing</A> </LI>
             </UL>
           </LI><P/>
         </UL>

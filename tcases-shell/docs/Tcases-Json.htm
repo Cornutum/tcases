@@ -1,0 +1,1115 @@
+<HTML>
+  <HEAD>
+    <LINK rel="stylesheet" type="text/css" href="tcases.css"/>
+    <TITLE>Tcases: The JSON Guide</TITLE>
+  </HEAD>
+  <BODY>
+
+    <DIV class="page">
+      <DIV class="title">
+        <IMG src="cornutum-logo.png"/>
+        <SPAN class="title"> Tcases: The JSON Guide </SPAN> <BR/>
+        <SPAN class="subtitle">Version ${shell.version} (${shell.timestamp})</SPAN><BR/>
+        <SPAN class="subtitle">&copy; 2012-2019 Cornutum Project</SPAN>
+      </DIV>
+
+      <H2>Contents</H2>
+      <UL>
+        <LI> <A href="#intro"> Introduction </A></LI>
+        <LI> <A href="#run"> Running With JSON </A>
+          <UL>
+            <LI> <A href="#start"> Getting Started </A></LI>
+            <LI> <A href="#runJson"> Running a JSON Project </A></LI>
+            <LI> <A href="#contentType"> Specifying JSON Content </A></LI>
+          </UL>
+        </LI>
+        <LI> <A href="#input"> Defining The Input Space </A>
+          <UL>
+            <LI> <A href="#exampleFind"> An Example: The find Command </A></LI>
+            <LI> <A href="#functions"> Defining System Functions </A></LI>
+            <LI> <A href="#vars"> Defining Input Variables </A></LI>
+            <LI> <A href="#values"> Defining Input Values </A></LI>
+            <LI> <A href="#varSets"> Defining Variable Sets </A></LI>
+            <LI> <A href="#constraints"> Defining Constraints: Properties and Conditions </A>
+              <UL>
+                <LI> <A href="#properties"> Value properties </A></LI>
+                <LI> <A href="#valueConditions"> Value conditions </A></LI>
+                <LI> <A href="#conditionExpr"> Condition expressions </A></LI>
+                <LI> <A href="#varConditions"> Variable conditions </A></LI>
+                <LI> <A href="#conditionTips"> Trouble with conditions? </A></LI>
+              </UL>
+            </LI>
+          </UL>
+        </LI>
+        <LI> <A href="#coverage"> Defining Coverage Generators </A>
+          <UL>
+            <LI> <A href="#coverageSimple"> A Simple Generator </A></LI>
+            <LI> <A href="#coverageComplex"> A Detailed Generator </A></LI>
+          </UL>
+        </LI>
+        <LI> <A href="#testCases"> Understanding Test Case Definitions </A></LI>
+        <LI> <A href="#web"> Running Tcases As A Web Service </A>
+          <UL>
+            <LI> <A href="#project"> Defining a Tcases Project </A>
+              <UL>
+                <LI> <A href="#projectInline"> Defining Elements Directly </A></LI>
+                <LI> <A href="#projectRefs"> Defining Element Locations </A></LI>
+              </UL>
+            </LI>
+            <LI> <A href="##"> Running a Tcases Project </A></LI>
+          </UL>
+        </LI>
+        <LI> <A href="#fun"> More Fun With JSON </A>
+          <UL>
+            <LI> <A href="#reduce"> Reducing Test Cases </A></LI>
+            <LI> <A href="#once"> Avoiding Unneeded Combinations </A></LI>
+            <LI> <A href="#annotations"> Using Output Annotations </A></LI>
+            <LI> <A href="#transform"> Transforming Test Cases </A></LI>
+          </UL>
+        </LI>
+        <LI> <A href="#schemas"> JSON Document Schemas </A></LI>
+      </UL>
+
+      <H2><A name="intro">Introduction</A></H2>
+      <P>
+        Traditionally, Tcases reads and produces data in the form of XML documents. But now you can do everything
+        using <A href="https://en.wikipedia.org/wiki/JSON">JSON</A> instead. This guide explains how.
+      </P>
+      <P>
+        Why JSON? Many people just find this format easier to read and write. Also, the JSON format is especially useful if you
+        are accessing Tcases using a Web service. In fact, using JSON, there is a way to define all Tcases inputs in a single
+        request. For details, see <A href="#web"><EM>Running Tcases As A Web Service</EM></A>.
+      </P>
+      <P>
+        This guide assumes that you already understand what Tcases does and how it works. If not, you should start by reading
+        <EM><A href="Tcases-Guide.htm">Tcases: The Complete Guide</A></EM>. Although the examples there are all in XML, the
+        concepts are exactly the same in JSON. Then read this guide to learn how to use JSON to create <A href="#input">system
+        input definitions</A> and coverage <A href="#coverage">generator definitions</A> and how to <A href="#run">run
+        Tcases</A> to generate a JSON version of a <A href="#testCases">system test definition</A>.
+      </P>
+      <P>
+        Each type of JSON document used by Tcases is defined by a schema that is compliant with
+        the <A href="https://json-schema.org/">JSON Schema Specification</A>, Draft 07. For complete details,
+        see <A href="#schemas"><EM>JSON Document Schemas</EM></A>.
+      </P>
+      
+      <H2><A name="run">Running With JSON</A></H2>
+      <H3><A name="start">Getting Started</A></H3>
+      <P>
+        There are many ways to use Tcases. For example, you can integrate Tcases APIs directly into your Java application. Or
+        you can run Tcases using the <A href="http://www.cornutum.org/tcases/docs/tcases-maven-plugin/index.html">Tcases Maven
+        Plugin</A>. Or you can run Tcases as a shell command from the command line. Most examples in this guide use the Tcases
+        shell command to illustrate how Tcases works.
+      </P>
+      <P>
+        To get the command line version of Tcases, download the Tcases binary distribution file from the Maven Central
+        Repository. You can find the details <A href="Tcases-Guide.htm#install">here</A>. After installing Tcases, as a quick
+        check, you can run one of the JSON examples that comes with Tcases, using the following commands.
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples/json <BR/>
+          &gt; tcases -T json &lt; find-Input.json <BR/>
+        </DIV>
+      </P>
+      <P>
+        For details about the interface to the <SPAN class="code">tcases</SPAN> command, see the Javadoc for
+        the <A href="api/org/cornutum/tcases/TcasesCommand.Options.html"><SPAN class="code">TcasesCommand.Options</SPAN></A>
+        class.  To get help at the command line, run <SPAN class="code">tcases -help</SPAN>.
+      </P>
+
+      <H3><A name="runJson">Running a JSON Project</A></H3>
+      <P>
+        A Tcases project must deal with several closely-related files: a system input definition, zero or more generator
+        definitions, and the system test definition document that is generated from them (possibly in multiple
+        forms). The <SPAN class="code">tcases</SPAN> command implements some conventions that make it easier to keep these files
+        organized. The same <A href="Tcases-Guide.htm#files">conventions used for XML files</A> also apply to JSON files &mdash;
+        just substitute the "json" extension in place of "xml".
+      </P>
+      <P>
+        For example, for a Tcases project named <SPAN class="code">${myProjectName}</SPAN>, if you are following the conventions, your
+        system input definition file will be named <SPAN class="code">${myProjectName}-Input.json</SPAN>, and you can generate the test
+        cases for this project by running the following command.
+
+        <DIV class="exampleCode">
+          &gt; tcases ${myProjectName} <BR/>
+        </DIV>
+      </P>
+
+      <H3><A name="contentType">Specifying JSON Content</A></H3>
+      <P>
+        Tcases takes its cue from the system input definition file. If it is a <SPAN class="code">*.json</SPAN> file, then all
+        of the files for your project are assumed to be JSON, based on standard conventions. However, if you choose not to
+        following these conventions, you can use the <SPAN class="code">-T</SPAN> option to explicitly specify "json" as the
+        default file content type. In particular, this option is necessary whenever Tcases reads the system input definition
+        from standard input. For example, the following command tells Tcases to read a JSON system input definition from
+        standard input and write a JSON system test definition document to standard output.
+
+        <DIV class="exampleCode">
+          &gt; tcases -T json &lt; ${myProjectName}.json <BR/>
+        </DIV>
+      </P>
+      
+      <H2><A name="input">Defining The Input Space</A></H2>
+      <P>
+        Tcases creates test definitions based on a <EM>system input definition</EM> that models the "input space" of the
+        system-under-test (SUT). What is a "system input space model"? Learn all about it <A href="Tcases-Guide.htm#input">here</A>.
+      </P>
+
+      <H3><A name="exampleFind">An Example: The find Command</A></H3>
+      <P>
+        The examples shown here are based on the same <A href="Tcases-Guide.htm#exampleFind"><SPAN class="code">find</SPAN> command example</A>
+        used in the <EM>Complete Guide</EM>. You can see the complete JSON version of this system input definition <A href="examples/json/find-Input.json">here</A>.
+      </P>
+      
+      <H3><A name="functions">Defining System Functions</A></H3>
+      <P>
+        A JSON system input definition is an object that defines the name of the SUT and that maps the name of
+        each <A href="Tcases-Guide.htm#functions">system function</A> to its input definitions. The following example shows a SUT named "Examples"
+        that consists of a single function named "find".
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;<SPAN class="exampleEmph">"find"</SPAN> : { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+      
+      <H3><A name="vars">Defining Input Variables</A></H3>
+      <P>
+        For each function to be tested, you need to define all of the dimensions of variation in its input
+        space. Tcases refers to each such dimension as a <A href="Tcases-Guide.htm#vars"><EM>variable</EM>
+        </A>.
+      </P>
+      <P>
+        Within the JSON definition of function inputs, variables are organized into sets by <EM>input type</EM>.
+        Input type names can be anything you like, but it is conventional to use the name "arg" to identify
+        direct function inputs (such as the file name argument of the <SPAN class="code">find</SPAN> command)
+        and the name "env" to identify indirect "environmental" inputs that affect function behavior (such as
+        the existence of a file with the given file name). The system input definition for the <SPAN class="code">find</SPAN> command
+        contains variables of both of these types
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"arg"</SPAN> : { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"env"</SPAN> : { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+      
+      <H3><A name="values">Defining Input Values</A></H3>
+      <P>
+        For Tcases to create a test case, it must choose values for all of the input variables. How can it do
+        that? Because we describe all of the possible values for each basic input variable using one or
+        more <A href="Tcases-Guide.htm#values">value definitions</A>. 
+      </P>
+      <P>
+        By default, a value definition
+        defines a valid value, one that the function-under-test is expected to accept. But we can use the
+        optional <SPAN class="code">failure</SPAN> property to identify an value that is invalid and expected
+        to cause the function to produce some kind of failure response.  Tcases uses these input
+        values to generate two types of test cases &mdash; "success" cases, which use only valid values for all
+        variables, and "failure" cases, which use a <SPAN class="code">failure</SPAN> value for exactly one
+        variable.
+      </P>
+      <P>
+        For the <SPAN class="code">find</SPAN> command, the "fileName" variable defines two possible values: "defined" (meaning that
+        a value for this required input is specified) and "missing" (meaning that no file name value is given &mdash; an error).
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"fileName": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"values"</SPAN> : { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"defined"</SPAN> : { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"missing"</SPAN> : { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"failure": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"env": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+
+        Note that the way value definitions are organized and named is entirely up to you. Your choices should reflect how you want to model the inputs for
+        your SUT. You can find more information about modeling input values <A href="Tcases-Guide.htm#values">here</A>.
+      </P>
+      
+      <H3><A name="varSets">Defining Variable Sets</A></H3>
+      <P>
+        It's common to find that a single logical input actually has lots of different characteristics, each of
+        which creates a different "dimension of variation" in the input space. 
+        You can model this complex sort of input as a <A href="Tcases-Guide.htm#varSets"><EM>variable set</EM></A>.
+      </P>
+      <P>
+        In its JSON form, a variable set is just like a basic variable, except that instead of a "values" property containing
+        value definitions, there is a "members" property containing definitions of the variables that are members of this
+        variable set. In this way, you can describe a single logical input as a set of multiple variable definitions.  A
+        variable set can even contain another variable set, creating a hierarchy of logical inputs that can be extended to any
+        number of levels.
+      </P>
+      <P>
+        For example, for the <SPAN class="code">find</SPAN> command, the state of the file being searched can be represented as
+        a variable set named "file", which consists of the "exists" variable (i.e. does the file exist or not?) and
+        another variable set named "contents" (i.e. what kind of pattern matches does the file contain?). In turn, the
+        "contents" variable set consists of variables "linesLongerThanPattern" (i.e. how many lines are longer than the match pattern?),
+        "patterns" (i.e. how many instances of the pattern exist?), and "patternsInLine" (i.e. what's the maximum number of
+        pattern instance that can be found in a single line?).
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"env": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"members"</SPAN> : { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"exists": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"contents": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"members"</SPAN> : { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"linesLongerThanPattern": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"patterns": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"patternsInLine": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+
+      </P>
+      
+      <H3><A name="constraints">Defining Constraints: Properties and Conditions</A></H3>
+      <P>
+        Commonly, some of the "dimensions of variation" described by variable definitions are not entirely independent of each
+        other. Instead, there are relationships among these variables that <A href="Tcases-Guide.htm#constraints">constrain</A>
+        which combinations of values are feasible. We need a way to define those relationships so that infeasible combinations
+        can be excluded from our test cases. With Tcases, you can do that using <A href="#properties">properties</A>
+        and <A href="#valueConditions">conditions</A>.
+      </P>
+
+      <H4><A name="properties">Value properties</A></H4>
+      <P>
+        A value definition can define a property named "properties" that contains a list of <EM>properties</EM> for this value. For example:
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"members": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"size": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"empty": { <SPAN class="exampleEmph">"properties": ["empty"]</SPAN>}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"singleChar": { <SPAN class="exampleEmph">"properties": ["singleChar"]</SPAN>}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"manyChars": {} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"quoted": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"yes": { <SPAN class="exampleEmph">"properties": ["quoted"]</SPAN>}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"no": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"unterminated": { "failure": true } <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"blanks": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"none": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"one": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"many": {} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"embeddedQuotes": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"none": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"one": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"many": {} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+      <P>
+        Each string in the <SPAN class="code">properties</SPAN> list is just a name that you invent for yourself to identify an
+        important characteristic of this value. The concept is that when this value is included in a test case, it contributes
+        all of its properties &mdash; these now become properties of the test case itself.  That makes it possible for us to
+        later define "conditions" on the properties that a test case must (or must not!) have for certain values to be included.
+      </P>
+      <P>
+        For example, the definition above for the <SPAN class="code">pattern.size</SPAN> variable says that
+        when we choose the value <SPAN class="code">empty</SPAN> for a test case, the test case acquires a
+        property named <SPAN class="code">empty</SPAN>.  But if we choose the
+        value <SPAN class="code">singleChar</SPAN>, the test case acquires a different property
+        named <SPAN class="code">singleChar</SPAN>. And if we choose the
+        value <SPAN class="code">manyChars</SPAN>, no new properties are added to the test case. Note that the
+        correspondence between these particular names of the values and properties is not exactly accidental
+        &mdash; it helps us understand what these elements mean &mdash; but it has no special significance. We
+        could have named any of them differently if we wanted to.
+      </P>
+      <P>
+        But note that all of this applies <EM>only</EM> to valid value definitions, not to failure value definitions for which
+        "failure" is true. Why? Because <A href="Tcases-Guide.htm#failureValues">failure values are different!</A>.
+      </P>
+      
+      <H4><A name="valueConditions">Value conditions</A></H4>
+      <P>
+        We can define the conditions required for a value to be included in a test case using the "when" property of a value
+        definition.  Adding a "when" condition means "for this value to be included in a test case, the <U>properties of the test case</U>
+        must satisfy this boolean condition".
+      </P>
+      <P>
+        For example, consider the conditions we can define for the various characteristics of the "pattern" variable.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"members": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"size": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"empty": { "properties": ["empty"] }, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"singleChar": { "properties": ["singleChar"] }, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"manyChars": {} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"quoted": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"yes": { "properties": ["quoted"] }, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"no": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hasNone": ["empty"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</SPAN> <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"unterminated": { "failure": true } <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"blanks": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"none": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"one": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hasAll": ["quoted", "singleChar"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</SPAN> <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"many": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"allOf": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "hasAll": ["quoted"] }, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "hasNone": ["singleChar"] } <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</SPAN> <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"embeddedQuotes": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"none": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"one": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"many": {} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"env": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+      <P>
+        This defines a <EM>constraint</EM> on the "pattern.quoted" variable. We want to have a test case in which the value for
+        this variable is "no", i.e. the pattern string is not quoted. But in this case, the "pattern.size" cannot be
+        "empty". Because that combination doesn't make sense, we want to exclude it from the test cases generated by Tcases.
+      </P>
+      <P>
+        Similarly, we define a constraint on the "pattern.blanks" variable, which specifies how many blanks
+        should be in the pattern string. We want a test case in which the value is "many". But in such 
+        a test case, the pattern must be quoted (otherwise, a blank is not possible) and it must <U>not</U> be a single character
+        (which would contradict the requirement for multiple blanks).
+      </P>
+
+      <H4><A name="conditionExpr">Condition expressions</A></H4>
+      <P>
+        The value of a "when" property is a boolean expression object. A boolean expression is a JSON object with a single property, which must be
+        one of the following.
+
+        <UL>
+          <LI>"hasAll":
+            <UL>
+              <LI>Contains a list of value property names</LI>
+              <LI>Satisfied if the test case has all of the listed properties</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"hasAny":
+            <UL>
+              <LI>Contains a list of value property names</LI>
+              <LI>Satisfied if the test case has at least one of the listed properties</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"hasNone":
+            <UL>
+              <LI>Contains a list of value property names</LI>
+              <LI>Equivalent to "not: { hasAny: [...]}"</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"allOf":
+            <UL>
+              <LI>A logical AND expression</LI>
+              <LI>Contains a list of boolean expression objects</LI>
+              <LI>Satisfied if all of the listed expressions are satisfied</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"anyOf":
+            <UL>
+              <LI>A logical OR expression</LI>
+              <LI>Contains a list of boolean expression objects</LI>
+              <LI>Satisfied if at least one of the listed expressions is satisfied</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"not":
+            <UL>
+              <LI>A logical negation expression</LI>
+              <LI>Contains a single boolean expression object</LI>
+              <LI>Satisfied if this expression is <U>not</U> satisfied</LI>
+            </UL>
+          </LI><P/>
+        </UL>
+      </P>
+      
+      <H4><A name="varConditions">Variable conditions</A></H4>
+      <P>
+        You may find that, under certain conditions, an input variable becomes irrelevant. It doesn't matter
+        which value you choose &mdash; none of them make a difference in function behavior. It's easy to model
+        this situation &mdash; just define a "when" condition on the variable definition itself.
+      </P>
+      <P>
+        For example, when we're testing the <SPAN class="code">find</SPAN> command, we want to try all of the values defined for
+        every dimension of the "pattern" variable set. But, in the case when the pattern string is empty, the question of how
+        many blanks it contains is pointless.  In this case, the "pattern.blanks" variable is irrelevant. Similarly, when we
+        test a pattern string that is only one character, the "pattern.embeddedQuotes" variable is meaningless. We can capture
+        these facts about the input space by adding variable constraints, as shown below.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hasAll": ["fileExists"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</SPAN> , <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"members": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"size": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"empty": { "properties": ["empty"] }, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"singleChar": { "properties": ["singleChar"] }, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"manyChars": {} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"quoted": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"yes": { "properties": ["quoted"] }, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"no": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hasNone": ["empty"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"unterminated": { "failure": true } <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"blanks": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hasNone": ["empty"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</SPAN> , <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"none": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"one": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hasAll": ["quoted", "singleChar"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"many": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"allOf": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "hasAll": ["quoted"] }, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "hasNone": ["singleChar"] } <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"embeddedQuotes": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"when": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hasNone": ["singleChar", "empty"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</SPAN> , <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"none": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"one": {}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"many": {} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"env": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+
+      <P>
+        You can define variable constraints at any level of a variable set hierarchy. For example, you can see in the example above
+        that a constraint is defined for the entire <SPAN class="code">pattern</SPAN> variable set. This constraint models the
+        fact that the pattern is irrelevant when the file specified to search doesn't even exist.
+      </P>
+      <P>
+        What effect does a variable "when" condition have on the test cases generated by Tcases? Trying running Tcases on
+        the <A href="examples/json/find-Input.json">sample system input definition</A> for the <SPAN class="code">find</SPAN> command
+        example and see for yourself how variables are marked with "NA" (not applicable) when irrelevant.
+      </P>
+
+      <H4><A name="conditionTips">Trouble with conditions?</A></H4>
+      <P>
+        Careful! Faulty condition definitions can make it impossible for Tcases to work. The <EM>Complete Guide</EM>
+        has <A href="Tcases-Guide.htm#conditionTips">some tips</A> on how to avoid such trouble.
+      </P>
+      
+      <H2><A name="coverage">Defining Coverage Generators</A></H2>
+      <P>
+        For test cases generated by Tcases, the definition of "coverage" is based
+        on <A href="Tcases-Guide.htm#combinations">combinatorial testing concepts</A>, and test coverage is controlled by
+        creating <A href="Tcases-Guide.htm#higherCoverage">generator definitions</A>. This sections shows how to
+        create generator defintions using JSON.
+      </P>
+      <P>
+        Generators definitions are optional &mdash; if omitted, <A href="Tcases-Guide.htm#defaultCoverage">the default coverage generator</A>
+        is used for each function. By convention, generator definitions appear in a file named <SPAN class="code">${myProjectName}-Generators.json</SPAN>.
+        But, if you prefer, you can specify a different file name using the <SPAN class="code">-g</SPAN> option of the
+        <A href="api/org/cornutum/tcases/TcasesCommand.Options.html"><SPAN class="code">tcases</SPAN> command</A>.
+      </P>
+
+      <H3><A name="coverageSimple">A Simple Generator</A></H3>
+      <P>
+        The simplest possible generator definition is equivalent to the default: for all functions, 1-tuple coverage for all variables. It looks like this:
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"*": {} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+        
+      <H3><A name="coverageComplex">A Detailed Generator</A></H3>
+      <P>
+        A more detailed generator definition might look like the one below.
+        This defines two generators: a simple 1-tuple generator for most functions and a more complex generator for the "find" function.
+      </P>
+        
+      <P>
+        The "find" generator specifies a default of 2-tuple ("pairwise") coverage for most
+        variables and <A href="Tcases-Guide.htm#random">randomizes combinations</A> using a specific random seed. Moreover, this
+        uses a <A href="Tcases-Guide.htm#multiCoverage">combiner</A> to specify a higher level of 3-tuple coverage for a
+        specific subset of variable, including all variables in the "pattern" and "file.contents" variable sets (except for
+        the "linesLongerThanPattern" variable).
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp; <BR/>
+          &nbsp;&nbsp;"*": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"tuples": 1 <BR/>
+          &nbsp;&nbsp;}, <BR/>
+          <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"tuples": 2, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"seed": 7502311452031152128, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"combiners": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"tuples": 3, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"include": ["pattern.**", "file.contents.**"], <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"exclude": ["file.contents.linesLongerThanPattern"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;] <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+
+
+      <H2><A name="testCases">Understanding Test Case Definitions</A></H2>
+      <P>
+        When you run Tcases with a <A href="#input">system input definition</A> (perhaps together with a coverage <A href="#coverage">generator definition</A>),
+        the result is a <EM>system test definition</EM> document. For each function in the specified system, this lists a set of test case objects, each
+        identified by a unique "id" number.
+      </P>
+      <P>
+        For example, try running the following commands.
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples/json <BR/>
+          &gt; tcases -T json &lt; find-Input.json <BR/>
+        </DIV>
+
+        You'll then see something like the following test case definitions printed to standard output.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;{ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": 0, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;{ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": 9, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;] <BR/>
+          } <BR/>
+        </DIV>
+
+        Each "success" case lists a valid value for each basic variable for the function. As in the system input definition,
+        variables are organized by input type, such as "arg", "env", etc. Each basic variable is identified by its "path". For a
+        top-level variable, this is simply the variable name. For a member of a variable set, the path includes the path to its
+        parent variable set. Note that when a variable is <A href="#varConditions">irrelevant</A> to a test case, it is not
+        given a "value" but instead shows that the "NA" (not applicable) property is true.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;{ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": 0, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"has": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"properties": "empty,fileExists,fileName,quoted" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"fileName": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "defined" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.blanks": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.embeddedQuotes": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.quoted": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "yes" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.size": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "empty" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"env": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.linesLongerThanPattern": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.patterns": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.patternsInLine": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.exists": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "yes" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;] <BR/>
+          } <BR/>
+        </DIV>
+
+        Each failure case is just the same, except that exactly one variable is assigned an invalid value, which is designated with
+        a "failure" property that is true.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;{ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": 7, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"fileName": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"failure": true</SPAN> , <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "missing" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.blanks": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.embeddedQuotes": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.quoted": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.size": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"env": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.linesLongerThanPattern": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.patterns": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.patternsInLine": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.exists": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;] <BR/>
+          } <BR/>
+        </DIV>
+
+        Note also that each test case also lists a "has" property which shows all of the value properties that are associated with
+        the test case. The "has" property also contains the value of every <A href="#annotations">output annotation</A> associated with the test case.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;{ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": 0, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"has": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"properties": "empty,fileExists,fileName,quoted" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</SPAN> , <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"fileName": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "defined" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.blanks": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.embeddedQuotes": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.quoted": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "yes" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.size": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "empty" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"env": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.linesLongerThanPattern": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.patterns": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.contents.patternsInLine": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"NA": true <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file.exists": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value": "yes" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;] <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+
+      <H2><A name="web">Running Tcases As A Web Service</A></H2>
+      <P>
+        This section assumes you want to integrate Tcases into a Java-based Web service, submitting requests for Tcases services and getting generated
+        test cases in response.
+      </P>
+
+      <H3><A name="project">Defining a Tcases Project</A></H3>
+      <P>
+        You can describe all of the elements of Tcases project in a JSON document called a <EM>project definition.</EM>. A project definition contains
+        a <A href="#input">system input definition</A> (or a reference to its location). Optionally, a project definition may also contain a
+        <A href="#coverage">generator definition</A> and a <A href="#testCases">system test definition</A> that supplies
+        the <A href="Tcases-Guide.htm#reuse">base tests</A> for generating new test cases.
+      </P>
+
+      <H4><A name="projectInline">Defining Elements Directly</A></H4>
+      <P>
+        The simplest possible project definition consists of only a JSON system input definition.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"inputDef": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+
+        A more complete project definition could also include a JSON <A href="#coverage">generator definition</A> and a set
+        of JSON <A href="#testCases">base test case definitions</A>.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"inputDef": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;"generators": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;"baseTests": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+
+      <H4><A name="projectRefs">Defining Element Locations</A></H4>
+      <P>
+        Alternatively, any of the elements of a Tcases project can be defined by a URL for the corresponding JSON document.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"inputDef": "http://www.cornutum.org/tcases/docs/examples/json/find-Input.json", <BR/>
+          &nbsp;&nbsp;"generators": "http://www.cornutum.org/tcases/docs/examples/json/find-Generators.json", <BR/>
+          &nbsp;&nbsp;"baseTests": "http://www.cornutum.org/tcases/docs/examples/json/find-Tests.json" <BR/>
+          } <BR/>
+        </DIV>
+
+        Document locations can either be absolute URLs or URIs relative to a specified "refBase" property.
+        A project definition can also contain a mix of actual JSON documents and URL references.
+
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"refBase": "http://www.cornutum.org/tcases/docs/examples/json", <BR/>
+          &nbsp;&nbsp;"inputDef": "find-Input.json", <BR/>
+          &nbsp;&nbsp;"generators": "find-Generators.json", <BR/>
+          &nbsp;&nbsp;"baseTests": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+      
+      <H3><A name="#">Running a Tcases Project</A></H3>
+      <P>
+        Given an input stream that reads a JSON project definition, you easily generate project test cases and send the
+        resulting JSON system test definition document to an output stream, using methods of
+        the <A href="api/org/cornutum/tcases/TcasesJson.html"><SPAN class="code">TcasesJson</SPAN></A> class.
+
+        <DIV class="exampleDoc">
+          TcasesJson.writeTests <BR/>
+          &nbsp;&nbsp;( TcasesJson.getTests( projectInputStream), <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;testCaseOutputStream); <BR/>
+        </DIV>
+      </P>
+      
+      <H2><A name="fun">More Fun With JSON</A></H2>
+      <P>
+        There's a lot more to learn about Tcases that is beyond the scope of this guide. As always, look to
+        the <A href="Tcases-Guide.htm"><EM>Complete Guide</EM></A> for all the details.
+      </P>
+      <P>
+        But here are a few more things that all JSON users ought to know.
+      </P>
+      
+      <H3><A name="reduce">Reducing Test Cases</A></H3>
+      <P>
+        A random walk through the combinations may lead Tcases to a smaller set of test cases. You can automate that
+        process by running the <A href="Tcases-Guide.htm#reduce">Tcases Reducer</A>. Naturally, the <SPAN class="code">tcases-reducer</SPAN>
+        command also supports JSON projects, using the same conventions and command line options as <SPAN class="code">tcases</SPAN>
+        command.
+      </P>
+      <P>
+        For example, the following commands will produce a new <SPAN class="code">find-Generators.json</SPAN> file that reduces
+        test cases for the <SPAN class="code">find-Input.json</SPAN> input model.
+
+        <DIV class="exampleCode">
+          &gt; cd <I>&lt;tcases-release-dir&gt;</I> <BR/>
+          &gt; cd docs/examples/json <BR/>
+          &gt; tcases-reducer find <BR/>
+        </DIV>
+      </P>
+
+      <H3><A name="once">Avoiding Unneeded Combinations</A></H3>
+      <P>
+        Sometimes there is a variable value that you need to test at least once, but for <A href="Tcases-Guide.htm#once">various
+        reasons</A>, including it multiple times adds complexity without really increasing the likelihood of finding new
+        failures.  In this case, you can use the "once" property as a hint to avoiding reusing a value more than once.
+      </P>
+      <P>
+        For example, when definining the "file.contents.linesLongerThanPattern" variable, setting "once" to true for the value "one" tells
+        Tcases to generate only one test case using that value.
+        
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"system": "Examples", <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"arg": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"env": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"members": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"contents": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;..., <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"members": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"linesLongerThanPattern": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"values": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"one": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"once": true</SPAN> , <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"properties": ["matchable"] <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+      <P>
+        Actually, the "once" attribute is just a special shortcut that applies only when using the default 1-tuple coverage. But you can
+        make the same kind of exception for higher-order tuples by adding "once" tuple lists to your generator definition. 
+      </P>
+      <P>
+        For example, the following generator definition for the "find" function specifies 2-tuple coverage for all variables but tells
+        Tcases to create only one test case that uses a certain 2-tuple combination: a quoted multi-character pattern.
+        
+        <DIV class="exampleDoc">
+          { <BR/>
+          &nbsp;&nbsp;"find": { <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;"combiners": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"tuples": 2, <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">"once": [ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.size": "manyChars", <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pattern.quoted": "yes" <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]</SPAN> <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <BR/>
+          &nbsp;&nbsp;&nbsp;&nbsp;] <BR/>
+          &nbsp;&nbsp;} <BR/>
+          } <BR/>
+        </DIV>
+      </P>
+      
+      <H3><A name="annotations">Using Output Annotations</A></H3>
+      <P>
+        An output annotation is a special property setting &mdash; a name-value pair &mdash; that you can add to various
+        elements of a system input definition.  It has no effect on test cases that Tcases generates. But Tcases will
+        accumulate output annotations and attach them to the resulting system test definition document.
+      </P>
+      <P>
+        You can see illustrations of the following kinds of output annotations in
+        the <A href="examples/json/annotations-Input.json"><SPAN class="code">annotations-Input.json</SPAN> example</A>.
+
+        <UL>
+          <LI>
+            <B>System annotations</B> are created by adding
+            a top-level "has" property to the system input definition object. Each system annotation is
+            transferred to the output document by applying it to all test case definitions for all functions.
+          </LI>
+          <P/>
+          <LI>
+            <B>Function annotations</B> are created by adding a "has" property to a
+            function input definition Each function annotation is transferred to the output document by applying it to all test
+            case definitions for this function.  Function annotations override any system annotation of the same name.
+          </LI>
+          <P/>
+          <LI><B>Variable binding annotations</B> are created by adding a "has"
+            property to a variable definition. You can also create a variable binding annotation that applies to all variables
+            of the same input type.  Or you can create a variable binding annotation that is value-specific by adding a "has"
+            property to a value definition. Each variable binding annotation is transferred to the output document by applying
+            it to the variable binding(s) within its scope.
+            
+            Annotations for a value override any annotations of the same name defined for a basic variable, which override
+            annotations for a variable set, which override annotations for an input type group.
+          </LI>
+        </UL>
+      </P>
+
+      <H3><A name="transform">Transforming Test Cases</A></H3>
+      <P>
+        Sorry, <A href="Tcases-Guide.htm#transform">test case transformations</A> are not yet supported for JSON projects.
+      </P>
+      
+      <H2><A name="schemas">JSON Document Schemas</A></H2>
+      <P>
+        The JSON documents used by Tcases are defined by the following schemas, which are compliant with
+        the <A href="https://json-schema.org/">JSON Schema Specification</A>, Draft 07.
+
+        <UL>
+          <LI> <A href="http://www.cornutum.org/tcases/system-input-schema.json">System input definition</A> </LI><P/>
+          <LI> <A href="http://www.cornutum.org/tcases/generators-schema.json">Generator definitions</A> </LI><P/>
+          <LI> <A href="http://www.cornutum.org/tcases/system-test-schema.json">System test definition</A> </LI><P/>
+          <LI> <A href="http://www.cornutum.org/tcases/project-schema.json">Test project definition</A> </LI><P/>
+        </UL>
+      </P>
+      
+    </DIV>
+
+  </BODY>
+</HTML>

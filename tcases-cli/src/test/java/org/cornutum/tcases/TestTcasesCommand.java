@@ -8,6 +8,7 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.TcasesCommand.Options;
+import org.cornutum.tcases.generator.io.GeneratorSetResources;
 import org.cornutum.tcases.io.SystemTestResources;
 
 import org.apache.commons.io.FileUtils;
@@ -1215,6 +1216,263 @@ public class TestTcasesCommand
     }
 
   /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> outFile.path.exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> newTests.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.default.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withJson </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_0() throws Exception
+    {
+    // Given...
+    File outFile = getResourceFile( "runWithContentType-0-Out.json");
+    File genFile = getResourceFile( "runWithContentType-0-Generators");
+    File inFile = getResourceFile( "runWithContentType-0");
+
+    outFile.delete();
+    
+    String[] args =
+      {
+        "-f", outFile.getPath(),
+        "-g", genFile.getPath(),
+        inFile.getPath()
+      };
+    
+    // When...
+    TcasesCommand.run( new Options( args));
+        
+    // Then...
+    assertThat( "Test def created", outFile.exists(), is( true));
+    assertThat( "Test def content type", testResources_.readJson( outFile.getName()), is( notNullValue()));
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 1. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> outFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> newTests.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> XML </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.default.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_1()
+    {
+    // Given...
+    File outFile = getResourceFile( "runWithContentType-1-Out.xml");
+    File inFile = getResourceFile( "runWithContentType-1-Input.json");
+
+    outFile.delete();
+    
+    String[] args =
+      {
+        "-n",
+        "-t", outFile.getPath(),
+        "-T", "json"
+      };
+    
+    // When...
+    runWithStdIO( new Options( args), inFile, null);
+        
+    // Then...
+    assertThat( "Test def created", outFile.exists(), is( true));
+    assertThat( "Test def content type", testResources_.read( outFile.getName()), is( notNullValue()));
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 3. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> XML </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> outFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> newTests.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.default.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> asDefined </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_3() throws Exception
+    {
+    // Given...
+    File outFile = getResourceFile( "runWithContentType-3-Out");
+    File inFile = getResourceFile( "runWithContentType-3");
+    File genFile = getResourceFile( "runWithContentType-3-Generators.xml");
+
+    genFile.delete();
+    
+    String[] args =
+      {
+        "-r", "123456789",
+        "-t", outFile.getName(),
+        "-T", "xml",
+        inFile.getPath()
+      };
+    
+    // When...
+    TcasesCommand.run( new Options( args));
+        
+    // Then...
+    assertThat( "Test def created", outFile.exists(), is( true));
+    assertThat( "Test def content type", testResources_.read( outFile.getName()), is( notNullValue()));
+    assertThat( "Generator def created", genFile.exists(), is( true));
+    assertThat( "Generator def content type", generatorResources_.read( genFile.getName()), is( notNullValue()));
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 4. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> outFile.path.contentType </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> outFile.path.exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> newTests.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.default.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> XML </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withInputXml </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_4() throws Exception
+    {
+    // Given...
+    File outFile = getResourceFile( "runWithContentType-4-Out");
+    File inFile = getResourceFile( "runWithContentType-4");
+    File genFile = getResourceFile( "runWithContentType-4-GenDefs.json");
+
+    outFile.delete();
+    
+    String[] args =
+      {
+        "-f", outFile.getName(),
+        "-g", genFile.getName(),
+        inFile.getPath()
+      };
+    
+    // When...
+    TcasesCommand.run( new Options( args));
+        
+    // Then...
+    assertThat( "Test def created", outFile.exists(), is( true));
+    assertThat( "Test def content type", testResources_.read( outFile.getName()), is( notNullValue()));
+    }
+
+  /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 5. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> outFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> newTests.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> testFile.default.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withInputJson </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_5() throws Exception
+    {
+    // Given...
+    File outFile = getResourceFile( "runWithContentType-5-Out.json");
+    File inFile = getResourceFile( "runWithContentType-5");
+    File genFile = getResourceFile( "runWithContentType-5-Generators.json");
+
+    outFile.delete();
+    genFile.delete();
+    
+    String[] args =
+      {
+        "-n",
+        "-c", "2",
+        "-t", outFile.getPath(),
+        "-T", "json",      
+        inFile.getPath()
+      };
+    
+    // When...
+    TcasesCommand.run( new Options( args));
+        
+    // Then...
+    assertThat( "Test def created", outFile.exists(), is( true));
+    assertThat( "Test def content type", testResources_.readJson( outFile.getName()), is( notNullValue()));
+    assertThat( "Generator def created", genFile.exists(), is( true));
+    assertThat( "Generator def content type", generatorResources_.readJson( genFile.getName()), is( notNullValue()));
+    }
+
+  /**
    * Return the file for the given resource.
    */
   private File getResourceFile( String resource)
@@ -1272,4 +1530,5 @@ public class TestTcasesCommand
     }
 
   private SystemTestResources testResources_ = new SystemTestResources( getClass());
+  private GeneratorSetResources generatorResources_ = new GeneratorSetResources( getClass());
   }

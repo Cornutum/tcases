@@ -14,6 +14,19 @@
       <outputDirectory>lib</outputDirectory>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+    <dependencySet>
+      <outputDirectory>docs</outputDirectory>
+      <includes>
+          <include>org.cornutum.tcases:tcases-io</include>
+      </includes>
+      <unpack>true</unpack>
+      <unpackOptions>
+          <includes>
+              <include>schema/*-schema.json</include>
+              <include>schema/*.xsd</include>
+          </includes>
+      </unpackOptions>
+    </dependencySet>
   </dependencySets>
 
   <fileSets>
@@ -22,14 +35,18 @@
       <outputDirectory>docs</outputDirectory>
       <includes>
         <include>*.xsd</include>
-        <include>*.htm</include>
         <include>*.css</include>
         <include>*.png</include>
         <include>examples/**/*</include>
       </includes>
-      <excludes>
-        <exclude>Tcases-Guide.htm</exclude>
-      </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>${project.basedir}/docs</directory>
+      <outputDirectory>docs</outputDirectory>
+      <includes>
+        <include>*.htm</include>
+      </includes>
+      <filtered>true</filtered>
     </fileSet>
     <fileSet>
       <directory>${project.basedir}/bin</directory>
@@ -54,13 +71,5 @@
       <outputDirectory>docs/api</outputDirectory>
     </fileSet>
   </fileSets>
-
-  <files>
-    <file>
-      <source>${project.basedir}/docs/Tcases-Guide.htm</source>
-      <outputDirectory>docs</outputDirectory>
-      <filtered>true</filtered>
-    </file>
-  </files>
 
 </assembly>
