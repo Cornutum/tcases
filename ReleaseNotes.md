@@ -1,5 +1,28 @@
 # Release Notes #
 
+## 3.0.0 ##
+
+This release introduces a major new feature: you can now use JSON for all of the documents that Tcases reads and produces.  At
+the command line level (including Tcases Maven Plugin configuration parameters), not much has changed -- just start using
+`*.json` files instead of `*.xml` files.  [Tcases: The JSON Guide](http://www.cornutum.org/tcases/docs/Tcases-Json.htm) explains
+the new JSON file formats and other necessary details.
+
+Why JSON? Many people just find this format easier to read and write. Also, the JSON format is especially useful if you are
+accessing Tcases using a Web service. In fact, using JSON, there is a way to define all Tcases inputs in [a single
+request](http://www.cornutum.org/tcases/docs/Tcases-Json.htm#web).
+
+Another major change is that Tcase APIs have been reorganized into multiple JARs. The improvement in modularity allows API users to
+streamline dependencies to only those components actually needed. But these changes are not fully compatible with previous releases,
+so API users may need to make changes to their projects, as described below.
+
+  * Programs that use CLI classes (`TcasesCommand`, etc.) must change dependencies to use `org.cornutum.tcases:tcases-cli`.
+  
+  * Programs that directly read or write Tcases documents (using classes like `SystemlnputDocReader`, `SystemTestDocWriter`, etc.)
+must change dependencies to use `org.cornutum.tcases:tcases-io`.
+  
+  *  The main utility classes `TcasesCommand` and `Tcases` have been refactored, relocating methods that use stream IO directly to the new class `TcasesIO` in the `tcases-io` module. Also, the superfluous inheritance relationships among these classes have been removed.
+
+
 ## 2.1.2 ##
 
 Minor improvements, including some documentation touch-ups and some refactoring using functional expressions to simplify and clarify the code.
