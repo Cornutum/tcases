@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://org.cornutum/tcases/system-input-schema.json",
+    "$id": "http://www.cornutum.org/tcases/system-input-schema.json",
     "title": "System Input Model",
     "description": "Defines the input space for a system (version: ${project.version})",
 

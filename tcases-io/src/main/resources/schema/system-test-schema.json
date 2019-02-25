@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://org.cornutum/tcases/system-test-schema.json",
+    "$id": "http://www.cornutum.org/tcases/system-test-schema.json",
     "title": "System Test Model",
     "description": "Defines test cases for a system (version: ${project.version})",
 
