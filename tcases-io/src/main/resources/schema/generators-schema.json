@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://www.cornutum.org/tcases/generators.json",
+    "$id": "http://www.cornutum.org/tcases/generators-schema.json",
     "title": "System Test Coverage Model",
     "description": "Defines the test coverage generators for a system (version: ${project.version})",
 
