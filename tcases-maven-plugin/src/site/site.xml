@@ -15,6 +15,7 @@
     </menu>
     
     <menu name="Examples">
+      <item name="Using JSON" href="usage.html#Using_JSON"/>
       <item name="Generating Test Cases" href="usage.html#Generating_Test_Cases"/>
       <item name="Generating An HTML Report" href="usage.html#Generating_An_HTML_Report"/>
       <item name="Generating JUnit Tests" href="usage.html#Generating_JUnitTestNG_Tests"/>

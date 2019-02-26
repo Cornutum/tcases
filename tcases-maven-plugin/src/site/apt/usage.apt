@@ -12,13 +12,14 @@ Usage
 
   Each project defines the input space model and coverage model for a specific system-under-test.
   The {{{./tcases-mojo.html}tcases:tcases}} goal refers to all of the input files for a project named
-  <<$\{projectName\}>> using the following default conventions.
+  <<$\{projectName\}>> using the following default conventions. The file <<$\{type\}>> extension can be
+  either "xml" or {{{http://www.cornutum.org/tcases/docs/Tcases-Json.htm#intro} "json"}}.
 
-  * <<$\{projectName\}-Input.xml>>: the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#functions} system input definition}} file
+  * <<$\{projectName\}-Input.$\{type\}>>: the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#functions} system input definition}} file
 
-  * <<$\{projectName\}-Generators.xml>>: the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#higherCoverage} generator definition}} file (optional)
+  * <<$\{projectName\}-Generators.$\{type\}>>: the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#higherCoverage} generator definition}} file (optional)
   
-  * <<$\{projectName\}-Test.xml>>: the {{{Extending_Previous_Test_Cases_Or_Not} base test case definition}} file (optional)
+  * <<$\{projectName\}-Test.$\{type\}>>: the {{{Extending_Previous_Test_Cases_Or_Not} base test case definition}} file (optional)
 
   []
 
@@ -27,16 +28,24 @@ Usage
 
   When {{{./tcases-mojo.html}tcases:tcases}} runs, it executes each project by reading its input
   files and generating test cases for the system-under-test in the <<outDir>> specified by the plugin configuration. By default,
-  the <<outDir>> is assumed to be <<$\{project.build.directory\}/tcases>>. By default, the generated test definition file is named
-  <<$\{projectName\}-Test.xml>>.
+  the <<outDir>> is assumed to be <<$\{project.build.directory\}/tcases>>. By default, the name of the generated test definition file is either
+  <<$\{projectName\}-Test.xml>> or <<$\{projectName\}-Test.json>>, depending on the
+  {{{./tcases-mojo.html#contentType}content type configuration}}.
   
+
+* {Using JSON}
+
+  Tcases can read and write documents using either XML or JSON data formats. Because XML is the original default format used by
+  Tcases, all of the examples in this guide assume you are using XML. But everything described here can also be done using JSON
+  files instead. To learn how, see {{{http://www.cornutum.org/tcases/docs/Tcases-Json.htm}Tcases: The JSON Guide}}.
+
 
 * {Generating Test Cases}
 
   Let's assume you are using the default Tcases configuration. Suppose you have a Tcases project
   defined by a system input definition file named
   <<<$\{basedir\}/src/test/tcases/org/cornutum/tcases/find-Input.xml>>> that looks like
-  {{{http://www.cornutum.org/tcases/docs/examples/find-Input.xml}this}}.
+  {{{http://www.cornutum.org/tcases/docs/examples/xml/find-Input.xml}this}}.
 
   What happens when you run the following command?
 
@@ -82,7 +91,7 @@ mvn tcases:tcases
 
   Suppose you have a Tcases project defined by a system input definition file named
   <<<$\{basedir\}/src/test/tcases/org/cornutum/tcases/find-Input.xml>>> that looks like
-  {{{http://www.cornutum.org/tcases/docs/examples/find-Input.xml}this}}.
+  {{{http://www.cornutum.org/tcases/docs/examples/xml/find-Input.xml}this}}.
 
   What happens when you run the following command?
 
@@ -99,7 +108,7 @@ mvn tcases:tcases -Dhtml=true
 
   Suppose you have a Tcases project defined by a system input definition file named
   <<<$\{basedir\}/src/test/tcases/org/cornutum/tcases/find-Input.xml>>> that looks like
-  {{{http://www.cornutum.org/tcases/docs/examples/find-Input.xml}this}}.
+  {{{http://www.cornutum.org/tcases/docs/examples/xml/find-Input.xml}this}}.
 
   What happens when you run the following command?
 
