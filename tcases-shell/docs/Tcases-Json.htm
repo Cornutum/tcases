@@ -249,7 +249,9 @@
           &nbsp;&nbsp;} <BR/>
           } <BR/>
         </DIV>
-
+      </P>
+        
+      <P>
         Note that the way value definitions are organized and named is entirely up to you. Your choices should reflect how you want to model the inputs for
         your SUT. You can find more information about modeling input values <A href="Tcases-Guide.htm#values">here</A>.
       </P>
@@ -704,7 +706,9 @@
           &gt; cd docs/examples/json <BR/>
           &gt; tcases -T json &lt; find-Input.json <BR/>
         </DIV>
-
+      </P>
+        
+      <P>
         You'll then see something like the following test case definitions printed to standard output.
 
         <DIV class="exampleDoc">
@@ -723,7 +727,9 @@
           &nbsp;&nbsp;] <BR/>
           } <BR/>
         </DIV>
-
+      </P>
+        
+      <P>
         Each "success" case lists a valid value for each basic variable for the function. As in the system input definition,
         variables are organized by input type, such as "arg", "env", etc. Each basic variable is identified by its "path". For a
         top-level variable, this is simply the variable name. For a member of a variable set, the path includes the path to its
@@ -775,7 +781,9 @@
           &nbsp;&nbsp;] <BR/>
           } <BR/>
         </DIV>
-
+      </P>
+        
+      <P>
         Each failure case is just the same, except that exactly one variable is assigned an invalid value, which is designated with
         a "failure" property that is true.
 
@@ -823,7 +831,9 @@
           &nbsp;&nbsp;] <BR/>
           } <BR/>
         </DIV>
-
+      </P>
+        
+      <P>
         Note also that each test case also lists a "has" property which shows all of the value properties that are associated with
         the test case. The "has" property also contains the value of every <A href="#annotations">output annotation</A> associated with the test case.
 
@@ -899,7 +909,9 @@
           &nbsp;&nbsp;} <BR/>
           } <BR/>
         </DIV>
-
+      </P>
+        
+      <P>
         A more complete project definition could also include a JSON <A href="#coverage">generator definition</A> and a set
         of JSON <A href="#testCases">base test case definitions</A>.
 
@@ -929,7 +941,9 @@
           &nbsp;&nbsp;"baseTests": "http://www.cornutum.org/tcases/docs/examples/json/find-Tests.json" <BR/>
           } <BR/>
         </DIV>
-
+      </P>
+        
+      <P>
         Document locations can either be absolute URLs or URIs relative to a specified "refBase" property.
         A project definition can also contain a mix of actual JSON documents and URL references.
 
