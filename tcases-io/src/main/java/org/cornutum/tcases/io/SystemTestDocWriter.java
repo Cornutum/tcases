@@ -128,7 +128,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
       .attributeIf( binding.isValueNA(), NA_ATR, "true")
       .attributeIf( !binding.isValueNA(), VALUE_ATR, String.valueOf( binding.getValue()))
       .attributeIf( !binding.isValueValid(), FAILURE_ATR, "true")
-      .content( () -> writeAnnotations( binding))
+      .contentIf( binding.getAnnotationCount() > 0, () -> writeAnnotations( binding))
       .write();
     }
 

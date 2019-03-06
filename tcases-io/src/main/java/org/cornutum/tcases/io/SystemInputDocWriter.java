@@ -159,11 +159,9 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
       .attributeIf( value.getType() == ONCE, ONCE_ATR, "true")
       .attributeIf( WHEN_ATR, conditionWriter.getWhenAttribute())
       .attributeIf( PROPERTY_ATR, propertyList( toStream( value.getProperties().getProperties())))
-      .content( () ->
-        {
-        writeAnnotations( value);
-        conditionWriter.writeWhenElement();
-        })
+      .contentIf(
+        value.getAnnotationCount() > 0 || conditionWriter.hasWhenElement(),
+        () -> { writeAnnotations( value); conditionWriter.writeWhenElement(); })
       .write();
     }
 
@@ -244,9 +242,14 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         : null;
       }
 
+    public boolean hasWhenElement()
+      {
+      return condition_ != null && containsAll_ == null;
+      }
+
     public void writeWhenElement()
       {
-      if( condition_ != null && containsAll_ == null)
+      if( hasWhenElement())
         {
         xmlWriter_
           .element( WHEN_TAG)

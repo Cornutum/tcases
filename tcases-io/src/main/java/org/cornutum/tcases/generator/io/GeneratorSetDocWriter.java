@@ -105,13 +105,9 @@ public class GeneratorSetDocWriter implements Closeable
       .attribute( FUNCTION_ATR, function)
       .attributeIf( seed != null, SEED_ATR, String.valueOf( seed))
       .attribute( TUPLES_ATR, String.valueOf( generator.getDefaultTupleSize()))
-      .content( () ->
-        {
-        for( TupleCombiner combiner : generator.getCombiners())
-          {
-          writeCombiner( combiner);
-          }
-        })
+      .contentIf(
+        !generator.getCombiners().isEmpty(),
+        () -> generator.getCombiners().stream().forEach( combiner -> writeCombiner( combiner)))
       .write();
     }
 

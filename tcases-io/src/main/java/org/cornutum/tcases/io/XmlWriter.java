@@ -12,7 +12,7 @@ import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
 
 import java.io.OutputStream;
 import java.io.Writer;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
   
@@ -126,7 +126,7 @@ public class XmlWriter extends IndentedWriter
     public ElementWriter()
       {
       tag( null);
-      attributes( new HashMap<String,String>());
+      attributes( new LinkedHashMap<String,String>());
       content( (String) null);
       }
 
@@ -152,7 +152,7 @@ public class XmlWriter extends IndentedWriter
       {
       if( condition)
         {
-        attributes_.put( name, value);
+        attribute( name, value);
         }
       return this;
       }
@@ -161,7 +161,7 @@ public class XmlWriter extends IndentedWriter
       {
       if( value.isPresent())
         {
-        attributes_.put( name, value.get());
+        attribute( name, value.get());
         }
       return this;
       }
@@ -177,6 +177,15 @@ public class XmlWriter extends IndentedWriter
       {
       content_ = null;
       contentWriter_ = contentWriter;
+      return this;
+      }
+
+    public ElementWriter contentIf( boolean condition, Runnable contentWriter)
+      {
+      if( condition)
+        {
+        content( contentWriter);
+        }
       return this;
       }
 
