@@ -104,7 +104,19 @@ public final class DefUtils
       }
     }
 
-  private static final Pattern identifierRegex_ = Pattern.compile( "[\\p{Alpha}\\p{Digit}_\\-]+", Pattern.UNICODE_CHARACTER_CLASS);
+  /**
+   * Converts the given name to a Tcases identifier
+   */
+  public static String toIdentifier( String name)
+    {
+    return
+      nonIdentifierCharRegex_.matcher( name.replaceAll( "\\s+", "-"))
+      .replaceAll( "");
+    }
+
+  private static final String identifierChars_ = "\\p{Alpha}\\p{Digit}_\\-";
+  private static final Pattern identifierRegex_ = Pattern.compile( "[" + identifierChars_ + "]+", Pattern.UNICODE_CHARACTER_CLASS);
+  private static final Pattern nonIdentifierCharRegex_ = Pattern.compile( "[^" + identifierChars_ + "]", Pattern.UNICODE_CHARACTER_CLASS);
   private static final Pattern varValueRegex_ = Pattern.compile( "([^\\p{Cntrl}]|\\s)*");
   }
 
