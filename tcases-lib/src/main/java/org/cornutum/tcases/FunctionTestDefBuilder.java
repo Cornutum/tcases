@@ -8,6 +8,10 @@
 
 package org.cornutum.tcases;
 
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 /**
  * Builds {@link FunctionTestDef} instances.
  *
@@ -97,12 +101,52 @@ public class FunctionTestDefBuilder
     }
 
   /**
-   * Add a function annotation.
+   * Adds function test cases.
    */
-  public FunctionTestDefBuilder has( String name, String value)
+  public FunctionTestDefBuilder testCases( Iterable<TestCase> testCases)
     {
-    functionTestDef_.setAnnotation( name, value);
+    for( TestCase testCase : testCases)
+      {
+      functionTestDef_.addTestCase( testCase);
+      }
     return this;
+    }
+
+  /**
+   * Adds function test cases.
+   */
+  public FunctionTestDefBuilder testCases( Stream<TestCase> testCases)
+    {
+    testCases.forEach( testCase -> functionTestDef_.addTestCase( testCase));
+    return this;
+    }
+
+  /**
+   * Adds a function annotation.
+   */
+  public FunctionTestDefBuilder has( String name, Object value)
+    {
+    functionTestDef_.setAnnotation( name, Objects.toString( value, null));
+    return this;
+    }
+
+  /**
+   * Adds a function annotation if the given value is non-null
+   */
+  public FunctionTestDefBuilder hasIf( String name, Object value)
+    {
+    return
+      value != null
+      ? has( name, value)
+      : this;
+    }
+
+  /**
+   * Adds a function annotation if the given value is defined
+   */
+  public FunctionTestDefBuilder hasIf( String name, Optional<Object> value)
+    {
+    return hasIf( name, value.orElse( null));
     }
 
   FunctionTestDef functionTestDef_;

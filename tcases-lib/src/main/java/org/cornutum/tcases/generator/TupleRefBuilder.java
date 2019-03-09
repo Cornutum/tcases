@@ -8,6 +8,8 @@
 
 package org.cornutum.tcases.generator;
 
+import java.util.stream.Stream;
+
 import org.cornutum.tcases.VarBinding;
 
 /**
@@ -86,6 +88,27 @@ public class TupleRefBuilder
       {
       tupleRef_.addVarBinding( binding);
       }
+    return this;
+    }
+
+  /**
+   * Adds the given bindings to this tuple.
+   */
+  public TupleRefBuilder bindings( Iterable<VarBinding> bindings)
+    {
+    for( VarBinding binding : bindings)
+      {
+      tupleRef_.addVarBinding( binding);
+      }
+    return this;
+    }
+
+  /**
+   * Adds the given bindings to this tuple.
+   */
+  public TupleRefBuilder bindings( Stream<VarBinding> bindings)
+    {
+    bindings.forEach( binding -> tupleRef_.addVarBinding( binding));
     return this;
     }
 

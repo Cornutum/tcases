@@ -8,6 +8,9 @@
 
 package org.cornutum.tcases;
 
+import java.util.Objects;
+import java.util.Optional;
+
 /**
  * Builds {@link VarBinding} instances.
  *
@@ -122,12 +125,31 @@ public class VarBindingBuilder
     }
 
   /**
-   * Add a binding annotation.
+   * Adds a binding annotation.
    */
-  public VarBindingBuilder has( String name, String value)
+  public VarBindingBuilder has( String name, Object value)
     {
-    varBinding_.setAnnotation( name, value);
+    varBinding_.setAnnotation( name, Objects.toString( value, null));
     return this;
+    }
+
+  /**
+   * Adds a binding annotation if the given value is non-null
+   */
+  public VarBindingBuilder hasIf( String name, Object value)
+    {
+    return
+      value != null
+      ? has( name, value)
+      : this;
+    }
+
+  /**
+   * Adds a binding annotation if the given value is defined
+   */
+  public VarBindingBuilder hasIf( String name, Optional<Object> value)
+    {
+    return hasIf( name, value.orElse( null));
     }
 
   VarBinding varBinding_;

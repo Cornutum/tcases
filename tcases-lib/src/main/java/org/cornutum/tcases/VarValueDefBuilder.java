@@ -11,6 +11,9 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.VarValueDef.Type;
 import org.cornutum.tcases.conditions.ICondition;
 
+import java.util.Objects;
+import java.util.Optional;
+
 /**
  * Builds {@link VarValueDef} instances.
  *
@@ -107,12 +110,31 @@ public class VarValueDefBuilder
     }
 
   /**
-   * Add a value annotation.
+   * Adds a value annotation.
    */
-  public VarValueDefBuilder has( String name, String value)
+  public VarValueDefBuilder has( String name, Object value)
     {
-    varValueDef_.setAnnotation( name, value);
+    varValueDef_.setAnnotation( name, Objects.toString( value, null));
     return this;
+    }
+
+  /**
+   * Adds a value annotation if the given value is non-null
+   */
+  public VarValueDefBuilder hasIf( String name, Object value)
+    {
+    return
+      value != null
+      ? has( name, value)
+      : this;
+    }
+
+  /**
+   * Adds a value annotation if the given value is defined
+   */
+  public VarValueDefBuilder hasIf( String name, Optional<Object> value)
+    {
+    return hasIf( name, value.orElse( null));
     }
 
   /**

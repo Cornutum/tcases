@@ -8,9 +8,12 @@
 
 package org.cornutum.tcases;
 
-import java.util.Arrays;
-
 import org.cornutum.tcases.conditions.ICondition;
+
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Builds {@link VarSet} instances.
@@ -108,12 +111,31 @@ public class VarSetBuilder
     }
 
   /**
-   * Add a variable set annotation.
+   * Adds a variable set annotation.
    */
-  public VarSetBuilder has( String name, String value)
+  public VarSetBuilder has( String name, Object value)
     {
-    varSet_.setAnnotation( name, value);
+    varSet_.setAnnotation( name, Objects.toString( value, null));
     return this;
+    }
+
+  /**
+   * Adds a variable set annotation if the given value is non-null
+   */
+  public VarSetBuilder hasIf( String name, Object value)
+    {
+    return
+      value != null
+      ? has( name, value)
+      : this;
+    }
+
+  /**
+   * Adds a variable set annotation if the given value is defined
+   */
+  public VarSetBuilder hasIf( String name, Optional<Object> value)
+    {
+    return hasIf( name, value.orElse( null));
     }
 
   /**
@@ -125,6 +147,27 @@ public class VarSetBuilder
       {
       varSet_.addMember( member);
       }
+    return this;
+    }
+
+  /**
+   * Adds variable set members.
+   */
+  public VarSetBuilder members( Iterable<IVarDef> members)
+    {
+    for( IVarDef member : members)
+      {
+      varSet_.addMember( member);
+      }
+    return this;
+    }
+
+  /**
+   * Adds variable set members.
+   */
+  public VarSetBuilder members( Stream<IVarDef> members)
+    {
+    members.forEach( member -> varSet_.addMember( member));
     return this;
     }
 

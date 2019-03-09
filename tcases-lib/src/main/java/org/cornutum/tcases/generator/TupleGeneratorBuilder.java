@@ -8,6 +8,8 @@
 
 package org.cornutum.tcases.generator;
 
+import java.util.stream.Stream;
+
 /**
  * Builds {@link TupleGenerator} instances.
  *
@@ -95,6 +97,27 @@ public class TupleGeneratorBuilder
       {
       tupleGenerator_.addCombiner( combiner);
       }
+    return this;
+    }
+
+  /**
+   * Add the given {@link TupleCombiner} instances to this generator.
+   */
+  public TupleGeneratorBuilder combiners( Iterable<TupleCombiner> combiners)
+    {
+    for( TupleCombiner combiner : combiners)
+      {
+      tupleGenerator_.addCombiner( combiner);
+      }
+    return this;
+    }
+
+  /**
+   * Add the given {@link TupleCombiner} instances to this generator.
+   */
+  public TupleGeneratorBuilder combiners( Stream<TupleCombiner> combiners)
+    {
+    combiners.forEach( combiner -> tupleGenerator_.addCombiner( combiner));
     return this;
     }
 

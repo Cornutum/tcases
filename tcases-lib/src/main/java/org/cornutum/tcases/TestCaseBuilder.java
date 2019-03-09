@@ -8,6 +8,10 @@
 
 package org.cornutum.tcases;
 
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 /**
  * Builds {@link TestCase} instances.
  *
@@ -98,6 +102,27 @@ public class TestCaseBuilder
     }
 
   /**
+   * Adds variable bindings to the test case.
+   */
+  public TestCaseBuilder bind( Iterable<VarBinding> bindings)
+    {
+    for( VarBinding binding : bindings)
+      {
+      testCase_.addVarBinding( binding);
+      }
+    return this;
+    }
+
+  /**
+   * Adds variable bindings to the test case.
+   */
+  public TestCaseBuilder bind( Stream<VarBinding> bindings)
+    {
+    bindings.forEach( binding -> testCase_.addVarBinding( binding));
+    return this;
+    }
+
+  /**
    * Adds variable bindings of the given type to the test case.
    */
   public TestCaseBuilder bind( String type, VarBinding... bindings)
@@ -111,12 +136,31 @@ public class TestCaseBuilder
     }
 
   /**
-   * Add a test case annotation.
+   * Adds a test case annotation.
    */
-  public TestCaseBuilder has( String name, String value)
+  public TestCaseBuilder has( String name, Object value)
     {
-    testCase_.setAnnotation( name, value);
+    testCase_.setAnnotation( name, Objects.toString( value, null));
     return this;
+    }
+
+  /**
+   * Adds a test case annotation if the given value is non-null
+   */
+  public TestCaseBuilder hasIf( String name, Object value)
+    {
+    return
+      value != null
+      ? has( name, value)
+      : this;
+    }
+
+  /**
+   * Adds a test case annotation if the given value is defined
+   */
+  public TestCaseBuilder hasIf( String name, Optional<Object> value)
+    {
+    return hasIf( name, value.orElse( null));
     }
 
   TestCase testCase_;

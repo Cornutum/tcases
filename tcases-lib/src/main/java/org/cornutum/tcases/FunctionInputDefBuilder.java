@@ -9,6 +9,9 @@
 package org.cornutum.tcases;
 
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Builds {@link FunctionInputDef} instances.
@@ -99,6 +102,27 @@ public class FunctionInputDefBuilder
     }
 
   /**
+   * Adds function input variables.
+   */
+  public FunctionInputDefBuilder vars( Iterable<IVarDef> vars)
+    {
+    for( IVarDef var : vars)
+      {
+      functionInputDef_.addVarDef( var);
+      }
+    return this;
+    }
+
+  /**
+   * Adds function input variables.
+   */
+  public FunctionInputDefBuilder vars( Stream<IVarDef> vars)
+    {
+    vars.forEach( var -> functionInputDef_.addVarDef( var));
+    return this;
+    }
+
+  /**
    * Adds function input variables of the given type.
    */
   public FunctionInputDefBuilder vars( String type, AbstractVarDef... vars)
@@ -112,12 +136,31 @@ public class FunctionInputDefBuilder
     }
 
   /**
-   * Add a function annotation.
+   * Adds a function annotation.
    */
-  public FunctionInputDefBuilder has( String name, String value)
+  public FunctionInputDefBuilder has( String name, Object value)
     {
-    functionInputDef_.setAnnotation( name, value);
+    functionInputDef_.setAnnotation( name, Objects.toString( value, null));
     return this;
+    }
+
+  /**
+   * Adds a function annotation if the given value is non-null
+   */
+  public FunctionInputDefBuilder hasIf( String name, Object value)
+    {
+    return
+      value != null
+      ? has( name, value)
+      : this;
+    }
+
+  /**
+   * Adds a function annotation if the given value is defined
+   */
+  public FunctionInputDefBuilder hasIf( String name, Optional<Object> value)
+    {
+    return hasIf( name, value.orElse( null));
     }
 
   /**

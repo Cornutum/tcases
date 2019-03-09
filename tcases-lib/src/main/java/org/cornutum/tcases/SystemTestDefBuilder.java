@@ -8,6 +8,10 @@
 
 package org.cornutum.tcases;
 
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 /**
  * Builds {@link SystemTestDef} instances.
  *
@@ -98,12 +102,52 @@ public class SystemTestDefBuilder
     }
 
   /**
-   * Add a system annotation.
+   * Adds system functions.
    */
-  public SystemTestDefBuilder has( String name, String value)
+  public SystemTestDefBuilder functions( Iterable<FunctionTestDef> functions)
     {
-    systemTestDef_.setAnnotation( name, value);
+    for( FunctionTestDef function : functions)
+      {
+      systemTestDef_.addFunctionTestDef( function);
+      }
     return this;
+    }
+
+  /**
+   * Adds system functions.
+   */
+  public SystemTestDefBuilder functions( Stream<FunctionTestDef> functions)
+    {
+    functions.forEach( function -> systemTestDef_.addFunctionTestDef( function));
+    return this;
+    }
+
+  /**
+   * Adds a system annotation.
+   */
+  public SystemTestDefBuilder has( String name, Object value)
+    {
+    systemTestDef_.setAnnotation( name, Objects.toString( value, null));
+    return this;
+    }
+
+  /**
+   * Adds a system annotation if the given value is non-null
+   */
+  public SystemTestDefBuilder hasIf( String name, Object value)
+    {
+    return
+      value != null
+      ? has( name, value)
+      : this;
+    }
+
+  /**
+   * Adds a system annotation if the given value is defined
+   */
+  public SystemTestDefBuilder hasIf( String name, Optional<Object> value)
+    {
+    return hasIf( name, value.orElse( null));
     }
 
   SystemTestDef systemTestDef_;

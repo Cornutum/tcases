@@ -8,6 +8,8 @@
 
 package org.cornutum.tcases.generator;
 
+import java.util.stream.Stream;
+
 /**
  * Builds {@link TupleCombiner} instances.
  *
@@ -90,6 +92,27 @@ public class TupleCombinerBuilder
     }
 
   /**
+   * Excludes the given variables from this combiner.
+   */
+  public TupleCombinerBuilder exclude( Iterable<String> varNamePatterns)
+    {
+    for( String varNamePattern : varNamePatterns)
+      {
+      tupleCombiner_.addExcludedVar( varNamePattern);
+      }
+    return this;
+    }
+
+  /**
+   * Excludes the given variables from this combiner.
+   */
+  public TupleCombinerBuilder exclude( Stream<String> varNamePatterns)
+    {
+    varNamePatterns.forEach( varNamePattern -> tupleCombiner_.addExcludedVar( varNamePattern));
+    return this;
+    }
+
+  /**
    * Includes the given variables in this combiner.
    */
   public TupleCombinerBuilder include( String... varNamePatterns)
@@ -102,6 +125,27 @@ public class TupleCombinerBuilder
     }
 
   /**
+   * Includes the given variables in this combiner.
+   */
+  public TupleCombinerBuilder include( Iterable<String> varNamePatterns)
+    {
+    for( String varNamePattern : varNamePatterns)
+      {
+      tupleCombiner_.addIncludedVar( varNamePattern);
+      }
+    return this;
+    }
+
+  /**
+   * Includes the given variables in this combiner.
+   */
+  public TupleCombinerBuilder include( Stream<String> varNamePatterns)
+    {
+    varNamePatterns.forEach( varNamePattern -> tupleCombiner_.addIncludedVar( varNamePattern));
+    return this;
+    }
+
+  /**
    * Adds the given once-only tuples to this combiner.
    */
   public TupleCombinerBuilder once( TupleRef... tupleRefs)
@@ -110,6 +154,27 @@ public class TupleCombinerBuilder
       {
       tupleCombiner_.addOnceTuple( tupleRef);
       }
+    return this;
+    }
+
+  /**
+   * Adds the given once-only tuples to this combiner.
+   */
+  public TupleCombinerBuilder once( Iterable<TupleRef> tupleRefs)
+    {
+    for( TupleRef tupleRef : tupleRefs)
+      {
+      tupleCombiner_.addOnceTuple( tupleRef);
+      }
+    return this;
+    }
+
+  /**
+   * Adds the given once-only tuples to this combiner.
+   */
+  public TupleCombinerBuilder once( Stream<TupleRef> tupleRefs)
+    {
+    tupleRefs.forEach( tupleRef -> tupleCombiner_.addOnceTuple( tupleRef));
     return this;
     }
 

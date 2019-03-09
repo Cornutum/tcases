@@ -10,6 +10,10 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.conditions.ICondition;
 
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 /**
  * Builds {@link VarDef} instances.
  *
@@ -106,12 +110,31 @@ public class VarDefBuilder
     }
 
   /**
-   * Add a variable annotation.
+   * Adds a variable annotation.
    */
-  public VarDefBuilder has( String name, String value)
+  public VarDefBuilder has( String name, Object value)
     {
-    varDef_.setAnnotation( name, value);
+    varDef_.setAnnotation( name, Objects.toString( value, null));
     return this;
+    }
+
+  /**
+   * Adds a variable annotation if the given value is non-null
+   */
+  public VarDefBuilder hasIf( String name, Object value)
+    {
+    return
+      value != null
+      ? has( name, value)
+      : this;
+    }
+
+  /**
+   * Adds a variable annotation if the given value is defined
+   */
+  public VarDefBuilder hasIf( String name, Optional<Object> value)
+    {
+    return hasIf( name, value.orElse( null));
     }
 
   /**
@@ -123,6 +146,27 @@ public class VarDefBuilder
       {
       varDef_.addValue( value);
       }
+    return this;
+    }
+
+  /**
+   * Adds variable values.
+   */
+  public VarDefBuilder values( Iterable<VarValueDef> values)
+    {
+    for( VarValueDef value : values)
+      {
+      varDef_.addValue( value);
+      }
+    return this;
+    }
+
+  /**
+   * Adds variable values.
+   */
+  public VarDefBuilder values( Stream<VarValueDef> values)
+    {
+    values.forEach( value -> varDef_.addValue( value));
     return this;
     }
 
