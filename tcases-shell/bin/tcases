@@ -9,7 +9,7 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-R] [-t testDef] [-v] [-x transformDef | -J] [inputDef]" >&2
+  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-R] [-t testDef] [-T contentType] [-v] [-x transformDef | -J] [inputDef]" >&2
   echo "" >&2
   echo "  Generates a set of test cases from a system input definition, according" >&2
   echo "  to the given command line arguments." >&2
@@ -72,6 +72,12 @@ usage()
   echo "              name is derived from the inputDef name. If an output path cannot be" >&2
   echo "              derived, output is written to standard output." >&2
   echo "" >&2
+  echo "  -T contentType  Defines the default content type for the files read and produced." >&2
+  echo "              The contentType must be one of \"json\" or \"xml\". The default content type is" >&2
+  echo "              assumed for any file that is not specified explicitly or that does not have a" >&2
+  echo "              recognized extension. If omitted, the default content type is derived from the" >&2
+  echo "              inputDef name." >&2
+  echo "" >&2
   echo "  -v          Shows the current Tcases version. If this option is given, no other" >&2
   echo "              action is performed." >&2
   echo "" >&2
@@ -95,6 +101,7 @@ while [ $# -gt 0 ] ; do
     -r) shift; seed="$1";;
     -R) newSeed="$1";;
     -t) shift; testDef="$1";;
+    -T) shift; contentType="$1";;
     -v) showVersion="$1";;
     -x) shift; xsltDef="$1";;
     -*) usage; exit 1;;
@@ -158,6 +165,7 @@ java \
   ${outFile:+-f "$outFile"} \
   ${params} \
   ${testDef:+-t "$testDef"} \
+  ${contentType:+-T "$contentType"} \
   ${xsltDef:+-x "$xsltDef"} \
   ${inputDef:+"$inputDef"}
 

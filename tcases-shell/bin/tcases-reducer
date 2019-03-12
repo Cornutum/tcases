@@ -9,7 +9,7 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-f function] [-g genDef] [-r resampleFactor] [-R] [-s sampleCount] [-t testDef] inputDef" >&2
+  echo Usage: $pgm "[-f function] [-g genDef] [-r resampleFactor] [-R] [-s sampleCount] [-t testDef] [-T contentType] inputDef" >&2
   echo "" >&2
   echo "  For a system input definition, updates the associated test case generators to reduce the number" >&2
   echo "  of generated test cases, using the given command line options." >&2
@@ -45,6 +45,12 @@ usage()
   echo "" >&2
   echo "  -t testDef         If -t is defined, generate test cases based on the test definitions in the" >&2
   echo "                     specified testDef file, relative to the directory containing the inputDef." >&2
+  echo "" >&2
+  echo "  -T contentType     Defines the default content type for the files read and produced." >&2
+  echo "                     The contentType must be one of \"json\" or \"xml\". The default content type is" >&2
+  echo "                     assumed for any file that is not specified explicitly or that does not have a" >&2
+  echo "                     recognized extension. If omitted, the default content type is derived from the" >&2
+  echo "                     inputDef name." >&2
 }
 
 while [ $# -gt 0 ] ; do
@@ -57,6 +63,7 @@ while [ $# -gt 0 ] ; do
     -R) newSeed="$1";;
     -s) shift; smpc="$1";;
     -t) shift; testDef="$1";;
+    -T) shift; contentType="$1";;
     -*) usage; exit 1;;
      *) break;;
   esac
@@ -109,5 +116,6 @@ java \
   ${smpc:+-s "$smpc"} \
   ${function:+-f "$function"} \
   ${testDef:+-t "$testDef"} \
+  ${contentType:+-T "$contentType"} \
   $inputDef
 
