@@ -246,6 +246,7 @@
     <module>tcases-cli</module>
     <module>tcases-shell</module>
     <module>tcases-maven-plugin</module>
+    <module>tcases-openapi</module>
   </modules>
 
 </project>
