@@ -7,9 +7,13 @@
 
 package org.cornutum.tcases.util;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -33,6 +37,14 @@ public final class CollectionUtils
     {
     Iterable<T> iterable = () -> iterator;
     return StreamSupport.stream( iterable.spliterator(), false);
+    }
+
+  /**
+   * If the given value is present, returns it as a singleton list. Otherwise, returns an empty list.
+   */
+  public static <T> List<T> iterableOf( Optional<T> value)
+    {
+    return value.map( Arrays::asList).orElse( Collections.emptyList());
     }
 
   /**
