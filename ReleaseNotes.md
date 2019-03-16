@@ -1,5 +1,11 @@
 # Release Notes #
 
+## 3.0.1 ##
+
+This is a patch release to fix an annoying problem that caused the shell commands `tcases` and `tcases-reducer` to reject the new `-T` option. For
+example, when you run the command `tcases -T json`, Tcases should read a JSON system input definition from standard input and produce a JSON system
+test definition on standard output. And now it does.
+
 ## 3.0.0 ##
 
 This release introduces a major new feature: you can now use JSON for all of the documents that Tcases reads and produces.  At
