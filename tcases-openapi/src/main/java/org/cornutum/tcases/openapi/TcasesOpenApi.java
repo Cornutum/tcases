@@ -93,7 +93,11 @@ public final class TcasesOpenApi
         opFunctionDef( api, path, pathItem, "PATCH", pathItem.getPatch()),
         opFunctionDef( api, path, pathItem, "TRACE", pathItem.getTrace()))
 
-      .filter( Objects::nonNull);
+      // Skip if operation not defined
+      .filter( Objects::nonNull)
+
+      // Skip if operation has no inputs to model
+      .filter( functionDef -> functionDef.getVarDefs().hasNext());
     }
 
   /**
