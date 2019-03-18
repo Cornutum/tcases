@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi;
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.Conditions;
+import org.cornutum.tcases.conditions.ICondition;
 
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.util.CollectionUtils.*;
@@ -18,6 +19,7 @@ import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.ArraySchema;
+import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.NumberSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -37,6 +39,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.TreeSet;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import static java.math.RoundingMode.DOWN;
 import static java.math.RoundingMode.UP;
@@ -161,7 +164,7 @@ public final class TcasesOpenApi
     {
     return
       VarDefBuilder.with( "Media-Type")
-      .when( Conditions.has( instanceDefinedProperty( bodyVarTag)))
+      .when( instanceDefinedCondition( bodyVarTag))
       .values(
         mediaTypeContentDefs( body)
         .entrySet().stream()
@@ -188,7 +191,8 @@ public final class TcasesOpenApi
           {
           return
             VarSetBuilder.with( mediaType)
-            .members( instanceSchemaVars( api, mediaType, contentSchema))
+            .when( Conditions.has( mediaType))
+            .members( instanceSchemaVars( api, mediaType, false, contentSchema))
             .build();
           }
         catch( Exception e)
@@ -220,7 +224,7 @@ public final class TcasesOpenApi
       String parameterVarName = toIdentifier( parameter.getName());
       String parameterIn = expectedValueOf( parameter.getIn(), "in", parameter.getName());
       Schema<?> parameterSchema = parameterSchema( api, parameter);
-      String parameterType = expectedValueOf( parameterSchema.getType(), "Schema type");
+      String parameterType = parameterSchema.getType();
 
       return
         VarSetBuilder.with( parameterVarName)
@@ -311,7 +315,7 @@ public final class TcasesOpenApi
   private static Boolean parameterExplode( Boolean explode, String parameterType, Parameter.StyleEnum parameterStyle)
     {
     return
-      !(parameterType.equals( "object") || parameterType.equals( "array"))?
+      !("object".equals( parameterType) || "array".equals( parameterType))?
       null :
 
       explode != null?
@@ -367,34 +371,46 @@ public final class TcasesOpenApi
    */
   private static Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
-    String type = expectedValueOf( instanceSchema.getType(), "Schema type");
+    return instanceSchemaVars( api, instanceVarTag, true, instanceSchema);      
+    }
+
+  /**
+   * Returns the {@link IVarDef input variables} defined by the schema for the given instance.
+   */
+  private static Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+    {
+    ComposedSchema composedSchema = instanceSchema instanceof ComposedSchema? (ComposedSchema) instanceSchema : null;
+    String type = composedSchema == null? expectedValueOf( instanceSchema.getType(), "type") : null;
 
     return
-      type.equals( "string")?
-      instanceStringVars( api, instanceVarTag, instanceSchema) :
+      composedSchema != null?
+      composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema) :
       
-      type.equals( "integer")?
-      instanceIntegerVars( api, instanceVarTag, instanceSchema) :
+      "string".equals( type)?
+      instanceStringVars( api, instanceVarTag, instanceOptional, instanceSchema) :
       
-      type.equals( "boolean")?
-      instanceBooleanVars( api, instanceVarTag, instanceSchema) :
+      "integer".equals( type)?
+      instanceIntegerVars( api, instanceVarTag, instanceOptional, instanceSchema) :
       
-      type.equals( "number")?
-      instanceNumberVars( api, instanceVarTag, instanceSchema) :
+      "boolean".equals( type)?
+      instanceBooleanVars( api, instanceVarTag, instanceOptional, instanceSchema) :
+      
+      "number".equals( type)?
+      instanceNumberVars( api, instanceVarTag, instanceOptional, instanceSchema) :
 
-      type.equals( "array")?
-      instanceArrayVars( api, instanceVarTag, instanceSchema) :
+      "array".equals( type)?
+      instanceArrayVars( api, instanceVarTag, instanceOptional, instanceSchema) :
       
-      type.equals( "object")?
-      instanceObjectVars( api, instanceVarTag, instanceSchema) :
-      
-      null;
+      "object".equals( type)?
+      instanceObjectVars( api, instanceVarTag, instanceOptional, instanceSchema) :
+
+      Stream.empty();      
     }
 
   /**
    * Returns the {@link IVarDef input variables} defined by the given array instance.
    */
-  private static Stream<IVarDef> instanceArrayVars( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Stream<IVarDef> instanceArrayVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     ArraySchema arraySchema = (ArraySchema) instanceSchema;
     Schema<?> itemSchema = resolveSchema( api, arraySchema.getItems());
@@ -402,7 +418,7 @@ public final class TcasesOpenApi
     return
       Stream.of(
       VarSetBuilder.with( "Items")
-      .when( Conditions.has( instanceDefinedProperty( instanceVarTag)))
+      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
       .members(
         instanceArraySizeVar( api, instanceVarTag, arraySchema),
         instanceItemVar( api, instanceVarTag, itemSchema))
@@ -475,10 +491,11 @@ public final class TcasesOpenApi
         VarSetBuilder.with( "Contains")
         .when( Conditions.has( arrayItemsProperty( instanceVarTag)))
 
-        .members( instanceSchemaVars( api, instanceVarTag, itemSchema))
+        .members( instanceSchemaVars( api, instanceVarTag, false, itemSchema))
 
         .members(
           VarDefBuilder.with( "Unique")
+          .when( Conditions.has( instanceValueProperty( instanceVarTag)))
           .values(
             VarValueDefBuilder.with( "Yes").build(),
             VarValueDefBuilder.with( "No").type( uniqueItems? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
@@ -495,11 +512,11 @@ public final class TcasesOpenApi
   /**
    * Returns the {@link IVarDef input variables} defined by the given boolean instance.
    */
-  private static Stream<IVarDef> instanceBooleanVars( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Stream<IVarDef> instanceBooleanVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     return
       Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceSchema),
+        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
 
         VarDefBuilder.with( "Value")
         .when( Conditions.has( instanceValueProperty( instanceVarTag)))
@@ -513,58 +530,176 @@ public final class TcasesOpenApi
   /**
    * Returns the {@link IVarDef input variables} defined by the given integer instance.
    */
-  private static Stream<IVarDef> instanceIntegerVars( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Stream<IVarDef> instanceIntegerVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     return
       Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceSchema),
+        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
         integerValueVar( api, instanceVarTag, instanceSchema));
     }   
 
   /**
    * Returns the {@link IVarDef input variables} defined by the given number instance.
    */
-  private static Stream<IVarDef> instanceNumberVars( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Stream<IVarDef> instanceNumberVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     return
       Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceSchema),
+        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
         numberValueVar( api, instanceVarTag, instanceSchema));
     }
 
   /**
    * Returns the {@link IVarDef input variables} defined by the given object instance.
    */
-  private static Stream<IVarDef> instanceObjectVars( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Stream<IVarDef> instanceObjectVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     return
       Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceSchema),
+        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
         objectValueVar( api, instanceVarTag, instanceSchema));
     }
 
   /**
    * Returns the {@link IVarDef input variables} defined by the given string instance.
    */
-  private static Stream<IVarDef> instanceStringVars( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Stream<IVarDef> instanceStringVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     return
       Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceSchema),
+        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
         stringValueVar( api, instanceVarTag, instanceSchema));
+    }   
+
+  /**
+   * Returns the {@link IVarDef input variables} defined by the given composed schema.
+   */
+  private static Stream<IVarDef> composedSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, ComposedSchema composedSchema)
+    {
+    return
+      Stream.of(
+        Optional.ofNullable( composedSchema.getAllOf())
+        .map( memberSchemas -> allOfVar( api, instanceVarTag, instanceOptional, memberSchemas))
+        .orElse( null),
+        
+        Optional.ofNullable( composedSchema.getAnyOf())
+        .map( memberSchemas -> anyOfVar( api, instanceVarTag, instanceOptional, memberSchemas))
+        .orElse( null),
+
+        Optional.ofNullable( composedSchema.getOneOf())
+        .map( memberSchemas -> oneOfVar( api, instanceVarTag, instanceOptional, memberSchemas))
+        .orElse( null))
+
+      .filter( Objects::nonNull);
+    } 
+
+  /**
+   * Returns the {@link IVarDef input variable} defined by the given "allOf" schema.
+   */
+  @SuppressWarnings("rawtypes")
+  private static IVarDef allOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
+    {
+    String exprType = "AllOf";
+    
+    return
+      VarSetBuilder.with( exprType)
+      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
+      .members(
+        IntStream.range( 0, memberSchemas.size())
+        .mapToObj(
+          i ->
+          {
+          try
+            {
+            String exprVarTag = instanceVarTag + exprType + i;
+            return
+              VarSetBuilder.with( String.valueOf(i))
+              .members( instanceSchemaVars( api, exprVarTag, false, resolveSchema( api, memberSchemas.get(i))))
+              .build();
+            }
+          catch( Exception e)
+            {
+            throw new OpenApiException( String.format( "Error processing 'allOf', member schema %s", i), e);
+            }
+          }))
+      .build();
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable} defined by the given "anyOf" schema.
+   */
+  @SuppressWarnings("rawtypes")
+  private static IVarDef anyOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
+    {
+    return memberChoiceVar( api, "anyOf", instanceVarTag, instanceOptional, memberSchemas);
+    } 
+
+  /**
+   * Returns the {@link IVarDef input variable} defined by the given "oneOf" schema.
+   */
+  private static IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, @SuppressWarnings("rawtypes") List<Schema> memberSchemas)
+    {
+    return memberChoiceVar( api, "oneOf", instanceVarTag, instanceOptional, memberSchemas);
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable} defined by a schema matching one of the given member schemas.
+   */
+  @SuppressWarnings("rawtypes")
+  private static IVarDef memberChoiceVar( OpenAPI api, String instanceSchemaType, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
+    {
+    String exprType = StringUtils.capitalize( instanceSchemaType);
+    
+    return
+      VarSetBuilder.with( exprType)
+      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
+      .members(
+        VarDefBuilder.with( "Matches")
+        .values(
+          IntStream.range( 0, memberSchemas.size())
+          .mapToObj(
+            i ->
+            {
+            String exprVarTag = instanceVarTag + exprType + i;
+            return
+              VarValueDefBuilder.with( String.valueOf(i))
+              .properties( instanceDefinedProperty( exprVarTag))
+              .build();
+            }))
+        .build())
+      .members(
+        IntStream.range( 0, memberSchemas.size())
+        .mapToObj(
+          i ->
+          {
+          try
+            {
+            String exprVarTag = instanceVarTag + exprType + i;
+            return
+              VarSetBuilder.with( String.valueOf(i))
+              .when( Conditions.has( instanceDefinedProperty( exprVarTag)))
+              .members( instanceSchemaVars( api, exprVarTag, false, resolveSchema( api, memberSchemas.get(i))))
+              .build();
+            }
+          catch( Exception e)
+            {
+            throw new OpenApiException( String.format( "Error processing '%s', member schema %s", instanceSchemaType, i), e);
+            }
+          }))
+      .build();
     }
 
   /**
    * Returns the {@link IVarDef input variable} representing the type of a instance.
    */
-  private static IVarDef instanceTypeVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static IVarDef instanceTypeVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     String type = expectedValueOf( instanceSchema.getType(), "type");
     Boolean nullable = instanceSchema.getNullable();
 
     return
       VarDefBuilder.with( "Type")
-      .when( Conditions.has( instanceDefinedProperty( instanceVarTag)))
+      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
       .values(
         VarValueDefBuilder.with( type).properties( instanceValueProperty( instanceVarTag)).build(),
         VarValueDefBuilder.with( "null").type( Boolean.TRUE.equals( nullable)? VarValueDef.Type.ONCE : VarValueDef.Type.FAILURE).build(),
@@ -1060,6 +1195,25 @@ public final class TcasesOpenApi
   private static String mediaTypeVarName( String mediaType)
     {
     return functionPathName( mediaType);
+    }
+
+  /**
+   * Returns "defined" condition for the given instance.
+   */
+  private static ICondition instanceDefinedCondition( String instanceTag, boolean instanceOptional)
+    {
+    return
+      instanceOptional
+      ? Conditions.has( instanceDefinedProperty( instanceTag))
+      : null;
+    }
+
+  /**
+   * Returns "defined" condition for the given instance.
+   */
+  private static ICondition instanceDefinedCondition( String instanceTag)
+    {
+    return instanceDefinedCondition( instanceTag, true);
     }
 
   /**
