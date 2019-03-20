@@ -1,378 +1,380 @@
 
 {
     "system": "Examples",
-    "find": [
-        {
-            "id": 0,
-            "has": {
-                "properties": "empty,fileExists,fileName,quoted"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
+    "find": {
+        "testCases": [
+            {
+                "id": 0,
+                "has": {
+                    "properties": "empty,fileExists,fileName,quoted"
                 },
-                "pattern.blanks": {
-                    "NA": true
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "NA": true
+                    },
+                    "pattern.embeddedQuotes": {
+                        "NA": true
+                    },
+                    "pattern.quoted": {
+                        "value": "yes"
+                    },
+                    "pattern.size": {
+                        "value": "empty"
+                    }
                 },
-                "pattern.embeddedQuotes": {
-                    "NA": true
-                },
-                "pattern.quoted": {
-                    "value": "yes"
-                },
-                "pattern.size": {
-                    "value": "empty"
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "NA": true
+                    },
+                    "file.contents.patterns": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    },
+                    "file.exists": {
+                        "value": "yes",
+                        "name": "Rex"
+                    }
                 }
             },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "NA": true
+            {
+                "id": 1,
+                "has": {
+                    "properties": "fileExists,fileName,matchable,singleChar"
                 },
-                "file.contents.patterns": {
-                    "NA": true
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "value": "none"
+                    },
+                    "pattern.embeddedQuotes": {
+                        "NA": true
+                    },
+                    "pattern.quoted": {
+                        "value": "no"
+                    },
+                    "pattern.size": {
+                        "value": "singleChar"
+                    }
                 },
-                "file.contents.patternsInLine": {
-                    "NA": true
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "value": "one"
+                    },
+                    "file.contents.patterns": {
+                        "value": "none"
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    },
+                    "file.exists": {
+                        "value": "yes"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "has": {
+                    "properties": "fileExists,fileName,match,matchable,quoted"
                 },
-                "file.exists": {
-                    "value": "yes",
-                    "name": "Rex"
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "value": "many"
+                    },
+                    "pattern.embeddedQuotes": {
+                        "value": "none"
+                    },
+                    "pattern.quoted": {
+                        "value": "yes"
+                    },
+                    "pattern.size": {
+                        "value": "manyChars"
+                    }
+                },
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "value": "many"
+                    },
+                    "file.contents.patterns": {
+                        "value": "one"
+                    },
+                    "file.contents.patternsInLine": {
+                        "value": "one"
+                    },
+                    "file.exists": {
+                        "value": "yes"
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "has": {
+                    "properties": "fileExists,fileName,many,match,matchable,quoted,singleChar"
+                },
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "value": "one"
+                    },
+                    "pattern.embeddedQuotes": {
+                        "NA": true
+                    },
+                    "pattern.quoted": {
+                        "value": "yes"
+                    },
+                    "pattern.size": {
+                        "value": "singleChar"
+                    }
+                },
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "value": "many"
+                    },
+                    "file.contents.patterns": {
+                        "value": "many"
+                    },
+                    "file.contents.patternsInLine": {
+                        "value": "many"
+                    },
+                    "file.exists": {
+                        "value": "yes"
+                    }
+                }
+            },
+            {
+                "id": 4,
+                "has": {
+                    "properties": "fileExists,fileName,match,matchable"
+                },
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "value": "none"
+                    },
+                    "pattern.embeddedQuotes": {
+                        "value": "one"
+                    },
+                    "pattern.quoted": {
+                        "value": "no"
+                    },
+                    "pattern.size": {
+                        "value": "manyChars"
+                    }
+                },
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "value": "many"
+                    },
+                    "file.contents.patterns": {
+                        "value": "one"
+                    },
+                    "file.contents.patternsInLine": {
+                        "value": "one"
+                    },
+                    "file.exists": {
+                        "value": "yes"
+                    }
+                }
+            },
+            {
+                "id": 5,
+                "has": {
+                    "properties": "fileExists,fileName,many,match,matchable,quoted"
+                },
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "value": "many"
+                    },
+                    "pattern.embeddedQuotes": {
+                        "value": "many"
+                    },
+                    "pattern.quoted": {
+                        "value": "yes"
+                    },
+                    "pattern.size": {
+                        "value": "manyChars"
+                    }
+                },
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "value": "many"
+                    },
+                    "file.contents.patterns": {
+                        "value": "many"
+                    },
+                    "file.contents.patternsInLine": {
+                        "value": "one"
+                    },
+                    "file.exists": {
+                        "value": "yes"
+                    }
+                }
+            },
+            {
+                "id": 6,
+                "has": {
+                    "properties": "empty,fileExists,fileName"
+                },
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "NA": true
+                    },
+                    "pattern.embeddedQuotes": {
+                        "NA": true
+                    },
+                    "pattern.quoted": {
+                        "failure": true,
+                        "value": "unterminated"
+                    },
+                    "pattern.size": {
+                        "value": "empty"
+                    }
+                },
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "NA": true
+                    },
+                    "file.contents.patterns": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    },
+                    "file.exists": {
+                        "value": "yes"
+                    }
+                }
+            },
+            {
+                "id": 7,
+                "arg": {
+                    "fileName": {
+                        "failure": true,
+                        "value": "missing"
+                    },
+                    "pattern.blanks": {
+                        "NA": true
+                    },
+                    "pattern.embeddedQuotes": {
+                        "NA": true
+                    },
+                    "pattern.quoted": {
+                        "NA": true
+                    },
+                    "pattern.size": {
+                        "NA": true
+                    }
+                },
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "NA": true
+                    },
+                    "file.contents.patterns": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    },
+                    "file.exists": {
+                        "NA": true
+                    }
+                }
+            },
+            {
+                "id": 8,
+                "has": {
+                    "properties": "fileName"
+                },
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "NA": true
+                    },
+                    "pattern.embeddedQuotes": {
+                        "NA": true
+                    },
+                    "pattern.quoted": {
+                        "NA": true
+                    },
+                    "pattern.size": {
+                        "NA": true
+                    }
+                },
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "NA": true
+                    },
+                    "file.contents.patterns": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    },
+                    "file.exists": {
+                        "failure": true,
+                        "value": "no"
+                    }
+                }
+            },
+            {
+                "id": 9,
+                "has": {
+                    "properties": "fileExists,fileName,singleChar"
+                },
+                "arg": {
+                    "fileName": {
+                        "value": "defined"
+                    },
+                    "pattern.blanks": {
+                        "value": "none"
+                    },
+                    "pattern.embeddedQuotes": {
+                        "NA": true
+                    },
+                    "pattern.quoted": {
+                        "value": "no"
+                    },
+                    "pattern.size": {
+                        "value": "singleChar"
+                    }
+                },
+                "env": {
+                    "file.contents.linesLongerThanPattern": {
+                        "failure": true,
+                        "value": "none"
+                    },
+                    "file.contents.patterns": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    },
+                    "file.exists": {
+                        "value": "yes"
+                    }
                 }
             }
-        },
-        {
-            "id": 1,
-            "has": {
-                "properties": "fileExists,fileName,matchable,singleChar"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
-                },
-                "pattern.blanks": {
-                    "value": "none"
-                },
-                "pattern.embeddedQuotes": {
-                    "NA": true
-                },
-                "pattern.quoted": {
-                    "value": "no"
-                },
-                "pattern.size": {
-                    "value": "singleChar"
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "value": "one"
-                },
-                "file.contents.patterns": {
-                    "value": "none"
-                },
-                "file.contents.patternsInLine": {
-                    "NA": true
-                },
-                "file.exists": {
-                    "value": "yes"
-                }
-            }
-        },
-        {
-            "id": 2,
-            "has": {
-                "properties": "fileExists,fileName,match,matchable,quoted"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
-                },
-                "pattern.blanks": {
-                    "value": "many"
-                },
-                "pattern.embeddedQuotes": {
-                    "value": "none"
-                },
-                "pattern.quoted": {
-                    "value": "yes"
-                },
-                "pattern.size": {
-                    "value": "manyChars"
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "value": "many"
-                },
-                "file.contents.patterns": {
-                    "value": "one"
-                },
-                "file.contents.patternsInLine": {
-                    "value": "one"
-                },
-                "file.exists": {
-                    "value": "yes"
-                }
-            }
-        },
-        {
-            "id": 3,
-            "has": {
-                "properties": "fileExists,fileName,many,match,matchable,quoted,singleChar"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
-                },
-                "pattern.blanks": {
-                    "value": "one"
-                },
-                "pattern.embeddedQuotes": {
-                    "NA": true
-                },
-                "pattern.quoted": {
-                    "value": "yes"
-                },
-                "pattern.size": {
-                    "value": "singleChar"
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "value": "many"
-                },
-                "file.contents.patterns": {
-                    "value": "many"
-                },
-                "file.contents.patternsInLine": {
-                    "value": "many"
-                },
-                "file.exists": {
-                    "value": "yes"
-                }
-            }
-        },
-        {
-            "id": 4,
-            "has": {
-                "properties": "fileExists,fileName,match,matchable"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
-                },
-                "pattern.blanks": {
-                    "value": "none"
-                },
-                "pattern.embeddedQuotes": {
-                    "value": "one"
-                },
-                "pattern.quoted": {
-                    "value": "no"
-                },
-                "pattern.size": {
-                    "value": "manyChars"
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "value": "many"
-                },
-                "file.contents.patterns": {
-                    "value": "one"
-                },
-                "file.contents.patternsInLine": {
-                    "value": "one"
-                },
-                "file.exists": {
-                    "value": "yes"
-                }
-            }
-        },
-        {
-            "id": 5,
-            "has": {
-                "properties": "fileExists,fileName,many,match,matchable,quoted"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
-                },
-                "pattern.blanks": {
-                    "value": "many"
-                },
-                "pattern.embeddedQuotes": {
-                    "value": "many"
-                },
-                "pattern.quoted": {
-                    "value": "yes"
-                },
-                "pattern.size": {
-                    "value": "manyChars"
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "value": "many"
-                },
-                "file.contents.patterns": {
-                    "value": "many"
-                },
-                "file.contents.patternsInLine": {
-                    "value": "one"
-                },
-                "file.exists": {
-                    "value": "yes"
-                }
-            }
-        },
-        {
-            "id": 6,
-            "has": {
-                "properties": "empty,fileExists,fileName"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
-                },
-                "pattern.blanks": {
-                    "NA": true
-                },
-                "pattern.embeddedQuotes": {
-                    "NA": true
-                },
-                "pattern.quoted": {
-                    "failure": true,
-                    "value": "unterminated"
-                },
-                "pattern.size": {
-                    "value": "empty"
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "NA": true
-                },
-                "file.contents.patterns": {
-                    "NA": true
-                },
-                "file.contents.patternsInLine": {
-                    "NA": true
-                },
-                "file.exists": {
-                    "value": "yes"
-                }
-            }
-        },
-        {
-            "id": 7,
-            "arg": {
-                "fileName": {
-                    "failure": true,
-                    "value": "missing"
-                },
-                "pattern.blanks": {
-                    "NA": true
-                },
-                "pattern.embeddedQuotes": {
-                    "NA": true
-                },
-                "pattern.quoted": {
-                    "NA": true
-                },
-                "pattern.size": {
-                    "NA": true
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "NA": true
-                },
-                "file.contents.patterns": {
-                    "NA": true
-                },
-                "file.contents.patternsInLine": {
-                    "NA": true
-                },
-                "file.exists": {
-                    "NA": true
-                }
-            }
-        },
-        {
-            "id": 8,
-            "has": {
-                "properties": "fileName"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
-                },
-                "pattern.blanks": {
-                    "NA": true
-                },
-                "pattern.embeddedQuotes": {
-                    "NA": true
-                },
-                "pattern.quoted": {
-                    "NA": true
-                },
-                "pattern.size": {
-                    "NA": true
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "NA": true
-                },
-                "file.contents.patterns": {
-                    "NA": true
-                },
-                "file.contents.patternsInLine": {
-                    "NA": true
-                },
-                "file.exists": {
-                    "failure": true,
-                    "value": "no"
-                }
-            }
-        },
-        {
-            "id": 9,
-            "has": {
-                "properties": "fileExists,fileName,singleChar"
-            },
-            "arg": {
-                "fileName": {
-                    "value": "defined"
-                },
-                "pattern.blanks": {
-                    "value": "none"
-                },
-                "pattern.embeddedQuotes": {
-                    "NA": true
-                },
-                "pattern.quoted": {
-                    "value": "no"
-                },
-                "pattern.size": {
-                    "value": "singleChar"
-                }
-            },
-            "env": {
-                "file.contents.linesLongerThanPattern": {
-                    "failure": true,
-                    "value": "none"
-                },
-                "file.contents.patterns": {
-                    "NA": true
-                },
-                "file.contents.patternsInLine": {
-                    "NA": true
-                },
-                "file.exists": {
-                    "value": "yes"
-                }
-            }
-        }
-    ]
+        ]
+    }
 }
