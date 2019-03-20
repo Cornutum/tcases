@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -49,7 +48,7 @@ public final class SystemTestJson
       // Get function test definitions
       json.keySet().stream()
         .filter( key -> !(key.equals( SYSTEM_KEY) || key.equals( HAS_KEY)))
-        .forEach( function -> systemTestDef.addFunctionTestDef( asFunctionTestDef( function, json.getJsonArray( function))));
+        .forEach( function -> systemTestDef.addFunctionTestDef( asFunctionTestDef( function, json.getJsonObject( function))));
 
       return systemTestDef;
       }
@@ -62,7 +61,7 @@ public final class SystemTestJson
   /**
    * Returns the FunctionTestDef represented by the given JSON array.
    */
-  private static FunctionTestDef asFunctionTestDef( String functionName, JsonArray json)
+  private static FunctionTestDef asFunctionTestDef( String functionName, JsonObject json)
     {
     FunctionTestDef functionTestDef;
 
@@ -70,8 +69,13 @@ public final class SystemTestJson
       {
       functionTestDef = new FunctionTestDef( validIdentifier( functionName));
 
+      // Get annotations for this function.
+      Optional.ofNullable( json.getJsonObject( HAS_KEY))
+        .ifPresent( has -> has.keySet().stream().forEach( key -> functionTestDef.setAnnotation( key, has.getString( key))));
+
       // Get function test cases.
-      json.getValuesAs( JsonObject.class)
+      json.getJsonArray( TEST_CASES_KEY)
+        .getValuesAs( JsonObject.class)
         .stream()
         .forEach( testCase -> functionTestDef.addTestCase( asTestCase( testCase)));
 
@@ -223,9 +227,13 @@ public final class SystemTestJson
    */
   private static JsonStructure toJson( FunctionTestDef functionTest)
     {
-    JsonArrayBuilder builder = Json.createArrayBuilder();
+    JsonObjectBuilder builder = Json.createObjectBuilder();
 
-    toStream( functionTest.getTestCases()).forEach( testCase -> builder.add( toJson( testCase)));
+    addAnnotations( builder, functionTest);
+    
+    JsonArrayBuilder testCases = Json.createArrayBuilder();
+    toStream( functionTest.getTestCases()).forEach( testCase -> testCases.add( toJson( testCase)));
+    builder.add( TEST_CASES_KEY, testCases);
 
     return builder.build();
     }
@@ -305,5 +313,6 @@ public final class SystemTestJson
   private static final String ID_KEY = "id";
   private static final String NA_KEY = "NA";
   private static final String SYSTEM_KEY = "system";
+  private static final String TEST_CASES_KEY = "testCases";
   private static final String VALUE_KEY = "value";
 }
