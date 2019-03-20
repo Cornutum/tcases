@@ -453,7 +453,7 @@ public final class TcasesOpenApi
       {
       if( sizeValue >= 0)
         {
-        VarValueDefBuilder sizeBuilder = VarValueDefBuilder.with( String.valueOf( sizeValue));
+        VarValueDefBuilder sizeBuilder = VarValueDefBuilder.with( sizeValue);
         if( sizeValue < minItems || (maxItems != null && sizeValue > maxItems))
           {
           sizeBuilder.type( VarValueDef.Type.FAILURE);
@@ -662,7 +662,7 @@ public final class TcasesOpenApi
             {
             String exprVarTag = instanceVarTag + exprType + i;
             return
-              VarValueDefBuilder.with( String.valueOf(i))
+              VarValueDefBuilder.with( i)
               .properties( instanceDefinedProperty( exprVarTag))
               .build();
             }))
@@ -702,7 +702,7 @@ public final class TcasesOpenApi
       .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
       .values(
         VarValueDefBuilder.with( type).properties( instanceValueProperty( instanceVarTag)).build(),
-        VarValueDefBuilder.with( "null").type( Boolean.TRUE.equals( nullable)? VarValueDef.Type.ONCE : VarValueDef.Type.FAILURE).build(),
+        VarValueDefBuilder.with( (Object) null).type( Boolean.TRUE.equals( nullable)? VarValueDef.Type.ONCE : VarValueDef.Type.FAILURE).build(),
         VarValueDefBuilder.with( String.format( "Not %s", type)).type( VarValueDef.Type.FAILURE).build())
       .build();
     }
@@ -725,7 +725,7 @@ public final class TcasesOpenApi
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
-      value.values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf(i)).build()));
+      value.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
       value.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build());
       }
     else
@@ -741,7 +741,7 @@ public final class TcasesOpenApi
         // Value is unconstrained -- add standard boundary conditions
         value.values(
           VarValueDefBuilder.with( "< 0").build(),
-          VarValueDefBuilder.with( "0").build(),
+          VarValueDefBuilder.with( 0).build(),
           VarValueDefBuilder.with( "> 0").build());
         }
       else
@@ -777,7 +777,7 @@ public final class TcasesOpenApi
         for( Integer i : boundaryValues)
           {
           value.values
-            ( VarValueDefBuilder.with( String.valueOf( i))
+            ( VarValueDefBuilder.with( i)
               .type(
                 (minimum != null && i < minimum) || (maximum != null && i > maximum)
                 ? VarValueDef.Type.FAILURE
@@ -815,7 +815,7 @@ public final class TcasesOpenApi
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
-      value.values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf(i)).build()));
+      value.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
       value.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build());
       }
     else
@@ -831,7 +831,7 @@ public final class TcasesOpenApi
         // Value is unconstrained -- add standard boundary conditions
         value.values(
           VarValueDefBuilder.with( "< 0").build(),
-          VarValueDefBuilder.with( "0").build(),
+          VarValueDefBuilder.with( 0).build(),
           VarValueDefBuilder.with( "> 0").build());
         }
       else
@@ -869,7 +869,7 @@ public final class TcasesOpenApi
         for( BigDecimal n : boundaryValues)
           {
           value.values
-            ( VarValueDefBuilder.with( String.valueOf( n))
+            ( VarValueDefBuilder.with( n)
               .type(
                 (minimum != null && n.compareTo(minimum) < 0) || (maximum != null && n.compareTo(maximum) > 0)
                 ? VarValueDef.Type.FAILURE
@@ -921,9 +921,14 @@ public final class TcasesOpenApi
     Integer maxProperties = instanceSchema.getMaxProperties();
     if( minProperties == null && maxProperties == null)
       {
-      // No, add single generic value.
+      // No, add standard boundary condition values.
       count.values(
-        VarValueDefBuilder.with( ">= 0")
+
+        VarValueDefBuilder.with( 0)
+        .type( VarValueDef.Type.ONCE)
+        .build(),
+        
+        VarValueDefBuilder.with( "> 0")
         .properties( objectPropertiesProperty( instanceVarTag))
         .build());
       }
@@ -946,7 +951,7 @@ public final class TcasesOpenApi
         {
         if( countValue >= 0)
           {
-          VarValueDefBuilder countBuilder = VarValueDefBuilder.with( String.valueOf( countValue));
+          VarValueDefBuilder countBuilder = VarValueDefBuilder.with( countValue);
           if( (minProperties != null && countValue < minProperties) || (maxProperties != null && countValue > maxProperties))
             {
             countBuilder.type( VarValueDef.Type.FAILURE);
@@ -1106,7 +1111,7 @@ public final class TcasesOpenApi
         if( format == null || format.equals( "byte") || format.equals( "binary"))
           {
           // No, allow empty values
-          length.values( VarValueDefBuilder.with( "0").build());
+          length.values( VarValueDefBuilder.with( 0).build());
           }
         }
       else
@@ -1126,7 +1131,7 @@ public final class TcasesOpenApi
         for( Integer i : boundaryValues)
           {
           length.values
-            ( VarValueDefBuilder.with( String.valueOf( i))
+            ( VarValueDefBuilder.with( i)
               .type(
                 (minLength != null && i < minLength) || (maxLength != null && i > maxLength)
                 ? VarValueDef.Type.FAILURE
@@ -1136,7 +1141,7 @@ public final class TcasesOpenApi
         if( minLength == null)
           {
           length.values(
-            VarValueDefBuilder.with( "0").build(),
+            VarValueDefBuilder.with( 0).build(),
             VarValueDefBuilder.with( String.format( " < %s", maxLength)).build());
           }
         else if( maxLength == null)
