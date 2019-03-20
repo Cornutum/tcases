@@ -1299,7 +1299,8 @@ public class TcasesCommand
         // Standard output?
         null;
 
-      if( Resource.Type.of( withDefaultType( outputFile, defaultContentType)) == Resource.Type.JSON)
+      Resource.Type outputFileType = firstNonNull( Resource.Type.of( withDefaultType( outputFile, defaultContentType)), defaultContentType);
+      if( outputFileType == Resource.Type.JSON)
         {
         TcasesJson.writeTests( testDef, output);
         }
@@ -1328,7 +1329,8 @@ public class TcasesCommand
       logger_.info( "Updating generator definition={}", genUpdateFile);
       try
         {
-        if( Resource.Type.of( withDefaultType( genUpdateFile, defaultContentType)) == Resource.Type.JSON)
+        Resource.Type genUpdateType = firstNonNull( Resource.Type.of( withDefaultType( genUpdateFile, defaultContentType)), defaultContentType);
+        if( genUpdateType == Resource.Type.JSON)
           {
           TcasesJson.writeGenerators( genDef, new FileOutputStream( genUpdateFile));
           }

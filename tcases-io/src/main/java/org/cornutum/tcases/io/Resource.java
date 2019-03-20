@@ -31,7 +31,7 @@ public abstract class Resource implements Closeable
       JSON, XML;
 
       /**
-       * Returns the content type specified by the given URL.
+       * Returns the content type specified by the given string.
        */
       public static Type of( String string)
         {

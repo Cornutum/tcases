@@ -785,7 +785,8 @@ public class ReducerCommand extends Reducer
       {
       try
         {
-        if( Resource.Type.of( withDefaultType( genDefFile, defaultContentType)) == Resource.Type.JSON)
+        Resource.Type genDefType = firstNonNull( Resource.Type.of( withDefaultType( genDefFile, defaultContentType)), defaultContentType);
+        if( genDefType == Resource.Type.JSON)
           {
           TcasesJson.writeGenerators( genDefNew.get(), new FileOutputStream( genDefFile));
           }

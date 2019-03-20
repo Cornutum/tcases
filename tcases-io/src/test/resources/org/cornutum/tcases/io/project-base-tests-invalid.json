@@ -5,24 +5,26 @@
     "generators": "file:/Users/kerrykimbrough/repos/tcases/tcases-io/target/test-classes/org/cornutum/tcases/generator/io/generator-set-once.xml",
     "baseTests": {
         "system": "System-2",
-        "Function-0": [
-            {
-                "id": 0,
-                "env": {
-                    "Not A Variable Path": {
-                        "value": "Value-00"
+        "Function-0": {
+            "testCases": [
+                {
+                    "id": 0,
+                    "env": {
+                        "Not A Variable Path": {
+                            "value": "Value-00"
+                        },
+                        "VarSet-01": {
+                            "failure": true,
+                            "value": "Value-01"
+                        }
                     },
-                    "VarSet-01": {
-                        "failure": true,
-                        "value": "Value-01"
-                    }
-                },
-                "state": {
-                    "VarSet-02": {
-                        "value": "Value-02"
+                    "state": {
+                        "VarSet-02": {
+                            "value": "Value-02"
+                        }
                     }
                 }
-            }
-        ]
+            ]
+        }
     }
 }

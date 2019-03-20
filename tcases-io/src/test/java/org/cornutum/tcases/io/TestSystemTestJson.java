@@ -76,7 +76,10 @@ public class TestSystemTestJson
   @Test
   public void testSystemTest_Annotations_Missing()
     {
-    assertValidationFailure( "system-test-annotations-missing.json", "The object must have at least 1 property(ies), but actual number is 0");
+    assertValidationFailure(
+      "system-test-annotations-missing.json",
+      "The object must have at least 1 property(ies), but actual number is 0",
+      functionDefCompatibility_);
     }
 
   @Test
@@ -86,18 +89,23 @@ public class TestSystemTestJson
       ( "system-test-binding-na-failure.json",
         "The object must not have a property whose name is \"NA\"",
         "The object must have a property whose name is \"value\"",
-        "The object must not have a property whose name is \"failure\"");
+        "The object must not have a property whose name is \"failure\"",
+        functionDefCompatibility_);
     
     assertValidationFailure
       ( "system-test-binding-na-value.json",
         "The object must not have a property whose name is \"NA\"",
-        "The object must not have a property whose name is \"value\"");
+        "The object must not have a property whose name is \"value\"",
+        functionDefCompatibility_);
     }
 
   @Test
   public void testSystemTest_Binding_Property_Extra()
     {
-    assertValidationFailure( "system-test-binding-property-extra.json", "The object must not have a property whose name is \"name\"");
+    assertValidationFailure(
+      "system-test-binding-property-extra.json",
+      "The object must not have a property whose name is \"name\"",
+      functionDefCompatibility_);
     }
 
   @Test
@@ -107,13 +115,17 @@ public class TestSystemTestJson
       ( "system-test-binding-value-missing.json",
         "The object must have a property whose name is \"value\"",
         "The object must not have a property whose name is \"failure\"",
-        "The object must have a property whose name is \"NA\"");
+        "The object must have a property whose name is \"NA\"",
+        functionDefCompatibility_);
     }
 
   @Test
   public void testSystemTest_Inputs_Missing()
     {
-    assertValidationFailure( "system-test-inputs-missing.json", "The object must have at least 1 property(ies), but actual number is 0");
+    assertValidationFailure(
+      "system-test-inputs-missing.json",
+      "The object must have at least 1 property(ies), but actual number is 0",
+      functionDefCompatibility_);
     }
 
   @Test
@@ -125,13 +137,19 @@ public class TestSystemTestJson
   @Test
   public void testSystemTest_TestCase_Id_Missing()
     {
-    assertValidationFailure( "system-test-testcase-id-missing.json", "The object must have a property whose name is \"id\"");
+    assertValidationFailure(
+      "system-test-testcase-id-missing.json",
+      "The object must have a property whose name is \"id\"",
+      functionDefCompatibility_);
     }
 
   @Test
   public void testSystemTest_TestCase_Id_Invalid()
     {
-    assertValidationFailure( "system-test-testcase-id-invalid.json", "The numeric value must be greater than or equal to 0");
+    assertValidationFailure(
+      "system-test-testcase-id-invalid.json",
+      "The numeric value must be greater than or equal to 0",
+      functionDefCompatibility_);
     }
 
   @Test
@@ -227,4 +245,11 @@ public class TestSystemTestJson
     }
 
   private SystemTestResources systemTestResources_ = new SystemTestResources( TestSystemTestDocWriter.class);
+
+  /**
+   * A function test definition should be an object containing a "testCases" array. But for backward compatibility,
+   * it can be specified by an array only. Consequently, when there is an error in the function object, schema
+   * validation will suggest the array form as an alternative.
+   */
+  private static final String functionDefCompatibility_ = "The value must be of array type, but actual type is object";
   }
