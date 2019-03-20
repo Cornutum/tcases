@@ -1,5 +1,18 @@
 # Release Notes #
 
+## 3.0.2 ##
+
+This is a patch release to fix the following problems using JSON files.
+
+  * System test definitions: Each function definition can have output annotations. Therefore, in the JSON format, a function should be
+  specified by a JSON object with an optional "has" property and a "testCases" property containing the array of test case definitions.
+  This is a change to the schema, which previously allowed a function to be defined by the test case array only. But for backward compatibility,
+  documents conforming to the previous schema continue to be accepted.
+
+  * Shell commands now apply the `-T `option (content type) correctly when the file type is undefined (for example, when reading a JSON system input definition from
+  standard input).
+  
+
 ## 3.0.1 ##
 
 This is a patch release to fix an annoying problem that caused the shell commands `tcases` and `tcases-reducer` to reject the new `-T` option. For

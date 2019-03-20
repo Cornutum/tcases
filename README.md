@@ -2,10 +2,10 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.0.1](ReleaseNotes.md#301)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.0.2](ReleaseNotes.md#302)) is now available at the Maven Central Repository.
     See [HowToDownload](HowToDownload.md) for download instructions.
 
-  * Tcases 3.0.1 is a patch release to fix [an annoying problem](ReleaseNotes.md#301) in [Tcases 3.0.0](ReleaseNotes.md#300)
+  * Tcases 3.0.2 is a patch release to fix some problems [using JSON files](ReleaseNotes.md#302).
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
