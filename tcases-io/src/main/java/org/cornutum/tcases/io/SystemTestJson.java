@@ -16,10 +16,13 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonStructure;
+import javax.json.JsonValue;
+import static javax.json.JsonValue.ValueType.*;
 
 /**
  * Converts between a {@link SystemTestDef} and its corresponding {@link JsonObject}.
@@ -48,7 +51,7 @@ public final class SystemTestJson
       // Get function test definitions
       json.keySet().stream()
         .filter( key -> !(key.equals( SYSTEM_KEY) || key.equals( HAS_KEY)))
-        .forEach( function -> systemTestDef.addFunctionTestDef( asFunctionTestDef( function, json.getJsonObject( function))));
+        .forEach( function -> systemTestDef.addFunctionTestDef( asFunctionTestDef( function, json.getValue( String.format( "/%s", function)))));
 
       return systemTestDef;
       }
@@ -59,9 +62,9 @@ public final class SystemTestJson
     }
 
   /**
-   * Returns the FunctionTestDef represented by the given JSON array.
+   * Returns the FunctionTestDef represented by the given JSON value.
    */
-  private static FunctionTestDef asFunctionTestDef( String functionName, JsonObject json)
+  private static FunctionTestDef asFunctionTestDef( String functionName, JsonValue json)
     {
     FunctionTestDef functionTestDef;
 
@@ -69,16 +72,27 @@ public final class SystemTestJson
       {
       functionTestDef = new FunctionTestDef( validIdentifier( functionName));
 
-      // Get annotations for this function.
-      Optional.ofNullable( json.getJsonObject( HAS_KEY))
-        .ifPresent( has -> has.keySet().stream().forEach( key -> functionTestDef.setAnnotation( key, has.getString( key))));
+      JsonArray testCases;
+      if( json.getValueType() == ARRAY)
+        {
+        // For compatibility, accept documents conforming to schema version <= 3.0.1
+        testCases = json.asJsonArray();
+        }
+      else
+        {
+        JsonObject functionObject = json.asJsonObject();
+        testCases = functionObject.getJsonArray( TEST_CASES_KEY);
+        
+        // Get annotations for this function.
+        Optional.ofNullable( functionObject.getJsonObject( HAS_KEY))
+          .ifPresent( has -> has.keySet().stream().forEach( key -> functionTestDef.setAnnotation( key, has.getString( key))));
+        }
 
       // Get function test cases.
-      json.getJsonArray( TEST_CASES_KEY)
+      testCases
         .getValuesAs( JsonObject.class)
         .stream()
         .forEach( testCase -> functionTestDef.addTestCase( asTestCase( testCase)));
-
       }
     catch( SystemTestException e)
       {

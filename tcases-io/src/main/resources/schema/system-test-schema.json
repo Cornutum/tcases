@@ -31,19 +31,30 @@
         },
         "function": {
             "description": "Defines the test cases for a system function",
-            "type": "object",
-            "properties": {
-                "testCases": {
+            "oneOf": [
+                {
+                    "description": "Deprecated: For compatibility with version<=3.0.1",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/testCase"
                     }
                 },
-                "has": {
-                    "$ref": "#/definitions/annotation"
+                {
+                    "type": "object",
+                    "properties": {
+                        "testCases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/testCase"
+                            }
+                        },
+                        "has": {
+                            "$ref": "#/definitions/annotation"
+                        }
+                    },
+                    "required": ["testCases"]
                 }
-            },
-            "required": ["testCases"]
+            ]
         },
         "testCase": {
             "description": "Defines a test case for a system function",
