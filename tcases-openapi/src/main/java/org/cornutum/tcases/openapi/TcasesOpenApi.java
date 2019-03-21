@@ -26,8 +26,8 @@ import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
+import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.servers.Server;
-import io.swagger.v3.parser.models.RefType;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -117,7 +117,7 @@ public final class TcasesOpenApi
         FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
         .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( Server::getUrl))
         .hasIf( "server", membersOf( op.getServers()).findFirst().map( Server::getUrl))
-        .vars( opParameters( pathItem, op).map( p -> parameterVarDef( api, p)))
+        .vars( opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))))
         .vars( iterableOf( requestBodyVarDef( api, op.getRequestBody())))
         .build();
       }
@@ -136,6 +136,7 @@ public final class TcasesOpenApi
       {
       return
         Optional.ofNullable( body)
+        .map( b -> resolveRequestBody( api, b))
         .map( b ->
           {
           String instanceVarName = "Body";
@@ -282,28 +283,6 @@ public final class TcasesOpenApi
       
       // Yes, resolve any reference to another schema definition
       resolveSchema( api, schema);
-    }
-
-  /**
-   * If the given schema is defined by a reference, returns the referenced schema. Otherwise, returns the given schema.
-   */
-  private static Schema<?> resolveSchema( OpenAPI api, Schema<?> schema)
-    {
-    return
-      // Is this a reference to another schema definition?
-      Optional.ofNullable( schema.get$ref())
-
-      // If so, is the internal schema name defined?
-      // (Any external $ref should already be resolved to an internal component schema.)
-      .map( ref -> ref.startsWith( RefType.SCHEMAS.getInternalPrefix())? ref.substring( RefType.SCHEMAS.getInternalPrefix().length()) : null)
-      .filter( Objects::nonNull)
-
-      // If so, can the internal schema with this name be found?
-      .map( schemaName -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getSchemas(), "Component schemas").get( schemaName))
-      .filter( Objects::nonNull)
-
-      // If so, return it. Otherwise, return the referencing schema.
-      .orElse( schema);
     }
 
   /**
@@ -1302,4 +1281,110 @@ public final class TcasesOpenApi
 
     return value;
     }
+
+  /**
+   * If the given parameter is defined by a reference, returns the referenced parameter. Otherwise, returns the given parameter.
+   */
+  private static Parameter resolveParameter( OpenAPI api, Parameter parameter)
+    {
+    return componentParameterRef( api, parameter.get$ref()).orElse( parameter);
+    }
+
+  /**
+   * If the given schema is defined by a reference, returns the referenced schema. Otherwise, returns the given schema.
+   */
+  private static Schema<?> resolveSchema( OpenAPI api, Schema<?> schema)
+    {
+    return componentSchemaRef( api, schema.get$ref()).orElse( schema);
+    }
+
+  /**
+   * If the given request body is defined by a reference, returns the referenced requestBody. Otherwise, returns the given request body.
+   */
+  private static RequestBody resolveRequestBody( OpenAPI api, RequestBody requestBody)
+    {
+    return componentRequestBodyRef( api, requestBody.get$ref()).orElse( requestBody);
+    }
+
+  /**
+   * If the given response is defined by a reference, returns the referenced response. Otherwise, returns the given response.
+   */
+  private static ApiResponse resolveResponse( OpenAPI api, ApiResponse response)
+    {
+    return componentResponseRef( api, response.get$ref()).orElse( response);
+    }
+
+  /**
+   * When the given reference is non-null, returns the component parameter referenced.
+   */
+  private static Optional<Parameter> componentParameterRef( OpenAPI api, String reference)
+    {
+    return
+      Optional.ofNullable( reference)
+
+      .map( ref -> componentName( componentsParametersRef_, ref))
+      .filter( Objects::nonNull)
+
+      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getParameters(), "Component parameters").get( name))
+      .filter( Objects::nonNull);
+    }
+
+  /**
+   * When the given reference is non-null, returns the component schema referenced.
+   */
+  @SuppressWarnings("rawtypes")
+  private static Optional<Schema> componentSchemaRef( OpenAPI api, String reference)
+    {
+    return
+      Optional.ofNullable( reference)
+
+      .map( ref -> componentName( componentsSchemasRef_, ref))
+      .filter( Objects::nonNull)
+
+      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getSchemas(), "Component schemas").get( name))
+      .filter( Objects::nonNull);
+    }
+
+  /**
+   * When the given reference is non-null, returns the component request body referenced.
+   */
+  private static Optional<RequestBody> componentRequestBodyRef( OpenAPI api, String reference)
+    {
+    return
+      Optional.ofNullable( reference)
+
+      .map( ref -> componentName( componentsRequestBodiesRef_, ref))
+      .filter( Objects::nonNull)
+
+      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getRequestBodies(), "Component request bodies").get( name))
+      .filter( Objects::nonNull);
+    }
+
+  /**
+   * When the given reference is non-null, returns the component response referenced.
+   */
+  private static Optional<ApiResponse> componentResponseRef( OpenAPI api, String reference)
+    {
+    return
+      Optional.ofNullable( reference)
+
+      .map( ref -> componentName( componentsResponsesRef_, ref))
+      .filter( Objects::nonNull)
+
+      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getResponses(), "Component responses").get( name))
+      .filter( Objects::nonNull);
+    }
+
+  /**
+   * Returns the name of the given component reference.
+   */
+  private static String componentName( String refType, String ref)
+    {
+    return ref.startsWith( refType)? ref.substring( refType.length()) : null;
+    }
+
+  private static final String componentsParametersRef_ = "#/components/parameters/";
+  private static final String componentsRequestBodiesRef_ = "#/components/requestBodies/";
+  private static final String componentsResponsesRef_ = "#/components/responses/";
+  private static final String componentsSchemasRef_ = "#/components/schemas/";
 }
