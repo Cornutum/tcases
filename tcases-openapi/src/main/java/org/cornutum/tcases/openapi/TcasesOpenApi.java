@@ -168,7 +168,17 @@ public final class TcasesOpenApi
       .values(
         mediaTypeContentDefs( body)
         .entrySet().stream()
-        .map( contentDef -> VarValueDefBuilder.with( contentDef.getKey()).properties( contentDef.getKey()).build())) 
+        .map(
+          contentDef ->
+          {
+          String mediaType = contentDef.getKey();
+          String mediaTypeVarName = mediaTypeVarName( mediaType);
+          return
+            VarValueDefBuilder.with( mediaTypeVarName)
+            .has( "mediaType", mediaType)
+            .properties( mediaTypeVarName)
+            .build();
+          })) 
       .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build())
       .build();
     }
@@ -185,15 +195,27 @@ public final class TcasesOpenApi
         contentDef ->
         {
         String mediaType = contentDef.getKey();
-        Schema<?> contentSchema = resolveSchema( api, contentDef.getValue().getSchema());
-
         try
           {
-          return
-            VarSetBuilder.with( mediaType)
-            .when( Conditions.has( mediaType))
-            .members( instanceSchemaVars( api, mediaType, false, contentSchema))
-            .build();
+          String mediaTypeVarName = mediaTypeVarName( mediaType);
+          VarSetBuilder contentVar =
+            VarSetBuilder.with( mediaTypeVarName)
+            .when( Conditions.has( mediaTypeVarName));
+
+          // Schema defined for this media type?
+          Schema<?> mediaTypeSchema = contentDef.getValue().getSchema();
+          if( mediaTypeSchema == null)
+            {
+            // No, use perfunctory "must be defined" input model for contents
+            contentVar.members( instanceDefinedVar( mediaTypeVarName, false));
+            }
+          else
+            {
+            // Yes, use schema input model for contents
+            contentVar.members( instanceSchemaVars( api, mediaTypeVarName, false, resolveSchema( api, mediaTypeSchema)));
+            }
+
+          return contentVar.build();
           }
         catch( Exception e)
           {
@@ -207,11 +229,7 @@ public final class TcasesOpenApi
    */
   private static Map<String,MediaType> mediaTypeContentDefs( RequestBody body)
     {
-    return
-      expectedValueOf( body.getContent(), "Request body content")
-      .entrySet().stream()
-      .filter( contentDef -> contentDef.getValue().getSchema() != null)
-      .collect( toMap( contentDef->mediaTypeVarName( contentDef.getKey()), contentDef->contentDef.getValue()));
+    return expectedValueOf( body.getContent(), "Request body content");
     }
 
   /**
