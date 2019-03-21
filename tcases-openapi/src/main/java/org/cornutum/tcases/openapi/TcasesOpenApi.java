@@ -417,12 +417,14 @@ public final class TcasesOpenApi
     
     return
       Stream.of(
-      VarSetBuilder.with( "Items")
-      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
-      .members(
-        instanceArraySizeVar( api, instanceVarTag, arraySchema),
-        instanceItemVar( api, instanceVarTag, itemSchema))
-      .build());
+        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
+
+        VarSetBuilder.with( "Items")
+        .when( Conditions.has( instanceValueProperty( instanceVarTag)))
+        .members(
+          instanceArraySizeVar( api, instanceVarTag, arraySchema),
+          instanceItemVar( api, instanceVarTag, itemSchema))
+        .build());
     }
 
   /**
@@ -465,6 +467,10 @@ public final class TcasesOpenApi
         else
           {
           sizeBuilder.properties( arrayItemsProperty( instanceVarTag));
+          if( sizeValue > 1)
+            {
+            sizeBuilder.properties( arrayItemsManyProperty( instanceVarTag));
+            }
           }
         size.values( sizeBuilder.build());
         }
@@ -472,7 +478,12 @@ public final class TcasesOpenApi
 
     if( maxItems == null)
       {
-      size.values( VarValueDefBuilder.with( "Many").properties( arrayItemsProperty( instanceVarTag)).build());
+      int many = Math.max( 1, minItems);
+      size.values(
+        VarValueDefBuilder.with( String.format( "> %s", many))
+        .properties( arrayItemsProperty( instanceVarTag))
+        .properties( arrayItemsManyProperty( instanceVarTag))
+        .build());
       }
 
     return size.build();
@@ -491,11 +502,11 @@ public final class TcasesOpenApi
         VarSetBuilder.with( "Contains")
         .when( Conditions.has( arrayItemsProperty( instanceVarTag)))
 
-        .members( instanceSchemaVars( api, instanceVarTag, false, itemSchema))
+        .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
 
         .members(
           VarDefBuilder.with( "Unique")
-          .when( Conditions.has( instanceValueProperty( instanceVarTag)))
+          .when( Conditions.has( arrayItemsManyProperty( instanceVarTag)))
           .values(
             VarValueDefBuilder.with( "Yes").build(),
             VarValueDefBuilder.with( "No").type( uniqueItems? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
@@ -1243,6 +1254,14 @@ public final class TcasesOpenApi
   private static String arrayItemsProperty( String instanceTag)
     {
     return instanceTag + "Items";
+    }
+
+  /**
+   * Returns the "has many items" property for the given array instance.
+   */
+  private static String arrayItemsManyProperty( String instanceTag)
+    {
+    return arrayItemsProperty( instanceTag) + "Many";
     }
 
   /**
