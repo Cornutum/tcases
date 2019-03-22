@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<System name="Operations">
+  <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_operations">
+    <Input type="query">
+      <VarSet name="id">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="id"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="id">
+          <Value name="integer" property="idValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <Var name="Value" when="idValue">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="HEAD_operations">
+    <Input type="query">
+      <VarSet name="id">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="id"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="id">
+          <Value name="integer" property="idValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <Var name="Value" when="idValue">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="PATCH_operations">
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Body"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Body">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true"/>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="object" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true"/>
+              <Value name="&gt; 0" property="application-jsonProperties"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="POST_operationNew">
+    <Input type="header">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="string" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Length">
+            <Value name="&gt; 0"/>
+            <Value name="0"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="PATCH_operationNew">
+    <Input type="query">
+      <VarSet name="id">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="id"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="id">
+          <Value name="integer" property="idValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <Var name="Value" when="idValue">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Body"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Body">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true"/>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="object" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true"/>
+              <Value name="&gt; 0" property="application-jsonProperties"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="TRACE_operationNew">
+    <Input type="query">
+      <VarSet name="id">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="id"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="id">
+          <Value name="integer" property="idValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <Var name="Value" when="idValue">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Body"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Body">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true"/>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="object" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true"/>
+              <Value name="&gt; 0" property="application-jsonProperties"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

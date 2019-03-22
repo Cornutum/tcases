@@ -65,6 +65,18 @@
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.cornutum.tcases</groupId>
+                <artifactId>tcases-maven-plugin</artifactId>
+                <configuration>
+                    <junit>${tcasesJunit}</junit>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
@@ -93,6 +105,11 @@
             <groupId>org.cornutum.testing</groupId>
             <artifactId>hamcrest-composites</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+        </dependency>
         
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
@@ -106,6 +123,15 @@
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
             <artifactId>tcases-io</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-io</artifactId>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>

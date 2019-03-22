@@ -36,6 +36,16 @@ public class OpenApiReaderException extends OpenApiException
   public OpenApiReaderException( URL location, List<String> errors)
     {
     super( errorReasonFor( location, errors));
+    errors_ = errors;
+    }
+
+  /**
+   * If this exception was caused by OpenAPI conformance errors, returns the list of errors.
+   * Otherwise, returns null.
+   */
+  public List<String> getErrors()
+    {
+    return errors_;
     }
 
   /**
@@ -69,4 +79,5 @@ public class OpenApiReaderException extends OpenApiException
       : String.format( "=%s", location);
     }
 
+  private List<String> errors_;
   }

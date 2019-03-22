@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<System name="Operations">
+  <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_operations">
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Body"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Body">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true"/>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="object" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true"/>
+              <Value name="&gt; 0" property="application-jsonProperties"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

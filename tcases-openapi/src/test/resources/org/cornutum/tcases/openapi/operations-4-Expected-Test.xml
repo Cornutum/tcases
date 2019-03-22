@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<TestCases system="Operations">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_operations">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="application-json,application-jsonValue,Body,param0,param0Value,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" value="boolean"/>
+        <Var name="param0.Value" value="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="boolean"/>
+        <Var name="param1.Value" value="true"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Property-Count" value="0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="boolean"/>
+        <Var name="param1.Value" value="false"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Body,param0,param0Value,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" value="boolean"/>
+        <Var name="param0.Value" value="false"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="boolean"/>
+        <Var name="param1.Value" value="true"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Property-Count" value="&gt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="properties" value="param0,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="boolean"/>
+        <Var name="param1.Value" value="false"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="properties" value="param0,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" value="Not boolean" failure="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="boolean"/>
+        <Var name="param1.Value" value="false"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="No" failure="true">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true"/>
+        <Var name="param1.Value" NA="true"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param1"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="null" failure="true"/>
+        <Var name="param1.Value" NA="true"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param1"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="Not boolean" failure="true"/>
+        <Var name="param1.Value" NA="true"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="Body,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="boolean"/>
+        <Var name="param1.Value" value="false"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="Other" failure="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="application-json,Body,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="boolean"/>
+        <Var name="param1.Value" value="false"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="application-json,Body,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="boolean"/>
+        <Var name="param1.Value" value="false"/>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="Not object" failure="true"/>
+        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

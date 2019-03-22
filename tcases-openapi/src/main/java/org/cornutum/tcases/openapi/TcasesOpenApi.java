@@ -66,18 +66,23 @@ public final class TcasesOpenApi
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
-   * OpenAPI specification.
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( OpenAPI api)
     {
     Info info = expectedValueOf( api.getInfo(), "API info");
 
-    return
-      SystemInputDefBuilder.with( toIdentifier( expectedValueOf( info.getTitle(), "API title")))
+    SystemInputDef inputDef =
+      SystemInputDefBuilder.with( toIdentifier( expectedValueOf( StringUtils.trimToNull( info.getTitle()), "API title")))
       .has( "version", info.getVersion())
       .hasIf( "server", membersOf( api.getServers()).findFirst().map( Server::getUrl))
       .functions( entriesOf( api.getPaths()).flatMap( path -> pathFunctionDefs( api, path.getKey(), path.getValue())))
       .build();
+
+    return
+      inputDef.getFunctionInputDefs().hasNext()
+      ? inputDef
+      : null;
     }
 
   /**
