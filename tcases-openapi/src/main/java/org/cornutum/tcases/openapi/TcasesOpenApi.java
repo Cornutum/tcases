@@ -414,7 +414,13 @@ public final class TcasesOpenApi
    */
   private static Stream<IVarDef> instanceArrayVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    ArraySchema arraySchema = (ArraySchema) instanceSchema;
+    // Handle Swagger parser defect, which creates an ArraySchema iff the "items" property is specified, regardless of the value of "type".
+    // See https://github.com/swagger-api/swagger-parser/issues/1047.
+    ArraySchema arraySchema =
+      expectedValueOf(
+        instanceSchema instanceof ArraySchema? (ArraySchema) instanceSchema : null,
+        "Array items schema");
+    
     Schema<?> itemSchema = resolveSchema( api, arraySchema.getItems());
     
     return
