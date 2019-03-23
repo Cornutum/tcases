@@ -1111,24 +1111,26 @@ public final class TcasesOpenApi
   /**
    * Returns the {@link IVarDef input variable} representing the values for a string instance.
    */
-  @SuppressWarnings("unchecked")
   private static IVarDef stringValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     IVarDef valueVar;
 
     // Enumerated values?
-    Schema<String> stringSchema = (Schema<String>) instanceSchema;
-    String format = stringSchema.getFormat();
-    List<String> enums = Optional.ofNullable( stringSchema.getEnum()).orElse( emptyList());
+    String format = instanceSchema.getFormat();
+    List<FormattedString> enums =
+      Optional.ofNullable( instanceSchema.getEnum())
+      .map( e -> FormattedString.of( format, e))
+      .orElse( emptyList());
+    
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
       valueVar = 
         VarDefBuilder.with( "Value")
         .has( "format", format)
-        .has( "default", Objects.toString( stringSchema.getDefault(), null))
+        .has( "default", Objects.toString( instanceSchema.getDefault(), null))
         .when( Conditions.has( instanceValueProperty( instanceVarTag)))
-        .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf(i)).build()))
+        .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
         .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build())
         .build();
       }
@@ -1138,13 +1140,13 @@ public final class TcasesOpenApi
       VarSetBuilder valueVarSet =
         VarSetBuilder.with( "Value")
         .has( "format", format)
-        .has( "default", Objects.toString( stringSchema.getDefault(), null))
+        .has( "default", FormattedString.of( format, instanceSchema.getDefault()))
         .when( Conditions.has( instanceValueProperty( instanceVarTag)));
 
       // Add values for any length assertions
       VarDefBuilder length = VarDefBuilder.with( "Length");
-      Integer minLength = stringSchema.getMinLength();
-      Integer maxLength = stringSchema.getMaxLength();
+      Integer minLength = instanceSchema.getMinLength();
+      Integer maxLength = instanceSchema.getMaxLength();
 
       // Any length assertions specified?
       if( minLength == null && maxLength == null)
@@ -1153,7 +1155,7 @@ public final class TcasesOpenApi
         length.values( VarValueDefBuilder.with( "> 0").build());
 
         // Length constrained by format?
-        if( format == null || format.equals( "byte") || format.equals( "binary"))
+        if( format == null || format.equals( "byte") || format.equals( "binary") || format.equals( "password"))
           {
           // No, allow empty values
           length.values( VarValueDefBuilder.with( 0).build());
@@ -1202,7 +1204,7 @@ public final class TcasesOpenApi
       valueVarSet.members( length.build());
 
       // Add values for any pattern assertion
-      Optional.ofNullable( stringSchema.getPattern())
+      Optional.ofNullable( instanceSchema.getPattern())
         .map(
           pattern ->
           VarDefBuilder.with( "MatchesPattern")
