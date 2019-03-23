@@ -823,11 +823,11 @@ public final class TcasesOpenApi
           }
         if( minimum == null)
           {
-          value.values( VarValueDefBuilder.with( String.format( " < %s", maximum)).build());
+          value.values( VarValueDefBuilder.with( String.format( "< %s", maximum)).build());
           }
         else if( maximum == null)
           {
-          value.values( VarValueDefBuilder.with( String.format( " > %s", minimum)).build());
+          value.values( VarValueDefBuilder.with( String.format( "> %s", minimum)).build());
           }
         }
       }
@@ -915,11 +915,11 @@ public final class TcasesOpenApi
           }
         if( minimum == null)
           {
-          value.values( VarValueDefBuilder.with( String.format( " < %s", maximum)).build());
+          value.values( VarValueDefBuilder.with( String.format( "< %s", maximum)).build());
           }
         else if( maximum == null)
           {
-          value.values( VarValueDefBuilder.with( String.format( " > %s", minimum)).build());
+          value.values( VarValueDefBuilder.with( String.format( "> %s", minimum)).build());
           }
         }
       }
