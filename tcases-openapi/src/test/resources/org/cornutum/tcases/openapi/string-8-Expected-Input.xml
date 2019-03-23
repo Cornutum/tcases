@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<System name="String">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_string">
+    <Input type="header">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="string" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Has name="format" value="uuid"/>
+          <Value name="dfbe5eb4-1bc3-4c0d-a3f0-00127f67ce71"/>
+          <Value name="9136f2bb-6885-485c-a045-d459b2903fd8"/>
+          <Value name="Other" failure="true"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

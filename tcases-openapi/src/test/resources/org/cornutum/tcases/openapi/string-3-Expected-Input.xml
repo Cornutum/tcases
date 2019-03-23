@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<System name="String">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_string">
+    <Input type="query">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="string" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Has name="format" value="byte"/>
+          <Var name="Length">
+            <Value name="0" failure="true"/>
+            <Value name="1"/>
+            <Value name="&gt; 1"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
