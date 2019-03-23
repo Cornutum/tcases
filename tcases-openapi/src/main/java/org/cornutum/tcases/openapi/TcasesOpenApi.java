@@ -440,58 +440,76 @@ public final class TcasesOpenApi
    */
   private static IVarDef instanceArraySizeVar( OpenAPI api, String instanceVarTag, ArraySchema arraySchema)
     {
+    // Arrays size constrained?
     VarDefBuilder size = VarDefBuilder.with( "Size");
-    Integer minItems = Optional.ofNullable( arraySchema.getMinItems()).orElse( 0);
+    Integer minItems = arraySchema.getMinItems();
     Integer maxItems = arraySchema.getMaxItems();
-
-    // Add min/max boundary condition values
-    TreeSet<Integer> sizeValues = new TreeSet<Integer>();
-    sizeValues.add( minItems - 1);
-    sizeValues.add( minItems);
-    if( maxItems != null)
+    if( minItems == null && maxItems == null)
       {
-      sizeValues.add( maxItems);
-      sizeValues.add( maxItems + 1);
-      }
-    else if( minItems == 0)
-      {
-      // Size is unconstrained, but size=1 is a good boundary condition to test when iterating over arrays.
-      sizeValues.add( 1);
-      }
-
-    for( Integer sizeValue : sizeValues)
-      {
-      if( sizeValue >= 0)
-        {
-        VarValueDefBuilder sizeBuilder = VarValueDefBuilder.with( sizeValue);
-        if( sizeValue < minItems || (maxItems != null && sizeValue > maxItems))
-          {
-          sizeBuilder.type( VarValueDef.Type.FAILURE);
-          }
-        else if( sizeValue == 0)
-          {
-          sizeBuilder.type( VarValueDef.Type.ONCE);
-          }
-        else
-          {
-          sizeBuilder.properties( arrayItemsProperty( instanceVarTag));
-          if( sizeValue > 1)
-            {
-            sizeBuilder.properties( arrayItemsManyProperty( instanceVarTag));
-            }
-          }
-        size.values( sizeBuilder.build());
-        }
-      }
-
-    if( maxItems == null)
-      {
-      int many = Math.max( 1, minItems);
+      // No, add standard boundary condition values
       size.values(
-        VarValueDefBuilder.with( String.format( "> %s", many))
-        .properties( arrayItemsProperty( instanceVarTag))
-        .properties( arrayItemsManyProperty( instanceVarTag))
-        .build());
+        VarValueDefBuilder.with( 0).build(),
+        VarValueDefBuilder.with( 1).properties( arrayItemsProperty( instanceVarTag)).build(),
+        VarValueDefBuilder.with( "> 1").properties( arrayItemsProperty( instanceVarTag), arrayItemsManyProperty( instanceVarTag)).build());
+      }
+    else
+      {
+      // Add min/max boundary condition values
+      TreeSet<Integer> sizeValues = new TreeSet<Integer>();
+      if( minItems != null)
+        {
+        sizeValues.add( minItems - 1);
+        sizeValues.add( minItems);
+        }
+      if( maxItems != null)
+        {
+        sizeValues.add( maxItems);
+        sizeValues.add( maxItems + 1);
+        }
+
+      for( Integer sizeValue : sizeValues)
+        {
+        if( sizeValue >= 0)
+          {
+          VarValueDefBuilder sizeBuilder = VarValueDefBuilder.with( sizeValue);
+          if( (minItems != null && sizeValue < minItems) || (maxItems != null && sizeValue > maxItems))
+            {
+            sizeBuilder.type( VarValueDef.Type.FAILURE);
+            }
+          else if( sizeValue == 0)
+            {
+            sizeBuilder.type( VarValueDef.Type.ONCE);
+            }
+          else
+            {
+            sizeBuilder
+              .properties( arrayItemsProperty( instanceVarTag))
+              .properties( Optional.ofNullable( sizeValue > 1? arrayItemsManyProperty( instanceVarTag) : null));
+            }
+          size.values( sizeBuilder.build());
+          }
+        }
+
+      if( maxItems == null)
+        {
+        int many = Math.max( 1, minItems);
+        size.values(
+          VarValueDefBuilder.with( String.format( "> %s", many))
+          .properties( arrayItemsProperty( instanceVarTag), arrayItemsManyProperty( instanceVarTag))
+          .build());
+        }
+      else if( minItems == null)
+        {
+        size.values( VarValueDefBuilder.with( 0).build());
+        if( maxItems > 1)
+          {
+          size.values(
+            VarValueDefBuilder.with( String.format( "< %s", maxItems))
+            .properties( arrayItemsProperty( instanceVarTag))
+            .properties( Optional.ofNullable( maxItems > 2? arrayItemsManyProperty( instanceVarTag) : null))
+            .build());
+          }
+        }
       }
 
     return size.build();
@@ -985,11 +1003,19 @@ public final class TcasesOpenApi
 
       if( maxProperties == null)
         {
-        count.values( VarValueDefBuilder.with( String.format( "> %s", minProperties)).properties( objectPropertiesProperty( instanceVarTag)).build());
+        count.values(
+          VarValueDefBuilder.with( String.format( "> %s", minProperties))
+          .properties( objectPropertiesProperty( instanceVarTag)).build());
         }
       else if( minProperties == null)
         {
-        count.values( VarValueDefBuilder.with( String.format( "< %s", maxProperties)).properties( objectPropertiesProperty( instanceVarTag)).build());
+        count.values( VarValueDefBuilder.with( 0).build());
+        if( maxProperties > 1)
+          {
+          count.values(
+            VarValueDefBuilder.with( String.format( "< %s", maxProperties))
+            .properties( objectPropertiesProperty( instanceVarTag)).build());
+          }
         }
       }
 
@@ -1149,23 +1175,28 @@ public final class TcasesOpenApi
           }
         for( Integer i : boundaryValues)
           {
-          length.values
-            ( VarValueDefBuilder.with( i)
-              .type(
-                (minLength != null && i < minLength) || (maxLength != null && i > maxLength)
-                ? VarValueDef.Type.FAILURE
-                : VarValueDef.Type.VALID)
-              .build());
+          if( i >= 0)
+            {
+            length.values
+              ( VarValueDefBuilder.with( i)
+                .type(
+                  (minLength != null && i < minLength) || (maxLength != null && i > maxLength)
+                  ? VarValueDef.Type.FAILURE
+                  : VarValueDef.Type.VALID)
+                .build());
+            }
           }
         if( minLength == null)
           {
-          length.values(
-            VarValueDefBuilder.with( 0).build(),
-            VarValueDefBuilder.with( String.format( " < %s", maxLength)).build());
+          length.values( VarValueDefBuilder.with( 0).build());
+          if( maxLength > 1)
+            {
+            length.values( VarValueDefBuilder.with( String.format( "< %s", maxLength)).build());
+            }
           }
         else if( maxLength == null)
           {
-          length.values( VarValueDefBuilder.with( String.format( " > %s", minLength)).build());
+          length.values( VarValueDefBuilder.with( String.format( "> %s", minLength)).build());
           }
         }
       valueVarSet.members( length.build());

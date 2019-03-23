@@ -147,7 +147,7 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
-      <Has name="properties" value="param1,param1Items,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -161,9 +161,9 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
-        <Var name="param1.Items.Contains.Value" value="0"/>
+        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Value" NA="true"/>
         <Var name="param1.Items.Contains.Unique" NA="true"/>
       </Input>
       <Input type="request">
@@ -174,7 +174,7 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
-      <Has name="properties" value="param0,param1,param1Items,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="param0,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -188,9 +188,9 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
-        <Var name="param1.Items.Contains.Value" value="0"/>
+        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Value" NA="true"/>
         <Var name="param1.Items.Contains.Unique" NA="true"/>
       </Input>
       <Input type="request">
@@ -201,7 +201,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="param0,param1,param1Items,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="param0,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -215,9 +215,9 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
-        <Var name="param1.Items.Contains.Value" value="0"/>
+        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Value" NA="true"/>
         <Var name="param1.Items.Contains.Unique" NA="true"/>
       </Input>
       <Input type="request">
@@ -363,7 +363,7 @@
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
-      <Has name="properties" value="Body,param0,param0Value,param1,param1Items,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="Body,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -377,9 +377,9 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
-        <Var name="param1.Items.Contains.Value" value="0"/>
+        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Value" NA="true"/>
         <Var name="param1.Items.Contains.Unique" NA="true"/>
       </Input>
       <Input type="request">
@@ -390,7 +390,7 @@
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
-      <Has name="properties" value="application-json,Body,param0,param0Value,param1,param1Items,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="application-json,Body,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -404,9 +404,9 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
-        <Var name="param1.Items.Contains.Value" value="0"/>
+        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Value" NA="true"/>
         <Var name="param1.Items.Contains.Unique" NA="true"/>
       </Input>
       <Input type="request">
@@ -419,7 +419,7 @@
       </Input>
     </TestCase>
     <TestCase id="15" failure="true">
-      <Has name="properties" value="application-json,Body,param0,param0Value,param1,param1Items,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="application-json,Body,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -433,9 +433,9 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
-        <Var name="param1.Items.Contains.Value" value="0"/>
+        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Value" NA="true"/>
         <Var name="param1.Items.Contains.Unique" NA="true"/>
       </Input>
       <Input type="request">
