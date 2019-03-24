@@ -884,12 +884,12 @@ public final class TcasesOpenApi
 
         BigDecimal minimum =
           Optional.ofNullable( instanceSchema.getMinimum())
-          .map( m -> Boolean.TRUE.equals( instanceSchema.getExclusiveMinimum())? m.divide( multipleOf, DOWN).add( BigDecimal.ONE).multiply( multipleOf) : m)
+          .map( m -> Boolean.TRUE.equals( instanceSchema.getExclusiveMinimum())? m.divide( multipleOf, 0, DOWN).add( BigDecimal.ONE).multiply( multipleOf) : m)
           .orElse( null);
 
         BigDecimal maximum =
           Optional.ofNullable( instanceSchema.getMaximum())
-          .map( m -> Boolean.TRUE.equals( instanceSchema.getExclusiveMaximum())? m.divide( multipleOf, UP).subtract( BigDecimal.ONE).multiply( multipleOf) : m)
+          .map( m -> Boolean.TRUE.equals( instanceSchema.getExclusiveMaximum())? m.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf) : m)
           .orElse( null);
 
         TreeSet<BigDecimal> boundaryValues = new TreeSet<BigDecimal>();
