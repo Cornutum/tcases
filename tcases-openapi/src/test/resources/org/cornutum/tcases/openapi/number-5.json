@@ -13,9 +13,11 @@
                         "in": "query",
                         "schema": {
                             "type": "number",
-                            "default": 2.71828,
-                            "maximum": 3.14156,
-                            "nullable": true
+                            "format": "float",
+                            "minimum": -6.5,
+                            "exclusiveMinimum": true,
+                            "maximum": -1.234,
+                            "exclusiveMaximum": true
                         }
                     }
                 ],

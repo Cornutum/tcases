@@ -13,8 +13,8 @@
                         "in": "query",
                         "schema": {
                             "type": "number",
-                            "default": 2.71828,
-                            "maximum": 3.14156,
+                            "default": 0,
+                            "multipleOf": 1.234,
                             "nullable": true
                         }
                     }

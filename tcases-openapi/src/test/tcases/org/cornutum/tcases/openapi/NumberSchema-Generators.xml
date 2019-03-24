@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="Schema" seed="8291136032692307968" tuples="1">
+    <Combine tuples="2">
+      <Include var="maximum"/>
+      <Include var="minimum"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="exclusiveMinimum"/>
+      <Include var="minimum"/>
+    </Combine>
+    <Combine tuples="3">
+      <Include var="exclusiveMaximum"/>
+      <Include var="maximum"/>
+      <Include var="multipleOf"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="default"/>
+      <Include var="enum"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>
