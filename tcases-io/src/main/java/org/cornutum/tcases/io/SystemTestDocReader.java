@@ -9,8 +9,8 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import static org.cornutum.tcases.DefUtils.*;
-import static org.cornutum.tcases.io.ObjectUtils.toObject;
 import static org.cornutum.tcases.io.SystemTestDoc.*;
+import static org.cornutum.tcases.util.ObjectUtils.toObject;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;

@@ -12,7 +12,7 @@ import org.cornutum.tcases.generator.*;
 import static org.cornutum.tcases.DefUtils.*;
 import static org.cornutum.tcases.generator.io.GeneratorSetDoc.*;
 import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
-import static org.cornutum.tcases.io.ObjectUtils.toObject;
+import static org.cornutum.tcases.util.ObjectUtils.toObject;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;

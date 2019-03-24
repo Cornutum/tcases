@@ -12,7 +12,7 @@ import org.cornutum.tcases.conditions.*;
 
 import static org.cornutum.tcases.DefUtils.*;
 import static org.cornutum.tcases.io.SystemInputDoc.*;
-import static org.cornutum.tcases.io.ObjectUtils.toObject;
+import static org.cornutum.tcases.util.ObjectUtils.toObject;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;

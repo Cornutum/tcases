@@ -25,7 +25,7 @@ public class VarBindingMatcher extends BaseCompositeMatcher<VarBinding>
 
     expectThat( valueOf( "var", VarBinding::getVar).matches( Matchers::equalTo));
     expectThat( valueOf( "type", VarBinding::getType).matches( Matchers::equalTo));
-    expectThat( valueOf( "value", VarBinding::getValue).matches( Matchers::equalTo));
+    expectThat( valueOf( "value", VarBinding::getExternalValue).matches( Matchers::equalTo));
     expectThat( valueOf( "applicable", (VarBinding vb) -> !vb.isValueNA()).matches( Matchers::equalTo));
     expectThat( valueOf( "valid", VarBinding::isValueValid).matches( Matchers::equalTo));
     expectThat( matches( AnnotatedMatcher::new));

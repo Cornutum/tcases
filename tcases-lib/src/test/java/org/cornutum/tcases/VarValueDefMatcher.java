@@ -26,7 +26,7 @@ public class VarValueDefMatcher extends BaseCompositeMatcher<VarValueDef>
     {
     super( expected);
 
-    expectThat( valueOf( "name", VarValueDef::getName).matches( Matchers::equalTo));
+    expectThat( valueOf( "name", VarValueDef::getExternalName).matches( Matchers::equalTo));
     expectThat( valueOf( "type", VarValueDef::getType).matches( Matchers::equalTo));
     expectThat( valueOf( "condition", VarValueDef::getCondition).matches( Matchers::equalTo));
     expectThat( valueOf( "properties", this::getProperties).matches( Composites::visitsMembers));
