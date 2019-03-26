@@ -19,6 +19,7 @@ import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.ArraySchema;
+import io.swagger.v3.oas.models.media.BooleanSchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.NumberSchema;
@@ -554,14 +555,7 @@ public final class TcasesOpenApi
     return
       Stream.of(
         instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
-
-        VarDefBuilder.with( "Value")
-        .when( Conditions.has( instanceValueProperty( instanceVarTag)))
-        .has( "default", Objects.toString( instanceSchema.getDefault(), null))
-        .values(
-          VarValueDefBuilder.with( true).build(),
-          VarValueDefBuilder.with( false).build())
-        .build());
+        booleanValueVar( api, instanceVarTag, instanceSchema));
     }    
 
   /**
@@ -1220,6 +1214,31 @@ public final class TcasesOpenApi
       }
 
     return valueVar;
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable} representing the values for a boolean instance.
+   */
+  private static IVarDef booleanValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+    {
+    BooleanSchema booleanSchema = (BooleanSchema) instanceSchema;
+    List<Boolean> possibleValues = Arrays.asList( Boolean.TRUE, Boolean.FALSE);
+    List<Boolean> allowedValues = Optional.ofNullable( booleanSchema.getEnum()).orElse( possibleValues);
+
+    return
+      VarDefBuilder.with( "Value")
+      .has( "default", Objects.toString( instanceSchema.getDefault(), null))
+      .when( Conditions.has( instanceValueProperty( instanceVarTag)))
+      .values(
+        possibleValues.stream()
+        .filter( Objects::nonNull)
+        .map( b -> {
+          return
+            VarValueDefBuilder.with( b)
+            .type( allowedValues.contains(b)? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE)
+            .build();
+          }))
+      .build();
     }
 
   /**
