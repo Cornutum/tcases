@@ -16,6 +16,7 @@
           <Value name="Not integer" failure="true"/>
         </Var>
         <Var name="Value" when="param0Value">
+          <Has name="default" value="11"/>
           <Has name="format" value="int64"/>
           <Value name="10" failure="true"/>
           <Value name="11"/>

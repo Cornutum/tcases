@@ -15,6 +15,7 @@
         </Var>
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="-1.234">
+          <Has name="default" value="0.0"/>
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -28,6 +29,7 @@
         </Var>
         <Var name="param0.Type" NA="true"/>
         <Var name="param0.Value" NA="true">
+          <Has name="default" value="0.0"/>
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -42,6 +44,7 @@
         </Var>
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="&lt; -1.234">
+          <Has name="default" value="0.0"/>
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -56,6 +59,7 @@
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
         <Var name="param0.Value" NA="true">
+          <Has name="default" value="0.0"/>
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -70,6 +74,7 @@
         </Var>
         <Var name="param0.Type" value="Not number" failure="true"/>
         <Var name="param0.Value" NA="true">
+          <Has name="default" value="0.0"/>
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -84,6 +89,7 @@
         </Var>
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="-1.233" failure="true">
+          <Has name="default" value="0.0"/>
           <Has name="format" value="double"/>
         </Var>
       </Input>

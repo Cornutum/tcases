@@ -16,6 +16,7 @@
           <Value name="Not number" failure="true"/>
         </Var>
         <Var name="Value" when="param0Value">
+          <Has name="default" value="0.0"/>
           <Has name="format" value="double"/>
           <Value name="-1.234"/>
           <Value name="-1.233" failure="true"/>
