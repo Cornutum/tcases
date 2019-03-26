@@ -116,7 +116,7 @@ public abstract class FormattedString
 
     public String formatted()
       {
-      return object_.toString();
+      return java.util.Base64.getEncoder().encodeToString( object_);
       }
 
     private byte[] object_;
@@ -158,7 +158,7 @@ public abstract class FormattedString
 
     public String formatted()
       {
-      return new SimpleDateFormat("yyyy-MM-dd'T'HH:mmm:ss.SSSXXXX").format( object_);
+      return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format( object_);
       }
 
     private java.util.Date object_;
