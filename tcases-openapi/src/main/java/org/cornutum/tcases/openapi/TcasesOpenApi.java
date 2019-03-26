@@ -1128,7 +1128,7 @@ public final class TcasesOpenApi
       valueVar = 
         VarDefBuilder.with( "Value")
         .has( "format", format)
-        .has( "default", Objects.toString( instanceSchema.getDefault(), null))
+        .has( "default", Objects.toString( FormattedString.of( format, instanceSchema.getDefault()), null))
         .when( Conditions.has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
         .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build())
