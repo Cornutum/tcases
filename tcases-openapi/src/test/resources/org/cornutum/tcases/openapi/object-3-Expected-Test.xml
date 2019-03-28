@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<TestCases system="Object">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object-param0">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
+        <Var name="param0.Value.Properties.myInteger.Value" value="&lt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" value="null"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
+        <Var name="param0.Value.Properties.myInteger.Value" value="0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
+        <Var name="param0.Value.Properties.myInteger.Value" value="&gt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" value="Not object" failure="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No" failure="true"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0MyInteger,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0MyInteger,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="Not integer" failure="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

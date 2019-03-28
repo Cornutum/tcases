@@ -1,0 +1,450 @@
+<?xml version="1.0"?>
+<TestCases system="Object">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="&lt; 0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
+        <Var name="param0.Value.Properties.myInteger.Value" value="&lt; 0"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="param0,param0MyNumber,param0MyNumberValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="false"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
+        <Var name="param0.Value.Properties.myInteger.Value" value="0"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="&lt; 0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
+        <Var name="param0.Value.Properties.myInteger.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="Not object" failure="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&lt; 3" failure="true"/>
+        <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyNumber,param0MyNumberValue,param0MyString,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyNumber,param0MyNumberValue,param0MyString,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="Not string" failure="true"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="Not boolean" failure="true"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No" failure="true"/>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyNumber,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="14" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyNumber,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="Not number" failure="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="15" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="16" failure="true">
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myString.Type" value="string"/>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
+        <Var name="param0.Value.Properties.myNumber.Value" value="0"/>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.myInteger.Type" value="Not integer" failure="true"/>
+        <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
+        <Var name="param0.Value.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

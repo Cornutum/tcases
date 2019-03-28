@@ -1,0 +1,50 @@
+<System name="Styles">
+    <Function name="Parameter">
+        <Input>
+            <Var name="type">
+                <Value name="primitive" property="primitive"/>
+                <Value name="object" property="object"/>               
+                <Value name="array" property="array"/>               
+            </Var>
+            
+            <Var name="in">
+                <Value name="query" property="query"/>
+                <Value name="header" property="header"/>               
+                <Value name="cookie" property="cookie"/>
+                <Value name="path" property="path"/>               
+            </Var>
+            
+            <Var name="style">
+                <Value name="matrix" when="path"/>
+
+                <Value name="label" when="path"/>               
+
+                <Value name="form">
+                    <When>
+                        <AnyOf property="query, cookie"/>
+                    </When>
+                </Value>    
+
+                <Value name="simple">
+                    <When>
+                        <AllOf property="array">
+                            <AnyOf property="path, header"/>    
+                        </AllOf>
+                    </When>
+                </Value>               
+
+                <Value name="spaceDelimited" when="array, query" property="spaceDelimited"/>               
+
+                <Value name="pipeDelimited" when="array, query" property="pipeDelimited"/>               
+
+                <Value name="deepObject" when="object, query" property="deepObject"/>               
+            </Var>
+            
+            <Var name="explode" whenNot="primitive">
+                <Value name="true" whenNot="spaceDelimited, pipeDelimited"/>
+                <Value name="false" whenNot="deepObject"/>
+                <Value name="Undefined"/>
+            </Var>
+        </Input>
+    </Function>
+</System>

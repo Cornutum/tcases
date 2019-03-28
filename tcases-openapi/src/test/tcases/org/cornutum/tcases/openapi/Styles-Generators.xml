@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="*" tuples="1"/>
+  <TupleGenerator function="Parameter" seed="4700690531291409408" tuples="1">
+    <Combine tuples="3">
+      <Include var="in"/>
+      <Include var="style"/>
+      <Include var="type"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

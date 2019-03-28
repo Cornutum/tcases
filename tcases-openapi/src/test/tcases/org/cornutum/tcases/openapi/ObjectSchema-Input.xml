@@ -1,0 +1,45 @@
+<System name="ObjectSchema">
+    <Function name="Schema">
+        <Input>
+            <Var name="minProperties" when="properties">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="maxProperties" when="properties">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+
+            <VarSet name="properties">
+                <Var name="Defined">
+                    <Value name="Yes" property="properties, propertiesDefined"/>
+                    <Value name="No"/>               
+                </Var>
+                <Var name="Count" when="propertiesDefined">
+                    <Value name="1"/>
+                    <Value name="Many"/>               
+                </Var>
+                <VarSet name="Definition" when="propertiesDefined">
+                    <Var name="Required">
+                        <Value name="true"/>
+                        <Value name="false"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+
+            <Var name="additionalProperties">
+                <Value name="true" property="properties"/>
+                <Value name="false"/>
+                <Value name="Schema" property="properties"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="nullable">
+                <Value name="true"/>
+                <Value name="false"/>                
+                <Value name="Undefined"/>                
+            </Var>
+        </Input>
+    </Function>
+</System>

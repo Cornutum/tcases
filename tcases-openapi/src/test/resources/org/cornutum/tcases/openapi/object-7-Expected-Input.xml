@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<System name="Object">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object">
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="object" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Property-Count">
+            <Value name="0" once="true"/>
+            <Value name="&gt; 0" failure="true"/>
+          </Var>
+          <Var name="Additional">
+            <Value name="Yes" failure="true"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
