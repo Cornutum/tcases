@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.Conditions;
 import org.cornutum.tcases.conditions.ICondition;
+import org.cornutum.tcases.util.ListBuilder;
 
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.util.CollectionUtils.*;
@@ -928,13 +929,21 @@ public final class TcasesOpenApi
     {
     VarSetBuilder value =
       VarSetBuilder.with( "Value")
-      .when( Conditions.has( instanceValueProperty( instanceVarTag)))
-      .members( objectPropertyCountVar( api, instanceVarTag, instanceSchema));
+      .when( Conditions.has( instanceValueProperty( instanceVarTag)));
 
-    objectPropertiesVar( api, instanceVarTag, instanceSchema)
+    Optional<IVarDef> count = objectPropertyCountVar( api, instanceVarTag, instanceSchema);
+    count.ifPresent( var -> value.members( var));
+
+    boolean propertiesAllowed =
+      count
+      .map( c -> toStream( c.getValues()))
+      .map( values -> values.anyMatch( v -> v.getProperties().contains( objectPropertiesProperty( instanceVarTag))))
+      .orElse( false);
+      
+    objectPropertiesVar( api, instanceVarTag, instanceSchema, propertiesAllowed)
       .ifPresent( var -> value.members( var));
 
-    objectAdditionalVar( api, instanceVarTag, instanceSchema)
+    objectAdditionalVar( api, instanceVarTag, instanceSchema, propertiesAllowed)
       .ifPresent( var -> value.members( var));
 
     return value.build();
@@ -943,87 +952,113 @@ public final class TcasesOpenApi
   /**
    * Returns the {@link IVarDef input variable} representing the number of properties for an object instance.
    */
-  private static IVarDef objectPropertyCountVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Optional<IVarDef> objectPropertyCountVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
-    VarDefBuilder count = VarDefBuilder.with( "Property-Count");
+    // Accumulate property count values depending on constraints
+    ListBuilder<VarValueDef> countValues = ListBuilder.to();
+    
+    int requiredCount = Optional.ofNullable( instanceSchema.getRequired()).map( List::size).orElse( 0);
+    int totalCount = Optional.ofNullable( instanceSchema.getProperties()).map( Map::size).orElse( 0);
 
-    // Property count constrained?
-    Integer minProperties = instanceSchema.getMinProperties();
-    Integer maxProperties = instanceSchema.getMaxProperties();
-    if( minProperties == null && maxProperties == null)
-      {
-      // No, add standard boundary condition values.
-      count.values(
+    boolean hasAdditional =
+      Optional.ofNullable( instanceSchema.getAdditionalProperties())
+      .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
+      .orElse( false);
 
-        VarValueDefBuilder.with( 0)
-        .type( VarValueDef.Type.ONCE)
-        .build(),
-        
-        VarValueDefBuilder.with( "> 0")
-        .properties( objectPropertiesProperty( instanceVarTag))
-        .build());
-      }
-    else
+    Integer minProperties =
+      Optional.ofNullable( instanceSchema.getMinProperties())
+      .filter( min -> min > requiredCount && min < totalCount)
+      .orElse( null);
+
+    Integer maxProperties =
+      Optional.ofNullable( instanceSchema.getMaxProperties())
+      .filter( max -> hasAdditional || (max > requiredCount && max < totalCount))
+      .orElse( null);
+    
+    // Property count constrained (ignoring infeasible and superfluous constraints)?
+    if( !(minProperties == null && maxProperties == null))
       {
-      // Yes, add min/max boundary condition values
-      TreeSet<Integer> countValues = new TreeSet<Integer>();
-      if( minProperties != null)
-        {
-        countValues.add( minProperties - 1);
-        countValues.add( minProperties);
-        }
+      // Yes, upper bound defined?
       if( maxProperties != null)
         {
-        countValues.add( maxProperties);
-        countValues.add( maxProperties + 1);
-        }
-
-      for( Integer countValue : countValues)
-        {
-        if( countValue >= 0)
+        // Yes, with provision for any lower bound...
+        if( minProperties != null)
           {
-          VarValueDefBuilder countBuilder = VarValueDefBuilder.with( countValue);
-          if( (minProperties != null && countValue < minProperties) || (maxProperties != null && countValue > maxProperties))
-            {
-            countBuilder.type( VarValueDef.Type.FAILURE);
-            }
-          else if( countValue > 0)
-            {
-            countBuilder.properties( objectPropertiesProperty( instanceVarTag));
-            }
-          count.values( countBuilder.build());
+          countValues
+            .add(
+              VarValueDefBuilder.with( String.format( "< %s", minProperties))
+              .type( VarValueDef.Type.FAILURE)
+              .build());
           }
-        }
-
-      if( maxProperties == null)
-        {
-        count.values(
-          VarValueDefBuilder.with( String.format( "> %s", minProperties))
-          .properties( objectPropertiesProperty( instanceVarTag)).build());
-        }
-      else if( minProperties == null)
-        {
-        count.values( VarValueDefBuilder.with( 0).build());
-        if( maxProperties > 1)
+        else if( requiredCount == 0)
           {
-          count.values(
-            VarValueDefBuilder.with( String.format( "< %s", maxProperties))
-            .properties( objectPropertiesProperty( instanceVarTag)).build());
+          countValues.add(
+            VarValueDefBuilder.with( 0)
+            .type( VarValueDef.Type.ONCE)
+            .build());
           }
+
+        // ...define coverage w.r.t. upper bound
+        countValues
+          .add(
+            VarValueDefBuilder.with( String.format( "%s%s", maxProperties.equals( minProperties)? "" : "<= ", maxProperties))
+            .properties( objectPropertiesProperty( instanceVarTag))
+            .build())
+          .add(
+            VarValueDefBuilder.with( String.format( "> %s", maxProperties))
+            .type( VarValueDef.Type.FAILURE)
+            .build());
+        }
+      else
+        {
+        // No, define coverage w.r.t. lower bound
+        countValues
+          .add(
+            VarValueDefBuilder.with( String.format( ">= %s", minProperties))
+            .properties( objectPropertiesProperty( instanceVarTag))
+            .build())
+          .add(
+            VarValueDefBuilder.with( String.format( "< %s", minProperties))
+            .type( VarValueDef.Type.FAILURE)
+            .build());
         }
       }
 
-    return count.build();
+    // No, but are all properties optional?
+    else if( requiredCount == 0)
+      {
+      // Yes, ensure coverage of "no properties" case.
+      boolean hasAny = totalCount > 0 || hasAdditional;
+      countValues
+        .add(
+          VarValueDefBuilder.with( 0)
+          .type( VarValueDef.Type.ONCE)
+          .build())
+        .add(
+          VarValueDefBuilder.with( "> 0")
+          .type( hasAny? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE)
+          .properties( Optional.ofNullable( hasAny? objectPropertiesProperty( instanceVarTag) : null))
+          .build());
+      }
+
+    return
+      Optional.of( countValues.build())
+      .filter( values -> !values.isEmpty())
+      .map( values -> 
+            VarDefBuilder.with( "Property-Count")
+            .values( values)
+            .build());
     }
   
   /**
    * Returns the {@link IVarDef input variable} representing the properties of an object instance.
    */
   @SuppressWarnings("rawtypes")
-  private static Optional<IVarDef> objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Optional<IVarDef> objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, boolean propertiesAllowed)
     {
     Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
-
+    List<String> requiredProperties = Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList());
+    
     List<IVarDef> members =
       propertyDefs.entrySet().stream()
 
@@ -1033,7 +1068,7 @@ public final class TcasesOpenApi
           api,
           instanceVarTag,
           propertyDef.getKey(),
-          instanceSchema.getRequired().contains( propertyDef.getKey()),
+          requiredProperties.contains( propertyDef.getKey()),
           resolveSchema( api, propertyDef.getValue())))
 
       .collect( toList());
@@ -1044,7 +1079,7 @@ public final class TcasesOpenApi
 
       Optional.of(
         VarSetBuilder.with( "Properties")
-        .when( Conditions.has( objectPropertiesProperty( instanceVarTag)))
+        .when( propertiesAllowed? Conditions.has( objectPropertiesProperty( instanceVarTag)) : null)
         .members( members)
         .build());
     }
@@ -1074,26 +1109,32 @@ public final class TcasesOpenApi
   /**
    * Returns the {@link IVarDef input variable} representing the additional properties of an object instance.
    */
-  private static Optional<IVarDef> objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static Optional<IVarDef> objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, boolean propertiesAllowed)
     {
     IVarDef varDef = null;
     if( instanceSchema.getAdditionalProperties() != null)
       {
-      Schema<?> propertySchema =
-        instanceSchema.getAdditionalProperties().getClass().equals( Schema.class)
-        ? (Schema<?>)instanceSchema.getAdditionalProperties()
-        : null;
+      boolean hasProperties =
+        Optional.ofNullable( instanceSchema.getProperties())
+        .map( properties -> !properties.isEmpty())
+        .orElse( false);
 
-      boolean allowed = propertySchema != null || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties());
+      Schema<?> propertySchema =
+        instanceSchema.getAdditionalProperties().getClass().equals( Boolean.class)
+        ? null
+        : (Schema<?>)instanceSchema.getAdditionalProperties();
+
+      boolean allowed =
+        propertySchema != null
+        || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties());
         
       varDef =
         propertySchema == null ?
 
         VarDefBuilder.with( "Additional")
-        .when( Conditions.has( objectPropertiesProperty( instanceVarTag)))
-        .values(
-          VarValueDefBuilder.with( "Yes").type( allowed? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE).build(),
-          VarValueDefBuilder.with( "No").build())
+        .when( propertiesAllowed? Conditions.has( objectPropertiesProperty( instanceVarTag)) : null)
+        .values( VarValueDefBuilder.with( "Yes").type( allowed? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE).build())
+        .values( iterableOf( Optional.of( VarValueDefBuilder.with( "No").build()).filter( v -> !allowed || hasProperties)))
         .build() :
 
         objectPropertyVar( api, instanceVarTag, "Additional", false, propertySchema);

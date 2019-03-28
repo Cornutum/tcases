@@ -66,7 +66,7 @@
           <VarSet name="Value" when="application-jsonValue">
             <Var name="Property-Count">
               <Value name="0" once="true"/>
-              <Value name="&gt; 0" property="application-jsonProperties"/>
+              <Value name="&gt; 0" failure="true"/>
             </Var>
           </VarSet>
         </VarSet>
@@ -136,7 +136,7 @@
           <VarSet name="Value" when="application-jsonValue">
             <Var name="Property-Count">
               <Value name="0" once="true"/>
-              <Value name="&gt; 0" property="application-jsonProperties"/>
+              <Value name="&gt; 0" failure="true"/>
             </Var>
           </VarSet>
         </VarSet>
@@ -184,7 +184,7 @@
           <VarSet name="Value" when="application-jsonValue">
             <Var name="Property-Count">
               <Value name="0" once="true"/>
-              <Value name="&gt; 0" property="application-jsonProperties"/>
+              <Value name="&gt; 0" failure="true"/>
             </Var>
           </VarSet>
         </VarSet>
