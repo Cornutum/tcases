@@ -173,7 +173,7 @@ public class VarValueDef extends Conditional
     {
     if( properties != null)
       {
-      addProperties( IteratorUtils.toList( properties.getProperties()));
+      addProperties( IteratorUtils.toList( properties.iterator()));
       }
 
     return this;

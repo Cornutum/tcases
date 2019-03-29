@@ -38,6 +38,6 @@ public class VarValueDefMatcher extends BaseCompositeMatcher<VarValueDef>
    */
   private Iterator<String> getProperties( VarValueDef varValueDef)
     {
-    return varValueDef.getProperties().getProperties();
+    return varValueDef.getProperties().getUniqueProperties();
     }
   }

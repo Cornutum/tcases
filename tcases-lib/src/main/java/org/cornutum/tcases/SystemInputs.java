@@ -42,7 +42,7 @@ public final class SystemInputs
 
     toStream( new VarDefIterator( function))
       .flatMap( var -> toStream( var.getValues()).map( value -> new VarBindingDef( var, value)))
-      .forEach( binding -> toStream( binding.getValueDef().getProperties().getProperties()).forEach( p -> sources.put( p, binding)));
+      .forEach( binding -> toStream( binding.getValueDef().getProperties().getUniqueProperties()).forEach( p -> sources.put( p, binding)));
     
     return sources.asMap();
     }

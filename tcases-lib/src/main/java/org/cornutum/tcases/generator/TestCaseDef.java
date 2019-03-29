@@ -448,7 +448,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private Stream<String> propertyStream()
     {
     return
-      CollectionUtils.toStream( properties_.getProperties())
+      CollectionUtils.toStream( properties_.getUniqueProperties())
       .sorted( String.CASE_INSENSITIVE_ORDER);
     }
 

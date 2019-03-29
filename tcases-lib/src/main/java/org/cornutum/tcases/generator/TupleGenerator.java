@@ -728,7 +728,7 @@ public class TupleGenerator implements ITestCaseGenerator
         if( !value.getProperties().isEmpty())
           {
           VarBindingDef binding = new VarBindingDef( varDef, value);
-          for( Iterator<String> properties = value.getProperties().getProperties(); properties.hasNext(); )
+          for( Iterator<String> properties = value.getProperties().getUniqueProperties(); properties.hasNext(); )
             {
             propertyProviders_.put( properties.next(), binding);
             }

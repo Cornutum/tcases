@@ -20,7 +20,7 @@ import java.util.Iterator;
  * Defines a set of test case properties.
  *
  */
-public class PropertySet
+public class PropertySet implements Iterable<String>
   {
   /**
    * Creates a new PropertySet object.
@@ -77,7 +77,7 @@ public class PropertySet
     {
     if( propertySet != null)
       {
-      addAll( propertySet.getProperties());
+      addAll( propertySet.properties_);
       }
 
     return this;
@@ -90,10 +90,7 @@ public class PropertySet
     {
     if( properties != null)
       {
-      for( String property : properties)
-        {
-        add( property);
-        }
+      addAll( properties.iterator());
       }
 
     return this;
@@ -149,7 +146,7 @@ public class PropertySet
     {
     if( properties != null)
       {
-      removeAll( properties.getProperties());
+      removeAll( properties.properties_);
       }
     
     return this;
@@ -188,11 +185,38 @@ public class PropertySet
     }
 
   /**
-   * Returns the members of this set.
+   * Returns an iterator that visits every instance of each property in this set.
    */
+  public Iterator<String> iterator()
+    {
+    return properties_.iterator();
+    }
+
+  /**
+   * Returns an iterator that visits a single instance of each property in this set.
+   *
+   * @deprecated Replace using {@link #getUniqueProperties}
+   */
+  @Deprecated
   public Iterator<String> getProperties()
     {
     return properties_.uniqueSet().iterator();
+    }
+
+  /**
+   * Returns an iterator that visits a single instance of each property in this set.
+   */
+  public Iterator<String> getUniqueProperties()
+    {
+    return properties_.uniqueSet().iterator();
+    }
+
+  /**
+   * Returns the number of instances of the given property in this set.
+   */
+  public int getCount( String property)
+    {
+    return properties_.getCount( StringUtils.trimToNull( property));
     }
 
   /**

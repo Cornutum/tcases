@@ -158,7 +158,7 @@ public final class SystemInputJson
   private static JsonObjectBuilder addProperties( JsonObjectBuilder builder, VarValueDef value)
     {
     JsonArrayBuilder properties = Json.createArrayBuilder();
-    toStream( value.getProperties().getProperties()).forEach( property -> properties.add( property));
+    toStream( value.getProperties().getUniqueProperties()).forEach( property -> properties.add( property));
     JsonArray json = properties.build();
 
     if( !json.isEmpty())
