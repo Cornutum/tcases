@@ -115,6 +115,36 @@ public abstract class Cnf
       conjunct_ = simplify( conjunction);
       }
 
+    public void visit( AssertLess condition)
+      {
+      conjunct_ = condition;
+      }
+
+    public void visit( AssertMore condition)
+      {
+      conjunct_ = condition;
+      }
+
+    public void visit( AssertNotLess condition)
+      {
+      conjunct_ = condition;
+      }
+
+    public void visit( AssertNotMore condition)
+      {
+      conjunct_ = condition;
+      }
+
+    public void visit( Between condition)
+      {
+      visit( (AllOf) condition);
+      }
+
+    public void visit( Equals condition)
+      {
+      visit( (AllOf) condition);
+      }
+
       private IConjunct conjunct_;
     }
 

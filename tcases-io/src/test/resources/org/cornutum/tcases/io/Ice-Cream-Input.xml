@@ -1,0 +1,99 @@
+<System name="Ice-Cream">
+    <Function name="Cones">
+        <Input>
+            <Var name="Cone">
+                <Value name="Empty" failure="true">
+                    <When>
+                        <LessThan property="scoop" max="1"/>
+                    </When>
+                </Value>
+                <Value name="Plain">
+                    <When>
+                        <AllOf>
+                            <Equals property="scoop" count="1"/>
+                            <NotMoreThan property="topping" max="1"/>
+                        </AllOf>
+                    </When>
+                </Value>
+                <Value name="Plenty">
+                    <When>
+                        <AllOf>
+                            <Between property="scoop" min="1" max="2"/>
+                            <NotMoreThan property="topping" max="2"/>
+                        </AllOf>
+                    </When>
+                </Value>
+                <Value name="Grande">
+                    <When>
+                        <AllOf>
+                            <Between property="scoop" exclusiveMin="0" exclusiveMax="4"/>
+                            <Between property="topping" min="1" max="3"/>
+                        </AllOf>
+                    </When>
+                </Value>
+                <Value name="Too-Much" failure="true">
+                    <When>
+                        <AnyOf>
+                            <MoreThan property="scoop" min="3"/>                            
+                            <NotLessThan property="topping" min="4"/>                            
+                        </AnyOf> 
+                    </When>
+                </Value>
+            </Var>
+
+            <VarSet name="Flavors">
+                <Var name="Vanilla">
+                    <Value name="Yes" property="scoop"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Chocolate">
+                    <Value name="Yes" property="scoop"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Strawberry">
+                    <Value name="Yes" property="scoop"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Pistachio">
+                    <Value name="Yes" property="scoop"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Lemon">
+                    <Value name="Yes" property="scoop"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Coffee">
+                    <Value name="Yes" property="scoop"/>
+                    <Value name="No"/>
+                </Var>
+            </VarSet>
+            
+            <VarSet name="Toppings" when="scoop">
+                <Var name="Sprinkles">
+                    <Value name="Yes" property="topping"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Pecans">
+                    <Value name="Yes" property="topping"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Oreos">
+                    <Value name="Yes" property="topping"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Cherries">
+                    <Value name="Yes" property="topping"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="MMs">
+                    <Value name="Yes" property="topping"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Peppermint">
+                    <Value name="Yes" property="topping"/>
+                    <Value name="No"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

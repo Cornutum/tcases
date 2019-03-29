@@ -92,6 +92,13 @@ public class TestSystemInputJson
     }
 
   @Test
+  public void testSystemInput_BoundedAssertions()
+    {
+    testSystemInputResource( "Ice-Cream-Input.xml");
+    testSystemInputResource( "system-input-def-min-max.xml");
+    }
+
+  @Test
   public void testSystemInput_hasNone()
     {
     // Given...

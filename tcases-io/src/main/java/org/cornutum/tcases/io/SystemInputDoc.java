@@ -20,9 +20,15 @@ public final class SystemInputDoc
 
   public static final String ALLOF_TAG     = "AllOf";
   public static final String ANYOF_TAG     = "AnyOf";
+  public static final String BETWEEN_TAG   = "Between";
+  public static final String EQUALS_TAG    = "Equals";
   public static final String FUNCTION_TAG  = "Function";
   public static final String HAS_TAG       = "Has";
   public static final String INPUT_TAG     = "Input";
+  public static final String LESSTHAN_TAG  = "LessThan";
+  public static final String MORETHAN_TAG  = "MoreThan";
+  public static final String NOTLESSTHAN_TAG= "NotLessThan";
+  public static final String NOTMORETHAN_TAG= "NotMoreThan";
   public static final String NOT_TAG       = "Not";
   public static final String PROPERTY_TAG  = "Property";
   public static final String SYSTEM_TAG    = "System";
@@ -31,7 +37,12 @@ public final class SystemInputDoc
   public static final String VAR_TAG       = "Var";
   public static final String WHEN_TAG      = "When";
 
+  public static final String COUNT_ATR     = "count";
+  public static final String EXCLMAX_ATR   = "exclusiveMax";
+  public static final String EXCLMIN_ATR   = "exclusiveMin";
   public static final String FAILURE_ATR   = "failure";
+  public static final String MAX_ATR       = "max";
+  public static final String MIN_ATR       = "min";
   public static final String NAME_ATR      = "name";
   public static final String ONCE_ATR      = "once";
   public static final String PROPERTY_ATR  = "property";

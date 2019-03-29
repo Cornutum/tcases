@@ -94,31 +94,14 @@ public abstract class AbstractAssertion implements IAssertion
     }
 
   /**
-   * Returns true if this condition is satisfied by the given test case properties.
-   */
-  public abstract boolean satisfied( PropertySet properties);
-
-  /**
    * Returns true if this condition is compatible with the given test case properties.
    * A condition is <em>"compatible"</em> with these properties if it is already satisfied
    * or if it could be satisfied with the addition of more properties.
    */
-  public abstract boolean compatible( PropertySet properties);
-  
-  /**
-   * Returns an assertion that negates this assertion.
-   */
-  public abstract IAssertion negate();
-  
-  /**
-   * Returns true if this assertion negates the other.
-   */
-  public abstract boolean negates( IAssertion other);
-
-  /**
-   * Implements the Visitor pattern for this condition.
-   */
-  public abstract void accept( IConditionVisitor visitor);
+  public boolean compatible( PropertySet properties)
+    {
+    return completable() || satisfied( properties);
+    }
 
   public String toString()
     {

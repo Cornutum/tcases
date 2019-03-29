@@ -21,6 +21,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -111,8 +112,15 @@ public class TestCaseDef implements Comparable<TestCaseDef>
 
     try
       {
-      newBindings = addBindings( tuple);
-      logger_.trace( "Adding tuple={}, testCase={}", tuple, this);
+      newBindings =
+        Optional.of( addBindings( tuple))
+        .filter( added -> added.size() > 0)
+        .orElse( null);
+      
+      if( newBindings != null)
+        {
+        logger_.trace( "Adding tuple={}, testCase={}", tuple, this);
+        }
 
       }
     catch( BindingException be)
@@ -410,7 +418,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
       for( Iterator<IAssertion> assertions = disjuncts.next().getAssertions();
 
            assertions.hasNext()
-             && !(unsatisfiable = assertions.next()).getClass().equals( AssertNot.class);
+             && (unsatisfiable = assertions.next()).completable();
 
            unsatisfiable = null);
       }
