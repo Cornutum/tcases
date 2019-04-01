@@ -200,7 +200,7 @@ public class PropertySet implements Iterable<String>
   @Deprecated
   public Iterator<String> getProperties()
     {
-    return properties_.uniqueSet().iterator();
+    return getUniqueProperties();
     }
 
   /**

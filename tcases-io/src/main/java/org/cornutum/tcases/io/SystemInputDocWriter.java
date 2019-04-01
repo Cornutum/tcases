@@ -158,7 +158,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
       .attributeIf( value.getType() == FAILURE, FAILURE_ATR, "true")
       .attributeIf( value.getType() == ONCE, ONCE_ATR, "true")
       .attributeIf( WHEN_ATR, conditionWriter.getWhenAttribute())
-      .attributeIf( PROPERTY_ATR, propertyList( toStream( value.getProperties().getUniqueProperties())))
+      .attributeIf( PROPERTY_ATR, propertyList( toStream( value.getProperties())))
       .contentIf(
         value.getAnnotationCount() > 0 || conditionWriter.hasWhenElement(),
         () -> { writeAnnotations( value); conditionWriter.writeWhenElement(); })

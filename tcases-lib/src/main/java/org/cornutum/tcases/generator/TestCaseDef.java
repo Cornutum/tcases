@@ -268,7 +268,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     {
     PropertySet properties =
       new PropertySet()
-      .addAll( value.getProperties())
+      .addAll( value.getProperties().iterator())
       .addAll( properties_);
     
     Iterator<VarDef> vars;
@@ -307,7 +307,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private void addBinding( VarDef var, VarValueDef value)
     {
     bindings_.put( var, value);
-    properties_.addAll( value.getProperties());
+    properties_.addAll( value.getProperties().iterator());
     required_ = null;
     }
 
@@ -320,7 +320,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     VarValueDef value = bindings_.remove( var);
     if( value != null)
       {
-      properties_.removeAll( value.getProperties());
+      properties_.removeAll( value.getProperties().iterator());
       required_ = null;
       }
     }

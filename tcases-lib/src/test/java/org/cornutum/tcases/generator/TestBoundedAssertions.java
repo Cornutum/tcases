@@ -353,7 +353,7 @@ public class TestBoundedAssertions
       toStream( inputDef.getFunctionInputDefs())
       .flatMap( f -> toStream( new VarDefIterator( f)))
       .flatMap( var -> toStream( var.getValues()).map( value -> new VarBindingDef( var, value)))
-      .filter( binding -> binding.getValueDef().getProperties().contains( property))
+      .filter( binding -> binding.getValueDef().hasProperty( property))
       .map( binding -> VarBinding.create( binding))
       .collect( toList());
     }
