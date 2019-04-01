@@ -158,7 +158,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
       .attributeIf( value.getType() == FAILURE, FAILURE_ATR, "true")
       .attributeIf( value.getType() == ONCE, ONCE_ATR, "true")
       .attributeIf( WHEN_ATR, conditionWriter.getWhenAttribute())
-      .attributeIf( PROPERTY_ATR, propertyList( toStream( value.getProperties().getProperties())))
+      .attributeIf( PROPERTY_ATR, propertyList( toStream( value.getProperties())))
       .contentIf(
         value.getAnnotationCount() > 0 || conditionWriter.hasWhenElement(),
         () -> { writeAnnotations( value); conditionWriter.writeWhenElement(); })
@@ -314,6 +314,66 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .attributeIf( PROPERTY_ATR, propertiesOf( condition, ContainsAny.class))
         .content( () ->
                 visit( withoutPropertiesOf( condition, ContainsAny.class)))
+        .write();
+      }
+
+    public void visit( AssertLess condition)
+      {
+      xmlWriter_
+        .element( LESSTHAN_TAG)
+        .attribute( PROPERTY_ATR, condition.getProperty())
+        .attribute( MAX_ATR, String.valueOf( condition.getBound()))
+        .write();
+      }
+
+    public void visit( AssertMore condition)
+      {
+      xmlWriter_
+        .element( MORETHAN_TAG)
+        .attribute( PROPERTY_ATR, condition.getProperty())
+        .attribute( MIN_ATR, String.valueOf( condition.getBound()))
+        .write();
+      }
+
+    public void visit( AssertNotLess condition)
+      {
+      xmlWriter_
+        .element( NOTLESSTHAN_TAG)
+        .attribute( PROPERTY_ATR, condition.getProperty())
+        .attribute( MIN_ATR, String.valueOf( condition.getBound()))
+        .write();
+      }
+
+    public void visit( AssertNotMore condition)
+      {
+      xmlWriter_
+        .element( NOTMORETHAN_TAG)
+        .attribute( PROPERTY_ATR, condition.getProperty())
+        .attribute( MAX_ATR, String.valueOf( condition.getBound()))
+        .write();
+      }
+
+    public void visit( Between condition)
+      {
+      BoundedAssertion min = condition.getMin();
+      BoundedAssertion max = condition.getMax();
+
+      xmlWriter_
+        .element( BETWEEN_TAG)
+        .attribute( PROPERTY_ATR, min.getProperty())
+        .attribute( min.isExclusive()? EXCLMIN_ATR : MIN_ATR, String.valueOf( min.getBound()))
+        .attribute( max.isExclusive()? EXCLMAX_ATR : MAX_ATR, String.valueOf( max.getBound()))
+        .write();
+      }
+
+    public void visit( Equals condition)
+      {
+      BoundedAssertion min = condition.getMin();
+
+      xmlWriter_
+        .element( EQUALS_TAG)
+        .attribute( PROPERTY_ATR, min.getProperty())
+        .attribute( COUNT_ATR, String.valueOf( min.getBound()))
         .write();
       }
   

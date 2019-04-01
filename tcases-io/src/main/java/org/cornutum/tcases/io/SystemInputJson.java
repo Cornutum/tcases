@@ -158,7 +158,7 @@ public final class SystemInputJson
   private static JsonObjectBuilder addProperties( JsonObjectBuilder builder, VarValueDef value)
     {
     JsonArrayBuilder properties = Json.createArrayBuilder();
-    toStream( value.getProperties().getProperties()).forEach( property -> properties.add( property));
+    value.getProperties().forEach( property -> properties.add( property));
     JsonArray json = properties.build();
 
     if( !json.isEmpty())
@@ -405,7 +405,13 @@ public final class SystemInputJson
         SystemInputJson::asContainsNone,
         SystemInputJson::asNot,
         SystemInputJson::asAnyOf,
-        SystemInputJson::asAllOf
+        SystemInputJson::asAllOf,
+        SystemInputJson::asLessThan,
+        SystemInputJson::asMoreThan,
+        SystemInputJson::asNotLessThan,
+        SystemInputJson::asNotMoreThan,
+        SystemInputJson::asBetween,
+        SystemInputJson::asEquals
        );
 
     return
@@ -488,6 +494,92 @@ public final class SystemInputJson
       json.containsKey( ANY_OF_KEY)
       ? Optional.of( new AnyOf( toConditions( json.getJsonArray( ANY_OF_KEY))))
       : Optional.empty();
+    }
+
+  /**
+   * Returns the AssertLess condition represented by the given JSON object or an empty
+   * value if no such condition is found.
+   */
+  private static Optional<ICondition> asLessThan( JsonObject json)
+    {
+    return
+      Optional.of( json)
+      .filter( j -> j.containsKey( LESS_THAN_KEY))
+      .map( j -> j.getJsonObject( LESS_THAN_KEY))
+      .map( a -> new AssertLess( a.getString( PROPERTY_KEY), a.getInt( MAX_KEY)));
+    }
+
+  /**
+   * Returns the AssertMore condition represented by the given JSON object or an empty
+   * value if no such condition is found.
+   */
+  private static Optional<ICondition> asMoreThan( JsonObject json)
+    {
+    return
+      Optional.of( json)
+      .filter( j -> j.containsKey( MORE_THAN_KEY))
+      .map( j -> j.getJsonObject( MORE_THAN_KEY))
+      .map( a -> new AssertMore( a.getString( PROPERTY_KEY), a.getInt( MIN_KEY)));
+    }
+
+  /**
+   * Returns the AssertNotLess condition represented by the given JSON object or an empty
+   * value if no such condition is found.
+   */
+  private static Optional<ICondition> asNotLessThan( JsonObject json)
+    {
+    return
+      Optional.of( json)
+      .filter( j -> j.containsKey( NOT_LESS_THAN_KEY))
+      .map( j -> j.getJsonObject( NOT_LESS_THAN_KEY))
+      .map( a -> new AssertNotLess( a.getString( PROPERTY_KEY), a.getInt( MIN_KEY)));
+    }
+
+  /**
+   * Returns the AssertNotMore condition represented by the given JSON object or an empty
+   * value if no such condition is found.
+   */
+  private static Optional<ICondition> asNotMoreThan( JsonObject json)
+    {
+    return
+      Optional.of( json)
+      .filter( j -> j.containsKey( NOT_MORE_THAN_KEY))
+      .map( j -> j.getJsonObject( NOT_MORE_THAN_KEY))
+      .map( a -> new AssertNotMore( a.getString( PROPERTY_KEY), a.getInt( MAX_KEY)));
+    }
+
+  /**
+   * Returns the between condition represented by the given JSON object or an empty
+   * value if no such condition is found.
+   */
+  private static Optional<ICondition> asBetween( JsonObject json)
+    {
+    return
+      Optional.of( json)
+      .filter( j -> j.containsKey( BETWEEN_KEY))
+      .map( j -> j.getJsonObject( BETWEEN_KEY))
+      .map( b -> 
+        new Between(
+          b.containsKey( EXCLUSIVE_MIN_KEY)
+          ? new AssertMore( b.getString( PROPERTY_KEY), b.getInt( EXCLUSIVE_MIN_KEY))
+          : new AssertNotLess( b.getString( PROPERTY_KEY), b.getInt( MIN_KEY)),
+
+          b.containsKey( EXCLUSIVE_MAX_KEY)
+          ? new AssertLess( b.getString( PROPERTY_KEY), b.getInt( EXCLUSIVE_MAX_KEY))
+          : new AssertNotMore( b.getString( PROPERTY_KEY), b.getInt( MAX_KEY))));
+    }
+
+  /**
+   * Returns the equals condition represented by the given JSON object or an empty
+   * value if no such condition is found.
+   */
+  private static Optional<ICondition> asEquals( JsonObject json)
+    {
+    return
+      Optional.of( json)
+      .filter( j -> j.containsKey( EQUALS_KEY))
+      .map( j -> j.getJsonObject( EQUALS_KEY))
+      .map( e -> new Equals( e.getString( PROPERTY_KEY), e.getInt( COUNT_KEY)));
     }
 
   /**
@@ -628,21 +720,123 @@ public final class SystemInputJson
       json_ = builder.build();
       }
 
+    public void visit( AssertLess condition)
+      {
+      json_ =
+        Json.createObjectBuilder()
+        .add(
+          LESS_THAN_KEY,
+
+          Json.createObjectBuilder()
+          .add( PROPERTY_KEY, condition.getProperty())
+          .add( MAX_KEY, condition.getBound()))
+        
+        .build();
+      }
+
+    public void visit( AssertMore condition)
+      {
+      json_ =
+        Json.createObjectBuilder()
+        .add(
+          MORE_THAN_KEY,
+
+          Json.createObjectBuilder()
+          .add( PROPERTY_KEY, condition.getProperty())
+          .add( MIN_KEY, condition.getBound()))
+        
+        .build();
+      }
+
+    public void visit( AssertNotLess condition)
+      {
+      json_ =
+        Json.createObjectBuilder()
+        .add(
+          NOT_LESS_THAN_KEY,
+
+          Json.createObjectBuilder()
+          .add( PROPERTY_KEY, condition.getProperty())
+          .add( MIN_KEY, condition.getBound()))
+        
+        .build();
+      }
+
+    public void visit( AssertNotMore condition)
+      {
+      json_ =
+        Json.createObjectBuilder()
+        .add(
+          NOT_MORE_THAN_KEY,
+
+          Json.createObjectBuilder()
+          .add( PROPERTY_KEY, condition.getProperty())
+          .add( MAX_KEY, condition.getBound()))
+        
+        .build();
+      }
+
+    public void visit( Between condition)
+      {
+      BoundedAssertion min = condition.getMin();
+      BoundedAssertion max = condition.getMax();
+
+      json_ =
+        Json.createObjectBuilder()
+        .add(
+          BETWEEN_KEY,
+
+          Json.createObjectBuilder()
+          .add( PROPERTY_KEY, min.getProperty())
+          .add( min.isExclusive()? EXCLUSIVE_MIN_KEY : MIN_KEY, min.getBound())
+          .add( max.isExclusive()? EXCLUSIVE_MAX_KEY : MAX_KEY, max.getBound()))
+
+        .build();
+      }
+
+    public void visit( Equals condition)
+      {
+      BoundedAssertion min = condition.getMin();
+
+      json_ =
+        Json.createObjectBuilder()
+        .add(
+          EQUALS_KEY,
+
+          Json.createObjectBuilder()
+          .add( PROPERTY_KEY, min.getProperty())
+          .add( COUNT_KEY, min.getBound()))
+
+        .build();
+      }
+
     private ICondition condition_;
     private JsonObject json_;
     }
 
   private static final String ALL_OF_KEY = "allOf";
   private static final String ANY_OF_KEY = "anyOf";
+  private static final String BETWEEN_KEY = "between";
+  private static final String COUNT_KEY = "count";
+  private static final String EQUALS_KEY = "equals";
+  private static final String EXCLUSIVE_MAX_KEY = "exclusiveMax";
+  private static final String EXCLUSIVE_MIN_KEY = "exclusiveMin";
   private static final String FAILURE_KEY = "failure";
   private static final String HAS_ALL_KEY = "hasAll";
   private static final String HAS_ANY_KEY = "hasAny";
   private static final String HAS_KEY = "has";
   private static final String HAS_NONE_KEY = "hasNone";
+  private static final String LESS_THAN_KEY = "lessThan";
+  private static final String MAX_KEY = "max";
   private static final String MEMBERS_KEY = "members";
+  private static final String MIN_KEY = "min";
+  private static final String MORE_THAN_KEY = "moreThan";
   private static final String NOT_KEY = "not";
+  private static final String NOT_LESS_THAN_KEY = "notLessThan";
+  private static final String NOT_MORE_THAN_KEY = "notMoreThan";
   private static final String ONCE_KEY = "once";
   private static final String PROPERTIES_KEY = "properties";
+  private static final String PROPERTY_KEY = "property";
   private static final String SYSTEM_KEY = "system";
   private static final String VALUES_KEY = "values";
   private static final String WHEN_KEY = "when";

@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//                    Copyright 2012, Cornutum Project
+//                    Copyright 2019, Cornutum Project
 //                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
@@ -10,25 +10,33 @@ package org.cornutum.tcases.conditions;
 import org.cornutum.tcases.PropertySet;
 
 /**
- * An {@link IAssertion assertion} that asserts the existence of a single property.
+ * An {@link IAssertion assertion} that the number of instances of a property is less than a specified maximum.
  *
  */
-public class Assert extends AbstractAssertion
+public class AssertLess extends BoundedAssertion
   {
   /**
-   * Creates a new Assert object.
+   * Creates a new AssertLess object.
    */
-  public Assert()
+  public AssertLess()
     {
-    this( null);
+    this( null, 0);
     }
   
   /**
-   * Creates a new Assert object.
+   * Creates a new AssertLess object.
    */
-  public Assert( String property)
+  public AssertLess( String property, int maximum)
     {
-    super( property);
+    super( property, maximum);
+    }
+
+  /**
+   * Returns true is the bound is exclusive.
+   */
+  public boolean isExclusive()
+    {
+    return true;
     }
 
   /**
@@ -36,8 +44,7 @@ public class Assert extends AbstractAssertion
    */
   public boolean satisfied( PropertySet properties)
     {
-    String property = getProperty();
-    return property == null || properties.contains( property);
+    return properties.getCount( getProperty()) < getBound();
     }
   
   /**
@@ -45,7 +52,7 @@ public class Assert extends AbstractAssertion
    */
   public IAssertion negate()
     {
-    return new AssertNot( getProperty());
+    return new AssertNotLess( getProperty(), getBound());
     }
   
   /**
@@ -53,14 +60,15 @@ public class Assert extends AbstractAssertion
    */
   public boolean negates( IAssertion other)
     {
-    AssertNot assertion =
-      other != null && other.getClass().equals( AssertNot.class)
-      ? (AssertNot) other
+    AssertNotLess assertion =
+      other != null && other.getClass().equals( AssertNotLess.class)
+      ? (AssertNotLess) other
       : null;
 
     return
       assertion != null
-      && assertion.getProperty().equals( getProperty());
+      && assertion.getProperty().equals( getProperty())
+      && assertion.getBound() == getBound();
     }
 
   /**
@@ -69,7 +77,7 @@ public class Assert extends AbstractAssertion
    */
   public boolean completable()
     {
-    return true;
+    return false;
     }
   
   /**

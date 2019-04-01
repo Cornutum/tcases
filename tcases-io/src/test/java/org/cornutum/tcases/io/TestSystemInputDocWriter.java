@@ -81,6 +81,13 @@ public class TestSystemInputDocWriter
     testWriteResource( "system-input-def-objects.xml");
     }
 
+  @Test
+  public void testWrite_boundedAssertions()
+    {
+    testWriteResource( "system-input-def-min-max.xml");
+    testWriteResource( "Ice-Cream-Input.xml");
+    }
+
   public void testWriteResource( String systemInputResource)
     {
     // Given...

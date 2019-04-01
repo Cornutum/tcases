@@ -24,4 +24,16 @@ public interface IConditionVisitor
   void visit( IConjunct condition);
   
   void visit( Not condition);
+
+  void visit( AssertLess condition);
+
+  void visit( AssertMore condition);
+
+  void visit( AssertNotLess condition);
+
+  void visit( AssertNotMore condition);
+
+  void visit( Between condition);
+
+  void visit( Equals condition);
   }
