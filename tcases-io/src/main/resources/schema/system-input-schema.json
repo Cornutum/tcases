@@ -169,6 +169,110 @@
                 },
                 "not": {
                     "$ref": "#/definitions/condition"
+                },
+                "lessThan": {
+                    "type": "object",
+                    "properties": {
+                        "property": {
+                            "type": "string"
+                        },
+                        "max": {
+                            "type": "integer",
+                            "minimum": 0
+                        } 
+                    },
+                    "required": [ "property", "max" ]
+                },
+                "notLessThan": {
+                    "type": "object",
+                    "properties": {
+                        "property": {
+                            "type": "string"
+                        },
+                        "min": {
+                            "type": "integer",
+                            "minimum": 0
+                        } 
+                    },
+                    "required": [ "property", "min" ]
+                },
+                "moreThan": {
+                    "type": "object",
+                    "properties": {
+                        "property": {
+                            "type": "string"
+                        },
+                        "min": {
+                            "type": "integer",
+                            "minimum": 0
+                        } 
+                    },
+                    "required": [ "property", "min" ]
+                },
+                "notMoreThan": {
+                    "type": "object",
+                    "properties": {
+                        "property": {
+                            "type": "string"
+                        },
+                        "max": {
+                            "type": "integer",
+                            "minimum": 0
+                        } 
+                    },
+                    "required": [ "property", "max" ]
+                },
+                "equals": {
+                    "type": "object",
+                    "properties": {
+                        "property": {
+                            "type": "string"
+                        },
+                        "count": {
+                            "type": "integer",
+                            "minimum": 0
+                        } 
+                    },
+                    "required": [ "property", "count" ]
+                },
+                "between": {
+                    "type": "object",
+                    "properties": {
+                        "property": {
+                            "type": "string"
+                        },
+                        "min": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "exclusiveMin": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "max": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "exclusiveMax": {
+                            "type": "integer",
+                            "minimum": 0
+                        } 
+                    },
+                    "required": [ "property" ],
+                    "minProperties": 3,
+                    "maxProperties": 3,
+                    "dependencies": {
+                        "min": {
+                            "properties": {
+                                "exclusiveMin": false
+                            }
+                        },
+                        "max": {
+                            "properties": {
+                                "exclusiveMax": false
+                            }
+                        }
+                    }
                 }
             },
             "minProperties": 1,

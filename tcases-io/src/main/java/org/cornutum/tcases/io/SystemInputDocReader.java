@@ -83,6 +83,56 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       }
 
     /**
+     * Returns the value of the given integer attribute or null if undefined. Throws a SAXException if the attribute is invalid.
+     */
+    public Integer getInteger( Attributes attributes, String attributeName) throws SAXException
+      {
+      return toInteger( attributeName, getAttribute( attributes, attributeName));
+      }
+
+    /**
+     * Returns the value of the given integer attribute. Throws a SAXException if the attribute is undefined, empty, or invalid.
+     */
+    public Integer requireInteger( Attributes attributes, String attributeName) throws SAXException
+      {
+      return toInteger( attributeName, requireNonBlankAttribute( attributes, attributeName));
+      }
+
+    /**
+     * Returns the given attribute value as an integer. Throws a SAXException if the attribute is not a valid integer.
+     */
+    public Integer toInteger( String attributeName, String attributeValue) throws SAXException
+      {
+      Integer integer = null;
+      String value = StringUtils.trimToNull( attributeValue);
+
+      if( value != null)
+        {
+        try
+          {
+          try
+            {
+            integer = Integer.valueOf( value);
+            }
+          catch( Exception e)
+            {
+            throw new RuntimeException( "Invalid value=\"" + value + "\", must be a non-negative integer");
+            }
+          if( integer < 0)
+            {
+            throw new RuntimeException( "Invalid value=" + integer + ", must be non-negative");
+            }
+          }
+        catch( Exception e)
+          {
+          throw new SAXParseException( "Invalid \"" + attributeName + "\" attribute: " + e.getMessage(), getDocumentLocator()); 
+          }
+        }
+      
+      return integer;
+      }
+
+    /**
      * Returns the value of the given identifier attribute or null if undefined. Throws a SAXException if the attribute is invalid.
      */
     public String getIdentifier( Attributes attributes, String attributeName) throws SAXException
@@ -717,7 +767,14 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       return
         ALLOF_TAG.equals( memberQname)
         || ANYOF_TAG.equals( memberQname)
-        || NOT_TAG.equals( memberQname);
+        || NOT_TAG.equals( memberQname)
+        || LESSTHAN_TAG.equals( memberQname)
+        || NOTLESSTHAN_TAG.equals( memberQname)
+        || MORETHAN_TAG.equals( memberQname)
+        || NOTMORETHAN_TAG.equals( memberQname)
+        || BETWEEN_TAG.equals( memberQname)
+        || EQUALS_TAG.equals( memberQname)
+        ;
       }
 
     public void endElement( String uri, String localName, String qName) throws SAXException
@@ -930,6 +987,243 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       addCondition( new ContainsAny( properties));
       }
+    }
+  
+  /**
+   * Handles LessThan elements
+   */
+  protected class LessThanHandler extends ElementHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      lessThan_ =
+        new AssertLess(
+          requireNonBlankAttribute( attributes, PROPERTY_ATR),
+          requireInteger( attributes, MAX_ATR));
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      super.endElement( uri, localName, qName);
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( getCondition());
+      }
+    
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), PROPERTY_ATR, MAX_ATR);
+      }
+
+    /**
+     * Returns the condition represented by this element.
+     */
+    public ICondition getCondition()
+      {
+      return lessThan_;
+      }
+
+    private AssertLess lessThan_;
+    }
+  
+  /**
+   * Handles NotLessThan elements
+   */
+  protected class NotLessThanHandler extends ElementHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      notLessThan_ =
+        new AssertNotLess(
+          requireNonBlankAttribute( attributes, PROPERTY_ATR),
+          requireInteger( attributes, MIN_ATR));
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      super.endElement( uri, localName, qName);
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( getCondition());
+      }
+    
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), PROPERTY_ATR, MIN_ATR);
+      }
+
+    /**
+     * Returns the condition represented by this element.
+     */
+    public ICondition getCondition()
+      {
+      return notLessThan_;
+      }
+
+    private AssertNotLess notLessThan_;
+    }
+  
+  /**
+   * Handles MoreThan elements
+   */
+  protected class MoreThanHandler extends ElementHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      moreThan_ =
+        new AssertMore(
+          requireNonBlankAttribute( attributes, PROPERTY_ATR),
+          requireInteger( attributes, MIN_ATR));
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      super.endElement( uri, localName, qName);
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( getCondition());
+      }
+    
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), PROPERTY_ATR, MIN_ATR);
+      }
+
+    /**
+     * Returns the condition represented by this element.
+     */
+    public ICondition getCondition()
+      {
+      return moreThan_;
+      }
+
+    private AssertMore moreThan_;
+    }
+  
+  /**
+   * Handles NotMoreThan elements
+   */
+  protected class NotMoreThanHandler extends ElementHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      notMoreThan_ =
+        new AssertNotMore(
+          requireNonBlankAttribute( attributes, PROPERTY_ATR),
+          requireInteger( attributes, MAX_ATR));
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      super.endElement( uri, localName, qName);
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( getCondition());
+      }
+    
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), PROPERTY_ATR, MAX_ATR);
+      }
+
+    /**
+     * Returns the condition represented by this element.
+     */
+    public ICondition getCondition()
+      {
+      return notMoreThan_;
+      }
+
+    private AssertNotMore notMoreThan_;
+    }
+  
+  /**
+   * Handles Between elements
+   */
+  protected class BetweenHandler extends ElementHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      String property = requireNonBlankAttribute( attributes, PROPERTY_ATR);
+      between_ =
+        new Between(
+          getAttribute( attributes, EXCLMIN_ATR) == null
+          ? new AssertNotLess( property, requireInteger( attributes, MIN_ATR))
+          : new AssertMore( property, requireInteger( attributes, EXCLMIN_ATR)),
+
+          getAttribute( attributes, EXCLMAX_ATR) == null
+          ? new AssertNotMore( property, requireInteger( attributes, MAX_ATR))
+          : new AssertLess( property, requireInteger( attributes, EXCLMAX_ATR)));
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      super.endElement( uri, localName, qName);
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( getCondition());
+      }
+    
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), PROPERTY_ATR, MIN_ATR, MAX_ATR, EXCLMIN_ATR, EXCLMAX_ATR);
+      }
+
+    /**
+     * Returns the condition represented by this element.
+     */
+    public ICondition getCondition()
+      {
+      return between_;
+      }
+
+    private Between between_;
+    }
+  
+  /**
+   * Handles Equals elements
+   */
+  protected class EqualsHandler extends ElementHandler
+    {
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      equals_ = new Equals( requireNonBlankAttribute( attributes, PROPERTY_ATR), requireInteger( attributes, COUNT_ATR));
+      }
+
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      super.endElement( uri, localName, qName);
+      ConditionContainer parent = (ConditionContainer) getParent();
+      parent.addCondition( getCondition());
+      }
+    
+    /**
+     * Adds the valid attributes for this element.
+     */
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), PROPERTY_ATR, COUNT_ATR);
+      }
+
+    /**
+     * Returns the condition represented by this element.
+     */
+    public ICondition getCondition()
+      {
+      return equals_;
+      }
+
+    private Equals equals_;
     }
   
   /**
@@ -1323,9 +1617,15 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     ElementHandler handler =
       qName.equals( ALLOF_TAG)?       (ElementHandler) new AllOfHandler() :
       qName.equals( ANYOF_TAG)?       (ElementHandler) new AnyOfHandler() :
+      qName.equals( BETWEEN_TAG)?     (ElementHandler) new BetweenHandler() :
+      qName.equals( EQUALS_TAG)?      (ElementHandler) new EqualsHandler() :
       qName.equals( FUNCTION_TAG)?    (ElementHandler) new FunctionHandler() :
       qName.equals( HAS_TAG)?         (ElementHandler) new HasHandler() :
       qName.equals( INPUT_TAG)?       (ElementHandler) new InputHandler() :
+      qName.equals( LESSTHAN_TAG)?    (ElementHandler) new LessThanHandler() :
+      qName.equals( MORETHAN_TAG)?    (ElementHandler) new MoreThanHandler() :
+      qName.equals( NOTLESSTHAN_TAG)? (ElementHandler) new NotLessThanHandler() :
+      qName.equals( NOTMORETHAN_TAG)? (ElementHandler) new NotMoreThanHandler() :
       qName.equals( NOT_TAG)?         (ElementHandler) new NotHandler() :
       qName.equals( PROPERTY_TAG)?    (ElementHandler) new PropertyHandler() :
       qName.equals( SYSTEM_TAG)?      (ElementHandler) new SystemHandler() :

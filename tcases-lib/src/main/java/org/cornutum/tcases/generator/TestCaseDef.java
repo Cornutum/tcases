@@ -21,6 +21,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -111,8 +112,15 @@ public class TestCaseDef implements Comparable<TestCaseDef>
 
     try
       {
-      newBindings = addBindings( tuple);
-      logger_.trace( "Adding tuple={}, testCase={}", tuple, this);
+      newBindings =
+        Optional.of( addBindings( tuple))
+        .filter( added -> added.size() > 0)
+        .orElse( null);
+      
+      if( newBindings != null)
+        {
+        logger_.trace( "Adding tuple={}, testCase={}", tuple, this);
+        }
 
       }
     catch( BindingException be)
@@ -260,7 +268,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     {
     PropertySet properties =
       new PropertySet()
-      .addAll( value.getProperties())
+      .addAll( value.getProperties().iterator())
       .addAll( properties_);
     
     Iterator<VarDef> vars;
@@ -299,7 +307,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private void addBinding( VarDef var, VarValueDef value)
     {
     bindings_.put( var, value);
-    properties_.addAll( value.getProperties());
+    properties_.addAll( value.getProperties().iterator());
     required_ = null;
     }
 
@@ -312,7 +320,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     VarValueDef value = bindings_.remove( var);
     if( value != null)
       {
-      properties_.removeAll( value.getProperties());
+      properties_.removeAll( value.getProperties().iterator());
       required_ = null;
       }
     }
@@ -410,7 +418,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
       for( Iterator<IAssertion> assertions = disjuncts.next().getAssertions();
 
            assertions.hasNext()
-             && !(unsatisfiable = assertions.next()).getClass().equals( AssertNot.class);
+             && (unsatisfiable = assertions.next()).completable();
 
            unsatisfiable = null);
       }
@@ -448,7 +456,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private Stream<String> propertyStream()
     {
     return
-      CollectionUtils.toStream( properties_.getProperties())
+      CollectionUtils.toStream( properties_.getUniqueProperties())
       .sorted( String.CASE_INSENSITIVE_ORDER);
     }
 

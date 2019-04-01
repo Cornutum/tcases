@@ -14,6 +14,7 @@ import org.apache.commons.lang3.ClassUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 
@@ -138,6 +139,39 @@ public class SystemInputResources
       }
 
     return systemInputDef;
+    }
+
+  /**
+   * Returns the {@link SystemInputDef} defined by the given JSON resource.
+   */
+  public SystemInputDef readJson( File file)
+    {
+    SystemInputDef  systemInputDef  = null;
+    try( SystemInputJsonReader reader = new SystemInputJsonReader( new FileInputStream( file)))
+      {
+      systemInputDef = reader.getSystemInputDef();
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read file=" + file, e);
+      }
+
+    return systemInputDef;
+    }
+
+  /**
+   * Writes the {@link SystemInputDef} to the the given file.
+   */
+  public void writeJson( SystemInputDef systemInputDef, File file)
+    {
+    try( SystemInputJsonWriter writer = new SystemInputJsonWriter( new FileOutputStream( file)))
+      {
+      writer.write( systemInputDef);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write file=" + file, e);
+      }
     }
 
   private Class<?> class_;

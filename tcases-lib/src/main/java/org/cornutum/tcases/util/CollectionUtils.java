@@ -36,6 +36,14 @@ public final class CollectionUtils
   public static <T> Stream<T> toStream( Iterator<T> iterator)
     {
     Iterable<T> iterable = () -> iterator;
+    return toStream( iterable);
+    }
+
+  /**
+   * Returns a stream that produces the sequence defined by the given Iterable.
+   */
+  public static <T> Stream<T> toStream( Iterable<T> iterable)
+    {
     return StreamSupport.stream( iterable.spliterator(), false);
     }
 

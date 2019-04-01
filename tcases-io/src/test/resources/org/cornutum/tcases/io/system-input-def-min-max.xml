@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<System name="Schemas">
+  <Function name="Object">
+    <Input type="arg">
+      <Var name="Property-Count">
+        <Value name="&lt; 2" failure="true">
+          <When>
+            <LessThan property="propertyDefined" max="2"/>
+          </When>
+        </Value>
+        <Value name="&lt;= 3">
+          <When>
+            <Between property="propertyDefined" min="2" max="3"/>
+          </When>
+        </Value>
+        <Value name="&gt; 3" failure="true">
+          <When>
+            <MoreThan property="propertyDefined" min="3"/>
+          </When>
+        </Value>
+      </Var>
+      <VarSet name="Properties">
+        <VarSet name="myString">
+          <Var name="Defined">
+            <Value name="Yes" property="propertyDefined"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+        <VarSet name="myArray">
+          <Var name="Defined">
+            <Value name="Yes" property="propertyDefined"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+        <VarSet name="myNumber">
+          <Var name="Defined">
+            <Value name="Yes" property="propertyDefined"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+        <VarSet name="myInteger">
+          <Var name="Defined">
+            <Value name="Yes" property="propertyDefined"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+        <VarSet name="myBoolean">
+          <Var name="Defined">
+            <Value name="Yes" property="propertyDefined"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

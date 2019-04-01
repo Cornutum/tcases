@@ -179,7 +179,7 @@ public class Tuple
       remove( var);
 
       bindings_.put( var, binding);
-      properties_.addAll( value.getProperties());
+      properties_.addAll( value.getProperties().iterator());
       }
 
     return this;
@@ -209,7 +209,7 @@ public class Tuple
     VarBindingDef binding = bindings_.remove( var);
     if( binding != null)
       {
-      properties_.removeAll( binding.getValueDef().getProperties());
+      properties_.removeAll( binding.getValueDef().getProperties().iterator());
       }
 
     return this;

@@ -49,7 +49,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * all of the given properties.
    */
   public static ContainsAll has( String... properties)
@@ -58,7 +58,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * any of the given properties.
    */
   public static ContainsAny hasAny( String... properties)
@@ -67,7 +67,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * all of the given properties.
    */
   public static AllOf allOf( String... properties)
@@ -76,7 +76,7 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * any of the given properties.
    */
   public static AnyOf anyOf( String... properties)
@@ -85,12 +85,93 @@ public final class Conditions
     }
 
   /**
-   * A {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
    * none of the given properties.
    */
   public static Not not( String... properties)
     {
     return not( hasAny( properties));
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * more than a specified minimum that the number of instances of a property.
+   */
+  public static AssertMore moreThan( String property, int minimum)
+    {
+    return new AssertMore( property, minimum);
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * less than a specified maximum that the number of instances of a property.
+   */
+  public static AssertLess lessThan( String property, int maximum)
+    {
+    return new AssertLess( property, maximum);
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * less than or equal to a specified maximum that the number of instances of a property.
+   */
+  public static AssertNotMore notMoreThan( String property, int maximum)
+    {
+    return new AssertNotMore( property, maximum);
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * greater than or equal to a specified minimum that the number of instances of a property.
+   */
+  public static AssertNotLess notLessThan( String property, int minimum)
+    {
+    return new AssertNotLess( property, minimum);
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * between a specified minimum (inclusive) and maximum (inclusive) number of instances of a property.
+   */
+  public static Between between( String property, int minimum, int maximum)
+    {
+    return new Between( notLessThan( property, minimum), notMoreThan( property, maximum));
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * between a specified minimum (exclusive) and maximum (exclusive) number of instances of a property.
+   */
+  public static Between betweenExclusive( String property, int minimum, int maximum)
+    {
+    return new Between( moreThan( property, minimum), lessThan( property, maximum));
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * between a specified minimum (exclusive) and maximum (inclusive) number of instances of a property.
+   */
+  public static Between betweenExclusiveMin( String property, int minimum, int maximum)
+    {
+    return new Between( moreThan( property, minimum), notMoreThan( property, maximum));
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * between a specified minimum (inclusive) and maximum (exclusive) number of instances of a property.
+   */
+  public static Between betweenExclusiveMax( String property, int minimum, int maximum)
+    {
+    return new Between( notLessThan( property, minimum), lessThan( property, maximum));
+    }
+
+  /**
+   * Returns a {@link ICondition condition} that is satisfied by a {@link org.cornutum.tcases.PropertySet} that contains
+   * a specified number of instances of a property.
+   */
+  public static Equals equalTo( String property, int count)
+    {
+    return new Equals( property, count);
     }
 
   /**
@@ -143,6 +224,41 @@ public final class Conditions
     public void visit( Not condition)
       {
       toStream( condition.getConditions()).flatMap( c -> propertiesReferenced( c)).forEach( p -> refBuilder_.add( p));
+      }
+
+    public void visit( AssertLess condition)
+      {
+      visitBoundedAssertion( condition);
+      }
+
+    public void visit( AssertMore condition)
+      {
+      visitBoundedAssertion( condition);
+      }
+
+    public void visit( AssertNotLess condition)
+      {
+      visitBoundedAssertion( condition);
+      }
+
+    public void visit( AssertNotMore condition)
+      {
+      visitBoundedAssertion( condition);
+      }
+
+    public void visit( Between condition)
+      {
+      visit( (AllOf) condition);
+      }
+
+    public void visit( Equals condition)
+      {
+      visit( (AllOf) condition);
+      }
+
+    private void visitBoundedAssertion( BoundedAssertion condition)
+      {
+      refBuilder_.add( condition.getProperty());
       }
 
     public Stream<String> propertiesVisited()

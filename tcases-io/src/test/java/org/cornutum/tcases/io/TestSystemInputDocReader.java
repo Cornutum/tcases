@@ -2104,6 +2104,90 @@ public class TestSystemInputDocReader
     assertThat( "system-input-def-objects.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
     }
 
+  
+  @Test
+  public void testGetSystemInputDef_boundedAssertions()
+    {
+    // Given...
+    SystemInputDef expected =
+      SystemInputDefBuilder.with( "Schemas")
+      .functions(
+        FunctionInputDefBuilder.with( "Object")
+        .vars(
+          "arg",
+
+          VarDefBuilder.with( "Property-Count")
+          .values(
+            VarValueDefBuilder.with( "< 2")
+            .when( lessThan( "propertyDefined", 2))
+            .type( FAILURE) 
+            .build(),
+            VarValueDefBuilder.with( "<= 3")
+            .when( between( "propertyDefined", 2, 3))
+            .build(),
+            VarValueDefBuilder.with( "> 3")
+            .when( moreThan( "propertyDefined", 3))
+            .type( FAILURE) 
+            .build())
+          .build(),
+
+          VarSetBuilder.with( "Properties")
+          .members(
+            VarSetBuilder.with( "myString")
+            .members(
+              VarDefBuilder.with( "Defined")
+              .values(
+                VarValueDefBuilder.with( "Yes").properties( "propertyDefined").build(),
+                VarValueDefBuilder.with( "No").build())
+              .build())
+            .build(),
+
+            VarSetBuilder.with( "myArray")
+            .members(
+              VarDefBuilder.with( "Defined")
+              .values(
+                VarValueDefBuilder.with( "Yes").properties( "propertyDefined").build(),
+                VarValueDefBuilder.with( "No").build())
+              .build())
+            .build(),
+
+            VarSetBuilder.with( "myNumber")
+            .members(
+              VarDefBuilder.with( "Defined")
+              .values(
+                VarValueDefBuilder.with( "Yes").properties( "propertyDefined").build(),
+                VarValueDefBuilder.with( "No").build())
+              .build())
+            .build(),
+          
+            VarSetBuilder.with( "myInteger")
+            .members(
+              VarDefBuilder.with( "Defined")
+              .values(
+                VarValueDefBuilder.with( "Yes").properties( "propertyDefined").build(),
+                VarValueDefBuilder.with( "No").build())
+              .build())
+            .build(),
+          
+            VarSetBuilder.with( "myBoolean")
+            .members(
+              VarDefBuilder.with( "Defined")
+              .values(
+                VarValueDefBuilder.with( "Yes").properties( "propertyDefined").build(),
+                VarValueDefBuilder.with( "No").build())
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();
+
+    // When...
+    SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-min-max.xml");
+
+    // Then...
+    assertThat( "system-input-def-min-max.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    }
+
   /**
    * Reports a failure if reading the given resource does <U>not</U> cause the expected exception at the expected location.
    */

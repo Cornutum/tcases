@@ -97,6 +97,6 @@ public abstract class ConditionSet implements ICondition
       .toString();
     }
 
-  private List<ICondition> conditions_ = new ArrayList<ICondition>();
+  protected List<ICondition> conditions_ = new ArrayList<ICondition>();
   }
 

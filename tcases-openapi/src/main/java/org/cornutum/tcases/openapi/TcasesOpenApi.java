@@ -937,7 +937,7 @@ public final class TcasesOpenApi
     boolean propertiesAllowed =
       count
       .map( c -> toStream( c.getValues()))
-      .map( values -> values.anyMatch( v -> v.getProperties().contains( objectPropertiesProperty( instanceVarTag))))
+      .map( values -> values.anyMatch( v -> v.hasProperty( objectPropertiesProperty( instanceVarTag))))
       .orElse( false);
       
     objectPropertiesVar( api, instanceVarTag, instanceSchema, propertiesAllowed)

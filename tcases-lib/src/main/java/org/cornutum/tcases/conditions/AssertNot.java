@@ -39,16 +39,6 @@ public class AssertNot extends AbstractAssertion
     String property = getProperty();
     return !(property != null && properties.contains( property));
     }
-
-  /**
-   * Returns true if this condition is compatible with the given test case properties.
-   * A condition is <em>"compatible"</em> with these properties if it is already satisfied
-   * or if it could be satisfied with the addition of more properties.
-   */
-  public boolean compatible( PropertySet properties)
-    {
-    return satisfied( properties);
-    }
   
   /**
    * Returns an assertion that negates this assertion.
@@ -71,6 +61,15 @@ public class AssertNot extends AbstractAssertion
     return
       assertion != null
       && assertion.getProperty().equals( getProperty());
+    }
+
+  /**
+   * Returns true if any property set that does NOT satisfy this assertion can be made to satisfy this assertion by
+   * the addition of another (instance of a) property.
+   */
+  public boolean completable()
+    {
+    return false;
     }
   
   /**

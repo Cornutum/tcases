@@ -11,11 +11,11 @@ import org.cornutum.tcases.util.ObjectUtils;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
-import org.apache.commons.collections4.IteratorUtils;
-
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Defines the properties of a value for an {@link IVarDef input variable}.
@@ -83,7 +83,7 @@ public class VarValueDef extends Conditional
     {
     setName( name);
     setType( type);
-    setProperties( (PropertySet) null);
+    setProperties( null);
     }
 
   /**
@@ -136,27 +136,34 @@ public class VarValueDef extends Conditional
     }
 
   /**
-   * Changes the set of test case properties contributed by this value.
+   * Returns if this value has the given property.
    */
-  public void setProperties( Collection<String> properties)
+  public boolean hasProperty( String property)
     {
-    properties_ = new PropertySet();
-    addProperties( properties);
+    return properties_.contains( property);
+    }
+
+  /**
+   * Returns if this value has any properties.
+   */
+  public boolean hasProperties()
+    {
+    return !properties_.isEmpty();
     }
 
   /**
    * Changes the set of test case properties contributed by this value.
    */
-  public void setProperties( PropertySet properties)
+  public void setProperties( Collection<String> properties)
     {
-    properties_ = new PropertySet();
+    properties_ = new HashSet<String>();
     addProperties( properties);
     }
 
   /**
    * Returns the set of test case properties contributed by this value.
    */
-  public PropertySet getProperties()
+  public Iterable<String> getProperties()
     {
     return properties_;
     }
@@ -169,20 +176,7 @@ public class VarValueDef extends Conditional
     if( properties != null)
       {
       assertPropertyIdentifiers( properties);
-      getProperties().addAll( properties);
-      }
-
-    return this;
-    }
-
-  /**
-   * Adds to the set of test case properties contributed by this value.
-   */
-  public VarValueDef addProperties( PropertySet properties)
-    {
-    if( properties != null)
-      {
-      addProperties( IteratorUtils.toList( properties.getProperties()));
+      properties_.addAll( properties);
       }
 
     return this;
@@ -235,6 +229,6 @@ public class VarValueDef extends Conditional
 
   private Object name_;
   private Type type_;
-  private PropertySet properties_;
+  private Set<String> properties_;
   }
 
