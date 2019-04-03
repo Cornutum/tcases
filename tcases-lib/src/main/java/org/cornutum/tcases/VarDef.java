@@ -37,20 +37,6 @@ public class VarDef extends AbstractVarDef
     }
 
   /**
-   * Returns true if this variable (has an ancestor that) defines a condition.
-   */
-  public boolean isOptional()
-    {
-    IVarDef ancestor;
-    boolean optional;
-    for( optional = false, ancestor = this;
-         !(optional = ancestor.getCondition() != null) && ancestor.getParent() != null;
-         ancestor = ancestor.getParent());
-
-    return optional;
-    }
-
-  /**
    * If this variable has member variables, returns an iterator for the member variable list.
    * Otherwise, returns null.
    */

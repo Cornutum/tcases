@@ -7,7 +7,11 @@
 
 package org.cornutum.tcases;
 
+import org.cornutum.tcases.conditions.AllOf;
 import org.cornutum.tcases.conditions.ICondition;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
+import java.util.stream.Stream;
 
 /**
  * Base class for conditional elements.
@@ -32,15 +36,43 @@ public abstract class Conditional extends Annotated implements IConditional
     }
 
   /**
-   * Returns the effective condition that defines when this element is applicable.
+   * Returns the effective condition that defines when this element is applicable,
+   * given the specified context condition.
    */
-  public static ICondition acquireCondition( IConditional conditional)
+  public ICondition getEffectiveCondition( ICondition contextCondition)
     {
-    ICondition condition = conditional.getCondition();
-    return
-      condition == null
-      ? ICondition.ALWAYS
-      : condition;
+    ICondition condition = getCondition();
+    ICondition effCondition;
+
+    if( condition == null && contextCondition == null)
+      {
+      effCondition = ICondition.ALWAYS;
+      }
+
+    else if( condition == null && contextCondition != null)
+      {
+      // Nothing to add to context
+      effCondition = contextCondition;
+      }
+
+    else if( condition != null && (contextCondition == null || contextCondition.equals( condition)))
+      {
+      // Nothing to add to current condition
+      effCondition = condition;
+      }
+
+    else
+      {
+      // Create new conjunction with context condition.
+      AllOf conjunction = new AllOf();
+      Stream.of( condition, contextCondition)
+        .flatMap( c -> c instanceof AllOf? toStream( ((AllOf) c).getConditions()) : Stream.of(c))
+        .forEach( c -> conjunction.add( c));
+
+      effCondition = conjunction;
+      }
+
+    return effCondition;
     }
   
   private ICondition condition_;

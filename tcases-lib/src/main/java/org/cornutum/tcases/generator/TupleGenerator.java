@@ -15,13 +15,13 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.MultiMapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.iterators.SingletonIterator;
 import static org.apache.commons.collections4.functors.NOPTransformer.nopTransformer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,8 +31,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -415,16 +417,18 @@ public class TupleGenerator implements ITestCaseGenerator
     
     else
       {
-      // Complete the binding for next variable.
-      VarDef nextVar = varsRemaining.get(0);
+      // Complete the binding for next variable that is currently applicable to this test case...
+      OptionalInt nextApplicable =
+        IntStream.range( 0, varsRemaining.size())
+        .filter( i -> testCase.isApplicable( varsRemaining.get(i)))
+        .findFirst();
+
       Iterator<Tuple> bindingTuples =
-        IteratorUtils.chainedIterator
-        ( tuples.getUnused( nextVar),
-          IteratorUtils.chainedIterator
-          ( tuples.getUsed( nextVar),
-            IteratorUtils.chainedIterator
-            ( tuples.getUsedOnce( nextVar),
-              getNA( nextVar))));
+        nextApplicable.isPresent()
+        ? getBindingsFor( tuples, varsRemaining.remove( nextApplicable.getAsInt()))
+
+        // ... or if none applicable, proceed to complete remaining NA bindings 
+        : getNaBindingFor( varsRemaining.remove(0));
         
       Tuple tupleAdded;
       for( complete = false,
@@ -439,7 +443,7 @@ public class TupleGenerator implements ITestCaseGenerator
                    && !testCase.isInfeasible()
 
                    // Can we complete bindings for remaining variables?
-                   && (complete = makeComplete( testCase, tuples, varsRemaining.subList( 1, varsRemaining.size()))));
+                   && (complete = makeComplete( testCase, tuples, varsRemaining)));
              
            tupleAdded = null)
         {
@@ -497,6 +501,27 @@ public class TupleGenerator implements ITestCaseGenerator
     }
 
   /**
+   * Returns a set of 1-tuples containing the bindings for the given variable that are applicable to the given test case.
+   */
+  private Iterator<Tuple> getBindingsFor( VarTupleSet tuples, VarDef var)
+    {
+    return
+      IteratorUtils.chainedIterator(
+        tuples.getUnused( var),
+        IteratorUtils.chainedIterator(
+          tuples.getUsed( var),
+          tuples.getUsedOnce( var)));
+    }
+
+  /**
+   * Returns a single NA binding for the given variable.
+   */
+  private Iterator<Tuple> getNaBindingFor( VarDef var)
+    {
+    return new SingletonIterator<Tuple>( new Tuple( new VarBindingDef( var, VarNaDef.NA)));
+    }
+
+  /**
    * Returns the set of tuples that could satisfy conditions required by the given test case.
    */
   private Iterator<Tuple> getSatisfyingTuples( final TestCaseDef testCase, VarTupleSet varTupleSet)
@@ -544,35 +569,6 @@ public class TupleGenerator implements ITestCaseGenerator
         
          // ... forming each combination of satisfying bindings into a tuple...
         Tuple::of);
-    }
-
-  /**
-   * Returns an iterator that contains the "not applicable" binding for any of the given variables
-   * that is {@link VarDef#isOptional optional}.
-   */
-  private Iterator<Tuple> getNA( List<VarDef> vars)
-    {
-    List<Tuple> na = new ArrayList<Tuple>( vars.size());
-    for( Iterator<VarDef> naVars = vars.iterator();
-         naVars.hasNext();)
-      {
-      VarDef var = naVars.next();
-      if( var.isOptional())
-        {
-        na.add( new Tuple( new VarBindingDef( var, VarNaDef.NA)));
-        }
-      }
-
-    return na.iterator();
-    }
-
-  /**
-   * Returns an iterator that contains the "not applicable" binding for any of the given variables
-   * that is {@link VarDef#isOptional optional}.
-   */
-  private Iterator<Tuple> getNA( VarDef var)
-    {
-    return getNA( Arrays.asList( var));
     }
 
   /**
