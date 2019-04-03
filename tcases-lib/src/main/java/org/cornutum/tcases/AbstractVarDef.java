@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.conditions.AllOf;
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
@@ -16,6 +15,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -190,47 +190,22 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
     {
     if( effCondition_ == null)
       {
-      ICondition  condition           = getCondition();
-      IVarDef     parent              = getParent();
-      ICondition  parentEffCondition  = parent==null? null : parent.getEffectiveCondition();
-
-      if( condition == null && parentEffCondition != null)
-        {
-        // Same effective condition as parent.
-        effCondition_ = parentEffCondition;
-        }
-
-      else if( condition != null && parentEffCondition == null)
-        {
-        // No ancestor conditions to add.
-        effCondition_ = condition;
-        }
-
-      else
-        {
-        // Create new conjunction with ancestor conditions.
-        AllOf effCondition = new AllOf();
-        if( condition != null)
-          {
-          if( parentEffCondition instanceof AllOf)
-            {
-            for( Iterator<ICondition> parentEffConditions = ((AllOf) parentEffCondition).getConditions();
-                 parentEffConditions.hasNext();
-                 effCondition.add( parentEffConditions.next()));
-            }
-          else
-            {
-            effCondition.add( parentEffCondition);
-            }
-          
-          effCondition.add( condition);
-          }
-
-        effCondition_ = effCondition;
-        }
+      effCondition_ =
+        getEffectiveCondition(
+          Optional.ofNullable( getParent())
+          .map( IVarDef::getEffectiveCondition)
+          .orElse( null));
       }
     
     return effCondition_;
+    }
+  
+  /**
+   * Returns true if this variable (has an ancestor that) defines a condition.
+   */
+  public boolean isOptional()
+    {
+    return !getEffectiveCondition().equals( ICondition.ALWAYS);
     }
   
   /**
@@ -330,7 +305,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
       getClass().hashCode()
       ^ Objects.hashCode( getPathName());
     }
-  
+
   private String name_;
   private String type_;
   private IVarDef parent_;

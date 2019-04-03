@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.conditions.AllOf;
 import org.cornutum.tcases.conditions.ICondition;
 
 import java.util.Objects;
@@ -90,13 +89,7 @@ public class VarBindingDef implements IConditional
     {
     if( effCondition_ == null)
       {
-      ICondition  varCondition    = getVarDef().getEffectiveCondition();
-      ICondition  valueCondition  = getValueDef().getCondition();
-
-      effCondition_ =
-        valueCondition == null
-        ? varCondition 
-        : new AllOf( varCondition, valueCondition);
+      effCondition_ = getValueDef().getEffectiveCondition( getVarDef().getEffectiveCondition());
       }
     
     return effCondition_;
