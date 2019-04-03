@@ -9,8 +9,8 @@ package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
-import org.cornutum.tcases.util.CollectionUtils;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -174,6 +174,14 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Returns if the given variable is applicable to the current test case definition.
+   */
+  public boolean isApplicable( VarDef var)
+    {
+    return var.getEffectiveCondition().satisfied( properties_);
+    }
+
+  /**
    * Adds the variable bindings defined by the given tuple.
    * Returns a new tuple containing the new bindings actually added.
    */
@@ -239,14 +247,15 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     // Adding "not applicable" binding?
     else if( !value.isNA())
       {
-      // No, is this variable applicable to the current test case?
+      // No, is this variable inconsistent with the current test case?
       if( !var.getEffectiveCondition().compatible( properties_))
         {
         throw new VarNotApplicableException( binding, properties_);
         }
 
       // Is this value inconsistent with the current test case?
-      if( !Conditional.acquireCondition( value).compatible( properties_))
+      boolean valueCompatible = Optional.ofNullable( value.getCondition()).map( c -> c.compatible( properties_)).orElse( true);
+      if( !valueCompatible)
         {
         throw new ValueInconsistentException( binding, properties_);
         }
@@ -382,8 +391,12 @@ public class TestCaseDef implements Comparable<TestCaseDef>
         VarValueDef value = getBinding( var);
         if( !value.isNA())
           {
-          conditions.add( var.getEffectiveCondition());
-          conditions.add( Conditional.acquireCondition( value));
+          ICondition bindingCondition = value.getEffectiveCondition( var.getEffectiveCondition());
+          Optional.of( bindingCondition)
+            .filter( c -> c instanceof AllOf)
+            .map( c -> toStream( ((AllOf) c).getConditions()))
+            .orElse( Stream.of( bindingCondition))
+            .forEach( c -> conditions.add( c));
           }
         }
 
@@ -456,7 +469,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   private Stream<String> propertyStream()
     {
     return
-      CollectionUtils.toStream( properties_.getUniqueProperties())
+      toStream( properties_.getUniqueProperties())
       .sorted( String.CASE_INSENSITIVE_ORDER);
     }
 
