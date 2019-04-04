@@ -28,9 +28,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -55,9 +55,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -83,9 +83,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -111,9 +111,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
         <Var name="param0.Value.Properties.myInteger.Value" value="&lt; 0"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="boolean"/>
-        <Var name="param0.Value.Additional.Value" value="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="true"/>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -139,9 +139,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="5">
@@ -167,9 +167,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
         <Var name="param0.Value.Properties.myInteger.Value" value="0"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="boolean"/>
-        <Var name="param0.Value.Additional.Value" value="false"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="false"/>
       </Input>
     </TestCase>
     <TestCase id="6">
@@ -195,9 +195,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
         <Var name="param0.Value.Properties.myInteger.Value" value="&gt; 0"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -223,9 +223,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -251,9 +251,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
@@ -279,9 +279,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
         <Var name="param0.Value.Properties.myInteger.Value" value="&lt; 0"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="boolean"/>
-        <Var name="param0.Value.Additional.Value" value="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="true"/>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
@@ -307,9 +307,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
@@ -335,9 +335,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
@@ -363,9 +363,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="boolean"/>
-        <Var name="param0.Value.Additional.Value" value="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="true"/>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
@@ -391,9 +391,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="boolean"/>
-        <Var name="param0.Value.Additional.Value" value="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="true"/>
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
@@ -419,9 +419,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="boolean"/>
-        <Var name="param0.Value.Additional.Value" value="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="true"/>
       </Input>
     </TestCase>
     <TestCase id="15" failure="true">
@@ -447,9 +447,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="boolean"/>
-        <Var name="param0.Value.Additional.Value" value="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="true"/>
       </Input>
     </TestCase>
     <TestCase id="16" failure="true">
@@ -475,9 +475,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="boolean"/>
-        <Var name="param0.Value.Additional.Value" value="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="true"/>
       </Input>
     </TestCase>
     <TestCase id="17" failure="true">
@@ -503,9 +503,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myInteger.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="18" failure="true">
@@ -531,9 +531,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myInteger.Type" value="Not integer" failure="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="19" failure="true">
@@ -559,9 +559,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="20" failure="true">
@@ -587,9 +587,9 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="No"/>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="Not boolean" failure="true"/>
-        <Var name="param0.Value.Additional.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="Not boolean" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
   </Function>

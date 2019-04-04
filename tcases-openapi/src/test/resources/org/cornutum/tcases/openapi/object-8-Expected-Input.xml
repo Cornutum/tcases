@@ -94,11 +94,11 @@
                 <Value name="&gt; 0"/>
               </Var>
             </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" property="param0Properties"/>
+              <Value name="No"/>
+            </Var>
           </VarSet>
-          <Var name="Additional">
-            <Value name="Yes" property="param0Properties"/>
-            <Value name="No"/>
-          </Var>
         </VarSet>
       </VarSet>
     </Input>

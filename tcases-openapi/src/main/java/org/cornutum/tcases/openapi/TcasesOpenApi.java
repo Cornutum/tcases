@@ -937,9 +937,6 @@ public final class TcasesOpenApi
     objectPropertiesVar( api, instanceVarTag, instanceSchema)
       .ifPresent( var -> value.members( var));
 
-    objectAdditionalVar( api, instanceVarTag, instanceSchema)
-      .ifPresent( var -> value.members( var));
-
     return value.build();
     }
   
@@ -1079,6 +1076,9 @@ public final class TcasesOpenApi
 
       .collect( toList());
 
+    objectAdditionalVar( api, instanceVarTag, instanceSchema)
+      .ifPresent( var -> members.add( var));
+    
     return
       members.isEmpty()?
       Optional.empty() :

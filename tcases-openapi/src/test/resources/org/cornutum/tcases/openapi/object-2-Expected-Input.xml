@@ -35,21 +35,23 @@
               </When>
             </Value>
           </Var>
-          <VarSet name="Additional">
-            <Var name="Defined">
-              <Value name="Yes" property="param0Additional, param0Properties"/>
-              <Value name="No"/>
-            </Var>
-            <Var name="Type" when="param0Additional">
-              <Value name="string" property="param0AdditionalValue"/>
-              <Value name="null" failure="true"/>
-              <Value name="Not string" failure="true"/>
-            </Var>
-            <VarSet name="Value" when="param0AdditionalValue">
-              <Var name="Length">
-                <Value name="&gt; 0"/>
-                <Value name="0"/>
+          <VarSet name="Properties">
+            <VarSet name="Additional">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Additional, param0Properties"/>
+                <Value name="No"/>
               </Var>
+              <Var name="Type" when="param0Additional">
+                <Value name="string" property="param0AdditionalValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not string" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0AdditionalValue">
+                <Var name="Length">
+                  <Value name="&gt; 0"/>
+                  <Value name="0"/>
+                </Var>
+              </VarSet>
             </VarSet>
           </VarSet>
         </VarSet>

@@ -99,21 +99,21 @@
                 <Value name="&gt; 0"/>
               </Var>
             </VarSet>
-          </VarSet>
-          <VarSet name="Additional">
-            <Var name="Defined">
-              <Value name="Yes" property="param0Additional, param0Properties"/>
-              <Value name="No"/>
-            </Var>
-            <Var name="Type" when="param0Additional">
-              <Value name="boolean" property="param0AdditionalValue"/>
-              <Value name="null" failure="true"/>
-              <Value name="Not boolean" failure="true"/>
-            </Var>
-            <Var name="Value" when="param0AdditionalValue">
-              <Value name="true"/>
-              <Value name="false"/>
-            </Var>
+            <VarSet name="Additional">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Additional, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Additional">
+                <Value name="boolean" property="param0AdditionalValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not boolean" failure="true"/>
+              </Var>
+              <Var name="Value" when="param0AdditionalValue">
+                <Value name="true"/>
+                <Value name="false"/>
+              </Var>
+            </VarSet>
           </VarSet>
         </VarSet>
       </VarSet>

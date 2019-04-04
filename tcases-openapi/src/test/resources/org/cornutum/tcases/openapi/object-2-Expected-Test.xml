@@ -16,9 +16,9 @@
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Property-Count" value="0"/>
-        <Var name="param0.Value.Additional.Defined" value="No"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -31,9 +31,9 @@
         </Var>
         <Var name="param0.Type" NA="true"/>
         <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -47,9 +47,9 @@
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Property-Count" value="&lt;= 3"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="string"/>
-        <Var name="param0.Value.Additional.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="string"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" value="&gt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -63,9 +63,9 @@
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Property-Count" value="&lt;= 3"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="string"/>
-        <Var name="param0.Value.Additional.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="string"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" value="0"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -79,9 +79,9 @@
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
         <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -95,9 +95,9 @@
         </Var>
         <Var name="param0.Type" value="Not object" failure="true"/>
         <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Additional.Type" NA="true"/>
-        <Var name="param0.Value.Additional.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -111,9 +111,9 @@
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Property-Count" value="&gt; 3" failure="true"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="string"/>
-        <Var name="param0.Value.Additional.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="string"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" value="&gt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -127,9 +127,9 @@
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Property-Count" value="&lt;= 3"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Additional.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -143,9 +143,9 @@
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Property-Count" value="&lt;= 3"/>
-        <Var name="param0.Value.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Additional.Type" value="Not string" failure="true"/>
-        <Var name="param0.Value.Additional.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="Not string" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Length" NA="true"/>
       </Input>
     </TestCase>
   </Function>

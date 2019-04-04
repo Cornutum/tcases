@@ -18,7 +18,7 @@
         <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myString.Type" value="string"/>
         <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.Additional" value="No"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -33,7 +33,7 @@
         <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myString.Type" NA="true"/>
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Additional" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -49,7 +49,7 @@
         <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myString.Type" NA="true"/>
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Additional" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -65,7 +65,7 @@
         <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myString.Type" value="string"/>
         <Var name="param0.Value.Properties.myString.Value.Length" value="0"/>
-        <Var name="param0.Value.Additional" value="No"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -81,7 +81,7 @@
         <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myString.Type" NA="true"/>
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Additional" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -97,7 +97,7 @@
         <Var name="param0.Value.Properties.myString.Defined" value="No" failure="true"/>
         <Var name="param0.Value.Properties.myString.Type" NA="true"/>
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Additional" value="No"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -113,7 +113,7 @@
         <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myString.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Additional" value="No"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -129,7 +129,7 @@
         <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myString.Type" value="Not string" failure="true"/>
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Additional" value="No"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -145,7 +145,7 @@
         <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myString.Type" value="string"/>
         <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.Additional" value="Yes" failure="true"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes" failure="true"/>
       </Input>
     </TestCase>
   </Function>
