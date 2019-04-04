@@ -18,13 +18,26 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Property-Count">
-            <Value name="0" once="true"/>
-            <Value name="&lt;= 3" property="param0Properties"/>
-            <Value name="&gt; 3" failure="true"/>
+            <Value name="0" once="true">
+              <When>
+                <Not property="param0Properties">
+                </Not>
+              </When>
+            </Value>
+            <Value name="&lt;= 3">
+              <When>
+                <NotMoreThan property="param0Properties" max="1"/>
+              </When>
+            </Value>
+            <Value name="&gt; 3" failure="true">
+              <When>
+                <MoreThan property="param0Properties" min="0"/>
+              </When>
+            </Value>
           </Var>
           <VarSet name="Additional">
             <Var name="Defined">
-              <Value name="Yes" property="param0Additional"/>
+              <Value name="Yes" property="param0Additional, param0Properties"/>
               <Value name="No"/>
             </Var>
             <Var name="Type" when="param0Additional">

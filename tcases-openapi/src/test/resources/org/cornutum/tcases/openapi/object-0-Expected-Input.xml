@@ -20,7 +20,7 @@
           <VarSet name="Properties">
             <VarSet name="myString">
               <Var name="Defined">
-                <Value name="Yes" property="param0MyString"/>
+                <Value name="Yes" property="param0MyString, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>
               <Var name="Type" when="param0MyString">

@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -53,7 +53,7 @@
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -101,7 +101,7 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
-      <Has name="properties" value="param0,param0MyString,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -117,7 +117,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="param0,param0MyString,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -133,7 +133,7 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
-      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">

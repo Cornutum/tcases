@@ -20,7 +20,7 @@
           <VarSet name="Properties">
             <VarSet name="myInteger">
               <Var name="Defined">
-                <Value name="Yes" property="param0MyInteger"/>
+                <Value name="Yes" property="param0MyInteger, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>
               <Var name="Type" when="param0MyInteger">

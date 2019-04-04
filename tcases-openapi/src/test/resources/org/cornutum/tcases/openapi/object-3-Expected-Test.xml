@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -50,7 +50,7 @@
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -65,7 +65,7 @@
       </Input>
     </TestCase>
     <TestCase id="4">
-      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -110,7 +110,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="param0,param0MyInteger,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -125,7 +125,7 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
-      <Has name="properties" value="param0,param0MyInteger,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">

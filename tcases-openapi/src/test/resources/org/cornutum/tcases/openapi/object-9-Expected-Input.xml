@@ -18,13 +18,21 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Property-Count">
-            <Value name="&lt;= 3" property="param0Properties"/>
-            <Value name="&gt; 3" failure="true"/>
+            <Value name="&lt;= 3">
+              <When>
+                <NotMoreThan property="param0Properties" max="3"/>
+              </When>
+            </Value>
+            <Value name="&gt; 3" failure="true">
+              <When>
+                <MoreThan property="param0Properties" min="3"/>
+              </When>
+            </Value>
           </Var>
-          <VarSet name="Properties" when="param0Properties">
+          <VarSet name="Properties">
             <VarSet name="myString">
               <Var name="Defined">
-                <Value name="Yes" property="param0MyString"/>
+                <Value name="Yes" property="param0MyString, param0Properties"/>
                 <Value name="No"/>
               </Var>
               <Var name="Type" when="param0MyString">
@@ -41,7 +49,7 @@
             </VarSet>
             <VarSet name="myBoolean">
               <Var name="Defined">
-                <Value name="Yes" property="param0MyBoolean"/>
+                <Value name="Yes" property="param0MyBoolean, param0Properties"/>
                 <Value name="No"/>
               </Var>
               <Var name="Type" when="param0MyBoolean">
@@ -56,7 +64,7 @@
             </VarSet>
             <VarSet name="myNumber">
               <Var name="Defined">
-                <Value name="Yes" property="param0MyNumber"/>
+                <Value name="Yes" property="param0MyNumber, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>
               <Var name="Type" when="param0MyNumber">
@@ -72,7 +80,7 @@
             </VarSet>
             <VarSet name="myInteger">
               <Var name="Defined">
-                <Value name="Yes" property="param0MyInteger"/>
+                <Value name="Yes" property="param0MyInteger, param0Properties"/>
                 <Value name="No"/>
               </Var>
               <Var name="Type" when="param0MyInteger">

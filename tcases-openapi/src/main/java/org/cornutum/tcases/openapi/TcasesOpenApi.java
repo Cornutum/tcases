@@ -8,11 +8,10 @@ package org.cornutum.tcases.openapi;
 
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.conditions.Conditions;
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ListBuilder;
-
 import static org.cornutum.tcases.DefUtils.toIdentifier;
+import static org.cornutum.tcases.conditions.Conditions.*;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -208,7 +207,7 @@ public final class TcasesOpenApi
           String mediaTypeVarName = mediaTypeVarName( mediaType);
           VarSetBuilder contentVar =
             VarSetBuilder.with( mediaTypeVarName)
-            .when( Conditions.has( mediaTypeVarName));
+            .when( has( mediaTypeVarName));
 
           // Schema defined for this media type?
           Schema<?> mediaTypeSchema = contentDef.getValue().getSchema();
@@ -355,13 +354,14 @@ public final class TcasesOpenApi
   /**
    * Returns an {@link IVarDef input variable} to represent if the given instance is defined.
    */
-  private static VarDef instanceDefinedVar( String instanceVarTag, boolean required)
+  private static VarDef instanceDefinedVar( String instanceVarTag, boolean required, String... propertiesWhenDefined)
     {
     return
       VarDefBuilder.with( "Defined")
       .values(
         VarValueDefBuilder.with( "Yes")
         .properties( instanceDefinedProperty( instanceVarTag))
+        .properties( propertiesWhenDefined)
         .build(),
 
         VarValueDefBuilder.with( "No")
@@ -430,7 +430,7 @@ public final class TcasesOpenApi
         instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
 
         VarSetBuilder.with( "Items")
-        .when( Conditions.has( instanceValueProperty( instanceVarTag)))
+        .when( has( instanceValueProperty( instanceVarTag)))
         .members(
           instanceArraySizeVar( api, instanceVarTag, arraySchema),
           instanceItemVar( api, instanceVarTag, itemSchema))
@@ -528,13 +528,13 @@ public final class TcasesOpenApi
 
       return
         VarSetBuilder.with( "Contains")
-        .when( Conditions.has( arrayItemsProperty( instanceVarTag)))
+        .when( has( arrayItemsProperty( instanceVarTag)))
 
         .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
 
         .members(
           VarDefBuilder.with( "Unique")
-          .when( Conditions.has( arrayItemsManyProperty( instanceVarTag)))
+          .when( has( arrayItemsManyProperty( instanceVarTag)))
           .values(
             VarValueDefBuilder.with( "Yes").build(),
             VarValueDefBuilder.with( "No").type( uniqueItems? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
@@ -709,7 +709,7 @@ public final class TcasesOpenApi
             String exprVarTag = instanceVarTag + exprType + i;
             return
               VarSetBuilder.with( String.valueOf(i))
-              .when( Conditions.has( instanceDefinedProperty( exprVarTag)))
+              .when( has( instanceDefinedProperty( exprVarTag)))
               .members( instanceSchemaVars( api, exprVarTag, false, resolveSchema( api, memberSchemas.get(i))))
               .build();
             }
@@ -749,7 +749,7 @@ public final class TcasesOpenApi
       VarDefBuilder.with( "Value")
       .has( "format", instanceSchema.getFormat())
       .has( "default", Objects.toString( instanceSchema.getDefault(), null))
-      .when( Conditions.has( instanceValueProperty( instanceVarTag)));
+      .when( has( instanceValueProperty( instanceVarTag)));
 
     // Enumerated values?
     Schema<Number> numberSchema = (Schema<Number>) instanceSchema;
@@ -839,7 +839,7 @@ public final class TcasesOpenApi
       VarDefBuilder.with( "Value")
       .has( "format", instanceSchema.getFormat())
       .has( "default", Objects.toString( instanceSchema.getDefault(), null))
-      .when( Conditions.has( instanceValueProperty( instanceVarTag)));
+      .when( has( instanceValueProperty( instanceVarTag)));
 
     // Enumerated values?
     NumberSchema numberSchema = (NumberSchema) instanceSchema;
@@ -929,21 +929,15 @@ public final class TcasesOpenApi
     {
     VarSetBuilder value =
       VarSetBuilder.with( "Value")
-      .when( Conditions.has( instanceValueProperty( instanceVarTag)));
+      .when( has( instanceValueProperty( instanceVarTag)));
 
-    Optional<IVarDef> count = objectPropertyCountVar( api, instanceVarTag, instanceSchema);
-    count.ifPresent( var -> value.members( var));
-
-    boolean propertiesAllowed =
-      count
-      .map( c -> toStream( c.getValues()))
-      .map( values -> values.anyMatch( v -> v.hasProperty( objectPropertiesProperty( instanceVarTag))))
-      .orElse( false);
+    objectPropertyCountVar( api, instanceVarTag, instanceSchema)
+      .ifPresent( var -> value.members( var));
       
-    objectPropertiesVar( api, instanceVarTag, instanceSchema, propertiesAllowed)
+    objectPropertiesVar( api, instanceVarTag, instanceSchema)
       .ifPresent( var -> value.members( var));
 
-    objectAdditionalVar( api, instanceVarTag, instanceSchema, propertiesAllowed)
+    objectAdditionalVar( api, instanceVarTag, instanceSchema)
       .ifPresent( var -> value.members( var));
 
     return value.build();
@@ -972,7 +966,7 @@ public final class TcasesOpenApi
 
     Integer maxProperties =
       Optional.ofNullable( instanceSchema.getMaxProperties())
-      .filter( max -> hasAdditional || (max > requiredCount && max < totalCount))
+      .filter( max -> max > requiredCount && (hasAdditional || max < totalCount))
       .orElse( null);
     
     // Property count constrained (ignoring infeasible and superfluous constraints)?
@@ -987,6 +981,7 @@ public final class TcasesOpenApi
           countValues
             .add(
               VarValueDefBuilder.with( String.format( "< %s", minProperties))
+              .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
               .type( VarValueDef.Type.FAILURE)
               .build());
           }
@@ -994,18 +989,27 @@ public final class TcasesOpenApi
           {
           countValues.add(
             VarValueDefBuilder.with( 0)
+            .when( not( objectPropertiesProperty( instanceVarTag))) 
             .type( VarValueDef.Type.ONCE)
             .build());
           }
 
+        // ... and keeping in mind that maxProperties can exceed totalCount when additional properties are allowed...
+        Optional<Integer> maxDefined =
+          Optional.ofNullable(
+            maxProperties > totalCount
+            ? totalCount + 1
+            : null);
+          
         // ...define coverage w.r.t. upper bound
         countValues
           .add(
             VarValueDefBuilder.with( String.format( "%s%s", maxProperties.equals( minProperties)? "" : "<= ", maxProperties))
-            .properties( objectPropertiesProperty( instanceVarTag))
+            .when( notMoreThan( objectPropertiesProperty( instanceVarTag), maxDefined.orElse( maxProperties)))
             .build())
           .add(
             VarValueDefBuilder.with( String.format( "> %s", maxProperties))
+            .when( moreThan( objectPropertiesProperty( instanceVarTag), maxDefined.map( md -> md - 1).orElse( maxProperties)))
             .type( VarValueDef.Type.FAILURE)
             .build());
         }
@@ -1015,10 +1019,11 @@ public final class TcasesOpenApi
         countValues
           .add(
             VarValueDefBuilder.with( String.format( ">= %s", minProperties))
-            .properties( objectPropertiesProperty( instanceVarTag))
+            .when( notLessThan( objectPropertiesProperty( instanceVarTag), minProperties))
             .build())
           .add(
             VarValueDefBuilder.with( String.format( "< %s", minProperties))
+            .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
             .type( VarValueDef.Type.FAILURE)
             .build());
         }
@@ -1032,12 +1037,13 @@ public final class TcasesOpenApi
       countValues
         .add(
           VarValueDefBuilder.with( 0)
-          .type( VarValueDef.Type.ONCE)
+          .when( hasAny? not( objectPropertiesProperty( instanceVarTag)) : null) 
+          .type( hasAny? VarValueDef.Type.ONCE : VarValueDef.Type.VALID)
           .build())
         .add(
           VarValueDefBuilder.with( "> 0")
           .type( hasAny? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE)
-          .properties( Optional.ofNullable( hasAny? objectPropertiesProperty( instanceVarTag) : null))
+          .when( hasAny? has( objectPropertiesProperty( instanceVarTag)) : null) 
           .build());
       }
 
@@ -1054,7 +1060,7 @@ public final class TcasesOpenApi
    * Returns the {@link IVarDef input variable} representing the properties of an object instance.
    */
   @SuppressWarnings("rawtypes")
-  private static Optional<IVarDef> objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, boolean propertiesAllowed)
+  private static Optional<IVarDef> objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
     List<String> requiredProperties = Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList());
@@ -1079,7 +1085,6 @@ public final class TcasesOpenApi
 
       Optional.of(
         VarSetBuilder.with( "Properties")
-        .when( propertiesAllowed? Conditions.has( objectPropertiesProperty( instanceVarTag)) : null)
         .members( members)
         .build());
     }
@@ -1096,7 +1101,7 @@ public final class TcasesOpenApi
       
       return
         VarSetBuilder.with( propertyVarName)
-        .members( instanceDefinedVar( propertyVarTag, required))
+        .members( instanceDefinedVar( propertyVarTag, required, objectPropertiesProperty( instanceVarTag)))
         .members( instanceSchemaVars( api, propertyVarTag, propertySchema))
         .build();
       }
@@ -1109,16 +1114,11 @@ public final class TcasesOpenApi
   /**
    * Returns the {@link IVarDef input variable} representing the additional properties of an object instance.
    */
-  private static Optional<IVarDef> objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, boolean propertiesAllowed)
+  private static Optional<IVarDef> objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     IVarDef varDef = null;
     if( instanceSchema.getAdditionalProperties() != null)
       {
-      boolean hasProperties =
-        Optional.ofNullable( instanceSchema.getProperties())
-        .map( properties -> !properties.isEmpty())
-        .orElse( false);
-
       Schema<?> propertySchema =
         instanceSchema.getAdditionalProperties().getClass().equals( Boolean.class)
         ? null
@@ -1132,9 +1132,14 @@ public final class TcasesOpenApi
         propertySchema == null ?
 
         VarDefBuilder.with( "Additional")
-        .when( propertiesAllowed? Conditions.has( objectPropertiesProperty( instanceVarTag)) : null)
-        .values( VarValueDefBuilder.with( "Yes").type( allowed? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE).build())
-        .values( iterableOf( Optional.of( VarValueDefBuilder.with( "No").build()).filter( v -> !allowed || hasProperties)))
+        .values(
+          VarValueDefBuilder.with( "Yes")
+          .type( allowed? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE)
+          .properties( Optional.ofNullable( allowed? objectPropertiesProperty( instanceVarTag) : null))
+          .build(),
+
+          VarValueDefBuilder.with( "No")
+          .build())
         .build() :
 
         objectPropertyVar( api, instanceVarTag, "Additional", false, propertySchema);
@@ -1164,7 +1169,7 @@ public final class TcasesOpenApi
         VarDefBuilder.with( "Value")
         .has( "format", format)
         .has( "default", Objects.toString( FormattedString.of( format, instanceSchema.getDefault()), null))
-        .when( Conditions.has( instanceValueProperty( instanceVarTag)))
+        .when( has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
         .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build())
         .build();
@@ -1176,7 +1181,7 @@ public final class TcasesOpenApi
         VarSetBuilder.with( "Value")
         .has( "format", format)
         .has( "default", FormattedString.of( format, instanceSchema.getDefault()))
-        .when( Conditions.has( instanceValueProperty( instanceVarTag)));
+        .when( has( instanceValueProperty( instanceVarTag)));
 
       // Add values for any length assertions
       VarDefBuilder length = VarDefBuilder.with( "Length");
@@ -1269,7 +1274,7 @@ public final class TcasesOpenApi
     return
       VarDefBuilder.with( "Value")
       .has( "default", Objects.toString( instanceSchema.getDefault(), null))
-      .when( Conditions.has( instanceValueProperty( instanceVarTag)))
+      .when( has( instanceValueProperty( instanceVarTag)))
       .values(
         possibleValues.stream()
         .filter( Objects::nonNull)
@@ -1321,7 +1326,7 @@ public final class TcasesOpenApi
     {
     return
       instanceOptional
-      ? Conditions.has( instanceDefinedProperty( instanceTag))
+      ? has( instanceDefinedProperty( instanceTag))
       : null;
     }
 

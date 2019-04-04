@@ -16,7 +16,7 @@
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Property-Count" value="0"/>
-        <Var name="param0.Value.Additional" NA="true"/>
+        <Var name="param0.Value.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="1">
