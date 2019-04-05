@@ -34,6 +34,10 @@
                 <Value name="&gt; 0"/>
               </Var>
             </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
           </VarSet>
         </VarSet>
       </VarSet>

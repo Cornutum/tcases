@@ -15,7 +15,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="0"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -27,7 +27,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2" failure="true">
@@ -40,7 +40,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -53,7 +53,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not object" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -66,7 +66,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt; 0" failure="true"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes" failure="true"/>
       </Input>
     </TestCase>
   </Function>

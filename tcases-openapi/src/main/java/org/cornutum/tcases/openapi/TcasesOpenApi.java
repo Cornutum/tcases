@@ -47,7 +47,6 @@ import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 /**
@@ -927,17 +926,12 @@ public final class TcasesOpenApi
    */
   private static IVarDef objectValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
-    VarSetBuilder value =
+    return
       VarSetBuilder.with( "Value")
-      .when( has( instanceValueProperty( instanceVarTag)));
-
-    objectPropertyCountVar( api, instanceVarTag, instanceSchema)
-      .ifPresent( var -> value.members( var));
-      
-    objectPropertiesVar( api, instanceVarTag, instanceSchema)
-      .ifPresent( var -> value.members( var));
-
-    return value.build();
+      .when( has( instanceValueProperty( instanceVarTag)))
+      .members( iterableOf( objectPropertyCountVar( api, instanceVarTag, instanceSchema))) 
+      .members( objectPropertiesVar( api, instanceVarTag, instanceSchema))
+      .build();
     }
   
   /**
@@ -1027,20 +1021,19 @@ public final class TcasesOpenApi
       }
 
     // No, but are all properties optional?
-    else if( requiredCount == 0)
+    else if( requiredCount == 0 && totalCount > 0)
       {
       // Yes, ensure coverage of "no properties" case.
-      boolean hasAny = totalCount > 0 || hasAdditional;
       countValues
         .add(
           VarValueDefBuilder.with( 0)
-          .when( hasAny? not( objectPropertiesProperty( instanceVarTag)) : null) 
-          .type( hasAny? VarValueDef.Type.ONCE : VarValueDef.Type.VALID)
+          .when( not( objectPropertiesProperty( instanceVarTag))) 
+          .type( VarValueDef.Type.ONCE)
           .build())
         .add(
           VarValueDefBuilder.with( "> 0")
-          .type( hasAny? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE)
-          .when( hasAny? has( objectPropertiesProperty( instanceVarTag)) : null) 
+          .when( has( objectPropertiesProperty( instanceVarTag))) 
+          .type( VarValueDef.Type.VALID)
           .build());
       }
 
@@ -1057,36 +1050,29 @@ public final class TcasesOpenApi
    * Returns the {@link IVarDef input variable} representing the properties of an object instance.
    */
   @SuppressWarnings("rawtypes")
-  private static Optional<IVarDef> objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static IVarDef objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
     List<String> requiredProperties = Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList());
-    
-    List<IVarDef> members =
-      propertyDefs.entrySet().stream()
 
-      .map(
-        propertyDef ->
-        objectPropertyVar(
-          api,
-          instanceVarTag,
-          propertyDef.getKey(),
-          requiredProperties.contains( propertyDef.getKey()),
-          resolveSchema( api, propertyDef.getValue())))
-
-      .collect( toList());
-
-    objectAdditionalVar( api, instanceVarTag, instanceSchema)
-      .ifPresent( var -> members.add( var));
-    
     return
-      members.isEmpty()?
-      Optional.empty() :
+      VarSetBuilder.with( "Properties")
 
-      Optional.of(
-        VarSetBuilder.with( "Properties")
-        .members( members)
-        .build());
+      .members(
+        propertyDefs.entrySet().stream()
+        .map(
+          propertyDef ->
+          objectPropertyVar(
+            api,
+            instanceVarTag,
+            propertyDef.getKey(),
+            requiredProperties.contains( propertyDef.getKey()),
+            resolveSchema( api, propertyDef.getValue()))))
+
+      .members(
+        objectAdditionalVar( api, instanceVarTag, instanceSchema))
+
+      .build();
     }
 
   /**
@@ -1114,38 +1100,38 @@ public final class TcasesOpenApi
   /**
    * Returns the {@link IVarDef input variable} representing the additional properties of an object instance.
    */
-  private static Optional<IVarDef> objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private static IVarDef objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
-    IVarDef varDef = null;
-    if( instanceSchema.getAdditionalProperties() != null)
-      {
-      Schema<?> propertySchema =
-        instanceSchema.getAdditionalProperties().getClass().equals( Boolean.class)
-        ? null
-        : (Schema<?>)instanceSchema.getAdditionalProperties();
+    Class<?> type =
+      Optional.ofNullable( instanceSchema.getAdditionalProperties())
+      .map( Object::getClass)
+      .orElse( null);
 
-      boolean allowed =
-        propertySchema != null
-        || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties());
+    Schema<?> propertySchema =
+      type != null && !type.equals( Boolean.class)
+      ? (Schema<?>)instanceSchema.getAdditionalProperties()
+      : null;
+
+    boolean allowed =
+      type != null
+      && (propertySchema != null
+          || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties()));
         
-      varDef =
-        propertySchema == null ?
+    return
+      propertySchema == null ?
 
-        VarDefBuilder.with( "Additional")
-        .values(
-          VarValueDefBuilder.with( "Yes")
-          .type( allowed? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE)
-          .properties( Optional.ofNullable( allowed? objectPropertiesProperty( instanceVarTag) : null))
-          .build(),
+      VarDefBuilder.with( "Additional")
+      .values(
+        VarValueDefBuilder.with( "Yes")
+        .type( allowed? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE)
+        .properties( Optional.ofNullable( allowed? objectPropertiesProperty( instanceVarTag) : null))
+        .build(),
 
-          VarValueDefBuilder.with( "No")
-          .build())
-        .build() :
+        VarValueDefBuilder.with( "No")
+        .build())
+      .build() :
 
-        objectPropertyVar( api, instanceVarTag, "Additional", false, propertySchema);
-      }
-
-    return Optional.ofNullable( varDef);
+      objectPropertyVar( api, instanceVarTag, "Additional", false, propertySchema);
     }
 
   /**

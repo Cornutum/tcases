@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
@@ -15,8 +15,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="0"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -28,12 +27,11 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="param0,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
@@ -42,8 +40,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -56,7 +53,6 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -70,7 +66,6 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not object" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>

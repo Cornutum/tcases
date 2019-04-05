@@ -220,7 +220,7 @@ public class ObjectSchemaTest extends OpenApiTest
    * <TR align="left"><TH colspan=2> 9. Schema (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> minProperties </TD> <TD> Undefined </TD> </TR>
-   * <TR><TD> maxProperties </TD> <TD> Dedefined </TD> </TR>
+   * <TR><TD> maxProperties </TD> <TD> Defined </TD> </TR>
    * <TR><TD> properties.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> properties.Count </TD> <TD> Many </TD> </TR>
    * <TR><TD> properties.Definition.Required </TD> <TD> Yes </TD> </TR>
@@ -233,5 +233,49 @@ public class ObjectSchemaTest extends OpenApiTest
   public void Schema_9()
     {
     verifyRequestInputModel( "object-9");
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * <P>
+   * <TABLE border="1" cellpadding="10">
+   * <TR align="left"><TH colspan=2> 10. Schema (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> minProperties </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> maxProperties </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> properties.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> properties.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> properties.Definition.Required </TD> <TD> No </TD> </TR>
+   * <TR><TD> additionalProperties </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> nullable </TD> <TD> Undefined </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Schema_10()
+    {
+    verifyRequestInputModel( "object-10");
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * <P>
+   * <TABLE border="1" cellpadding="11">
+   * <TR align="left"><TH colspan=2> 11. Schema (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> minProperties </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> maxProperties </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> properties.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> properties.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> properties.Definition.Required </TD> <TD> No </TD> </TR>
+   * <TR><TD> additionalProperties </TD> <TD> false </TD> </TR>
+   * <TR><TD> nullable </TD> <TD> Undefined </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Schema_11()
+    {
+    verifyRequestInputModel( "object-11");
     }
   }

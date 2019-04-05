@@ -31,7 +31,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Property-Count" value="0"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -58,7 +58,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -87,7 +87,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Property-Count" value="0"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -114,7 +114,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -143,7 +143,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Property-Count" value="0"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -170,7 +170,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -197,7 +197,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -224,7 +224,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -251,7 +251,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
@@ -278,7 +278,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
@@ -305,7 +305,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
@@ -332,7 +332,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
@@ -359,7 +359,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
@@ -386,7 +386,7 @@
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="Other" failure="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
@@ -415,7 +415,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="null" failure="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="15" failure="true">
@@ -444,7 +444,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="Not object" failure="true"/>
-        <Var name="Body.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="16" failure="true">
@@ -473,7 +473,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Property-Count" value="&gt; 0" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes" failure="true"/>
       </Input>
     </TestCase>
   </Function>
