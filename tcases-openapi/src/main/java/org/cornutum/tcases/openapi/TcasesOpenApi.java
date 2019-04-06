@@ -431,15 +431,17 @@ public final class TcasesOpenApi
         VarSetBuilder.with( "Items")
         .when( has( instanceValueProperty( instanceVarTag)))
         .members(
-          instanceArraySizeVar( api, instanceVarTag, arraySchema),
-          instanceItemVar( api, instanceVarTag, itemSchema))
+          arraySizeVar( api, instanceVarTag, arraySchema),
+          arrayItemsVar( api, instanceVarTag, itemSchema))
+        .members(
+          iterableOf( arrayUniqueItemsVar( api, instanceVarTag, arraySchema)))
         .build());
     }
 
   /**
    * Returns the {@link IVarDef input variable} representing the size of an array instance.
    */
-  private static IVarDef instanceArraySizeVar( OpenAPI api, String instanceVarTag, ArraySchema arraySchema)
+  private static IVarDef arraySizeVar( OpenAPI api, String instanceVarTag, ArraySchema arraySchema)
     {
     // Arrays size constrained?
     VarDefBuilder size = VarDefBuilder.with( "Size");
@@ -455,6 +457,12 @@ public final class TcasesOpenApi
       }
     else
       {
+      // Ensure min/max range is feasible
+      minItems =
+        Optional.ofNullable( minItems)
+        .map( min -> Optional.ofNullable( maxItems).map( max -> Math.min( min, max)).orElse( min))
+        .orElse( null);
+
       // Add min/max boundary condition values
       TreeSet<Integer> sizeValues = new TreeSet<Integer>();
       if( minItems != null)
@@ -477,14 +485,10 @@ public final class TcasesOpenApi
             {
             sizeBuilder.type( VarValueDef.Type.FAILURE);
             }
-          else if( sizeValue == 0)
-            {
-            sizeBuilder.type( VarValueDef.Type.ONCE);
-            }
           else
             {
             sizeBuilder
-              .properties( arrayItemsProperty( instanceVarTag))
+              .properties( Optional.ofNullable( sizeValue > 0? arrayItemsProperty( instanceVarTag) : null))
               .properties( Optional.ofNullable( sizeValue > 1? arrayItemsManyProperty( instanceVarTag) : null));
             }
           size.values( sizeBuilder.build());
@@ -519,32 +523,41 @@ public final class TcasesOpenApi
   /**
    * Returns the {@link IVarDef input variable} representing the items of the given array instance.
    */
-  private static IVarDef instanceItemVar( OpenAPI api, String instanceVarTag, Schema<?> itemSchema)
+  private static IVarDef arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> itemSchema)
     {
     try
       {
-      boolean uniqueItems = Boolean.TRUE.equals( itemSchema.getUniqueItems());
-
       return
         VarSetBuilder.with( "Contains")
         .when( has( arrayItemsProperty( instanceVarTag)))
-
         .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
-
-        .members(
-          VarDefBuilder.with( "Unique")
-          .when( has( arrayItemsManyProperty( instanceVarTag)))
-          .values(
-            VarValueDefBuilder.with( "Yes").build(),
-            VarValueDefBuilder.with( "No").type( uniqueItems? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
-          .build())
-
         .build();
       }
     catch( Exception e)
       {
       throw new OpenApiException( "Error processing array item schema", e);
       }
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable} representing the unique items property of an array instance.
+   */
+  private static Optional<IVarDef> arrayUniqueItemsVar( OpenAPI api, String instanceVarTag, ArraySchema arraySchema)
+    {
+    boolean uniqueRequired = Boolean.TRUE.equals( arraySchema.getUniqueItems());
+
+    return
+      Optional.ofNullable( arraySchema.getMaxItems()).orElse( Integer.MAX_VALUE) <= 1
+
+      ? Optional.empty()
+
+      : Optional.of(
+          VarDefBuilder.with( "Unique")
+          .when( has( arrayItemsManyProperty( instanceVarTag)))
+          .values(
+            VarValueDefBuilder.with( "Yes").build(),
+            VarValueDefBuilder.with( "No").type( uniqueRequired? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
+          .build());
     }
 
   /**

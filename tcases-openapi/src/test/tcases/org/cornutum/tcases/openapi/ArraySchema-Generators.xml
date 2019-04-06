@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Generators>
+    <TupleGenerator function="Schema" seed="6147447017227008000" tuples="1">
+        <Combine tuples="2">
+            <Include var="minItems"/>
+            <Include var="maxItems"/>
+        </Combine>
+    </TupleGenerator>
+</Generators>

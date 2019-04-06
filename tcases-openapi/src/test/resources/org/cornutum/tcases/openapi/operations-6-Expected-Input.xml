@@ -50,11 +50,11 @@
               <Value name="0"/>
               <Value name="&gt; 0"/>
             </Var>
-            <Var name="Unique" when="param1ItemsMany">
-              <Value name="Yes"/>
-              <Value name="No"/>
-            </Var>
           </VarSet>
+          <Var name="Unique" when="param1ItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
         </VarSet>
       </VarSet>
     </Input>

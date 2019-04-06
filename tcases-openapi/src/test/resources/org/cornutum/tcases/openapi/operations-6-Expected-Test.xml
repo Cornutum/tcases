@@ -23,7 +23,7 @@
         <Var name="param1.Items.Size" value="0"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -52,7 +52,7 @@
         <Var name="param1.Items.Size" value="1"/>
         <Var name="param1.Items.Contains.Type" value="integer"/>
         <Var name="param1.Items.Contains.Value" value="&lt; 0"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -79,7 +79,7 @@
         <Var name="param1.Items.Size" value="&gt; 1"/>
         <Var name="param1.Items.Contains.Type" value="integer"/>
         <Var name="param1.Items.Contains.Value" value="0"/>
-        <Var name="param1.Items.Contains.Unique" value="Yes"/>
+        <Var name="param1.Items.Unique" value="Yes"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -108,7 +108,7 @@
         <Var name="param1.Items.Size" value="1"/>
         <Var name="param1.Items.Contains.Type" value="integer"/>
         <Var name="param1.Items.Contains.Value" value="&gt; 0"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -135,7 +135,7 @@
         <Var name="param1.Items.Size" value="&gt; 1"/>
         <Var name="param1.Items.Contains.Type" value="integer"/>
         <Var name="param1.Items.Contains.Value" value="&lt; 0"/>
-        <Var name="param1.Items.Contains.Unique" value="No"/>
+        <Var name="param1.Items.Unique" value="No"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -164,7 +164,7 @@
         <Var name="param1.Items.Size" value="0"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -191,7 +191,7 @@
         <Var name="param1.Items.Size" value="0"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -218,7 +218,7 @@
         <Var name="param1.Items.Size" value="0"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -245,7 +245,7 @@
         <Var name="param1.Items.Size" NA="true"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -272,7 +272,7 @@
         <Var name="param1.Items.Size" NA="true"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -299,7 +299,7 @@
         <Var name="param1.Items.Size" NA="true"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -326,7 +326,7 @@
         <Var name="param1.Items.Size" value="1"/>
         <Var name="param1.Items.Contains.Type" value="null" failure="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -353,7 +353,7 @@
         <Var name="param1.Items.Size" value="1"/>
         <Var name="param1.Items.Contains.Type" value="Not integer" failure="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -380,7 +380,7 @@
         <Var name="param1.Items.Size" value="0"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -407,7 +407,7 @@
         <Var name="param1.Items.Size" value="0"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -436,7 +436,7 @@
         <Var name="param1.Items.Size" value="0"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -465,7 +465,7 @@
         <Var name="param1.Items.Size" value="0"/>
         <Var name="param1.Items.Contains.Type" NA="true"/>
         <Var name="param1.Items.Contains.Value" NA="true"/>
-        <Var name="param1.Items.Contains.Unique" NA="true"/>
+        <Var name="param1.Items.Unique" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>

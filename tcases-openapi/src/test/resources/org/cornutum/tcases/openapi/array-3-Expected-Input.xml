@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<System name="Operations">
-  <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
+<System name="Array">
+  <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
-  <Function name="POST_operations">
-    <Input type="query">
+  <Function name="POST_array">
+    <Input type="cookie">
       <VarSet name="param0">
         <Var name="Defined">
           <Has name="explode" value="true"/>
-          <Has name="style" value="label"/>
+          <Has name="style" value="form"/>
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
@@ -24,14 +24,18 @@
           </Var>
           <VarSet name="Contains" when="param0Items">
             <Var name="Type">
-              <Value name="boolean" property="param0ItemsValue"/>
+              <Value name="object" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>
-              <Value name="Not boolean" failure="true"/>
+              <Value name="Not object" failure="true"/>
             </Var>
-            <Var name="Value" when="param0ItemsValue">
-              <Value name="true"/>
-              <Value name="false"/>
-            </Var>
+            <VarSet name="Value" when="param0ItemsValue">
+              <VarSet name="Properties">
+                <Var name="Additional">
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
           </VarSet>
           <Var name="Unique" when="param0ItemsMany">
             <Value name="Yes"/>

@@ -1,37 +1,40 @@
 <?xml version="1.0"?>
-<System name="Operations">
-  <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
+<System name="Array">
+  <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
-  <Function name="POST_operations">
+  <Function name="POST_array">
     <Input type="query">
       <VarSet name="param0">
         <Var name="Defined">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="label"/>
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
         <Var name="Type" when="param0">
           <Value name="array" property="param0Value"/>
-          <Value name="null" failure="true"/>
+          <Value name="null" once="true"/>
           <Value name="Not array" failure="true"/>
         </Var>
         <VarSet name="Items" when="param0Value">
           <Var name="Size">
+            <Value name="2" property="param0Items, param0ItemsMany"/>
+            <Value name="3" failure="true"/>
             <Value name="0"/>
-            <Value name="1" property="param0Items"/>
-            <Value name="&gt; 1" property="param0Items, param0ItemsMany"/>
+            <Value name="&lt; 2" property="param0Items"/>
           </Var>
           <VarSet name="Contains" when="param0Items">
             <Var name="Type">
-              <Value name="boolean" property="param0ItemsValue"/>
+              <Value name="string" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>
-              <Value name="Not boolean" failure="true"/>
+              <Value name="Not string" failure="true"/>
             </Var>
-            <Var name="Value" when="param0ItemsValue">
-              <Value name="true"/>
-              <Value name="false"/>
-            </Var>
+            <VarSet name="Value" when="param0ItemsValue">
+              <Var name="Length">
+                <Value name="&gt; 0"/>
+                <Value name="0"/>
+              </Var>
+            </VarSet>
           </VarSet>
           <Var name="Unique" when="param0ItemsMany">
             <Value name="Yes"/>
