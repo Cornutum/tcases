@@ -47,6 +47,7 @@ import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 /**
@@ -643,29 +644,31 @@ public final class TcasesOpenApi
   @SuppressWarnings("rawtypes")
   private static IVarDef allOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
     {
-    String exprType = "AllOf";
+    String containerType = "AllOf";
+    String containerVarTag = instanceVarTag + containerType;
     
     return
-      VarSetBuilder.with( exprType)
+      VarSetBuilder.with( containerType)
       .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
       .members(
-        IntStream.range( 0, memberSchemas.size())
-        .mapToObj(
-          i ->
-          {
-          try
-            {
-            String exprVarTag = instanceVarTag + exprType + i;
-            return
-              VarSetBuilder.with( String.valueOf(i))
-              .members( instanceSchemaVars( api, exprVarTag, false, resolveSchema( api, memberSchemas.get(i))))
-              .build();
-            }
-          catch( Exception e)
-            {
-            throw new OpenApiException( String.format( "Error processing 'allOf', member schema %s", i), e);
-            }
-          }))
+        VarSetBuilder.with( "Members")
+        .members(
+          IntStream.range( 0, memberSchemas.size())
+          .mapToObj( i -> {
+            try
+              {
+              String memberVarTag = containerVarTag + i;
+              return
+                VarSetBuilder.with( String.valueOf(i))
+                .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), true))
+                .build();
+              }
+            catch( Exception e)
+              {
+              throw new OpenApiException( String.format( "Error processing 'allOf', member schema %s", i), e);
+              }
+            }))
+        .build())
       .build();
     }
 
@@ -675,7 +678,56 @@ public final class TcasesOpenApi
   @SuppressWarnings("rawtypes")
   private static IVarDef anyOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
     {
-    return memberChoiceVar( api, "anyOf", instanceVarTag, instanceOptional, memberSchemas);
+    String containerType = "AnyOf";
+    String containerVarTag = instanceVarTag + containerType;
+    
+    return
+      VarSetBuilder.with( containerType)
+      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
+      .members(
+        
+        VarSetBuilder.with( "Members")
+        .members(
+          VarDefBuilder.with( "Validated")
+          .values(
+            VarValueDefBuilder.with( "1")
+            .when( equalTo( memberValidatedProperty( containerVarTag), 1))
+            .build(),
+            VarValueDefBuilder.with( "0")
+            .when( not( memberValidatedProperty( containerVarTag)))
+            .type( VarValueDef.Type.FAILURE)
+            .build())
+          .values(
+            iterableOf(
+              Optional.ofNullable(
+                memberSchemas.size() > 1?
+
+                VarValueDefBuilder.with( "> 1")
+                .when( moreThan( memberValidatedProperty( containerVarTag), 1))
+                .type( VarValueDef.Type.ONCE)
+                .build() :
+              
+                null)))
+          .build())
+      
+        .members(
+          IntStream.range( 0, memberSchemas.size())
+          .mapToObj( i -> {
+            try
+              {
+              String memberVarTag = containerVarTag + i;
+              return
+                VarSetBuilder.with( String.valueOf(i))
+                .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), false))
+                .build();
+              }
+            catch( Exception e)
+              {
+              throw new OpenApiException( String.format( "Error processing 'anyOf', member schema %s", i), e);
+              }
+            }))
+        .build())
+      .build();
     } 
 
   /**
@@ -683,54 +735,95 @@ public final class TcasesOpenApi
    */
   private static IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, @SuppressWarnings("rawtypes") List<Schema> memberSchemas)
     {
-    return memberChoiceVar( api, "oneOf", instanceVarTag, instanceOptional, memberSchemas);
+    String containerType = "OneOf";
+    String containerVarTag = instanceVarTag + containerType;
+    
+    return
+      VarSetBuilder.with( containerType)
+      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
+      .members(
+        VarSetBuilder.with( "Members")
+        .members(
+          VarDefBuilder.with( "Validated")
+          .values(
+            VarValueDefBuilder.with( "1")
+            .when( equalTo( memberValidatedProperty( containerVarTag), 1))
+            .build(), 
+            VarValueDefBuilder.with( "0")
+            .when( not( memberValidatedProperty( containerVarTag)))
+            .type( VarValueDef.Type.FAILURE)
+            .build())
+          .values(
+            iterableOf(
+              Optional.ofNullable(
+                memberSchemas.size() > 1?
+
+                VarValueDefBuilder.with( "> 1")
+                .when( moreThan( memberValidatedProperty( containerVarTag), 1))
+                .type( VarValueDef.Type.FAILURE)
+                .build() :
+              
+                null)))
+          .build())
+      
+        .members(
+          IntStream.range( 0, memberSchemas.size())
+          .mapToObj( i -> {
+            try
+              {
+              String memberVarTag = containerVarTag + i;
+              return
+                VarSetBuilder.with( String.valueOf(i))
+                .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), false))
+                .build();
+              }
+            catch( Exception e)
+              {
+              throw new OpenApiException( String.format( "Error processing 'oneOf', member schema %s", i), e);
+              }
+            }))
+        .build())
+      .build();
     }
 
   /**
-   * Returns the {@link IVarDef input variable} defined by a schema matching one of the given member schemas.
+   * Returns the {@link IVarDef input variables} defined by the given member schema.
    */
-  @SuppressWarnings("rawtypes")
-  private static IVarDef memberChoiceVar( OpenAPI api, String instanceSchemaType, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
+  private static Stream<IVarDef> memberSchemaVars( OpenAPI api, String containerVarTag, String memberVarTag, Schema<?> memberSchema, boolean validationRequired)
     {
-    String exprType = StringUtils.capitalize( instanceSchemaType);
-    
     return
-      VarSetBuilder.with( exprType)
-      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
-      .members(
-        VarDefBuilder.with( "Matches")
-        .values(
-          IntStream.range( 0, memberSchemas.size())
-          .mapToObj(
-            i ->
+      Stream.concat(
+        Stream.of(
+          VarDefBuilder.with( "Validated")
+          .values(
+            VarValueDefBuilder.with( "Yes")
+            .properties( memberValidatedProperty( containerVarTag), memberValidatedProperty( memberVarTag))
+            .build(),
+            VarValueDefBuilder.with( "No")
+            .type( validationRequired? VarValueDef.Type.FAILURE : VarValueDef.Type.VALID)
+            .build())
+          .build()),
+        
+        instanceSchemaVars( api, memberVarTag, false, memberSchema)
+        .map( v -> {
+          AbstractVarDef var = (AbstractVarDef) v;
+
+          // Except for the unconditional Type variable...
+          if( !var.getName().equals( "Type"))
             {
-            String exprVarTag = instanceVarTag + exprType + i;
-            return
-              VarValueDefBuilder.with( i)
-              .properties( instanceDefinedProperty( exprVarTag))
-              .build();
-            }))
-        .build())
-      .members(
-        IntStream.range( 0, memberSchemas.size())
-        .mapToObj(
-          i ->
-          {
-          try
-            {
-            String exprVarTag = instanceVarTag + exprType + i;
-            return
-              VarSetBuilder.with( String.valueOf(i))
-              .when( has( instanceDefinedProperty( exprVarTag)))
-              .members( instanceSchemaVars( api, exprVarTag, false, resolveSchema( api, memberSchemas.get(i))))
-              .build();
+            // ...update variable condition to apply only when this member is validated
+            var.setCondition( has( memberValidatedProperty( memberVarTag)));
             }
-          catch( Exception e)
-            {
-            throw new OpenApiException( String.format( "Error processing '%s', member schema %s", instanceSchemaType, i), e);
-            }
-          }))
-      .build();
+
+          // Remove all failure values, to be superseded by a single validation failure
+          toStream( new VarDefIterator( var))
+            .forEach( varDef -> {
+              List<VarValueDef> failures = toStream( varDef.getFailureValues()).collect( toList());
+              failures.stream().forEach( failure -> varDef.removeValue( failure.getName()));
+              });
+
+          return var;
+          }));
     }
 
   /**
@@ -1375,6 +1468,14 @@ public final class TcasesOpenApi
   private static String objectPropertiesProperty( String instanceTag)
     {
     return instanceTag + "Properties";
+    }
+
+  /**
+   * Returns the "member validated" property for the given composed schema instance.
+   */
+  private static String memberValidatedProperty( String instanceTag)
+    {
+    return instanceTag + "MemberValidated";
     }
 
   /**
