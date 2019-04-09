@@ -10,10 +10,10 @@ package org.cornutum.tcases.conditions;
 import org.cornutum.tcases.PropertySet;
 import org.cornutum.tcases.util.ToString;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Defines a set of {@link ICondition conditions}.
@@ -97,6 +97,6 @@ public abstract class ConditionSet implements ICondition
       .toString();
     }
 
-  protected List<ICondition> conditions_ = new ArrayList<ICondition>();
+  protected Set<ICondition> conditions_ = new LinkedHashSet<ICondition>();
   }
 

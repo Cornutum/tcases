@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.conditions;
 
+import java.util.Iterator;
 import java.util.Objects;
 
 import org.cornutum.tcases.util.ToString;
@@ -48,7 +49,10 @@ public class Between extends AllOf
    */
   public BoundedAssertion getMin()
     {
-    return (BoundedAssertion) conditions_.get(0);
+    ICondition min = null;
+    Iterator<ICondition> conditions = getConditions();
+    for( int i = 0; i < 1; i++) min = conditions.next();
+    return (BoundedAssertion) min;
     }
 
   /**
@@ -56,7 +60,10 @@ public class Between extends AllOf
    */
   public BoundedAssertion getMax()
     {
-    return (BoundedAssertion) conditions_.get(1);
+    ICondition max = null;
+    Iterator<ICondition> conditions = getConditions();
+    for( int i = 0; i < 2; i++) max = conditions.next();
+    return (BoundedAssertion) max;
     }
   
   /**
