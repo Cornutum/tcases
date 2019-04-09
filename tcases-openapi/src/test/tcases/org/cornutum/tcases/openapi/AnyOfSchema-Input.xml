@@ -1,4 +1,4 @@
-<System name="AllOfSchema">
+<System name="AnyOfSchema">
     <Function name="Schema">
         <Input>
             <VarSet name="Members">

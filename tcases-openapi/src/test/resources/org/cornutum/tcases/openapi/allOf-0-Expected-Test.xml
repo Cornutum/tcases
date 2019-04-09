@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<TestCases system="AllOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_allOf">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Value,param0AllOf0AllOf1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Tom,param0AllOf0AllOf0TomValue,param0AllOf0AllOf0Value,param0AllOf0AllOf1Jerry,param0AllOf0AllOf1JerryValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="string"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="number"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" value="&lt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Tom,param0AllOf0AllOf0TomValue,param0AllOf0AllOf0Value,param0AllOf0AllOf1Jerry,param0AllOf0AllOf1JerryValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="string"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="number"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Tom,param0AllOf0AllOf0TomValue,param0AllOf0AllOf0Value,param0AllOf0AllOf1Jerry,param0AllOf0AllOf1JerryValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="string"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="number"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Tom,param0AllOf0AllOf0TomValue,param0AllOf0AllOf0Value,param0AllOf0AllOf1Jerry,param0AllOf0AllOf1JerryValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="string"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="number"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" value="&lt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Tom,param0AllOf0AllOf0TomValue,param0AllOf0AllOf0Value,param0AllOf0AllOf1Jerry,param0AllOf0AllOf1JerryValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="string"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="number"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" value="&lt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes" failure="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

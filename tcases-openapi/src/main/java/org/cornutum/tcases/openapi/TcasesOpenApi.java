@@ -678,38 +678,36 @@ public final class TcasesOpenApi
   @SuppressWarnings("rawtypes")
   private static IVarDef anyOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
     {
-    String containerType = "AnyOf";
-    String containerVarTag = instanceVarTag + containerType;
+    return oneOfVar( api, instanceVarTag, instanceOptional, "anyOf", memberSchemas);
+    } 
+
+  /**
+   * Returns the {@link IVarDef input variable} defined by the given "oneOf" schema.
+   */
+  @SuppressWarnings("rawtypes")
+  private static IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
+    {
+    return oneOfVar( api, instanceVarTag, instanceOptional, "oneOf", memberSchemas);
+    } 
+
+  /**
+   * Returns the {@link IVarDef input variable} defined by the given "oneOf" or "anyOf" schema.
+   */
+  @SuppressWarnings("rawtypes")
+  private static IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, String containerType, List<Schema> memberSchemas)
+    {
+    String containerVarName = StringUtils.capitalize( containerType);
+    String containerVarTag = instanceVarTag + containerVarName;
+    boolean validationRequired = memberSchemas.size() == 1;
+    boolean anyOf = containerType.equals( "anyOf");
     
     return
-      VarSetBuilder.with( containerType)
+      VarSetBuilder.with( containerVarName)
       .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
       .members(
-        
         VarSetBuilder.with( "Members")
         .members(
-          VarDefBuilder.with( "Validated")
-          .values(
-            VarValueDefBuilder.with( "1")
-            .when( equalTo( memberValidatedProperty( containerVarTag), 1))
-            .build(),
-            VarValueDefBuilder.with( "0")
-            .when( not( memberValidatedProperty( containerVarTag)))
-            .type( VarValueDef.Type.FAILURE)
-            .build())
-          .values(
-            iterableOf(
-              Optional.ofNullable(
-                memberSchemas.size() > 1?
-
-                VarValueDefBuilder.with( "> 1")
-                .when( moreThan( memberValidatedProperty( containerVarTag), 1))
-                .type( VarValueDef.Type.ONCE)
-                .build() :
-              
-                null)))
-          .build())
-      
+          iterableOf( oneOfValidatedVar( containerVarTag, validationRequired, anyOf)))
         .members(
           IntStream.range( 0, memberSchemas.size())
           .mapToObj( i -> {
@@ -718,12 +716,12 @@ public final class TcasesOpenApi
               String memberVarTag = containerVarTag + i;
               return
                 VarSetBuilder.with( String.valueOf(i))
-                .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), false))
+                .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), validationRequired))
                 .build();
               }
             catch( Exception e)
               {
-              throw new OpenApiException( String.format( "Error processing 'anyOf', member schema %s", i), e);
+              throw new OpenApiException( String.format( "Error processing '%s', member schema %s", containerType, i), e);
               }
             }))
         .build())
@@ -731,59 +729,32 @@ public final class TcasesOpenApi
     } 
 
   /**
-   * Returns the {@link IVarDef input variable} defined by the given "oneOf" schema.
+   * Returns the {@link IVarDef input variable} representing the "validated" state of a "oneOf" (or "anyOf") schema.
    */
-  private static IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, @SuppressWarnings("rawtypes") List<Schema> memberSchemas)
+  private static Optional<IVarDef> oneOfValidatedVar( String containerVarTag, boolean validationRequired, boolean anyOf)
     {
-    String containerType = "OneOf";
-    String containerVarTag = instanceVarTag + containerType;
-    
     return
-      VarSetBuilder.with( containerType)
-      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
-      .members(
-        VarSetBuilder.with( "Members")
-        .members(
+      Optional.of( memberValidatedProperty( containerVarTag))
+      .filter( membersValidated -> !validationRequired)
+      .map( membersValidated -> {
+        return
           VarDefBuilder.with( "Validated")
           .values(
             VarValueDefBuilder.with( "1")
-            .when( equalTo( memberValidatedProperty( containerVarTag), 1))
+            .when( equalTo( membersValidated, 1))
             .build(), 
-            VarValueDefBuilder.with( "0")
-            .when( not( memberValidatedProperty( containerVarTag)))
-            .type( VarValueDef.Type.FAILURE)
-            .build())
-          .values(
-            iterableOf(
-              Optional.ofNullable(
-                memberSchemas.size() > 1?
 
-                VarValueDefBuilder.with( "> 1")
-                .when( moreThan( memberValidatedProperty( containerVarTag), 1))
-                .type( VarValueDef.Type.FAILURE)
-                .build() :
-              
-                null)))
-          .build())
-      
-        .members(
-          IntStream.range( 0, memberSchemas.size())
-          .mapToObj( i -> {
-            try
-              {
-              String memberVarTag = containerVarTag + i;
-              return
-                VarSetBuilder.with( String.valueOf(i))
-                .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), false))
-                .build();
-              }
-            catch( Exception e)
-              {
-              throw new OpenApiException( String.format( "Error processing 'oneOf', member schema %s", i), e);
-              }
-            }))
-        .build())
-      .build();
+            VarValueDefBuilder.with( "0")
+            .when( not( membersValidated))
+            .type( VarValueDef.Type.FAILURE)
+            .build(),
+
+            VarValueDefBuilder.with( "> 1")
+            .when( moreThan( membersValidated, 1))
+            .type( anyOf? VarValueDef.Type.ONCE : VarValueDef.Type.FAILURE)
+            .build())
+          .build();
+        });
     }
 
   /**
@@ -791,39 +762,72 @@ public final class TcasesOpenApi
    */
   private static Stream<IVarDef> memberSchemaVars( OpenAPI api, String containerVarTag, String memberVarTag, Schema<?> memberSchema, boolean validationRequired)
     {
-    return
-      Stream.concat(
-        Stream.of(
-          VarDefBuilder.with( "Validated")
-          .values(
-            VarValueDefBuilder.with( "Yes")
-            .properties( memberValidatedProperty( containerVarTag), memberValidatedProperty( memberVarTag))
-            .build(),
-            VarValueDefBuilder.with( "No")
-            .type( validationRequired? VarValueDef.Type.FAILURE : VarValueDef.Type.VALID)
-            .build())
-          .build()),
+    // Starting with all variables defined by the member schema, update to provide for a single validation failure
+    List<IVarDef> memberSchemaVars = instanceSchemaVars( api, memberVarTag, false, memberSchema).collect( toList());
+    if(
+      // Is this member schema a basic type (not composed)?
+      memberSchemaVars.size() > 1
+      ||
+      // Or is it a member of an anyOf/oneOf schema?
+      !validationRequired)
+      {
+      // Yes, find all descendant variables that define a failure value...
+      List<VarDef> failureVars =
+        toStream( new VarDefIterator( memberSchemaVars.iterator()))
+        .filter( v -> v.getFailureValues().hasNext())
+        .collect( toList());
+
+      if( !failureVars.isEmpty())
+        {
+        // ... and for most of them, remove all failure values...
+        int last = failureVars.size() - 1;
+        failureVars.subList( 0, last).stream()
+          .forEach( v -> {
+            List<VarValueDef> failures = toStream( v.getFailureValues()).collect( toList());
+            failures.stream().forEach( failure -> v.removeValue( failure.getName()));
+            });
+
+        // ... but for one descendant variable, select a single failure value to represent the member validation failure case.
+        makeMemberFailure( failureVars.get( last), containerVarTag, validationRequired);
+        }
+      }
         
-        instanceSchemaVars( api, memberVarTag, false, memberSchema)
-        .map( v -> {
-          AbstractVarDef var = (AbstractVarDef) v;
+    return memberSchemaVars.stream();
+    }
 
-          // Except for the unconditional Type variable...
-          if( !var.getName().equals( "Type"))
-            {
-            // ...update variable condition to apply only when this member is validated
-            var.setCondition( has( memberValidatedProperty( memberVarTag)));
-            }
+  /**
+   * Update the given variable definition to represent the member failure case for the specified container variable.
+   */
+  private static void makeMemberFailure( VarDef failureVar, String containerVarTag, boolean validationRequired)
+    {
+    VarValueDef selectedFailure = null;
+    for( VarValueDef value : toStream( failureVar.getValues()).collect( toList()))
+      {
+      if( value.getType() != VarValueDef.Type.FAILURE)
+        {
+        // Non-failure values must indicate the "member valid" state
+        if( !validationRequired)
+          {
+          value.addProperties( memberValidatedProperty( containerVarTag));
+          }
+        }
 
-          // Remove all failure values, to be superseded by a single validation failure
-          toStream( new VarDefIterator( var))
-            .forEach( varDef -> {
-              List<VarValueDef> failures = toStream( varDef.getFailureValues()).collect( toList());
-              failures.stream().forEach( failure -> varDef.removeValue( failure.getName()));
-              });
+      else if( selectedFailure == null)
+        {
+        // One failure value must become the sole alternative for the "member not valid" state
+        selectedFailure = value;
+        if( !validationRequired)
+          {
+          value.setType( VarValueDef.Type.VALID);
+          }
+        }
 
-          return var;
-          }));
+      else
+        {
+        // And all other failure values must be removed
+        failureVar.removeValue( value.getName());
+        }
+      }
     }
 
   /**

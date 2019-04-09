@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<System name="AllOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_allOf">
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="AllOf" when="param0">
+          <VarSet name="Members">
+            <VarSet name="0">
+              <VarSet name="AllOf">
+                <VarSet name="Members">
+                  <VarSet name="0">
+                    <Var name="Type">
+                      <Value name="object" property="param0AllOf0AllOf0Value"/>
+                    </Var>
+                    <VarSet name="Value" when="param0AllOf0AllOf0Value">
+                      <Var name="Property-Count">
+                        <Value name="0" once="true">
+                          <When>
+                            <Not property="param0AllOf0AllOf0Properties">
+                            </Not>
+                          </When>
+                        </Value>
+                        <Value name="&gt; 0" when="param0AllOf0AllOf0Properties"/>
+                      </Var>
+                      <VarSet name="Properties">
+                        <VarSet name="tom">
+                          <Var name="Defined">
+                            <Value name="Yes" property="param0AllOf0AllOf0Properties, param0AllOf0AllOf0Tom"/>
+                            <Value name="No"/>
+                          </Var>
+                          <Var name="Type" when="param0AllOf0AllOf0Tom">
+                            <Value name="string" property="param0AllOf0AllOf0TomValue"/>
+                          </Var>
+                          <VarSet name="Value" when="param0AllOf0AllOf0TomValue">
+                            <Var name="Length">
+                              <Value name="&gt; 0"/>
+                              <Value name="0"/>
+                            </Var>
+                          </VarSet>
+                        </VarSet>
+                        <Var name="Additional">
+                          <Value name="Yes" failure="true"/>
+                          <Value name="No"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                  </VarSet>
+                  <VarSet name="1">
+                    <Var name="Type">
+                      <Value name="object" property="param0AllOf0AllOf1Value"/>
+                    </Var>
+                    <VarSet name="Value" when="param0AllOf0AllOf1Value">
+                      <Var name="Property-Count">
+                        <Value name="0" once="true">
+                          <When>
+                            <Not property="param0AllOf0AllOf1Properties">
+                            </Not>
+                          </When>
+                        </Value>
+                        <Value name="&gt; 0" when="param0AllOf0AllOf1Properties"/>
+                      </Var>
+                      <VarSet name="Properties">
+                        <VarSet name="jerry">
+                          <Var name="Defined">
+                            <Value name="Yes" property="param0AllOf0AllOf1Jerry, param0AllOf0AllOf1Properties"/>
+                            <Value name="No"/>
+                          </Var>
+                          <Var name="Type" when="param0AllOf0AllOf1Jerry">
+                            <Value name="number" property="param0AllOf0AllOf1JerryValue"/>
+                          </Var>
+                          <Var name="Value" when="param0AllOf0AllOf1JerryValue">
+                            <Value name="&lt; 0"/>
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
+                          </Var>
+                        </VarSet>
+                        <Var name="Additional">
+                          <Value name="Yes" failure="true"/>
+                          <Value name="No"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
