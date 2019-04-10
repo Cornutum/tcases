@@ -650,7 +650,10 @@ public class OperationsTest extends OpenApiTest
   @Test
   public void API_11()
     {
-    assertRequestInputModelFailure( "operations-11", "API title is not defined");
+    assertRequestInputModelFailure(
+      "operations-11",
+      "Invalid API spec",
+      "API title is not defined");
     }
 
   /**
@@ -705,8 +708,7 @@ public class OperationsTest extends OpenApiTest
     {
     assertRequestInputModelFailure(
       "operations-12",
-      "Error processing POST /operations",
-      "Error processing parameter=param0",
+      "Error processing Operations, /operations, POST, param0",
       "type is not defined");
     }
   }

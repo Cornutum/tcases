@@ -33,7 +33,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +43,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.TreeSet;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import static java.math.RoundingMode.DOWN;
@@ -71,19 +74,33 @@ public class InputModeller
    */
   public SystemInputDef getRequestInputModel( OpenAPI api)
     {
-    Info info = expectedValueOf( api.getInfo(), "API info");
-
-    SystemInputDef inputDef =
-      SystemInputDefBuilder.with( toIdentifier( expectedValueOf( StringUtils.trimToNull( info.getTitle()), "API title")))
-      .has( "version", info.getVersion())
-      .hasIf( "server", membersOf( api.getServers()).findFirst().map( Server::getUrl))
-      .functions( entriesOf( api.getPaths()).flatMap( path -> pathFunctionDefs( api, path.getKey(), path.getValue())))
-      .build();
+    Info info;
+    String title;
+    try
+      {
+      info = expectedValueOf( api.getInfo(), "API info");
+      title = expectedValueOf( StringUtils.trimToNull( info.getTitle()), "API title");
+      }
+    catch( Exception e)
+      {
+      throw new OpenApiException( "Invalid API spec", e);
+      }
 
     return
-      inputDef.getFunctionInputDefs().hasNext()
-      ? inputDef
-      : null;
+      with( title,
+        () -> {
+        SystemInputDef inputDef =
+          SystemInputDefBuilder.with( toIdentifier( title))
+          .has( "version", info.getVersion())
+          .hasIf( "server", membersOf( api.getServers()).findFirst().map( Server::getUrl))
+          .functions( entriesOf( api.getPaths()).flatMap( path -> pathFunctionDefs( api, path.getKey(), path.getValue())))
+          .build();
+
+        return
+          inputDef.getFunctionInputDefs().hasNext()
+          ? inputDef
+          : null;
+        });
     }
 
   /**
@@ -92,6 +109,9 @@ public class InputModeller
   private Stream<FunctionInputDef> pathFunctionDefs( OpenAPI api, String path, PathItem pathItem)
     {
     return
+      with( path,
+
+      () ->
       Stream.of(
         opFunctionDef( api, path, pathItem, "GET", pathItem.getGet()),
         opFunctionDef( api, path, pathItem, "PUT", pathItem.getPut()),
@@ -106,7 +126,7 @@ public class InputModeller
       .filter( Objects::nonNull)
 
       // Skip if operation has no inputs to model
-      .filter( functionDef -> functionDef.getVarDefs().hasNext());
+            .filter( functionDef -> functionDef.getVarDefs().hasNext()));
     }
 
   /**
@@ -114,9 +134,9 @@ public class InputModeller
    */
   private FunctionInputDef opFunctionDef( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
     {
-    try
-      {
-      return
+    return
+      with( opName,
+        () ->
         op == null?
         null :
 
@@ -125,12 +145,7 @@ public class InputModeller
         .hasIf( "server", membersOf( op.getServers()).findFirst().map( Server::getUrl))
         .vars( opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))))
         .vars( iterableOf( requestBodyVarDef( api, op.getRequestBody())))
-        .build();
-      }
-    catch( Exception e)
-      {
-      throw new OpenApiException( String.format( "Error processing %s %s", opName, path), e);
-      }
+        .build());
     }
 
   /**
@@ -138,30 +153,25 @@ public class InputModeller
    */
   private Optional<IVarDef> requestBodyVarDef( OpenAPI api, RequestBody body)
     {
-    try
-      {
-      return
+    return
+      with( "requestBody",
+        () ->
         Optional.ofNullable( body)
         .map( b -> resolveRequestBody( api, b))
         .map( b ->
-          {
-          String instanceVarName = "Body";
+              {
+              String instanceVarName = "Body";
           
-          return
-            VarSetBuilder.with( instanceVarName)
-            .type( "request")
-            .members(
-              instanceDefinedVar( instanceVarName, Boolean.TRUE.equals( b.getRequired())),
-              mediaTypeVar( instanceVarName, b))
-            .members(
-              mediaTypeContentVars( api, b))
-            .build();
-          });
-      }
-    catch( Exception e)
-      {
-      throw new OpenApiException( "Error processing request body", e);
-      }
+              return
+                VarSetBuilder.with( instanceVarName)
+                .type( "request")
+                .members(
+                  instanceDefinedVar( instanceVarName, Boolean.TRUE.equals( b.getRequired())),
+                  mediaTypeVar( instanceVarName, b))
+                .members(
+                  mediaTypeContentVars( api, b))
+                .build();
+              }));
     }
 
   /**
@@ -202,32 +212,31 @@ public class InputModeller
         contentDef ->
         {
         String mediaType = contentDef.getKey();
-        try
-          {
-          String mediaTypeVarName = mediaTypeVarName( mediaType);
-          VarSetBuilder contentVar =
-            VarSetBuilder.with( mediaTypeVarName)
-            .when( has( mediaTypeVarName));
 
-          // Schema defined for this media type?
-          Schema<?> mediaTypeSchema = contentDef.getValue().getSchema();
-          if( mediaTypeSchema == null)
+        return
+          with( mediaType,
+            () ->
             {
-            // No, use perfunctory "must be defined" input model for contents
-            contentVar.members( instanceDefinedVar( mediaTypeVarName, false));
-            }
-          else
-            {
-            // Yes, use schema input model for contents
-            contentVar.members( instanceSchemaVars( api, mediaTypeVarName, false, resolveSchema( api, mediaTypeSchema)));
-            }
+            String mediaTypeVarName = mediaTypeVarName( mediaType);
+            VarSetBuilder contentVar =
+              VarSetBuilder.with( mediaTypeVarName)
+              .when( has( mediaTypeVarName));
 
-          return contentVar.build();
-          }
-        catch( Exception e)
-          {
-          throw new OpenApiException( String.format( "Error processing media type=%s", mediaType), e);
-          }
+            // Schema defined for this media type?
+            Schema<?> mediaTypeSchema = contentDef.getValue().getSchema();
+            if( mediaTypeSchema == null)
+              {
+              // No, use perfunctory "must be defined" input model for contents
+              contentVar.members( instanceDefinedVar( mediaTypeVarName, false));
+              }
+            else
+              {
+              // Yes, use schema input model for contents
+              contentVar.members( instanceSchemaVars( api, mediaTypeVarName, false, resolveSchema( api, mediaTypeSchema)));
+              }
+
+            return contentVar.build();
+            });
         });
     }
 
@@ -244,24 +253,22 @@ public class InputModeller
    */
   private IVarDef parameterVarDef( OpenAPI api, Parameter parameter)
     {
-    try
-      {
-      String parameterVarName = toIdentifier( parameter.getName());
-      String parameterIn = expectedValueOf( parameter.getIn(), "in", parameter.getName());
-      Schema<?> parameterSchema = parameterSchema( api, parameter);
-      String parameterType = parameterSchema.getType();
+    return
+      with( parameter.getName(),
+        () ->
+        {
+        String parameterVarName = toIdentifier( parameter.getName());
+        String parameterIn = expectedValueOf( parameter.getIn(), "in", parameter.getName());
+        Schema<?> parameterSchema = parameterSchema( api, parameter);
+        String parameterType = parameterSchema.getType();
 
-      return
-        VarSetBuilder.with( parameterVarName)
-        .type( parameterIn)
-        .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
-        .members( instanceSchemaVars( api, parameterVarName, parameterSchema))
-        .build();
-      }
-    catch( Exception e)
-      {
-      throw new OpenApiException( String.format( "Error processing parameter=%s", parameter.getName()), e);
-      }
+        return
+          VarSetBuilder.with( parameterVarName)
+          .type( parameterIn)
+          .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
+          .members( instanceSchemaVars( api, parameterVarName, parameterSchema))
+          .build();
+        });
     }
 
   /**
@@ -526,18 +533,13 @@ public class InputModeller
    */
   private IVarDef arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> itemSchema)
     {
-    try
-      {
-      return
+    return
+      with( "items",
+        () ->
         VarSetBuilder.with( "Contains")
         .when( has( arrayItemsProperty( instanceVarTag)))
         .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
-        .build();
-      }
-    catch( Exception e)
-      {
-      throw new OpenApiException( "Error processing array item schema", e);
-      }
+        .build());
     }
 
   /**
@@ -655,18 +657,16 @@ public class InputModeller
         .members(
           IntStream.range( 0, memberSchemas.size())
           .mapToObj( i -> {
-            try
-              {
-              String memberVarTag = containerVarTag + i;
-              return
-                VarSetBuilder.with( String.valueOf(i))
-                .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), true))
-                .build();
-              }
-            catch( Exception e)
-              {
-              throw new OpenApiException( String.format( "Error processing 'allOf', member schema %s", i), e);
-              }
+            return
+              with( String.format( "allOf[%s]", i),
+                () ->
+                {
+                String memberVarTag = containerVarTag + i;
+                return
+                  VarSetBuilder.with( String.valueOf(i))
+                  .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), true))
+                  .build();
+                });
             }))
         .build())
       .build();
@@ -711,18 +711,16 @@ public class InputModeller
         .members(
           IntStream.range( 0, memberSchemas.size())
           .mapToObj( i -> {
-            try
-              {
-              String memberVarTag = containerVarTag + i;
-              return
-                VarSetBuilder.with( String.valueOf(i))
-                .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), validationRequired))
-                .build();
-              }
-            catch( Exception e)
-              {
-              throw new OpenApiException( String.format( "Error processing '%s', member schema %s", containerType, i), e);
-              }
+            return
+              with( String.format( "%s[%s]", containerType, i),
+                () ->
+                {
+                String memberVarTag = containerVarTag + i;
+                return
+                  VarSetBuilder.with( String.valueOf(i))
+                  .members( memberSchemaVars( api, containerVarTag, memberVarTag, resolveSchema( api, memberSchemas.get(i)), validationRequired))
+                  .build();
+                });
             }))
         .build())
       .build();
@@ -1190,21 +1188,19 @@ public class InputModeller
    */
   private IVarDef objectPropertyVar( OpenAPI api, String instanceVarTag, String propertyName, boolean required, Schema<?> propertySchema)
     {
-    try
-      {
-      String propertyVarName = toIdentifier( propertyName);
-      String propertyVarTag = instanceVarTag + StringUtils.capitalize( propertyVarName);
+    return
+      with( propertyName,
+        () ->
+        {
+        String propertyVarName = toIdentifier( propertyName);
+        String propertyVarTag = instanceVarTag + StringUtils.capitalize( propertyVarName);
       
-      return
-        VarSetBuilder.with( propertyVarName)
-        .members( instanceDefinedVar( propertyVarTag, required, objectPropertiesProperty( instanceVarTag)))
-        .members( instanceSchemaVars( api, propertyVarTag, propertySchema))
-        .build();
-      }
-    catch( Exception e)
-      {
-      throw new OpenApiException( String.format( "Error processing property=%s", propertyName), e);
-      }
+        return
+          VarSetBuilder.with( propertyVarName)
+          .members( instanceDefinedVar( propertyVarTag, required, objectPropertiesProperty( instanceVarTag)))
+          .members( instanceSchemaVars( api, propertyVarTag, propertySchema))
+          .build();
+        });
     }
   
   /**
@@ -1489,7 +1485,7 @@ public class InputModeller
     {
     if( value == null)
       {
-      throw new OpenApiException( String.format( description, descriptionArgs) + " is not defined");
+      throw new IllegalStateException( String.format( description, descriptionArgs) + " is not defined");
       }
 
     return value;
@@ -1596,6 +1592,33 @@ public class InputModeller
     return ref.startsWith( refType)? ref.substring( refType.length()) : null;
     }
 
+  /**
+   * Returns the result of the given supplier with the specified context.
+   */
+  private <T> T with( String context, Supplier<T> supplier)
+    {
+    context_.addLast( context);
+    try
+      {
+      return supplier.get();
+      }
+    catch( OpenApiException oae)
+      {
+      throw oae;
+      }
+    catch( Exception e)
+      {
+      String location = toStream( context_.iterator()).collect( joining( ", "));
+      throw new OpenApiException( String.format( "Error processing %s", location), e);
+      }
+    finally
+      {
+      context_.removeLast();
+      }
+    }
+
+  private Deque<String> context_ = new ArrayDeque<String>();
+  
   private static final String componentsParametersRef_ = "#/components/parameters/";
   private static final String componentsRequestBodiesRef_ = "#/components/requestBodies/";
   private static final String componentsResponsesRef_ = "#/components/responses/";
