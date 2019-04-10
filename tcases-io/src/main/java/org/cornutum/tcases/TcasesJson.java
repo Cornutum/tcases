@@ -43,7 +43,22 @@ public class TcasesJson
     }
 
   /**
-   * Writes a {@link ProjectJsonWriter JSON document} describing the given test case definitions to the given output stream.
+   * Writes a {@link SystemInputJsonWriter JSON document} describing the given system input definition to the given output stream.
+   */
+  public static void writeInputModel( SystemInputDef inputDef, OutputStream outputStream)
+    {
+    try( SystemInputJsonWriter writer = new SystemInputJsonWriter( outputStream))
+      {
+      writer.write( inputDef);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write input definition", e);
+      }
+    }
+
+  /**
+   * Writes a {@link SystemTestJsonWriter JSON document} describing the given test case definitions to the given output stream.
    */
   public static void writeTests( SystemTestDef testDef, OutputStream outputStream)
     {

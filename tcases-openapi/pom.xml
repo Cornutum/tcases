@@ -80,7 +80,7 @@
     <dependencies>
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
-            <artifactId>tcases-lib</artifactId>
+            <artifactId>tcases-io</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -116,13 +116,6 @@
             <artifactId>tcases-lib</artifactId>
             <classifier>tests</classifier>
             <type>test-jar</type>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.cornutum.tcases</groupId>
-            <artifactId>tcases-io</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
