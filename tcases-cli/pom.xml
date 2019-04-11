@@ -77,7 +77,7 @@
     <dependencies>
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
-            <artifactId>tcases-io</artifactId>
+            <artifactId>tcases-openapi</artifactId>
             <version>${project.version}</version>
         </dependency>
 

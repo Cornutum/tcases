@@ -13,6 +13,7 @@ import org.cornutum.tcases.TcasesJson;
 import org.cornutum.tcases.openapi.TcasesOpenApi;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -44,7 +45,19 @@ public final class TcasesOpenApiIO
     }
 
   /**
-   * Writes a {@link SystemInputJsonWriter JSON document} describing the given system input definition to the given output stream.
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemInputDef getRequestInputModel( File api)
+    {
+    try( OpenApiReader reader = new OpenApiReader( api))
+      {
+      return TcasesOpenApi.getRequestInputModel( reader.read());
+      }
+    }
+
+  /**
+   * Writes a {@link org.cornutum.tcases.io.SystemInputJsonWriter JSON document} describing the given system input definition to the given output stream.
    */
   public static void writeInputModel( SystemInputDef inputDef, OutputStream outputStream)
     {
@@ -61,7 +74,16 @@ public final class TcasesOpenApiIO
     }
 
   /**
-   * Writes a {@link SystemTestJsonWriter JSON document} describing the given test case definitions to the given output stream.
+   * Returns a {@link SystemTestDef system test definition} for the API requests defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemTestDef getRequestTests( File api)
+    {
+    return Tcases.getTests( getRequestInputModel( api), null, null);
+    }
+
+  /**
+   * Writes a {@link org.cornutum.tcases.io.SystemTestJsonWriter JSON document} describing the given test case definitions to the given output stream.
    */
   public static void writeTests( SystemTestDef testDef, OutputStream outputStream)
     {

@@ -709,6 +709,6 @@ public class OperationsTest extends OpenApiTest
     assertRequestInputModelFailure(
       "operations-12",
       "Error processing Operations, /operations, POST, param0",
-      "type is not defined");
+      "Schema type is not defined");
     }
   }

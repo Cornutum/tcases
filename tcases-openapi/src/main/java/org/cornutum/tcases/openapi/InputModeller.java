@@ -158,20 +158,18 @@ public class InputModeller
         () ->
         Optional.ofNullable( body)
         .map( b -> resolveRequestBody( api, b))
-        .map( b ->
-              {
-              String instanceVarName = "Body";
-          
-              return
-                VarSetBuilder.with( instanceVarName)
-                .type( "request")
-                .members(
-                  instanceDefinedVar( instanceVarName, Boolean.TRUE.equals( b.getRequired())),
-                  mediaTypeVar( instanceVarName, b))
-                .members(
-                  mediaTypeContentVars( api, b))
-                .build();
-              }));
+        .map( b -> {
+          String instanceVarName = "Body";
+          return
+            VarSetBuilder.with( instanceVarName)
+            .type( "request")
+            .members(
+              instanceDefinedVar( instanceVarName, Boolean.TRUE.equals( b.getRequired())),
+              mediaTypeVar( instanceVarName, b))
+            .members(
+              mediaTypeContentVars( api, b))
+            .build();
+          }));
     }
 
   /**
@@ -391,7 +389,7 @@ public class InputModeller
   private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     ComposedSchema composedSchema = instanceSchema instanceof ComposedSchema? (ComposedSchema) instanceSchema : null;
-    String type = composedSchema == null? expectedValueOf( instanceSchema.getType(), "type") : null;
+    String type = composedSchema == null? expectedValueOf( instanceSchema.getType(), "Schema type") : null;
 
     return
       composedSchema != null?

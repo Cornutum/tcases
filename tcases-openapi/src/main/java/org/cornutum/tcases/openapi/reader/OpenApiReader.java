@@ -157,7 +157,10 @@ public class OpenApiReader implements Closeable
     {
     try
       {
-      return file.toURI().toURL();
+      return
+        file == null
+        ? null
+        : file.toURI().toURL();
       }
     catch( Exception e)
       {
@@ -172,7 +175,10 @@ public class OpenApiReader implements Closeable
     {
     try
       {
-      return new FileInputStream( file);
+      return
+        file == null
+        ? null
+        : new FileInputStream( file);
       }
     catch( Exception e)
       {
