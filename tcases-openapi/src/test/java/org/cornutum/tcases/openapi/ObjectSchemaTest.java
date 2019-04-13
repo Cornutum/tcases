@@ -10,13 +10,13 @@ package org.cornutum.tcases.openapi;
 import org.junit.Test;
 
 /**
- * Runs tests for {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using
+ * Runs tests for {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using
  * variations of the basic properties of an API spec.
  */
 public class ObjectSchemaTest extends OpenApiTest
   {
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 0. Schema (Success) </TH></TR>
@@ -38,7 +38,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 1. Schema (Success) </TH></TR>
@@ -60,7 +60,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 2. Schema (Success) </TH></TR>
@@ -82,7 +82,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 3. Schema (Success) </TH></TR>
@@ -104,7 +104,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 4. Schema (Success) </TH></TR>
@@ -126,7 +126,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 5. Schema (Success) </TH></TR>
@@ -148,7 +148,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 6. Schema (Success) </TH></TR>
@@ -170,7 +170,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 7. Schema (Success) </TH></TR>
@@ -192,7 +192,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 8. Schema (Success) </TH></TR>
@@ -214,7 +214,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="9">
    * <TR align="left"><TH colspan=2> 9. Schema (Success) </TH></TR>
@@ -236,7 +236,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="10">
    * <TR align="left"><TH colspan=2> 10. Schema (Success) </TH></TR>
@@ -258,7 +258,7 @@ public class ObjectSchemaTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following object schema.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
    * <P>
    * <TABLE border="1" cellpadding="11">
    * <TR align="left"><TH colspan=2> 11. Schema (Success) </TH></TR>

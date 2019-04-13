@@ -10,13 +10,13 @@ package org.cornutum.tcases.openapi;
 import org.junit.Test;
 
 /**
- * Runs tests for {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using
+ * Runs tests for {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using
  * variations of the basic properties of an API spec.
  */
 public class OperationsTest extends OpenApiTest
   {
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 0. API (Success) </TH></TR>
@@ -69,7 +69,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 1. API (Success) </TH></TR>
@@ -122,7 +122,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 2. API (Success) </TH></TR>
@@ -175,7 +175,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 3. API (Success) </TH></TR>
@@ -228,7 +228,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 4. API (Success) </TH></TR>
@@ -281,7 +281,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 5. API (Success) </TH></TR>
@@ -334,7 +334,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 6. API (Success) </TH></TR>
@@ -387,7 +387,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 7. API (Success) </TH></TR>
@@ -440,7 +440,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 8. API (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -493,7 +493,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 9. API (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -547,7 +547,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 10. API (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -601,7 +601,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 11. API (<FONT color="red">Failure</FONT>) </TH></TR>
@@ -657,7 +657,7 @@ public class OperationsTest extends OpenApiTest
     }
 
   /**
-   * Tests {@link TcasesOpenApi#getRequestsInputModel getRequestsInputModel} using the following inputs.
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 12. API (<FONT color="red">Failure</FONT>) </TH></TR>
