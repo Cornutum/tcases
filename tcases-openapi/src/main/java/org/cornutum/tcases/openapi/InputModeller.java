@@ -252,16 +252,16 @@ public class InputModeller
         Optional.ofNullable( body)
         .map( b -> resolveRequestBody( api, b))
         .map( b -> {
-          String instanceVarName = "Body";
+          String contentVarTag = "Content";
           Map<String,MediaType> mediaTypes = expectedValueOf( b.getContent(), "Request body content");
           return
-            VarSetBuilder.with( instanceVarName)
+            VarSetBuilder.with( "Body")
             .type( "request")
             .members(
-              instanceDefinedVar( instanceVarName, Boolean.TRUE.equals( b.getRequired())),
-              mediaTypeVar( instanceVarName, mediaTypes))
+              instanceDefinedVar( contentVarTag, Boolean.TRUE.equals( b.getRequired())),
+              mediaTypeVar( contentVarTag, mediaTypes))
             .members(
-              mediaTypeContentVars( api, mediaTypes))
+              mediaTypeContentVars( api, contentVarTag, mediaTypes))
             .build();
           }));
     }
@@ -269,11 +269,11 @@ public class InputModeller
   /**
    * Returns the {@link IVarDef input variable definition} for the given media types.
    */
-  private IVarDef mediaTypeVar( String instanceVarTag, Map<String,MediaType> mediaTypes)
+  private IVarDef mediaTypeVar( String contentVarTag, Map<String,MediaType> mediaTypes)
     {
     return
       VarDefBuilder.with( "Media-Type")
-      .when( instanceDefinedCondition( instanceVarTag))
+      .when( instanceDefinedCondition( contentVarTag))
       .values(
         mediaTypes.entrySet().stream()
         .map(
@@ -281,10 +281,11 @@ public class InputModeller
           {
           String mediaType = contentDef.getKey();
           String mediaTypeVarName = mediaTypeVarName( mediaType);
+          String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaType);
           return
             VarValueDefBuilder.with( mediaTypeVarName)
             .has( "mediaType", mediaType)
-            .properties( mediaTypeVarName)
+            .properties( mediaTypeVarTag)
             .build();
           })) 
       .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build())
@@ -294,7 +295,7 @@ public class InputModeller
   /**
    * Returns the {@link IVarDef input variable definitions} for the given media type content.
    */
-  private Stream<IVarDef> mediaTypeContentVars( OpenAPI api, Map<String,MediaType> mediaTypes)
+  private Stream<IVarDef> mediaTypeContentVars( OpenAPI api, String contentVarTag, Map<String,MediaType> mediaTypes)
     {
     return
       mediaTypes.entrySet().stream()
@@ -308,21 +309,23 @@ public class InputModeller
             () ->
             {
             String mediaTypeVarName = mediaTypeVarName( mediaType);
+            String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaType);
+            
             VarSetBuilder contentVar =
               VarSetBuilder.with( mediaTypeVarName)
-              .when( has( mediaTypeVarName));
+              .when( has( mediaTypeVarTag));
 
             // Schema defined for this media type?
             Schema<?> mediaTypeSchema = contentDef.getValue().getSchema();
             if( mediaTypeSchema == null)
               {
               // No, use perfunctory "must be defined" input model for contents
-              contentVar.members( instanceDefinedVar( mediaTypeVarName, false));
+              contentVar.members( instanceDefinedVar( mediaTypeVarTag, false));
               }
             else
               {
               // Yes, use schema input model for contents
-              contentVar.members( instanceSchemaVars( api, mediaTypeVarName, false, resolveSchema( api, mediaTypeSchema)));
+              contentVar.members( instanceSchemaVars( api, mediaTypeVarTag, false, resolveSchema( api, mediaTypeSchema)));
               }
 
             return contentVar.build();
@@ -519,7 +522,7 @@ public class InputModeller
               VarSetBuilder.with( "Headers")
               .members(
                 names.stream()
-                .map( name -> responseHeaderVar( api, name, resolveHeader( api, response.getHeaders().get( name)))))
+                .map( name -> responseHeaderVar( api, status, name, resolveHeader( api, response.getHeaders().get( name)))))
               .build();
             });
         });
@@ -528,14 +531,14 @@ public class InputModeller
   /**
    * Returns the variable definition for the given response header.
    */
-  private IVarDef responseHeaderVar( OpenAPI api, String headerName, Header header)
+  private IVarDef responseHeaderVar( OpenAPI api, String status, String headerName, Header header)
     {
     return
       with(
         headerName,
         () -> {
         String headerVarName = toIdentifier( headerName);
-        String headerVarTag = "header" + StringUtils.capitalize( headerVarName);
+        String headerVarTag = status + "Header" + StringUtils.capitalize( headerVarName);
 
         Schema<?> headerSchema =
           header.getSchema() == null
@@ -556,7 +559,7 @@ public class InputModeller
   private IVarDef headerDefinedVar( String headerVarTag, Header header)
     {
     return
-      VarDefBuilder.with( instanceDefinedVar( headerVarTag, header.getRequired()))
+      VarDefBuilder.with( instanceDefinedVar( headerVarTag, Boolean.TRUE.equals( header.getRequired())))
       .has( "style", header.getStyle())
       .has( "explode", header.getExplode())
       .build();
@@ -568,6 +571,7 @@ public class InputModeller
   private IVarDef responseContentVar( OpenAPI api, String status, ApiResponse response)
     {
     String contentVarName = "Content";
+    String contentVarTag = status + contentVarName;
     return
       with( "content",
         () ->
@@ -576,16 +580,16 @@ public class InputModeller
           return
             VarSetBuilder.with( contentVarName)
             .members(
-              instanceDefinedVar( contentVarName, true),
-              mediaTypeVar( contentVarName, mediaTypes))
+              instanceDefinedVar( contentVarTag, true),
+              mediaTypeVar( contentVarTag, mediaTypes))
             .members(
-              mediaTypeContentVars( api, mediaTypes))
+              mediaTypeContentVars( api, contentVarTag, mediaTypes))
             .build();
           })
 
         .orElse(
           VarSetBuilder.with( contentVarName)
-          .members( instanceUndefinedAlways( contentVarName)) 
+          .members( instanceUndefinedAlways( contentVarTag)) 
           .build()));
     }
 
@@ -1671,6 +1675,14 @@ public class InputModeller
   private String mediaTypeVarName( String mediaType)
     {
     return functionPathName( mediaType);
+    }
+
+  /**
+   * Returns input variable tag for the given media type
+   */
+  private String mediaTypeVarTag( String contentVarTag, String mediaType)
+    {
+    return contentVarTag.replace( "Content", "") + mediaTypeVarName( mediaType);
     }
 
   /**

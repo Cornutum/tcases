@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonValue,Body,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -54,7 +54,7 @@
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="application-json,application-jsonValue,Body,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -193,7 +193,7 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
-      <Has name="properties" value="Body,param1,param1Value"/>
+      <Has name="properties" value="Content,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -216,7 +216,7 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
-      <Has name="properties" value="application-json,Body,param1,param1Value"/>
+      <Has name="properties" value="application-json,Content,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -241,7 +241,7 @@
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
-      <Has name="properties" value="application-json,Body,param1,param1Value"/>
+      <Has name="properties" value="application-json,Content,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -266,7 +266,7 @@
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Body,param1,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">

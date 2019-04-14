@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,application-jsonAnyOfMemberValidated,Body"/>
+      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,application-jsonAnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -32,7 +32,7 @@
       </Input>
     </TestCase>
     <TestCase id="1">
-      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsMany,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOfMemberValidated,Body"/>
+      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsMany,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -58,7 +58,7 @@
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,application-jsonAnyOfMemberValidated,Body"/>
+      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,application-jsonAnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -84,7 +84,7 @@
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsMany,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,application-jsonAnyOfMemberValidated,Body"/>
+      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsMany,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,application-jsonAnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -110,7 +110,7 @@
       </Input>
     </TestCase>
     <TestCase id="4">
-      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,application-jsonAnyOfMemberValidated,Body"/>
+      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,application-jsonAnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -159,7 +159,7 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
-      <Has name="properties" value="Body"/>
+      <Has name="properties" value="Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -183,7 +183,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsMany,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,Body"/>
+      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Items,application-jsonAnyOf1ItemsMany,application-jsonAnyOf1ItemsValue,application-jsonAnyOf1Value,application-jsonAnyOf2MyString,application-jsonAnyOf2MyStringValue,application-jsonAnyOf2Properties,application-jsonAnyOf2Value,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">

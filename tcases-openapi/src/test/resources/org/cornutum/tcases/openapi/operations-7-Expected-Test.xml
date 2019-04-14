@@ -6,7 +6,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonValue,Body"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -29,7 +29,7 @@
       </Input>
     </TestCase>
     <TestCase id="2" failure="true">
-      <Has name="properties" value="Body"/>
+      <Has name="properties" value="Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -40,7 +40,7 @@
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
-      <Has name="properties" value="application-json,Body"/>
+      <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -53,7 +53,7 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
-      <Has name="properties" value="application-json,Body"/>
+      <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -66,7 +66,7 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Body"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">

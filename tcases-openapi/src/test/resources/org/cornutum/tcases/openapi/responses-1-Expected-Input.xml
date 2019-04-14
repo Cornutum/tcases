@@ -14,15 +14,15 @@
             <Var name="Defined">
               <Has name="explode" value="false"/>
               <Has name="style" value="simple"/>
-              <Value name="Yes" property="headerX-standard-header"/>
+              <Value name="Yes" property="2XXHeaderX-standard-header"/>
               <Value name="No" failure="true"/>
             </Var>
-            <Var name="Type" when="headerX-standard-header">
-              <Value name="string" property="headerX-standard-headerValue"/>
+            <Var name="Type" when="2XXHeaderX-standard-header">
+              <Value name="string" property="2XXHeaderX-standard-headerValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not string" failure="true"/>
             </Var>
-            <Var name="Value" when="headerX-standard-headerValue">
+            <Var name="Value" when="2XXHeaderX-standard-headerValue">
               <Value name="this"/>
               <Value name="that"/>
               <Value name="Other" failure="true"/>
@@ -32,15 +32,15 @@
             <Var name="Defined">
               <Has name="explode" value="false"/>
               <Has name="style" value="simple"/>
-              <Value name="Yes" property="headerX-extra-header"/>
+              <Value name="Yes" property="2XXHeaderX-extra-header"/>
               <Value name="No"/>
             </Var>
-            <Var name="Type" when="headerX-extra-header">
-              <Value name="string" property="headerX-extra-headerValue"/>
+            <Var name="Type" when="2XXHeaderX-extra-header">
+              <Value name="string" property="2XXHeaderX-extra-headerValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not string" failure="true"/>
             </Var>
-            <VarSet name="Value" when="headerX-extra-headerValue">
+            <VarSet name="Value" when="2XXHeaderX-extra-headerValue">
               <Var name="Length">
                 <Value name="0" failure="true"/>
                 <Value name="1"/>

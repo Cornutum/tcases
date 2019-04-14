@@ -6,10 +6,10 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Body"/>
+          <Value name="Yes" property="Content"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Body">
+        <Var name="Media-Type" when="Content">
           <Value name="application-json" property="application-json">
             <Has name="mediaType" value="application/json"/>
           </Value>

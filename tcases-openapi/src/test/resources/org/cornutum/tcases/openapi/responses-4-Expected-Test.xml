@@ -23,7 +23,7 @@
       </Input>
     </TestCase>
     <TestCase id="1">
-      <Has name="properties" value="application-json,application-jsonValue,Content,status4XX"/>
+      <Has name="properties" value="4XXapplication-json,4XXapplication-jsonValue,4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -42,7 +42,7 @@
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="application-json,application-jsonValue,Content,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -78,7 +78,7 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
-      <Has name="properties" value="Content,status4XX"/>
+      <Has name="properties" value="4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -95,7 +95,7 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
-      <Has name="properties" value="application-json,Content,status4XX"/>
+      <Has name="properties" value="4XXapplication-json,4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -114,7 +114,7 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
-      <Has name="properties" value="application-json,Content,status4XX"/>
+      <Has name="properties" value="4XXapplication-json,4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -133,7 +133,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content,status4XX"/>
+      <Has name="properties" value="4XXapplication-json,4XXapplication-jsonValue,4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -169,7 +169,7 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
-      <Has name="properties" value="Content,statusOther"/>
+      <Has name="properties" value="defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -186,7 +186,7 @@
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
-      <Has name="properties" value="application-json,Content,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -205,7 +205,7 @@
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
-      <Has name="properties" value="application-json,Content,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -224,7 +224,7 @@
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
