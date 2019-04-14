@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<System name="Responses">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="TRACE_responses">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="2XX" property="status2XX"/>
+        <Value name="Other" property="statusOther"/>
+      </Var>
+      <VarSet name="2XX" when="status2XX">
+        <VarSet name="Headers">
+          <VarSet name="x-standard-header">
+            <Var name="Defined">
+              <Has name="explode" value="false"/>
+              <Has name="style" value="simple"/>
+              <Value name="Yes" property="2XXHeaderX-standard-header"/>
+              <Value name="No"/>
+            </Var>
+            <Var name="Type" when="2XXHeaderX-standard-header">
+              <Value name="string" property="2XXHeaderX-standard-headerValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="2XXHeaderX-standard-headerValue">
+              <Var name="Length">
+                <Value name="&gt; 0"/>
+                <Value name="0"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="x-extra-header">
+            <Var name="Defined">
+              <Has name="explode" value="false"/>
+              <Has name="style" value="simple"/>
+              <Value name="Yes" property="2XXHeaderX-extra-header"/>
+              <Value name="No"/>
+            </Var>
+            <Var name="Type" when="2XXHeaderX-extra-header">
+              <Value name="object" property="2XXHeaderX-extra-headerValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="2XXHeaderX-extra-headerValue">
+              <VarSet name="Properties">
+                <Var name="Additional">
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="2XXContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="2XXContent">
+            <Value name="application-json" property="2XXapplication-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="text-javascript" property="2XXtext-javascript">
+              <Has name="mediaType" value="text/javascript"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="application-json" when="2XXapplication-json">
+            <Var name="Type">
+              <Value name="string" property="2XXapplication-jsonValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="2XXapplication-jsonValue">
+              <Var name="Length">
+                <Value name="15" failure="true"/>
+                <Value name="16"/>
+                <Value name="255"/>
+                <Value name="256" failure="true"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="text-javascript" when="2XXtext-javascript">
+            <Var name="Type">
+              <Value name="string" property="2XXtext-javascriptValue"/>
+              <Value name="null" once="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="2XXtext-javascriptValue">
+              <Var name="Length">
+                <Value name="16"/>
+                <Value name="17" failure="true"/>
+                <Value name="0"/>
+                <Value name="&lt; 16"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

@@ -1,0 +1,115 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Responses",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/responses": {
+            "delete": {
+                "responses": {
+                    "2XX": {
+                        "description": "Success",
+                        "headers": {
+                            "x-standard-header": {
+                                "$ref": "#/components/headers/standard"
+                            },
+                            "x-extra-header": {
+                                "$ref": "#/components/headers/extra"
+                            }
+                        },
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "4XX": {
+                        "description": "Failure",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string",
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "responses": {
+                    "default": {
+                        "description": "Default",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer",
+                                    "maximum": 16,
+                                    "minimum": 16
+                                }
+                            },
+                            "text/javascript": {
+                                "schema": {
+                                    "type": "integer",
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "head": {
+                "responses": {
+                    "202": {
+                        "description": "202",
+                        "headers": {
+                            "x-my-app-header": {
+                                "required": true,
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "content": {
+                            "text/javascript": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Default"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "headers": {
+            "standard": {
+                "required": true,
+                "style": "simple",
+                "schema": {
+                    "type": "integer",
+                    "enum": [ 1, 10, 100 ]
+                }
+            },
+            "extra": {
+                "required": false,
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "exclusiveMinimum": true
+                }
+            }
+            
+        }
+    }
+}
