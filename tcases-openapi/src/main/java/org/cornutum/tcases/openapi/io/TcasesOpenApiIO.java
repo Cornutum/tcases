@@ -57,14 +57,6 @@ public final class TcasesOpenApiIO
     }
 
   /**
-   * Writes a {@link org.cornutum.tcases.io.SystemInputJsonWriter JSON document} describing the given system input definition to the given output stream.
-   */
-  public static void writeInputModel( SystemInputDef inputDef, OutputStream outputStream)
-    {
-    TcasesJson.writeInputModel( inputDef, outputStream);
-    }
-
-  /**
    * Returns a {@link SystemTestDef system test definition} for the API requests defined by the given
    * OpenAPI specification. Returns null if the given spec defines no API requests to model.
    */
@@ -80,6 +72,56 @@ public final class TcasesOpenApiIO
   public static SystemTestDef getRequestTests( File api)
     {
     return Tcases.getTests( getRequestInputModel( api), null, null);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemInputDef getResponseInputModel( InputStream api)
+    {
+    try( OpenApiReader reader = new OpenApiReader( api))
+      {
+      return TcasesOpenApi.getResponseInputModel( reader.read());
+      }
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemInputDef getResponseInputModel( File api)
+    {
+    try( OpenApiReader reader = new OpenApiReader( api))
+      {
+      return TcasesOpenApi.getResponseInputModel( reader.read());
+      }
+    }
+
+  /**
+   * Returns a {@link SystemTestDef system test definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemTestDef getResponseTests( InputStream api)
+    {
+    return Tcases.getTests( getResponseInputModel( api), null, null);
+    }
+
+  /**
+   * Returns a {@link SystemTestDef system test definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemTestDef getResponseTests( File api)
+    {
+    return Tcases.getTests( getResponseInputModel( api), null, null);
+    }
+
+  /**
+   * Writes a {@link org.cornutum.tcases.io.SystemInputJsonWriter JSON document} describing the given system input definition to the given output stream.
+   */
+  public static void writeInputModel( SystemInputDef inputDef, OutputStream outputStream)
+    {
+    TcasesJson.writeInputModel( inputDef, outputStream);
     }
 
   /**

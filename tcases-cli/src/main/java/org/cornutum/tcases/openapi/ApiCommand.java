@@ -623,7 +623,10 @@ public class ApiCommand
     
     // Generate requested input definition
     logger_.info( "Reading API spec from {}", apiSpecFile==null? "standard input" : apiSpecFile);
-    SystemInputDef inputDef = TcasesOpenApiIO.getRequestInputModel( apiSpecFile);
+    SystemInputDef inputDef =
+      options.isServerTest()
+      ? TcasesOpenApiIO.getRequestInputModel( apiSpecFile)
+      : TcasesOpenApiIO.getResponseInputModel( apiSpecFile);
 
     // Write requested results
     logger_.info( "Writing results to {}", outputFile==null? "standard output" : outputFile);
