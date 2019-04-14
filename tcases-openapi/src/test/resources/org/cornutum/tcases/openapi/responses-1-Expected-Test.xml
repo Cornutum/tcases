@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<TestCases system="Responses">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_responses">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="this"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" value="1"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" NA="true">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" NA="true"/>
+        <Var name="2XX.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="that"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="this"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" value="&gt; 1"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="properties" value="status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="No" failure="true">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="2XXHeaderX-standard-header,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="null" failure="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="2XXHeaderX-standard-header,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="Not string" failure="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="Other" failure="true"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="that"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" value="null" failure="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="that"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" value="Not string" failure="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="that"/>
+        <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.x-extra-header.Type" value="string"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Length" value="0" failure="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="OPTIONS_responses">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="status202"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="202"/>
+        <Var name="202.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="202.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="HEAD_responses">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="status201"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="201"/>
+        <Var name="201.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="201.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="GET_respond">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="status203"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="203"/>
+        <Var name="203.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="203.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="OPTIONS_respond">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="status204"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="204"/>
+        <Var name="204.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="204.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="GET_respondingly">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="status206"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="206"/>
+        <Var name="206.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="206.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="HEAD_respondingly">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="status205"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="205"/>
+        <Var name="205.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="205.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

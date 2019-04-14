@@ -7,7 +7,7 @@
   <groupId>org.cornutum.tcases</groupId>
   <artifactId>tcases</artifactId>
   <packaging>pom</packaging>
-  <version>3.0.3-SNAPSHOT</version>
+  <version>3.1.0-SNAPSHOT</version>
 
   <name>Tcases</name>
   <description>Generates test cases from system input space models</description>
@@ -68,6 +68,7 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <tcasesJunit>true</tcasesJunit>
   </properties>
 
   <build>
@@ -258,6 +259,7 @@
     <module>tcases-cli</module>
     <module>tcases-shell</module>
     <module>tcases-maven-plugin</module>
+    <module>tcases-openapi</module>
   </modules>
 
 </project>

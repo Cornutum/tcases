@@ -9,6 +9,7 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
+import org.cornutum.tcases.util.ObjectUtils;
 import org.cornutum.tcases.DefUtils;
 import static org.cornutum.tcases.VarValueDef.Type.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;

@@ -10,6 +10,8 @@ package org.cornutum.tcases;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import org.apache.commons.collections4.iterators.SingletonIterator;
+
 /**
  * Iterates over all {@link VarDef individual variable definitions}, using a depth-first traversal of any
  * {@link VarSet variable sets}.
@@ -31,6 +33,14 @@ public class VarDefIterator implements Iterator<VarDef>
   public VarDefIterator( Iterator<IVarDef> varDefs)
     {
     varDefs_ = varDefs;
+    }
+
+  /**
+   * Creates a new VarDefIterator object.
+   */
+  public VarDefIterator( IVarDef varDef)
+    {
+    this( new SingletonIterator<IVarDef>( varDef));
     }
 
   public boolean hasNext()

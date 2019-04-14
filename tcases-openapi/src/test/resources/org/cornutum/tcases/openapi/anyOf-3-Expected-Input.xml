@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<System name="AnyOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_anyOf">
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="AnyOf" when="param0">
+          <VarSet name="Members">
+            <Var name="Validated">
+              <Value name="1">
+                <When>
+                  <Equals property="param0AnyOfMemberValidated" count="1"/>
+                </When>
+              </Value>
+              <Value name="0" failure="true">
+                <When>
+                  <Not property="param0AnyOfMemberValidated">
+                  </Not>
+                </When>
+              </Value>
+              <Value name="&gt; 1" once="true">
+                <When>
+                  <MoreThan property="param0AnyOfMemberValidated" min="1"/>
+                </When>
+              </Value>
+            </Var>
+            <VarSet name="0">
+              <Var name="Type">
+                <Value name="string" property="param0AnyOf0Value"/>
+                <Value name="null" once="true"/>
+              </Var>
+              <VarSet name="Value" when="param0AnyOf0Value">
+                <Has name="format" value="password"/>
+                <Var name="Length">
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+                <Var name="MatchesPattern">
+                  <Has name="pattern" value="^[A-Za-z0-9]+"/>
+                  <Value name="Yes" property="param0AnyOfMemberValidated"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="1">
+              <VarSet name="OneOf">
+                <VarSet name="Members">
+                  <Var name="Validated">
+                    <Value name="1" property="param0AnyOfMemberValidated">
+                      <When>
+                        <Equals property="param0AnyOf1OneOfMemberValidated" count="1"/>
+                      </When>
+                    </Value>
+                    <Value name="0">
+                      <When>
+                        <Not property="param0AnyOf1OneOfMemberValidated">
+                        </Not>
+                      </When>
+                    </Value>
+                  </Var>
+                  <VarSet name="0">
+                    <Var name="Type">
+                      <Value name="object" property="param0AnyOf1OneOf0Value"/>
+                    </Var>
+                    <VarSet name="Value" when="param0AnyOf1OneOf0Value">
+                      <Var name="Property-Count">
+                        <Value name="0" once="true">
+                          <When>
+                            <Not property="param0AnyOf1OneOf0Properties">
+                            </Not>
+                          </When>
+                        </Value>
+                        <Value name="&gt; 0" when="param0AnyOf1OneOf0Properties"/>
+                      </Var>
+                      <VarSet name="Properties">
+                        <VarSet name="tom">
+                          <Var name="Defined">
+                            <Value name="Yes" property="param0AnyOf1OneOf0Properties, param0AnyOf1OneOf0Tom"/>
+                            <Value name="No"/>
+                          </Var>
+                          <Var name="Type" when="param0AnyOf1OneOf0Tom">
+                            <Value name="string" property="param0AnyOf1OneOf0TomValue"/>
+                          </Var>
+                          <VarSet name="Value" when="param0AnyOf1OneOf0TomValue">
+                            <Var name="Length">
+                              <Value name="&gt; 0"/>
+                              <Value name="0"/>
+                            </Var>
+                          </VarSet>
+                        </VarSet>
+                        <Var name="Additional">
+                          <Value name="Yes"/>
+                          <Value name="No" property="param0AnyOf1OneOfMemberValidated"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                  </VarSet>
+                  <VarSet name="1">
+                    <Var name="Type">
+                      <Value name="object" property="param0AnyOf1OneOf1Value"/>
+                    </Var>
+                    <VarSet name="Value" when="param0AnyOf1OneOf1Value">
+                      <VarSet name="Properties">
+                        <VarSet name="jerry">
+                          <Var name="Defined">
+                            <Value name="Yes" property="param0AnyOf1OneOf1Jerry, param0AnyOf1OneOf1Properties"/>
+                          </Var>
+                          <Var name="Type" when="param0AnyOf1OneOf1Jerry">
+                            <Value name="number" property="param0AnyOf1OneOf1JerryValue"/>
+                          </Var>
+                          <Var name="Value" when="param0AnyOf1OneOf1JerryValue">
+                            <Value name="&lt; 0"/>
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
+                          </Var>
+                        </VarSet>
+                        <Var name="Additional">
+                          <Value name="Yes"/>
+                          <Value name="No" property="param0AnyOf1OneOfMemberValidated"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

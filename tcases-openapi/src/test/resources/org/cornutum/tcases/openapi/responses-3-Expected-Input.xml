@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<System name="Responses">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_responses">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="Other" property="statusOther"/>
+      </Var>
+      <VarSet name="Other" when="statusOther">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

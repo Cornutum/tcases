@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<System name="Operations">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="DELETE_operations">
+    <Input type="query">
+      <VarSet name="id">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="id"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="id">
+          <Value name="integer" property="idValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <Var name="Value" when="idValue">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

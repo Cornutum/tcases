@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<System name="Object">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object">
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="object" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Property-Count">
+            <Value name="&gt;= 3">
+              <When>
+                <NotLessThan property="param0Properties" min="3"/>
+              </When>
+            </Value>
+            <Value name="&lt; 3" failure="true">
+              <When>
+                <LessThan property="param0Properties" max="3"/>
+              </When>
+            </Value>
+          </Var>
+          <VarSet name="Properties">
+            <VarSet name="myString">
+              <Var name="Defined">
+                <Value name="Yes" property="param0MyString, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0MyString">
+                <Value name="string" property="param0MyStringValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not string" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0MyStringValue">
+                <Var name="Length">
+                  <Value name="&gt; 0"/>
+                  <Value name="0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="myBoolean">
+              <Var name="Defined">
+                <Value name="Yes" property="param0MyBoolean, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0MyBoolean">
+                <Value name="boolean" property="param0MyBooleanValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not boolean" failure="true"/>
+              </Var>
+              <Var name="Value" when="param0MyBooleanValue">
+                <Value name="true"/>
+                <Value name="false"/>
+              </Var>
+            </VarSet>
+            <VarSet name="myNumber">
+              <Var name="Defined">
+                <Value name="Yes" property="param0MyNumber, param0Properties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="param0MyNumber">
+                <Value name="number" property="param0MyNumberValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not number" failure="true"/>
+              </Var>
+              <Var name="Value" when="param0MyNumberValue">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
+            </VarSet>
+            <VarSet name="myInteger">
+              <Var name="Defined">
+                <Value name="Yes" property="param0MyInteger, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0MyInteger">
+                <Value name="integer" property="param0MyIntegerValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <Var name="Value" when="param0MyIntegerValue">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" property="param0Properties"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

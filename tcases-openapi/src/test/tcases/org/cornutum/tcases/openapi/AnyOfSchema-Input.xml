@@ -1,0 +1,77 @@
+<System name="AnyOfSchema">
+    <Function name="Schema">
+        <Input>
+            <VarSet name="Members">
+                <Var name="Count">
+                    <Value name="1" once="true">
+                        <When>
+                            <Equals property="member" count="1"/>
+                        </When>
+                    </Value>
+                    <Value name="&gt; 1">
+                        <When>
+                            <Between property="member" min="2" max="3"/>
+                        </When>
+                    </Value>               
+                </Var>
+                
+                <VarSet name="Type">
+                    <VarSet name="allOf">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="boolean">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="array">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="anyOf">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="number">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="object">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="integer">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="oneOf">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="string">
+                        <Var name="Included">
+                            <Value name="Yes" property="member" once="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

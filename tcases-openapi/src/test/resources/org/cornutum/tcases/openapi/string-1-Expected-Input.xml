@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<System name="String">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_string">
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="string" property="param0Value"/>
+          <Value name="null" once="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Has name="default" value="Change Me!"/>
+          <Has name="format" value="password"/>
+          <Var name="Length">
+            <Value name="128"/>
+            <Value name="129" failure="true"/>
+            <Value name="0"/>
+            <Value name="&lt; 128"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

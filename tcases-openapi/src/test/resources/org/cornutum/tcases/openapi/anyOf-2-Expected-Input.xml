@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<System name="AnyOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_anyOf">
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true"/>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <VarSet name="AnyOf">
+            <VarSet name="Members">
+              <Var name="Validated">
+                <Value name="1">
+                  <When>
+                    <Equals property="application-jsonAnyOfMemberValidated" count="1"/>
+                  </When>
+                </Value>
+                <Value name="0" failure="true">
+                  <When>
+                    <Not property="application-jsonAnyOfMemberValidated">
+                    </Not>
+                  </When>
+                </Value>
+                <Value name="&gt; 1" once="true">
+                  <When>
+                    <MoreThan property="application-jsonAnyOfMemberValidated" min="1"/>
+                  </When>
+                </Value>
+              </Var>
+              <VarSet name="0">
+                <Var name="Type">
+                  <Value name="integer" property="application-jsonAnyOf0Value"/>
+                </Var>
+                <Var name="Value" when="application-jsonAnyOf0Value">
+                  <Value name="-1" property="application-jsonAnyOfMemberValidated"/>
+                  <Value name="0" property="application-jsonAnyOfMemberValidated"/>
+                  <Value name="1" property="application-jsonAnyOfMemberValidated"/>
+                  <Value name="Other"/>
+                </Var>
+              </VarSet>
+              <VarSet name="1">
+                <Var name="Type">
+                  <Value name="array" property="application-jsonAnyOf1Value"/>
+                </Var>
+                <VarSet name="Items" when="application-jsonAnyOf1Value">
+                  <Var name="Size">
+                    <Value name="1" property="application-jsonAnyOf1Items"/>
+                    <Value name="&gt; 1" property="application-jsonAnyOf1Items, application-jsonAnyOf1ItemsMany"/>
+                  </Var>
+                  <VarSet name="Contains" when="application-jsonAnyOf1Items">
+                    <Var name="Type">
+                      <Value name="number" property="application-jsonAnyOf1ItemsValue"/>
+                    </Var>
+                    <Var name="Value" when="application-jsonAnyOf1ItemsValue">
+                      <Has name="format" value="double"/>
+                      <Value name="-1.234" property="application-jsonAnyOfMemberValidated"/>
+                      <Value name="-1.233"/>
+                      <Value name="&lt; -1.234" property="application-jsonAnyOfMemberValidated"/>
+                    </Var>
+                  </VarSet>
+                  <Var name="Unique" when="application-jsonAnyOf1ItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="2">
+                <Var name="Type">
+                  <Value name="object" property="application-jsonAnyOf2Value"/>
+                  <Value name="null" once="true"/>
+                </Var>
+                <VarSet name="Value" when="application-jsonAnyOf2Value">
+                  <VarSet name="Properties">
+                    <VarSet name="myString">
+                      <Var name="Defined">
+                        <Value name="Yes" property="application-jsonAnyOf2MyString, application-jsonAnyOf2Properties"/>
+                      </Var>
+                      <Var name="Type" when="application-jsonAnyOf2MyString">
+                        <Value name="string" property="application-jsonAnyOf2MyStringValue"/>
+                      </Var>
+                      <VarSet name="Value" when="application-jsonAnyOf2MyStringValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0"/>
+                          <Value name="0"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes"/>
+                      <Value name="No" property="application-jsonAnyOfMemberValidated"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

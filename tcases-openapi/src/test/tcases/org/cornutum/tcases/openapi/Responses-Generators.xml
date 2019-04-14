@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="*" tuples="1">
+    <Combine tuples="2">
+      <Include var="Paths.Operations.Responses.Response.Content.Media-Types"/>
+      <Include var="Paths.Operations.Responses.Response.Headers.Count"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Paths.Operations.Responses.Response.Headers.Count"/>
+      <Include var="Paths.Operations.Responses.Response.Headers.Name"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Paths.Operations.Responses.Count"/>
+      <Include var="Paths.Operations.Responses.Default"/>
+    </Combine>
+  </TupleGenerator>
+  <TupleGenerator function="API" seed="8187414218700241920" tuples="1">
+    <Combine tuples="2">
+      <Include var="Paths.Operations.Responses.Response.Content.Media-Types"/>
+      <Include var="Paths.Operations.Responses.Response.Headers.Count"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Paths.Operations.Responses.Response.Headers.Count"/>
+      <Include var="Paths.Operations.Responses.Response.Headers.Name"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Paths.Operations.Responses.Count"/>
+      <Include var="Paths.Operations.Responses.Default"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

@@ -1,0 +1,65 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Responses",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/responses": {
+            "put": {
+                "responses": {
+                    "2XX": {
+                        "description": "Headers ignored",
+                        "headers": {
+                            "Content-Type": {
+                                "required": true,
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "4XX": {
+                        "$ref": "#/components/responses/failure"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/successContent"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "secrets": {
+                "type": "array",
+                "items": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        }
+    }
+}

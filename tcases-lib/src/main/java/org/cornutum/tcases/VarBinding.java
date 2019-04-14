@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases;
 
+import org.cornutum.tcases.util.ObjectUtils;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
@@ -103,6 +104,14 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   public Object getValue()
     {
     return value_;
+    }
+
+  /**
+   * Returns the value name for this binding.
+   */
+  public Object getExternalValue()
+    {
+    return ObjectUtils.toExternalObject( getValue());
     }
 
   /**

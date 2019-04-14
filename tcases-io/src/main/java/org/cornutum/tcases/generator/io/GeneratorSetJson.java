@@ -10,7 +10,8 @@ package org.cornutum.tcases.generator.io;
 import org.cornutum.tcases.DefUtils;
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.generator.*;
-import org.cornutum.tcases.io.ObjectUtils;
+import org.cornutum.tcases.util.ObjectUtils;
+
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Arrays;

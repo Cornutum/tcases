@@ -1,0 +1,105 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "AnyOf",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/anyOf": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "cookie",
+
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string",
+                                    "format": "password",
+                                    "minLength": 0,
+                                    "pattern": "^[A-Za-z0-9]+",
+                                    "nullable": true
+                                },
+                                {
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "tom": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "minProperties": 1
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "jerry": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": ["jerry"]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "id": {
+                "name": "id",
+                "in": "query",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        },
+        "requestBodies": {
+            "standard": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

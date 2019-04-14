@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<System name="AllOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_allOf">
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true"/>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <VarSet name="AllOf">
+            <VarSet name="Members">
+              <VarSet name="0">
+                <Var name="Type">
+                  <Value name="integer" property="application-jsonAllOf0Value"/>
+                </Var>
+                <Var name="Value" when="application-jsonAllOf0Value">
+                  <Value name="-1"/>
+                  <Value name="0"/>
+                  <Value name="1"/>
+                  <Value name="Other" failure="true"/>
+                </Var>
+              </VarSet>
+              <VarSet name="1">
+                <Var name="Type">
+                  <Value name="number" property="application-jsonAllOf1Value"/>
+                </Var>
+                <Var name="Value" when="application-jsonAllOf1Value">
+                  <Has name="format" value="double"/>
+                  <Value name="-1.234"/>
+                  <Value name="-1.233" failure="true"/>
+                  <Value name="&lt; -1.234"/>
+                </Var>
+              </VarSet>
+              <VarSet name="2">
+                <Var name="Type">
+                  <Value name="object" property="application-jsonAllOf2Value"/>
+                  <Value name="null" once="true"/>
+                </Var>
+                <VarSet name="Value" when="application-jsonAllOf2Value">
+                  <VarSet name="Properties">
+                    <VarSet name="myString">
+                      <Var name="Defined">
+                        <Value name="Yes" property="application-jsonAllOf2MyString, application-jsonAllOf2Properties"/>
+                      </Var>
+                      <Var name="Type" when="application-jsonAllOf2MyString">
+                        <Value name="string" property="application-jsonAllOf2MyStringValue"/>
+                      </Var>
+                      <VarSet name="Value" when="application-jsonAllOf2MyStringValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0"/>
+                          <Value name="0"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" failure="true"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

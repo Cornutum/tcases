@@ -5,15 +5,16 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.io;
+package org.cornutum.tcases.util;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
- * Defines utility methods for reading and writing objects.
+ * Defines utility methods for handling value objects.
  *
  */
 public final class ObjectUtils
@@ -33,9 +34,20 @@ public final class ObjectUtils
         value,
         ObjectUtils::toBoolean,
         ObjectUtils::toNumber,
-        ObjectUtils::fromString);
+        ObjectUtils::toExternalString);
     }
-  
+
+  /**
+   * Returns an object equal to the external form of the given value.
+   */
+  public static Object toExternalObject( Object value)
+    {
+    return
+      Optional.ofNullable(
+        toExternalNumber( value))
+      .orElse(
+        toObject( String.valueOf( value)));
+    }
   
   /**
    * Returns the first non-null object produced by the given converters.
@@ -76,12 +88,7 @@ public final class ObjectUtils
 
     try
       {
-      number =
-        toObject(
-          new BigDecimal( value),
-          ObjectUtils::toInt,
-          ObjectUtils::toLong,
-          ObjectUtils::fromDecimal);
+      number = toExternalNumber( new BigDecimal( value));
       }
     catch( Exception e)
       {
@@ -92,9 +99,9 @@ public final class ObjectUtils
     }
 
   /**
-   * Returns the given String value.
+   * Returns the external form of the given String value.
    */
-  private static Object fromString( String value)
+  private static Object toExternalString( String value)
     {
     return
       // "null" is the external string representation of null
@@ -148,10 +155,41 @@ public final class ObjectUtils
     };
 
   /**
-   * Returns the given BigDecimal value.
+   * If the given value is a number, returns an object equal to its external form.
+   * Otherwise, returns null.
    */
-  private static Object fromDecimal( BigDecimal value)
+  private static Object toExternalNumber( Object value)
     {
-    return value;
+    Class<?> valueType =
+      value == null
+      ? null
+      : value.getClass();
+
+    return
+      !(valueType != null && Number.class.isAssignableFrom( valueType))?
+      null :
+
+      valueType.equals( BigDecimal.class)?
+      toExternalNumber( (BigDecimal) value) :
+
+      valueType.equals( Long.class)?
+      toExternalNumber( new BigDecimal( (Long) value)) :
+
+      value;      
+    }
+
+  /**
+   * Returns an object equal to the external form of the given number value.
+   */
+  private static Object toExternalNumber( BigDecimal number)
+    {
+    return
+      Optional.ofNullable(
+        toObject(
+          number,
+          ObjectUtils::toInt,
+          ObjectUtils::toLong))
+
+      .orElse( number);
     }
   }

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="*" tuples="1"/>
+  <TupleGenerator function="Schema" seed="3723434998731410432" tuples="1">
+    <Combine tuples="2">
+      <Include var="maxProperties"/>
+      <Include var="minProperties"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="additionalProperties"/>
+      <Include var="properties.Defined"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

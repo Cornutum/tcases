@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases;
 
+import org.cornutum.tcases.util.ObjectUtils;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
@@ -103,6 +104,14 @@ public class VarValueDef extends Conditional
     }
 
   /**
+   * Returns the external form of the name of this value.
+   */
+  public Object getExternalName()
+    {
+    return ObjectUtils.toExternalObject( getName());
+    }
+
+  /**
    * Changes the type of this value.
    */
   public void setType( Type type)
@@ -190,7 +199,7 @@ public class VarValueDef extends Conditional
 
     return
       other != null
-      && Objects.equals( other.getName(), getName())
+      && Objects.equals( other.getExternalName(), getExternalName())
       && Objects.equals( other.getType(), getType());
     }
 
@@ -198,7 +207,7 @@ public class VarValueDef extends Conditional
     {
     return
       getClass().hashCode()
-      ^ Objects.hashCode( getName())
+      ^ Objects.hashCode( getExternalName())
       ^ Objects.hashCode( getType());
     }
   

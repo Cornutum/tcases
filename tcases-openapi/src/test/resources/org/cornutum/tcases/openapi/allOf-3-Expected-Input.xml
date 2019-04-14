@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<System name="AllOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_allOf">
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="AllOf" when="param0">
+          <VarSet name="Members">
+            <VarSet name="0">
+              <Var name="Type">
+                <Value name="string" property="param0AllOf0Value"/>
+              </Var>
+              <VarSet name="Value" when="param0AllOf0Value">
+                <Var name="Length">
+                  <Value name="1"/>
+                  <Value name="2" failure="true"/>
+                  <Value name="0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="1">
+              <VarSet name="OneOf">
+                <VarSet name="Members">
+                  <VarSet name="0">
+                    <Var name="Type">
+                      <Value name="array" property="param0AllOf1OneOf0Value"/>
+                      <Value name="null" once="true"/>
+                    </Var>
+                    <VarSet name="Items" when="param0AllOf1OneOf0Value">
+                      <Var name="Size">
+                        <Value name="2" property="param0AllOf1OneOf0Items, param0AllOf1OneOf0ItemsMany"/>
+                        <Value name="0"/>
+                        <Value name="&lt; 2" property="param0AllOf1OneOf0Items"/>
+                      </Var>
+                      <VarSet name="Contains" when="param0AllOf1OneOf0Items">
+                        <Var name="Type">
+                          <Value name="string" property="param0AllOf1OneOf0ItemsValue"/>
+                          <Value name="null" failure="true"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AllOf1OneOf0ItemsValue">
+                          <Var name="Length">
+                            <Value name="&gt; 0"/>
+                            <Value name="0"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <Var name="Unique" when="param0AllOf1OneOf0ItemsMany">
+                        <Value name="Yes"/>
+                        <Value name="No"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<System name="Operations">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_operations-param0">
+    <Input type="cookie">
+      <VarSet name="param2">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param2"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param2">
+          <Value name="number" property="param2Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param2Value">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="path">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="number" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="query">
+      <VarSet name="param1">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param1"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param1">
+          <Value name="number" property="param1Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param1Value">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true"/>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="object" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <VarSet name="Properties">
+              <Var name="Additional">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

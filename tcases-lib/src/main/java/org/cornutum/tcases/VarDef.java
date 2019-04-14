@@ -106,7 +106,7 @@ public class VarDef extends AbstractVarDef
   /**
    * Removes a value definition from this variable.
    */
-  public VarDef removeValue( String name)
+  public VarDef removeValue( Object name)
     {
     int i = findValue( name);
     if( i >= 0)

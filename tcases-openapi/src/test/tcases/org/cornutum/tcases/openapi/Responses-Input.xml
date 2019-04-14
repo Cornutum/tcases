@@ -1,0 +1,134 @@
+<System name="Responses">
+    <Function name="API">
+        <Input>
+            <VarSet name="Paths">
+                <Var name="Count">
+                    <Value name="1"/>
+                    <Value name="Many" once="true"/>
+                </Var>
+                <VarSet name="Operations">
+                    <Var name="Count">
+                        <Value name="1">
+                            <When>
+                                <Equals property="op" count="1"/>
+                            </When>
+                        </Value>
+                        <Value name="Many" once="true">
+                            <When>
+                                <Between property="op" exclusiveMin="1" max="3"/>
+                            </When>
+                        </Value>
+                    </Var>
+                    <VarSet name="Includes">
+                        <Var name="DELETE">
+                            <Value name="Yes" property="op"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="GET">
+                            <Value name="Yes" property="op"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="HEAD">
+                            <Value name="Yes" property="op"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="OPTIONS">
+                            <Value name="Yes" property="op"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="PATCH">
+                            <Value name="Yes" property="op"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="POST">
+                            <Value name="Yes" property="op"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="PUT">
+                            <Value name="Yes" property="op"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="TRACE">
+                            <Value name="Yes" property="op"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+
+                    <VarSet name="Responses">
+                        <Var name="Count">
+                            <Value name="1"/>
+                            <Value name="Many"/>
+                        </Var>
+                        <Var name="Default">
+                            <Value name="Defined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+
+                        <VarSet name="Response">
+                            <Var name="Reference">
+                                <Value name="Yes" once="true"/>
+                                <Value name="No"/>
+                            </Var>
+
+                            <VarSet name="Headers">
+                                <Var name="Count">
+                                    <Value name="0"/>
+                                    <Value name="1" property="headers"/>
+                                    <Value name="Many" property="headers"/>
+                                </Var>
+                                <Var name="Name" when="headers">
+                                    <Value name="Content-Type"/>
+                                    <Value name="Other" property="header"/>
+                                </Var>
+                                <Var name="Reference" when="header">
+                                    <Value name="Yes" once="true"/>
+                                    <Value name="No"/>
+                                </Var>
+                                <Var name="Required" when="header">
+                                    <Value name="Yes"/>
+                                    <Value name="No"/>
+                                </Var>
+                                <Var name="Style" when="header">
+                                    <Value name="simple"/>
+                                    <Value name="Undefined"/>
+                                </Var>
+                                <VarSet name="Schema" when="header">
+                                    <Var name="Reference">
+                                        <Value name="Yes" once="true"/>
+                                        <Value name="No"/>
+                                    </Var>
+                                    <Var name="Type">
+                                        <Value name="array"/>
+                                        <Value name="integer"/>
+                                        <Value name="object"/>
+                                        <Value name="string"/>
+                                    </Var>
+                                </VarSet>
+                            </VarSet>
+                            
+                            <VarSet name="Content">
+                                <Var name="Media-Types">
+                                    <Value name="0"/>
+                                    <Value name="1" property="mediaTypes"/>
+                                    <Value name="Many" property="mediaTypes"/>
+                                </Var>
+                                <VarSet name="Schema" when="mediaTypes">
+                                    <Var name="Reference">
+                                        <Value name="Yes" once="true"/>
+                                        <Value name="No"/>
+                                    </Var>
+                                    <Var name="Type">
+                                        <Value name="array"/>
+                                        <Value name="integer"/>
+                                        <Value name="object"/>
+                                        <Value name="string"/>
+                                    </Var>
+                                </VarSet>
+                            </VarSet>
+                        </VarSet>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

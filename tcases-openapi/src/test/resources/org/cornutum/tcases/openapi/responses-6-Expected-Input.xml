@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<System name="Responses">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_responses">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="Other" property="statusOther"/>
+      </Var>
+      <VarSet name="Other" when="statusOther">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="defaultContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="defaultContent">
+            <Value name="application-json" property="defaultapplication-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="text-javascript" property="defaulttext-javascript">
+              <Has name="mediaType" value="text/javascript"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="application-json" when="defaultapplication-json">
+            <Var name="Type">
+              <Value name="integer" property="defaultapplication-jsonValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <Var name="Value" when="defaultapplication-jsonValue">
+              <Value name="15" failure="true"/>
+              <Value name="16"/>
+              <Value name="17" failure="true"/>
+            </Var>
+          </VarSet>
+          <VarSet name="text-javascript" when="defaulttext-javascript">
+            <Var name="Type">
+              <Value name="integer" property="defaulttext-javascriptValue"/>
+              <Value name="null" once="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <Var name="Value" when="defaulttext-javascriptValue">
+              <Value name="&lt; 0"/>
+              <Value name="0"/>
+              <Value name="&gt; 0"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="DELETE_responses">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="2XX" property="status2XX"/>
+        <Value name="4XX" property="status4XX"/>
+        <Value name="Other" property="statusOther"/>
+      </Var>
+      <VarSet name="2XX" when="status2XX">
+        <VarSet name="Headers">
+          <VarSet name="x-standard-header">
+            <Var name="Defined">
+              <Has name="explode" value="false"/>
+              <Has name="style" value="simple"/>
+              <Value name="Yes" property="2XXHeaderX-standard-header"/>
+              <Value name="No" failure="true"/>
+            </Var>
+            <Var name="Type" when="2XXHeaderX-standard-header">
+              <Value name="integer" property="2XXHeaderX-standard-headerValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <Var name="Value" when="2XXHeaderX-standard-headerValue">
+              <Value name="1"/>
+              <Value name="10"/>
+              <Value name="100"/>
+              <Value name="Other" failure="true"/>
+            </Var>
+          </VarSet>
+          <VarSet name="x-extra-header">
+            <Var name="Defined">
+              <Has name="explode" value="false"/>
+              <Has name="style" value="simple"/>
+              <Value name="Yes" property="2XXHeaderX-extra-header"/>
+              <Value name="No"/>
+            </Var>
+            <Var name="Type" when="2XXHeaderX-extra-header">
+              <Value name="integer" property="2XXHeaderX-extra-headerValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <Var name="Value" when="2XXHeaderX-extra-headerValue">
+              <Value name="0" failure="true"/>
+              <Value name="1"/>
+              <Value name="&gt; 1"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="2XXContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="2XXContent">
+            <Value name="text-plain" property="2XXtext-plain">
+              <Has name="mediaType" value="text/plain"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="text-plain" when="2XXtext-plain">
+            <Var name="Type">
+              <Value name="array" property="2XXtext-plainValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not array" failure="true"/>
+            </Var>
+            <VarSet name="Items" when="2XXtext-plainValue">
+              <Var name="Size">
+                <Value name="0"/>
+                <Value name="1" property="2XXtext-plainItems"/>
+                <Value name="&gt; 1" property="2XXtext-plainItems, 2XXtext-plainItemsMany"/>
+              </Var>
+              <VarSet name="Contains" when="2XXtext-plainItems">
+                <Var name="Type">
+                  <Value name="boolean" property="2XXtext-plainItemsValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="2XXtext-plainItemsValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <Var name="Unique" when="2XXtext-plainItemsMany">
+                <Value name="Yes"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="4XX" when="status4XX">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="4XXContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="4XXContent">
+            <Value name="text-plain" property="4XXtext-plain">
+              <Has name="mediaType" value="text/plain"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="text-plain" when="4XXtext-plain">
+            <Var name="Type">
+              <Value name="string" property="4XXtext-plainValue"/>
+              <Value name="null" once="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="4XXtext-plainValue">
+              <Var name="Length">
+                <Value name="&gt; 0"/>
+                <Value name="0"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="HEAD_responses">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="202" property="status202"/>
+        <Value name="Other" property="statusOther"/>
+      </Var>
+      <VarSet name="202" when="status202">
+        <VarSet name="Headers">
+          <VarSet name="x-my-app-header">
+            <Var name="Defined">
+              <Has name="explode" value="false"/>
+              <Has name="style" value="simple"/>
+              <Value name="Yes" property="202HeaderX-my-app-header"/>
+              <Value name="No" failure="true"/>
+            </Var>
+            <Var name="Type" when="202HeaderX-my-app-header">
+              <Value name="object" property="202HeaderX-my-app-headerValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="202HeaderX-my-app-headerValue">
+              <VarSet name="Properties">
+                <Var name="Additional">
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="202Content"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="202Content">
+            <Value name="text-javascript" property="202text-javascript">
+              <Has name="mediaType" value="text/javascript"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="text-javascript" when="202text-javascript">
+            <Var name="Type">
+              <Value name="object" property="202text-javascriptValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="202text-javascriptValue">
+              <VarSet name="Properties">
+                <Var name="Additional">
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="Other" when="statusOther">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

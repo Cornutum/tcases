@@ -1,0 +1,103 @@
+#######################################################################
+#
+#                     Copyright 2019, Cornutum Project
+#                              www.cornutum.org
+# 
+#######################################################################
+
+pgm=`basename $0`
+
+usage()
+{
+  echo Usage: $pgm "[-v] [-C | -S] [-I] [-f outFile] [-o outDir] [apiSpec]" >&2
+  echo "" >&2
+  echo "  -C, -S      If -C is given, produce results to test inputs to an API client, i.e. API responses. If -S is given," >&2
+  echo "              produce results to test inputs to an API server, i.e. API requests. If neither is given, the default is -S." >&2
+  echo "" >&2
+  echo "  -I          Produce an input definition file for either an API client (-C) or an API server ((-P). If omitted," >&2
+  echo "              produce the corresponding test definition file." >&2
+  echo "" >&2
+  echo "  -f outFile  If -f is defined, output is written to the specified outFile, relative to the given outDir." >&2
+  echo "              If omitted, the default outFile is derived from the apiSpec." >&2
+  echo "" >&2
+  echo "  -o outDir   If -o is defined, output is written to the specified directory. If omitted, the default outDir is" >&2
+  echo "              the directory containing the apiSpec or, if reading from standard input, the current working directory." >&2
+  echo "              If an output path cannot be derived, output is written to standard output." >&2
+  echo "" >&2
+  echo "  -v          Prints the current command version identifier to standard output." >&2
+  echo "" >&2
+  echo "  apiSpec     An OpenApi v3 API spec is read from the given apiSpec file. If omitted, the API spec is read from" >&2
+  echo "              standard input. If no outFile is specified, output is written to a default file derived from the" >&2
+  echo "              apiSpec or, if no apiSpec is given, to standard output." >&2
+  echo "" >&2
+  echo "              Suppose that the base name of apiSpec (less any extension) is B. Then, assuming defaults for all" >&2
+  echo "              options, output will be a test definition for API requests written to a file named 'B-Requests-Test.json'." >&2
+  echo "              If -C is specified, output will be a test definition for API responses written to a file named" >&2 
+  echo "              'B-Responses-Test.json'. If -I is specified, output will be the corresponding input definition, written" >&2
+  echo "              to either 'B-Requests-Input.json' or 'B-Responses-Input.json', respectively." >&2
+}
+
+while [ $# -gt 0 ] ; do
+  case $1 in
+    -C) isClient="$1";;
+    -S) isServer="$1";;
+    -I) isInput="$1";;
+    -l) shift; logFile="$1";;
+    -L) shift; logLevel="$1";;
+    -f) shift; outFile="$1";;
+    -o) shift; outDir="$1";;
+    -v) showVersion="$1";;
+    -*) usage; exit 1;;
+     *) break;;
+  esac
+  shift
+done
+
+logFile=${logFile:-${pgm}.log}
+logLevel=${logLevel:-INFO}
+if [ $logFile = "stdout" ] ; then
+  logDest=tcases.log.dest
+  logFile=STDOUT
+else
+  logDest=tcases.log.file
+fi
+apiSpec="$1"
+shift
+
+if [ $# -ne 0 ] ; then
+  usage; exit 1
+fi
+
+binDir=`dirname $0`
+releaseDir=`cd $binDir/..; pwd`
+libDir=${releaseDir}/lib
+
+classPath=${libDir}
+for jar in ${libDir}/*.jar; do
+  classPath="${classPath}:${jar}"
+done
+
+uname=`uname`
+cygwin=`expr $uname : 'CYGWIN'`
+if [ $cygwin -gt 0 ] ; then
+  classPath=`cygpath --path -m "$classPath"`
+  apiSpec=${apiSpec:+`cygpath -m "$apiSpec"`}
+  logFile=`cygpath -m "$logFile"`
+  outDir=${outDir:+`cygpath -m "$outDir"`}
+  outFile=${outFile:+`cygpath -m "$outFile"`}
+fi
+
+
+java \
+  -cp "$classPath" \
+  -D${logDest}="$logFile" \
+  -Dtcases.log.level="$logLevel" \
+  org.cornutum.tcases.openapi.ApiCommand \
+  $showVersion \
+  $isClient \
+  $isServer \
+  $isInput \
+  ${outDir:+-o "$outDir"} \
+  ${outFile:+-f "$outFile"} \
+  ${apiSpec:+"$apiSpec"}
+

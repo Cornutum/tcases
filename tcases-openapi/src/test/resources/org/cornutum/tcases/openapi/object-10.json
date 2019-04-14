@@ -1,0 +1,90 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Object",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/object": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "cookie",
+
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "myString": {
+                                    "type": "string" 
+                                },
+                                "myBoolean": {
+                                    "type": "boolean" 
+                                },
+                                "myNumber": {
+                                    "type": "number" 
+                                },
+                                "myInteger": {
+                                    "type": "integer" 
+                                }
+                            },
+                            "maxProperties": 4
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "id": {
+                "name": "id",
+                "in": "query",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        },
+        "requestBodies": {
+            "standard": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

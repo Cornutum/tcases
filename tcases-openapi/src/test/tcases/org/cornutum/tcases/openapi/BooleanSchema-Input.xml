@@ -1,0 +1,21 @@
+<System name="BooleanSchema">
+    <Function name="Schema">
+        <Input>            
+            <Var name="default">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>
+            </Var>
+            
+            <Var name="enum"> 
+                <Value name="Yes" property="enum"/>
+                <Value name="No"/>                
+            </Var>
+            
+            <Var name="nullable">
+                <Value name="true"/>
+                <Value name="false"/>                
+                <Value name="Undefined"/>                
+            </Var>
+        </Input>
+    </Function>
+</System>

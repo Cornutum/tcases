@@ -1,0 +1,38 @@
+<System name="ArraySchema">
+    <Function name="Schema">
+        <Input>
+            <Var name="minItems">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="maxItems">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="uniqueItems">
+                <Value name="true"/>
+                <Value name="false"/>
+                <Value name="Undefined"/>               
+            </Var>
+
+            <VarSet name="items">
+                <Var name="type">
+                    <Value name="array"/>
+                    <Value name="boolean"/>
+                    <Value name="integer"/>
+                    <Value name="number"/>
+                    <Value name="object"/>
+                    <Value name="string"/>
+                </Var>
+            </VarSet>
+            
+            <Var name="nullable">
+                <Value name="true"/>
+                <Value name="false"/>                
+                <Value name="Undefined"/>                
+            </Var>
+        </Input>
+    </Function>
+</System>

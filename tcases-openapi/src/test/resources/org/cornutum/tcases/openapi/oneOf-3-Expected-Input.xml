@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<System name="OneOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_oneOf">
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="OneOf" when="param0">
+          <VarSet name="Members">
+            <Var name="Validated">
+              <Value name="1">
+                <When>
+                  <Equals property="param0OneOfMemberValidated" count="1"/>
+                </When>
+              </Value>
+              <Value name="0" failure="true">
+                <When>
+                  <Not property="param0OneOfMemberValidated">
+                  </Not>
+                </When>
+              </Value>
+              <Value name="&gt; 1" failure="true">
+                <When>
+                  <MoreThan property="param0OneOfMemberValidated" min="1"/>
+                </When>
+              </Value>
+            </Var>
+            <VarSet name="0">
+              <Var name="Type">
+                <Value name="object" property="param0OneOf0Value"/>
+              </Var>
+              <VarSet name="Value" when="param0OneOf0Value">
+                <VarSet name="Properties">
+                  <Var name="Additional">
+                    <Value name="Yes"/>
+                    <Value name="No" property="param0OneOfMemberValidated"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+            <VarSet name="1">
+              <VarSet name="OneOf">
+                <VarSet name="Members">
+                  <VarSet name="0">
+                    <Var name="Type">
+                      <Value name="number" property="param0OneOf1OneOf0Value"/>
+                    </Var>
+                    <Var name="Value" when="param0OneOf1OneOf0Value">
+                      <Value name="-1"/>
+                      <Value name="0" property="param0OneOfMemberValidated"/>
+                      <Value name="&gt; 0" property="param0OneOfMemberValidated"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

@@ -1,0 +1,52 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Responses",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/responses": {
+            "trace": {
+                "responses": {
+                    "2XX": {
+                        "description": "Headers ignored",
+                        "headers": {
+                            "x-standard-header": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Content-Type": {
+                                "required": true,
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-extra-header": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "minLength": 16,
+                                    "maxLength": 255
+                                }
+                            },
+                            "text/javascript": {
+                                "schema": {
+                                    "type": "string",
+                                    "maxLength": 16,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

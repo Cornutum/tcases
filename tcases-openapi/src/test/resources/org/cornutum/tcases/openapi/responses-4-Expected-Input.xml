@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<System name="Responses">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="PUT_responses">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="2XX" property="status2XX"/>
+        <Value name="4XX" property="status4XX"/>
+        <Value name="Other" property="statusOther"/>
+      </Var>
+      <VarSet name="2XX" when="status2XX">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="4XX" when="status4XX">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="4XXContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="4XXContent">
+            <Value name="application-json" property="4XXapplication-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="application-json" when="4XXapplication-json">
+            <Var name="Type">
+              <Value name="object" property="4XXapplication-jsonValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="4XXapplication-jsonValue">
+              <VarSet name="Properties">
+                <Var name="Additional">
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="Other" when="statusOther">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="defaultContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="defaultContent">
+            <Value name="application-json" property="defaultapplication-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="application-json" when="defaultapplication-json">
+            <Var name="Type">
+              <Value name="object" property="defaultapplication-jsonValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="defaultapplication-jsonValue">
+              <VarSet name="Properties">
+                <Var name="Additional">
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

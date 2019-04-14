@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<System name="Operations">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_operations">
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="matrix"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="boolean" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not boolean" failure="true"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Value name="true"/>
+          <Value name="false"/>
+        </Var>
+      </VarSet>
+      <VarSet name="param1">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param1"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="param1">
+          <Value name="boolean" property="param1Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not boolean" failure="true"/>
+        </Var>
+        <Var name="Value" when="param1Value">
+          <Value name="true"/>
+          <Value name="false"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true"/>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="object" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <VarSet name="Properties">
+              <Var name="Additional">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

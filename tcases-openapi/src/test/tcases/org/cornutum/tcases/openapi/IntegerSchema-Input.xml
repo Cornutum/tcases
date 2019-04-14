@@ -1,0 +1,56 @@
+<System name="IntegerSchema">
+    <Function name="Schema">
+        <Input>
+            <VarSet name="format">
+                <Var name="Value">
+                    <Value name="Undefined"/>
+                    <Value name="int32"/>
+                    <Value name="int64"/>
+                </Var>
+            </VarSet>
+            
+            <Var name="default">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>
+            </Var>
+            
+            <Var name="enum"> 
+                <Value name="Yes" property="enum"/>
+                <Value name="No"/>                
+            </Var>
+            
+            <Var name="multipleOf" whenNot="enum">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="minimum" whenNot="enum">
+                <Value name="Defined" property="minimum"/>
+                <Value name="Undefined"/>              
+            </Var>
+            
+            <Var name="exclusiveMinimum" whenNot="enum" when="minimum">
+                <Value name="true"/>
+                <Value name="false"/>
+                <Value name="Undefined"/>
+            </Var>
+            
+            <Var name="maximum" whenNot="enum">
+                <Value name="Defined" property="maximum"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="exclusiveMaximum" whenNot="enum" when="maximum">
+                <Value name="true"/>
+                <Value name="false"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="nullable">
+                <Value name="true"/>
+                <Value name="false"/>                
+                <Value name="Undefined"/>                
+            </Var>
+        </Input>
+    </Function>
+</System>

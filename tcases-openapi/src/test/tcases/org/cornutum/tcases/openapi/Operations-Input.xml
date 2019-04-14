@@ -1,0 +1,282 @@
+<System name="Operations">
+    <Function name="API">
+        <Input>
+            <Var name="title">
+                <Value name="Defined"/>
+                <Value name="Undefined" failure="true"/>
+            </Var>
+            <Var name="servers">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>
+            </Var>
+            <VarSet name="paths">
+                <Var name="Count">
+                    <Value name="0" failure="true"/>
+                    <Value name="1"/>
+                    <Value name="Many" when="postParameters" whenNot="postPath" once="true"/>
+                </Var>
+                <VarSet name="operations">
+                    <Var name="Count">
+                        <Value name="0" failure="true"/>
+                        <Value name="1" property="op, opOne" once="true"/>
+                        <Value name="Many" property="op"/>
+                    </Var>
+                    
+                    <VarSet name="DELETE" when="op">
+                        <Var name="Defined">
+                            <Value name="Yes" property="opDefined, deleteDefined" once="true">
+                                <When>
+                                    <AnyOf>
+                                        <Not property="opOne"/>
+                                        <Not property="getDefined, headDefined, optionsDefined, patchDefined, postDefined, putDefined, traceDefined"/>
+                                    </AnyOf>
+                                </When>
+                            </Value>
+                            <Value name="No" when="opDefined"/>
+                        </Var>
+                        <VarSet name="parameters" when="deleteDefined">
+                            <Var name="Count">
+                                <Value name="1" property="deleteParameters"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="requestBody" when="deleteDefined">
+                            <Var name="Defined">
+                                <Value name="No" when="deleteParameters"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    
+                    <VarSet name="GET" when="op">
+                        <Var name="Defined">
+                            <Value name="Yes" property="opDefined, getDefined" once="true">
+                                <When>
+                                    <AnyOf>
+                                        <Not property="opOne"/>
+                                        <Not property="deleteDefined, headDefined, optionsDefined, patchDefined, postDefined, putDefined, traceDefined"/>
+                                    </AnyOf>
+                                </When>
+                            </Value>
+                            <Value name="No" when="opDefined"/>
+                        </Var>
+                        <VarSet name="parameters" when="getDefined">
+                            <Var name="Count">
+                                <Value name="1" property="getParameters"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="requestBody" when="getDefined">
+                            <Var name="Defined">
+                                <Value name="No" when="getParameters"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    
+                    <VarSet name="HEAD" when="op">
+                        <Var name="Defined">
+                            <Value name="Yes" property="opDefined, headDefined" once="true">
+                                <When>
+                                    <AnyOf>
+                                        <Not property="opOne"/>
+                                        <Not property="deleteDefined, getDefined, optionsDefined, patchDefined, postDefined, putDefined, traceDefined"/>
+                                    </AnyOf>
+                                </When>
+                            </Value>
+                            <Value name="No" when="opDefined"/>
+                        </Var>
+                        <VarSet name="parameters" when="headDefined">
+                            <Var name="Count">
+                                <Value name="1" property="headParameters"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="requestBody" when="headDefined">
+                            <Var name="Defined">
+                                <Value name="No" when="headParameters"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    
+                    <VarSet name="OPTIONS" when="op">
+                        <Var name="Defined">
+                            <Value name="Yes" property="opDefined, optionsDefined" once="true">
+                                <When>
+                                    <AnyOf>
+                                        <Not property="opOne"/>
+                                        <Not property="deleteDefined, getDefined, headDefined, patchDefined, postDefined, putDefined, traceDefined"/>
+                                    </AnyOf>
+                                </When>
+                            </Value>
+                            <Value name="No" when="opDefined"/>
+                        </Var>
+                        <VarSet name="parameters" when="optionsDefined">
+                            <Var name="Count">
+                                <Value name="0"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="requestBody" when="optionsDefined">
+                            <Var name="Defined">
+                                <Value name="No"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    
+                    <VarSet name="PATCH" when="op">
+                        <Var name="Defined">
+                            <Value name="Yes" property="opDefined, patchDefined" once="true">
+                                <When>
+                                    <AnyOf>
+                                        <Not property="opOne"/>
+                                        <Not property="deleteDefined, getDefined, headDefined, optionsDefined, postDefined, putDefined, traceDefined"/>
+                                    </AnyOf>
+                                </When>
+                            </Value>
+                            <Value name="No" when="opDefined"/>
+                        </Var>
+                        <VarSet name="parameters" when="patchDefined">
+                            <Var name="Count">
+                                <Value name="0" when="patchRequestbody"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="requestBody" when="patchDefined">
+                            <Var name="Defined">
+                                <Value name="Yes" property="patchRequestbody"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    
+                    <VarSet name="POST" when="op">
+                        <Var name="Defined">
+                            <Value name="Yes" property="opDefined, postDefined">
+                                <When>
+                                    <AnyOf>
+                                        <Not property="opOne"/>
+                                        <Not property="deleteDefined, getDefined, headDefined, optionsDefined, patchDefined, putDefined, traceDefined"/>
+                                    </AnyOf>
+                                </When>
+                            </Value>
+                            <Value name="No" when="opDefined" once="true"/>
+                        </Var>
+                        <VarSet name="parameters" when="postDefined">
+                            <Var name="Count">
+                                <Value name="0" when="postRequestBody"/>
+                                <Value name="1" property="postParameters"/>
+                                <Value name="Many" property="postParameters"/>
+                            </Var>
+                            <Var name="type" when="postParameters">
+                                <Value name="array"/>
+                                <Value name="boolean"/>
+                                <Value name="integer"/>
+                                <Value name="number"/>
+                                <Value name="object"/>
+                                <Value name="string"/>
+                                <Value name="None" failure="true"/>
+                            </Var>
+                            <VarSet name="in" when="postParameters">
+                                <Var name="Defined">
+                                    <Value name="Yes"/>
+                                    <Value name="No" failure="true"/>
+                                </Var>
+                                <Var name="Value">
+                                    <Value name="query"/>
+                                    <Value name="header"/>
+                                    <Value name="path" property="postPath"/>
+                                    <Value name="cookie"/>
+                                </Var>
+                            </VarSet>
+                            <VarSet name="required" when="postParameters">
+                                <Var name="Defined">
+                                    <Value name="Yes" property="postRequired"/>
+                                    <Value name="No" whenNot="postPath"/>
+                                </Var>
+                                <Var name="Value" when="postRequired">
+                                    <Value name="true"/>
+                                    <Value name="false" whenNot="postPath"/>
+                                </Var>
+                            </VarSet>
+                            <VarSet name="style" when="postParameters">
+                                <Var name="Defined">
+                                    <Value name="Yes" property="postStyle"/>
+                                    <Value name="No"/>
+                                </Var>
+                                <Var name="Value" when="postStyle">
+                                    <Value name="form"/>
+                                    <Value name="label"/>
+                                    <Value name="matrix"/>
+                                    <Value name="simple"/>
+                                </Var>
+                            </VarSet>
+                            <VarSet name="explode" when="postParameters">
+                                <Var name="Defined">
+                                    <Value name="Yes" property="postExplode"/>
+                                    <Value name="No"/>
+                                </Var>
+                                <Var name="Value" when="postExplode">
+                                    <Value name="true"/>
+                                    <Value name="false"/>
+                                </Var>
+                            </VarSet>
+                            <VarSet name="content" when="postParameters">
+                                <Var name="Defined">
+                                    <Value name="Yes" once="true"/>
+                                    <Value name="No"/>
+                                </Var>
+                            </VarSet>
+                        </VarSet>
+                        <VarSet name="requestBody" when="postDefined">
+                            <Var name="Defined">
+                                <Value name="No" when="postParameters"/>
+                                <Value name="Yes" property="postRequestBody"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    
+                    <VarSet name="PUT" when="op">
+                        <Var name="Defined">
+                            <Value name="Yes" property="opDefined, putDefined" once="true">
+                                <When>
+                                    <AnyOf>
+                                        <Not property="opOne"/>
+                                        <Not property="deleteDefined, getDefined, headDefined, optionsDefined, patchDefined, postDefined, traceDefined"/>
+                                    </AnyOf>
+                                </When>
+                            </Value>
+                            <Value name="No" when="opDefined"/>
+                        </Var>
+                        <VarSet name="parameters" when="putDefined">
+                            <Var name="Count">
+                                <Value name="1" property="putParameters"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="requestBody" when="putDefined">
+                            <Var name="Defined">
+                                <Value name="Yes" property="putRequestBody"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    
+                    <VarSet name="TRACE" when="op">
+                        <Var name="Defined">
+                            <Value name="Yes" property="opDefined, traceDefined" once="true">
+                                <When>
+                                    <AnyOf>
+                                        <Not property="opOne"/>
+                                        <Not property="deleteDefined, getDefined, headDefined, optionsDefined, patchDefined, postDefined, putDefined"/>
+                                    </AnyOf>
+                                </When>
+                            </Value>
+                            <Value name="No" when="opDefined"/>
+                        </Var>
+                        <VarSet name="parameters" when="traceDefined">
+                            <Var name="Count">
+                                <Value name="1" property="traceParameters"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="requestBody" when="traceDefined">
+                            <Var name="Defined">
+                                <Value name="Yes" property="traceRequestBody"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

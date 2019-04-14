@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<System name="Object">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object-param0">
+    <Input type="path">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="object" property="param0Value"/>
+          <Value name="null" once="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <VarSet name="Properties">
+            <VarSet name="myInteger">
+              <Var name="Defined">
+                <Value name="Yes" property="param0MyInteger, param0Properties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="param0MyInteger">
+                <Value name="integer" property="param0MyIntegerValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <Var name="Value" when="param0MyIntegerValue">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

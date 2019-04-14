@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<TestCases system="String">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_string">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="7"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.MatchesPattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="8"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.MatchesPattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="Not string" failure="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.MatchesPattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="6" failure="true"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="9" failure="true"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="7"/>
+        <Var name="param0.Value.MatchesPattern" value="No" failure="true">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

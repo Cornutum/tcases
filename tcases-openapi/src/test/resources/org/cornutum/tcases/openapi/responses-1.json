@@ -1,0 +1,94 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Responses",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/responses": {
+            "get": {
+                "responses": {
+                    "2XX": {
+                        "description": "Headers only",
+                        "headers": {
+                            "x-standard-header": {
+                                "$ref": "#/components/headers/standard"
+                            },
+                            "x-extra-header": {
+                                "$ref": "#/components/headers/extra"
+                            }
+                        }
+                    }
+                }
+            },
+            "head": {
+                "responses": {
+                    "201": {
+                        "description": "Empty"
+                    }
+                }
+            },
+            "options": {
+                "responses": {
+                    "202": {
+                        "description": "Empty"
+                    }
+                }
+            }
+        },
+        
+        "/respond": {
+            "get": {
+                "responses": {
+                    "203": {
+                        "description": "Empty"
+                    }
+                }
+            },
+            "options": {
+                "responses": {
+                    "204": {
+                        "description": "Empty"
+                    }
+                }
+            }
+        },
+        
+        "/respondingly": {
+            "head": {
+                "responses": {
+                    "205": {
+                        "description": "Empty"
+                    }
+                }
+            },
+            "get": {
+                "responses": {
+                    "206": {
+                        "description": "Empty"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "headers": {
+            "standard": {
+                "required": true,
+                "style": "simple",
+                "schema": {
+                    "type": "string",
+                    "enum": [ "this", "that" ]
+                }
+            },
+            "extra": {
+                "required": false,
+                "schema": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+            
+        }
+    }
+}

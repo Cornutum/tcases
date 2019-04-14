@@ -11,6 +11,7 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.VarValueDef.Type;
 import org.cornutum.tcases.conditions.ICondition;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -143,6 +144,24 @@ public class VarValueDefBuilder
   public VarValueDefBuilder properties( String... properties)
     {
     varValueDef_.addProperties( properties);
+    return this;
+    }
+
+  /**
+   * Adds value properties.
+   */
+  public VarValueDefBuilder properties( Collection<String> properties)
+    {
+    varValueDef_.addProperties( properties);
+    return this;
+    }
+
+  /**
+   * Adds a value property, if present.
+   */
+  public VarValueDefBuilder properties( Optional<String> property)
+    {
+    property.ifPresent( p -> varValueDef_.addProperties( p));
     return this;
     }
 

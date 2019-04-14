@@ -1,0 +1,69 @@
+<System name="StringSchema">
+    <Function name="Schema">
+        <Input>
+            <VarSet name="format">
+                <Var name="Value">
+                    <Value name="Undefined" property="formatNone, formatText"/>
+                    <Value name="byte" property="formatBinary"/>
+                    <Value name="binary" property="formatBinary"/>
+                    <Value name="uid"/>
+                    <Value name="date" property="formatTime"/>
+                    <Value name="date-time" property="formatTime"/>
+                    <Value name="password" property="formatText"/>                    
+                </Var>
+                <Var name="Any-Length">
+                    <Value name="Yes">
+                        <When>
+                            <AnyOf property="formatNone, formatBinary"/>
+                        </When>
+                    </Value>
+                    <Value name="No" whenNot="formatNone, formatBinary"/>                
+                </Var>
+            </VarSet>
+            
+            <Var name="default" whenNot="formatBinary">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>
+            </Var>
+            
+            <!-- Crock! Avoid enum with time formats! See https://github.com/swagger-api/swagger-parser/issues/1049  -->
+            <Var name="enum" whenNot="formatBinary, formatTime"> 
+                <Value name="Yes" property="enum"/>
+                <Value name="No"/>                
+            </Var>
+            
+            <Var name="minLength">
+                <When>
+                    <AllOf>
+                        <Not property="enum"/>
+                        <AnyOf property="formatText, formatBinary"/>
+                    </AllOf>
+                </When>
+                <Value name="Defined"/>
+                <Value name="Undefined"/>                
+            </Var>
+            
+            <Var name="maxLength">
+                <When>
+                    <AllOf>
+                        <Not property="enum"/>
+                        <AnyOf property="formatText, formatBinary"/>
+                    </AllOf>
+                </When>
+                <Value name="Defined"/>
+                <Value name="Undefined"/>                
+            </Var>
+            
+            <Var name="pattern" whenNot="enum" when="formatText">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>                
+            </Var>
+            
+            <Var name="nullable">
+                <Value name="true"/>
+                <Value name="false"/>                
+                <Value name="Undefined"/>                
+            </Var>
+        </Input>
+    </Function>
+</System>

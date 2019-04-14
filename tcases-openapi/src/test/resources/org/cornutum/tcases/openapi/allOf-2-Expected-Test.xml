@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<TestCases system="AllOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_allOf">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
+        <Var name="Body.application-json.AllOf.Members.0.Value" value="-1"/>
+        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
+        <Var name="Body.application-json.AllOf.Members.1.Value" value="-1.234">
+          <Has name="format" value="double"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
+        <Var name="Body.application-json.AllOf.Members.0.Value" value="0"/>
+        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
+        <Var name="Body.application-json.AllOf.Members.1.Value" value="&lt; -1.234">
+          <Has name="format" value="double"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.2.Type" value="null"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
+        <Var name="Body.application-json.AllOf.Members.0.Value" value="1"/>
+        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
+        <Var name="Body.application-json.AllOf.Members.1.Value" value="-1.234">
+          <Has name="format" value="double"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="0"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="No" failure="true"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.0.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.0.Value" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.1.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.1.Value" NA="true">
+          <Has name="format" value="double"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.2.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="properties" value="Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="Other" failure="true"/>
+        <Var name="Body.application-json.AllOf.Members.0.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.0.Value" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.1.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.1.Value" NA="true">
+          <Has name="format" value="double"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.2.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
+        <Var name="Body.application-json.AllOf.Members.0.Value" value="Other" failure="true"/>
+        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
+        <Var name="Body.application-json.AllOf.Members.1.Value" value="&lt; -1.234">
+          <Has name="format" value="double"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
+        <Var name="Body.application-json.AllOf.Members.0.Value" value="-1"/>
+        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
+        <Var name="Body.application-json.AllOf.Members.1.Value" value="-1.233" failure="true">
+          <Has name="format" value="double"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
+        <Var name="Body.application-json.AllOf.Members.0.Value" value="-1"/>
+        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
+        <Var name="Body.application-json.AllOf.Members.1.Value" value="&lt; -1.234">
+          <Has name="format" value="double"/>
+        </Var>
+        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes" failure="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

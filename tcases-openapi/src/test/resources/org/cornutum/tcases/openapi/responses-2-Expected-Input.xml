@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<System name="Responses">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="PATCH_responses">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="200" property="status200"/>
+        <Value name="4XX" property="status4XX"/>
+        <Value name="Other" property="statusOther"/>
+      </Var>
+      <VarSet name="200" when="status200">
+        <VarSet name="Headers">
+          <VarSet name="x-my-secret-header">
+            <Var name="Defined">
+              <Has name="explode" value="false"/>
+              <Has name="style" value="simple"/>
+              <Value name="Yes" property="200HeaderX-my-secret-header"/>
+              <Value name="No" failure="true"/>
+            </Var>
+            <Var name="Type" when="200HeaderX-my-secret-header">
+              <Value name="array" property="200HeaderX-my-secret-headerValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not array" failure="true"/>
+            </Var>
+            <VarSet name="Items" when="200HeaderX-my-secret-headerValue">
+              <Var name="Size">
+                <Value name="0"/>
+                <Value name="1" property="200HeaderX-my-secret-headerItems"/>
+                <Value name="&gt; 1" property="200HeaderX-my-secret-headerItems, 200HeaderX-my-secret-headerItemsMany"/>
+              </Var>
+              <VarSet name="Contains" when="200HeaderX-my-secret-headerItems">
+                <Var name="Type">
+                  <Value name="integer" property="200HeaderX-my-secret-headerItemsValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not integer" failure="true"/>
+                </Var>
+                <Var name="Value" when="200HeaderX-my-secret-headerItemsValue">
+                  <Has name="format" value="int64"/>
+                  <Value name="&lt; 0"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+              <Var name="Unique" when="200HeaderX-my-secret-headerItemsMany">
+                <Value name="Yes"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="200Content"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="200Content">
+            <Value name="application-json" property="200application-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="text-javascript" property="200text-javascript">
+              <Has name="mediaType" value="text/javascript"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="application-json" when="200application-json">
+            <Var name="Type">
+              <Value name="object" property="200application-jsonValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="200application-jsonValue">
+              <Var name="Property-Count">
+                <Value name="0" once="true">
+                  <When>
+                    <Not property="200application-jsonProperties">
+                    </Not>
+                  </When>
+                </Value>
+                <Value name="&lt;= 1">
+                  <When>
+                    <NotMoreThan property="200application-jsonProperties" max="1"/>
+                  </When>
+                </Value>
+                <Value name="&gt; 1" failure="true">
+                  <When>
+                    <MoreThan property="200application-jsonProperties" min="0"/>
+                  </When>
+                </Value>
+              </Var>
+              <VarSet name="Properties">
+                <VarSet name="Additional">
+                  <Var name="Defined">
+                    <Value name="Yes" property="200application-jsonAdditional, 200application-jsonProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="200application-jsonAdditional">
+                    <Value name="number" property="200application-jsonAdditionalValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not number" failure="true"/>
+                  </Var>
+                  <Var name="Value" when="200application-jsonAdditionalValue">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="text-javascript" when="200text-javascript">
+            <Var name="Type">
+              <Value name="object" property="200text-javascriptValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="200text-javascriptValue">
+              <Var name="Property-Count">
+                <Value name="&gt;= 1">
+                  <When>
+                    <NotLessThan property="200text-javascriptProperties" min="0"/>
+                  </When>
+                </Value>
+              </Var>
+              <VarSet name="Properties">
+                <VarSet name="Additional">
+                  <Var name="Defined">
+                    <Value name="Yes" property="200text-javascriptAdditional, 200text-javascriptProperties"/>
+                    <Value name="No" failure="true"/>
+                  </Var>
+                  <Var name="Type" when="200text-javascriptAdditional">
+                    <Value name="boolean" property="200text-javascriptAdditionalValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not boolean" failure="true"/>
+                  </Var>
+                  <Var name="Value" when="200text-javascriptAdditionalValue">
+                    <Value name="true"/>
+                    <Value name="false"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="4XX" when="status4XX">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="4XXContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="4XXContent">
+            <Value name="application-json" property="4XXapplication-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="application-json" when="4XXapplication-json">
+            <Var name="Type">
+              <Value name="object" property="4XXapplication-jsonValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="4XXapplication-jsonValue">
+              <VarSet name="Properties">
+                <Var name="Additional">
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<TestCases system="Array">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_array">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="param0,param0Items,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="array"/>
+        <Var name="param0.Items.Size" value="2"/>
+        <Var name="param0.Items.Contains.Type" value="string"/>
+        <Var name="param0.Items.Contains.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Items.Unique" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="null"/>
+        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="array"/>
+        <Var name="param0.Items.Size" value="0"/>
+        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="properties" value="param0,param0Items,param0ItemsValue,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="array"/>
+        <Var name="param0.Items.Size" value="&lt; 2"/>
+        <Var name="param0.Items.Contains.Type" value="string"/>
+        <Var name="param0.Items.Contains.Value.Length" value="0"/>
+        <Var name="param0.Items.Unique" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5">
+      <Has name="properties" value="param0,param0Items,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="array"/>
+        <Var name="param0.Items.Size" value="2"/>
+        <Var name="param0.Items.Contains.Type" value="string"/>
+        <Var name="param0.Items.Contains.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Items.Unique" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="Not array" failure="true"/>
+        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="array"/>
+        <Var name="param0.Items.Size" value="3" failure="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0Items,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="array"/>
+        <Var name="param0.Items.Size" value="&lt; 2"/>
+        <Var name="param0.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="param0.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0Items,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="array"/>
+        <Var name="param0.Items.Size" value="&lt; 2"/>
+        <Var name="param0.Items.Contains.Type" value="Not string" failure="true"/>
+        <Var name="param0.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>
