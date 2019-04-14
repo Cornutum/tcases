@@ -27,6 +27,7 @@ import static org.hamcrest.Matchers.*;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.function.Function;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
@@ -40,11 +41,27 @@ public abstract class OpenApiTest
    */
   protected void verifyRequestInputModel( String apiName)
     {
+    verifyInputModel( apiName, api -> TcasesOpenApi.getRequestInputModel( api));
+    }
+  
+  /**
+   * Verifies expected response input model for the given API.
+   */
+  protected void verifyResponseInputModel( String apiName)
+    {
+    verifyInputModel( apiName, api -> TcasesOpenApi.getResponseInputModel( api));
+    }
+  
+  /**
+   * Verifies expected input model for the given API.
+   */
+  protected void verifyInputModel( String apiName, Function<OpenAPI,SystemInputDef> inputDefSupplier)
+    {
     // Given...
     OpenAPI api = readApi( apiName);
 
     // When...
-    SystemInputDef inputDef = TcasesOpenApi.getRequestInputModel( api);
+    SystemInputDef inputDef = inputDefSupplier.apply( api);
 
     // Then...
     SystemInputDef expectedInputDef = readExpectedInputDef( apiName);

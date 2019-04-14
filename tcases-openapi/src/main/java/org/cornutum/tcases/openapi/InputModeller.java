@@ -16,6 +16,7 @@ import static org.cornutum.tcases.util.CollectionUtils.*;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
+import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.BooleanSchema;
@@ -27,6 +28,7 @@ import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
 
 import org.apache.commons.lang3.StringUtils;
@@ -93,7 +95,7 @@ public class InputModeller
           SystemInputDefBuilder.with( toIdentifier( title))
           .has( "version", info.getVersion())
           .hasIf( "server", membersOf( api.getServers()).findFirst().map( Server::getUrl))
-          .functions( entriesOf( api.getPaths()).flatMap( path -> pathFunctionDefs( api, path.getKey(), path.getValue())))
+          .functions( entriesOf( api.getPaths()).flatMap( path -> pathRequestDefs( api, path.getKey(), path.getValue())))
           .build();
 
         return
@@ -104,35 +106,35 @@ public class InputModeller
     }
 
   /**
-   * Returns a {@link FunctionInputDef function input definition} for each of the API operations for the given path.
+   * Returns a request {@link FunctionInputDef function input definition} for each of the API operations for the given path.
    */
-  private Stream<FunctionInputDef> pathFunctionDefs( OpenAPI api, String path, PathItem pathItem)
+  private Stream<FunctionInputDef> pathRequestDefs( OpenAPI api, String path, PathItem pathItem)
     {
     return
       with( path,
 
       () ->
       Stream.of(
-        opFunctionDef( api, path, pathItem, "GET", pathItem.getGet()),
-        opFunctionDef( api, path, pathItem, "PUT", pathItem.getPut()),
-        opFunctionDef( api, path, pathItem, "POST", pathItem.getPost()),
-        opFunctionDef( api, path, pathItem, "DELETE", pathItem.getDelete()),
-        opFunctionDef( api, path, pathItem, "OPTIONS", pathItem.getOptions()),
-        opFunctionDef( api, path, pathItem, "HEAD", pathItem.getHead()),
-        opFunctionDef( api, path, pathItem, "PATCH", pathItem.getPatch()),
-        opFunctionDef( api, path, pathItem, "TRACE", pathItem.getTrace()))
+        opRequestDef( api, path, pathItem, "GET", pathItem.getGet()),
+        opRequestDef( api, path, pathItem, "PUT", pathItem.getPut()),
+        opRequestDef( api, path, pathItem, "POST", pathItem.getPost()),
+        opRequestDef( api, path, pathItem, "DELETE", pathItem.getDelete()),
+        opRequestDef( api, path, pathItem, "OPTIONS", pathItem.getOptions()),
+        opRequestDef( api, path, pathItem, "HEAD", pathItem.getHead()),
+        opRequestDef( api, path, pathItem, "PATCH", pathItem.getPatch()),
+        opRequestDef( api, path, pathItem, "TRACE", pathItem.getTrace()))
 
       // Skip if operation not defined
       .filter( Objects::nonNull)
 
       // Skip if operation has no inputs to model
-            .filter( functionDef -> functionDef.getVarDefs().hasNext()));
+      .filter( functionDef -> functionDef.getVarDefs().hasNext()));
     }
 
   /**
-   * Returns the {@link FunctionInputDef function input definition} for the given API operation.
+   * Returns the request {@link FunctionInputDef function input definition} for the given API operation.
    */
-  private FunctionInputDef opFunctionDef( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
+  private FunctionInputDef opRequestDef( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
     {
     return
       with( opName,
@@ -149,6 +151,97 @@ public class InputModeller
     }
 
   /**
+   * Returns the consolidated set of parameters for the given API operation.
+   */
+  private Stream<Parameter> opParameters( PathItem pathItem, Operation op)
+    {
+    return
+      Stream.concat( membersOf( pathItem.getParameters()), membersOf( op.getParameters()))
+      .collect( toMap( Parameter::getName, Function.identity(), (pathParam, opParam) -> opParam, () -> new LinkedHashMap<String,Parameter>()))
+      .values()
+      .stream();
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public SystemInputDef getResponseInputModel( OpenAPI api)
+    {
+    Info info;
+    String title;
+    try
+      {
+      info = expectedValueOf( api.getInfo(), "API info");
+      title = expectedValueOf( StringUtils.trimToNull( info.getTitle()), "API title");
+      }
+    catch( Exception e)
+      {
+      throw new OpenApiException( "Invalid API spec", e);
+      }
+
+    return
+      with( title,
+        () -> {
+        SystemInputDef inputDef =
+          SystemInputDefBuilder.with( toIdentifier( title))
+          .has( "version", info.getVersion())
+          .hasIf( "server", membersOf( api.getServers()).findFirst().map( Server::getUrl))
+          .functions( entriesOf( api.getPaths()).flatMap( path -> pathResponseDefs( api, path.getKey(), path.getValue())))
+          .build();
+
+        return
+          inputDef.getFunctionInputDefs().hasNext()
+          ? inputDef
+          : null;
+        });
+    }
+
+  /**
+   * Returns a response {@link FunctionInputDef function input definition} for each of the API operations for the given path.
+   */
+  private Stream<FunctionInputDef> pathResponseDefs( OpenAPI api, String path, PathItem pathItem)
+    {
+    return
+      with( path,
+
+      () ->
+      Stream.of(
+        opResponseDef( api, path, pathItem, "GET", pathItem.getGet()),
+        opResponseDef( api, path, pathItem, "PUT", pathItem.getPut()),
+        opResponseDef( api, path, pathItem, "POST", pathItem.getPost()),
+        opResponseDef( api, path, pathItem, "DELETE", pathItem.getDelete()),
+        opResponseDef( api, path, pathItem, "OPTIONS", pathItem.getOptions()),
+        opResponseDef( api, path, pathItem, "HEAD", pathItem.getHead()),
+        opResponseDef( api, path, pathItem, "PATCH", pathItem.getPatch()),
+        opResponseDef( api, path, pathItem, "TRACE", pathItem.getTrace()))
+
+      // Skip if operation not defined
+      .filter( Objects::nonNull)
+
+      // Skip if operation has no inputs to model
+      .filter( functionDef -> functionDef.getVarDefs().hasNext()));
+    }
+
+  /**
+   * Returns the response {@link FunctionInputDef function input definition} for the given API operation.
+   */
+  private FunctionInputDef opResponseDef( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
+    {
+    return
+      with( opName,
+        () ->
+        op == null?
+        null :
+
+        FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
+        .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( Server::getUrl))
+        .hasIf( "server", membersOf( op.getServers()).findFirst().map( Server::getUrl))
+        .vars( responsesVars( api, expectedValueOf( op.getResponses(), "responses")))
+        .build());
+    }
+
+  /**
    * Returns the {@link IVarDef input variable definition} for the given request body.
    */
   private Optional<IVarDef> requestBodyVarDef( OpenAPI api, RequestBody body)
@@ -160,29 +253,29 @@ public class InputModeller
         .map( b -> resolveRequestBody( api, b))
         .map( b -> {
           String instanceVarName = "Body";
+          Map<String,MediaType> mediaTypes = expectedValueOf( b.getContent(), "Request body content");
           return
             VarSetBuilder.with( instanceVarName)
             .type( "request")
             .members(
               instanceDefinedVar( instanceVarName, Boolean.TRUE.equals( b.getRequired())),
-              mediaTypeVar( instanceVarName, b))
+              mediaTypeVar( instanceVarName, mediaTypes))
             .members(
-              mediaTypeContentVars( api, b))
+              mediaTypeContentVars( api, mediaTypes))
             .build();
           }));
     }
 
   /**
-   * Returns the {@link IVarDef input variable definition} for request body media types.
+   * Returns the {@link IVarDef input variable definition} for the given media types.
    */
-  private IVarDef mediaTypeVar( String bodyVarTag, RequestBody body)
+  private IVarDef mediaTypeVar( String instanceVarTag, Map<String,MediaType> mediaTypes)
     {
     return
       VarDefBuilder.with( "Media-Type")
-      .when( instanceDefinedCondition( bodyVarTag))
+      .when( instanceDefinedCondition( instanceVarTag))
       .values(
-        mediaTypeContentDefs( body)
-        .entrySet().stream()
+        mediaTypes.entrySet().stream()
         .map(
           contentDef ->
           {
@@ -199,13 +292,12 @@ public class InputModeller
     }
 
   /**
-   * Returns the {@link IVarDef input variable definitions} for request body content.
+   * Returns the {@link IVarDef input variable definitions} for the given media type content.
    */
-  private Stream<IVarDef> mediaTypeContentVars( OpenAPI api, RequestBody body)
+  private Stream<IVarDef> mediaTypeContentVars( OpenAPI api, Map<String,MediaType> mediaTypes)
     {
     return
-      mediaTypeContentDefs( body)
-      .entrySet().stream()
+      mediaTypes.entrySet().stream()
       .map(
         contentDef ->
         {
@@ -236,14 +328,6 @@ public class InputModeller
             return contentVar.build();
             });
         });
-    }
-
-  /**
-   * Returns the map of media type content definitions for the request body.
-   */
-  private Map<String,MediaType> mediaTypeContentDefs( RequestBody body)
-    {
-    return expectedValueOf( body.getContent(), "Request body content");
     }
 
   /**
@@ -357,22 +441,197 @@ public class InputModeller
     }
 
   /**
+   * Returns the {@link IVarDef input variable definitions} for the given responses.
+   */
+  private Stream<IVarDef> responsesVars( OpenAPI api, ApiResponses responses)
+    {
+    return
+      with( "responses",
+        () ->
+        Stream.concat(
+          Stream.of(
+            VarDefBuilder.with( "Status-Code")
+            .type( "response")
+            .values( responseStatusValues( api, responses))
+            .build()),
+
+          responseVars( api, responses)));
+    }
+
+  /**
+   * Returns the value definitions for the response status code variable.
+   */
+  private Stream<VarValueDef> responseStatusValues( OpenAPI api, ApiResponses responses)
+    {
+    return
+      Stream.concat(
+        // One for each specified status code...
+        responses.keySet().stream()
+        .filter( status -> !status.equals( "default"))
+        .map( status -> VarValueDefBuilder.with( status).properties( statusCodeProperty( status)).build()),
+
+        // And one for any unspecified status code...
+        Stream.of( VarValueDefBuilder.with( "Other").properties( statusCodeProperty( "Other")).build()));
+    }
+
+  /**
+   * Returns the variable definitions for the given response definitions.
+   */
+  private Stream<IVarDef> responseVars( OpenAPI api, ApiResponses responses)
+    {
+    return
+      responses.keySet().stream()
+      .map( status -> {
+        return
+          with(
+            status,
+            () ->  {
+            ApiResponse response = resolveResponse( api, responses.get( status));
+            String statusValueName = status.equals( "default")? "Other" : status;
+            return
+              VarSetBuilder.with( statusValueName)
+              .when( has( statusCodeProperty( statusValueName)))
+              .type( "response")
+              .members( iterableOf( responseHeadersVar( api, status, response)))
+              .members( responseContentVar( api, status, response))
+              .build();
+            });
+        });
+    }
+
+  /**
+   * Returns the variable definition(s) for headers in the given response.
+   */
+  private Optional<IVarDef> responseHeadersVar( OpenAPI api, String status, ApiResponse response)
+    {
+    return
+      with( "headers",
+        () -> {
+        List<String> headerNames =
+          Optional.ofNullable( response.getHeaders())
+          .map( headers -> headers.keySet().stream().filter( name -> !name.equals( "Content-Type")).collect( toList()))
+          .orElse( emptyList());
+
+        return
+          Optional.ofNullable( headerNames.isEmpty()? null : headerNames)
+          .map( names -> {
+            return
+              VarSetBuilder.with( "Headers")
+              .members(
+                names.stream()
+                .map( name -> responseHeaderVar( api, name, resolveHeader( api, response.getHeaders().get( name)))))
+              .build();
+            });
+        });
+    }
+
+  /**
+   * Returns the variable definition for the given response header.
+   */
+  private IVarDef responseHeaderVar( OpenAPI api, String headerName, Header header)
+    {
+    return
+      with(
+        headerName,
+        () -> {
+        String headerVarName = toIdentifier( headerName);
+        String headerVarTag = "header" + StringUtils.capitalize( headerVarName);
+
+        Schema<?> headerSchema =
+          header.getSchema() == null
+          ? new StringSchema()
+          : resolveSchema( api, header.getSchema());
+
+        return
+          VarSetBuilder.with( headerVarName)
+          .members( headerDefinedVar( headerVarTag, header))
+          .members( instanceSchemaVars( api, headerVarTag, headerSchema))
+          .build();
+        });
+    }
+
+  /**
+   * Returns an {@link IVarDef input variable} to represent if the given header is defined.
+   */
+  private IVarDef headerDefinedVar( String headerVarTag, Header header)
+    {
+    return
+      VarDefBuilder.with( instanceDefinedVar( headerVarTag, header.getRequired()))
+      .has( "style", header.getStyle())
+      .has( "explode", header.getExplode())
+      .build();
+    }
+
+  /**
+   * Returns the variable definition(s) for the content of the given response.
+   */
+  private IVarDef responseContentVar( OpenAPI api, String status, ApiResponse response)
+    {
+    String contentVarName = "Content";
+    return
+      with( "content",
+        () ->
+        Optional.ofNullable( response.getContent())
+        .map( mediaTypes -> {
+          return
+            VarSetBuilder.with( contentVarName)
+            .members(
+              instanceDefinedVar( contentVarName, true),
+              mediaTypeVar( contentVarName, mediaTypes))
+            .members(
+              mediaTypeContentVars( api, mediaTypes))
+            .build();
+          })
+
+        .orElse(
+          VarSetBuilder.with( contentVarName)
+          .members( instanceUndefinedAlways( contentVarName)) 
+          .build()));
+    }
+
+  /**
    * Returns an {@link IVarDef input variable} to represent if the given instance is defined.
    */
   private VarDef instanceDefinedVar( String instanceVarTag, boolean required, String... propertiesWhenDefined)
     {
-    return
-      VarDefBuilder.with( "Defined")
-      .values(
-        VarValueDefBuilder.with( "Yes")
-        .properties( instanceDefinedProperty( instanceVarTag))
-        .properties( propertiesWhenDefined)
-        .build(),
+    return instanceDefinedVar( instanceVarTag, null, required, propertiesWhenDefined);
+    }
 
-        VarValueDefBuilder.with( "No")
-        .type( required? VarValueDef.Type.FAILURE : VarValueDef.Type.VALID)
-        .build())
-      .build();
+  /**
+   * Returns an {@link IVarDef input variable} to represent that the given instance is always undefined.
+   */
+  private VarDef instanceUndefinedAlways( String instanceVarTag)
+    {
+    return instanceDefinedVar( instanceVarTag, Boolean.FALSE, false);
+    }
+
+  /**
+   * Returns an {@link IVarDef input variable} to represent if the given instance is defined.
+   */
+  private VarDef instanceDefinedVar( String instanceVarTag, Boolean forceDefined, boolean required, String... propertiesWhenDefined)
+    {
+    VarDefBuilder varDef = VarDefBuilder.with( "Defined");
+
+    if( !Boolean.FALSE.equals( forceDefined))
+      {
+      varDef
+        .values(
+          VarValueDefBuilder.with( "Yes")
+          .properties( instanceDefinedProperty( instanceVarTag))
+          .properties( propertiesWhenDefined)
+          .build());
+      }
+
+    if( !Boolean.TRUE.equals( forceDefined))
+      {
+      varDef
+        .values(
+          VarValueDefBuilder.with( "No")
+          .type( forceDefined == null && required? VarValueDef.Type.FAILURE : VarValueDef.Type.VALID)
+          .build());
+      }
+
+    return varDef.build();
     }
 
   /**
@@ -1395,18 +1654,6 @@ public class InputModeller
     }
 
   /**
-   * Returns the consolidated set of parameters for the given API operation.
-   */
-  private Stream<Parameter> opParameters( PathItem pathItem, Operation op)
-    {
-    return
-      Stream.concat( membersOf( pathItem.getParameters()), membersOf( op.getParameters()))
-      .collect( toMap( Parameter::getName, Function.identity(), (pathParam, opParam) -> opParam, () -> new LinkedHashMap<String,Parameter>()))
-      .values()
-      .stream();
-    }
-
-  /**
    * Returns the component of a function name that represents the given API request path.
    */
   private String functionPathName( String pathName)
@@ -1494,6 +1741,14 @@ public class InputModeller
     }
 
   /**
+   * Returns the "has status code" property for the given status.
+   */
+  private String statusCodeProperty( String status)
+    {
+    return "status" + StringUtils.capitalize( status);
+    }
+
+  /**
    * Returns the given value if non-null. Otherwise, throws an OpenApiException.
    */
   private <T> T expectedValueOf( T value, String description, Object... descriptionArgs)
@@ -1536,6 +1791,14 @@ public class InputModeller
   private ApiResponse resolveResponse( OpenAPI api, ApiResponse response)
     {
     return componentResponseRef( api, response.get$ref()).orElse( response);
+    }
+
+  /**
+   * If the given header is defined by a reference, returns the referenced header. Otherwise, returns the given header.
+   */
+  private Header resolveHeader( OpenAPI api, Header header)
+    {
+    return componentHeaderRef( api, header.get$ref()).orElse( header);
     }
 
   /**
@@ -1600,6 +1863,21 @@ public class InputModeller
     }
 
   /**
+   * When the given reference is non-null, returns the component header referenced.
+   */
+  private Optional<Header> componentHeaderRef( OpenAPI api, String reference)
+    {
+    return
+      Optional.ofNullable( reference)
+
+      .map( ref -> componentName( componentsHeadersRef_, ref))
+      .filter( Objects::nonNull)
+
+      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getHeaders(), "Component headers").get( name))
+      .filter( Objects::nonNull);
+    }
+
+  /**
    * Returns the name of the given component reference.
    */
   private String componentName( String refType, String ref)
@@ -1638,4 +1916,5 @@ public class InputModeller
   private static final String componentsRequestBodiesRef_ = "#/components/requestBodies/";
   private static final String componentsResponsesRef_ = "#/components/responses/";
   private static final String componentsSchemasRef_ = "#/components/schemas/";
+  private static final String componentsHeadersRef_ = "#/components/headers/";
 }
