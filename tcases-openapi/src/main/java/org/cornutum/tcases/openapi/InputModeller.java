@@ -1058,7 +1058,7 @@ public class InputModeller
 
     Integer minProperties =
       Optional.ofNullable( instanceSchema.getMinProperties())
-      .filter( min -> min > requiredCount && min < totalCount)
+      .filter( min -> min > requiredCount && (hasAdditional || min < totalCount))
       .orElse( null);
 
     Integer maxProperties =
@@ -1112,17 +1112,26 @@ public class InputModeller
         }
       else
         {
-        // No, define coverage w.r.t. lower bound
+        // No, define coverage w.r.t. lower bound    
+        boolean requiresAdditional = hasAdditional && minProperties > totalCount;
+
+        // If additional properties are required to meet the minimum, use the "additional" variable to
+        // define the "below minimum" failure condition
         countValues
           .add(
             VarValueDefBuilder.with( String.format( ">= %s", minProperties))
-            .when( notLessThan( objectPropertiesProperty( instanceVarTag), minProperties))
-            .build())
-          .add(
-            VarValueDefBuilder.with( String.format( "< %s", minProperties))
-            .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
-            .type( VarValueDef.Type.FAILURE)
+            .when( notLessThan( objectPropertiesProperty( instanceVarTag), requiresAdditional? totalCount : minProperties))
             .build());
+
+        if( !requiresAdditional)
+          {
+          countValues
+            .add(
+              VarValueDefBuilder.with( String.format( "< %s", minProperties))
+              .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
+              .type( VarValueDef.Type.FAILURE)
+              .build());
+          }
         }
       }
 
@@ -1218,8 +1227,15 @@ public class InputModeller
 
     boolean allowed =
       type != null
-      && (propertySchema != null
-          || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties()));
+      &&
+      (propertySchema != null || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties()));
+
+    boolean required =
+      allowed
+      &&
+      Optional.ofNullable( instanceSchema.getMinProperties())
+      .map( min -> min > Optional.ofNullable( instanceSchema.getProperties()).map( Map::size).orElse( 0))
+      .orElse( false);
         
     return
       propertySchema == null ?
@@ -1232,10 +1248,11 @@ public class InputModeller
         .build(),
 
         VarValueDefBuilder.with( "No")
+        .type( required? VarValueDef.Type.FAILURE : VarValueDef.Type.VALID)
         .build())
       .build() :
 
-      objectPropertyVar( api, instanceVarTag, "Additional", false, propertySchema);
+      objectPropertyVar( api, instanceVarTag, "Additional", required, propertySchema);
     }
 
   /**

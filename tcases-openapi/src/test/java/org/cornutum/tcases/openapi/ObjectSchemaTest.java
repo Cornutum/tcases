@@ -278,4 +278,26 @@ public class ObjectSchemaTest extends OpenApiTest
     {
     verifyRequestInputModel( "object-11");
     }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following object schema.
+   * <P>
+   * <TABLE border="1" cellpadding="11">
+   * <TR align="left"><TH colspan=2> 12. Schema (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> minProperties </TD> <TD> 1 </TD> </TR>
+   * <TR><TD> maxProperties </TD> <TD> Undefined </TD> </TR>
+   * <TR><TD> properties.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> properties.Count </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> properties.Definition.Required </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> additionalProperties </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> nullable </TD> <TD> Undefined </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Schema_12()
+    {
+    verifyRequestInputModel( "object-12");
+    }
   }

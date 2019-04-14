@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<TestCases system="Object">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="false"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="Not object" failure="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0,param0Additional,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0Additional,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="Not boolean" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>
