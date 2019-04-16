@@ -1236,6 +1236,12 @@ public class InputModeller
           .map( BigDecimal::intValue)
           .map( i -> Boolean.TRUE.equals( instanceSchema.getExclusiveMaximum())? ((((int) Math.ceil( (double)i/multipleOf)) - 1) * multipleOf) : i)
           .orElse( null);
+           
+        // Ensure min/max range is feasible
+        minimum = 
+          Optional.ofNullable( minimum)
+          .map( min -> Optional.ofNullable( maximum).map( max -> adjustedMinOf( "imum", min, max)).orElse( min))
+          .orElse( null);
 
         TreeSet<Integer> boundaryValues = new TreeSet<Integer>();
         if( minimum != null)
@@ -1327,6 +1333,12 @@ public class InputModeller
         BigDecimal maximum =
           Optional.ofNullable( instanceSchema.getMaximum())
           .map( m -> Boolean.TRUE.equals( instanceSchema.getExclusiveMaximum())? m.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf) : m)
+          .orElse( null);
+           
+        // Ensure min/max range is feasible
+        minimum = 
+          Optional.ofNullable( minimum)
+          .map( min -> Optional.ofNullable( maximum).map( max -> adjustedMinOf( "imum", min, max)).orElse( min))
           .orElse( null);
 
         TreeSet<BigDecimal> boundaryValues = new TreeSet<BigDecimal>();
@@ -1785,9 +1797,9 @@ public class InputModeller
   /**
    * Returns the adjusted minimum of the given range.
    */
-  private int adjustedMinOf( String description, int min, int max)
+  private <T extends Comparable<T>> T adjustedMinOf( String description, T min, T max)
     {
-    if( min > max)
+    if( min.compareTo( max) > 0)
       {
       notifyError(
         String.format(
