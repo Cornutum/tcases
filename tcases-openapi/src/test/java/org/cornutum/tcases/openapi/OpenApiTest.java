@@ -41,7 +41,7 @@ public abstract class OpenApiTest
    */
   protected void verifyRequestInputModel( String apiName)
     {
-    verifyInputModel( apiName, api -> TcasesOpenApi.getRequestInputModel( api));
+    verifyInputModel( apiName, api -> getRequestInputModel( api));
     }
   
   /**
@@ -49,9 +49,36 @@ public abstract class OpenApiTest
    */
   protected void verifyResponseInputModel( String apiName)
     {
-    verifyInputModel( apiName, api -> TcasesOpenApi.getResponseInputModel( api));
+    verifyInputModel( apiName, api -> getResponseInputModel( api));
     }
-  
+
+  /**
+   * Returns a request input model for the given API.
+   */
+  protected SystemInputDef getRequestInputModel( OpenAPI api)
+    {
+    SystemInputDef inputDef = TcasesOpenApi.getRequestInputModel( api, getModelOptions());
+    return inputDef;
+    }
+
+  /**
+   * Returns a response input model for the given API.
+   */
+  protected SystemInputDef getResponseInputModel( OpenAPI api)
+    {
+    SystemInputDef inputDef = TcasesOpenApi.getResponseInputModel( api, getModelOptions());
+    return inputDef;
+    }
+
+  /**
+   * Returns the {@link ModelOptions} used for this test.
+   */
+  protected ModelOptions getModelOptions()
+    {
+    // By default, use default options.
+    return null;
+    }
+
   /**
    * Verifies expected input model for the given API.
    */

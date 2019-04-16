@@ -1,0 +1,27 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Responses",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/responses": {
+            "trace": {
+                "responses": {
+                    "2XX": {
+                        "description": "Headers",
+                        "headers": {
+                            "x-standard-header": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-extra-header": {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -56,6 +56,14 @@ public final class CollectionUtils
     }
 
   /**
+   * If the given value is present, returns it as a single-element stream. Otherwise, returns an empty stream.
+   */
+  public static <T> Stream<T> streamOf( Optional<T> value)
+    {
+    return value.map( Stream::of).orElse( Stream.empty());
+    }
+
+  /**
    * Returns a stream containing the members of the given collection.
    */
   public static <T,C extends Collection<T>> Stream<T> membersOf( C collection)

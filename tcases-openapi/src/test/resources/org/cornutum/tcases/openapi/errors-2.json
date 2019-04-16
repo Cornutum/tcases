@@ -1,0 +1,77 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Object",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/object": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "header",
+                        "style": "form",
+
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "myString": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 0
+                                },
+                                "myArray": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer"
+                                    },
+                                    "minItems": 10,
+                                    "maxItems": 0
+                                },
+                                "myObject": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "minProperties": 1,
+                                    "maxProperties": 0
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
