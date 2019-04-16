@@ -112,6 +112,18 @@ public class NotifierTest extends OpenApiTest
         "Responses,/responses,GET,2XX,content,application/json,delta: minProperties=4 exceeds the total number of properties. Ignoring infeasible minProperties.",
         "Responses,/responses,GET,2XX,content,application/json,delta: maxProperties=5 exceeds the total number of properties. Ignoring infeasible maxProperties."));
     }
+  
+  @Test
+  public void errorWhenInfeasibleRange()
+    {
+    // When...
+    getTests( getRequestInputModel( "errors-4"));
+    
+    // Then...
+    assertErrors(
+      "Numbers,/numbers,POST,param0: minimum=1000 is greater than maximum=99. Adjusting minimum to maximum.",
+      "Numbers,/numbers,POST,param1: minimum=1231.23 is greater than maximum=121.77. Adjusting minimum to maximum.");
+    }
 
   private SystemInputDef getRequestInputModel( String resource)
     {
