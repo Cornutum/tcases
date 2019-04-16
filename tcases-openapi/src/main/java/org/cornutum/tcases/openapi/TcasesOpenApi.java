@@ -31,7 +31,16 @@ public final class TcasesOpenApi
    */
   public static SystemInputDef getRequestInputModel( OpenAPI api)
     {
-    InputModeller inputModeller = new InputModeller();
+    return getRequestInputModel( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemInputDef getRequestInputModel( OpenAPI api, ModelOptions options)
+    {
+    InputModeller inputModeller = new InputModeller( options);
     return inputModeller.getRequestInputModel( api);
     }
 
@@ -41,7 +50,16 @@ public final class TcasesOpenApi
    */
   public static SystemInputDef getResponseInputModel( OpenAPI api)
     {
-    InputModeller inputModeller = new InputModeller();
+    return getResponseInputModel( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemInputDef getResponseInputModel( OpenAPI api, ModelOptions options)
+    {
+    InputModeller inputModeller = new InputModeller( options);
     return inputModeller.getResponseInputModel( api);
     }
   }

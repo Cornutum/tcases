@@ -6,6 +6,8 @@
 //////////////////////////////////////////////////////////////////////////////
 package org.cornutum.tcases.openapi;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Reports an error processing an OpenApi specification.
  */
@@ -27,5 +29,13 @@ public class OpenApiException extends RuntimeException
   public OpenApiException( String reason, Throwable cause)
     {
     super( reason, cause);
+    }
+  
+  /**
+   * Creates a new OpenApiException instance.
+   */
+  public OpenApiException( String[] location, Throwable cause)
+    {
+    super( String.format( "Error processing %s", StringUtils.join( location, ", ")), cause);
     }
   }

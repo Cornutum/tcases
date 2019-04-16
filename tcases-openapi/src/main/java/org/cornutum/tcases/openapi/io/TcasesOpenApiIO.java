@@ -10,6 +10,7 @@ import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.Tcases;
 import org.cornutum.tcases.TcasesJson;
+import org.cornutum.tcases.openapi.ModelOptions;
 import org.cornutum.tcases.openapi.TcasesOpenApi;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
 
@@ -38,9 +39,18 @@ public final class TcasesOpenApiIO
    */
   public static SystemInputDef getRequestInputModel( InputStream api)
     {
+    return getRequestInputModel( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemInputDef getRequestInputModel( InputStream api, ModelOptions options)
+    {
     try( OpenApiReader reader = new OpenApiReader( api))
       {
-      return TcasesOpenApi.getRequestInputModel( reader.read());
+      return TcasesOpenApi.getRequestInputModel( reader.read(), options);
       }
     }
 
@@ -50,9 +60,18 @@ public final class TcasesOpenApiIO
    */
   public static SystemInputDef getRequestInputModel( File api)
     {
+    return getRequestInputModel( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemInputDef getRequestInputModel( File api, ModelOptions options)
+    {
     try( OpenApiReader reader = new OpenApiReader( api))
       {
-      return TcasesOpenApi.getRequestInputModel( reader.read());
+      return TcasesOpenApi.getRequestInputModel( reader.read(), options);
       }
     }
 
@@ -62,7 +81,16 @@ public final class TcasesOpenApiIO
    */
   public static SystemTestDef getRequestTests( InputStream api)
     {
-    return Tcases.getTests( getRequestInputModel( api), null, null);
+    return getRequestTests( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemTestDef system test definition} for the API requests defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemTestDef getRequestTests( InputStream api, ModelOptions options)
+    {
+    return Tcases.getTests( getRequestInputModel( api, options), null, null);
     }
 
   /**
@@ -71,7 +99,16 @@ public final class TcasesOpenApiIO
    */
   public static SystemTestDef getRequestTests( File api)
     {
-    return Tcases.getTests( getRequestInputModel( api), null, null);
+    return getRequestTests( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemTestDef system test definition} for the API requests defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemTestDef getRequestTests( File api, ModelOptions options)
+    {
+    return Tcases.getTests( getRequestInputModel( api, options), null, null);
     }
 
   /**
@@ -80,9 +117,18 @@ public final class TcasesOpenApiIO
    */
   public static SystemInputDef getResponseInputModel( InputStream api)
     {
+    return getResponseInputModel( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemInputDef getResponseInputModel( InputStream api, ModelOptions options)
+    {
     try( OpenApiReader reader = new OpenApiReader( api))
       {
-      return TcasesOpenApi.getResponseInputModel( reader.read());
+      return TcasesOpenApi.getResponseInputModel( reader.read(), options);
       }
     }
 
@@ -92,9 +138,18 @@ public final class TcasesOpenApiIO
    */
   public static SystemInputDef getResponseInputModel( File api)
     {
+    return getResponseInputModel( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemInputDef getResponseInputModel( File api, ModelOptions options)
+    {
     try( OpenApiReader reader = new OpenApiReader( api))
       {
-      return TcasesOpenApi.getResponseInputModel( reader.read());
+      return TcasesOpenApi.getResponseInputModel( reader.read(), options);
       }
     }
 
@@ -104,7 +159,16 @@ public final class TcasesOpenApiIO
    */
   public static SystemTestDef getResponseTests( InputStream api)
     {
-    return Tcases.getTests( getResponseInputModel( api), null, null);
+    return getResponseTests( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemTestDef system test definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemTestDef getResponseTests( InputStream api, ModelOptions options)
+    {
+    return Tcases.getTests( getResponseInputModel( api, options), null, null);
     }
 
   /**
@@ -113,7 +177,16 @@ public final class TcasesOpenApiIO
    */
   public static SystemTestDef getResponseTests( File api)
     {
-    return Tcases.getTests( getResponseInputModel( api), null, null);
+    return getResponseTests( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemTestDef system test definition} for the API responses defined by the given
+   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   */
+  public static SystemTestDef getResponseTests( File api, ModelOptions options)
+    {
+    return Tcases.getTests( getResponseInputModel( api, options), null, null);
     }
 
   /**

@@ -68,6 +68,15 @@ public class InputModeller
    */
   public InputModeller()
     {
+    this( null);
+    }
+  
+  /**
+   * Creates a new InputModeller instance.
+   */
+  public InputModeller( ModelOptions options)
+    {
+    setOptions( Optional.ofNullable( options).orElse( new ModelOptions()));
     }
 
   /**
@@ -128,7 +137,7 @@ public class InputModeller
       .filter( Objects::nonNull)
 
       // Skip if operation has no inputs to model
-      .filter( functionDef -> functionDef.getVarDefs().hasNext()));
+      .filter( this::hasInputs));
     }
 
   /**
@@ -220,7 +229,21 @@ public class InputModeller
       .filter( Objects::nonNull)
 
       // Skip if operation has no inputs to model
-      .filter( functionDef -> functionDef.getVarDefs().hasNext()));
+      .filter( this::hasInputs));
+    }
+
+  /**
+   * Returns if the given {@link FunctionInputDef function input definition} defines input variables.
+   */
+  private boolean hasInputs( FunctionInputDef functionDef)
+    {
+    boolean hasVars = functionDef.getVarDefs().hasNext();
+    if( !hasVars)
+      {
+      notifyWarning( String.format( "No inputs to model for operation=%s", functionDef.getName()));
+      }
+    
+    return hasVars;
     }
 
   /**
@@ -320,6 +343,7 @@ public class InputModeller
             if( mediaTypeSchema == null)
               {
               // No, use perfunctory "must be defined" input model for contents
+              notifyWarning( String.format( "No schema defined for media type=%s", mediaType));
               contentVar.members( instanceDefinedVar( mediaTypeVarTag, false));
               }
             else
@@ -376,8 +400,8 @@ public class InputModeller
       // Schema defined?
       schema == null?
 
-      // No, assume parameter is a plain string
-      new StringSchema() :
+      // No, assume default schema
+      defaultSchema() :
       
       // Yes, resolve any reference to another schema definition
       resolveSchema( api, schema);
@@ -542,7 +566,7 @@ public class InputModeller
 
         Schema<?> headerSchema =
           header.getSchema() == null
-          ? new StringSchema()
+          ? defaultSchema()
           : resolveSchema( api, header.getSchema());
 
         return
@@ -651,6 +675,19 @@ public class InputModeller
    */
   private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
+    Stream<IVarDef> typeVars = typeSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema);
+
+    return
+      typeVars != null
+      ? Stream.concat( typeVars, streamOf( notVar( api, instanceVarTag, instanceSchema.getNot())))
+      : unknownSchemaVars( instanceSchema.getType());
+    }
+
+  /**
+   * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
+   */
+  private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+    {
     ComposedSchema composedSchema = instanceSchema instanceof ComposedSchema? (ComposedSchema) instanceSchema : null;
     String type = composedSchema == null? expectedValueOf( instanceSchema.getType(), "Schema type") : null;
 
@@ -676,7 +713,25 @@ public class InputModeller
       "object".equals( type)?
       instanceObjectVars( api, instanceVarTag, instanceOptional, instanceSchema) :
 
-      Stream.empty();      
+      null;
+    }
+
+  /**
+   * Returns the default schema used when no schema is defined.
+   */
+  private Schema<?> defaultSchema()
+    {
+    notifyWarning( "No schema defined -- using default \"string\" schema");
+    return new StringSchema();
+    }
+
+  /**
+   * Returns an empty stream for a schema of unknown type.
+   */
+  private Stream<IVarDef> unknownSchemaVars( String type)
+    {
+    notifyError( String.format( "Unknown schema type=%s is not supported", type), "Ignoring unknown schema");
+    return Stream.empty();
     }
 
   /**
@@ -700,8 +755,9 @@ public class InputModeller
         VarSetBuilder.with( "Items")
         .when( has( instanceValueProperty( instanceVarTag)))
         .members(
-          arraySizeVar( api, instanceVarTag, arraySchema),
-          arrayItemsVar( api, instanceVarTag, itemSchema))
+          arraySizeVar( api, instanceVarTag, arraySchema))
+        .members(
+          iterableOf( arrayItemsVar( api, instanceVarTag, arraySchema, itemSchema)))
         .members(
           iterableOf( arrayUniqueItemsVar( api, instanceVarTag, arraySchema)))
         .build());
@@ -729,7 +785,7 @@ public class InputModeller
       // Ensure min/max range is feasible
       minItems =
         Optional.ofNullable( minItems)
-        .map( min -> Optional.ofNullable( maxItems).map( max -> Math.min( min, max)).orElse( min))
+        .map( min -> Optional.ofNullable( maxItems).map( max -> adjustedMinOf( "Items", min, max)).orElse( min))
         .orElse( null);
 
       // Add min/max boundary condition values
@@ -792,15 +848,20 @@ public class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the items of the given array instance.
    */
-  private IVarDef arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> itemSchema)
+  private Optional<IVarDef> arrayItemsVar( OpenAPI api, String instanceVarTag, ArraySchema arraySchema, Schema<?> itemSchema)
     {
     return
       with( "items",
         () ->
-        VarSetBuilder.with( "Contains")
-        .when( has( arrayItemsProperty( instanceVarTag)))
-        .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
-        .build());
+        Optional.ofNullable( arraySchema.getMaxItems()).orElse( Integer.MAX_VALUE) <= 0
+
+        ? Optional.empty()
+
+        : Optional.of(
+          VarSetBuilder.with( "Contains")
+          .when( has( arrayItemsProperty( instanceVarTag)))
+          .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
+          .build()));
     }
 
   /**
@@ -1090,6 +1151,19 @@ public class InputModeller
     }
 
   /**
+   * Returns the {@link IVarDef input variable} defined by the "not" schema for the given instance.
+   */
+  private Optional<IVarDef> notVar( OpenAPI api, String instanceVarTag, Schema<?> notSchema)
+    {
+    if( notSchema != null)
+      {
+      notifyError( "\"not\" schemas are not yet supported", "Ignoring the \"not\" schema");
+      }
+
+    return Optional.empty();
+    }
+
+  /**
    * Returns the {@link IVarDef input variable} representing the type of a instance.
    */
   private IVarDef instanceTypeVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
@@ -1319,17 +1393,23 @@ public class InputModeller
       .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
       .orElse( false);
 
+    // Ensure min/max range is feasible
+    instanceSchema.setMinProperties(
+      Optional.ofNullable( instanceSchema.getMinProperties())
+      .map( min -> Optional.ofNullable( instanceSchema.getMaxProperties()).map( max -> adjustedMinOf( "Properties", min, max)).orElse( min))
+      .orElse( null));
+      
     Integer minProperties =
       Optional.ofNullable( instanceSchema.getMinProperties())
-      .filter( min -> min > requiredCount && (hasAdditional || min < totalCount))
+      .filter( min -> isUsablePropertyLimit( "minProperties", min, requiredCount, totalCount, hasAdditional))
       .orElse( null);
 
     Integer maxProperties =
       Optional.ofNullable( instanceSchema.getMaxProperties())
-      .filter( max -> max > requiredCount && (hasAdditional || max < totalCount))
+      .filter( max -> isUsablePropertyLimit( "maxProperties", max, requiredCount, totalCount, hasAdditional))
       .orElse( null);
     
-    // Property count constrained (ignoring infeasible and superfluous constraints)?
+    // Property count has usable constraints?
     if( !(minProperties == null && maxProperties == null))
       {
       // Yes, upper bound defined?
@@ -1423,7 +1503,44 @@ public class InputModeller
             .values( values)
             .build());
     }
-  
+
+  /**
+   * Return true if and only if the given limit on the number of object properties is usable.
+   */
+  private boolean isUsablePropertyLimit( String description, int limit, int requiredCount, int totalCount, boolean hasAdditional)
+    {
+    boolean usable = false;
+
+    if( !hasAdditional && limit > totalCount)
+      {
+      notifyError(
+        String.format( "%s=%s exceeds the total number of properties", description, limit),
+        String.format( "Ignoring infeasible %s", description));
+      }
+    else if( !hasAdditional && limit == totalCount)
+      {
+      notifyWarning(
+        String.format( "%s=%s is superfluous -- same as the total number of properties", description, limit));
+      }
+    else if( limit < requiredCount)
+      {
+      notifyError(
+        String.format( "%s=%s is less than required=%s", description, limit, requiredCount),
+        String.format( "Ignoring infeasible %s", description));
+      }
+    else if( limit == requiredCount)
+      {
+      notifyWarning(
+        String.format( "%s=%s is superfluous -- same as required", description, limit));
+      }
+    else
+      {
+      usable = true;
+      }
+    
+    return usable;
+    }
+
   /**
    * Returns the {@link IVarDef input variable} representing the properties of an object instance.
    */
@@ -1491,7 +1608,9 @@ public class InputModeller
     boolean allowed =
       type != null
       &&
-      (propertySchema != null || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties()));
+      (propertySchema != null || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties()))
+      &&
+      Optional.ofNullable( instanceSchema.getMaxProperties()).orElse( Integer.MAX_VALUE) > 0;
 
     boolean required =
       allowed
@@ -1573,7 +1692,13 @@ public class InputModeller
         }
       else
         {
-        // Yes, add boundary condition values
+        // Yes, ensure min/max range is feasible
+        minLength =
+          Optional.ofNullable( minLength)
+          .map( min -> Optional.ofNullable( maxLength).map( max -> adjustedMinOf( "Length", min, max)).orElse( min))
+          .orElse( null);
+
+        // Add boundary condition values
         TreeSet<Integer> boundaryValues = new TreeSet<Integer>();
         if( minLength != null)
           {
@@ -1655,6 +1780,30 @@ public class InputModeller
             .build();
           }))
       .build();
+    }
+
+  /**
+   * Returns the adjusted minimum of the given range.
+   */
+  private int adjustedMinOf( String description, int min, int max)
+    {
+    if( min > max)
+      {
+      notifyError(
+        String.format(
+          "min%s=%s is greater than max%s=%s",
+          description, min,
+          description, max),
+
+        String.format(
+          "Adjusting min%s to max%s",
+          description,
+          description));
+
+      min = max;
+      }
+
+    return min;
     }
 
   /**
@@ -1913,8 +2062,7 @@ public class InputModeller
       }
     catch( Exception e)
       {
-      String location = toStream( context_.iterator()).collect( joining( ", "));
-      throw new OpenApiException( String.format( "Error processing %s", location), e);
+      throw new OpenApiException( contextLocation(), e);
       }
     finally
       {
@@ -1922,7 +2070,48 @@ public class InputModeller
       }
     }
 
+  /**
+   * Returns the path to the current context.
+   */
+  private String[] contextLocation()
+    {
+    return toStream( context_.iterator()).toArray( String[]::new);
+    }
+
+  /**
+   * Report an warning condition
+   */
+  private void notifyWarning( String reason)
+    {
+    options_.getConditionNotifier().warn( contextLocation(), reason);
+    }
+
+  /**
+   * Report an error condition
+   */
+  private void notifyError( String reason, String resolution)
+    {
+    options_.getConditionNotifier().error( contextLocation(), reason, resolution);
+    }
+
+  /**
+   * Changes the options used by this InputModeller.
+   */
+  private void setOptions( ModelOptions options)
+    {
+    options_ = options;
+    }
+
+  /**
+   * Returns the options used by this InputModeller.
+   */
+  public ModelOptions getOptions()
+    {
+    return options_;
+    }
+
   private Deque<String> context_ = new ArrayDeque<String>();
+  private ModelOptions options_;
   
   private static final String componentsParametersRef_ = "#/components/parameters/";
   private static final String componentsRequestBodiesRef_ = "#/components/requestBodies/";
