@@ -41,7 +41,14 @@ public abstract class OpenApiTest
    */
   protected void verifyRequestInputModel( String apiName)
     {
-    verifyInputModel( apiName, api -> getRequestInputModel( api));
+    verifyRequestInputModel( apiName, apiName);
+    }
+  /**
+   * Verifies expected request input model for the given API.
+   */
+  protected void verifyRequestInputModel( String apiName, String expectedName)
+    {
+    verifyInputModel( apiName, expectedName, api -> getRequestInputModel( api));
     }
   
   /**
@@ -49,7 +56,15 @@ public abstract class OpenApiTest
    */
   protected void verifyResponseInputModel( String apiName)
     {
-    verifyInputModel( apiName, api -> getResponseInputModel( api));
+    verifyResponseInputModel( apiName, apiName);
+    }
+  
+  /**
+   * Verifies expected response input model for the given API.
+   */
+  protected void verifyResponseInputModel( String apiName, String expectedName)
+    {
+    verifyInputModel( apiName, expectedName, api -> getResponseInputModel( api));
     }
 
   /**
@@ -82,7 +97,7 @@ public abstract class OpenApiTest
   /**
    * Verifies expected input model for the given API.
    */
-  protected void verifyInputModel( String apiName, Function<OpenAPI,SystemInputDef> inputDefSupplier)
+  protected void verifyInputModel( String apiName, String expectedName, Function<OpenAPI,SystemInputDef> inputDefSupplier)
     {
     // Given...
     OpenAPI api = readApi( apiName);
@@ -91,14 +106,14 @@ public abstract class OpenApiTest
     SystemInputDef inputDef = inputDefSupplier.apply( api);
 
     // Then...
-    SystemInputDef expectedInputDef = readExpectedInputDef( apiName);
+    SystemInputDef expectedInputDef = readExpectedInputDef( expectedName);
     assertThat( apiName + " input model", inputDef, matches( new SystemInputDefMatcher( expectedInputDef)));
 
     // When...
     SystemTestDef testDef = Tcases.getTests( inputDef, null, null);
 
     // Then...
-    SystemTestDef expectedTestDef = readExpectedTestDef( apiName);
+    SystemTestDef expectedTestDef = readExpectedTestDef( expectedName);
     assertThat( apiName + " test cases", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
     }
 

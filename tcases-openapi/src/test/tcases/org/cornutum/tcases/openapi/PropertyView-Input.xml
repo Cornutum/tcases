@@ -1,0 +1,93 @@
+<System name="PropertyView">
+    <Function name="Request">
+        <Input>
+            <VarSet name="properties">
+                <Var name="Count">
+                    <Value name="1"/>
+                    <Value name="Many" property="propertiesMany"/>               
+                </Var>
+                <VarSet name="Definition">
+                    <Var name="Required">
+                        <Value name="true" property="required"/>
+                        <Value name="false" when="readOnly"/>
+                    </Var>
+                    <Var name="Read-Only">
+                        <Value name="true" property="readOnly"/>
+                        <Value name="false" when="required"/>
+                    </Var>
+                </VarSet>
+                <Var name="Write-Only">
+                    <Value name="Some">
+                        <When>
+                            <AnyOf property="propertiesMany">
+                                <Not property="readOnly"/>
+                            </AnyOf>
+                        </When>
+                    </Value>
+                    <Value name="None"/>
+                </Var>
+            </VarSet>
+            
+            <Var name="minProperties">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="maxProperties">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+
+            <Var name="additionalProperties">
+                <Value name="true"/>
+                <Value name="false"/>               
+            </Var>
+        </Input>
+    </Function>
+    
+    <Function name="Response">
+        <Input>
+            <VarSet name="properties">
+                <Var name="Count">
+                    <Value name="1"/>
+                    <Value name="Many" property="propertiesMany"/>               
+                </Var>
+                <VarSet name="Definition">
+                    <Var name="Required">
+                        <Value name="true" property="required"/>
+                        <Value name="false" when="writeOnly"/>
+                    </Var>
+                    <Var name="Write-Only">
+                        <Value name="true" property="writeOnly"/>
+                        <Value name="false" when="required"/>
+                    </Var>
+                </VarSet>
+                <Var name="Read-Only">
+                    <Value name="Some">
+                        <When>
+                            <AnyOf property="propertiesMany">
+                                <Not property="writeOnly"/>
+                            </AnyOf>
+                        </When>
+                    </Value>
+                    <Value name="None"/>
+                </Var>
+            </VarSet>
+            
+            <Var name="minProperties">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+            
+            <Var name="maxProperties">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>               
+            </Var>
+
+            <Var name="additionalProperties">
+                <Value name="true"/>
+                <Value name="false"/>               
+            </Var>
+        </Input>
+    </Function>
+</System>

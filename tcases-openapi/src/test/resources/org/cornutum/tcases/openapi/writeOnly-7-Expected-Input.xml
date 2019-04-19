@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<System name="Objects">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_objects">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="Other" property="statusOther"/>
+      </Var>
+      <VarSet name="Other" when="statusOther">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="defaultContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="defaultContent">
+            <Value name="application-json" property="defaultapplication-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="Other" failure="true"/>
+          </Var>
+          <VarSet name="application-json" when="defaultapplication-json">
+            <Var name="Type">
+              <Value name="object" property="defaultapplication-jsonValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="defaultapplication-jsonValue">
+              <Var name="Property-Count">
+                <Value name="&lt; 3" failure="true">
+                  <When>
+                    <LessThan property="defaultapplication-jsonProperties" max="3"/>
+                  </When>
+                </Value>
+                <Value name="3">
+                  <When>
+                    <NotMoreThan property="defaultapplication-jsonProperties" max="3"/>
+                  </When>
+                </Value>
+                <Value name="&gt; 3" failure="true">
+                  <When>
+                    <MoreThan property="defaultapplication-jsonProperties" min="3"/>
+                  </When>
+                </Value>
+              </Var>
+              <VarSet name="Properties">
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="defaultapplication-jsonAlpha, defaultapplication-jsonProperties"/>
+                    <Value name="No" failure="true"/>
+                  </Var>
+                  <Var name="Type" when="defaultapplication-jsonAlpha">
+                    <Value name="string" property="defaultapplication-jsonAlphaValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not string" failure="true"/>
+                  </Var>
+                  <VarSet name="Value" when="defaultapplication-jsonAlphaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="bravo">
+                  <Var name="Defined">
+                    <Value name="Yes" property="defaultapplication-jsonBravo, defaultapplication-jsonProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="defaultapplication-jsonBravo">
+                    <Value name="string" property="defaultapplication-jsonBravoValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not string" failure="true"/>
+                  </Var>
+                  <VarSet name="Value" when="defaultapplication-jsonBravoValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="charlie">
+                  <Var name="Defined">
+                    <Value name="Yes" property="defaultapplication-jsonCharlie, defaultapplication-jsonProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="defaultapplication-jsonCharlie">
+                    <Value name="string" property="defaultapplication-jsonCharlieValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not string" failure="true"/>
+                  </Var>
+                  <VarSet name="Value" when="defaultapplication-jsonCharlieValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="delta">
+                  <Var name="Defined">
+                    <Value name="Yes" property="defaultapplication-jsonDelta, defaultapplication-jsonProperties"/>
+                    <Value name="No" failure="true"/>
+                  </Var>
+                  <Var name="Type" when="defaultapplication-jsonDelta">
+                    <Value name="string" property="defaultapplication-jsonDeltaValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not string" failure="true"/>
+                  </Var>
+                  <VarSet name="Value" when="defaultapplication-jsonDeltaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <Var name="Additional">
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

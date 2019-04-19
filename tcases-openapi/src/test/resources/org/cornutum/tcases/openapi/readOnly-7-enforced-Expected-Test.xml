@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<TestCases system="Object">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Delta,param0DeltaValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="string"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.delta.Type" value="string"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="string"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.delta.Type" value="string"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="Not object" failure="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes" failure="true"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="string"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0Bravo,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0Bravo,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="Not string" failure="true"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="string"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="Yes" failure="true"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Type" NA="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true">
+      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Delta,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="string"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.delta.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true">
+      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Delta,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="string"/>
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.delta.Type" value="Not string" failure="true"/>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

@@ -1,0 +1,55 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Object",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/object": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "alpha": {
+                                    "type": "string",
+                                    "readOnly": true
+                                },
+                                "bravo": {
+                                    "type": "string"
+                                },
+                                "charlie": {
+                                    "type": "string",
+                                    "readOnly": true
+                                },
+                                "delta": {
+                                    "type": "string",
+                                    "writeOnly": true
+                                }
+                            },
+                            "required": ["bravo", "delta"],
+                            "minProperties": 3,
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

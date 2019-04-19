@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="Request" seed="6241860739054242816" tuples="1">
+    <Combine tuples="3">
+      <Include var="additionalProperties"/>
+      <Include var="maxProperties"/>
+      <Include var="minProperties"/>
+    </Combine>
+    <Combine tuples="3">
+      <Include var="properties.Count"/>
+      <Include var="properties.Definition.Read-Only"/>
+      <Include var="properties.Definition.Required"/>
+    </Combine>
+  </TupleGenerator>
+  <TupleGenerator function="Response" seed="5484801408278475776" tuples="1">
+    <Combine tuples="3">
+      <Include var="additionalProperties"/>
+      <Include var="maxProperties"/>
+      <Include var="minProperties"/>
+    </Combine>
+    <Combine tuples="3">
+      <Include var="properties.Count"/>
+      <Include var="properties.Definition.Required"/>
+      <Include var="properties.Definition.Write-Only"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

@@ -39,6 +39,38 @@ public class ModelOptions
     }
 
   /**
+   * Changes if the API will strictly enforce the exclusion of "readOnly" properties from requests. 
+   */
+  public void setReadOnlyEnforced( boolean enforced)
+    {
+    readOnlyEnforced_ = enforced;
+    }
+
+  /**
+   * Returns if the API will strictly enforce the exclusion of "readOnly" properties from requests. 
+   */
+  public boolean isReadOnlyEnforced()
+    {
+    return readOnlyEnforced_;
+    }
+
+  /**
+   * Changes if the API will strictly enforce the exclusion of "writeOnly" properties from responses. 
+   */
+  public void setWriteOnlyEnforced( boolean enforced)
+    {
+    writeOnlyEnforced_ = enforced;
+    }
+
+  /**
+   * Returns if the API will strictly enforce the exclusion of "writeOnly" properties from responses. 
+   */
+  public boolean isWriteOnlyEnforced()
+    {
+    return writeOnlyEnforced_;
+    }
+
+  /**
    * Returns a new ModelOptions builder.
    */
   public static Builder builder()
@@ -59,6 +91,28 @@ public class ModelOptions
       return this;
       }
 
+    public Builder readOnlyEnforced( boolean enforced)
+      {
+      modelOptions_.setReadOnlyEnforced( enforced);
+      return this;
+      }
+
+    public Builder readOnlyEnforced()
+      {
+      return readOnlyEnforced( true);
+      }
+
+    public Builder writeOnlyEnforced( boolean enforced)
+      {
+      modelOptions_.setWriteOnlyEnforced( enforced);
+      return this;
+      }
+
+    public Builder writeOnlyEnforced()
+      {
+      return writeOnlyEnforced( true);
+      }
+
     public ModelOptions build()
       {
       return modelOptions_;
@@ -68,4 +122,6 @@ public class ModelOptions
     }
   
   private ModelConditionNotifier notifier_;
+  private boolean readOnlyEnforced_;
+  private boolean writeOnlyEnforced_;
   }

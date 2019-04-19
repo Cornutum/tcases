@@ -61,21 +61,24 @@ import static java.util.stream.Collectors.toMap;
  * <P/>
  * OpenAPI models must conform to <U>OAS version 3</U>. See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
  */
-public class InputModeller
+public abstract class InputModeller
   {
+  protected enum View { REQUEST, RESPONSE };
+  
   /**
    * Creates a new InputModeller instance.
    */
-  public InputModeller()
+  protected InputModeller( View view)
     {
-    this( null);
+    this( view, null);
     }
   
   /**
    * Creates a new InputModeller instance.
    */
-  public InputModeller( ModelOptions options)
+  protected InputModeller( View view, ModelOptions options)
     {
+    view_ = expectedValueOf( view, "Model view");
     setOptions( Optional.ofNullable( options).orElse( new ModelOptions()));
     }
 
@@ -83,7 +86,7 @@ public class InputModeller
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
    * OpenAPI specification. Returns null if the given spec defines no API requests to model.
    */
-  public SystemInputDef getRequestInputModel( OpenAPI api)
+  protected SystemInputDef requestInputModel( OpenAPI api)
     {
     Info info;
     String title;
@@ -175,7 +178,7 @@ public class InputModeller
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
    * OpenAPI specification. Returns null if the given spec defines no API responses to model.
    */
-  public SystemInputDef getResponseInputModel( OpenAPI api)
+  protected SystemInputDef responseInputModel( OpenAPI api)
     {
     Info info;
     String title;
@@ -613,7 +616,7 @@ public class InputModeller
 
         .orElse(
           VarSetBuilder.with( contentVarName)
-          .members( instanceUndefinedAlways( contentVarTag)) 
+          .members( instanceDefinedNever( contentVarTag)) 
           .build()));
     }
 
@@ -622,41 +625,52 @@ public class InputModeller
    */
   private VarDef instanceDefinedVar( String instanceVarTag, boolean required, String... propertiesWhenDefined)
     {
-    return instanceDefinedVar( instanceVarTag, null, required, propertiesWhenDefined);
+    return
+      instanceDefinedVar(
+        instanceVarTag,
+        required? Definition.REQUIRED : Definition.OPTIONAL,
+        propertiesWhenDefined);
     }
 
   /**
    * Returns an {@link IVarDef input variable} to represent that the given instance is always undefined.
    */
-  private VarDef instanceUndefinedAlways( String instanceVarTag)
+  private VarDef instanceDefinedNever( String instanceVarTag)
     {
-    return instanceDefinedVar( instanceVarTag, Boolean.FALSE, false);
+    return instanceDefinedVar( instanceVarTag, Definition.NEVER);
     }
 
   /**
    * Returns an {@link IVarDef input variable} to represent if the given instance is defined.
    */
-  private VarDef instanceDefinedVar( String instanceVarTag, Boolean forceDefined, boolean required, String... propertiesWhenDefined)
+  private VarDef instanceDefinedVar( String instanceVarTag, Definition definition, String... propertiesWhenDefined)
     {
     VarDefBuilder varDef = VarDefBuilder.with( "Defined");
 
-    if( !Boolean.FALSE.equals( forceDefined))
+    if( definition != Definition.NEVER)
       {
-      varDef
-        .values(
-          VarValueDefBuilder.with( "Yes")
+      VarValueDefBuilder yes = VarValueDefBuilder.with( "Yes");
+      if( definition == Definition.EXCLUDED)
+        {
+        yes.type( VarValueDef.Type.FAILURE);
+        }
+      else
+        {
+        yes
           .properties( instanceDefinedProperty( instanceVarTag))
-          .properties( propertiesWhenDefined)
-          .build());
+          .properties( propertiesWhenDefined);
+        }
+      varDef.values( yes.build());
       }
 
-    if( !Boolean.TRUE.equals( forceDefined))
+    if( definition != Definition.ALWAYS)
       {
-      varDef
-        .values(
-          VarValueDefBuilder.with( "No")
-          .type( forceDefined == null && required? VarValueDef.Type.FAILURE : VarValueDef.Type.VALID)
-          .build());
+      VarValueDefBuilder no = VarValueDefBuilder.with( "No");
+      if( definition == Definition.REQUIRED)
+        {
+        no.type( VarValueDef.Type.FAILURE);
+        }
+      varDef.values( no.build());
       }
 
     return varDef.build();
@@ -1379,8 +1393,17 @@ public class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the values for an object instance.
    */
+  @SuppressWarnings("rawtypes")
   private IVarDef objectValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
+    // Reconcile any "required" constraints for read/WriteOnly properties.
+    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
+    instanceSchema.setRequired(
+      Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList())
+      .stream()
+      .filter( property -> expectedInView( propertyDefs.get( property)))
+      .collect( toList()));
+
     return
       VarSetBuilder.with( "Value")
       .when( has( instanceValueProperty( instanceVarTag)))
@@ -1388,7 +1411,31 @@ public class InputModeller
       .members( objectPropertiesVar( api, instanceVarTag, instanceSchema))
       .build();
     }
-  
+
+  /**
+   * Returns true if a property with this schema can be expected to appear in the API view produced by this InputModeller.
+   */
+  private boolean expectedInView( Schema<?> propertySchema)
+    {
+    return
+      view_ == View.REQUEST
+      ? !Optional.ofNullable( propertySchema.getReadOnly()).orElse( false)
+      : !Optional.ofNullable( propertySchema.getWriteOnly()).orElse( false);
+    }
+
+  /**
+   * Returns true if a property with this schema must be excluded from the API view produced by this InputModeller.
+   */
+  private boolean excludedFromView( Schema<?> propertySchema)
+    {
+    return
+      !expectedInView( propertySchema)
+      &&
+      (view_ == View.REQUEST
+       ? options_.isReadOnlyEnforced()
+       : options_.isWriteOnlyEnforced());
+    }
+
   /**
    * Returns the {@link IVarDef input variable} representing the number of properties for an object instance.
    */
@@ -1398,7 +1445,7 @@ public class InputModeller
     ListBuilder<VarValueDef> countValues = ListBuilder.to();
     
     int requiredCount = Optional.ofNullable( instanceSchema.getRequired()).map( List::size).orElse( 0);
-    int totalCount = Optional.ofNullable( instanceSchema.getProperties()).map( Map::size).orElse( 0);
+    int totalCount = objectTotalProperties( instanceSchema);
 
     boolean hasAdditional =
       Optional.ofNullable( instanceSchema.getAdditionalProperties())
@@ -1430,12 +1477,16 @@ public class InputModeller
         // Yes, with provision for any lower bound...
         if( minProperties != null)
           {
-          countValues
-            .add(
-              VarValueDefBuilder.with( String.format( "< %s", minProperties))
-              .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
-              .type( VarValueDef.Type.FAILURE)
-              .build());
+          // ... keeping in mind that minProperties can exceed totalCount when additional properties are allowed...
+          if( !(minProperties > totalCount && totalCount == 0))
+            {
+            countValues
+              .add(
+                VarValueDefBuilder.with( String.format( "< %s", minProperties))
+                .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
+                .type( VarValueDef.Type.FAILURE)
+                .build());
+            }
           }
         else if( requiredCount == 0)
           {
@@ -1517,6 +1568,20 @@ public class InputModeller
     }
 
   /**
+   * Returns the total number of properties defined by the given object instance, less any that
+   * must be excluded from the API view produced by this InputModeller.
+   */
+  private int objectTotalProperties( Schema<?> instanceSchema)
+    {
+    return
+      (int) 
+      Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap())
+      .entrySet().stream()
+      .filter( e -> !excludedFromView( e.getValue()))
+      .count();
+    }
+
+  /**
    * Return true if and only if the given limit on the number of object properties is usable.
    */
   private boolean isUsablePropertyLimit( String description, int limit, int requiredCount, int totalCount, boolean hasAdditional)
@@ -1595,6 +1660,12 @@ public class InputModeller
         String propertyVarTag = instanceVarTag + StringUtils.capitalize( propertyVarName);
       
         return
+          excludedFromView( propertySchema)?
+
+          VarSetBuilder.with( propertyVarName)
+          .members( instanceDefinedVar( propertyVarTag, Definition.EXCLUDED))
+          .build() :
+          
           VarSetBuilder.with( propertyVarName)
           .members( instanceDefinedVar( propertyVarTag, required, objectPropertiesProperty( instanceVarTag)))
           .members( instanceSchemaVars( api, propertyVarTag, propertySchema))
@@ -1628,7 +1699,7 @@ public class InputModeller
       allowed
       &&
       Optional.ofNullable( instanceSchema.getMinProperties())
-      .map( min -> min > Optional.ofNullable( instanceSchema.getProperties()).map( Map::size).orElse( 0))
+      .map( min -> min > objectTotalProperties( instanceSchema))
       .orElse( false);
         
     return
@@ -2122,6 +2193,38 @@ public class InputModeller
     return options_;
     }
 
+  /**
+   * Defines the test requirement for the definition of a specified element.
+   */
+  private enum Definition
+    {
+      /**
+       * This element must be defined. Otherwise, must report an error.
+       */
+      REQUIRED,
+
+      /**
+       * This element may or may not be defined.
+       */
+      OPTIONAL,
+
+      /**
+       * This element must NOT be defined. Otherwise, must report an error.
+       */
+      EXCLUDED,
+
+      /**
+       * This element will always be defined -- no verification needed.
+       */
+      ALWAYS,
+
+      /**
+       * This element will never be defined -- no verification needed.
+       */
+      NEVER
+    };
+  
+  private final View view_;
   private Deque<String> context_ = new ArrayDeque<String>();
   private ModelOptions options_;
   
