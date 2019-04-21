@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1JerryValue,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1OneOf0Properties,param0AnyOf1OneOf0Tom,param0AnyOf1OneOf0TomValue,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1JerryValue,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value,param0AnyOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -24,10 +24,10 @@
         </Var>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="0"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="0"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="No"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="string"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
@@ -85,10 +85,10 @@
         </Var>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
@@ -116,10 +116,10 @@
         </Var>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
@@ -147,10 +147,10 @@
         </Var>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
@@ -178,10 +178,10 @@
         </Var>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="0"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
+        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>

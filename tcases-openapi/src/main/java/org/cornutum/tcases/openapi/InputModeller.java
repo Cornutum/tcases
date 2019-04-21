@@ -1404,11 +1404,52 @@ public abstract class InputModeller
       .filter( property -> expectedInView( propertyDefs.get( property)))
       .collect( toList()));
 
+    // Accumulate constraints on the number of properties expected.
+    PropertyCountConstraints constraints = new PropertyCountConstraints();
+    constraints.setRequiredCount( Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList()).size());
+    constraints.setTotalCount( objectTotalProperties( instanceSchema));
+
+    constraints.setHasAdditional(
+      Optional.ofNullable( instanceSchema.getAdditionalProperties())
+      .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
+      .orElse( false));
+
+    // Ensure min/max range is feasible
+    instanceSchema.setMinProperties(
+      Optional.ofNullable( instanceSchema.getMinProperties())
+      .map( min -> Optional.ofNullable( instanceSchema.getMaxProperties()).map( max -> adjustedMinOf( "Properties", min, max)).orElse( min))
+      .orElse( null));
+
+    // Ensure minimum is a usable constraint
+    instanceSchema.setMinProperties(
+      Optional.ofNullable( instanceSchema.getMinProperties())
+      .filter( min -> isUsablePropertyLimit( "minProperties", min, constraints))
+      .orElse( null));
+
+    // Ensure minimum is a usable constraint
+    instanceSchema.setMaxProperties(
+      Optional.ofNullable( instanceSchema.getMaxProperties())
+      .filter( max -> isUsablePropertyMax( "maxProperties", max, constraints))
+      .orElse( null));
+
+    // Are additional properties are required to satisfy the minimum?
+    Integer minProperties = instanceSchema.getMinProperties();
+    constraints.setRequiresAdditional(
+      Optional.ofNullable( minProperties)
+      .map( min -> min > constraints.getTotalCount() && constraints.hasAdditional())
+      .orElse( false));
+
+    // Are all properties effectively required to satisfy the minimum?
+    constraints.setAllRequired(
+      Optional.ofNullable( minProperties)
+      .map( min -> min == constraints.getTotalCount() && !constraints.hasAdditional())
+      .orElse( false));
+
     return
       VarSetBuilder.with( "Value")
       .when( has( instanceValueProperty( instanceVarTag)))
-      .members( iterableOf( objectPropertyCountVar( api, instanceVarTag, instanceSchema))) 
-      .members( objectPropertiesVar( api, instanceVarTag, instanceSchema))
+      .members( iterableOf( objectPropertyCountVar( api, instanceVarTag, instanceSchema, constraints)))
+      .members( objectPropertiesVar( api, instanceVarTag, instanceSchema, constraints))
       .build();
     }
 
@@ -1439,36 +1480,14 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the number of properties for an object instance.
    */
-  private Optional<IVarDef> objectPropertyCountVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private Optional<IVarDef> objectPropertyCountVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
     {
     // Accumulate property count values depending on constraints
     ListBuilder<VarValueDef> countValues = ListBuilder.to();
     
-    int requiredCount = Optional.ofNullable( instanceSchema.getRequired()).map( List::size).orElse( 0);
-    int totalCount = objectTotalProperties( instanceSchema);
-
-    boolean hasAdditional =
-      Optional.ofNullable( instanceSchema.getAdditionalProperties())
-      .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
-      .orElse( false);
-
-    // Ensure min/max range is feasible
-    instanceSchema.setMinProperties(
-      Optional.ofNullable( instanceSchema.getMinProperties())
-      .map( min -> Optional.ofNullable( instanceSchema.getMaxProperties()).map( max -> adjustedMinOf( "Properties", min, max)).orElse( min))
-      .orElse( null));
-      
-    Integer minProperties =
-      Optional.ofNullable( instanceSchema.getMinProperties())
-      .filter( min -> isUsablePropertyLimit( "minProperties", min, requiredCount, totalCount, hasAdditional))
-      .orElse( null);
-
-    Integer maxProperties =
-      Optional.ofNullable( instanceSchema.getMaxProperties())
-      .filter( max -> isUsablePropertyLimit( "maxProperties", max, requiredCount, totalCount, hasAdditional))
-      .orElse( null);
-    
     // Property count has usable constraints?
+    Integer minProperties = instanceSchema.getMinProperties();
+    Integer maxProperties = instanceSchema.getMaxProperties();
     if( !(minProperties == null && maxProperties == null))
       {
       // Yes, upper bound defined?
@@ -1477,18 +1496,10 @@ public abstract class InputModeller
         // Yes, with provision for any lower bound...
         if( minProperties != null)
           {
-          // ... keeping in mind that minProperties can exceed totalCount when additional properties are allowed...
-          if( !(minProperties > totalCount && totalCount == 0))
-            {
-            countValues
-              .add(
-                VarValueDefBuilder.with( String.format( "< %s", minProperties))
-                .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
-                .type( VarValueDef.Type.FAILURE)
-                .build());
-            }
+          belowMinPropertiesFailure( instanceVarTag, minProperties, constraints)
+            .ifPresent( failure -> countValues.add( failure));
           }
-        else if( requiredCount == 0)
+        else if( constraints.getRequiredCount() == 0)
           {
           countValues.add(
             VarValueDefBuilder.with( 0)
@@ -1497,11 +1508,11 @@ public abstract class InputModeller
             .build());
           }
 
-        // ... and keeping in mind that maxProperties can exceed totalCount when additional properties are allowed...
+        // ... and keeping in mind that maxProperties can exceed total count when additional properties are allowed...
         Optional<Integer> maxDefined =
           Optional.ofNullable(
-            maxProperties > totalCount
-            ? totalCount + 1
+            maxProperties > constraints.getTotalCount()
+            ? constraints.getTotalCount() + 1
             : null);
           
         // ...define coverage w.r.t. upper bound
@@ -1518,31 +1529,26 @@ public abstract class InputModeller
         }
       else
         {
-        // No, define coverage w.r.t. lower bound    
-        boolean requiresAdditional = hasAdditional && minProperties > totalCount;
-
-        // If additional properties are required to meet the minimum, use the "additional" variable to
-        // define the "below minimum" failure condition
+        // No, define coverage w.r.t. lower bound
+        ICondition minSatisfied =
+          // All properties effectively required? If so, satisfaction of minProperties is the only successful outcome.
+          constraints.allRequired()
+          ? null
+          : notLessThan( objectPropertiesProperty( instanceVarTag), Math.min( minProperties, constraints.getTotalCount()));
+        
         countValues
           .add(
             VarValueDefBuilder.with( String.format( ">= %s", minProperties))
-            .when( notLessThan( objectPropertiesProperty( instanceVarTag), requiresAdditional? totalCount : minProperties))
+            .when( minSatisfied)
             .build());
 
-        if( !requiresAdditional)
-          {
-          countValues
-            .add(
-              VarValueDefBuilder.with( String.format( "< %s", minProperties))
-              .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
-              .type( VarValueDef.Type.FAILURE)
-              .build());
-          }
+        belowMinPropertiesFailure( instanceVarTag, minProperties, constraints)
+          .ifPresent( failure -> countValues.add( failure));
         }
       }
 
     // No, but are all properties optional?
-    else if( requiredCount == 0 && totalCount > 0)
+    else if( constraints.getRequiredCount() == 0 && constraints.getTotalCount() > 0)
       {
       // Yes, ensure coverage of "no properties" case.
       countValues
@@ -1584,28 +1590,23 @@ public abstract class InputModeller
   /**
    * Return true if and only if the given limit on the number of object properties is usable.
    */
-  private boolean isUsablePropertyLimit( String description, int limit, int requiredCount, int totalCount, boolean hasAdditional)
+  private boolean isUsablePropertyLimit( String description, int limit, PropertyCountConstraints constraints)
     {
     boolean usable = false;
 
-    if( !hasAdditional && limit > totalCount)
+    if( !constraints.hasAdditional() && limit > constraints.getTotalCount())
       {
       notifyError(
         String.format( "%s=%s exceeds the total number of properties", description, limit),
         String.format( "Ignoring infeasible %s", description));
       }
-    else if( !hasAdditional && limit == totalCount)
-      {
-      notifyWarning(
-        String.format( "%s=%s is superfluous -- same as the total number of properties", description, limit));
-      }
-    else if( limit < requiredCount)
+    else if( limit < constraints.getRequiredCount())
       {
       notifyError(
-        String.format( "%s=%s is less than required=%s", description, limit, requiredCount),
+        String.format( "%s=%s is less than required=%s", description, limit, constraints.getRequiredCount()),
         String.format( "Ignoring infeasible %s", description));
       }
-    else if( limit == requiredCount)
+    else if( limit == constraints.getRequiredCount())
       {
       notifyWarning(
         String.format( "%s=%s is superfluous -- same as required", description, limit));
@@ -1619,10 +1620,48 @@ public abstract class InputModeller
     }
 
   /**
+   * Return true if and only if the given maximum on the number of object properties is usable.
+   */
+  private boolean isUsablePropertyMax( String description, int maximum, PropertyCountConstraints constraints)
+    {
+    boolean usable = false;
+
+    if( !constraints.hasAdditional() && maximum == constraints.getTotalCount())
+      {
+      notifyWarning(
+        String.format( "%s=%s is superfluous -- same as the total number of properties", description, maximum));
+      }
+    else 
+      {
+      usable = isUsablePropertyLimit( description, maximum, constraints);
+      }
+    
+    return usable;
+    }
+
+  /**
+   * Returns a property count value representing a failure to satisfy the required "minProperties" for the given object instance,
+   * if an explicit check for this failure is needed. Otherwise, if an explicit check is superfluous, returns <CODE>Optional.empty()</CODE>.
+   */
+  private Optional<VarValueDef> belowMinPropertiesFailure( String instanceVarTag, int minProperties, PropertyCountConstraints constraints)
+    {
+    return
+      constraints.requiresAdditional() || constraints.allRequired()?
+      Optional.empty() :
+
+      // Otherwise, verify failure when minimum is not satisfied
+      Optional.of(
+        VarValueDefBuilder.with( String.format( "< %s", minProperties))
+        .when( lessThan( objectPropertiesProperty( instanceVarTag), minProperties)) 
+        .type( VarValueDef.Type.FAILURE)
+        .build());
+    }
+
+  /**
    * Returns the {@link IVarDef input variable} representing the properties of an object instance.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
     {
     Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
     List<String> requiredProperties = Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList());
@@ -1638,11 +1677,11 @@ public abstract class InputModeller
             api,
             instanceVarTag,
             propertyDef.getKey(),
-            requiredProperties.contains( propertyDef.getKey()),
+            constraints.allRequired() || requiredProperties.contains( propertyDef.getKey()),
             resolveSchema( api, propertyDef.getValue()))))
 
       .members(
-        objectAdditionalVar( api, instanceVarTag, instanceSchema))
+        objectAdditionalVar( api, instanceVarTag, instanceSchema, constraints))
 
       .build();
     }
@@ -1676,22 +1715,10 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the additional properties of an object instance.
    */
-  private IVarDef objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
     {
-    Class<?> type =
-      Optional.ofNullable( instanceSchema.getAdditionalProperties())
-      .map( Object::getClass)
-      .orElse( null);
-
-    Schema<?> propertySchema =
-      type != null && !type.equals( Boolean.class)
-      ? (Schema<?>)instanceSchema.getAdditionalProperties()
-      : null;
-
     boolean allowed =
-      type != null
-      &&
-      (propertySchema != null || Boolean.TRUE.equals((Boolean) instanceSchema.getAdditionalProperties()))
+      constraints.hasAdditional()
       &&
       Optional.ofNullable( instanceSchema.getMaxProperties()).orElse( Integer.MAX_VALUE) > 0;
 
@@ -1699,8 +1726,13 @@ public abstract class InputModeller
       allowed
       &&
       Optional.ofNullable( instanceSchema.getMinProperties())
-      .map( min -> min > objectTotalProperties( instanceSchema))
+      .map( min -> min > constraints.getTotalCount())
       .orElse( false);
+
+    Schema<?> propertySchema =
+      constraints.hasAdditional() && !instanceSchema.getAdditionalProperties().getClass().equals( Boolean.class)
+      ? (Schema<?>)instanceSchema.getAdditionalProperties()
+      : null;
         
     return
       propertySchema == null ?
@@ -2223,7 +2255,69 @@ public abstract class InputModeller
        */
       NEVER
     };
-  
+
+  /**
+   * Defines constraints on the number of properties expected by an object schema.
+   */
+  private static class PropertyCountConstraints
+    {
+    public void setRequiredCount( int requiredCount)
+      {
+      requiredCount_ = requiredCount;
+      }
+
+    public int getRequiredCount()
+      {
+      return requiredCount_;
+      }
+    
+    public void setTotalCount( int totalCount)
+      {
+      totalCount_ = totalCount;
+      }
+
+    public int getTotalCount()
+      {
+      return totalCount_;
+      }
+    
+    public void setHasAdditional( boolean hasAdditional)
+      {
+      hasAdditional_ = hasAdditional;
+      }
+
+    public boolean hasAdditional()
+      {
+      return hasAdditional_;
+      }
+    
+    public void setRequiresAdditional( boolean requiresAdditional)
+      {
+      requiresAdditional_ = requiresAdditional;
+      }
+
+    public boolean requiresAdditional()
+      {
+      return requiresAdditional_;
+      }
+    
+    public void setAllRequired( boolean allRequired)
+      {
+      allRequired_ = allRequired;
+      }
+
+    public boolean allRequired()
+      {
+      return allRequired_;
+      }
+    
+    private int requiredCount_;
+    private int totalCount_;
+    private boolean hasAdditional_;
+    private boolean requiresAdditional_;
+    private boolean allRequired_;
+    }
+
   private final View view_;
   private Deque<String> context_ = new ArrayDeque<String>();
   private ModelOptions options_;

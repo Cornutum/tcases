@@ -78,6 +78,9 @@ public class ModelOptions
     return new Builder();
     }
 
+  /**
+   * Builds a new {@link ModelOptions} instance.
+   */
   public static class Builder
     {
     public Builder()
