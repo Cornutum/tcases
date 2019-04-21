@@ -1,0 +1,46 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Objects",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/objects": {
+            "get": {
+                "responses": {
+                    "default": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "alpha": {
+                                            "type": "string",
+                                            "readOnly": true
+                                        },
+                                        "bravo": {
+                                            "type": "string",
+                                            "readOnly": true
+                                        },
+                                        "charlie": {
+                                            "type": "string",
+                                            "writeOnly": true
+                                        },
+                                        "delta": {
+                                            "type": "string",
+                                            "writeOnly": true
+                                        }
+                                    },
+                                    "required": [ "alpha", "bravo" ],
+                                    "maxProperties": 3,
+                                    "additionalProperties": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.Properties;
 
 /**
- * Generates input models and test models for API clients and servers, based on an OpenApi v3 compliant API spec.
+ * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec.
  */
 public class ApiCommand
   {
@@ -133,7 +133,7 @@ public class ApiCommand
    * <NOBR><I>apiSpec</I> </NOBR>
    * </TD>
    * <TD>
-   * An OpenApi v3 API spec is read from the given <I>apiSpec</I> file. If omitted, the API spec is
+   * An OpenAPI v3 API spec is read from the given <I>apiSpec</I> file. If omitted, the API spec is
    * read from standard input. If no <I>outFile</I> is specified, output is written to a default file
    * derived from the <I>apiSpec</I> or, if no <I>apiSpec</I> is given, to standard output.
    * <P/>
@@ -525,7 +525,7 @@ public class ApiCommand
     }
 
   /**
-   * Generates input models and test models for API clients and servers, based on an OpenApi v3 compliant API spec,
+   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec,
    * using the given {@link Options command line options}.
    */
   public static void main( String[] args)
@@ -547,7 +547,7 @@ public class ApiCommand
     }
 
   /**
-   * Generates input models and test models for API clients and servers, based on an OpenApi v3 compliant API spec,
+   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec,
    * using the given {@link Options command line options}.
    */
   public static void run( Options options) throws Exception

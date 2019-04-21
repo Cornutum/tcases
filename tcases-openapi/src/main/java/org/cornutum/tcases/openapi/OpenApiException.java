@@ -9,7 +9,7 @@ package org.cornutum.tcases.openapi;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * Reports an error processing an OpenApi specification.
+ * Reports an error processing an OpenAPI specification.
  */
 public class OpenApiException extends RuntimeException
   {

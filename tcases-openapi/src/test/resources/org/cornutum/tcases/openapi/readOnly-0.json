@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Object",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/object": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "myString": {
+                                    "type": "string",
+                                    "readOnly": true
+                                }
+                            },
+                            "required": [ "myString" ],
+                            "minProperties": 1,
+                            "maxProperties": 3,
+                            "additionalProperties": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

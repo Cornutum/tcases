@@ -103,7 +103,6 @@ public class NotifierTest extends OpenApiTest
     assertConditions(
       Arrays.asList(
         "Responses,/responses,GET,2XX,content,application/json,alpha: maxProperties=2 is superfluous -- same as required.",
-        "Responses,/responses,GET,2XX,content,application/json,bravo: minProperties=3 is superfluous -- same as the total number of properties.",
         "Responses,/responses,GET,2XX,content,application/json,charlie: minProperties=2 is superfluous -- same as required.",
         "Responses,/responses,GET,2XX,content,application/json,charlie: maxProperties=3 is superfluous -- same as the total number of properties."),
       Arrays.asList(

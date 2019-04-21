@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
 
 /**
- * Reports an error reading an OpenApi document.
+ * Reports an error reading an OpenAPI document.
  */
 public class OpenApiReaderException extends OpenApiException
   {  

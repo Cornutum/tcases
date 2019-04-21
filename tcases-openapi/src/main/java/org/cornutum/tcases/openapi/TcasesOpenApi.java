@@ -40,7 +40,7 @@ public final class TcasesOpenApi
    */
   public static SystemInputDef getRequestInputModel( OpenAPI api, ModelOptions options)
     {
-    InputModeller inputModeller = new InputModeller( options);
+    RequestInputModeller inputModeller = new RequestInputModeller( options);
     return inputModeller.getRequestInputModel( api);
     }
 
@@ -59,7 +59,7 @@ public final class TcasesOpenApi
    */
   public static SystemInputDef getResponseInputModel( OpenAPI api, ModelOptions options)
     {
-    InputModeller inputModeller = new InputModeller( options);
+    ResponseInputModeller inputModeller = new ResponseInputModeller( options);
     return inputModeller.getResponseInputModel( api);
     }
   }

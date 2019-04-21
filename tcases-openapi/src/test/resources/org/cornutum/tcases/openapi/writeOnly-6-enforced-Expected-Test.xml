@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<TestCases system="Objects">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_objects">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="0"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="0"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="No" failure="true"/>
+        <Var name="Other.Content.Media-Type" NA="true"/>
+        <Var name="Other.Content.application-json.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="Other" failure="true"/>
+        <Var name="Other.Content.application-json.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="null" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="Not object" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&gt; 1" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="null" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="Not string" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonBravo,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="null" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonBravo,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="Not string" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="14" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="Yes" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="15" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="Yes" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="16" failure="true">
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other"/>
+        <Var name="Other.Content.Defined" value="Yes"/>
+        <Var name="Other.Content.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Other.Content.application-json.Type" value="object"/>
+        <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes" failure="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>
