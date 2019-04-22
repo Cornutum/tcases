@@ -527,6 +527,50 @@
               <LI>Satisfied if this expression is <U>not</U> satisfied</LI>
             </UL>
           </LI><P/>
+          
+          <LI>"lessThan":
+            <UL>
+              <LI>A <A href="Tcases-Guide.htm#cardinalityConditions">cardinality condition</A> (see <A href="examples/json/Ice-Cream-Input.json">examples</A>)</LI>
+              <LI>Satisfied when the given <SPAN class="code">property</SPAN> occurs less than the given <SPAN class="code">max</SPAN> times</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"notLessThan":
+            <UL>
+              <LI>A <A href="Tcases-Guide.htm#cardinalityConditions">cardinality condition</A> (see <A href="examples/json/Ice-Cream-Input.json">examples</A>)</LI>
+              <LI>Satisfied when the given <SPAN class="code">property</SPAN> occurs greater than or equal to the given <SPAN class="code">min</SPAN> times</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"moreThan":
+            <UL>
+              <LI>A <A href="Tcases-Guide.htm#cardinalityConditions">cardinality condition</A> (see <A href="examples/json/Ice-Cream-Input.json">examples</A>)</LI>
+              <LI>Satisfied when the given <SPAN class="code">property</SPAN> occurs more than the given <SPAN class="code">min</SPAN> times</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"notMoreThan":
+            <UL>
+              <LI>A <A href="Tcases-Guide.htm#cardinalityConditions">cardinality condition</A> (see <A href="examples/json/Ice-Cream-Input.json">examples</A>)</LI>
+              <LI>Satisfied when the given <SPAN class="code">property</SPAN> occurs less than or equal to the given <SPAN class="code">max</SPAN> times</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"between":
+            <UL>
+              <LI>A <A href="Tcases-Guide.htm#cardinalityConditions">cardinality condition</A> (see <A href="examples/json/Ice-Cream-Input.json">examples</A>)</LI>
+              <LI>Satisfied when occurrences of the given <SPAN class="code">property</SPAN> are both greater than or equal to the given
+            <SPAN class="code">min</SPAN> and less than or equal to the given <SPAN class="code">max</SPAN>. If you want to specify a strictly greater/less than relationship,
+            specify an <SPAN class="code">exclusiveMin</SPAN> or <SPAN class="code">exclusiveMax</SPAN> attribute instead.</LI>
+            </UL>
+          </LI><P/>
+          
+          <LI>"equals":
+            <UL>
+              <LI>A <A href="Tcases-Guide.htm#cardinalityConditions">cardinality condition</A> (see <A href="examples/json/Ice-Cream-Input.json">examples</A>)</LI>
+              <LI>Satisfied when the given <SPAN class="code">property</SPAN> occurs exactly the given <SPAN class="code">count</SPAN> times</LI>
+            </UL>
+          </LI><P/>
         </UL>
       </P>
       

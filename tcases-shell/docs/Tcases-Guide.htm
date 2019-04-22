@@ -47,6 +47,7 @@
                 <LI><A href="#failureValues">Failure values are different!</A></LI>
                 <LI><A href="#varConditions">Variable conditions</A></LI>
                 <LI><A href="#complexConditions">Complex conditions</A></LI>
+                <LI> <A href="#cardinalityConditions"> Cardinality conditions </A></LI>
                 <LI><A href="#conditionTips">But be careful!</A></LI>
               </UL>
             </LI>
@@ -1143,7 +1144,7 @@
       </P>
 
       <P>
-        A <SPAN class="code">When</SPAN> element contains a single subelement that defines a boolean expression. The boolean expressions are:
+        A <SPAN class="code">When</SPAN> element contains a single subelement that defines a boolean expression. The basic boolean expressions are:
         
         <UL>
           <LI> <SPAN class="code">AllOf</SPAN>: a logical "AND" expression
@@ -1156,7 +1157,7 @@
       </P>
 
       <P>
-        All of these elements have a similar structure. They can have an optional <SPAN class="code">property</SPAN> list, which specifies the
+        All of these basic boolean expresssions have a similar structure. They can have an optional <SPAN class="code">property</SPAN> list, which specifies the
         properties that are subject to this expression. Also, they can contain any number of additional boolean expressions as subelements.
         For example:
 
@@ -1185,6 +1186,165 @@
         can't specify a <SPAN class="code">When</SPAN> element in the same definition and vice versa.
       </P>
 
+      <H4><A name="cardinalityConditions">Cardinality conditions</A></H4>
+      <P>
+        The basic boolean conditions are concerned only with the presence (or absence) of certain properties in a test case. But, of course, a test case
+        can accumulate multiple instances of a property, if two or more of the values used in the test case contribute the same property. And in
+        some situations, the number of occurrences of a property is a significant constraint on the input space. You can model these situations
+        using <EM>cardinality conditions</EM>, which check if the number of property occurrences is greater than, less than, or equal to a specific value.
+      </P>
+
+      <P>
+        For example, consider the case of an ice cream shop that sells different types of ice cream cones. These yummy products come only in specific
+        combinations, and the price depends on the combination of scoops and toppings added. But how to test that? The input model for these cones might
+        look like the one below. (You can find the full example <A href="examples/xml/Ice-Cream-Input.xml">here</A>.)
+      </P>
+      <DIV class="exampleDoc">
+        &lt;System name="Ice-Cream"&gt; <BR/>
+        &nbsp;&nbsp;&lt;Function name="Cones"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Input&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name=<SPAN class="exampleEmph">"Cone"</SPAN>&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Empty" failure="true"&gt; ... &lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Plain"&gt; ... &lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Plenty"&gt; ... &lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Grande"&gt; ... &lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Too-Much" failure="true"&gt; ... &lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Var&gt; <BR/>
+        <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;VarSet name=<SPAN class="exampleEmph">"Flavors"</SPAN>&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Vanilla"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Chocolate"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Strawberry"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Pistachio"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Lemon"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Coffee"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/VarSet&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;VarSet name=<SPAN class="exampleEmph">"Toppings"</SPAN>&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Sprinkles"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Pecans"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Oreos"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Cherries"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="MMs"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Peppermint"&gt; ... &lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/VarSet&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Input&gt; <BR/>
+        &nbsp;&nbsp;&lt;/Function&gt; <BR/>
+        &lt;/System&gt; <BR/>
+      </DIV>
+
+      <P>
+        To build a cone, you can add a scoop of any flavor and any of the given toppings. To keep track, each of these choices
+        contributes either a <SPAN class="code">scoop</SPAN> or a <SPAN class="code">topping</SPAN> property to our cone test cases.
+      </P>
+      
+      <DIV class="exampleDoc">
+        &lt;System name="Ice-Cream"&gt; <BR/>
+        &nbsp;&nbsp;&lt;Function name="Cones"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Input&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;VarSet name="Flavors"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">&lt;Var name="Vanilla"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Yes" property="scoop"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="No"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Var&gt; <BR/></SPAN>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Coffee"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Yes" property="scoop"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="No"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/VarSet&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;VarSet name="Toppings" when="scoop"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">&lt;Var name="Sprinkles"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Yes" property="topping"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="No"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Var&gt; <BR/></SPAN>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Peppermint"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Yes" property="topping"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="No"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/VarSet&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Input&gt; <BR/>
+        &nbsp;&nbsp;&lt;/Function&gt; <BR/>
+        &lt;/System&gt; <BR/>
+      </DIV>
+
+      <P>
+        Then we can define specific cone products based on the number of scoops and toppings, using cardinality conditions like <SPAN class="code">LessThan</SPAN>,
+        <SPAN class="code">Equals</SPAN>, and <SPAN class="code">Between</SPAN>.
+      </P>
+
+      <DIV class="exampleDoc">
+        &lt;System name="Ice-Cream"&gt; <BR/>
+        &nbsp;&nbsp;&lt;Function name="Cones"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Input&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Var name="Cone"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Empty" failure="true"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">&lt;LessThan property="scoop" max="1"/&gt; <BR/></SPAN>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Plain"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AllOf&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">&lt;Equals property="scoop" count="1"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;NotMoreThan property="topping" max="1"/&gt; <BR/></SPAN>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AllOf&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Plenty"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AllOf&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">&lt;Between property="scoop" min="1" max="2"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;NotMoreThan property="topping" max="2"/&gt; <BR/></SPAN>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AllOf&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Grande"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AllOf&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">&lt;Between property="scoop" exclusiveMin="0" exclusiveMax="4"/&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Between property="topping" min="1" max="3"/&gt; <BR/></SPAN>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AllOf&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Value name="Too-Much" failure="true"&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AnyOf&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="exampleEmph">&lt;MoreThan property="scoop" min="3"/&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;NotLessThan property="topping" min="4"/&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <BR/></SPAN>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/AnyOf&gt;  <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/When&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Value&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Var&gt; <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... <BR/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Input&gt; <BR/>
+        &nbsp;&nbsp;&lt;/Function&gt; <BR/>
+        &lt;/System&gt; <BR/>
+      </DIV>
+
+      <P>
+        Here's a complete list of all the cardinality conditions you can use.
+        <UL>
+          <LI> <SPAN class="code">LessThan</SPAN>: Satisfied when the given <SPAN class="code">property</SPAN> occurs less than the given <SPAN class="code">max</SPAN> times.
+          </LI><P/>
+          <LI> <SPAN class="code">NotLessThan</SPAN>: Satisfied when the given <SPAN class="code">property</SPAN> occurs greater than or equal to the given <SPAN class="code">min</SPAN> times.
+          </LI><P/>
+          <LI> <SPAN class="code">MoreThan</SPAN>: Satisfied when the given <SPAN class="code">property</SPAN> occurs more than the given <SPAN class="code">min</SPAN> times.
+          </LI><P/>
+          <LI> <SPAN class="code">NotMoreThan</SPAN>: Satisfied when the given <SPAN class="code">property</SPAN> occurs less than or equal to the given <SPAN class="code">max</SPAN> times.
+          </LI><P/>
+          <LI> <SPAN class="code">Between</SPAN>: Satisfied when occurrences of the given <SPAN class="code">property</SPAN> are both greater than or equal to the given
+            <SPAN class="code">min</SPAN> and less than or equal to the given <SPAN class="code">max</SPAN>. If you want to specify a strictly greater/less than relationship,
+            specify an <SPAN class="code">exclusiveMin</SPAN> or <SPAN class="code">exclusiveMax</SPAN> attribute instead.
+          </LI><P/>
+          <LI> <SPAN class="code">Equals</SPAN>: Satisfied when the given <SPAN class="code">property</SPAN> occurs exactly the given <SPAN class="code">count</SPAN> times.
+          </LI><P/>
+        </UL>
+      </P>
+      
       <H4><A name="conditionTips">But be careful!</A></H4>
       <P>
         With the constraints defined by properties and conditions comes great power. Use it
