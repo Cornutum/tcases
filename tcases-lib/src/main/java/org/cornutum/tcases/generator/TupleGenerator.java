@@ -15,7 +15,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.MultiMapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
-import org.apache.commons.collections4.iterators.SingletonIterator;
 import static org.apache.commons.collections4.functors.NOPTransformer.nopTransformer;
 
 import org.slf4j.Logger;
@@ -31,10 +30,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.OptionalInt;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -399,6 +396,7 @@ public class TupleGenerator implements ITestCaseGenerator
     {
     boolean complete; 
     List<VarDef> varsRemaining;
+    VarDef varApplicable;
 
     // Can this test case reach satisfaction of all conditions currently required?
     if( !makeSatisfied( testCase, tuples))
@@ -415,21 +413,19 @@ public class TupleGenerator implements ITestCaseGenerator
       complete = true;
       }
     
+    // Any variables remaining that are currently applicable to this test case?
+    else if( (varApplicable = varsRemaining.stream().filter( v -> testCase.isApplicable(v)).findFirst().orElse( null)) == null)
+      {
+      // No, continue with an NA binding for the next variable
+      testCase.addCompatible( getNaBindingFor( varsRemaining.get( 0)));
+      complete = makeComplete( testCase, tuples, varsRemaining);
+      }
+
     else
       {
-      // Complete the binding for next variable that is currently applicable to this test case...
-      OptionalInt nextApplicable =
-        IntStream.range( 0, varsRemaining.size())
-        .filter( i -> testCase.isApplicable( varsRemaining.get(i)))
-        .findFirst();
-
-      Iterator<Tuple> bindingTuples =
-        nextApplicable.isPresent()
-        ? getBindingsFor( tuples, varsRemaining.remove( nextApplicable.getAsInt()))
-
-        // ... or if none applicable, proceed to complete remaining NA bindings 
-        : getNaBindingFor( varsRemaining.remove(0));
-        
+      // Find an applicable binding that will lead to a complete test case
+      int prevBindings = testCase.getBindingCount();
+      Iterator<Tuple> bindingTuples = getBindingsFor( tuples, varApplicable);
       Tuple tupleAdded;
       for( complete = false,
              tupleAdded = null;
@@ -437,21 +433,20 @@ public class TupleGenerator implements ITestCaseGenerator
            // More tuples to try?
            bindingTuples.hasNext()
              && !( // Compatible tuple found?
-                   (tupleAdded = testCase.addCompatible( (bindingTuples.next()))) != null
+               (tupleAdded = testCase.addCompatible( (bindingTuples.next()))) != null
 
-                   // Did this tuple create an infeasible combination?
-                   && !testCase.isInfeasible()
+               // Did this tuple create an infeasible combination?
+               && !testCase.isInfeasible()
 
-                   // Can we complete bindings for remaining variables?
-                   && (complete = makeComplete( testCase, tuples, varsRemaining)));
+               // Can we complete bindings for remaining variables?
+               && (complete = makeComplete( testCase, tuples, varsRemaining)));
              
            tupleAdded = null)
         {
         if( tupleAdded != null)
           {
           // No path to completion with this tuple -- try the next one.
-          logger_.trace( "Removing tuple={}", tupleAdded);
-          testCase.removeBindings( tupleAdded);
+          testCase.revertBindings( prevBindings);
           }
         }
       }
@@ -516,9 +511,9 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Returns a single NA binding for the given variable.
    */
-  private Iterator<Tuple> getNaBindingFor( VarDef var)
+  private Tuple getNaBindingFor( VarDef var)
     {
-    return new SingletonIterator<Tuple>( new Tuple( new VarBindingDef( var, VarNaDef.NA)));
+    return new Tuple( new VarBindingDef( var, VarNaDef.NA));
     }
 
   /**
