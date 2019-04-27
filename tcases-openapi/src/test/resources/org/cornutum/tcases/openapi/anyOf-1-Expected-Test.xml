@@ -153,7 +153,7 @@
       </Input>
     </TestCase>
     <TestCase id="7">
-      <Has name="properties" value="application-json,application-jsonAnyOf0Value,application-jsonAnyOf1Value,application-jsonAnyOf2AnyOf1Value,application-jsonAnyOf2AnyOfMemberValidated,application-jsonAnyOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAnyOf2AnyOf1Value,application-jsonAnyOf2AnyOfMemberValidated,application-jsonAnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -161,11 +161,11 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.Validated" value="&gt; 1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.Type" value="boolean"/>
-        <Var name="Body.application-json.AnyOf.Members.0.Value" value="true"/>
-        <Var name="Body.application-json.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.1.Value" value="&lt; 0"/>
+        <Var name="Body.application-json.AnyOf.Members.Validated" value="1"/>
+        <Var name="Body.application-json.AnyOf.Members.0.Type" value="null"/>
+        <Var name="Body.application-json.AnyOf.Members.0.Value" NA="true"/>
+        <Var name="Body.application-json.AnyOf.Members.1.Type" value="null"/>
+        <Var name="Body.application-json.AnyOf.Members.1.Value" NA="true"/>
         <Var name="Body.application-json.AnyOf.Members.2.AnyOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.2.AnyOf.Members.0.Type" value="null"/>
         <Var name="Body.application-json.AnyOf.Members.2.AnyOf.Members.0.Value" NA="true"/>
