@@ -394,20 +394,48 @@ public class TupleGenerator implements ITestCaseGenerator
    */
   private boolean makeComplete( TestCaseDef testCase, VarTupleSet tuples, List<VarDef> vars)
     {
-    boolean complete; 
-    List<VarDef> varsRemaining;
-    VarDef varApplicable;
+    boolean complete;
 
-    // Can this test case reach satisfaction of all conditions currently required?
-    if( !makeSatisfied( testCase, tuples))
+    // Test case still missing a required property?
+    if( testCase.isSatisfied())
       {
-      // No, can't complete this test case.
-      logger_.trace( "Conditions can't be satisfied for testCase={}", testCase);
-      complete = false;
+      // No, complete bindings for remaining variables
+      complete = completeSatisfied( testCase, tuples, vars);
+      }
+    else
+      {
+      // Yes, find tuples that contain satisfying bindings.
+      int prevBindings = testCase.getBindingCount();
+      Iterator<Tuple> satisfyingTuples = getSatisfyingTuples( testCase, tuples);
+      for( complete = false;
+
+           satisfyingTuples.hasNext()
+             && !(
+               // Does this tuple lead to satisfaction of all current test case conditions?
+               makeSatisfied( testCase, tuples, satisfyingTuples.next())
+
+               // Can we complete bindings for remaining variables?
+               && (complete = completeSatisfied( testCase, tuples, vars)));
+
+           // No, try next tuple
+           testCase.revertBindings( prevBindings));
       }
 
+    return complete;
+    }
+
+  /**
+   * Using selections from the given set of tuples, completes binding for all remaining variables.
+   * Returns true if all variables have been bound.
+   */
+  private boolean completeSatisfied( TestCaseDef testCase, VarTupleSet tuples, List<VarDef> vars)
+    {
+    List<VarDef> varsRemaining = getVarsRemaining( vars, testCase);
+    VarDef varApplicable;
+    boolean complete; 
+
     // Any variables remaining unbound?
-    else if( (varsRemaining = getVarsRemaining( vars, testCase)).isEmpty())
+    if( varsRemaining.isEmpty())
       {
       // No, this test case is complete.
       complete = true;
@@ -426,14 +454,13 @@ public class TupleGenerator implements ITestCaseGenerator
       // Find an applicable binding that will lead to a complete test case
       int prevBindings = testCase.getBindingCount();
       Iterator<Tuple> bindingTuples = getBindingsFor( tuples, varApplicable);
-      Tuple tupleAdded;
-      for( complete = false,
-             tupleAdded = null;
+      for( complete = false;
 
            // More tuples to try?
            bindingTuples.hasNext()
-             && !( // Compatible tuple found?
-               (tupleAdded = testCase.addCompatible( (bindingTuples.next()))) != null
+             && !(
+               // Compatible tuple found?
+               testCase.addCompatible( (bindingTuples.next())) != null
 
                // Did this tuple create an infeasible combination?
                && !testCase.isInfeasible()
@@ -441,22 +468,16 @@ public class TupleGenerator implements ITestCaseGenerator
                // Can we complete bindings for remaining variables?
                && (complete = makeComplete( testCase, tuples, varsRemaining)));
              
-           tupleAdded = null)
-        {
-        if( tupleAdded != null)
-          {
-          // No path to completion with this tuple -- try the next one.
-          testCase.revertBindings( prevBindings);
-          }
-        }
+           // No path to completion with this tuple -- try the next one.
+           testCase.revertBindings( prevBindings));
       }
     
     return complete;
     }
 
   /**
-   * Using selections from the given set of tuples, completes binding for all remaining variables.
-   * Returns true if all variables have been bound.
+   * Using selections from the given set of tuples, completes bindings to satisfy all current test case conditions.
+   * Returns true if and only if all conditions satisfied.
    */
   private boolean makeSatisfied( TestCaseDef testCase, VarTupleSet tuples)
     {
@@ -465,34 +486,36 @@ public class TupleGenerator implements ITestCaseGenerator
     if( !satisfied)
       {
       // Yes, find tuples that contain satisfying bindings.
-      Iterator<Tuple> satisfyingTuples = getSatisfyingTuples( testCase, tuples);
+      int prevBindings = testCase.getBindingCount();
+      for( Iterator<Tuple> satisfyingTuples = getSatisfyingTuples( testCase, tuples);
 
-      Tuple tupleAdded;
-      for( tupleAdded = null;
-
-           // More tuples to try?
+           // Does this tuple lead to satisfaction of all current test case conditions?
            satisfyingTuples.hasNext()
-             && !( // Compatible tuple found?
-                  (tupleAdded = testCase.addCompatible( (satisfyingTuples.next()))) != null
+             && !(satisfied = makeSatisfied( testCase, tuples, satisfyingTuples.next()));
 
-                  // Did this tuple create an infeasible combination?
-                  && !testCase.isInfeasible()
-
-                  // Can also we satisfy any new conditions?
-                  && (satisfied = makeSatisfied( testCase, tuples)));
-             
-           tupleAdded = null)
-        {
-        // No path to satisfaction with this tuple -- try the next one.
-        if( tupleAdded != null)
-          {
-          logger_.trace( "Removing tuple={}", tupleAdded);
-          testCase.removeBindings( tupleAdded);
-          }
-        }
+           // No, try next tuple
+           testCase.revertBindings( prevBindings));
       }
-    
+
     return satisfied;
+    }
+
+  /**
+   * Starting with the given tuple, completes bindings to satisfy all current test case conditions,
+   * using additional selections from the given set of tuples if necessary.
+   * Returns true if and only if all conditions satisfied.
+   */
+  private boolean makeSatisfied( TestCaseDef testCase, VarTupleSet tuples, Tuple satisfyingTuple)
+    {
+    return
+      // Compatible tuple found?
+      testCase.addCompatible( satisfyingTuple) != null
+
+      // Did this tuple create an infeasible combination?
+      && !testCase.isInfeasible()
+
+      // Can also we satisfy any new conditions?
+      && makeSatisfied( testCase, tuples);
     }
 
   /**
