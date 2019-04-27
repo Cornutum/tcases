@@ -18,11 +18,12 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Constructs a definition of a {@link TestCase test case}.
@@ -215,6 +216,17 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Removes the most-recently added variable bindings until the number of bindings reverts to
+   * the given previous count.
+   */
+  public void revertBindings( int prevCount)
+    {
+    toStream( getVars()).collect( toList())
+      .subList( prevCount, getBindingCount()).stream()
+      .forEach( var -> removeBinding( var));
+    }
+
+  /**
    * Throws an exception if the tuple is not
    * compatible with the current test case definition.
    */
@@ -295,7 +307,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Adds a new variable binding to the current test case, if necessary.
+   * Adds a new variable binding to this test case, if necessary.
    * Returns true if a new binding was actually added.
    */
   private boolean addBinding( VarBindingDef binding)
@@ -311,7 +323,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Adds a new variable binding to the current test case.
+   * Adds a new variable binding to this test case.
    */
   private void addBinding( VarDef var, VarValueDef value)
     {
@@ -321,12 +333,21 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Removes a variable binding from the current test case.
+   * Removes a variable binding from this test case.
    */
   private void removeBinding( VarBindingDef binding)
     {
-    VarDef var = binding.getVarDef();
+    removeBinding( binding.getVarDef());
+    }
+
+  /**
+   * Removes a variable binding from this test case.
+   */
+  private void removeBinding( VarDef var)
+    {
     VarValueDef value = bindings_.remove( var);
+    logger_.trace( "Removing binding for {}={}, testCase={}", var.getName(), value.isNA()? "N/A" : value.getName(), this);
+
     if( value != null)
       {
       properties_.removeAll( value.getProperties().iterator());
@@ -335,7 +356,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
-   * Returns the variables currently bound in this current test case.
+   * Returns the variables currently bound in this test case.
    */
   public Iterator<VarDef> getVars()
     {
@@ -348,6 +369,14 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   public VarValueDef getBinding( VarDef var)
     {
     return bindings_.get( var);
+    }
+
+  /**
+   * Returns the number of variable bindings in this test case.
+   */
+  public int getBindingCount()
+    {
+    return bindings_.size();
     }
 
   /**
@@ -515,7 +544,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   private Integer id_;
-  private Map<VarDef,VarValueDef> bindings_ = new HashMap<VarDef,VarValueDef>();
+  private Map<VarDef,VarValueDef> bindings_ = new LinkedHashMap<VarDef,VarValueDef>();
   private PropertySet properties_ = new PropertySet();
   private IConjunct required_;
 
