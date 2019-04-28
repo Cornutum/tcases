@@ -34,7 +34,8 @@
                                                 "C": { "type": "string"}
                                             },
                                             "minProperties": 3,
-                                            "maxProperties": 4
+                                            "maxProperties": 4,
+                                            "additionalProperties": false
                                         },
                                         "charlie": {
                                             "type": "object",
@@ -45,7 +46,8 @@
                                             },
                                             "required": ["A", "B"],
                                             "minProperties": 2,
-                                            "maxProperties": 3
+                                            "maxProperties": 3,
+                                            "additionalProperties": false
                                         },
                                         "delta": {
                                             "type": "object",
@@ -55,7 +57,8 @@
                                                 "C": { "type": "string"}
                                             },
                                             "minProperties": 4,
-                                            "maxProperties": 5
+                                            "maxProperties": 5,
+                                            "additionalProperties": false
                                         }
                                     }
                                 }

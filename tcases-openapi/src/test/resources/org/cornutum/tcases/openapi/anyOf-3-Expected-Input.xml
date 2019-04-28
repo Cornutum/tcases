@@ -70,15 +70,21 @@
                     </Var>
                     <VarSet name="Value" when="param0AnyOf1OneOf0Value">
                       <Var name="Property-Count">
-                        <Value name="&gt;= 1"/>
+                        <Value name="&gt;= 1">
+                          <When>
+                            <NotLessThan property="param0AnyOf1OneOf0Properties" min="1"/>
+                          </When>
+                        </Value>
                       </Var>
                       <VarSet name="Properties">
                         <VarSet name="tom">
                           <Var name="Defined">
                             <Value name="Yes" property="param0AnyOf1OneOf0Properties, param0AnyOf1OneOf0Tom"/>
+                            <Value name="No"/>
                           </Var>
                           <Var name="Type" when="param0AnyOf1OneOf0Tom">
-                            <Value name="string" property="param0AnyOf1OneOf0TomValue"/>
+                            <Value name="string" property="param0AnyOf1OneOf0TomValue, param0AnyOf1OneOfMemberValidated"/>
+                            <Value name="null"/>
                           </Var>
                           <VarSet name="Value" when="param0AnyOf1OneOf0TomValue">
                             <Var name="Length">
@@ -88,8 +94,8 @@
                           </VarSet>
                         </VarSet>
                         <Var name="Additional">
-                          <Value name="Yes"/>
-                          <Value name="No" property="param0AnyOf1OneOfMemberValidated"/>
+                          <Value name="Yes" property="param0AnyOf1OneOf0Properties"/>
+                          <Value name="No"/>
                         </Var>
                       </VarSet>
                     </VarSet>
@@ -105,7 +111,8 @@
                             <Value name="Yes" property="param0AnyOf1OneOf1Jerry, param0AnyOf1OneOf1Properties"/>
                           </Var>
                           <Var name="Type" when="param0AnyOf1OneOf1Jerry">
-                            <Value name="number" property="param0AnyOf1OneOf1JerryValue"/>
+                            <Value name="number" property="param0AnyOf1OneOf1JerryValue, param0AnyOf1OneOfMemberValidated"/>
+                            <Value name="null"/>
                           </Var>
                           <Var name="Value" when="param0AnyOf1OneOf1JerryValue">
                             <Value name="&lt; 0"/>
@@ -114,8 +121,8 @@
                           </Var>
                         </VarSet>
                         <Var name="Additional">
-                          <Value name="Yes"/>
-                          <Value name="No" property="param0AnyOf1OneOfMemberValidated"/>
+                          <Value name="Yes" property="param0AnyOf1OneOf1Properties"/>
+                          <Value name="No"/>
                         </Var>
                       </VarSet>
                     </VarSet>

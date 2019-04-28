@@ -27,7 +27,7 @@
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="No"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.2.Type" value="string"/>
         <Var name="param0.OneOf.Members.2.Value.Length" value="7"/>
       </Input>
@@ -59,7 +59,7 @@
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="param0,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsValue,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1JerryValue,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf1AnyOfMemberValidated,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsProperties,param0OneOf1AnyOf0ItemsValue,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf1AnyOfMemberValidated,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -73,20 +73,20 @@
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Type" value="array"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Size" value="1"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Unique" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" value="&lt; 0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Type" value="string"/>
         <Var name="param0.OneOf.Members.2.Value.Length" value="7"/>
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsMany,param0OneOf1AnyOf0ItemsValue,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1JerryValue,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsMany,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -99,15 +99,15 @@
         <Var name="param0.OneOf.Members.1.AnyOf.Members.Validated" value="0"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Type" value="array"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Size" value="&gt; 1"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Unique" value="Yes"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" value="0"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.2.Type" value="string"/>
         <Var name="param0.OneOf.Members.2.Value.Length" value="7"/>
       </Input>
@@ -133,14 +133,14 @@
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" value="&lt; 0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Type" value="string"/>
         <Var name="param0.OneOf.Members.2.Value.Length" value="7"/>
       </Input>
     </TestCase>
     <TestCase id="5">
-      <Has name="properties" value="param0,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsMany,param0OneOf1AnyOf0ItemsValue,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1JerryValue,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsMany,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -153,21 +153,21 @@
         <Var name="param0.OneOf.Members.1.AnyOf.Members.Validated" value="0"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Type" value="array"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Size" value="&gt; 1"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Unique" value="No"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" value="&lt; 0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Type" value="string"/>
         <Var name="param0.OneOf.Members.2.Value.Length" value="8"/>
       </Input>
     </TestCase>
     <TestCase id="6">
-      <Has name="properties" value="param0,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1JerryValue,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1JerryValue,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf1AnyOfMemberValidated,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -177,7 +177,7 @@
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="null"/>
         <Var name="param0.OneOf.Members.0.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.Validated" value="0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Type" value="array"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Size" value="0"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" NA="true"/>
@@ -188,27 +188,27 @@
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="number"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" value="0"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.2.Type" value="string"/>
-        <Var name="param0.OneOf.Members.2.Value.Length" value="&gt; 8"/>
+        <Var name="param0.OneOf.Members.2.Value.Length" value="7"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
-      <Has name="properties" value="param0,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsValue,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1JerryValue,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf2Value"/>
+    <TestCase id="7">
+      <Has name="properties" value="param0,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1JerryValue,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf1AnyOfMemberValidated,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="null"/>
         <Var name="param0.OneOf.Members.0.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.Validated" value="0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Type" value="array"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Size" value="1"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Unique" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Property-Count" value="&gt; 0"/>
@@ -220,8 +220,62 @@
         <Var name="param0.OneOf.Members.2.Value.Length" value="7"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsValue,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1JerryValue,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf1AnyOfMemberValidated,param0OneOf2Value,param0OneOfMemberValidated"/>
+    <TestCase id="8">
+      <Has name="properties" value="param0,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsMany,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.Validated" value="0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Type" value="array"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Unique" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="string"/>
+        <Var name="param0.OneOf.Members.2.Value.Length" value="&gt; 8"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf2Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
+        <Var name="param0.OneOf.Members.0.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.Validated" value="0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Type" value="array"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Size" value="0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.2.Type" value="string"/>
+        <Var name="param0.OneOf.Members.2.Value.Length" value="7"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1AnyOf0Items,param0OneOf1AnyOf0ItemsProperties,param0OneOf1AnyOf0ItemsValue,param0OneOf1AnyOf0Value,param0OneOf1AnyOf1Jerry,param0OneOf1AnyOf1Properties,param0OneOf1AnyOf1Value,param0OneOf1AnyOfMemberValidated,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -240,11 +294,11 @@
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
         <Var name="param0.OneOf.Members.1.AnyOf.Members.1.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.2.Type" value="string"/>
-        <Var name="param0.OneOf.Members.2.Value.Length" value="7"/>
+        <Var name="param0.OneOf.Members.2.Value.Length" value="8"/>
       </Input>
     </TestCase>
   </Function>

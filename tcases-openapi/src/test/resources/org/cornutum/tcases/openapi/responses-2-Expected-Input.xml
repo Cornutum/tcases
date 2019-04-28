@@ -164,7 +164,7 @@
             <VarSet name="Value" when="4XXapplication-jsonValue">
               <VarSet name="Properties">
                 <Var name="Additional">
-                  <Value name="Yes" failure="true"/>
+                  <Value name="Yes" property="4XXapplication-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

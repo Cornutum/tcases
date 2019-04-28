@@ -73,13 +73,14 @@
                       </Var>
                       <VarSet name="Contains" when="param0OneOf1AnyOf0Items">
                         <Var name="Type">
-                          <Value name="object" property="param0OneOf1AnyOf0ItemsValue"/>
+                          <Value name="object" property="param0OneOf1AnyOf0ItemsValue, param0OneOf1AnyOfMemberValidated"/>
+                          <Value name="null"/>
                         </Var>
                         <VarSet name="Value" when="param0OneOf1AnyOf0ItemsValue">
                           <VarSet name="Properties">
                             <Var name="Additional">
-                              <Value name="Yes"/>
-                              <Value name="No" property="param0OneOf1AnyOfMemberValidated"/>
+                              <Value name="Yes" property="param0OneOf1AnyOf0ItemsProperties"/>
+                              <Value name="No"/>
                             </Var>
                           </VarSet>
                         </VarSet>
@@ -111,7 +112,8 @@
                             <Value name="No"/>
                           </Var>
                           <Var name="Type" when="param0OneOf1AnyOf1Jerry">
-                            <Value name="number" property="param0OneOf1AnyOf1JerryValue"/>
+                            <Value name="number" property="param0OneOf1AnyOf1JerryValue, param0OneOf1AnyOfMemberValidated"/>
+                            <Value name="null"/>
                           </Var>
                           <Var name="Value" when="param0OneOf1AnyOf1JerryValue">
                             <Value name="&lt; 0"/>
@@ -120,8 +122,8 @@
                           </Var>
                         </VarSet>
                         <Var name="Additional">
-                          <Value name="Yes"/>
-                          <Value name="No" property="param0OneOf1AnyOfMemberValidated"/>
+                          <Value name="Yes" property="param0OneOf1AnyOf1Properties"/>
+                          <Value name="No"/>
                         </Var>
                       </VarSet>
                     </VarSet>

@@ -42,13 +42,14 @@
                 </Var>
                 <VarSet name="Contains" when="param0OneOf0Items">
                   <Var name="Type">
-                    <Value name="object" property="param0OneOf0ItemsValue"/>
+                    <Value name="object" property="param0OneOf0ItemsValue, param0OneOfMemberValidated"/>
+                    <Value name="null"/>
                   </Var>
                   <VarSet name="Value" when="param0OneOf0ItemsValue">
                     <VarSet name="Properties">
                       <Var name="Additional">
-                        <Value name="Yes"/>
-                        <Value name="No" property="param0OneOfMemberValidated"/>
+                        <Value name="Yes" property="param0OneOf0ItemsProperties"/>
+                        <Value name="No"/>
                       </Var>
                     </VarSet>
                   </VarSet>

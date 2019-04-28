@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -27,7 +27,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -263,31 +263,6 @@
         </Var>
         <Var name="Body.application-json.Type" value="Not object" failure="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="11" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content,param1,param1Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
-        <Var name="param0.Defined" value="No">
-          <Has name="style" value="matrix"/>
-        </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
-        <Var name="param1.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param1.Type" value="boolean"/>
-        <Var name="param1.Value" value="false"/>
-      </Input>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="Yes" failure="true"/>
       </Input>
     </TestCase>
   </Function>

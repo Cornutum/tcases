@@ -31,11 +31,12 @@
                   <VarSet name="Contains" when="application-jsonAllOf0Items">
                     <Var name="Type">
                       <Value name="object" property="application-jsonAllOf0ItemsValue"/>
+                      <Value name="null" failure="true"/>
                     </Var>
                     <VarSet name="Value" when="application-jsonAllOf0ItemsValue">
                       <VarSet name="Properties">
                         <Var name="Additional">
-                          <Value name="Yes" failure="true"/>
+                          <Value name="Yes" property="application-jsonAllOf0ItemsProperties"/>
                           <Value name="No"/>
                         </Var>
                       </VarSet>

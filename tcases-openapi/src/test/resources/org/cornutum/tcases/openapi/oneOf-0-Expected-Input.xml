@@ -37,6 +37,7 @@
                           </Var>
                           <Var name="Type" when="param0OneOf0AllOf0Tom">
                             <Value name="string" property="param0OneOf0AllOf0TomValue"/>
+                            <Value name="null" failure="true"/>
                           </Var>
                           <VarSet name="Value" when="param0OneOf0AllOf0TomValue">
                             <Var name="Length">
@@ -46,7 +47,7 @@
                           </VarSet>
                         </VarSet>
                         <Var name="Additional">
-                          <Value name="Yes" failure="true"/>
+                          <Value name="Yes" property="param0OneOf0AllOf0Properties"/>
                           <Value name="No"/>
                         </Var>
                       </VarSet>
@@ -74,6 +75,7 @@
                           </Var>
                           <Var name="Type" when="param0OneOf0AllOf1Jerry">
                             <Value name="number" property="param0OneOf0AllOf1JerryValue"/>
+                            <Value name="null" failure="true"/>
                           </Var>
                           <Var name="Value" when="param0OneOf0AllOf1JerryValue">
                             <Value name="&lt; 0"/>
@@ -82,7 +84,7 @@
                           </Var>
                         </VarSet>
                         <Var name="Additional">
-                          <Value name="Yes" failure="true"/>
+                          <Value name="Yes" property="param0OneOf0AllOf1Properties"/>
                           <Value name="No"/>
                         </Var>
                       </VarSet>

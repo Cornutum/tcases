@@ -984,7 +984,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerValue,202text-javascript,202text-javascriptValue,status202"/>
+      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,202text-javascript,202text-javascriptProperties,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -994,13 +994,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="202.Headers.x-my-app-header.Type" value="object"/>
-        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="No"/>
+        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="Yes"/>
         <Var name="202.Content.Defined" value="Yes"/>
         <Var name="202.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="202.Content.text-javascript.Type" value="object"/>
-        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="No"/>
+        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="Yes"/>
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
@@ -1023,8 +1023,29 @@
         <Var name="Other.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="2" failure="true">
-      <Has name="properties" value="202Content,202text-javascript,202text-javascriptValue,status202"/>
+    <TestCase id="2">
+      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerValue,202text-javascript,202text-javascriptValue,status202"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="202"/>
+        <Var name="202.Headers.x-my-app-header.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="202.Headers.x-my-app-header.Type" value="object"/>
+        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="No"/>
+        <Var name="202.Content.Defined" value="Yes"/>
+        <Var name="202.Content.Media-Type" value="text-javascript">
+          <Has name="mediaType" value="text/javascript"/>
+        </Var>
+        <Var name="202.Content.text-javascript.Type" value="object"/>
+        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="No"/>
+        <Var name="Other.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="properties" value="202Content,202text-javascript,202text-javascriptProperties,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -1040,12 +1061,12 @@
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="202.Content.text-javascript.Type" value="object"/>
-        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="No"/>
+        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="Yes"/>
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
-      <Has name="properties" value="202Content,202HeaderX-my-app-header,202text-javascript,202text-javascriptValue,status202"/>
+    <TestCase id="4" failure="true">
+      <Has name="properties" value="202Content,202HeaderX-my-app-header,202text-javascript,202text-javascriptProperties,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -1061,12 +1082,12 @@
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="202.Content.text-javascript.Type" value="object"/>
-        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="No"/>
+        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="Yes"/>
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
-      <Has name="properties" value="202Content,202HeaderX-my-app-header,202text-javascript,202text-javascriptValue,status202"/>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="202Content,202HeaderX-my-app-header,202text-javascript,202text-javascriptProperties,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -1082,33 +1103,12 @@
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="202.Content.text-javascript.Type" value="object"/>
-        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="No"/>
-        <Var name="Other.Content.Defined" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="5" failure="true">
-      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerValue,202text-javascript,202text-javascriptValue,status202"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="response">
-        <Var name="Status-Code" value="202"/>
-        <Var name="202.Headers.x-my-app-header.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="202.Headers.x-my-app-header.Type" value="object"/>
-        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="Yes" failure="true"/>
-        <Var name="202.Content.Defined" value="Yes"/>
-        <Var name="202.Content.Media-Type" value="text-javascript">
-          <Has name="mediaType" value="text/javascript"/>
-        </Var>
-        <Var name="202.Content.text-javascript.Type" value="object"/>
-        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="No"/>
+        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="Yes"/>
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
-      <Has name="properties" value="202HeaderX-my-app-header,202HeaderX-my-app-headerValue,status202"/>
+      <Has name="properties" value="202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -1118,7 +1118,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="202.Headers.x-my-app-header.Type" value="object"/>
-        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="No"/>
+        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="Yes"/>
         <Var name="202.Content.Defined" value="No" failure="true"/>
         <Var name="202.Content.Media-Type" NA="true"/>
         <Var name="202.Content.text-javascript.Type" NA="true"/>
@@ -1127,7 +1127,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerValue,status202"/>
+      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -1137,7 +1137,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="202.Headers.x-my-app-header.Type" value="object"/>
-        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="No"/>
+        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="Yes"/>
         <Var name="202.Content.Defined" value="Yes"/>
         <Var name="202.Content.Media-Type" value="Other" failure="true"/>
         <Var name="202.Content.text-javascript.Type" NA="true"/>
@@ -1146,7 +1146,7 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
-      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerValue,202text-javascript,status202"/>
+      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,202text-javascript,status202"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -1156,7 +1156,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="202.Headers.x-my-app-header.Type" value="object"/>
-        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="No"/>
+        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="Yes"/>
         <Var name="202.Content.Defined" value="Yes"/>
         <Var name="202.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
@@ -1167,7 +1167,7 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
-      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerValue,202text-javascript,status202"/>
+      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,202text-javascript,status202"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -1177,34 +1177,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="202.Headers.x-my-app-header.Type" value="object"/>
-        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="No"/>
+        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="Yes"/>
         <Var name="202.Content.Defined" value="Yes"/>
         <Var name="202.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="202.Content.text-javascript.Type" value="Not object" failure="true"/>
         <Var name="202.Content.text-javascript.Value.Properties.Additional" NA="true"/>
-        <Var name="Other.Content.Defined" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="10" failure="true">
-      <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerValue,202text-javascript,202text-javascriptValue,status202"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="response">
-        <Var name="Status-Code" value="202"/>
-        <Var name="202.Headers.x-my-app-header.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="202.Headers.x-my-app-header.Type" value="object"/>
-        <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="No"/>
-        <Var name="202.Content.Defined" value="Yes"/>
-        <Var name="202.Content.Media-Type" value="text-javascript">
-          <Has name="mediaType" value="text/javascript"/>
-        </Var>
-        <Var name="202.Content.text-javascript.Type" value="object"/>
-        <Var name="202.Content.text-javascript.Value.Properties.Additional" value="Yes" failure="true"/>
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>

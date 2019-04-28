@@ -36,7 +36,7 @@
               </VarSet>
             </VarSet>
             <Var name="Additional">
-              <Value name="Yes" failure="true"/>
+              <Value name="Yes" property="param0Properties"/>
               <Value name="No"/>
             </Var>
           </VarSet>

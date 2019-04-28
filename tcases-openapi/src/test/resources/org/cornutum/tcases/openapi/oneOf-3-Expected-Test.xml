@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -15,7 +15,8 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt;= 10"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="-1"/>
       </Input>
@@ -29,6 +30,7 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" NA="true"/>
         <Var name="param0.OneOf.Members.0.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" NA="true"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" NA="true"/>
@@ -44,7 +46,8 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt;= 10"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="0"/>
       </Input>
@@ -59,7 +62,8 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt;= 10"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="&gt; 0"/>
       </Input>
@@ -74,13 +78,14 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
         <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt;= 10"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="-1"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -89,7 +94,8 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
         <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt;= 10"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="0"/>
       </Input>
