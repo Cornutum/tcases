@@ -44,7 +44,7 @@
             <VarSet name="Value" when="2XXHeaderX-extra-headerValue">
               <VarSet name="Properties">
                 <Var name="Additional">
-                  <Value name="Yes" failure="true"/>
+                  <Value name="Yes" property="2XXHeaderX-extra-headerProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

@@ -191,7 +191,7 @@
             <VarSet name="Value" when="202HeaderX-my-app-headerValue">
               <VarSet name="Properties">
                 <Var name="Additional">
-                  <Value name="Yes" failure="true"/>
+                  <Value name="Yes" property="202HeaderX-my-app-headerProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>
@@ -218,7 +218,7 @@
             <VarSet name="Value" when="202text-javascriptValue">
               <VarSet name="Properties">
                 <Var name="Additional">
-                  <Value name="Yes" failure="true"/>
+                  <Value name="Yes" property="202text-javascriptProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

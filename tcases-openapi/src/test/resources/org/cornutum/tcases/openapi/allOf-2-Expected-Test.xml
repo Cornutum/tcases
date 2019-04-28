@@ -24,7 +24,7 @@
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -129,7 +129,7 @@
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -151,11 +151,11 @@
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -171,9 +171,9 @@
         </Var>
         <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
         <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes" failure="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" NA="true"/>
+        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
   </Function>

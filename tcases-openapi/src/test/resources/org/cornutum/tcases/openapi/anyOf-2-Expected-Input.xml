@@ -85,7 +85,8 @@
                         <Value name="Yes" property="application-jsonAnyOf2MyString, application-jsonAnyOf2Properties"/>
                       </Var>
                       <Var name="Type" when="application-jsonAnyOf2MyString">
-                        <Value name="string" property="application-jsonAnyOf2MyStringValue"/>
+                        <Value name="string" property="application-jsonAnyOf2MyStringValue, application-jsonAnyOfMemberValidated"/>
+                        <Value name="null"/>
                       </Var>
                       <VarSet name="Value" when="application-jsonAnyOf2MyStringValue">
                         <Var name="Length">
@@ -95,8 +96,8 @@
                       </VarSet>
                     </VarSet>
                     <Var name="Additional">
-                      <Value name="Yes"/>
-                      <Value name="No" property="application-jsonAnyOfMemberValidated"/>
+                      <Value name="Yes" property="application-jsonAnyOf2Properties"/>
+                      <Value name="No"/>
                     </Var>
                   </VarSet>
                 </VarSet>

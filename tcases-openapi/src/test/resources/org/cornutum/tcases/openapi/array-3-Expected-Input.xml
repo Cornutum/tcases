@@ -31,7 +31,7 @@
             <VarSet name="Value" when="param0ItemsValue">
               <VarSet name="Properties">
                 <Var name="Additional">
-                  <Value name="Yes" failure="true"/>
+                  <Value name="Yes" property="param0ItemsProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

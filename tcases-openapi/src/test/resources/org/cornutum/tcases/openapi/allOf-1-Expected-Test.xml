@@ -29,7 +29,7 @@
       </Input>
     </TestCase>
     <TestCase id="1">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2AnyOf0Value,application-jsonAllOf2AnyOf1Value,application-jsonAllOf2AnyOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsProperties,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2AnyOf0Value,application-jsonAllOf2AnyOf1Value,application-jsonAllOf2AnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -40,7 +40,7 @@
         <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
         <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="1"/>
         <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes"/>
         <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
         <Var name="Body.application-json.AllOf.Members.1.Type" value="boolean"/>
         <Var name="Body.application-json.AllOf.Members.1.Value" value="false"/>
@@ -75,7 +75,7 @@
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsMany,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2AnyOf0Value,application-jsonAllOf2AnyOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsMany,application-jsonAllOf0ItemsProperties,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2AnyOf0Value,application-jsonAllOf2AnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -86,7 +86,7 @@
         <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
         <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="&gt; 1"/>
         <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes"/>
         <Var name="Body.application-json.AllOf.Members.0.Items.Unique" value="No"/>
         <Var name="Body.application-json.AllOf.Members.1.Type" value="boolean"/>
         <Var name="Body.application-json.AllOf.Members.1.Value" value="false"/>
@@ -139,7 +139,7 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2AnyOf1Value,application-jsonAllOf2AnyOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2AnyOf1Value,application-jsonAllOf2AnyOfMemberValidated,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -149,8 +149,8 @@
         </Var>
         <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
         <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="1"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes" failure="true"/>
+        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
         <Var name="Body.application-json.AllOf.Members.1.Type" value="boolean"/>
         <Var name="Body.application-json.AllOf.Members.1.Value" value="true"/>

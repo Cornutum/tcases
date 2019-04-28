@@ -1412,7 +1412,7 @@ public abstract class InputModeller
     constraints.setHasAdditional(
       Optional.ofNullable( instanceSchema.getAdditionalProperties())
       .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
-      .orElse( false));
+      .orElse( true));
 
     // Ensure min/max range is feasible
     instanceSchema.setMinProperties(
@@ -1729,8 +1729,13 @@ public abstract class InputModeller
       .map( min -> min > constraints.getTotalCount())
       .orElse( false);
 
+    Class<?> type =
+      Optional.ofNullable( instanceSchema.getAdditionalProperties())
+      .map( Object::getClass)
+      .orElse( null);
+
     Schema<?> propertySchema =
-      constraints.hasAdditional() && !instanceSchema.getAdditionalProperties().getClass().equals( Boolean.class)
+      !Boolean.class.equals( type)
       ? (Schema<?>)instanceSchema.getAdditionalProperties()
       : null;
         

@@ -79,7 +79,7 @@
           <VarSet name="Value" when="application-jsonValue">
             <VarSet name="Properties">
               <Var name="Additional">
-                <Value name="Yes" failure="true"/>
+                <Value name="Yes" property="application-jsonProperties"/>
                 <Value name="No"/>
               </Var>
             </VarSet>

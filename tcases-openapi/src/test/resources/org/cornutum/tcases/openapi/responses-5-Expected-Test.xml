@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerProperties,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -22,7 +22,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
-        <Var name="2XX.Headers.x-extra-header.Value.Properties.Additional" value="No"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Properties.Additional" value="Yes"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -144,7 +144,7 @@
       </Input>
     </TestCase>
     <TestCase id="5">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-javascript,2XXtext-javascriptValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerProperties,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-javascript,2XXtext-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -160,7 +160,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
-        <Var name="2XX.Headers.x-extra-header.Value.Properties.Additional" value="No"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Properties.Additional" value="Yes"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
@@ -312,34 +312,6 @@
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="response">
-        <Var name="Status-Code" value="2XX"/>
-        <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
-        <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
-        <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
-        <Var name="2XX.Headers.x-extra-header.Value.Properties.Additional" value="Yes" failure="true"/>
-        <Var name="2XX.Content.Defined" value="Yes"/>
-        <Var name="2XX.Content.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="2XX.Content.application-json.Type" value="string"/>
-        <Var name="2XX.Content.application-json.Value.Length" value="16"/>
-        <Var name="2XX.Content.text-javascript.Type" NA="true"/>
-        <Var name="2XX.Content.text-javascript.Value.Length" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="12" failure="true">
       <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -365,7 +337,7 @@
         <Var name="2XX.Content.text-javascript.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="12" failure="true">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -391,7 +363,7 @@
         <Var name="2XX.Content.text-javascript.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true">
+    <TestCase id="13" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -419,7 +391,7 @@
         <Var name="2XX.Content.text-javascript.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true">
+    <TestCase id="14" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -447,7 +419,7 @@
         <Var name="2XX.Content.text-javascript.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true">
+    <TestCase id="15" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -475,7 +447,7 @@
         <Var name="2XX.Content.text-javascript.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true">
+    <TestCase id="16" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -503,7 +475,7 @@
         <Var name="2XX.Content.text-javascript.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true">
+    <TestCase id="17" failure="true">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-javascript,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -531,7 +503,7 @@
         <Var name="2XX.Content.text-javascript.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true">
+    <TestCase id="18" failure="true">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-javascript,2XXtext-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>

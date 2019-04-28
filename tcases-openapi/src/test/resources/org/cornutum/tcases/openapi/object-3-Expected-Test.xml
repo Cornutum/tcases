@@ -18,7 +18,7 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
         <Var name="param0.Value.Properties.myInteger.Value" value="&lt; 0"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -81,7 +81,7 @@
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
         <Var name="param0.Value.Properties.myInteger.Value" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -146,22 +146,6 @@
         <Var name="param0.Value.Properties.myInteger.Type" value="Not integer" failure="true"/>
         <Var name="param0.Value.Properties.myInteger.Value" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
-      </Input>
-    </TestCase>
-    <TestCase id="9" failure="true">
-      <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Properties,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="path">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="style" value="label"/>
-        </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myInteger.Type" value="integer"/>
-        <Var name="param0.Value.Properties.myInteger.Value" value="&lt; 0"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes" failure="true"/>
       </Input>
     </TestCase>
   </Function>

@@ -156,7 +156,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -165,7 +165,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -178,19 +178,8 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2" failure="true">
-      <Has name="properties" value="Content"/>
-      <Has name="server" value="http://www.cornutum.org/tcases/api"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="Other" failure="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="3" failure="true">
-      <Has name="properties" value="application-json,Content"/>
+    <TestCase id="2">
+      <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -198,7 +187,18 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="properties" value="Content"/>
+      <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="Other" failure="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -211,12 +211,12 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.Type" value="Not object" failure="true"/>
+        <Var name="Body.application-json.Type" value="null" failure="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -224,8 +224,8 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="Yes" failure="true"/>
+        <Var name="Body.application-json.Type" value="Not object" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
   </Function>
@@ -296,7 +296,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonValue,Content,id,idValue"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -312,7 +312,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -371,7 +371,7 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content,id"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -387,11 +387,11 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content,id"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -407,7 +407,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -466,26 +466,6 @@
         </Var>
         <Var name="Body.application-json.Type" value="Not object" failure="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="9" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
-      <Has name="server" value="http://www.cornutum.org/tcases/api"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="id.Defined" value="No">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="id.Type" NA="true"/>
-        <Var name="id.Value" NA="true"/>
-      </Input>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="Yes" failure="true"/>
       </Input>
     </TestCase>
   </Function>
@@ -493,7 +473,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonValue,Content,id,idValue"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -509,7 +489,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -568,7 +548,7 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content,id"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -584,11 +564,11 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content,id"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -604,7 +584,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -663,26 +643,6 @@
         </Var>
         <Var name="Body.application-json.Type" value="Not object" failure="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="9" failure="true">
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
-      <Has name="server" value="http://www.cornutum.org/tcases/api"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="id.Defined" value="No">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="id.Type" NA="true"/>
-        <Var name="id.Value" NA="true"/>
-      </Input>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="Yes" failure="true"/>
       </Input>
     </TestCase>
   </Function>
