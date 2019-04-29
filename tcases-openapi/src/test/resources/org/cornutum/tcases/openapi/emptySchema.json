@@ -1,0 +1,58 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Empty",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/empty": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+
+                        "schema": {
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "param1",
+                        "in": "query",
+
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "enum": [ true, false ]
+                                },
+                                {
+                                    "enum": [ 1, 2, 3 ]
+                                },
+                                {
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "$ref": "#/components/responses/success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

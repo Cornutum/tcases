@@ -21,10 +21,10 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.BooleanSchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
+import io.swagger.v3.oas.models.media.IntegerSchema;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.NumberSchema;
 import io.swagger.v3.oas.models.media.Schema;
-import io.swagger.v3.oas.models.media.StringSchema;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
@@ -399,15 +399,8 @@ public abstract class InputModeller
         .map( content -> content.values().stream().findFirst().map( MediaType::getSchema).orElse( null))
         .orElse( null));
 
-    return
-      // Schema defined?
-      schema == null?
-
-      // No, assume default schema
-      defaultSchema() :
-      
-      // Yes, resolve any reference to another schema definition
-      resolveSchema( api, schema);
+    // Resolve any reference to another schema definition
+    return resolveSchema( api, schema);
     }
 
   /**
@@ -454,20 +447,13 @@ public abstract class InputModeller
    */
   private IVarDef parameterDefinedVar( String parameterVarTag, String parameterType, Parameter parameter)
     {
-    try
-      {
-      Parameter.StyleEnum parameterStyle = parameterStyle( parameter);
+    Parameter.StyleEnum parameterStyle = parameterStyle( parameter);
       
-      return
-        VarDefBuilder.with( instanceDefinedVar( parameterVarTag, Boolean.TRUE.equals( parameter.getRequired())))
-        .has( "style", parameterStyle)
-        .has( "explode", parameterExplode( parameter.getExplode(), parameterType, parameterStyle))
-        .build();
-      }
-    catch( Exception e)
-      {
-      throw new OpenApiException( String.format( "Can't create 'Defined' variable for parameter=%s", parameter.getName()), e);
-      }
+    return
+      VarDefBuilder.with( instanceDefinedVar( parameterVarTag, Boolean.TRUE.equals( parameter.getRequired())))
+      .has( "style", parameterStyle)
+      .has( "explode", parameterExplode( parameter.getExplode(), parameterType, parameterStyle))
+      .build();
     }
 
   /**
@@ -566,11 +552,7 @@ public abstract class InputModeller
         () -> {
         String headerVarName = toIdentifier( headerName);
         String headerVarTag = status + "Header" + StringUtils.capitalize( headerVarName);
-
-        Schema<?> headerSchema =
-          header.getSchema() == null
-          ? defaultSchema()
-          : resolveSchema( api, header.getSchema());
+        Schema<?> headerSchema = resolveSchema( api, header.getSchema());
 
         return
           VarSetBuilder.with( headerVarName)
@@ -690,10 +672,11 @@ public abstract class InputModeller
   private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     Stream<IVarDef> typeVars = typeSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema);
+    Schema<?> notSchema = instanceSchema == null? null : instanceSchema.getNot();
 
     return
       typeVars != null
-      ? Stream.concat( typeVars, streamOf( notVar( api, instanceVarTag, instanceSchema.getNot())))
+      ? Stream.concat( typeVars, streamOf( notVar( api, instanceVarTag, notSchema)))
       : unknownSchemaVars( instanceSchema.getType());
     }
 
@@ -703,7 +686,7 @@ public abstract class InputModeller
   private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     ComposedSchema composedSchema = instanceSchema instanceof ComposedSchema? (ComposedSchema) instanceSchema : null;
-    String type = composedSchema == null? expectedValueOf( instanceSchema.getType(), "Schema type") : null;
+    String type = instanceSchema == null? null : instanceSchema.getType();
 
     return
       composedSchema != null?
@@ -727,16 +710,10 @@ public abstract class InputModeller
       "object".equals( type)?
       instanceObjectVars( api, instanceVarTag, instanceOptional, instanceSchema) :
 
+      type == null?
+      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
+      
       null;
-    }
-
-  /**
-   * Returns the default schema used when no schema is defined.
-   */
-  private Schema<?> defaultSchema()
-    {
-    notifyWarning( "No schema defined -- using default \"string\" schema");
-    return new StringSchema();
     }
 
   /**
@@ -753,14 +730,10 @@ public abstract class InputModeller
    */
   private Stream<IVarDef> instanceArrayVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    // Handle Swagger parser defect, which creates an ArraySchema iff the "items" property is specified, regardless of the value of "type".
-    // See https://github.com/swagger-api/swagger-parser/issues/1047.
-    ArraySchema arraySchema =
-      expectedValueOf(
-        instanceSchema instanceof ArraySchema? (ArraySchema) instanceSchema : null,
-        "Array items schema");
-    
-    Schema<?> itemSchema = resolveSchema( api, arraySchema.getItems());
+    Schema<?> itemSchema =
+      instanceSchema instanceof ArraySchema
+      ? resolveSchema( api, ((ArraySchema) instanceSchema).getItems())
+      : null;
     
     return
       Stream.of(
@@ -769,18 +742,18 @@ public abstract class InputModeller
         VarSetBuilder.with( "Items")
         .when( has( instanceValueProperty( instanceVarTag)))
         .members(
-          arraySizeVar( api, instanceVarTag, arraySchema))
+          arraySizeVar( api, instanceVarTag, instanceSchema))
         .members(
-          iterableOf( arrayItemsVar( api, instanceVarTag, arraySchema, itemSchema)))
+          iterableOf( arrayItemsVar( api, instanceVarTag, instanceSchema, itemSchema)))
         .members(
-          iterableOf( arrayUniqueItemsVar( api, instanceVarTag, arraySchema)))
+          iterableOf( arrayUniqueItemsVar( api, instanceVarTag, instanceSchema)))
         .build());
     }
 
   /**
    * Returns the {@link IVarDef input variable} representing the size of an array instance.
    */
-  private IVarDef arraySizeVar( OpenAPI api, String instanceVarTag, ArraySchema arraySchema)
+  private IVarDef arraySizeVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema)
     {
     // Arrays size constrained?
     VarDefBuilder size = VarDefBuilder.with( "Size");
@@ -862,7 +835,7 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the items of the given array instance.
    */
-  private Optional<IVarDef> arrayItemsVar( OpenAPI api, String instanceVarTag, ArraySchema arraySchema, Schema<?> itemSchema)
+  private Optional<IVarDef> arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema, Schema<?> itemSchema)
     {
     return
       with( "items",
@@ -881,7 +854,7 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the unique items property of an array instance.
    */
-  private Optional<IVarDef> arrayUniqueItemsVar( OpenAPI api, String instanceVarTag, ArraySchema arraySchema)
+  private Optional<IVarDef> arrayUniqueItemsVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema)
     {
     boolean uniqueRequired = Boolean.TRUE.equals( arraySchema.getUniqueItems());
 
@@ -1182,23 +1155,30 @@ public abstract class InputModeller
    */
   private IVarDef instanceTypeVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    String type = expectedValueOf( instanceSchema.getType(), "type");
-    Boolean nullable = instanceSchema.getNullable();
+    String type = instanceSchema == null? null : instanceSchema.getType();
+    Boolean nullable = instanceSchema == null? Boolean.FALSE : instanceSchema.getNullable();
 
     return
       VarDefBuilder.with( "Type")
       .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
+
       .values(
-        VarValueDefBuilder.with( type).properties( instanceValueProperty( instanceVarTag)).build(),
-        VarValueDefBuilder.with( (Object) null).type( Boolean.TRUE.equals( nullable)? VarValueDef.Type.ONCE : VarValueDef.Type.FAILURE).build(),
-        VarValueDefBuilder.with( String.format( "Not %s", type)).type( VarValueDef.Type.FAILURE).build())
+        VarValueDefBuilder.with( type == null? "Not null" : type).properties( instanceValueProperty( instanceVarTag)).build(),
+        VarValueDefBuilder.with( (Object) null).type( Boolean.TRUE.equals( nullable)? VarValueDef.Type.ONCE : VarValueDef.Type.FAILURE).build())
+
+      .values(
+        iterableOf(
+          Optional.ofNullable(
+            type == null
+            ? null
+            : VarValueDefBuilder.with( String.format( "Not %s", type)).type( VarValueDef.Type.FAILURE).build())))
+
       .build();
     }
 
   /**
    * Returns the {@link IVarDef input variable} representing the values for an integer instance.
    */
-  @SuppressWarnings("unchecked")
   private IVarDef integerValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     VarDefBuilder value =
@@ -1208,8 +1188,7 @@ public abstract class InputModeller
       .when( has( instanceValueProperty( instanceVarTag)));
 
     // Enumerated values?
-    Schema<Number> numberSchema = (Schema<Number>) instanceSchema;
-    List<Number> enums = Optional.ofNullable( numberSchema.getEnum()).orElse( emptyList());
+    List<Number> enums = getIntegerEnum( instanceSchema);
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
@@ -1304,8 +1283,7 @@ public abstract class InputModeller
       .when( has( instanceValueProperty( instanceVarTag)));
 
     // Enumerated values?
-    NumberSchema numberSchema = (NumberSchema) instanceSchema;
-    List<BigDecimal> enums = Optional.ofNullable( numberSchema.getEnum()).orElse( emptyList());
+    List<BigDecimal> enums = getNumberEnum( instanceSchema);
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
@@ -1459,9 +1437,13 @@ public abstract class InputModeller
   private boolean expectedInView( Schema<?> propertySchema)
     {
     return
-      view_ == View.REQUEST
-      ? !Optional.ofNullable( propertySchema.getReadOnly()).orElse( false)
-      : !Optional.ofNullable( propertySchema.getWriteOnly()).orElse( false);
+      propertySchema == null?
+      true :
+      
+      view_ == View.REQUEST?
+      !Optional.ofNullable( propertySchema.getReadOnly()).orElse( false) :
+      
+      !Optional.ofNullable( propertySchema.getWriteOnly()).orElse( false);
     }
 
   /**
@@ -1882,9 +1864,8 @@ public abstract class InputModeller
    */
   private IVarDef booleanValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
-    BooleanSchema booleanSchema = (BooleanSchema) instanceSchema;
     List<Boolean> possibleValues = Arrays.asList( Boolean.TRUE, Boolean.FALSE);
-    List<Boolean> allowedValues = Optional.ofNullable( booleanSchema.getEnum()).orElse( possibleValues);
+    List<Boolean> allowedValues = Optional.of( getBooleanEnum( instanceSchema)).filter( enums -> !enums.isEmpty()).orElse( possibleValues);
 
     return
       VarDefBuilder.with( "Value")
@@ -2030,7 +2011,7 @@ public abstract class InputModeller
     }
 
   /**
-   * Returns the given value if non-null. Otherwise, throws an OpenApiException.
+   * Returns the given value if non-null. Otherwise, throws an exception.
    */
   private <T> T expectedValueOf( T value, String description, Object... descriptionArgs)
     {
@@ -2055,7 +2036,10 @@ public abstract class InputModeller
    */
   private Schema<?> resolveSchema( OpenAPI api, Schema<?> schema)
     {
-    return componentSchemaRef( api, schema.get$ref()).orElse( schema);
+    return
+      schema == null
+      ? null
+      : resolveSchemaType( componentSchemaRef( api, schema.get$ref()).orElse( schema));
     }
 
   /**
@@ -2164,6 +2148,174 @@ public abstract class InputModeller
   private String componentName( String refType, String ref)
     {
     return ref.startsWith( refType)? ref.substring( refType.length()) : null;
+    }
+
+  /**
+   * If necessary, updates the type of the given schema based its properties.
+   * If the type defined for this schema is valid and consistent, returns the updated schema.
+   * Otherwise, throws an exception.
+   */
+  private Schema<?> resolveSchemaType( Schema<?> schema)
+    {
+    String declaredType = schema.getType();
+    
+    List<String> impliedTypes = 
+    Stream.of(
+      impliedType( "array", schema, Schema::getMaxItems, Schema::getMinItems, Schema::getUniqueItems),
+      impliedType( "number", schema, Schema::getMaximum, Schema::getExclusiveMaximum, Schema::getMinimum, Schema::getExclusiveMinimum, Schema::getMultipleOf),
+      impliedType( "object", schema, Schema::getMaxProperties, Schema::getMinProperties, Schema::getRequired, Schema::getProperties, Schema::getAdditionalProperties),
+      impliedType( "string", schema, Schema::getMaxLength, Schema::getMinLength, Schema::getPattern))
+      .filter( Objects::nonNull)
+      .collect( toList());
+
+    if( impliedTypes.size() == 1)
+      {
+      String impliedType = impliedTypes.get(0);
+      if( declaredType == null)
+        {
+        schema.setType( impliedType);
+        }
+      else if( !(impliedType.equals( declaredType) || (impliedType.equals( "number") && declaredType.equals( "integer"))))
+        {
+        throw new IllegalStateException( String.format( "Schema declares type=%s but has implied type=%s", declaredType, impliedType));
+        }
+      }
+    else if( impliedTypes.size() > 1)
+      {
+      throw new IllegalStateException( String.format( "Ambiguous schema type -- could be any of %s", impliedTypes.stream().collect( joining( ", "))));
+      }
+      
+    return schema;
+    }
+
+  /**
+   * Returns the enumerated integer values defined by the given schema.
+   */
+  private List<Number> getIntegerEnum( Schema<?> schema)
+    {
+    List<Number> numbers;
+
+    if( schema instanceof IntegerSchema)
+      {
+      numbers =
+        Optional.ofNullable( ((IntegerSchema) schema).getEnum())
+        .orElse( emptyList());
+      }
+    else
+      {
+      numbers = 
+        Optional.ofNullable( schema.getEnum())
+        .orElse( emptyList())
+        .stream()
+        .map(
+          value -> {
+            if( !(value == null || value.getClass().equals( Integer.class) || value.getClass().equals( Long.class)))
+              {
+              throw new IllegalStateException( String.format( "Enumerated value=%s is not an integer", value));
+              }
+            return (Number) value;
+          })
+        .collect( toList());
+      }
+
+    return numbers;
+    }
+
+  /**
+   * Returns the enumerated number values defined by the given schema.
+   */
+  private List<BigDecimal> getNumberEnum( Schema<?> schema)
+    {
+    List<BigDecimal> numbers;
+
+    if( schema instanceof NumberSchema)
+      {
+      numbers =
+        Optional.ofNullable( ((NumberSchema) schema).getEnum())
+        .orElse( emptyList());
+      }
+    else
+      {
+      numbers = 
+        Optional.ofNullable( schema.getEnum())
+        .orElse( emptyList())
+        .stream()
+        .map(
+          value -> {
+            if( !(value == null || Number.class.isAssignableFrom( value.getClass())))
+              {
+              throw new IllegalStateException( String.format( "Enumerated value=%s is not a number", value));
+              }
+            return value == null? null : new BigDecimal( value.toString());
+          })
+        .collect( toList());
+      }
+
+    return numbers;
+    }
+
+  /**
+   * Returns the enumerated boolean values defined by the given schema.
+   */
+  private List<Boolean> getBooleanEnum( Schema<?> schema)
+    {
+    List<Boolean> booleans;
+
+    if( schema instanceof BooleanSchema)
+      {
+      booleans =
+        Optional.ofNullable( ((BooleanSchema) schema).getEnum())
+        .orElse( emptyList());
+      }
+    else
+      {
+      booleans = 
+        Optional.ofNullable( schema.getEnum())
+        .orElse( emptyList())
+        .stream()
+        .map(
+          value -> {
+            Boolean booleanValue = null;
+            if( value != null)
+              {
+              String valueString = value.toString();
+              booleanValue =
+                "true".equalsIgnoreCase( valueString)?
+                Boolean.TRUE :
+
+                "false".equalsIgnoreCase( valueString)?
+                Boolean.FALSE :
+
+                null;
+
+              if( booleanValue == null)
+                {
+                throw new IllegalStateException( String.format( "Enumerated value=%s is not a boolean", value));
+                }
+              }
+            
+            return booleanValue;
+          })
+        .collect( toList());
+      }
+
+    return booleans;
+    }
+
+  /**
+   * Returns the given type if applying any of the given accessors to the given schema produces a non-null value.
+   * Otherwise, returns null.
+   */
+  @SafeVarargs
+  private static String impliedType( String type, Schema<?> schema, Function<Schema<?>,Object>... accessors)
+    {
+    return
+      Stream.of( accessors)
+      .map( accessor -> accessor.apply( schema))
+      .filter( Objects::nonNull)
+      .findFirst()
+      .map( value -> type)
+      .orElse( null);
     }
 
   /**

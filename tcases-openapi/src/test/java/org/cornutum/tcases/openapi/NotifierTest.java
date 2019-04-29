@@ -47,16 +47,6 @@ public class NotifierTest extends OpenApiTest
     }
   
   @Test
-  public void warningWhenSchemaUndefined()
-    {
-    // When...
-    getTests( getResponseInputModel( "warnings-2"));
-    
-    // Then...
-    assertWarnings( "Responses,/responses,TRACE,2XX,headers,x-extra-header: No schema defined -- using default \"string\" schema.");
-    }
-  
-  @Test
   public void errorWhenUnknownSchemaType()
     {
     // When...

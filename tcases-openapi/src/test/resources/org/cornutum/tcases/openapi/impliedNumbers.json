@@ -1,0 +1,74 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Number",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/number": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+
+                        "schema": {
+                            "maximum": 1
+                        }
+                    },
+                    {
+                        "name": "param1",
+                        "in": "query",
+
+                        "schema": {
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "param2",
+                        "in": "query",
+
+                        "schema": {
+                            "exclusiveMinimum": true
+                        }
+                    },
+                    {
+                        "name": "param3",
+                        "in": "query",
+
+                        "schema": {
+                            "exclusiveMaximum": true
+                        }
+                    },
+                    {
+                        "name": "param4",
+                        "in": "query",
+
+                        "schema": {
+                            "multipleOf": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "$ref": "#/components/responses/success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

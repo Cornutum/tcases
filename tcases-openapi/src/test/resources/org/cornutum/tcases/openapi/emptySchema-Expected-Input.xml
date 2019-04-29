@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<System name="Empty">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_empty">
+    <Input type="query">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="Not null" property="param0Value"/>
+          <Value name="null" once="true"/>
+        </Var>
+      </VarSet>
+      <VarSet name="param1">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param1"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="OneOf" when="param1">
+          <VarSet name="Members">
+            <Var name="Validated">
+              <Value name="1">
+                <When>
+                  <Equals property="param1OneOfMemberValidated" count="1"/>
+                </When>
+              </Value>
+              <Value name="0" failure="true">
+                <When>
+                  <Not property="param1OneOfMemberValidated">
+                  </Not>
+                </When>
+              </Value>
+              <Value name="&gt; 1" failure="true">
+                <When>
+                  <MoreThan property="param1OneOfMemberValidated" min="1"/>
+                </When>
+              </Value>
+            </Var>
+            <VarSet name="0">
+              <Var name="Type">
+                <Value name="boolean" property="param1OneOf0Value, param1OneOfMemberValidated"/>
+                <Value name="null"/>
+              </Var>
+              <Var name="Value" when="param1OneOf0Value">
+                <Value name="true"/>
+                <Value name="false"/>
+              </Var>
+            </VarSet>
+            <VarSet name="1">
+              <Var name="Type">
+                <Value name="number" property="param1OneOf1Value"/>
+              </Var>
+              <Var name="Value" when="param1OneOf1Value">
+                <Value name="1" property="param1OneOfMemberValidated"/>
+                <Value name="2" property="param1OneOfMemberValidated"/>
+                <Value name="3" property="param1OneOfMemberValidated"/>
+                <Value name="Other"/>
+              </Var>
+            </VarSet>
+            <VarSet name="2">
+              <Var name="Type">
+                <Value name="Not null" property="param1OneOf2Value, param1OneOfMemberValidated"/>
+                <Value name="null"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

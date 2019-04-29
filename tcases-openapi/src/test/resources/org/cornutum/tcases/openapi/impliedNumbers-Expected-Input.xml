@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<System name="Number">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_number">
+    <Input type="query">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="number" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Value name="1"/>
+          <Value name="2" failure="true"/>
+          <Value name="&lt; 1"/>
+        </Var>
+      </VarSet>
+      <VarSet name="param1">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param1"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param1">
+          <Value name="number" property="param1Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param1Value">
+          <Value name="0" failure="true"/>
+          <Value name="1"/>
+          <Value name="&gt; 1"/>
+        </Var>
+      </VarSet>
+      <VarSet name="param2">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param2"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param2">
+          <Value name="number" property="param2Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param2Value">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+      <VarSet name="param3">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param3"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param3">
+          <Value name="number" property="param3Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param3Value">
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+      <VarSet name="param4">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param4"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param4">
+          <Value name="number" property="param4Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param4Value">
+          <Value name="Not a multiple of 10" failure="true"/>
+          <Value name="&lt; 0"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
