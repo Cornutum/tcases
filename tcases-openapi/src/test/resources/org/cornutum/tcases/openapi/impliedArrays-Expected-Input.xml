@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<System name="Array">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_array">
+    <Input type="query">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="array" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="param0Value">
+          <Var name="Size">
+            <Value name="0" failure="true"/>
+            <Value name="1" property="param0Items"/>
+            <Value name="&gt; 1" property="param0Items, param0ItemsMany"/>
+          </Var>
+          <VarSet name="Contains" when="param0Items">
+            <Var name="Type">
+              <Value name="Not null" property="param0ItemsValue"/>
+              <Value name="null" failure="true"/>
+            </Var>
+          </VarSet>
+          <Var name="Unique" when="param0ItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param1">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param1"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param1">
+          <Value name="array" property="param1Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="param1Value">
+          <Var name="Size">
+            <Value name="1" property="param1Items"/>
+            <Value name="2" failure="true"/>
+            <Value name="0"/>
+          </Var>
+          <VarSet name="Contains" when="param1Items">
+            <Var name="Type">
+              <Value name="Not null" property="param1ItemsValue"/>
+              <Value name="null" failure="true"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param2">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param2"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param2">
+          <Value name="array" property="param2Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="param2Value">
+          <Var name="Size">
+            <Value name="0"/>
+            <Value name="1" property="param2Items"/>
+            <Value name="&gt; 1" property="param2Items, param2ItemsMany"/>
+          </Var>
+          <VarSet name="Contains" when="param2Items">
+            <Var name="Type">
+              <Value name="Not null" property="param2ItemsValue"/>
+              <Value name="null" failure="true"/>
+            </Var>
+          </VarSet>
+          <Var name="Unique" when="param2ItemsMany">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

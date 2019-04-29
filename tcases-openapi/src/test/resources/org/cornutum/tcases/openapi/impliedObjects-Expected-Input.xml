@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<System name="Object">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object">
+    <Input type="query">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="object" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Property-Count">
+            <Value name="0" once="true">
+              <When>
+                <Not property="param0Properties">
+                </Not>
+              </When>
+            </Value>
+            <Value name="&lt;= 1">
+              <When>
+                <NotMoreThan property="param0Properties" max="1"/>
+              </When>
+            </Value>
+            <Value name="&gt; 1" failure="true">
+              <When>
+                <MoreThan property="param0Properties" min="0"/>
+              </When>
+            </Value>
+          </Var>
+          <VarSet name="Properties">
+            <Var name="Additional">
+              <Value name="Yes" property="param0Properties"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param1">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param1"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param1">
+          <Value name="object" property="param1Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param1Value">
+          <Var name="Property-Count">
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="param1Properties" min="0"/>
+              </When>
+            </Value>
+          </Var>
+          <VarSet name="Properties">
+            <Var name="Additional">
+              <Value name="Yes" property="param1Properties"/>
+              <Value name="No" failure="true"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param2">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param2"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param2">
+          <Value name="object" property="param2Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param2Value">
+          <VarSet name="Properties">
+            <Var name="Additional">
+              <Value name="Yes" property="param2Properties"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param3">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param3"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param3">
+          <Value name="object" property="param3Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param3Value">
+          <Var name="Property-Count">
+            <Value name="0" once="true">
+              <When>
+                <Not property="param3Properties">
+                </Not>
+              </When>
+            </Value>
+            <Value name="&gt; 0" when="param3Properties"/>
+          </Var>
+          <VarSet name="Properties">
+            <VarSet name="alpha">
+              <Var name="Defined">
+                <Value name="Yes" property="param3Alpha, param3Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param3Alpha">
+                <Value name="Not null" property="param3AlphaValue"/>
+                <Value name="null" failure="true"/>
+              </Var>
+            </VarSet>
+            <VarSet name="bravo">
+              <Var name="Defined">
+                <Value name="Yes" property="param3Bravo, param3Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param3Bravo">
+                <Value name="Not null" property="param3BravoValue"/>
+                <Value name="null" failure="true"/>
+              </Var>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" property="param3Properties"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param4">
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param4"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param4">
+          <Value name="object" property="param4Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param4Value">
+          <VarSet name="Properties">
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
