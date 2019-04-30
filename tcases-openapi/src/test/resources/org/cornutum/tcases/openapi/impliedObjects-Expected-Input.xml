@@ -85,6 +85,26 @@
         </Var>
         <VarSet name="Value" when="param2Value">
           <VarSet name="Properties">
+            <VarSet name="bravo">
+              <Var name="Defined">
+                <Value name="Yes" property="param2Bravo, param2Properties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="param2Bravo">
+                <Value name="Not null" property="param2BravoValue"/>
+                <Value name="null" failure="true"/>
+              </Var>
+            </VarSet>
+            <VarSet name="alpha">
+              <Var name="Defined">
+                <Value name="Yes" property="param2Alpha, param2Properties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="param2Alpha">
+                <Value name="Not null" property="param2AlphaValue"/>
+                <Value name="null" failure="true"/>
+              </Var>
+            </VarSet>
             <Var name="Additional">
               <Value name="Yes" property="param2Properties"/>
               <Value name="No"/>

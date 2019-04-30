@@ -38,6 +38,7 @@ import java.math.BigInteger;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -1374,8 +1375,17 @@ public abstract class InputModeller
   @SuppressWarnings("rawtypes")
   private IVarDef objectValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
+    // Ensure schema defined for all required properties, using a default empty schema if necessary.
+    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new HashMap<String,Schema>());
+    Optional.ofNullable( instanceSchema.getRequired())
+      .map( required -> required.stream().filter( property -> !propertyDefs.containsKey( property)).collect( toList()))
+      .filter( undefined -> !undefined.isEmpty())
+      .ifPresent( undefined -> {
+        undefined.stream().forEach( required -> propertyDefs.put( required, new Schema<Object>()));
+        instanceSchema.setProperties( propertyDefs);
+        });
+
     // Reconcile any "required" constraints for read/WriteOnly properties.
-    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
     instanceSchema.setRequired(
       Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList())
       .stream()
