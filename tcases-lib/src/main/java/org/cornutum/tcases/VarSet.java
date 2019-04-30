@@ -92,7 +92,7 @@ public class VarSet extends AbstractVarDef
   /**
    * Returns the descendant variable with the given name path, relative to this variable.
    */
-  public IVarDef find( String[] path)
+  public IVarDef find( String... path)
     {
     return
        path == null || path.length == 0

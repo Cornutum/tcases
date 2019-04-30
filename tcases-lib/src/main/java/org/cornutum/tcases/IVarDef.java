@@ -83,7 +83,7 @@ public interface IVarDef extends IConditional, IAnnotated, Comparable<IVarDef>
   /**
    * Returns the descendant variable with the given name path, relative to this variable.
    */
-  IVarDef find( String[] path);
+  IVarDef find( String... path);
 
   /**
    * Returns the condition that defines when values for this variable are applicable.

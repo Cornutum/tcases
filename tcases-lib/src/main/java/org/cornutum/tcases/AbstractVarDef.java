@@ -277,7 +277,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Returns the descendant variable with the given name path, relative to this variable.
    */
-  abstract public IVarDef find( String[] path);
+  abstract public IVarDef find( String... path);
 
   public String toString()
     {
