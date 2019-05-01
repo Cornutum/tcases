@@ -672,13 +672,10 @@ public abstract class InputModeller
    */
   private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    Stream<IVarDef> typeVars = typeSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema);
-    Schema<?> notSchema = instanceSchema == null? null : instanceSchema.getNot();
-
     return
-      typeVars != null
-      ? Stream.concat( typeVars, streamOf( notVar( api, instanceVarTag, notSchema)))
-      : unknownSchemaVars( instanceSchema.getType());
+      Stream.concat(
+        typeSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema),
+        composedSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema));
     }
 
   /**
@@ -686,13 +683,9 @@ public abstract class InputModeller
    */
   private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    ComposedSchema composedSchema = instanceSchema instanceof ComposedSchema? (ComposedSchema) instanceSchema : null;
     String type = instanceSchema == null? null : instanceSchema.getType();
 
     return
-      composedSchema != null?
-      composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema) :
-      
       "string".equals( type)?
       instanceStringVars( api, instanceVarTag, instanceOptional, instanceSchema) :
       
@@ -711,10 +704,10 @@ public abstract class InputModeller
       "object".equals( type)?
       instanceObjectVars( api, instanceVarTag, instanceOptional, instanceSchema) :
 
-      type == null?
-      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
+      type != null?
+      unknownSchemaVars( type) :
       
-      null;
+      Stream.empty();
     }
 
   /**
@@ -931,30 +924,56 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variables} defined by the given composed schema.
    */
-  private Stream<IVarDef> composedSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, ComposedSchema composedSchema)
+  private Stream<IVarDef> composedSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    return
-      Stream.of(
+    ComposedSchema composedSchema =
+      instanceSchema instanceof ComposedSchema
+      ? (ComposedSchema) instanceSchema
+      : null;
+
+    String instanceType =
+      instanceSchema == null
+      ? null
+      : instanceSchema.getType();
+
+    ListBuilder<IVarDef> composedSchemaVars = ListBuilder.to();
+    if( composedSchema != null)
+      {
+      composedSchemaVars.add(
         Optional.ofNullable( composedSchema.getAllOf())
-        .map( memberSchemas -> allOfVar( api, instanceVarTag, instanceOptional, memberSchemas))
-        .orElse( null),
-        
+        .map( memberSchemas -> allOfVar( api, instanceVarTag, instanceOptional, instanceType, memberSchemas)));
+
+      composedSchemaVars.add(
         Optional.ofNullable( composedSchema.getAnyOf())
-        .map( memberSchemas -> anyOfVar( api, instanceVarTag, instanceOptional, memberSchemas))
-        .orElse( null),
+        .map( memberSchemas -> anyOfVar( api, instanceVarTag, instanceOptional, instanceType, memberSchemas)));
 
+      composedSchemaVars.add(
         Optional.ofNullable( composedSchema.getOneOf())
-        .map( memberSchemas -> oneOfVar( api, instanceVarTag, instanceOptional, memberSchemas))
-        .orElse( null))
+        .map( memberSchemas -> oneOfVar( api, instanceVarTag, instanceOptional, instanceType, memberSchemas)));
+      }
+    if( instanceSchema != null)
+      {
+      composedSchemaVars.add( notVar( api, instanceVarTag, instanceSchema.getNot()));
+      }
 
-      .filter( Objects::nonNull);
-    } 
+    return
+      // Any composed schemas to add?
+      composedSchemaVars.size() > 0?
+      composedSchemaVars.build().stream() :
+
+      // No, if no schema type defined, add a perfunctory "must be defined" input model for this instance
+      instanceType == null?
+      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
+
+      // Otherwise, nothing more to add.
+      Stream.empty();      
+    }
 
   /**
    * Returns the {@link IVarDef input variable} defined by the given "allOf" schema.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef allOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
+  private IVarDef allOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, String instanceType, List<Schema> memberSchemas)
     {
     String containerType = "AllOf";
     String containerVarTag = instanceVarTag + containerType;
@@ -986,25 +1005,25 @@ public abstract class InputModeller
    * Returns the {@link IVarDef input variable} defined by the given "anyOf" schema.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef anyOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
+  private IVarDef anyOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, String instanceType, List<Schema> memberSchemas)
     {
-    return oneOfVar( api, instanceVarTag, instanceOptional, "anyOf", memberSchemas);
+    return oneOfVar( api, instanceVarTag, instanceOptional, instanceType, "anyOf", memberSchemas);
     } 
 
   /**
    * Returns the {@link IVarDef input variable} defined by the given "oneOf" schema.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema> memberSchemas)
+  private IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, String instanceType, List<Schema> memberSchemas)
     {
-    return oneOfVar( api, instanceVarTag, instanceOptional, "oneOf", memberSchemas);
+    return oneOfVar( api, instanceVarTag, instanceOptional, instanceType, "oneOf", memberSchemas);
     } 
 
   /**
    * Returns the {@link IVarDef input variable} defined by the given "oneOf" or "anyOf" schema.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, String containerType, List<Schema> memberSchemas)
+  private IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, String instanceType, String containerType, List<Schema> memberSchemas)
     {
     String containerVarName = StringUtils.capitalize( containerType);
     String containerVarTag = instanceVarTag + containerVarName;
@@ -1070,16 +1089,10 @@ public abstract class InputModeller
    */
   private Stream<IVarDef> memberSchemaVars( OpenAPI api, String containerVarTag, String memberVarTag, Schema<?> memberSchema, boolean validationRequired)
     {
-    // Starting with all variables defined by the member schema, update to provide for a single validation failure
     List<IVarDef> memberSchemaVars = instanceSchemaVars( api, memberVarTag, false, memberSchema).collect( toList());
-    if(
-      // Is this member schema a basic type (not composed)?
-      memberSchemaVars.size() > 1
-      ||
-      // Or is it a member of an anyOf/oneOf schema?
-      !validationRequired)
+    if( !validationRequired)
       {
-      // Yes, find all descendant variables that define a failure value...
+      // To provide for a single validation failure, find all descendant variables that define a failure value...
       List<VarDef> failureVars =
         toStream( new VarDefIterator( memberSchemaVars.iterator()))
         .filter( v -> v.getFailureValues().hasNext())

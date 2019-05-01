@@ -9,6 +9,7 @@ package org.cornutum.tcases.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Provide a fluent List constructor.
@@ -28,7 +29,7 @@ public class ListBuilder<T>
    */
   public static <T> ListBuilder<T> to()
     {
-    return to( new ArrayList<T>());
+    return to( null);
     }
 
   /**
@@ -36,7 +37,7 @@ public class ListBuilder<T>
    */
   public static <T> ListBuilder<T> to( List<T> list)
     {
-    return new ListBuilder<T>( list);
+    return new ListBuilder<T>( list == null? new ArrayList<T>() : list);
     }
   
   /**
@@ -47,9 +48,18 @@ public class ListBuilder<T>
     list_.add( element);
     return this;
     }
+  
+  /**
+   * If present, appends a new element to the list for this builder.
+   */
+  public ListBuilder<T> add( Optional<T> element)
+    {
+    element.ifPresent( e -> list_.add( e));
+    return this;
+    }
 
   /**
-   * Appends all elements of the given colletion to the list for this builder.
+   * Appends all elements of the given collection to the list for this builder.
    */
   public ListBuilder<T> addAll( Iterable<T> elements)
     {
@@ -59,6 +69,14 @@ public class ListBuilder<T>
       }
     
     return this;
+    }
+
+  /**
+   * Returns the number of elements added to this builder.
+   */
+  public int size()
+    {
+    return list_.size();
     }
 
   /**
