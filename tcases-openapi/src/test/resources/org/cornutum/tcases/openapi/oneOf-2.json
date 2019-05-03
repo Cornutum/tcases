@@ -13,13 +13,8 @@
                         "in": "cookie",
 
                         "schema": {
+                            "type": "number",
                             "oneOf": [
-                                {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object"
-                                    }
-                                },
                                 {
                                     "type": "number",
                                     "minimum": 0
@@ -27,56 +22,30 @@
                                 {
                                     "type": "integer",
                                     "maximum": 0
-                                }                                    
+                                },
+                                {
+                                    "oneOf": [
+                                        {
+                                            "maximum": 100
+                                        }
+                                    ]
+                                }
                             ]
                         }
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/success"
-                    },
                     "default": {
-                        "$ref": "#/components/responses/failure"
+                        "$ref": "#/components/responses/success"
                     }
                 }
             }
         }
     },
     "components": {
-        "parameters": {
-            "id": {
-                "name": "id",
-                "in": "query",
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        },
-        "requestBodies": {
-            "standard": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "responses": {
             "success": {
                 "description": "Success",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "failure": {
-                "description": "Error",
                 "content": {
                     "application/json": {
                         "schema": {

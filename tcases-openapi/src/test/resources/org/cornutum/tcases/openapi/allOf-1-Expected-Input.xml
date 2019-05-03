@@ -16,11 +16,35 @@
           <Value name="Other" failure="true"/>
         </Var>
         <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="array" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not array" failure="true"/>
+          </Var>
+          <VarSet name="Items" when="application-jsonValue">
+            <Var name="Size">
+              <Value name="0"/>
+              <Value name="1" property="application-jsonItems"/>
+              <Value name="&gt; 1" property="application-jsonItems, application-jsonItemsMany"/>
+            </Var>
+            <VarSet name="Contains" when="application-jsonItems">
+              <Var name="Type">
+                <Value name="Not null" property="application-jsonItemsValue"/>
+                <Value name="null" failure="true"/>
+              </Var>
+            </VarSet>
+            <Var name="Unique" when="application-jsonItemsMany">
+              <Value name="Yes"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
           <VarSet name="AllOf">
             <VarSet name="Members">
               <VarSet name="0">
                 <Var name="Type">
                   <Value name="array" property="application-jsonAllOf0Value"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not array" failure="true"/>
                 </Var>
                 <VarSet name="Items" when="application-jsonAllOf0Value">
                   <Var name="Size">
@@ -30,79 +54,20 @@
                   </Var>
                   <VarSet name="Contains" when="application-jsonAllOf0Items">
                     <Var name="Type">
-                      <Value name="object" property="application-jsonAllOf0ItemsValue"/>
+                      <Value name="integer" property="application-jsonAllOf0ItemsValue"/>
                       <Value name="null" failure="true"/>
+                      <Value name="Not integer" failure="true"/>
                     </Var>
-                    <VarSet name="Value" when="application-jsonAllOf0ItemsValue">
-                      <VarSet name="Properties">
-                        <Var name="Additional">
-                          <Value name="Yes" property="application-jsonAllOf0ItemsProperties"/>
-                          <Value name="No"/>
-                        </Var>
-                      </VarSet>
-                    </VarSet>
+                    <Var name="Value" when="application-jsonAllOf0ItemsValue">
+                      <Value name="&lt; 0"/>
+                      <Value name="0"/>
+                      <Value name="&gt; 0"/>
+                    </Var>
                   </VarSet>
                   <Var name="Unique" when="application-jsonAllOf0ItemsMany">
                     <Value name="Yes"/>
                     <Value name="No"/>
                   </Var>
-                </VarSet>
-              </VarSet>
-              <VarSet name="1">
-                <Var name="Type">
-                  <Value name="boolean" property="application-jsonAllOf1Value"/>
-                  <Value name="null" failure="true"/>
-                </Var>
-                <Var name="Value" when="application-jsonAllOf1Value">
-                  <Value name="true"/>
-                  <Value name="false"/>
-                </Var>
-              </VarSet>
-              <VarSet name="2">
-                <VarSet name="AnyOf">
-                  <VarSet name="Members">
-                    <Var name="Validated">
-                      <Value name="1">
-                        <When>
-                          <Equals property="application-jsonAllOf2AnyOfMemberValidated" count="1"/>
-                        </When>
-                      </Value>
-                      <Value name="0" failure="true">
-                        <When>
-                          <Not property="application-jsonAllOf2AnyOfMemberValidated">
-                          </Not>
-                        </When>
-                      </Value>
-                      <Value name="&gt; 1" once="true">
-                        <When>
-                          <MoreThan property="application-jsonAllOf2AnyOfMemberValidated" min="1"/>
-                        </When>
-                      </Value>
-                    </Var>
-                    <VarSet name="0">
-                      <Var name="Type">
-                        <Value name="integer" property="application-jsonAllOf2AnyOf0Value, application-jsonAllOf2AnyOfMemberValidated"/>
-                        <Value name="null"/>
-                      </Var>
-                      <Var name="Value" when="application-jsonAllOf2AnyOf0Value">
-                        <Value name="&lt; 0"/>
-                        <Value name="0"/>
-                        <Value name="&gt; 0"/>
-                      </Var>
-                    </VarSet>
-                    <VarSet name="1">
-                      <Var name="Type">
-                        <Value name="string" property="application-jsonAllOf2AnyOf1Value, application-jsonAllOf2AnyOfMemberValidated"/>
-                        <Value name="null"/>
-                      </Var>
-                      <VarSet name="Value" when="application-jsonAllOf2AnyOf1Value">
-                        <Var name="Length">
-                          <Value name="&gt; 0"/>
-                          <Value name="0"/>
-                        </Var>
-                      </VarSet>
-                    </VarSet>
-                  </VarSet>
                 </VarSet>
               </VarSet>
             </VarSet>

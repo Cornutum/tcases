@@ -6,174 +6,938 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="properties" value="param0,param0AllOf0AllOf0Value,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Additional,param0AllOf2AdditionalValue,param0AllOf2Properties,param0AllOf2Value,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Value" value="-1"/>
-        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AllOf.Members.1.Value" value="-1.234">
-          <Has name="format" value="double"/>
-        </Var>
-        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" value="integer"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" value="&lt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="1">
-      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Value" value="0"/>
-        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AllOf.Members.1.Value" value="&lt; -1.234">
-          <Has name="format" value="double"/>
-        </Var>
-        <Var name="Body.application-json.AllOf.Members.2.Type" value="null"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="properties" value="param0,param0AllOf0AllOf0Bravo,param0AllOf0AllOf0BravoValue,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Charlie,param0AllOf0AllOf1CharlieValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Value" value="1"/>
-        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AllOf.Members.1.Value" value="-1.234">
-          <Has name="format" value="double"/>
-        </Var>
-        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="0"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" value="boolean"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" value="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" value="array"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Bravo,param0AllOf0AllOf0BravoValue,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Charlie,param0AllOf0AllOf1CharlieItems,param0AllOf0AllOf1CharlieItemsValue,param0AllOf0AllOf1CharlieValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Additional,param0AllOf2AdditionalValue,param0AllOf2Properties,param0AllOf2Value,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="No" failure="true"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.1.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.1.Value" NA="true">
-          <Has name="format" value="double"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.2.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" value="boolean"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" value="false"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" value="array"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" value="1"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" value="integer"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" value="0"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
-      <Has name="properties" value="Content"/>
+    <TestCase id="4">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Charlie,param0AllOf0AllOf1CharlieItems,param0AllOf0AllOf1CharlieItemsMany,param0AllOf0AllOf1CharlieItemsValue,param0AllOf0AllOf1CharlieValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="Other" failure="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.1.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.1.Value" NA="true">
-          <Has name="format" value="double"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.2.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" value="array"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" value="&gt; 1"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
-      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+    <TestCase id="5">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Bravo,param0AllOf0AllOf0BravoValue,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Charlie,param0AllOf0AllOf1CharlieItems,param0AllOf0AllOf1CharlieItemsMany,param0AllOf0AllOf1CharlieItemsValue,param0AllOf0AllOf1CharlieValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Additional,param0AllOf2AdditionalValue,param0AllOf2Properties,param0AllOf2Value,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Value" value="Other" failure="true"/>
-        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AllOf.Members.1.Value" value="&lt; -1.234">
-          <Has name="format" value="double"/>
-        </Var>
-        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" value="boolean"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" value="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" value="array"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" value="&gt; 1"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" value="integer"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" value="&gt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
-      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2MyStringValue,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Value" value="-1"/>
-        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AllOf.Members.1.Value" value="-1.233" failure="true">
-          <Has name="format" value="double"/>
-        </Var>
-        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="string"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="application-json,application-jsonAllOf0Value,application-jsonAllOf1Value,application-jsonAllOf2MyString,application-jsonAllOf2Properties,application-jsonAllOf2Value,Content"/>
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Value" value="-1"/>
-        <Var name="Body.application-json.AllOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AllOf.Members.1.Value" value="&lt; -1.234">
-          <Has name="format" value="double"/>
+        <Var name="param0.Type" value="Not object" failure="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.2.Type" value="object"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Type" value="null" failure="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="No" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="Not object" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Bravo,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Bravo,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" value="Not boolean" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="14" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="Not object" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="15" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Charlie,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="16" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Charlie,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" value="Not array" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="17" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Charlie,param0AllOf0AllOf1CharlieItems,param0AllOf0AllOf1CharlieValue,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" value="array"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" value="1"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="18" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="19" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="Not object" failure="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="20" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="No" failure="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="21" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="22" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="23" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="Not object" failure="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="24" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Additional,param0AllOf2Properties,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="25" failure="true">
+      <Has name="properties" value="param0,param0AllOf0AllOf0Properties,param0AllOf0AllOf0Value,param0AllOf0AllOf1Properties,param0AllOf0AllOf1Value,param0AllOf1Alpha,param0AllOf1AlphaValue,param0AllOf1Properties,param0AllOf1Value,param0AllOf2Additional,param0AllOf2Properties,param0AllOf2Value,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.bravo.Value" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Defined" value="No"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Type" value="object"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AllOf.Members.2.Type" value="object"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Type" value="Not integer" failure="true"/>
+        <Var name="param0.AllOf.Members.2.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
   </Function>

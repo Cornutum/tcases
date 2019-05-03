@@ -6,23 +6,20 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0OneOf0Items,param0OneOf0ItemsProperties,param0OneOf0ItemsValue,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" value="number"/>
+        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="array"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" value="1"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.Value" value="-1"/>
-        <Var name="param0.OneOf.Members.2.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.2.Value" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.0.Value" value="0"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -32,156 +29,132 @@
         <Var name="param0.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value" NA="true"/>
         <Var name="param0.OneOf.Members.Validated" NA="true"/>
         <Var name="param0.OneOf.Members.0.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" value="number"/>
+        <Var name="param0.Value" value="0"/>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="array"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" value="0"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.Value" value="0"/>
-        <Var name="param0.OneOf.Members.2.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.2.Value" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.0.Value" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101"/>
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="param0,param0OneOf0Items,param0OneOf0ItemsMany,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" value="number"/>
+        <Var name="param0.Value" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="array"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" value="&gt; 1"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" value="null"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.Value" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.2.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.2.Value" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.0.Value" value="-1"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="100"/>
       </Input>
     </TestCase>
     <TestCase id="4">
-      <Has name="properties" value="param0,param0OneOf0Items,param0OneOf0ItemsValue,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" value="number"/>
+        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="array"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" value="1"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.Value" value="-1"/>
-        <Var name="param0.OneOf.Members.2.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.2.Value" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.0.Value" value="-1"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="&lt; 100"/>
       </Input>
     </TestCase>
-    <TestCase id="5">
-      <Has name="properties" value="param0,param0OneOf0Items,param0OneOf0ItemsMany,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value" NA="true"/>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="array"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" value="&gt; 1"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" value="null"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" value="No"/>
-        <Var name="param0.OneOf.Members.1.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.Value" value="-1"/>
-        <Var name="param0.OneOf.Members.2.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.2.Value" value="0"/>
+        <Var name="param0.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.0.Value" value="0"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101"/>
       </Input>
     </TestCase>
-    <TestCase id="6">
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" value="Not number" failure="true"/>
+        <Var name="param0.Value" NA="true"/>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="array"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" value="0"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.Value" value="-1"/>
-        <Var name="param0.OneOf.Members.2.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.2.Value" value="&lt; 0"/>
+        <Var name="param0.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.0.Value" value="0"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="param0,param0OneOf0Items,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" value="number"/>
+        <Var name="param0.Value" value="0"/>
         <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
-        <Var name="param0.OneOf.Members.0.Type" value="array"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" value="1"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" value="null"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.Value" value="-1"/>
-        <Var name="param0.OneOf.Members.2.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.2.Value" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.0.Value" value="-1"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
-      <Has name="properties" value="param0,param0OneOf0Items,param0OneOf0ItemsProperties,param0OneOf0ItemsValue,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.Type" value="number"/>
+        <Var name="param0.Value" value="0"/>
         <Var name="param0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
-        <Var name="param0.OneOf.Members.0.Type" value="array"/>
-        <Var name="param0.OneOf.Members.0.Items.Size" value="1"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Items.Contains.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.Value" value="0"/>
-        <Var name="param0.OneOf.Members.2.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.2.Value" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.0.Value" value="0"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="100"/>
       </Input>
     </TestCase>
   </Function>

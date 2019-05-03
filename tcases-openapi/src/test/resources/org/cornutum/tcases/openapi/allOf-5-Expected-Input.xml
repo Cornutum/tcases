@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<System name="AllOf">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_allOf">
+    <Input type="header">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="string" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Length">
+            <Value name="&gt; 0"/>
+            <Value name="0"/>
+          </Var>
+          <Var name="MatchesPattern">
+            <Has name="pattern" value="^[A-Z]*$"/>
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+        <VarSet name="AllOf" when="param0">
+          <VarSet name="Members">
+            <VarSet name="0">
+              <VarSet name="AllOf">
+                <VarSet name="Members">
+                  <VarSet name="0">
+                    <Var name="Type">
+                      <Value name="Not null" property="param0AllOf0AllOf0Value"/>
+                      <Value name="null" failure="true"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

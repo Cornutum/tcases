@@ -13,26 +13,30 @@
                         "in": "cookie",
 
                         "schema": {
-                            "type": "string",
+                            "pattern": ".",
                             "anyOf": [
+                                {
+                                    "nullable": true
+                                },
                                 {
                                     "allOf": [
                                         {
-                                            "minLength": 0
+                                            "oneOf": [
+                                                {
+                                                    "type": "integer"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "additionalProperties": false
+                                                }
+                                            ]
                                         },
                                         {
-                                            "maxLength": 128
-                                        },
-                                        {
-                                            "pattern": "^[A-Z]*$"
+                                            "maxProperties": 1
                                         }
                                     ]
-                                },
-                                {
-                                    "type": "number"
-                                },
-                                {
-                                    "type": "object"
                                 }
                             ]
                         }

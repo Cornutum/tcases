@@ -6,156 +6,222 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0OneOf0AllOf0Value,param0OneOf0AllOf1Value"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Property-Count" value="0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="No"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Property-Count" value="0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="No"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="11"/>
       </Input>
     </TestCase>
     <TestCase id="1">
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Property-Count" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Property-Count" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.MatchesPattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" NA="true"/>
+        <Var name="param0.OneOf.Members.1.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="param0,param0OneOf0AllOf0Properties,param0OneOf0AllOf0Tom,param0OneOf0AllOf0TomValue,param0OneOf0AllOf0Value,param0OneOf0AllOf1Jerry,param0OneOf0AllOf1JerryValue,param0OneOf0AllOf1Properties,param0OneOf0AllOf1Value"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" value="&lt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="&gt; 1"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="11"/>
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="param0,param0OneOf0AllOf0Properties,param0OneOf0AllOf0Tom,param0OneOf0AllOf0TomValue,param0OneOf0AllOf0Value,param0OneOf0AllOf1Jerry,param0OneOf0AllOf1JerryValue,param0OneOf0AllOf1Properties,param0OneOf0AllOf1Value"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" value="0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="0"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="0"/>
       </Input>
     </TestCase>
     <TestCase id="4">
-      <Has name="properties" value="param0,param0OneOf0AllOf0Properties,param0OneOf0AllOf0Value,param0OneOf0AllOf1Jerry,param0OneOf0AllOf1JerryValue,param0OneOf0AllOf1Properties,param0OneOf0AllOf1Value"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="No"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="0"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="10"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
-      <Has name="properties" value="param0,param0OneOf0AllOf0Properties,param0OneOf0AllOf0Tom,param0OneOf0AllOf0Value,param0OneOf0AllOf1Properties,param0OneOf0AllOf1Value"/>
+    <TestCase id="5">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="null" failure="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="No"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="0"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="&lt; 10"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
-      <Has name="properties" value="param0,param0OneOf0AllOf0Properties,param0OneOf0AllOf0Tom,param0OneOf0AllOf0TomValue,param0OneOf0AllOf0Value,param0OneOf0AllOf1Jerry,param0OneOf0AllOf1Properties,param0OneOf0AllOf1Value"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Type" value="null" failure="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AllOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.MatchesPattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="11"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="Not string" failure="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.MatchesPattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="11"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Value.MatchesPattern" value="No" failure="true">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="11"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="0"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="11"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Value.MatchesPattern" value="Yes">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
+        <Var name="param0.OneOf.Members.0.Type" value="string"/>
+        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
+        <Var name="param0.OneOf.Members.1.Type" value="string"/>
+        <Var name="param0.OneOf.Members.1.Value.Length" value="0"/>
       </Input>
     </TestCase>
   </Function>

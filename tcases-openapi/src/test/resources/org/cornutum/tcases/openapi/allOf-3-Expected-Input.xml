@@ -3,10 +3,10 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_allOf">
-    <Input type="cookie">
+    <Input type="header">
       <VarSet name="param0">
         <Var name="Defined">
-          <Has name="style" value="form"/>
+          <Has name="style" value="simple"/>
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
@@ -15,44 +15,105 @@
             <VarSet name="0">
               <Var name="Type">
                 <Value name="string" property="param0AllOf0Value"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not string" failure="true"/>
               </Var>
               <VarSet name="Value" when="param0AllOf0Value">
                 <Var name="Length">
-                  <Value name="1"/>
-                  <Value name="2" failure="true"/>
+                  <Value name="&gt; 0"/>
                   <Value name="0"/>
                 </Var>
               </VarSet>
-            </VarSet>
-            <VarSet name="1">
-              <VarSet name="OneOf">
+              <VarSet name="AnyOf">
                 <VarSet name="Members">
+                  <Var name="Validated">
+                    <Value name="1">
+                      <When>
+                        <Equals property="param0AllOf0AnyOfMemberValidated" count="1"/>
+                      </When>
+                    </Value>
+                    <Value name="0" failure="true">
+                      <When>
+                        <Not property="param0AllOf0AnyOfMemberValidated">
+                        </Not>
+                      </When>
+                    </Value>
+                    <Value name="&gt; 1" once="true">
+                      <When>
+                        <MoreThan property="param0AllOf0AnyOfMemberValidated" min="1"/>
+                      </When>
+                    </Value>
+                  </Var>
                   <VarSet name="0">
                     <Var name="Type">
-                      <Value name="array" property="param0AllOf1OneOf0Value"/>
-                      <Value name="null" once="true"/>
+                      <Value name="string" property="param0AllOf0AnyOf0Value"/>
                     </Var>
-                    <VarSet name="Items" when="param0AllOf1OneOf0Value">
-                      <Var name="Size">
-                        <Value name="2" property="param0AllOf1OneOf0Items, param0AllOf1OneOf0ItemsMany"/>
-                        <Value name="0"/>
-                        <Value name="&lt; 2" property="param0AllOf1OneOf0Items"/>
+                    <Var name="Value" when="param0AllOf0AnyOf0Value">
+                      <Value name="A" property="param0AllOf0AnyOfMemberValidated"/>
+                      <Value name="B" property="param0AllOf0AnyOfMemberValidated"/>
+                      <Value name="C" property="param0AllOf0AnyOfMemberValidated"/>
+                      <Value name="Other"/>
+                    </Var>
+                  </VarSet>
+                  <VarSet name="1">
+                    <Var name="Type">
+                      <Value name="string" property="param0AllOf0AnyOf1Value"/>
+                    </Var>
+                    <VarSet name="Value" when="param0AllOf0AnyOf1Value">
+                      <Var name="Length">
+                        <Value name="1"/>
+                        <Value name="2" property="param0AllOf0AnyOfMemberValidated"/>
+                        <Value name="&gt; 2" property="param0AllOf0AnyOfMemberValidated"/>
                       </Var>
-                      <VarSet name="Contains" when="param0AllOf1OneOf0Items">
-                        <Var name="Type">
-                          <Value name="string" property="param0AllOf1OneOf0ItemsValue"/>
-                          <Value name="null" failure="true"/>
-                        </Var>
-                        <VarSet name="Value" when="param0AllOf1OneOf0ItemsValue">
-                          <Var name="Length">
-                            <Value name="&gt; 0"/>
-                            <Value name="0"/>
-                          </Var>
-                        </VarSet>
-                      </VarSet>
-                      <Var name="Unique" when="param0AllOf1OneOf0ItemsMany">
-                        <Value name="Yes"/>
+                    </VarSet>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="OneOf">
+                <VarSet name="Members">
+                  <Var name="Validated">
+                    <Value name="1">
+                      <When>
+                        <Equals property="param0AllOf0OneOfMemberValidated" count="1"/>
+                      </When>
+                    </Value>
+                    <Value name="0" failure="true">
+                      <When>
+                        <Not property="param0AllOf0OneOfMemberValidated">
+                        </Not>
+                      </When>
+                    </Value>
+                    <Value name="&gt; 1" failure="true">
+                      <When>
+                        <MoreThan property="param0AllOf0OneOfMemberValidated" min="1"/>
+                      </When>
+                    </Value>
+                  </Var>
+                  <VarSet name="0">
+                    <Var name="Type">
+                      <Value name="string" property="param0AllOf0OneOf0Value"/>
+                    </Var>
+                    <VarSet name="Value" when="param0AllOf0OneOf0Value">
+                      <Var name="Length">
+                        <Value name="&gt; 0"/>
+                        <Value name="0"/>
+                      </Var>
+                      <Var name="MatchesPattern">
+                        <Has name="pattern" value="XXX"/>
+                        <Value name="Yes" property="param0AllOf0OneOfMemberValidated"/>
                         <Value name="No"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <VarSet name="1">
+                    <Var name="Type">
+                      <Value name="string" property="param0AllOf0OneOf1Value"/>
+                    </Var>
+                    <VarSet name="Value" when="param0AllOf0OneOf1Value">
+                      <Var name="Length">
+                        <Value name="1" property="param0AllOf0OneOfMemberValidated"/>
+                        <Value name="2"/>
+                        <Value name="0" property="param0AllOf0OneOfMemberValidated"/>
                       </Var>
                     </VarSet>
                   </VarSet>

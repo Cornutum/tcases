@@ -1,38 +1,31 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "AnyOf",
+        "title": "AllOf",
         "version": "0.0.0"
     },
     "paths": {
-        "/anyOf": {
+        "/allOf": {
             "post": {
                 "parameters": [
                     {
                         "name": "param0",
-                        "in": "cookie",
+                        "in": "header",
 
                         "schema": {
-                            "type": "string",
-                            "anyOf": [
+                            "type": "object",
+                            "allOf": [
                                 {
-                                    "allOf": [
-                                        {
-                                            "minLength": 0
-                                        },
-                                        {
-                                            "maxLength": 128
-                                        },
-                                        {
-                                            "pattern": "^[A-Z]*$"
+                                    "properties": {
+                                        "alpha": {
+                                            "type": "string"
                                         }
-                                    ]
+                                    }
                                 },
                                 {
-                                    "type": "number"
-                                },
-                                {
-                                    "type": "object"
+                                    "items": {
+                                        "type": "boolean"
+                                    }
                                 }
                             ]
                         }

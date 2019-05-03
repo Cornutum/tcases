@@ -1,74 +1,83 @@
 <System name="OneOfSchema">
     <Function name="Schema">
         <Input>
+            <VarSet name="Type">
+                <Var name="Definition">
+                    <Value name="Declared" property="type"/>
+                    <Value name="Implied" property="type"/>
+                    <Value name="Undefined"/>
+                </Var>
+                <Var name="Value" when="type">
+                    <Value name="number"/>
+                    <Value name="object"/>
+                    <Value name="string"/>
+                </Var>
+            </VarSet>
             <VarSet name="Members">
                 <Var name="Count">
-                    <Value name="1" once="true">
-                        <When>
-                            <Equals property="member" count="1"/>
-                        </When>
-                    </Value>
-                    <Value name="&gt; 1">
-                        <When>
-                            <Between property="member" min="2" max="3"/>
-                        </When>
-                    </Value>               
+                    <Value name="1"/>
+                    <Value name="Many"/>
                 </Var>
-                
                 <VarSet name="Type">
-                    <VarSet name="allOf">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
+                    <Var name="Definition">
+                        <Value name="Declared" property="memberType"/>
+                        <Value name="Implied" property="memberType"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="Valid-Types">
+                        <Value name="1">
+                            <When>
+                                <Not>
+                                    <AllOf property="composed">
+                                        <Not property="memberType"/>
+                                    </AllOf>                                    
+                                </Not>
+                            </When>
+                        </Value>
+                        <Value name="Many">
+                            <When>
+                                <AllOf property="composed">
+                                    <Not property="memberType"/>
+                                </AllOf>
+                            </When>                           
+                        </Value>
+                    </Var>
+                    <Var name="Equals-Parent" when="type, memberType">
+                        <Value name="Yes"/>
+                        <Value name="No" failure="true"/>
+                    </Var>
+                    <VarSet name="Composed-With">
+                        <Var name="Count">
+                            <Value name="0" when="memberType" whenNot="composed"/>
+                            <Value name="1">
+                                <When>
+                                    <Equals property="composed" count="1"/>
+                                </When>
+                            </Value>
+                            <Value name="&gt; 1">
+                                <When>
+                                    <Equals property="composed" count="2"/>
+                                </When>
+                            </Value>                            
                         </Var>
-                    </VarSet>
-                    <VarSet name="boolean">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
-                        </Var>
-                    </VarSet>
-                    <VarSet name="array">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
-                        </Var>
-                    </VarSet>
-                    <VarSet name="anyOf">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
-                        </Var>
-                    </VarSet>
-                    <VarSet name="number">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
-                        </Var>
-                    </VarSet>
-                    <VarSet name="object">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
-                        </Var>
-                    </VarSet>
-                    <VarSet name="integer">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
-                        </Var>
-                    </VarSet>
-                    <VarSet name="oneOf">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
-                        </Var>
-                    </VarSet>
-                    <VarSet name="string">
-                        <Var name="Included">
-                            <Value name="Yes" property="member" once="true"/>
-                            <Value name="No"/>
-                        </Var>
+                        <VarSet name="allOf">
+                            <Var name="Included">
+                                <Value name="Yes" property="composed"/>
+                                <Value name="No"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="anyOf">
+                            <Var name="Included">
+                                <Value name="Yes" property="composed"/>
+                                <Value name="No"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="oneOf">
+                            <Var name="Included">
+                                <Value name="Yes" property="composed"/>
+                                <Value name="No"/>
+                            </Var>
+                        </VarSet>
                     </VarSet>
                 </VarSet>
             </VarSet>

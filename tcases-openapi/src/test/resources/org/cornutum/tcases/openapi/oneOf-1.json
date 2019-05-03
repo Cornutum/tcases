@@ -15,79 +15,45 @@
                         "schema": {
                             "oneOf": [
                                 {
-                                    "type": "boolean"
-                                },
-                                {
                                     "anyOf": [
                                         {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
+                                            "type": "array"
                                         },
                                         {
-                                            "type": "object",
-                                            "properties": {
-                                                "jerry": {
-                                                    "type": "number"
-                                                }
-                                            }
+                                            "type": "object"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ],
+                                    "oneOf": [
+                                        {
+                                            "type": "array"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
                                         }
                                     ]
-                                },
-                                {
-                                    "type": "string",
-                                    "minLength": 8
                                 }                                    
                             ]
                         }
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/success"
-                    },
                     "default": {
-                        "$ref": "#/components/responses/failure"
+                        "$ref": "#/components/responses/success"
                     }
                 }
             }
         }
     },
     "components": {
-        "parameters": {
-            "id": {
-                "name": "id",
-                "in": "query",
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        },
-        "requestBodies": {
-            "standard": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "responses": {
             "success": {
                 "description": "Success",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "failure": {
-                "description": "Error",
                 "content": {
                     "application/json": {
                         "schema": {
