@@ -12,28 +12,18 @@
                     "content": {
                         "application/json": {
                             "schema": {
+                                "maximum": 100.0,
                                 "anyOf": [
                                     {
                                         "type": "integer",
                                         "enum": [ -1, 0, 1]
                                     },
                                     {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "number",
-                                            "format": "double",
-                                            "maximum": -1.234
-                                        },
-                                        "minItems": 1
+                                        "type": "number",
+                                        "minimum": 0.0
                                     },
                                     {
-                                        "type": "object",
-                                        "properties": {
-                                            "myString": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "required": [ "myString" ],
+                                        "type": "number",
                                         "nullable": true
                                     }
                                 ]
@@ -42,50 +32,17 @@
                     }
                 },
                 "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/success"
-                    },
                     "default": {
-                        "$ref": "#/components/responses/failure"
+                        "$ref": "#/components/responses/success"
                     }
                 }
             }
         }
     },
     "components": {
-        "parameters": {
-            "id": {
-                "name": "id",
-                "in": "query",
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        },
-        "requestBodies": {
-            "standard": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "responses": {
             "success": {
                 "description": "Success",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "failure": {
-                "description": "Error",
                 "content": {
                     "application/json": {
                         "schema": {

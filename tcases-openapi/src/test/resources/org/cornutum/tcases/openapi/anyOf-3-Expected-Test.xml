@@ -6,34 +6,34 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1OneOf0Properties,param0AnyOf1OneOf0Tom,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0AlphaValue,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="0">
-          <Has name="format" value="password"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="Yes">
-          <Has name="format" value="password"/>
-          <Has name="pattern" value="^[A-Za-z0-9]+"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="0"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="null"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Type" value="null"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" value="&lt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -41,215 +41,339 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" NA="true">
-          <Has name="format" value="password"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" NA="true">
-          <Has name="format" value="password"/>
-          <Has name="pattern" value="^[A-Za-z0-9]+"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1OneOf0Properties,param0AnyOf1OneOf0Tom,param0AnyOf1OneOf0TomValue,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value,param0AnyOf1OneOfMemberValidated,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="&gt; 1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="&gt; 0">
-          <Has name="format" value="password"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="Yes">
-          <Has name="format" value="password"/>
-          <Has name="pattern" value="^[A-Za-z0-9]+"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="&gt; 0"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Type" value="null"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="Not null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="param0,param0AnyOf1OneOf0Properties,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1JerryValue,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value,param0AnyOf1OneOfMemberValidated,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0AlphaValue,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="null"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" NA="true">
-          <Has name="format" value="password"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" NA="true">
-          <Has name="format" value="password"/>
-          <Has name="pattern" value="^[A-Za-z0-9]+"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="No"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Value" value="&lt; 0"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&lt;= 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" value="0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="4">
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1OneOf0Properties,param0AnyOf1OneOf0Tom,param0AnyOf1OneOf0TomValue,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value,param0AnyOf1OneOfMemberValidated,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="0">
-          <Has name="format" value="password"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="No">
-          <Has name="format" value="password"/>
-          <Has name="pattern" value="^[A-Za-z0-9]+"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" value="0"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Type" value="null"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="Not null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="5">
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1OneOf0Properties,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1JerryValue,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value,param0AnyOf1OneOfMemberValidated,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0AlphaValue,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="&gt; 0">
-          <Has name="format" value="password"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="No">
-          <Has name="format" value="password"/>
-          <Has name="pattern" value="^[A-Za-z0-9]+"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="No"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Value" value="0"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&lt;= 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="6">
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1OneOf0Properties,param0AnyOf1OneOf0Tom,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1JerryValue,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value,param0AnyOf1OneOfMemberValidated,param0AnyOfMemberValidated"/>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="0">
-          <Has name="format" value="password"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="No">
-          <Has name="format" value="password"/>
-          <Has name="pattern" value="^[A-Za-z0-9]+"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" value="null"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Type" value="number"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Value" value="&gt; 0"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="Not null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1OneOf0Properties,param0AnyOf1OneOf0Value,param0AnyOf1OneOf1Jerry,param0AnyOf1OneOf1Properties,param0AnyOf1OneOf1Value"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="0" failure="true"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="&gt; 0">
-          <Has name="format" value="password"/>
+        <Var name="param0.Type" value="Not object" failure="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="Not null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="No">
-          <Has name="format" value="password"/>
-          <Has name="pattern" value="^[A-Za-z0-9]+"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="0" failure="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="Not null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.Validated" value="0"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Defined" value="No"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.tom.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Type" value="null"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.jerry.Value" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&lt;= 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="Not null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="0" failure="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0AlphaValue,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" value="&lt; 0"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="Not null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
   </Function>

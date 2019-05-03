@@ -13,83 +13,101 @@
         <VarSet name="AllOf" when="param0">
           <VarSet name="Members">
             <VarSet name="0">
-              <VarSet name="AllOf">
-                <VarSet name="Members">
-                  <VarSet name="0">
-                    <Var name="Type">
-                      <Value name="object" property="param0AllOf0AllOf0Value"/>
+              <Var name="Type">
+                <Value name="object" property="param0AllOf0Value"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not object" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0AllOf0Value">
+                <Var name="Property-Count">
+                  <Value name="0" once="true">
+                    <When>
+                      <Not property="param0AllOf0Properties">
+                      </Not>
+                    </When>
+                  </Value>
+                  <Value name="&gt; 0" when="param0AllOf0Properties"/>
+                </Var>
+                <VarSet name="Properties">
+                  <VarSet name="alpha">
+                    <Var name="Defined">
+                      <Value name="Yes" property="param0AllOf0Alpha, param0AllOf0Properties"/>
+                      <Value name="No"/>
                     </Var>
-                    <VarSet name="Value" when="param0AllOf0AllOf0Value">
-                      <Var name="Property-Count">
-                        <Value name="0" once="true">
-                          <When>
-                            <Not property="param0AllOf0AllOf0Properties">
-                            </Not>
-                          </When>
-                        </Value>
-                        <Value name="&gt; 0" when="param0AllOf0AllOf0Properties"/>
+                    <Var name="Type" when="param0AllOf0Alpha">
+                      <Value name="string" property="param0AllOf0AlphaValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not string" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="param0AllOf0AlphaValue">
+                      <Var name="Length">
+                        <Value name="&gt; 0"/>
+                        <Value name="0"/>
                       </Var>
-                      <VarSet name="Properties">
-                        <VarSet name="tom">
-                          <Var name="Defined">
-                            <Value name="Yes" property="param0AllOf0AllOf0Properties, param0AllOf0AllOf0Tom"/>
-                            <Value name="No"/>
-                          </Var>
-                          <Var name="Type" when="param0AllOf0AllOf0Tom">
-                            <Value name="string" property="param0AllOf0AllOf0TomValue"/>
-                            <Value name="null" failure="true"/>
-                          </Var>
-                          <VarSet name="Value" when="param0AllOf0AllOf0TomValue">
-                            <Var name="Length">
-                              <Value name="&gt; 0"/>
-                              <Value name="0"/>
-                            </Var>
-                          </VarSet>
-                        </VarSet>
-                        <Var name="Additional">
-                          <Value name="Yes" property="param0AllOf0AllOf0Properties"/>
-                          <Value name="No"/>
-                        </Var>
-                      </VarSet>
                     </VarSet>
                   </VarSet>
-                  <VarSet name="1">
-                    <Var name="Type">
-                      <Value name="object" property="param0AllOf0AllOf1Value"/>
+                  <Var name="Additional">
+                    <Value name="Yes" property="param0AllOf0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+            <VarSet name="1">
+              <Var name="Type">
+                <Value name="object" property="param0AllOf1Value"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not object" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0AllOf1Value">
+                <VarSet name="Properties">
+                  <VarSet name="alpha">
+                    <Var name="Defined">
+                      <Value name="Yes" property="param0AllOf1Alpha, param0AllOf1Properties"/>
+                      <Value name="No" failure="true"/>
                     </Var>
-                    <VarSet name="Value" when="param0AllOf0AllOf1Value">
-                      <Var name="Property-Count">
-                        <Value name="0" once="true">
-                          <When>
-                            <Not property="param0AllOf0AllOf1Properties">
-                            </Not>
-                          </When>
-                        </Value>
-                        <Value name="&gt; 0" when="param0AllOf0AllOf1Properties"/>
-                      </Var>
-                      <VarSet name="Properties">
-                        <VarSet name="jerry">
-                          <Var name="Defined">
-                            <Value name="Yes" property="param0AllOf0AllOf1Jerry, param0AllOf0AllOf1Properties"/>
-                            <Value name="No"/>
-                          </Var>
-                          <Var name="Type" when="param0AllOf0AllOf1Jerry">
-                            <Value name="number" property="param0AllOf0AllOf1JerryValue"/>
-                            <Value name="null" failure="true"/>
-                          </Var>
-                          <Var name="Value" when="param0AllOf0AllOf1JerryValue">
-                            <Value name="&lt; 0"/>
-                            <Value name="0"/>
-                            <Value name="&gt; 0"/>
-                          </Var>
-                        </VarSet>
-                        <Var name="Additional">
-                          <Value name="Yes" property="param0AllOf0AllOf1Properties"/>
-                          <Value name="No"/>
-                        </Var>
-                      </VarSet>
-                    </VarSet>
+                    <Var name="Type" when="param0AllOf1Alpha">
+                      <Value name="Not null" property="param0AllOf1AlphaValue"/>
+                      <Value name="null" failure="true"/>
+                    </Var>
                   </VarSet>
+                  <Var name="Additional">
+                    <Value name="Yes" property="param0AllOf1Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+            <VarSet name="2">
+              <Var name="Type">
+                <Value name="object" property="param0AllOf2Value"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not object" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0AllOf2Value">
+                <Var name="Property-Count">
+                  <Value name="0" once="true">
+                    <When>
+                      <Not property="param0AllOf2Properties">
+                      </Not>
+                    </When>
+                  </Value>
+                  <Value name="&lt;= 1">
+                    <When>
+                      <NotMoreThan property="param0AllOf2Properties" max="1"/>
+                    </When>
+                  </Value>
+                  <Value name="&gt; 1" failure="true">
+                    <When>
+                      <MoreThan property="param0AllOf2Properties" min="0"/>
+                    </When>
+                  </Value>
+                </Var>
+                <VarSet name="Properties">
+                  <Var name="Additional">
+                    <Value name="Yes" property="param0AllOf2Properties"/>
+                    <Value name="No"/>
+                  </Var>
                 </VarSet>
               </VarSet>
             </VarSet>

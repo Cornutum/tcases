@@ -7,81 +7,56 @@
     "paths": {
         "/allOf": {
             "post": {
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "allOf": [
-                                    {
-                                        "type": "integer",
-                                        "enum": [ -1, 0, 1]
-                                    },
-                                    {
-                                        "type": "number",
-                                        "format": "double",
-                                        "maximum": -1.234
-                                    },
-                                    {
-                                        "type": "object",
-                                        "properties": {
-                                            "myString": {
-                                                "type": "string"
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "header",
+
+                        "schema": {
+                            "minProperties": 3,
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "properties": {
+                                                "bravo": {
+                                                    "type": "boolean"
+                                                }
                                             }
                                         },
-                                        "required": [ "myString" ],
-                                        "nullable": true
+                                        {
+                                            "properties": {
+                                                "charlie": {
+                                                    "type": "array"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "required": ["alpha"]
+                                },
+                                {
+                                    "additionalProperties": {
+                                        "type": "integer"
                                     }
-                                ]
-                            }
+                                }
+                            ]
                         }
                     }
-                },
+                ],
                 "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/success"
-                    },
                     "default": {
-                        "$ref": "#/components/responses/failure"
+                        "$ref": "#/components/responses/success"
                     }
                 }
             }
         }
     },
     "components": {
-        "parameters": {
-            "id": {
-                "name": "id",
-                "in": "query",
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        },
-        "requestBodies": {
-            "standard": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "responses": {
             "success": {
                 "description": "Success",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "failure": {
-                "description": "Error",
                 "content": {
                     "application/json": {
                         "schema": {

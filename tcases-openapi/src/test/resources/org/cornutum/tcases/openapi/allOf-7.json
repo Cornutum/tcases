@@ -1,38 +1,39 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "AnyOf",
+        "title": "AllOf",
         "version": "0.0.0"
     },
     "paths": {
-        "/anyOf": {
+        "/allOf": {
             "post": {
                 "parameters": [
                     {
                         "name": "param0",
-                        "in": "cookie",
+                        "in": "header",
 
                         "schema": {
-                            "type": "string",
-                            "anyOf": [
+                            "type": "object",
+                            "allOf": [
                                 {
-                                    "allOf": [
+                                    "oneOf": [
                                         {
-                                            "minLength": 0
+                                            "minLength": 10
                                         },
                                         {
-                                            "maxLength": 128
-                                        },
-                                        {
-                                            "pattern": "^[A-Z]*$"
+                                            "maximum": 10
                                         }
                                     ]
                                 },
                                 {
-                                    "type": "number"
-                                },
-                                {
-                                    "type": "object"
+                                    "anyOf": [
+                                        {
+                                            "pattern": "."
+                                        },
+                                        {
+                                            "type": "boolean"
+                                        }
+                                    ]
                                 }
                             ]
                         }

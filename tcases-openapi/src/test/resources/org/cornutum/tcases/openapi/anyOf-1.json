@@ -14,18 +14,25 @@
                             "schema": {
                                 "anyOf": [
                                     {
-                                        "type": "boolean"
-                                    },
-                                    {
-                                        "type": "number"
-                                    },
-                                    {
+                                        "multipleOf": 2.0,
+                                        
                                         "anyOf": [
                                             {
-                                                "type": "integer"
+                                                "minimum": 0.0
                                             },
                                             {
-                                                "type": "string"
+                                                "maximum": 100.0
+                                            },
+                                            {
+                                                "minItems": 1
+                                            }
+                                        ],
+                                        "oneOf": [
+                                            {
+                                                "exclusiveMaximum": false
+                                            },
+                                            {
+                                                "maximum": 0.0
                                             }
                                         ]
                                     }
@@ -35,50 +42,17 @@
                     }
                 },
                 "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/success"
-                    },
                     "default": {
-                        "$ref": "#/components/responses/failure"
+                        "$ref": "#/components/responses/success"
                     }
                 }
             }
         }
     },
     "components": {
-        "parameters": {
-            "id": {
-                "name": "id",
-                "in": "query",
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        },
-        "requestBodies": {
-            "standard": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "responses": {
             "success": {
                 "description": "Success",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "failure": {
-                "description": "Error",
                 "content": {
                     "application/json": {
                         "schema": {

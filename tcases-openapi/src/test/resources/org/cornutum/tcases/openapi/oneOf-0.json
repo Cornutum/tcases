@@ -10,79 +10,33 @@
                 "parameters": [
                     {
                         "name": "param0",
-                        "in": "cookie",
+                        "in": "query",
 
                         "schema": {
+                            "pattern": ".",
                             "oneOf": [
                                 {
-                                    "allOf": [
-                                        {
-                                            "type": "object",
-                                            "properties": {
-                                                "tom": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "type": "object",
-                                            "properties": {
-                                                "jerry": {
-                                                    "type": "number"
-                                                }
-                                            }
-                                        }
-                                    ]
+                                    "minLength": 1
+                                },
+                                {
+                                    "maxLength": 10
                                 }
                             ]
                         }
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/success"
-                    },
                     "default": {
-                        "$ref": "#/components/responses/failure"
+                        "$ref": "#/components/responses/success"
                     }
                 }
             }
         }
     },
     "components": {
-        "parameters": {
-            "id": {
-                "name": "id",
-                "in": "query",
-                "schema": {
-                    "type": "integer"
-                }
-            }
-        },
-        "requestBodies": {
-            "standard": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "responses": {
             "success": {
                 "description": "Success",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "failure": {
-                "description": "Error",
                 "content": {
                     "application/json": {
                         "schema": {
