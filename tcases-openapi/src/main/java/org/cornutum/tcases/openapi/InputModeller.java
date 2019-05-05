@@ -684,42 +684,70 @@ public abstract class InputModeller
    */
   private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, Set<String> requiredTypes)
     {
-    return
-      Stream.concat(
-        typeSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema),
-        composedSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema, requiredTypes));
-    }
+    ComposedSchema composedSchema =
+      instanceSchema instanceof ComposedSchema
+      ? (ComposedSchema) instanceSchema
+      : null;
 
+    String instanceType =
+      instanceSchema == null
+      ? null
+      : instanceSchema.getType();
+
+    return
+      // Missing schema (equivalent to an empty schema)?
+      instanceSchema == null?
+      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
+
+      // Unknown schema type?
+      !isOpenApiType( instanceType)?
+      unknownSchemaVars( instanceType) :
+
+      // Composed schema?
+      composedSchema != null?
+      composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema, requiredTypes) :
+
+      // Basic empty schema?
+      instanceType == null?
+      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
+
+      // Basic type schema
+      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, instanceSchema);
+    }
+  
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    String type = instanceSchema == null? null : instanceSchema.getType();
-
-    return
-      "string".equals( type)?
+    Stream<IVarDef> typeVars =
+      "object".equals( instanceType)?
+      instanceObjectVars( api, instanceVarTag, instanceOptional, instanceSchema) :
+      
+      "string".equals( instanceType)?
       instanceStringVars( api, instanceVarTag, instanceOptional, instanceSchema) :
       
-      "integer".equals( type)?
+      "integer".equals( instanceType)?
       instanceIntegerVars( api, instanceVarTag, instanceOptional, instanceSchema) :
       
-      "boolean".equals( type)?
+      "boolean".equals( instanceType)?
       instanceBooleanVars( api, instanceVarTag, instanceOptional, instanceSchema) :
-      
-      "number".equals( type)?
-      instanceNumberVars( api, instanceVarTag, instanceOptional, instanceSchema) :
 
-      "array".equals( type)?
+      "array".equals( instanceType)?
       instanceArrayVars( api, instanceVarTag, instanceOptional, instanceSchema) :
       
-      "object".equals( type)?
-      instanceObjectVars( api, instanceVarTag, instanceOptional, instanceSchema) :
-
-      type != null?
-      unknownSchemaVars( type) :
+      "number".equals( instanceType)?
+      instanceNumberVars( api, instanceVarTag, instanceOptional, instanceSchema) :
       
       Stream.empty();
+    
+    return
+      Stream.concat(
+        typeVars,
+
+        notVar( api, instanceVarTag, instanceSchema.getNot())
+        .map( notVar -> Stream.of( notVar))
+        .orElse( Stream.empty()));
     }
 
   /**
@@ -936,56 +964,38 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variables} defined by the given composed schema.
    */
-  private Stream<IVarDef> composedSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, Set<String> requiredTypes)
+  private Stream<IVarDef> composedSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, ComposedSchema composedSchema, Set<String> requiredTypes)
     {
-    ComposedSchema composedSchema =
-      instanceSchema instanceof ComposedSchema
-      ? (ComposedSchema) instanceSchema
-      : null;
+    // Verify composed schema types are consistent
+    Set<String> composedTypes = getValidTypes( api, composedSchema);
 
-    String instanceType =
-      instanceSchema == null
-      ? null
-      : instanceSchema.getType();
+    // Any composed schema type may be valid, unless specific parent schema types are required
+    Set<String> validTypes = Optional.ofNullable( requiredTypes).orElse( composedTypes);
 
-    ListBuilder<IVarDef> composedSchemaVars = ListBuilder.to();
-    if( composedSchema != null)
+    Stream.Builder<IVarDef> composedSchemaVars = Stream.builder();
+    if( !composedSchema.getAllOf().isEmpty())
       {
-      // Verify composed schema types are consistent
-      Set<String> composedTypes = getValidTypes( api, composedSchema);
-
-      // Any composed schema type may be valid, unless specific parent schema types are required
-      Set<String> validTypes = Optional.ofNullable( requiredTypes).orElse( composedTypes);
-
-      if( !composedSchema.getAllOf().isEmpty())
-        {
-        composedSchemaVars.add( allOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getAllOf()));
-        }
-      if( !composedSchema.getAnyOf().isEmpty())
-        {
-        composedSchemaVars.add( anyOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getAnyOf()));
-        }
-      if( !composedSchema.getOneOf().isEmpty())
-        {
-        composedSchemaVars.add( oneOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getOneOf()));
-        }
+      composedSchemaVars.add( allOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getAllOf()));
       }
-    if( instanceSchema != null)
+    if( !composedSchema.getAnyOf().isEmpty())
       {
-      composedSchemaVars.add( notVar( api, instanceVarTag, instanceSchema.getNot()));
+      composedSchemaVars.add( anyOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getAnyOf()));
       }
+    if( !composedSchema.getOneOf().isEmpty())
+      {
+      composedSchemaVars.add( oneOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getOneOf()));
+      }
+
+    notVar( api, instanceVarTag, composedSchema.getNot())
+      .ifPresent( notVar -> composedSchemaVars.add( notVar));
 
     return
-      // Any composed schemas to add?
-      composedSchemaVars.size() > 0?
-      composedSchemaVars.build().stream() :
+      Stream.concat(
+        composedSchema.getType() == null
+        ? Stream.empty()
+        : typeSchemaVars( api, composedSchema.getType(), instanceVarTag, instanceOptional, composedSchema),
 
-      // No, if no schema type defined, add a perfunctory "must be defined" input model for this instance
-      instanceType == null?
-      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
-
-      // Otherwise, nothing more to add.
-      Stream.empty();      
+        composedSchemaVars.build());
     }
 
   /**
@@ -1179,7 +1189,7 @@ public abstract class InputModeller
     {
     if( notSchema != null)
       {
-      notifyError( "\"not\" schemas are not yet supported", "Ignoring the \"not\" schema");
+      notifyError( "The \"not\" keyword is not yet supported", "Ignoring the \"not\" schema");
       }
 
     return Optional.empty();
@@ -2195,6 +2205,14 @@ public abstract class InputModeller
     }
 
   /**
+   * Returns true if the given schema type is supported by OpenAPI.
+   */
+  private boolean isOpenApiType( String type)
+    {
+    return type == null || SCHEMA_TYPES.contains( type);
+    }
+
+  /**
    * If necessary, updates the type of the given schema based its properties.
    * If the type defined for this schema is valid and consistent, returns the updated schema.
    * Otherwise, throws an exception.
@@ -2703,4 +2721,10 @@ public abstract class InputModeller
   private static final String COMPONENTS_SCHEMAS_REF = "#/components/schemas/";
   private static final String COMPONENTS_HEADERS_REF = "#/components/headers/";
   private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
+
+  private static final Set<String> SCHEMA_TYPES =
+    Arrays.asList( "array", "boolean", "integer", "number", "object", "string")
+    .stream().collect( toSet());
+
+
 }
