@@ -13,17 +13,6 @@
         <VarSet name="AllOf" when="param0">
           <VarSet name="Members">
             <VarSet name="0">
-              <Var name="Type">
-                <Value name="string" property="param0AllOf0Value"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not string" failure="true"/>
-              </Var>
-              <VarSet name="Value" when="param0AllOf0Value">
-                <Var name="Length">
-                  <Value name="&gt; 0"/>
-                  <Value name="0"/>
-                </Var>
-              </VarSet>
               <VarSet name="AnyOf">
                 <VarSet name="Members">
                   <Var name="Validated">

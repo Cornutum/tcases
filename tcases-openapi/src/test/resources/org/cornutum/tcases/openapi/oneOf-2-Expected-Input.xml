@@ -10,16 +10,6 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <Var name="Type" when="param0">
-          <Value name="number" property="param0Value"/>
-          <Value name="null" failure="true"/>
-          <Value name="Not number" failure="true"/>
-        </Var>
-        <Var name="Value" when="param0Value">
-          <Value name="&lt; 0"/>
-          <Value name="0"/>
-          <Value name="&gt; 0"/>
-        </Var>
         <VarSet name="OneOf" when="param0">
           <VarSet name="Members">
             <Var name="Validated">

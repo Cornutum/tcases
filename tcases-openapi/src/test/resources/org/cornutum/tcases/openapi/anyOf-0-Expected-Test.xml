@@ -6,15 +6,13 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value,param0Value"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
@@ -33,8 +31,6 @@
         <Var name="param0.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" NA="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" NA="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" NA="true"/>
@@ -47,15 +43,13 @@
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value,param0Value"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
@@ -68,15 +62,13 @@
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value,param0Value"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
@@ -89,57 +81,13 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
+      <Has name="properties" value="param0,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Value.Length" value="128"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.2.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.2.Value.Length" value="0"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.2.Value.MatchesPattern" value="Yes">
-          <Has name="pattern" value="^[A-Z]*$"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="5" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Type" value="Not string" failure="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Value.Length" value="128"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.2.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.2.Value.Length" value="0"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.2.Value.MatchesPattern" value="Yes">
-          <Has name="pattern" value="^[A-Z]*$"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="6" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="null" failure="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" NA="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
@@ -151,16 +99,14 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value,param0Value"/>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="Not string" failure="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" NA="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
@@ -172,16 +118,14 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf2Value,param0Value"/>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="null" failure="true"/>
@@ -193,16 +137,14 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf2Value,param0Value"/>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="Not string" failure="true"/>
@@ -214,16 +156,14 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value,param0Value"/>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
@@ -235,16 +175,14 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0Value"/>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
@@ -256,16 +194,14 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0Value"/>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>
@@ -277,16 +213,14 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
-      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value,param0Value"/>
+    <TestCase id="11" failure="true">
+      <Has name="properties" value="param0,param0AnyOf0AllOf0Value,param0AnyOf0AllOf1Value,param0AnyOf0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.Type" value="string"/>

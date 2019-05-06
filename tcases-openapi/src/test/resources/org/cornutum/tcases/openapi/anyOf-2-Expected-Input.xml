@@ -16,16 +16,6 @@
           <Value name="Other" failure="true"/>
         </Var>
         <VarSet name="application-json" when="application-json">
-          <Var name="Type">
-            <Value name="number" property="application-jsonValue"/>
-            <Value name="null" failure="true"/>
-            <Value name="Not number" failure="true"/>
-          </Var>
-          <Var name="Value" when="application-jsonValue">
-            <Value name="100.0"/>
-            <Value name="100.1" failure="true"/>
-            <Value name="&lt; 100.0"/>
-          </Var>
           <VarSet name="AnyOf">
             <VarSet name="Members">
               <Var name="Validated">
@@ -53,19 +43,17 @@
                 <Var name="Value" when="application-jsonAnyOf0Value">
                   <Value name="-0.1"/>
                   <Value name="0.0" property="application-jsonAnyOfMemberValidated"/>
-                  <Value name="&gt; 0.0" property="application-jsonAnyOfMemberValidated"/>
+                  <Value name="100.0" property="application-jsonAnyOfMemberValidated"/>
                 </Var>
               </VarSet>
               <VarSet name="1">
                 <Var name="Type">
-                  <Value name="number" property="application-jsonAnyOf1Value, application-jsonAnyOfMemberValidated"/>
-                  <Value name="null" once="true" property="application-jsonAnyOfMemberValidated"/>
-                  <Value name="Not number"/>
+                  <Value name="number" property="application-jsonAnyOf1Value"/>
                 </Var>
                 <Var name="Value" when="application-jsonAnyOf1Value">
-                  <Value name="&lt; 0"/>
-                  <Value name="0"/>
-                  <Value name="&gt; 0"/>
+                  <Value name="100.0" property="application-jsonAnyOfMemberValidated"/>
+                  <Value name="100.1"/>
+                  <Value name="&lt; 100.0" property="application-jsonAnyOfMemberValidated"/>
                 </Var>
               </VarSet>
             </VarSet>

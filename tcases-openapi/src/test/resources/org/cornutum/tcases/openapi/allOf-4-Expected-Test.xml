@@ -6,15 +6,13 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value,param0Value"/>
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="0"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
@@ -30,8 +28,6 @@
         <Var name="param0.Defined" value="No">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
         <Var name="param0.AllOf.Members.0.Type" NA="true"/>
         <Var name="param0.AllOf.Members.0.Value" NA="true"/>
         <Var name="param0.AllOf.Members.1.Type" NA="true"/>
@@ -41,15 +37,13 @@
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value,param0Value"/>
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="&gt; 0"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
@@ -59,15 +53,13 @@
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value,param0Value"/>
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="0"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
@@ -77,51 +69,13 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value"/>
+      <Has name="properties" value="param0,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
-        <Var name="param0.AllOf.Members.0.Type" value="number"/>
-        <Var name="param0.AllOf.Members.0.Value" value="&gt; 0"/>
-        <Var name="param0.AllOf.Members.1.Type" value="number"/>
-        <Var name="param0.AllOf.Members.1.Value" value="&lt; 0"/>
-        <Var name="param0.AllOf.Members.2.Type" value="number"/>
-        <Var name="param0.AllOf.Members.2.Value" value="&lt; 0"/>
-      </Input>
-    </TestCase>
-    <TestCase id="5" failure="true">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="header">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
-        <Var name="param0.AllOf.Members.0.Type" value="number"/>
-        <Var name="param0.AllOf.Members.0.Value" value="&gt; 0"/>
-        <Var name="param0.AllOf.Members.1.Type" value="number"/>
-        <Var name="param0.AllOf.Members.1.Value" value="&lt; 0"/>
-        <Var name="param0.AllOf.Members.2.Type" value="number"/>
-        <Var name="param0.AllOf.Members.2.Value" value="&lt; 0"/>
-      </Input>
-    </TestCase>
-    <TestCase id="6" failure="true">
-      <Has name="properties" value="param0,param0AllOf1Value,param0AllOf2Value,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="header">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="null" failure="true"/>
         <Var name="param0.AllOf.Members.0.Value" NA="true"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
@@ -130,16 +84,14 @@
         <Var name="param0.AllOf.Members.2.Value" value="&lt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
-      <Has name="properties" value="param0,param0AllOf1Value,param0AllOf2Value,param0Value"/>
+    <TestCase id="5" failure="true">
+      <Has name="properties" value="param0,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="Not number" failure="true"/>
         <Var name="param0.AllOf.Members.0.Value" NA="true"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
@@ -148,16 +100,14 @@
         <Var name="param0.AllOf.Members.2.Value" value="&lt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value,param0Value"/>
+    <TestCase id="6" failure="true">
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="-1" failure="true"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
@@ -166,16 +116,14 @@
         <Var name="param0.AllOf.Members.2.Value" value="&lt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf2Value,param0Value"/>
+    <TestCase id="7" failure="true">
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="&gt; 0"/>
         <Var name="param0.AllOf.Members.1.Type" value="null" failure="true"/>
@@ -184,16 +132,14 @@
         <Var name="param0.AllOf.Members.2.Value" value="&lt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf2Value,param0Value"/>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="&gt; 0"/>
         <Var name="param0.AllOf.Members.1.Type" value="Not number" failure="true"/>
@@ -202,16 +148,14 @@
         <Var name="param0.AllOf.Members.2.Value" value="&lt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0Value"/>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="&gt; 0"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
@@ -220,16 +164,14 @@
         <Var name="param0.AllOf.Members.2.Value" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0Value"/>
+    <TestCase id="10" failure="true">
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="&gt; 0"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
@@ -238,16 +180,14 @@
         <Var name="param0.AllOf.Members.2.Value" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
-      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value,param0Value"/>
+    <TestCase id="11" failure="true">
+      <Has name="properties" value="param0,param0AllOf0Value,param0AllOf1Value,param0AllOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
         <Var name="param0.AllOf.Members.0.Type" value="number"/>
         <Var name="param0.AllOf.Members.0.Value" value="&gt; 0"/>
         <Var name="param0.AllOf.Members.1.Type" value="number"/>
