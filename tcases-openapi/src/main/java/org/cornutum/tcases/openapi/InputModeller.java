@@ -42,6 +42,7 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -64,7 +65,8 @@ import static java.util.stream.Collectors.toSet;
 /**
  * Converts between OpenAPI models and Tcases input models.
  * <P/>
- * OpenAPI models must conform to <U>OAS version 3</U>. See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
+ * OpenAPI models must conform to <U>OAS version 3</U>.
+ * See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
  */
 public abstract class InputModeller
   {
@@ -676,28 +678,36 @@ public abstract class InputModeller
    */
   private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    return instanceSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema, null);
+    return instanceSchemaVars( api, instanceVarTag, instanceOptional, instanceSchema, null, null);
     }
 
   /**
    * Returns the {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, Set<String> requiredTypes)
+  private Stream<IVarDef> instanceSchemaVars(
+    OpenAPI api,
+    String instanceVarTag,
+    boolean instanceOptional,
+    Schema<?> instanceSchema,
+    Schema<?> parentSchema,
+    Set<String> requiredTypes)
     {
     ComposedSchema composedSchema =
       instanceSchema instanceof ComposedSchema
       ? (ComposedSchema) instanceSchema
       : null;
 
+    Schema<?> combinedSchema = combineSchemas( parentSchema, instanceSchema);
+    
     String instanceType =
-      instanceSchema == null
+      combinedSchema == null
       ? null
-      : instanceSchema.getType();
+      : combinedSchema.getType();
 
     return
       // Missing schema (equivalent to an empty schema)?
-      instanceSchema == null?
-      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
+      combinedSchema == null?
+      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, combinedSchema)) :
 
       // Unknown schema type?
       !isOpenApiType( instanceType)?
@@ -705,14 +715,14 @@ public abstract class InputModeller
 
       // Composed schema?
       composedSchema != null?
-      composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema, requiredTypes) :
+      composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema, combinedSchema, requiredTypes) :
 
       // Basic empty schema?
       instanceType == null?
-      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
+      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, combinedSchema)) :
 
       // Basic type schema
-      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, instanceSchema);
+      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, combinedSchema);
     }
   
   /**
@@ -964,7 +974,13 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variables} defined by the given composed schema.
    */
-  private Stream<IVarDef> composedSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, ComposedSchema composedSchema, Set<String> requiredTypes)
+  private Stream<IVarDef> composedSchemaVars(
+    OpenAPI api,
+    String instanceVarTag,
+    boolean instanceOptional,
+    ComposedSchema composedSchema,
+    Schema<?> parentSchema,
+    Set<String> requiredTypes)
     {
     // Verify composed schema types are consistent
     Set<String> composedTypes = getValidTypes( api, composedSchema);
@@ -975,34 +991,28 @@ public abstract class InputModeller
     Stream.Builder<IVarDef> composedSchemaVars = Stream.builder();
     if( !composedSchema.getAllOf().isEmpty())
       {
-      composedSchemaVars.add( allOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getAllOf()));
+      composedSchemaVars.add( allOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, composedSchema.getAllOf()));
       }
     if( !composedSchema.getAnyOf().isEmpty())
       {
-      composedSchemaVars.add( anyOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getAnyOf()));
+      composedSchemaVars.add( anyOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, composedSchema.getAnyOf()));
       }
     if( !composedSchema.getOneOf().isEmpty())
       {
-      composedSchemaVars.add( oneOfVar( api, instanceVarTag, instanceOptional, validTypes, composedSchema.getOneOf()));
+      composedSchemaVars.add( oneOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, composedSchema.getOneOf()));
       }
 
     notVar( api, instanceVarTag, composedSchema.getNot())
       .ifPresent( notVar -> composedSchemaVars.add( notVar));
 
-    return
-      Stream.concat(
-        composedSchema.getType() == null
-        ? Stream.empty()
-        : typeSchemaVars( api, composedSchema.getType(), instanceVarTag, instanceOptional, composedSchema),
-
-        composedSchemaVars.build());
+    return composedSchemaVars.build();
     }
 
   /**
    * Returns the {@link IVarDef input variable} defined by the given "allOf" schema.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef allOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Set<String> validTypes, List<Schema> memberSchemas)
+  private IVarDef allOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Set<String> validTypes, Schema<?> parentSchema, List<Schema> memberSchemas)
     {
     String containerType = "AllOf";
     String containerVarTag = instanceVarTag + containerType;
@@ -1023,7 +1033,7 @@ public abstract class InputModeller
                 String memberVarTag = containerVarTag + i;
                 return
                   VarSetBuilder.with( String.valueOf(i))
-                  .members( memberSchemaVars( api, containerVarTag, memberVarTag, applicableMembers.get(i), true, validTypes))
+                  .members( memberSchemaVars( api, containerVarTag, memberVarTag, applicableMembers.get(i), parentSchema, true, validTypes))
                   .build();
                 });
             }))
@@ -1035,25 +1045,32 @@ public abstract class InputModeller
    * Returns the {@link IVarDef input variable} defined by the given "anyOf" schema.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef anyOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Set<String> validTypes, List<Schema> memberSchemas)
+  private IVarDef anyOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Set<String> validTypes, Schema<?> parentSchema, List<Schema> memberSchemas)
     {
-    return oneOfVar( api, instanceVarTag, instanceOptional, validTypes, "anyOf", memberSchemas);
+    return oneOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, "anyOf", memberSchemas);
     } 
 
   /**
    * Returns the {@link IVarDef input variable} defined by the given "oneOf" schema.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Set<String> validTypes, List<Schema> memberSchemas)
+  private IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Set<String> validTypes, Schema<?> parentSchema, List<Schema> memberSchemas)
     {
-    return oneOfVar( api, instanceVarTag, instanceOptional, validTypes, "oneOf", memberSchemas);
+    return oneOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, "oneOf", memberSchemas);
     } 
 
   /**
    * Returns the {@link IVarDef input variable} defined by the given "oneOf" or "anyOf" schema.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef oneOfVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Set<String> validTypes, String containerType, List<Schema> memberSchemas)
+  private IVarDef oneOfVar(
+    OpenAPI api,
+    String instanceVarTag,
+    boolean instanceOptional,
+    Set<String> validTypes,
+    Schema<?> parentSchema,
+    String containerType,
+    List<Schema> memberSchemas)
     {
     String containerVarName = StringUtils.capitalize( containerType);
     String containerVarTag = instanceVarTag + containerVarName;
@@ -1078,7 +1095,7 @@ public abstract class InputModeller
                 String memberVarTag = containerVarTag + i;
                 return
                   VarSetBuilder.with( String.valueOf(i))
-                  .members( memberSchemaVars( api, containerVarTag, memberVarTag, applicableMembers.get(i), validationRequired, validTypes))
+                  .members( memberSchemaVars( api, containerVarTag, memberVarTag, applicableMembers.get(i), parentSchema, validationRequired, validTypes))
                   .build();
                 });
             }))
@@ -1118,9 +1135,16 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variables} defined by the given member schema.
    */
-  private Stream<IVarDef> memberSchemaVars( OpenAPI api, String containerVarTag, String memberVarTag, Schema<?> memberSchema, boolean validationRequired, Set<String> validTypes)
+  private Stream<IVarDef> memberSchemaVars(
+    OpenAPI api,
+    String containerVarTag,
+    String memberVarTag,
+    Schema<?> memberSchema,
+    Schema<?> parentSchema,
+    boolean validationRequired,
+    Set<String> validTypes)
     {
-    List<IVarDef> memberSchemaVars = instanceSchemaVars( api, memberVarTag, false, memberSchema, validTypes).collect( toList());
+    List<IVarDef> memberSchemaVars = instanceSchemaVars( api, memberVarTag, false, memberSchema, parentSchema, validTypes).collect( toList());
     if( !validationRequired)
       {
       // To provide for a single validation failure, find all descendant variables that define a failure value...
@@ -2251,6 +2275,22 @@ public abstract class InputModeller
     }
 
   /**
+   * Returns the given type if applying any of the given accessors to the given schema produces a non-null value.
+   * Otherwise, returns null.
+   */
+  @SafeVarargs
+  private static String impliedType( String type, Schema<?> schema, Function<Schema<?>,Object>... accessors)
+    {
+    return
+      Stream.of( accessors)
+      .map( accessor -> accessor.apply( schema))
+      .filter( Objects::nonNull)
+      .findFirst()
+      .map( value -> type)
+      .orElse( null);
+    }
+
+  /**
    * Returns the instance types that can be validated by the given schema. Returns null if any type can be validated.
    */
   @SuppressWarnings("unchecked")
@@ -2425,6 +2465,465 @@ public abstract class InputModeller
     }
 
   /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  private Schema<?> combineSchemas( Schema<?> base, Schema<?> additional)
+    {
+    Schema<?> combined;
+
+    if( base == null)
+      {
+      combined = additional;
+      }
+    else if( additional == null)
+      {
+      combined = base;
+      }
+    else
+      {
+      // A null type indicates an empty schema, which can be combined with any type.
+      String baseType = Optional.ofNullable( base.getType()).orElse( additional.getType());
+      String additionalType = Optional.ofNullable( additional.getType()).orElse( base.getType());
+
+      if( !Objects.equals( baseType, additionalType))
+        {
+        throw
+          new IllegalStateException(
+            String.format(
+              "Can't combine schema of type=% with base schema of type=%",
+              additionalType,
+              baseType));
+        }
+
+      combined = 
+        "object".equals( baseType)?
+        combineObjectSchemas( base, additional) :
+      
+        "string".equals( baseType)?
+        combineStringSchemas( base, additional) :
+      
+        "integer".equals( baseType)?
+        combineIntegerSchemas( base, additional) :
+      
+        "boolean".equals( baseType)?
+        combineBooleanSchemas( base, additional) :
+
+        "array".equals( baseType)?
+        combineArraySchemas( base, additional) :
+      
+        "number".equals( baseType)?
+        combineNumberSchemas( base, additional) :
+
+        combineGenericSchemas( base, additional);
+      }
+
+    return combined;
+    }
+    
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+  private Schema<?> combineObjectSchemas( Schema<?> base, Schema<?> additional)
+    {
+    Schema combined = combineGenericSchemas( base, additional);
+
+    // Combine additionalProperties
+    Schema<?> baseExtraSchema =
+      Optional.ofNullable( base.getAdditionalProperties())
+      .map( Object::getClass)
+      .filter( type -> !type.equals( Boolean.class))
+      .map( type -> (Schema<?>) base.getAdditionalProperties())
+      .orElse( null);
+
+    Schema<?> additionalExtraSchema =
+      Optional.ofNullable( additional.getAdditionalProperties())
+      .map( Object::getClass)
+      .filter( type -> !type.equals( Boolean.class))
+      .map( type -> (Schema<?>) additional.getAdditionalProperties())
+      .orElse( null);
+
+    combined.setAdditionalProperties(
+      Boolean.FALSE.equals( base.getAdditionalProperties()) || Boolean.FALSE.equals( additional.getAdditionalProperties())?
+      (Object) Boolean.FALSE :
+
+      baseExtraSchema != null && additionalExtraSchema != null?
+      (Object) with( "additionalProperties", () -> combineSchemas( baseExtraSchema, additionalExtraSchema)) :
+      
+      baseExtraSchema != null?
+      (Object) baseExtraSchema :
+
+      (Object) additionalExtraSchema);      
+
+    // Combine maxProperties
+    combined.setMaxProperties(
+      base.getMaxProperties() == null?
+      additional.getMaxProperties() :
+
+      additional.getMaxProperties() == null?
+      base.getMaxProperties() :
+
+      base.getMaxProperties().compareTo( additional.getMaxProperties()) < 0?
+      base.getMaxProperties() :
+
+      additional.getMaxProperties());
+
+    // Combine minProperties
+    combined.setMinProperties(
+      base.getMinProperties() == null?
+      additional.getMinProperties() :
+
+      additional.getMinProperties() == null?
+      base.getMinProperties() :
+
+      base.getMinProperties().compareTo( additional.getMinProperties()) > 0?
+      base.getMinProperties() :
+
+      additional.getMinProperties());
+
+    // Combine required
+    combined.setRequired(
+      Stream.concat(
+        Optional.ofNullable( base.getRequired()).map( required -> required.stream()).orElse( Stream.empty()),
+        Optional.ofNullable( additional.getRequired()).map( required -> required.stream()).orElse( Stream.empty()))
+      .collect(
+        () -> new LinkedHashSet<String>(),
+        (set, property) -> set.add( property),
+        (set, other) -> set.addAll( other))
+      .stream().collect( toList()));
+
+    // Combine properties
+    Map<String,Schema> combinedPropertyDefs = new HashMap<String,Schema>();
+    Map<String,Schema> basePropertyDefs = Optional.ofNullable( base.getProperties()).orElse( emptyMap());
+    Map<String,Schema> additionalPropertyDefs = Optional.ofNullable( additional.getProperties()).orElse( emptyMap());
+
+    Stream.concat( basePropertyDefs.keySet().stream(), additionalPropertyDefs.keySet().stream())
+      .collect( toSet()).stream()
+      .forEach( property ->
+        combinedPropertyDefs.put(
+          property,
+          with(
+            property,
+            () -> combineSchemas( basePropertyDefs.get( property), additionalPropertyDefs.get( property)))));
+    
+    combined.setProperties( combinedPropertyDefs);
+  
+    return combined;
+    }
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema<?> combineStringSchemas( Schema<?> base, Schema<?> additional)
+    {
+    Schema combined = combineGenericSchemas( base, additional);
+
+    // Combine maxLength
+    combined.setMaxLength(
+      base.getMaxLength() == null?
+      additional.getMaxLength() :
+
+      additional.getMaxLength() == null?
+      base.getMaxLength() :
+
+      base.getMaxLength().compareTo( additional.getMaxLength()) < 0?
+      base.getMaxLength() :
+
+      additional.getMaxLength());
+
+    // Combine minLength
+    combined.setMinLength(
+      base.getMinLength() == null?
+      additional.getMinLength() :
+
+      additional.getMinLength() == null?
+      base.getMinLength() :
+
+      base.getMinLength().compareTo( additional.getMinLength()) > 0?
+      base.getMinLength() :
+
+      additional.getMinLength());
+
+    // Combine pattern
+    combined.setPattern(
+      base.getPattern() == null?
+      additional.getPattern() :
+
+      additional.getPattern() == null?
+      base.getPattern() :
+
+      additional.getPattern());
+      
+    return combined;
+    }
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema<?> combineIntegerSchemas( Schema<?> base, Schema<?> additional)
+    {
+    Schema combined = combineNumericSchemas( base, additional);
+
+    // Combine format
+    combined.setFormat(
+      base.getFormat() == null?
+      additional.getFormat() :
+
+      additional.getFormat() == null?
+      base.getFormat() :
+
+      base.getFormat().equals( "int32")?
+      base.getFormat() :
+
+      additional.getFormat());
+    
+    return combined;
+    }
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  private Schema<?> combineBooleanSchemas( Schema<?> base, Schema<?> additional)
+    {
+    return combineGenericSchemas( base, additional);
+    }
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  private Schema<?> combineArraySchemas( Schema<?> base, Schema<?> additional)
+    {
+    ArraySchema combined = combineGenericSchemas( new ArraySchema(), base, additional);
+
+    // Combine maxItems
+    combined.setMaxItems(
+      base.getMaxItems() == null?
+      additional.getMaxItems() :
+
+      additional.getMaxItems() == null?
+      base.getMaxItems() :
+
+      base.getMaxItems().compareTo( additional.getMaxItems()) < 0?
+      base.getMaxItems() :
+
+      additional.getMaxItems());
+
+    // Combine minItems
+    combined.setMinItems(
+      base.getMinItems() == null?
+      additional.getMinItems() :
+
+      additional.getMinItems() == null?
+      base.getMinItems() :
+
+      base.getMinItems().compareTo( additional.getMinItems()) > 0?
+      base.getMinItems() :
+
+      additional.getMinItems());
+
+    // Combine uniqueItems
+    combined.setUniqueItems(
+      Boolean.TRUE.equals( base.getUniqueItems())
+      ? base.getUniqueItems() 
+      : additional.getUniqueItems());     
+
+    // Combine items
+    Schema<?> baseItems = base instanceof ArraySchema? ((ArraySchema) base).getItems() : null;
+    Schema<?> additionalItems = additional instanceof ArraySchema? ((ArraySchema) additional).getItems() : null;
+    combined.setItems( combineSchemas( baseItems, additionalItems));     
+
+    return combined;
+    }
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema<?> combineNumberSchemas( Schema<?> base, Schema<?> additional)
+    {
+    Schema combined = combineNumericSchemas( base, additional);
+
+    // Combine format
+    combined.setFormat(
+      base.getFormat() == null?
+      additional.getFormat() :
+
+      additional.getFormat() == null?
+      base.getFormat() :
+
+      base.getFormat().equals( "float")?
+      base.getFormat() :
+
+      additional.getFormat());
+    
+    return combined;
+    }
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema<?> combineNumericSchemas( Schema<?> base, Schema<?> additional)
+    {
+    Schema combined = combineGenericSchemas( base, additional);
+
+    // Combine maximum
+    combined.setMaximum(
+      base.getMaximum() == null?
+      additional.getMaximum() :
+
+      additional.getMaximum() == null?
+      base.getMaximum() :
+
+      base.getMaximum().compareTo( additional.getMaximum()) < 0?
+      base.getMaximum() :
+
+      additional.getMaximum());
+    
+    // Combine minimum
+    combined.setMinimum(
+      base.getMinimum() == null?
+      additional.getMinimum() :
+
+      additional.getMinimum() == null?
+      base.getMinimum() :
+
+      base.getMinimum().compareTo( additional.getMinimum()) > 0?
+      base.getMinimum() :
+
+      additional.getMinimum());
+    
+    // Combine exclusiveMaximum
+    combined.setExclusiveMaximum(
+      combined.getMaximum() == null?
+      null :
+
+      Objects.equals( combined.getMaximum(), base.getMaximum())?
+      base.getExclusiveMaximum() :
+ 
+      additional.getExclusiveMaximum());
+
+      
+    // Combine exclusiveMinimum
+    combined.setExclusiveMinimum(
+      combined.getMinimum() == null?
+      null :
+
+      Objects.equals( combined.getMinimum(), base.getMinimum())?
+      base.getExclusiveMinimum() :
+ 
+      additional.getExclusiveMinimum());
+
+    // Combine multipleOf
+    combined.setMultipleOf(
+      base.getMultipleOf() == null?
+      additional.getMultipleOf() :
+
+      additional.getMultipleOf() == null?
+      base.getMultipleOf() :
+
+      combineMultipleOf( base.getMultipleOf(), additional.getMultipleOf())); 
+    
+    return combined;
+    }
+
+  /**
+   * If the given multipleOf factors are congruent, returns the maximum value.
+   * Otherwise, throws an exception to report the inconsistent values.
+   */
+  private BigDecimal combineMultipleOf( BigDecimal base, BigDecimal additional)
+    {
+    BigDecimal max = base.compareTo( additional) > 0? base : additional;
+    BigDecimal min = base.compareTo( additional) < 0? base : additional;
+
+    if( max.remainder( min).compareTo( BigDecimal.ZERO) != 0)
+      {
+      throw new IllegalStateException( String.format( "multipleOf=% is not consistent with base multipleOf=%s", additional, base));
+      }
+
+    return max;
+    }
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  @SuppressWarnings({ "rawtypes" })
+  private Schema combineGenericSchemas( Schema base, Schema additional)
+    {
+    return combineGenericSchemas( new Schema<Object>(), base, additional);
+    }
+
+  /**
+   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
+   * Throws an exception if a consistent combination is not possible.
+   */
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+  private <T extends Schema> T combineGenericSchemas( T combined, Schema base, Schema additional)
+    {
+    combined.setType( Optional.ofNullable( base.getType()).orElse( additional.getType()));
+
+    // Combine format
+    combined.setFormat(
+      base.getFormat() == null?
+      additional.getFormat() :
+
+      additional.getFormat() == null?
+      base.getFormat() :
+
+      additional.getFormat());
+
+    // Combine enum
+    combined.setEnum(
+      base.getEnum() == null?
+      additional.getEnum() :
+
+      additional.getEnum() == null?
+      base.getEnum() :
+
+      Optional.of( base.getEnum())
+      .map( enums -> {
+          Set<Object> baseEnums = new LinkedHashSet<Object>( enums);
+          baseEnums.retainAll( additional.getEnum());
+          return baseEnums;
+        })
+      .filter( enums -> !enums.isEmpty())
+      .map( enums -> enums.stream().collect( toList()))
+      .orElseThrow( () -> new IllegalStateException( String.format( "enum=%s is not consistent with base enum=%s", additional.getEnum(), base.getEnum()))));
+
+    // Combine nullable
+    combined.setNullable(
+      Boolean.TRUE.equals( base.getNullable())
+      ? additional.getNullable()
+      : base.getNullable());
+
+    // Combine readOnly
+    combined.setReadOnly(
+      Boolean.TRUE.equals( base.getReadOnly())
+      ? base.getReadOnly() 
+      : additional.getReadOnly());
+
+    // Combine writeOnly
+    combined.setWriteOnly(
+      Boolean.TRUE.equals( base.getWriteOnly())
+      ? base.getWriteOnly() 
+      : additional.getWriteOnly());
+      
+    return combined;
+    }
+  
+  /**
    * Returns the enumerated integer values defined by the given schema.
    */
   private List<Number> getIntegerEnum( Schema<?> schema)
@@ -2536,22 +3035,6 @@ public abstract class InputModeller
       }
 
     return booleans;
-    }
-
-  /**
-   * Returns the given type if applying any of the given accessors to the given schema produces a non-null value.
-   * Otherwise, returns null.
-   */
-  @SafeVarargs
-  private static String impliedType( String type, Schema<?> schema, Function<Schema<?>,Object>... accessors)
-    {
-    return
-      Stream.of( accessors)
-      .map( accessor -> accessor.apply( schema))
-      .filter( Objects::nonNull)
-      .findFirst()
-      .map( value -> type)
-      .orElse( null);
     }
 
   /**

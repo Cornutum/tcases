@@ -11,26 +11,6 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <Var name="Type" when="param0">
-          <Value name="object" property="param0Value"/>
-          <Value name="null" failure="true"/>
-          <Value name="Not object" failure="true"/>
-        </Var>
-        <VarSet name="Value" when="param0Value">
-          <Var name="Property-Count">
-            <Value name="&gt;= 3">
-              <When>
-                <NotLessThan property="param0Properties" min="0"/>
-              </When>
-            </Value>
-          </Var>
-          <VarSet name="Properties">
-            <Var name="Additional">
-              <Value name="Yes" property="param0Properties"/>
-              <Value name="No" failure="true"/>
-            </Var>
-          </VarSet>
-        </VarSet>
         <VarSet name="AllOf" when="param0">
           <VarSet name="Members">
             <VarSet name="0">
@@ -44,13 +24,11 @@
                     </Var>
                     <VarSet name="Value" when="param0AllOf0AllOf0Value">
                       <Var name="Property-Count">
-                        <Value name="0" once="true">
+                        <Value name="&gt;= 3">
                           <When>
-                            <Not property="param0AllOf0AllOf0Properties">
-                            </Not>
+                            <NotLessThan property="param0AllOf0AllOf0Properties" min="1"/>
                           </When>
                         </Value>
-                        <Value name="&gt; 0" when="param0AllOf0AllOf0Properties"/>
                       </Var>
                       <VarSet name="Properties">
                         <VarSet name="bravo">
@@ -70,7 +48,7 @@
                         </VarSet>
                         <Var name="Additional">
                           <Value name="Yes" property="param0AllOf0AllOf0Properties"/>
-                          <Value name="No"/>
+                          <Value name="No" failure="true"/>
                         </Var>
                       </VarSet>
                     </VarSet>
@@ -83,13 +61,11 @@
                     </Var>
                     <VarSet name="Value" when="param0AllOf0AllOf1Value">
                       <Var name="Property-Count">
-                        <Value name="0" once="true">
+                        <Value name="&gt;= 3">
                           <When>
-                            <Not property="param0AllOf0AllOf1Properties">
-                            </Not>
+                            <NotLessThan property="param0AllOf0AllOf1Properties" min="1"/>
                           </When>
                         </Value>
-                        <Value name="&gt; 0" when="param0AllOf0AllOf1Properties"/>
                       </Var>
                       <VarSet name="Properties">
                         <VarSet name="charlie">
@@ -122,7 +98,7 @@
                         </VarSet>
                         <Var name="Additional">
                           <Value name="Yes" property="param0AllOf0AllOf1Properties"/>
-                          <Value name="No"/>
+                          <Value name="No" failure="true"/>
                         </Var>
                       </VarSet>
                     </VarSet>
@@ -137,6 +113,13 @@
                 <Value name="Not object" failure="true"/>
               </Var>
               <VarSet name="Value" when="param0AllOf1Value">
+                <Var name="Property-Count">
+                  <Value name="&gt;= 3">
+                    <When>
+                      <NotLessThan property="param0AllOf1Properties" min="1"/>
+                    </When>
+                  </Value>
+                </Var>
                 <VarSet name="Properties">
                   <VarSet name="alpha">
                     <Var name="Defined">
@@ -150,7 +133,7 @@
                   </VarSet>
                   <Var name="Additional">
                     <Value name="Yes" property="param0AllOf1Properties"/>
-                    <Value name="No"/>
+                    <Value name="No" failure="true"/>
                   </Var>
                 </VarSet>
               </VarSet>
@@ -162,11 +145,18 @@
                 <Value name="Not object" failure="true"/>
               </Var>
               <VarSet name="Value" when="param0AllOf2Value">
+                <Var name="Property-Count">
+                  <Value name="&gt;= 3">
+                    <When>
+                      <NotLessThan property="param0AllOf2Properties" min="0"/>
+                    </When>
+                  </Value>
+                </Var>
                 <VarSet name="Properties">
                   <VarSet name="Additional">
                     <Var name="Defined">
                       <Value name="Yes" property="param0AllOf2Additional, param0AllOf2Properties"/>
-                      <Value name="No"/>
+                      <Value name="No" failure="true"/>
                     </Var>
                     <Var name="Type" when="param0AllOf2Additional">
                       <Value name="integer" property="param0AllOf2AdditionalValue"/>

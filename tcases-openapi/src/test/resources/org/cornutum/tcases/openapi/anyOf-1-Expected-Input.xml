@@ -19,17 +19,6 @@
           <VarSet name="AnyOf">
             <VarSet name="Members">
               <VarSet name="0">
-                <Var name="Type">
-                  <Value name="number" property="application-jsonAnyOf0Value"/>
-                  <Value name="null" failure="true"/>
-                  <Value name="Not number" failure="true"/>
-                </Var>
-                <Var name="Value" when="application-jsonAnyOf0Value">
-                  <Value name="Not a multiple of 2.0" failure="true"/>
-                  <Value name="&lt; 0"/>
-                  <Value name="0"/>
-                  <Value name="&gt; 0"/>
-                </Var>
                 <VarSet name="AnyOf">
                   <VarSet name="Members">
                     <Var name="Validated">
@@ -55,7 +44,7 @@
                         <Value name="number" property="application-jsonAnyOf0AnyOf0Value"/>
                       </Var>
                       <Var name="Value" when="application-jsonAnyOf0AnyOf0Value">
-                        <Value name="-0.1"/>
+                        <Value name="Not a multiple of 2.0"/>
                         <Value name="0.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
                         <Value name="&gt; 0.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
                       </Var>
@@ -65,8 +54,8 @@
                         <Value name="number" property="application-jsonAnyOf0AnyOf1Value"/>
                       </Var>
                       <Var name="Value" when="application-jsonAnyOf0AnyOf1Value">
+                        <Value name="Not a multiple of 2.0"/>
                         <Value name="100.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
-                        <Value name="100.1"/>
                         <Value name="&lt; 100.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
                       </Var>
                     </VarSet>
@@ -94,13 +83,13 @@
                     </Var>
                     <VarSet name="0">
                       <Var name="Type">
-                        <Value name="number" property="application-jsonAnyOf0OneOf0Value, application-jsonAnyOf0OneOfMemberValidated"/>
-                        <Value name="null"/>
+                        <Value name="number" property="application-jsonAnyOf0OneOf0Value"/>
                       </Var>
                       <Var name="Value" when="application-jsonAnyOf0OneOf0Value">
-                        <Value name="&lt; 0"/>
-                        <Value name="0"/>
-                        <Value name="&gt; 0"/>
+                        <Value name="Not a multiple of 2.0"/>
+                        <Value name="&lt; 0" property="application-jsonAnyOf0OneOfMemberValidated"/>
+                        <Value name="0" property="application-jsonAnyOf0OneOfMemberValidated"/>
+                        <Value name="&gt; 0" property="application-jsonAnyOf0OneOfMemberValidated"/>
                       </Var>
                     </VarSet>
                     <VarSet name="1">
@@ -108,8 +97,8 @@
                         <Value name="number" property="application-jsonAnyOf0OneOf1Value"/>
                       </Var>
                       <Var name="Value" when="application-jsonAnyOf0OneOf1Value">
+                        <Value name="Not a multiple of 2.0"/>
                         <Value name="0.0" property="application-jsonAnyOf0OneOfMemberValidated"/>
-                        <Value name="0.1"/>
                         <Value name="&lt; 0.0" property="application-jsonAnyOf0OneOfMemberValidated"/>
                       </Var>
                     </VarSet>

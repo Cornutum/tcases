@@ -6,19 +6,18 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="param0,param0AllOf0AllOf0Value,param0Value"/>
+      <Has name="properties" value="param0,param0AllOf0AllOf0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.MatchesPattern" value="Yes">
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="string"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.MatchesPattern" value="Yes">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
-        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="Not null"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -28,47 +27,59 @@
         <Var name="param0.Defined" value="No">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
-        <Var name="param0.Value.MatchesPattern" NA="true">
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Length" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.MatchesPattern" NA="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
-        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="param0,param0AllOf0AllOf0Value,param0Value"/>
+      <Has name="properties" value="param0,param0AllOf0AllOf0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
-        <Var name="param0.Value.MatchesPattern" value="Yes">
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="string"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Length" value="0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.MatchesPattern" value="Yes">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
-        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="Not null"/>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
-      <Has name="properties" value="param0,param0AllOf0AllOf0Value"/>
+      <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
-        <Var name="param0.Value.MatchesPattern" NA="true">
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="null" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Length" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.MatchesPattern" NA="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
-        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="Not null"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="Not string" failure="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Length" NA="true"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.MatchesPattern" NA="true">
+          <Has name="pattern" value="^[A-Z]*$"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
       <Has name="properties" value="param0,param0AllOf0AllOf0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -76,44 +87,11 @@
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="Not string" failure="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
-        <Var name="param0.Value.MatchesPattern" NA="true">
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="string"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.Length" value="&gt; 0"/>
+        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Value.MatchesPattern" value="No" failure="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
-        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="Not null"/>
-      </Input>
-    </TestCase>
-    <TestCase id="5" failure="true">
-      <Has name="properties" value="param0,param0AllOf0AllOf0Value,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="header">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.MatchesPattern" value="No" failure="true">
-          <Has name="pattern" value="^[A-Z]*$"/>
-        </Var>
-        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="Not null"/>
-      </Input>
-    </TestCase>
-    <TestCase id="6" failure="true">
-      <Has name="properties" value="param0,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="header">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.MatchesPattern" value="Yes">
-          <Has name="pattern" value="^[A-Z]*$"/>
-        </Var>
-        <Var name="param0.AllOf.Members.0.AllOf.Members.0.Type" value="null" failure="true"/>
       </Input>
     </TestCase>
   </Function>
