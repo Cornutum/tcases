@@ -6,7 +6,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="application-json,application-jsonAllOf0Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -14,15 +14,15 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="0"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" value="array"/>
+        <Var name="Body.application-json.Items.Size" value="0"/>
+        <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonItems,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -30,15 +30,15 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="1"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" value="&lt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" value="array"/>
+        <Var name="Body.application-json.Items.Size" value="1"/>
+        <Var name="Body.application-json.Items.Contains.Type" value="integer"/>
+        <Var name="Body.application-json.Items.Contains.Value" value="&lt; 0"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsMany,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonItems,application-jsonItemsMany,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -46,15 +46,15 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="&gt; 1"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" value="0"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" value="Yes"/>
+        <Var name="Body.application-json.Type" value="array"/>
+        <Var name="Body.application-json.Items.Size" value="&gt; 1"/>
+        <Var name="Body.application-json.Items.Contains.Type" value="integer"/>
+        <Var name="Body.application-json.Items.Contains.Value" value="0"/>
+        <Var name="Body.application-json.Items.Unique" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonItems,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -62,15 +62,15 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="1"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" value="&gt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" value="array"/>
+        <Var name="Body.application-json.Items.Size" value="1"/>
+        <Var name="Body.application-json.Items.Contains.Type" value="integer"/>
+        <Var name="Body.application-json.Items.Contains.Value" value="&gt; 0"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="4">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0ItemsMany,application-jsonAllOf0ItemsValue,application-jsonAllOf0Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonItems,application-jsonItemsMany,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -78,11 +78,11 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="&gt; 1"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="integer"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" value="&lt; 0"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" value="No"/>
+        <Var name="Body.application-json.Type" value="array"/>
+        <Var name="Body.application-json.Items.Size" value="&gt; 1"/>
+        <Var name="Body.application-json.Items.Contains.Type" value="integer"/>
+        <Var name="Body.application-json.Items.Contains.Value" value="&lt; 0"/>
+        <Var name="Body.application-json.Items.Unique" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -91,11 +91,11 @@
       <Input type="request">
         <Var name="Body.Defined" value="No" failure="true"/>
         <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Items.Size" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -105,11 +105,11 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="Other" failure="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Items.Size" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -121,11 +121,11 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="null" failure="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.Items.Size" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -137,15 +137,15 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="Not array" failure="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" value="Not array" failure="true"/>
+        <Var name="Body.application-json.Items.Size" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonItems,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -153,15 +153,15 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="1"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="null" failure="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" value="array"/>
+        <Var name="Body.application-json.Items.Size" value="1"/>
+        <Var name="Body.application-json.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
-      <Has name="properties" value="application-json,application-jsonAllOf0Items,application-jsonAllOf0Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonItems,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -169,11 +169,11 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AllOf.Members.0.Type" value="array"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Size" value="1"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Type" value="Not integer" failure="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Contains.Value" NA="true"/>
-        <Var name="Body.application-json.AllOf.Members.0.Items.Unique" NA="true"/>
+        <Var name="Body.application-json.Type" value="array"/>
+        <Var name="Body.application-json.Items.Size" value="1"/>
+        <Var name="Body.application-json.Items.Contains.Type" value="Not integer" failure="true"/>
+        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
   </Function>

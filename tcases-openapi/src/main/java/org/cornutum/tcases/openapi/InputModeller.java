@@ -684,6 +684,7 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variables} defined by the schema for the given instance.
    */
+  @SuppressWarnings("rawtypes")
   private Stream<IVarDef> instanceSchemaVars(
     OpenAPI api,
     String instanceVarTag,
@@ -692,17 +693,14 @@ public abstract class InputModeller
     Schema<?> parentSchema,
     Set<String> requiredTypes)
     {
-    ComposedSchema composedSchema =
-      instanceSchema instanceof ComposedSchema
-      ? (ComposedSchema) instanceSchema
-      : null;
+    // If this is a ComposedSchema, validate and prepare composed members
+    Optional<ComposedSchema> composedSchema = Optional.ofNullable( asComposedSchema( instanceSchema));
+    composedSchema.ifPresent( c -> getValidTypes( api, c));
+    Optional<Schema> composedEquiv = composedSchema.flatMap( c -> combinedAllOf( c));
 
-    Schema<?> combinedSchema = combineSchemas( parentSchema, instanceSchema);
-    
-    String instanceType =
-      combinedSchema == null
-      ? null
-      : combinedSchema.getType();
+    // Derive input variables for this instance based on its combined schema.
+    Schema<?> combinedSchema = combineSchemas( parentSchema, composedEquiv.orElse( instanceSchema));
+    String instanceType = Optional.ofNullable( combinedSchema).map( Schema::getType).orElse( null);
 
     return
       // Missing schema (equivalent to an empty schema)?
@@ -714,8 +712,8 @@ public abstract class InputModeller
       unknownSchemaVars( instanceType) :
 
       // Composed schema?
-      composedSchema != null?
-      composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema, combinedSchema, requiredTypes) :
+      composedSchema.isPresent() && !composedEquiv.isPresent()?
+      composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema.get(), combinedSchema, requiredTypes) :
 
       // Basic empty schema?
       instanceType == null?
@@ -991,7 +989,7 @@ public abstract class InputModeller
     Stream.Builder<IVarDef> composedSchemaVars = Stream.builder();
     if( !composedSchema.getAllOf().isEmpty())
       {
-      composedSchemaVars.add( allOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, composedSchema.getAllOf()));
+      composedSchemaVars.add( allOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, combinedAllOf( composedSchema.getAllOf())));
       }
     if( !composedSchema.getAnyOf().isEmpty())
       {
@@ -2317,7 +2315,7 @@ public abstract class InputModeller
       .map( type -> Stream.of( type).collect( toSet()))
       .orElse( null);
 
-    ComposedSchema composedSchema = schema instanceof ComposedSchema? (ComposedSchema) schema : null;
+    ComposedSchema composedSchema = asComposedSchema( schema);
     if( composedSchema != null)
       {
       // Resolve "allOf" schemas
@@ -2922,7 +2920,76 @@ public abstract class InputModeller
       
     return combined;
     }
-  
+
+  /**
+   * Returns a consolidated list of "allOf" members by combining all leaf members into a single schema.
+   */
+  @SuppressWarnings("rawtypes")
+  private List<Schema> combinedAllOf( List<Schema> members)
+    {
+    // After replacing any ComposedSchems members with equivalent leaf schemas...
+    List<Schema> memberEquivalents =
+      members.stream()
+      .map( member -> Optional.ofNullable( asComposedSchema( member)).flatMap( c -> combinedAllOf( c)).orElse( member))
+      .collect( toList());
+      
+    // ... return the list of remaining ComposedSchema members...
+    List<Schema> consolidated =
+      memberEquivalents.stream()
+      .map( this::asComposedSchema)
+      .filter( Objects::nonNull)
+      .collect( toList());
+
+    // ... adding a single schema combining all leaf members (if any)
+    IntStream.range( 0, memberEquivalents.size())
+      .mapToObj( i -> new SimpleEntry<Integer,Schema>( i, memberEquivalents.get(i)))
+      .filter( memberEntry -> asComposedSchema( memberEntry.getValue()) == null)
+      .reduce(
+        (combinedEntry, memberEntry) ->
+        with( String.format( "allOf[%s]", memberEntry.getKey()),
+          () -> new SimpleEntry<Integer,Schema>( memberEntry.getKey(), combineSchemas( combinedEntry.getValue(), memberEntry.getValue()))))
+      .map( combinedEntry -> combinedEntry.getValue())
+      .ifPresent( combined -> consolidated.add( 0, combined));
+
+    return consolidated;
+    }
+
+  /**
+   * The given ComposedSchema, if it consists solely of "allOf" members, may be equivalent to a single leaf schema.
+   * If so, returns the equivalent schema. Otherwise, returns <CODE>Optional.emtpy()</CODE>.
+   */
+  @SuppressWarnings({ "rawtypes" })
+  private Optional<Schema> combinedAllOf( ComposedSchema schema)
+    {
+    return
+      // Does this schema define only "allOf" members?
+      schema.getAllOf().isEmpty() || !schema.getAnyOf().isEmpty() || !schema.getOneOf().isEmpty()?
+      Optional.empty() :
+      
+      // Yes, does its consolidated "allOf" list consist of a single member?
+      Optional.of( combinedAllOf( schema.getAllOf()))
+      .filter( members -> members.size() == 1)
+
+      // ...which is a leaf schema?
+      .map( members -> members.get(0))
+      .filter( member -> asComposedSchema( member) == null)
+
+      // If so, return the equivalent combined leaf schema
+      .map( member -> combineSchemas( schema, member));
+    }
+
+  /**
+   * If the given schema is a ComposedSchema instance, returns the casting result.
+   * Otherwise, returns null.
+   */
+  private ComposedSchema asComposedSchema( Schema<?> schema)
+    {
+    return
+      schema instanceof ComposedSchema
+      ? (ComposedSchema) schema
+      : null;
+    }
+
   /**
    * Returns the enumerated integer values defined by the given schema.
    */
