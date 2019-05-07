@@ -10,47 +10,17 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <VarSet name="AllOf" when="param0">
-          <VarSet name="Members">
-            <VarSet name="0">
-              <Var name="Type">
-                <Value name="number" property="param0AllOf0Value"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not number" failure="true"/>
-              </Var>
-              <Var name="Value" when="param0AllOf0Value">
-                <Value name="-1" failure="true"/>
-                <Value name="0"/>
-                <Value name="&gt; 0"/>
-              </Var>
-            </VarSet>
-            <VarSet name="1">
-              <Var name="Type">
-                <Value name="number" property="param0AllOf1Value"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not number" failure="true"/>
-              </Var>
-              <Var name="Value" when="param0AllOf1Value">
-                <Value name="&lt; 0"/>
-                <Value name="0"/>
-                <Value name="&gt; 0"/>
-              </Var>
-            </VarSet>
-            <VarSet name="2">
-              <Var name="Type">
-                <Value name="number" property="param0AllOf2Value"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not number" failure="true"/>
-              </Var>
-              <Var name="Value" when="param0AllOf2Value">
-                <Value name="Not a multiple of 10" failure="true"/>
-                <Value name="&lt; 0"/>
-                <Value name="0"/>
-                <Value name="&gt; 0"/>
-              </Var>
-            </VarSet>
-          </VarSet>
-        </VarSet>
+        <Var name="Type" when="param0">
+          <Value name="number" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Value name="Not a multiple of 10" failure="true"/>
+          <Value name="-10" failure="true"/>
+          <Value name="0"/>
+          <Value name="&gt; 0"/>
+        </Var>
       </VarSet>
     </Input>
   </Function>

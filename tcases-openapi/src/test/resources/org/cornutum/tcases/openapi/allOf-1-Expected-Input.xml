@@ -16,39 +16,33 @@
           <Value name="Other" failure="true"/>
         </Var>
         <VarSet name="application-json" when="application-json">
-          <VarSet name="AllOf">
-            <VarSet name="Members">
-              <VarSet name="0">
-                <Var name="Type">
-                  <Value name="array" property="application-jsonAllOf0Value"/>
-                  <Value name="null" failure="true"/>
-                  <Value name="Not array" failure="true"/>
-                </Var>
-                <VarSet name="Items" when="application-jsonAllOf0Value">
-                  <Var name="Size">
-                    <Value name="0"/>
-                    <Value name="1" property="application-jsonAllOf0Items"/>
-                    <Value name="&gt; 1" property="application-jsonAllOf0Items, application-jsonAllOf0ItemsMany"/>
-                  </Var>
-                  <VarSet name="Contains" when="application-jsonAllOf0Items">
-                    <Var name="Type">
-                      <Value name="integer" property="application-jsonAllOf0ItemsValue"/>
-                      <Value name="null" failure="true"/>
-                      <Value name="Not integer" failure="true"/>
-                    </Var>
-                    <Var name="Value" when="application-jsonAllOf0ItemsValue">
-                      <Value name="&lt; 0"/>
-                      <Value name="0"/>
-                      <Value name="&gt; 0"/>
-                    </Var>
-                  </VarSet>
-                  <Var name="Unique" when="application-jsonAllOf0ItemsMany">
-                    <Value name="Yes"/>
-                    <Value name="No"/>
-                  </Var>
-                </VarSet>
-              </VarSet>
+          <Var name="Type">
+            <Value name="array" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not array" failure="true"/>
+          </Var>
+          <VarSet name="Items" when="application-jsonValue">
+            <Var name="Size">
+              <Value name="0"/>
+              <Value name="1" property="application-jsonItems"/>
+              <Value name="&gt; 1" property="application-jsonItems, application-jsonItemsMany"/>
+            </Var>
+            <VarSet name="Contains" when="application-jsonItems">
+              <Var name="Type">
+                <Value name="integer" property="application-jsonItemsValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <Var name="Value" when="application-jsonItemsValue">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
             </VarSet>
+            <Var name="Unique" when="application-jsonItemsMany">
+              <Value name="Yes"/>
+              <Value name="No"/>
+            </Var>
           </VarSet>
         </VarSet>
       </VarSet>
