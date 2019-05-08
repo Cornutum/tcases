@@ -76,7 +76,7 @@ public class NotifierTest extends OpenApiTest
     assertConditions(
       Arrays.asList(
         "Object,/object,POST,param0,myObject: minProperties=0 is superfluous -- same as required.",
-        "Object,/object,POST,param0,myObject: maxProperties=0 is superfluous -- same as required."),
+        "Object,/object,POST,param0,myObject: maxProperties=0 is superfluous -- same as the total number of properties."),
       Arrays.asList(
         "Object,/object,POST,param0,myString: minLength=1 is greater than maxLength=0. Adjusting minLength to maxLength.",
         "Object,/object,POST,param0,myArray: minItems=10 is greater than maxItems=0. Adjusting minItems to maxItems.",
