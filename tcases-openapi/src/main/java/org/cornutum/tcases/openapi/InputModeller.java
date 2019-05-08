@@ -1464,8 +1464,14 @@ public abstract class InputModeller
     constraints.setTotalCount( objectTotalProperties( instanceSchema));
 
     constraints.setHasAdditional(
+      // additionalProperties keyword is not false...
       Optional.ofNullable( instanceSchema.getAdditionalProperties())
       .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
+      .orElse( true)
+      &&
+      // maxProperties not already satisfied by required properties
+      Optional.ofNullable( instanceSchema.getMaxProperties())
+      .map( max -> max > constraints.getRequiredCount())
       .orElse( true));
 
     // Ensure min/max range is feasible
@@ -1480,7 +1486,7 @@ public abstract class InputModeller
       .filter( min -> isUsablePropertyLimit( "minProperties", min, constraints))
       .orElse( null));
 
-    // Ensure minimum is a usable constraint
+    // Ensure maximum is a usable constraint
     instanceSchema.setMaxProperties(
       Optional.ofNullable( instanceSchema.getMaxProperties())
       .filter( max -> isUsablePropertyMax( "maxProperties", max, constraints))
