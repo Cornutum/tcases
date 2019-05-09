@@ -58,7 +58,7 @@
                   <VarSet name="1">
                     <Var name="Type">
                       <Value name="string" property="param0OneOf0AnyOf1Value, param0OneOf0AnyOfMemberValidated"/>
-                      <Value name="null"/>
+                      <Value name="Not string"/>
                     </Var>
                     <VarSet name="Value" when="param0OneOf0AnyOf1Value">
                       <Var name="Length">
@@ -114,7 +114,7 @@
                   <VarSet name="1">
                     <Var name="Type">
                       <Value name="string" property="param0OneOf0OneOf1Value, param0OneOf0OneOfMemberValidated"/>
-                      <Value name="null"/>
+                      <Value name="Not string"/>
                     </Var>
                     <VarSet name="Value" when="param0OneOf0OneOf1Value">
                       <Var name="Length">

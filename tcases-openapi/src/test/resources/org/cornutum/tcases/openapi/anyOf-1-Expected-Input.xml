@@ -44,7 +44,7 @@
                         <Value name="number" property="application-jsonAnyOf0AnyOf0Value"/>
                       </Var>
                       <Var name="Value" when="application-jsonAnyOf0AnyOf0Value">
-                        <Value name="Not a multiple of 2.0"/>
+                        <Value name="-2.0"/>
                         <Value name="0.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
                         <Value name="&gt; 0.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
                       </Var>
@@ -54,8 +54,8 @@
                         <Value name="number" property="application-jsonAnyOf0AnyOf1Value"/>
                       </Var>
                       <Var name="Value" when="application-jsonAnyOf0AnyOf1Value">
-                        <Value name="Not a multiple of 2.0"/>
                         <Value name="100.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
+                        <Value name="102.0"/>
                         <Value name="&lt; 100.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
                       </Var>
                     </VarSet>
@@ -97,8 +97,8 @@
                         <Value name="number" property="application-jsonAnyOf0OneOf1Value"/>
                       </Var>
                       <Var name="Value" when="application-jsonAnyOf0OneOf1Value">
-                        <Value name="Not a multiple of 2.0"/>
                         <Value name="0.0" property="application-jsonAnyOf0OneOfMemberValidated"/>
+                        <Value name="2.0"/>
                         <Value name="&lt; 0.0" property="application-jsonAnyOf0OneOfMemberValidated"/>
                       </Var>
                     </VarSet>

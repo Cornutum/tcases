@@ -57,7 +57,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.OneOf.Members.Validated" value="1"/>
-        <Var name="param1.OneOf.Members.0.Type" value="null"/>
+        <Var name="param1.OneOf.Members.0.Type" value="Not boolean"/>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
         <Var name="param1.OneOf.Members.1.Value" value="1"/>
@@ -97,7 +97,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.OneOf.Members.Validated" value="1"/>
-        <Var name="param1.OneOf.Members.0.Type" value="null"/>
+        <Var name="param1.OneOf.Members.0.Type" value="Not boolean"/>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
         <Var name="param1.OneOf.Members.1.Value" value="2"/>
@@ -117,7 +117,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.OneOf.Members.Validated" value="1"/>
-        <Var name="param1.OneOf.Members.0.Type" value="null"/>
+        <Var name="param1.OneOf.Members.0.Type" value="Not boolean"/>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
         <Var name="param1.OneOf.Members.1.Value" value="3"/>
@@ -137,7 +137,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.OneOf.Members.Validated" value="1"/>
-        <Var name="param1.OneOf.Members.0.Type" value="null"/>
+        <Var name="param1.OneOf.Members.0.Type" value="Not boolean"/>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
         <Var name="param1.OneOf.Members.1.Value" value="Other"/>
@@ -157,7 +157,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.OneOf.Members.Validated" value="0" failure="true"/>
-        <Var name="param1.OneOf.Members.0.Type" value="null"/>
+        <Var name="param1.OneOf.Members.0.Type" value="Not boolean"/>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
         <Var name="param1.OneOf.Members.1.Value" value="Other"/>

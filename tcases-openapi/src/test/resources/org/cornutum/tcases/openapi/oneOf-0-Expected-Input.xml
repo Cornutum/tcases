@@ -52,14 +52,14 @@
               </Var>
               <VarSet name="Value" when="param0OneOf1Value">
                 <Var name="Length">
-                  <Value name="10"/>
-                  <Value name="0"/>
-                  <Value name="&lt; 10"/>
+                  <Value name="10" property="param0OneOfMemberValidated"/>
+                  <Value name="11"/>
+                  <Value name="0" property="param0OneOfMemberValidated"/>
+                  <Value name="&lt; 10" property="param0OneOfMemberValidated"/>
                 </Var>
                 <Var name="MatchesPattern">
                   <Has name="pattern" value="."/>
-                  <Value name="Yes" property="param0OneOfMemberValidated"/>
-                  <Value name="No"/>
+                  <Value name="Yes"/>
                 </Var>
               </VarSet>
             </VarSet>
