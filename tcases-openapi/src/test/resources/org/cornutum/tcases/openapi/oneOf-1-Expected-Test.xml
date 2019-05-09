@@ -18,14 +18,14 @@
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Size" value="1"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Contains.Type" value="Not null"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Type" value="Not string"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Value.Length" NA="true"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Type" value="array"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Size" value="1"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Contains.Type" value="Not null"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.0.OneOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.OneOf.Members.1.Type" value="Not string"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.1.Value.Length" NA="true"/>
       </Input>
     </TestCase>
@@ -96,7 +96,7 @@
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Size" value="&gt; 1"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Contains.Type" value="Not null"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Unique" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.OneOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.OneOf.Members.1.Type" value="Not string"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.1.Value.Length" NA="true"/>
       </Input>
     </TestCase>
@@ -137,14 +137,14 @@
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Size" value="&gt; 1"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Contains.Type" value="Not null"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Unique" value="No"/>
-        <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Type" value="Not string"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Value.Length" NA="true"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Type" value="array"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Size" value="&gt; 1"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Contains.Type" value="Not null"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Unique" value="No"/>
-        <Var name="param0.OneOf.Members.0.OneOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.OneOf.Members.1.Type" value="Not string"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.1.Value.Length" NA="true"/>
       </Input>
     </TestCase>
@@ -161,7 +161,7 @@
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Size" value="0"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Contains.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Type" value="Not string"/>
         <Var name="param0.OneOf.Members.0.AnyOf.Members.1.Value.Length" NA="true"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Type" value="array"/>
@@ -192,7 +192,7 @@
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Size" value="0"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Contains.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.0.Items.Unique" NA="true"/>
-        <Var name="param0.OneOf.Members.0.OneOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.OneOf.Members.1.Type" value="Not string"/>
         <Var name="param0.OneOf.Members.0.OneOf.Members.1.Value.Length" NA="true"/>
       </Input>
     </TestCase>

@@ -11,6 +11,7 @@ import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ListBuilder;
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.conditions.Conditions.*;
+import static org.cornutum.tcases.openapi.MemberVarBinding.*;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -1031,7 +1032,7 @@ public abstract class InputModeller
                 String memberVarTag = containerVarTag + i;
                 return
                   VarSetBuilder.with( String.valueOf(i))
-                  .members( memberSchemaVars( api, containerVarTag, memberVarTag, applicableMembers.get(i), parentSchema, true, validTypes))
+                  .members( memberSchemaVars( api, memberVarTag, applicableMembers.get(i), parentSchema, validTypes))
                   .build();
                 });
             }))
@@ -1073,30 +1074,36 @@ public abstract class InputModeller
     String containerVarName = StringUtils.capitalize( containerType);
     String containerVarTag = instanceVarTag + containerVarName;
     List<Schema> applicableMembers = getApplicableMembers( api, containerType, validTypes, memberSchemas);
-    boolean validationRequired = applicableMembers.size() == 1;
-    boolean anyOf = containerType.equals( "anyOf");
-    
+
+    // Create input variables to model each member schema
+    List<List<IVarDef>> oneOfVars =
+      IntStream.range( 0, applicableMembers.size())
+      .mapToObj( i -> 
+        with( String.format( "%s[%s]", containerType, i),
+          () -> memberSchemaVars( api, containerVarTag + i, applicableMembers.get(i), parentSchema, validTypes)))
+      .collect( toList());
+
+    // If only one member, any member failure is automatically recognized as a "no members validated" failure.
+    // In which case, no explicit "validated" variable is required for this oneOf/anyOf schema.
+    boolean requireAllValidated = applicableMembers.size() == 1;
+    if( !requireAllValidated)
+      {
+      // Otherwise, for each member, designate a single failure to indicate "not validated" for this member
+      List<MemberVarBinding> memberFailures = getMemberFailures( oneOfVars);
+      IntStream.range( 0, oneOfVars.size())
+        .forEach( i -> designateMemberFailure( oneOfVars.get(i), memberFailures.get(i), containerVarTag));
+      }
+
     return
       VarSetBuilder.with( containerVarName)
       .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
       .members(
         VarSetBuilder.with( "Members")
         .members(
-          iterableOf( oneOfValidatedVar( containerVarTag, validationRequired, anyOf)))
+          iterableOf( oneOfValidatedVar( containerVarTag, requireAllValidated, containerType.equals( "anyOf"))))
         .members(
           IntStream.range( 0, applicableMembers.size())
-          .mapToObj( i -> {
-            return
-              with( String.format( "%s[%s]", containerType, i),
-                () ->
-                {
-                String memberVarTag = containerVarTag + i;
-                return
-                  VarSetBuilder.with( String.valueOf(i))
-                  .members( memberSchemaVars( api, containerVarTag, memberVarTag, applicableMembers.get(i), parentSchema, validationRequired, validTypes))
-                  .build();
-                });
-            }))
+          .mapToObj( i -> VarSetBuilder.with( String.valueOf(i)).members( oneOfVars.get(i)).build()))
         .build())
       .build();
     } 
@@ -1104,11 +1111,11 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the "validated" state of a "oneOf" (or "anyOf") schema.
    */
-  private Optional<IVarDef> oneOfValidatedVar( String containerVarTag, boolean validationRequired, boolean anyOf)
+  private Optional<IVarDef> oneOfValidatedVar( String containerVarTag, boolean requireAllValidated, boolean anyOf)
     {
     return
       Optional.of( memberValidatedProperty( containerVarTag))
-      .filter( membersValidated -> !validationRequired)
+      .filter( membersValidated -> !requireAllValidated)
       .map( membersValidated -> {
         return
           VarDefBuilder.with( "Validated")
@@ -1133,74 +1140,54 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variables} defined by the given member schema.
    */
-  private Stream<IVarDef> memberSchemaVars(
-    OpenAPI api,
-    String containerVarTag,
-    String memberVarTag,
-    Schema<?> memberSchema,
-    Schema<?> parentSchema,
-    boolean validationRequired,
-    Set<String> validTypes)
+  private List<IVarDef> memberSchemaVars( OpenAPI api, String memberVarTag, Schema<?> memberSchema, Schema<?> parentSchema, Set<String> validTypes)
     {
-    List<IVarDef> memberSchemaVars = instanceSchemaVars( api, memberVarTag, false, memberSchema, parentSchema, validTypes).collect( toList());
-    if( !validationRequired)
-      {
-      // To provide for a single validation failure, find all descendant variables that define a failure value...
-      List<VarDef> failureVars =
-        toStream( new VarDefIterator( memberSchemaVars.iterator()))
-        .filter( v -> v.getFailureValues().hasNext())
-        .collect( toList());
-
-      if( !failureVars.isEmpty())
-        {
-        // ... and for most of them, remove all failure values...
-        int last = failureVars.size() - 1;
-        failureVars.subList( 0, last).stream()
-          .forEach( v -> {
-            List<VarValueDef> failures = toStream( v.getFailureValues()).collect( toList());
-            failures.stream().forEach( failure -> v.removeValue( failure.getName()));
-            });
-
-        // ... but for one descendant variable, select a single failure value to represent the member validation failure case.
-        makeMemberFailure( failureVars.get( last), containerVarTag, validationRequired);
-        }
-      }
-        
-    return memberSchemaVars.stream();
+    return instanceSchemaVars( api, memberVarTag, false, memberSchema, parentSchema, validTypes).collect( toList());
     }
 
   /**
-   * Update the given variable definition to represent the member failure case for the specified container variable.
+   * Update the given variable definitions for a oneOf/anyOf member to designate the given binding as the single failure case.
    */
-  private void makeMemberFailure( VarDef failureVar, String containerVarTag, boolean validationRequired)
+  private void designateMemberFailure( List<IVarDef> memberVars, MemberVarBinding designatedFailure, String oneOfVarTag)
     {
-    VarValueDef selectedFailure = null;
-    for( VarValueDef value : toStream( failureVar.getValues()).collect( toList()))
+    if( designatedFailure != null)
       {
-      if( value.getType() != VarValueDef.Type.FAILURE)
-        {
-        // Non-failure values must indicate the "member valid" state
-        if( !validationRequired)
-          {
-          value.addProperties( memberValidatedProperty( containerVarTag));
-          }
-        }
+      // For all descendant variables...
+      toStream( new VarDefIterator( memberVars.iterator()))
+        .forEach( varDef -> {
+          // Is this the designated failure variable?
+          if( varDef.getPathName().equals( designatedFailure.getVar()))
+            {
+            // Yes, for all values...
+            for( VarValueDef value : toStream( varDef.getValues()).collect( toList()))
+              {
+              // Is this a valid value?
+              if( value.getType() != VarValueDef.Type.FAILURE)
+                {
+                // Yes, valid values must indicate the "member valid" state
+                value.addProperties( memberValidatedProperty( oneOfVarTag));
+                }
 
-      else if( selectedFailure == null)
-        {
-        // One failure value must become the sole alternative for the "member not valid" state
-        selectedFailure = value;
-        if( !validationRequired)
-          {
-          value.setType( VarValueDef.Type.VALID);
-          }
-        }
-
-      else
-        {
-        // And all other failure values must be removed
-        failureVar.removeValue( value.getName());
-        }
+              // Is this the designated failure value?
+              else if( Objects.equals( value.getName(), designatedFailure.getValue()))
+                {
+                // Yes, this must be the only value that does NOT indicate the "member valid" state
+                value.setType( VarValueDef.Type.VALID);
+                }
+              else
+                {
+                // Otherwise, remove all non-designated failure values
+                varDef.removeValue( value.getName());
+                }
+              }
+            }
+          else
+            {
+            // No, remove all non-designated failure values
+            List<VarValueDef> nondesignated = toStream( varDef.getFailureValues()).collect( toList());
+            nondesignated.stream().forEach( value -> varDef.removeValue( value.getName()));
+            }          
+          });
       }
     }
 

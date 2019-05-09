@@ -44,7 +44,7 @@
             <VarSet name="0">
               <Var name="Type">
                 <Value name="boolean" property="param1OneOf0Value, param1OneOfMemberValidated"/>
-                <Value name="null"/>
+                <Value name="Not boolean"/>
               </Var>
               <Var name="Value" when="param1OneOf0Value">
                 <Value name="true"/>

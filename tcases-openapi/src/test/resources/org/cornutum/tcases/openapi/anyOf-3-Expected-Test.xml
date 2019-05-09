@@ -140,7 +140,7 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="Not integer"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
