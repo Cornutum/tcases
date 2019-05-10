@@ -12,6 +12,8 @@ import org.cornutum.tcases.util.ListBuilder;
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.conditions.Conditions.*;
 import static org.cornutum.tcases.openapi.MemberVarBinding.*;
+import static org.cornutum.tcases.openapi.OpenApiUtils.*;
+import static org.cornutum.tcases.openapi.SchemaUtils.*;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -38,12 +40,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -109,7 +108,7 @@ public abstract class InputModeller
       }
 
     return
-      with( title,
+      resultFor( title,
         () -> {
         SystemInputDef inputDef =
           SystemInputDefBuilder.with( toIdentifier( title))
@@ -131,7 +130,7 @@ public abstract class InputModeller
   private Stream<FunctionInputDef> pathRequestDefs( OpenAPI api, String path, PathItem pathItem)
     {
     return
-      with( path,
+      resultFor( path,
 
       () ->
       Stream.of(
@@ -157,7 +156,7 @@ public abstract class InputModeller
   private FunctionInputDef opRequestDef( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
     {
     return
-      with( opName,
+      resultFor( opName,
         () ->
         op == null?
         null :
@@ -201,7 +200,7 @@ public abstract class InputModeller
       }
 
     return
-      with( title,
+      resultFor( title,
         () -> {
         SystemInputDef inputDef =
           SystemInputDefBuilder.with( toIdentifier( title))
@@ -223,7 +222,7 @@ public abstract class InputModeller
   private Stream<FunctionInputDef> pathResponseDefs( OpenAPI api, String path, PathItem pathItem)
     {
     return
-      with( path,
+      resultFor( path,
 
       () ->
       Stream.of(
@@ -263,7 +262,7 @@ public abstract class InputModeller
   private FunctionInputDef opResponseDef( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
     {
     return
-      with( opName,
+      resultFor( opName,
         () ->
         op == null?
         null :
@@ -281,7 +280,7 @@ public abstract class InputModeller
   private Optional<IVarDef> requestBodyVarDef( OpenAPI api, RequestBody body)
     {
     return
-      with( "requestBody",
+      resultFor( "requestBody",
         () ->
         Optional.ofNullable( body)
         .map( b -> resolveRequestBody( api, b))
@@ -339,7 +338,7 @@ public abstract class InputModeller
         String mediaType = contentDef.getKey();
 
         return
-          with( mediaType,
+          resultFor( mediaType,
             () ->
             {
             String mediaTypeVarName = mediaTypeVarName( mediaType);
@@ -374,7 +373,7 @@ public abstract class InputModeller
   private IVarDef parameterVarDef( OpenAPI api, Parameter parameter)
     {
     return
-      with( parameter.getName(),
+      resultFor( parameter.getName(),
         () ->
         {
         String parameterVarName = toIdentifier( parameter.getName());
@@ -470,7 +469,7 @@ public abstract class InputModeller
   private Stream<IVarDef> responsesVars( OpenAPI api, ApiResponses responses)
     {
     return
-      with( "responses",
+      resultFor( "responses",
         () ->
         Stream.concat(
           Stream.of(
@@ -507,8 +506,7 @@ public abstract class InputModeller
       responses.keySet().stream()
       .map( status -> {
         return
-          with(
-            status,
+          resultFor( status,
             () ->  {
             ApiResponse response = resolveResponse( api, responses.get( status));
             String statusValueName = status.equals( "default")? "Other" : status;
@@ -529,7 +527,7 @@ public abstract class InputModeller
   private Optional<IVarDef> responseHeadersVar( OpenAPI api, String status, ApiResponse response)
     {
     return
-      with( "headers",
+      resultFor( "headers",
         () -> {
         List<String> headerNames =
           Optional.ofNullable( response.getHeaders())
@@ -555,8 +553,7 @@ public abstract class InputModeller
   private IVarDef responseHeaderVar( OpenAPI api, String status, String headerName, Header header)
     {
     return
-      with(
-        headerName,
+      resultFor( headerName,
         () -> {
         String headerVarName = toIdentifier( headerName);
         String headerVarTag = status + "Header" + StringUtils.capitalize( headerVarName);
@@ -590,7 +587,7 @@ public abstract class InputModeller
     String contentVarName = "Content";
     String contentVarTag = status + contentVarName;
     return
-      with( "content",
+      resultFor( "content",
         () ->
         Optional.ofNullable( response.getContent())
         .map( mediaTypes -> {
@@ -709,7 +706,7 @@ public abstract class InputModeller
       Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, combinedSchema)) :
 
       // Unknown schema type?
-      !isOpenApiType( instanceType)?
+      !isSchemaType( instanceType)?
       unknownSchemaVars( instanceType) :
 
       // Composed schema?
@@ -881,7 +878,7 @@ public abstract class InputModeller
   private Optional<IVarDef> arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema, Schema<?> itemSchema)
     {
     return
-      with( "items",
+      resultFor( "items",
         () ->
         Optional.ofNullable( arraySchema.getMaxItems()).orElse( Integer.MAX_VALUE) <= 0
 
@@ -1026,7 +1023,7 @@ public abstract class InputModeller
           IntStream.range( 0, applicableMembers.size())
           .mapToObj( i -> {
             return
-              with( String.format( "allOf[%s]", i),
+              resultFor( String.format( "allOf[%s]", i),
                 () ->
                 {
                 String memberVarTag = containerVarTag + i;
@@ -1079,7 +1076,7 @@ public abstract class InputModeller
     List<List<IVarDef>> oneOfVars =
       IntStream.range( 0, applicableMembers.size())
       .mapToObj( i -> 
-        with( String.format( "%s[%s]", containerType, i),
+        resultFor( String.format( "%s[%s]", containerType, i),
           () -> memberSchemaVars( api, containerVarTag + i, applicableMembers.get(i), parentSchema, validTypes)))
       .collect( toList());
 
@@ -1743,7 +1740,7 @@ public abstract class InputModeller
   private IVarDef objectPropertyVar( OpenAPI api, String instanceVarTag, String propertyName, boolean required, Schema<?> propertySchema)
     {
     return
-      with( propertyName,
+      resultFor( propertyName,
         () ->
         {
         String propertyVarName = toIdentifier( propertyName);
@@ -2080,208 +2077,6 @@ public abstract class InputModeller
     }
 
   /**
-   * Returns the given value if non-null. Otherwise, throws an exception.
-   */
-  private <T> T expectedValueOf( T value, String description, Object... descriptionArgs)
-    {
-    if( value == null)
-      {
-      throw new IllegalStateException( String.format( description, descriptionArgs) + " is not defined");
-      }
-
-    return value;
-    }
-
-  /**
-   * If the given parameter is defined by a reference, returns the referenced parameter. Otherwise, returns the given parameter.
-   */
-  private Parameter resolveParameter( OpenAPI api, Parameter parameter)
-    {
-    return componentParameterRef( api, parameter.get$ref()).orElse( parameter);
-    }
-
-  /**
-   * If the given schema is defined by a reference, returns the referenced schema. Otherwise, returns the given schema.
-   */
-  private Schema<?> resolveSchema( OpenAPI api, Schema<?> schema)
-    {
-    return
-      schema == null
-      ? null
-      : resolveSchemaType( componentSchemaRef( api, schema.get$ref()).orElse( schema));
-    }
-
-  /**
-   * If the given request body is defined by a reference, returns the referenced requestBody. Otherwise, returns the given request body.
-   */
-  private RequestBody resolveRequestBody( OpenAPI api, RequestBody requestBody)
-    {
-    return componentRequestBodyRef( api, requestBody.get$ref()).orElse( requestBody);
-    }
-
-  /**
-   * If the given response is defined by a reference, returns the referenced response. Otherwise, returns the given response.
-   */
-  private ApiResponse resolveResponse( OpenAPI api, ApiResponse response)
-    {
-    return componentResponseRef( api, response.get$ref()).orElse( response);
-    }
-
-  /**
-   * If the given header is defined by a reference, returns the referenced header. Otherwise, returns the given header.
-   */
-  private Header resolveHeader( OpenAPI api, Header header)
-    {
-    return componentHeaderRef( api, header.get$ref()).orElse( header);
-    }
-
-  /**
-   * When the given reference is non-null, returns the component parameter referenced.
-   */
-  private Optional<Parameter> componentParameterRef( OpenAPI api, String reference)
-    {
-    return
-      Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_PARAMETERS_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getParameters(), "Component parameters").get( name))
-      .filter( Objects::nonNull);
-    }
-
-  /**
-   * When the given reference is non-null, returns the component schema referenced.
-   */
-  @SuppressWarnings("rawtypes")
-  private Optional<Schema> componentSchemaRef( OpenAPI api, String reference)
-    {
-    return
-      Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_SCHEMAS_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getSchemas(), "Component schemas").get( name))
-      .filter( Objects::nonNull);
-    }
-
-  /**
-   * When the given reference is non-null, returns the component request body referenced.
-   */
-  private Optional<RequestBody> componentRequestBodyRef( OpenAPI api, String reference)
-    {
-    return
-      Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_REQUEST_BODIES_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getRequestBodies(), "Component request bodies").get( name))
-      .filter( Objects::nonNull);
-    }
-
-  /**
-   * When the given reference is non-null, returns the component response referenced.
-   */
-  private Optional<ApiResponse> componentResponseRef( OpenAPI api, String reference)
-    {
-    return
-      Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_RESPONSES_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getResponses(), "Component responses").get( name))
-      .filter( Objects::nonNull);
-    }
-
-  /**
-   * When the given reference is non-null, returns the component header referenced.
-   */
-  private Optional<Header> componentHeaderRef( OpenAPI api, String reference)
-    {
-    return
-      Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_HEADERS_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getHeaders(), "Component headers").get( name))
-      .filter( Objects::nonNull);
-    }
-
-  /**
-   * Returns the name of the given component reference.
-   */
-  private String componentName( String refType, String ref)
-    {
-    return ref.startsWith( refType)? ref.substring( refType.length()) : null;
-    }
-
-  /**
-   * Returns true if the given schema type is supported by OpenAPI.
-   */
-  private boolean isOpenApiType( String type)
-    {
-    return type == null || SCHEMA_TYPES.contains( type);
-    }
-
-  /**
-   * If necessary, updates the type of the given schema based its properties.
-   * If the type defined for this schema is valid and consistent, returns the updated schema.
-   * Otherwise, throws an exception.
-   */
-  private Schema<?> resolveSchemaType( Schema<?> schema)
-    {
-    String declaredType = schema.getType();
-    
-    List<String> impliedTypes = 
-    Stream.of(
-      impliedType( "array", schema, Schema::getMaxItems, Schema::getMinItems, Schema::getUniqueItems),
-      impliedType( "number", schema, Schema::getMaximum, Schema::getExclusiveMaximum, Schema::getMinimum, Schema::getExclusiveMinimum, Schema::getMultipleOf),
-      impliedType( "object", schema, Schema::getMaxProperties, Schema::getMinProperties, Schema::getRequired, Schema::getProperties, Schema::getAdditionalProperties),
-      impliedType( "string", schema, Schema::getMaxLength, Schema::getMinLength, Schema::getPattern))
-      .filter( Objects::nonNull)
-      .collect( toList());
-
-    if( impliedTypes.size() == 1)
-      {
-      String impliedType = impliedTypes.get(0);
-      if( declaredType == null)
-        {
-        schema.setType( impliedType);
-        }
-      else if( !(impliedType.equals( declaredType) || (impliedType.equals( "number") && declaredType.equals( "integer"))))
-        {
-        throw new IllegalStateException( String.format( "Schema declares type=%s but has implied type=%s", declaredType, impliedType));
-        }
-      }
-    else if( impliedTypes.size() > 1)
-      {
-      throw new IllegalStateException( String.format( "Ambiguous schema type -- could be any of %s", impliedTypes.stream().collect( joining( ", "))));
-      }
-      
-    return schema;
-    }
-
-  /**
-   * Returns the given type if applying any of the given accessors to the given schema produces a non-null value.
-   * Otherwise, returns null.
-   */
-  @SafeVarargs
-  private static String impliedType( String type, Schema<?> schema, Function<Schema<?>,Object>... accessors)
-    {
-    return
-      Stream.of( accessors)
-      .map( accessor -> accessor.apply( schema))
-      .filter( Objects::nonNull)
-      .findFirst()
-      .map( value -> type)
-      .orElse( null);
-    }
-
-  /**
    * Returns the instance types that can be validated by the given schema. Returns null if any type can be validated.
    */
   @SuppressWarnings("unchecked")
@@ -2326,7 +2121,7 @@ public abstract class InputModeller
         .filter( memberTypes -> memberTypes.getValue() != null)
         .reduce(
           (allTypes, memberTypes) ->
-          with( String.format( "allOf[%s]", memberTypes.getKey()),
+          resultFor( String.format( "allOf[%s]", memberTypes.getKey()),
             () -> {
               allTypes.getValue().retainAll( memberTypes.getValue());
               if( allTypes.getValue().isEmpty())
@@ -2429,7 +2224,7 @@ public abstract class InputModeller
       IntStream.range( 0, memberSchemas.size())
       .filter(
         i -> 
-        with( String.format( "%s[%s]", containerType, i),
+        resultFor( String.format( "%s[%s]", containerType, i),
           () -> {
             boolean applicable = isApplicableInput( api, memberSchemas.get(i), validTypes);
             if( !applicable)
@@ -2461,457 +2256,7 @@ public abstract class InputModeller
    */
   private Schema<?> combineSchemas( Schema<?> base, Schema<?> additional)
     {
-    Schema<?> combined;
-
-    if( base == null)
-      {
-      combined = additional;
-      }
-    else if( additional == null)
-      {
-      combined = base;
-      }
-    else
-      {
-      // A null type indicates an empty schema, which can be combined with any type.
-      String baseType = Optional.ofNullable( base.getType()).orElse( additional.getType());
-      String additionalType = Optional.ofNullable( additional.getType()).orElse( base.getType());
-
-      if( !Objects.equals( baseType, additionalType))
-        {
-        throw
-          new IllegalStateException(
-            String.format(
-              "Can't combine schema of type=% with base schema of type=%",
-              additionalType,
-              baseType));
-        }
-
-      combined = 
-        "object".equals( baseType)?
-        combineObjectSchemas( base, additional) :
-      
-        "string".equals( baseType)?
-        combineStringSchemas( base, additional) :
-      
-        "integer".equals( baseType)?
-        combineIntegerSchemas( base, additional) :
-      
-        "boolean".equals( baseType)?
-        combineBooleanSchemas( base, additional) :
-
-        "array".equals( baseType)?
-        combineArraySchemas( base, additional) :
-      
-        "number".equals( baseType)?
-        combineNumberSchemas( base, additional) :
-
-        combineGenericSchemas( base, additional);
-      }
-
-    return combined;
-    }
-    
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  @SuppressWarnings({ "rawtypes", "unchecked" })
-  private Schema<?> combineObjectSchemas( Schema<?> base, Schema<?> additional)
-    {
-    Schema combined = combineGenericSchemas( base, additional);
-
-    // Combine additionalProperties
-    Schema<?> baseExtraSchema =
-      Optional.ofNullable( base.getAdditionalProperties())
-      .map( Object::getClass)
-      .filter( type -> !type.equals( Boolean.class))
-      .map( type -> (Schema<?>) base.getAdditionalProperties())
-      .orElse( null);
-
-    Schema<?> additionalExtraSchema =
-      Optional.ofNullable( additional.getAdditionalProperties())
-      .map( Object::getClass)
-      .filter( type -> !type.equals( Boolean.class))
-      .map( type -> (Schema<?>) additional.getAdditionalProperties())
-      .orElse( null);
-
-    combined.setAdditionalProperties(
-      Boolean.FALSE.equals( base.getAdditionalProperties()) || Boolean.FALSE.equals( additional.getAdditionalProperties())?
-      (Object) Boolean.FALSE :
-
-      baseExtraSchema != null && additionalExtraSchema != null?
-      (Object) with( "additionalProperties", () -> combineSchemas( baseExtraSchema, additionalExtraSchema)) :
-      
-      baseExtraSchema != null?
-      (Object) baseExtraSchema :
-
-      (Object) additionalExtraSchema);      
-
-    // Combine maxProperties
-    combined.setMaxProperties(
-      base.getMaxProperties() == null?
-      additional.getMaxProperties() :
-
-      additional.getMaxProperties() == null?
-      base.getMaxProperties() :
-
-      base.getMaxProperties().compareTo( additional.getMaxProperties()) < 0?
-      base.getMaxProperties() :
-
-      additional.getMaxProperties());
-
-    // Combine minProperties
-    combined.setMinProperties(
-      base.getMinProperties() == null?
-      additional.getMinProperties() :
-
-      additional.getMinProperties() == null?
-      base.getMinProperties() :
-
-      base.getMinProperties().compareTo( additional.getMinProperties()) > 0?
-      base.getMinProperties() :
-
-      additional.getMinProperties());
-
-    // Combine required
-    combined.setRequired(
-      Stream.concat(
-        Optional.ofNullable( base.getRequired()).map( required -> required.stream()).orElse( Stream.empty()),
-        Optional.ofNullable( additional.getRequired()).map( required -> required.stream()).orElse( Stream.empty()))
-      .collect(
-        () -> new LinkedHashSet<String>(),
-        (set, property) -> set.add( property),
-        (set, other) -> set.addAll( other))
-      .stream().collect( toList()));
-
-    // Combine properties
-    Map<String,Schema> combinedPropertyDefs = new HashMap<String,Schema>();
-    Map<String,Schema> basePropertyDefs = Optional.ofNullable( base.getProperties()).orElse( emptyMap());
-    Map<String,Schema> additionalPropertyDefs = Optional.ofNullable( additional.getProperties()).orElse( emptyMap());
-
-    Stream.concat( basePropertyDefs.keySet().stream(), additionalPropertyDefs.keySet().stream())
-      .collect( toSet()).stream()
-      .forEach( property ->
-        combinedPropertyDefs.put(
-          property,
-          with(
-            property,
-            () -> combineSchemas( basePropertyDefs.get( property), additionalPropertyDefs.get( property)))));
-    
-    combined.setProperties( combinedPropertyDefs);
-  
-    return combined;
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  @SuppressWarnings("rawtypes")
-  private Schema<?> combineStringSchemas( Schema<?> base, Schema<?> additional)
-    {
-    Schema combined = combineGenericSchemas( base, additional);
-
-    // Combine maxLength
-    combined.setMaxLength(
-      base.getMaxLength() == null?
-      additional.getMaxLength() :
-
-      additional.getMaxLength() == null?
-      base.getMaxLength() :
-
-      base.getMaxLength().compareTo( additional.getMaxLength()) < 0?
-      base.getMaxLength() :
-
-      additional.getMaxLength());
-
-    // Combine minLength
-    combined.setMinLength(
-      base.getMinLength() == null?
-      additional.getMinLength() :
-
-      additional.getMinLength() == null?
-      base.getMinLength() :
-
-      base.getMinLength().compareTo( additional.getMinLength()) > 0?
-      base.getMinLength() :
-
-      additional.getMinLength());
-
-    // Combine pattern
-    combined.setPattern(
-      base.getPattern() == null?
-      additional.getPattern() :
-
-      additional.getPattern() == null?
-      base.getPattern() :
-
-      additional.getPattern());
-      
-    return combined;
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  @SuppressWarnings("rawtypes")
-  private Schema<?> combineIntegerSchemas( Schema<?> base, Schema<?> additional)
-    {
-    Schema combined = combineNumericSchemas( base, additional);
-
-    // Combine format
-    combined.setFormat(
-      base.getFormat() == null?
-      additional.getFormat() :
-
-      additional.getFormat() == null?
-      base.getFormat() :
-
-      base.getFormat().equals( "int32")?
-      base.getFormat() :
-
-      additional.getFormat());
-    
-    return combined;
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  private Schema<?> combineBooleanSchemas( Schema<?> base, Schema<?> additional)
-    {
-    return combineGenericSchemas( base, additional);
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  private Schema<?> combineArraySchemas( Schema<?> base, Schema<?> additional)
-    {
-    ArraySchema combined = combineGenericSchemas( new ArraySchema(), base, additional);
-
-    // Combine maxItems
-    combined.setMaxItems(
-      base.getMaxItems() == null?
-      additional.getMaxItems() :
-
-      additional.getMaxItems() == null?
-      base.getMaxItems() :
-
-      base.getMaxItems().compareTo( additional.getMaxItems()) < 0?
-      base.getMaxItems() :
-
-      additional.getMaxItems());
-
-    // Combine minItems
-    combined.setMinItems(
-      base.getMinItems() == null?
-      additional.getMinItems() :
-
-      additional.getMinItems() == null?
-      base.getMinItems() :
-
-      base.getMinItems().compareTo( additional.getMinItems()) > 0?
-      base.getMinItems() :
-
-      additional.getMinItems());
-
-    // Combine uniqueItems
-    combined.setUniqueItems(
-      Boolean.TRUE.equals( base.getUniqueItems())
-      ? base.getUniqueItems() 
-      : additional.getUniqueItems());     
-
-    // Combine items
-    Schema<?> baseItems = base instanceof ArraySchema? ((ArraySchema) base).getItems() : null;
-    Schema<?> additionalItems = additional instanceof ArraySchema? ((ArraySchema) additional).getItems() : null;
-    combined.setItems( combineSchemas( baseItems, additionalItems));     
-
-    return combined;
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  @SuppressWarnings("rawtypes")
-  private Schema<?> combineNumberSchemas( Schema<?> base, Schema<?> additional)
-    {
-    Schema combined = combineNumericSchemas( base, additional);
-
-    // Combine format
-    combined.setFormat(
-      base.getFormat() == null?
-      additional.getFormat() :
-
-      additional.getFormat() == null?
-      base.getFormat() :
-
-      base.getFormat().equals( "float")?
-      base.getFormat() :
-
-      additional.getFormat());
-    
-    return combined;
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  @SuppressWarnings("rawtypes")
-  private Schema<?> combineNumericSchemas( Schema<?> base, Schema<?> additional)
-    {
-    Schema combined = combineGenericSchemas( base, additional);
-
-    // Combine maximum
-    combined.setMaximum(
-      base.getMaximum() == null?
-      additional.getMaximum() :
-
-      additional.getMaximum() == null?
-      base.getMaximum() :
-
-      base.getMaximum().compareTo( additional.getMaximum()) < 0?
-      base.getMaximum() :
-
-      additional.getMaximum());
-    
-    // Combine minimum
-    combined.setMinimum(
-      base.getMinimum() == null?
-      additional.getMinimum() :
-
-      additional.getMinimum() == null?
-      base.getMinimum() :
-
-      base.getMinimum().compareTo( additional.getMinimum()) > 0?
-      base.getMinimum() :
-
-      additional.getMinimum());
-    
-    // Combine exclusiveMaximum
-    combined.setExclusiveMaximum(
-      combined.getMaximum() == null?
-      null :
-
-      Objects.equals( combined.getMaximum(), base.getMaximum())?
-      base.getExclusiveMaximum() :
- 
-      additional.getExclusiveMaximum());
-
-      
-    // Combine exclusiveMinimum
-    combined.setExclusiveMinimum(
-      combined.getMinimum() == null?
-      null :
-
-      Objects.equals( combined.getMinimum(), base.getMinimum())?
-      base.getExclusiveMinimum() :
- 
-      additional.getExclusiveMinimum());
-
-    // Combine multipleOf
-    combined.setMultipleOf(
-      base.getMultipleOf() == null?
-      additional.getMultipleOf() :
-
-      additional.getMultipleOf() == null?
-      base.getMultipleOf() :
-
-      combineMultipleOf( base.getMultipleOf(), additional.getMultipleOf())); 
-    
-    return combined;
-    }
-
-  /**
-   * If the given multipleOf factors are congruent, returns the maximum value.
-   * Otherwise, throws an exception to report the inconsistent values.
-   */
-  private BigDecimal combineMultipleOf( BigDecimal base, BigDecimal additional)
-    {
-    BigDecimal max = base.compareTo( additional) > 0? base : additional;
-    BigDecimal min = base.compareTo( additional) < 0? base : additional;
-
-    if( max.remainder( min).compareTo( BigDecimal.ZERO) != 0)
-      {
-      throw new IllegalStateException( String.format( "multipleOf=% is not consistent with base multipleOf=%s", additional, base));
-      }
-
-    return max;
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  @SuppressWarnings({ "rawtypes" })
-  private Schema combineGenericSchemas( Schema base, Schema additional)
-    {
-    return combineGenericSchemas( new Schema<Object>(), base, additional);
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  @SuppressWarnings({ "rawtypes", "unchecked" })
-  private <T extends Schema> T combineGenericSchemas( T combined, Schema base, Schema additional)
-    {
-    combined.setType( Optional.ofNullable( base.getType()).orElse( additional.getType()));
-
-    // Combine format
-    combined.setFormat(
-      base.getFormat() == null?
-      additional.getFormat() :
-
-      additional.getFormat() == null?
-      base.getFormat() :
-
-      additional.getFormat());
-
-    // Combine enum
-    combined.setEnum(
-      base.getEnum() == null?
-      additional.getEnum() :
-
-      additional.getEnum() == null?
-      base.getEnum() :
-
-      Optional.of( base.getEnum())
-      .map( enums -> {
-          Set<Object> baseEnums = new LinkedHashSet<Object>( enums);
-          baseEnums.retainAll( additional.getEnum());
-          return baseEnums;
-        })
-      .filter( enums -> !enums.isEmpty())
-      .map( enums -> enums.stream().collect( toList()))
-      .orElseThrow( () -> new IllegalStateException( String.format( "enum=%s is not consistent with base enum=%s", additional.getEnum(), base.getEnum()))));
-
-    // Combine nullable
-    combined.setNullable(
-      Boolean.TRUE.equals( base.getNullable())
-      ? additional.getNullable()
-      : base.getNullable());
-
-    // Combine readOnly
-    combined.setReadOnly(
-      Boolean.TRUE.equals( base.getReadOnly())
-      ? base.getReadOnly() 
-      : additional.getReadOnly());
-
-    // Combine writeOnly
-    combined.setWriteOnly(
-      Boolean.TRUE.equals( base.getWriteOnly())
-      ? base.getWriteOnly() 
-      : additional.getWriteOnly());
-      
-    return combined;
+    return SchemaUtils.combineSchemas( context_, base, additional);
     }
 
   /**
@@ -2939,7 +2284,7 @@ public abstract class InputModeller
       .filter( memberEntry -> asComposedSchema( memberEntry.getValue()) == null)
       .reduce(
         (combinedEntry, memberEntry) ->
-        with( String.format( "allOf[%s]", memberEntry.getKey()),
+        resultFor( String.format( "allOf[%s]", memberEntry.getKey()),
           () -> new SimpleEntry<Integer,Schema>( memberEntry.getKey(), combineSchemas( combinedEntry.getValue(), memberEntry.getValue()))))
       .map( combinedEntry -> combinedEntry.getValue())
       .ifPresent( combined -> consolidated.add( 0, combined));
@@ -3098,38 +2443,6 @@ public abstract class InputModeller
     }
 
   /**
-   * Returns the result of the given supplier with the specified context.
-   */
-  private <T> T with( String context, Supplier<T> supplier)
-    {
-    context_.addLast( context);
-    try
-      {
-      return supplier.get();
-      }
-    catch( OpenApiException oae)
-      {
-      throw oae;
-      }
-    catch( Exception e)
-      {
-      throw new OpenApiException( contextLocation(), e);
-      }
-    finally
-      {
-      context_.removeLast();
-      }
-    }
-
-  /**
-   * Returns the path to the current context.
-   */
-  private String[] contextLocation()
-    {
-    return toStream( context_.iterator()).toArray( String[]::new);
-    }
-
-  /**
    * Report an warning condition
    */
   private void notifyWarning( String reason)
@@ -3143,6 +2456,22 @@ public abstract class InputModeller
   private void notifyError( String reason, String resolution)
     {
     options_.getConditionNotifier().error( contextLocation(), reason, resolution);
+    }
+
+  /**
+   * Returns the path to the current context.
+   */
+  private String[] contextLocation()
+    {
+    return context_.getLocation();
+    }
+
+  /**
+   * Returns the result of the given supplier within the specified context.
+   */
+  private <T> T resultFor( String context, Supplier<T> supplier)
+    {
+    return context_.resultFor( context, supplier);
     }
 
   /**
@@ -3255,19 +2584,8 @@ public abstract class InputModeller
     }
 
   private final View view_;
-  private Deque<String> context_ = new ArrayDeque<String>();
+  private OpenApiContext context_ = new OpenApiContext();
   private ModelOptions options_;
   
-  private static final String COMPONENTS_PARAMETERS_REF = "#/components/parameters/";
-  private static final String COMPONENTS_REQUEST_BODIES_REF = "#/components/requestBodies/";
-  private static final String COMPONENTS_RESPONSES_REF = "#/components/responses/";
-  private static final String COMPONENTS_SCHEMAS_REF = "#/components/schemas/";
-  private static final String COMPONENTS_HEADERS_REF = "#/components/headers/";
   private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
-
-  private static final Set<String> SCHEMA_TYPES =
-    Arrays.asList( "array", "boolean", "integer", "number", "object", "string")
-    .stream().collect( toSet());
-
-
 }
