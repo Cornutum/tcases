@@ -128,7 +128,7 @@ public final class SchemaUtils
         throw
           new IllegalStateException(
             String.format(
-              "Can't combine schema of type=% with base schema of type=%",
+              "Can't combine schema of type=%s with base schema of type=%s",
               additionalType,
               baseType));
         }
@@ -486,7 +486,7 @@ public final class SchemaUtils
 
     if( max.remainder( min).compareTo( BigDecimal.ZERO) != 0)
       {
-      throw new IllegalStateException( String.format( "multipleOf=% is not consistent with base multipleOf=%s", additional, base));
+      throw new IllegalStateException( String.format( "multipleOf=%s is not consistent with base multipleOf=%s", additional, base));
       }
 
     return max;
