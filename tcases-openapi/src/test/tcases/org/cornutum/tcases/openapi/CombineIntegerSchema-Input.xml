@@ -1,0 +1,83 @@
+<System name="IntegerSchemas">
+    <Function name="Combine">
+        <Input>
+            <VarSet name="base">
+                <Var name="format">
+                    <Value name="null"/>
+                    <Value name="int32"/>
+                    <Value name="int64"/>
+                </Var>
+                <Var name="enum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseEnum"/>
+                </Var>
+                <Var name="maximum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaximum"/>
+                </Var>
+                <Var name="minimum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMinimum"/>
+                </Var>
+                <Var name="exclusiveMaximum">
+                    <Value name="null"/>
+                    <Value name="true" when="baseMaximum"/>
+                    <Value name="false" when="baseMaximum"/>
+                </Var>
+                <Var name="exclusiveMinimum">
+                    <Value name="null"/>
+                    <Value name="true" when="baseMinimum"/>
+                    <Value name="false" when="baseMinimum"/>
+                </Var>
+                <Var name="multipleOf">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMultipleOf"/>
+                </Var>
+            </VarSet>
+            <VarSet name="additional">
+                <Var name="format">
+                    <Value name="null"/>
+                    <Value name="int32"/>
+                    <Value name="int64"/>
+                </Var>
+                <Var name="enum">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseEnum"/>
+                    <Value name="Subset of base" when="baseEnum"/>
+                    <Value name="Contains base" when="baseEnum"/>
+                    <Value name="Intersects base" when="baseEnum"/>
+                    <Value name="Disjoint from base" when="baseEnum" failure="true"/>
+                </Var>
+                <Var name="maximum">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMaximum" property="additionalMaximum"/>
+                    <Value name="&lt; base" when="baseMaximum" property="additionalMaximum"/>
+                    <Value name="&gt; base" when="baseMaximum" property="additionalMaximum"/>
+                </Var>
+                <Var name="minimum">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMinimum" property="additionalMinimum"/>
+                    <Value name="&lt; base" when="baseMinimum" property="additionalMinimum"/>
+                    <Value name="&gt; base" when="baseMinimum" property="additionalMinimum"/>
+                </Var>
+                <Var name="exclusiveMaximum">
+                    <Value name="null"/>
+                    <Value name="true" when="additionalMaximum"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="exclusiveMinimum">
+                    <Value name="null"/>
+                    <Value name="true" when="additionalMinimum"/>
+                    <Value name="false" when="additionalMinimum"/>
+                </Var>
+                <Var name="multipleOf">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMultipleOf"/>
+                    <Value name="&lt; base" when="baseMultipleOf"/>
+                    <Value name="&gt; base" when="baseMultipleOf"/>
+                    <Value name="Incongruent" when="baseMultipleOf" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

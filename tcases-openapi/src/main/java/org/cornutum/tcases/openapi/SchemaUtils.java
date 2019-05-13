@@ -233,19 +233,19 @@ public final class SchemaUtils
       .stream().collect( toList()));
 
     // Combine properties
-    Map<String,Schema> combinedPropertyDefs = new HashMap<String,Schema>();
     Map<String,Schema> basePropertyDefs = Optional.ofNullable( base.getProperties()).orElse( emptyMap());
     Map<String,Schema> additionalPropertyDefs = Optional.ofNullable( additional.getProperties()).orElse( emptyMap());
-
-    Stream.concat( basePropertyDefs.keySet().stream(), additionalPropertyDefs.keySet().stream())
-      .collect( toSet()).stream()
-      .forEach( property ->
-        combinedPropertyDefs.put(
-          property,
-          context.resultFor(
-            property,
-            () -> combineSchemas( context, basePropertyDefs.get( property), additionalPropertyDefs.get( property)))));
-    
+    Map<String,Schema> combinedPropertyDefs =
+      context.resultFor(
+        "properties",
+        () -> 
+        Stream.concat( basePropertyDefs.keySet().stream(), additionalPropertyDefs.keySet().stream())
+        .collect( toSet())
+        .stream()
+        .collect(
+          () -> new HashMap<String,Schema>(),
+          (map, p) -> map.put( p, context.resultFor( p, () -> combineSchemas( context, basePropertyDefs.get( p), additionalPropertyDefs.get( p)))),
+          (map, other) -> map.putAll( other)));
     combined.setProperties( combinedPropertyDefs);
   
     return combined;
@@ -260,6 +260,17 @@ public final class SchemaUtils
     {
     Schema combined = combineGenericSchemas( context, base, additional);
 
+    // Combine format
+    if( base.getFormat() != null && additional.getFormat() != null && !base.getFormat().equals( additional.getFormat()))
+      {
+      throw
+        new IllegalStateException(
+          String.format(
+            "format=%s is not consistent with base format=%s",
+            additional.getFormat(),
+            base.getFormat()));
+      }
+    
     // Combine maxLength
     combined.setMaxLength(
       base.getMaxLength() == null?
@@ -556,7 +567,19 @@ public final class SchemaUtils
       Boolean.TRUE.equals( base.getWriteOnly())
       ? base.getWriteOnly() 
       : additional.getWriteOnly());
-      
+
+    if( Boolean.TRUE.equals( combined.getReadOnly()) && Boolean.TRUE.equals( combined.getWriteOnly()))
+      {
+      String baseProp = Boolean.TRUE.equals( base.getReadOnly())? "readOnly" : "writeOnly";
+      String additionalProp = Boolean.TRUE.equals( additional.getReadOnly())? "readOnly" : "writeOnly";
+      throw
+        new IllegalStateException(
+          String.format(
+            "Can't combine schema requiring %s=true with base schema requiring %s=true",
+            additionalProp,
+            baseProp));
+      }
+    
     return combined;
     }
 
