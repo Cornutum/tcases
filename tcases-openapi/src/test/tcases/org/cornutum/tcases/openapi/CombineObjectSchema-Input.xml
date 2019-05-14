@@ -1,0 +1,79 @@
+<System name="ObjectSchemas">
+    <Function name="Combine">
+        <Input>
+            <VarSet name="base">
+                <Var name="format">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                </Var>
+                <Var name="maxProperties">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaxProperties"/>
+                </Var>
+                <Var name="minProperties">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMinProperties"/>
+                </Var>
+                <Var name="required">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseRequired"/>
+                </Var>
+                <Var name="properties">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseProperties"/>
+                </Var>
+                <Var name="additionalProperties">
+                    <Value name="null"/>
+                    <Value name="true"/>
+                    <Value name="false"/>
+                    <Value name="Schema" property="baseAdditionalPropertiesSchema"/>
+                </Var>
+            </VarSet>
+            <VarSet name="additional">
+                <Var name="format">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                </Var>
+                <Var name="maxProperties">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMaxProperties"/>
+                    <Value name="&lt; base" when="baseMaxProperties"/>
+                    <Value name="&gt; base" when="baseMaxProperties"/>
+                </Var>
+                <Var name="minProperties">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMinProperties"/>
+                    <Value name="&lt; base" when="baseMinProperties"/>
+                    <Value name="&gt; base" when="baseMinProperties"/>
+                </Var>
+                <Var name="required">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseRequired"/>
+                    <Value name="Intersects base" when="baseRequired"/>
+                    <Value name="Disjoint from base" when="baseRequired"/>
+                </Var>
+                <VarSet name="properties">
+                    <Var name="members">
+                        <Value name="None" property="additionalPropertiesNone"/>
+                        <Value name="Non-null" whenNot="baseProperties"/>
+                        <Value name="Same" when="baseProperties"/>
+                        <Value name="Missing" when="baseProperties"/>
+                        <Value name="Extra" when="baseProperties"/>
+                    </Var>
+                    <Var name="schema" whenNot="additionalPropertiesNone" when="baseProperties">
+                        <Value name="Same"/>
+                        <Value name="Different"/>
+                        <Value name="Inconsistent" failure="true"/>
+                    </Var>
+                </VarSet>
+                <Var name="additionalProperties">
+                    <Value name="null"/>
+                    <Value name="true"/>
+                    <Value name="false"/>
+                    <Value name="Schema"/>
+                    <Value name="Inconsistent" when="baseAdditionalPropertiesSchema" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

@@ -1,0 +1,102 @@
+<System name="ArraySchemas">
+    <Function name="Combine">
+        <Input>
+            <VarSet name="base">
+                <Var name="format">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                </Var>
+                <Var name="nullable">`
+                    <Value name="null"/>
+                    <Value name="true"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="readOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="readOnly"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="writeOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="writeOnly"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="maxItems">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaxItems"/>
+                </Var>
+                <Var name="minItems">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMinItems"/>
+                </Var>
+                <Var name="uniqueItems">
+                    <Value name="null"/>
+                    <Value name="true"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="items">
+                    <Value name="null"/>
+                    <Value name="Empty"/>
+                    <Value name="Non-empty"/>
+                </Var>
+            </VarSet>
+            <VarSet name="additional">
+                <Var name="format">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                </Var>
+                <Var name="nullable">
+                    <Value name="null"/>
+                    <Value name="true"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="readOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="readOnly"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="writeOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="writeOnly"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="maxItems">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMaxItems"/>
+                    <Value name="&lt; base" when="baseMaxItems"/>
+                    <Value name="&gt; base" when="baseMaxItems"/>
+                </Var>
+                <Var name="minItems">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMinItems"/>
+                    <Value name="&lt; base" when="baseMinItems"/>
+                    <Value name="&gt; base" when="baseMinItems"/>
+                </Var>
+                <Var name="uniqueItems">
+                    <Value name="null"/>
+                    <Value name="true"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="items">
+                    <Value name="null"/>
+                    <Value name="Empty"/>
+                    <Value name="Non-empty"/>
+                    <Value name="Different-Type" failure="true"/>
+                </Var>
+            </VarSet>
+            <VarSet name="Consistent">
+                <Var name="ReadWriteOnly">
+                    <Value name="Yes">
+                        <When>
+                            <AnyOf>
+                                <Not property="readOnly"/>
+                                <Not property="writeOnly"/>
+                            </AnyOf>
+                        </When>                        
+                    </Value>
+                    <Value name="No" when="readOnly, writeOnly" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>
