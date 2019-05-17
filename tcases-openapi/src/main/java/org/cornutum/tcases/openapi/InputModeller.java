@@ -713,47 +713,60 @@ public abstract class InputModeller
       composedSchema.isPresent() && !composedEquiv.isPresent()?
       composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema.get(), combinedSchema, requiredTypes) :
 
-      // Basic empty schema?
-      instanceType == null?
-      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, combinedSchema)) :
-
       // Basic type schema
-      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, combinedSchema);
+      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, combinedSchema, requiredTypes);
     }
   
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> typeSchemaVars(
+    OpenAPI api,
+    String instanceType,
+    String instanceVarTag,
+    boolean instanceOptional,
+    Schema<?> instanceSchema,
+    Set<String> requiredTypes)
     {
-    Stream<IVarDef> typeVars =
-      "object".equals( instanceType)?
-      instanceObjectVars( api, instanceVarTag, instanceOptional, instanceSchema) :
-      
-      "string".equals( instanceType)?
-      instanceStringVars( api, instanceVarTag, instanceOptional, instanceSchema) :
-      
-      "integer".equals( instanceType)?
-      instanceIntegerVars( api, instanceVarTag, instanceOptional, instanceSchema) :
-      
-      "boolean".equals( instanceType)?
-      instanceBooleanVars( api, instanceVarTag, instanceOptional, instanceSchema) :
 
-      "array".equals( instanceType)?
-      instanceArrayVars( api, instanceVarTag, instanceOptional, instanceSchema) :
-      
-      "number".equals( instanceType)?
-      instanceNumberVars( api, instanceVarTag, instanceOptional, instanceSchema) :
-      
-      Stream.empty();
+    Stream.Builder<IVarDef> typeVars = Stream.builder();
+    typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema));
+
+    typeValueVar( api, instanceType, instanceVarTag, instanceSchema)
+      .ifPresent( var -> typeVars.add( var));
+
+    // Although not supported, verify validity of "not" schema
+    notVar( api, instanceVarTag, instanceSchema, requiredTypes);
     
+    return typeVars.build();
+    }
+  
+  /**
+   * Returns the type-specific {@link IVarDef input variable} for the value defined by the given instance schema.
+   */
+  private Optional<IVarDef> typeValueVar( OpenAPI api, String instanceType, String instanceVarTag, Schema<?> instanceSchema)
+    {
     return
-      Stream.concat(
-        typeVars,
+      Optional.ofNullable(
+        "object".equals( instanceType)?
+        objectValueVar( api, instanceVarTag, instanceSchema) :
+      
+        "string".equals( instanceType)?
+        stringValueVar( api, instanceVarTag, instanceSchema) :
+      
+        "integer".equals( instanceType)?
+        integerValueVar( api, instanceVarTag, instanceSchema) :
+      
+        "boolean".equals( instanceType)?
+        booleanValueVar( api, instanceVarTag, instanceSchema) :
 
-        notVar( api, instanceVarTag, instanceSchema.getNot())
-        .map( notVar -> Stream.of( notVar))
-        .orElse( Stream.empty()));
+        "array".equals( instanceType)?
+        arrayValueVar( api, instanceVarTag, instanceSchema) :
+      
+        "number".equals( instanceType)?
+        numberValueVar( api, instanceVarTag, instanceSchema) :
+      
+        null);
     }
 
   /**
@@ -768,7 +781,7 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variables} defined by the given array instance.
    */
-  private Stream<IVarDef> instanceArrayVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private IVarDef arrayValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     Schema<?> itemSchema =
       instanceSchema instanceof ArraySchema
@@ -776,18 +789,15 @@ public abstract class InputModeller
       : null;
     
     return
-      Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
-
-        VarSetBuilder.with( "Items")
-        .when( has( instanceValueProperty( instanceVarTag)))
-        .members(
-          arraySizeVar( api, instanceVarTag, instanceSchema))
-        .members(
-          iterableOf( arrayItemsVar( api, instanceVarTag, instanceSchema, itemSchema)))
-        .members(
-          iterableOf( arrayUniqueItemsVar( api, instanceVarTag, instanceSchema)))
-        .build());
+      VarSetBuilder.with( "Items")
+      .when( has( instanceValueProperty( instanceVarTag)))
+      .members(
+        arraySizeVar( api, instanceVarTag, instanceSchema))
+      .members(
+        iterableOf( arrayItemsVar( api, instanceVarTag, instanceSchema, itemSchema)))
+      .members(
+        iterableOf( arrayUniqueItemsVar( api, instanceVarTag, instanceSchema)))
+      .build();
     }
 
   /**
@@ -910,61 +920,6 @@ public abstract class InputModeller
             VarValueDefBuilder.with( "Yes").build(),
             VarValueDefBuilder.with( "No").type( uniqueRequired? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
           .build());
-    }
-
-  /**
-   * Returns the {@link IVarDef input variables} defined by the given boolean instance.
-   */
-  private Stream<IVarDef> instanceBooleanVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
-    {
-    return
-      Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
-        booleanValueVar( api, instanceVarTag, instanceSchema));
-    }    
-
-  /**
-   * Returns the {@link IVarDef input variables} defined by the given integer instance.
-   */
-  private Stream<IVarDef> instanceIntegerVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
-    {
-    return
-      Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
-        integerValueVar( api, instanceVarTag, instanceSchema));
-    }   
-
-  /**
-   * Returns the {@link IVarDef input variables} defined by the given number instance.
-   */
-  private Stream<IVarDef> instanceNumberVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
-    {
-    return
-      Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
-        numberValueVar( api, instanceVarTag, instanceSchema));
-    }
-
-  /**
-   * Returns the {@link IVarDef input variables} defined by the given object instance.
-   */
-  private Stream<IVarDef> instanceObjectVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
-    {
-    return
-      Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
-        objectValueVar( api, instanceVarTag, instanceSchema));
-    }
-
-  /**
-   * Returns the {@link IVarDef input variables} defined by the given string instance.
-   */
-  private Stream<IVarDef> instanceStringVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
-    {
-    return
-      Stream.of(
-        instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema),
-        stringValueVar( api, instanceVarTag, instanceSchema));
     }   
 
   /**
@@ -998,8 +953,8 @@ public abstract class InputModeller
       composedSchemaVars.add( oneOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, composedSchema.getOneOf()));
       }
 
-    notVar( api, instanceVarTag, composedSchema.getNot())
-      .ifPresent( notVar -> composedSchemaVars.add( notVar));
+    // Although not supported, verify validity of "not" schema
+    notVar( api, instanceVarTag, composedSchema, validTypes);
 
     return composedSchemaVars.build();
     }
@@ -1191,14 +1146,30 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variable} defined by the "not" schema for the given instance.
    */
-  private Optional<IVarDef> notVar( OpenAPI api, String instanceVarTag, Schema<?> notSchema)
+  private Optional<IVarDef> notVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, Set<String> requiredTypes)
     {
-    if( notSchema != null)
-      {
-      notifyError( "The \"not\" keyword is not yet supported", "Ignoring the \"not\" schema");
-      }
+    return
+      resultFor( "not",
+        () -> 
+        Optional.ofNullable( instanceSchema)
+        .flatMap( schema -> Optional.ofNullable( resolveSchema( api, schema.getNot())))
 
-    return Optional.empty();
+        .filter( notSchema -> {
+          boolean applicable = isApplicableInput( api, notSchema, requiredTypes);
+          if( !applicable)
+            {
+            notifyWarning(
+              String.format(
+                "Ignoring this \"not\" schema: always satisfied by any instance satisfying base schema types=%s",
+                requiredTypes));
+            }
+          return applicable;
+          })
+
+        .flatMap( notSchema -> {
+          notifyError( "The \"not\" keyword is not yet supported", "Ignoring this \"not\" schema");
+          return Optional.empty();
+          }));
     }
 
   /**

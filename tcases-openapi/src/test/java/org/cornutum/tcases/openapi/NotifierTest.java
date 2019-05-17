@@ -63,7 +63,7 @@ public class NotifierTest extends OpenApiTest
     getTests( getRequestInputModel( "errors-1"));
     
     // Then...
-    assertErrors( "Object,/object,POST,param0: The \"not\" keyword is not yet supported. Ignoring the \"not\" schema.");
+    assertErrors( "Object,/object,POST,param0,not: The \"not\" keyword is not yet supported. Ignoring this \"not\" schema.");
     }
   
   @Test
