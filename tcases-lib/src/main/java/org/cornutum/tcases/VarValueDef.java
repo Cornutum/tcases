@@ -190,6 +190,27 @@ public class VarValueDef extends Conditional
     return addProperties( Arrays.asList( properties));
     }
 
+  /**
+   * Removes from the set of test case properties contributed by this value.
+   */
+  public VarValueDef removeProperties( Collection<String> properties)
+    {
+    if( properties != null)
+      {
+      properties_.removeAll( properties);
+      }
+
+    return this;
+    }
+
+  /**
+   * Removes from the set of test case properties contributed by this value.
+   */
+  public VarValueDef removeProperties( String ... properties)
+    {
+    return removeProperties( Arrays.asList( properties));
+    }
+
   public boolean equals( Object object)
     {
     VarValueDef other =
