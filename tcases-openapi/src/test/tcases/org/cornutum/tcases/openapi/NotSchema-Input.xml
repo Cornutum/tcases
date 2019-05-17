@@ -1,0 +1,52 @@
+<System name="NotSchema">
+    <Function name="Schema">
+        <Input>
+            <Var name="Type">
+                <Value name="array" property="typeArray"/>
+                <Value name="number"/>
+                <Value name="object"/>
+                <Value name="string"/>
+                <Value name="boolean"/>
+            </Var>
+            <VarSet name="Composed-With" whenNot="typeArray">
+                <Var name="Count">
+                    <Value name="0" whenNot="composed"/>
+                    <Value name="1">
+                        <When>
+                            <Equals property="composed" count="1"/>
+                        </When>
+                    </Value>
+                    <Value name="&gt; 1">
+                        <When>
+                            <Equals property="composed" count="2"/>
+                        </When>
+                    </Value>                            
+                </Var>
+                <VarSet name="not">
+                    <Var name="Included">
+                        <Value name="Yes" property="composed"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="allOf">
+                    <Var name="Included">
+                        <Value name="Yes" property="composed"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="anyOf">
+                    <Var name="Included">
+                        <Value name="Yes" property="composed"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="oneOf">
+                    <Var name="Included">
+                        <Value name="Yes" property="composed"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>
