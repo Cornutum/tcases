@@ -223,6 +223,27 @@ For details about the interface to the `tcases-api` command (and the `tcases-api
 the [`ApiCommand.Options`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ApiCommand.Options.html)
 class.  To get help at the command line, run `tcases-api -help`.
 
+Examples:
+
+```bash
+# Generate tests for requests defined in 'my-api.json'. Write results to 'my-api-Request-Tests.json'.
+tcases-api my-api.json
+```
+
+
+```bash
+# Generate tests for responses defined in 'my-api.json'. Write results to 'otherDir/someTests.json'.
+tcases-api -C -f someTests.json -o otherDir my-api.json
+```
+
+
+```bash
+# Generate tests for requests defined in the spec read from standard input. (JSON format assumed!)
+# Write results to standard output, unless an input modelling condition is found.
+# (See 'Test case generation tips'.)
+tcases-api -S -c fail < my-api.json
+```
+
 ## Using the Java API for Tcases for OpenAPI ##
 
 You can also run Tcases for OpenAPI by integrating it into your own Java application. If you are processing OpenAPI
