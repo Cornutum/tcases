@@ -40,8 +40,11 @@ public class ApiCommand
    * <NOBR>
    * [-C | S]
    * [-I]
+   * [-c {log | fail | ignore}]
    * [-f <I>outFile</I>]
    * [-o <I>outDir</I>]
+   * [-R]
+   * [-W]
    * [-v]
    * [<I>apiSpec</I>]
    * </NOBR>
@@ -90,6 +93,20 @@ public class ApiCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>[-c {log | fail | ignore}]</NOBR>
+   * </TD>
+   * <TD>
+   * Defines how input modelling conditions are reported. If <CODE>log</CODE> is specified, conditions are reported using log messages.
+   * If <CODE>fail</CODE> is specified, any condition will cause an exception. If <CODE>ignore</CODE> is specified, all conditions
+   * are silently ignored. If <I>-c</I> is omitted, the default is <CODE>log</CODE>.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-f <I>outFile</I> </NOBR>
    * </TD>
    * <TD>
@@ -110,6 +127,32 @@ public class ApiCommand
    * If omitted, the default <I>outDir</I> is the directory containing the <I>apiSpec</I> or,
    * if reading from standard input, the current working directory. If an output path cannot be
    * derived, output is written to standard output.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-R </NOBR>
+   * </TD>
+   * <TD>
+   * If specified, tests will be generated assuming that the API will strictly enforce exclusion of "readOnly"
+   * properties from request parameters. If omitted, no strict enforcement is assumed.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-W </NOBR>
+   * </TD>
+   * <TD>
+   * If specified, tests will be generated assuming that the API will strictly enforce exclusion of "writeOnly"
+   * properties from responses. If omitted, no strict enforcement is assumed.
    * </TD>
    * </TR>
    *
@@ -161,6 +204,7 @@ public class ApiCommand
       setWorkingDir( null);
       setServerTest( true);
       setTests( true);
+      setModelOptions( new ModelOptions());
       }
 
     /**
@@ -196,6 +240,30 @@ public class ApiCommand
         setOutDir( new File( args[i]));
         }
 
+      else if( arg.equals( "-c"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        String notifier = args[i];
+        getModelOptions().setConditionNotifier(
+          Optional.ofNullable(
+            "log".equals( notifier)?
+            ModelConditionNotifier.log() :
+
+            "fail".equals( notifier)?
+            ModelConditionNotifier.fail() :
+
+            "ignore".equals( notifier)?
+            ModelConditionNotifier.ignore() :
+
+            null)
+
+          .orElseThrow( () -> getUsageException( "Unknown condition notifier: " + notifier, null)));
+        }
+
       else if( arg.equals( "-f"))
         {
         i++;
@@ -204,6 +272,16 @@ public class ApiCommand
           throwUsageException();
           }
         setOutFile( new File( args[i]));
+        }
+
+      else if( arg.equals( "-R"))
+        {
+        getModelOptions().setReadOnlyEnforced( true);
+        }
+
+      else if( arg.equals( "-W"))
+        {
+        getModelOptions().setWriteOnlyEnforced( true);
         }
 
       else if( arg.equals( "-v"))
@@ -273,18 +351,29 @@ public class ApiCommand
      */
     protected void throwUsageException( String detail, Exception cause)
       {
+      throw getUsageException( detail, cause);
+      }
+
+    /**
+     * Returns a RuntimeException reporting a command line error.
+     */
+    protected RuntimeException getUsageException( String detail, Exception cause)
+      {
       if( detail != null)
         {
         cause = new RuntimeException( detail, cause);
         }
 
-      throw
+      return
         new IllegalArgumentException
         ( "Usage: "
           + ApiCommand.class.getSimpleName()
           + " [-v]"
           + " [-C | -S]"
           + " [-I]"
+          + " [-R]"
+          + " [-W]"
+          + " [-c {log | fail | ignore}]"
           + " [-f outFile]"
           + " [-o outDir]"
           + " [apiSpec]",
@@ -353,6 +442,22 @@ public class ApiCommand
     public boolean isTests()
       {
       return tests_;
+      }
+
+    /**
+     * Changes the input modelling options.
+     */
+    public void setModelOptions( ModelOptions modelOptions)
+      {
+      modelOptions_ = modelOptions;
+      }
+
+    /**
+     * Returns the input modelling options.
+     */
+    public ModelOptions getModelOptions()
+      {
+      return modelOptions_;
       }
 
     /**
@@ -431,6 +536,16 @@ public class ApiCommand
         {
         builder.append( " -I");
         }
+
+      if( getModelOptions().isReadOnlyEnforced())
+        {
+        builder.append( " -R");
+        }
+
+      if( getModelOptions().isWriteOnlyEnforced())
+        {
+        builder.append( " -W");
+        }
       
       if( getOutFile() != null)
         {
@@ -455,6 +570,7 @@ public class ApiCommand
     private File outFile_;
     private boolean serverTest_;
     private boolean tests_;
+    private ModelOptions modelOptions_;
     private File workingDir_;
     private boolean showVersion_;
 
@@ -625,8 +741,8 @@ public class ApiCommand
     logger_.info( "Reading API spec from {}", apiSpecFile==null? "standard input" : apiSpecFile);
     SystemInputDef inputDef =
       options.isServerTest()
-      ? TcasesOpenApiIO.getRequestInputModel( apiSpecFile)
-      : TcasesOpenApiIO.getResponseInputModel( apiSpecFile);
+      ? TcasesOpenApiIO.getRequestInputModel( apiSpecFile, options.getModelOptions())
+      : TcasesOpenApiIO.getResponseInputModel( apiSpecFile, options.getModelOptions());
 
     // Write requested results
     logger_.info( "Writing results to {}", outputFile==null? "standard output" : outputFile);

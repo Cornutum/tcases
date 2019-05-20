@@ -9,13 +9,23 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-v] [-C | -S] [-I] [-f outFile] [-o outDir] [apiSpec]" >&2
+  echo Usage: $pgm "[-v] [-C | -S] [-I] [-R] [-W] [-c notifier] [-f outFile] [-o outDir] [apiSpec]" >&2
   echo "" >&2
   echo "  -C, -S      If -C is given, produce results to test inputs to an API client, i.e. API responses. If -S is given," >&2
   echo "              produce results to test inputs to an API server, i.e. API requests. If neither is given, the default is -S." >&2
   echo "" >&2
   echo "  -I          Produce an input definition file for either an API client (-C) or an API server ((-P). If omitted," >&2
   echo "              produce the corresponding test definition file." >&2
+  echo "" >&2
+  echo "  -R          If specified, tests will be generated assuming that the API will strictly enforce exclusion of 'readOnly'" >&2
+  echo "              properties from request parameters. If omitted, no strict enforcement is assumed." >&2
+  echo "" >&2
+  echo "  -W          If specified, tests will be generated assuming that the API will strictly enforce exclusion of 'writeOnly'" >&2
+  echo "              properties from responses. If omitted, no strict enforcement is assumed." >&2
+  echo "" >&2
+  echo "  -c notifier Defines how input modelling conditions are reported. If notifier is 'log', conditions are reported using" >&2
+  echo "              log messages. If notifier is 'fail', any condition will cause an exception. If notifier is 'ignore', all" >&2
+  echo "              conditions are silently ignored. If omitted, the default is 'log'." >&2
   echo "" >&2
   echo "  -f outFile  If -f is defined, output is written to the specified outFile, relative to the given outDir." >&2
   echo "              If omitted, the default outFile is derived from the apiSpec." >&2
@@ -42,10 +52,13 @@ while [ $# -gt 0 ] ; do
     -C) isClient="$1";;
     -S) isServer="$1";;
     -I) isInput="$1";;
+    -R) enforceRO="$1";;
+    -W) enforceWO="$1";;
     -l) shift; logFile="$1";;
     -L) shift; logLevel="$1";;
     -f) shift; outFile="$1";;
     -o) shift; outDir="$1";;
+    -c) shift; notifier="$1";;
     -v) showVersion="$1";;
     -*) usage; exit 1;;
      *) break;;
@@ -97,6 +110,9 @@ java \
   $isClient \
   $isServer \
   $isInput \
+  $enforceRO \
+  $enforceWO \
+  ${notifier:+-c "$notifier"} \
   ${outDir:+-o "$outDir"} \
   ${outFile:+-f "$outFile"} \
   ${apiSpec:+"$apiSpec"}
