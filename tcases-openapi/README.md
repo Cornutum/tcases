@@ -1,5 +1,17 @@
 # Tcases for OpenAPI: From REST-ful to Test-ful  #
 
+## Contents ##
+
+  - [Using OpenAPI to model your API? ](#using-openapi-to-model-your-api)
+  - [Then use Tcases to generate your API test cases ](#then-use-tcases-to-generate-your-api-test-cases)
+  - [Why Tcases for OpenAPI? ](#why-tcases-for-openapi)
+  - [Is your OpenAPI spec an input model? No, it's two! ](#is-your-openapi-spec-an-input-model-no-its-two)
+  - [Running Tcases for OpenAPI from the command line ](#running-tcases-for-openapi-from-the-command-line)
+  - [Using the Java API for Tcases for OpenAPI ](#using-the-java-api-for-tcases-for-openapi)
+  - [OpenAPI tips ](#openapi-tips)
+  - [Test case generation tips ](#test-case-generation-tips)
+
+
 ## Using OpenAPI to model your API? ##
 
 If you are developing REST-ful APIs, you probably know about the [OpenAPI
