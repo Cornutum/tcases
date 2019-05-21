@@ -32,12 +32,41 @@
     </xs:sequence>
     <xs:attribute name="property" type="xs:string"/>
   </xs:complexType>
+  
+  <xs:complexType name="upperBoundType">
+    <xs:attribute name="property" type="xs:string" use="required"/>
+    <xs:attribute name="max" type="xs:integer" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType name="lowerBoundType">
+    <xs:attribute name="property" type="xs:string" use="required"/>
+    <xs:attribute name="min" type="xs:integer" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType name="equalsBoundType">
+    <xs:attribute name="property" type="xs:string" use="required"/>
+    <xs:attribute name="count" type="xs:integer" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType name="betweenBoundType">
+    <xs:attribute name="property" type="xs:string" use="required"/>
+    <xs:attribute name="min" type="xs:integer"/>
+    <xs:attribute name="max" type="xs:integer"/>
+    <xs:attribute name="exclusiveMin" type="xs:integer"/>
+    <xs:attribute name="exclusiveMax" type="xs:integer"/>
+  </xs:complexType>
 
   <xs:complexType name="conditionType">
     <xs:choice>
       <xs:element name="AllOf" type="conditionExprType"/>
       <xs:element name="AnyOf" type="conditionExprType"/>
       <xs:element name="Not" type="conditionExprType"/>
+      <xs:element name="LessThan" type="upperBoundType"/>
+      <xs:element name="NotMoreThan" type="upperBoundType"/>
+      <xs:element name="MoreThan" type="lowerBoundType"/>
+      <xs:element name="NotLessThan" type="lowerBoundType"/>
+      <xs:element name="Equals" type="equalsBoundType"/>
+      <xs:element name="Between" type="betweenBoundType"/>
     </xs:choice>
   </xs:complexType>
 
