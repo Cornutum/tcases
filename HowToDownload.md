@@ -51,6 +51,17 @@ The core models for Tcases objects. For the current version, see the [release no
 </dependency>
 ```
 
+#### tcases-openapi
+(Since 3.1.0) Converts an OpenAPI v3 specification into test cases for a REST-ful API. For the current version, see the [release notes](ReleaseNotes.md).
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-openapi</artifactId>
+  <version>...</version>
+</dependency>
+```
+
 #### tcases-ant
 (Since 2.0.0) Provides an Ant task for running Tcases. For the current version, see the [release notes](ReleaseNotes.md).
 

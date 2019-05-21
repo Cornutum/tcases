@@ -2,10 +2,10 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.0.2](ReleaseNotes.md#302)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.1.0](ReleaseNotes.md#310)) is now available at the Maven Central Repository.
     See [HowToDownload](HowToDownload.md) for download instructions.
 
-  * Tcases 3.0.2 is a patch release to fix some problems [using JSON files](ReleaseNotes.md#302).
+  * Tcases 3.1.0 adds two new capabilities: cardinality conditions and Tcases for OpenAPI. See the [release notes](ReleaseNotes.md#310) for details.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
@@ -31,6 +31,7 @@ Of course, the system test definition is not something you can execute directly.
 
   * [Tcases: The Complete Guide](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm)
   * [Tcases: The JSON Guide](http://www.cornutum.org/tcases/docs/Tcases-Json.htm): A companion to _The Complete Guide_ adding info specific to JSON
+  * [Tcases for OpenAPI](tcases-openapi/README.md): Testing a REST-ful API? Generate test cases directly from your OpenAPI v3 spec.
   * [The Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/)
   * [How To Download Using Maven](HowToDownload.md)
   * [Model-Driven Testing Using Tcases](ModelDrivenTestingForAgileTeams.md)
