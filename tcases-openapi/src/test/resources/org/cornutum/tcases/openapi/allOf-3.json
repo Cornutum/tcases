@@ -16,6 +16,7 @@
                             "allOf": [
                                 {
                                     "type": "string",
+                                    "pattern": ".*",
                                     "anyOf": [
                                         {
                                             "enum": [ "A", "B", "C" ]

@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi;
 
+import static org.cornutum.tcases.openapi.SchemaExtensions.*;
+
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.Schema;
 
@@ -298,14 +300,8 @@ public final class SchemaUtils
       additional.getMinLength());
 
     // Combine pattern
-    combined.setPattern(
-      base.getPattern() == null?
-      additional.getPattern() :
-
-      additional.getPattern() == null?
-      base.getPattern() :
-
-      additional.getPattern());
+    addPattern( combined, base.getPattern());
+    addPattern( combined, additional.getPattern());
       
     return combined;
     }
