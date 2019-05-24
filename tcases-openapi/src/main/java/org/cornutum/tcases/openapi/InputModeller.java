@@ -1153,7 +1153,7 @@ public abstract class InputModeller
       resultFor( "not",
         () -> 
         Optional.ofNullable( instanceSchema)
-        .flatMap( schema -> Optional.ofNullable( resolveSchema( api, schema.getNot())))
+        .flatMap( schema -> Optional.ofNullable( schema.getNot()))
 
         .filter( notSchema -> {
           boolean applicable = isApplicableInput( api, notSchema, requiredTypes);

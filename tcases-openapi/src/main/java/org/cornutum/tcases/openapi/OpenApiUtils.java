@@ -62,7 +62,20 @@ public final class OpenApiUtils
     return
       schema == null
       ? null
-      : resolveSchemaType( componentSchemaRef( api, schema.get$ref()).orElse( schema));
+      : resolveSchemaNot( api, resolveSchemaType( componentSchemaRef( api, schema.get$ref()).orElse( schema)));
+    }
+
+  /**
+   * Returns the given schema after updating the "not" property to resolve any schema reference.
+   */
+  private static Schema<?> resolveSchemaNot( OpenAPI api, Schema<?> schema)
+    {
+    schema.setNot(
+      Optional.ofNullable( schema.getNot())
+      .map( not -> resolveSchema( api, not))
+      .orElse( null));
+
+    return schema;
     }
 
   /**
