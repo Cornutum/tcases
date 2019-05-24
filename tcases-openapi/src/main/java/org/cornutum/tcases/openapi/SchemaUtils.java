@@ -518,6 +518,10 @@ public final class SchemaUtils
     {
     combined.setType( Optional.ofNullable( base.getType()).orElse( additional.getType()));
 
+    // Combine not
+    addNot( combined, base.getNot());
+    addNot( combined, additional.getNot());
+    
     // Combine format
     combined.setFormat(
       base.getFormat() == null?

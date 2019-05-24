@@ -9,16 +9,18 @@ package org.cornutum.tcases.openapi;
 
 import io.swagger.v3.oas.models.media.Schema;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
-
-import java.util.Arrays;
 
 /**
  * Defines methods for accessing Tcases extensions to an OpenAPI {@link Schema} object.
@@ -116,6 +118,67 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static List<Schema<?>> getNots( Schema<?> schema)
+    {
+    if( !hasExtension( schema, EXT_NOTS))
+      {
+      setNots( schema, schema.getNot());
+      }
+
+    List<Schema<?>> nots = getExtension( schema, EXT_NOTS);
+    return Optional.ofNullable( nots).orElse( emptyList());
+    }
+
+  /**
+   * Changes the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static void setNots( Schema<?> schema, Iterable<Schema<?>> nots)
+    {
+    removeExtension( schema, EXT_NOTS);
+    schema.setNot( null);
+
+    if( nots != null)
+      {
+      for( Schema<?> not : nots)
+        {
+        addNot( schema, not);
+        }
+      }
+    }
+
+  /**
+   * Changes the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static void setNots( Schema<?> schema, Schema<?>... nots)
+    {
+    setNots( schema, Arrays.asList( nots));
+    }
+
+  /**
+   * Add to the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static void addNot( Schema<?> schema, Schema<?> not)
+    {
+    if( not != null)
+      {
+      if( schema.getNot() == null)
+        {
+        schema.setNot( not);
+        }
+
+      List<Schema<?>> nots = getExtension( schema, EXT_NOTS);
+      if( nots == null)
+        {
+        nots = new ArrayList<Schema<?>>();
+        setExtension( schema, EXT_NOTS, nots);
+        }
+      nots.add( not);
+      }
+    }
+
+  /**
    * Returns true if the specified schema has a value for the given extension key.
    */
   private static boolean hasExtension( Schema<?> schema, String key)
@@ -163,4 +226,5 @@ public final class SchemaExtensions
 
   private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
   private static final String EXT_PATTERNS = "x-tcases-patterns";
+  private static final String EXT_NOTS = "x-tcases-nots";
   }

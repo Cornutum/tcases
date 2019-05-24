@@ -729,6 +729,8 @@ public abstract class InputModeller
     Schema<?> instanceSchema,
     Set<String> requiredTypes)
     {
+    // Although not supported, verify validity of "not" schema
+    combineNotSchemas( api, instanceSchema, requiredTypes);
 
     Stream.Builder<IVarDef> typeVars = Stream.builder();
     typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema));
@@ -736,9 +738,6 @@ public abstract class InputModeller
     typeValueVar( api, instanceType, instanceVarTag, instanceSchema)
       .ifPresent( var -> typeVars.add( var));
 
-    // Although not supported, verify validity of "not" schema
-    notVar( api, instanceVarTag, instanceSchema, requiredTypes);
-    
     return typeVars.build();
     }
   
@@ -954,9 +953,6 @@ public abstract class InputModeller
       composedSchemaVars.add( oneOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, composedSchema.getOneOf()));
       }
 
-    // Although not supported, verify validity of "not" schema
-    notVar( api, instanceVarTag, composedSchema, validTypes);
-
     return composedSchemaVars.build();
     }
 
@@ -1145,32 +1141,37 @@ public abstract class InputModeller
     }
 
   /**
-   * Returns the {@link IVarDef input variable} defined by the "not" schema for the given instance.
+   * Returns the combined "not" schema that applies to the given schema when validating instances of the given types.
    */
-  private Optional<IVarDef> notVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, Set<String> requiredTypes)
+  private Optional<Schema<?>> combineNotSchemas( OpenAPI api, Schema<?> instanceSchema, Set<String> requiredTypes)
     {
     return
       resultFor( "not",
-        () -> 
-        Optional.ofNullable( instanceSchema)
-        .flatMap( schema -> Optional.ofNullable( schema.getNot()))
+        () -> {
+        List<Schema<?>> applicableNots =
+          getNots( instanceSchema)
+          .stream()
+          .filter( notSchema -> {
+              boolean applicable = isApplicableInput( api, notSchema, requiredTypes);
+              if( !applicable)
+                {
+                notifyWarning(
+                  String.format(
+                    "Ignoring \"not\" schema of type=%s: always satisfied by any instance satisfying base schema types=%s",
+                    notSchema.getType(),
+                    requiredTypes));
+                }
+              return applicable;
+            })
+          .collect( toList());
 
-        .filter( notSchema -> {
-          boolean applicable = isApplicableInput( api, notSchema, requiredTypes);
-          if( !applicable)
-            {
-            notifyWarning(
-              String.format(
-                "Ignoring this \"not\" schema: always satisfied by any instance satisfying base schema types=%s",
-                requiredTypes));
-            }
-          return applicable;
-          })
-
-        .flatMap( notSchema -> {
+        if( !applicableNots.isEmpty())
+          {
           notifyError( "The \"not\" keyword is not yet supported", "Ignoring this \"not\" schema");
-          return Optional.empty();
-          }));
+          }
+
+        return Optional.empty();
+        });
     }
 
   /**
