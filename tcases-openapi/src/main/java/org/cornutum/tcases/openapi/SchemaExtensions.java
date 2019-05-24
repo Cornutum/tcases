@@ -9,11 +9,16 @@ package org.cornutum.tcases.openapi;
 
 import io.swagger.v3.oas.models.media.Schema;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import static java.util.Collections.emptyMap;
+import static java.util.Collections.emptySet;
+
+import java.util.Arrays;
 
 /**
  * Defines methods for accessing Tcases extensions to an OpenAPI {@link Schema} object.
@@ -50,7 +55,65 @@ public final class SchemaExtensions
   public static void setValidTypes( Schema<?> schema, Set<String> validTypes)
     {
     setExtension( schema, EXT_VALID_TYPES, validTypes);
-    } 
+    }
+
+  /**
+   * Returns the composed set of patterns to match when validating the given "string" schema.
+   */
+  public static Set<String> getPatterns( Schema<?> schema)
+    {
+    return
+      hasExtension( schema, EXT_PATTERNS)
+      ? getExtension( schema, EXT_PATTERNS)
+      : Optional.ofNullable( schema.getPattern()).map( Collections::singleton).orElse( emptySet());
+    }
+
+  /**
+   * Changes the composed set of patterns to match when validating the given "string" schema.
+   */
+  public static void setPatterns( Schema<?> schema, Iterable<String> patterns)
+    {
+    removeExtension( schema, EXT_PATTERNS);
+    schema.setPattern( null);
+
+    if( patterns != null)
+      {
+      for( String pattern : patterns)
+        {
+        addPattern( schema, pattern);
+        }
+      }
+    }
+
+  /**
+   * Changes the composed set of patterns to match when validating the given "string" schema.
+   */
+  public static void setPatterns( Schema<?> schema, String... patterns)
+    {
+    setPatterns( schema, Arrays.asList( patterns));
+    }
+
+  /**
+   * Add to the composed set of patterns to match when validating the given "string" schema.
+   */
+  public static void addPattern( Schema<?> schema, String pattern)
+    {
+    if( pattern != null)
+      {
+      if( schema.getPattern() == null)
+        {
+        schema.setPattern( pattern);
+        }
+
+      Set<String> patterns = getExtension( schema, EXT_PATTERNS);
+      if( patterns == null)
+        {
+        patterns = new LinkedHashSet<String>();
+        setExtension( schema, EXT_PATTERNS, patterns);
+        }
+      patterns.add( pattern);
+      }
+    }
 
   /**
    * Returns true if the specified schema has a value for the given extension key.
@@ -58,6 +121,17 @@ public final class SchemaExtensions
   private static boolean hasExtension( Schema<?> schema, String key)
     {
     return getExtensions( schema).containsKey( key);
+    }
+
+  /**
+   * Removes the value of the given extension key for the specified schema.
+   */
+  private static void removeExtension( Schema<?> schema, String key)
+    {
+    if( hasExtension( schema, key))
+      {
+      getExtensions( schema).remove( key);
+      }
     }
 
   /**
@@ -88,4 +162,5 @@ public final class SchemaExtensions
     }
 
   private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
+  private static final String EXT_PATTERNS = "x-tcases-patterns";
   }

@@ -1878,17 +1878,34 @@ public abstract class InputModeller
         }
       valueVarSet.members( length.build());
 
-      // Add values for any pattern assertion
-      Optional.ofNullable( instanceSchema.getPattern())
-        .map(
-          pattern ->
+      // Add variables for any pattern assertions
+      String[] patterns = getPatterns( instanceSchema).stream().toArray(String[]::new);
+      if( patterns.length == 1)
+        {
+        valueVarSet.members(
           VarDefBuilder.with( "MatchesPattern")
-          .has( "pattern", pattern)
+          .has( "pattern", patterns[0])
           .values(
             VarValueDefBuilder.with( "Yes").build(),
             VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
-          .build())
-        .ifPresent( varDef -> valueVarSet.members( varDef));
+          .build());
+        }
+      else if( patterns.length > 1)
+        {
+        valueVarSet.members(
+          VarSetBuilder.with( "MatchesPatterns")
+          .members(
+            IntStream.range( 0, patterns.length)
+            .mapToObj(
+              i ->
+              VarDefBuilder.with( String.valueOf(i))
+              .has( "pattern", patterns[i])
+              .values(
+                VarValueDefBuilder.with( "Yes").build(),
+                VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+              .build()))
+          .build());
+        }
 
       // Complete inputs for all string assertions
       valueVar = valueVarSet.build();

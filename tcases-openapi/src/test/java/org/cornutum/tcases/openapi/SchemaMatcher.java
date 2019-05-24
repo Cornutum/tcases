@@ -57,7 +57,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "multipleOf", Schema::getMultipleOf).matches( Matchers::equalTo));
     expectThat( valueOf( "not", Schema::getNot).matches( SchemaMatcher::new));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
-    expectThat( valueOf( "pattern", Schema::getPattern).matches( Matchers::equalTo));
+    expectThat( valueOf( "patterns", this::getPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "properties", this::getProperties).matches( containsMembersMatching( Property.Matcher::new)));
     expectThat( valueOf( "readOnly", Schema::getReadOnly).matches( Matchers::equalTo));
     expectThat( valueOf( "required", Schema::getRequired).matches( Composites::containsMembers));
@@ -98,6 +98,14 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
   private Schema getItems( Schema schema)
     {
     return Optional.ofNullable( asArraySchema( schema)).map( c -> c.getItems()).orElse( null);
+    }
+
+  /**
+   * Returns the composed set of patterns to match when validating the given schema.
+   */
+  private Iterable<String> getPatterns( Schema schema)
+    {
+    return SchemaExtensions.getPatterns( schema);
     }
 
   /**
