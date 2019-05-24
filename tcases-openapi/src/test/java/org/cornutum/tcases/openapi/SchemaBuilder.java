@@ -275,9 +275,9 @@ public class SchemaBuilder
     return this;
     }
   
-  public SchemaBuilder pattern( String pattern)
+  public SchemaBuilder patterns( String... patterns)
     {
-    schema_.setPattern( pattern);
+    SchemaExtensions.setPatterns( schema_, patterns);
     return this;
     }
   

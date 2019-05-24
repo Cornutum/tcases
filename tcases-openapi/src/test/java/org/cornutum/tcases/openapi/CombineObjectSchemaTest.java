@@ -323,7 +323,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .maxProperties( 9)
       .minProperties( 0)
       .required( "Alpha")
-      .property( "Alpha", SchemaBuilder.ofType( "string").pattern( ".*").build())
+      .property( "Alpha", SchemaBuilder.ofType( "string").patterns( ".*").build())
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
@@ -339,7 +339,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .maxProperties( 9)
       .minProperties( 0)
       .required( "Alpha", "Bravo", "Charlie")
-      .property( "Alpha", SchemaBuilder.ofType( "string").pattern( ".*").build())
+      .property( "Alpha", SchemaBuilder.ofType( "string").patterns( ".*").build())
       .property( "Bravo", SchemaBuilder.ofType( "number").build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .additionalProperties( false)

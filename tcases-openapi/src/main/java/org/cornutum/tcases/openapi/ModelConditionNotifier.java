@@ -43,6 +43,7 @@ public interface ModelConditionNotifier
         {
         public void warn( String[] location, String reason) {}
         public void error( String[] location, String reason, String resolution) {}
+        public String toString() {return "IGNORE";}
         };
     }
 
@@ -62,7 +63,12 @@ public interface ModelConditionNotifier
         public void error( String[] location, String reason, String resolution)
           {
           logger.error( messageFor( location, reason, resolution));
-          }    
+          }
+
+        public String toString()
+          {
+          return "LOG";
+          }
         };
     }
 
@@ -90,7 +96,12 @@ public interface ModelConditionNotifier
         public void error( String[] location, String reason, String resolution)
           {
           throw new OpenApiException( location, new OpenApiException( reason));
-          }    
+          }
+
+        public String toString()
+          {
+          return "FAIL";
+          }   
         };
     }
 

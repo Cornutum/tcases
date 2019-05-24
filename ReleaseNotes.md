@@ -1,5 +1,22 @@
 # Release Notes #
 
+## 3.1.0 ##
+
+This release add two new capabilities to Tcases.
+
+  * **[Cardinality conditions](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#cardinalityConditions)**:
+  This new family of conditions allows you to define when a value or a variable can be used based on
+  how many times a certain property appears in a test case.
+
+  * **[Tcases for OpenAPI](tcases-openapi/README.md)**: Use Tcases to automatically generate test cases for your REST-ful API,
+  based on an OpenAPI v3 specification.
+
+Also included in this release:
+
+  * **Better backtracking reduces failures**: For some complex input models, Tcases must conduct a lengthy, trial-and-error search to find a combination
+  of values that satisfies all constraints. That involves backtracking from preliminary value choices to try different choices. This
+  release fixes a backtracking problem that could cause Tcases to give up the search prematurely and fail to complete a test case.
+
 ## 3.0.2 ##
 
 This is a patch release to fix the following problems using JSON files.

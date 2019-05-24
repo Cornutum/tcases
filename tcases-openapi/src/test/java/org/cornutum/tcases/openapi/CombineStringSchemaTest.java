@@ -49,7 +49,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .format( "date")
       .maxLength( 128)
       .minLength( null)
-      .pattern( "[A-Z]*")
+      .patterns( "[A-Z]*")
       .build();
 
     Schema<?> additional =
@@ -57,7 +57,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .format( null)
       .maxLength( 256)
       .minLength( 1)
-      .pattern( "[0-9]*")
+      .patterns( "[0-9]*")
       .build();
 
     OpenApiContext context = new OpenApiContext();
@@ -71,7 +71,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .format( "date")
       .maxLength( 128)
       .minLength( 1)
-      .pattern( "[0-9]*")
+      .patterns( "[A-Z]*", "[0-9]*")
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -106,7 +106,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( 128)
       .minLength( 16)
-      .pattern( ".*")
+      .patterns( ".*")
       .build();
 
     Schema<?> additional =
@@ -115,7 +115,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Charlie", "Delta", "Easy")
       .maxLength( null)
       .minLength( 32)
-      .pattern( null)
+      .patterns()
       .build();
 
     OpenApiContext context = new OpenApiContext();
@@ -130,7 +130,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Charlie")
       .maxLength( 128)
       .minLength( 32)
-      .pattern( ".*")
+      .patterns( ".*")
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -165,7 +165,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( null)
       .minLength( 8)
-      .pattern( null)
+      .patterns()
       .build();
 
     Schema<?> additional =
@@ -174,7 +174,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Charlie")
       .maxLength( null)
       .minLength( null)
-      .pattern( "[A-Z]*")
+      .patterns( "[A-Z]*")
       .build();
 
     OpenApiContext context = new OpenApiContext();
@@ -189,7 +189,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Charlie")
       .maxLength( null)
       .minLength( 8)
-      .pattern( "[A-Z]*")
+      .patterns( "[A-Z]*")
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -223,7 +223,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .format( "byte")
       .maxLength( 128)
       .minLength( null)
-      .pattern( null)
+      .patterns()
       .build();
 
     Schema<?> additional =
@@ -232,7 +232,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( 16)
       .minLength( null)
-      .pattern( null)
+      .patterns()
       .build();
 
     OpenApiContext context = new OpenApiContext();
@@ -247,7 +247,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( 16)
       .minLength( null)
-      .pattern( null)
+      .patterns()
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -282,7 +282,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( null)
       .minLength( 8)
-      .pattern( "[A-Z]*")
+      .patterns( "[A-Z]*")
       .build();
 
     Schema<?> additional =
@@ -290,7 +290,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .format( "email")
       .maxLength( 128)
       .minLength( 1)
-      .pattern( ".*")
+      .patterns( ".*")
       .build();
 
     OpenApiContext context = new OpenApiContext();
@@ -305,7 +305,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( 128)
       .minLength( 8)
-      .pattern( ".*")
+      .patterns( "[A-Z]*", ".*")
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -340,7 +340,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( 128)
       .minLength( null)
-      .pattern( ".*")
+      .patterns( ".*")
       .build();
 
     Schema<?> additional =
@@ -349,7 +349,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie", "Delta")
       .maxLength( 256)
       .minLength( 1)
-      .pattern( null)
+      .patterns()
       .build();
 
     OpenApiContext context = new OpenApiContext();
@@ -364,7 +364,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( 128)
       .minLength( 1)
-      .pattern( ".*")
+      .patterns( ".*")
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -398,7 +398,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .format( "byte")
       .maxLength( 128)
       .minLength( 16)
-      .pattern( null)
+      .patterns()
       .build();
 
     Schema<?> additional =
@@ -406,7 +406,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .format( "date")
       .maxLength( null)
       .minLength( 32)
-      .pattern( "[A-Z]*")
+      .patterns( "[A-Z]*")
       .build();
 
     OpenApiContext context = new OpenApiContext();
@@ -445,7 +445,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Alpha", "Bravo", "Charlie")
       .maxLength( 128)
       .minLength( 127)
-      .pattern( null)
+      .patterns()
       .build();
 
     Schema<?> additional =
@@ -454,7 +454,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .enums( "Delta", "Easy", "Foxtrot")
       .maxLength( null)
       .minLength( 128)
-      .pattern( "[A-Z]*")
+      .patterns( "[A-Z]*")
       .build();
 
     OpenApiContext context = new OpenApiContext();

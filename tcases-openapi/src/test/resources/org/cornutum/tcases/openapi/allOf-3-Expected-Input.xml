@@ -50,9 +50,13 @@
                     </Var>
                     <VarSet name="Value" when="param0AllOf0AnyOf1Value">
                       <Var name="Length">
-                        <Value name="1"/>
-                        <Value name="2" property="param0AllOf0AnyOfMemberValidated"/>
-                        <Value name="&gt; 2" property="param0AllOf0AnyOfMemberValidated"/>
+                        <Value name="2"/>
+                        <Value name="&gt; 2"/>
+                      </Var>
+                      <Var name="MatchesPattern">
+                        <Has name="pattern" value=".*"/>
+                        <Value name="Yes" property="param0AllOf0AnyOfMemberValidated"/>
+                        <Value name="No"/>
                       </Var>
                     </VarSet>
                   </VarSet>
@@ -87,11 +91,17 @@
                         <Value name="&gt; 0"/>
                         <Value name="0"/>
                       </Var>
-                      <Var name="MatchesPattern">
-                        <Has name="pattern" value="XXX"/>
-                        <Value name="Yes" property="param0AllOf0OneOfMemberValidated"/>
-                        <Value name="No"/>
-                      </Var>
+                      <VarSet name="MatchesPatterns">
+                        <Var name="0">
+                          <Has name="pattern" value=".*"/>
+                          <Value name="Yes"/>
+                        </Var>
+                        <Var name="1">
+                          <Has name="pattern" value="XXX"/>
+                          <Value name="Yes" property="param0AllOf0OneOfMemberValidated"/>
+                          <Value name="No"/>
+                        </Var>
+                      </VarSet>
                     </VarSet>
                   </VarSet>
                   <VarSet name="1">
@@ -100,9 +110,13 @@
                     </Var>
                     <VarSet name="Value" when="param0AllOf0OneOf1Value">
                       <Var name="Length">
-                        <Value name="1" property="param0AllOf0OneOfMemberValidated"/>
-                        <Value name="2"/>
-                        <Value name="0" property="param0AllOf0OneOfMemberValidated"/>
+                        <Value name="1"/>
+                        <Value name="0"/>
+                      </Var>
+                      <Var name="MatchesPattern">
+                        <Has name="pattern" value=".*"/>
+                        <Value name="Yes" property="param0AllOf0OneOfMemberValidated"/>
+                        <Value name="No"/>
                       </Var>
                     </VarSet>
                   </VarSet>

@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.util.ToString;
+
 import java.util.Optional;
 
 /**
@@ -78,6 +80,16 @@ public class ModelOptions
     return new Builder();
     }
 
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( "conditionNotifier", getConditionNotifier())
+      .append( "readOnlyEnforced", isReadOnlyEnforced())
+      .append( "writeOnlyEnforced", isWriteOnlyEnforced())
+      .toString();
+    }
+  
   /**
    * Builds a new {@link ModelOptions} instance.
    */

@@ -13,6 +13,7 @@ import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.conditions.Conditions.*;
 import static org.cornutum.tcases.openapi.MemberVarBinding.*;
 import static org.cornutum.tcases.openapi.OpenApiUtils.*;
+import static org.cornutum.tcases.openapi.SchemaExtensions.*;
 import static org.cornutum.tcases.openapi.SchemaUtils.*;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
@@ -728,29 +729,15 @@ public abstract class InputModeller
     Schema<?> instanceSchema,
     Set<String> requiredTypes)
     {
-    Optional<IVarDef> valueVar = typeValueVar( api, instanceType, instanceVarTag, instanceSchema);
-    Optional<IVarDef> notVar = notVar( api, instanceVarTag, instanceSchema, requiredTypes);
 
     Stream.Builder<IVarDef> typeVars = Stream.builder();
-    if( !valueVar.isPresent() && !notVar.isPresent())
-      {
-      // Add variables for a simple empty schema
-      typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema));
-      }
-    else if( !valueVar.isPresent())
-      {
-      // Add variables for a untyped "not" schema
-      typeVars.add( notVar.get());
-      }
-    else
-      {
-      // Add variables for a typed schema with optional "not" schema
-      typeVars
-        .add( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema))
-        .add( valueVar.get());
-      notVar
-        .ifPresent( nv -> typeVars.add( nv));
-      }
+    typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema));
+
+    typeValueVar( api, instanceType, instanceVarTag, instanceSchema)
+      .ifPresent( var -> typeVars.add( var));
+
+    // Although not supported, verify validity of "not" schema
+    notVar( api, instanceVarTag, instanceSchema, requiredTypes);
     
     return typeVars.build();
     }
@@ -967,8 +954,8 @@ public abstract class InputModeller
       composedSchemaVars.add( oneOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, composedSchema.getOneOf()));
       }
 
-    notVar( api, instanceVarTag, composedSchema, validTypes)
-      .ifPresent( notVar -> composedSchemaVars.add( notVar));
+    // Although not supported, verify validity of "not" schema
+    notVar( api, instanceVarTag, composedSchema, validTypes);
 
     return composedSchemaVars.build();
     }
@@ -1891,17 +1878,34 @@ public abstract class InputModeller
         }
       valueVarSet.members( length.build());
 
-      // Add values for any pattern assertion
-      Optional.ofNullable( instanceSchema.getPattern())
-        .map(
-          pattern ->
+      // Add variables for any pattern assertions
+      String[] patterns = getPatterns( instanceSchema).stream().toArray(String[]::new);
+      if( patterns.length == 1)
+        {
+        valueVarSet.members(
           VarDefBuilder.with( "MatchesPattern")
-          .has( "pattern", pattern)
+          .has( "pattern", patterns[0])
           .values(
             VarValueDefBuilder.with( "Yes").build(),
             VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
-          .build())
-        .ifPresent( varDef -> valueVarSet.members( varDef));
+          .build());
+        }
+      else if( patterns.length > 1)
+        {
+        valueVarSet.members(
+          VarSetBuilder.with( "MatchesPatterns")
+          .members(
+            IntStream.range( 0, patterns.length)
+            .mapToObj(
+              i ->
+              VarDefBuilder.with( String.valueOf(i))
+              .has( "pattern", patterns[i])
+              .values(
+                VarValueDefBuilder.with( "Yes").build(),
+                VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+              .build()))
+          .build());
+        }
 
       // Complete inputs for all string assertions
       valueVar = valueVarSet.build();
@@ -2064,16 +2068,14 @@ public abstract class InputModeller
   /**
    * Returns the instance types that can be validated by the given schema. Returns null if any type can be validated.
    */
-  @SuppressWarnings("unchecked")
   private Set<String> getValidTypes( OpenAPI api, Schema<?> schema)
     {
-    Map<String,Object> extensions = Optional.ofNullable( schema.getExtensions()).orElse( new HashMap<String,Object>());
-    if( !extensions.containsKey( EXT_VALID_TYPES))
+    if( !hasValidTypes( schema))
       {
-      extensions.put( EXT_VALID_TYPES, findValidTypes( api, schema));
+      setValidTypes( schema, findValidTypes( api, schema));
       }
 
-    return (Set<String>) extensions.get( EXT_VALID_TYPES);
+    return SchemaExtensions.getValidTypes( schema);
     }
 
   /**
@@ -2108,13 +2110,14 @@ public abstract class InputModeller
           (allTypes, memberTypes) ->
           resultFor( String.format( "allOf[%s]", memberTypes.getKey()),
             () -> {
-              allTypes.getValue().retainAll( memberTypes.getValue());
-              if( allTypes.getValue().isEmpty())
+              Set<String> allAccepted = SetUtils.intersection( allTypes.getValue(), memberTypes.getValue()).toSet();
+              if( allAccepted.isEmpty())
                 {
                 throw
                   new IllegalStateException(
                     String.format( "Valid types=%s for this member are not accepted by other \"allOf\" members", memberTypes.getValue()));
                 }
+              allTypes.setValue( allAccepted);
               return allTypes;
             }))
         .map( allTypes -> allTypes.getValue())
@@ -2142,13 +2145,16 @@ public abstract class InputModeller
         .collect( toList()));
         
       // If "anyOf" specified, valid types may include any accepted by any member.
-      Set<String> anyOfTypes =
+      List<Schema<?>> anyOfMembersTyped =
         composedSchema.getAnyOf()
         .stream()
-        .map( member -> getValidTypes( api, member))
-        .filter( Objects::nonNull)
-        .reduce((anyTypes, memberTypes) -> { anyTypes.addAll( memberTypes); return anyTypes;})
-        .orElse( null);
+        .filter( member -> getValidTypes( api, member) != null)
+        .collect( toList());
+
+      Set<String> anyOfTypes =
+        anyOfMembersTyped.isEmpty()
+        ? null
+        : anyOfMembersTyped.stream().flatMap( member -> getValidTypes( api, member).stream()).collect( toSet());
 
       // Valid types include only those accepted by "anyOf" and the rest of this schema.
       if( validTypes == null)
@@ -2172,13 +2178,16 @@ public abstract class InputModeller
         .collect( toList()));
         
       // If "oneOf" specified, valid types may include any accepted by any member.
-      Set<String> oneOfTypes =
+      List<Schema<?>> oneOfMembersTyped =
         composedSchema.getOneOf()
         .stream()
-        .map( member -> getValidTypes( api, member))
-        .filter( Objects::nonNull)
-        .reduce((oneTypes, memberTypes) -> { oneTypes.addAll( memberTypes); return oneTypes;})
-        .orElse( null);
+        .filter( member -> getValidTypes( api, member) != null)
+        .collect( toList());
+
+      Set<String> oneOfTypes =
+        oneOfMembersTyped.isEmpty()
+        ? null
+        : oneOfMembersTyped.stream().flatMap( member -> getValidTypes( api, member).stream()).collect( toSet());
 
       // Valid types include only those accepted by "oneOf" and the rest of this schema.
       if( validTypes == null)
@@ -2570,7 +2579,5 @@ public abstract class InputModeller
 
   private final View view_;
   private OpenApiContext context_ = new OpenApiContext();
-  private ModelOptions options_;
-  
-  private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
+  private ModelOptions options_; 
 }
