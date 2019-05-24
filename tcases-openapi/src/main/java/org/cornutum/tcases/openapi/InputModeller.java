@@ -693,8 +693,7 @@ public abstract class InputModeller
     Set<String> requiredTypes)
     {
     // If this is a ComposedSchema, validate and prepare composed members
-    Optional<ComposedSchema> composedSchema = Optional.ofNullable( asComposedSchema( instanceSchema));
-    composedSchema.ifPresent( c -> getValidTypes( api, c));
+    Optional<ComposedSchema> composedSchema = Optional.ofNullable( asValidComposedSchema( api, instanceSchema));
     Optional<Schema> composedEquiv = composedSchema.flatMap( c -> combinedAllOf( c));
 
     // Derive input variables for this instance based on its combined schema.
@@ -2260,7 +2259,7 @@ public abstract class InputModeller
   @SuppressWarnings("rawtypes")
   private List<Schema> combinedAllOf( List<Schema> members)
     {
-    // After replacing any ComposedSchems members with equivalent leaf schemas...
+    // After replacing any ComposedSchema members with equivalent leaf schemas...
     List<Schema> memberEquivalents =
       members.stream()
       .map( member -> Optional.ofNullable( asComposedSchema( member)).flatMap( c -> combinedAllOf( c)).orElse( member))
@@ -2321,6 +2320,19 @@ public abstract class InputModeller
       schema instanceof ComposedSchema
       ? (ComposedSchema) schema
       : null;
+    }
+
+  /**
+   * If the given schema is not a ComposedSchema instance, returns null.
+   * Otherwise, if the ComposedSchema member types are inconsistent, throws an exception.
+   * Otherwise, returns this ComposedSchema.
+   */
+  private ComposedSchema asValidComposedSchema( OpenAPI api, Schema<?> schema)
+    {
+    return
+      Optional.ofNullable( asComposedSchema( schema))
+      .map( c -> { getValidTypes( api, c); return c;})
+      .orElse( null);
     }
 
   /**
