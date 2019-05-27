@@ -300,7 +300,7 @@ public final class SchemaUtils
       additional.getMinLength());
 
     // Combine pattern
-    addPattern( combined, base.getPattern());
+    setPatterns( combined, getPatterns( base));
     addPattern( combined, additional.getPattern());
       
     return combined;
