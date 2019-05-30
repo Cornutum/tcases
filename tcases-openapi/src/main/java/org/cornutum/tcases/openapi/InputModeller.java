@@ -88,6 +88,7 @@ public abstract class InputModeller
     {
     view_ = expectedValueOf( view, "Model view");
     setOptions( Optional.ofNullable( options).orElse( new ModelOptions()));
+    context_ = new NotificationContext( getOptions().getConditionNotifier());
     }
 
   /**
@@ -1456,8 +1457,8 @@ public abstract class InputModeller
       !expectedInView( propertySchema)
       &&
       (view_ == View.REQUEST
-       ? options_.isReadOnlyEnforced()
-       : options_.isWriteOnlyEnforced());
+       ? getOptions().isReadOnlyEnforced()
+       : getOptions().isWriteOnlyEnforced());
     }
 
   /**
@@ -2417,7 +2418,7 @@ public abstract class InputModeller
    */
   private void notifyWarning( String reason)
     {
-    options_.getConditionNotifier().warn( contextLocation(), reason);
+    context_.warn( reason);
     }
 
   /**
@@ -2425,15 +2426,7 @@ public abstract class InputModeller
    */
   private void notifyError( String reason, String resolution)
     {
-    options_.getConditionNotifier().error( contextLocation(), reason, resolution);
-    }
-
-  /**
-   * Returns the path to the current context.
-   */
-  private String[] contextLocation()
-    {
-    return context_.getLocation();
+    context_.error( reason, resolution);
     }
 
   /**
@@ -2554,6 +2547,6 @@ public abstract class InputModeller
     }
 
   private final View view_;
-  private OpenApiContext context_ = new OpenApiContext();
+  private final NotificationContext context_;
   private ModelOptions options_; 
 }

@@ -70,7 +70,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.6)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -139,7 +139,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -208,7 +208,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.12)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -275,7 +275,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.10)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -342,7 +342,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -410,7 +410,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.1)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -479,7 +479,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -548,7 +548,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.3)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -617,7 +617,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.5)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -686,7 +686,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -740,7 +740,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 1.3)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))

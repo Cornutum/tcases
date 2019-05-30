@@ -60,7 +60,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( "[0-9]*")
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -118,7 +118,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns()
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -177,7 +177,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( "[A-Z]*")
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -235,7 +235,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns()
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -293,7 +293,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( ".*")
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -352,7 +352,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns()
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -409,7 +409,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( "[A-Z]*")
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -457,7 +457,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( "[A-Z]*")
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
