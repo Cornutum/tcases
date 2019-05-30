@@ -9,16 +9,13 @@ package org.cornutum.tcases.openapi;
 
 import io.swagger.v3.oas.models.media.Schema;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
 
@@ -60,7 +57,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Returns the composed set of patterns to match when validating the given "string" schema.
+   * Returns the composed set of patterns to (not) match when validating the given "string" schema.
    */
   public static Set<String> getPatterns( Schema<?> schema)
     {
@@ -71,7 +68,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Changes the composed set of patterns to match when validating the given "string" schema.
+   * Changes the composed set of patterns to (not) match when validating the given "string" schema.
    */
   public static void setPatterns( Schema<?> schema, Iterable<String> patterns)
     {
@@ -88,7 +85,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Changes the composed set of patterns to match when validating the given "string" schema.
+   * Changes the composed set of patterns to (not) match when validating the given "string" schema.
    */
   public static void setPatterns( Schema<?> schema, String... patterns)
     {
@@ -96,7 +93,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Add to the composed set of patterns to match when validating the given "string" schema.
+   * Add to the composed set of patterns to (not) match when validating the given "string" schema.
    */
   public static void addPattern( Schema<?> schema, String pattern)
     {
@@ -118,63 +115,60 @@ public final class SchemaExtensions
     }
 
   /**
-   * Returns the composed set of "not" schemas to use when validating the given schema.
+   * Returns the composed set of formats to (not) match when validating the given schema.
    */
-  public static List<Schema<?>> getNots( Schema<?> schema)
+  public static Set<String> getFormats( Schema<?> schema)
     {
-    if( !hasExtension( schema, EXT_NOTS))
-      {
-      setNots( schema, schema.getNot());
-      }
-
-    List<Schema<?>> nots = getExtension( schema, EXT_NOTS);
-    return Optional.ofNullable( nots).orElse( emptyList());
+    return
+      hasExtension( schema, EXT_FORMATS)
+      ? getExtension( schema, EXT_FORMATS)
+      : Optional.ofNullable( schema.getFormat()).map( Collections::singleton).orElse( emptySet());
     }
 
   /**
-   * Changes the composed set of "not" schemas to use when validating the given schema.
+   * Changes the composed set of formats to (not) match when validating the given schema.
    */
-  public static void setNots( Schema<?> schema, Iterable<Schema<?>> nots)
+  public static void setFormats( Schema<?> schema, Iterable<String> formats)
     {
-    removeExtension( schema, EXT_NOTS);
-    schema.setNot( null);
+    removeExtension( schema, EXT_FORMATS);
+    schema.setFormat( null);
 
-    if( nots != null)
+    if( formats != null)
       {
-      for( Schema<?> not : nots)
+      for( String format : formats)
         {
-        addNot( schema, not);
+        addFormat( schema, format);
         }
       }
     }
 
   /**
-   * Changes the composed set of "not" schemas to use when validating the given schema.
+   * Changes the composed set of formats to (not) match when validating the given schema.
    */
-  public static void setNots( Schema<?> schema, Schema<?>... nots)
+  public static void setFormats( Schema<?> schema, String... formats)
     {
-    setNots( schema, Arrays.asList( nots));
+    setFormats( schema, Arrays.asList( formats));
     }
 
   /**
-   * Add to the composed set of "not" schemas to use when validating the given schema.
+   * Add to the composed set of formats to (not) match when validating the given schema.
    */
-  public static void addNot( Schema<?> schema, Schema<?> not)
+  public static void addFormat( Schema<?> schema, String format)
     {
-    if( not != null)
+    if( format != null)
       {
-      if( schema.getNot() == null)
+      if( schema.getFormat() == null)
         {
-        schema.setNot( not);
+        schema.setFormat( format);
         }
 
-      List<Schema<?>> nots = getExtension( schema, EXT_NOTS);
-      if( nots == null)
+      Set<String> formats = getExtension( schema, EXT_FORMATS);
+      if( formats == null)
         {
-        nots = new ArrayList<Schema<?>>();
-        setExtension( schema, EXT_NOTS, nots);
+        formats = new LinkedHashSet<String>();
+        setExtension( schema, EXT_FORMATS, formats);
         }
-      nots.add( not);
+      formats.add( format);
       }
     }
 
@@ -226,5 +220,5 @@ public final class SchemaExtensions
 
   private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
   private static final String EXT_PATTERNS = "x-tcases-patterns";
-  private static final String EXT_NOTS = "x-tcases-nots";
+  private static final String EXT_FORMATS = "x-tcases-formats";
   }

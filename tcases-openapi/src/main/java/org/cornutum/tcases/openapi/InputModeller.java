@@ -728,9 +728,6 @@ public abstract class InputModeller
     Schema<?> instanceSchema,
     Set<String> requiredTypes)
     {
-    // Although not supported, verify validity of "not" schema
-    combineNotSchemas( api, instanceSchema, requiredTypes);
-
     Stream.Builder<IVarDef> typeVars = Stream.builder();
     typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema));
 
@@ -1137,40 +1134,6 @@ public abstract class InputModeller
             }          
           });
       }
-    }
-
-  /**
-   * Returns the combined "not" schema that applies to the given schema when validating instances of the given types.
-   */
-  private Optional<Schema<?>> combineNotSchemas( OpenAPI api, Schema<?> instanceSchema, Set<String> requiredTypes)
-    {
-    return
-      resultFor( "not",
-        () -> {
-        List<Schema<?>> applicableNots =
-          getNots( instanceSchema)
-          .stream()
-          .filter( notSchema -> {
-              boolean applicable = isApplicableInput( api, notSchema, requiredTypes);
-              if( !applicable)
-                {
-                notifyWarning(
-                  String.format(
-                    "Ignoring \"not\" schema of type=%s: always satisfied by any instance satisfying base schema types=%s",
-                    notSchema.getType(),
-                    requiredTypes));
-                }
-              return applicable;
-            })
-          .collect( toList());
-
-        if( !applicableNots.isEmpty())
-          {
-          notifyError( "The \"not\" keyword is not yet supported", "Ignoring this \"not\" schema");
-          }
-
-        return Optional.empty();
-        });
     }
 
   /**
