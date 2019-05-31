@@ -11,6 +11,7 @@ import static org.cornutum.tcases.openapi.SchemaUtils.*;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.headers.Header;
+import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
@@ -18,6 +19,8 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 
 import java.util.Objects;
 import java.util.Optional;
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Defines methods for accessing an OpenAPI specification.
@@ -62,20 +65,36 @@ public final class OpenApiUtils
     return
       schema == null
       ? null
-      : resolveSchemaNot( api, resolveSchemaType( componentSchemaRef( api, schema.get$ref()).orElse( schema)));
+      : resolveSchemaType( componentSchemaRef( api, schema.get$ref()).orElse( schema));
     }
 
   /**
-   * Returns the given schema after updating the "not" property to resolve any schema reference.
+   * Returns the given schema after resolving schemas referenced by any "allOf", "anyOf", or "oneOf" members.
    */
-  private static Schema<?> resolveSchemaNot( OpenAPI api, Schema<?> schema)
+  public static ComposedSchema resolveSchemaMembers( OpenAPI api, ComposedSchema composed)
     {
-    schema.setNot(
-      Optional.ofNullable( schema.getNot())
-      .map( not -> resolveSchema( api, not))
-      .orElse( null));
+    // Resolve "allOf" schemas
+    composed.setAllOf(
+      Optional.ofNullable( composed.getAllOf()).orElse( emptyList())
+      .stream()
+      .map( member -> resolveSchema( api, member))
+      .collect( toList()));
+      
+    // Resolve "anyOf" schemas
+    composed.setAnyOf(
+      Optional.ofNullable( composed.getAnyOf()).orElse( emptyList())
+      .stream()
+      .map( member -> resolveSchema( api, member))
+      .collect( toList()));
+      
+    // Resolve "oneOf" schemas
+    composed.setOneOf(
+      Optional.ofNullable( composed.getOneOf()).orElse( emptyList())
+      .stream()
+      .map( member -> resolveSchema( api, member))
+      .collect( toList()));
 
-    return schema;
+    return composed;
     }
 
   /**

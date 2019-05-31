@@ -2057,13 +2057,8 @@ public abstract class InputModeller
     ComposedSchema composedSchema = asComposedSchema( schema);
     if( composedSchema != null)
       {
-      // Resolve "allOf" schemas
-      composedSchema.setAllOf(
-        Optional.ofNullable( composedSchema.getAllOf()).orElse( emptyList())
-        .stream()
-        .map( member -> resolveSchema( api, member))
-        .collect( toList()));
-        
+      resolveSchemaMembers( api, composedSchema);
+      
       // If "allOf" specified, valid types may include only those accepted by all members.
       List<Schema> allOfMembers = composedSchema.getAllOf();
       Set<String> allOfTypes =
@@ -2100,13 +2095,6 @@ public abstract class InputModeller
           }
         validTypes.retainAll( allOfTypes);
         }
-      
-      // Resolve "anyOf" schemas
-      composedSchema.setAnyOf(
-        Optional.ofNullable( composedSchema.getAnyOf()).orElse( emptyList())
-        .stream()
-        .map( member -> resolveSchema( api, member))
-        .collect( toList()));
         
       // If "anyOf" specified, valid types may include any accepted by any member.
       List<Schema<?>> anyOfMembersTyped =
@@ -2133,13 +2121,6 @@ public abstract class InputModeller
           }
         validTypes.retainAll( anyOfTypes);
         }
-      
-      // Resolve "oneOf" schemas
-      composedSchema.setOneOf(
-        Optional.ofNullable( composedSchema.getOneOf()).orElse( emptyList())
-        .stream()
-        .map( member -> resolveSchema( api, member))
-        .collect( toList()));
         
       // If "oneOf" specified, valid types may include any accepted by any member.
       List<Schema<?>> oneOfMembersTyped =
