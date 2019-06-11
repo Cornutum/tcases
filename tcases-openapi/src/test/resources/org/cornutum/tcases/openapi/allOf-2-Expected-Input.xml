@@ -45,16 +45,6 @@
                 <Value name="false"/>
               </Var>
             </VarSet>
-            <VarSet name="alpha">
-              <Var name="Defined">
-                <Value name="Yes" property="param0Alpha, param0Properties"/>
-                <Value name="No" failure="true"/>
-              </Var>
-              <Var name="Type" when="param0Alpha">
-                <Value name="Not null" property="param0AlphaValue"/>
-                <Value name="null" failure="true"/>
-              </Var>
-            </VarSet>
             <VarSet name="charlie">
               <Var name="Defined">
                 <Value name="Yes" property="param0Charlie, param0Properties"/>
@@ -82,6 +72,16 @@
                   <Value name="No"/>
                 </Var>
               </VarSet>
+            </VarSet>
+            <VarSet name="alpha">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Alpha, param0Properties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="param0Alpha">
+                <Value name="Not null" property="param0AlphaValue"/>
+                <Value name="null" failure="true"/>
+              </Var>
             </VarSet>
             <VarSet name="Additional">
               <Var name="Defined">
