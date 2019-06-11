@@ -2144,7 +2144,7 @@ public abstract class InputModeller
         .collect( toList()));
         
       // If "anyOf" specified, valid types may include any accepted by any member.
-      List<Schema<?>> anyOfMembersTyped =
+      List<Schema> anyOfMembersTyped =
         composedSchema.getAnyOf()
         .stream()
         .filter( member -> getValidTypes( api, member) != null)
@@ -2177,7 +2177,7 @@ public abstract class InputModeller
         .collect( toList()));
         
       // If "oneOf" specified, valid types may include any accepted by any member.
-      List<Schema<?>> oneOfMembersTyped =
+      List<Schema> oneOfMembersTyped =
         composedSchema.getOneOf()
         .stream()
         .filter( member -> getValidTypes( api, member) != null)
