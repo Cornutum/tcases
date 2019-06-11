@@ -39,7 +39,7 @@
                   <Value name="1"/>
                   <Value name="&gt; 1"/>
                 </Var>
-                <Var name="MatchesPattern">
+                <Var name="Matches-Pattern">
                   <Has name="pattern" value="."/>
                   <Value name="Yes" property="param0OneOfMemberValidated"/>
                   <Value name="No"/>
@@ -57,7 +57,7 @@
                   <Value name="0" property="param0OneOfMemberValidated"/>
                   <Value name="&lt; 10" property="param0OneOfMemberValidated"/>
                 </Var>
-                <Var name="MatchesPattern">
+                <Var name="Matches-Pattern">
                   <Has name="pattern" value="."/>
                   <Value name="Yes"/>
                 </Var>

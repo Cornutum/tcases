@@ -53,7 +53,7 @@
                         <Value name="2"/>
                         <Value name="&gt; 2"/>
                       </Var>
-                      <Var name="MatchesPattern">
+                      <Var name="Matches-Pattern">
                         <Has name="pattern" value=".*"/>
                         <Value name="Yes" property="param0AllOf0AnyOfMemberValidated"/>
                         <Value name="No"/>
@@ -91,7 +91,7 @@
                         <Value name="&gt; 0"/>
                         <Value name="0"/>
                       </Var>
-                      <VarSet name="MatchesPatterns">
+                      <VarSet name="Matches-Patterns">
                         <Var name="0">
                           <Has name="pattern" value=".*"/>
                           <Value name="Yes"/>
@@ -113,7 +113,7 @@
                         <Value name="1"/>
                         <Value name="0"/>
                       </Var>
-                      <Var name="MatchesPattern">
+                      <Var name="Matches-Pattern">
                         <Has name="pattern" value=".*"/>
                         <Value name="Yes" property="param0AllOf0OneOfMemberValidated"/>
                         <Value name="No"/>

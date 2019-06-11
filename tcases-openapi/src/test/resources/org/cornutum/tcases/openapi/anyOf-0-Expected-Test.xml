@@ -15,7 +15,7 @@
         </Var>
         <Var name="param0.AnyOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.Value.Length" value="0"/>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="Yes">
+        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -29,7 +29,7 @@
         </Var>
         <Var name="param0.AnyOf.Members.0.Type" NA="true"/>
         <Var name="param0.AnyOf.Members.0.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" NA="true">
+        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -44,7 +44,7 @@
         </Var>
         <Var name="param0.AnyOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.Value.Length" value="128"/>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="Yes">
+        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -59,7 +59,7 @@
         </Var>
         <Var name="param0.AnyOf.Members.0.Type" value="null" failure="true"/>
         <Var name="param0.AnyOf.Members.0.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" NA="true">
+        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -74,7 +74,7 @@
         </Var>
         <Var name="param0.AnyOf.Members.0.Type" value="Not string" failure="true"/>
         <Var name="param0.AnyOf.Members.0.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" NA="true">
+        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -89,7 +89,7 @@
         </Var>
         <Var name="param0.AnyOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.Value.Length" value="129" failure="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="Yes">
+        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -104,7 +104,7 @@
         </Var>
         <Var name="param0.AnyOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.Value.Length" value="0"/>
-        <Var name="param0.AnyOf.Members.0.Value.MatchesPattern" value="No" failure="true">
+        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" value="No" failure="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
