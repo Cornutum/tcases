@@ -64,20 +64,6 @@
         <project.build.date>${maven.build.timestamp}</project.build.date>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     </properties>
-
-    <!-- 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.cornutum.tcases</groupId>
-                <artifactId>tcases-maven-plugin</artifactId>
-                <configuration>
-                    <junit>${tcasesJunit}</junit>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    -->
     
     <dependencies>
         <dependency>
