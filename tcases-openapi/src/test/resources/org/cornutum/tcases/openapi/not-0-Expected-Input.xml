@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<System name="Not">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_not">
+    <Input type="query">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="string" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Length">
+            <Value name="1"/>
+            <Value name="2" failure="true"/>
+            <Value name="0"/>
+          </Var>
+          <VarSet name="Matches-Patterns">
+            <Var name="0">
+              <Has name="pattern" value=".*"/>
+              <Value name="Yes"/>
+              <Value name="No" failure="true"/>
+            </Var>
+            <Var name="1">
+              <Has name="pattern" value="[0-9]+"/>
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+            <Var name="2">
+              <Has name="pattern" value="Error"/>
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+          <VarSet name="Has-Excluded">
+            <Var name="Format">
+              <Value name="error" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

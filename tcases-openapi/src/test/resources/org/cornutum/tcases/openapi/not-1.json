@@ -13,30 +13,30 @@
                         "in": "query",
 
                         "schema": {
-                            "maxLength": 256,
-                            
                             "not": {
-                                "minLength": 8,
-                                "anyOf": [
+                                "readOnly": true,
+                                "allOf": [
                                     {
-                                        "pattern": "[0-9]+"
+                                        "nullable": true
                                     },
                                     {
-                                        "pattern": "Error",
-                                        "format": "error"
-                                    },
-                                    {
-                                        "type": "integer"
+                                        "format": "simple"
                                     }
                                 ]                                
                             },
-                            "allOf": [
+                            "anyOf": [
                                 {
-                                    "pattern": ".*"
+                                    "writeOnly": true
                                 },
                                 {
                                     "not": {
-                                        "minLength": 2
+                                        "format": "error",
+                                        "nullable": true
+                                    }
+                                },
+                                {
+                                    "not": {
+                                        "nullable": false 
                                     }
                                 }
                             ]

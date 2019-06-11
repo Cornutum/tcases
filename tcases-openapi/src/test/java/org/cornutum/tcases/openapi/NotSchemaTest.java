@@ -21,12 +21,12 @@ public class NotSchemaTest extends OpenApiTest
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 0. Schema (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Type </TD> <TD> array </TD> </TR>
-   * <TR><TD> Composed-With.Count </TD> <TD> (not applicable) </TD> </TR>
-   * <TR><TD> Composed-With.not.Included </TD> <TD> (not applicable) </TD> </TR>
-   * <TR><TD> Composed-With.allOf.Included </TD> <TD> (not applicable) </TD> </TR>
-   * <TR><TD> Composed-With.anyOf.Included </TD> <TD> (not applicable) </TD> </TR>
-   * <TR><TD> Composed-With.oneOf.Included </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> string </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> allOf </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> Same </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> anyOf </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -42,37 +42,19 @@ public class NotSchemaTest extends OpenApiTest
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 1. Schema (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Type </TD> <TD> number </TD> </TR>
-   * <TR><TD> Composed-With.Count </TD> <TD> 1 </TD> </TR>
-   * <TR><TD> Composed-With.not.Included </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> Composed-With.allOf.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.anyOf.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.oneOf.Included </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> anyOf </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> allOf </TD> </TR>
    * </TABLE>
    * </P>
    */
   @Test
   public void Schema_1()
     {
-    // properties = composed
-
-    // Given...
-    //
-    //   Type = number
-    //
-    //   Composed-With.Count = 1
-    //
-    //   Composed-With.not.Included = Yes
-    //
-    //   Composed-With.allOf.Included = No
-    //
-    //   Composed-With.anyOf.Included = No
-    //
-    //   Composed-With.oneOf.Included = No
-    
-    // When...
-
-    // Then...
+    verifyRequestInputModel( "not-1");
     }
 
   /**
@@ -81,31 +63,33 @@ public class NotSchemaTest extends OpenApiTest
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 2. Schema (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Type </TD> <TD> boolean </TD> </TR>
-   * <TR><TD> Composed-With.Count </TD> <TD> 0 </TD> </TR>
-   * <TR><TD> Composed-With.not.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.allOf.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.anyOf.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.oneOf.Included </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> oneOf </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> None </TD> </TR>
    * </TABLE>
    * </P>
    */
   @Test
   public void Schema_2()
     {
+    // properties = parentType
+
     // Given...
     //
-    //   Type = boolean
+    //   Parent.Type.Defined = Yes
     //
-    //   Composed-With.Count = 0
+    //   Parent.Type.Value = object
     //
-    //   Composed-With.not.Included = No
+    //   Parent.Type.Composed-With = oneOf
     //
-    //   Composed-With.allOf.Included = No
+    //   Not.Type.Defined = No
     //
-    //   Composed-With.anyOf.Included = No
+    //   Not.Type.Value = (not applicable)
     //
-    //   Composed-With.oneOf.Included = No
+    //   Not.Type.Composed-With = None
     
     // When...
 
@@ -118,33 +102,33 @@ public class NotSchemaTest extends OpenApiTest
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 3. Schema (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Type </TD> <TD> object </TD> </TR>
-   * <TR><TD> Composed-With.Count </TD> <TD> > 1 </TD> </TR>
-   * <TR><TD> Composed-With.not.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.allOf.Included </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> Composed-With.anyOf.Included </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> Composed-With.oneOf.Included </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> array </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> None </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> Same </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> None </TD> </TR>
    * </TABLE>
    * </P>
    */
   @Test
   public void Schema_3()
     {
-    // properties = composed
+    // properties = notType,parentType,typeNotComposable
 
     // Given...
     //
-    //   Type = object
+    //   Parent.Type.Defined = Yes
     //
-    //   Composed-With.Count = > 1
+    //   Parent.Type.Value = array
     //
-    //   Composed-With.not.Included = No
+    //   Parent.Type.Composed-With = None
     //
-    //   Composed-With.allOf.Included = Yes
+    //   Not.Type.Defined = Yes
     //
-    //   Composed-With.anyOf.Included = Yes
+    //   Not.Type.Value = Same
     //
-    //   Composed-With.oneOf.Included = No
+    //   Not.Type.Composed-With = None
     
     // When...
 
@@ -157,33 +141,150 @@ public class NotSchemaTest extends OpenApiTest
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 4. Schema (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Type </TD> <TD> string </TD> </TR>
-   * <TR><TD> Composed-With.Count </TD> <TD> 1 </TD> </TR>
-   * <TR><TD> Composed-With.not.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.allOf.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.anyOf.Included </TD> <TD> No </TD> </TR>
-   * <TR><TD> Composed-With.oneOf.Included </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> number </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> allOf </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> oneOf </TD> </TR>
    * </TABLE>
    * </P>
    */
   @Test
   public void Schema_4()
     {
-    // properties = composed
+    // properties = parentType
 
     // Given...
     //
-    //   Type = string
+    //   Parent.Type.Defined = Yes
     //
-    //   Composed-With.Count = 1
+    //   Parent.Type.Value = number
     //
-    //   Composed-With.not.Included = No
+    //   Parent.Type.Composed-With = allOf
     //
-    //   Composed-With.allOf.Included = No
+    //   Not.Type.Defined = No
     //
-    //   Composed-With.anyOf.Included = No
+    //   Not.Type.Value = (not applicable)
     //
-    //   Composed-With.oneOf.Included = Yes
+    //   Not.Type.Composed-With = oneOf
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following "not" schema inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 5. Schema (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> boolean </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> None </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> Same </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> None </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Schema_5()
+    {
+    // properties = notType,parentType,typeNotComposable
+
+    // Given...
+    //
+    //   Parent.Type.Defined = Yes
+    //
+    //   Parent.Type.Value = boolean
+    //
+    //   Parent.Type.Composed-With = None
+    //
+    //   Not.Type.Defined = Yes
+    //
+    //   Not.Type.Value = Same
+    //
+    //   Not.Type.Composed-With = None
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following "not" schema inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 6. Schema (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> string </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> anyOf </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> <FONT color="red"> Different  </FONT> </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> anyOf </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Schema_6()
+    {
+    // properties = notType,parentType
+
+    // Given...
+    //
+    //   Parent.Type.Defined = Yes
+    //
+    //   Parent.Type.Value = string
+    //
+    //   Parent.Type.Composed-With = anyOf
+    //
+    //   Not.Type.Defined = Yes
+    //
+    //   Not.Type.Value = Different
+    //
+    //   Not.Type.Composed-With = anyOf
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following "not" schema inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 7. Schema (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> anyOf </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> <FONT color="red"> Inapplicable  </FONT> </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> anyOf </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Schema_7()
+    {
+    // properties = notType
+
+    // Given...
+    //
+    //   Parent.Type.Defined = No
+    //
+    //   Parent.Type.Value = (not applicable)
+    //
+    //   Parent.Type.Composed-With = anyOf
+    //
+    //   Not.Type.Defined = Yes
+    //
+    //   Not.Type.Value = Inapplicable
+    //
+    //   Not.Type.Composed-With = anyOf
     
     // When...
 

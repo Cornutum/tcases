@@ -9,13 +9,18 @@ package org.cornutum.tcases.openapi;
 
 import io.swagger.v3.oas.models.media.Schema;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
 
@@ -57,7 +62,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Returns the composed set of patterns to (not) match when validating the given "string" schema.
+   * Returns the composed set of patterns to match when validating the given "string" schema.
    */
   public static Set<String> getPatterns( Schema<?> schema)
     {
@@ -68,13 +73,28 @@ public final class SchemaExtensions
     }
 
   /**
-   * Changes the composed set of patterns to (not) match when validating the given "string" schema.
+   * Changes the composed set of patterns to match when validating the given "string" schema.
    */
   public static void setPatterns( Schema<?> schema, Iterable<String> patterns)
     {
     removeExtension( schema, EXT_PATTERNS);
     schema.setPattern( null);
+    addPatterns( schema, patterns);
+    }
 
+  /**
+   * Changes the composed set of patterns to match when validating the given "string" schema.
+   */
+  public static void setPatterns( Schema<?> schema, String... patterns)
+    {
+    setPatterns( schema, Arrays.asList( patterns));
+    }
+
+  /**
+   * Adds to the composed set of patterns to match when validating the given "string" schema.
+   */
+  public static void addPatterns( Schema<?> schema, Iterable<String> patterns)
+    {
     if( patterns != null)
       {
       for( String pattern : patterns)
@@ -85,15 +105,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Changes the composed set of patterns to (not) match when validating the given "string" schema.
-   */
-  public static void setPatterns( Schema<?> schema, String... patterns)
-    {
-    setPatterns( schema, Arrays.asList( patterns));
-    }
-
-  /**
-   * Add to the composed set of patterns to (not) match when validating the given "string" schema.
+   * Adds to the composed set of patterns to match when validating the given "string" schema.
    */
   public static void addPattern( Schema<?> schema, String pattern)
     {
@@ -115,60 +127,364 @@ public final class SchemaExtensions
     }
 
   /**
-   * Returns the composed set of formats to (not) match when validating the given schema.
+   * Returns the composed set of formats to not match when validating the given schema.
    */
-  public static Set<String> getFormats( Schema<?> schema)
+  public static Set<String> getNotFormats( Schema<?> schema)
     {
-    return
-      hasExtension( schema, EXT_FORMATS)
-      ? getExtension( schema, EXT_FORMATS)
-      : Optional.ofNullable( schema.getFormat()).map( Collections::singleton).orElse( emptySet());
+    Set<String> notFormats = getExtension( schema, EXT_NOT_FORMATS);
+    return Optional.ofNullable( notFormats).orElse( emptySet());
     }
 
   /**
-   * Changes the composed set of formats to (not) match when validating the given schema.
+   * Changes the composed set of formats to not match when validating the given schema.
    */
-  public static void setFormats( Schema<?> schema, Iterable<String> formats)
+  public static void setNotFormats( Schema<?> schema, Iterable<String> formats)
     {
-    removeExtension( schema, EXT_FORMATS);
-    schema.setFormat( null);
+    removeExtension( schema, EXT_NOT_FORMATS);
+    addNotFormats( schema, formats);
+    }
 
+  /**
+   * Changes the composed set of formats to not match when validating the given schema.
+   */
+  public static void setNotFormats( Schema<?> schema, String... formats)
+    {
+    setNotFormats( schema, Arrays.asList( formats));
+    }
+
+  /**
+   * Adds to the composed set of formats to not match when validating the given schema.
+   */
+  public static void addNotFormats( Schema<?> schema, Iterable<String> formats)
+    {
     if( formats != null)
       {
       for( String format : formats)
         {
-        addFormat( schema, format);
+        addNotFormat( schema, format);
         }
       }
     }
 
   /**
-   * Changes the composed set of formats to (not) match when validating the given schema.
+   * Adds to the composed set of formats to not match when validating the given schema.
    */
-  public static void setFormats( Schema<?> schema, String... formats)
-    {
-    setFormats( schema, Arrays.asList( formats));
-    }
-
-  /**
-   * Add to the composed set of formats to (not) match when validating the given schema.
-   */
-  public static void addFormat( Schema<?> schema, String format)
+  public static void addNotFormat( Schema<?> schema, String format)
     {
     if( format != null)
       {
-      if( schema.getFormat() == null)
-        {
-        schema.setFormat( format);
-        }
-
-      Set<String> formats = getExtension( schema, EXT_FORMATS);
+      Set<String> formats = getExtension( schema, EXT_NOT_FORMATS);
       if( formats == null)
         {
         formats = new LinkedHashSet<String>();
-        setExtension( schema, EXT_FORMATS, formats);
+        setExtension( schema, EXT_NOT_FORMATS, formats);
         }
       formats.add( format);
+      }
+    }
+
+  /**
+   * Returns the composed set of patterns to not match when validating the given schema.
+   */
+  public static Set<String> getNotPatterns( Schema<?> schema)
+    {
+    Set<String> notPatterns = getExtension( schema, EXT_NOT_PATTERNS);
+    return Optional.ofNullable( notPatterns).orElse( emptySet());
+    }
+
+  /**
+   * Changes the composed set of patterns to not match when validating the given schema.
+   */
+  public static void setNotPatterns( Schema<?> schema, Iterable<String> patterns)
+    {
+    removeExtension( schema, EXT_NOT_PATTERNS);
+    addNotPatterns( schema, patterns);
+    }
+
+  /**
+   * Changes the composed set of patterns to not match when validating the given schema.
+   */
+  public static void setNotPatterns( Schema<?> schema, String... patterns)
+    {
+    setNotPatterns( schema, Arrays.asList( patterns));
+    }
+
+  /**
+   * Adds to the composed set of patterns to not match when validating the given schema.
+   */
+  public static void addNotPatterns( Schema<?> schema, Iterable<String> patterns)
+    {
+    if( patterns != null)
+      {
+      for( String pattern : patterns)
+        {
+        addNotPattern( schema, pattern);
+        }
+      }
+    }
+
+  /**
+   * Adds to the composed set of patterns to not match when validating the given schema.
+   */
+  public static void addNotPattern( Schema<?> schema, String pattern)
+    {
+    if( pattern != null)
+      {
+      Set<String> patterns = getExtension( schema, EXT_NOT_PATTERNS);
+      if( patterns == null)
+        {
+        patterns = new LinkedHashSet<String>();
+        setExtension( schema, EXT_NOT_PATTERNS, patterns);
+        }
+      patterns.add( pattern);
+      }
+    }
+
+  /**
+   * Returns the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static List<Schema<?>> getNots( Schema<?> schema)
+    {
+    if( !hasExtension( schema, EXT_NOTS))
+      {
+      setNots( schema, schema.getNot());
+      }
+
+    List<Schema<?>> nots = getExtension( schema, EXT_NOTS);
+    return Optional.ofNullable( nots).orElse( emptyList());
+    }
+
+  /**
+   * Changes the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static void setNots( Schema<?> schema, Iterable<Schema<?>> nots)
+    {
+    removeExtension( schema, EXT_NOTS);
+    schema.setNot( null);
+    addNots( schema, nots);
+    }
+
+  /**
+   * Changes the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static void setNots( Schema<?> schema, Schema<?>... nots)
+    {
+    setNots( schema, Arrays.asList( nots));
+    }
+
+  /**
+   * Adds to the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static void addNots( Schema<?> schema, Iterable<Schema<?>> nots)
+    {
+    if( nots != null)
+      {
+      for( Schema<?> not : nots)
+        {
+        addNot( schema, not);
+        }
+      }
+    }
+
+  /**
+   * Adds to the composed set of "not" schemas to use when validating the given schema.
+   */
+  public static void addNot( Schema<?> schema, Schema<?> not)
+    {
+    if( not != null)
+      {
+      if( schema.getNot() == null)
+        {
+        schema.setNot( not);
+        }
+
+      List<Schema<?>> nots = getExtension( schema, EXT_NOTS);
+      if( nots == null)
+        {
+        nots = new ArrayList<Schema<?>>();
+        setExtension( schema, EXT_NOTS, nots);
+        }
+      nots.add( not);
+      }
+    }
+
+  /**
+   * Returns the composed set of multipleOfs to not match when validating the given numeric schema.
+   */
+  public static Set<BigDecimal> getNotMultipleOfs( Schema<?> schema)
+    {
+    Set<BigDecimal> notMultipleOfs = getExtension( schema, EXT_NOT_MULTIPLEOFS);
+    return Optional.ofNullable( notMultipleOfs).orElse( emptySet());
+    }
+
+  /**
+   * Changes the composed set of multipleOfs to not match when validating the given numeric schema.
+   */
+  public static void setNotMultipleOfs( Schema<?> schema, Iterable<BigDecimal> multipleOfs)
+    {
+    removeExtension( schema, EXT_NOT_MULTIPLEOFS);
+    addNotMultipleOfs( schema, multipleOfs);
+    }
+
+  /**
+   * Changes the composed set of multipleOfs to not match when validating the given numeric schema.
+   */
+  public static void setNotMultipleOfs( Schema<?> schema, BigDecimal... multipleOfs)
+    {
+    setNotMultipleOfs( schema, Arrays.asList( multipleOfs));
+    }
+
+  /**
+   * Adds to the composed set of multipleOfs to not match when validating the given numeric schema.
+   */
+  public static void addNotMultipleOf( Schema<?> schema, BigDecimal multipleOf)
+    {
+    if( multipleOf != null)
+      {
+      Set<BigDecimal> multipleOfs = getExtension( schema, EXT_NOT_MULTIPLEOFS);
+      if( multipleOfs == null)
+        {
+        multipleOfs = new LinkedHashSet<BigDecimal>();
+        setExtension( schema, EXT_NOT_MULTIPLEOFS, multipleOfs);
+        }
+      multipleOfs.add( multipleOf);
+      }
+    }
+
+  /**
+   * Adds to the composed set of multipleOfs to not match when validating the given "string" schema.
+   */
+  public static void addNotMultipleOfs( Schema<?> schema, Iterable<BigDecimal> multipleOfs)
+    {
+    if( multipleOfs != null)
+      {
+      for( BigDecimal multipleOf : multipleOfs)
+        {
+        addNotMultipleOf( schema, multipleOf);
+        }
+      }
+    }
+
+  /**
+   * Returns the composed set of enums to not match when validating the given schema.
+   */
+  public static List<Object> getNotEnums( Schema<?> schema)
+    {
+    List<Object> notEnums = getExtension( schema, EXT_NOT_ENUMS);
+    return Optional.ofNullable( notEnums).orElse( emptyList());
+    }
+
+  /**
+   * Changes the composed set of enums to not match when validating the given schema.
+   */
+  public static void setNotEnums( Schema<?> schema, Iterable<Object> enums)
+    {
+    removeExtension( schema, EXT_NOT_ENUMS);
+    addNotEnums( schema, enums);
+    }
+
+  /**
+   * Changes the composed set of enums to not match when validating the given schema.
+   */
+  public static void setNotEnums( Schema<?> schema, Object... enums)
+    {
+    setNotEnums( schema, Arrays.asList( enums));
+    }
+
+  /**
+   * Adds to the composed set of enums to not match when validating the given schema.
+   */
+  public static void addNotEnum( Schema<?> schema, Object enumValue)
+    {
+    if( enumValue != null)
+      {
+      List<Object> enums = getExtension( schema, EXT_NOT_ENUMS);
+      if( enums == null)
+        {
+        enums = new ArrayList<Object>();
+        setExtension( schema, EXT_NOT_ENUMS, enums);
+        }
+      enums.add( enumValue);
+      }
+    }
+
+  /**
+   * Adds to the composed set of enums to not match when validating the given "string" schema.
+   */
+  public static void addNotEnums( Schema<?> schema, Iterable<Object> enums)
+    {
+    if( enums != null)
+      {
+      for( Object enumValue : enums)
+        {
+        addNotEnum( schema, enumValue);
+        }
+      }
+    }
+
+  /**
+   * Returns the composed schema for additional properties to not match when validating the given object schema.
+   */
+  public static Schema<?> getNotAdditionalProperties( Schema<?> schema)
+    {
+    return getExtension( schema, EXT_NOT_ADDITIONALPROPERTIES);
+    }
+
+  /**
+   * Changes the composed schema for additional properties to not match when validating the given object schema.
+   */
+  public static void setNotAdditionalProperties( Schema<?> schema, Schema<?> additionalProperties)
+    {
+    setExtension( schema, EXT_NOT_ADDITIONALPROPERTIES, additionalProperties);
+    }
+
+  /**
+   * Returns the composed set of properties to not match when validating the given object schema.
+   */
+  @SuppressWarnings("rawtypes")
+  public static Map<String,Schema> getNotProperties( Schema<?> schema)
+    {
+    Map<String,Schema> notProperties = getExtension( schema, EXT_NOT_PROPERTIES);
+    return Optional.ofNullable( notProperties).orElse( emptyMap());
+    }
+
+  /**
+   * Changes the composed set of properties to not match when validating the given object schema.
+   */
+  @SuppressWarnings("rawtypes")
+  public static void setNotProperties( Schema<?> schema, Map<String,Schema> properties)
+    {
+    removeExtension( schema, EXT_NOT_PROPERTIES);
+    addNotProperties( schema, properties);
+    }
+
+  /**
+   * Adds to the composed set of properties to not match when validating the given object schema.
+   */
+  @SuppressWarnings("rawtypes")
+  public static void addNotProperty( Schema<?> schema, String name, Schema value)
+    {
+    Map<String,Schema> properties = getExtension( schema, EXT_NOT_PROPERTIES);
+    if( properties == null)
+      {
+      properties = new LinkedHashMap<String,Schema>();
+      setExtension( schema, EXT_NOT_PROPERTIES, properties);
+      }
+    properties.put( name, value);
+    }
+
+  /**
+   * Adds to the composed set of properties to not match when validating the given "string" schema.
+   */
+  @SuppressWarnings("rawtypes")
+  public static void addNotProperties( Schema<?> schema, Map<String,Schema> properties)
+    {
+    if( properties != null)
+      {
+      for( String property : properties.keySet())
+        {
+        addNotProperty( schema, property, properties.get( property));
+        }
       }
     }
 
@@ -218,7 +534,13 @@ public final class SchemaExtensions
     return Optional.ofNullable( schema.getExtensions()).orElse( emptyMap());
     }
 
-  private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
+  private static final String EXT_NOTS = "x-tcases-nots";
+  private static final String EXT_NOT_ADDITIONALPROPERTIES = "x-tcases-not-additionalProperties";
+  private static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
+  private static final String EXT_NOT_FORMATS = "x-tcases-not-formats";
+  private static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
+  private static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";
+  private static final String EXT_NOT_PROPERTIES = "x-tcases-not-properties"; 
   private static final String EXT_PATTERNS = "x-tcases-patterns";
-  private static final String EXT_FORMATS = "x-tcases-formats";
+  private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
   }
