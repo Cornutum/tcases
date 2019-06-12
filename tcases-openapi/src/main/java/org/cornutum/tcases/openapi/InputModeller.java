@@ -1722,7 +1722,7 @@ public abstract class InputModeller
 
     Schema<?> propertySchema =
       !Boolean.class.equals( type)
-      ? (Schema<?>)instanceSchema.getAdditionalProperties()
+      ? resolveSchema( api, (Schema<?>)instanceSchema.getAdditionalProperties())
       : null;
         
     return
