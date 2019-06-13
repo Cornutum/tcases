@@ -11,6 +11,7 @@ import static org.cornutum.tcases.conditions.Conditions.propertiesReferenced;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -38,9 +39,25 @@ public final class SystemInputs
    */
   public static Map<String,Collection<VarBindingDef>> getPropertySources( FunctionInputDef function)
     {
+    return getPropertySources( function.getVarDefs());
+    }
+
+  /**
+   * Maps every property in the given input variable definitions to the variable value definitions that contribute it.
+   */
+  public static Map<String,Collection<VarBindingDef>> getPropertySources( Iterator<IVarDef> varDefs)
+    {
+    return getPropertySources( toStream( new VarDefIterator( varDefs)));
+    }
+
+  /**
+   * Maps every property in the given input variable definitions to the variable value definitions that contribute it.
+   */
+  public static Map<String,Collection<VarBindingDef>> getPropertySources( Stream<VarDef> varDefs)
+    {
     SetValuedMap<String,VarBindingDef> sources = MultiMapUtils.newSetValuedHashMap();
 
-    toStream( new VarDefIterator( function))
+    varDefs
       .flatMap( var -> toStream( var.getValues()).map( value -> new VarBindingDef( var, value)))
       .forEach( binding -> toStream( binding.getValueDef().getProperties()).forEach( p -> sources.put( p, binding)));
     
@@ -52,9 +69,25 @@ public final class SystemInputs
    */
   public static Map<String,Collection<IConditional>> getPropertyReferences( FunctionInputDef function)
     {
+    return getPropertyReferences( function.getVarDefs());
+    }
+
+  /**
+   * Maps every property in the given input variables to the conditional elements that reference it.
+   */
+  public static Map<String,Collection<IConditional>> getPropertyReferences( Iterator<IVarDef> varDefs)
+    {
+    return getPropertyReferences( toStream( varDefs));
+    }
+
+  /**
+   * Maps every property in the given input variables to the conditional elements that reference it.
+   */
+  public static Map<String,Collection<IConditional>> getPropertyReferences( Stream<IVarDef> varDefs)
+    {
     SetValuedMap<String,IConditional> refs = MultiMapUtils.newSetValuedHashMap();
 
-    conditionals( function)
+    conditionals( varDefs)
       .forEach( conditional -> propertiesReferenced( conditional.getCondition()).forEach( p -> refs.put( p, conditional)));
     
     return refs.asMap();
@@ -111,11 +144,11 @@ public final class SystemInputs
     }
 
   /**
-   * Returns the IConditional instances defined by the given function input definition.
+   * Returns the IConditional instances defined by the given input variable definitions.
    */
-  private static Stream<IConditional> conditionals( FunctionInputDef function)
+  private static Stream<IConditional> conditionals( Stream<IVarDef> varDefs)
     {
-    return toStream( function.getVarDefs()).flatMap( var -> conditionals( var));
+    return varDefs.flatMap( var -> conditionals( var));
     }
 
   /**
