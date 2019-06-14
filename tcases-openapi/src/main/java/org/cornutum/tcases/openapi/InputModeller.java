@@ -1110,7 +1110,7 @@ public abstract class InputModeller
             for( VarValueDef value : toStream( varDef.getValues()).collect( toList()))
               {
               // Is this a valid value?
-              if( value.getType() != VarValueDef.Type.FAILURE)
+              if( value.getType().isValid())
                 {
                 // Yes, valid values must indicate the "member valid" state
                 value.addProperties( memberValidatedProperty( oneOfVarTag));
