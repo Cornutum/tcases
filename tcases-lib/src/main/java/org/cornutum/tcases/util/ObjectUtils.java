@@ -42,11 +42,7 @@ public final class ObjectUtils
    */
   public static Object toExternalObject( Object value)
     {
-    return
-      Optional.ofNullable(
-        toExternalNumber( value))
-      .orElse(
-        toObject( String.valueOf( value)));
+    return toObject( String.valueOf( value));
     }
   
   /**
@@ -152,30 +148,6 @@ public final class ObjectUtils
       }
         
     return number;
-    };
-
-  /**
-   * If the given value is a number, returns an object equal to its external form.
-   * Otherwise, returns null.
-   */
-  private static Object toExternalNumber( Object value)
-    {
-    Class<?> valueType =
-      value == null
-      ? null
-      : value.getClass();
-
-    return
-      !(valueType != null && Number.class.isAssignableFrom( valueType))?
-      null :
-
-      valueType.equals( BigDecimal.class)?
-      toExternalNumber( (BigDecimal) value) :
-
-      valueType.equals( Long.class)?
-      toExternalNumber( new BigDecimal( (Long) value)) :
-
-      value;      
     }
 
   /**
