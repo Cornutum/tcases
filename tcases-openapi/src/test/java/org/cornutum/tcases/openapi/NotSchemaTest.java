@@ -75,25 +75,7 @@ public class NotSchemaTest extends OpenApiTest
   @Test
   public void Schema_2()
     {
-    // properties = parentType
-
-    // Given...
-    //
-    //   Parent.Type.Defined = Yes
-    //
-    //   Parent.Type.Value = object
-    //
-    //   Parent.Type.Composed-With = oneOf
-    //
-    //   Not.Type.Defined = No
-    //
-    //   Not.Type.Value = (not applicable)
-    //
-    //   Not.Type.Composed-With = None
-    
-    // When...
-
-    // Then...
+    verifyRequestInputModel( "not-2");
     }
 
   /**
@@ -114,25 +96,7 @@ public class NotSchemaTest extends OpenApiTest
   @Test
   public void Schema_3()
     {
-    // properties = notType,parentType,typeNotComposable
-
-    // Given...
-    //
-    //   Parent.Type.Defined = Yes
-    //
-    //   Parent.Type.Value = array
-    //
-    //   Parent.Type.Composed-With = None
-    //
-    //   Not.Type.Defined = Yes
-    //
-    //   Not.Type.Value = Same
-    //
-    //   Not.Type.Composed-With = None
-    
-    // When...
-
-    // Then...
+    verifyRequestInputModel( "not-3");
     }
 
   /**
@@ -153,25 +117,7 @@ public class NotSchemaTest extends OpenApiTest
   @Test
   public void Schema_4()
     {
-    // properties = parentType
-
-    // Given...
-    //
-    //   Parent.Type.Defined = Yes
-    //
-    //   Parent.Type.Value = number
-    //
-    //   Parent.Type.Composed-With = allOf
-    //
-    //   Not.Type.Defined = No
-    //
-    //   Not.Type.Value = (not applicable)
-    //
-    //   Not.Type.Composed-With = oneOf
-    
-    // When...
-
-    // Then...
+    verifyRequestInputModel( "not-4");
     }
 
   /**
@@ -192,25 +138,7 @@ public class NotSchemaTest extends OpenApiTest
   @Test
   public void Schema_5()
     {
-    // properties = notType,parentType,typeNotComposable
-
-    // Given...
-    //
-    //   Parent.Type.Defined = Yes
-    //
-    //   Parent.Type.Value = boolean
-    //
-    //   Parent.Type.Composed-With = None
-    //
-    //   Not.Type.Defined = Yes
-    //
-    //   Not.Type.Value = Same
-    //
-    //   Not.Type.Composed-With = None
-    
-    // When...
-
-    // Then...
+    verifyRequestInputModel( "not-5");
     }
 
   /**

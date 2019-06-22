@@ -489,6 +489,22 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns the composed schema array items to not match when validating the given array schema.
+   */
+  public static Schema<?> getNotItems( Schema<?> schema)
+    {
+    return getExtension( schema, EXT_NOT_ITEMS);
+    }
+
+  /**
+   * Changes the composed schema array items to not match when validating the given array schema.
+   */
+  public static void setNotItems( Schema<?> schema, Schema<?> items)
+    {
+    setExtension( schema, EXT_NOT_ITEMS, items);
+    }
+
+  /**
    * Returns true if the specified schema has a value for the given extension key.
    */
   private static boolean hasExtension( Schema<?> schema, String key)
@@ -538,6 +554,7 @@ public final class SchemaExtensions
   private static final String EXT_NOT_ADDITIONALPROPERTIES = "x-tcases-not-additionalProperties";
   private static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
   private static final String EXT_NOT_FORMATS = "x-tcases-not-formats";
+  private static final String EXT_NOT_ITEMS = "x-tcases-not-items";
   private static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
   private static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";
   private static final String EXT_NOT_PROPERTIES = "x-tcases-not-properties"; 

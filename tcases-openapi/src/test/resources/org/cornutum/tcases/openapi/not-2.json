@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Not",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/not": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+
+                        "schema": {
+                            "type": "object",
+                            "not": {
+                                "format": "crazy",
+                                "nullable": false                                
+                            },
+                            "oneOf": [
+                                {
+                                    "properties": {
+                                        "alpha": {
+                                            "type": "integer",
+                                            "not": {
+                                                "enum": [ -17, 17 ]
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "maxProperties": 1
+                                },
+                                {
+                                    "not": {
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "$ref": "#/components/responses/success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

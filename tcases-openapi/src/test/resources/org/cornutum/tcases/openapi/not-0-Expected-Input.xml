@@ -38,12 +38,12 @@
               <Value name="No"/>
             </Var>
           </VarSet>
-          <VarSet name="Has-Excluded">
-            <Var name="Format">
-              <Value name="error" failure="true"/>
-              <Value name="No"/>
-            </Var>
-          </VarSet>
+        </VarSet>
+        <VarSet name="Has-Excluded" when="param0Value">
+          <Var name="Format">
+            <Value name="error" failure="true"/>
+            <Value name="No"/>
+          </Var>
         </VarSet>
       </VarSet>
     </Input>

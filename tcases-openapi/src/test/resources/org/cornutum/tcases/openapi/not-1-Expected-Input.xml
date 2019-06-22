@@ -40,13 +40,11 @@
               <Var name="Type">
                 <Value name="Not null" property="param0AnyOf1Value"/>
               </Var>
-              <VarSet name="Value" when="param0AnyOf1Value">
-                <VarSet name="Has-Excluded">
-                  <Var name="Format">
-                    <Value name="error"/>
-                    <Value name="No" property="param0AnyOfMemberValidated"/>
-                  </Var>
-                </VarSet>
+              <VarSet name="Has-Excluded" when="param0AnyOf1Value">
+                <Var name="Format">
+                  <Value name="error"/>
+                  <Value name="No" property="param0AnyOfMemberValidated"/>
+                </Var>
               </VarSet>
             </VarSet>
             <VarSet name="2">

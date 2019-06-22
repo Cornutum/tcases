@@ -1075,49 +1075,51 @@ public final class SchemaUtils
    */
   public static Schema<?> mergeSchemas( NotificationContext context, Schema<?> base, Schema<?> not)
     {
-    if( base == null)
+    Schema<?> merged;
+
+    if( base == null || not == null)
       {
-      base = new Schema<Object>();
+      merged = base;
       }
-    if( not == null)
+    else
       {
-      not = new Schema<Object>();
+      // A null type indicates an empty schema, which can be merged with any type.
+      String baseType = Optional.ofNullable( base.getType()).orElse( not.getType());
+      String notType = Optional.ofNullable( not.getType()).orElse( base.getType());
+
+      if( !Objects.equals( baseType, notType))
+        {
+        throw
+          new IllegalStateException(
+            String.format(
+              "Can't merge \"not\" schema of type=%s with base schema of type=%s",
+              notType,
+              baseType));
+        }
+
+      merged =
+        "object".equals( baseType)?
+        mergeObjectSchemas( context, base, not) :
+      
+        "string".equals( baseType)?
+        mergeStringSchemas( context, base, not) :
+      
+        "integer".equals( baseType)?
+        mergeIntegerSchemas( context, base, not) :
+      
+        "boolean".equals( baseType)?
+        mergeBooleanSchemas( context, base, not) :
+
+        "array".equals( baseType)?
+        mergeArraySchemas( context, base, not) :
+      
+        "number".equals( baseType)?
+        mergeNumberSchemas( context, base, not) :
+
+        mergeGenericSchemas( context, base, not);
       }
-
-    // A null type indicates an empty schema, which can be merged with any type.
-    String baseType = Optional.ofNullable( base.getType()).orElse( not.getType());
-    String notType = Optional.ofNullable( not.getType()).orElse( base.getType());
-
-    if( !Objects.equals( baseType, notType))
-      {
-      throw
-        new IllegalStateException(
-          String.format(
-            "Can't merge \"not\" schema of type=%s with base schema of type=%s",
-            notType,
-            baseType));
-      }
-
-    return
-      "object".equals( baseType)?
-      mergeObjectSchemas( context, base, not) :
-      
-      "string".equals( baseType)?
-      mergeStringSchemas( context, base, not) :
-      
-      "integer".equals( baseType)?
-      mergeIntegerSchemas( context, base, not) :
-      
-      "boolean".equals( baseType)?
-      mergeBooleanSchemas( context, base, not) :
-
-      "array".equals( baseType)?
-      mergeArraySchemas( context, base, not) :
-      
-      "number".equals( baseType)?
-      mergeNumberSchemas( context, base, not) :
-
-      mergeGenericSchemas( context, base, not);
+    
+    return merged;
     }    
 
   /**
@@ -1144,19 +1146,17 @@ public final class SchemaUtils
       .map( type -> (Schema<?>) not.getAdditionalProperties())
       .orElse( null);
 
-    merged.setAdditionalProperties(
-      baseExtraSchema != null && notExtraSchema != null?
-      (Object) context.resultFor( "additionalProperties", () -> mergeSchemas( context, baseExtraSchema, notExtraSchema)) :
+    if( baseExtraSchema != null && Boolean.TRUE.equals( not.getAdditionalProperties()))
+      {
+      throw unmergeableValue( "additionalProperties", Boolean.TRUE);
+      }
 
+    merged.setAdditionalProperties(
       baseExtraSchema == null && notExtraSchema == null?
       mergeAssertions( "additionalProperties", (Boolean) base.getAdditionalProperties(), (Boolean) not.getAdditionalProperties()) :
 
       base.getAdditionalProperties());
 
-    if( baseExtraSchema != null && Boolean.TRUE.equals( not.getAdditionalProperties()))
-      {
-      throw unmergeableValue( "additionalProperties", Boolean.TRUE);
-      }
     if( notExtraSchema != null && !Boolean.FALSE.equals( base.getAdditionalProperties()))
       {
       setNotAdditionalProperties( merged, notExtraSchema);
@@ -1200,25 +1200,8 @@ public final class SchemaUtils
       .collect( toList()));
 
     // Merge properties
-    Map<String,Schema> basePropertyDefs = Optional.ofNullable( base.getProperties()).orElse( emptyMap());
-    Map<String,Schema> notPropertyDefs = Optional.ofNullable( not.getProperties()).orElse( emptyMap());
-    merged.setProperties(
-      context.resultFor(
-        "properties",
-        () -> 
-        basePropertyDefs.keySet().stream()
-        .collect(
-          () -> new LinkedHashMap<String,Schema>(),
-          (map, p) -> map.put( p, context.resultFor( p, () -> mergeSchemas( context, basePropertyDefs.get( p), notPropertyDefs.get( p)))),
-          (map, other) -> map.putAll( other))));
-    setNotProperties(
-      merged,
-      notPropertyDefs.keySet().stream()
-      .filter( p -> !basePropertyDefs.containsKey( p))
-      .collect(
-          () -> new LinkedHashMap<String,Schema>(),
-          (map, p) -> map.put( p, notPropertyDefs.get( p)),
-          (map, other) -> map.putAll( other)));
+    merged.setProperties( base.getProperties());
+    setNotProperties( merged, not.getProperties());
   
     return merged;
     }
@@ -1344,7 +1327,8 @@ public final class SchemaUtils
     // Merge items
     Schema<?> baseItems = base instanceof ArraySchema? ((ArraySchema) base).getItems() : null;
     Schema<?> notItems = not instanceof ArraySchema? ((ArraySchema) not).getItems() : null;
-    merged.setItems( context.resultFor( "items", () -> mergeSchemas( context, baseItems, notItems)));     
+    merged.setItems( baseItems);
+    setNotItems( merged, notItems);
 
     return merged;
     }
@@ -1369,7 +1353,7 @@ public final class SchemaUtils
 
     // Merge maximum
     BigDecimal exclusiveMinimum = not.getMaximum();
-    BigDecimal exclusiveMaximum = not.getMaximum();
+    BigDecimal exclusiveMaximum = not.getMinimum();
 
     merged.setMaximum(
       exclusiveMaximum == null?
@@ -1465,7 +1449,7 @@ public final class SchemaUtils
     merged.setDefault( base.getDefault());
     
     // Merge format
-    if( getNotFormats( not).stream().anyMatch( notFormat -> Objects.equals( base.getFormat(), notFormat)))
+    if( getNotFormats( withNotFormats( not)).stream().anyMatch( notFormat -> Objects.equals( base.getFormat(), notFormat)))
       {
       throw unmergeableStringValue( "format", base.getFormat());
       }
@@ -1591,7 +1575,6 @@ public final class SchemaUtils
   private static Schema<?> withNotFormats( Schema<?> notSchema)
     {
     Optional.ofNullable( notSchema.getFormat())
-      .filter( notFormat -> !getNotFormats( notSchema).contains( notFormat))
       .ifPresent( notFormat -> addNotFormat( notSchema, notFormat));
 
     return notSchema;

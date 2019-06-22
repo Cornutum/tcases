@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<TestCases system="Not">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_not">
+    <Has name="server" value="/"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="&lt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.OneOf.Members.1.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" NA="true"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.OneOf.Members.2.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="param0,param0OneOf1Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="0"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.2.Type" value="null"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0Properties,param0OneOf0Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="Not integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" NA="true"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="Not string"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5">
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6">
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7">
+      <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="null"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="Not integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="Not integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="Not string"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

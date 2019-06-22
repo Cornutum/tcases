@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Not",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/not": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+
+                        "schema": {
+                            "type": "number",
+                            "allOf": [
+                                {
+                                    "multipleOf": 0.1
+                                },
+                                {
+                                    "minimum": 0.0
+                                },
+                                {
+                                    "nullable": true
+                                }
+                            ],
+                            "not": {
+                                "oneOf": [
+                                    {
+                                        "enum": [ 1.0, 10.0 ]
+                                    },
+                                    {
+                                        "enum": [ 1.1, 11.0 ]
+                                    },
+                                    {
+                                        "minimum": 100.0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "$ref": "#/components/responses/success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
