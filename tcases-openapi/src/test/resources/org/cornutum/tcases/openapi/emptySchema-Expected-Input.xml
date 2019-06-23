@@ -44,7 +44,9 @@
             <VarSet name="0">
               <Var name="Type">
                 <Value name="boolean" property="param1OneOf0Value, param1OneOfMemberValidated"/>
-                <Value name="Not boolean"/>
+                <Value name="Not boolean">
+                  <Has name="memberValidated" value="false"/>
+                </Value>
               </Var>
               <Var name="Value" when="param1OneOf0Value">
                 <Value name="true"/>
@@ -59,13 +61,17 @@
                 <Value name="1" property="param1OneOfMemberValidated"/>
                 <Value name="2" property="param1OneOfMemberValidated"/>
                 <Value name="3" property="param1OneOfMemberValidated"/>
-                <Value name="Other"/>
+                <Value name="Other">
+                  <Has name="memberValidated" value="false"/>
+                </Value>
               </Var>
             </VarSet>
             <VarSet name="2">
               <Var name="Type">
                 <Value name="Not null" property="param1OneOf2Value, param1OneOfMemberValidated"/>
-                <Value name="null"/>
+                <Value name="null">
+                  <Has name="memberValidated" value="false"/>
+                </Value>
               </Var>
             </VarSet>
           </VarSet>

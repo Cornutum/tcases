@@ -1130,6 +1130,7 @@ public abstract class InputModeller
                 {
                 // Yes, this must be the only value that does NOT indicate the "member valid" state
                 value.setType( VarValueDef.Type.VALID);
+                value.setAnnotation( "memberValidated", "false");
                 }
               else
                 {
