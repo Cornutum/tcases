@@ -130,7 +130,7 @@
                               <VarSet name="alpha">
                                 <Var name="Defined">
                                   <Value name="Yes" property="param0AnyOf0AllOf1OneOf0Alpha, param0AnyOf0AllOf1OneOf0Properties"/>
-                                  <Value name="No"/>
+                                  <Value name="No" property="param0AnyOf0AllOf1OneOfMemberValidated"/>
                                 </Var>
                                 <Var name="Type" when="param0AnyOf0AllOf1OneOf0Alpha">
                                   <Value name="integer" property="param0AnyOf0AllOf1OneOf0AlphaValue, param0AnyOf0AllOf1OneOfMemberValidated"/>
