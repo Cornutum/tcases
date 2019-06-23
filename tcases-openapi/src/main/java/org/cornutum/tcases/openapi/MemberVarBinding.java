@@ -12,21 +12,18 @@ import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Represents a binding for a variable that belongs to the input model for a composed schema member.
  */
-public class MemberVarBinding extends VarBinding
+public class MemberVarBinding extends VarBindingDef
   {
   /**
    * Creates a new MemberVarBinding instance.
    */
-  public MemberVarBinding( IVarDef varDef, VarValueDef valueDef)
+  public MemberVarBinding( VarDef varDef, VarValueDef valueDef)
     {
-    super( varDef.getPathName(), varDef.getType(), valueDef.getName());
-    setValueValid( valueDef.isValid());
-    isNA_ = valueDef.isNA();
+    super( varDef, valueDef);
     }
 
   /**
@@ -37,7 +34,7 @@ public class MemberVarBinding extends VarBinding
     return
       toStream( new VarDefIterator( memberVars.iterator()))
       .flatMap( varDef -> toStream( varDef.getValues()).map( valueDef -> new MemberVarBinding( varDef, valueDef)))
-      .filter( binding -> !binding.isValueValid())
+      .filter( binding -> !binding.getValueDef().isValid())
       .collect(
         ArrayList::new,
         (bindings,failure) -> bindings.add( 0, failure),
@@ -71,37 +68,4 @@ public class MemberVarBinding extends VarBinding
             .orElse( bindings.get(0))),
         ArrayList::addAll);
     }
-
-  /**
-   * Returns true if this binding indicates a "not applicable" condition for this variable.
-   */
-  public boolean isValueNA()
-    {
-    return isNA_;
-    }
-
-  public boolean equals( Object object)
-    {
-    MemberVarBinding other =
-      object != null && object.getClass().equals( getClass())
-      ? (MemberVarBinding) object
-      : null;
-
-    return
-      other != null
-      && Objects.equals( other.getVar(), getVar())
-      && Objects.equals( other.getValue(), getValue())
-      && other.isValueNA() == isValueNA();
-    }
-
-  public int hashCode()
-    {
-    return
-      getClass().hashCode()
-      ^ Objects.hashCode( getVar())
-      ^ Objects.hashCode( getValue())
-      ^ Boolean.valueOf( isValueNA()).hashCode();
-    }
-  
-  private final boolean isNA_;
   }
