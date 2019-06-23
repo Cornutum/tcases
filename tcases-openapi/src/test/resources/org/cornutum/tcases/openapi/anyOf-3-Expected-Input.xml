@@ -52,7 +52,9 @@
                             <VarSet name="Properties">
                               <Var name="Additional">
                                 <Value name="Yes" property="param0AnyOf0AllOf0OneOf0Properties, param0AnyOf0AllOf0OneOfMemberValidated"/>
-                                <Value name="No"/>
+                                <Value name="No">
+                                  <Has name="memberValidated" value="false"/>
+                                </Value>
                               </Var>
                             </VarSet>
                           </VarSet>
@@ -75,6 +77,7 @@
                                 </When>
                               </Value>
                               <Value name="&gt; 10">
+                                <Has name="memberValidated" value="false"/>
                                 <When>
                                   <MoreThan property="param0AnyOf0AllOf0OneOf1Properties" min="0"/>
                                 </When>
@@ -134,7 +137,9 @@
                                 </Var>
                                 <Var name="Type" when="param0AnyOf0AllOf1OneOf0Alpha">
                                   <Value name="integer" property="param0AnyOf0AllOf1OneOf0AlphaValue, param0AnyOf0AllOf1OneOfMemberValidated"/>
-                                  <Value name="Not integer"/>
+                                  <Value name="Not integer">
+                                    <Has name="memberValidated" value="false"/>
+                                  </Value>
                                 </Var>
                                 <Var name="Value" when="param0AnyOf0AllOf1OneOf0AlphaValue">
                                   <Value name="&lt; 0"/>
@@ -161,7 +166,9 @@
                                 </Var>
                                 <Var name="Type" when="param0AnyOf0AllOf1OneOf1Bravo">
                                   <Value name="Not null" property="param0AnyOf0AllOf1OneOf1BravoValue, param0AnyOf0AllOf1OneOfMemberValidated"/>
-                                  <Value name="null"/>
+                                  <Value name="null">
+                                    <Has name="memberValidated" value="false"/>
+                                  </Value>
                                 </Var>
                               </VarSet>
                               <Var name="Additional">

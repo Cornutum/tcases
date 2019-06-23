@@ -46,7 +46,9 @@
                       <VarSet name="Contains" when="param0OneOf0AnyOf0Items">
                         <Var name="Type">
                           <Value name="Not null" property="param0OneOf0AnyOf0ItemsValue, param0OneOf0AnyOfMemberValidated"/>
-                          <Value name="null"/>
+                          <Value name="null">
+                            <Has name="memberValidated" value="false"/>
+                          </Value>
                         </Var>
                       </VarSet>
                       <Var name="Unique" when="param0OneOf0AnyOf0ItemsMany">
@@ -58,7 +60,9 @@
                   <VarSet name="1">
                     <Var name="Type">
                       <Value name="string" property="param0OneOf0AnyOf1Value, param0OneOf0AnyOfMemberValidated"/>
-                      <Value name="Not string"/>
+                      <Value name="Not string">
+                        <Has name="memberValidated" value="false"/>
+                      </Value>
                     </Var>
                     <VarSet name="Value" when="param0OneOf0AnyOf1Value">
                       <Var name="Length">
@@ -102,7 +106,9 @@
                       <VarSet name="Contains" when="param0OneOf0OneOf0Items">
                         <Var name="Type">
                           <Value name="Not null" property="param0OneOf0OneOf0ItemsValue, param0OneOf0OneOfMemberValidated"/>
-                          <Value name="null"/>
+                          <Value name="null">
+                            <Has name="memberValidated" value="false"/>
+                          </Value>
                         </Var>
                       </VarSet>
                       <Var name="Unique" when="param0OneOf0OneOf0ItemsMany">
@@ -114,7 +120,9 @@
                   <VarSet name="1">
                     <Var name="Type">
                       <Value name="string" property="param0OneOf0OneOf1Value, param0OneOf0OneOfMemberValidated"/>
-                      <Value name="Not string"/>
+                      <Value name="Not string">
+                        <Has name="memberValidated" value="false"/>
+                      </Value>
                     </Var>
                     <VarSet name="Value" when="param0OneOf0OneOf1Value">
                       <Var name="Length">

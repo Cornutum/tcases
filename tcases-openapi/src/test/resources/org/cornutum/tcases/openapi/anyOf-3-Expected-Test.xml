@@ -19,7 +19,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
@@ -30,7 +32,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
@@ -74,7 +78,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
@@ -87,7 +93,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
@@ -103,7 +111,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&lt;= 10"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
@@ -111,7 +121,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="Not integer"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="Not integer">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
@@ -134,7 +146,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
@@ -145,7 +159,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
@@ -161,7 +177,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&lt;= 10"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
@@ -174,7 +192,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
@@ -190,9 +210,13 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.Validated" value="0" failure="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="No">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
@@ -203,7 +227,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
@@ -232,7 +258,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
@@ -250,18 +278,24 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="0" failure="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="Not integer"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Type" value="Not integer">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.bravo.Type" value="null">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.1.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
@@ -279,7 +313,9 @@
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Property-Count" value="&gt;= 1"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10"/>
+        <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Property-Count" value="&gt; 10">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
         <Var name="param0.AnyOf.Members.0.AllOf.Members.1.OneOf.Members.0.Type" value="object"/>

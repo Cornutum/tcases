@@ -24,9 +24,11 @@ import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
@@ -106,15 +108,29 @@ public abstract class OpenApiTest
     SystemInputDef inputDef = inputDefSupplier.apply( api);
 
     // Then...
-    SystemInputDef expectedInputDef = readExpectedInputDef( expectedName);
-    assertThat( apiName + " input model", inputDef, matches( new SystemInputDefMatcher( expectedInputDef)));
+    if( acceptAsExpected())
+      {
+      updateExpectedInputDef( expectedName, inputDef);
+      }
+    else
+      {
+      SystemInputDef expectedInputDef = readExpectedInputDef( expectedName);
+      assertThat( apiName + " input model", inputDef, matches( new SystemInputDefMatcher( expectedInputDef)));
+      }
 
     // When...
     SystemTestDef testDef = Tcases.getTests( inputDef, null, null);
 
     // Then...
-    SystemTestDef expectedTestDef = readExpectedTestDef( expectedName);
-    assertThat( apiName + " test cases", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
+    if( acceptAsExpected())
+      {
+      updateExpectedTestDef( expectedName, testDef);
+      }
+    else
+      {
+      SystemTestDef expectedTestDef = readExpectedTestDef( expectedName);
+      assertThat( apiName + " test cases", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
+      }
     }
 
   /**
@@ -153,7 +169,7 @@ public abstract class OpenApiTest
    */
   protected SystemInputDef readExpectedInputDef( String resource)
     {
-    return readInputDef( resource + "-Expected");
+    return readInputDef( expectedFor( resource));
     }
 
   /**
@@ -161,7 +177,23 @@ public abstract class OpenApiTest
    */
   protected SystemInputDef readInputDef( String resource)
     {
-    return inputResources_.read( resource + "-Input.xml");
+    return inputResources_.read( inputDefFor( resource));
+    }
+
+  /**
+   * Updates the given expected {@link SystemInputDef} resource.
+   */
+  protected void updateExpectedInputDef( String resource, SystemInputDef inputDef)
+    {
+    updateInputDef( expectedFor( resource), inputDef);
+    }
+
+  /**
+   * Updates the given {@link SystemInputDef} resource.
+   */
+  protected void updateInputDef( String resource, SystemInputDef inputDef)
+    {
+    inputResources_.write( inputDef, new File( saveExpectedDir_, inputDefFor( resource)));
     }
 
   /**
@@ -169,7 +201,7 @@ public abstract class OpenApiTest
    */
   protected SystemTestDef readExpectedTestDef( String resource)
     {
-    return readTestDef( resource + "-Expected");
+    return readTestDef( expectedFor( resource));
     }
 
   /**
@@ -177,7 +209,47 @@ public abstract class OpenApiTest
    */
   protected SystemTestDef readTestDef( String resource)
     {
-    return testResources_.read( resource + "-Test.xml");
+    return testResources_.read( testDefFor( resource));
+    }
+
+  /**
+   * Updates the given expected {@link SystemTestDef} resource.
+   */
+  protected void updateExpectedTestDef( String resource, SystemTestDef testDef)
+    {
+    updateTestDef( expectedFor( resource), testDef);
+    }
+
+  /**
+   * Updates the given {@link SystemTestDef} resource.
+   */
+  protected void updateTestDef( String resource, SystemTestDef testDef)
+    {
+    testResources_.write( testDef, new File( saveExpectedDir_, testDefFor( resource)));
+    }
+
+  /**
+   * Returns the name of the given {@link SystemInputDef} resource.
+   */
+  protected String inputDefFor( String resource)
+    {
+    return resource + "-Input.xml";
+    }
+
+  /**
+   * Returns the name of the given {@link SystemTestDef} resource.
+   */
+  protected String testDefFor( String resource)
+    {
+    return resource + "-Test.xml";
+    }
+
+  /**
+   * Returns the name of the given expected result resource.
+   */
+  protected String expectedFor( String resource)
+    {
+    return resource + "-Expected";
     }
 
   /**
@@ -213,6 +285,15 @@ public abstract class OpenApiTest
         });
     }
 
+  /**
+   * Returns true if all generated test results are automatically accepted.
+   */
+  private boolean acceptAsExpected()
+    {
+    return saveExpectedDir_ != null;
+    }
+
   private final SystemInputResources inputResources_ = new SystemInputResources( getClass());
   private final SystemTestResources testResources_ = new SystemTestResources( getClass());
+  private final File saveExpectedDir_ = Optional.ofNullable( System.getProperty( "saveExpectedTo")).map( path -> new File( path)).orElse( null);
   }
