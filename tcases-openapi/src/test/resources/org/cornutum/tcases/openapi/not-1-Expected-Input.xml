@@ -33,7 +33,9 @@
             <VarSet name="0">
               <Var name="Type">
                 <Value name="Not null" property="param0AnyOf0Value, param0AnyOfMemberValidated"/>
-                <Value name="null"/>
+                <Value name="null">
+                  <Has name="memberValidated" value="false"/>
+                </Value>
               </Var>
             </VarSet>
             <VarSet name="1">
@@ -42,7 +44,9 @@
               </Var>
               <VarSet name="Has-Excluded" when="param0AnyOf1Value">
                 <Var name="Format">
-                  <Value name="error"/>
+                  <Value name="error">
+                    <Has name="memberValidated" value="false"/>
+                  </Value>
                   <Value name="No" property="param0AnyOfMemberValidated"/>
                 </Var>
               </VarSet>

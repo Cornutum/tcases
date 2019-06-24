@@ -34,7 +34,7 @@
             <VarSet name="0">
               <Var name="Type">
                 <Value name="object" property="param0OneOf0Value"/>
-                <Value name="null" once="true"/>
+                <Value name="null" once="true" property="param0OneOfMemberValidated"/>
               </Var>
               <VarSet name="Value" when="param0OneOf0Value">
                 <Var name="Property-Count">
@@ -69,7 +69,9 @@
               </VarSet>
               <VarSet name="Has-Excluded" when="param0OneOf0Value">
                 <Var name="Format">
-                  <Value name="crazy"/>
+                  <Value name="crazy">
+                    <Has name="memberValidated" value="false"/>
+                  </Value>
                   <Value name="No" property="param0OneOfMemberValidated"/>
                 </Var>
               </VarSet>
@@ -77,7 +79,7 @@
             <VarSet name="1">
               <Var name="Type">
                 <Value name="object" property="param0OneOf1Value"/>
-                <Value name="null" once="true"/>
+                <Value name="null" once="true" property="param0OneOfMemberValidated"/>
               </Var>
               <VarSet name="Value" when="param0OneOf1Value">
                 <Var name="Property-Count">
@@ -93,6 +95,7 @@
                     </When>
                   </Value>
                   <Value name="&gt; 1">
+                    <Has name="memberValidated" value="false"/>
                     <When>
                       <MoreThan property="param0OneOf1Properties" min="0"/>
                     </When>
@@ -114,17 +117,19 @@
             <VarSet name="2">
               <Var name="Type">
                 <Value name="object" property="param0OneOf2Value"/>
-                <Value name="null" once="true"/>
+                <Value name="null" once="true" property="param0OneOfMemberValidated"/>
               </Var>
               <VarSet name="Value" when="param0OneOf2Value">
                 <VarSet name="Properties">
                   <VarSet name="Additional">
                     <Var name="Defined">
                       <Value name="Yes" property="param0OneOf2Additional, param0OneOf2Properties"/>
-                      <Value name="No"/>
+                      <Value name="No" property="param0OneOfMemberValidated"/>
                     </Var>
                     <Var name="Type" when="param0OneOf2Additional">
-                      <Value name="string"/>
+                      <Value name="string">
+                        <Has name="memberValidated" value="false"/>
+                      </Value>
                       <Value name="null" property="param0OneOfMemberValidated"/>
                       <Value name="Not string" property="param0OneOfMemberValidated"/>
                     </Var>
