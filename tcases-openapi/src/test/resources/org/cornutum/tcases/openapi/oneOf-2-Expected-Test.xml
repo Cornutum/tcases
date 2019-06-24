@@ -17,7 +17,9 @@
         <Var name="param0.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.0.Value" value="0"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101">
+          <Has name="memberValidated" value="false"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -44,7 +46,9 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value" value="-1"/>
+        <Var name="param0.OneOf.Members.0.Value" value="-1">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="100"/>
       </Input>
@@ -61,7 +65,9 @@
         <Var name="param0.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.0.Value" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101">
+          <Has name="memberValidated" value="false"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -74,7 +80,9 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value" value="-1"/>
+        <Var name="param0.OneOf.Members.0.Value" value="-1">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="&lt; 100"/>
       </Input>
@@ -89,9 +97,13 @@
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
         <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value" value="-1"/>
+        <Var name="param0.OneOf.Members.0.Value" value="-1">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101"/>
+        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value" value="101">
+          <Has name="memberValidated" value="false"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">

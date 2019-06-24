@@ -19,6 +19,7 @@
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Length" value="2"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
@@ -33,6 +34,7 @@
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Value.Length" value="1"/>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
       </Input>
@@ -91,6 +93,7 @@
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.0.Value.Matches-Patterns.1" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value="XXX"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Type" value="string"/>
@@ -114,6 +117,7 @@
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Length" value="2"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
@@ -128,6 +132,7 @@
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Value.Length" value="1"/>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
       </Input>
@@ -142,7 +147,9 @@
         </Var>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.Validated" value="1"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AllOf.Members.0.AnyOf.Members.0.Value" value="Other"/>
+        <Var name="param0.AllOf.Members.0.AnyOf.Members.0.Value" value="Other">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Length" value="&gt; 2"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Matches-Pattern" value="Yes">
@@ -155,6 +162,7 @@
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.0.Value.Matches-Patterns.1" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value="XXX"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Type" value="string"/>
@@ -174,10 +182,13 @@
         </Var>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.Validated" value="0" failure="true"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AllOf.Members.0.AnyOf.Members.0.Value" value="Other"/>
+        <Var name="param0.AllOf.Members.0.AnyOf.Members.0.Value" value="Other">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Length" value="2"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.Validated" value="1"/>
@@ -192,6 +203,7 @@
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Value.Length" value="1"/>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
       </Input>
@@ -210,6 +222,7 @@
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Length" value="2"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.Validated" value="0" failure="true"/>
@@ -219,11 +232,13 @@
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.0.Value.Matches-Patterns.1" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value="XXX"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Value.Length" value="1"/>
         <Var name="param0.AllOf.Members.0.OneOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
       </Input>
@@ -242,6 +257,7 @@
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Type" value="string"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Length" value="2"/>
         <Var name="param0.AllOf.Members.0.AnyOf.Members.1.Value.Matches-Pattern" value="No">
+          <Has name="memberValidated" value="false"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.AllOf.Members.0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>

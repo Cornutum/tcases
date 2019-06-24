@@ -42,7 +42,9 @@
                 <Var name="Matches-Pattern">
                   <Has name="pattern" value="."/>
                   <Value name="Yes" property="param0OneOfMemberValidated"/>
-                  <Value name="No"/>
+                  <Value name="No">
+                    <Has name="memberValidated" value="false"/>
+                  </Value>
                 </Var>
               </VarSet>
             </VarSet>
@@ -53,7 +55,9 @@
               <VarSet name="Value" when="param0OneOf1Value">
                 <Var name="Length">
                   <Value name="10" property="param0OneOfMemberValidated"/>
-                  <Value name="11"/>
+                  <Value name="11">
+                    <Has name="memberValidated" value="false"/>
+                  </Value>
                   <Value name="0" property="param0OneOfMemberValidated"/>
                   <Value name="&lt; 10" property="param0OneOfMemberValidated"/>
                 </Var>

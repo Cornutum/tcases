@@ -41,7 +41,9 @@
                       <Value name="A" property="param0AllOf0AnyOfMemberValidated"/>
                       <Value name="B" property="param0AllOf0AnyOfMemberValidated"/>
                       <Value name="C" property="param0AllOf0AnyOfMemberValidated"/>
-                      <Value name="Other"/>
+                      <Value name="Other">
+                        <Has name="memberValidated" value="false"/>
+                      </Value>
                     </Var>
                   </VarSet>
                   <VarSet name="1">
@@ -56,7 +58,9 @@
                       <Var name="Matches-Pattern">
                         <Has name="pattern" value=".*"/>
                         <Value name="Yes" property="param0AllOf0AnyOfMemberValidated"/>
-                        <Value name="No"/>
+                        <Value name="No">
+                          <Has name="memberValidated" value="false"/>
+                        </Value>
                       </Var>
                     </VarSet>
                   </VarSet>
@@ -99,7 +103,9 @@
                         <Var name="1">
                           <Has name="pattern" value="XXX"/>
                           <Value name="Yes" property="param0AllOf0OneOfMemberValidated"/>
-                          <Value name="No"/>
+                          <Value name="No">
+                            <Has name="memberValidated" value="false"/>
+                          </Value>
                         </Var>
                       </VarSet>
                     </VarSet>
@@ -116,7 +122,9 @@
                       <Var name="Matches-Pattern">
                         <Has name="pattern" value=".*"/>
                         <Value name="Yes" property="param0AllOf0OneOfMemberValidated"/>
-                        <Value name="No"/>
+                        <Value name="No">
+                          <Has name="memberValidated" value="false"/>
+                        </Value>
                       </Var>
                     </VarSet>
                   </VarSet>

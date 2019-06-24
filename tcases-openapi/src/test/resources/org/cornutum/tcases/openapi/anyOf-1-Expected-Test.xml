@@ -18,12 +18,16 @@
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="0.0"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="102.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="102.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="0"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -44,7 +48,9 @@
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="&lt; 0"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -58,14 +64,18 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="-2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="-2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="&lt; 100.0"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="&gt; 0"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -81,10 +91,14 @@
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="0.0"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="102.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="102.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="Not a multiple of 2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="Not a multiple of 2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="0.0"/>
       </Input>
@@ -102,10 +116,14 @@
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="&gt; 0.0"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="102.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="102.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="Not a multiple of 2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="Not a multiple of 2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="&lt; 0.0"/>
       </Input>
@@ -158,14 +176,20 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="0" failure="true"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="-2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="-2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="102.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="102.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="0"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -179,14 +203,20 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="-2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="-2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="100.0"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="0" failure="true"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="Not a multiple of 2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value" value="Not a multiple of 2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value" value="2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
@@ -200,7 +230,9 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="-2.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value" value="-2.0">
+          <Has name="memberValidated" value="false"/>
+        </Var>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
         <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value" value="100.0"/>
         <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>

@@ -7,6 +7,8 @@
 package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.conditions.Assert;
+import org.cornutum.tcases.conditions.Cnf;
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ListBuilder;
 import static org.cornutum.tcases.DefUtils.toIdentifier;
@@ -42,6 +44,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -59,7 +62,9 @@ import static java.math.RoundingMode.DOWN;
 import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
@@ -1116,7 +1121,7 @@ public abstract class InputModeller
       toStream( new VarDefIterator( memberVars.iterator()))
         .forEach( varDef -> {
           // Is this the designated failure variable?
-          if( varDef.getPathName().equals( designatedFailure.getVar()))
+          if( varDef.equals( designatedFailure.getVarDef()))
             {
             // Yes, for all values...
             for( VarValueDef value : toStream( varDef.getValues()).collect( toList()))
@@ -1129,10 +1134,11 @@ public abstract class InputModeller
                 }
 
               // Is this the designated failure value?
-              else if( Objects.equals( value.getName(), designatedFailure.getValue()))
+              else if( value.equals( designatedFailure.getValueDef()))
                 {
                 // Yes, this must be the only value that does NOT indicate the "member valid" state
                 value.setType( VarValueDef.Type.VALID);
+                value.setAnnotation( "memberValidated", "false");
                 }
               else
                 {
@@ -1148,6 +1154,30 @@ public abstract class InputModeller
             nondesignated.stream().forEach( value -> varDef.removeValue( value.getName()));
             }          
           });
+
+      // Are other variable bindings required for the designated failure to be applicable?
+      List<String> propertiesRequired =
+        toStream( Cnf.convert( designatedFailure.getVarDef().getEffectiveCondition()).getDisjuncts())
+        .filter( disjunct -> disjunct.getAssertionCount() == 1)
+        .map( disjunct -> disjunct.getAssertions().next())
+        .filter( assertion -> assertion instanceof Assert)
+        .map( assertion -> assertion.getProperty())
+        .collect( toList());
+
+      if( !propertiesRequired.isEmpty())
+        {
+        // Yes, for each variable with bindings that provide a required property...
+        Map<String,Collection<VarBindingDef>> propertySources = SystemInputs.getPropertySources( memberVars.iterator());
+        propertiesRequired.stream()
+          .flatMap( p -> Optional.ofNullable( propertySources.get(p)).map( bindings -> bindings.stream()).orElse( Stream.empty()))
+          .collect( groupingBy( VarBindingDef::getVarDef, mapping( VarBindingDef::getValueDef, toList())))
+          .forEach( (sourceVar, sourceValues) -> {
+            // ... each binding that does NOT provide a required property is an alternate path to the "member valid" state.
+            toStream( sourceVar.getValues())
+              .filter( value -> !sourceValues.contains( value))
+              .forEach( value -> value.addProperties( memberValidatedProperty( oneOfVarTag)));
+            });
+        }
       }
     }
 
