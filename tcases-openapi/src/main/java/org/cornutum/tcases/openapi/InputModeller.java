@@ -45,7 +45,6 @@ import java.math.BigInteger;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -1410,7 +1409,7 @@ public abstract class InputModeller
   private IVarDef objectValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     // Ensure schema defined for all required properties, using a default empty schema if necessary.
-    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new HashMap<String,Schema>());
+    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
     Optional.ofNullable( instanceSchema.getRequired())
       .map( required -> required.stream().filter( property -> !propertyDefs.containsKey( property)).collect( toList()))
       .filter( undefined -> !undefined.isEmpty())
