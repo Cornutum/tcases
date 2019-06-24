@@ -2416,7 +2416,7 @@ public abstract class InputModeller
       .stream()
       .map( not -> toEffectiveNot( api, schema.getType(), resolveSchema( api, not)))
       .filter( Objects::nonNull)
-      .reduce( (base, additional) -> SchemaUtils.combineNotSchemas( context_, base, additional))
+      .reduce( (base, additional) -> resultFor( "not", () -> SchemaUtils.combineNotSchemas( context_, base, additional)))
       .orElse( null);
     }
 
@@ -2428,13 +2428,15 @@ public abstract class InputModeller
   private Schema toEffectiveNot( OpenAPI api, String instanceType, Schema<?> notSchema)
     {
     return
-      notSchema == null?
-      null :
+      resultFor( "not",
+        () ->
+        notSchema == null?
+        null :
 
-      instanceType == null?
-      toEffectiveNotNull( api, notSchema) :
+        instanceType == null?
+        toEffectiveNotNull( api, notSchema) :
 
-      toEffectiveNotType( api, instanceType, notSchema);
+        toEffectiveNotType( api, instanceType, notSchema));
     }
 
   /**
