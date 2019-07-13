@@ -8,15 +8,13 @@
 
 package org.cornutum.tcases;
 
-import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
  * Builds {@link SystemTestDef} instances.
  *
  */
-public class SystemTestDefBuilder
+public class SystemTestDefBuilder extends AnnotatedBuilder<SystemTestDefBuilder>
   {
   /**
    * Creates a new builder for a SystemTestDef with the given name.
@@ -123,31 +121,11 @@ public class SystemTestDefBuilder
     }
 
   /**
-   * Adds a system annotation.
+   * Returns the {@link Annotated} instance for this builder.
    */
-  public SystemTestDefBuilder has( String name, Object value)
+  protected Annotated getAnnotated()
     {
-    systemTestDef_.setAnnotation( name, Objects.toString( value, null));
-    return this;
-    }
-
-  /**
-   * Adds a system annotation if the given value is non-null
-   */
-  public SystemTestDefBuilder hasIf( String name, Object value)
-    {
-    return
-      value != null
-      ? has( name, value)
-      : this;
-    }
-
-  /**
-   * Adds a system annotation if the given value is defined
-   */
-  public SystemTestDefBuilder hasIf( String name, Optional<Object> value)
-    {
-    return hasIf( name, value.orElse( null));
+    return systemTestDef_;
     }
 
   SystemTestDef systemTestDef_;

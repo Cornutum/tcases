@@ -8,15 +8,13 @@
 
 package org.cornutum.tcases;
 
-import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
  * Builds {@link TestCase} instances.
  *
  */
-public class TestCaseBuilder
+public class TestCaseBuilder extends AnnotatedBuilder<TestCaseBuilder>
   {
   /**
    * Creates a new builder for a TestCase with the given id.
@@ -136,31 +134,11 @@ public class TestCaseBuilder
     }
 
   /**
-   * Adds a test case annotation.
+   * Returns the {@link Annotated} instance for this builder.
    */
-  public TestCaseBuilder has( String name, Object value)
+  protected Annotated getAnnotated()
     {
-    testCase_.setAnnotation( name, Objects.toString( value, null));
-    return this;
-    }
-
-  /**
-   * Adds a test case annotation if the given value is non-null
-   */
-  public TestCaseBuilder hasIf( String name, Object value)
-    {
-    return
-      value != null
-      ? has( name, value)
-      : this;
-    }
-
-  /**
-   * Adds a test case annotation if the given value is defined
-   */
-  public TestCaseBuilder hasIf( String name, Optional<Object> value)
-    {
-    return hasIf( name, value.orElse( null));
+    return testCase_;
     }
 
   TestCase testCase_;

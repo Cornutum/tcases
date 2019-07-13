@@ -12,14 +12,13 @@ import org.cornutum.tcases.VarValueDef.Type;
 import org.cornutum.tcases.conditions.ICondition;
 
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
  * Builds {@link VarValueDef} instances.
  *
  */
-public class VarValueDefBuilder
+public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
   {
   /**
    * Creates a new builder for a VarValueDef with the given name.
@@ -111,34 +110,6 @@ public class VarValueDefBuilder
     }
 
   /**
-   * Adds a value annotation.
-   */
-  public VarValueDefBuilder has( String name, Object value)
-    {
-    varValueDef_.setAnnotation( name, Objects.toString( value, null));
-    return this;
-    }
-
-  /**
-   * Adds a value annotation if the given value is non-null
-   */
-  public VarValueDefBuilder hasIf( String name, Object value)
-    {
-    return
-      value != null
-      ? has( name, value)
-      : this;
-    }
-
-  /**
-   * Adds a value annotation if the given value is defined
-   */
-  public VarValueDefBuilder hasIf( String name, Optional<Object> value)
-    {
-    return hasIf( name, value.orElse( null));
-    }
-
-  /**
    * Adds value properties.
    */
   public VarValueDefBuilder properties( String... properties)
@@ -163,6 +134,14 @@ public class VarValueDefBuilder
     {
     property.ifPresent( p -> varValueDef_.addProperties( p));
     return this;
+    }
+
+  /**
+   * Returns the {@link Annotated} instance for this builder.
+   */
+  protected Annotated getAnnotated()
+    {
+    return varValueDef_;
     }
 
   VarValueDef varValueDef_;
