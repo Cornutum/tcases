@@ -60,6 +60,11 @@
                       <Value name="0"/>
                       <Value name="&gt; 0"/>
                     </Var>
+                    <VarSet name="Has-Excluded" when="param0OneOf0AlphaValue">
+                      <Var name="Value">
+                        <Value name="No"/>
+                      </Var>
+                    </VarSet>
                   </VarSet>
                   <Var name="Additional">
                     <Value name="Yes" property="param0OneOf0Properties"/>

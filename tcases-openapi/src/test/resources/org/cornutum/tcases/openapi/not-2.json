@@ -24,6 +24,7 @@
                                         "alpha": {
                                             "type": "integer",
                                             "not": {
+                                                "type": "integer",
                                                 "enum": [ -17, 17 ]
                                             }
                                         }

@@ -20,6 +20,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="No"/>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
@@ -50,6 +51,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" NA="true"/>
         <Var name="param0.OneOf.Members.1.Type" NA="true"/>
@@ -77,6 +79,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" NA="true"/>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
@@ -108,6 +111,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="&lt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
           <Has name="memberValidated" value="false"/>
@@ -139,6 +143,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
           <Has name="memberValidated" value="false"/>
@@ -170,6 +175,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
           <Has name="memberValidated" value="false"/>
@@ -201,6 +207,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
           <Has name="memberValidated" value="false"/>
@@ -232,6 +239,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="&lt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
           <Has name="memberValidated" value="false"/>
@@ -263,6 +271,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
           <Has name="memberValidated" value="false"/>
@@ -294,6 +303,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
           <Has name="memberValidated" value="false"/>
@@ -325,6 +335,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
           <Has name="memberValidated" value="false"/>
@@ -358,6 +369,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="No"/>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
