@@ -8,15 +8,13 @@
 
 package org.cornutum.tcases;
 
-import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
  * Builds {@link FunctionTestDef} instances.
  *
  */
-public class FunctionTestDefBuilder
+public class FunctionTestDefBuilder extends AnnotatedBuilder<FunctionTestDefBuilder>
   {
   /**
    * Creates a new builder for a FunctionTestDef with the given name.
@@ -122,31 +120,11 @@ public class FunctionTestDefBuilder
     }
 
   /**
-   * Adds a function annotation.
+   * Returns the {@link Annotated} instance for this builder.
    */
-  public FunctionTestDefBuilder has( String name, Object value)
+  protected Annotated getAnnotated()
     {
-    functionTestDef_.setAnnotation( name, Objects.toString( value, null));
-    return this;
-    }
-
-  /**
-   * Adds a function annotation if the given value is non-null
-   */
-  public FunctionTestDefBuilder hasIf( String name, Object value)
-    {
-    return
-      value != null
-      ? has( name, value)
-      : this;
-    }
-
-  /**
-   * Adds a function annotation if the given value is defined
-   */
-  public FunctionTestDefBuilder hasIf( String name, Optional<Object> value)
-    {
-    return hasIf( name, value.orElse( null));
+    return functionTestDef_;
     }
 
   FunctionTestDef functionTestDef_;

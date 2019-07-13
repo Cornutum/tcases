@@ -9,15 +9,13 @@
 package org.cornutum.tcases;
 
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
  * Builds {@link FunctionInputDef} instances.
  *
  */
-public class FunctionInputDefBuilder
+public class FunctionInputDefBuilder extends AnnotatedBuilder<FunctionInputDefBuilder>
   {
   /**
    * Creates a new builder for a FunctionInputDef with the given name.
@@ -136,34 +134,6 @@ public class FunctionInputDefBuilder
     }
 
   /**
-   * Adds a function annotation.
-   */
-  public FunctionInputDefBuilder has( String name, Object value)
-    {
-    functionInputDef_.setAnnotation( name, Objects.toString( value, null));
-    return this;
-    }
-
-  /**
-   * Adds a function annotation if the given value is non-null
-   */
-  public FunctionInputDefBuilder hasIf( String name, Object value)
-    {
-    return
-      value != null
-      ? has( name, value)
-      : this;
-    }
-
-  /**
-   * Adds a function annotation if the given value is defined
-   */
-  public FunctionInputDefBuilder hasIf( String name, Optional<Object> value)
-    {
-    return hasIf( name, value.orElse( null));
-    }
-
-  /**
    * Adds a new {@link VarSet} with the given path name and returns a builder
    * for the new <CODE>VarSet</CODE>.
    */
@@ -231,6 +201,14 @@ public class FunctionInputDefBuilder
       }
 
     return varDefBuilder;
+    }
+
+  /**
+   * Returns the {@link Annotated} instance for this builder.
+   */
+  protected Annotated getAnnotated()
+    {
+    return functionInputDef_;
     }
 
   FunctionInputDef functionInputDef_;

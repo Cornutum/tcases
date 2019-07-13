@@ -8,15 +8,13 @@
 
 package org.cornutum.tcases;
 
-import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
  * Builds {@link SystemInputDef} instances.
  *
  */
-public class SystemInputDefBuilder
+public class SystemInputDefBuilder extends AnnotatedBuilder<SystemInputDefBuilder>
   {
   /**
    * Creates a new builder for a SystemInputDef with the given name.
@@ -123,31 +121,11 @@ public class SystemInputDefBuilder
     }
 
   /**
-   * Adds a system annotation.
+   * Returns the {@link Annotated} instance for this builder.
    */
-  public SystemInputDefBuilder has( String name, Object value)
+  protected Annotated getAnnotated()
     {
-    systemInputDef_.setAnnotation( name, Objects.toString( value, null));
-    return this;
-    }
-
-  /**
-   * Adds a system annotation if the given value is non-null
-   */
-  public SystemInputDefBuilder hasIf( String name, Object value)
-    {
-    return
-      value != null
-      ? has( name, value)
-      : this;
-    }
-
-  /**
-   * Adds a system annotation if the given value is defined
-   */
-  public SystemInputDefBuilder hasIf( String name, Optional<Object> value)
-    {
-    return hasIf( name, value.orElse( null));
+    return systemInputDef_;
     }
 
   SystemInputDef systemInputDef_;

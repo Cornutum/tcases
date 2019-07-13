@@ -11,15 +11,13 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.conditions.ICondition;
 
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
  * Builds {@link VarSet} instances.
  *
  */
-public class VarSetBuilder
+public class VarSetBuilder extends AnnotatedBuilder<VarSetBuilder>
   {
   /**
    * Creates a new builder for a VarSet with the given name.
@@ -108,34 +106,6 @@ public class VarSetBuilder
     {
     varSet_.setCondition( condition);
     return this;
-    }
-
-  /**
-   * Adds a variable set annotation.
-   */
-  public VarSetBuilder has( String name, Object value)
-    {
-    varSet_.setAnnotation( name, Objects.toString( value, null));
-    return this;
-    }
-
-  /**
-   * Adds a variable set annotation if the given value is non-null
-   */
-  public VarSetBuilder hasIf( String name, Object value)
-    {
-    return
-      value != null
-      ? has( name, value)
-      : this;
-    }
-
-  /**
-   * Adds a variable set annotation if the given value is defined
-   */
-  public VarSetBuilder hasIf( String name, Optional<Object> value)
-    {
-    return hasIf( name, value.orElse( null));
     }
 
   /**
@@ -241,6 +211,13 @@ public class VarSetBuilder
     return varDefBuilder;
     }
 
+  /**
+   * Returns the {@link Annotated} instance for this builder.
+   */
+  protected Annotated getAnnotated()
+    {
+    return varSet_;
+    }
+
   VarSet varSet_;
   }
-
