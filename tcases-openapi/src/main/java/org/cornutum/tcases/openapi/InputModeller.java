@@ -2019,7 +2019,9 @@ public abstract class InputModeller
           getNotEnums( instanceSchema).stream()
           .map( notValue -> VarValueDefBuilder.with( notValue).type( VarValueDef.Type.FAILURE).build()))
         .values(
-          VarValueDefBuilder.with( "No").build())
+          VarValueDefBuilder.with( "No")
+          .has( "excluded", getNotEnums( instanceSchema))
+          .build())
         .build());
       }
     if( !getNotFormats( instanceSchema).isEmpty())

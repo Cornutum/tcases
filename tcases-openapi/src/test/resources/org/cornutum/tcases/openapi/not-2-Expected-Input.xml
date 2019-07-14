@@ -62,7 +62,9 @@
                     </Var>
                     <VarSet name="Has-Excluded" when="param0OneOf0AlphaValue">
                       <Var name="Value">
-                        <Value name="No"/>
+                        <Value name="No">
+                          <Has name="excluded" value="-17,17"/>
+                        </Value>
                       </Var>
                     </VarSet>
                   </VarSet>

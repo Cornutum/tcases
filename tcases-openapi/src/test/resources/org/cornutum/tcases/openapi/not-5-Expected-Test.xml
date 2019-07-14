@@ -15,7 +15,9 @@
         </Var>
         <Var name="param0.Type" value="boolean"/>
         <Var name="param0.Value" value="false"/>
-        <Var name="param0.Has-Excluded.Value" value="No"/>
+        <Var name="param0.Has-Excluded.Value" value="No">
+          <Has name="excluded" value="true"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">

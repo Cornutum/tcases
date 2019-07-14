@@ -15,7 +15,9 @@
         </Var>
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="0.0"/>
-        <Var name="param0.Has-Excluded.Value" value="No"/>
+        <Var name="param0.Has-Excluded.Value" value="No">
+          <Has name="excluded" value="1.0,10.0,11.0,1.1"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -40,7 +42,9 @@
         </Var>
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="99.9"/>
-        <Var name="param0.Has-Excluded.Value" value="No"/>
+        <Var name="param0.Has-Excluded.Value" value="No">
+          <Has name="excluded" value="1.0,10.0,11.0,1.1"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -79,7 +83,9 @@
         </Var>
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="Not a multiple of 0.1" failure="true"/>
-        <Var name="param0.Has-Excluded.Value" value="No"/>
+        <Var name="param0.Has-Excluded.Value" value="No">
+          <Has name="excluded" value="1.0,10.0,11.0,1.1"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -92,7 +98,9 @@
         </Var>
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="-0.1" failure="true"/>
-        <Var name="param0.Has-Excluded.Value" value="No"/>
+        <Var name="param0.Has-Excluded.Value" value="No">
+          <Has name="excluded" value="1.0,10.0,11.0,1.1"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -105,7 +113,9 @@
         </Var>
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="100.0" failure="true"/>
-        <Var name="param0.Has-Excluded.Value" value="No"/>
+        <Var name="param0.Has-Excluded.Value" value="No">
+          <Has name="excluded" value="1.0,10.0,11.0,1.1"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">

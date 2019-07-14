@@ -28,7 +28,9 @@
             <Value name="10.0" failure="true"/>
             <Value name="11.0" failure="true"/>
             <Value name="1.1" failure="true"/>
-            <Value name="No"/>
+            <Value name="No">
+              <Has name="excluded" value="1.0,10.0,11.0,1.1"/>
+            </Value>
           </Var>
         </VarSet>
       </VarSet>
