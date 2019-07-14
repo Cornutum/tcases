@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.joining;
 
 /**
  * Base class for building {@link Annotated} instances.
@@ -56,7 +55,13 @@ public abstract class AnnotatedBuilder<T extends AnnotatedBuilder<T>>
    */
   public T has( String name, Stream<?> values)
     {
-    return has( name, values.map( value -> String.valueOf( value)).collect( joining( ",")));
+    return
+      hasIf(
+        name,
+
+        values
+        .map( value -> String.valueOf( value))
+        .reduce( (list,value) -> list + "," + value));
     }
 
   /**
