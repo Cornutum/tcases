@@ -1,0 +1,61 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Not",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/not": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+
+                        "schema": {
+                            "maxLength": 256,
+                            "anyOf": [
+                                {
+                                    "enum": [ "Alpha", "Bravo", "Charlie" ]
+                                },
+                                {
+                                    "pattern": "[0-9]+"
+                                }                                
+                            ],
+                            "not": {
+                                "additionalProperties": true,
+                                "anyOf": [
+                                    {
+                                        "maxProperties": 1
+                                    },
+                                    {
+                                        "required": [ "Alpha" ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "$ref": "#/components/responses/success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

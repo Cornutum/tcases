@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<System name="Not">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_not">
+    <Input type="query">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="Not null" property="param0Value"/>
+          <Value name="null" failure="true"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

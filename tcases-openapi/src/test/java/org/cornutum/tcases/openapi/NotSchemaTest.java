@@ -159,25 +159,7 @@ public class NotSchemaTest extends OpenApiTest
   @Test
   public void Schema_6()
     {
-    // properties = notType,parentType
-
-    // Given...
-    //
-    //   Parent.Type.Defined = Yes
-    //
-    //   Parent.Type.Value = string
-    //
-    //   Parent.Type.Composed-With = anyOf
-    //
-    //   Not.Type.Defined = Yes
-    //
-    //   Not.Type.Value = Different
-    //
-    //   Not.Type.Composed-With = anyOf
-    
-    // When...
-
-    // Then...
+    verifyRequestInputModel( "not-6");
     }
 
   /**
@@ -198,24 +180,6 @@ public class NotSchemaTest extends OpenApiTest
   @Test
   public void Schema_7()
     {
-    // properties = notType
-
-    // Given...
-    //
-    //   Parent.Type.Defined = No
-    //
-    //   Parent.Type.Value = (not applicable)
-    //
-    //   Parent.Type.Composed-With = anyOf
-    //
-    //   Not.Type.Defined = Yes
-    //
-    //   Not.Type.Value = Inapplicable
-    //
-    //   Not.Type.Composed-With = anyOf
-    
-    // When...
-
-    // Then...
+    verifyRequestInputModel( "not-7");
     }
   }
