@@ -1583,9 +1583,9 @@ public final class SchemaUtils
   /**
    * Returns the combination of the given boolean assertions. 
    */
-  public static Boolean combineAssertions( String assertionFormat, Boolean base, Boolean additional)
+  public static Boolean combineAssertions( String assertionFormat, boolean base, boolean additional)
     {
-    if( !Objects.equals( base, additional))
+    if( base != additional)
       {
       throw
         new IllegalStateException(
