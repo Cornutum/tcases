@@ -1024,47 +1024,25 @@ public final class SchemaUtils
         combineAssertions( "not: {nullable: %s}", base.getNullable(), additional.getNullable()));
       }
 
-    Boolean baseReadOnly = base.getReadOnly();
-    Boolean baseWriteOnly = base.getWriteOnly();
-    if( Boolean.FALSE.equals( baseReadOnly) && Boolean.FALSE.equals( baseWriteOnly))
-      {
-      baseReadOnly = null;
-      baseWriteOnly = null;
-      context.error(
-        "\"not: {readOnly: false, writeOnly: false,}\" assertion can't be satisified by any instance",
-        "Ignoring infeasible assertion");
-      }
-
-    Boolean additionalReadOnly = additional.getReadOnly();
-    Boolean additionalWriteOnly = additional.getWriteOnly();
-    if( Boolean.FALSE.equals( additionalReadOnly) && Boolean.FALSE.equals( additionalWriteOnly))
-      {
-      additionalReadOnly = null;
-      additionalWriteOnly = null;
-      context.error(
-        "\"not: {readOnly: false, writeOnly: false,}\" assertion can't be satisified by any instance",
-        "Ignoring infeasible assertion");
-      }    
-
     // Combine readOnly
     combined.setReadOnly(
-      baseReadOnly == null?
-      additionalReadOnly :
+      base.getReadOnly() == null?
+      additional.getReadOnly() :
 
-      additionalReadOnly == null?
-      baseReadOnly :
+      additional.getReadOnly() == null?
+      base.getReadOnly() :
 
-      combineAssertions( "not: {readOnly: %s}", baseReadOnly, additionalReadOnly));
+      combineAssertions( "not: {readOnly: %s}", base.getReadOnly(), additional.getReadOnly()));
 
     // Combine writeOnly
     combined.setWriteOnly(
-      baseWriteOnly == null?
-      additionalWriteOnly :
+      base.getWriteOnly() == null?
+      additional.getWriteOnly() :
 
-      additionalWriteOnly == null?
-      baseWriteOnly :
+      additional.getWriteOnly() == null?
+      base.getWriteOnly() :
 
-      combineAssertions( "not: {writeOnly: %s}", baseWriteOnly, additionalWriteOnly));
+      combineAssertions( "not: {writeOnly: %s}", base.getWriteOnly(), additional.getWriteOnly()));
     
     return combined;
     }
