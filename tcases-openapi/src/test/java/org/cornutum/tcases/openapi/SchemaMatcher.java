@@ -26,6 +26,8 @@ import java.util.Set;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
 
+import java.math.BigDecimal;
+
 /**
  * A composite matcher for {@link Schema} objects.
  */
@@ -57,6 +59,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "multipleOf", Schema::getMultipleOf).matches( Matchers::equalTo));
     expectThat( valueOf( "not", Schema::getNot).matches( SchemaMatcher::new));
     expectThat( valueOf( "notFormats", this::getNotFormats).matches( Composites::containsMembers));
+    expectThat( valueOf( "notMultipleOfs", this::getNotMultipleOfs).matches( Composites::containsMembers));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
     expectThat( valueOf( "patterns", this::getPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "properties", this::getProperties).matches( containsMembersMatching( Property.Matcher::new)));
@@ -115,6 +118,14 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
   private Iterable<String> getNotFormats( Schema schema)
     {
     return SchemaExtensions.getNotFormats( schema);
+    }
+
+  /**
+   * Returns the composed set of multipleOfs to not match when validating the given schema.
+   */
+  private Iterable<BigDecimal> getNotMultipleOfs( Schema schema)
+    {
+    return SchemaExtensions.getNotMultipleOfs( schema);
     }
 
   /**

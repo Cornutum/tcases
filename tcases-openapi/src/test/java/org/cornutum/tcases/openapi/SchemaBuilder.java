@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Builds {@link Schema} instances.
@@ -272,6 +273,17 @@ public class SchemaBuilder
   public SchemaBuilder notFormats( String... formats)
     {
     SchemaExtensions.setNotFormats( schema_, formats);
+    return this;
+    }
+  
+  public SchemaBuilder notMultipleOfs( Number... multipleOfs)
+    {
+    SchemaExtensions.setNotMultipleOfs(
+      schema_,
+      Arrays.stream( multipleOfs)
+      .map( number -> new BigDecimal( number.toString()))
+      .collect( toSet()));
+
     return this;
     }
   
