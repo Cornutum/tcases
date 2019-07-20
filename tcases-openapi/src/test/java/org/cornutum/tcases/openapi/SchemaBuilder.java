@@ -269,6 +269,12 @@ public class SchemaBuilder
     return this;
     }
   
+  public SchemaBuilder notFormats( String... formats)
+    {
+    SchemaExtensions.setNotFormats( schema_, formats);
+    return this;
+    }
+  
   public SchemaBuilder nullable( Boolean nullable)
     {
     schema_.setNullable( nullable);

@@ -56,6 +56,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "minimum", Schema::getMinimum).matches( Matchers::equalTo));
     expectThat( valueOf( "multipleOf", Schema::getMultipleOf).matches( Matchers::equalTo));
     expectThat( valueOf( "not", Schema::getNot).matches( SchemaMatcher::new));
+    expectThat( valueOf( "notFormats", this::getNotFormats).matches( Composites::containsMembers));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
     expectThat( valueOf( "patterns", this::getPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "properties", this::getProperties).matches( containsMembersMatching( Property.Matcher::new)));
@@ -106,6 +107,14 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
   private Iterable<String> getPatterns( Schema schema)
     {
     return SchemaExtensions.getPatterns( schema);
+    }
+
+  /**
+   * Returns the composed set of formats to not match when validating the given schema.
+   */
+  private Iterable<String> getNotFormats( Schema schema)
+    {
+    return SchemaExtensions.getNotFormats( schema);
     }
 
   /**
