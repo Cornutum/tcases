@@ -1,0 +1,75 @@
+<System name="IntegerSchemas">
+    <Function name="Combine">
+        <Input>
+            <VarSet name="base">
+                <Var name="enum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseEnum"/>
+                </Var>
+                <Var name="maximum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaximum"/>
+                </Var>
+                <Var name="minimum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMinimum"/>
+                </Var>
+                <Var name="exclusiveMaximum">
+                    <Value name="null"/>
+                    <Value name="true" when="baseMaximum" whenNot="additionalNotExclusiveMaximum" property="baseExclusiveMaximum"/>
+                    <Value name="false" when="baseMaximum"  whenNot="additionalExclusiveMaximum" property="baseNotExclusiveMaximum"/>
+                    <Value name="trueInconsistent" when="baseMaximum, additionalNotExclusiveMaximum" failure="true"/>
+                    <Value name="falseInconsistent" when="baseMaximum, additionalExclusiveMaximum" failure="true"/>
+                </Var>
+                <Var name="exclusiveMinimum">
+                    <Value name="null"/>
+                    <Value name="true" when="baseMinimum" whenNot="additionalNotExclusiveMinimum" property="baseExclusiveMinimum"/>
+                    <Value name="false" when="baseMinimum"  whenNot="additionalExclusiveMinimum" property="baseNotExclusiveMinimum"/>
+                    <Value name="trueInconsistent" when="baseMinimum, additionalNotExclusiveMinimum" failure="true"/>
+                    <Value name="falseInconsistent" when="baseMinimum, additionalExclusiveMinimum" failure="true"/>
+                </Var>
+                <Var name="notMultipleOfs">
+                    <Value name="0"/>
+                    <Value name="1" property="baseMultipleOf"/>
+                    <Value name="&gt; 1" property="baseMultipleOf"/>
+                </Var>
+            </VarSet>
+            <VarSet name="additional">
+                <Var name="enum">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseEnum"/>
+                    <Value name="Intersects base" when="baseEnum"/>
+                    <Value name="Disjoint from base" when="baseEnum"/>
+                </Var>
+                <Var name="maximum">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMaximum" property="additionalMaximum"/>
+                    <Value name="&lt; base" when="baseMaximum" property="additionalMaximum"/>
+                    <Value name="&gt; base" when="baseMaximum" property="additionalMaximum"/>
+                </Var>
+                <Var name="minimum">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMinimum" property="additionalMinimum"/>
+                    <Value name="&lt; base" when="baseMinimum" property="additionalMinimum"/>
+                    <Value name="&gt; base" when="baseMinimum" property="additionalMinimum"/>
+                </Var>
+                <Var name="exclusiveMaximum">
+                    <Value name="null"/>
+                    <Value name="true" when="additionalMaximum" property="additionalExclusiveMaximum"/>
+                    <Value name="false" when="additionalMaximum" property="additionalNotExclusiveMaximum"/>
+                </Var>
+                <Var name="exclusiveMinimum">
+                    <Value name="null"/>
+                    <Value name="true" when="additionalMinimum" property="additionalExclusiveMinimum"/>
+                    <Value name="false" when="additionalMinimum" property="additionalNotExclusiveMinimum"/>
+                </Var>
+                <Var name="notMultipleOfs">
+                    <Value name="0"/>
+                    <Value name="1"/>
+                    <Value name="&gt; 1" />
+                    <Value name="Incongruent" when="baseMultipleOf" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

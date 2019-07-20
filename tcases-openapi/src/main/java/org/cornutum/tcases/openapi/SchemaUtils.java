@@ -952,13 +952,22 @@ public final class SchemaUtils
       combineAssertions( "not: {exclusiveMinimum: %s}", base.getExclusiveMinimum(), additional.getExclusiveMinimum()));
 
     // Combine multipleOf
+    Set<BigDecimal> baseNotMultipleOfs = getNotMultipleOfs( withNotMultipleOfs( base));
+    Set<BigDecimal> additionalNotMultipleOfs = getNotMultipleOfs( withNotMultipleOfs( additional));
+
     setNotMultipleOfs(
       combined,
-      getNotMultipleOfs( base)
+      baseNotMultipleOfs
       .stream()
-      .filter( baseMultipleOf -> getNotMultipleOfs( additional).stream().noneMatch( additionalMultipleOf -> isMultipleOf( baseMultipleOf, additionalMultipleOf)))
+      .filter( baseMultipleOf -> additionalNotMultipleOfs.stream().noneMatch( additionalMultipleOf -> isMultipleOf( baseMultipleOf, additionalMultipleOf)))
       .collect( toSet()));
-    addNotMultipleOfs( combined, getNotMultipleOfs(additional));
+
+    addNotMultipleOfs(
+      combined,
+      additionalNotMultipleOfs
+      .stream()
+      .filter( additionalMultipleOf -> getNotMultipleOfs( combined).stream().noneMatch( baseMultipleOf -> isMultipleOf( additionalMultipleOf, baseMultipleOf)))
+      .collect( toSet()));
 
     return combined;
     }
@@ -1385,18 +1394,14 @@ public final class SchemaUtils
       combineAssertions( "exclusiveMinimum: %s", base.getExclusiveMinimum(), !not.getExclusiveMinimum()));
 
     // Merge multipleOf
-    if( getNotMultipleOfs( not).stream().anyMatch( notMultipleOf -> isMultipleOf( base.getMultipleOf(), notMultipleOf)))
+    BigDecimal baseMultipleOf = base.getMultipleOf();
+    Set<BigDecimal> notMultipleOfs = getNotMultipleOfs( withNotMultipleOfs( not));
+    if( baseMultipleOf != null && notMultipleOfs.stream().anyMatch( notMultipleOf -> isMultipleOf( baseMultipleOf, notMultipleOf)))
       {
-      throw unmergeableValue( "multipleOf", base.getMultipleOf());
+      throw unmergeableValue( "multipleOf", baseMultipleOf);
       }
-    if( base.getMultipleOf() == null)
-      {
-      setNotMultipleOfs( merged, getNotMultipleOfs( not));
-      }
-    else
-      {
-      merged.setMultipleOf( base.getMultipleOf());
-      }
+    merged.setMultipleOf( base.getMultipleOf());
+    setNotMultipleOfs( merged, notMultipleOfs);
     
     return merged;
     }
@@ -1554,6 +1559,17 @@ public final class SchemaUtils
     {
     Optional.ofNullable( notSchema.getFormat())
       .ifPresent( notFormat -> addNotFormat( notSchema, notFormat));
+
+    return notSchema;
+    }
+
+  /**
+   * Returns the given "not" schema, initializing the value of the "not multipleOfs" extension.
+   */
+  private static Schema<?> withNotMultipleOfs( Schema<?> notSchema)
+    {
+    Optional.ofNullable( notSchema.getMultipleOf())
+      .ifPresent( notMultipleOf -> addNotMultipleOf( notSchema, notMultipleOf));
 
     return notSchema;
     }
