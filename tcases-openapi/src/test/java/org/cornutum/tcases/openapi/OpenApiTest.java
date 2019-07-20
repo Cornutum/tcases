@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.hamcrest.ExpectedFailure.Failable;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.SystemInputDefMatcher;
 import org.cornutum.tcases.SystemTestDef;
@@ -272,8 +273,18 @@ public abstract class OpenApiTest
    */
   protected void assertRequestInputModelFailure( String apiName, String... expected)
     {
+    assertOpenApiException(
+      () -> TcasesOpenApi.getRequestInputModel( readApi( apiName)),
+      expected);
+    }
+
+  /**
+   * Verifies that an OpenApiException occurs when the given Failable is executed.
+   */
+  protected void assertOpenApiException( Failable failable, String... expected)
+    {
     expectFailure( OpenApiException.class)
-      .when( () -> TcasesOpenApi.getRequestInputModel( readApi( apiName)))
+      .when( failable)
       .then( failure -> {
         Stream.Builder<String> causes = Stream.builder();
         for( Throwable cause = failure; cause != null; cause = cause.getCause())
