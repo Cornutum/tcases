@@ -254,7 +254,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
         {
         super( expected);
         expectThat( valueOf( "name", Property::getName).matches( Matchers::equalTo));
-        expectThat( valueOf( "value", Property::getValue).matches( Matchers::equalTo));
+        expectThat( valueOf( "value", Property::getValue).matches( SchemaMatcher::new));
         }
       }
     
