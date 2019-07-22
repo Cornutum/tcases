@@ -264,9 +264,9 @@ public class SchemaBuilder
     return multipleOf( new BigDecimal( String.valueOf( multipleOf)));
     }
   
-  public SchemaBuilder not( Schema<?> not)
+  public SchemaBuilder nots( Schema<?>... nots)
     {
-    schema_.setNot( not);
+    SchemaExtensions.setNots( schema_, nots);
     return this;
     }
   

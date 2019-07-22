@@ -32,11 +32,13 @@ public class CombineStringSchemaTest extends OpenApiTest
    * <TR><TD> base.maxLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minLength </TD> <TD> null </TD> </TR>
    * <TR><TD> base.pattern </TD> <TD> Non-null </TD> </TR>
+   * <TR><TD> base.nots </TD> <TD> 1 </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maxLength </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.minLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.pattern </TD> <TD> Non-null </TD> </TR>
+   * <TR><TD> additional.nots </TD> <TD> 1 </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -50,6 +52,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( null)
       .patterns( "[A-Z]*")
+      .nots( stringSchema_)
       .build();
 
     Schema<?> additional =
@@ -58,6 +61,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 256)
       .minLength( 1)
       .patterns( "[0-9]*")
+      .nots( arraySchema_)
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -72,6 +76,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( 1)
       .patterns( "[A-Z]*", "[0-9]*")
+      .nots( stringSchema_, arraySchema_)
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -88,11 +93,13 @@ public class CombineStringSchemaTest extends OpenApiTest
    * <TR><TD> base.maxLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.pattern </TD> <TD> Non-null </TD> </TR>
+   * <TR><TD> base.nots </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> Same as base </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> Intersects base </TD> </TR>
    * <TR><TD> additional.maxLength </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.minLength </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.pattern </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.nots </TD> <TD> 1 </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -116,6 +123,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( null)
       .minLength( 32)
       .patterns()
+      .nots( objectSchema_)
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -131,6 +139,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( 32)
       .patterns( ".*")
+      .nots( objectSchema_)
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -147,11 +156,13 @@ public class CombineStringSchemaTest extends OpenApiTest
    * <TR><TD> base.maxLength </TD> <TD> null </TD> </TR>
    * <TR><TD> base.minLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.pattern </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.nots </TD> <TD> > 1 </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> Subset of base </TD> </TR>
    * <TR><TD> additional.maxLength </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.minLength </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.pattern </TD> <TD> Non-null </TD> </TR>
+   * <TR><TD> additional.nots </TD> <TD> null </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -166,6 +177,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( null)
       .minLength( 8)
       .patterns()
+      .nots( numberSchema_, stringSchema_)
       .build();
 
     Schema<?> additional =
@@ -190,6 +202,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( null)
       .minLength( 8)
       .patterns( "[A-Z]*")
+      .nots( numberSchema_, stringSchema_)
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -206,11 +219,13 @@ public class CombineStringSchemaTest extends OpenApiTest
    * <TR><TD> base.maxLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minLength </TD> <TD> null </TD> </TR>
    * <TR><TD> base.pattern </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.nots </TD> <TD> > 1 </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.maxLength </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.minLength </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.pattern </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.nots </TD> <TD> > 1 </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -224,6 +239,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( null)
       .patterns()
+      .nots( objectSchema_, arraySchema_)
       .build();
 
     Schema<?> additional =
@@ -233,6 +249,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 16)
       .minLength( null)
       .patterns()
+      .nots( numberSchema_, arraySchema_)
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -248,6 +265,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 16)
       .minLength( null)
       .patterns()
+      .nots( objectSchema_, arraySchema_, numberSchema_, arraySchema_)
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -264,11 +282,13 @@ public class CombineStringSchemaTest extends OpenApiTest
    * <TR><TD> base.maxLength </TD> <TD> null </TD> </TR>
    * <TR><TD> base.minLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.pattern </TD> <TD> Non-null </TD> </TR>
+   * <TR><TD> base.nots </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> Same as base </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maxLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.minLength </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.pattern </TD> <TD> Non-null </TD> </TR>
+   * <TR><TD> additional.nots </TD> <TD> > 1 </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -291,6 +311,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( 1)
       .patterns( ".*")
+      .nots( numberSchema_, arraySchema_)
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -306,6 +327,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( 8)
       .patterns( "[A-Z]*", ".*")
+      .nots( numberSchema_, arraySchema_)
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -322,11 +344,13 @@ public class CombineStringSchemaTest extends OpenApiTest
    * <TR><TD> base.maxLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minLength </TD> <TD> null </TD> </TR>
    * <TR><TD> base.pattern </TD> <TD> Non-null </TD> </TR>
+   * <TR><TD> base.nots </TD> <TD> > 1 </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> Contains base </TD> </TR>
    * <TR><TD> additional.maxLength </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.minLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.pattern </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.nots </TD> <TD> 1 </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -341,6 +365,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( null)
       .patterns( ".*")
+      .nots( numberSchema_, arraySchema_)
       .build();
 
     Schema<?> additional =
@@ -350,6 +375,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 256)
       .minLength( 1)
       .patterns()
+      .nots( objectSchema_)
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -365,6 +391,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( 1)
       .patterns( ".*")
+      .nots( numberSchema_, arraySchema_, objectSchema_)
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -463,4 +490,9 @@ public class CombineStringSchemaTest extends OpenApiTest
       .when( () -> combineSchemas( context, base, additional))
       .then( failure -> assertThat( "Failure", failure.getMessage(), is( "enum=[Delta, Easy, Foxtrot] is not consistent with base enum=[Alpha, Bravo, Charlie]")));
     }
+
+  private Schema<?> arraySchema_ = SchemaBuilder.ofType( "array").build();
+  private Schema<?> numberSchema_ = SchemaBuilder.ofType( "string").build();
+  private Schema<?> objectSchema_ = SchemaBuilder.ofType( "object").build();
+  private Schema<?> stringSchema_ = SchemaBuilder.ofType( "string").build();
   }

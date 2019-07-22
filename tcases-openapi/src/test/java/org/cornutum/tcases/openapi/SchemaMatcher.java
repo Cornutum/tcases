@@ -24,6 +24,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import static java.util.Collections.emptySet;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 import java.math.BigDecimal;
@@ -58,6 +59,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "minimum", Schema::getMinimum).matches( Matchers::equalTo));
     expectThat( valueOf( "multipleOf", Schema::getMultipleOf).matches( Matchers::equalTo));
     expectThat( valueOf( "not", Schema::getNot).matches( SchemaMatcher::new));
+    expectThat( valueOf( "nots", this::getNots).matches( listsMembersMatching( SchemaMatcher::new)));
     expectThat( valueOf( "notFormats", this::getNotFormats).matches( Composites::containsMembers));
     expectThat( valueOf( "notMultipleOfs", this::getNotMultipleOfs).matches( Composites::containsMembers));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
@@ -110,6 +112,14 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
   private Iterable<String> getPatterns( Schema schema)
     {
     return SchemaExtensions.getPatterns( schema);
+    }
+
+  /**
+   * Returns the composed set of schemas to not match when validating the given schema.
+   */
+  private Iterable<Schema> getNots( Schema schema)
+    {
+    return SchemaExtensions.getNots( schema).stream().collect( toList());
     }
 
   /**

@@ -21,5 +21,9 @@
       <Include var="additional.pattern"/>
       <Include var="base.pattern"/>
     </Combine>
+    <Combine tuples="2">
+      <Include var="additional.nots"/>
+      <Include var="base.nots"/>
+    </Combine>
   </TupleGenerator>
 </Generators>

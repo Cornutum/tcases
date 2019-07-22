@@ -22,6 +22,11 @@
                     <Value name="null"/>
                     <Value name="Non-null" property="basePattern"/>
                 </Var>
+                <Var name="nots">
+                    <Value name="null"/>
+                    <Value name="1"/>
+                    <Value name="&gt; 1"/>
+                </Var>
             </VarSet>
             <VarSet name="additional">
                 <Var name="format">
@@ -52,6 +57,11 @@
                 <Var name="pattern">
                     <Value name="null"/>
                     <Value name="Non-null"/>
+                </Var>
+                <Var name="nots">
+                    <Value name="null"/>
+                    <Value name="1"/>
+                    <Value name="&gt; 1"/>
                 </Var>
             </VarSet>
         </Input>
