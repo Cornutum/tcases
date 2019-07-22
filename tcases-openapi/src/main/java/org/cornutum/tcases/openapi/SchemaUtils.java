@@ -1449,6 +1449,18 @@ public final class SchemaUtils
 
     // Merge writeOnly
     merged.setReadOnly( mergeAssertions( "writeOnly", base.getWriteOnly(), not.getWriteOnly()));
+
+    if( Boolean.TRUE.equals( merged.getReadOnly()) && Boolean.TRUE.equals( merged.getWriteOnly()))
+      {
+      String baseProp = Boolean.TRUE.equals( base.getReadOnly())? "readOnly" : "writeOnly";
+      String notProp = Boolean.FALSE.equals( not.getReadOnly())? "readOnly" : "writeOnly";
+      throw
+        new IllegalStateException(
+          String.format(
+            "Can't merge \"not\" schema requiring %s=true with base schema requiring %s=true",
+            notProp,
+            baseProp));
+      }
     
     return merged;
     }
