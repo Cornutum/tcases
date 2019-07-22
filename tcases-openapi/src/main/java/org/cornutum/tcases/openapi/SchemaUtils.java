@@ -11,7 +11,6 @@ import static org.cornutum.tcases.openapi.SchemaExtensions.*;
 
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.Schema;
-import org.apache.commons.lang3.BooleanUtils;
 import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ZERO;
 
 import java.math.BigDecimal;
@@ -1302,14 +1301,7 @@ public final class SchemaUtils
       Integer.valueOf( exclusiveMinItems + 1));
 
     // Merge uniqueItems
-    merged.setUniqueItems(
-      not.getUniqueItems() == null?
-      Boolean.TRUE.equals( base.getUniqueItems()) :
-
-      base.getUniqueItems() == null?
-      BooleanUtils.negate( not.getUniqueItems()) :
-
-      combineAssertions( "uniqueItems: %s", base.getUniqueItems(), !not.getUniqueItems()));
+    merged.setUniqueItems( mergeAssertions( "uniqueItems", base.getUniqueItems(), not.getUniqueItems()));
 
     // Merge items
     Schema<?> baseItems = base instanceof ArraySchema? ((ArraySchema) base).getItems() : null;
@@ -1369,29 +1361,15 @@ public final class SchemaUtils
     
     // Merge exclusiveMaximum
     merged.setExclusiveMaximum(
-      merged.getMaximum() == null?
-      null :
-
-      not.getExclusiveMaximum() == null?
-      base.getExclusiveMaximum() :
-
-      base.getExclusiveMaximum() == null?
-      BooleanUtils.negate( not.getExclusiveMaximum()) :
-
-      combineAssertions( "exclusiveMaximum: %s", base.getExclusiveMaximum(), !not.getExclusiveMaximum()));
+      merged.getMaximum() == null
+      ? null
+      : mergeAssertions( "exclusiveMaximum", base.getExclusiveMaximum(), not.getExclusiveMaximum()));
       
     // Merge exclusiveMinimum
     merged.setExclusiveMinimum(
-      merged.getMinimum() == null?
-      null :
-
-      not.getExclusiveMinimum() == null?
-      base.getExclusiveMinimum() :
-
-      base.getExclusiveMinimum() == null?
-      BooleanUtils.negate( not.getExclusiveMinimum()) :
-
-      combineAssertions( "exclusiveMinimum: %s", base.getExclusiveMinimum(), !not.getExclusiveMinimum()));
+      merged.getMinimum() == null
+      ? null
+      : mergeAssertions( "exclusiveMinimum", base.getExclusiveMinimum(), not.getExclusiveMinimum()));
 
     // Merge multipleOf
     BigDecimal baseMultipleOf = base.getMultipleOf();
@@ -1464,34 +1442,13 @@ public final class SchemaUtils
       }
 
     // Merge nullable
-    merged.setNullable(
-      not.getNullable() == null?
-      base.getNullable() :
-
-      base.getNullable() == null?
-      BooleanUtils.negate( not.getNullable()) :
-
-      combineAssertions( "nullable: %s", base.getNullable(), !not.getNullable()));
+    merged.setNullable( mergeAssertions( "nullable", base.getNullable(), not.getNullable()));
 
     // Merge readOnly
-    merged.setReadOnly(
-      not.getReadOnly() == null?
-      base.getReadOnly() :
-
-      base.getReadOnly() == null?
-      BooleanUtils.negate( not.getReadOnly()) :
-
-      combineAssertions( "readOnly: %s", base.getReadOnly(), !not.getReadOnly()));
+    merged.setReadOnly( mergeAssertions( "readOnly", base.getReadOnly(), not.getReadOnly()));
 
     // Merge writeOnly
-    merged.setWriteOnly(
-      not.getWriteOnly() == null?
-      base.getWriteOnly() :
-
-      base.getWriteOnly() == null?
-      BooleanUtils.negate( not.getWriteOnly()) :
-
-      combineAssertions( "writeOnly: %s", base.getWriteOnly(), !not.getWriteOnly()));
+    merged.setReadOnly( mergeAssertions( "writeOnly", base.getWriteOnly(), not.getWriteOnly()));
     
     return merged;
     }
@@ -1607,11 +1564,11 @@ public final class SchemaUtils
       {
       merged = !not;
       }
-    else if( not == null)
+    else if( !Objects.equals( base, not))
       {
       merged = base;
       }
-    else if( base == not)
+    else
       {
       throw unmergeableValue( keyword, base);
       }
