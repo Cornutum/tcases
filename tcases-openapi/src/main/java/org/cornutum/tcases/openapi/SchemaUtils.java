@@ -1424,21 +1424,16 @@ public final class SchemaUtils
       }
     
     // Merge enum
-    List<Object> baseEnums = Optional.ofNullable( base.getEnum()).orElse( emptyList());
     List<Object> notEnums = Optional.ofNullable( not.getEnum()).orElse( emptyList());
-    notEnums
-      .stream()
-      .filter( notEnum -> baseEnums.contains( notEnum))
-      .findFirst()
-      .ifPresent( notEnum -> { throw unmergeableValue( "enum", notEnum); });
-
-    if( baseEnums.isEmpty())
+    List<Object> baseEnums = Optional.ofNullable( base.getEnum()).orElse( emptyList());
+    List<Object> baseEnumsLeft = baseEnums.stream().filter( baseEnum -> !notEnums.contains( baseEnum)).collect( toList());
+    if( baseEnumsLeft.isEmpty())
       {
       setNotEnums( merged, notEnums);
       }
     else
       {
-      merged.setEnum( baseEnums);
+      merged.setEnum( baseEnumsLeft);
       }
 
     // Merge nullable
@@ -1448,7 +1443,7 @@ public final class SchemaUtils
     merged.setReadOnly( mergeAssertions( "readOnly", base.getReadOnly(), not.getReadOnly()));
 
     // Merge writeOnly
-    merged.setReadOnly( mergeAssertions( "writeOnly", base.getWriteOnly(), not.getWriteOnly()));
+    merged.setWriteOnly( mergeAssertions( "writeOnly", base.getWriteOnly(), not.getWriteOnly()));
 
     if( Boolean.TRUE.equals( merged.getReadOnly()) && Boolean.TRUE.equals( merged.getWriteOnly()))
       {

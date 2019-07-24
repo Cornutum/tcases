@@ -60,8 +60,10 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "multipleOf", Schema::getMultipleOf).matches( Matchers::equalTo));
     expectThat( valueOf( "not", Schema::getNot).matches( SchemaMatcher::new));
     expectThat( valueOf( "nots", this::getNots).matches( listsMembersMatching( SchemaMatcher::new)));
+    expectThat( valueOf( "notEnums", this::getNotEnums).matches( Composites::containsMembers));
     expectThat( valueOf( "notFormats", this::getNotFormats).matches( Composites::containsMembers));
     expectThat( valueOf( "notMultipleOfs", this::getNotMultipleOfs).matches( Composites::containsMembers));
+    expectThat( valueOf( "notPatterns", this::getNotPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
     expectThat( valueOf( "patterns", this::getPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "properties", this::getProperties).matches( containsMembersMatching( Property.Matcher::new)));
@@ -123,6 +125,14 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     }
 
   /**
+   * Returns the composed set of enums to not match when validating the given schema.
+   */
+  private Iterable<Object> getNotEnums( Schema schema)
+    {
+    return SchemaExtensions.getNotEnums( schema);
+    }
+
+  /**
    * Returns the composed set of formats to not match when validating the given schema.
    */
   private Iterable<String> getNotFormats( Schema schema)
@@ -136,6 +146,14 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
   private Iterable<BigDecimal> getNotMultipleOfs( Schema schema)
     {
     return SchemaExtensions.getNotMultipleOfs( schema);
+    }
+
+  /**
+   * Returns the composed set of patterns to not match when validating the given schema.
+   */
+  private Iterable<String> getNotPatterns( Schema schema)
+    {
+    return SchemaExtensions.getNotPatterns( schema);
     }
 
   /**

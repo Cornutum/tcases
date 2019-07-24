@@ -270,6 +270,22 @@ public class SchemaBuilder
     return this;
     }
   
+  public SchemaBuilder notEnums( List<Object> enums)
+    {
+    SchemaExtensions.setNotEnums( schema_, enums);
+    return this;
+    }
+  
+  public SchemaBuilder notEnums( Object... enums)
+    {
+    return notEnums( Arrays.asList( enums));
+    }
+  
+  public SchemaBuilder notEnumNumbers( double... enums)
+    {
+    return notEnums( Arrays.stream( enums).mapToObj( d -> new BigDecimal( String.valueOf( d))).collect( toList()));
+    }
+  
   public SchemaBuilder notFormats( String... formats)
     {
     SchemaExtensions.setNotFormats( schema_, formats);
@@ -284,6 +300,12 @@ public class SchemaBuilder
       .map( number -> new BigDecimal( number.toString()))
       .collect( toSet()));
 
+    return this;
+    }
+  
+  public SchemaBuilder notPatterns( String... patterns)
+    {
+    SchemaExtensions.setNotPatterns( schema_, patterns);
     return this;
     }
   
