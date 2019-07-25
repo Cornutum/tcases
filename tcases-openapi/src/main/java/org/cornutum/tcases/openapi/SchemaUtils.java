@@ -26,6 +26,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
+import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -951,22 +952,22 @@ public final class SchemaUtils
       combineAssertions( "not: {exclusiveMinimum: %s}", base.getExclusiveMinimum(), additional.getExclusiveMinimum()));
 
     // Combine multipleOf
-    Set<BigDecimal> baseNotMultipleOfs = getNotMultipleOfs( withNotMultipleOfs( base));
-    Set<BigDecimal> additionalNotMultipleOfs = getNotMultipleOfs( withNotMultipleOfs( additional));
+    Set<BigDecimal> baseNotMultipleOfs = Optional.ofNullable( getNotMultipleOfs( withNotMultipleOfs( base))).orElse( emptySet());
+    Set<BigDecimal> additionalNotMultipleOfs = Optional.ofNullable( getNotMultipleOfs( withNotMultipleOfs( additional))).orElse( emptySet());
 
-    setNotMultipleOfs(
-      combined,
+    Set<BigDecimal> baseNotMultipleOfsDistinct =
       baseNotMultipleOfs
       .stream()
       .filter( baseMultipleOf -> additionalNotMultipleOfs.stream().noneMatch( additionalMultipleOf -> isMultipleOf( baseMultipleOf, additionalMultipleOf)))
-      .collect( toSet()));
+      .collect( toSet());
+    setNotMultipleOfs( combined, baseNotMultipleOfsDistinct);
 
-    addNotMultipleOfs(
-      combined,
+    Set<BigDecimal> additionalNotMultipleOfsDistinct =
       additionalNotMultipleOfs
       .stream()
-      .filter( additionalMultipleOf -> getNotMultipleOfs( combined).stream().noneMatch( baseMultipleOf -> isMultipleOf( additionalMultipleOf, baseMultipleOf)))
-      .collect( toSet()));
+      .filter( additionalMultipleOf -> baseNotMultipleOfsDistinct.stream().noneMatch( baseMultipleOf -> isMultipleOf( additionalMultipleOf, baseMultipleOf)))
+      .collect( toSet());
+    addNotMultipleOfs( combined, additionalNotMultipleOfsDistinct);
 
     return combined;
     }
@@ -1373,7 +1374,7 @@ public final class SchemaUtils
 
     // Merge multipleOf
     BigDecimal baseMultipleOf = base.getMultipleOf();
-    Set<BigDecimal> notMultipleOfs = getNotMultipleOfs( withNotMultipleOfs( not));
+    Set<BigDecimal> notMultipleOfs = Optional.ofNullable( getNotMultipleOfs( withNotMultipleOfs( not))).orElse( emptySet());
     if( baseMultipleOf != null && notMultipleOfs.stream().anyMatch( notMultipleOf -> isMultipleOf( baseMultipleOf, notMultipleOf)))
       {
       throw unmergeableValue( "multipleOf", baseMultipleOf);
@@ -1410,7 +1411,8 @@ public final class SchemaUtils
     merged.setDefault( base.getDefault());
     
     // Merge format
-    if( getNotFormats( withNotFormats( not)).stream().anyMatch( notFormat -> Objects.equals( base.getFormat(), notFormat)))
+    Set<String> notFormats = Optional.ofNullable( getNotFormats( withNotFormats( not))).orElse( emptySet());
+    if( notFormats.stream().anyMatch( notFormat -> Objects.equals( base.getFormat(), notFormat)))
       {
       throw unmergeableStringValue( "format", base.getFormat());
       }
@@ -1498,7 +1500,15 @@ public final class SchemaUtils
    */
   private static RuntimeException unmergeableValue( String keyword, Object value)
     {
-    return new IllegalStateException( String.format( "{%s: %s} is not consistent with {not: {%s: %s}}", keyword, value, keyword, value));
+    return unmergeableValues( keyword, value, value);
+    }
+
+  /**
+   * Returns an exception reporting a merge failure for the given schema keyword value.
+   */
+  private static RuntimeException unmergeableValues( String keyword, Object baseValue, Object notValue)
+    {
+    return new IllegalStateException( String.format( "{%s: %s} is not consistent with {not: {%s: %s}}", keyword, baseValue, keyword, notValue));
     }
 
   /**

@@ -61,6 +61,7 @@ import static java.math.RoundingMode.DOWN;
 import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
+import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.mapping;
@@ -1327,7 +1328,7 @@ public abstract class InputModeller
         {
         value.values( VarValueDefBuilder.with( String.format( "Not a multiple of %s", instanceSchema.getMultipleOf())).type( VarValueDef.Type.FAILURE).build());
         }
-      for( BigDecimal notMultipleOf : getNotMultipleOfs( instanceSchema))
+      for( BigDecimal notMultipleOf : Optional.ofNullable( getNotMultipleOfs( instanceSchema)).orElse( emptySet()))
         {
         value.values( VarValueDefBuilder.with( String.format( "Multiple of %s", notMultipleOf)).type( VarValueDef.Type.FAILURE).build());        
         }
@@ -1913,7 +1914,7 @@ public abstract class InputModeller
 
       // Add variables for any pattern assertions
       String[] patterns = getPatterns( instanceSchema).stream().toArray(String[]::new);
-      String[] notPatterns = getNotPatterns( instanceSchema).stream().toArray(String[]::new);
+      String[] notPatterns = Optional.ofNullable( getNotPatterns( instanceSchema)).orElse( emptySet()).stream().toArray(String[]::new);
       if( patterns.length == 1 && notPatterns.length == 0)
         {
         valueVarSet.members(
@@ -2011,25 +2012,29 @@ public abstract class InputModeller
   private Optional<IVarDef> excludedVar( String instanceVarTag, Schema<?> instanceSchema)
     {
     ListBuilder<IVarDef> members = ListBuilder.to();
-    if( !getNotEnums( instanceSchema).isEmpty())
+
+    List<Object> notEnums = Optional.ofNullable( getNotEnums( instanceSchema)).orElse( emptyList());
+    if( !notEnums.isEmpty())
       {
       members.add(
         VarDefBuilder.with( "Value")
         .values(
-          getNotEnums( instanceSchema).stream()
+          notEnums.stream()
           .map( notValue -> VarValueDefBuilder.with( notValue).type( VarValueDef.Type.FAILURE).build()))
         .values(
           VarValueDefBuilder.with( "No")
-          .has( "excluded", getNotEnums( instanceSchema))
+          .has( "excluded", notEnums)
           .build())
         .build());
       }
-    if( !getNotFormats( instanceSchema).isEmpty())
+
+    Set<String> notFormats = Optional.ofNullable( getNotFormats( instanceSchema)).orElse( emptySet());
+    if( !notFormats.isEmpty())
       {
       members.add(
         VarDefBuilder.with( "Format")
         .values(
-          getNotFormats( instanceSchema).stream()
+          notFormats.stream()
           .map( notFormat -> VarValueDefBuilder.with( notFormat).type( VarValueDef.Type.FAILURE).build()))
         .values(
           VarValueDefBuilder.with( "No").build())
@@ -2414,7 +2419,7 @@ public abstract class InputModeller
   private Schema<?> getEffectiveNot( OpenAPI api, Schema<?> schema)
     {
     return
-      getNots( schema)
+      Optional.ofNullable( getNots( schema)).orElse( emptyList())
       .stream()
       .map( not -> toEffectiveNot( api, schema.getType(), resolveSchema( api, not)))
       .filter( Objects::nonNull)

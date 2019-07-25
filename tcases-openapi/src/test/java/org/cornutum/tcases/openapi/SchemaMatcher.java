@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -64,6 +65,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "notFormats", this::getNotFormats).matches( Composites::containsMembers));
     expectThat( valueOf( "notMultipleOfs", this::getNotMultipleOfs).matches( Composites::containsMembers));
     expectThat( valueOf( "notPatterns", this::getNotPatterns).matches( Composites::containsMembers));
+    expectThat( valueOf( "notProperties", this::getNotProperties).matches( containsMembersMatching( Property.Matcher::new)));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
     expectThat( valueOf( "patterns", this::getPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "properties", this::getProperties).matches( containsMembersMatching( Property.Matcher::new)));
@@ -121,7 +123,9 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
    */
   private Iterable<Schema> getNots( Schema schema)
     {
-    return SchemaExtensions.getNots( schema).stream().collect( toList());
+    return
+      Optional.ofNullable( SchemaExtensions.getNots( schema)).orElse( emptyList())
+      .stream().collect( toList());
     }
 
   /**
@@ -154,6 +158,17 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
   private Iterable<String> getNotPatterns( Schema schema)
     {
     return SchemaExtensions.getNotPatterns( schema);
+    }
+
+  /**
+   * Returns the composed set of property definitions to not match when validating the given schema.
+   */
+  private Set<Property> getNotProperties( Schema schema)
+    {
+    return
+      Optional.ofNullable( (Map<String,Schema>) SchemaExtensions.getNotProperties( schema))
+      .map( properties -> properties.entrySet().stream().map( entry -> new Property( entry.getKey(), entry.getValue())).collect( toSet()))
+      .orElse( emptySet());
     }
 
   /**

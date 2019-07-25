@@ -309,6 +309,21 @@ public class SchemaBuilder
     return this;
     }
   
+  @SuppressWarnings("rawtypes")
+  public SchemaBuilder notProperty( String name, Schema<?> schema)
+    {
+    Map<String,Schema> notProperties = Optional.ofNullable( SchemaExtensions.getNotProperties( schema_)).orElse( new HashMap<String,Schema>());
+    notProperties.put( name, schema);
+    return notProperties( notProperties);
+    }
+  
+  @SuppressWarnings("rawtypes")
+  public SchemaBuilder notProperties( Map<String,Schema> properties)
+    {
+    SchemaExtensions.setNotProperties( schema_, properties);
+    return this;
+    }
+  
   public SchemaBuilder nullable( Boolean nullable)
     {
     schema_.setNullable( nullable);

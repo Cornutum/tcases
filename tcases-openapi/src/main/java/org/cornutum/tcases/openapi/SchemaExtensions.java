@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
 
@@ -131,8 +130,7 @@ public final class SchemaExtensions
    */
   public static Set<String> getNotFormats( Schema<?> schema)
     {
-    Set<String> notFormats = getExtension( schema, EXT_NOT_FORMATS);
-    return Optional.ofNullable( notFormats).orElse( emptySet());
+    return getExtension( schema, EXT_NOT_FORMATS);
     }
 
   /**
@@ -188,8 +186,7 @@ public final class SchemaExtensions
    */
   public static Set<String> getNotPatterns( Schema<?> schema)
     {
-    Set<String> notPatterns = getExtension( schema, EXT_NOT_PATTERNS);
-    return Optional.ofNullable( notPatterns).orElse( emptySet());
+    return getExtension( schema, EXT_NOT_PATTERNS);
     }
 
   /**
@@ -250,8 +247,7 @@ public final class SchemaExtensions
       setNots( schema, schema.getNot());
       }
 
-    List<Schema<?>> nots = getExtension( schema, EXT_NOTS);
-    return Optional.ofNullable( nots).orElse( emptyList());
+    return getExtension( schema, EXT_NOTS);
     }
 
   /**
@@ -313,8 +309,7 @@ public final class SchemaExtensions
    */
   public static Set<BigDecimal> getNotMultipleOfs( Schema<?> schema)
     {
-    Set<BigDecimal> notMultipleOfs = getExtension( schema, EXT_NOT_MULTIPLEOFS);
-    return Optional.ofNullable( notMultipleOfs).orElse( emptySet());
+    return getExtension( schema, EXT_NOT_MULTIPLEOFS);
     }
 
   /**
@@ -370,8 +365,7 @@ public final class SchemaExtensions
    */
   public static List<Object> getNotEnums( Schema<?> schema)
     {
-    List<Object> notEnums = getExtension( schema, EXT_NOT_ENUMS);
-    return Optional.ofNullable( notEnums).orElse( emptyList());
+    return getExtension( schema, EXT_NOT_ENUMS);
     }
 
   /**
@@ -444,8 +438,7 @@ public final class SchemaExtensions
   @SuppressWarnings("rawtypes")
   public static Map<String,Schema> getNotProperties( Schema<?> schema)
     {
-    Map<String,Schema> notProperties = getExtension( schema, EXT_NOT_PROPERTIES);
-    return Optional.ofNullable( notProperties).orElse( emptyMap());
+    return getExtension( schema, EXT_NOT_PROPERTIES);
     }
 
   /**
