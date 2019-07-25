@@ -1,0 +1,63 @@
+<System name="ObjectSchemas">
+    <Function name="Merge">
+        <Input>
+            <VarSet name="base">
+                <Var name="maxProperties">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaxProperties"/>
+                </Var>
+                <Var name="minProperties">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMinProperties"/>
+                </Var>
+                <Var name="required">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseRequired"/>
+                </Var>
+                <Var name="properties">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                </Var>
+                <Var name="additionalProperties">
+                    <Value name="null"/>
+                    <Value name="true" property="baseAdditionalProperties"/>
+                    <Value name="false" property="baseNotAdditionalProperties"/>
+                    <Value name="Schema" property="baseAdditionalPropertiesSchema"/>
+                </Var>
+            </VarSet>
+            <VarSet name="not">
+                <Var name="maxProperties">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMinProperties"/>
+                    <Value name="&lt;= baseMinProperties" when="baseMinProperties"/>
+                    <Value name="&gt; baseMinProperties" when="baseMinProperties"/>
+                </Var>
+                <Var name="minProperties">
+                    <Value name="null"/>
+                    <Value name="Positive" whenNot="baseMaxProperties"/>
+                    <Value name="&lt; baseMaxProperties" when="baseMaxProperties"/>
+                    <Value name="&gt;= baseMaxProperties" when="baseMaxProperties"/>
+                </Var>
+                <Var name="required">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseRequired"/>
+                    <Value name="Intersects base" when="baseRequired"/>
+                    <Value name="Disjoint from base" when="baseRequired"/>
+                </Var>
+                <Var name="properties">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                </Var>
+                <Var name="additionalProperties">
+                    <Value name="null"/>
+                    <Value name="trueUnmergeable" when="baseAdditionalPropertiesSchema" failure="true"/>
+                    <Value name="true" whenNot="baseAdditionalProperties, baseAdditionalPropertiesSchema"/>
+                    <Value name="false" whenNot="baseNotAdditionalProperties"/>
+                    <Value name="trueInconsistent" when="baseAdditionalProperties" failure="true"/>
+                    <Value name="falseInconsistent" when="baseNotAdditionalProperties" failure="true"/>
+                    <Value name="Schema"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

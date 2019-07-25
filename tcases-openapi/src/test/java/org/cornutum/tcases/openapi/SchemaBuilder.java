@@ -269,6 +269,12 @@ public class SchemaBuilder
     SchemaExtensions.setNots( schema_, nots);
     return this;
     }
+
+  public SchemaBuilder notAdditionalProperties( Schema<?> additionalProperties)
+    {
+    SchemaExtensions.setNotAdditionalProperties( schema_, additionalProperties);
+    return this;
+    }
   
   public SchemaBuilder notEnums( List<Object> enums)
     {

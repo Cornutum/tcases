@@ -1135,7 +1135,7 @@ public final class SchemaUtils
 
     if( baseExtraSchema != null && Boolean.TRUE.equals( not.getAdditionalProperties()))
       {
-      throw unmergeableValue( "additionalProperties", Boolean.TRUE);
+      throw unmergeableValues( "additionalProperties", "<schema>", Boolean.TRUE);
       }
 
     merged.setAdditionalProperties(

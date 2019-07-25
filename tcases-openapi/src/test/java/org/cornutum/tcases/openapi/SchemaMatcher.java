@@ -61,6 +61,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "multipleOf", Schema::getMultipleOf).matches( Matchers::equalTo));
     expectThat( valueOf( "not", Schema::getNot).matches( SchemaMatcher::new));
     expectThat( valueOf( "nots", this::getNots).matches( listsMembersMatching( SchemaMatcher::new)));
+    expectThat( valueOf( "notAdditionalProperties", this::getNotAdditionalProperties).matches( SchemaMatcher::new));
     expectThat( valueOf( "notEnums", this::getNotEnums).matches( Composites::containsMembers));
     expectThat( valueOf( "notFormats", this::getNotFormats).matches( Composites::containsMembers));
     expectThat( valueOf( "notMultipleOfs", this::getNotMultipleOfs).matches( Composites::containsMembers));
@@ -126,6 +127,14 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     return
       Optional.ofNullable( SchemaExtensions.getNots( schema)).orElse( emptyList())
       .stream().collect( toList());
+    }
+
+  /**
+   * Returns the "additionalProperties" schema to not match when validating the given schema.
+   */
+  public Schema getNotAdditionalProperties( Schema schema)
+    {
+    return SchemaExtensions.getNotAdditionalProperties( schema);
     }
 
   /**
