@@ -14,7 +14,7 @@ usage()
   echo "  -C, -S      If -C is given, produce results to test inputs to an API client, i.e. API responses. If -S is given," >&2
   echo "              produce results to test inputs to an API server, i.e. API requests. If neither is given, the default is -S." >&2
   echo "" >&2
-  echo "  -I          Produce an input definition file for either an API client (-C) or an API server ((-P). If omitted," >&2
+  echo "  -I          Produce an input definition file for either an API client (-C) or an API server (-P). If omitted," >&2
   echo "              produce the corresponding test definition file." >&2
   echo "" >&2
   echo "  -R          If specified, tests will be generated assuming that the API will strictly enforce exclusion of 'readOnly'" >&2

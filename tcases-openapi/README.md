@@ -216,7 +216,7 @@ to investigate the tests that it generates. If you use `bash` or a similar UNIX 
 if you are using a Windows command line, you can run Tcases for OpenAPI with the `tcases-api.bat` command file, using exactly the same
 syntax.
 
-`tcase-api` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
+`tcases-api` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
 [*Tcases: The Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install).
 
 For details about the interface to the `tcases-api` command (and the `tcases-api.bat` command, too), see the Javadoc for
@@ -261,7 +261,7 @@ When you are using Tcases for OpenAPI, here are some things to keep in mind when
 
   1. **Use Version 3**: Tcases for OpenAPI is based on the specification for [OpenAPI Version 3.0.2](https://swagger.io/specification/). Earlier Version 2.X specs are not supported.
 
-  1. **Avoid type-ambiguous schemas**: Tcases for OpenAPI does not accept schema definitions that are "type-ambiguous". A type-ambiguous schema is one that does not define an explicit `type` keyword but includes other keywords that apply to multiple types. (For example, a `minLength` keyword, which applies only to `string` values, together with an `items` keyword, which applies only to `array` values.) Although type-ambiguous schemas are allowed in OpenAPI, they imply a very large and complex input space. (Probably much more than was actually intended!). Fortunately, it's easy to avoid them. In cases where different types of values are actually expected, you can define this explicitly using `oneOf` or `anyOf` keywords.
+  1. **Avoid type-ambiguous schemas**: Tcases for OpenAPI does not accept schema definitions that are "type-ambiguous". A type-ambiguous schema is one that does not define an explicit `type` keyword but includes other keywords that apply to multiple types. (For example, a `minLength` keyword, which applies only to `string` values, together with an `items` keyword, which applies only to `array` values.) Although type-ambiguous schemas are allowed in OpenAPI, they imply a very large and complex input space. (Probably much more than was actually intended!) Fortunately, it's easy to avoid them. In cases where different types of values are actually expected, you can define this explicitly using `oneOf` or `anyOf` keywords.
 
 
 ## Test case generation tips ##
