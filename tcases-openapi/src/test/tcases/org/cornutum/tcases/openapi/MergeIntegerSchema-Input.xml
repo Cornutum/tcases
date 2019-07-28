@@ -1,0 +1,64 @@
+<System name="IntegerSchemas">
+    <Function name="Merge">
+        <Input>
+            <VarSet name="base">
+                <Var name="maximum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaximum"/>
+                </Var>
+                <Var name="minimum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMinimum"/>
+                </Var>
+                <Var name="exclusiveMaximum" when="baseMaximum">
+                    <Value name="null"/>
+                    <Value name="true" property="baseExclusiveMaximum"/>
+                    <Value name="false" property="baseNotExclusiveMaximum"/>
+                </Var>
+                <Var name="exclusiveMinimum" when="baseMinimum">
+                    <Value name="null"/>
+                    <Value name="true" property="baseExclusiveMinimum"/>
+                    <Value name="false" property="baseNotExclusiveMinimum"/>
+                </Var>
+                <Var name="multipleOf">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                    <Value name="Multiple of not" when="notMultipleOfs" failure="true"/>
+                </Var>
+            </VarSet>
+            <VarSet name="not">
+                <Var name="maximum">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMinimum" property="notMaximum"/>
+                    <Value name="&lt; baseMinimum" when="baseMinimum" property="notMaximum"/>
+                    <Value name="&gt; baseMinimum" when="baseMinimum" property="notMaximum"/>
+                </Var>
+                <Var name="minimum">
+                    <Value name="null"/>
+                    <Value name="Positive" whenNot="baseMaximum" property="notMinimum"/>
+                    <Value name="&lt; baseMaximum" when="baseMaximum" property="notMinimum"/>
+                    <Value name="&gt; baseMaximum" when="baseMaximum" property="notMinimum"/>
+                </Var>
+                <Var name="exclusiveMaximum" when="notMaximum">
+                    <Value name="null"/>
+                    <Value name="true" whenNot="baseExclusiveMaximum"/>
+                    <Value name="false" whenNot="baseNotExclusiveMaximum"/>
+                    <Value name="trueInconsistent" when="baseExclusiveMaximum" failure="true"/>
+                    <Value name="falseInconsistent" when="baseNotExclusiveMaximum" failure="true"/>
+                </Var>
+                <Var name="exclusiveMinimum" when="notMinimum">
+                    <Value name="null"/>
+                    <Value name="true" whenNot="baseExclusiveMinimum"/>
+                    <Value name="false" whenNot="baseNotExclusiveMinimum"/>
+                    <Value name="trueInconsistent" when="baseExclusiveMinimum" failure="true"/>
+                    <Value name="falseInconsistent" when="baseNotExclusiveMinimum" failure="true"/>
+                </Var>
+                <Var name="notMultipleOfs">
+                    <Value name="null"/>
+                    <Value name="1" property="notMultipleOfs"/>
+                    <Value name="&gt; 1" property="notMultipleOfs"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

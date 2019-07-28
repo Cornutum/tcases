@@ -1364,20 +1364,31 @@ public final class SchemaUtils
     merged.setExclusiveMaximum(
       merged.getMaximum() == null
       ? null
-      : mergeAssertions( "exclusiveMaximum", base.getExclusiveMaximum(), not.getExclusiveMaximum()));
+      : mergeAssertions(
+        "exclusiveMaximum",
+        base.getMaximum() == null? null : base.getExclusiveMaximum(),
+        not.getMaximum() == null? null : not.getExclusiveMaximum()));
       
     // Merge exclusiveMinimum
     merged.setExclusiveMinimum(
       merged.getMinimum() == null
       ? null
-      : mergeAssertions( "exclusiveMinimum", base.getExclusiveMinimum(), not.getExclusiveMinimum()));
+      : mergeAssertions(
+        "exclusiveMinimum",
+        base.getMinimum() == null? null : base.getExclusiveMinimum(),
+        not.getMinimum() == null? null : not.getExclusiveMinimum()));
 
     // Merge multipleOf
     BigDecimal baseMultipleOf = base.getMultipleOf();
     Set<BigDecimal> notMultipleOfs = Optional.ofNullable( getNotMultipleOfs( withNotMultipleOfs( not))).orElse( emptySet());
     if( baseMultipleOf != null && notMultipleOfs.stream().anyMatch( notMultipleOf -> isMultipleOf( baseMultipleOf, notMultipleOf)))
       {
-      throw unmergeableValue( "multipleOf", baseMultipleOf);
+      notMultipleOfs.stream()
+        .filter( notMultipleOf -> isMultipleOf( baseMultipleOf, notMultipleOf))
+        .findFirst()
+        .ifPresent( notMultipleOf -> {
+          throw unmergeableValues( "multipleOf", baseMultipleOf, notMultipleOf);
+          });
       }
     merged.setMultipleOf( base.getMultipleOf());
     setNotMultipleOfs( merged, notMultipleOfs);
