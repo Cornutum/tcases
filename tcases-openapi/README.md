@@ -259,7 +259,7 @@ models.
 
 When you are using Tcases for OpenAPI, here are some things to keep in mind when you're developing your OpenAPI spec.
 
-  1. **Use Version 3**: Tcases for OpenAPI is based on the specification for [OpenAPI Version 3.0.2](https://swagger.io/specification/). Earlier Version 2.X specs are not supported.
+  1. **Use Version 3**: Tcases for OpenAPI is based on the specification for [OpenAPI Version 3.0.2](http://spec.openapis.org/oas/v3.0.2). Earlier Version 2.X specs are not supported.
 
   1. **Avoid type-ambiguous schemas**: Tcases for OpenAPI does not accept schema definitions that are "type-ambiguous". A type-ambiguous schema is one that does not define an explicit `type` keyword but includes other keywords that apply to multiple types. (For example, a `minLength` keyword, which applies only to `string` values, together with an `items` keyword, which applies only to `array` values.) Although type-ambiguous schemas are allowed in OpenAPI, they imply a very large and complex input space. (Probably much more than was actually intended!) Fortunately, it's easy to avoid them. In cases where different types of values are actually expected, you can define this explicitly using `oneOf` or `anyOf` keywords.
 
