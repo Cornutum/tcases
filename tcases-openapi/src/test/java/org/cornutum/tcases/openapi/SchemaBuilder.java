@@ -292,6 +292,12 @@ public class SchemaBuilder
     return notEnums( Arrays.stream( enums).mapToObj( d -> new BigDecimal( String.valueOf( d))).collect( toList()));
     }
   
+  public SchemaBuilder notItems( Schema<?> items)
+    {
+    SchemaExtensions.setNotItems( schema_, items);
+    return this;
+    }
+  
   public SchemaBuilder notFormats( String... formats)
     {
     SchemaExtensions.setNotFormats( schema_, formats);
