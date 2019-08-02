@@ -182,4 +182,25 @@ public class NotSchemaTest extends OpenApiTest
     {
     verifyRequestInputModel( "not-7");
     }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using the following "not" schema inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 8. Schema (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parent.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parent.Type.Value </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parent.Type.Composed-With </TD> <TD> None </TD> </TR>
+   * <TR><TD> Not.Type.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Not.Type.Value </TD> <TD> Same </TD> </TR>
+   * <TR><TD> Not.Type.Composed-With </TD> <TD> None </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Schema_8()
+    {
+    verifyRequestInputModel( "not-8");
+    }
   }

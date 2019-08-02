@@ -26,6 +26,7 @@
                                 }
                             ],
                             "not": {
+                                "multipleOf": 2.0,
                                 "oneOf": [
                                     {
                                         "enum": [ 1.0, 10.0 ]
@@ -34,7 +35,8 @@
                                         "enum": [ 1.1, 11.0 ]
                                     },
                                     {
-                                        "minimum": 100.0
+                                        "minimum": 100.0,
+                                        "multipleOf": 7.5
                                     }
                                 ]
                             }

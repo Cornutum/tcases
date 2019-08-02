@@ -17,6 +17,8 @@
         </Var>
         <Var name="Value" when="param0Value">
           <Value name="Not a multiple of 0.1" failure="true"/>
+          <Value name="Multiple of 2.0" failure="true"/>
+          <Value name="Multiple of 7.5" failure="true"/>
           <Value name="-0.1" failure="true"/>
           <Value name="0.0"/>
           <Value name="99.9"/>

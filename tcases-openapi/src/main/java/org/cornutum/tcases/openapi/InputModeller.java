@@ -1935,7 +1935,7 @@ public abstract class InputModeller
             VarValueDefBuilder.with( "No").build())
           .build());
         }
-      else if( patterns.length > 1 || notPatterns.length > 1)
+      else if( patterns.length > 0 || notPatterns.length > 0)
         {
         valueVarSet.members(
           VarSetBuilder.with( "Matches-Patterns")
