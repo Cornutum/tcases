@@ -7,6 +7,7 @@
   - [Why Tcases for OpenAPI? ](#why-tcases-for-openapi)
   - [Is your OpenAPI spec an input model? No, it's two! ](#is-your-openapi-spec-an-input-model-no-its-two)
   - [Running Tcases for OpenAPI from the command line ](#running-tcases-for-openapi-from-the-command-line)
+  - [Semantic linting with Tcases for OpenAPI](#semantic-linting-with-tcases-for-openapi)
   - [Using the Java API for Tcases for OpenAPI ](#using-the-java-api-for-tcases-for-openapi)
   - [OpenAPI tips ](#openapi-tips)
   - [Test case generation tips ](#test-case-generation-tips)
@@ -39,7 +40,6 @@ tcases-api petstore-expanded.yaml
 OK, so what just happened? Take a look at the `tcases-api.log` file, and you'll see something like this:
 
 ```
-13:06:15.942 INFO  o.c.tcases.openapi.ApiCommand - 3.1.0
 13:06:15.991 INFO  o.c.tcases.openapi.ApiCommand - Reading API spec from ./petstore-expanded.yaml
 13:06:16.300 INFO  o.c.tcases.openapi.ApiCommand - Writing results to ././petstore-expanded-Requests-Test.json
 ...
@@ -181,7 +181,8 @@ are likely to find that they cover more than 75% of the branches in the code.
 An OpenAPI specification for your API can be a tricky thing to get right. But Tcases for OpenAPI can help. It will tell
 you about any elements in your spec that don't comply with the OAS (Version 3) standard. But that's not all. It will
 also warn you about elements in your spec that, while technically compliant, may actually be inconsistent or superfluous
-or may not behave as you expected.
+or may not behave as you expected. In effect, Tcases for OpenAPI gives you a [semantic linter](#semantic-linting-with-tcases-for-openapi)
+for your API spec.
 
 But that's not all. Even when your OpenAPI spec is valid, consistent, and correct it still may not describe how your API
 *actually works*! And Tcases for OpenAPI can help show you when this happens. The Pet Store example shown above is a
@@ -244,6 +245,62 @@ tcases-api -C -f someTests.json -o otherDir my-api.json
 tcases-api -S -c fail < my-api.json
 ```
 
+## Semantic linting with Tcases for OpenAPI ##
+
+Tcases for OpenAPI works by constructing a model of the "input space" for API requests or responses. In other words, a representation of all possible valid
+inputs to your API. As a result, Tcases for OpenAPI can detect when an API spec that is syntactically valid nevertheless defines an input space that is
+*semantically* flawed. For example, it may define a schema that is inconsistent and can never by validated by any instance. Or it may contain elements that are
+intended to have some effect but actually are superfluous and have no effect at all.
+
+Such semantic flaws are referred to as "input modelling conditions". In most cases, Tcases for OpenAPI can automatically adjust the input space to remove the
+condition and continue to generate test cases using the modified input space model. In addition, Tcases for OpenAPI will report all input modelling conditions
+by writing a log message (or by some other method, depending on how you want to [handle input modelling conditions](#conditions)). But to be sure your API spec
+is working as you intended, you need to take a close look at all conditions reported and fix them.
+
+For example, try running the following commands.
+
+```
+cd ${tcases-release-dir}
+cd docs/examples/openapi
+tcases -l stdout api-error.json
+```
+
+You'll see something like the following messages logged to standard output.
+
+```
+...
+16:20:10.612 INFO  o.c.tcases.openapi.ApiCommand - Reading API spec from ./api-error.json
+16:20:10.840 ERROR o.c.tcases.openapi.InputModeller - Object,/object,POST,param0: minProperties=5 exceeds the total number of properties. Ignoring infeasible minProperties.
+16:20:10.857 INFO  o.c.tcases.openapi.ApiCommand - Writing results to ././api-error-Requests-Test.json
+...
+```
+
+Why? The schema for `param0` contains an infeasible `minProperties` assertion -- it's impossible for any valid instance to define more that four properties.
+Tcases for OpenAPI continued to generate test cases that allow at most four properties. But is that really what was intended? Someone needs to fix this API spec,
+either by removing the infeasible assertion or by making other changes to make it correct.
+
+Some less serious conditions may deserve only a warning. For example, try running the following commands.
+
+```
+cd ${tcases-release-dir}
+cd docs/examples/openapi
+tcases -l stdout api-warn.json
+```
+
+You'll see something like the following messages logged to standard output.
+
+```
+...
+17:22:49.304 INFO  o.c.tcases.openapi.ApiCommand - Reading API spec from ./api-warn.json
+17:22:49.549 WARN  o.c.tcases.openapi.InputModeller - AllOf,/allOf,POST,param0,allOf[0],anyOf[2]: Ignoring this schema -- not applicable when only instance types=[string] can be valid.
+17:22:49.587 WARN  o.c.tcases.openapi.InputModeller - AllOf,/allOf,POST,param0,allOf[0],oneOf[0]: Ignoring this schema -- not applicable when only instance types=[string] can be valid.
+17:22:49.592 INFO  o.c.tcases.openapi.ApiCommand - Writing results to ././api-warn-Requests-Test.json
+...
+```
+
+Why? The schema for `param0` will validate only instances of type `string`. But it also specifies `anyOf` and `oneOf` assertions that include alternative schemas of
+a different type. These alternative schemas are superfluous -- they can never be validated. Maybe that's OK. Or maybe someone made a mistake!
+
 ## Using the Java API for Tcases for OpenAPI ##
 
 You can also run Tcases for OpenAPI by integrating it into your own Java application. If you are processing OpenAPI
@@ -257,16 +314,40 @@ models.
 
 ## OpenAPI tips ##
 
-When you are using Tcases for OpenAPI, here are some things to keep in mind when you're developing your OpenAPI spec.
+To use Tcases for OpenAPI effectively, there are some things to keep in mind when you're building your OpenAPI spec.
 
-  1. **Use Version 3**: Tcases for OpenAPI is based on the specification for [OpenAPI Version 3.0.2](https://swagger.io/specification/). Earlier Version 2.X specs are not supported.
+  1. **Use Version 3.** Tcases for OpenAPI is based on the specification for [OpenAPI Version 3.0.2](https://swagger.io/specification/). Earlier Version 2.X specs are not supported.
 
-  1. **Avoid type-ambiguous schemas**: Tcases for OpenAPI does not accept schema definitions that are "type-ambiguous". A type-ambiguous schema is one that does not define an explicit `type` keyword but includes other keywords that apply to multiple types. (For example, a `minLength` keyword, which applies only to `string` values, together with an `items` keyword, which applies only to `array` values.) Although type-ambiguous schemas are allowed in OpenAPI, they imply a very large and complex input space. (Probably much more than was actually intended!). Fortunately, it's easy to avoid them. In cases where different types of values are actually expected, you can define this explicitly using `oneOf` or `anyOf` keywords.
+  1. **Avoid type-ambiguous schemas.** A schema that does not define a `type` keyword can validate multiple types of instances. But Tcases for OpenAPI expects you to be more explicit about which instance types are valid. Here's how to do that.
 
+     * Define the `type` keyword. Such a schema will validate only instances of the specified type.
+    
+     * Or define schema keywords that apply to only a single instance type. Tcases for OpenAPI will assume that this schema is intended to validate only instances of
+       the implied type. For example, a schema that defines only the `minLength` keyword has an implied type of `string`, and Tcases for OpenAPI will handle this schema as if
+       `type: "string"` was defined.
+
+     * Or define only generic schema keywords. For example, keywords like `nullable`, `allOf`, `oneOf`, etc. are generic -- they apply to any instance type.
+
+     * But don't mix schema keyword types. Tcases for OpenAPI does not accept schema definitions that imply multiple types.  For example, a `minLength` keyword,
+       which implies `type: "string"`, together with an `items` keyword, which implies `type: "array"`, is not accepted. Although mixed-type schemas are allowed in OpenAPI,
+       they imply a very large and complex input space. (Probably much more than was actually intended!). Fortunately, it's easy to avoid them. In cases where
+       different types of values are actually expected, you can define this explicitly using the `oneOf` keyword.
+
+  1. **`not` must narrow.** This rule is your key to understanding how Tcases for OpenAPI handles `not` schemas: a `not` schema must "narrow" (i.e. reduce) the set of
+     instances that can be validated by the parent schema. When the parent schema validates only instances of a single type, its `not` schema must also apply only to
+     instances of the same type. If a `not` schema has a `type` (explicit or implied) that is different from its parent schema `type` (explicit or implied), it is
+     superfluous -- it can never narrow the set of valid instances -- so Tcases for OpenAPI will ignore it (with a [warning](#semantic-linting-with-tcases-for-openapi)).
+
+     Some other tips for using `not` schemas with Tcases for OpenAPI:
+
+     * No double negatives! A `not` schema that contains another `not` assertion is not supported and is ignored (with an [error](#semantic-linting-with-tcases-for-openapi)).
+
+     * `allOf` assertions in a `not` schema are not supported and are ignored (with an [error](#semantic-linting-with-tcases-for-openapi)). If necessary, you can get an equivalent result
+        with an `anyOf` assertion containing a list of `not` schemas.
 
 ## Test case generation tips ##
 
-  1. **Handle input modelling conditions**: Tcases for OpenAPI reports conditions in your OpenAPI spec that will affect how test cases are generated. Warning conditions are reported with an explanation of the situation. Error conditions report elements in your spec that may need to be changed to generate tests correctly. By default, conditions are reported by writing log messages. By specifying a different [`ModelConditionNotifier`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ModelConditionNotifier.html), you can cause these conditions to throw an exception or to be completely ignored. You can do this at the command line using the `-c` option of the `tcases-api` command. You can even customize condition handling using your own implementation of the `ModelConditionNotifier` interface in the [`ModelOptions`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ModelOptions.html) used by Tcases for OpenAPI.
+  1. **Handle input modelling <A name="conditions">conditions</A>.** Tcases for OpenAPI reports conditions in your OpenAPI spec that will affect how test cases are generated. Warning conditions are reported with an explanation of the situation. Error conditions report elements in your spec that may need to be changed to generate tests correctly. By default, conditions are reported by writing log messages. By specifying a different [`ModelConditionNotifier`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ModelConditionNotifier.html), you can cause these conditions to throw an exception or to be completely ignored. You can do this at the command line using the `-c` option of the `tcases-api` command. You can even customize condition handling using your own implementation of the `ModelConditionNotifier` interface in the [`ModelOptions`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ModelOptions.html) used by Tcases for OpenAPI.
 
-  1. **Handle "readOnly" and "writeOnly" properties**: The OpenAPI standard defines how you can identify data object properties as ["readOnly" or "writeOnly"](https://swagger.io/specification/#schemaObject). Strict enforcement of "readOnly" or "writeOnly" properties is not required. But how your API handles these such properties will affect your test cases. By default, Tcases for OpenAPI generates tests assuming that optional "readOnly" and "writeOnly" restrictions are not enforced. But you can change the [`ModelOptions`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ModelOptions.html) to assume strict enforcement when generating tests cases. You can do this at the command line with the `-R` and `-W` options of the `tcases-api` command.
+  1. **Handle "readOnly" and "writeOnly" properties.** The OpenAPI standard defines how you can identify data object properties as ["readOnly" or "writeOnly"](https://swagger.io/specification/#schemaObject). Strict enforcement of "readOnly" or "writeOnly" properties is not required. But how your API handles these such properties will affect your test cases. By default, Tcases for OpenAPI generates tests assuming that optional "readOnly" and "writeOnly" restrictions are not enforced. But you can change the [`ModelOptions`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ModelOptions.html) to assume strict enforcement when generating tests cases. You can do this at the command line with the `-R` and `-W` options of the `tcases-api` command.
   
