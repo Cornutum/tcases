@@ -2,10 +2,10 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.1.0](ReleaseNotes.md#310)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.1.1](ReleaseNotes.md#311)) is now available at the Maven Central Repository.
     See [HowToDownload](HowToDownload.md) for download instructions.
 
-  * Tcases 3.1.0 adds two new capabilities: cardinality conditions and Tcases for OpenAPI. See the [release notes](ReleaseNotes.md#310) for details.
+  * Tcases 3.1.1 adds several improvements to [Tcases for OpenAPI](tcases-openapi/README.md). See the [release notes](ReleaseNotes.md#311) for details.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 

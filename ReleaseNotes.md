@@ -1,5 +1,23 @@
 # Release Notes #
 
+## 3.1.1 ##
+
+This release adds several improvements to [Tcases for OpenAPI](tcases-openapi/README.md).
+
+  * **Support for `not` schemas**: The effects of `not` assertions are now applied to the input models and test cases generated,
+  with some caveats and limitations. See [OpenAPI tips](tcases-openapi/README.md#openapi-tips) for details.
+
+  * **`memberValidated` annotations**: For API inputs defined by boolean combinations of subschemas (using assertions like `allOf`, `oneOf`, etc.),
+  test cases are generated to cover all of the cases where one or more subschemas are not validated. To clarify which subschema failed to
+  validate and why, a `memberValidated: false` annotation is added to the corresponding failure value choice.
+
+  * **Accumulated string pattern matches**: A `string` schema defined using boolean combinations of subschemas (using assertions like `allOf`, `oneOf`, etc.)
+  can accumulate multiple `pattern` assertions that must all be (not) matched for validation to be successful. Tcases for Open API now generates
+  input models and test cases to cover all accumulated `pattern` assertions.
+
+  * **`tcases-api` command fixes**: Some problems handling certain input files have been repaired.
+  
+  
 ## 3.1.0 ##
 
 This release add two new capabilities to Tcases.
