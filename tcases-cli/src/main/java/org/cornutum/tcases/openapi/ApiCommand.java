@@ -718,10 +718,7 @@ public class ApiCommand
         throw new RuntimeException( "Can't create output directory=" + outputDir);
         }
 
-      outputFile =
-        new File
-        ( outputDir,
-          outputFile.isAbsolute()? outputFile.getName() : outputFile.getPath());
+      outputFile = new File( outputDir, outputFile.getName());
       }
 
     OutputStream outputStream = null;
@@ -744,15 +741,22 @@ public class ApiCommand
       ? TcasesOpenApiIO.getRequestInputModel( apiSpecFile, options.getModelOptions())
       : TcasesOpenApiIO.getResponseInputModel( apiSpecFile, options.getModelOptions());
 
-    // Write requested results
-    logger_.info( "Writing results to {}", outputFile==null? "standard output" : outputFile);
-    if( options.isTests())
+    if( inputDef == null)
       {
-      TcasesOpenApiIO.writeTests( Tcases.getTests( inputDef, null, null), outputStream);
+      logger_.warn( "No {} defined", options.isServerTest()? "requests" : "responses");
       }
     else
       {
-      TcasesOpenApiIO.writeInputModel( inputDef, outputStream);
+      // Write requested results
+      logger_.info( "Writing results to {}", outputFile==null? "standard output" : outputFile);
+      if( options.isTests())
+        {
+        TcasesOpenApiIO.writeTests( Tcases.getTests( inputDef, null, null), outputStream);
+        }
+      else
+        {
+        TcasesOpenApiIO.writeInputModel( inputDef, outputStream);
+        }
       }
     }
 
