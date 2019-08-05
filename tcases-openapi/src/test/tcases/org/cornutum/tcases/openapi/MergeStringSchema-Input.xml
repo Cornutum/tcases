@@ -1,0 +1,95 @@
+<System name="StringSchemas">
+    <Function name="Merge">
+        <Input>
+            <VarSet name="base">
+                <Var name="format">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseFormat"/>
+                </Var>
+                <Var name="nullable">
+                    <Value name="null"/>
+                    <Value name="true" property="baseNullable"/>
+                    <Value name="false" property="baseNotNullable"/>
+                </Var>
+                <Var name="readOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="baseReadOnly"/>
+                    <Value name="false" property="baseNotReadOnly"/>
+                </Var>
+                <Var name="writeOnly">
+                    <Value name="null"/>
+                    <Value name="true" whenNot="baseReadOnly" property="baseWriteOnly"/>
+                    <Value name="false" property="baseNotWriteOnly"/>
+                </Var>
+                <Var name="enum">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseEnum"/>
+                </Var>
+                <Var name="maxLength">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaxLength"/>
+                </Var>
+                <Var name="minLength">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMinLength"/>
+                </Var>
+                <Var name="patterns">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="basePatterns"/>
+                </Var>
+            </VarSet>
+            <VarSet name="not">
+                <Var name="notFormats">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                    <Value name="Includes-Base" when="baseFormat" failure="true"/>
+                </Var>
+                <Var name="nullable">
+                    <Value name="null"/>
+                    <Value name="true" whenNot="baseNullable"/>
+                    <Value name="false" whenNot="baseNotNullable"/>
+                    <Value name="trueInconsistent" when="baseNullable" failure="true"/>
+                    <Value name="falseInconsistent" when="baseNotNullable" failure="true"/>
+                </Var>
+                <Var name="readOnly">
+                    <Value name="null"/>
+                    <Value name="true" whenNot="baseReadOnly"/>
+                    <Value name="false" whenNot="baseNotReadOnly" property="notNotReadOnly"/>
+                    <Value name="trueInconsistent" when="baseReadOnly" failure="true"/>
+                    <Value name="falseInconsistent" when="baseNotReadOnly" failure="true"/>
+                </Var>
+                <Var name="writeOnly">
+                    <Value name="null"/>
+                    <Value name="true" whenNot="baseWriteOnly"/>
+                    <Value name="false" whenNot="baseNotWriteOnly, notNotReadOnly"/>
+                    <Value name="trueInconsistent" when="baseWriteOnly" failure="true"/>
+                    <Value name="falseInconsistent" when="baseNotWriteOnly" failure="true"/>
+                </Var>
+                <Var name="enum">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseEnum"/>
+                    <Value name="Contains base" when="baseEnum"/>
+                    <Value name="Intersects base" when="baseEnum"/>
+                    <Value name="Disjoint from base" when="baseEnum"/>
+                </Var>
+                <Var name="maxLength">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMinLength"/>
+                    <Value name="&lt;= baseMinLength" when="baseMinLength"/>
+                    <Value name="&gt; baseMinLength" when="baseMinLength"/>
+                </Var>
+                <Var name="minLength">
+                    <Value name="null"/>
+                    <Value name="Positive" whenNot="baseMaxLength"/>
+                    <Value name="&lt; base" when="baseMaxLength"/>
+                    <Value name="&gt;= base" when="baseMaxLength"/>
+                </Var>
+                <Var name="patterns">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                    <Value name="Intersects base" when="basePatterns" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

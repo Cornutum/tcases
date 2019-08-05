@@ -21,7 +21,7 @@
             <Value name="0"/>
             <Value name="&gt; 0"/>
           </Var>
-          <Var name="MatchesPattern">
+          <Var name="Matches-Pattern">
             <Has name="pattern" value="^[A-Za-z0-9]+"/>
             <Value name="Yes"/>
             <Value name="No" failure="true"/>

@@ -23,8 +23,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
+
+import java.math.BigDecimal;
 
 /**
  * A composite matcher for {@link Schema} objects.
@@ -56,6 +60,14 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "minimum", Schema::getMinimum).matches( Matchers::equalTo));
     expectThat( valueOf( "multipleOf", Schema::getMultipleOf).matches( Matchers::equalTo));
     expectThat( valueOf( "not", Schema::getNot).matches( SchemaMatcher::new));
+    expectThat( valueOf( "nots", this::getNots).matches( listsMembersMatching( SchemaMatcher::new)));
+    expectThat( valueOf( "notAdditionalProperties", this::getNotAdditionalProperties).matches( SchemaMatcher::new));
+    expectThat( valueOf( "notEnums", this::getNotEnums).matches( Composites::containsMembers));
+    expectThat( valueOf( "notItems", this::getNotItems).matches( SchemaMatcher::new));
+    expectThat( valueOf( "notFormats", this::getNotFormats).matches( Composites::containsMembers));
+    expectThat( valueOf( "notMultipleOfs", this::getNotMultipleOfs).matches( Composites::containsMembers));
+    expectThat( valueOf( "notPatterns", this::getNotPatterns).matches( Composites::containsMembers));
+    expectThat( valueOf( "notProperties", this::getNotProperties).matches( containsMembersMatching( Property.Matcher::new)));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
     expectThat( valueOf( "patterns", this::getPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "properties", this::getProperties).matches( containsMembersMatching( Property.Matcher::new)));
@@ -106,6 +118,75 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
   private Iterable<String> getPatterns( Schema schema)
     {
     return SchemaExtensions.getPatterns( schema);
+    }
+
+  /**
+   * Returns the composed set of schemas to not match when validating the given schema.
+   */
+  private Iterable<Schema> getNots( Schema schema)
+    {
+    return
+      Optional.ofNullable( SchemaExtensions.getNots( schema)).orElse( emptyList())
+      .stream().collect( toList());
+    }
+
+  /**
+   * Returns the "additionalProperties" schema to not match when validating the given schema.
+   */
+  public Schema getNotAdditionalProperties( Schema schema)
+    {
+    return SchemaExtensions.getNotAdditionalProperties( schema);
+    }
+
+  /**
+   * Returns the composed set of enums to not match when validating the given schema.
+   */
+  private Iterable<Object> getNotEnums( Schema schema)
+    {
+    return SchemaExtensions.getNotEnums( schema);
+    }
+
+  /**
+   * Returns the "items" schema to not match when validating the given schema.
+   */
+  private Schema getNotItems( Schema schema)
+    {
+    return SchemaExtensions.getNotItems( schema);
+    }
+
+  /**
+   * Returns the composed set of formats to not match when validating the given schema.
+   */
+  private Iterable<String> getNotFormats( Schema schema)
+    {
+    return SchemaExtensions.getNotFormats( schema);
+    }
+
+  /**
+   * Returns the composed set of multipleOfs to not match when validating the given schema.
+   */
+  private Iterable<BigDecimal> getNotMultipleOfs( Schema schema)
+    {
+    return SchemaExtensions.getNotMultipleOfs( schema);
+    }
+
+  /**
+   * Returns the composed set of patterns to not match when validating the given schema.
+   */
+  private Iterable<String> getNotPatterns( Schema schema)
+    {
+    return SchemaExtensions.getNotPatterns( schema);
+    }
+
+  /**
+   * Returns the composed set of property definitions to not match when validating the given schema.
+   */
+  private Set<Property> getNotProperties( Schema schema)
+    {
+    return
+      Optional.ofNullable( (Map<String,Schema>) SchemaExtensions.getNotProperties( schema))
+      .map( properties -> properties.entrySet().stream().map( entry -> new Property( entry.getKey(), entry.getValue())).collect( toSet()))
+      .orElse( emptySet());
     }
 
   /**
@@ -234,7 +315,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
         {
         super( expected);
         expectThat( valueOf( "name", Property::getName).matches( Matchers::equalTo));
-        expectThat( valueOf( "value", Property::getValue).matches( Matchers::equalTo));
+        expectThat( valueOf( "value", Property::getValue).matches( SchemaMatcher::new));
         }
       }
     

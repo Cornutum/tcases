@@ -1,0 +1,50 @@
+<System name="ArraySchemas">
+    <Function name="Merge">
+        <Input>
+            <VarSet name="base">
+                <Var name="maxItems">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaxItems"/>
+                </Var>
+                <Var name="minItems">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMinItems"/>
+                </Var>
+                <Var name="uniqueItems">
+                    <Value name="null"/>
+                    <Value name="true" property="baseUniqueItems"/>
+                    <Value name="false" property="baseNotUniqueItems"/>
+                </Var>
+                <Var name="items">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                </Var>
+            </VarSet>
+            <VarSet name="not">
+                <Var name="maxItems">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMinItems"/>
+                    <Value name="&lt;= baseMinItems" when="baseMinItems"/>
+                    <Value name="&gt; baseMinItems" when="baseMinItems"/>
+                </Var>
+                <Var name="minItems">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMaxItems"/>
+                    <Value name="&lt; baseMaxItems" when="baseMaxItems"/>
+                    <Value name="&gt;= baseMaxItems" when="baseMaxItems"/>
+                </Var>
+                <Var name="uniqueItems">
+                    <Value name="null"/>
+                    <Value name="true" whenNot="baseUniqueItems"/>
+                    <Value name="false" whenNot="baseNotUniqueItems"/>
+                    <Value name="trueInconsistent" when="baseUniqueItems" failure="true"/>
+                    <Value name="falseInconsistent" when="baseNotUniqueItems" failure="true"/>
+                </Var>
+                <Var name="items">
+                    <Value name="null"/>
+                    <Value name="Non-null"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

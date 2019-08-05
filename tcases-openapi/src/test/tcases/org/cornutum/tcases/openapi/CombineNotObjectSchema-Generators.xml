@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="*" tuples="1"/>
+  <TupleGenerator function="Combine" seed="5699539115646929920" tuples="1">
+    <Combine tuples="2">
+      <Include var="additional.maxProperties"/>
+      <Include var="base.maxProperties"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="additional.minProperties"/>
+      <Include var="base.minProperties"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="additional.required"/>
+      <Include var="base.required"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="additional.properties.members"/>
+      <Include var="base.properties"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="additional.additionalProperties"/>
+      <Include var="base.additionalProperties"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Not",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/not": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+
+                        "schema": {
+                            "maxLength": 256,
+                            
+                            "not": {
+                                "minLength": 8,
+                                "anyOf": [
+                                    {
+                                        "pattern": "[0-9]+"
+                                    },
+                                    {
+                                        "pattern": "Error",
+                                        "format": "error"
+                                    },
+                                    {
+                                        "type": "integer"
+                                    }
+                                ]                                
+                            },
+                            "allOf": [
+                                {
+                                    "pattern": ".*"
+                                },
+                                {
+                                    "not": {
+                                        "minLength": 2
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "$ref": "#/components/responses/success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

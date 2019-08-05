@@ -1,0 +1,42 @@
+<System name="StringSchemas">
+    <Function name="Combine">
+        <Input>
+            <VarSet name="base">
+                <Var name="maxLength">
+                    <Value name="null"/>
+                    <Value name="Non-null" property="baseMaxLength"/>
+                </Var>
+                <Var name="minLength">
+                    <Value name="null"/>
+                    <Value name="Positive" property="baseMinLength"/>
+                    <Value name="0" failure="true"/> <!-- Unnegatable -->
+                </Var>
+                <Var name="patterns">
+                    <Value name="null"/>
+                    <Value name="1"/>
+                    <Value name="&gt; 1"/>
+                </Var>
+            </VarSet>
+            <VarSet name="additional">
+                <Var name="maxLength">
+                    <Value name="null"/>
+                    <Value name="Non-null" whenNot="baseMaxLength" property="additionalMaxLength"/>
+                    <Value name="&lt; base" when="baseMaxLength" property="additionalMaxLength"/>
+                    <Value name="&gt; base" when="baseMaxLength" property="additionalMaxLength"/>
+                </Var>
+                <Var name="minLength">
+                    <Value name="null"/>
+                    <Value name="Positive" whenNot="baseMinLength" property="additionalMinLength"/>
+                    <Value name="&lt; base" when="baseMinLength" property="additionalMinLength"/>
+                    <Value name="&gt; base" when="baseMinLength" property="additionalMinLength"/>
+                    <Value name="0" failure="true"/> <!-- Unnegatable -->
+                </Var>
+                <Var name="patterns">
+                    <Value name="null"/>
+                    <Value name="1"/>
+                    <Value name="&gt; 1"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

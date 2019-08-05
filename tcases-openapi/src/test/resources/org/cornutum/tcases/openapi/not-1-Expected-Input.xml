@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<System name="Not">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_not">
+    <Input type="query">
+      <VarSet name="param0">
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <VarSet name="AnyOf" when="param0">
+          <VarSet name="Members">
+            <Var name="Validated">
+              <Value name="1">
+                <When>
+                  <Equals property="param0AnyOfMemberValidated" count="1"/>
+                </When>
+              </Value>
+              <Value name="0" failure="true">
+                <When>
+                  <Not property="param0AnyOfMemberValidated">
+                  </Not>
+                </When>
+              </Value>
+              <Value name="&gt; 1" once="true">
+                <When>
+                  <MoreThan property="param0AnyOfMemberValidated" min="1"/>
+                </When>
+              </Value>
+            </Var>
+            <VarSet name="0">
+              <Var name="Type">
+                <Value name="Not null" property="param0AnyOf0Value, param0AnyOfMemberValidated"/>
+                <Value name="null">
+                  <Has name="memberValidated" value="false"/>
+                </Value>
+              </Var>
+            </VarSet>
+            <VarSet name="1">
+              <Var name="Type">
+                <Value name="Not null" property="param0AnyOf1Value"/>
+              </Var>
+              <VarSet name="Has-Excluded" when="param0AnyOf1Value">
+                <Var name="Format">
+                  <Value name="error">
+                    <Has name="memberValidated" value="false"/>
+                  </Value>
+                  <Value name="No" property="param0AnyOfMemberValidated"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="2">
+              <Var name="Type">
+                <Value name="Not null" property="param0AnyOf2Value"/>
+                <Value name="null" once="true"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

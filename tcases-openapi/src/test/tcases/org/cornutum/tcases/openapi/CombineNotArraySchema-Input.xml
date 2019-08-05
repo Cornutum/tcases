@@ -1,0 +1,97 @@
+<System name="ArraySchemas">
+    <Function name="Combine">
+        <Input>
+            <VarSet name="base">
+                <Var name="notFormats">
+                    <Value name="0"/>
+                    <Value name="1"/>
+                    <Value name="&gt; 1"/>
+                </Var>
+                <Var name="nullable">`
+                    <Value name="null"/>
+                    <Value name="true" failure="true"/> <!-- Unnegatable -->
+                    <Value name="false"/>
+                </Var>
+                <Var name="readOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="baseReadOnly" whenNot="additionalNotReadOnly"/>
+                    <Value name="false" property="baseNotReadOnly"/>
+                    <Value name="trueInconsistent" when="additionalNotReadOnly" failure="true"/>
+                </Var>
+                <Var name="writeOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="baseWriteOnly" whenNot="additionalNotWriteOnly"/>
+                    <Value name="false" property="baseNotWriteOnly"/>
+                    <Value name="trueInconsistent" when="additionalNotWriteOnly" failure="true"/>
+                </Var>
+                <Var name="maxItems">
+                    <Value name="null"/>
+                    <Value name="Positive" property="baseMaxItems"/>
+                </Var>
+                <Var name="minItems">
+                    <Value name="null"/>
+                    <Value name="Positive" property="baseMinItems"/>
+                    <Value name="0" failure="true"/> <!-- Unnegatable -->
+                </Var>
+                <Var name="uniqueItems">
+                    <Value name="null"/>
+                    <Value name="true"/>
+                    <Value name="false" failure="true"/> <!-- Unnegatable -->
+                </Var>
+                <Var name="items">
+                    <Value name="null"/>
+                    <Value name="Empty"/>
+                    <Value name="Non-empty"/>
+                </Var>
+            </VarSet>
+            <VarSet name="additional">
+                <Var name="notFormats">
+                    <Value name="0"/>
+                    <Value name="1"/>
+                    <Value name="&gt; 1"/>
+                </Var>
+                <Var name="nullable">
+                    <Value name="null"/>
+                    <Value name="true" failure="true"/> <!-- Unnegatable -->
+                    <Value name="false"/>
+                </Var>
+                <Var name="readOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="additionalReadOnly" whenNot="baseNotReadOnly"/>
+                    <Value name="false" property="additionalNotReadOnly"/>
+                    <Value name="falseInconsistent" when="baseReadOnly" failure="true"/>
+                </Var>
+                <Var name="writeOnly">
+                    <Value name="null"/>
+                    <Value name="true" property="additionalWriteOnly" whenNot="baseNotWriteOnly"/>
+                    <Value name="false" property="additionalNotWriteOnly"/>
+                    <Value name="falseInconsistent" when="baseWriteOnly" failure="true"/>
+                </Var>
+                <Var name="maxItems">
+                    <Value name="null"/>
+                    <Value name="Positive" whenNot="baseMaxItems"/>
+                    <Value name="&lt; base" when="baseMaxItems"/>
+                    <Value name="&gt; base" when="baseMaxItems"/>
+                </Var>
+                <Var name="minItems">
+                    <Value name="null"/>
+                    <Value name="Positive" whenNot="baseMinItems"/>
+                    <Value name="&lt; base" when="baseMinItems"/>
+                    <Value name="&gt; base" when="baseMinItems"/>
+                    <Value name="0" when="baseMinItems" failure="true"/> <!-- Unnegatable -->
+                </Var>
+                <Var name="uniqueItems">
+                    <Value name="null"/>
+                    <Value name="true"/>
+                    <Value name="false" failure="true"/> <!-- Unnegatable -->
+                </Var>
+                <Var name="items">
+                    <Value name="null"/>
+                    <Value name="Empty"/>
+                    <Value name="Non-empty"/>
+                    <Value name="Different-Type" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

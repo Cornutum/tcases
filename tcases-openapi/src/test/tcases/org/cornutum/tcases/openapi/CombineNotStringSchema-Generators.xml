@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="Combine" seed="9067414311669276672" tuples="1">
+    <Combine tuples="2">
+      <Include var="additional.maxLength"/>
+      <Include var="base.maxLength"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="additional.minLength"/>
+      <Include var="base.minLength"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="additional.patterns"/>
+      <Include var="base.patterns"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

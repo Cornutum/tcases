@@ -22,7 +22,7 @@
             <Value name="8"/>
             <Value name="9" failure="true"/>
           </Var>
-          <Var name="MatchesPattern">
+          <Var name="Matches-Pattern">
             <Has name="pattern" value="."/>
             <Value name="Yes"/>
             <Value name="No" failure="true"/>

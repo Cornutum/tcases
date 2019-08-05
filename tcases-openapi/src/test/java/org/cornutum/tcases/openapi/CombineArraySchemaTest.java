@@ -69,7 +69,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( true)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -140,7 +140,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -206,7 +206,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "integer").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -270,7 +270,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( false)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -341,7 +341,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "number").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -412,7 +412,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -481,7 +481,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -543,7 +543,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( true)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -605,7 +605,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "string").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -674,7 +674,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( true)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -746,7 +746,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -803,7 +803,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "boolean").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     expectFailure( OpenApiException.class)
       .when( () -> combineSchemas( context, base, additional))

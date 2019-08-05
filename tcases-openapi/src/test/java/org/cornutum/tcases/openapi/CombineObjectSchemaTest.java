@@ -65,7 +65,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -129,7 +129,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -193,7 +193,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .required( "Delta")
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -259,7 +259,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -327,7 +327,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -395,7 +395,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -462,7 +462,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -529,7 +529,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .required( "Delta")
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -590,7 +590,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .minProperties( 9)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -657,7 +657,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -725,7 +725,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -794,7 +794,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -860,7 +860,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -925,7 +925,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -989,7 +989,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").required( "Foo").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -1055,7 +1055,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
@@ -1123,7 +1123,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     expectFailure( OpenApiException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -1183,7 +1183,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "integer").build())
       .build();
 
-    OpenApiContext context = new OpenApiContext();
+    NotificationContext context = new NotificationContext();
     
     expectFailure( OpenApiException.class)
       .when( () -> combineSchemas( context, base, additional))

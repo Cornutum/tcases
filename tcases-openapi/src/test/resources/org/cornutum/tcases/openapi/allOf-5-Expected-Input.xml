@@ -20,7 +20,7 @@
             <Value name="&gt; 0"/>
             <Value name="0"/>
           </Var>
-          <Var name="MatchesPattern">
+          <Var name="Matches-Pattern">
             <Has name="pattern" value="^[A-Z]*$"/>
             <Value name="Yes"/>
             <Value name="No" failure="true"/>

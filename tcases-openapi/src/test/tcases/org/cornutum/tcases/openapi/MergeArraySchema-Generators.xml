@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="Merge" seed="3874095901736328192" tuples="1">
+    <Combine tuples="2">
+      <Include var="base.maxItems"/>
+      <Include var="not.maxItems"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="base.minItems"/>
+      <Include var="not.minItems"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="base.uniqueItems"/>
+      <Include var="not.uniqueItems"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="base.items"/>
+      <Include var="not.items"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

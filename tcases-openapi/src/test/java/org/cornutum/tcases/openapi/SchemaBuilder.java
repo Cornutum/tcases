@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Builds {@link Schema} instances.
@@ -263,9 +264,75 @@ public class SchemaBuilder
     return multipleOf( new BigDecimal( String.valueOf( multipleOf)));
     }
   
-  public SchemaBuilder not( Schema<?> not)
+  public SchemaBuilder nots( Schema<?>... nots)
     {
-    schema_.setNot( not);
+    SchemaExtensions.setNots( schema_, nots);
+    return this;
+    }
+
+  public SchemaBuilder notAdditionalProperties( Schema<?> additionalProperties)
+    {
+    SchemaExtensions.setNotAdditionalProperties( schema_, additionalProperties);
+    return this;
+    }
+  
+  public SchemaBuilder notEnums( List<Object> enums)
+    {
+    SchemaExtensions.setNotEnums( schema_, enums);
+    return this;
+    }
+  
+  public SchemaBuilder notEnums( Object... enums)
+    {
+    return notEnums( Arrays.asList( enums));
+    }
+  
+  public SchemaBuilder notEnumNumbers( double... enums)
+    {
+    return notEnums( Arrays.stream( enums).mapToObj( d -> new BigDecimal( String.valueOf( d))).collect( toList()));
+    }
+  
+  public SchemaBuilder notItems( Schema<?> items)
+    {
+    SchemaExtensions.setNotItems( schema_, items);
+    return this;
+    }
+  
+  public SchemaBuilder notFormats( String... formats)
+    {
+    SchemaExtensions.setNotFormats( schema_, formats);
+    return this;
+    }
+  
+  public SchemaBuilder notMultipleOfs( Number... multipleOfs)
+    {
+    SchemaExtensions.setNotMultipleOfs(
+      schema_,
+      Arrays.stream( multipleOfs)
+      .map( number -> new BigDecimal( number.toString()))
+      .collect( toSet()));
+
+    return this;
+    }
+  
+  public SchemaBuilder notPatterns( String... patterns)
+    {
+    SchemaExtensions.setNotPatterns( schema_, patterns);
+    return this;
+    }
+  
+  @SuppressWarnings("rawtypes")
+  public SchemaBuilder notProperty( String name, Schema<?> schema)
+    {
+    Map<String,Schema> notProperties = Optional.ofNullable( SchemaExtensions.getNotProperties( schema_)).orElse( new HashMap<String,Schema>());
+    notProperties.put( name, schema);
+    return notProperties( notProperties);
+    }
+  
+  @SuppressWarnings("rawtypes")
+  public SchemaBuilder notProperties( Map<String,Schema> properties)
+    {
+    SchemaExtensions.setNotProperties( schema_, properties);
     return this;
     }
   

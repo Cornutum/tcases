@@ -45,7 +45,7 @@ import java.math.BigInteger;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +61,7 @@ import static java.math.RoundingMode.DOWN;
 import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
+import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.mapping;
@@ -93,6 +94,7 @@ public abstract class InputModeller
     {
     view_ = expectedValueOf( view, "Model view");
     setOptions( Optional.ofNullable( options).orElse( new ModelOptions()));
+    context_ = new NotificationContext( getOptions().getConditionNotifier());
     }
 
   /**
@@ -719,7 +721,7 @@ public abstract class InputModeller
       composedSchemaVars( api, instanceVarTag, instanceOptional, composedSchema.get(), combinedSchema, requiredTypes) :
 
       // Basic type schema
-      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, combinedSchema, requiredTypes);
+      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, combinedSchema);
     }
   
   /**
@@ -730,19 +732,19 @@ public abstract class InputModeller
     String instanceType,
     String instanceVarTag,
     boolean instanceOptional,
-    Schema<?> instanceSchema,
-    Set<String> requiredTypes)
+    Schema<?> instanceSchema)
     {
-
+    Schema<?> mergedSchema = mergeSchemas( context_, instanceSchema, getEffectiveNot( api, instanceSchema));
+    
     Stream.Builder<IVarDef> typeVars = Stream.builder();
-    typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema));
+    typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, mergedSchema));
 
-    typeValueVar( api, instanceType, instanceVarTag, instanceSchema)
+    typeValueVar( api, instanceType, instanceVarTag, mergedSchema)
       .ifPresent( var -> typeVars.add( var));
 
-    // Although not supported, verify validity of "not" schema
-    notVar( api, instanceVarTag, instanceSchema, requiredTypes);
-    
+    excludedVar( instanceVarTag, mergedSchema)
+      .ifPresent( excluded -> typeVars.add( excluded));
+
     return typeVars.build();
     }
   
@@ -788,21 +790,40 @@ public abstract class InputModeller
    */
   private IVarDef arrayValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
-    Schema<?> itemSchema =
-      instanceSchema instanceof ArraySchema
-      ? resolveSchema( api, ((ArraySchema) instanceSchema).getItems())
-      : null;
-    
-    return
+    VarSetBuilder valueVar =
       VarSetBuilder.with( "Items")
       .when( has( instanceValueProperty( instanceVarTag)))
-      .members(
-        arraySizeVar( api, instanceVarTag, instanceSchema))
-      .members(
-        iterableOf( arrayItemsVar( api, instanceVarTag, instanceSchema, itemSchema)))
-      .members(
-        iterableOf( arrayUniqueItemsVar( api, instanceVarTag, instanceSchema)))
-      .build();
+      .members( arraySizeVar( api, instanceVarTag, instanceSchema));
+    
+    Schema<?> itemSchema =
+      Optional.ofNullable(
+        instanceSchema instanceof ArraySchema
+        ? ((ArraySchema) instanceSchema).getItems()
+        : null)
+      .map( base -> mergeSubSchemas( "items", api, base, getNotItems( instanceSchema)))
+      .orElse( null);
+
+    Schema<?> notItemSchema =
+      itemSchema == null
+      ? effectiveNotFor( "items", api, getNotItems( instanceSchema))
+      : null;
+
+    if( Optional.ofNullable( instanceSchema.getMaxItems()).orElse( Integer.MAX_VALUE) > 0)
+      {
+      valueVar
+        .members(
+          notItemSchema == null
+          ? arrayItemsVar( api, instanceVarTag, itemSchema)
+          : negate( arrayItemsVar( api, instanceVarTag, notItemSchema)));
+      }
+
+    if( Optional.ofNullable( instanceSchema.getMaxItems()).orElse( Integer.MAX_VALUE) > 1)
+      {
+      valueVar
+        .members( arrayUniqueItemsVar( api, instanceVarTag, instanceSchema));
+      }
+    
+    return valueVar.build();
     }
 
   /**
@@ -890,41 +911,31 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the items of the given array instance.
    */
-  private Optional<IVarDef> arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema, Schema<?> itemSchema)
+  private IVarDef arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> itemSchema)
     {
     return
       resultFor( "items",
         () ->
-        Optional.ofNullable( arraySchema.getMaxItems()).orElse( Integer.MAX_VALUE) <= 0
-
-        ? Optional.empty()
-
-        : Optional.of(
-          VarSetBuilder.with( "Contains")
-          .when( has( arrayItemsProperty( instanceVarTag)))
-          .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
-          .build()));
+        VarSetBuilder.with( "Contains")
+        .when( has( arrayItemsProperty( instanceVarTag)))
+        .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
+        .build());
     }
 
   /**
    * Returns the {@link IVarDef input variable} representing the unique items property of an array instance.
    */
-  private Optional<IVarDef> arrayUniqueItemsVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema)
+  private IVarDef arrayUniqueItemsVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema)
     {
     boolean uniqueRequired = Boolean.TRUE.equals( arraySchema.getUniqueItems());
 
     return
-      Optional.ofNullable( arraySchema.getMaxItems()).orElse( Integer.MAX_VALUE) <= 1
-
-      ? Optional.empty()
-
-      : Optional.of(
-          VarDefBuilder.with( "Unique")
-          .when( has( arrayItemsManyProperty( instanceVarTag)))
-          .values(
-            VarValueDefBuilder.with( "Yes").build(),
-            VarValueDefBuilder.with( "No").type( uniqueRequired? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
-          .build());
+      VarDefBuilder.with( "Unique")
+      .when( has( arrayItemsManyProperty( instanceVarTag)))
+      .values(
+        VarValueDefBuilder.with( "Yes").build(),
+        VarValueDefBuilder.with( "No").type( uniqueRequired? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
+      .build();
     }   
 
   /**
@@ -957,9 +968,6 @@ public abstract class InputModeller
       {
       composedSchemaVars.add( oneOfVar( api, instanceVarTag, instanceOptional, validTypes, parentSchema, composedSchema.getOneOf()));
       }
-
-    // Although not supported, verify validity of "not" schema
-    notVar( api, instanceVarTag, composedSchema, validTypes);
 
     return composedSchemaVars.build();
     }
@@ -1174,35 +1182,6 @@ public abstract class InputModeller
     }
 
   /**
-   * Returns the {@link IVarDef input variable} defined by the "not" schema for the given instance.
-   */
-  private Optional<IVarDef> notVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, Set<String> requiredTypes)
-    {
-    return
-      resultFor( "not",
-        () -> 
-        Optional.ofNullable( instanceSchema)
-        .flatMap( schema -> Optional.ofNullable( resolveSchema( api, schema.getNot())))
-
-        .filter( notSchema -> {
-          boolean applicable = isApplicableInput( api, notSchema, requiredTypes);
-          if( !applicable)
-            {
-            notifyWarning(
-              String.format(
-                "Ignoring this \"not\" schema: always satisfied by any instance satisfying base schema types=%s",
-                requiredTypes));
-            }
-          return applicable;
-          })
-
-        .flatMap( notSchema -> {
-          notifyError( "The \"not\" keyword is not yet supported", "Ignoring this \"not\" schema");
-          return Optional.empty();
-          }));
-    }
-
-  /**
    * Returns the {@link IVarDef input variable} representing the type of a instance.
    */
   private IVarDef instanceTypeVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
@@ -1349,7 +1328,11 @@ public abstract class InputModeller
         {
         value.values( VarValueDefBuilder.with( String.format( "Not a multiple of %s", instanceSchema.getMultipleOf())).type( VarValueDef.Type.FAILURE).build());
         }
-
+      for( BigDecimal notMultipleOf : Optional.ofNullable( getNotMultipleOfs( instanceSchema)).orElse( emptySet()))
+        {
+        value.values( VarValueDefBuilder.with( String.format( "Multiple of %s", notMultipleOf)).type( VarValueDef.Type.FAILURE).build());        
+        }
+      
       if( instanceSchema.getMinimum() == null && instanceSchema.getMaximum() == null)
         {
         // Value is unconstrained -- add standard boundary conditions
@@ -1427,7 +1410,7 @@ public abstract class InputModeller
   private IVarDef objectValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     // Ensure schema defined for all required properties, using a default empty schema if necessary.
-    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new HashMap<String,Schema>());
+    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
     Optional.ofNullable( instanceSchema.getRequired())
       .map( required -> required.stream().filter( property -> !propertyDefs.containsKey( property)).collect( toList()))
       .filter( undefined -> !undefined.isEmpty())
@@ -1522,8 +1505,8 @@ public abstract class InputModeller
       !expectedInView( propertySchema)
       &&
       (view_ == View.REQUEST
-       ? options_.isReadOnlyEnforced()
-       : options_.isWriteOnlyEnforced());
+       ? getOptions().isReadOnlyEnforced()
+       : getOptions().isWriteOnlyEnforced());
     }
 
   /**
@@ -1713,6 +1696,7 @@ public abstract class InputModeller
   private IVarDef objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
     {
     Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
+    Map<String,Schema> notPropertyDefs = Optional.ofNullable( getNotProperties( instanceSchema)).orElse( emptyMap());
     List<String> requiredProperties = Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList());
 
     return
@@ -1727,7 +1711,26 @@ public abstract class InputModeller
             instanceVarTag,
             propertyDef.getKey(),
             constraints.allRequired() || requiredProperties.contains( propertyDef.getKey()),
-            resolveSchema( api, propertyDef.getValue()))))
+            mergeSubSchemas( propertyDef.getKey(), api, propertyDef.getValue(), notPropertyDefs.get( propertyDef.getKey())))))
+
+      .members(
+          notPropertyDefs.entrySet().stream()
+          .filter(
+            notPropertyDef -> !propertyDefs.containsKey( notPropertyDef.getKey()))
+          .map(
+            notPropertyDef ->
+            new SimpleEntry<String,Schema<?>>( notPropertyDef.getKey(), effectiveNotFor( notPropertyDef.getKey(), api, notPropertyDef.getValue())))
+          .filter(
+            notPropertyDef -> notPropertyDef.getValue() != null)
+          .map(
+            notPropertyDef ->
+            negate(
+              objectPropertyVar(
+                api,
+                instanceVarTag,
+                notPropertyDef.getKey(),
+                true,
+                notPropertyDef.getValue()))))
 
       .members(
         objectAdditionalVar( api, instanceVarTag, instanceSchema, constraints))
@@ -1778,18 +1781,22 @@ public abstract class InputModeller
       .map( min -> min > constraints.getTotalCount())
       .orElse( false);
 
-    Class<?> type =
-      Optional.ofNullable( instanceSchema.getAdditionalProperties())
-      .map( Object::getClass)
-      .orElse( null);
-
     Schema<?> propertySchema =
-      !Boolean.class.equals( type)
-      ? resolveSchema( api, (Schema<?>)instanceSchema.getAdditionalProperties())
+      instanceSchema.getAdditionalProperties() instanceof Schema
+      ? mergeSubSchemas( "additionalProperties", api, (Schema<?>)instanceSchema.getAdditionalProperties(), getNotAdditionalProperties( instanceSchema))
       : null;
-        
+
+    Schema<?> notPropertySchema =
+      propertySchema == null
+      ? effectiveNotFor( "additionalProperties", api, getNotAdditionalProperties( instanceSchema))
+      : null;
+
     return
-      propertySchema == null ?
+      propertySchema != null?
+      objectPropertyVar( api, instanceVarTag, "Additional", required, propertySchema) :
+
+      notPropertySchema != null?
+      negate( objectPropertyVar( api, instanceVarTag, "Additional", true, notPropertySchema)) :
 
       VarDefBuilder.with( "Additional")
       .values(
@@ -1801,9 +1808,7 @@ public abstract class InputModeller
         VarValueDefBuilder.with( "No")
         .type( required? VarValueDef.Type.FAILURE : VarValueDef.Type.VALID)
         .build())
-      .build() :
-
-      objectPropertyVar( api, instanceVarTag, "Additional", required, propertySchema);
+      .build();
     }
 
   /**
@@ -1909,20 +1914,31 @@ public abstract class InputModeller
 
       // Add variables for any pattern assertions
       String[] patterns = getPatterns( instanceSchema).stream().toArray(String[]::new);
-      if( patterns.length == 1)
+      String[] notPatterns = Optional.ofNullable( getNotPatterns( instanceSchema)).orElse( emptySet()).stream().toArray(String[]::new);
+      if( patterns.length == 1 && notPatterns.length == 0)
         {
         valueVarSet.members(
-          VarDefBuilder.with( "MatchesPattern")
+          VarDefBuilder.with( "Matches-Pattern")
           .has( "pattern", patterns[0])
           .values(
             VarValueDefBuilder.with( "Yes").build(),
             VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
           .build());
         }
-      else if( patterns.length > 1)
+      else if( patterns.length == 0 && notPatterns.length == 1)
         {
         valueVarSet.members(
-          VarSetBuilder.with( "MatchesPatterns")
+          VarDefBuilder.with( "Matches-Pattern")
+          .has( "pattern", notPatterns[0])
+          .values(
+            VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).build(),
+            VarValueDefBuilder.with( "No").build())
+          .build());
+        }
+      else if( patterns.length > 0 || notPatterns.length > 0)
+        {
+        valueVarSet.members(
+          VarSetBuilder.with( "Matches-Patterns")
           .members(
             IntStream.range( 0, patterns.length)
             .mapToObj(
@@ -1932,6 +1948,16 @@ public abstract class InputModeller
               .values(
                 VarValueDefBuilder.with( "Yes").build(),
                 VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+              .build()))
+          .members(
+            IntStream.range( 0, notPatterns.length)
+            .mapToObj(
+              i ->
+              VarDefBuilder.with( String.valueOf( patterns.length + i))
+              .has( "pattern", notPatterns[i])
+              .values(
+                VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).build(),
+                VarValueDefBuilder.with( "No").build())
               .build()))
           .build());
         }
@@ -1949,7 +1975,20 @@ public abstract class InputModeller
   private IVarDef booleanValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
     List<Boolean> possibleValues = Arrays.asList( Boolean.TRUE, Boolean.FALSE);
-    List<Boolean> allowedValues = Optional.of( getBooleanEnum( instanceSchema)).filter( enums -> !enums.isEmpty()).orElse( possibleValues);
+    List<Boolean> excludedValues = getBooleanEnum( getNotEnums( instanceSchema));
+
+    List<Boolean> allowedValues =
+      Optional.of( getBooleanEnum( instanceSchema))
+      .filter( enums -> !enums.isEmpty())
+      .orElse( possibleValues)
+      .stream()
+      .filter( b -> !excludedValues.contains( b))
+      .collect( toList());
+
+    if( allowedValues.isEmpty())
+      {
+      throw new IllegalStateException( "All possible boolean values have been excluded by this schema");
+      }
 
     return
       VarDefBuilder.with( "Value")
@@ -1957,7 +1996,7 @@ public abstract class InputModeller
       .when( has( instanceValueProperty( instanceVarTag)))
       .values(
         possibleValues.stream()
-        .filter( Objects::nonNull)
+        .filter( b -> !excludedValues.contains( b))
         .map( b -> {
           return
             VarValueDefBuilder.with( b)
@@ -1965,6 +2004,126 @@ public abstract class InputModeller
             .build();
           }))
       .build();
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable} representing the values excluded by the given instance schema.
+   */
+  private Optional<IVarDef> excludedVar( String instanceVarTag, Schema<?> instanceSchema)
+    {
+    ListBuilder<IVarDef> members = ListBuilder.to();
+
+    List<Object> notEnums = Optional.ofNullable( getNotEnums( instanceSchema)).orElse( emptyList());
+    if( !notEnums.isEmpty())
+      {
+      members.add(
+        VarDefBuilder.with( "Value")
+        .values(
+          notEnums.stream()
+          .map( notValue -> VarValueDefBuilder.with( notValue).type( VarValueDef.Type.FAILURE).build()))
+        .values(
+          VarValueDefBuilder.with( "No")
+          .has( "excluded", notEnums)
+          .build())
+        .build());
+      }
+
+    Set<String> notFormats = Optional.ofNullable( getNotFormats( instanceSchema)).orElse( emptySet());
+    if( !notFormats.isEmpty())
+      {
+      members.add(
+        VarDefBuilder.with( "Format")
+        .values(
+          notFormats.stream()
+          .map( notFormat -> VarValueDefBuilder.with( notFormat).type( VarValueDef.Type.FAILURE).build()))
+        .values(
+          VarValueDefBuilder.with( "No").build())
+        .build());
+      }
+
+    return
+      members.size() == 0
+      ? Optional.empty()
+      : Optional.of( VarSetBuilder.with( "Has-Excluded").when( has( instanceValueProperty( instanceVarTag))).members( members.build()).build());
+    }
+
+  /**
+   * Returns the given set of input variables after negating the validity of all variable values.
+   */
+  private Stream<IVarDef> negate( Stream<IVarDef> instanceVars)
+    {
+    List<IVarDef> negated = instanceVars.collect( toList());
+
+    // Transform values for variables that determine validity of oneOf/anyOf schemas
+    toStream( new VarDefIterator( negated.iterator()))
+      // Variables that represent the number of valid oneOf/anyOf members are superfluous: all members must fail
+      .filter( v -> "Validated".equals( v.getName()) && Optional.ofNullable( v.getParent()).map( p -> "Members".equals( p.getName())).orElse( false))
+      .collect( toList()).stream()
+      .forEach( v -> ((VarSet) v.getParent()).removeMember( v.getName()));
+    toStream( new VarDefIterator( negated.iterator()))
+      // Value properties that indicate a "member valid" value are superfluous.
+      .flatMap( v -> toStream( v.getValues()))
+      .forEach( value -> value.removeProperties( toStream( value.getProperties()).filter( p -> p.endsWith( "MemberValidated")).collect( toList())));
+
+    // Variables with only valid "leaf" values are superfluous: all values must fail
+    toStream( new VarDefIterator( negated.iterator()))
+      .filter( v -> toStream( v.getValues()).allMatch( value -> value.getType().isValid() && !value.hasProperties()))
+      .collect( toList()).stream()
+      .forEach( v -> {
+          for( IVarDef superfluous = v; superfluous != null; )
+            {
+              // Remove superfluous variable...
+              VarSet parent = (VarSet) superfluous.getParent();
+              if( parent != null)
+                {
+                parent.removeMember( superfluous.getName());
+                }
+              else
+                {
+                  negated.remove( superfluous);
+                }
+
+              // ...and remove any resulting empty variable set
+              superfluous =
+                parent != null && !parent.getMembers().hasNext()
+                ? parent
+                : null;
+            }
+        });
+    
+    // For each remaining variable...
+    Set<String> referenced = SystemInputs.getPropertyReferences( negated.iterator()).keySet();
+    toStream( new VarDefIterator( negated.iterator()))
+      .forEach( v -> {
+        // ...transform validity of values
+        toStream( v.getValues())
+          .forEach( value -> {
+            // Invalid value?
+            if( !value.isValid())
+              {
+              // Yes, negated to a valid value
+              value.setType( VarValueDef.Type.VALID);
+              }
+
+            // "Leaf" valid value?
+            else if( toStream( value.getProperties()).noneMatch( p -> referenced.contains(p)))
+              {
+              // Yes, negated to an invalid value
+              value.setType( VarValueDef.Type.FAILURE);
+              value.removeProperties( toStream( value.getProperties()).collect( toList()));
+              }
+            });
+        });
+
+    return negated.stream();
+    }
+
+  /**
+   * Returns the given input variable after negating the validity of all variable values.
+   */
+  private IVarDef negate( IVarDef var)
+    {
+    return negate( Stream.of( var)).findFirst().orElse( null);
     }
 
   /**
@@ -2122,13 +2281,8 @@ public abstract class InputModeller
     ComposedSchema composedSchema = asComposedSchema( schema);
     if( composedSchema != null)
       {
-      // Resolve "allOf" schemas
-      composedSchema.setAllOf(
-        Optional.ofNullable( composedSchema.getAllOf()).orElse( emptyList())
-        .stream()
-        .map( member -> resolveSchema( api, member))
-        .collect( toList()));
-        
+      resolveSchemaMembers( api, composedSchema);
+      
       // If "allOf" specified, valid types may include only those accepted by all members.
       List<Schema> allOfMembers = composedSchema.getAllOf();
       Set<String> allOfTypes =
@@ -2165,13 +2319,6 @@ public abstract class InputModeller
           }
         validTypes.retainAll( allOfTypes);
         }
-      
-      // Resolve "anyOf" schemas
-      composedSchema.setAnyOf(
-        Optional.ofNullable( composedSchema.getAnyOf()).orElse( emptyList())
-        .stream()
-        .map( member -> resolveSchema( api, member))
-        .collect( toList()));
         
       // If "anyOf" specified, valid types may include any accepted by any member.
       List<Schema> anyOfMembersTyped =
@@ -2198,13 +2345,6 @@ public abstract class InputModeller
           }
         validTypes.retainAll( anyOfTypes);
         }
-      
-      // Resolve "oneOf" schemas
-      composedSchema.setOneOf(
-        Optional.ofNullable( composedSchema.getOneOf()).orElse( emptyList())
-        .stream()
-        .map( member -> resolveSchema( api, member))
-        .collect( toList()));
         
       // If "oneOf" specified, valid types may include any accepted by any member.
       List<Schema> oneOfMembersTyped =
@@ -2271,6 +2411,213 @@ public abstract class InputModeller
       validTypes == null
       || (schemaTypes = getValidTypes( api, schema)) == null
       || !SetUtils.intersection( schemaTypes, validTypes).isEmpty();
+    }
+
+  /**
+   * Returns the "not" schema for the given schema that is effective for test case generation.
+   */
+  private Schema<?> getEffectiveNot( OpenAPI api, Schema<?> schema)
+    {
+    return
+      Optional.ofNullable( getNots( schema)).orElse( emptyList())
+      .stream()
+      .map( not -> toEffectiveNot( api, schema.getType(), resolveSchema( api, not)))
+      .filter( Objects::nonNull)
+      .reduce( (base, additional) -> resultFor( "not", () -> SchemaUtils.combineNotSchemas( context_, base, additional)))
+      .orElse( null);
+    }
+
+  /**
+   * Returns the effective "not" schema for instances of the given type that is equivalent to the given schema.
+   * Returns null if this schema is not effective.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema toEffectiveNot( OpenAPI api, String instanceType, Schema<?> notSchema)
+    {
+    return
+      resultFor( "not",
+        () ->
+        notSchema == null?
+        null :
+
+        instanceType == null?
+        toEffectiveNotNull( api, notSchema) :
+
+        toEffectiveNotType( api, instanceType, notSchema));
+    }
+
+  /**
+   * Returns the effective "not" schema that is equivalent to the given schema.
+   * Returns null if this schema is not effective.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema effectiveNotFor( String context, OpenAPI api, Schema<?> notSchema)
+    {
+    Schema<?> resolvedNot = resolveSchema( api, notSchema);
+    return
+      resolvedNot == null
+      ? null
+      : resultFor( context, () -> toEffectiveNot( api, notSchema.getType(), notSchema));
+    }
+
+  /**
+   * Returns the effective "not" schema for instances of the given type that is equivalent to the given schema.
+   * Returns null if this schema is not effective.
+   */
+  private Schema<?> toEffectiveNotType( OpenAPI api, String instanceType, Schema<?> notSchema)
+    {
+    boolean effective = notSchema.getType() == null || Objects.equals( instanceType, notSchema.getType());
+    if( !effective)
+      {
+      notifyWarning(
+        String.format(
+          "Ignoring superfluous \"not\" schema of type=%s: always valid for instances of type=%s",
+          notSchema.getType(),
+          instanceType));
+      }
+    else if( notSchema.getNot() != null)
+      {
+      notifyError(
+        "The \"not\" schema contains another \"not\" assertion.",
+        "Ignoring unsupported double-negative assertion.");
+      }
+
+    return
+      !effective?
+      null :
+
+      notSchema instanceof ComposedSchema?
+      composedEffectiveNotType( api, instanceType, (ComposedSchema) notSchema) :
+
+      notSchema;
+    }
+
+  /**
+   * Returns the effective "not" schema for instances of the given type that is equivalent to the given schema.
+   * Returns null if this schema is not effective.
+   */
+  private Schema<?> composedEffectiveNotType( OpenAPI api, String instanceType, ComposedSchema notSchema)
+    {
+    resolveSchemaMembers( api, notSchema);
+    
+    if( !notSchema.getAllOf().isEmpty())
+      {
+      notifyError(
+        "\"not: {allOf: [...]}\" assertions are not supported",
+        "Ignoring \"allOf\" assertions in \"not\" schema");
+      }
+
+    Schema<?> composedMemberNot =
+      Stream.concat(
+        IntStream.range( 0, notSchema.getAnyOf().size())
+        .mapToObj( i -> resultFor( String.format( "anyOf[%s]", i), () -> toEffectiveNotType( api, instanceType, notSchema.getAnyOf().get(i)))),
+
+        IntStream.range( 0, notSchema.getOneOf().size())
+        .mapToObj( i -> resultFor( String.format( "oneOf[%s]", i), () -> toEffectiveNotType( api, instanceType, notSchema.getOneOf().get(i)))))
+
+      .filter( Objects::nonNull)
+      .reduce( (base, additional) -> SchemaUtils.combineNotSchemas( context_, base, additional))
+      .orElse( null);
+    
+    return
+      SchemaUtils.combineNotSchemas(
+        context_,
+        notSchema,
+        composedMemberNot);
+    }
+
+  /**
+   * Returns the effective "not" schema for instances of any type that is equivalent to the given schema.
+   * Returns null if this schema is not effective.
+   */
+  private Schema<?> toEffectiveNotNull( OpenAPI api, Schema<?> notSchema)
+    {
+    boolean effective = notSchema.getType() == null;
+    if( !effective)
+      {
+      notifyError(
+        String.format( "Can't apply \"not\" schema of type=%s when parent schema type is undefined", notSchema.getType()),
+        "Ignoring inapplicable \"not\" schema");
+      }
+    else if( notSchema.getNot() != null)
+      {
+      notifyError(
+        "The \"not\" schema contains another \"not\" assertion.",
+        "Ignoring unsupported double-negative assertion.");
+      }
+
+    return
+      !effective?
+      null :
+
+      notSchema instanceof ComposedSchema?
+      composedEffectiveNotNull( api, (ComposedSchema) notSchema) :
+
+      notSchema;
+    }
+
+  /**
+   * Returns the effective "not" schema for instances of any type that is equivalent to the given schema.
+   * Returns null if this schema is not effective.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema<?> composedEffectiveNotNull( OpenAPI api, ComposedSchema notSchema)
+    {
+    resolveSchemaMembers( api, notSchema);
+    
+    if( notSchema.getAllOf() != null)
+      {
+      notifyError(
+        "\"not: {allOf: [...]}\" assertions are not supported",
+        "Ignoring \"allOf\" assertions in \"not\" schema");
+      }
+
+    ListBuilder<Schema<?>> memberNots = ListBuilder.to();
+    boolean effective = true;
+    Schema<?> memberNot; 
+
+    for( Iterator<Schema> anyOfs = notSchema.getAnyOf().iterator();
+         
+         effective && anyOfs.hasNext();
+
+         memberNot = toEffectiveNotNull( api, anyOfs.next()),
+           effective = memberNot != null,
+           memberNots.add( Optional.ofNullable( memberNot)));
+
+    for( Iterator<Schema> oneOfs = notSchema.getOneOf().iterator();
+         
+         effective && oneOfs.hasNext();
+
+         memberNot = toEffectiveNotNull( api, oneOfs.next()),
+           effective = memberNot != null,
+           memberNots.add( Optional.ofNullable( memberNot)));
+    
+    return
+      !effective?
+      null :
+      
+      SchemaUtils.combineNotSchemas(
+        context_,
+        notSchema,
+        memberNots.build().stream().reduce( (base,additional) -> SchemaUtils.combineNotSchemas( context_, base, additional)).orElse( null));
+    }
+
+  /**
+   * Returns a new schema that validates any instance that satisfies both the base schema and the not schema.
+   * Throws an exception if a consistent result is not possible.
+   */
+  private Schema<?> mergeSubSchemas( String context, OpenAPI api, Schema<?> base, Schema<?> not)
+    {
+    Schema<?> resolvedBase = resolveSchema( api, base);
+    Schema<?> resolvedNot = resolveSchema( api, not);
+      
+    return
+      resultFor( context,
+        () ->
+        mergeSchemas(
+          context_,
+          resolvedBase,
+          toEffectiveNot( api, resolvedBase.getType(), resolvedNot)));
     }
 
   /**
@@ -2435,47 +2782,45 @@ public abstract class InputModeller
    */
   private List<Boolean> getBooleanEnum( Schema<?> schema)
     {
-    List<Boolean> booleans;
+    return
+      schema instanceof BooleanSchema
+      ? Optional.ofNullable( ((BooleanSchema) schema).getEnum()).orElse( emptyList())
+      : getBooleanEnum( schema.getEnum());
+    }
 
-    if( schema instanceof BooleanSchema)
-      {
-      booleans =
-        Optional.ofNullable( ((BooleanSchema) schema).getEnum())
-        .orElse( emptyList());
-      }
-    else
-      {
-      booleans = 
-        Optional.ofNullable( schema.getEnum())
-        .orElse( emptyList())
-        .stream()
-        .map(
-          value -> {
-            Boolean booleanValue = null;
-            if( value != null)
-              {
-              String valueString = value.toString();
-              booleanValue =
-                "true".equalsIgnoreCase( valueString)?
-                Boolean.TRUE :
+  /**
+   * Returns the enumerated boolean values defined by the given list.
+   */
+  private List<Boolean> getBooleanEnum( List<?> values)
+    {
+    return
+      Optional.ofNullable( values)
+      .orElse( emptyList())
+      .stream()
+      .map(
+        value -> {
+        Boolean booleanValue = null;
+        if( value != null)
+          {
+          String valueString = value.toString();
+          booleanValue =
+            "true".equalsIgnoreCase( valueString)?
+            Boolean.TRUE :
 
-                "false".equalsIgnoreCase( valueString)?
-                Boolean.FALSE :
+            "false".equalsIgnoreCase( valueString)?
+            Boolean.FALSE :
 
-                null;
+            null;
 
-              if( booleanValue == null)
-                {
-                throw new IllegalStateException( String.format( "Enumerated value=%s is not a boolean", value));
-                }
-              }
+          if( booleanValue == null)
+            {
+            throw new IllegalStateException( String.format( "Enumerated value=%s is not a boolean", value));
+            }
+          }
             
-            return booleanValue;
-          })
-        .collect( toList());
-      }
-
-    return booleans;
+        return booleanValue;
+        })
+      .collect( toList());
     }
 
   /**
@@ -2483,7 +2828,7 @@ public abstract class InputModeller
    */
   private void notifyWarning( String reason)
     {
-    options_.getConditionNotifier().warn( contextLocation(), reason);
+    context_.warn( reason);
     }
 
   /**
@@ -2491,15 +2836,7 @@ public abstract class InputModeller
    */
   private void notifyError( String reason, String resolution)
     {
-    options_.getConditionNotifier().error( contextLocation(), reason, resolution);
-    }
-
-  /**
-   * Returns the path to the current context.
-   */
-  private String[] contextLocation()
-    {
-    return context_.getLocation();
+    context_.error( reason, resolution);
     }
 
   /**
@@ -2620,6 +2957,6 @@ public abstract class InputModeller
     }
 
   private final View view_;
-  private OpenApiContext context_ = new OpenApiContext();
+  private final NotificationContext context_;
   private ModelOptions options_; 
 }

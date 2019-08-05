@@ -16,14 +16,14 @@
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="string"/>
         <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
-        <Var name="param0.OneOf.Members.0.Value.MatchesPattern" value="Yes">
+        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
         <Var name="param0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.OneOf.Members.1.Value.Length" value="11">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Value.MatchesPattern" value="Yes">
+        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -38,12 +38,12 @@
         <Var name="param0.OneOf.Members.Validated" NA="true"/>
         <Var name="param0.OneOf.Members.0.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Length" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.MatchesPattern" NA="true">
+        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
         <Var name="param0.OneOf.Members.1.Type" NA="true"/>
         <Var name="param0.OneOf.Members.1.Value.Length" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Value.MatchesPattern" NA="true">
+        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -59,13 +59,13 @@
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="string"/>
         <Var name="param0.OneOf.Members.0.Value.Length" value="&gt; 1"/>
-        <Var name="param0.OneOf.Members.0.Value.MatchesPattern" value="No">
+        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="No">
           <Has name="memberValidated" value="false"/>
           <Has name="pattern" value="."/>
         </Var>
         <Var name="param0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.OneOf.Members.1.Value.Length" value="0"/>
-        <Var name="param0.OneOf.Members.1.Value.MatchesPattern" value="Yes">
+        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -81,13 +81,13 @@
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="string"/>
         <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
-        <Var name="param0.OneOf.Members.0.Value.MatchesPattern" value="No">
+        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="No">
           <Has name="memberValidated" value="false"/>
           <Has name="pattern" value="."/>
         </Var>
         <Var name="param0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.OneOf.Members.1.Value.Length" value="10"/>
-        <Var name="param0.OneOf.Members.1.Value.MatchesPattern" value="Yes">
+        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -103,13 +103,13 @@
         <Var name="param0.OneOf.Members.Validated" value="1"/>
         <Var name="param0.OneOf.Members.0.Type" value="string"/>
         <Var name="param0.OneOf.Members.0.Value.Length" value="&gt; 1"/>
-        <Var name="param0.OneOf.Members.0.Value.MatchesPattern" value="No">
+        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="No">
           <Has name="memberValidated" value="false"/>
           <Has name="pattern" value="."/>
         </Var>
         <Var name="param0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.OneOf.Members.1.Value.Length" value="&lt; 10"/>
-        <Var name="param0.OneOf.Members.1.Value.MatchesPattern" value="Yes">
+        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -125,7 +125,7 @@
         <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
         <Var name="param0.OneOf.Members.0.Type" value="string"/>
         <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
-        <Var name="param0.OneOf.Members.0.Value.MatchesPattern" value="No">
+        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="No">
           <Has name="memberValidated" value="false"/>
           <Has name="pattern" value="."/>
         </Var>
@@ -133,7 +133,7 @@
         <Var name="param0.OneOf.Members.1.Value.Length" value="11">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Value.MatchesPattern" value="Yes">
+        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -149,12 +149,12 @@
         <Var name="param0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
         <Var name="param0.OneOf.Members.0.Type" value="string"/>
         <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
-        <Var name="param0.OneOf.Members.0.Value.MatchesPattern" value="Yes">
+        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
         <Var name="param0.OneOf.Members.1.Type" value="string"/>
         <Var name="param0.OneOf.Members.1.Value.Length" value="0"/>
-        <Var name="param0.OneOf.Members.1.Value.MatchesPattern" value="Yes">
+        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
