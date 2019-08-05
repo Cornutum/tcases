@@ -71,7 +71,7 @@ public class ApiCommand
    * <TD>
    * If <I>-C</I> is given, produce results to test inputs to an API client, i.e. API responses.
    * If <I>-S</I> is given, produce results to test inputs to an API server, i.e. API requests.
-   * If neithe is given, the default is <I>-S</I>.
+   * If neither is given, the default is <I>-S</I>.
    * </TD>
    * </TR>
    *

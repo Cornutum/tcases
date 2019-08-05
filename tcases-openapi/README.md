@@ -217,7 +217,7 @@ to investigate the tests that it generates. If you use `bash` or a similar UNIX 
 if you are using a Windows command line, you can run Tcases for OpenAPI with the `tcases-api.bat` command file, using exactly the same
 syntax.
 
-`tcase-api` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
+`tcases-api` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
 [*Tcases: The Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install).
 
 For details about the interface to the `tcases-api` command (and the `tcases-api.bat` command, too), see the Javadoc for
