@@ -63,8 +63,14 @@
                 </Var>
                 <VarSet name="Contains" when="param0CharlieItems">
                   <Var name="Type">
-                    <Value name="Not null" property="param0CharlieItemsValue"/>
+                    <Value name="integer" property="param0CharlieItemsValue"/>
                     <Value name="null" failure="true"/>
+                    <Value name="Not integer" failure="true"/>
+                  </Var>
+                  <Var name="Value" when="param0CharlieItemsValue">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
                   </Var>
                 </VarSet>
                 <Var name="Unique" when="param0CharlieItemsMany">

@@ -13,11 +13,12 @@
                         "application/json": {
                             "schema": {
                                 "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                },
                                 "allOf": [
                                     {
-                                        "items": {
-                                            "type": "integer"
-                                        }
+                                        "uniqueItems": false
                                     }
                                 ]
                             }
