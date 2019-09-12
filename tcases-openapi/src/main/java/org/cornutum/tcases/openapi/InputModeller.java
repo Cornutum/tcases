@@ -55,6 +55,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import static java.math.RoundingMode.DOWN;
@@ -2153,13 +2155,31 @@ public abstract class InputModeller
   /**
    * Returns the component of a function name that represents the given API request path.
    */
-  private String functionPathName( String pathName)
+  static String functionPathName( String pathName)
     {
     return
       Arrays.stream( pathName.split( "/"))
+      .flatMap( p -> pathTemplateIdentifiers( p))
       .filter( p -> !p.isEmpty())
-      .map( p -> toIdentifier( p))
       .collect( joining( "-"));
+    }
+
+  /**
+   * Returns the sequence of identifiers defined by the given element of an API request path
+   */
+  static private Stream<String> pathTemplateIdentifiers( String pathElement)
+    {
+    Stream.Builder<String> identifiers = Stream.builder();
+    Matcher idMatcher = pathIdPattern_.matcher( pathElement);
+    while( idMatcher.find())
+      {
+      identifiers.add(
+        toIdentifier(
+          pathElement
+          .substring( idMatcher.start(), idMatcher.end())
+          .trim()));
+      }
+    return identifiers.build();
     }
 
   /**
@@ -2958,5 +2978,7 @@ public abstract class InputModeller
 
   private final View view_;
   private final NotificationContext context_;
-  private ModelOptions options_; 
+  private ModelOptions options_;
+
+  private static final Pattern pathIdPattern_ = Pattern.compile( "[^{}]+|\\{[^}]\\}");
 }
