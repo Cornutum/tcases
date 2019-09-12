@@ -1,5 +1,10 @@
 # Release Notes #
 
+## 3.1.2 ##
+
+  * **[Tcases for OpenAPI](tcases-openapi/README.md)**: For more reliable translation of OpenAPI specs, upgraded to use
+  [`swagger-parser`](https://github.com/swagger-api/swagger-parser) version 2.0.14.
+  
 ## 3.1.1 ##
 
 This release adds several improvements to [Tcases for OpenAPI](tcases-openapi/README.md).
