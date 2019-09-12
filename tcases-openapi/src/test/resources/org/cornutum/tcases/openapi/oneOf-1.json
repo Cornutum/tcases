@@ -17,7 +17,7 @@
                                 {
                                     "anyOf": [
                                         {
-                                            "type": "array"
+                                            "type": "boolean"
                                         },
                                         {
                                             "type": "object"
@@ -28,7 +28,7 @@
                                     ],
                                     "oneOf": [
                                         {
-                                            "type": "array"
+                                            "type": "boolean"
                                         },
                                         {
                                             "type": "number"

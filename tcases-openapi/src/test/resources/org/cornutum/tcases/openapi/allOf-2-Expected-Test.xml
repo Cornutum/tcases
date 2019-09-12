@@ -23,6 +23,7 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
@@ -48,6 +49,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
@@ -73,7 +75,8 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="Not null"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" value="&lt; 0"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
@@ -99,7 +102,8 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="&gt; 1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="Not null"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
@@ -126,6 +130,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
@@ -135,7 +140,7 @@
       </Input>
     </TestCase>
     <TestCase id="5">
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItems,param0CharlieItemsMany,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItems,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
@@ -150,9 +155,10 @@
         <Var name="param0.Value.Properties.bravo.Value" value="false"/>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="&gt; 1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="Not null"/>
-        <Var name="param0.Value.Properties.charlie.Items.Unique" value="No"/>
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="1"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
@@ -160,7 +166,34 @@
         <Var name="param0.Value.Properties.Additional.Value" value="&lt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6">
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItems,param0CharlieItemsMany,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.bravo.Value" value="true"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.charlie.Type" value="array"/>
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" value="&lt; 0"/>
+        <Var name="param0.Value.Properties.charlie.Items.Unique" value="No"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -178,6 +211,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
@@ -186,7 +220,7 @@
         <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="8" failure="true">
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -204,6 +238,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
@@ -212,7 +247,7 @@
         <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="9" failure="true">
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -230,6 +265,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
@@ -238,7 +274,7 @@
         <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="10" failure="true">
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -256,15 +292,16 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
-        <Var name="param0.Value.Properties.Additional.Value" value="0"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="&gt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="11" failure="true">
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -282,38 +319,13 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
-        <Var name="param0.Value.Properties.Additional.Value" value="0"/>
-      </Input>
-    </TestCase>
-    <TestCase id="11" failure="true">
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="header">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.bravo.Value" value="true"/>
-        <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.charlie.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
-        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
-        <Var name="param0.Value.Properties.Additional.Value" value="0"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="&gt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
@@ -329,20 +341,48 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.bravo.Value" value="true"/>
+        <Var name="param0.Value.Properties.bravo.Value" value="false"/>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.charlie.Type" value="Not array" failure="true"/>
+        <Var name="param0.Value.Properties.charlie.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
-        <Var name="param0.Value.Properties.Additional.Value" value="0"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="&gt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.bravo.Value" value="false"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.charlie.Type" value="Not array" failure="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="&gt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="14" failure="true">
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItems,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -355,20 +395,48 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.bravo.Value" value="true"/>
+        <Var name="param0.Value.Properties.bravo.Value" value="false"/>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="1"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
-        <Var name="param0.Value.Properties.Additional.Value" value="0"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="&gt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true">
+    <TestCase id="15" failure="true">
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItems,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
+        <Var name="param0.Value.Properties.bravo.Value" value="false"/>
+        <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.charlie.Type" value="array"/>
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="1"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="Not integer" failure="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="&gt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="16" failure="true">
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -381,20 +449,21 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.bravo.Value" value="true"/>
+        <Var name="param0.Value.Properties.bravo.Value" value="false"/>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="No" failure="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
-        <Var name="param0.Value.Properties.Additional.Value" value="0"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="&gt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true">
+    <TestCase id="17" failure="true">
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -412,15 +481,16 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Type" value="integer"/>
-        <Var name="param0.Value.Properties.Additional.Value" value="0"/>
+        <Var name="param0.Value.Properties.Additional.Value" value="&gt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true">
+    <TestCase id="18" failure="true">
       <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -433,11 +503,12 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.bravo.Value" value="true"/>
+        <Var name="param0.Value.Properties.bravo.Value" value="false"/>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
@@ -446,7 +517,7 @@
         <Var name="param0.Value.Properties.Additional.Value" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true">
+    <TestCase id="19" failure="true">
       <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -459,11 +530,12 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 3"/>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.bravo.Value" value="true"/>
+        <Var name="param0.Value.Properties.bravo.Value" value="false"/>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>

@@ -35,27 +35,15 @@
                   </Var>
                   <VarSet name="0">
                     <Var name="Type">
-                      <Value name="array" property="param0OneOf0AnyOf0Value"/>
+                      <Value name="boolean" property="param0OneOf0AnyOf0Value, param0OneOf0AnyOfMemberValidated"/>
+                      <Value name="Not boolean">
+                        <Has name="memberValidated" value="false"/>
+                      </Value>
                     </Var>
-                    <VarSet name="Items" when="param0OneOf0AnyOf0Value">
-                      <Var name="Size">
-                        <Value name="0" property="param0OneOf0AnyOfMemberValidated"/>
-                        <Value name="1" property="param0OneOf0AnyOf0Items"/>
-                        <Value name="&gt; 1" property="param0OneOf0AnyOf0Items, param0OneOf0AnyOf0ItemsMany"/>
-                      </Var>
-                      <VarSet name="Contains" when="param0OneOf0AnyOf0Items">
-                        <Var name="Type">
-                          <Value name="Not null" property="param0OneOf0AnyOf0ItemsValue, param0OneOf0AnyOfMemberValidated"/>
-                          <Value name="null">
-                            <Has name="memberValidated" value="false"/>
-                          </Value>
-                        </Var>
-                      </VarSet>
-                      <Var name="Unique" when="param0OneOf0AnyOf0ItemsMany">
-                        <Value name="Yes"/>
-                        <Value name="No"/>
-                      </Var>
-                    </VarSet>
+                    <Var name="Value" when="param0OneOf0AnyOf0Value">
+                      <Value name="true"/>
+                      <Value name="false"/>
+                    </Var>
                   </VarSet>
                   <VarSet name="1">
                     <Var name="Type">
@@ -95,27 +83,15 @@
                   </Var>
                   <VarSet name="0">
                     <Var name="Type">
-                      <Value name="array" property="param0OneOf0OneOf0Value"/>
+                      <Value name="boolean" property="param0OneOf0OneOf0Value, param0OneOf0OneOfMemberValidated"/>
+                      <Value name="Not boolean">
+                        <Has name="memberValidated" value="false"/>
+                      </Value>
                     </Var>
-                    <VarSet name="Items" when="param0OneOf0OneOf0Value">
-                      <Var name="Size">
-                        <Value name="0" property="param0OneOf0OneOfMemberValidated"/>
-                        <Value name="1" property="param0OneOf0OneOf0Items"/>
-                        <Value name="&gt; 1" property="param0OneOf0OneOf0Items, param0OneOf0OneOf0ItemsMany"/>
-                      </Var>
-                      <VarSet name="Contains" when="param0OneOf0OneOf0Items">
-                        <Var name="Type">
-                          <Value name="Not null" property="param0OneOf0OneOf0ItemsValue, param0OneOf0OneOfMemberValidated"/>
-                          <Value name="null">
-                            <Has name="memberValidated" value="false"/>
-                          </Value>
-                        </Var>
-                      </VarSet>
-                      <Var name="Unique" when="param0OneOf0OneOf0ItemsMany">
-                        <Value name="Yes"/>
-                        <Value name="No"/>
-                      </Var>
-                    </VarSet>
+                    <Var name="Value" when="param0OneOf0OneOf0Value">
+                      <Value name="true"/>
+                      <Value name="false"/>
+                    </Var>
                   </VarSet>
                   <VarSet name="1">
                     <Var name="Type">
