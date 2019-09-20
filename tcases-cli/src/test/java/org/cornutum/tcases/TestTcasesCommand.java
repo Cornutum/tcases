@@ -1473,6 +1473,53 @@ public class TestTcasesCommand
     }
 
   /**
+   * Tests {@link Tcases#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 0. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> defaultContentType.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> defaultContentType.value </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> outFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> outFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> outFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> genFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> genFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> newTests.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> testFile.path.contentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.path.exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> testFile.default.exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> inFile.defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> inFile.path.contentType </TD> <TD> JSON </TD> </TR>
+   * <TR><TD> inFile.path.exists </TD> <TD> withJson </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void runWithContentType_Transformed() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "runWithContentType-0");
+    File outFile = new File( inFile.getParent(), "runWithContentType0Test.java");
+    outFile.delete();
+    
+    String[] args =
+      {
+        "-J",
+        "-T", "json",
+        inFile.getPath()
+      };
+    
+    // When...
+    TcasesCommand.run( new Options( args));
+        
+    // Then...
+    assertThat( "Test def created", outFile.exists(), is( true));
+    }
+
+  /**
    * Return the file for the given resource.
    */
   private File getResourceFile( String resource)

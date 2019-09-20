@@ -1195,6 +1195,8 @@ public class TcasesCommand
           outputFile.isAbsolute()? outputFile.getName() : outputFile.getPath());
       }
 
+    Resource.Type outputFileType = firstNonNull( Resource.Type.of( withDefaultType( outputFile, defaultContentType)), defaultContentType);
+
     SystemTestDef baseDef = null;
     if( options.isExtended() && baseDefFile != null && baseDefFile.exists())
       {
@@ -1280,6 +1282,9 @@ public class TcasesCommand
         throw new RuntimeException( "Transformed output will overwrite test definition file=" + baseDefFile);
         }
       transformer.setTarget( outputFile);
+
+      // Input to transformers must be XML
+      outputFileType = Resource.Type.XML;
       }
 
     // Write new test definitions.
@@ -1299,7 +1304,6 @@ public class TcasesCommand
         // Standard output?
         null;
 
-      Resource.Type outputFileType = firstNonNull( Resource.Type.of( withDefaultType( outputFile, defaultContentType)), defaultContentType);
       if( outputFileType == Resource.Type.JSON)
         {
         TcasesJson.writeTests( testDef, output);
