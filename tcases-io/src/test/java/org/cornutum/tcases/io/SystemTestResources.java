@@ -139,5 +139,23 @@ public class SystemTestResources
     return systemTestDef;
     }
 
+  /**
+   * Returns the {@link SystemTestDef} defined by the given JSON file.
+   */
+  public SystemTestDef readJson( File file)
+    {
+    SystemTestDef  systemTestDef  = null;
+    try( SystemTestJsonReader reader = new SystemTestJsonReader( new FileInputStream( file)))
+      {
+      systemTestDef = reader.getSystemTestDef();
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read file=" + file, e);
+      }
+
+    return systemTestDef;
+    }
+
   private Class<?> class_;
   }

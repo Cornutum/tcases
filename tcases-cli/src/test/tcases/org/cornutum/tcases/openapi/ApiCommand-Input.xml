@@ -1,0 +1,65 @@
+<System name="ApiCommand">
+    <Function name="run">
+        <Input>
+            <Var name="Perspective">
+                <Value name="Default"/>
+                <Value name="Client"/>
+                <Value name="Server"/>
+            </Var>
+            <Var name="Model-Type">
+                <Value name="Default"/>
+                <Value name="Input" property="modelInput"/>
+                <Value name="Test"/>
+            </Var>
+            <Var name="Condition-Handler">
+                <Value name="Default"/>
+                <Value name="Log"/>
+                <Value name="Fail"/>
+                <Value name="Ignore"/>
+            </Var>
+            <VarSet name="Output-File">
+                <Var name="Defined">
+                    <Value name="Yes" property="outputFile"/>
+                    <Value name="No"/>                    
+                </Var>
+                <Var name="Path" when="outputFile">
+                    <Value name="Relative"/>
+                    <Value name="Absolute"/>
+                </Var>
+            </VarSet>
+            <VarSet name="Output-Dir">
+                <Var name="Defined">
+                    <Value name="Yes" property="outputDir"/>
+                    <Value name="No"/>                    
+                </Var>
+                <Var name="Exists" when="outputDir">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
+            </VarSet>
+            <Var name="Read-Only-Enforced">
+                <Value name="Yes"/>
+                <Value name="No"/>
+            </Var>
+            <Var name="Write-Only-Enforced">
+                <Value name="Yes"/>
+                <Value name="No"/>
+            </Var>
+            <Var name="Output-Transformer" whenNot="modelInput">
+                <Value name="None"/>
+                <Value name="JUnit" once="true"/>
+                <Value name="Html" once="true"/>
+            </Var>
+            <VarSet name="Api-Spec">
+                <Var name="Defined">
+                    <Value name="Yes" property="apiSpec"/>
+                    <Value name="No"/>                    
+                </Var>
+                <Var name="Path" when="apiSpec">
+                    <Value name="Relative"/>
+                    <Value name="Absolute"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>
