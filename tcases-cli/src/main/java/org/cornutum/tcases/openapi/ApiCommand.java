@@ -9,12 +9,17 @@ package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.Tcases;
+import org.cornutum.tcases.TcasesIO;
+import org.cornutum.tcases.io.AbstractFilter;
+import org.cornutum.tcases.io.TestDefToHtmlFilter;
+import org.cornutum.tcases.io.TestDefToJUnitFilter;
 import org.cornutum.tcases.openapi.io.TcasesOpenApiIO;
-
+import org.cornutum.tcases.util.MapBuilder;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -45,6 +50,7 @@ public class ApiCommand
    * [-o <I>outDir</I>]
    * [-R]
    * [-W]
+   * [-J | -H]
    * [-v]
    * [<I>apiSpec</I>]
    * </NOBR>
@@ -161,6 +167,33 @@ public class ApiCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-J </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-J</I> is defined, test definition output is transformed into Java source code for a JUnit
+   * test class. The resulting Java source file is written to the specified <I>outDir</I>.
+   * Ignored if <I>-I</I> is specified.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-H </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-H</I> is defined, test definition output is transformed into an HTML report. The resulting HTML file is written to the specified <I>outDir</I>.
+   * Ignored if <I>-I</I> is specified.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-v </NOBR>
    * </TD>
    * <TD>
@@ -196,6 +229,8 @@ public class ApiCommand
    */
   public static class Options
     {
+    public enum TransformType { HTML, JUNIT };
+
     /**
      * Creates a new Options object.
      */
@@ -304,6 +339,24 @@ public class ApiCommand
         setTests( false);
         }
 
+      else if( arg.equals( "-J"))
+        {
+        if( getTransformType() != null)
+          {
+          throwUsageException( "Can't specify multiple output transforms");
+          }
+        setTransformType( TransformType.JUNIT);
+        }
+
+      else if( arg.equals( "-H"))
+        {
+        if( getTransformType() != null)
+          {
+          throwUsageException( "Can't specify multiple output transforms");
+          }
+        setTransformType( TransformType.HTML);
+        }
+
       else
         {
         throwUsageException();
@@ -376,6 +429,7 @@ public class ApiCommand
           + " [-c {log | fail | ignore}]"
           + " [-f outFile]"
           + " [-o outDir]"
+          + " [ -J | -H]"
           + " [apiSpec]",
           cause);
       }
@@ -442,6 +496,22 @@ public class ApiCommand
     public boolean isTests()
       {
       return tests_;
+      }
+
+    /**
+     * Changes the output transform type.
+     */
+    public void setTransformType( TransformType transformType)
+      {
+      transformType_ = transformType;
+      }
+
+    /**
+     * Returns the output transform type.
+     */
+    public TransformType getTransformType()
+      {
+      return transformType_;
       }
 
     /**
@@ -557,6 +627,16 @@ public class ApiCommand
         builder.append( " -o ").append( getOutDir().getPath());
         }
 
+      if( getTransformType() == TransformType.JUNIT)
+        {
+        builder.append( " -J");
+        }
+
+      if( getTransformType() == TransformType.HTML)
+        {
+        builder.append( " -H");
+        }
+
       if( showVersion())
         {
         builder.append( " -v");
@@ -570,6 +650,7 @@ public class ApiCommand
     private File outFile_;
     private boolean serverTest_;
     private boolean tests_;
+    private TransformType transformType_;
     private ModelOptions modelOptions_;
     private File workingDir_;
     private boolean showVersion_;
@@ -608,6 +689,12 @@ public class ApiCommand
       public Builder server()
         {
         options_.setServerTest( true);
+        return this;
+        }
+
+      public Builder transformType( TransformType transformType)
+        {
+        options_.setTransformType( transformType);
         return this;
         }
 
@@ -681,58 +768,6 @@ public class ApiCommand
       {
       apiSpecFile = new File( options.getWorkingDir(), apiSpecFile.getPath());
       }
-
-    File inputDir =
-      apiSpecFile==null
-      ? options.getWorkingDir()
-      : apiSpecFile.getParentFile();
-
-
-    // Output file defined?
-    File outputDir = options.getOutDir();
-    File outputFile = options.getOutFile();
-    if( outputFile == null && apiSpecFile != null)
-      {
-      // No, use default name
-      outputFile =
-        new File(
-          String.format(
-            "%s%s-%s-%s.json",
-            Optional.ofNullable( apiSpecFile.getParent()).map( p -> p + "/").orElse( ""),
-            getBaseName( apiSpecFile.getName()),
-            options.isServerTest()? "Requests" : "Responses",
-            options.isTests()? "Test" : "Input"));
-      }
-    if( outputFile != null)
-      {
-      // Ensure output directory exists.
-      if( outputDir == null)
-        {
-        outputDir =
-          outputFile.isAbsolute()
-          ? outputFile.getParentFile()
-          : inputDir;
-        }
-      if( !outputDir.exists() && !outputDir.mkdirs())
-        {
-        throw new RuntimeException( "Can't create output directory=" + outputDir);
-        }
-
-      outputFile = new File( outputDir, outputFile.getName());
-      }
-
-    OutputStream outputStream = null;
-    if( outputFile != null)
-      {
-      try
-        {
-        outputStream = new FileOutputStream( outputFile);
-        }
-      catch( Exception e)
-        {
-        throw new IllegalArgumentException( "Can't open output file=" + outputFile);
-        }
-      }
     
     // Generate requested input definition
     logger_.info( "Reading API spec from {}", apiSpecFile==null? "standard input" : apiSpecFile);
@@ -747,15 +782,102 @@ public class ApiCommand
       }
     else
       {
+      // Output file defined?
+      File outputDir = options.getOutDir();
+      File outputFile = options.getOutFile();
+      if( outputFile == null && apiSpecFile != null)
+        {
+        // No, use default name
+        outputFile =
+          new File(
+            String.format(
+              "%s%s-%s-%s.json",
+              Optional.ofNullable( apiSpecFile.getParent()).map( p -> p + "/").orElse( ""),
+              getBaseName( apiSpecFile.getName()),
+              options.isServerTest()? "Requests" : "Responses",
+              options.isTests()? "Test" : "Input"));
+        }
+      if( outputFile != null)
+        {
+        // Ensure output directory exists.
+        if( outputDir == null)
+          {
+          File inputDir =
+            apiSpecFile==null
+            ? options.getWorkingDir()
+            : apiSpecFile.getParentFile();
+
+          outputDir =
+            outputFile.isAbsolute()
+            ? outputFile.getParentFile()
+            : inputDir;
+          }
+        if( !outputDir.exists() && !outputDir.mkdirs())
+          {
+          throw new RuntimeException( "Can't create output directory=" + outputDir);
+          }
+
+        outputFile = new File( outputDir, outputFile.getName());
+        }
+
+      // Identify test definition transformations.
+      AbstractFilter transformer = null;
+      if( options.isTests() && options.getTransformType() != null)
+        {
+        if( options.getTransformType() == Options.TransformType.JUNIT)
+          {
+          transformer = new TestDefToJUnitFilter( MapBuilder.of( "system", (Object)inputDef.getName()).build());
+          outputFile =
+            Optional.ofNullable( outputFile)
+            .map( f -> new File( f.getParentFile(), getBaseName( f.getName()).replaceAll( "\\W+", "") + ".java"))
+            .orElse( null);
+          }
+
+        else if( options.getTransformType() == Options.TransformType.HTML)
+          {
+          transformer = new TestDefToHtmlFilter();
+          outputFile =
+            Optional.ofNullable( outputFile)
+            .map( f -> new File( f.getParentFile(), getBaseName( f.getName()) + ".htm"))
+            .orElse( null);
+          }
+
+        transformer.setTarget( outputFile);
+        }
+
+      OutputStream outputStream = null;
+      try
+        {
+        outputStream =
+          // Transformed output?
+          transformer != null?
+          transformer.getSource() :
+
+          // Output file?
+          outputFile != null?
+          new FileOutputStream( outputFile) :
+
+          // Standard output?
+          null;
+        }
+      catch( Exception e)
+        {
+        throw new IllegalArgumentException( "Can't open output file=" + outputFile);
+        }
+
       // Write requested results
       logger_.info( "Writing results to {}", outputFile==null? "standard output" : outputFile);
-      if( options.isTests())
+      if( !options.isTests())
         {
-        TcasesOpenApiIO.writeTests( Tcases.getTests( inputDef, null, null), outputStream);
+        TcasesOpenApiIO.writeInputModel( inputDef, outputStream);
+        }
+      else if( transformer != null)
+        {
+        TcasesIO.writeTests( Tcases.getTests( inputDef, null, null), outputStream);
         }
       else
         {
-        TcasesOpenApiIO.writeInputModel( inputDef, outputStream);
+        TcasesOpenApiIO.writeTests( Tcases.getTests( inputDef, null, null), outputStream);
         }
       }
     }

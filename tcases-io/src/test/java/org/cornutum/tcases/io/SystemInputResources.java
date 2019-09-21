@@ -142,7 +142,7 @@ public class SystemInputResources
     }
 
   /**
-   * Returns the {@link SystemInputDef} defined by the given JSON resource.
+   * Returns the {@link SystemInputDef} defined by the given JSON file.
    */
   public SystemInputDef readJson( File file)
     {

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<Generators>
+    <TupleGenerator function="*" tuples="1"/>
+    <TupleGenerator function="run" seed="3098403641667441664" tuples="1">
+        <Combine tuples="2">
+            <Include var="Api-Spec.Defined"/>
+            <Include var="Output-File.Defined"/>
+        </Combine>
+        <Combine tuples="2">
+            <Include var="Output-File.Defined"/>
+            <Include var="Output-Transformer"/>
+        </Combine>
+        <Combine tuples="2">
+            <Include var="Output-File.Defined"/>
+            <Include var="Output-Dir.Defined"/>
+        </Combine>
+    </TupleGenerator>
+</Generators>
