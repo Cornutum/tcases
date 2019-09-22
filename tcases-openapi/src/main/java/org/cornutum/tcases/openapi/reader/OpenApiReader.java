@@ -15,6 +15,7 @@ import io.swagger.v3.parser.core.models.SwaggerParseResult;
 import io.swagger.v3.parser.util.OpenAPIDeserializer;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Closeable;
 import java.io.File;
@@ -45,7 +46,15 @@ public class OpenApiReader implements Closeable
    */
   public OpenApiReader( InputStream input)
     {
-    this( input, null);
+    this( input, null, null);
+    }
+  
+  /**
+   * Creates a new OpenApiReader instance.
+   */
+  public OpenApiReader( InputStream input, String docType)
+    {
+    this( input, null, docType);
     }
   
   /**
@@ -53,15 +62,15 @@ public class OpenApiReader implements Closeable
    */
   public OpenApiReader( InputStream input, URL location)
     {
-    this( input == null? null : readerFor( input), location);
+    this( input, location, null);
     }
   
   /**
    * Creates a new OpenApiReader instance.
    */
-  public OpenApiReader( Reader input)
+  public OpenApiReader( InputStream input, URL location, String docType)
     {
-    this( input, null);
+    this( input == null? null : readerFor( input), location, docType);
     }
   
   /**
@@ -69,7 +78,31 @@ public class OpenApiReader implements Closeable
    */
   public OpenApiReader( File input)
     {
-    this( inputFor( input), toUrl( input));
+    this( input, null);
+    }
+  
+  /**
+   * Creates a new OpenApiReader instance.
+   */
+  public OpenApiReader( File input, String docType)
+    {
+    this( inputFor( input), toUrl( input), docType);
+    }
+  
+  /**
+   * Creates a new OpenApiReader instance.
+   */
+  public OpenApiReader( Reader input)
+    {
+    this( input, null, null);
+    }
+  
+  /**
+   * Creates a new OpenApiReader instance.
+   */
+  public OpenApiReader( Reader input, String docType)
+    {
+    this( input, null, docType);
     }
   
   /**
@@ -77,8 +110,21 @@ public class OpenApiReader implements Closeable
    */
   public OpenApiReader( Reader input, URL location)
     {
+    this( input, location, null);
+    }
+  
+  /**
+   * Creates a new OpenApiReader instance.
+   */
+  public OpenApiReader( Reader input, URL location, String docType)
+    {
     reader_ = input;
     location_ = location;
+
+    docType_ =
+      Optional.ofNullable( StringUtils.trimToNull( docType))
+      .map( String::toLowerCase)
+      .orElse( docTypeFor( location));
     }
 
   /**
@@ -87,6 +133,14 @@ public class OpenApiReader implements Closeable
   public URL getLocation()
     {
     return location_;
+    }
+
+  /**
+   * Returns the content type of this document.
+   */
+  public String getDocType()
+    {
+    return docType_;
     }
 
   /**
@@ -142,12 +196,8 @@ public class OpenApiReader implements Closeable
    */
   private boolean isYaml()
     {
-    String extension =
-      getLocation() == null
-      ? null
-      : FilenameUtils.getExtension( getLocation().getPath()).toLowerCase();
-
-    return "yml".equals( extension) || "yaml".equals( extension);
+    String docType = getDocType();
+    return "yml".equals( docType) || "yaml".equals( docType);
     }
 
   /**
@@ -194,6 +244,18 @@ public class OpenApiReader implements Closeable
     return new InputStreamReader( input, UTF_8);
     }
 
+  /**
+   * Returns the content type defined by the given document location.
+   */
+  private static String docTypeFor( URL location)
+    {
+    return
+      Optional.ofNullable( location)
+      .flatMap( url -> Optional.ofNullable( StringUtils.trimToNull( FilenameUtils.getExtension( url.getPath()))))
+      .orElse( "json");
+    }
+
   private Reader reader_;
   private URL location_;
+  private String docType_;
   }

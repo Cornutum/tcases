@@ -165,7 +165,7 @@ public class ApiCommandTest
   public void run_2() throws Exception
     {
     // Given...
-    File apiFile = getResourceFile( "api-run-2.json");
+    File apiFile = getResourceFile( "api-run-2.yaml");
     File outDir = new File( apiFile.getParentFile(), "newDir");
     File outFile = new File( outDir, "api-run-2-Input.json");
 
@@ -177,7 +177,8 @@ public class ApiCommandTest
         "-c", "log",
         "-f", new File( apiFile.getParentFile(), outFile.getName()).getPath(),
         "-o", outDir.getPath(),
-        "-W"
+        "-W",
+        "-T", "yaml"
       };
     
     // When...
@@ -212,7 +213,7 @@ public class ApiCommandTest
   public void run_3() throws Exception
     {
     // Given...
-    File apiFile = getResourceFile( "api-run-3.json");
+    File apiFile = getResourceFile( "api-run-3.yml");
     String outFileName = "api-run-3-Test.json";
     File outFile = new File( apiFile.getParentFile(), "apirun3Test.java");
 
@@ -351,7 +352,7 @@ public class ApiCommandTest
   public void run_6() throws Exception
     {
     // Given...
-    File apiFile = getResourceFile( "api-run-6.json");
+    File apiFile = getResourceFile( "api-run-6.yaml");
     File outFile = new File( apiFile.getParentFile(), "api-run-6-Test.json");
 
     outFile.delete();

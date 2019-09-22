@@ -51,6 +51,7 @@ public class ApiCommand
    * [-R]
    * [-W]
    * [-J | -H]
+   * [-T <I>contentType</I>]
    * [-v]
    * [<I>apiSpec</I>]
    * </NOBR>
@@ -188,6 +189,20 @@ public class ApiCommand
    * Ignored if <I>-I</I> is specified.
    * </TD>
    * </TR>
+
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-T <I>contentType</I> </NOBR>
+   * </TD>
+   * <TD>
+   * Defines the content type of the OpenApi specification. The <I>contentType</I> must be one of "json", "yaml", or "yml".
+   * The default content type is assumed for any file that is not specified explicitly or that does not have a recognized extension.
+   * If omitted, the default content type is derived from the <I>apiSpec</I> name.
+   * </TD>
+   * </TR>
    *
    * <TR valign="top">
    * <TD>
@@ -319,6 +334,23 @@ public class ApiCommand
         getModelOptions().setWriteOnlyEnforced( true);
         }
 
+      else if( arg.equals( "-T"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        try
+          {
+          setContentType( args[i]);
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid content type", e);
+          }
+        }
+
       else if( arg.equals( "-v"))
         {
         setShowVersion( true);
@@ -430,6 +462,7 @@ public class ApiCommand
           + " [-f outFile]"
           + " [-o outDir]"
           + " [ -J | -H]"
+          + " [-T contentType]"
           + " [apiSpec]",
           cause);
       }
@@ -512,6 +545,33 @@ public class ApiCommand
     public TransformType getTransformType()
       {
       return transformType_;
+      }
+
+    /**
+     * Changes the OpenApi spec file content type.
+     */
+    public void setContentType( String option)
+      {
+      String contentType =
+        Optional.ofNullable( option)
+        .map( String::toLowerCase)
+        .filter( type -> "json".equals( type) || "yml".equals( type) || "yaml".equals( type))
+        .orElse( null);
+      
+      if( option != null && contentType == null)
+        {
+        throw new IllegalArgumentException( String.format( "'%s' is not a valid content type", option));
+        }
+
+      contentType_ = contentType;
+      }
+
+    /**
+     * Returns the OpenApi spec file content type.
+     */
+    public String getContentType()
+      {
+      return contentType_;
       }
 
     /**
@@ -637,6 +697,11 @@ public class ApiCommand
         builder.append( " -H");
         }
 
+      if( getContentType() != null)
+        {
+        builder.append( " -T ").append( getContentType());
+        }
+
       if( showVersion())
         {
         builder.append( " -v");
@@ -651,6 +716,7 @@ public class ApiCommand
     private boolean serverTest_;
     private boolean tests_;
     private TransformType transformType_;
+    private String contentType_;
     private ModelOptions modelOptions_;
     private File workingDir_;
     private boolean showVersion_;
@@ -695,6 +761,12 @@ public class ApiCommand
       public Builder transformType( TransformType transformType)
         {
         options_.setTransformType( transformType);
+        return this;
+        }
+
+      public Builder contentType( String type)
+        {
+        options_.setContentType( type);
         return this;
         }
 
@@ -773,8 +845,8 @@ public class ApiCommand
     logger_.info( "Reading API spec from {}", apiSpecFile==null? "standard input" : apiSpecFile);
     SystemInputDef inputDef =
       options.isServerTest()
-      ? TcasesOpenApiIO.getRequestInputModel( apiSpecFile, options.getModelOptions())
-      : TcasesOpenApiIO.getResponseInputModel( apiSpecFile, options.getModelOptions());
+      ? TcasesOpenApiIO.getRequestInputModel( apiSpecFile, options.getContentType(), options.getModelOptions())
+      : TcasesOpenApiIO.getResponseInputModel( apiSpecFile, options.getContentType(), options.getModelOptions());
 
     if( inputDef == null)
       {
