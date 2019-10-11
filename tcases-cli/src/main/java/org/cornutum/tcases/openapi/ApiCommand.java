@@ -297,21 +297,7 @@ public class ApiCommand
           {
           throwUsageException();
           }
-        String notifier = args[i];
-        getModelOptions().setConditionNotifier(
-          Optional.ofNullable(
-            "log".equals( notifier)?
-            ModelConditionNotifier.log() :
-
-            "fail".equals( notifier)?
-            ModelConditionNotifier.fail() :
-
-            "ignore".equals( notifier)?
-            ModelConditionNotifier.ignore() :
-
-            null)
-
-          .orElseThrow( () -> getUsageException( "Unknown condition notifier: " + notifier, null)));
+        setOnCondition( args[i]);
         }
 
       else if( arg.equals( "-f"))
@@ -326,12 +312,12 @@ public class ApiCommand
 
       else if( arg.equals( "-R"))
         {
-        getModelOptions().setReadOnlyEnforced( true);
+        setReadOnlyEnforced( true);
         }
 
       else if( arg.equals( "-W"))
         {
-        getModelOptions().setWriteOnlyEnforced( true);
+        setWriteOnlyEnforced( true);
         }
 
       else if( arg.equals( "-T"))
@@ -591,6 +577,43 @@ public class ApiCommand
       }
 
     /**
+     * Changes the input modelling condition notifier.
+     */
+    public void setOnCondition( String notifier)
+      {
+      getModelOptions().setConditionNotifier(
+        Optional.ofNullable(
+          "log".equals( notifier)?
+          ModelConditionNotifier.log() :
+
+          "fail".equals( notifier)?
+          ModelConditionNotifier.fail() :
+
+          "ignore".equals( notifier)?
+          ModelConditionNotifier.ignore() :
+
+          null)
+
+        .orElseThrow( () -> getUsageException( "Unknown condition notifier: " + notifier, null)));
+      }
+
+    /**
+     * Changes if "readOnly" properties are strictly enforced.
+     */
+    public void setReadOnlyEnforced( boolean enforced)
+      {
+      getModelOptions().setReadOnlyEnforced( enforced);
+      }
+
+    /**
+     * Changes if "writeOnly" properties are strictly enforced.
+     */
+    public void setWriteOnlyEnforced( boolean enforced)
+      {
+      getModelOptions().setWriteOnlyEnforced( enforced);
+      }
+
+    /**
      * Changes the Open API v3 API spec file
      */
     public void setApiSpec( File apiSpec)
@@ -779,6 +802,24 @@ public class ApiCommand
       public Builder testDef()
         {
         options_.setTests( true);
+        return this;
+        }
+
+      public Builder onCondition( String notifier)
+        {
+        options_.setOnCondition( notifier==null? "log" : notifier);
+        return this;
+        }
+
+      public Builder enforceReadOnly()
+        {
+        options_.setReadOnlyEnforced( true);
+        return this;
+        }
+
+      public Builder enforceWriteOnly()
+        {
+        options_.setWriteOnlyEnforced( true);
         return this;
         }
 

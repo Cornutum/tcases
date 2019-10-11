@@ -21,7 +21,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Implements the Tcases Maven plugin. For full details on Tcases &mdash; what it does and how it works &mdash; see
+ * Runs Tcases to generate test cases from one or more system input definition documents.
+ * For full details on Tcases &mdash; what it does and how it works &mdash; see
  * <A href="http://www.cornutum.org/tcases/docs/Tcases-Guide.htm">Tcases: The Complete Guide</A> at www.cornutum.org.
  *
  */
@@ -359,7 +360,7 @@ public class TcasesMojo extends AbstractMojo
     }
 
   /**
-   * Changes if using the Html transform.
+   * Changes if using the HTML transform.
    */
   public void setHtml( boolean html)
     {
@@ -367,7 +368,7 @@ public class TcasesMojo extends AbstractMojo
     }
 
   /**
-   * Returns if using the Html transform.
+   * Returns if using the HTML transform.
    */
   public boolean isHtml()
     {
