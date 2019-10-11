@@ -68,9 +68,9 @@ public class OpenApiReader implements Closeable
   /**
    * Creates a new OpenApiReader instance.
    */
-  public OpenApiReader( InputStream input, URL location, String docType)
+  public OpenApiReader( InputStream input, URL location, String defaultDocType)
     {
-    this( input == null? null : readerFor( input), location, docType);
+    this( input == null? null : readerFor( input), location, defaultDocType);
     }
   
   /**
@@ -84,9 +84,9 @@ public class OpenApiReader implements Closeable
   /**
    * Creates a new OpenApiReader instance.
    */
-  public OpenApiReader( File input, String docType)
+  public OpenApiReader( File input, String defaultDocType)
     {
-    this( inputFor( input), toUrl( input), docType);
+    this( inputFor( input), toUrl( input), defaultDocType);
     }
   
   /**
@@ -116,15 +116,17 @@ public class OpenApiReader implements Closeable
   /**
    * Creates a new OpenApiReader instance.
    */
-  public OpenApiReader( Reader input, URL location, String docType)
+  public OpenApiReader( Reader input, URL location, String defaultDocType)
     {
     reader_ = input;
     location_ = location;
 
     docType_ =
-      Optional.ofNullable( StringUtils.trimToNull( docType))
-      .map( String::toLowerCase)
-      .orElse( docTypeFor( location));
+      docTypeFor( location)
+      .orElse( 
+        Optional.ofNullable( StringUtils.trimToNull( defaultDocType))
+        .map( String::toLowerCase)
+        .orElse( "json"));
     }
 
   /**
@@ -247,12 +249,11 @@ public class OpenApiReader implements Closeable
   /**
    * Returns the content type defined by the given document location.
    */
-  private static String docTypeFor( URL location)
+  private static Optional<String> docTypeFor( URL location)
     {
     return
       Optional.ofNullable( location)
-      .flatMap( url -> Optional.ofNullable( StringUtils.trimToNull( FilenameUtils.getExtension( url.getPath()))))
-      .orElse( "json");
+      .flatMap( url -> Optional.ofNullable( StringUtils.trimToNull( FilenameUtils.getExtension( url.getPath()))));
     }
 
   private Reader reader_;
