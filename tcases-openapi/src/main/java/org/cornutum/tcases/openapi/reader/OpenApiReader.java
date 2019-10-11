@@ -198,8 +198,15 @@ public class OpenApiReader implements Closeable
    */
   private boolean isYaml()
     {
-    String docType = getDocType();
-    return "yml".equals( docType) || "yaml".equals( docType);
+    return isYaml( getDocType());
+    }
+
+  /**
+   * Returns true if this is a YAML extension.
+   */
+  private static boolean isYaml( String ext)
+    {
+    return "yml".equals( ext) || "yaml".equals( ext);
     }
 
   /**
@@ -253,7 +260,9 @@ public class OpenApiReader implements Closeable
     {
     return
       Optional.ofNullable( location)
-      .flatMap( url -> Optional.ofNullable( StringUtils.trimToNull( FilenameUtils.getExtension( url.getPath()))));
+      .flatMap( url -> Optional.ofNullable( StringUtils.trimToNull( FilenameUtils.getExtension( url.getPath()))))
+      .map( String::toLowerCase)
+      .filter( ext -> "json".equals( ext) || isYaml( ext));
     }
 
   private Reader reader_;
