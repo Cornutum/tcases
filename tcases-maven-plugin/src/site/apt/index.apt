@@ -6,7 +6,9 @@ Tcases Plugin
 
   The Tcases Plugin runs Tcases, a model-based test case generator. With Tcases, you define a model
   of the input space for your system-under-test and a model of the coverage that you want. Then
-  Tcases generates a minimal set of test cases that meets your requirements.
+  Tcases generates a minimal set of test cases that meets your requirements. For REST-ful API developers,
+  the plugin can also {{{./usage.html#Running_Tcases_For_OpenAPI}automatically generate the API input space and test cases}}
+  directly from an OpenAPI v3 specification.
 
   What is the "input space" of the system? The simplest way to look at it is this: the set of all
   (combinations of) input values that could possibly be applied. Easy to say, but hard to do! For
@@ -28,9 +30,11 @@ Tcases Plugin
 
 * Goals Overview
 
-  * {{{./tcases-mojo.html}tcases:tcases}} Implements the Tcases Maven plugin.
+  * {{{./tcases-mojo.html}tcases:tcases}} Runs Tcases to generate test cases from one or more system input definition documents.
 
   * {{{./reduce-mojo.html}tcases:reduce}} Runs the {{{./usage.html#Reducing_Test_Cases}Tcases Reducer}}.
+
+  * {{{./api-mojo.html}tcases:api}} Runs {{{./usage.html#Running_Tcases_For_OpenAPI}Tcases for OpenAPI}}.
 
 * Usage
 

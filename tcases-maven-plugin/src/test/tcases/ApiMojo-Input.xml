@@ -1,0 +1,82 @@
+<System name="ApiMojo">
+  <Function name="execute">
+
+    <Input type="arg">
+
+      <VarSet name="ApiDefPatterns">
+        <Var name="Count">
+          <Value name="None"/>
+          <Value name="One" property="inputPatterns"/>
+          <Value name="Many" property="inputPatterns" when="apiDefs"/>
+        </Var>
+        <Var name="Defined-By" when="inputPatterns">
+          <Value name="apiDefs" property="apiDefs"/>
+          <Value name="apiDef"/>
+          <Value name="project"/>
+        </Var>
+        <Var name="Matched">
+          <Value name="None" once="true"/>
+          <Value name="One" property="apiDef"/>
+          <Value name="Many" property="apiDef"/>
+        </Var>
+      </VarSet>
+
+      <Var name="ContentType" when="inputPatterns, apiDef">
+        <Value name="Default"/>
+        <Value name="yaml" once="true"/>
+      </Var>
+
+      <Var name="InputDir">
+        <Value name="Default"/>
+        <Value name="Other" once="true"/>
+      </Var>
+
+      <Var name="OutDir" when="apiDef">
+        <Value name="Default"/>
+        <Value name="Other" once="true"/>
+      </Var>
+
+      <Var name="Junit" when="apiDef" whenNot="inputModels,html">
+        <Value name="Default"/>
+        <Value name="Yes" once="true" property="junit"/>
+        <Value name="No" once="true"/>
+      </Var>
+
+      <Var name="Html" when="apiDef" whenNot="inputModels,junit">
+        <Value name="Default"/>
+        <Value name="Yes" once="true" property="html"/>
+        <Value name="No" once="true"/>
+      </Var>
+
+      <Var name="InputModels" when="apiDef">
+        <Value name="Default"/>
+        <Value name="Yes" once="true" property="inputModels"/>
+        <Value name="No" once="true"/>
+      </Var>
+
+      <Var name="OnCondition" when="apiDef">
+        <Value name="Default"/>
+        <Value name="fail" failure="true"/>
+      </Var>
+
+      <Var name="ReadOnlyEnforced" when="apiDef">
+        <Value name="Default"/>
+        <Value name="Yes" once="true"/>
+        <Value name="No" once="true"/>
+      </Var>
+
+      <Var name="WriteOnlyEnforced" when="apiDef">
+        <Value name="Default"/>
+        <Value name="Yes" once="true"/>
+        <Value name="No" once="true"/>
+      </Var>
+
+    </Input>
+
+    <Input type="env">
+
+      
+
+    </Input>
+  </Function>
+</System>
