@@ -39,6 +39,7 @@ public class ApiMojo extends AbstractMojo
         // Use API spec(s) for specified project name.
         apiDefPatterns.add( "**/" + getProject() + ".json");
         apiDefPatterns.add( "**/" + getProject() + ".yaml");
+        apiDefPatterns.add( "**/" + getProject() + ".yml");
         }
       else if( !StringUtils.isBlank( getApiDef())) 
         {
@@ -50,6 +51,7 @@ public class ApiMojo extends AbstractMojo
         // Use default patterns
         apiDefPatterns.add( "**/*.json");
         apiDefPatterns.add( "**/*.yaml");
+        apiDefPatterns.add( "**/*.yml");
         }
       inputScanner.setIncludes( apiDefPatterns.toArray( new String[0]));
 
@@ -347,7 +349,7 @@ public class ApiMojo extends AbstractMojo
   /**
    * Defines a single pattern that matches the OpenAPI specification files read by Tcases for OpenAPI,
    * relative to the directory specified by the <B><CODE>inputDir</CODE></B>.
-   * If omitted, the default value matches all files of the form "*.json" or "*.yaml".
+   * If omitted, the default value matches all files of the form "*.json", "*.yaml", or "*.yml".
    */
   @Parameter(property="apiDef")
   private String apiDef;
@@ -356,7 +358,7 @@ public class ApiMojo extends AbstractMojo
    * A short-hand form of the <B><CODE>apiDefs</CODE></B> parameter that makes it easier
    * to select the OpenAPI specification for a specific project. Equivalent to setting
    * <B><CODE>apiDefs</CODE></B> to
-   * <CODE>&lowast;&lowast;/${project}.json,&lowast;&lowast;/${project}.yaml</CODE>.
+   * <CODE>&lowast;&lowast;/${project}.json,&lowast;&lowast;/${project}.yaml,&lowast;&lowast;/${project}.yml</CODE>.
    */
   @Parameter(property="project")
   private String project;
@@ -372,7 +374,7 @@ public class ApiMojo extends AbstractMojo
   /**
    * Defines the default content type for API spec files. The <B><CODE>contentType</CODE></B> must be one of "json" or "yaml".
    * The default content type is assumed for any file that is not specified explicitly or that does not have a recognized extension.
-   * If omitted, the default content type is derived from the OpenAPI specification file name.
+   * If omitted, the default content type is "json".
    */
   @Parameter(property="contentType")
   private String contentType;
