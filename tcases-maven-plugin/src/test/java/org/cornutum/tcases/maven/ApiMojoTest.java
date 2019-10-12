@@ -1,5 +1,6 @@
 package org.cornutum.tcases.maven;
 
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.DirectoryScanner;
@@ -9,6 +10,7 @@ import org.junit.Test;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.apache.commons.io.FilenameUtils.getPath;
 import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
@@ -77,7 +79,7 @@ public class ApiMojoTest
         })
       .collect( toList());
         
-    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*.htm")), containsMembers( expectedTestDefs));
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
     }
 
   /**
@@ -102,39 +104,39 @@ public class ApiMojoTest
    * </P>
    */
   @Test
-  public void execute_1()
+  public void execute_1() throws Exception
     {
-    // properties = apiDef,apiDefs,inputPatterns,junit
-
     // Given...
-    //
-    //   ApiDefPatterns.Count = Many
-    //
-    //   ApiDefPatterns.Defined-By = apiDefs
-    //
-    //   ApiDefPatterns.Matched = One
-    //
-    //   ContentType = yaml
-    //
-    //   InputDir = Default
-    //
-    //   OutDir = Default
-    //
-    //   Junit = Yes
-    //
-    //   Html = (not applicable)
-    //
-    //   InputModels = No
-    //
-    //   OnCondition = Default
-    //
-    //   ReadOnlyEnforced = Yes
-    //
-    //   WriteOnlyEnforced = Default
-    
+    File baseDirTest = getBaseDirTest( "api-project-1");
+
     // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
 
     // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir, "**/*.api");
+    assertThat( "API defs", expectedApiDefs.length, is( 1));
+
+    List<String> expectedTestDefs = 
+    Arrays.stream( expectedApiDefs)
+      .flatMap( apiDef -> {
+        String expectedApiDefDir = getPath( apiDef);
+        String expectedApiDefName = getBaseName( apiDef);
+        return
+          Stream.of(
+            String.format( "%s%sRequestsTest.java", expectedApiDefDir, expectedApiDefName),
+            String.format( "%s%sResponsesTest.java", expectedApiDefDir, expectedApiDefName));
+        })
+      .collect( toList());
+        
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
     }
 
   /**
@@ -159,39 +161,39 @@ public class ApiMojoTest
    * </P>
    */
   @Test
-  public void execute_2()
+  public void execute_2() throws Exception
     {
-    // properties = apiDef,inputPatterns
-
     // Given...
-    //
-    //   ApiDefPatterns.Count = One
-    //
-    //   ApiDefPatterns.Defined-By = project
-    //
-    //   ApiDefPatterns.Matched = Many
-    //
-    //   ContentType = Default
-    //
-    //   InputDir = Default
-    //
-    //   OutDir = Default
-    //
-    //   Junit = No
-    //
-    //   Html = Default
-    //
-    //   InputModels = Default
-    //
-    //   OnCondition = Default
-    //
-    //   ReadOnlyEnforced = No
-    //
-    //   WriteOnlyEnforced = No
-    
+    File baseDirTest = getBaseDirTest( "api-project-2");
+
     // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
 
     // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir, "**/MyApi.*");
+    assertThat( "API defs", expectedApiDefs.length, is( 2));
+
+    List<String> expectedTestDefs = 
+    Arrays.stream( expectedApiDefs)
+      .flatMap( apiDef -> {
+        String expectedApiDefDir = getPath( apiDef);
+        String expectedApiDefName = getBaseName( apiDef);
+        return
+          Stream.of(
+            String.format( "%s%s-Requests-Test.json", expectedApiDefDir, expectedApiDefName),
+            String.format( "%s%s-Responses-Test.json", expectedApiDefDir, expectedApiDefName));
+        })
+      .collect( toList());
+        
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
     }
 
   /**
@@ -216,39 +218,39 @@ public class ApiMojoTest
    * </P>
    */
   @Test
-  public void execute_3()
+  public void execute_3() throws Exception
     {
-    // properties = apiDef,inputModels
-
     // Given...
-    //
-    //   ApiDefPatterns.Count = None
-    //
-    //   ApiDefPatterns.Defined-By = (not applicable)
-    //
-    //   ApiDefPatterns.Matched = One
-    //
-    //   ContentType = (not applicable)
-    //
-    //   InputDir = Default
-    //
-    //   OutDir = Default
-    //
-    //   Junit = (not applicable)
-    //
-    //   Html = (not applicable)
-    //
-    //   InputModels = Yes
-    //
-    //   OnCondition = Default
-    //
-    //   ReadOnlyEnforced = Default
-    //
-    //   WriteOnlyEnforced = Default
-    
+    File baseDirTest = getBaseDirTest( "api-project-3");
+
     // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
 
     // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir, "MyApi.json");
+    assertThat( "API defs", expectedApiDefs.length, is( 1));
+
+    List<String> expectedInputDefs = 
+    Arrays.stream( expectedApiDefs)
+      .flatMap( apiDef -> {
+        String expectedApiDefDir = getPath( apiDef);
+        String expectedApiDefName = getBaseName( apiDef);
+        return
+          Stream.of(
+            String.format( "%s%s-Requests-Input.json", expectedApiDefDir, expectedApiDefName),
+            String.format( "%s%s-Responses-Input.json", expectedApiDefDir, expectedApiDefName));
+        })
+      .collect( toList());
+        
+    assertThat( "Input defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedInputDefs));
     }
 
   /**
@@ -273,39 +275,39 @@ public class ApiMojoTest
    * </P>
    */
   @Test
-  public void execute_4()
+  public void execute_4() throws Exception
     {
-    // properties = apiDef,apiDefs,inputPatterns
-
     // Given...
-    //
-    //   ApiDefPatterns.Count = Many
-    //
-    //   ApiDefPatterns.Defined-By = apiDefs
-    //
-    //   ApiDefPatterns.Matched = Many
-    //
-    //   ContentType = Default
-    //
-    //   InputDir = Default
-    //
-    //   OutDir = Default
-    //
-    //   Junit = Default
-    //
-    //   Html = No
-    //
-    //   InputModels = Default
-    //
-    //   OnCondition = Default
-    //
-    //   ReadOnlyEnforced = Default
-    //
-    //   WriteOnlyEnforced = Default
-    
+    File baseDirTest = getBaseDirTest( "api-project-4");
+
     // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
 
     // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir, "**/*.api", "**/*.oas");
+    assertThat( "API defs", expectedApiDefs.length, is( 2));
+
+    List<String> expectedTestDefs = 
+    Arrays.stream( expectedApiDefs)
+      .flatMap( apiDef -> {
+        String expectedApiDefDir = getPath( apiDef);
+        String expectedApiDefName = getBaseName( apiDef);
+        return
+          Stream.of(
+            String.format( "%s%s-Requests-Test.json", expectedApiDefDir, expectedApiDefName),
+            String.format( "%s%s-Responses-Test.json", expectedApiDefDir, expectedApiDefName));
+        })
+      .collect( toList());
+        
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
     }
 
   /**
@@ -330,39 +332,26 @@ public class ApiMojoTest
    * </P>
    */
   @Test
-  public void execute_5()
+  public void execute_5() throws Exception
     {
-    // properties = inputPatterns
-
     // Given...
-    //
-    //   ApiDefPatterns.Count = One
-    //
-    //   ApiDefPatterns.Defined-By = apiDef
-    //
-    //   ApiDefPatterns.Matched = None
-    //
-    //   ContentType = (not applicable)
-    //
-    //   InputDir = Default
-    //
-    //   OutDir = (not applicable)
-    //
-    //   Junit = (not applicable)
-    //
-    //   Html = (not applicable)
-    //
-    //   InputModels = (not applicable)
-    //
-    //   OnCondition = (not applicable)
-    //
-    //   ReadOnlyEnforced = (not applicable)
-    //
-    //   WriteOnlyEnforced = (not applicable)
-    
+    File baseDirTest = getBaseDirTest( "api-project-5");
+
     // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
 
     // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir, "MyApi.json");
+    assertThat( "API defs", expectedApiDefs.length, is( 0));
+    assertThat( "Test defs", expectedOutDir.exists(), is( false));
     }
 
   /**
@@ -387,39 +376,32 @@ public class ApiMojoTest
    * </P>
    */
   @Test
-  public void execute_6()
+  public void execute_6() throws Exception
     {
-    // properties = apiDef
-
     // Given...
-    //
-    //   ApiDefPatterns.Count = None
-    //
-    //   ApiDefPatterns.Defined-By = (not applicable)
-    //
-    //   ApiDefPatterns.Matched = One
-    //
-    //   ContentType = (not applicable)
-    //
-    //   InputDir = Default
-    //
-    //   OutDir = Default
-    //
-    //   Junit = Default
-    //
-    //   Html = Default
-    //
-    //   InputModels = Default
-    //
-    //   OnCondition = fail
-    //
-    //   ReadOnlyEnforced = Default
-    //
-    //   WriteOnlyEnforced = Default
-    
-    // When...
+    File baseDirTest = getBaseDirTest( "api-project-6");
 
-    // Then...
+    // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+
+    expectFailure( MojoExecutionException.class)
+      .when( () -> apiMojo.execute())
+      .then( failure -> {
+        Stream.Builder<String> causes = Stream.builder();
+        for( Throwable cause = failure; cause != null; cause = cause.getCause())
+          {
+          causes.add( cause.getMessage());
+          }
+          
+        assertThat(
+          "Causes",
+          causes.build().collect( toList()),
+          listsMembers(
+            "Can't generate requested models",
+            "Error processing AllOf, /allOf, POST, param0, allOf[0], anyOf[2]",
+            "Ignoring this schema -- not applicable when only instance types=[string] can be valid"));
+        });
     }
   
   /**
