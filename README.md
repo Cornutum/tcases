@@ -2,8 +2,11 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.1.2](ReleaseNotes.md#312)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.2.0](ReleaseNotes.md#320)) is now available at the Maven Central Repository.
     See [HowToDownload](HowToDownload.md) for download instructions.
+
+  * Tcases 3.2.0 adds support for [Tcases for OpenAPI](tcases-openapi/README.md) to the Tcases Maven Plugin. This release also includes additional
+    improvements to the Tcases CLI. See the [release notes](ReleaseNotes.md#320) for details.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
