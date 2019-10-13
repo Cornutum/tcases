@@ -1,5 +1,15 @@
 # Release Notes #
 
+## 3.2.0 ##
+
+  * **Tcases Maven Plugin**: You can run [Tcases for OpenAPI](tcases-openapi/README.md) using the new `tcases:api` goal.
+    See the [plugin documentation](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/) for details.
+
+  * **`tcases` CLI**: Test case output transformations to JUnit (`-J` option) and HTML (`-H` option) work even when default output format would be JSON.
+
+
+  * **`tcases-api` CLI**: Standard transformations to JUnit (`-J` option) or HTML (`-H` option) are supported for generated API test cases.
+
 ## 3.1.2 ##
 
   * **[Tcases for OpenAPI](tcases-openapi/README.md)**: For more reliable translation of OpenAPI specs, upgraded to use
