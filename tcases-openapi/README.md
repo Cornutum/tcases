@@ -312,7 +312,7 @@ For example, try running the following commands.
 ```
 cd ${tcases-release-dir}
 cd docs/examples/openapi
-tcases -l stdout api-error.json
+tcases-api -l stdout api-error.json
 ```
 
 You'll see something like the following messages logged to standard output.
@@ -334,7 +334,7 @@ Some less serious conditions may deserve only a warning. For example, try runnin
 ```
 cd ${tcases-release-dir}
 cd docs/examples/openapi
-tcases -l stdout api-warn.json
+tcases-api -l stdout api-warn.json
 ```
 
 You'll see something like the following messages logged to standard output.
