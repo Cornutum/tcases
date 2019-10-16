@@ -7,6 +7,7 @@
   - [Why Tcases for OpenAPI? ](#why-tcases-for-openapi)
   - [Is your OpenAPI spec an input model? No, it's two! ](#is-your-openapi-spec-an-input-model-no-its-two)
   - [Running Tcases for OpenAPI from the command line ](#running-tcases-for-openapi-from-the-command-line)
+  - [Running Tcases for OpenAPI using Maven](#running-tcases-for-openapi-using-maven)
   - [Semantic linting with Tcases for OpenAPI](#semantic-linting-with-tcases-for-openapi)
   - [Using the Java API for Tcases for OpenAPI ](#using-the-java-api-for-tcases-for-openapi)
   - [OpenAPI tips ](#openapi-tips)
@@ -244,6 +245,55 @@ tcases-api -C -f someTests.json -o otherDir my-api.json
 # (See 'Test case generation tips'.)
 tcases-api -S -c fail < my-api.json
 ```
+
+## Running Tcases for OpenAPI using Maven ##
+
+You can also run Tcases for OpenAPI with the [Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/),
+using the [`tcases:api`](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html) goal.
+
+To get started, add the following to your Maven project POM.
+
+```xml
+...
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-maven-plugin</artifactId>
+            <version>...</version>
+        </plugin>
+        ...
+    </plugins>
+    ...
+</build>
+...
+```
+
+Then run the `tcases:api` goal.
+
+Using the plugin has the advantage that you can process multiple
+OpenAPI specs with a single command. Also, `tcases:api`
+automatically generates tests for both requests and responses.
+
+Some examples:
+
+```bash
+# Generate tests for requests and responses defined by all OpenAPI specs of the 
+# form ${basedir}/src/test/tcases/openapi/**/my-api.(json,yaml). Write results to
+# ${basedir}/target/tcases/openapi.
+
+mvn tcases:api -Dproject=my-api
+```
+
+
+```bash
+# Generate an HTML report of tests for requests and responses for each
+# OpenAPI spec found in ${basedir}/src/test/tcases/openapi. Report a failure if
+# any input modelling condition is found.
+
+mvn tcases:api -Dhtml=true -DonCondition=fail
+```
+
 
 ## Semantic linting with Tcases for OpenAPI ##
 

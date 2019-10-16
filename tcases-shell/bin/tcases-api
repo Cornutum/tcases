@@ -9,7 +9,7 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-v] [-C | -S] [-I] [-R] [-W] [-c notifier] [-f outFile] [-o outDir] [apiSpec]" >&2
+  echo Usage: $pgm "[-v] [-C | -S] [-I] [-R] [-W] [-J] [-H] [-c notifier] [-f outFile] [-o outDir] [apiSpec]" >&2
   echo "" >&2
   echo "  -C, -S      If -C is given, produce results to test inputs to an API client, i.e. API responses. If -S is given," >&2
   echo "              produce results to test inputs to an API server, i.e. API requests. If neither is given, the default is -S." >&2
@@ -33,6 +33,13 @@ usage()
   echo "  -o outDir   If -o is defined, output is written to the specified directory. If omitted, the default outDir is" >&2
   echo "              the directory containing the apiSpec or, if reading from standard input, the current working directory." >&2
   echo "              If an output path cannot be derived, output is written to standard output." >&2
+  echo "" >&2
+  echo "  -J          If -J is defined, test definition output is transformed into Java source" >&2
+  echo "              code for a JUnit test class. The resulting Java source file is written to" >&2
+  echo "              the specified outDir." >&2
+  echo "" >&2
+  echo "  -H          If -H is defined, test definition output is transformed into an HTML report" >&2
+  echo "              that is written to the specified outDir." >&2
   echo "" >&2
   echo "  -v          Prints the current command version identifier to standard output." >&2
   echo "" >&2
