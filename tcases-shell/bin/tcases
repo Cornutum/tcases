@@ -9,7 +9,7 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-R] [-t testDef] [-T contentType] [-v] [-x transformDef | -J] [inputDef]" >&2
+  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-R] [-t testDef] [-T contentType] [-v] [-x transformDef | -J] [-H] [inputDef]" >&2
   echo "" >&2
   echo "  Generates a set of test cases from a system input definition, according" >&2
   echo "  to the given command line arguments." >&2
@@ -41,6 +41,9 @@ usage()
   echo "  -J          If -J is defined, test definition output is transformed into Java source" >&2
   echo "              code for a JUnit test class. The resulting Java source file is written to" >&2
   echo "              the specified outDir." >&2
+  echo "" >&2
+  echo "  -H          If -H is defined, test definition output is transformed into an HTML report" >&2
+  echo "              that is written to the specified outDir." >&2
   echo "" >&2
   echo "  -l logFile  If -l is defined, log output is written to the given file. If omitted," >&2
   echo "              log output is written to a file named ${pgm}.log in the current working" >&2
