@@ -50,13 +50,12 @@ public class FormattedStringTest
       .build();
 
     Date date = calendar.getTime();
-    int localZoneOffset = TimeZone.getDefault().getOffset( System.currentTimeMillis()) / 60000;
       
     // When...
     FormattedString formatted = FormattedString.of( "date-time", date);
     
     // Then...
-    assertThat( "Date string", formatted.toString(), is( toDateTimeString( calendar, localZoneOffset)));
+    assertThat( "Date string", formatted.toString(), is( toDateTimeString( calendar)));
     }
   
   @Test
@@ -73,28 +72,27 @@ public class FormattedStringTest
     }
 
   /**
-   * Returns the expected string representation of the given time value, using the given local time zone offset.
+   * Returns the expected string representation of the given time value.
    */
-  private String toDateTimeString( Calendar calendar, int localZoneOffset)
+  private String toDateTimeString( Calendar calendar)
     {
-    int zonedHrMin = 60 * calendar.get( HOUR_OF_DAY) + calendar.get( MINUTE) + localZoneOffset;
-    int zonedHr = zonedHrMin / 60;
-    int zonedMin = zonedHrMin % 60;
+    Calendar localCalendar = (Calendar) calendar.clone();
+    localCalendar.setTimeZone( TimeZone.getDefault());
+    
+    int localZoneOffset = TimeZone.getDefault().getOffset( calendar.getTimeInMillis()) / 60000;
 
     return
       String.format(
         "%s-%02d-%02dT%02d:%02d:%02d.%s%s%02d:%02d",
-        calendar.get( YEAR),
-        calendar.get( MONTH) + 1,
-        calendar.get( DAY_OF_MONTH),
-        zonedHr,
-        zonedMin,
-        calendar.get( SECOND),
-        calendar.get( MILLISECOND),
+        localCalendar.get( YEAR),
+        localCalendar.get( MONTH) + 1,
+        localCalendar.get( DAY_OF_MONTH),
+        localCalendar.get( HOUR_OF_DAY),
+        localCalendar.get( MINUTE),
+        localCalendar.get( SECOND),
+        localCalendar.get( MILLISECOND),
         localZoneOffset >= 0? "+" : "-",
         Math.abs( localZoneOffset / 60),
         Math.abs( localZoneOffset % 60));
-
     }
-
   }
