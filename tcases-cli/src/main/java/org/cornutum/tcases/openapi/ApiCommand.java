@@ -13,9 +13,12 @@ import org.cornutum.tcases.TcasesIO;
 import org.cornutum.tcases.io.AbstractFilter;
 import org.cornutum.tcases.io.TestDefToHtmlFilter;
 import org.cornutum.tcases.io.TestDefToJUnitFilter;
+import org.cornutum.tcases.io.TransformFilter;
 import org.cornutum.tcases.openapi.io.TcasesOpenApiIO;
 import org.cornutum.tcases.util.MapBuilder;
+
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
@@ -24,6 +27,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -50,7 +55,8 @@ public class ApiCommand
    * [-o <I>outDir</I>]
    * [-R]
    * [-W]
-   * [-J | -H]
+   * [-x <I>transformDef</I> | -J | -H]
+   * [-p <I>name</I>=<I>value</I>]
    * [-T <I>contentType</I>]
    * [-v]
    * [<I>apiSpec</I>]
@@ -189,7 +195,34 @@ public class ApiCommand
    * Ignored if <I>-I</I> is specified.
    * </TD>
    * </TR>
-
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-x <I>transformDef</I> </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-x</I> is defined, test definition output is transformed according to the XSLT transform defined
+   * by the <I>transformDef</I> file. If relative, the <I>transformDef</I> path is assumed to be relative to the
+   * directory containing the <I>apiSpec</I>.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-p <I>name</I>=<I>value</I> </NOBR>
+   * </TD>
+   * <TD>
+   * Defines the value of a transform parameter. Any number of <I>-p</I> options may be specified.
+   * This option is meaningful only if the <I>-x</I> or <I>-J</I> option is given.
+   * </TD>
+   * </TR>
+   *
    * <TR valign="top">
    * <TD>
    * &nbsp;
@@ -244,7 +277,7 @@ public class ApiCommand
    */
   public static class Options
     {
-    public enum TransformType { HTML, JUNIT };
+    public enum TransformType { HTML, JUNIT, CUSTOM };
 
     /**
      * Creates a new Options object.
@@ -375,6 +408,44 @@ public class ApiCommand
         setTransformType( TransformType.HTML);
         }
 
+      else if( arg.equals( "-x"))
+        {
+        if( getTransformType() != null)
+          {
+          throwUsageException( "Can't specify multiple output transforms");
+          }
+        setTransformType( TransformType.CUSTOM);
+
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        setTransformDef( new File( args[i]));
+        }
+
+      else if( arg.equals( "-p"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        String binding = args[i];
+        int valuePos = binding.indexOf( '=');
+        if( valuePos < 0)
+          {
+          throwUsageException( "Invalid -p option: must be name=value");
+          }
+        String name = StringUtils.trimToNull( binding.substring( 0, valuePos));
+        if( name == null)
+          {
+          throwUsageException( "Invalid -p option: parameter name undefined");
+          }
+        String value = binding.substring( valuePos+1);
+        getTransformParams().put( name, value);
+        }
+
       else
         {
         throwUsageException();
@@ -447,7 +518,8 @@ public class ApiCommand
           + " [-c {log | fail | ignore}]"
           + " [-f outFile]"
           + " [-o outDir]"
-          + " [ -J | -H]"
+          + " [-x transformDef | -J | -H]"
+          + " [-p name=value]"
           + " [-T contentType]"
           + " [apiSpec]",
           cause);
@@ -518,6 +590,22 @@ public class ApiCommand
       }
 
     /**
+     * Changes the transform file.
+     */
+    public void setTransformDef( File transformDef)
+      {
+      transformDef_ = transformDef;
+      }
+
+    /**
+     * Returns the transform file.
+     */
+    public File getTransformDef()
+      {
+      return transformDef_;
+      }
+
+    /**
      * Changes the output transform type.
      */
     public void setTransformType( TransformType transformType)
@@ -531,6 +619,22 @@ public class ApiCommand
     public TransformType getTransformType()
       {
       return transformType_;
+      }
+
+    /**
+     * Changes the transform parameter bindings.
+     */
+    public void setTransformParams( Map<String,Object> params)
+      {
+      transformParams_ = params;
+      }
+
+    /**
+     * Returns the transform parameter bindings.
+     */
+    public Map<String,Object> getTransformParams()
+      {
+      return transformParams_;
       }
 
     /**
@@ -720,6 +824,19 @@ public class ApiCommand
         builder.append( " -H");
         }
 
+      if( getTransformDef() != null)
+        {
+        builder.append( " -x ").append( getTransformDef().getPath());
+        }
+
+      if( getTransformParams() != null)
+        {
+        for( String name : getTransformParams().keySet())
+          {
+          builder.append( " -p ").append( name).append( '=').append( getTransformParams().get( name));
+          }
+        }
+
       if( getContentType() != null)
         {
         builder.append( " -T ").append( getContentType());
@@ -739,6 +856,8 @@ public class ApiCommand
     private boolean serverTest_;
     private boolean tests_;
     private TransformType transformType_;
+    private File transformDef_;
+    private Map<String,Object> transformParams_ = new HashMap<String,Object>();
     private String contentType_;
     private ModelOptions modelOptions_;
     private File workingDir_;
@@ -784,6 +903,18 @@ public class ApiCommand
       public Builder transformType( TransformType transformType)
         {
         options_.setTransformType( transformType);
+        return this;
+        }
+
+      public Builder transformDef( File transformDef)
+        {
+        options_.setTransformDef( transformDef);
+        return this;
+        }
+
+      public Builder transformParam( String name, String value)
+        {
+        options_.getTransformParams().put( name, value);
         return this;
         }
 
@@ -881,6 +1012,11 @@ public class ApiCommand
       {
       apiSpecFile = new File( options.getWorkingDir(), apiSpecFile.getPath());
       }
+
+    File inputDir =
+      apiSpecFile==null
+      ? options.getWorkingDir()
+      : apiSpecFile.getParentFile();
     
     // Generate requested input definition
     logger_.info( "Reading API spec from {}", apiSpecFile==null? "standard input" : apiSpecFile);
@@ -915,11 +1051,6 @@ public class ApiCommand
         // Ensure output directory exists.
         if( outputDir == null)
           {
-          File inputDir =
-            apiSpecFile==null
-            ? options.getWorkingDir()
-            : apiSpecFile.getParentFile();
-
           outputDir =
             outputFile.isAbsolute()
             ? outputFile.getParentFile()
@@ -934,27 +1065,37 @@ public class ApiCommand
         }
 
       // Identify test definition transformations.
-      AbstractFilter transformer = null;
-      if( options.isTests() && options.getTransformType() != null)
+      AbstractFilter transformer;
+      if( !(options.isTests() && options.getTransformType() != null))
         {
-        if( options.getTransformType() == Options.TransformType.JUNIT)
-          {
-          transformer = new TestDefToJUnitFilter( MapBuilder.of( "system", (Object)inputDef.getName()).build());
-          outputFile =
-            Optional.ofNullable( outputFile)
-            .map( f -> new File( f.getParentFile(), getBaseName( f.getName()).replaceAll( "\\W+", "") + ".java"))
-            .orElse( null);
-          }
-
-        else if( options.getTransformType() == Options.TransformType.HTML)
-          {
-          transformer = new TestDefToHtmlFilter();
-          outputFile =
-            Optional.ofNullable( outputFile)
-            .map( f -> new File( f.getParentFile(), getBaseName( f.getName()) + ".htm"))
-            .orElse( null);
-          }
-
+        transformer = null;
+        }
+      else if( options.getTransformType() == Options.TransformType.JUNIT)
+        {
+        transformer = new TestDefToJUnitFilter( MapBuilder.of( "system", (Object)inputDef.getName()).build());
+        outputFile =
+          Optional.ofNullable( outputFile)
+          .map( f -> new File( f.getParentFile(), getBaseName( f.getName()).replaceAll( "\\W+", "") + ".java"))
+          .orElse( null);
+        }
+      else if( options.getTransformType() == Options.TransformType.HTML)
+        {
+        transformer = new TestDefToHtmlFilter();
+        outputFile =
+          Optional.ofNullable( outputFile)
+          .map( f -> new File( f.getParentFile(), getBaseName( f.getName()) + ".htm"))
+          .orElse( null);
+        }
+      else
+        {
+        transformer =
+          Optional.ofNullable( options.getTransformDef())
+          .map( transformDefFile -> !transformDefFile.isAbsolute()? new File( inputDir, transformDefFile.getPath()) : transformDefFile)
+          .map( transformDefFile -> new TransformFilter( transformDefFile, options.getTransformParams()))
+          .orElse( null);
+        }
+      if( transformer != null)
+        {
         transformer.setTarget( outputFile);
         }
 

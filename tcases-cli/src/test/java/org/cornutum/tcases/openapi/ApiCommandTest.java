@@ -374,6 +374,94 @@ public class ApiCommandTest
     }
 
   /**
+   * Tests {@link ApiCommand#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 7. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Perspective </TD> <TD> Server </TD> </TR>
+   * <TR><TD> Model-Type </TD> <TD> Test </TD> </TR>
+   * <TR><TD> Condition-Handler </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Output-File.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Output-File.Path </TD> <TD> Absolute </TD> </TR>
+   * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Read-Only-Enforced </TD> <TD> No </TD> </TR>
+   * <TR><TD> Write-Only-Enforced </TD> <TD> No </TD> </TR>
+   * <TR><TD> Output-Transformer </TD> <TD> Custom </TD> </TR>
+   * <TR><TD> Api-Spec.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Api-Spec.Path </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_7() throws Exception
+    {
+    // Given...
+    File apiFile = getResourceFile( "api-run-7.json");
+    File outFile = new File( String.format( "%s/%s", apiFile.getParent(), "transformed"), "api-run-7.java");
+    File transformFile = getResourceFile( "api-run-7.xsl");
+    
+    String[] args =
+      {
+        "-S",
+        "-f", outFile.getPath(),
+        "-x", transformFile.getPath()
+      };
+    
+    // When...
+    runWithStdIO( new Options( args), apiFile, null);
+        
+    // Then...
+    assertThat( "Output model created", outFile.exists(), is( true));
+    }
+
+  /**
+   * Tests {@link ApiCommand#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 8. run (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Perspective </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Model-Type </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Condition-Handler </TD> <TD> Fail </TD> </TR>
+   * <TR><TD> Output-File.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Output-Dir.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Read-Only-Enforced </TD> <TD> No </TD> </TR>
+   * <TR><TD> Write-Only-Enforced </TD> <TD> No </TD> </TR>
+   * <TR><TD> Output-Transformer </TD> <TD> Custom </TD> </TR>
+   * <TR><TD> Api-Spec.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Api-Spec.Path </TD> <TD> Absolute </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_8() throws Exception
+    {
+    // Given...
+    File apiFile = getResourceFile( "api-run-8.json");
+    File outDir = new File( apiFile.getParent(), "transformed");
+    File outFile = new File( outDir, "api-run-8-Requests-Test.json");
+    File transformFile = getResourceFile( "api-run-8.xsl");
+    
+    String[] args =
+      {
+        "-o", outDir.getPath(),
+        "-x", transformFile.getName(),
+        "-p", "system=Foo",
+        apiFile.getPath()
+      };
+    
+    // When...
+    ApiCommand.run( new Options( args));
+        
+    // Then...
+    assertThat( "Output model created", outFile.exists(), is( true));
+    }
+
+  /**
    * Return the file for the given resource.
    */
   private File getResourceFile( String resource)

@@ -9,7 +9,7 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-v] [-C | -S] [-I] [-R] [-W] [-J] [-H] [-c notifier] [-f outFile] [-o outDir] [apiSpec]" >&2
+  echo Usage: $pgm "[-v] [-C | -S] [-I] [-R] [-W] [-x xsltDef | -J | -H] [-p name=value] [-c notifier] [-f outFile] [-o outDir] [apiSpec]" >&2
   echo "" >&2
   echo "  -C, -S      If -C is given, produce results to test inputs to an API client, i.e. API responses. If -S is given," >&2
   echo "              produce results to test inputs to an API server, i.e. API requests. If neither is given, the default is -S." >&2
@@ -41,6 +41,13 @@ usage()
   echo "  -H          If -H is defined, test definition output is transformed into an HTML report" >&2
   echo "              that is written to the specified outDir." >&2
   echo "" >&2
+  echo "  -x xsltDef  If -x is defined, test definition output is transformed according to the" >&2
+  echo "              XSLT transform defined by the xsltDef file. If relative, the xsltDef path is" >&2
+  echo "              assumed to be relative to the directory containing the apiSpec." >&2
+  echo "" >&2
+  echo "  -p name=value  Defines the value of a transform parameter. Any number of -p options" >&2
+  echo "              may be specified. This option is meaningful only if the -x or -J option is given." >&2
+  echo "" >&2
   echo "  -v          Prints the current command version identifier to standard output." >&2
   echo "" >&2
   echo "  apiSpec     An OpenApi v3 API spec is read from the given apiSpec file. If omitted, the API spec is read from" >&2
@@ -66,6 +73,10 @@ while [ $# -gt 0 ] ; do
     -f) shift; outFile="$1";;
     -o) shift; outDir="$1";;
     -c) shift; notifier="$1";;
+    -H) isHtml="$1";;
+    -J) isJUnit="$1";;
+    -x) shift; xsltDef="$1";;
+    -p) shift; params="$params -p $1";;
     -v) showVersion="$1";;
     -*) usage; exit 1;;
      *) break;;
@@ -105,6 +116,7 @@ if [ $cygwin -gt 0 ] ; then
   logFile=`cygpath -m "$logFile"`
   outDir=${outDir:+`cygpath -m "$outDir"`}
   outFile=${outFile:+`cygpath -m "$outFile"`}
+  xsltDef=${xsltDef:+`cygpath -m "$xsltDef"`}
 fi
 
 
@@ -122,5 +134,9 @@ java \
   ${notifier:+-c "$notifier"} \
   ${outDir:+-o "$outDir"} \
   ${outFile:+-f "$outFile"} \
+  $isJUnit \
+  $isHtml \
+  ${xsltDef:+-x "$xsltDef"} \
+  ${params} \
   ${apiSpec:+"$apiSpec"}
 

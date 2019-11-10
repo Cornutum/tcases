@@ -9,7 +9,7 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-R] [-t testDef] [-T contentType] [-v] [-x transformDef | -J] [-H] [inputDef]" >&2
+  echo Usage: $pgm "[-c tupleSize] [-f outFile] [-g genDef] [-n] [-l logFile] [-L logLevel] [-o outDir] [-p name=value] [-r seed] [-R] [-t testDef] [-T contentType] [-v] [-x xsltDef | -J | -H] [inputDef]" >&2
   echo "" >&2
   echo "  Generates a set of test cases from a system input definition, according" >&2
   echo "  to the given command line arguments." >&2
@@ -84,8 +84,8 @@ usage()
   echo "  -v          Shows the current Tcases version. If this option is given, no other" >&2
   echo "              action is performed." >&2
   echo "" >&2
-  echo "  -x xltDef   If -x is defined, test definition output is transformed according to the" >&2
-  echo "              XSLT transform defined by the xltDef file. If relative, the xltDef path is" >&2
+  echo "  -x xsltDef  If -x is defined, test definition output is transformed according to the" >&2
+  echo "              XSLT transform defined by the xsltDef file. If relative, the xsltDef path is" >&2
   echo "              assumed to be relative to the directory containing the inputDef." >&2
 }
 
