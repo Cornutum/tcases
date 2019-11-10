@@ -36,17 +36,52 @@
         <Value name="Other" once="true"/>
       </Var>
 
-      <Var name="Junit" when="apiDef" whenNot="inputModels,html">
+      <Var name="Junit" when="apiDef" whenNot="inputModels,html,xslt">
         <Value name="Default"/>
         <Value name="Yes" once="true" property="junit"/>
         <Value name="No" once="true"/>
       </Var>
 
-      <Var name="Html" when="apiDef" whenNot="inputModels,junit">
+      <Var name="Html" when="apiDef" whenNot="inputModels,junit,xslt">
         <Value name="Default"/>
         <Value name="Yes" once="true" property="html"/>
         <Value name="No" once="true"/>
       </Var>
+
+      <VarSet name="TransformDef" when="apiDef" whenNot="inputModels,html,junit">
+          <Var name="Defined">
+              <Value name="Yes" once="true" property="xslt"/>
+              <Value name="No"/>
+          </Var>
+          <Var name="Path" when="xslt">
+              <Value name="Relative"/>
+              <Value name="Absolute" once="true"/>
+          </Var>
+          <Var name="Params" when="xslt">
+              <Value name="Yes"/>
+              <Value name="No"/>
+          </Var>
+      </VarSet>
+
+      <Var name="TransformParams" when="xslt">
+          <Value name="Yes" once="true"/>
+          <Value name="No"/>
+      </Var>
+
+      <VarSet name="TransformOutFile" when="xslt">
+          <Var name="Defined">
+              <Value name="Yes" once="true" property="transformOutFile"/>
+              <Value name="No"/>
+          </Var>
+          <Var name="Params" when="transformOutFile">
+              <Value name="Yes"/>
+              <Value name="No"/>
+          </Var>
+          <Var name="Java" when="transformOutFile">
+              <Value name="Yes"/>
+              <Value name="No"/>
+          </Var>
+      </VarSet>
 
       <Var name="InputModels" when="apiDef">
         <Value name="Default"/>

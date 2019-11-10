@@ -403,6 +403,188 @@ public class ApiMojoTest
             "Ignoring this schema -- not applicable when only instance types=[string] can be valid"));
         });
     }
+
+  /**
+   * Tests {@link ApiMojo#execute execute()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 7. execute (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> ApiDefPatterns.Count </TD> <TD> None </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Defined-By </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Matched </TD> <TD> One </TD> </TR>
+   * <TR><TD> ContentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> InputDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OutDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Junit </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Html </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TransformDef.Path </TD> <TD> Absolute </TD> </TR>
+   * <TR><TD> TransformDef.Params </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TransformParams </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TransformOutFile.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TransformOutFile.Params </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> InputModels </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OnCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> ReadOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> WriteOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void execute_7() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-project-7");
+
+    // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir, "**/*");
+    assertThat( "API defs", expectedApiDefs.length, is( 1));
+
+    List<String> expectedTestDefs = 
+      Arrays.stream( expectedApiDefs)
+      .flatMap( apiDef -> {
+          String expectedApiDefDir = getPath( apiDef);
+          String expectedApiDefName = getBaseName( apiDef);
+          return
+          Stream.of(
+            String.format( "%s%sRequestsTest.java", expectedApiDefDir, expectedApiDefName),
+            String.format( "%s%sResponsesTest.java", expectedApiDefDir, expectedApiDefName));
+        })
+      .collect( toList());
+        
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
+    }
+
+  /**
+   * Tests {@link ApiMojo#execute execute()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 8. execute (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> ApiDefPatterns.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Defined-By </TD> <TD> apiDefs </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Matched </TD> <TD> Many </TD> </TR>
+   * <TR><TD> ContentType </TD> <TD> Default </TD> </TR>
+   * <TR><TD> InputDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OutDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Junit </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Html </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TransformDef.Path </TD> <TD> Relative </TD> </TR>
+   * <TR><TD> TransformDef.Params </TD> <TD> No </TD> </TR>
+   * <TR><TD> TransformParams </TD> <TD> No </TD> </TR>
+   * <TR><TD> TransformOutFile.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> TransformOutFile.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> InputModels </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OnCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> ReadOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> WriteOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void execute_8() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-project-8");
+
+    // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir,  "**/*.api", "**/*.oas");
+    assertThat( "API defs", expectedApiDefs.length, is( 2));
+
+    List<String> expectedTestDefs = 
+      Arrays.stream( expectedApiDefs)
+      .flatMap( apiDef -> {
+          String expectedApiDefDir = getPath( apiDef);
+          String expectedApiDefName = getBaseName( apiDef);
+          return
+          Stream.of(
+            String.format( "%s%s-Requests-Test.json", expectedApiDefDir, expectedApiDefName),
+            String.format( "%s%s-Responses-Test.json", expectedApiDefDir, expectedApiDefName));
+        })
+      .collect( toList());
+        
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
+    }
+
+  /**
+   * Tests {@link ApiMojo#execute execute()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 9. execute (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> ApiDefPatterns.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Defined-By </TD> <TD> project </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Matched </TD> <TD> One </TD> </TR>
+   * <TR><TD> ContentType </TD> <TD> Default </TD> </TR>
+   * <TR><TD> InputDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OutDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Junit </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Html </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TransformDef.Path </TD> <TD> Relative </TD> </TR>
+   * <TR><TD> TransformDef.Params </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TransformParams </TD> <TD> No </TD> </TR>
+   * <TR><TD> TransformOutFile.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> TransformOutFile.Params </TD> <TD> No </TD> </TR>
+   * <TR><TD> InputModels </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OnCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> ReadOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> WriteOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void execute_9() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-project-9");
+
+    // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir,  "**/MyApi.*");
+    assertThat( "API defs", expectedApiDefs.length, is( 1));
+
+    List<String> expectedTestDefs = 
+      Arrays.stream( expectedApiDefs)
+      .map( apiDef -> String.format( "%sTransformed.java", getPath( apiDef)))
+      .collect( toList());
+        
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
+    }
   
   /**
    * Returns the set of paths relative to the given base directory matching any of the given patterns.

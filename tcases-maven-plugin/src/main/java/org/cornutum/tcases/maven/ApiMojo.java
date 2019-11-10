@@ -10,9 +10,13 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.DirectoryScanner;
+import static org.apache.commons.io.FilenameUtils.getBaseName;
+import static org.apache.commons.io.FilenameUtils.getExtension;
 import static org.apache.commons.io.FilenameUtils.getPath;
 
 import java.io.File;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -80,6 +84,11 @@ public class ApiMojo extends AbstractMojo
           {
           options.setTransformType( TransformType.HTML);
           }
+        if( getTransformDef() != null)
+          {
+          options.setTransformType( TransformType.CUSTOM);
+          options.setTransformParams( getTransformParams());
+          }
         options.setTests( !isInputModels());
         options.setOnCondition( getOnCondition());
         options.setReadOnlyEnforced( isReadOnlyEnforced());
@@ -87,9 +96,13 @@ public class ApiMojo extends AbstractMojo
         
         // Generate requested models for this API spec
         options.setServerTest( true);
+        options.setTransformDef( resolveTransformDefFile( apiDef, options.isServerTest()));
+        options.setOutFile( resolveTransformOutFile( apiDef, options.isServerTest()));
         ApiCommand.run( options);
 
         options.setServerTest( false);
+        options.setTransformDef( resolveTransformDefFile( apiDef, options.isServerTest()));
+        options.setOutFile( resolveTransformOutFile( apiDef, options.isServerTest()));
         ApiCommand.run( options);
         }
       }
@@ -276,6 +289,93 @@ public class ApiMojo extends AbstractMojo
     }
 
   /**
+   * Changes the transform file.
+   */
+  public void setTransformDef( String transformDef)
+    {
+    this.transformDef = transformDef;
+    }
+
+  /**
+   * Returns the transform file.
+   */
+  public String getTransformDef()
+    {
+    return transformDef;
+    }
+
+  /**
+   * Returns the resolved XSLT transform file path for the given test case perspective.
+   */
+  private File resolveTransformDefFile( File apiDef, boolean isServerTest)
+    {
+    return
+      Optional.ofNullable( getTransformDef())
+      .map( path -> resolveTransformPath( path, apiDef, isServerTest))
+      .map( path -> path.isAbsolute()? path : new File( apiDef.getParent(), path.getPath()))
+      .orElse( null);
+    }
+
+  /**
+   * Returns the resolved XSLT transform output path for the given test case perspective.
+   */
+  private File resolveTransformOutFile( File apiDef, boolean isServerTest)
+    {
+    return
+      Optional.ofNullable( getTransformOutFile())
+      .map( path -> resolveTransformPath( path, apiDef, isServerTest))
+      .map( path ->
+            "java".equals( getExtension( path.getName()))
+            ? new File( path.getParent(), getBaseName( path.getName()).replaceAll( "\\W+", "") + ".java")
+            : path)
+      .orElse( null);
+    }
+
+  /**
+   * Returns the resolved XSLT transform file path for the given test case perspective.
+   */
+  private File resolveTransformPath( String path, File apiDef, boolean isServerTest)
+    {
+    return
+      new File(
+        path
+        .replaceAll( "\\$B", getBaseName( apiDef.getName()))
+        .replaceAll( "\\$P", isServerTest? "Requests" : "Responses"));
+    }
+
+  /**
+   * Changes the transform parameter bindings.
+   */
+  public void setTransformParams( Map<String,Object> params)
+    {
+    this.transformParams = params;
+    }
+
+  /**
+   * Returns the transform parameter bindings.
+   */
+  public Map<String,Object> getTransformParams()
+    {
+    return transformParams;
+    }
+
+  /**
+   * Changes the transform output file name.
+   */
+  public void setTransformOutFile( String transformOutFile)
+    {
+    this.transformOutFile = transformOutFile;
+    }
+
+  /**
+   * Returns the transform output file name.
+   */
+  public String getTransformOutFile()
+    {
+    return transformOutFile;
+    }
+
+  /**
    * Changes if generating Tcases input models.
    */
   public void setInputModels( boolean inputModels)
@@ -398,6 +498,35 @@ public class ApiMojo extends AbstractMojo
    */
   @Parameter(property="html",defaultValue="false")
   private boolean html;
+
+  /**
+   * Defines the path to an XSLT transform file applied to the XML form of generated test cases.
+   * A relative path is applied relative to the directory containing the corresponding OpenAPI
+   * specification file. 
+   * This path name may contain references to the certain substitution parameters.
+   * Any occurrence of "$B" (the <EM>base</EM>) will be replaced by the base name of the corresponding OpenAPI specification file.
+   * Any occurrence of "$P" (the <EM>perspective</EM>) will be replaced by "Requests" or "Responses"
+   * when generating test cases for API requests or responses, respectively.
+   */
+  @Parameter(property="transformDef")
+  private String transformDef;
+
+  /**
+   * Defines values for the transform parameters used by the transform file.
+   */
+  @Parameter(property="transformParams")
+  private Map<String,Object> transformParams;
+
+  /**
+   * Defines name of the output file produced when applying an XSLT transform to generated test cases
+   * &mdash; see the <B><CODE>transformDef</CODE></B> parameter for details.
+   * This file name may contain references to the certain substitution parameters.
+   * Any occurrence of "$B" (the <EM>base</EM>) will be replaced by the base name of the corresponding OpenAPI specification file.
+   * Any occurrence of "$P" (the <EM>perspective</EM>) will be replaced by "Requests" or "Responses"
+   * when generating test cases for API requests or responses, respectively.
+   */
+  @Parameter(property="transformOutFile")
+  private String transformOutFile;
 
   /**
    * If true, generate Tcases input models for each OpenAPI specification. Otherwise, generate test case models.

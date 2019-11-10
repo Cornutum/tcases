@@ -1116,7 +1116,7 @@ public class ApiCommand
         }
       catch( Exception e)
         {
-        throw new IllegalArgumentException( "Can't open output file=" + outputFile);
+        throw new IllegalStateException( "Can't open output file=" + outputFile, e);
         }
 
       // Write requested results
