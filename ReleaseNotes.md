@@ -1,5 +1,10 @@
 # Release Notes #
 
+## 3.2.1 ##
+
+This release enhances the interfaces for Tcases for OpenAPI by adding support for [transforming generated test cases using
+XSLT](tcases-openapi/README.md#transforming-generated-test-cases), using the same command options used for basic Tcases.
+
 ## 3.2.0 ##
 
   * **Tcases Maven Plugin**: You can run [Tcases for OpenAPI](tcases-openapi/README.md) using the new `tcases:api` goal.

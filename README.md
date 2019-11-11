@@ -2,11 +2,10 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.2.0](ReleaseNotes.md#320)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.2.1](ReleaseNotes.md#321)) is now available at the Maven Central Repository.
     See [HowToDownload](HowToDownload.md) for download instructions.
 
-  * Tcases 3.2.0 adds support for [Tcases for OpenAPI](tcases-openapi/README.md) to the Tcases Maven Plugin. This release also includes additional
-    improvements to the Tcases CLI. See the [release notes](ReleaseNotes.md#320) for details.
+  * Tcases 3.2.1 enhances the interfaces for Tcases for OpenAPI by adding support for [transforming generated test cases using XSLT](tcases-openapi/README.md#transforming-generated-test-cases), using the same command options used for basic Tcases.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
