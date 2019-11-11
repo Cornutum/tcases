@@ -49,6 +49,7 @@
                 <Value name="None"/>
                 <Value name="JUnit" once="true"/>
                 <Value name="Html" once="true"/>
+                <Value name="Custom" once="true"/>
             </Var>
             <VarSet name="Api-Spec">
                 <Var name="Defined">
