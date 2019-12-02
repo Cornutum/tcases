@@ -3,6 +3,8 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_string">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/string"/>
     <Input type="header">
       <VarSet name="param0">
         <Var name="Defined">

@@ -3,9 +3,13 @@
   <Has name="server" value="http://www.cornutum.org/tcases/api"/>
   <Has name="version" value="0.0.0"/>
   <Function name="GET_operations">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/operations"/>
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -18,6 +22,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/operations"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -29,6 +35,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -41,6 +49,8 @@
       </Input>
     </TestCase>
     <TestCase id="3">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -53,6 +63,8 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -65,6 +77,8 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -78,9 +92,13 @@
     </TestCase>
   </Function>
   <Function name="HEAD_operations">
+    <Has name="operation" value="HEAD"/>
+    <Has name="path" value="/operations"/>
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="HEAD"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -93,6 +111,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="HEAD"/>
+      <Has name="path" value="/operations"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -104,6 +124,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="HEAD"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -116,6 +138,8 @@
       </Input>
     </TestCase>
     <TestCase id="3">
+      <Has name="operation" value="HEAD"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -128,6 +152,8 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="operation" value="HEAD"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -140,6 +166,8 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
+      <Has name="operation" value="HEAD"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -153,9 +181,13 @@
     </TestCase>
   </Function>
   <Function name="PATCH_operations">
+    <Has name="operation" value="PATCH"/>
+    <Has name="path" value="/operations"/>
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -169,6 +201,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operations"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -179,6 +213,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -192,6 +228,8 @@
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -203,6 +241,8 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -216,6 +256,8 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -230,9 +272,13 @@
     </TestCase>
   </Function>
   <Function name="POST_operationNew">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/operationNew"/>
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -245,6 +291,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
@@ -256,6 +304,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -268,6 +318,8 @@
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -280,6 +332,8 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -293,9 +347,13 @@
     </TestCase>
   </Function>
   <Function name="PATCH_operationNew">
+    <Has name="operation" value="PATCH"/>
+    <Has name="path" value="/operationNew"/>
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -316,6 +374,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -333,6 +393,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonValue,Content,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -353,6 +415,8 @@
       </Input>
     </TestCase>
     <TestCase id="3">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -371,6 +435,8 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -391,6 +457,8 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -411,6 +479,8 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -429,6 +499,8 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -449,6 +521,8 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
+      <Has name="operation" value="PATCH"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -470,9 +544,13 @@
     </TestCase>
   </Function>
   <Function name="TRACE_operationNew">
+    <Has name="operation" value="TRACE"/>
+    <Has name="path" value="/operationNew"/>
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -493,6 +571,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -510,6 +590,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonValue,Content,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -530,6 +612,8 @@
       </Input>
     </TestCase>
     <TestCase id="3">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -548,6 +632,8 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -568,6 +654,8 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -588,6 +676,8 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -606,6 +696,8 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>
@@ -626,6 +718,8 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
+      <Has name="operation" value="TRACE"/>
+      <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="version" value="0.0.0"/>

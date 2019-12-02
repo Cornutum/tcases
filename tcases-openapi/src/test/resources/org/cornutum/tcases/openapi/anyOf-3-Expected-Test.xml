@@ -3,9 +3,13 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_anyOf">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/anyOf"/>
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -39,6 +43,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -67,6 +73,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0AlphaValue,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -100,6 +108,8 @@
       </Input>
     </TestCase>
     <TestCase id="3">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -133,6 +143,8 @@
       </Input>
     </TestCase>
     <TestCase id="4">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0AlphaValue,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -166,6 +178,8 @@
       </Input>
     </TestCase>
     <TestCase id="5">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0AlphaValue,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -199,6 +213,8 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -234,6 +250,8 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -265,6 +283,8 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Alpha,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -300,6 +320,8 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0AnyOf0AllOf0OneOf0Properties,param0AnyOf0AllOf0OneOf0Value,param0AnyOf0AllOf0OneOf1Properties,param0AnyOf0AllOf0OneOf1Value,param0AnyOf0AllOf0OneOfMemberValidated,param0AnyOf0AllOf1OneOf0Properties,param0AnyOf0AllOf1OneOf0Value,param0AnyOf0AllOf1OneOf1Bravo,param0AnyOf0AllOf1OneOf1BravoValue,param0AnyOf0AllOf1OneOf1Properties,param0AnyOf0AllOf1OneOf1Value,param0AnyOf0AllOf1OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>

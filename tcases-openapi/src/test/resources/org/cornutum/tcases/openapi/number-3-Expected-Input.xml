@@ -3,6 +3,8 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_number">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/number"/>
     <Input type="query">
       <VarSet name="param0">
         <Var name="Defined">

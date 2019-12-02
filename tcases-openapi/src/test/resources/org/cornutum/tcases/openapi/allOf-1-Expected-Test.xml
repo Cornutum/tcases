@@ -3,9 +3,13 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_allOf">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/allOf"/>
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -22,6 +26,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItems,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -38,6 +44,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItems,application-jsonItemsMany,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -54,6 +62,8 @@
       </Input>
     </TestCase>
     <TestCase id="3">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItems,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -70,6 +80,8 @@
       </Input>
     </TestCase>
     <TestCase id="4">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItems,application-jsonItemsMany,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -86,6 +98,8 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -99,6 +113,8 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -113,6 +129,8 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -129,6 +147,8 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -145,6 +165,8 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItems,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -161,6 +183,8 @@
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItems,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>

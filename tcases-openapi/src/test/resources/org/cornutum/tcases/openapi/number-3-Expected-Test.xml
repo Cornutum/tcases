@@ -3,9 +3,13 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_number">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/number"/>
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -18,6 +22,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -29,6 +35,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -41,6 +49,8 @@
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -53,6 +63,8 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -65,6 +77,8 @@
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -77,6 +91,8 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>

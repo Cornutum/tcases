@@ -3,6 +3,8 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_operations-param0">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/operations/${param0}"/>
     <Input type="cookie">
       <VarSet name="param2">
         <Var name="Defined">

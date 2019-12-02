@@ -174,6 +174,8 @@ public abstract class InputModeller
         FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
         .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( Server::getUrl))
         .hasIf( "server", membersOf( op.getServers()).findFirst().map( Server::getUrl))
+        .has( "path", path)
+        .has( "operation", opName)
         .vars( opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))))
         .vars( iterableOf( requestBodyVarDef( api, op.getRequestBody())))
         .build());

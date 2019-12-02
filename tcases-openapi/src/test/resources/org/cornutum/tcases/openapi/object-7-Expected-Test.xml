@@ -3,9 +3,13 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_object">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/object"/>
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -19,6 +23,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
@@ -31,6 +37,8 @@
       </Input>
     </TestCase>
     <TestCase id="2" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -44,6 +52,8 @@
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -57,6 +67,8 @@
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>

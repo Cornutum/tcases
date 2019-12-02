@@ -3,6 +3,8 @@
   <Has name="server" value="http://www.cornutum.org/tcases/api"/>
   <Has name="version" value="0.0.0"/>
   <Function name="GET_operations">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/operations"/>
     <Input type="query">
       <VarSet name="id">
         <Var name="Defined">
@@ -24,6 +26,8 @@
     </Input>
   </Function>
   <Function name="HEAD_operations">
+    <Has name="operation" value="HEAD"/>
+    <Has name="path" value="/operations"/>
     <Input type="query">
       <VarSet name="id">
         <Var name="Defined">
@@ -45,6 +49,8 @@
     </Input>
   </Function>
   <Function name="PATCH_operations">
+    <Has name="operation" value="PATCH"/>
+    <Has name="path" value="/operations"/>
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
@@ -76,6 +82,8 @@
     </Input>
   </Function>
   <Function name="POST_operationNew">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/operationNew"/>
     <Input type="header">
       <VarSet name="param0">
         <Var name="Defined">
@@ -98,6 +106,8 @@
     </Input>
   </Function>
   <Function name="PATCH_operationNew">
+    <Has name="operation" value="PATCH"/>
+    <Has name="path" value="/operationNew"/>
     <Input type="query">
       <VarSet name="id">
         <Var name="Defined">
@@ -148,6 +158,8 @@
     </Input>
   </Function>
   <Function name="TRACE_operationNew">
+    <Has name="operation" value="TRACE"/>
+    <Has name="path" value="/operationNew"/>
     <Input type="query">
       <VarSet name="id">
         <Var name="Defined">

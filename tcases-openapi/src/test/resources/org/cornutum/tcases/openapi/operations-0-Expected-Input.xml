@@ -3,6 +3,8 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="DELETE_operations">
+    <Has name="operation" value="DELETE"/>
+    <Has name="path" value="/operations"/>
     <Input type="query">
       <VarSet name="id">
         <Var name="Defined">

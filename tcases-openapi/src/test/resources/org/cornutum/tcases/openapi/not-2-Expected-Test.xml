@@ -3,9 +3,13 @@
   <Has name="server" value="/"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_not">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/not"/>
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -38,6 +42,8 @@
       </Input>
     </TestCase>
     <TestCase id="1">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -65,6 +71,8 @@
       </Input>
     </TestCase>
     <TestCase id="2">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -97,6 +105,8 @@
       </Input>
     </TestCase>
     <TestCase id="3">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -131,6 +141,8 @@
       </Input>
     </TestCase>
     <TestCase id="4">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -165,6 +177,8 @@
       </Input>
     </TestCase>
     <TestCase id="5">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -199,6 +213,8 @@
       </Input>
     </TestCase>
     <TestCase id="6">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -231,6 +247,8 @@
       </Input>
     </TestCase>
     <TestCase id="7">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -265,6 +283,8 @@
       </Input>
     </TestCase>
     <TestCase id="8">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -297,6 +317,8 @@
       </Input>
     </TestCase>
     <TestCase id="9">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -331,6 +353,8 @@
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -365,6 +389,8 @@
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
