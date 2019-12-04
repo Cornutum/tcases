@@ -1,0 +1,59 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Servers",
+        "version": "0.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://my-api.org"
+        },
+        {
+            "url": "https://my-api.org:{port}/{env}-resources",
+            "variables": {
+                "env": {
+                    "default": "test"
+                },
+                "port": {
+                    "enum": [
+                        "123",
+                        "456"
+                    ],
+                    "default": "123"
+                }
+            }
+        },
+        {
+            "url": "https://my-api.org:{port}/{env}-resources"
+        },
+        {
+            "url": "https://my-api.org:{port}/{env}-resources/{version}",
+            "variables": {
+                "env": {
+                    "default": "test"
+                },
+                "port": {
+                    "default": "123"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/servers": {
+            "get": {
+                "responses": {
+                    "default": {
+                        "description": "Default",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

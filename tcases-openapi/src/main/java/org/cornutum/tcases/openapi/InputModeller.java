@@ -36,6 +36,7 @@ import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
+import io.swagger.v3.oas.models.servers.ServerVariable;
 
 import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -123,7 +124,7 @@ public abstract class InputModeller
         SystemInputDef inputDef =
           SystemInputDefBuilder.with( toIdentifier( title))
           .has( "version", info.getVersion())
-          .hasIf( "server", membersOf( api.getServers()).findFirst().map( Server::getUrl))
+          .hasIf( "server", membersOf( api.getServers()).findFirst().map( InputModeller::getServerUrl))
           .functions( entriesOf( api.getPaths()).flatMap( path -> pathRequestDefs( api, path.getKey(), path.getValue())))
           .build();
 
@@ -172,8 +173,8 @@ public abstract class InputModeller
         null :
 
         FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
-        .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( Server::getUrl))
-        .hasIf( "server", membersOf( op.getServers()).findFirst().map( Server::getUrl))
+        .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
+        .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
         .has( "path", path)
         .has( "operation", opName)
         .vars( opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))))
@@ -217,7 +218,7 @@ public abstract class InputModeller
         SystemInputDef inputDef =
           SystemInputDefBuilder.with( toIdentifier( title))
           .has( "version", info.getVersion())
-          .hasIf( "server", membersOf( api.getServers()).findFirst().map( Server::getUrl))
+          .hasIf( "server", membersOf( api.getServers()).findFirst().map( InputModeller::getServerUrl))
           .functions( entriesOf( api.getPaths()).flatMap( path -> pathResponseDefs( api, path.getKey(), path.getValue())))
           .build();
 
@@ -280,8 +281,8 @@ public abstract class InputModeller
         null :
 
         FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
-        .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( Server::getUrl))
-        .hasIf( "server", membersOf( op.getServers()).findFirst().map( Server::getUrl))
+        .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
+        .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
         .vars( responsesVars( api, expectedValueOf( op.getResponses(), "responses")))
         .build());
     }
@@ -2172,16 +2173,45 @@ public abstract class InputModeller
   static private Stream<String> pathTemplateIdentifiers( String pathElement)
     {
     Stream.Builder<String> identifiers = Stream.builder();
-    Matcher idMatcher = pathIdPattern_.matcher( pathElement);
-    while( idMatcher.find())
+    Matcher segmentMatcher = uriSegmentPattern_.matcher( pathElement);
+    while( segmentMatcher.find())
       {
-      identifiers.add(
-        toIdentifier(
-          pathElement
-          .substring( idMatcher.start(), idMatcher.end())
-          .trim()));
+      identifiers.add( toIdentifier( segmentMatcher.group().trim()));
       }
     return identifiers.build();
+    }
+
+  /**
+   * Returns default URL for the given server.
+   */
+  static String getServerUrl( Server server)
+    {
+    StringBuilder url = new StringBuilder();
+    Matcher segmentMatcher = uriSegmentPattern_.matcher( server.getUrl());
+    while( segmentMatcher.find())
+      {
+      String constantSegment = segmentMatcher.group(1);
+      url.append(
+        constantSegment != null
+        ? constantSegment
+        : getServerVarValue( server, segmentMatcher.group(2)));
+      }
+    
+    return url.toString();
+    }
+
+  /**
+   * Returns the value of the given server variable
+   */
+  private static String getServerVarValue( Server server, String varName)
+    {
+    return
+      Optional.ofNullable(
+        Optional.ofNullable( server.getVariables())
+        .map( vars -> vars.get( varName))
+        .map( var -> Optional.ofNullable( var).map( ServerVariable::getDefault).orElse( null))
+        .orElse( null))
+      .orElseThrow( () -> new IllegalStateException( String.format( "No value defined for server variable=%s", varName)));
     }
 
   /**
@@ -2982,5 +3012,5 @@ public abstract class InputModeller
   private final NotificationContext context_;
   private ModelOptions options_;
 
-  private static final Pattern pathIdPattern_ = Pattern.compile( "[^{}]+|\\{[^}]\\}");
+  private static final Pattern uriSegmentPattern_ = Pattern.compile( "([^{}]+)|\\{([^}]+)\\}");
 }
