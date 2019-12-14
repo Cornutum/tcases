@@ -120,7 +120,9 @@
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="Other" failure="true"/>
+        <Var name="Body.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;application/json&apos;"/>
+        </Var>
         <Var name="Body.application-json.Type" NA="true"/>
         <Var name="Body.application-json.Items.Size" NA="true"/>
         <Var name="Body.application-json.Items.Contains.Type" NA="true"/>

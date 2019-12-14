@@ -26,19 +26,25 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -95,13 +101,17 @@
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -122,7 +132,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="&lt; 0"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="-17,17"/>
+          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
         </Var>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
@@ -137,7 +147,9 @@
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -158,7 +170,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="0"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="-17,17"/>
+          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
         </Var>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
@@ -167,13 +179,17 @@
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="0"/>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5">
@@ -194,7 +210,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="-17,17"/>
+          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
         </Var>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
@@ -203,13 +219,17 @@
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&lt;= 1"/>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6">
@@ -239,7 +259,9 @@
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="null"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
@@ -264,7 +286,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="&lt; 0"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="-17,17"/>
+          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
         </Var>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
@@ -275,11 +297,15 @@
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8">
@@ -309,11 +335,15 @@
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="null"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9">
@@ -334,7 +364,7 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" value="0"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="-17,17"/>
+          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
         </Var>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
@@ -345,11 +375,15 @@
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="Not string"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
@@ -379,13 +413,17 @@
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
@@ -407,15 +445,21 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&lt;= 1"/>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No"/>
+        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;crazy&apos;"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

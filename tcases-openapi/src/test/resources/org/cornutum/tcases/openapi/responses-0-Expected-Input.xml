@@ -6,7 +6,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="200" property="status200"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;200&apos;"/>
+        </Value>
       </Var>
       <VarSet name="200" when="status200">
         <VarSet name="Content">
@@ -18,7 +20,9 @@
             <Value name="application-json" property="200application-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;"/>
+            </Value>
           </Var>
           <VarSet name="application-json" when="200application-json">
             <Var name="Type">
@@ -45,7 +49,9 @@
             <Value name="application-json" property="defaultapplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;"/>
+            </Value>
           </Var>
           <VarSet name="application-json" when="defaultapplication-json">
             <Var name="Type">

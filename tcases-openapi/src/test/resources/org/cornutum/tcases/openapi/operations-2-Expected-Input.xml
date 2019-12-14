@@ -72,7 +72,9 @@
           <Value name="application-json" property="application-json">
             <Has name="mediaType" value="application/json"/>
           </Value>
-          <Value name="Other" failure="true"/>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/json&apos;"/>
+          </Value>
         </Var>
         <VarSet name="application-json" when="application-json">
           <Var name="Type">

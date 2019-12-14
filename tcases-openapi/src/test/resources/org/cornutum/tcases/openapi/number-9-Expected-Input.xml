@@ -23,7 +23,9 @@
           <Value name="3"/>
           <Value name="4"/>
           <Value name="5"/>
-          <Value name="Other" failure="true"/>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;1&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;"/>
+          </Value>
         </Var>
       </VarSet>
     </Input>

@@ -22,7 +22,9 @@
           <Has name="format" value="password"/>
           <Value name="Bad"/>
           <Value name="Worse"/>
-          <Value name="Other" failure="true"/>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;Bad&apos;,&apos;Worse&apos;"/>
+          </Value>
         </Var>
       </VarSet>
     </Input>

@@ -10,7 +10,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="No"/>
       </Input>
     </TestCase>

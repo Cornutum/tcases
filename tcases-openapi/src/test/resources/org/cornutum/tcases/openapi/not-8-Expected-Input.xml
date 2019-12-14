@@ -147,7 +147,7 @@
                         <Value name="Y" failure="true"/>
                         <Value name="Z" failure="true"/>
                         <Value name="No">
-                          <Has name="excluded" value="X,Y,Z"/>
+                          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
                         </Value>
                       </Var>
                     </VarSet>

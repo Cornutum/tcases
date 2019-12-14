@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases;
 
-import static org.cornutum.tcases.util.CollectionUtils.toStream;
+import org.cornutum.tcases.util.CollectionUtils;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -47,7 +47,7 @@ public abstract class AnnotatedBuilder<T extends AnnotatedBuilder<T>>
    */
   public T has( String name, Iterable<?> values)
     {
-    return has( name, toStream( values));
+    return has( name, CollectionUtils.toStream( values));
     }
 
   /**
@@ -55,13 +55,7 @@ public abstract class AnnotatedBuilder<T extends AnnotatedBuilder<T>>
    */
   public T has( String name, Stream<?> values)
     {
-    return
-      hasIf(
-        name,
-
-        values
-        .map( value -> String.valueOf( value))
-        .reduce( (list,value) -> list + "," + value));
+    return hasIf( name, Optional.ofNullable( values).map( CollectionUtils::toCsv));
     }
 
   /**

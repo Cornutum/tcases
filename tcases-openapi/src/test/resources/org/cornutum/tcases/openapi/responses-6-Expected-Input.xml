@@ -5,7 +5,9 @@
   <Function name="GET_responses">
     <Input type="response">
       <Var name="Status-Code">
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value=""/>
+        </Value>
       </Var>
       <VarSet name="Other" when="statusOther">
         <VarSet name="Content">
@@ -20,7 +22,9 @@
             <Value name="text-javascript" property="defaulttext-javascript">
               <Has name="mediaType" value="text/javascript"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
+            </Value>
           </Var>
           <VarSet name="application-json" when="defaultapplication-json">
             <Var name="Type">
@@ -55,7 +59,9 @@
       <Var name="Status-Code">
         <Value name="2XX" property="status2XX"/>
         <Value name="4XX" property="status4XX"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;2XX&apos;,&apos;4XX&apos;"/>
+        </Value>
       </Var>
       <VarSet name="2XX" when="status2XX">
         <VarSet name="Headers">
@@ -75,7 +81,9 @@
               <Value name="1"/>
               <Value name="10"/>
               <Value name="100"/>
-              <Value name="Other" failure="true"/>
+              <Value name="Other" failure="true">
+                <Has name="excluded" value="&apos;1&apos;,&apos;10&apos;,&apos;100&apos;"/>
+              </Value>
             </Var>
           </VarSet>
           <VarSet name="x-extra-header">
@@ -106,7 +114,9 @@
             <Value name="text-plain" property="2XXtext-plain">
               <Has name="mediaType" value="text/plain"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;text/plain&apos;"/>
+            </Value>
           </Var>
           <VarSet name="text-plain" when="2XXtext-plain">
             <Var name="Type">
@@ -149,7 +159,9 @@
             <Value name="text-plain" property="4XXtext-plain">
               <Has name="mediaType" value="text/plain"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;text/plain&apos;"/>
+            </Value>
           </Var>
           <VarSet name="text-plain" when="4XXtext-plain">
             <Var name="Type">
@@ -172,7 +184,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="202" property="status202"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;202&apos;"/>
+        </Value>
       </Var>
       <VarSet name="202" when="status202">
         <VarSet name="Headers">
@@ -207,7 +221,9 @@
             <Value name="text-javascript" property="202text-javascript">
               <Has name="mediaType" value="text/javascript"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;text/javascript&apos;"/>
+            </Value>
           </Var>
           <VarSet name="text-javascript" when="202text-javascript">
             <Var name="Type">

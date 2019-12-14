@@ -101,6 +101,7 @@
         <Var name="param0.AnyOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.Value" value="Other">
+          <Has name="excluded" value="&apos;Alpha&apos;,&apos;Bravo&apos;,&apos;Charlie&apos;"/>
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.AnyOf.Members.1.Type" value="string"/>
@@ -123,6 +124,7 @@
         <Var name="param0.AnyOf.Members.Validated" value="0" failure="true"/>
         <Var name="param0.AnyOf.Members.0.Type" value="string"/>
         <Var name="param0.AnyOf.Members.0.Value" value="Other">
+          <Has name="excluded" value="&apos;Alpha&apos;,&apos;Bravo&apos;,&apos;Charlie&apos;"/>
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.AnyOf.Members.1.Type" value="string"/>

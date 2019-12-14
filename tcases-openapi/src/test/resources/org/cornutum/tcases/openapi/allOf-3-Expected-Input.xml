@@ -44,6 +44,7 @@
                       <Value name="B" property="param0AllOf0AnyOfMemberValidated"/>
                       <Value name="C" property="param0AllOf0AnyOfMemberValidated"/>
                       <Value name="Other">
+                        <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
                         <Has name="memberValidated" value="false"/>
                       </Value>
                     </Var>

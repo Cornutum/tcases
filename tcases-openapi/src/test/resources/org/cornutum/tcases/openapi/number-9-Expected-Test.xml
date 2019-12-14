@@ -131,6 +131,7 @@
         <Var name="param0.Type" value="number"/>
         <Var name="param0.Value" value="Other" failure="true">
           <Has name="default" value="5"/>
+          <Has name="excluded" value="&apos;1&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;"/>
         </Var>
       </Input>
     </TestCase>

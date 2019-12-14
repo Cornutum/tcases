@@ -7,7 +7,9 @@
       <Var name="Status-Code">
         <Value name="200" property="status200"/>
         <Value name="4XX" property="status4XX"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;200&apos;,&apos;4XX&apos;"/>
+        </Value>
       </Var>
       <VarSet name="200" when="status200">
         <VarSet name="Headers">
@@ -61,7 +63,9 @@
             <Value name="text-javascript" property="200text-javascript">
               <Has name="mediaType" value="text/javascript"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
+            </Value>
           </Var>
           <VarSet name="application-json" when="200application-json">
             <Var name="Type">
@@ -153,7 +157,9 @@
             <Value name="application-json" property="4XXapplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;"/>
+            </Value>
           </Var>
           <VarSet name="application-json" when="4XXapplication-json">
             <Var name="Type">

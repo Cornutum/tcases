@@ -6,7 +6,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="2XX" property="status2XX"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;2XX&apos;"/>
+        </Value>
       </Var>
       <VarSet name="2XX" when="status2XX">
         <VarSet name="Headers">
@@ -63,7 +65,9 @@
             <Value name="text-javascript" property="2XXtext-javascript">
               <Has name="mediaType" value="text/javascript"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
+            </Value>
           </Var>
           <VarSet name="application-json" when="2XXapplication-json">
             <Var name="Type">

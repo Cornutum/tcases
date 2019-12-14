@@ -28,7 +28,9 @@
         <Var name="param0.Value.Matches-Patterns.2" value="No">
           <Has name="pattern" value="Error"/>
         </Var>
-        <Var name="param0.Has-Excluded.Format" value="No"/>
+        <Var name="param0.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;error&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -75,7 +77,9 @@
         <Var name="param0.Value.Matches-Patterns.2" value="No">
           <Has name="pattern" value="Error"/>
         </Var>
-        <Var name="param0.Has-Excluded.Format" value="No"/>
+        <Var name="param0.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;error&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -147,7 +151,9 @@
         <Var name="param0.Value.Matches-Patterns.2" value="No">
           <Has name="pattern" value="Error"/>
         </Var>
-        <Var name="param0.Has-Excluded.Format" value="No"/>
+        <Var name="param0.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;error&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -171,7 +177,9 @@
         <Var name="param0.Value.Matches-Patterns.2" value="No">
           <Has name="pattern" value="Error"/>
         </Var>
-        <Var name="param0.Has-Excluded.Format" value="No"/>
+        <Var name="param0.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;error&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -195,7 +203,9 @@
         <Var name="param0.Value.Matches-Patterns.2" value="No">
           <Has name="pattern" value="Error"/>
         </Var>
-        <Var name="param0.Has-Excluded.Format" value="No"/>
+        <Var name="param0.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;error&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -219,7 +229,9 @@
         <Var name="param0.Value.Matches-Patterns.2" value="Yes" failure="true">
           <Has name="pattern" value="Error"/>
         </Var>
-        <Var name="param0.Has-Excluded.Format" value="No"/>
+        <Var name="param0.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;error&apos;"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">

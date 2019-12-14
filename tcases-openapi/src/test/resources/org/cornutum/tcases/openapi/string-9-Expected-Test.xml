@@ -104,6 +104,7 @@
         <Var name="param0.Type" value="string"/>
         <Var name="param0.Value" value="Other" failure="true">
           <Has name="default" value="Bad"/>
+          <Has name="excluded" value="&apos;Bad&apos;,&apos;Worse&apos;"/>
           <Has name="format" value="password"/>
         </Var>
       </Input>

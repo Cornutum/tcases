@@ -24,7 +24,7 @@
           <Var name="Value">
             <Value name="true" failure="true"/>
             <Value name="No">
-              <Has name="excluded" value="true"/>
+              <Has name="excluded" value="&apos;true&apos;"/>
             </Value>
           </Var>
         </VarSet>

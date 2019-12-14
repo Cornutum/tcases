@@ -31,7 +31,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;2XX&apos;"/>
+        </Var>
         <Var name="2XX.Headers.x-standard-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
@@ -163,7 +165,9 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="Other" failure="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="Other" failure="true">
+          <Has name="excluded" value="&apos;this&apos;,&apos;that&apos;"/>
+        </Var>
         <Var name="2XX.Headers.x-extra-header.Defined" value="No">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
@@ -254,7 +258,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;202&apos;"/>
+        </Var>
         <Var name="202.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
@@ -276,7 +282,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;201&apos;"/>
+        </Var>
         <Var name="201.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
@@ -298,7 +306,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;203&apos;"/>
+        </Var>
         <Var name="203.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
@@ -320,7 +330,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;204&apos;"/>
+        </Var>
         <Var name="204.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
@@ -342,7 +354,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;206&apos;"/>
+        </Var>
         <Var name="206.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
@@ -364,7 +378,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;205&apos;"/>
+        </Var>
         <Var name="205.Content.Defined" NA="true"/>
       </Input>
     </TestCase>

@@ -5,7 +5,9 @@
   <Function name="GET_objects">
     <Input type="response">
       <Var name="Status-Code">
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value=""/>
+        </Value>
       </Var>
       <VarSet name="Other" when="statusOther">
         <VarSet name="Content">
@@ -17,7 +19,9 @@
             <Value name="application-json" property="defaultapplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
-            <Value name="Other" failure="true"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;"/>
+            </Value>
           </Var>
           <VarSet name="application-json" when="defaultapplication-json">
             <Var name="Type">

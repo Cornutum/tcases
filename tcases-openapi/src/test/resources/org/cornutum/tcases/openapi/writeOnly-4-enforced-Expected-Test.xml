@@ -10,7 +10,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -25,7 +27,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="No" failure="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -38,9 +42,13 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
-        <Var name="Other.Content.Media-Type" value="Other" failure="true"/>
+        <Var name="Other.Content.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;application/json&apos;"/>
+        </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
@@ -51,7 +59,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -66,7 +76,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -81,7 +93,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -96,7 +110,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>

@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import static java.util.stream.Collectors.joining;
 
 /**
  * Defines methods for handling collections.
@@ -84,4 +85,64 @@ public final class CollectionUtils
       ? Stream.empty()
       : map.entrySet().stream();
     }
-  }
+
+  /**
+   * Returns the given list of values as a comma-separated string.
+   */
+  public static String toCsv( Stream<?> values)
+    {
+    return
+      values
+      .map( value ->
+            Optional.ofNullable( value)
+            .map( v -> String.format( "'%s'", v.toString().replace( "\\", "\\\\").replace( "'", "\\'")))
+            .orElse( "null"))
+      .collect( joining( ","));
+    }
+
+  /**
+   * Returns the list of values specified by the given comma-separated string.
+   */
+  public static Stream<String> fromCsv( String csv)
+    {
+    Stream.Builder<String> values = Stream.builder();
+
+    if( csv != null)
+      {
+      int length = csv.length();
+      for( int i = 0; i < length; i++)
+        {
+        if( csv.startsWith( "null", i))
+          {
+          values.add( null);
+          i += "null".length();
+          }
+        else if( csv.charAt(i) == '\'')
+          {
+          StringBuilder value = new StringBuilder();
+          for( i++; i < length && csv.charAt(i) != '\''; i++)
+            {
+            if( csv.charAt( i) == '\\')
+              {
+              i++;
+              }
+
+            if( i < length)
+              {
+              value.append( csv.charAt( i));
+              }
+            }
+
+          values.add( value.toString());
+          i++;
+        }
+        else
+          {
+          throw new IllegalArgumentException( String.format( "Invalid CSV: value at index=%s is neither null nor a quoted string", i));
+          }
+        }
+      }
+    
+    return values.build();
+    }
+}

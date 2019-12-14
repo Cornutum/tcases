@@ -5,7 +5,9 @@
   <Function name="POST_responses">
     <Input type="response">
       <Var name="Status-Code">
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value=""/>
+        </Value>
       </Var>
       <VarSet name="Other" when="statusOther">
         <VarSet name="Content">

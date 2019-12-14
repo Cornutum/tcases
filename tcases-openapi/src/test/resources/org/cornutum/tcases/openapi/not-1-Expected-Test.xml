@@ -55,7 +55,9 @@
         <Var name="param0.AnyOf.Members.Validated" value="&gt; 1"/>
         <Var name="param0.AnyOf.Members.0.Type" value="Not null"/>
         <Var name="param0.AnyOf.Members.1.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;error&apos;"/>
+        </Var>
         <Var name="param0.AnyOf.Members.2.Type" value="null"/>
       </Input>
     </TestCase>
@@ -74,7 +76,9 @@
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.AnyOf.Members.1.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" value="No"/>
+        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" value="No">
+          <Has name="excluded" value="&apos;error&apos;"/>
+        </Var>
         <Var name="param0.AnyOf.Members.2.Type" value="Not null"/>
       </Input>
     </TestCase>

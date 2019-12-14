@@ -223,7 +223,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="&gt; 0"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="X,Y,Z"/>
+          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" value="integer"/>
@@ -315,7 +315,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="0"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="X,Y,Z"/>
+          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
@@ -407,7 +407,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="&gt; 0"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="X,Y,Z"/>
+          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" value="integer"/>

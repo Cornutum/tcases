@@ -334,7 +334,7 @@ public abstract class InputModeller
             .properties( mediaTypeVarTag)
             .build();
           })) 
-      .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build())
+      .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", mediaTypes.keySet().stream()).build())
       .build();
     }
 
@@ -499,15 +499,19 @@ public abstract class InputModeller
    */
   private Stream<VarValueDef> responseStatusValues( OpenAPI api, ApiResponses responses)
     {
+    List<String> statusCodes =
+      responses.keySet().stream()
+      .filter( status -> !status.equals( "default"))
+      .collect( toList());
+    
     return
       Stream.concat(
         // One for each specified status code...
-        responses.keySet().stream()
-        .filter( status -> !status.equals( "default"))
+        statusCodes.stream()
         .map( status -> VarValueDefBuilder.with( status).properties( statusCodeProperty( status)).build()),
 
         // And one for any unspecified status code...
-        Stream.of( VarValueDefBuilder.with( "Other").properties( statusCodeProperty( "Other")).build()));
+        Stream.of( VarValueDefBuilder.with( "Other").has( "excluded", statusCodes.stream()).properties( statusCodeProperty( "Other")).build()));
     }
 
   /**
@@ -1229,7 +1233,7 @@ public abstract class InputModeller
       {
       // Yes, add valid and invalid values for this enumeration
       value.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
-      value.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build());
+      value.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums.stream()).build());
       }
     else
       {
@@ -1324,7 +1328,7 @@ public abstract class InputModeller
       {
       // Yes, add valid and invalid values for this enumeration
       value.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
-      value.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build());
+      value.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums.stream()).build());
       }
     else
       {
@@ -1839,7 +1843,7 @@ public abstract class InputModeller
         .has( "default", Objects.toString( FormattedString.of( format, instanceSchema.getDefault()), null))
         .when( has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
-        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).build())
+        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums.stream()).build())
         .build();
       }
     else
@@ -2028,7 +2032,7 @@ public abstract class InputModeller
           .map( notValue -> VarValueDefBuilder.with( notValue).type( VarValueDef.Type.FAILURE).build()))
         .values(
           VarValueDefBuilder.with( "No")
-          .has( "excluded", notEnums)
+          .has( "excluded", notEnums.stream())
           .build())
         .build());
       }
@@ -2042,7 +2046,10 @@ public abstract class InputModeller
           notFormats.stream()
           .map( notFormat -> VarValueDefBuilder.with( notFormat).type( VarValueDef.Type.FAILURE).build()))
         .values(
-          VarValueDefBuilder.with( "No").build())
+          VarValueDefBuilder
+          .with( "No")
+          .has( "excluded", notFormats.stream())
+          .build())
         .build());
       }
 

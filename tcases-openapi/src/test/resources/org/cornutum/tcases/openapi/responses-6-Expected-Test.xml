@@ -10,7 +10,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -26,7 +28,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
@@ -42,7 +46,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
@@ -58,7 +64,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
@@ -74,7 +82,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
@@ -90,7 +100,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="No" failure="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -104,9 +116,13 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
-        <Var name="Other.Content.Media-Type" value="Other" failure="true"/>
+        <Var name="Other.Content.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
+        </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" NA="true"/>
@@ -118,7 +134,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -134,7 +152,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -150,7 +170,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -166,7 +188,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -182,7 +206,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value=""/>
+        </Var>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="text-javascript">
           <Has name="mediaType" value="text/javascript"/>
@@ -268,7 +294,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;2XX&apos;,&apos;4XX&apos;"/>
+        </Var>
         <Var name="2XX.Headers.x-standard-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
@@ -569,7 +597,9 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="Other" failure="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value" value="Other" failure="true">
+          <Has name="excluded" value="&apos;1&apos;,&apos;10&apos;,&apos;100&apos;"/>
+        </Var>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
@@ -740,7 +770,9 @@
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
         <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
-        <Var name="2XX.Content.Media-Type" value="Other" failure="true"/>
+        <Var name="2XX.Content.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;text/plain&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
@@ -941,7 +973,9 @@
         <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
-        <Var name="4XX.Content.Media-Type" value="Other" failure="true"/>
+        <Var name="4XX.Content.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;text/plain&apos;"/>
+        </Var>
         <Var name="4XX.Content.text-plain.Type" NA="true"/>
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
@@ -1009,7 +1043,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;202&apos;"/>
+        </Var>
         <Var name="202.Headers.x-my-app-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
@@ -1139,7 +1175,9 @@
         <Var name="202.Headers.x-my-app-header.Type" value="object"/>
         <Var name="202.Headers.x-my-app-header.Value.Properties.Additional" value="Yes"/>
         <Var name="202.Content.Defined" value="Yes"/>
-        <Var name="202.Content.Media-Type" value="Other" failure="true"/>
+        <Var name="202.Content.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;text/javascript&apos;"/>
+        </Var>
         <Var name="202.Content.text-javascript.Type" NA="true"/>
         <Var name="202.Content.text-javascript.Value.Properties.Additional" NA="true"/>
         <Var name="Other.Content.Defined" NA="true"/>

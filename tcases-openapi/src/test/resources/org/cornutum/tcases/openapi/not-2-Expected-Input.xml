@@ -65,7 +65,7 @@
                     <VarSet name="Has-Excluded" when="param0OneOf0AlphaValue">
                       <Var name="Value">
                         <Value name="No">
-                          <Has name="excluded" value="-17,17"/>
+                          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
                         </Value>
                       </Var>
                     </VarSet>
@@ -81,7 +81,9 @@
                   <Value name="crazy">
                     <Has name="memberValidated" value="false"/>
                   </Value>
-                  <Value name="No" property="param0OneOfMemberValidated"/>
+                  <Value name="No" property="param0OneOfMemberValidated">
+                    <Has name="excluded" value="&apos;crazy&apos;"/>
+                  </Value>
                 </Var>
               </VarSet>
             </VarSet>
@@ -119,7 +121,9 @@
               </VarSet>
               <VarSet name="Has-Excluded" when="param0OneOf1Value">
                 <Var name="Format">
-                  <Value name="No"/>
+                  <Value name="No">
+                    <Has name="excluded" value="&apos;crazy&apos;"/>
+                  </Value>
                 </Var>
               </VarSet>
             </VarSet>
@@ -147,7 +151,9 @@
               </VarSet>
               <VarSet name="Has-Excluded" when="param0OneOf2Value">
                 <Var name="Format">
-                  <Value name="No"/>
+                  <Value name="No">
+                    <Has name="excluded" value="&apos;crazy&apos;"/>
+                  </Value>
                 </Var>
               </VarSet>
             </VarSet>

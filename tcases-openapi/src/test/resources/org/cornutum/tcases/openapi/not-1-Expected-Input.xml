@@ -49,7 +49,9 @@
                   <Value name="error">
                     <Has name="memberValidated" value="false"/>
                   </Value>
-                  <Value name="No" property="param0AnyOfMemberValidated"/>
+                  <Value name="No" property="param0AnyOfMemberValidated">
+                    <Has name="excluded" value="&apos;error&apos;"/>
+                  </Value>
                 </Var>
               </VarSet>
             </VarSet>

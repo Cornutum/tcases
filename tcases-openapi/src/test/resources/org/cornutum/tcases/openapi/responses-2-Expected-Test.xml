@@ -84,7 +84,9 @@
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
-        <Var name="Status-Code" value="Other"/>
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;200&apos;,&apos;4XX&apos;"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
@@ -611,7 +613,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
         <Var name="200.Content.Defined" value="Yes"/>
-        <Var name="200.Content.Media-Type" value="Other" failure="true"/>
+        <Var name="200.Content.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
+        </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
@@ -1063,7 +1067,9 @@
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
-        <Var name="4XX.Content.Media-Type" value="Other" failure="true"/>
+        <Var name="4XX.Content.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;application/json&apos;"/>
+        </Var>
         <Var name="4XX.Content.application-json.Type" NA="true"/>
         <Var name="4XX.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>

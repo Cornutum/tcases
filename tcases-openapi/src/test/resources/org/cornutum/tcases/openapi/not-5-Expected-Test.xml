@@ -20,7 +20,7 @@
         <Var name="param0.Type" value="boolean"/>
         <Var name="param0.Value" value="false"/>
         <Var name="param0.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="true"/>
+          <Has name="excluded" value="&apos;true&apos;"/>
         </Var>
       </Input>
     </TestCase>

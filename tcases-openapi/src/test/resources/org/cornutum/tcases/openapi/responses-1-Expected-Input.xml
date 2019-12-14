@@ -6,7 +6,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="2XX" property="status2XX"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;2XX&apos;"/>
+        </Value>
       </Var>
       <VarSet name="2XX" when="status2XX">
         <VarSet name="Headers">
@@ -25,7 +27,9 @@
             <Var name="Value" when="2XXHeaderX-standard-headerValue">
               <Value name="this"/>
               <Value name="that"/>
-              <Value name="Other" failure="true"/>
+              <Value name="Other" failure="true">
+                <Has name="excluded" value="&apos;this&apos;,&apos;that&apos;"/>
+              </Value>
             </Var>
           </VarSet>
           <VarSet name="x-extra-header">
@@ -61,7 +65,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="202" property="status202"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;202&apos;"/>
+        </Value>
       </Var>
       <VarSet name="202" when="status202">
         <VarSet name="Content">
@@ -76,7 +82,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="201" property="status201"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;201&apos;"/>
+        </Value>
       </Var>
       <VarSet name="201" when="status201">
         <VarSet name="Content">
@@ -91,7 +99,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="203" property="status203"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;203&apos;"/>
+        </Value>
       </Var>
       <VarSet name="203" when="status203">
         <VarSet name="Content">
@@ -106,7 +116,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="204" property="status204"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;204&apos;"/>
+        </Value>
       </Var>
       <VarSet name="204" when="status204">
         <VarSet name="Content">
@@ -121,7 +133,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="206" property="status206"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;206&apos;"/>
+        </Value>
       </Var>
       <VarSet name="206" when="status206">
         <VarSet name="Content">
@@ -136,7 +150,9 @@
     <Input type="response">
       <Var name="Status-Code">
         <Value name="205" property="status205"/>
-        <Value name="Other" property="statusOther"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;205&apos;"/>
+        </Value>
       </Var>
       <VarSet name="205" when="status205">
         <VarSet name="Content">

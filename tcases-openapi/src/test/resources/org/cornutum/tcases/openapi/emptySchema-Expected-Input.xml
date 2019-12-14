@@ -64,6 +64,7 @@
                 <Value name="2" property="param1OneOfMemberValidated"/>
                 <Value name="3" property="param1OneOfMemberValidated"/>
                 <Value name="Other">
+                  <Has name="excluded" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
                   <Has name="memberValidated" value="false"/>
                 </Value>
               </Var>
