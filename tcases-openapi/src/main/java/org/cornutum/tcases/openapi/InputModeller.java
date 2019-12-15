@@ -1242,6 +1242,10 @@ public abstract class InputModeller
         {
         value.values( VarValueDefBuilder.with( String.format( "Not a multiple of %s", instanceSchema.getMultipleOf())).type( VarValueDef.Type.FAILURE).build());
         }
+      for( BigDecimal notMultipleOf : Optional.ofNullable( getNotMultipleOfs( instanceSchema)).orElse( emptySet()))
+        {
+        value.values( VarValueDefBuilder.with( String.format( "Multiple of %s", notMultipleOf)).type( VarValueDef.Type.FAILURE).build());        
+        }
 
       if( instanceSchema.getMinimum() == null && instanceSchema.getMaximum() == null)
         {
