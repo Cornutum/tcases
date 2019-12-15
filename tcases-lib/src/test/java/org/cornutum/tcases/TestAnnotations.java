@@ -12,6 +12,7 @@ import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -135,6 +136,13 @@ public class TestAnnotations
     assertThat( "Var-2 defined ", v2 != null, is( true));
     v2Annotations = expectedAnnotations();
     assertThat( "Var-2 annotations", getAnnotations( v2), containsMembers( v2Annotations));
+
+    v2.setAnnotationList( "LA1", Arrays.asList( null, 1, 2, null, 3));
+    assertThat( "List annotation", v2.getAnnotationList( "LA1"), listsMembers( Arrays.asList( null, "1", "2", null, "3")));
+
+    v2.setAnnotationList( "LA2", null);
+    assertThat( "Null list annotation", v2.getAnnotationList( "LA2"), is( nullValue()));
+    assertThat( "Undefined list annotation", v2.getAnnotationList( "LA3"), is( nullValue()));
     }
 
   /**
