@@ -17,13 +17,15 @@
           <Value name="null" failure="true"/>
           <Value name="Not number" failure="true"/>
         </Var>
-        <Var name="Value" when="param0Value">
+        <VarSet name="Value" when="param0Value">
           <Has name="default" value="0.0"/>
           <Has name="format" value="double"/>
-          <Value name="-1.234"/>
-          <Value name="-1.233" failure="true"/>
-          <Value name="&lt; -1.234"/>
-        </Var>
+          <Var name="Is">
+            <Value name="-1.234"/>
+            <Value name="-1.233" failure="true"/>
+            <Value name="&lt; -1.234"/>
+          </Var>
+        </VarSet>
       </VarSet>
     </Input>
   </Function>

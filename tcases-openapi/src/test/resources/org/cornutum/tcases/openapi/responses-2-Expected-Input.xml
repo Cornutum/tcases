@@ -37,12 +37,14 @@
                   <Value name="null" failure="true"/>
                   <Value name="Not integer" failure="true"/>
                 </Var>
-                <Var name="Value" when="200HeaderX-my-secret-headerItemsValue">
+                <VarSet name="Value" when="200HeaderX-my-secret-headerItemsValue">
                   <Has name="format" value="int64"/>
-                  <Value name="&lt; 0"/>
-                  <Value name="0"/>
-                  <Value name="&gt; 0"/>
-                </Var>
+                  <Var name="Is">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
               </VarSet>
               <Var name="Unique" when="200HeaderX-my-secret-headerItemsMany">
                 <Value name="Yes"/>
@@ -103,11 +105,13 @@
                     <Value name="null" failure="true"/>
                     <Value name="Not number" failure="true"/>
                   </Var>
-                  <Var name="Value" when="200application-jsonAdditionalValue">
-                    <Value name="&lt; 0"/>
-                    <Value name="0"/>
-                    <Value name="&gt; 0"/>
-                  </Var>
+                  <VarSet name="Value" when="200application-jsonAdditionalValue">
+                    <Var name="Is">
+                      <Value name="&lt; 0"/>
+                      <Value name="0"/>
+                      <Value name="&gt; 0"/>
+                    </Var>
+                  </VarSet>
                 </VarSet>
               </VarSet>
             </VarSet>

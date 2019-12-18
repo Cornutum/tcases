@@ -10,7 +10,7 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/number"/>
-      <Has name="properties" value="param0,param0Value,param1,param1Value,param2,param2Value,param3,param3Value,param4,param4Value"/>
+      <Has name="properties" value="param0,param0Value,param1,param1Value,param2,param2Value,param3,param3Value,param4,param4Unbounded,param4Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -18,27 +18,30 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="1"/>
+        <Var name="param0.Value.Is" value="1"/>
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="1"/>
+        <Var name="param1.Value.Is" value="1"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" value="number"/>
-        <Var name="param3.Value" value="&lt; 0"/>
+        <Var name="param3.Value.Is" value="&lt; 0"/>
         <Var name="param4.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" value="number"/>
-        <Var name="param4.Value" value="&lt; 0"/>
+        <Var name="param4.Value.Is" value="&lt; 0"/>
+        <Var name="param4.Value.Multiple-Of.10" value="Yes">
+          <Has name="multipleOf" value="10"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -51,27 +54,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -85,27 +89,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 1"/>
+        <Var name="param0.Value.Is" value="&lt; 1"/>
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&gt; 1"/>
+        <Var name="param1.Value.Is" value="&gt; 1"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="0"/>
+        <Var name="param2.Value.Is" value="0"/>
         <Var name="param3.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" value="number"/>
-        <Var name="param3.Value" value="0"/>
+        <Var name="param3.Value.Is" value="0"/>
         <Var name="param4.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" value="number"/>
-        <Var name="param4.Value" value="0"/>
+        <Var name="param4.Value.Is" value="0"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -119,33 +124,34 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&gt; 0"/>
+        <Var name="param2.Value.Is" value="&gt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="4">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/number"/>
-      <Has name="properties" value="param0,param0Value,param1,param1Value,param3,param3Value,param4,param4Value"/>
+      <Has name="properties" value="param0,param0Value,param1,param1Value,param3,param3Value,param4,param4Unbounded,param4Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -153,27 +159,30 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="1"/>
+        <Var name="param0.Value.Is" value="1"/>
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="1"/>
+        <Var name="param1.Value.Is" value="1"/>
         <Var name="param2.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
         <Var name="param3.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" value="number"/>
-        <Var name="param3.Value" value="&gt; 0"/>
+        <Var name="param3.Value.Is" value="&gt; 0"/>
         <Var name="param4.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" value="number"/>
-        <Var name="param4.Value" value="&gt; 0"/>
+        <Var name="param4.Value.Is" value="&gt; 0"/>
+        <Var name="param4.Value.Multiple-Of.10" value="Yes">
+          <Has name="multipleOf" value="10"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -187,27 +196,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -221,27 +231,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -255,27 +266,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="2" failure="true"/>
+        <Var name="param0.Value.Is" value="2" failure="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -289,27 +301,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="null" failure="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
@@ -323,27 +336,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="Not number" failure="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
@@ -357,27 +371,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="0" failure="true"/>
+        <Var name="param1.Value.Is" value="0" failure="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
@@ -391,27 +406,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="null" failure="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
@@ -425,27 +441,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="Not number" failure="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
@@ -459,27 +476,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" value="null" failure="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
@@ -493,27 +511,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" value="Not number" failure="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="15" failure="true">
@@ -527,27 +546,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" value="null" failure="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="16" failure="true">
@@ -561,33 +581,34 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" value="Not number" failure="true"/>
-        <Var name="param4.Value" NA="true"/>
+        <Var name="param4.Value.Is" NA="true"/>
+        <Var name="param4.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="17" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/number"/>
-      <Has name="properties" value="param2,param2Value,param4,param4Value"/>
+      <Has name="properties" value="param2,param2Value,param4,param4Unbounded,param4Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -595,27 +616,28 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
         <Var name="param2.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
         <Var name="param3.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value" NA="true"/>
+        <Var name="param3.Value.Is" NA="true"/>
         <Var name="param4.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param4.Type" value="number"/>
-        <Var name="param4.Value" value="Not a multiple of 10" failure="true"/>
+        <Var name="param4.Value.Is" value="&lt; 0"/>
+        <Var name="param4.Value.Multiple-Of.10" value="No" failure="true"/>
       </Input>
     </TestCase>
   </Function>

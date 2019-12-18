@@ -36,13 +36,15 @@
               <Var name="Type">
                 <Value name="number" property="param0OneOf0Value"/>
               </Var>
-              <Var name="Value" when="param0OneOf0Value">
-                <Value name="-1">
-                  <Has name="memberValidated" value="false"/>
-                </Value>
-                <Value name="0" property="param0OneOfMemberValidated"/>
-                <Value name="&gt; 0" property="param0OneOfMemberValidated"/>
-              </Var>
+              <VarSet name="Value" when="param0OneOf0Value">
+                <Var name="Is">
+                  <Value name="-1">
+                    <Has name="memberValidated" value="false"/>
+                  </Value>
+                  <Value name="0" property="param0OneOfMemberValidated"/>
+                  <Value name="&gt; 0" property="param0OneOfMemberValidated"/>
+                </Var>
+              </VarSet>
             </VarSet>
             <VarSet name="1">
               <VarSet name="OneOf">
@@ -51,13 +53,15 @@
                     <Var name="Type">
                       <Value name="number" property="param0OneOf1OneOf0Value"/>
                     </Var>
-                    <Var name="Value" when="param0OneOf1OneOf0Value">
-                      <Value name="100" property="param0OneOfMemberValidated"/>
-                      <Value name="101">
-                        <Has name="memberValidated" value="false"/>
-                      </Value>
-                      <Value name="&lt; 100" property="param0OneOfMemberValidated"/>
-                    </Var>
+                    <VarSet name="Value" when="param0OneOf1OneOf0Value">
+                      <Var name="Is">
+                        <Value name="100" property="param0OneOfMemberValidated"/>
+                        <Value name="101">
+                          <Has name="memberValidated" value="false"/>
+                        </Value>
+                        <Value name="&lt; 100" property="param0OneOfMemberValidated"/>
+                      </Var>
+                    </VarSet>
                   </VarSet>
                 </VarSet>
               </VarSet>

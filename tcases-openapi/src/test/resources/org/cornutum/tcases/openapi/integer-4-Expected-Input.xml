@@ -17,14 +17,16 @@
           <Value name="null" failure="true"/>
           <Value name="Not integer" failure="true"/>
         </Var>
-        <Var name="Value" when="param0Value">
+        <VarSet name="Value" when="param0Value">
           <Has name="default" value="100"/>
           <Has name="format" value="int32"/>
-          <Value name="99" failure="true"/>
-          <Value name="100"/>
-          <Value name="1000"/>
-          <Value name="1001" failure="true"/>
-        </Var>
+          <Var name="Is">
+            <Value name="99" failure="true"/>
+            <Value name="100"/>
+            <Value name="1000"/>
+            <Value name="1001" failure="true"/>
+          </Var>
+        </VarSet>
       </VarSet>
     </Input>
   </Function>

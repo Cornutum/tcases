@@ -18,21 +18,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&lt; 0"/>
+        <Var name="param2.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
+        <Var name="param0.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -54,21 +54,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="0"/>
+        <Var name="param0.Value.Is" value="0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -88,21 +88,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="0"/>
+        <Var name="param2.Value.Is" value="0"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="0"/>
+        <Var name="param1.Value.Is" value="0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -124,21 +124,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0"/>
+        <Var name="param0.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&gt; 0"/>
+        <Var name="param1.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -158,21 +158,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value" value="&gt; 0"/>
+        <Var name="param2.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="0"/>
+        <Var name="param0.Value.Is" value="0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -194,21 +194,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="No" failure="true">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -228,21 +228,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -262,21 +262,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -296,21 +296,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="null" failure="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -330,21 +330,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="Not number" failure="true"/>
-        <Var name="param1.Value" NA="true"/>
+        <Var name="param1.Value.Is" NA="true"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -364,21 +364,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="null" failure="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -398,21 +398,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" value="Not number" failure="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -432,21 +432,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -468,21 +468,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -504,21 +504,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value" NA="true"/>
+        <Var name="param2.Value.Is" NA="true"/>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value" value="&lt; 0"/>
+        <Var name="param1.Value.Is" value="&lt; 0"/>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>

@@ -18,7 +18,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="1">
+        <Var name="param0.Value.Is" value="1">
           <Has name="default" value="5"/>
         </Var>
       </Input>
@@ -33,7 +33,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="default" value="5"/>
         </Var>
       </Input>
@@ -49,7 +49,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="default" value="5"/>
         </Var>
       </Input>
@@ -65,7 +65,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="3">
+        <Var name="param0.Value.Is" value="3">
           <Has name="default" value="5"/>
         </Var>
       </Input>
@@ -81,7 +81,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="4">
+        <Var name="param0.Value.Is" value="4">
           <Has name="default" value="5"/>
         </Var>
       </Input>
@@ -97,7 +97,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="5">
+        <Var name="param0.Value.Is" value="5">
           <Has name="default" value="5"/>
         </Var>
       </Input>
@@ -113,7 +113,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="default" value="5"/>
         </Var>
       </Input>
@@ -129,7 +129,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="Other" failure="true">
+        <Var name="param0.Value.Is" value="Other" failure="true">
           <Has name="default" value="5"/>
           <Has name="excluded" value="&apos;1&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;"/>
         </Var>

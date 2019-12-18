@@ -25,7 +25,7 @@
         <Var name="param1.OneOf.Members.0.Type" value="boolean"/>
         <Var name="param1.OneOf.Members.0.Value" value="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
-        <Var name="param1.OneOf.Members.1.Value" value="Other">
+        <Var name="param1.OneOf.Members.1.Value.Is" value="Other">
           <Has name="excluded" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
           <Has name="memberValidated" value="false"/>
         </Var>
@@ -51,7 +51,7 @@
         <Var name="param1.OneOf.Members.0.Type" NA="true"/>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" NA="true"/>
-        <Var name="param1.OneOf.Members.1.Value" NA="true"/>
+        <Var name="param1.OneOf.Members.1.Value.Is" NA="true"/>
         <Var name="param1.OneOf.Members.2.Type" NA="true"/>
       </Input>
     </TestCase>
@@ -75,7 +75,7 @@
         </Var>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
-        <Var name="param1.OneOf.Members.1.Value" value="1"/>
+        <Var name="param1.OneOf.Members.1.Value.Is" value="1"/>
         <Var name="param1.OneOf.Members.2.Type" value="null">
           <Has name="memberValidated" value="false"/>
         </Var>
@@ -99,7 +99,7 @@
         <Var name="param1.OneOf.Members.0.Type" value="boolean"/>
         <Var name="param1.OneOf.Members.0.Value" value="false"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
-        <Var name="param1.OneOf.Members.1.Value" value="Other">
+        <Var name="param1.OneOf.Members.1.Value.Is" value="Other">
           <Has name="excluded" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
           <Has name="memberValidated" value="false"/>
         </Var>
@@ -128,7 +128,7 @@
         </Var>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
-        <Var name="param1.OneOf.Members.1.Value" value="2"/>
+        <Var name="param1.OneOf.Members.1.Value.Is" value="2"/>
         <Var name="param1.OneOf.Members.2.Type" value="null">
           <Has name="memberValidated" value="false"/>
         </Var>
@@ -154,7 +154,7 @@
         </Var>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
-        <Var name="param1.OneOf.Members.1.Value" value="3"/>
+        <Var name="param1.OneOf.Members.1.Value.Is" value="3"/>
         <Var name="param1.OneOf.Members.2.Type" value="null">
           <Has name="memberValidated" value="false"/>
         </Var>
@@ -180,7 +180,7 @@
         </Var>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
-        <Var name="param1.OneOf.Members.1.Value" value="Other">
+        <Var name="param1.OneOf.Members.1.Value.Is" value="Other">
           <Has name="excluded" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
           <Has name="memberValidated" value="false"/>
         </Var>
@@ -207,7 +207,7 @@
         </Var>
         <Var name="param1.OneOf.Members.0.Value" NA="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
-        <Var name="param1.OneOf.Members.1.Value" value="Other">
+        <Var name="param1.OneOf.Members.1.Value.Is" value="Other">
           <Has name="excluded" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
           <Has name="memberValidated" value="false"/>
         </Var>
@@ -234,7 +234,7 @@
         <Var name="param1.OneOf.Members.0.Type" value="boolean"/>
         <Var name="param1.OneOf.Members.0.Value" value="true"/>
         <Var name="param1.OneOf.Members.1.Type" value="number"/>
-        <Var name="param1.OneOf.Members.1.Value" value="1"/>
+        <Var name="param1.OneOf.Members.1.Value.Is" value="1"/>
         <Var name="param1.OneOf.Members.2.Type" value="null">
           <Has name="memberValidated" value="false"/>
         </Var>

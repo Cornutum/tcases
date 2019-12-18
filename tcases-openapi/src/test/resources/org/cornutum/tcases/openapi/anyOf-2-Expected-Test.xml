@@ -20,11 +20,11 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.Value" value="0.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.Value.Is" value="0.0"/>
         <Var name="Body.application-json.AnyOf.Members.1.Type" value="Not number">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.1.Value" NA="true"/>
+        <Var name="Body.application-json.AnyOf.Members.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -40,9 +40,9 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.Validated" value="&gt; 1"/>
         <Var name="Body.application-json.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.Value" value="100.0"/>
+        <Var name="Body.application-json.AnyOf.Members.0.Value.Is" value="100.0"/>
         <Var name="Body.application-json.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.1.Value" value="100.0"/>
+        <Var name="Body.application-json.AnyOf.Members.1.Value.Is" value="100.0"/>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -58,11 +58,11 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.Validated" value="1"/>
         <Var name="Body.application-json.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.Value" value="100.1">
+        <Var name="Body.application-json.AnyOf.Members.0.Value.Is" value="100.1">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="Body.application-json.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.1.Value" value="&lt; 100.0"/>
+        <Var name="Body.application-json.AnyOf.Members.1.Value.Is" value="&lt; 100.0"/>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -75,9 +75,9 @@
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.AnyOf.Members.Validated" NA="true"/>
         <Var name="Body.application-json.AnyOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.Value" NA="true"/>
+        <Var name="Body.application-json.AnyOf.Members.0.Value.Is" NA="true"/>
         <Var name="Body.application-json.AnyOf.Members.1.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.1.Value" NA="true"/>
+        <Var name="Body.application-json.AnyOf.Members.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -93,9 +93,9 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.Validated" NA="true"/>
         <Var name="Body.application-json.AnyOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.Value" NA="true"/>
+        <Var name="Body.application-json.AnyOf.Members.0.Value.Is" NA="true"/>
         <Var name="Body.application-json.AnyOf.Members.1.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.1.Value" NA="true"/>
+        <Var name="Body.application-json.AnyOf.Members.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -111,13 +111,13 @@
         </Var>
         <Var name="Body.application-json.AnyOf.Members.Validated" value="0" failure="true"/>
         <Var name="Body.application-json.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.Value" value="100.1">
+        <Var name="Body.application-json.AnyOf.Members.0.Value.Is" value="100.1">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="Body.application-json.AnyOf.Members.1.Type" value="Not number">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.1.Value" NA="true"/>
+        <Var name="Body.application-json.AnyOf.Members.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
   </Function>

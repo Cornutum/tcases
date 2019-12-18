@@ -30,12 +30,21 @@
               <Value name="null"/>
               <Value name="Not number"/>
             </Var>
-            <Var name="Value" when="param0ItemsValue">
-              <Value name="Not a multiple of 5"/>
-              <Value name="10" failure="true"/>
-              <Value name="15"/>
-              <Value name="&lt; 10" failure="true"/>
-            </Var>
+            <VarSet name="Value" when="param0ItemsValue">
+              <Var name="Is">
+                <Value name="10" failure="true"/>
+                <Value name="15"/>
+                <Value name="&lt; 10" property="param0ItemsUnbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0ItemsUnbounded">
+                <Var name="5">
+                  <Value name="Yes" failure="true">
+                    <Has name="multipleOf" value="5"/>
+                  </Value>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
           </VarSet>
           <Var name="Unique" when="param0ItemsMany">
             <Value name="Yes"/>

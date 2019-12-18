@@ -18,7 +18,8 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="0"/>
+        <Var name="param0.Value.Is" value="0"/>
+        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -31,13 +32,14 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
@@ -45,7 +47,10 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Value.Multiple-Of.10" value="Yes">
+          <Has name="multipleOf" value="10"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -59,7 +64,8 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -73,7 +79,8 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -87,13 +94,14 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="Not a multiple of 10" failure="true"/>
+        <Var name="param0.Value.Is" value="-10" failure="true"/>
+        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
@@ -101,7 +109,8 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="-10" failure="true"/>
+        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Value.Multiple-Of.10" value="No" failure="true"/>
       </Input>
     </TestCase>
   </Function>

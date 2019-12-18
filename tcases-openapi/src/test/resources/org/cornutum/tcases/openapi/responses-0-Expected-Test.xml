@@ -16,7 +16,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="200.Content.application-json.Type" value="integer"/>
-        <Var name="200.Content.application-json.Value" value="0"/>
+        <Var name="200.Content.application-json.Value.Is" value="0"/>
         <Var name="Other.Content.Defined" NA="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -34,7 +34,7 @@
         <Var name="200.Content.Defined" NA="true"/>
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -54,7 +54,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="200.Content.application-json.Type" value="integer"/>
-        <Var name="200.Content.application-json.Value" value="10"/>
+        <Var name="200.Content.application-json.Value.Is" value="10"/>
         <Var name="Other.Content.Defined" NA="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -72,7 +72,7 @@
         <Var name="200.Content.Defined" NA="true"/>
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -90,7 +90,7 @@
         <Var name="200.Content.Defined" value="No" failure="true"/>
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" NA="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -108,7 +108,7 @@
           <Has name="excluded" value="&apos;application/json&apos;"/>
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" NA="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -126,7 +126,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="200.Content.application-json.Type" value="null" failure="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" NA="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -144,7 +144,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="200.Content.application-json.Type" value="Not integer" failure="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" NA="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -162,7 +162,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="200.Content.application-json.Type" value="integer"/>
-        <Var name="200.Content.application-json.Value" value="-1" failure="true"/>
+        <Var name="200.Content.application-json.Value.Is" value="-1" failure="true"/>
         <Var name="Other.Content.Defined" NA="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -180,7 +180,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="200.Content.application-json.Type" value="integer"/>
-        <Var name="200.Content.application-json.Value" value="11" failure="true"/>
+        <Var name="200.Content.application-json.Value.Is" value="11" failure="true"/>
         <Var name="Other.Content.Defined" NA="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -198,7 +198,7 @@
         <Var name="200.Content.Defined" NA="true"/>
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" value="No" failure="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
@@ -216,7 +216,7 @@
         <Var name="200.Content.Defined" NA="true"/>
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="Other" failure="true">
           <Has name="excluded" value="&apos;application/json&apos;"/>
@@ -236,7 +236,7 @@
         <Var name="200.Content.Defined" NA="true"/>
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
@@ -256,7 +256,7 @@
         <Var name="200.Content.Defined" NA="true"/>
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.Defined" value="Yes"/>
         <Var name="Other.Content.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>

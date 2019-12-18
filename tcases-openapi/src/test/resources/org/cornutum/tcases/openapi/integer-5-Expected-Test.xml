@@ -18,7 +18,8 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="100"/>
+        <Var name="param0.Value.Is" value="100"/>
+        <Var name="param0.Value.Multiple-Of.2" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -31,13 +32,14 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Value.Multiple-Of.2" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/integer"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -45,7 +47,10 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="&gt; 100"/>
+        <Var name="param0.Value.Is" value="&gt; 100"/>
+        <Var name="param0.Value.Multiple-Of.2" value="Yes">
+          <Has name="multipleOf" value="2"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -59,7 +64,8 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Value.Multiple-Of.2" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -73,7 +79,8 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not integer" failure="true"/>
-        <Var name="param0.Value" NA="true"/>
+        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Value.Multiple-Of.2" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -87,13 +94,14 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="Not a multiple of 2" failure="true"/>
+        <Var name="param0.Value.Is" value="98" failure="true"/>
+        <Var name="param0.Value.Multiple-Of.2" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/integer"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -101,7 +109,8 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="98" failure="true"/>
+        <Var name="param0.Value.Is" value="&gt; 100"/>
+        <Var name="param0.Value.Multiple-Of.2" value="No" failure="true"/>
       </Input>
     </TestCase>
   </Function>

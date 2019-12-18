@@ -18,7 +18,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="-1000">
+        <Var name="param0.Value.Is" value="-1000">
           <Has name="format" value="int64"/>
         </Var>
       </Input>
@@ -33,7 +33,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
       </Input>
@@ -49,7 +49,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
       </Input>
@@ -65,7 +65,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="-100">
+        <Var name="param0.Value.Is" value="-100">
           <Has name="format" value="int64"/>
         </Var>
       </Input>
@@ -81,7 +81,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not integer" failure="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
       </Input>
@@ -97,7 +97,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="Not a multiple of 10" failure="true">
+        <Var name="param0.Value.Is" value="-1010" failure="true">
           <Has name="format" value="int64"/>
         </Var>
       </Input>
@@ -113,7 +113,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="-1010" failure="true">
+        <Var name="param0.Value.Is" value="-90" failure="true">
           <Has name="format" value="int64"/>
         </Var>
       </Input>
@@ -129,7 +129,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="-90" failure="true">
+        <Var name="param0.Value.Is" value="-999" failure="true">
           <Has name="format" value="int64"/>
         </Var>
       </Input>

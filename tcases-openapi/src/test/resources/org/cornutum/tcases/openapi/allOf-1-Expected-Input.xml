@@ -37,11 +37,13 @@
                 <Value name="null" failure="true"/>
                 <Value name="Not integer" failure="true"/>
               </Var>
-              <Var name="Value" when="application-jsonItemsValue">
-                <Value name="&lt; 0"/>
-                <Value name="0"/>
-                <Value name="&gt; 0"/>
-              </Var>
+              <VarSet name="Value" when="application-jsonItemsValue">
+                <Var name="Is">
+                  <Value name="&lt; 0"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
             </VarSet>
             <Var name="Unique" when="application-jsonItemsMany">
               <Value name="Yes"/>

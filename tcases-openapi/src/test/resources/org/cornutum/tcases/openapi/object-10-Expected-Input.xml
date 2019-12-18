@@ -80,11 +80,13 @@
                 <Value name="null" failure="true"/>
                 <Value name="Not number" failure="true"/>
               </Var>
-              <Var name="Value" when="param0MyNumberValue">
-                <Value name="&lt; 0"/>
-                <Value name="0"/>
-                <Value name="&gt; 0"/>
-              </Var>
+              <VarSet name="Value" when="param0MyNumberValue">
+                <Var name="Is">
+                  <Value name="&lt; 0"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
             </VarSet>
             <VarSet name="myInteger">
               <Var name="Defined">
@@ -96,11 +98,13 @@
                 <Value name="null" failure="true"/>
                 <Value name="Not integer" failure="true"/>
               </Var>
-              <Var name="Value" when="param0MyIntegerValue">
-                <Value name="&lt; 0"/>
-                <Value name="0"/>
-                <Value name="&gt; 0"/>
-              </Var>
+              <VarSet name="Value" when="param0MyIntegerValue">
+                <Var name="Is">
+                  <Value name="&lt; 0"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
             </VarSet>
             <Var name="Additional">
               <Value name="Yes" property="param0Properties"/>

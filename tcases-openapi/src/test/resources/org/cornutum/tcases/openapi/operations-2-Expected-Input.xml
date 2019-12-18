@@ -17,11 +17,13 @@
           <Value name="null" failure="true"/>
           <Value name="Not number" failure="true"/>
         </Var>
-        <Var name="Value" when="param2Value">
-          <Value name="&lt; 0"/>
-          <Value name="0"/>
-          <Value name="&gt; 0"/>
-        </Var>
+        <VarSet name="Value" when="param2Value">
+          <Var name="Is">
+            <Value name="&lt; 0"/>
+            <Value name="0"/>
+            <Value name="&gt; 0"/>
+          </Var>
+        </VarSet>
       </VarSet>
     </Input>
     <Input type="path">
@@ -36,11 +38,13 @@
           <Value name="null" failure="true"/>
           <Value name="Not number" failure="true"/>
         </Var>
-        <Var name="Value" when="param0Value">
-          <Value name="&lt; 0"/>
-          <Value name="0"/>
-          <Value name="&gt; 0"/>
-        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Is">
+            <Value name="&lt; 0"/>
+            <Value name="0"/>
+            <Value name="&gt; 0"/>
+          </Var>
+        </VarSet>
       </VarSet>
     </Input>
     <Input type="query">
@@ -55,11 +59,13 @@
           <Value name="null" failure="true"/>
           <Value name="Not number" failure="true"/>
         </Var>
-        <Var name="Value" when="param1Value">
-          <Value name="&lt; 0"/>
-          <Value name="0"/>
-          <Value name="&gt; 0"/>
-        </Var>
+        <VarSet name="Value" when="param1Value">
+          <Var name="Is">
+            <Value name="&lt; 0"/>
+            <Value name="0"/>
+            <Value name="&gt; 0"/>
+          </Var>
+        </VarSet>
       </VarSet>
     </Input>
     <Input type="request">

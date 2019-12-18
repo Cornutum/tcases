@@ -18,7 +18,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="id.Type" value="integer"/>
-        <Var name="id.Value" value="&lt; 0"/>
+        <Var name="id.Value.Is" value="&lt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -31,7 +31,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="id.Type" NA="true"/>
-        <Var name="id.Value" NA="true"/>
+        <Var name="id.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -45,7 +45,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="id.Type" value="integer"/>
-        <Var name="id.Value" value="0"/>
+        <Var name="id.Value.Is" value="0"/>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -59,7 +59,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="id.Type" value="integer"/>
-        <Var name="id.Value" value="&gt; 0"/>
+        <Var name="id.Value.Is" value="&gt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -73,7 +73,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="id.Type" value="null" failure="true"/>
-        <Var name="id.Value" NA="true"/>
+        <Var name="id.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -87,7 +87,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="id.Type" value="Not integer" failure="true"/>
-        <Var name="id.Value" NA="true"/>
+        <Var name="id.Value.Is" NA="true"/>
       </Input>
     </TestCase>
   </Function>

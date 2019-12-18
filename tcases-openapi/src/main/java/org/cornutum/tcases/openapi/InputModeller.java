@@ -27,7 +27,6 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.BooleanSchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
-import io.swagger.v3.oas.models.media.IntegerSchema;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.NumberSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -771,7 +770,7 @@ public abstract class InputModeller
         stringValueVar( api, instanceVarTag, instanceSchema) :
       
         "integer".equals( instanceType)?
-        integerValueVar( api, instanceVarTag, instanceSchema) :
+        numberValueVar( api, instanceVarTag, instanceSchema) :
       
         "boolean".equals( instanceType)?
         booleanValueVar( api, instanceVarTag, instanceSchema) :
@@ -1217,202 +1216,179 @@ public abstract class InputModeller
     }
 
   /**
-   * Returns the {@link IVarDef input variable} representing the values for an integer instance.
-   */
-  private IVarDef integerValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
-    {
-    VarDefBuilder value =
-      VarDefBuilder.with( "Value")
-      .has( "format", instanceSchema.getFormat())
-      .has( "default", Objects.toString( instanceSchema.getDefault(), null))
-      .when( has( instanceValueProperty( instanceVarTag)));
-
-    // Enumerated values?
-    List<Number> enums = getIntegerEnum( instanceSchema);
-    if( !enums.isEmpty())
-      {
-      // Yes, add valid and invalid values for this enumeration
-      value.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
-      value.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums.stream()).build());
-      }
-    else
-      {
-      // No, add min/max boundary condition values
-      if( instanceSchema.getMultipleOf() != null)
-        {
-        value.values( VarValueDefBuilder.with( String.format( "Not a multiple of %s", instanceSchema.getMultipleOf())).type( VarValueDef.Type.FAILURE).build());
-        }
-      for( BigDecimal notMultipleOf : Optional.ofNullable( getNotMultipleOfs( instanceSchema)).orElse( emptySet()))
-        {
-        value.values( VarValueDefBuilder.with( String.format( "Multiple of %s", notMultipleOf)).type( VarValueDef.Type.FAILURE).build());        
-        }
-
-      if( instanceSchema.getMinimum() == null && instanceSchema.getMaximum() == null)
-        {
-        // Value is unconstrained -- add standard boundary conditions
-        value.values(
-          VarValueDefBuilder.with( "< 0").build(),
-          VarValueDefBuilder.with( 0).build(),
-          VarValueDefBuilder.with( "> 0").build());
-        }
-      else
-        {      
-        int multipleOf =
-          Optional.ofNullable( instanceSchema.getMultipleOf())
-          .map( BigDecimal::intValue)
-          .orElse( 1);
-        
-        Integer minimum =
-          Optional.ofNullable( instanceSchema.getMinimum())
-          .map( BigDecimal::intValue)
-          .map( i -> Boolean.TRUE.equals( instanceSchema.getExclusiveMinimum())? ((Math.floorDiv( i, multipleOf) + 1) * multipleOf) : i)
-          .orElse( null);
-
-        Integer maximum =
-          Optional.ofNullable( instanceSchema.getMaximum())
-          .map( BigDecimal::intValue)
-          .map( i -> Boolean.TRUE.equals( instanceSchema.getExclusiveMaximum())? ((((int) Math.ceil( (double)i/multipleOf)) - 1) * multipleOf) : i)
-          .orElse( null);
-           
-        // Ensure min/max range is feasible
-        minimum = 
-          Optional.ofNullable( minimum)
-          .map( min -> Optional.ofNullable( maximum).map( max -> adjustedMinOf( "imum", min, max)).orElse( min))
-          .orElse( null);
-
-        TreeSet<Integer> boundaryValues = new TreeSet<Integer>();
-        if( minimum != null)
-          {
-          boundaryValues.add( minimum);
-          boundaryValues.add( minimum - multipleOf);
-          }
-        if( maximum != null)
-          {
-          boundaryValues.add( maximum);
-          boundaryValues.add( maximum + multipleOf);
-          }
-        for( Integer i : boundaryValues)
-          {
-          value.values
-            ( VarValueDefBuilder.with( i)
-              .type(
-                (minimum != null && i < minimum) || (maximum != null && i > maximum)
-                ? VarValueDef.Type.FAILURE
-                : VarValueDef.Type.VALID)
-              .build());
-          }
-        if( minimum == null)
-          {
-          value.values( VarValueDefBuilder.with( String.format( "< %s", maximum)).build());
-          }
-        else if( maximum == null)
-          {
-          value.values( VarValueDefBuilder.with( String.format( "> %s", minimum)).build());
-          }
-        }
-      }
-
-    return value.build();
-    }
-
-  /**
    * Returns the {@link IVarDef input variable} representing the values for a number instance.
    */
   private IVarDef numberValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
-    VarDefBuilder value =
-      VarDefBuilder.with( "Value")
+    VarSetBuilder value =
+      VarSetBuilder.with( "Value")
       .has( "format", instanceSchema.getFormat())
       .has( "default", Objects.toString( instanceSchema.getDefault(), null))
       .when( has( instanceValueProperty( instanceVarTag)));
+
+    // Define values for the number quantity
+    VarDefBuilder quantity = VarDefBuilder.with( "Is");
+
+    BigDecimal multipleOf = instanceSchema.getMultipleOf();
+    Set<BigDecimal> notMultipleOfs = Optional.ofNullable( getNotMultipleOfs( instanceSchema)).orElse( emptySet());
+    boolean hasMultipleOfs = !(multipleOf == null && notMultipleOfs.isEmpty());
+    Optional<String> unboundedProperty = Optional.ofNullable( hasMultipleOfs? unboundedValueProperty( instanceVarTag) : null);
 
     // Enumerated values?
     List<BigDecimal> enums = getNumberEnum( instanceSchema);
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
-      value.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
-      value.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums.stream()).build());
+      quantity.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
+      quantity.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums.stream()).build());
+      }
+
+    // Boundary conditions defined?
+    else if( instanceSchema.getMinimum() == null && instanceSchema.getMaximum() == null)
+      {
+      // No, add standard boundary conditions
+      quantity.values(
+        VarValueDefBuilder.with( "< 0").properties( unboundedProperty).build(),
+        VarValueDefBuilder.with( 0).build(),
+        VarValueDefBuilder.with( "> 0").properties( unboundedProperty).build());
       }
     else
       {
-      // No, add min/max boundary condition values
-      if( instanceSchema.getMultipleOf() != null)
+      // Yes, add min/max boundary condition values
+      BigDecimal unit = new BigDecimal(
+        BigInteger.ONE,
+        Math.max(
+          Optional.ofNullable( instanceSchema.getMinimum()).map( BigDecimal::scale).orElse( 0),
+          Optional.ofNullable( instanceSchema.getMaximum()).map( BigDecimal::scale).orElse( 0)));
+
+      BigDecimal effectiveMultipleOf =
+        Optional.ofNullable( multipleOf)
+        .orElse( unit);
+    
+      BigDecimal minimum =
+        Optional.ofNullable( instanceSchema.getMinimum())
+        .map( m -> multipleAbove( m, !Boolean.TRUE.equals( instanceSchema.getExclusiveMinimum()), effectiveMultipleOf, notMultipleOfs))
+        .orElse( null);
+
+      BigDecimal maximum =
+        Optional.ofNullable( instanceSchema.getMaximum())
+        .map( m -> multipleBelow( m, !Boolean.TRUE.equals( instanceSchema.getExclusiveMaximum()), effectiveMultipleOf, notMultipleOfs))
+        .orElse( null);
+           
+      // Ensure min/max range is feasible
+      BigDecimal effectiveMinimum = 
+        Optional.ofNullable( minimum)
+        .map( min -> Optional.ofNullable( maximum).map( max -> adjustedMinOf( "imum", min, max)).orElse( min))
+        .orElse( null);
+
+      TreeSet<BigDecimal> boundaryValues = new TreeSet<BigDecimal>();
+      if( effectiveMinimum != null)
         {
-        value.values( VarValueDefBuilder.with( String.format( "Not a multiple of %s", instanceSchema.getMultipleOf())).type( VarValueDef.Type.FAILURE).build());
+        boundaryValues.add( effectiveMinimum);
+        boundaryValues.add( multipleBelow( effectiveMinimum, false, effectiveMultipleOf, notMultipleOfs));
         }
-      for( BigDecimal notMultipleOf : Optional.ofNullable( getNotMultipleOfs( instanceSchema)).orElse( emptySet()))
+      if( maximum != null)
         {
-        value.values( VarValueDefBuilder.with( String.format( "Multiple of %s", notMultipleOf)).type( VarValueDef.Type.FAILURE).build());        
+        boundaryValues.add( maximum);
+        boundaryValues.add( multipleAbove( maximum, false, effectiveMultipleOf, notMultipleOfs));
         }
-      
-      if( instanceSchema.getMinimum() == null && instanceSchema.getMaximum() == null)
+      for( BigDecimal n : boundaryValues)
         {
-        // Value is unconstrained -- add standard boundary conditions
-        value.values(
-          VarValueDefBuilder.with( "< 0").build(),
-          VarValueDefBuilder.with( 0).build(),
-          VarValueDefBuilder.with( "> 0").build());
+        quantity.values
+          ( VarValueDefBuilder.with( n)
+            .type(
+              (effectiveMinimum != null && n.compareTo(effectiveMinimum) < 0) || (maximum != null && n.compareTo(maximum) > 0)
+              ? VarValueDef.Type.FAILURE
+              : VarValueDef.Type.VALID)
+            .build());
+        }
+
+      // For any missing boundary, add a value designated an unbounded range
+      if( effectiveMinimum == null)
+        {
+        quantity.values(
+          VarValueDefBuilder.with( String.format( "< %s", maximum))
+          .properties( unboundedProperty)
+          .build());
+        }
+      else if( maximum == null)
+        {
+        quantity.values(
+          VarValueDefBuilder.with( String.format( "> %s", effectiveMinimum))
+          .properties( unboundedProperty)
+          .build());
         }
       else
         {
-        BigDecimal multipleOf =
-          Optional.ofNullable( instanceSchema.getMultipleOf())
-          .orElse(
-            new BigDecimal(
-              BigInteger.ONE,
-              Math.max(
-                Optional.ofNullable( instanceSchema.getMinimum()).map( BigDecimal::scale).orElse( 0),
-                Optional.ofNullable( instanceSchema.getMaximum()).map( BigDecimal::scale).orElse( 0))));
-
-        BigDecimal minimum =
-          Optional.ofNullable( instanceSchema.getMinimum())
-          .map( m -> Boolean.TRUE.equals( instanceSchema.getExclusiveMinimum())? m.divide( multipleOf, 0, DOWN).add( BigDecimal.ONE).multiply( multipleOf) : m)
-          .orElse( null);
-
-        BigDecimal maximum =
-          Optional.ofNullable( instanceSchema.getMaximum())
-          .map( m -> Boolean.TRUE.equals( instanceSchema.getExclusiveMaximum())? m.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf) : m)
-          .orElse( null);
-           
-        // Ensure min/max range is feasible
-        minimum = 
-          Optional.ofNullable( minimum)
-          .map( min -> Optional.ofNullable( maximum).map( max -> adjustedMinOf( "imum", min, max)).orElse( min))
-          .orElse( null);
-
-        TreeSet<BigDecimal> boundaryValues = new TreeSet<BigDecimal>();
-        if( minimum != null)
+        // When fully bounded, select specific values to designate failures for any (not-)multiple-of constraints.
+        if( multipleOf != null)
           {
-          boundaryValues.add( minimum);
-          boundaryValues.add( minimum.subtract( multipleOf));
-          }
-        if( maximum != null)
-          {
-          boundaryValues.add( maximum);
-          boundaryValues.add( maximum.add( multipleOf));
-          }
-        for( BigDecimal n : boundaryValues)
-          {
-          value.values
-            ( VarValueDefBuilder.with( n)
-              .type(
-                (minimum != null && n.compareTo(minimum) < 0) || (maximum != null && n.compareTo(maximum) > 0)
-                ? VarValueDef.Type.FAILURE
-                : VarValueDef.Type.VALID)
+          // Select a value within bounds that fails the multiple-of constraint.
+          BigDecimal multipleOfFailure;
+          for( multipleOfFailure = effectiveMinimum.add( unit);
+               multipleOfFailure.compareTo( maximum) < 0 && isMultipleOf( multipleOfFailure, multipleOf);
+               multipleOfFailure = multipleOfFailure.add( unit));
+          if( multipleOfFailure.compareTo( maximum) < 0)
+            {
+            quantity.values(
+              VarValueDefBuilder.with( multipleOfFailure)
+              .type( VarValueDef.Type.FAILURE)
               .build());
+            }
           }
-        if( minimum == null)
-          {
-          value.values( VarValueDefBuilder.with( String.format( "< %s", maximum)).build());
-          }
-        else if( maximum == null)
-          {
-          value.values( VarValueDefBuilder.with( String.format( "> %s", minimum)).build());
-          }
+
+        notMultipleOfs.stream()
+          .forEach(
+            m -> {
+            // Select a value within bounds that fails each not-multiple-of constraint.
+            BigDecimal notMultipleOfFailure;
+            for( notMultipleOfFailure = effectiveMinimum.add( effectiveMultipleOf);
+                 notMultipleOfFailure.compareTo( maximum) < 0 && !isMultipleOf( notMultipleOfFailure, m);
+                 notMultipleOfFailure = notMultipleOfFailure.add( effectiveMultipleOf));
+            if( notMultipleOfFailure.compareTo( maximum) < 0)
+              {
+              quantity.values(
+                VarValueDefBuilder.with( notMultipleOfFailure)
+                .type( VarValueDef.Type.FAILURE)
+                .build());
+              }
+            });
         }
       }
 
+    value.members( quantity.build());
+
+    if(
+      // Unbounded quantities allowed?
+      enums.isEmpty() && (instanceSchema.getMinimum() == null || instanceSchema.getMaximum() == null)
+
+      // (Not-)multiple-of constraints defined?
+      && hasMultipleOfs)
+      {
+      // Yes, define values for (not-)multiple-of constraints on unbounded ranges
+      VarSetBuilder multiples = VarSetBuilder.with( "Multiple-Of").when( has( unboundedValueProperty( instanceVarTag)));
+      if( multipleOf != null)
+        {
+        multiples.members
+          ( VarDefBuilder.with( toIdentifier( multipleOf))
+            .values(
+              VarValueDefBuilder.with( "Yes").has( "multipleOf", multipleOf).build(),
+              VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+            .build());
+        }
+      for( BigDecimal m : notMultipleOfs)
+        {
+        multiples.members
+          ( VarDefBuilder.with( toIdentifier( m))
+            .values(
+              VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).has( "multipleOf", m).build(),
+              VarValueDefBuilder.with( "No").build())
+            .build());
+        }
+
+      value.members( multiples.build());
+      }
+    
     return value.build();
     }
 
@@ -2167,6 +2143,44 @@ public abstract class InputModeller
     }
 
   /**
+   * Return the largest number less than or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
+   */
+  private BigDecimal multipleBelow( BigDecimal value, boolean inclusive, BigDecimal multipleOf, Set<BigDecimal> notMultipleOfs)
+    {
+    BigDecimal below;
+
+    for( below = inclusive? value : value.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf);
+
+         Stream.of( below)
+           .filter( b -> notMultipleOfs.stream().anyMatch( m -> isMultipleOf( b, m)))
+           .findAny()
+           .isPresent();
+
+         below = below.subtract( multipleOf));
+           
+    return below;
+    }
+
+  /**
+   * Return the smallest number greater than (or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
+   */
+  private BigDecimal multipleAbove( BigDecimal value, boolean inclusive, BigDecimal multipleOf, Set<BigDecimal> notMultipleOfs)
+    {
+    BigDecimal above;
+
+    for( above = inclusive? value : value.divide( multipleOf, 0, DOWN).add( BigDecimal.ONE).multiply( multipleOf);
+
+         Stream.of( above)
+           .filter( a -> notMultipleOfs.stream().anyMatch( m -> isMultipleOf( a, m)))
+           .findAny()
+           .isPresent();
+
+         above = above.add( multipleOf));
+           
+    return above;
+    }
+
+  /**
    * Returns the component of a function name that represents the given API request path.
    */
   static String functionPathName( String pathName)
@@ -2274,6 +2288,14 @@ public abstract class InputModeller
   private String instanceValueProperty( String instanceTag)
     {
     return instanceTag + "Value";
+    }
+
+  /**
+   * Returns the "unbounded value" property for the given instance.
+   */
+  private String unboundedValueProperty( String instanceTag)
+    {
+    return instanceTag + "Unbounded";
     }
 
   /**
@@ -2772,39 +2794,6 @@ public abstract class InputModeller
       Optional.ofNullable( asComposedSchema( schema))
       .map( c -> { getValidTypes( api, c); return c;})
       .orElse( null);
-    }
-
-  /**
-   * Returns the enumerated integer values defined by the given schema.
-   */
-  private List<Number> getIntegerEnum( Schema<?> schema)
-    {
-    List<Number> numbers;
-
-    if( schema instanceof IntegerSchema)
-      {
-      numbers =
-        Optional.ofNullable( ((IntegerSchema) schema).getEnum())
-        .orElse( emptyList());
-      }
-    else
-      {
-      numbers = 
-        Optional.ofNullable( schema.getEnum())
-        .orElse( emptyList())
-        .stream()
-        .map(
-          value -> {
-            if( !(value == null || value.getClass().equals( Integer.class) || value.getClass().equals( Long.class)))
-              {
-              throw new IllegalStateException( String.format( "Enumerated value=%s is not an integer", value));
-              }
-            return (Number) value;
-          })
-        .collect( toList());
-      }
-
-    return numbers;
     }
 
   /**

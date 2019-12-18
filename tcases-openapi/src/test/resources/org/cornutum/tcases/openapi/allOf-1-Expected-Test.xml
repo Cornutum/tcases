@@ -21,7 +21,7 @@
         <Var name="Body.application-json.Type" value="array"/>
         <Var name="Body.application-json.Items.Size" value="0"/>
         <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" NA="true"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
@@ -39,7 +39,7 @@
         <Var name="Body.application-json.Type" value="array"/>
         <Var name="Body.application-json.Items.Size" value="1"/>
         <Var name="Body.application-json.Items.Contains.Type" value="integer"/>
-        <Var name="Body.application-json.Items.Contains.Value" value="&lt; 0"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" value="&lt; 0"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
@@ -57,7 +57,7 @@
         <Var name="Body.application-json.Type" value="array"/>
         <Var name="Body.application-json.Items.Size" value="&gt; 1"/>
         <Var name="Body.application-json.Items.Contains.Type" value="integer"/>
-        <Var name="Body.application-json.Items.Contains.Value" value="0"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" value="0"/>
         <Var name="Body.application-json.Items.Unique" value="Yes"/>
       </Input>
     </TestCase>
@@ -75,7 +75,7 @@
         <Var name="Body.application-json.Type" value="array"/>
         <Var name="Body.application-json.Items.Size" value="1"/>
         <Var name="Body.application-json.Items.Contains.Type" value="integer"/>
-        <Var name="Body.application-json.Items.Contains.Value" value="&gt; 0"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" value="&gt; 0"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
@@ -93,7 +93,7 @@
         <Var name="Body.application-json.Type" value="array"/>
         <Var name="Body.application-json.Items.Size" value="&gt; 1"/>
         <Var name="Body.application-json.Items.Contains.Type" value="integer"/>
-        <Var name="Body.application-json.Items.Contains.Value" value="&lt; 0"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" value="&lt; 0"/>
         <Var name="Body.application-json.Items.Unique" value="No"/>
       </Input>
     </TestCase>
@@ -108,7 +108,7 @@
         <Var name="Body.application-json.Type" NA="true"/>
         <Var name="Body.application-json.Items.Size" NA="true"/>
         <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" NA="true"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
@@ -126,7 +126,7 @@
         <Var name="Body.application-json.Type" NA="true"/>
         <Var name="Body.application-json.Items.Size" NA="true"/>
         <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" NA="true"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
@@ -144,7 +144,7 @@
         <Var name="Body.application-json.Type" value="null" failure="true"/>
         <Var name="Body.application-json.Items.Size" NA="true"/>
         <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" NA="true"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
@@ -162,7 +162,7 @@
         <Var name="Body.application-json.Type" value="Not array" failure="true"/>
         <Var name="Body.application-json.Items.Size" NA="true"/>
         <Var name="Body.application-json.Items.Contains.Type" NA="true"/>
-        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" NA="true"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
@@ -180,7 +180,7 @@
         <Var name="Body.application-json.Type" value="array"/>
         <Var name="Body.application-json.Items.Size" value="1"/>
         <Var name="Body.application-json.Items.Contains.Type" value="null" failure="true"/>
-        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" NA="true"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>
@@ -198,7 +198,7 @@
         <Var name="Body.application-json.Type" value="array"/>
         <Var name="Body.application-json.Items.Size" value="1"/>
         <Var name="Body.application-json.Items.Contains.Type" value="Not integer" failure="true"/>
-        <Var name="Body.application-json.Items.Contains.Value" NA="true"/>
+        <Var name="Body.application-json.Items.Contains.Value.Is" NA="true"/>
         <Var name="Body.application-json.Items.Unique" NA="true"/>
       </Input>
     </TestCase>

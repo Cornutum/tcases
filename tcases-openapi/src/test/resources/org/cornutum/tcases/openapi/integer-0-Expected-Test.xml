@@ -18,7 +18,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="11">
+        <Var name="param0.Value.Is" value="11">
           <Has name="default" value="11"/>
           <Has name="format" value="int64"/>
         </Var>
@@ -34,7 +34,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="default" value="11"/>
           <Has name="format" value="int64"/>
         </Var>
@@ -51,7 +51,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="default" value="11"/>
           <Has name="format" value="int64"/>
         </Var>
@@ -68,7 +68,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="100">
+        <Var name="param0.Value.Is" value="100">
           <Has name="default" value="11"/>
           <Has name="format" value="int64"/>
         </Var>
@@ -85,7 +85,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not integer" failure="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="default" value="11"/>
           <Has name="format" value="int64"/>
         </Var>
@@ -102,7 +102,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="10" failure="true">
+        <Var name="param0.Value.Is" value="10" failure="true">
           <Has name="default" value="11"/>
           <Has name="format" value="int64"/>
         </Var>
@@ -119,7 +119,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value" value="101" failure="true">
+        <Var name="param0.Value.Is" value="101" failure="true">
           <Has name="default" value="11"/>
           <Has name="format" value="int64"/>
         </Var>

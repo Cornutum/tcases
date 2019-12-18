@@ -17,13 +17,22 @@
           <Value name="null" failure="true"/>
           <Value name="Not integer" failure="true"/>
         </Var>
-        <Var name="Value" when="param0Value">
+        <VarSet name="Value" when="param0Value">
           <Has name="format" value="int32"/>
-          <Value name="Not a multiple of 3" failure="true"/>
-          <Value name="99" failure="true"/>
-          <Value name="102"/>
-          <Value name="&gt; 102"/>
-        </Var>
+          <Var name="Is">
+            <Value name="99" failure="true"/>
+            <Value name="102"/>
+            <Value name="&gt; 102" property="param0Unbounded"/>
+          </Var>
+          <VarSet name="Multiple-Of" when="param0Unbounded">
+            <Var name="3">
+              <Value name="Yes">
+                <Has name="multipleOf" value="3"/>
+              </Value>
+              <Value name="No" failure="true"/>
+            </Var>
+          </VarSet>
+        </VarSet>
       </VarSet>
     </Input>
   </Function>

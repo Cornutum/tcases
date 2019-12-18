@@ -18,9 +18,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="integer"/>
-        <Var name="Other.Content.application-json.Value" value="16"/>
+        <Var name="Other.Content.application-json.Value.Is" value="16"/>
         <Var name="Other.Content.text-javascript.Type" NA="true"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -36,9 +36,9 @@
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" value="integer"/>
-        <Var name="Other.Content.text-javascript.Value" value="&lt; 0"/>
+        <Var name="Other.Content.text-javascript.Value.Is" value="&lt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -54,9 +54,9 @@
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" value="null"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -72,9 +72,9 @@
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" value="integer"/>
-        <Var name="Other.Content.text-javascript.Value" value="0"/>
+        <Var name="Other.Content.text-javascript.Value.Is" value="0"/>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -90,9 +90,9 @@
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" value="integer"/>
-        <Var name="Other.Content.text-javascript.Value" value="&gt; 0"/>
+        <Var name="Other.Content.text-javascript.Value.Is" value="&gt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -106,9 +106,9 @@
         <Var name="Other.Content.Defined" value="No" failure="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" NA="true"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -124,9 +124,9 @@
           <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" NA="true"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -142,9 +142,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="null" failure="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" NA="true"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -160,9 +160,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="Not integer" failure="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" NA="true"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
@@ -178,9 +178,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="integer"/>
-        <Var name="Other.Content.application-json.Value" value="15" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Is" value="15" failure="true"/>
         <Var name="Other.Content.text-javascript.Type" NA="true"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
@@ -196,9 +196,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="integer"/>
-        <Var name="Other.Content.application-json.Value" value="17" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Is" value="17" failure="true"/>
         <Var name="Other.Content.text-javascript.Type" NA="true"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
@@ -214,9 +214,9 @@
           <Has name="mediaType" value="text/javascript"/>
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Is" NA="true"/>
         <Var name="Other.Content.text-javascript.Type" value="Not integer" failure="true"/>
-        <Var name="Other.Content.text-javascript.Value" NA="true"/>
+        <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
   </Function>
@@ -234,13 +234,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="1"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -267,13 +267,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" NA="true"/>
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
@@ -302,13 +302,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" NA="true"/>
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
@@ -333,13 +333,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="No">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -366,13 +366,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="100"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="100"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="&gt; 1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="&gt; 1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -399,13 +399,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="1"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="No">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -432,13 +432,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" NA="true"/>
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
@@ -465,13 +465,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" NA="true"/>
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
@@ -498,13 +498,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -531,13 +531,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="null" failure="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -564,13 +564,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="Not integer" failure="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -597,7 +597,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="Other" failure="true">
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="Other" failure="true">
           <Has name="excluded" value="&apos;1&apos;,&apos;10&apos;,&apos;100&apos;"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
@@ -605,7 +605,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -632,13 +632,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="null" failure="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -665,13 +665,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="Not integer" failure="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -698,13 +698,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="0" failure="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="0" failure="true"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -731,13 +731,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="No" failure="true"/>
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
@@ -762,13 +762,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="Other" failure="true">
           <Has name="excluded" value="&apos;text/plain&apos;"/>
@@ -795,13 +795,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -828,13 +828,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -861,13 +861,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -894,13 +894,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-standard-header.Value" value="10"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" value="10"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="integer"/>
-        <Var name="2XX.Headers.x-extra-header.Value" value="1"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" value="1"/>
         <Var name="2XX.Content.Defined" value="Yes"/>
         <Var name="2XX.Content.Media-Type" value="text-plain">
           <Has name="mediaType" value="text/plain"/>
@@ -927,13 +927,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" NA="true"/>
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
@@ -958,13 +958,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" NA="true"/>
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
@@ -991,13 +991,13 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-standard-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-standard-header.Value.Is" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
           <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
-        <Var name="2XX.Headers.x-extra-header.Value" NA="true"/>
+        <Var name="2XX.Headers.x-extra-header.Value.Is" NA="true"/>
         <Var name="2XX.Content.Defined" NA="true"/>
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>

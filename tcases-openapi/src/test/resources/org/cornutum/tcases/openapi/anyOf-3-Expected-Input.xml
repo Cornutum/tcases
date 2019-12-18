@@ -143,11 +143,13 @@
                                     <Has name="memberValidated" value="false"/>
                                   </Value>
                                 </Var>
-                                <Var name="Value" when="param0AnyOf0AllOf1OneOf0AlphaValue">
-                                  <Value name="&lt; 0"/>
-                                  <Value name="0"/>
-                                  <Value name="&gt; 0"/>
-                                </Var>
+                                <VarSet name="Value" when="param0AnyOf0AllOf1OneOf0AlphaValue">
+                                  <Var name="Is">
+                                    <Value name="&lt; 0"/>
+                                    <Value name="0"/>
+                                    <Value name="&gt; 0"/>
+                                  </Var>
+                                </VarSet>
                               </VarSet>
                               <Var name="Additional">
                                 <Value name="Yes" property="param0AnyOf0AllOf1OneOf0Properties"/>

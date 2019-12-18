@@ -18,7 +18,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="987.65">
+        <Var name="param0.Value.Is" value="987.65">
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -33,7 +33,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -49,7 +49,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 987.65">
+        <Var name="param0.Value.Is" value="&gt; 987.65">
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -65,7 +65,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -81,7 +81,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="double"/>
         </Var>
       </Input>
@@ -97,7 +97,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="987.64" failure="true">
+        <Var name="param0.Value.Is" value="987.64" failure="true">
           <Has name="format" value="double"/>
         </Var>
       </Input>

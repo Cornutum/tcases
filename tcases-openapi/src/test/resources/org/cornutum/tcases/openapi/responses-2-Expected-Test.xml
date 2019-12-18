@@ -18,7 +18,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="0"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -30,7 +30,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" value="0"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="No"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -55,7 +55,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -65,7 +65,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -94,7 +94,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -104,7 +104,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -129,7 +129,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&lt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&lt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -141,7 +141,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -166,7 +166,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -178,7 +178,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="number"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" value="&lt; 0"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" value="&lt; 0"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -203,7 +203,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -215,7 +215,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -240,7 +240,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&lt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&lt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="No"/>
@@ -252,7 +252,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="No"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -277,7 +277,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="0"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -289,7 +289,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="number"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" value="0"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" value="0"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -314,7 +314,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -326,7 +326,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="number"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" value="&gt; 0"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" value="&gt; 0"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -351,7 +351,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -361,7 +361,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -388,7 +388,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -400,7 +400,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -425,7 +425,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="null" failure="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -437,7 +437,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -462,7 +462,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="Not array" failure="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -474,7 +474,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -499,7 +499,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="null" failure="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -511,7 +511,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -536,7 +536,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="Not integer" failure="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -548,7 +548,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -573,7 +573,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -583,7 +583,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -608,7 +608,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -620,7 +620,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -645,7 +645,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -657,7 +657,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -682,7 +682,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -694,7 +694,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -719,7 +719,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -731,7 +731,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" value="&gt; 1" failure="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="number"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" value="&lt; 0"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" value="&lt; 0"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -756,7 +756,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -768,7 +768,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="null" failure="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -793,7 +793,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -805,7 +805,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="Not number" failure="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -830,7 +830,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -842,7 +842,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="null" failure="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -867,7 +867,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -879,7 +879,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="Not object" failure="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -904,7 +904,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -916,7 +916,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="No" failure="true"/>
@@ -941,7 +941,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -953,7 +953,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -978,7 +978,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" value="&gt; 0">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" value="Yes"/>
@@ -990,7 +990,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
@@ -1015,7 +1015,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -1025,7 +1025,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -1050,7 +1050,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -1060,7 +1060,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -1087,7 +1087,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -1097,7 +1097,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
@@ -1124,7 +1124,7 @@
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value" NA="true">
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Unique" NA="true"/>
@@ -1134,7 +1134,7 @@
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Value" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>

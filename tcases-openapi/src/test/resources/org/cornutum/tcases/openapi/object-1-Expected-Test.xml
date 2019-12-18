@@ -25,7 +25,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -49,7 +49,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -74,7 +74,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
-        <Var name="param0.Value.Properties.myNumber.Value" value="&lt; 0"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&lt; 0"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -99,7 +99,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" value="0"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -124,7 +124,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
-        <Var name="param0.Value.Properties.myNumber.Value" value="0"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="0"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -149,7 +149,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
-        <Var name="param0.Value.Properties.myNumber.Value" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&gt; 0"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -174,7 +174,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
         <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
@@ -199,7 +199,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
         <Var name="param0.Value.Properties.myBoolean.Value" value="false"/>
@@ -224,7 +224,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -249,7 +249,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -274,7 +274,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -299,7 +299,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -324,7 +324,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
-        <Var name="param0.Value.Properties.myNumber.Value" value="&lt; 0"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&lt; 0"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
         <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
@@ -349,7 +349,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -374,7 +374,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -399,7 +399,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myNumber.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -424,7 +424,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myNumber.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -449,7 +449,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myBoolean.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
@@ -474,7 +474,7 @@
         <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value" NA="true"/>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.myBoolean.Type" value="Not boolean" failure="true"/>
         <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>

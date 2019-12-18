@@ -30,12 +30,14 @@
               <Value name="null" failure="true"/>
               <Value name="Not integer" failure="true"/>
             </Var>
-            <Var name="Value" when="200application-jsonValue">
-              <Value name="-1" failure="true"/>
-              <Value name="0"/>
-              <Value name="10"/>
-              <Value name="11" failure="true"/>
-            </Var>
+            <VarSet name="Value" when="200application-jsonValue">
+              <Var name="Is">
+                <Value name="-1" failure="true"/>
+                <Value name="0"/>
+                <Value name="10"/>
+                <Value name="11" failure="true"/>
+              </Var>
+            </VarSet>
           </VarSet>
         </VarSet>
       </VarSet>

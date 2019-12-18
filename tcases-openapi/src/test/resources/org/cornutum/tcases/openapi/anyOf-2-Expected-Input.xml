@@ -44,13 +44,15 @@
                 <Var name="Type">
                   <Value name="number" property="application-jsonAnyOf0Value"/>
                 </Var>
-                <Var name="Value" when="application-jsonAnyOf0Value">
-                  <Value name="0.0" property="application-jsonAnyOfMemberValidated"/>
-                  <Value name="100.0" property="application-jsonAnyOfMemberValidated"/>
-                  <Value name="100.1">
-                    <Has name="memberValidated" value="false"/>
-                  </Value>
-                </Var>
+                <VarSet name="Value" when="application-jsonAnyOf0Value">
+                  <Var name="Is">
+                    <Value name="0.0" property="application-jsonAnyOfMemberValidated"/>
+                    <Value name="100.0" property="application-jsonAnyOfMemberValidated"/>
+                    <Value name="100.1">
+                      <Has name="memberValidated" value="false"/>
+                    </Value>
+                  </Var>
+                </VarSet>
               </VarSet>
               <VarSet name="1">
                 <Var name="Type">
@@ -59,10 +61,12 @@
                     <Has name="memberValidated" value="false"/>
                   </Value>
                 </Var>
-                <Var name="Value" when="application-jsonAnyOf1Value">
-                  <Value name="100.0"/>
-                  <Value name="&lt; 100.0"/>
-                </Var>
+                <VarSet name="Value" when="application-jsonAnyOf1Value">
+                  <Var name="Is">
+                    <Value name="100.0"/>
+                    <Value name="&lt; 100.0"/>
+                  </Var>
+                </VarSet>
               </VarSet>
             </VarSet>
           </VarSet>

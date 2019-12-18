@@ -17,16 +17,18 @@
           <Value name="null" once="true"/>
           <Value name="Not integer" failure="true"/>
         </Var>
-        <Var name="Value" when="param0Value">
+        <VarSet name="Value" when="param0Value">
           <Has name="default" value="-1"/>
           <Has name="format" value="int64"/>
-          <Value name="-1"/>
-          <Value name="0"/>
-          <Value name="1"/>
-          <Value name="Other" failure="true">
-            <Has name="excluded" value="&apos;-1&apos;,&apos;0&apos;,&apos;1&apos;"/>
-          </Value>
-        </Var>
+          <Var name="Is">
+            <Value name="-1"/>
+            <Value name="0"/>
+            <Value name="1"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;-1&apos;,&apos;0&apos;,&apos;1&apos;"/>
+            </Value>
+          </Var>
+        </VarSet>
       </VarSet>
     </Input>
   </Function>

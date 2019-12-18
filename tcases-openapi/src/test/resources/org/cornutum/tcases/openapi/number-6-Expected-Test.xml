@@ -10,7 +10,7 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/number"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -18,8 +18,12 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&lt; 0">
+        <Var name="param0.Value.Is" value="&lt; 0">
           <Has name="default" value="0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.1_234" value="Yes">
+          <Has name="default" value="0"/>
+          <Has name="multipleOf" value="1.234"/>
         </Var>
       </Input>
     </TestCase>
@@ -33,7 +37,10 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="default" value="0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.1_234" NA="true">
           <Has name="default" value="0"/>
         </Var>
       </Input>
@@ -49,7 +56,10 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="null"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="default" value="0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.1_234" NA="true">
           <Has name="default" value="0"/>
         </Var>
       </Input>
@@ -65,7 +75,10 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="0">
+        <Var name="param0.Value.Is" value="0">
+          <Has name="default" value="0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.1_234" NA="true">
           <Has name="default" value="0"/>
         </Var>
       </Input>
@@ -73,7 +86,7 @@
     <TestCase id="4">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/number"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -81,8 +94,12 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="&gt; 0">
+        <Var name="param0.Value.Is" value="&gt; 0">
           <Has name="default" value="0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.1_234" value="Yes">
+          <Has name="default" value="0"/>
+          <Has name="multipleOf" value="1.234"/>
         </Var>
       </Input>
     </TestCase>
@@ -97,7 +114,10 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value" NA="true">
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="default" value="0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.1_234" NA="true">
           <Has name="default" value="0"/>
         </Var>
       </Input>
@@ -105,7 +125,7 @@
     <TestCase id="6" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/number"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -113,7 +133,10 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value" value="Not a multiple of 1.234" failure="true">
+        <Var name="param0.Value.Is" value="&lt; 0">
+          <Has name="default" value="0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.1_234" value="No" failure="true">
           <Has name="default" value="0"/>
         </Var>
       </Input>

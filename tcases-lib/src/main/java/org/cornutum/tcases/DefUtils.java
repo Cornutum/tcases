@@ -114,6 +114,16 @@ public final class DefUtils
       .replaceAll( "");
     }
 
+  /**
+   * Converts the given number to a Tcases identifier
+   */
+  public static String toIdentifier( Number number)
+    {
+    return
+      nonIdentifierCharRegex_.matcher( String.valueOf( number))
+      .replaceAll( "_");
+    }
+
   private static final String identifierChars_ = "\\p{Alpha}\\p{Digit}_\\-";
   private static final Pattern identifierRegex_ = Pattern.compile( "[" + identifierChars_ + "]+", Pattern.UNICODE_CHARACTER_CLASS);
   private static final Pattern nonIdentifierCharRegex_ = Pattern.compile( "[^" + identifierChars_ + "]", Pattern.UNICODE_CHARACTER_CLASS);

@@ -17,15 +17,16 @@
           <Value name="null" failure="true"/>
           <Value name="Not number" failure="true"/>
         </Var>
-        <Var name="Value" when="param0Value">
-          <Value name="Not a multiple of 0.1" failure="true"/>
-          <Value name="Multiple of 2.0" failure="true"/>
-          <Value name="Multiple of 7.5" failure="true"/>
-          <Value name="-0.1" failure="true"/>
-          <Value name="0.0"/>
-          <Value name="99.9"/>
-          <Value name="100.0" failure="true"/>
-        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Is">
+            <Value name="-0.1" failure="true"/>
+            <Value name="0.0"/>
+            <Value name="99.9"/>
+            <Value name="100.1" failure="true"/>
+            <Value name="2.0" failure="true"/>
+            <Value name="7.5" failure="true"/>
+          </Var>
+        </VarSet>
         <VarSet name="Has-Excluded" when="param0Value">
           <Var name="Value">
             <Value name="1.0" failure="true"/>
