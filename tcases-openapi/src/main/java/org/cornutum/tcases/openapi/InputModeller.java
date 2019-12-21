@@ -1258,8 +1258,10 @@ public abstract class InputModeller
       BigDecimal unit = new BigDecimal(
         BigInteger.ONE,
         Math.max(
-          Optional.ofNullable( instanceSchema.getMinimum()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( instanceSchema.getMaximum()).map( BigDecimal::scale).orElse( 0)));
+          Optional.ofNullable( multipleOf).map( BigDecimal::scale).orElse( 0),
+          Math.max(
+            Optional.ofNullable( instanceSchema.getMinimum()).map( BigDecimal::scale).orElse( 0),
+            Optional.ofNullable( instanceSchema.getMaximum()).map( BigDecimal::scale).orElse( 0))));
 
       BigDecimal effectiveMultipleOf =
         Optional.ofNullable( multipleOf)
