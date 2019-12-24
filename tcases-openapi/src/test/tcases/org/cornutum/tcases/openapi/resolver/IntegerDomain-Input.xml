@@ -1,0 +1,20 @@
+<System name="ValueDomain">
+    <Function name="IntegerDomain">
+        <Input>
+            <Var name="Is">
+                <Value name="Constant"/>
+                <Value name="Below-Max" property="unbounded"/>
+                <Value name="Above-Min" property="unbounded"/>
+            </Var>
+            <Var name="Multiple-Of" when="unbounded">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="Not-Multiples-Of" when="unbounded">
+                <Value name="0"/>
+                <Value name="1"/>
+                <Value name="Many"/>
+            </Var>
+        </Input>
+    </Function>
+</System>
