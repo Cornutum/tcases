@@ -1,0 +1,15 @@
+<System name="ValueDomain">
+    <Function name="Base64Domain">
+        <Input>
+            <Var name="Length">
+                <Value name="Constant"/>
+                <Value name="Below-Max" property="unbounded"/>
+                <Value name="Above-Min" property="unbounded"/>
+            </Var>
+            <Var name="Excluded">
+                <Value name="Some"/>
+                <Value name="None"/>
+            </Var>
+        </Input>
+    </Function>
+</System>

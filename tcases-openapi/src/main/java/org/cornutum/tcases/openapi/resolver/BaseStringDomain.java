@@ -1,0 +1,179 @@
+//////////////////////////////////////////////////////////////////////////////
+// 
+//                    Copyright 2019, Cornutum Project
+//                             www.cornutum.org
+//
+//////////////////////////////////////////////////////////////////////////////
+
+package org.cornutum.tcases.openapi.resolver;
+
+import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import org.cornutum.tcases.util.ToString;
+
+import java.util.Optional;
+import java.util.Set;
+import static java.util.Collections.emptySet;
+
+/**
+ * Base class for domains that define a set of strings that can be used by a request.
+ */
+public abstract class BaseStringDomain<T> implements ValueDomain<T>
+  {
+  /**
+   * Creates a new BaseStringDomain instance.
+   */
+  protected BaseStringDomain( int maxLength)
+    {
+    maxLength_ = maxLength;
+    initLengthRange();
+    setExcluded( null);
+    }
+
+  /**
+   * Returns the maximum value for unbounded length ranges.
+   */
+  public int getMaxLength()
+    {
+    return maxLength_;
+    }
+
+  /**
+   * Defines a constant length range for values in this domain.
+   */
+  public void setLengthRange( Integer length)
+    {
+    setLengthRange( new IntegerConstant( Optional.ofNullable( length).map( m -> Math.max( 0, m)).orElse( 0)));
+    }
+
+  /**
+   * Defines the length range for values in this domain.
+   */
+  public void setLengthRange( Integer min, Integer max)
+    {
+    IntegerDomain length = new IntegerDomain( getMaxLength());
+    length.setRange(
+      Optional.ofNullable( min).map( m -> Math.max( -1, m)).orElse( -1),
+      Optional.ofNullable( max).map( m -> Math.min( getMaxLength(), m)).orElse( getMaxLength()));
+    setLengthRange( length);
+    }
+
+  /**
+   * Defines the length range for values in this domain.
+   */
+  public void setLengthRange( Range range)
+    {
+    if( range == null)
+      {
+      setLengthRange( null, null);
+      }
+    else if( range.isConstant())
+      {
+      setLengthRange( Integer.valueOf( range.getMin()));
+      }
+    else
+      {
+      setLengthRange(
+        Optional.ofNullable( range.getMin()).map( Integer::valueOf).orElse( null),
+        Optional.ofNullable( range.getMax()).map( Integer::valueOf).orElse( null));
+      }
+    }
+
+  /**
+   * Defines the initial length range for values in this domain.
+   */
+  protected void initLengthRange()
+    {
+    setLengthRange( null, null);
+    }
+
+  /**
+   * Changes the length range for values in this domain.
+   */
+  protected void setLengthRange( ValueDomain<Integer> domain)
+    {
+    lengthRange_ = domain;
+    }
+
+  /**
+   * Returns the length range for values in this domain.
+   */
+  protected ValueDomain<Integer> getLengthRange()
+    {
+    return lengthRange_;
+    }
+
+  /**
+   * Changes the values excluded from this domain.
+   */
+  public void setExcluded( Set<T> excluded)
+    {
+    excluded_ = Optional.ofNullable( excluded).orElse( emptySet());
+    }
+
+  /**
+   * Returns the values excluded from this domain.
+   */
+  public Set<T> getExcluded()
+    {
+    return excluded_;
+    }
+
+  /**
+   * Changes the values excluded from this domain.
+   */
+  public abstract void setExcludedStrings( Set<String> excluded);
+
+  /**
+   * Returns the length of the given value.
+   */
+  protected abstract int getLength( T value);
+
+  /**
+   * Return the type(s) of values that belong to this domain.
+   */
+  public Type[] getTypes()
+    {
+    return Type.only( Type.STRING);
+    }
+
+  /**
+   * Returns true if the given value belongs to this domain.
+   */
+  public boolean contains( T value)
+    {
+    return
+      // Length within min/max bounds?
+      value != null && getLengthRange().contains( getLength( value))
+      &&
+      // Value not excluded?
+      isNotExcluded( value, getExcluded());
+    }
+
+  /**
+   * Returns true if <CODE>value</CODE> is not equal to of any of the <CODE>excluded</CODE> values.
+   */
+  protected boolean isNotExcluded( T value, Set<T> excluded)
+    {
+    return excluded.stream().allMatch( e -> !valuesEqual( value, e));
+    }
+
+  /**
+   * Returns true if the given values are equal.
+   */
+  protected boolean valuesEqual( T value1, T value2)
+    {
+    return value1.equals( value2);
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( "length", getLengthRange())
+      .toString();
+    }
+
+  private final int maxLength_;
+  private ValueDomain<Integer> lengthRange_;
+  private Set<T> excluded_;
+  }

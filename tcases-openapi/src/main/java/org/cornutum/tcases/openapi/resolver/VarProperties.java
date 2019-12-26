@@ -18,11 +18,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import static java.util.Collections.emptyMap;
+import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 import java.math.BigDecimal;
 
@@ -87,6 +90,21 @@ public final class VarProperties
     }
 
   /**
+   * Returns a variable binding if it is referenced by the given property path. Otherwise returns null.
+   */
+  public static VarBinding getIfVarBinding( Map<String,Object> propertyValues, String path)
+    {
+    try
+      {
+      return getVarBinding( propertyValues, path);
+      }
+    catch( Exception e)
+      {
+      return null;
+      }
+    }
+
+  /**
    * Returns the value set at the given property path.
    */
   @SuppressWarnings("unchecked")
@@ -99,6 +117,21 @@ public final class VarProperties
     catch( Exception e)
       {
       throw new RequestCaseException( String.format( "Can't get value set at path=%", path), e);
+      }
+    }
+
+  /**
+   * Returns a value set if it is referenced by the given property path. Otherwise returns null.
+   */
+  public static Map<String,Object> getIfPropertyValues( Map<String,Object> propertyValues, String path)
+    {
+    try
+      {
+      return getPropertyValues( propertyValues, path);
+      }
+    catch( Exception e)
+      {
+      return null;
       }
     }
 
@@ -300,17 +333,67 @@ public final class VarProperties
    */
   public static ValueDomain<?> toStringDomain( Map<String,Object> propertyValues)
     {
-    ValueDomain<?> valueDomain =
-      Optional.ofNullable( getVarBinding( propertyValues, "Value"))
-      .map( binding -> new StringConstant( (String) binding.getValue()))
-      .orElse( null);
+    String format;
+    Range lengthRange;
+    Set<String> excluded;
 
-    if( valueDomain == null)
+    VarBinding valueBinding = getIfVarBinding( propertyValues, "Value");
+    if( valueBinding != null)
       {
-      Map<String,Object> valueProperties = expectPropertyValues( propertyValues, "Value");
+      format = valueBinding.getAnnotation( "format");
+      lengthRange = null;
+      excluded = Optional.ofNullable( valueBinding.getAnnotationList( "excluded")).map( e -> e.stream().collect( toSet())).orElse( emptySet());
+      }
+    else
+      {
+      Map<String,Object> stringProperties = expectPropertyValues( propertyValues, "Value");
+      VarBinding length = expectVarBinding( stringProperties, "Length");
+      format = length.getAnnotation( "format");
+      lengthRange = Range.of( length);
+      excluded = Optional.ofNullable( length.getAnnotationList( "excluded")).map( e -> e.stream().collect( toSet())).orElse( emptySet());
       }
 
-    return valueDomain;
+    ValueDomain<?> domain;
+    if( valueBinding != null && excluded.isEmpty())
+      {
+      domain =
+        "date".equals( format)?
+        new DateConstant( String.valueOf( valueBinding.getValue())) :
+
+        "date-time".equals( format)?
+        new DateTimeConstant( String.valueOf( valueBinding.getValue())) :
+
+        "binary".equals( format)?
+        new BinaryConstant( (byte[]) valueBinding.getValue()) :
+
+        new StringConstant( String.valueOf( valueBinding.getValue()));
+      }
+    else
+      {
+      BaseStringDomain<?> baseDomain =
+        "date".equals( format)?
+        new DateDomain() :
+
+        "date-time".equals( format)?
+        new DateTimeDomain() :
+
+        "binary".equals( format)?
+        new BinaryDomain() :
+
+        "byte".equals( format)?
+        new Base64Domain() :
+
+        new StringDomain();
+
+      if( !("date".equals( format) || "date-time".equals( format)))
+        {
+        baseDomain.setLengthRange( lengthRange);
+        }
+      baseDomain.setExcludedStrings( excluded);
+      domain = baseDomain;
+      }
+    
+    return domain;
     }
 
   /**

@@ -1,0 +1,25 @@
+<System name="ValueDomain">
+    <Function name="DateDomain">
+        <Input>
+            <Var name="Length">
+                <Value name="10"/>
+                <Value name="Default"/>
+                <Value name="Invalid-Constant" failure="true"/>
+                <Value name="Below-Max" failure="true"/>
+                <Value name="Above-Min" failure="true"/>
+            </Var>
+            <Var name="Excluded">
+                <Value name="None"/>
+                <Value name="Some"/>
+            </Var>
+            <Var name="MatchPatterns">
+                <Value name="None"/>
+                <Value name="Some"/>
+            </Var>
+            <Var name="NotMatchPatterns">
+                <Value name="None"/>
+                <Value name="Some"/>
+            </Var>
+        </Input>
+    </Function>
+</System>

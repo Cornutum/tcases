@@ -71,7 +71,7 @@ public interface ValueDomain<T>
     return
       values( random)
       .findFirst()
-      .orElseThrow( () -> new IllegalStateException( String.format( "Can't generate a value from domain=%s", this)));
+      .orElseThrow( () -> new IllegalStateException( String.format( "Domain=%s is empty", this)));
     }
 
   /**
