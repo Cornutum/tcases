@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.util.ToString;
+
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -45,5 +47,12 @@ public class ObjectDomain implements ValueDomain<Map<String,Object>>
   public Type[] getTypes()
     {
     return Type.only( Type.OBJECT);
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .toString();
     }
   }

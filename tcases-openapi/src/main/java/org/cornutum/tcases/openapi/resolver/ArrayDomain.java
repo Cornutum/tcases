@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.util.ToString;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -46,5 +48,12 @@ public class ArrayDomain<T> implements ValueDomain<List<T>>
   public Type[] getTypes()
     {
     return Type.only( Type.ARRAY);
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .toString();
     }
   }

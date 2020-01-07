@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.util.ToString;
+
 /**
  * Defines a request input value.
  */
@@ -90,6 +92,15 @@ public class ValueDef<T>
   public Iterable<String> getNotMediaTypes()
     {
     return notMediaTypes_;
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( getDomain())
+      .append( isValid()? "SUCCESS" : "FAILURE")
+      .toString();
     }
 
   private final ValueDomain<T> domain_;
