@@ -7,15 +7,20 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.cornutum.tcases.FunctionTestDef;
 import org.cornutum.tcases.SystemTestDef;
-import org.cornutum.tcases.openapi.io.TcasesOpenApiIO;
+import org.cornutum.tcases.io.SystemTestResource;
 
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -24,30 +29,84 @@ import static java.util.stream.Collectors.toList;
 public class RequestCaseDefinerTest
   {
   @Test
-  public void sample()
+  public void forOperations()
+    {
+    getRequestCaseDefs( "operations");
+    }
+  
+  @Test
+  public void forIntegers()
+    {
+    getRequestCaseDefs( "integer");
+    }
+  
+  @Test
+  public void forNumbers()
+    {
+    getRequestCaseDefs( "number");
+    }
+  
+  @Test
+  public void forStrings()
+    {
+    getRequestCaseDefs( "string");
+    }
+
+  /**
+   * Generate request cases for every test resource with the given base name.
+   */
+  private void getRequestCaseDefs( String baseName)
     {
     // Given...
     RequestCaseDefiner definer = new RequestCaseDefiner();
-    SystemTestDef testDef = getRequestTests( "../operations-1");
-    
-    // When...
-    List<RequestCaseDef> requestCaseDefs = getRequestCaseDefs( definer, testDef);
-    
-    // Then...
-    for( RequestCaseDef requestCaseDef : requestCaseDefs)
+    Stream<File> testResources = getRequestTestResources( baseName);
+
+    testResources.forEach(
+      file -> {
+      // When...
+      SystemTestDef testDef = SystemTestResource.of( file).getSystemTestDef();
+      List<RequestCaseDef> requestCaseDefs = getRequestCaseDefs( definer, testDef);
+
+      // Then...
+      for( RequestCaseDef requestCaseDef : requestCaseDefs)
+        {
+        System.out.println( String.format( "%s: %s", file, requestCaseDef));
+        }
+      }); 
+    }
+
+  /**
+   * Returns the location of the resource file for the given class.
+   */
+  private File getResourceDir()
+    {
+    try
       {
-      System.out.println( requestCaseDef);
+      return new File( getClass().getResource( "..").toURI().getPath());
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't get resource directory path", e);
       }
     }
 
   /**
-   * Returns the request test cases for the given OpenAPI spec resource.
+   * Returns all request test resources with the given base name.
    */
-  private SystemTestDef getRequestTests( String apiResource)
+  private Stream<File> getRequestTestResources( String baseName)
+    {
+    return Arrays.stream( getResourceDir().listFiles( baseNameResources( baseName)));
+    }
+
+  /**
+   * Returns a filter that matches all test resources with the given base name.
+   */
+  private FilenameFilter baseNameResources( String baseName)
     {
     return
-      TcasesOpenApiIO.getRequestTests(
-        getClass().getResourceAsStream( apiResource + ".json"));
+      FileFilterUtils.and(
+        FileFilterUtils.prefixFileFilter( baseName),
+        FileFilterUtils.suffixFileFilter( "-Expected-Test.xml"));
     }
 
   /**
