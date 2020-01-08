@@ -79,7 +79,7 @@ public class IntegerDomainTest extends ValueDomainTest
     IntegerDomain domain = new IntegerDomain();
 
     // When...
-    domain.setRange( 3, 21);
+    domain.setRange( 4, 20);
     domain.setMultipleOf( "3");
     domain.setNotMultipleOfs( Stream.of( 5, 2).collect( toSet()));
 
@@ -89,7 +89,7 @@ public class IntegerDomainTest extends ValueDomainTest
     assertThat( "Value", domain.select( getRandom()), is( 9));
 
     // When...
-    domain.setRange( 12, 21);
+    domain.setRange( 13, 20);
     
     // Then...
     values = domain.values( getRandom()).limit( 10).collect( toList());
@@ -97,7 +97,7 @@ public class IntegerDomainTest extends ValueDomainTest
     expectFailure( IllegalStateException.class).when( () -> domain.select( getRandom()));
 
     // When...
-    domain.setRange( -21, 21);
+    domain.setRange( -20, 20);
     
     // Then...
     verifyContainsValues( domain, 1000);
@@ -115,7 +115,7 @@ public class IntegerDomainTest extends ValueDomainTest
 
     // Then...
     expectFailure( IllegalArgumentException.class)
-      .when( () -> domain.setRange( Integer.MIN_VALUE + 1, Integer.MAX_VALUE - 1));
+      .when( () -> domain.setRange( Integer.MIN_VALUE, Integer.MAX_VALUE));
     }
 
   @Test

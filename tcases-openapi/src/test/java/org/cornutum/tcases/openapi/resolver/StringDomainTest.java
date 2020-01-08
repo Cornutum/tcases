@@ -57,7 +57,7 @@ public class StringDomainTest extends ValueDomainTest
     assertThat( "Contains", domain.contains( "abcdefghijklmnopqrstuvwzyz"), is( false));
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOPQRSTUVWZYZ"), is( true));
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOP"), is( false));
-    assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOPQRSTUVWZYZABCDEF"), is( false));
+    assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOPQRSTUVWZYZABCDEFG"), is( false));
     }
 
   @Test

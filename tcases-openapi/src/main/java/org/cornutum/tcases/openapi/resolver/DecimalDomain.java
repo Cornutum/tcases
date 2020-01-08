@@ -47,14 +47,22 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
       .map( BigDecimal::new)
       .collect( toSet()));
 
-    setRange(
-      Optional.ofNullable( getExcluded().isEmpty()? range.getMin() : null)
+    BigDecimal min = 
+      Optional.ofNullable( range.getMin())
       .map( BigDecimal::new)
-      .orElse( new BigDecimal( -getMaxRange())),
+      .orElse( new BigDecimal( -getMaxRange()));
 
-      Optional.ofNullable( getExcluded().isEmpty()? range.getMax() : null)
+    BigDecimal max = 
+      Optional.ofNullable( range.getMax())
       .map( BigDecimal::new)
-      .orElse( new BigDecimal( getMaxRange())));
+      .orElse( new BigDecimal( getMaxRange()));
+
+    int unitScale = Math.max( 1, Math.max( min.scale(), max.scale()));
+    BigDecimal unit = new BigDecimal( BigInteger.ONE, unitScale);
+    
+    setRange(
+      range.isMinExclusive()? min.add( unit) : min,
+      range.isMaxExclusive()? max.subtract( unit) : max);
     }
 
   /**
@@ -109,8 +117,8 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
     
     BigDecimal unit = new BigDecimal( BigInteger.ONE, unitScale);
     BigDecimal multiple = Optional.ofNullable( getMultipleOf()).orElse( unit);
-    BigDecimal firstMultiple = divideCeiling( getMin().add( unit), multiple).multiply( multiple);
-    BigDecimal lastMultiple = divideFloor( getMax().subtract( unit), multiple).multiply( multiple);
+    BigDecimal firstMultiple = divideCeiling( getMin(), multiple).multiply( multiple);
+    BigDecimal lastMultiple = divideFloor( getMax(), multiple).multiply( multiple);
 
     // Find smallest fully-satisfying multiple in range
     for( ;

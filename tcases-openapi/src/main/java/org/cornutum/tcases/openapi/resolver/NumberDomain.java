@@ -17,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.joining;
 
 /**
  * Defines a set of numeric values that can be used by a request.
@@ -63,7 +64,7 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
   protected abstract boolean isMultipleOf( T value, T multiple);
 
   /**
-   * Changes the (exclusive) minimum and the (exclusive) maximum for this domain.
+   * Changes the (inclusive) minimum and the (inclusive) maximum for this domain.
    */
   public void setRange( T min, T max)
     {
@@ -72,7 +73,7 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
     }
 
   /**
-   * Returns the (exclusive) minimum for this domain.
+   * Returns the (inclusive) minimum for this domain.
    */
   public T getMin()
     {
@@ -80,7 +81,7 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
     }
 
   /**
-   * Returns the (exclusive) maximum for this domain.
+   * Returns the (inclusive) maximum for this domain.
    */
   public T getMax()
     {
@@ -145,7 +146,7 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
     {
     return
       // Value within min/max bounds?
-      (value != null && value.compareTo( getMin()) > 0  && value.compareTo( getMax()) < 0)
+      (value != null && value.compareTo( getMin()) >= 0  && value.compareTo( getMax()) <= 0)
       &&
       // Value not excluded?
       isNotExcluded( value, getExcluded())
@@ -198,15 +199,17 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
     /**
      * Creates a new Range instance.
      */
-    private Range( String min, String max, Set<String> excluded)
+    private Range( String min, boolean minExclusive, String max, boolean maxExclusive, Set<String> excluded)
       {
       min_ = min;
+      minExclusive_ = minExclusive;
       max_ = max;
+      maxExclusive_ = maxExclusive;
       excluded_ = excluded;
       }
 
     /**
-     * Returns the (exclusive) minimum of this range.
+     * Returns the minimum of this range.
      */
     public String getMin()
       {
@@ -214,11 +217,27 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
       }
 
     /**
-     * Returns the (exclusive) maximum of this range.
+     * Returns true if the minimum is exclusive.
+     */
+    public boolean isMinExclusive()
+      {
+      return minExclusive_;
+      }
+
+    /**
+     * Returns the maximum of this range.
      */
     public String getMax()
       {
       return max_;
+      }
+
+    /**
+     * Returns true if the maximum is exclusive.
+     */
+    public boolean isMaxExclusive()
+      {
+      return maxExclusive_;
       }
 
     /**
@@ -254,31 +273,46 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
         ? binding.getAnnotationList( "excluded").stream().collect( toSet())
         : emptySet();
 
+      String op = matcher.group(2);
+      String bound = matcher.group(3);
+
       String min =
-        matcher.group(1) == null && !"<".equals( matcher.group(2))
-        ? matcher.group(3)
+        op != null && op.startsWith( ">")
+        ? bound
         : null;
 
       String max =
-        matcher.group(1) == null && !">".equals( matcher.group(2))
-        ? matcher.group(3)
+        op != null && op.startsWith( "<")
+        ? bound
         : null;
 
-      return new Range( min, max, excluded);
+      boolean minExclusive = min != null && op.equals( ">");
+      boolean maxExclusive = max != null && op.equals( "<");
+
+      return new Range( min, minExclusive, max, maxExclusive, excluded);
       }
 
     public String toString()
       {
+      Optional<Set<String>> excluded =
+        getExcluded().isEmpty()
+        ? Optional.empty()
+        : Optional.of( getExcluded());
+      
       return
-        ToString.getBuilder( this)
-        .append( getMin())
-        .append( getMax())
-        .append( getExcluded())
-        .toString();
+        String.format(
+          "%s%s,%s%s%s",
+          isMinExclusive()? "(" : "[",
+          String.valueOf( getMin()),
+          String.valueOf( getMax()),
+          isMaxExclusive()? ")" : "]",
+          excluded.map( e -> String.format( "-[%s]", e.stream().collect( joining( ",")))).orElse( ""));
       }
 
     private final String min_;
+    private final boolean minExclusive_;
     private final String max_;
+    private final boolean maxExclusive_;
     private final Set<String> excluded_;
     }  
 
@@ -290,5 +324,5 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
   private T multipleOf_;
   private Set<T> notMultipleOfs_;
 
-  private final static Pattern numberRangePattern_ = Pattern.compile( "(Other)|(?:([<>]) )?(.*)");
+  private final static Pattern numberRangePattern_ = Pattern.compile( "(Other)|(?:([<>]=?) )?(.*)");
   }

@@ -52,8 +52,8 @@ public abstract class BaseStringDomain<T> implements ValueDomain<T>
     {
     IntegerDomain length = new IntegerDomain( getMaxLength());
     length.setRange(
-      Optional.ofNullable( min).map( m -> Math.max( -1, m)).orElse( -1),
-      Optional.ofNullable( max).map( m -> Math.min( getMaxLength(), m)).orElse( getMaxLength()));
+      Optional.ofNullable( min).orElse( 0),
+      Optional.ofNullable( max).orElse( getMaxLength()));
     setLengthRange( length);
     }
 
@@ -72,9 +72,19 @@ public abstract class BaseStringDomain<T> implements ValueDomain<T>
       }
     else
       {
-      setLengthRange(
-        Optional.ofNullable( range.getMin()).map( Integer::valueOf).orElse( null),
-        Optional.ofNullable( range.getMax()).map( Integer::valueOf).orElse( null));
+      Integer min =
+        Optional.ofNullable( range.getMin())
+        .map( Integer::valueOf)
+        .map( i -> range.isMinExclusive()? i + 1 : i)
+        .orElse( null);
+
+      Integer max =
+        Optional.ofNullable( range.getMax())
+        .map( Integer::valueOf)
+        .map( i -> range.isMaxExclusive()? i - 1 : i)
+        .orElse( null);
+      
+      setLengthRange( min, max);
       }
     }
 

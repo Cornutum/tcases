@@ -45,12 +45,14 @@ public class LongDomain extends NumberDomain<Long>
       .collect( toSet()));
 
     setRange(
-      Optional.ofNullable( getExcluded().isEmpty()? range.getMin() : null)
+      Optional.ofNullable( range.getMin())
       .map( Long::valueOf)
+      .map( i -> range.isMinExclusive()? i + 1 : i)
       .orElse( -getMaxRange()),
 
-      Optional.ofNullable( getExcluded().isEmpty()? range.getMax() : null)
+      Optional.ofNullable( range.getMax())
       .map( Long::valueOf)
+      .map( i -> range.isMaxExclusive()? i - 1 : i)
       .orElse( getMaxRange()));
     }
 
@@ -59,7 +61,7 @@ public class LongDomain extends NumberDomain<Long>
    */
   public void setRange( Long min, Long max)
     {
-    if( Long.signum( min) != Long.signum( max) && -min > Long.MAX_VALUE - max)
+    if( Long.signum( min) != Long.signum( max) && -Math.max( min, -Long.MAX_VALUE) > Long.MAX_VALUE - max)
       {
       throw new IllegalArgumentException( String.format( "Range=[%s,%s] exceeds maximum size=%s", min, max, Long.MAX_VALUE));
       }
@@ -100,8 +102,8 @@ public class LongDomain extends NumberDomain<Long>
     {
     // Find smallest and largest multiples in range
     long multiple = Optional.ofNullable( getMultipleOf()).orElse( 1L);
-    long firstMultiple = (long) Math.ceil( (getMin().doubleValue() + 1) / multiple) * multiple;;
-    long lastMultiple = (getMax() - 1) / multiple * multiple;;
+    long firstMultiple = (long) Math.ceil( getMin().doubleValue() / multiple) * multiple;
+    long lastMultiple = getMax() / multiple * multiple;
     
     // Find smallest fully-satisfying multiple in range
     for( ;

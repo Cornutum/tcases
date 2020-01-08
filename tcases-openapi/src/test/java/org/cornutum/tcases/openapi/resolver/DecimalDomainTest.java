@@ -34,7 +34,7 @@ public class DecimalDomainTest extends ValueDomainTest
     DecimalDomain domain = new DecimalDomain();
 
     // When...
-    domain.setRange( new BigDecimal( "6.0"), new BigDecimal( "11.0"));
+    domain.setRange( new BigDecimal( "7.0"), new BigDecimal( "10.0"));
     domain.setMultipleOf( "2");
     domain.setNotMultipleOfs( new String[]{ "5" });
 
@@ -44,7 +44,7 @@ public class DecimalDomainTest extends ValueDomainTest
     assertThat( "Value", domain.select( getRandom()), is( new BigDecimal( "8.0")));
 
     // When...
-    domain.setRange( new BigDecimal( "8.0"), new BigDecimal( "12.0"));
+    domain.setRange( new BigDecimal( "9.0"), new BigDecimal( "11.0"));
     
     // Then...
     values = domain.values( getRandom()).limit( 10).collect( toList());
@@ -52,7 +52,7 @@ public class DecimalDomainTest extends ValueDomainTest
     expectFailure( IllegalStateException.class).when( () -> domain.select( getRandom()));
 
     // When...
-    domain.setRange( new BigDecimal( "-12.0"), new BigDecimal( "12.0"));
+    domain.setRange( new BigDecimal( "-11.0"), new BigDecimal( "11.0"));
 
     // Then...
     verifyContainsValues( domain, 1000);

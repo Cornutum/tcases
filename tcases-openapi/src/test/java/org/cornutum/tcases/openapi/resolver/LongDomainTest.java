@@ -34,7 +34,7 @@ public class LongDomainTest extends ValueDomainTest
 
     // Then...
     expectFailure( IllegalArgumentException.class)
-      .when( () -> domain.setRange( Long.MIN_VALUE + 1, Long.MAX_VALUE - 1));
+      .when( () -> domain.setRange( -1L, Long.MAX_VALUE));
     }
   
   @Test
@@ -44,7 +44,7 @@ public class LongDomainTest extends ValueDomainTest
     LongDomain domain = new LongDomain();
 
     // When...
-    domain.setRange( 6L, 11L);
+    domain.setRange( 7L, 10L);
     domain.setMultipleOf( "2");
     domain.setNotMultipleOfs( new String[]{ "5" });
 
@@ -54,7 +54,7 @@ public class LongDomainTest extends ValueDomainTest
     assertThat( "Value", domain.select( getRandom()), is( 8L));
 
     // When...
-    domain.setRange( 8L, 12L);
+    domain.setRange( 9L, 11L);
     
     // Then...
     values = domain.values( getRandom()).limit( 10).collect( toList());
@@ -62,7 +62,7 @@ public class LongDomainTest extends ValueDomainTest
     expectFailure( IllegalStateException.class).when( () -> domain.select( getRandom()));
 
     // When...
-    domain.setRange( -12L, 12L);
+    domain.setRange( -11L, 11L);
 
     // Then...
     verifyContainsValues( domain, 1000);

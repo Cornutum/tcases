@@ -45,12 +45,14 @@ public class IntegerDomain extends NumberDomain<Integer>
       .collect( toSet()));
 
     setRange(
-      Optional.ofNullable( getExcluded().isEmpty()? range.getMin() : null)
+      Optional.ofNullable( range.getMin())
       .map( Integer::valueOf)
+      .map( i -> range.isMinExclusive()? i + 1 : i)
       .orElse( (int) -getMaxRange()),
 
-      Optional.ofNullable( getExcluded().isEmpty()? range.getMax() : null)
+      Optional.ofNullable( range.getMax())
       .map( Integer::valueOf)
+      .map( i -> range.isMaxExclusive()? i - 1 : i)
       .orElse( (int) getMaxRange()));
     }
 
@@ -59,7 +61,7 @@ public class IntegerDomain extends NumberDomain<Integer>
    */
   public void setRange( Integer min, Integer max)
     {
-    if( Integer.signum( min) != Integer.signum( max) && -min > Integer.MAX_VALUE - max)
+    if( Integer.signum( min) != Integer.signum( max) && -Math.max( min, -Integer.MAX_VALUE) > Integer.MAX_VALUE - max)
       {
       throw new IllegalArgumentException( String.format( "Range=[%s,%s] exceeds maximum size=%s", min, max, Integer.MAX_VALUE));
       }
@@ -100,8 +102,8 @@ public class IntegerDomain extends NumberDomain<Integer>
     {
     // Find smallest and largest multiples in range
     int multiple = Optional.ofNullable( getMultipleOf()).orElse( 1);
-    int firstMultiple = (int) Math.ceil( (getMin().doubleValue() + 1) / multiple) * multiple;;
-    int lastMultiple = (getMax() - 1) / multiple * multiple;;
+    int firstMultiple = (int) Math.ceil( getMin().doubleValue() / multiple) * multiple;
+    int lastMultiple = getMax() / multiple * multiple;
     
     // Find smallest fully-satisfying multiple in range
     for( ;
