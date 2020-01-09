@@ -11,18 +11,21 @@ import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
 import org.cornutum.tcases.util.ToString;
 
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
+import java.util.stream.Stream;
+
 import static java.util.Collections.emptySet;
 
 /**
- * Base class for domains that define a set of strings that can be used by a request.
+ * Base class for domains that define a set of byte/character sequences that can be used by a request.
  */
-public abstract class BaseStringDomain<T> implements ValueDomain<T>
+public abstract class SequenceDomain<T> implements ValueDomain<T>
   {
   /**
-   * Creates a new BaseStringDomain instance.
+   * Creates a new SequenceDomain instance.
    */
-  protected BaseStringDomain( int maxLength)
+  protected SequenceDomain( int maxLength)
     {
     maxLength_ = maxLength;
     initLengthRange();
@@ -145,6 +148,21 @@ public abstract class BaseStringDomain<T> implements ValueDomain<T>
     {
     return Type.only( Type.STRING);
     }
+  
+  /**
+   * Returns a random sequence of values from this domain.
+   */
+  public Stream<T> values( Random random)
+    {
+    return
+      candidates( random)
+      .filter( value -> isNotExcluded( value, getExcluded()));
+    }
+  
+  /**
+   * Returns a random sequence of possible members of this domain.
+   */
+  protected abstract Stream<T> candidates( Random random);
 
   /**
    * Returns true if the given value belongs to this domain.

@@ -21,7 +21,7 @@ import static java.util.Calendar.*;
 /**
  * Base class for a set of string-encoded time values that can be used by a request.
  */
-public abstract class TimeDomain extends StringDomain
+public abstract class TimeDomain extends AbstractStringDomain
   {  
   /**
    * Creates a new TimeDomain instance.
@@ -114,14 +114,11 @@ public abstract class TimeDomain extends StringDomain
     }
 
   /**
-   * Returns a random sequence of values from this domain.
+   * Returns a random sequence of possible members of this domain.
    */
-  public Stream<String> values( Random random)
+  protected Stream<String> candidates( Random random)
     {
-    return
-      timeValues( random)
-      .map( this::format)
-      .filter( value -> isNotExcluded( value, getExcluded()));
+    return timeValues( random).map( this::format);
     }
 
   /**
@@ -129,7 +126,17 @@ public abstract class TimeDomain extends StringDomain
    */
   public boolean contains( String value)
     {
-    return isValidTime( value) && super.contains( value);
+    return
+      super.contains( value)
+      && isValidTime( value);
+    }
+
+  /**
+   * Returns a new random string of the given length for this domain.
+   */
+  protected String newValue( Random random, int length)
+    {
+    throw new UnsupportedOperationException();
     }
   
   /**

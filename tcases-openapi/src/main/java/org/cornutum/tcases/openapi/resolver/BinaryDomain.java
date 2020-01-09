@@ -16,12 +16,12 @@ import static java.util.stream.Collectors.toSet;
 /**
  * Define a set of byte arrays that can be used by a request.
  */
-public class BinaryDomain extends BaseStringDomain<byte[]>
+public class BinaryDomain extends SequenceDomain<byte[]>
   {
   /**
    * Creates a new BinaryDomain instance.
    */
-  protected BinaryDomain()
+  public BinaryDomain()
     {
     this( 4096);
     }
@@ -29,7 +29,7 @@ public class BinaryDomain extends BaseStringDomain<byte[]>
   /**
    * Creates a new BinaryDomain instance.
    */
-  protected BinaryDomain( int maxLength)
+  public BinaryDomain( int maxLength)
     {
     super( maxLength);
     }
@@ -70,14 +70,12 @@ public class BinaryDomain extends BaseStringDomain<byte[]>
     random.nextBytes( bytes);
     return bytes;
     }
-
+  
   /**
-   * Returns a random sequence of values from this domain.	
+   * Returns a random sequence of possible members of this domain.
    */
-  public Stream<byte[]> values( Random random)
+  protected Stream<byte[]> candidates( Random random)
     {
-    return
-      Stream.generate( () -> newValue( random))
-      .filter( value -> isNotExcluded( value, getExcluded()));
+    return Stream.generate( () -> newValue( random));
     }
   }

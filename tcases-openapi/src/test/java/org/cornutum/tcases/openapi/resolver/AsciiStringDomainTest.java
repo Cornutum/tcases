@@ -21,9 +21,9 @@ import static java.util.stream.Collectors.toSet;
 import java.util.List;
 
 /**
- * Runs tests for {@link StringDomain}.
+ * Runs tests for {@link AsciiStringDomain}.
  */
-public class StringDomainTest extends ValueDomainTest
+public class AsciiStringDomainTest extends ValueDomainTest
   {  
   @Test
   public void whenConstant()
@@ -44,7 +44,7 @@ public class StringDomainTest extends ValueDomainTest
   public void whenLengthAboveMin()
     {
     // Given...
-    StringDomain domain = new StringDomain( 32);
+    AsciiStringDomain domain = new AsciiStringDomain( 32);
 
     // When...
     domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 16").build()));
@@ -58,13 +58,14 @@ public class StringDomainTest extends ValueDomainTest
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOPQRSTUVWZYZ"), is( true));
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOP"), is( false));
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOPQRSTUVWZYZABCDEFG"), is( false));
+    assertThat( "Contains", domain.contains( "Mañana, Schrödinger"), is( false));
     }
 
   @Test
   public void whenLengthBelowMax()
     {
     // Given...
-    StringDomain domain = new StringDomain( 32);
+    AsciiStringDomain domain = new AsciiStringDomain( 32);
 
     // When...
     domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "< 4").build()));
@@ -80,7 +81,7 @@ public class StringDomainTest extends ValueDomainTest
   public void whenLengthConstant()
     {
     // Given...
-    StringDomain domain = new StringDomain( 32);
+    AsciiStringDomain domain = new AsciiStringDomain( 32);
 
     // When...
     domain.setLengthRange( 8);

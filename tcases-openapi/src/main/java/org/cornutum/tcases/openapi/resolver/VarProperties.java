@@ -312,7 +312,7 @@ public final class VarProperties
       toNumberDomain( Type.NUMBER, propertyValues) :
 
       types[0] == Type.OBJECT?
-      new ObjectDomain( propertyValues) :
+      toObjectDomain( propertyValues) :
 
       types[0] == Type.STRING?
       toStringDomain( propertyValues) :
@@ -370,7 +370,7 @@ public final class VarProperties
       }
     else
       {
-      BaseStringDomain<?> baseDomain =
+      SequenceDomain<?> baseDomain =
         "date".equals( format)?
         new DateDomain() :
 
@@ -383,7 +383,7 @@ public final class VarProperties
         "byte".equals( format)?
         new Base64Domain() :
 
-        new StringDomain();
+        new AsciiStringDomain();
 
       if( !("date".equals( format) || "date-time".equals( format)))
         {
@@ -394,6 +394,14 @@ public final class VarProperties
       }
     
     return domain;
+    }
+
+  /**
+   * Returns the object domain specified by the given properties.
+   */
+  public static ValueDomain<?> toObjectDomain( Map<String,Object> propertyValues)
+    {
+    return null;
     }
 
   /**

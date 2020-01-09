@@ -20,12 +20,12 @@ import static java.util.Collections.emptySet;
 /**
  * Define a set of base64-encoded byte arrays that can be used by a request.
  */
-public class Base64Domain extends BaseStringDomain<String>
+public class Base64Domain extends SequenceDomain<String>
   {
   /**
    * Creates a new Base64Domain instance.
    */
-  protected Base64Domain()
+  public Base64Domain()
     {
     this( 4096);
     }
@@ -33,7 +33,7 @@ public class Base64Domain extends BaseStringDomain<String>
   /**
    * Creates a new Base64Domain instance.
    */
-  protected Base64Domain( int maxLength)
+  public Base64Domain( int maxLength)
     {
     super( maxLength);
     }
@@ -145,15 +145,13 @@ public class Base64Domain extends BaseStringDomain<String>
     {
     return getBytes().contains( decoded( value));
     }
-
+  
   /**
-   * Returns a random sequence of values from this domain.
+   * Returns a random sequence of possible members of this domain.
    */
-  public Stream<String> values( Random random)
+  protected Stream<String> candidates( Random random)
     {
-    return
-      getBytes().values( random)
-      .map( Base64Domain::encoded);
+    return getBytes().values( random) .map( Base64Domain::encoded);
     }
 
   private BinaryDomain bytes_;
