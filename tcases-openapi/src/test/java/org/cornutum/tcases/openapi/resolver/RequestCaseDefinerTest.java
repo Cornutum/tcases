@@ -51,6 +51,12 @@ public class RequestCaseDefinerTest
     {
     getRequestCaseDefs( "string");
     }
+  
+  @Test
+  public void forObjects()
+    {
+    getRequestCaseDefs( "object");
+    }
 
   /**
    * Generate request cases for every test resource with the given base name.

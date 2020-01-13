@@ -33,6 +33,24 @@ public class LongDomain extends NumberDomain<Long>
     {
     super( Type.INTEGER, maxRange);
     }
+  
+  /**
+   * Creates a new LongDomain instance.
+   */
+  public LongDomain( long min, long max)
+    {
+    this();
+    setRange( min, max);
+    }
+  
+  /**
+   * Creates a new LongDomain instance.
+   */
+  public LongDomain( Range range)
+    {
+    this();
+    setRange( range);
+    }
 
   /**
    * Defines the value range for this domain.

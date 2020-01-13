@@ -259,6 +259,14 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
     /**
      * Returns the Range represented by the given number binding.
      */
+    public static Range of( String op, String bound)
+      {
+      return of( op, bound, emptySet());
+      }
+
+    /**
+     * Returns the Range represented by the given number binding.
+     */
     public static Range of( VarBinding binding)
       {
       String rangeDef = String.valueOf( binding.getValue());
@@ -276,18 +284,26 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
       String op = matcher.group(2);
       String bound = matcher.group(3);
 
+      return of( op, bound, excluded);
+      }
+
+    /**
+     * Returns the Range represented by the given number binding.
+     */
+    private static Range of( String op, String bound, Set<String> excluded)
+      {
       String min =
-        op != null && op.startsWith( ">")
+        op == null || op.startsWith( ">")
         ? bound
         : null;
 
       String max =
-        op != null && op.startsWith( "<")
+        op == null || op.startsWith( "<")
         ? bound
         : null;
 
-      boolean minExclusive = min != null && op.equals( ">");
-      boolean maxExclusive = max != null && op.equals( "<");
+      boolean minExclusive = ">".equals( op);
+      boolean maxExclusive = "<".equals( op);
 
       return new Range( min, minExclusive, max, maxExclusive, excluded);
       }

@@ -33,6 +33,24 @@ public class IntegerDomain extends NumberDomain<Integer>
     {
     super( Type.INTEGER, maxRange);
     }
+  
+  /**
+   * Creates a new IntegerDomain instance.
+   */
+  public IntegerDomain( int min, int max)
+    {
+    this();
+    setRange( min, max);
+    }
+  
+  /**
+   * Creates a new IntegerDomain instance.
+   */
+  public IntegerDomain( Range range)
+    {
+    this();
+    setRange( range);
+    }
 
   /**
    * Defines the value range for this domain.

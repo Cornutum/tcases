@@ -35,7 +35,7 @@ public interface ValueDomain<T>
       {
       return
         Arrays.stream( Type.values())
-        .filter( type -> !type.equals( NULL) && !type.equals( excluded))
+        .filter( type -> !type.equals( NULL) && !type.equals( excluded) && !(excluded == NUMBER && type.equals( INTEGER)))
         .toArray( Type[]::new);
       }
 
@@ -57,6 +57,27 @@ public interface ValueDomain<T>
    * Returns true if the given value belongs to this domain.
    */
   public boolean contains( T value);
+
+  /**
+   * Returns true if the given object belongs to this domain.
+   */
+  @SuppressWarnings("unchecked")
+  default public boolean containsObject( Object object)
+    {
+    try
+      {
+      T value =
+        object == null
+        ? null
+        : (T) object;
+
+      return contains( value);
+      }
+    catch( Exception e)
+      {
+      return false;
+      }
+    }
 
   /**
    * Return the type(s) of values that belong to this domain.

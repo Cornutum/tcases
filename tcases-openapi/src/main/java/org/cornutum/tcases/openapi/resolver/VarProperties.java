@@ -12,6 +12,7 @@ import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
 import org.cornutum.tcases.openapi.resolver.ValueDomain.Type;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.stream.Stream;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
 
 import java.math.BigDecimal;
@@ -401,7 +403,63 @@ public final class VarProperties
    */
   public static ValueDomain<?> toObjectDomain( Map<String,Object> propertyValues)
     {
-    return null;
+    ObjectDomain domain = new ObjectDomain();
+
+    Map<String,Object> value = expectPropertyValues( propertyValues, "Value");
+    Map<String,Object> properties = expectPropertyValues( value, "Properties");
+
+    domain.setPropertyDomains(
+      properties.keySet().stream()
+      .filter( p -> !p.equals( "Additional"))
+      .map( p -> new SimpleEntry<String,ValueDomain<?>>( p, toPropertyDomain( expectPropertyValues( properties, p))))
+      .filter( e -> e.getValue() != null)
+      .collect( toMap( SimpleEntry::getKey, SimpleEntry::getValue)));
+
+    Map<String,Object> additionalProperties = getIfPropertyValues( properties, "Additional");
+    ValueDomain<?> additionalPropertyValues =
+      additionalProperties != null?
+      toPropertyDomain( additionalProperties) :
+
+      "Yes".equals( expectVarBinding( properties, "Additional").getValue())?
+      new MultiTypeDomain( Type.any()) :
+
+      null;
+
+    if( additionalPropertyValues != null)
+      {
+      domain.setAdditionalPropertyValues( additionalPropertyValues);
+
+      IntegerDomain expectedPropertyCount =
+        new IntegerDomain(
+          Optional.ofNullable( getVarBinding( value, "Property-Count"))
+          .map( Range::of)
+          .orElse( Range.of( ">=", "0")));
+
+      int definedPropertyCount = domain.getPropertyDomains().size();
+      int expectedPropertyCountMin = expectedPropertyCount.getMin();
+      int additionalPropertyCountMin = Math.max( 1, expectedPropertyCountMin - definedPropertyCount);
+
+      int expectedPropertyCountMax = expectedPropertyCount.getMax();
+      int additionalPropertyCountMax =
+        expectedPropertyCountMax == expectedPropertyCount.getMaxRange()
+        ? additionalPropertyCountMin + 2
+        : expectedPropertyCountMax - definedPropertyCount;
+
+      domain.setAdditionalPropertyCount( new IntegerDomain( additionalPropertyCountMin, additionalPropertyCountMax));
+      }
+    
+    return domain;
+    }
+
+  /**
+   * Returns the object property domain specified by the given properties.
+   */
+  private static ValueDomain<?> toPropertyDomain( Map<String,Object> propertyValues)
+    {
+    return
+      "Yes".equals( expectVarBinding( propertyValues, "Defined").getValue())
+      ? toValueDomain( propertyValues)
+      : null;
     }
 
   /**

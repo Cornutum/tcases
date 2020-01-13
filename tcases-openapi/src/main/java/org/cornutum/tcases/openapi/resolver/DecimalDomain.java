@@ -36,6 +36,32 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
     {
     super( Type.NUMBER, maxRange);
     }
+  
+  /**
+   * Creates a new DecimalDomain instance.
+   */
+  public DecimalDomain( BigDecimal min, BigDecimal max)
+    {
+    this();
+    setRange( min, max);
+    }
+  
+  /**
+   * Creates a new DecimalDomain instance.
+   */
+  public DecimalDomain( double min, double max)
+    {
+    this( new BigDecimal( min), new BigDecimal( max));
+    }
+  
+  /**
+   * Creates a new DecimalDomain instance.
+   */
+  public DecimalDomain( Range range)
+    {
+    this();
+    setRange( range);
+    }
 
   /**
    * Defines the value range for this domain.
@@ -136,7 +162,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
 
          lastMultiple = lastMultiple.subtract( multiple));
     
-    long multiplesCount = divideFloor( lastMultiple.subtract( firstMultiple), multiple).add( BigDecimal.ONE).longValue();
+    long multiplesCount = divideFloor( lastMultiple.subtract( firstMultiple), multiple).add( BigDecimal.ONE).min( MAX_SIZE).longValue();
     final BigDecimal originMultiple = firstMultiple;
     
     return

@@ -20,6 +20,7 @@ public class ValueDef<T>
   public ValueDef( ValueDomain<T> domain)
     {
     domain_ = domain;
+    setValid( true);
     }
 
   /**
@@ -28,6 +29,14 @@ public class ValueDef<T>
   public ValueDomain<T> getDomain()
     {
     return domain_;
+    }
+
+  /**
+   * Returns true if this input value is defined.
+   */
+  public boolean isDefined()
+    {
+    return getDomain() != null;
     }
 
   /**
@@ -98,7 +107,7 @@ public class ValueDef<T>
     {
     return
       ToString.getBuilder( this)
-      .append( getDomain())
+      .append( isDefined()? String.valueOf( getDomain()) : "Undefined")
       .append( isValid()? "SUCCESS" : "FAILURE")
       .toString();
     }
