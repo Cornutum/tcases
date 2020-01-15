@@ -102,4 +102,22 @@ public interface ValueDomain<T>
     {
     return new ValueDef<T>( this);
     }
+
+  /**
+   * Returns a new {@link ArrayDomain} for arrays containing items in this domain.
+   */
+  default public ArrayDomain<T> arrayOf( int maxItems)
+    {
+    ArrayDomain<T> arrayDomain = new ArrayDomain<T>( maxItems);
+    arrayDomain.setItemValues( this);
+    return arrayDomain;
+    }
+
+  /**
+   * Returns a new {@link ArrayDomain} for arrays containing items in this domain.
+   */
+  default public ArrayDomain<T> arrayOf()
+    {
+    return arrayOf( 16);
+    }
 }

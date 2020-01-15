@@ -57,6 +57,12 @@ public class RequestCaseDefinerTest
     {
     getRequestCaseDefs( "object");
     }
+  
+  @Test
+  public void forArrays()
+    {
+    getRequestCaseDefs( "array");
+    }
 
   /**
    * Generate request cases for every test resource with the given base name.
@@ -70,15 +76,22 @@ public class RequestCaseDefinerTest
     testResources.forEach(
       file -> {
       // When...
-      SystemTestDef testDef = SystemTestResource.of( file).getSystemTestDef();
-      List<RequestCaseDef> requestCaseDefs = getRequestCaseDefs( definer, testDef);
-
-      // Then...
-      for( RequestCaseDef requestCaseDef : requestCaseDefs)
+      try
         {
-        System.out.println( String.format( "%s: %s", file, requestCaseDef));
+        SystemTestDef testDef = SystemTestResource.of( file).getSystemTestDef();
+        List<RequestCaseDef> requestCaseDefs = getRequestCaseDefs( definer, testDef);
+
+        // Then...
+        for( RequestCaseDef requestCaseDef : requestCaseDefs)
+          {
+          System.out.println( String.format( "%s: %s", file, requestCaseDef));
+          }
         }
-      }); 
+      catch( Exception e)
+        {
+        throw new RequestCaseException( String.format( "Can't get request case from file=%s", file.getName()), e);
+        }
+      });
     }
 
   /**
@@ -133,7 +146,16 @@ public class RequestCaseDefinerTest
     {
     return
       toStream( testDef.getTestCases())
-      .map( testCase -> definer.toRequestCaseDef( testCase))
+      .map( testCase -> {
+        try
+          {
+          return definer.toRequestCaseDef( testCase);
+          }
+        catch( Exception e)
+          {
+          throw new RequestCaseException( String.format( "Can't get request case for test case=%s", testCase.getId()), e);
+          }
+        })
       .collect( toList());
     }
 

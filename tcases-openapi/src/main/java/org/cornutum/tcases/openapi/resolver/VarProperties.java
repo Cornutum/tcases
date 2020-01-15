@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -246,42 +245,44 @@ public final class VarProperties
    */
   public static Type[] getValueTypes( Map<String,Object> propertyValues)
     {
+    Optional<VarBinding> typeDef = Optional.ofNullable( propertyValues).map( pv -> expectVarBinding( pv, "Type")).filter( td -> !td.isValueNA());
+    Optional<String> typeValue = typeDef.flatMap( td -> Optional.ofNullable( td.getValue()).map( String::valueOf));
+
     Type[] types;
     if( propertyValues == null)
       {
       types = Type.any();
       }
+    else if( !typeDef.isPresent())
+      {
+      types = null;
+      }
+    else if( !typeValue.isPresent())
+      {
+      types = Type.only( Type.NULL);
+      }
     else
       {
-      String typeValue = Objects.toString( expectVarBinding( propertyValues, "Type").getValue(), null);
-    
-      if( typeValue == null)
+      Matcher matcher = valueTypePattern_.matcher( typeValue.get());
+      if( !matcher.matches())
         {
-        types = Type.only( Type.NULL);
+        throw new RequestCaseException( String.format( "Unknown value type=%", typeValue.get()));
         }
-      else
+
+      Type baseType;
+      try
         {
-        Matcher matcher = valueTypePattern_.matcher( typeValue);
-        if( !matcher.matches())
-          {
-          throw new RequestCaseException( String.format( "Unknown value type=%", typeValue));
-          }
-
-        Type baseType;
-        try
-          {
-          baseType = Type.valueOf( matcher.group(2).toUpperCase());
-          }
-        catch( Exception e)
-          {
-          throw new RequestCaseException( "Unknown value type", e);
-          }
-
-        types =
-          matcher.group(1) == null
-          ? Type.only( baseType)
-          : Type.not( baseType);
+        baseType = Type.valueOf( matcher.group(2).toUpperCase());
         }
+      catch( Exception e)
+        {
+        throw new RequestCaseException( "Unknown value type", e);
+        }
+
+      types =
+        matcher.group(1) == null
+        ? Type.only( baseType)
+        : Type.not( baseType);
       }
 
     return types;
@@ -295,6 +296,9 @@ public final class VarProperties
     Type[] types = getValueTypes( propertyValues);
 
     return
+      types == null?
+      null :
+      
       types.length > 1?
       new MultiTypeDomain( types) :
 
@@ -327,7 +331,14 @@ public final class VarProperties
    */
   public static ArrayDomain<?> toArrayDomain( Map<String,Object> propertyValues)
     {
-    return new ArrayDomain<Object>( propertyValues);
+    Map<String,Object> items = expectPropertyValues( propertyValues, "Items");
+    ValueDomain<?> itemValues = toValueDomain( expectPropertyValues( items, "Contains"));
+
+    ArrayDomain<?> domain = itemValues == null? new ArrayDomain<Object>() : itemValues.arrayOf();
+    domain.setItemCount( Range.of( expectVarBinding( items, "Size")));
+    domain.setItemsUnique( Optional.ofNullable( getVarBinding( items, "Unique")).map( u -> "Yes".equals( u.getValue())).orElse( false));
+
+    return domain;
     }
 
   /**
