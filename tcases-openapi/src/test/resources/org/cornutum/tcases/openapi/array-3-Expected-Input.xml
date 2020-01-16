@@ -20,11 +20,15 @@
         </Var>
         <VarSet name="Items" when="param0Value">
           <Var name="Size">
-            <Value name="0"/>
-            <Value name="1" property="param0Items"/>
-            <Value name="&gt; 1" property="param0Items, param0ItemsMany"/>
+            <Value name="0" property="param0ItemsNone"/>
+            <Value name="1"/>
+            <Value name="&gt; 1" property="param0ItemsMany"/>
           </Var>
-          <VarSet name="Contains" when="param0Items">
+          <VarSet name="Contains">
+            <When>
+              <Not property="param0ItemsNone">
+              </Not>
+            </When>
             <Var name="Type">
               <Value name="object" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>

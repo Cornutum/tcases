@@ -27,11 +27,15 @@
           </Var>
           <VarSet name="Items" when="application-jsonValue">
             <Var name="Size">
-              <Value name="0"/>
-              <Value name="1" property="application-jsonItems"/>
-              <Value name="&gt; 1" property="application-jsonItems, application-jsonItemsMany"/>
+              <Value name="0" property="application-jsonItemsNone"/>
+              <Value name="1"/>
+              <Value name="&gt; 1" property="application-jsonItemsMany"/>
             </Var>
-            <VarSet name="Contains" when="application-jsonItems">
+            <VarSet name="Contains">
+              <When>
+                <Not property="application-jsonItemsNone">
+                </Not>
+              </When>
               <Var name="Type">
                 <Value name="integer" property="application-jsonItemsValue"/>
                 <Value name="null" failure="true"/>

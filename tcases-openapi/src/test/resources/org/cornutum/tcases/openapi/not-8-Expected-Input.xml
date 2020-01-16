@@ -58,11 +58,15 @@
               </Var>
               <VarSet name="Items" when="param0BravoValue">
                 <Var name="Size">
-                  <Value name="0"/>
-                  <Value name="1" property="param0BravoItems"/>
-                  <Value name="&gt; 1" property="param0BravoItems, param0BravoItemsMany"/>
+                  <Value name="0" property="param0BravoItemsNone"/>
+                  <Value name="1"/>
+                  <Value name="&gt; 1" property="param0BravoItemsMany"/>
                 </Var>
-                <VarSet name="Contains" when="param0BravoItems">
+                <VarSet name="Contains">
+                  <When>
+                    <Not property="param0BravoItemsNone">
+                    </Not>
+                  </When>
                   <Var name="Type">
                     <Value name="string" property="param0BravoItemsValue"/>
                     <Value name="null" failure="true"/>

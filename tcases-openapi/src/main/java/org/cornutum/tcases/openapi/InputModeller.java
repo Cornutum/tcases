@@ -847,9 +847,9 @@ public abstract class InputModeller
       {
       // No, add standard boundary condition values
       size.values(
-        VarValueDefBuilder.with( 0).build(),
-        VarValueDefBuilder.with( 1).properties( arrayItemsProperty( instanceVarTag)).build(),
-        VarValueDefBuilder.with( "> 1").properties( arrayItemsProperty( instanceVarTag), arrayItemsManyProperty( instanceVarTag)).build());
+        VarValueDefBuilder.with( 0).properties( arrayItemsNoneProperty( instanceVarTag)).build(),
+        VarValueDefBuilder.with( 1).build(),
+        VarValueDefBuilder.with( "> 1").properties( arrayItemsManyProperty( instanceVarTag)).build());
       }
     else
       {
@@ -884,7 +884,7 @@ public abstract class InputModeller
           else
             {
             sizeBuilder
-              .properties( Optional.ofNullable( sizeValue > 0? arrayItemsProperty( instanceVarTag) : null))
+              .properties( Optional.ofNullable( sizeValue == 0? arrayItemsNoneProperty( instanceVarTag) : null))
               .properties( Optional.ofNullable( sizeValue > 1? arrayItemsManyProperty( instanceVarTag) : null));
             }
           size.values( sizeBuilder.build());
@@ -896,17 +896,16 @@ public abstract class InputModeller
         int many = Math.max( 1, minItems);
         size.values(
           VarValueDefBuilder.with( String.format( "> %s", many))
-          .properties( arrayItemsProperty( instanceVarTag), arrayItemsManyProperty( instanceVarTag))
+          .properties( arrayItemsManyProperty( instanceVarTag))
           .build());
         }
       else if( minItems == null)
         {
-        size.values( VarValueDefBuilder.with( 0).build());
+        size.values( VarValueDefBuilder.with( 0).properties( arrayItemsNoneProperty( instanceVarTag)).build());
         if( maxItems > 1)
           {
           size.values(
             VarValueDefBuilder.with( String.format( "< %s", maxItems))
-            .properties( arrayItemsProperty( instanceVarTag))
             .properties( Optional.ofNullable( maxItems > 2? arrayItemsManyProperty( instanceVarTag) : null))
             .build());
           }
@@ -925,7 +924,7 @@ public abstract class InputModeller
       resultFor( "items",
         () ->
         VarSetBuilder.with( "Contains")
-        .when( has( arrayItemsProperty( instanceVarTag)))
+        .when( not( arrayItemsNoneProperty( instanceVarTag)))
         .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
         .build());
     }
@@ -2307,6 +2306,14 @@ public abstract class InputModeller
   private String arrayItemsProperty( String instanceTag)
     {
     return instanceTag + "Items";
+    }
+
+  /**
+   * Returns the "has no items" property for the given array instance.
+   */
+  private String arrayItemsNoneProperty( String instanceTag)
+    {
+    return arrayItemsProperty( instanceTag) + "None";
     }
 
   /**

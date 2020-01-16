@@ -59,11 +59,15 @@
               </Var>
               <VarSet name="Items" when="param0CharlieValue">
                 <Var name="Size">
-                  <Value name="0"/>
-                  <Value name="1" property="param0CharlieItems"/>
-                  <Value name="&gt; 1" property="param0CharlieItems, param0CharlieItemsMany"/>
+                  <Value name="0" property="param0CharlieItemsNone"/>
+                  <Value name="1"/>
+                  <Value name="&gt; 1" property="param0CharlieItemsMany"/>
                 </Var>
-                <VarSet name="Contains" when="param0CharlieItems">
+                <VarSet name="Contains">
+                  <When>
+                    <Not property="param0CharlieItemsNone">
+                    </Not>
+                  </When>
                   <Var name="Type">
                     <Value name="integer" property="param0CharlieItemsValue"/>
                     <Value name="null" failure="true"/>

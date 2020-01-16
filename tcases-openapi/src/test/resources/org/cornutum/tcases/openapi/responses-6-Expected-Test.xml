@@ -224,7 +224,7 @@
     <Has name="server" value="/"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -323,7 +323,7 @@
       </Input>
     </TestCase>
     <TestCase id="3">
-      <Has name="properties" value="2XXContent,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItems,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -356,7 +356,7 @@
       </Input>
     </TestCase>
     <TestCase id="4">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItems,2XXtext-plainItemsMany,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsMany,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -389,7 +389,7 @@
       </Input>
     </TestCase>
     <TestCase id="5">
-      <Has name="properties" value="2XXContent,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItems,2XXtext-plainItemsMany,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsMany,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -488,7 +488,7 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -521,7 +521,7 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXtext-plain,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -554,7 +554,7 @@
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXtext-plain,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -587,7 +587,7 @@
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -622,7 +622,7 @@
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -655,7 +655,7 @@
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -688,7 +688,7 @@
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -851,7 +851,7 @@
       </Input>
     </TestCase>
     <TestCase id="19" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItems,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
@@ -884,7 +884,7 @@
       </Input>
     </TestCase>
     <TestCase id="20" failure="true">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItems,2XXtext-plainValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
