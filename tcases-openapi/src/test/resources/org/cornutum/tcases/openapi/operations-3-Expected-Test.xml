@@ -10,7 +10,7 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsNone,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -45,7 +45,7 @@
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -63,7 +63,7 @@
     <TestCase id="3">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -81,7 +81,7 @@
     <TestCase id="4">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -135,7 +135,7 @@
     <TestCase id="7" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="param0,param0Items,param0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -153,7 +153,7 @@
     <TestCase id="8" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="param0,param0Items,param0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">

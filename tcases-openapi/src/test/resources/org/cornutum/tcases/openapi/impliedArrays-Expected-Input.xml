@@ -21,10 +21,10 @@
         <VarSet name="Items" when="param0Value">
           <Var name="Size">
             <Value name="0" failure="true"/>
-            <Value name="1" property="param0Items"/>
-            <Value name="&gt; 1" property="param0Items, param0ItemsMany"/>
+            <Value name="1"/>
+            <Value name="&gt; 1" property="param0ItemsMany"/>
           </Var>
-          <VarSet name="Contains" when="param0Items">
+          <VarSet name="Contains">
             <Var name="Type">
               <Value name="Not null" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>
@@ -50,11 +50,15 @@
         </Var>
         <VarSet name="Items" when="param1Value">
           <Var name="Size">
-            <Value name="1" property="param1Items"/>
+            <Value name="1"/>
             <Value name="2" failure="true"/>
-            <Value name="0"/>
+            <Value name="0" property="param1ItemsNone"/>
           </Var>
-          <VarSet name="Contains" when="param1Items">
+          <VarSet name="Contains">
+            <When>
+              <Not property="param1ItemsNone">
+              </Not>
+            </When>
             <Var name="Type">
               <Value name="Not null" property="param1ItemsValue"/>
               <Value name="null" failure="true"/>
@@ -76,11 +80,15 @@
         </Var>
         <VarSet name="Items" when="param2Value">
           <Var name="Size">
-            <Value name="0"/>
-            <Value name="1" property="param2Items"/>
-            <Value name="&gt; 1" property="param2Items, param2ItemsMany"/>
+            <Value name="0" property="param2ItemsNone"/>
+            <Value name="1"/>
+            <Value name="&gt; 1" property="param2ItemsMany"/>
           </Var>
-          <VarSet name="Contains" when="param2Items">
+          <VarSet name="Contains">
+            <When>
+              <Not property="param2ItemsNone">
+              </Not>
+            </When>
             <Var name="Type">
               <Value name="Not null" property="param2ItemsValue"/>
               <Value name="null" failure="true"/>

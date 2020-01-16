@@ -10,7 +10,7 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -43,7 +43,7 @@
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsNone,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -60,7 +60,7 @@
     <TestCase id="3">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -77,7 +77,7 @@
     <TestCase id="4">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -128,7 +128,7 @@
     <TestCase id="7" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -138,14 +138,14 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="2" failure="true"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Items.Contains.Value.Is" NA="true"/>
+        <Var name="param0.Items.Contains.Type" value="number"/>
+        <Var name="param0.Items.Contains.Value.Is" value="&lt; 0"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Items,param0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -162,7 +162,7 @@
     <TestCase id="9" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Items,param0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">

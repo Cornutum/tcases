@@ -134,11 +134,15 @@
             </Var>
             <VarSet name="Items" when="2XXtext-plainValue">
               <Var name="Size">
-                <Value name="0"/>
-                <Value name="1" property="2XXtext-plainItems"/>
-                <Value name="&gt; 1" property="2XXtext-plainItems, 2XXtext-plainItemsMany"/>
+                <Value name="0" property="2XXtext-plainItemsNone"/>
+                <Value name="1"/>
+                <Value name="&gt; 1" property="2XXtext-plainItemsMany"/>
               </Var>
-              <VarSet name="Contains" when="2XXtext-plainItems">
+              <VarSet name="Contains">
+                <When>
+                  <Not property="2XXtext-plainItemsNone">
+                  </Not>
+                </When>
                 <Var name="Type">
                   <Value name="boolean" property="2XXtext-plainItemsValue"/>
                   <Value name="null" failure="true"/>

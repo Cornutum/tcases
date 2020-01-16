@@ -10,7 +10,7 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsItemsNone,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -51,7 +51,7 @@
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsItems,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -72,7 +72,7 @@
     <TestCase id="3">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsItems,param0ItemsItemsMany,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsItemsMany,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -93,7 +93,7 @@
     <TestCase id="4">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsItems,param0ItemsItemsMany,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsItemsMany,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -156,7 +156,7 @@
     <TestCase id="7" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsItemsNone,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -166,8 +166,8 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="2" failure="true"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Items.Contains.Items.Size" NA="true"/>
+        <Var name="param0.Items.Contains.Type" value="array"/>
+        <Var name="param0.Items.Contains.Items.Size" value="0"/>
         <Var name="param0.Items.Contains.Items.Contains.Type" NA="true"/>
         <Var name="param0.Items.Contains.Items.Contains.Value.Length" NA="true"/>
         <Var name="param0.Items.Contains.Items.Unique" NA="true"/>
@@ -177,7 +177,7 @@
     <TestCase id="8" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsMany,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -198,7 +198,7 @@
     <TestCase id="9" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsMany,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -219,7 +219,7 @@
     <TestCase id="10" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsItems,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -240,7 +240,7 @@
     <TestCase id="11" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsItems,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
@@ -261,7 +261,7 @@
     <TestCase id="12" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
-      <Has name="properties" value="param0,param0Items,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsItemsNone,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">

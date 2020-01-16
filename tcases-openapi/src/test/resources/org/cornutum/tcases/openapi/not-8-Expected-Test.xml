@@ -99,7 +99,7 @@
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -189,7 +189,7 @@
     <TestCase id="4">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItems,param0BravoItemsValue,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -236,7 +236,7 @@
     <TestCase id="5">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItems,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -281,7 +281,7 @@
     <TestCase id="6">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItems,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -373,7 +373,7 @@
     <TestCase id="8">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -690,7 +690,7 @@
     <TestCase id="15" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItems,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -735,7 +735,7 @@
     <TestCase id="16" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItems,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -780,7 +780,7 @@
     <TestCase id="17" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItems,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -825,7 +825,7 @@
     <TestCase id="18" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItems,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
