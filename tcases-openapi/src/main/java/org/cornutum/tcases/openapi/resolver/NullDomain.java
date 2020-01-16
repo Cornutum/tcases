@@ -29,7 +29,15 @@ public class NullDomain implements ValueDomain<Object>
    */
   public Stream<Object> values( Random random)
     {
-    return Stream.generate( () -> null);
+    return Stream.builder().add( null).build();
+    }
+
+  /**
+   * Returns a random value from this domain.
+   */
+  public Object select( Random random)
+    {
+    return null;
     }
 
   /**
