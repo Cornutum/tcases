@@ -21,10 +21,14 @@
         <VarSet name="Items" when="param0Value">
           <Var name="Size">
             <Value name="2" failure="true"/>
-            <Value name="3" property="param0Items, param0ItemsMany"/>
-            <Value name="&gt; 3" property="param0Items, param0ItemsMany"/>
+            <Value name="3" property="param0ItemsMany"/>
+            <Value name="&gt; 3" property="param0ItemsMany"/>
           </Var>
-          <VarSet name="Contains" when="param0Items">
+          <VarSet name="Contains">
+            <When>
+              <Not property="param0ItemsNone">
+              </Not>
+            </When>
             <Var name="Type">
               <Value name="array" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>
@@ -32,11 +36,15 @@
             </Var>
             <VarSet name="Items" when="param0ItemsValue">
               <Var name="Size">
-                <Value name="0"/>
-                <Value name="1" property="param0ItemsItems"/>
-                <Value name="&gt; 1" property="param0ItemsItems, param0ItemsItemsMany"/>
+                <Value name="0" property="param0ItemsItemsNone"/>
+                <Value name="1"/>
+                <Value name="&gt; 1" property="param0ItemsItemsMany"/>
               </Var>
-              <VarSet name="Contains" when="param0ItemsItems">
+              <VarSet name="Contains">
+                <When>
+                  <Not property="param0ItemsItemsNone">
+                  </Not>
+                </When>
                 <Var name="Type">
                   <Value name="string" property="param0ItemsItemsValue"/>
                   <Value name="null" failure="true"/>
