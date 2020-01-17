@@ -164,18 +164,32 @@ public class ArrayDomain<T> implements ValueDomain<List<T>>
    */
   private List<T> newArray( Random random)
     {
-    List<T>  items;
+    List<T> items;
     int itemCount;
     T nextItem;
+    boolean itemsUnique = isItemsUnique();
 
-    for( items = new ArrayList<T>(),
-           itemCount = getItemCount().select( random);
+    for( items = new ArrayList<T>(), itemCount = getItemCount().select( random);
+         items.size() < itemCount;
+         items.add( nextItem))
+      {
+      for( nextItem = getItemValues().select( random);
+           itemsUnique && items.contains( nextItem);
+           nextItem = getItemValues().select( random));
+      }
 
-         items.size() < itemCount
-           && (!items.contains( (nextItem = getItemValues().select( random)))
-               || !isItemsUnique());
+    if( !itemsUnique && itemCount > 1)
+      {
+      // Given a random target item...
+      int target = random.nextInt( itemCount);
 
-         items.add( nextItem));
+      // ...and a different source item...
+      int source;
+      while( (source = random.nextInt( itemCount)) == target);
+
+      // ...ensure target item is a duplicate of the source item.
+      items.set( target, items.get( source));
+      }
     
     return items;
     }
@@ -185,12 +199,12 @@ public class ArrayDomain<T> implements ValueDomain<List<T>>
    */
   public boolean contains( List<T> value)
     {
+    int size = value.size();
+
     return
-      getItemCount().contains( value.size())
-      && (value.isEmpty() || 
-          (value.stream().allMatch( item -> getItemValues().contains( item))
-           && (!isItemsUnique()
-               || value.stream().collect( toSet()).size() == value.size())));
+      getItemCount().contains( size)
+      && value.stream().allMatch( item -> getItemValues().contains( item))
+      && (size < 2 || isItemsUnique() == (value.stream().collect( toSet()).size() == size));
     }
 
   /**

@@ -70,9 +70,10 @@ public class ArrayDomainTest extends ValueDomainTest
     // Then...
     verifyContainsValues( domain, 1000);
 
-    assertThat( "Contains", domain.contains( listOf( 0L, 1L)), is( true));
-    assertThat( "Contains", domain.contains( listOf( -1L, 0L, 1L)), is( false));
-    assertThat( "Contains", domain.contains( listOf()), is( false));
+    assertThat( "Contains", domain.contains( listOf( 0L, 0L)), is( true));
+    assertThat( "Contains", domain.contains( listOf( 10L, 10L)), is( true));
+    assertThat( "Contains", domain.contains( listOf( -1L, 0L, 0L)), is( false));
+    assertThat( "Contains", domain.contains( listOf( 0L)), is( false));
     assertThat( "Contains", domain.contains( listOf( 0L, -11L)), is( false));
     }
 
@@ -83,17 +84,17 @@ public class ArrayDomainTest extends ValueDomainTest
     ArrayDomain<Integer> domain = new ArrayDomain<Integer>(4);
 
     // When...
-    domain.setItemCount( new IntegerDomain( 1, 4));
+    domain.setItemCount( new IntegerConstant( 4));
     domain.setItemValues( new IntegerDomain( 0, 4));
     domain.setItemsUnique( true);
     
     // Then...
     verifyContainsValues( domain, 1000);
 
-    assertThat( "Contains", domain.contains( listOf( 0, 1)), is( true));
+    assertThat( "Contains", domain.contains( listOf( 0, 1, 2, 4)), is( true));
     assertThat( "Contains", domain.contains( listOf( 1, 2, 3, 4)), is( true));
+    assertThat( "Contains", domain.contains( listOf( 0, 1, 0, 4)), is( false));
     assertThat( "Contains", domain.contains( listOf()), is( false));
-    assertThat( "Contains", domain.contains( listOf( 0, 1, 0)), is( false));
     assertThat( "Contains", domain.contains( listOf( 0, 1, 2, 3, 4)), is( false));
     }
 
