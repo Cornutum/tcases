@@ -143,7 +143,14 @@ public class Base64Domain extends SequenceDomain<String>
    */
   public boolean contains( String value)
     {
-    return getBytes().contains( decoded( value));
+    try
+      {
+      return getBytes().contains( decoded( value));
+      }
+    catch( Exception e)
+      {
+      return false;
+      }
     }
   
   /**
