@@ -25,10 +25,6 @@
             <Value name="&gt; 1" property="param0ItemsMany"/>
           </Var>
           <VarSet name="Contains">
-            <When>
-              <Not property="param0ItemsNone">
-              </Not>
-            </When>
             <Var name="Type">
               <Value name="number" property="param0ItemsValue"/>
               <Value name="null"/>

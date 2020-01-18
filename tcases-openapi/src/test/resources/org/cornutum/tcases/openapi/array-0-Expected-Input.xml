@@ -26,10 +26,6 @@
             <Value name="4" failure="true"/>
           </Var>
           <VarSet name="Contains">
-            <When>
-              <Not property="param0ItemsNone">
-              </Not>
-            </When>
             <Var name="Type">
               <Value name="number" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>

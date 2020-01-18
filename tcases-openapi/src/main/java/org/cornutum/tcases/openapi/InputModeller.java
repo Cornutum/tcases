@@ -798,10 +798,12 @@ public abstract class InputModeller
    */
   private IVarDef arrayValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
     {
+    VarDef arraySizeVar = arraySizeVar( api, instanceVarTag, instanceSchema);
+
     VarSetBuilder valueVar =
       VarSetBuilder.with( "Items")
       .when( has( instanceValueProperty( instanceVarTag)))
-      .members( arraySizeVar( api, instanceVarTag, instanceSchema));
+      .members( arraySizeVar);
     
     Schema<?> itemSchema =
       Optional.ofNullable(
@@ -821,8 +823,8 @@ public abstract class InputModeller
       valueVar
         .members(
           notItemSchema == null
-          ? arrayItemsVar( api, instanceVarTag, itemSchema)
-          : negate( arrayItemsVar( api, instanceVarTag, notItemSchema)));
+          ? arrayItemsVar( api, instanceVarTag, itemSchema, arraySizeVar)
+          : negate( arrayItemsVar( api, instanceVarTag, notItemSchema, arraySizeVar)));
       }
 
     if( Optional.ofNullable( instanceSchema.getMaxItems()).orElse( Integer.MAX_VALUE) > 1)
@@ -835,9 +837,9 @@ public abstract class InputModeller
     }
 
   /**
-   * Returns the {@link IVarDef input variable} representing the size of an array instance.
+   * Returns the {@link VarDef input variable} representing the size of an array instance.
    */
-  private IVarDef arraySizeVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema)
+  private VarDef arraySizeVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema)
     {
     // Arrays size constrained?
     VarDefBuilder size = VarDefBuilder.with( "Size");
@@ -872,6 +874,7 @@ public abstract class InputModeller
         sizeValues.add( maxItems + 1);
         }
 
+      boolean allowSizeZero = (minItems == null || minItems == 0);
       for( Integer sizeValue : sizeValues)
         {
         if( sizeValue >= 0)
@@ -884,8 +887,8 @@ public abstract class InputModeller
           else
             {
             sizeBuilder
-              .properties( Optional.ofNullable( sizeValue == 0? arrayItemsNoneProperty( instanceVarTag) : null))
-              .properties( Optional.ofNullable( sizeValue > 1? arrayItemsManyProperty( instanceVarTag) : null));
+              .properties( Optional.of( arrayItemsNoneProperty( instanceVarTag)).filter( p -> sizeValue == 0 && allowSizeZero))
+              .properties( Optional.of( arrayItemsManyProperty( instanceVarTag)).filter( p -> sizeValue > 1));
             }
           size.values( sizeBuilder.build());
           }
@@ -901,7 +904,10 @@ public abstract class InputModeller
         }
       else if( minItems == null)
         {
-        size.values( VarValueDefBuilder.with( 0).properties( arrayItemsNoneProperty( instanceVarTag)).build());
+        size.values(
+          VarValueDefBuilder.with( 0)
+          .properties( arrayItemsNoneProperty( instanceVarTag))
+          .build());
         if( maxItems > 1)
           {
           size.values(
@@ -918,13 +924,16 @@ public abstract class InputModeller
   /**
    * Returns the {@link IVarDef input variable} representing the items of the given array instance.
    */
-  private IVarDef arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> itemSchema)
+  private IVarDef arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> itemSchema, VarDef arraySizeVar)
     {
+    boolean allowSizeZero = Optional.ofNullable( arraySizeVar.getValue( 0)).map( VarValueDef::isValid).orElse( false);
+    ICondition itemsCondition = allowSizeZero? not( arrayItemsNoneProperty( instanceVarTag)) : null;
+
     return
       resultFor( "items",
         () ->
         VarSetBuilder.with( "Contains")
-        .when( not( arrayItemsNoneProperty( instanceVarTag)))
+        .when( itemsCondition)
         .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
         .build());
     }
