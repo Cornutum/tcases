@@ -110,6 +110,15 @@ public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
     }
 
   /**
+   * Changes the value condition.
+   */
+  public VarValueDefBuilder when( Optional<ICondition> condition)
+    {
+    condition.ifPresent( c -> when( c));
+    return this;
+    }
+
+  /**
    * Adds value properties.
    */
   public VarValueDefBuilder properties( String... properties)

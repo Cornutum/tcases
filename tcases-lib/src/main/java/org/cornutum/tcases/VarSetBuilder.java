@@ -11,6 +11,7 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.conditions.ICondition;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -105,6 +106,15 @@ public class VarSetBuilder extends AnnotatedBuilder<VarSetBuilder>
   public VarSetBuilder when( ICondition condition)
     {
     varSet_.setCondition( condition);
+    return this;
+    }
+
+  /**
+   * Changes the variable set condition.
+   */
+  public VarSetBuilder when( Optional<ICondition> condition)
+    {
+    condition.ifPresent( c -> when( c));
     return this;
     }
 
