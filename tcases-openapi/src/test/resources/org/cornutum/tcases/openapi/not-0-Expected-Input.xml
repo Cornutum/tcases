@@ -41,14 +41,6 @@
             </Var>
           </VarSet>
         </VarSet>
-        <VarSet name="Has-Excluded" when="param0Value">
-          <Var name="Format">
-            <Value name="error" failure="true"/>
-            <Value name="No">
-              <Has name="excluded" value="&apos;error&apos;"/>
-            </Value>
-          </Var>
-        </VarSet>
       </VarSet>
     </Input>
   </Function>

@@ -10,7 +10,7 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1Value,param0AnyOf2Value,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf2Value,param0AnyOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -19,8 +19,7 @@
         </Var>
         <Var name="param0.AnyOf.Members.Validated" value="1"/>
         <Var name="param0.AnyOf.Members.0.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" value="error">
+        <Var name="param0.AnyOf.Members.1.Type" value="null">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.AnyOf.Members.2.Type" value="Not null"/>
@@ -38,7 +37,6 @@
         <Var name="param0.AnyOf.Members.Validated" NA="true"/>
         <Var name="param0.AnyOf.Members.0.Type" NA="true"/>
         <Var name="param0.AnyOf.Members.1.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" NA="true"/>
         <Var name="param0.AnyOf.Members.2.Type" NA="true"/>
       </Input>
     </TestCase>
@@ -55,9 +53,6 @@
         <Var name="param0.AnyOf.Members.Validated" value="&gt; 1"/>
         <Var name="param0.AnyOf.Members.0.Type" value="Not null"/>
         <Var name="param0.AnyOf.Members.1.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;error&apos;"/>
-        </Var>
         <Var name="param0.AnyOf.Members.2.Type" value="null"/>
       </Input>
     </TestCase>
@@ -76,16 +71,13 @@
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.AnyOf.Members.1.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;error&apos;"/>
-        </Var>
         <Var name="param0.AnyOf.Members.2.Type" value="Not null"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0AnyOf1Value,param0AnyOf2Value"/>
+      <Has name="properties" value="param0,param0AnyOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -96,8 +88,7 @@
         <Var name="param0.AnyOf.Members.0.Type" value="null">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.AnyOf.Members.1.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Has-Excluded.Format" value="error">
+        <Var name="param0.AnyOf.Members.1.Type" value="null">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.AnyOf.Members.2.Type" value="Not null"/>
