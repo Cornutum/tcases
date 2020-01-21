@@ -10,7 +10,9 @@ package org.cornutum.tcases.openapi;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -28,19 +30,19 @@ public abstract class FormattedString
       new Null() :
       
       "binary".equals( format)?
-      new Base64( (byte[]) object) :
+      new Base64( object) :
       
       "byte".equals( format)?
-      new Base64( (byte[]) object) :
+      new Base64( object) :
       
       "date".equals( format)?
-      new Date( (java.util.Date) object) :
+      new Date( object) :
       
       "date-time".equals( format)?
-      new DateTime( (java.util.Date) object) :
+      new DateTime( object) :
       
       "uuid".equals( format)?
-      new Uuid( (UUID) object) :
+      new Uuid( object) :
       
       new Native( object);
     }
@@ -50,7 +52,11 @@ public abstract class FormattedString
    */
   public static List<FormattedString> of( String format, List<?> objects)
     {
-    return objects.stream().map( object -> of( format, object)).collect( toList());
+    return
+      Optional.ofNullable( objects).orElse( emptyList())
+      .stream()
+      .map( object -> of( format, object))
+      .collect( toList());
     }
 
   public String toString()
@@ -110,9 +116,16 @@ public abstract class FormattedString
     /**
      * Creates a new Base64 instance.
      */
-    private Base64( byte[] object)
+    private Base64( Object object)
       {
-      object_ = object;
+      try
+        {
+        object_ = (byte[]) object;
+        }
+      catch( Exception e)
+        {
+        throw new IllegalStateException( String.format( "Value=%s is not a byte array", object));
+        }
       }
 
     public String formatted()
@@ -131,9 +144,16 @@ public abstract class FormattedString
     /**
      * Creates a new Date instance.
      */
-    private Date( java.util.Date object)
+    private Date( Object object)
       {
-      object_ = object;
+      try
+        {
+        object_ = (java.util.Date) object;
+        }
+      catch( Exception e)
+        {
+        throw new IllegalStateException( String.format( "Value=%s is not a Date", object));
+        }
       }
 
     public String formatted()
@@ -152,9 +172,16 @@ public abstract class FormattedString
     /**
      * Creates a new DateTime instance.
      */
-    private DateTime( java.util.Date object)
+    private DateTime( Object object)
       {
-      object_ = object;
+      try
+        {
+        object_ = (java.util.Date) object;
+        }
+      catch( Exception e)
+        {
+        throw new IllegalStateException( String.format( "Value=%s is not a Date", object));
+        }
       }
 
     public String formatted()
@@ -173,9 +200,16 @@ public abstract class FormattedString
     /**
      * Creates a new Uuid instance.
      */
-    private Uuid( UUID object)
+    private Uuid( Object object)
       {
-      object_ = object;
+      try
+        {
+        object_ = (UUID) object;
+        }
+      catch( Exception e)
+        {
+        throw new IllegalStateException( String.format( "Value=%s is not a UUID", object));
+        }
       }
 
     public String formatted()

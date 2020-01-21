@@ -750,9 +750,6 @@ public abstract class InputModeller
     typeValueVar( api, instanceType, instanceVarTag, mergedSchema)
       .ifPresent( var -> typeVars.add( var));
 
-    excludedVar( instanceVarTag, mergedSchema)
-      .ifPresent( excluded -> typeVars.add( excluded));
-
     return typeVars.build();
     }
   
@@ -1244,21 +1241,44 @@ public abstract class InputModeller
 
     // Enumerated values?
     List<BigDecimal> enums = getNumberEnum( instanceSchema);
+    List<BigDecimal> notEnums = getNumberEnum( getNotEnums( instanceSchema));
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
       quantity.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
-      quantity.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums.stream()).build());
+      quantity.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build());
       }
 
     // Boundary conditions defined?
     else if( instanceSchema.getMinimum() == null && instanceSchema.getMaximum() == null)
       {
       // No, add standard boundary conditions
+      TreeSet<BigDecimal> boundaryValues = new TreeSet<BigDecimal>();
+      boundaryValues.add( BigDecimal.ZERO);
+      boundaryValues.addAll( notEnums);
+
       quantity.values(
-        VarValueDefBuilder.with( "< 0").properties( unboundedProperty).build(),
-        VarValueDefBuilder.with( 0).build(),
-        VarValueDefBuilder.with( "> 0").properties( unboundedProperty).build());
+        VarValueDefBuilder.with( "< 0")
+        .hasIf( "excluded", notEnums)
+        .properties( unboundedProperty)
+        .build());
+
+      for( BigDecimal n : boundaryValues)
+        {
+        quantity.values
+          ( VarValueDefBuilder.with( n)
+            .type(
+              notEnums.contains( n)
+              ? VarValueDef.Type.FAILURE
+              : VarValueDef.Type.VALID)
+            .build());
+        }
+        
+      quantity.values(
+        VarValueDefBuilder.with( "> 0")
+        .hasIf( "excluded", notEnums)
+        .properties( unboundedProperty)
+        .build());
       }
     else
       {
@@ -1303,12 +1323,14 @@ public abstract class InputModeller
         boundaryValues.add( maximum);
         boundaryValues.add( multipleAbove( maximum, false, effectiveMultipleOf, notMultipleOfs));
         }
+      boundaryValues.addAll( notEnums);
+
       for( BigDecimal n : boundaryValues)
         {
         quantity.values
           ( VarValueDefBuilder.with( n)
             .type(
-              (effectiveMinimum != null && n.compareTo(effectiveMinimum) < 0) || (maximum != null && n.compareTo(maximum) > 0)
+              notEnums.contains( n) || (effectiveMinimum != null && n.compareTo(effectiveMinimum) < 0) || (maximum != null && n.compareTo(maximum) > 0)
               ? VarValueDef.Type.FAILURE
               : VarValueDef.Type.VALID)
             .build());
@@ -1820,21 +1842,17 @@ public abstract class InputModeller
 
     // Enumerated values?
     String format = instanceSchema.getFormat();
-    List<FormattedString> enums =
-      Optional.ofNullable( instanceSchema.getEnum())
-      .map( e -> FormattedString.of( format, e))
-      .orElse( emptyList());
-    
+    List<FormattedString> enums = getFormattedStrings( "enumerated", format, instanceSchema.getEnum());
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
       valueVar = 
         VarDefBuilder.with( "Value")
         .has( "format", format)
-        .has( "default", Objects.toString( FormattedString.of( format, instanceSchema.getDefault()), null))
+        .has( "default", Objects.toString( getFormattedString( "default", format, instanceSchema.getDefault()), null))
         .when( has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
-        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums.stream()).build())
+        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
         .build();
       }
     else
@@ -1843,13 +1861,31 @@ public abstract class InputModeller
       VarSetBuilder valueVarSet =
         VarSetBuilder.with( "Value")
         .has( "format", format)
-        .has( "default", FormattedString.of( format, instanceSchema.getDefault()))
+        .has( "default", getFormattedString( "default", format, instanceSchema.getDefault()))
         .when( has( instanceValueProperty( instanceVarTag)));
 
-      // Add values for any length assertions
-      VarDefBuilder length = VarDefBuilder.with( "Length");
-      Integer minLength = instanceSchema.getMinLength();
+      // Ensure min/max range is feasible
       Integer maxLength = instanceSchema.getMaxLength();
+      Integer minLength = 
+        Optional.ofNullable( instanceSchema.getMinLength())
+        .map( min -> Optional.ofNullable( maxLength).map( max -> adjustedMinOf( "Length", min, max)).orElse( min))
+        .orElse( null);
+
+      // Get any excluded values (ignoring any with invalid length)
+      List<FormattedString> notEnums =
+        getFormattedStrings( "enumerated", format, getNotEnums( instanceSchema))
+        .stream()
+        .filter(
+          excluded -> {
+            int formattedLength = excluded.toString().length();
+            return !(minLength != null && formattedLength < minLength) && !(maxLength != null && formattedLength > maxLength);
+          })
+        .collect( toList());
+      Optional<String> notExcludedProperty = Optional.of( valueNotExcludedProperty( instanceVarTag)).filter( p -> !notEnums.isEmpty());
+      Optional<ICondition> notExcluded = notExcludedProperty.map( p -> has( p));
+      
+      // Add values for any length assertions
+      VarDefBuilder length = VarDefBuilder.with( "Length").when( notExcluded);
 
       // Any length assertions specified?
       if( minLength == null && maxLength == null)
@@ -1857,21 +1893,19 @@ public abstract class InputModeller
         // No, add standard values
         length.values( VarValueDefBuilder.with( "> 0").build());
 
-        // Length constrained by format?
-        if( format == null || format.equals( "byte") || format.equals( "binary") || format.equals( "password"))
+        if(
+          // Format allows empty string?
+          (format == null || format.equals( "byte") || format.equals( "binary") || format.equals( "password"))
+          &&
+          // Empty string not excluded?
+          !notEnums.stream().map( String::valueOf).anyMatch( String::isEmpty))
           {
-          // No, allow empty values
+          // Yes, allow empty values
           length.values( VarValueDefBuilder.with( 0).build());
           }
         }
       else
         {
-        // Yes, ensure min/max range is feasible
-        minLength =
-          Optional.ofNullable( minLength)
-          .map( min -> Optional.ofNullable( maxLength).map( max -> adjustedMinOf( "Length", min, max)).orElse( min))
-          .orElse( null);
-
         // Add boundary condition values
         TreeSet<Integer> boundaryValues = new TreeSet<Integer>();
         if( minLength != null)
@@ -1919,6 +1953,7 @@ public abstract class InputModeller
         {
         valueVarSet.members(
           VarDefBuilder.with( "Matches-Pattern")
+          .when( notExcluded)
           .has( "pattern", patterns[0])
           .values(
             VarValueDefBuilder.with( "Yes").build(),
@@ -1929,6 +1964,7 @@ public abstract class InputModeller
         {
         valueVarSet.members(
           VarDefBuilder.with( "Matches-Pattern")
+          .when( notExcluded)
           .has( "pattern", notPatterns[0])
           .values(
             VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).build(),
@@ -1939,6 +1975,7 @@ public abstract class InputModeller
         {
         valueVarSet.members(
           VarSetBuilder.with( "Matches-Patterns")
+          .when( notExcluded)
           .members(
             IntStream.range( 0, patterns.length)
             .mapToObj(
@@ -1958,6 +1995,26 @@ public abstract class InputModeller
               .values(
                 VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).build(),
                 VarValueDefBuilder.with( "No").build())
+              .build()))
+          .build());
+        }
+
+      // Add variables for any excluded values
+      if( !notEnums.isEmpty())
+        {
+        valueVarSet.members(
+          VarDefBuilder.with( "Is")
+          .values(
+            VarValueDefBuilder.with( "Any")
+            .has( "excluded", notEnums)
+            .properties( notExcludedProperty)
+            .build())
+          .values(
+            notEnums.stream()
+            .map(
+              excluded ->
+              VarValueDefBuilder.with( excluded)
+              .type( VarValueDef.Type.FAILURE)
               .build()))
           .build());
         }
@@ -1996,7 +2053,6 @@ public abstract class InputModeller
       .when( has( instanceValueProperty( instanceVarTag)))
       .values(
         possibleValues.stream()
-        .filter( b -> !excludedValues.contains( b))
         .map( b -> {
           return
             VarValueDefBuilder.with( b)
@@ -2004,50 +2060,6 @@ public abstract class InputModeller
             .build();
           }))
       .build();
-    }
-
-  /**
-   * Returns the {@link IVarDef input variable} representing the values excluded by the given instance schema.
-   */
-  private Optional<IVarDef> excludedVar( String instanceVarTag, Schema<?> instanceSchema)
-    {
-    ListBuilder<IVarDef> members = ListBuilder.to();
-
-    List<Object> notEnums = Optional.ofNullable( getNotEnums( instanceSchema)).orElse( emptyList());
-    if( !notEnums.isEmpty())
-      {
-      members.add(
-        VarDefBuilder.with( "Value")
-        .values(
-          notEnums.stream()
-          .map( notValue -> VarValueDefBuilder.with( notValue).type( VarValueDef.Type.FAILURE).build()))
-        .values(
-          VarValueDefBuilder.with( "No")
-          .has( "excluded", notEnums.stream())
-          .build())
-        .build());
-      }
-
-    Set<String> notFormats = Optional.ofNullable( getNotFormats( instanceSchema)).orElse( emptySet());
-    if( !notFormats.isEmpty())
-      {
-      members.add(
-        VarDefBuilder.with( "Format")
-        .values(
-          notFormats.stream()
-          .map( notFormat -> VarValueDefBuilder.with( notFormat).type( VarValueDef.Type.FAILURE).build()))
-        .values(
-          VarValueDefBuilder
-          .with( "No")
-          .has( "excluded", notFormats.stream())
-          .build())
-        .build());
-      }
-
-    return
-      members.size() == 0
-      ? Optional.empty()
-      : Optional.of( VarSetBuilder.with( "Has-Excluded").when( has( instanceValueProperty( instanceVarTag))).members( members.build()).build());
     }
 
   /**
@@ -2347,6 +2359,14 @@ public abstract class InputModeller
   private String memberValidatedProperty( String instanceTag)
     {
     return instanceTag + "MemberValidated";
+    }
+
+  /**
+   * Returns the "not excluded value" property for the given schema instance.
+   */
+  private String valueNotExcludedProperty( String instanceTag)
+    {
+    return instanceTag + "NotExcluded";
     }
 
   /**
@@ -2820,32 +2840,32 @@ public abstract class InputModeller
    */
   private List<BigDecimal> getNumberEnum( Schema<?> schema)
     {
-    List<BigDecimal> numbers;
+    return
+      schema instanceof NumberSchema
+      ? Optional.ofNullable( ((NumberSchema) schema).getEnum()).orElse( emptyList())
+      : getNumberEnum( schema.getEnum());
+    }
 
-    if( schema instanceof NumberSchema)
-      {
-      numbers =
-        Optional.ofNullable( ((NumberSchema) schema).getEnum())
-        .orElse( emptyList());
-      }
-    else
-      {
-      numbers = 
-        Optional.ofNullable( schema.getEnum())
-        .orElse( emptyList())
-        .stream()
-        .map(
-          value -> {
-            if( !(value == null || Number.class.isAssignableFrom( value.getClass())))
-              {
-              throw new IllegalStateException( String.format( "Enumerated value=%s is not a number", value));
-              }
-            return value == null? null : new BigDecimal( value.toString());
-          })
-        .collect( toList());
-      }
-
-    return numbers;
+  /**
+   * Returns the enumerated number values defined by the given list.
+   */
+  private List<BigDecimal> getNumberEnum( List<?> values)
+    {
+    return
+      Optional.ofNullable( values)
+      .orElse( emptyList())
+      .stream()
+      .map( value -> {
+        try
+          {
+          return value == null? null : new BigDecimal( value.toString());
+          }
+        catch( Exception e)
+          {
+          throw new IllegalStateException( String.format( "Enumerated value=%s is not a number", value));
+          }
+        })
+      .collect( toList());
     }
 
   /**
@@ -2868,8 +2888,7 @@ public abstract class InputModeller
       Optional.ofNullable( values)
       .orElse( emptyList())
       .stream()
-      .map(
-        value -> {
+      .map( value -> {
         Boolean booleanValue = null;
         if( value != null)
           {
@@ -2892,6 +2911,36 @@ public abstract class InputModeller
         return booleanValue;
         })
       .collect( toList());
+    }
+
+  /**
+   * Returns the given value as a formatted string.
+   */
+  private FormattedString getFormattedString( String description, String format, Object value)
+    {
+    try
+      {
+      return FormattedString.of( format, value);
+      }
+    catch( Exception e)
+      {
+      throw new IllegalStateException( String.format( "Invalid %s value", description), e);
+      }
+    }
+
+  /**
+   * Returns the given values as a formatted strings.
+   */
+  private List<FormattedString> getFormattedStrings( String description, String format, List<?> value)
+    {
+    try
+      {
+      return FormattedString.of( format, value);
+      }
+    catch( Exception e)
+      {
+      throw new IllegalStateException( String.format( "Invalid %s value", description), e);
+      }
     }
 
   /**

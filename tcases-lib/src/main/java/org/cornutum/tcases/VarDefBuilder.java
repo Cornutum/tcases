@@ -10,6 +10,7 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.conditions.ICondition;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -104,6 +105,15 @@ public class VarDefBuilder extends AnnotatedBuilder<VarDefBuilder>
   public VarDefBuilder when( ICondition condition)
     {
     varDef_.setCondition( condition);
+    return this;
+    }
+
+  /**
+   * Changes the variable condition.
+   */
+  public VarDefBuilder when( Optional<ICondition> condition)
+    {
+    condition.ifPresent( c -> when( c));
     return this;
     }
 

@@ -18,16 +18,9 @@
           <Value name="Not boolean" failure="true"/>
         </Var>
         <Var name="Value" when="param0Value">
+          <Value name="true" failure="true"/>
           <Value name="false"/>
         </Var>
-        <VarSet name="Has-Excluded" when="param0Value">
-          <Var name="Value">
-            <Value name="true" failure="true"/>
-            <Value name="No">
-              <Has name="excluded" value="&apos;true&apos;"/>
-            </Value>
-          </Var>
-        </VarSet>
       </VarSet>
     </Input>
   </Function>

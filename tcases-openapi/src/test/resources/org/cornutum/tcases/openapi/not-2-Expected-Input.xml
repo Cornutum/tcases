@@ -59,14 +59,14 @@
                     </Var>
                     <VarSet name="Value" when="param0OneOf0AlphaValue">
                       <Var name="Is">
-                        <Value name="&lt; 0"/>
-                        <Value name="0"/>
-                        <Value name="&gt; 0"/>
-                      </Var>
-                    </VarSet>
-                    <VarSet name="Has-Excluded" when="param0OneOf0AlphaValue">
-                      <Var name="Value">
-                        <Value name="No">
+                        <Value name="&lt; 0" property="param0OneOfMemberValidated">
+                          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
+                        </Value>
+                        <Value name="0" property="param0OneOfMemberValidated"/>
+                        <Value name="17">
+                          <Has name="memberValidated" value="false"/>
+                        </Value>
+                        <Value name="&gt; 0" property="param0OneOfMemberValidated">
                           <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
                         </Value>
                       </Var>
@@ -77,16 +77,6 @@
                     <Value name="No"/>
                   </Var>
                 </VarSet>
-              </VarSet>
-              <VarSet name="Has-Excluded" when="param0OneOf0Value">
-                <Var name="Format">
-                  <Value name="crazy">
-                    <Has name="memberValidated" value="false"/>
-                  </Value>
-                  <Value name="No" property="param0OneOfMemberValidated">
-                    <Has name="excluded" value="&apos;crazy&apos;"/>
-                  </Value>
-                </Var>
               </VarSet>
             </VarSet>
             <VarSet name="1">
@@ -121,13 +111,6 @@
                   </Var>
                 </VarSet>
               </VarSet>
-              <VarSet name="Has-Excluded" when="param0OneOf1Value">
-                <Var name="Format">
-                  <Value name="No">
-                    <Has name="excluded" value="&apos;crazy&apos;"/>
-                  </Value>
-                </Var>
-              </VarSet>
             </VarSet>
             <VarSet name="2">
               <Var name="Type">
@@ -150,13 +133,6 @@
                     </Var>
                   </VarSet>
                 </VarSet>
-              </VarSet>
-              <VarSet name="Has-Excluded" when="param0OneOf2Value">
-                <Var name="Format">
-                  <Value name="No">
-                    <Has name="excluded" value="&apos;crazy&apos;"/>
-                  </Value>
-                </Var>
               </VarSet>
             </VarSet>
           </VarSet>

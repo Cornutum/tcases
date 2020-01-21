@@ -21,21 +21,14 @@
           <Var name="Is">
             <Value name="-0.1" failure="true"/>
             <Value name="0.0"/>
+            <Value name="1.0" failure="true"/>
+            <Value name="1.1" failure="true"/>
+            <Value name="10.0" failure="true"/>
+            <Value name="11.0" failure="true"/>
             <Value name="99.9"/>
             <Value name="100.1" failure="true"/>
             <Value name="2.0" failure="true"/>
             <Value name="7.5" failure="true"/>
-          </Var>
-        </VarSet>
-        <VarSet name="Has-Excluded" when="param0Value">
-          <Var name="Value">
-            <Value name="1.0" failure="true"/>
-            <Value name="10.0" failure="true"/>
-            <Value name="11.0" failure="true"/>
-            <Value name="1.1" failure="true"/>
-            <Value name="No">
-              <Has name="excluded" value="&apos;1.0&apos;,&apos;10.0&apos;,&apos;11.0&apos;,&apos;1.1&apos;"/>
-            </Value>
           </Var>
         </VarSet>
       </VarSet>
