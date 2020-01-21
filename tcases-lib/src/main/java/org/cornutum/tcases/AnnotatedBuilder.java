@@ -59,6 +59,22 @@ public abstract class AnnotatedBuilder<T extends AnnotatedBuilder<T>>
     }
 
   /**
+   * If the given iterable is non-empty, adds an annotation using a comma-separated list of the string representations of its members.
+   */
+  public T hasIf( String name, Iterable<?> values)
+    {
+    return hasIf( name, CollectionUtils.toStream( values));
+    }
+
+  /**
+   * If the given stream is non-empty, adds an annotation using a comma-separated list of the string representations of its members.
+   */
+  public T hasIf( String name, Stream<?> values)
+    {
+    return hasIf( name, Optional.ofNullable( values).map( CollectionUtils::toCsv).filter( csv -> !csv.isEmpty()));
+    }
+
+  /**
    * Adds an annotation if the given value is non-null
    */
   public T hasIf( String name, Object value)
