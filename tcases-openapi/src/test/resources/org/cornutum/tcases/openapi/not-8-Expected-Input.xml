@@ -140,19 +140,17 @@
                       <Value name="Not string" failure="true"/>
                     </Var>
                     <VarSet name="Value" when="param0AdditionalRequiredValue">
-                      <Var name="Length">
+                      <Var name="Length" when="param0AdditionalRequiredNotExcluded">
                         <Value name="&gt; 0"/>
                         <Value name="0"/>
                       </Var>
-                    </VarSet>
-                    <VarSet name="Has-Excluded" when="param0AdditionalRequiredValue">
-                      <Var name="Value">
+                      <Var name="Is">
+                        <Value name="Any" property="param0AdditionalRequiredNotExcluded">
+                          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
+                        </Value>
                         <Value name="X" failure="true"/>
                         <Value name="Y" failure="true"/>
                         <Value name="Z" failure="true"/>
-                        <Value name="No">
-                          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
-                        </Value>
                       </Var>
                     </VarSet>
                   </VarSet>

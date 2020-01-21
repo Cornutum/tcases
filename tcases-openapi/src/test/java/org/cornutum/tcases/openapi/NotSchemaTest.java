@@ -203,4 +203,10 @@ public class NotSchemaTest extends OpenApiTest
     {
     verifyRequestInputModel( "not-8");
     }
+  
+  @Test
+  public void whenHasExcluded()
+    {
+    verifyRequestInputModel( "not-9");
+    }
   }

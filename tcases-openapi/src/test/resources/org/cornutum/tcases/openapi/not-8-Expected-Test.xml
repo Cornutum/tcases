@@ -43,7 +43,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -87,7 +87,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -132,7 +132,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -177,7 +177,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -189,7 +189,7 @@
     <TestCase id="4">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -222,7 +222,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="No">
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" value="Any">
           <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="Yes"/>
@@ -269,7 +269,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -281,7 +281,7 @@
     <TestCase id="6">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -314,7 +314,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="0"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="No">
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" value="Any">
           <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
@@ -361,7 +361,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" value="integer"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" value="0"/>
@@ -373,7 +373,7 @@
     <TestCase id="8">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -406,7 +406,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="No">
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" value="Any">
           <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="Yes"/>
@@ -453,7 +453,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -498,7 +498,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -543,7 +543,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -588,7 +588,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -633,7 +633,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -678,7 +678,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -723,7 +723,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -768,7 +768,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -813,7 +813,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -858,7 +858,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -903,7 +903,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -948,7 +948,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -993,7 +993,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -1038,7 +1038,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -1083,7 +1083,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="Not string" failure="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -1127,8 +1127,8 @@
         <Var name="param0.Value.Properties.Additional.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="0"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="X" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" value="X" failure="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -1172,8 +1172,8 @@
         <Var name="param0.Value.Properties.Additional.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="0"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="Y" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" value="Y" failure="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -1217,8 +1217,8 @@
         <Var name="param0.Value.Properties.Additional.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" value="string"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" value="0"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" value="Z" failure="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" value="Z" failure="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -1263,7 +1263,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -1308,7 +1308,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" value="Not integer" failure="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>
@@ -1353,7 +1353,7 @@
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Has-Excluded.Value" NA="true"/>
+        <Var name="param0.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Defined" value="No"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true"/>

@@ -10,7 +10,7 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -19,31 +19,21 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.0.Type" value="null"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
         </Var>
       </Input>
     </TestCase>
@@ -63,136 +53,16 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" NA="true"/>
         <Var name="param0.OneOf.Members.1.Type" NA="true"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" NA="true"/>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" NA="true"/>
         <Var name="param0.OneOf.Members.2.Type" NA="true"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="null"/>
-        <Var name="param0.OneOf.Members.0.Value.Property-Count" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
-        <Var name="param0.OneOf.Members.2.Type" value="object"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="3">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="&lt; 0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
-        </Var>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="null"/>
-        <Var name="param0.OneOf.Members.1.Value.Property-Count" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Type" value="object"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="4">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
-        </Var>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="0"/>
-        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
-        <Var name="param0.OneOf.Members.2.Type" value="object"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="5">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
@@ -208,34 +78,146 @@
         <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
-        </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="0"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&lt;= 1"/>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.Type" value="null"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" NA="true"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="&lt; 0">
+          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
+        </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="17">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="0"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
+          <Has name="memberValidated" value="false"/>
         </Var>
       </Input>
     </TestCase>
     <TestCase id="6">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="&gt; 0">
+          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
+        </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -249,29 +231,21 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
-          <Has name="memberValidated" value="false"/>
-        </Var>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&lt;= 1"/>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
-        <Var name="param0.OneOf.Members.2.Type" value="null"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7">
+    <TestCase id="8">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -284,31 +258,79 @@
         <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="&lt; 0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
-        </Var>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="17">
           <Has name="memberValidated" value="false"/>
         </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
+        <Var name="param0.OneOf.Members.2.Type" value="null"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
         </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
       </Input>
     </TestCase>
-    <TestCase id="8">
+    <TestCase id="10">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.OneOf.Members.Validated" value="1"/>
+        <Var name="param0.OneOf.Members.0.Type" value="object"/>
+        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="17">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.OneOf.Members.1.Type" value="object"/>
+        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
+          <Has name="memberValidated" value="false"/>
+        </Var>
+        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Type" value="object"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="null"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
@@ -325,71 +347,21 @@
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
         <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
-          <Has name="memberValidated" value="false"/>
-        </Var>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
-        <Var name="param0.OneOf.Members.2.Type" value="object"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="null"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="9">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value,param0OneOfMemberValidated"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="object"/>
-        <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="&apos;-17&apos;,&apos;17&apos;"/>
-        </Var>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="object"/>
-        <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="Not string"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="12" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value"/>
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Properties,param0OneOf1Value,param0OneOf2Additional,param0OneOf2Properties,param0OneOf2Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -400,36 +372,28 @@
         <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
         <Var name="param0.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="crazy">
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="17">
           <Has name="memberValidated" value="false"/>
         </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&gt; 1">
           <Has name="memberValidated" value="false"/>
         </Var>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="Yes"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" value="string">
           <Has name="memberValidated" value="false"/>
         </Var>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="13" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0OneOf0Alpha,param0OneOf0AlphaValue,param0OneOf0Properties,param0OneOf0Value,param0OneOf1Value,param0OneOf2Value,param0OneOfMemberValidated"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -440,26 +404,16 @@
         <Var name="param0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
         <Var name="param0.OneOf.Members.0.Type" value="object"/>
         <Var name="param0.OneOf.Members.0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="No"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Has-Excluded.Value" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.OneOf.Members.0.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Type" value="integer"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.alpha.Value.Is" value="0"/>
+        <Var name="param0.OneOf.Members.0.Value.Properties.Additional" value="No"/>
         <Var name="param0.OneOf.Members.1.Type" value="object"/>
         <Var name="param0.OneOf.Members.1.Value.Property-Count" value="&lt;= 1"/>
         <Var name="param0.OneOf.Members.1.Value.Properties.Additional" value="No"/>
-        <Var name="param0.OneOf.Members.1.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
         <Var name="param0.OneOf.Members.2.Type" value="object"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Defined" value="No"/>
         <Var name="param0.OneOf.Members.2.Value.Properties.Additional.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.2.Has-Excluded.Format" value="No">
-          <Has name="excluded" value="&apos;crazy&apos;"/>
-        </Var>
       </Input>
     </TestCase>
   </Function>

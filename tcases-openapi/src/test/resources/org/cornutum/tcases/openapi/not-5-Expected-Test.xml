@@ -19,9 +19,6 @@
         </Var>
         <Var name="param0.Type" value="boolean"/>
         <Var name="param0.Value" value="false"/>
-        <Var name="param0.Has-Excluded.Value" value="No">
-          <Has name="excluded" value="&apos;true&apos;"/>
-        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -35,7 +32,6 @@
         </Var>
         <Var name="param0.Type" NA="true"/>
         <Var name="param0.Value" NA="true"/>
-        <Var name="param0.Has-Excluded.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2" failure="true">
@@ -50,7 +46,6 @@
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
         <Var name="param0.Value" NA="true"/>
-        <Var name="param0.Has-Excluded.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -65,7 +60,6 @@
         </Var>
         <Var name="param0.Type" value="Not boolean" failure="true"/>
         <Var name="param0.Value" NA="true"/>
-        <Var name="param0.Has-Excluded.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -79,8 +73,7 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param0.Type" value="boolean"/>
-        <Var name="param0.Value" value="false"/>
-        <Var name="param0.Has-Excluded.Value" value="true" failure="true"/>
+        <Var name="param0.Value" value="true" failure="true"/>
       </Input>
     </TestCase>
   </Function>
