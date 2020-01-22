@@ -306,7 +306,7 @@ public final class VarProperties
       toArrayDomain( propertyValues) :
 
       types[0] == Type.BOOLEAN?
-      new BooleanConstant( (Boolean) expectVarBinding( propertyValues, "Value").getValue()) :
+      toBooleanDomain( propertyValues) :
 
       types[0] == Type.INTEGER?
       toNumberDomain( Type.INTEGER, propertyValues) :
@@ -331,14 +331,34 @@ public final class VarProperties
    */
   public static ArrayDomain<?> toArrayDomain( Map<String,Object> propertyValues)
     {
-    Map<String,Object> items = expectPropertyValues( propertyValues, "Items");
-    ValueDomain<?> itemValues = toValueDomain( expectPropertyValues( items, "Contains"));
+    ArrayDomain<?> domain;
 
-    ArrayDomain<?> domain = itemValues == null? new ArrayDomain<Object>() : itemValues.arrayOf();
-    domain.setItemCount( Range.of( expectVarBinding( items, "Size")));
-    domain.setItemsUnique( Optional.ofNullable( getVarBinding( items, "Unique")).map( u -> "Yes".equals( u.getValue())).orElse( false));
+    Map<String,Object> items = getPropertyValues( propertyValues, "Items");
+    if( items == null)
+      {
+      domain = new ArrayDomain<Object>();
+      }
+    else
+      {
+      ValueDomain<?> itemValues = toValueDomain( expectPropertyValues( items, "Contains"));
+      domain = itemValues == null? new ArrayDomain<Object>() : itemValues.arrayOf();
+      domain.setItemCount( Range.of( expectVarBinding( items, "Size")));
+      domain.setItemsUnique( Optional.ofNullable( getVarBinding( items, "Unique")).map( u -> "Yes".equals( u.getValue())).orElse( false));
+      }
 
     return domain;
+    }
+
+  /**
+   * Returns the boolean domain specified by the given properties.
+   */
+  public static ValueDomain<?> toBooleanDomain( Map<String,Object> propertyValues)
+    {
+    return
+      new BooleanConstant(
+        Optional.ofNullable( getVarBinding( propertyValues, "Value"))
+        .map( b -> (Boolean) b.getValue())
+        .orElse( true));
     }
 
   /**
@@ -350,36 +370,51 @@ public final class VarProperties
     Range lengthRange;
     Set<String> excluded;
 
-    VarBinding valueBinding = getIfVarBinding( propertyValues, "Value");
-    if( valueBinding != null)
+    Map<String,Object> stringProperties = getIfPropertyValues( propertyValues, "Value");
+
+    VarBinding value =
+      stringProperties == null
+      ? Optional.ofNullable( getVarBinding( propertyValues, "Value")).orElse( null)
+      : Optional.ofNullable( getVarBinding( stringProperties, "Is")).filter( v -> !v.isValueNA()).orElse( null);
+
+    VarBinding length =
+      stringProperties == null
+      ? null
+      : expectVarBinding( stringProperties, "Length");
+    
+    if( value != null)
       {
-      format = valueBinding.getAnnotation( "format");
+      format = value.getAnnotation( "format");
       lengthRange = null;
-      excluded = Optional.ofNullable( valueBinding.getAnnotationList( "excluded")).map( e -> e.stream().collect( toSet())).orElse( emptySet());
+      excluded = Optional.ofNullable( value.getAnnotationList( "excluded")).map( e -> e.stream().collect( toSet())).orElse( emptySet());
+      }
+    else if( length != null)
+      {
+      format = length.getAnnotation( "format");
+      lengthRange = Range.of( length);
+      excluded = emptySet();
       }
     else
       {
-      Map<String,Object> stringProperties = expectPropertyValues( propertyValues, "Value");
-      VarBinding length = expectVarBinding( stringProperties, "Length");
-      format = length.getAnnotation( "format");
-      lengthRange = Range.of( length);
-      excluded = Optional.ofNullable( length.getAnnotationList( "excluded")).map( e -> e.stream().collect( toSet())).orElse( emptySet());
+      format = null;
+      lengthRange = null;
+      excluded = emptySet();
       }
 
     ValueDomain<?> domain;
-    if( valueBinding != null && excluded.isEmpty())
+    if( value != null && excluded.isEmpty())
       {
       domain =
         "date".equals( format)?
-        new DateConstant( String.valueOf( valueBinding.getValue())) :
+        new DateConstant( String.valueOf( value.getValue())) :
 
         "date-time".equals( format)?
-        new DateTimeConstant( String.valueOf( valueBinding.getValue())) :
+        new DateTimeConstant( String.valueOf( value.getValue())) :
 
         "binary".equals( format)?
-        new BinaryConstant( (byte[]) valueBinding.getValue()) :
+        new BinaryConstant( (byte[]) value.getValue()) :
 
-        new StringConstant( String.valueOf( valueBinding.getValue()));
+        new StringConstant( String.valueOf( value.getValue()));
       }
     else
       {
@@ -416,47 +451,50 @@ public final class VarProperties
     {
     ObjectDomain domain = new ObjectDomain();
 
-    Map<String,Object> value = expectPropertyValues( propertyValues, "Value");
-    Map<String,Object> properties = expectPropertyValues( value, "Properties");
-
-    domain.setPropertyDomains(
-      properties.keySet().stream()
-      .filter( p -> !p.equals( "Additional"))
-      .map( p -> new SimpleEntry<String,ValueDomain<?>>( p, toPropertyDomain( expectPropertyValues( properties, p))))
-      .filter( e -> e.getValue() != null)
-      .collect( toMap( SimpleEntry::getKey, SimpleEntry::getValue)));
-
-    Map<String,Object> additionalProperties = getIfPropertyValues( properties, "Additional");
-    ValueDomain<?> additionalPropertyValues =
-      additionalProperties != null?
-      toPropertyDomain( additionalProperties) :
-
-      "Yes".equals( expectVarBinding( properties, "Additional").getValue())?
-      new MultiTypeDomain( Type.any()) :
-
-      null;
-
-    if( additionalPropertyValues != null)
+    Map<String,Object> value = getPropertyValues( propertyValues, "Value");
+    if( value != null)
       {
-      domain.setAdditionalPropertyValues( additionalPropertyValues);
+      Map<String,Object> properties = expectPropertyValues( value, "Properties");
 
-      IntegerDomain expectedPropertyCount =
-        new IntegerDomain(
-          Optional.ofNullable( getVarBinding( value, "Property-Count"))
-          .map( Range::of)
-          .orElse( Range.of( ">=", "0")));
+      domain.setPropertyDomains(
+        properties.keySet().stream()
+        .filter( p -> !p.equals( "Additional"))
+        .map( p -> new SimpleEntry<String,ValueDomain<?>>( p, toPropertyDomain( expectPropertyValues( properties, p))))
+        .filter( e -> e.getValue() != null)
+        .collect( toMap( SimpleEntry::getKey, SimpleEntry::getValue)));
 
-      int definedPropertyCount = domain.getPropertyDomains().size();
-      int expectedPropertyCountMin = expectedPropertyCount.getMin();
-      int additionalPropertyCountMin = Math.max( 1, expectedPropertyCountMin - definedPropertyCount);
+      Map<String,Object> additionalProperties = getIfPropertyValues( properties, "Additional");
+      ValueDomain<?> additionalPropertyValues =
+        additionalProperties != null?
+        toPropertyDomain( additionalProperties) :
 
-      int expectedPropertyCountMax = expectedPropertyCount.getMax();
-      int additionalPropertyCountMax =
-        expectedPropertyCountMax == expectedPropertyCount.getMaxRange()
-        ? additionalPropertyCountMin + 2
-        : expectedPropertyCountMax - definedPropertyCount;
+        "Yes".equals( expectVarBinding( properties, "Additional").getValue())?
+        new MultiTypeDomain( Type.any()) :
 
-      domain.setAdditionalPropertyCount( new IntegerDomain( additionalPropertyCountMin, additionalPropertyCountMax));
+        null;
+
+      if( additionalPropertyValues != null)
+        {
+        domain.setAdditionalPropertyValues( additionalPropertyValues);
+
+        IntegerDomain expectedPropertyCount =
+          new IntegerDomain(
+            Optional.ofNullable( getVarBinding( value, "Property-Count"))
+            .map( Range::of)
+            .orElse( Range.of( ">=", "0")));
+
+        int definedPropertyCount = domain.getPropertyDomains().size();
+        int expectedPropertyCountMin = expectedPropertyCount.getMin();
+        int additionalPropertyCountMin = Math.max( 1, expectedPropertyCountMin - definedPropertyCount);
+
+        int expectedPropertyCountMax = expectedPropertyCount.getMax();
+        int additionalPropertyCountMax =
+          expectedPropertyCountMax == expectedPropertyCount.getMaxRange()
+          ? additionalPropertyCountMin + 2
+          : expectedPropertyCountMax - definedPropertyCount;
+
+        domain.setAdditionalPropertyCount( new IntegerDomain( additionalPropertyCountMin, additionalPropertyCountMax));
+        }
       }
     
     return domain;
@@ -478,35 +516,48 @@ public final class VarProperties
    */
   public static ValueDomain<?> toNumberDomain( Type type, Map<String,Object> propertyValues)
     {
-    Map<String,Object> valueProperties = expectPropertyValues( propertyValues, "Value");
-    VarBinding is = expectVarBinding( valueProperties, "Is");
-    String format = is.getAnnotation( "format");
-    Range range = Range.of( is);
+    String format;
+    Range range;
+    boolean constant;
+
+    Map<String,Object> valueProperties = getPropertyValues( propertyValues, "Value");
+    if( valueProperties == null)
+      {
+      format = null;
+      range = null;
+      constant = false;
+      }
+    else
+      {
+      VarBinding is = expectVarBinding( valueProperties, "Is");
+      format = is.getAnnotation( "format");
+      range = Range.of( is);
+      constant = range.isConstant();
+      }
 
     ValueDomain<?> valueDomain;
-    if( range.isConstant())
+    if( constant)
       {
       valueDomain = 
-        type == Type.INTEGER?
-        ("int64".equals( format)?
-         new LongConstant( Long.valueOf( range.getMax())) :
-         new IntegerConstant( Integer.valueOf( range.getMax()))) :
+        type == Type.NUMBER?
+        new DecimalConstant( new BigDecimal( range.getMax())) :
 
-         new DecimalConstant( new BigDecimal( range.getMax()));
+        "int64".equals( format)?
+        new LongConstant( Long.valueOf( range.getMax())) :
+
+        new IntegerConstant( Integer.valueOf( range.getMax()));
       }
     else
       {
       NumberDomain<?> numberDomain =       
         type == Type.NUMBER?
-        new DecimalDomain() :
+        new DecimalDomain( range) :
         
         "int64".equals( format)?
-        new LongDomain() :
+        new LongDomain( range) :
         
-        new IntegerDomain();
+        new IntegerDomain( range);
 
-      numberDomain.setRange( range);
-    
       Map<String,Object> multipleOfValues =
         Optional.ofNullable( getPropertyValues( propertyValues, "Multiple-Of"))
         .orElse( emptyMap());
