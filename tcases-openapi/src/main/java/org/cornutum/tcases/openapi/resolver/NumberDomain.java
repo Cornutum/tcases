@@ -276,10 +276,10 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> implements 
         throw new RequestCaseException( String.format( "Invalid number range='%s'", rangeDef));
         }
 
-      Set<String> excluded = 
-        matcher.group(1) != null
-        ? binding.getAnnotationList( "excluded").stream().collect( toSet())
-        : emptySet();
+      Set<String> excluded =
+        Optional.ofNullable( binding.getAnnotationList( "excluded"))
+        .map( values -> values.stream().collect( toSet()))
+        .orElse( emptySet());
 
       String op = matcher.group(2);
       String bound = matcher.group(3);
