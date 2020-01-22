@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
+import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
 
 /**
@@ -57,20 +58,23 @@ public class LongDomain extends NumberDomain<Long>
    */
   public void setRange( Range range)
     {
+    Optional<Range> ifRange = Optional.ofNullable( range);
+
     setExcluded(
-      range.getExcluded().stream()
+      ifRange.map( Range::getExcluded).orElse( emptySet())
+      .stream()
       .map( Long::valueOf)
       .collect( toSet()));
 
     setRange(
-      Optional.ofNullable( range.getMin())
+      Optional.ofNullable( ifRange.map( Range::getMin).orElse( null))
       .map( Long::valueOf)
-      .map( i -> range.isMinExclusive()? i + 1 : i)
+      .map( i -> ifRange.map( Range::isMinExclusive).orElse( false)? i + 1 : i)
       .orElse( -getMaxRange()),
 
-      Optional.ofNullable( range.getMax())
+      Optional.ofNullable( ifRange.map( Range::getMax).orElse( null))
       .map( Long::valueOf)
-      .map( i -> range.isMaxExclusive()? i - 1 : i)
+      .map( i -> ifRange.map( Range::isMaxExclusive).orElse( false)? i - 1 : i)
       .orElse( getMaxRange()));
     }
 

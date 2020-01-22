@@ -7,14 +7,14 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
+import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 /**
  * Defines a set of BigDecimal values that can be used by a request.
@@ -68,18 +68,21 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
    */
   public void setRange( Range range)
     {
+    Optional<Range> ifRange = Optional.ofNullable( range);
+
     setExcluded(
-      range.getExcluded().stream()
+      ifRange.map( Range::getExcluded).orElse( emptySet())
+      .stream()
       .map( BigDecimal::new)
       .collect( toSet()));
 
     BigDecimal min = 
-      Optional.ofNullable( range.getMin())
+      Optional.ofNullable( ifRange.map( Range::getMin).orElse( null))
       .map( BigDecimal::new)
       .orElse( new BigDecimal( -getMaxRange()));
 
     BigDecimal max = 
-      Optional.ofNullable( range.getMax())
+      Optional.ofNullable( ifRange.map( Range::getMax).orElse( null))
       .map( BigDecimal::new)
       .orElse( new BigDecimal( getMaxRange()));
 
@@ -87,8 +90,8 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
     BigDecimal unit = new BigDecimal( BigInteger.ONE, unitScale);
     
     setRange(
-      range.isMinExclusive()? min.add( unit) : min,
-      range.isMaxExclusive()? max.subtract( unit) : max);
+      ifRange.map( Range::isMinExclusive).orElse( false)? min.add( unit) : min,
+      ifRange.map( Range::isMaxExclusive).orElse( false)? max.subtract( unit) : max);
     }
 
   /**
