@@ -28,10 +28,17 @@ public class ObjectDomain implements ValueDomain<Map<String,Object>>
    */
   public ObjectDomain()
     {
+    this( null, null);
+    }
+  /**
+   * Creates a new ObjectDomain instance.
+   */
+  public ObjectDomain( ValueDomain<Integer> additionalPropertyCount, ValueDomain<?> additionalPropertyValues)
+    {
     setPropertyDomains( null);
-    setAdditionalPropertyCount( null);
     setAdditionalPropertyNames( null);
-    setAdditionalPropertyValues( null);
+    setAdditionalPropertyCount( additionalPropertyCount);
+    setAdditionalPropertyValues( additionalPropertyValues);
     }
 
   /**

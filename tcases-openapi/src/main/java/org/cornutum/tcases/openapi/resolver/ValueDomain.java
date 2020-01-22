@@ -44,7 +44,7 @@ public interface ValueDomain<T>
      */
     public static Type[] any()
       {
-      return not( null);
+      return not( NULL);
       }
     };
   
@@ -106,11 +106,20 @@ public interface ValueDomain<T>
   /**
    * Returns a new {@link ArrayDomain} for arrays containing items in this domain.
    */
-  default public ArrayDomain<T> arrayOf( int maxItems)
+  default public ArrayDomain<T> arrayOf( int maxItems, boolean itemsUnique)
     {
     ArrayDomain<T> arrayDomain = new ArrayDomain<T>( maxItems);
     arrayDomain.setItemValues( this);
+    arrayDomain.setItemsUnique( itemsUnique);
     return arrayDomain;
+    }
+
+  /**
+   * Returns a new {@link ArrayDomain} for arrays containing items in this domain.
+   */
+  default public ArrayDomain<T> arrayOf( int maxItems)
+    {
+    return arrayOf( maxItems, false);
     }
 
   /**

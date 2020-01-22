@@ -9,27 +9,26 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.util.ToString;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
- * Defines the set of all values of a given list of types.
+ * Defines the set of values with any of a given list of types.
  */
 public class MultiTypeDomain implements ValueDomain<Object>
   {
   /**
    * Creates a new MultiTypeDomain instance.
    */
-  public MultiTypeDomain( Type[] types)
+  public MultiTypeDomain( Type... types)
     {
-    types_ = types;
+    typeDomains_ =
+      Arrays.stream( types)
+      .map( this::getValueDomain)
+      .collect( toList());
     }
   
   /**
@@ -37,7 +36,7 @@ public class MultiTypeDomain implements ValueDomain<Object>
    */
   public Stream<Object> values( Random random)
     {
-    return Stream.generate( () -> valueOfType( random, types_[ random.nextInt( types_.length)]));
+    return Stream.generate( () -> typeDomains_.get( random.nextInt( typeDomains_.size())).select( random));
     }
 
   /**
@@ -45,7 +44,7 @@ public class MultiTypeDomain implements ValueDomain<Object>
    */
   public boolean contains( Object value)
     {
-    return Arrays.stream( types_).anyMatch( type -> hasType( value, type));
+    return typeDomains_.stream().anyMatch( domain -> domain.containsObject( value));
     }
 
   /**
@@ -53,68 +52,88 @@ public class MultiTypeDomain implements ValueDomain<Object>
    */
   public Type[] getTypes()
     {
-    return types_;
+    return
+      typeDomains_.stream()
+      .map( domain -> domain.getTypes()[0])
+      .toArray( Type[]::new);
     }
 
   /**
-   * Returns a value of the given type.
+   * Returns a value domain of the given type.
    */
-  private Object valueOfType( Random random, Type type)
+  private ValueDomain<?> getValueDomain( Type type)
     {
     return
       type == Type.ARRAY?
-      IntStream.range( 0, types_.length)
-      .mapToObj( i -> random.nextInt())
-      .collect( toList()) :
+      getArrayDomain() :
 
       type == Type.BOOLEAN?
-      new Boolean( random.nextBoolean()) :
+      getBooleanDomain() :
 
       type == Type.INTEGER?
-      new Integer( random.nextInt()) :
+      getIntegerDomain() :
 
       type == Type.NUMBER?
-      new BigDecimal( (double) random.nextFloat() * random.nextInt()) :
+      getNumberDomain() :
 
       type == Type.OBJECT?
-      Arrays.stream( types_)
-      .filter( t -> t != Type.OBJECT)
-      .collect(
-        toMap(
-          t -> t.toString().toLowerCase(),
-          t -> valueOfType( random, t))) :
+      getObjectDomain() :
 
       type == Type.STRING?
-      Long.toHexString( random.nextLong()) :
+      getStringDomain() :
 
       null;      
     }
 
   /**
-   * Returns true if the given value matches the given type.
+   * Returns the definition of array values in this domain.
    */
-  private boolean hasType( Object value, Type type)
+  private ValueDomain<?> getArrayDomain()
+    {
+    return getStringDomain().arrayOf( 3, true);
+    }
+
+  /**
+   * Returns the definition of boolean values in this domain.
+   */
+  private ValueDomain<?> getBooleanDomain()
+    {
+    return new BooleanConstant( true);
+    }
+
+  /**
+   * Returns the definition of integer values in this domain.
+   */
+  private ValueDomain<?> getIntegerDomain()
+    {
+    return new IntegerDomain( -1024, 1024);
+    }
+
+  /**
+   * Returns the definition of number values in this domain.
+   */
+  private ValueDomain<?> getNumberDomain()
+    {
+    return new DecimalDomain( -1024.0, 1024.0);
+    }
+
+  /**
+   * Returns the definition of object values in this domain.
+   */
+  private ValueDomain<?> getObjectDomain()
     {
     return
-      type == Type.ARRAY?
-      value instanceof List :
+      new ObjectDomain(
+        new IntegerDomain( 0, 3),
+        new MultiTypeDomain( Type.not( Type.OBJECT)));
+    }
 
-      type == Type.BOOLEAN?
-      value instanceof Boolean :
-
-      type == Type.INTEGER?
-      value instanceof Integer || value instanceof Long :
-
-      type == Type.NUMBER?
-      value instanceof Number :
-
-      type == Type.OBJECT?
-      value instanceof Map :
-
-      type == Type.STRING?
-      value instanceof String :
-
-      false; 
+  /**
+   * Returns the definition of string values in this domain.
+   */
+  private ValueDomain<?> getStringDomain()
+    {
+    return new AsciiStringDomain( 8);
     }
 
   public String toString()
@@ -125,5 +144,5 @@ public class MultiTypeDomain implements ValueDomain<Object>
       .toString();
     }
 
-  private final Type[] types_;
+  private final List<ValueDomain<?>> typeDomains_;
   }
