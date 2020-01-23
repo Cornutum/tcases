@@ -98,7 +98,7 @@ public interface ValueDomain<T>
   /**
    * Returns a new {@link ValueDef} using this domain.
    */
-  default public ValueDef<T> forValueDef()
+  default public ValueDef<T> valueOf()
     {
     return new ValueDef<T>( this);
     }

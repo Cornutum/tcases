@@ -170,7 +170,7 @@ public class RequestCaseDefiner
 
     ValueDef<?> valueDef =
       valueDefined
-      ? toValueDomain( propertyValues).forValueDef()
+      ? toValueDomain( propertyValues).valueOf()
       : new ValueDef<Object>( null);
       
     valueDef.setValid(
