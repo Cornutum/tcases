@@ -27,7 +27,7 @@ public class Base64Domain extends SequenceDomain<String>
    */
   public Base64Domain()
     {
-    this( 4096);
+    this( 8192);
     }
   
   /**

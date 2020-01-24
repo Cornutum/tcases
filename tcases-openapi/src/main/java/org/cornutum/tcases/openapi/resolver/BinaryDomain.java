@@ -23,7 +23,7 @@ public class BinaryDomain extends SequenceDomain<byte[]>
    */
   public BinaryDomain()
     {
-    this( 4096);
+    this( 8192);
     }
   
   /**

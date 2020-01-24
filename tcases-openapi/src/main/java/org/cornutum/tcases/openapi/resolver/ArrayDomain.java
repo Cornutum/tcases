@@ -27,7 +27,7 @@ public class ArrayDomain<T> implements ValueDomain<List<T>>
    */
   public ArrayDomain()
     {
-    this( 16);
+    this( 256);
     }
   
   /**
