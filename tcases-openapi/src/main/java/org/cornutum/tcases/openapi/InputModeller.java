@@ -2768,7 +2768,7 @@ public abstract class InputModeller
     // ... return the list of remaining ComposedSchema members...
     List<Schema> consolidated =
       memberEquivalents.stream()
-      .map( this::asComposedSchema)
+      .map( SchemaUtils::asComposedSchema)
       .filter( Objects::nonNull)
       .collect( toList());
 
@@ -2808,18 +2808,6 @@ public abstract class InputModeller
 
       // If so, return the equivalent combined leaf schema
       .map( member -> combineSchemas( schema, member));
-    }
-
-  /**
-   * If the given schema is a ComposedSchema instance, returns the casting result.
-   * Otherwise, returns null.
-   */
-  private ComposedSchema asComposedSchema( Schema<?> schema)
-    {
-    return
-      schema instanceof ComposedSchema
-      ? (ComposedSchema) schema
-      : null;
     }
 
   /**

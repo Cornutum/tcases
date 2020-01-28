@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi;
 import static org.cornutum.tcases.openapi.SchemaExtensions.*;
 
 import io.swagger.v3.oas.models.media.ArraySchema;
+import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ZERO;
 
@@ -104,6 +105,18 @@ public final class SchemaUtils
   public static boolean isSchemaType( String type)
     {
     return type == null || SCHEMA_TYPES.contains( type);
+    }
+
+  /**
+   * If the given schema is a ComposedSchema instance, returns the casting result.
+   * Otherwise, returns null.
+   */
+  public static ComposedSchema asComposedSchema( Schema<?> schema)
+    {
+    return
+      schema instanceof ComposedSchema
+      ? (ComposedSchema) schema
+      : null;
     }
 
   /**
