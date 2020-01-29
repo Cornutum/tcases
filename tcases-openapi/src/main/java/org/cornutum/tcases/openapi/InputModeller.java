@@ -24,7 +24,6 @@ import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.BooleanSchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.MediaType;
@@ -54,7 +53,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -69,7 +67,6 @@ import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
-import static java.util.stream.Collectors.toSet;
 
 /**
  * Converts between OpenAPI models and Tcases input models.
@@ -77,7 +74,7 @@ import static java.util.stream.Collectors.toSet;
  * OpenAPI models must conform to <U>OAS version 3</U>.
  * See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
  */
-public abstract class InputModeller
+public abstract class InputModeller extends ModelConditionReporter
   {
   protected enum View { REQUEST, RESPONSE };
   
@@ -95,8 +92,9 @@ public abstract class InputModeller
   protected InputModeller( View view, ModelOptions options)
     {
     view_ = expectedValueOf( view, "Model view");
-    setOptions( Optional.ofNullable( options).orElse( new ModelOptions()));
-    context_ = new NotificationContext( getOptions().getConditionNotifier());
+    options_ = Optional.ofNullable( options).orElse( new ModelOptions());
+    setContext( new NotificationContext( getOptions().getConditionNotifier()));
+    analyzer_ = new SchemaAnalyzer( getContext());
     }
 
   /**
@@ -371,7 +369,7 @@ public abstract class InputModeller
             else
               {
               // Yes, use schema input model for contents
-              contentVar.members( instanceSchemaVars( api, mediaTypeVarTag, false, resolveSchema( api, mediaTypeSchema)));
+              contentVar.members( instanceSchemaVars( api, mediaTypeVarTag, false, analyzeSchema( api, mediaTypeSchema)));
               }
 
             return contentVar.build();
@@ -419,7 +417,7 @@ public abstract class InputModeller
         .orElse( null));
 
     // Resolve any reference to another schema definition
-    return resolveSchema( api, schema);
+    return analyzeSchema( api, schema);
     }
 
   /**
@@ -573,7 +571,7 @@ public abstract class InputModeller
         () -> {
         String headerVarName = toIdentifier( headerName);
         String headerVarTag = status + "Header" + StringUtils.capitalize( headerVarName);
-        Schema<?> headerSchema = resolveSchema( api, header.getSchema());
+        Schema<?> headerSchema = analyzeSchema( api, header.getSchema());
 
         return
           VarSetBuilder.with( headerVarName)
@@ -708,7 +706,7 @@ public abstract class InputModeller
     Set<String> requiredTypes)
     {
     // If this is a ComposedSchema, validate and prepare composed members
-    Optional<ComposedSchema> composedSchema = Optional.ofNullable( asValidComposedSchema( api, instanceSchema));
+    Optional<ComposedSchema> composedSchema = Optional.ofNullable( asComposedSchema( instanceSchema));
     Optional<Schema> composedEquiv = composedSchema.flatMap( c -> combinedAllOf( c));
 
     // Derive input variables for this instance based on its combined schema.
@@ -742,7 +740,7 @@ public abstract class InputModeller
     boolean instanceOptional,
     Schema<?> instanceSchema)
     {
-    Schema<?> mergedSchema = mergeSchemas( context_, instanceSchema, getEffectiveNot( api, instanceSchema));
+    Schema<?> mergedSchema = mergeSchemas( getContext(), instanceSchema, getEffectiveNot( api, instanceSchema));
     
     Stream.Builder<IVarDef> typeVars = Stream.builder();
     typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, mergedSchema));
@@ -803,11 +801,9 @@ public abstract class InputModeller
       .members( arraySizeVar);
     
     Schema<?> itemSchema =
-      Optional.ofNullable(
-        instanceSchema instanceof ArraySchema
-        ? ((ArraySchema) instanceSchema).getItems()
-        : null)
-      .map( base -> mergeSubSchemas( "items", api, base, getNotItems( instanceSchema)))
+      Optional.ofNullable( asArraySchema( instanceSchema))
+      .flatMap( array -> Optional.ofNullable( array.getItems()))
+      .map( items -> mergeSubSchemas( "items", api, items, getNotItems( instanceSchema)))
       .orElse( null);
 
     Schema<?> notItemSchema =
@@ -962,11 +958,8 @@ public abstract class InputModeller
     Schema<?> parentSchema,
     Set<String> requiredTypes)
     {
-    // Verify composed schema types are consistent
-    Set<String> composedTypes = getValidTypes( api, composedSchema);
-
     // Any composed schema type may be valid, unless specific parent schema types are required
-    Set<String> validTypes = Optional.ofNullable( requiredTypes).orElse( composedTypes);
+    Set<String> validTypes = Optional.ofNullable( requiredTypes).orElse( getValidTypes( composedSchema));
 
     Stream.Builder<IVarDef> composedSchemaVars = Stream.builder();
     if( !composedSchema.getAllOf().isEmpty())
@@ -2378,129 +2371,6 @@ public abstract class InputModeller
     }
 
   /**
-   * Returns the instance types that can be validated by the given schema. Returns null if any type can be validated.
-   */
-  private Set<String> getValidTypes( OpenAPI api, Schema<?> schema)
-    {
-    if( !hasValidTypes( schema))
-      {
-      setValidTypes( schema, findValidTypes( api, schema));
-      }
-
-    return SchemaExtensions.getValidTypes( schema);
-    }
-
-  /**
-   * Returns the instance types that can be validated by the given schema. Returns null if any type can be validated.
-   */
-  @SuppressWarnings("rawtypes")
-  private Set<String> findValidTypes( OpenAPI api, Schema<?> schema)
-    {
-    // By default, only the type declared for this schema is valid.
-    Set<String> validTypes =
-      Optional.ofNullable( schema.getType())
-      .map( type -> Stream.of( type).collect( toSet()))
-      .orElse( null);
-
-    ComposedSchema composedSchema = asComposedSchema( schema);
-    if( composedSchema != null)
-      {
-      resolveSchemaMembers( api, composedSchema);
-      
-      // If "allOf" specified, valid types may include only those accepted by all members.
-      List<Schema> allOfMembers = composedSchema.getAllOf();
-      Set<String> allOfTypes =
-        IntStream.range( 0, allOfMembers.size())
-        .mapToObj( i -> new SimpleEntry<Integer,Set<String>>( i, getValidTypes( api, allOfMembers.get(i))))
-        .filter( memberTypes -> memberTypes.getValue() != null)
-        .reduce(
-          (allTypes, memberTypes) ->
-          resultFor( String.format( "allOf[%s]", memberTypes.getKey()),
-            () -> {
-              Set<String> allAccepted = SetUtils.intersection( allTypes.getValue(), memberTypes.getValue()).toSet();
-              if( allAccepted.isEmpty())
-                {
-                throw
-                  new IllegalStateException(
-                    String.format( "Valid types=%s for this member are not accepted by other \"allOf\" members", memberTypes.getValue()));
-                }
-              allTypes.setValue( allAccepted);
-              return allTypes;
-            }))
-        .map( allTypes -> allTypes.getValue())
-        .orElse( null);
-
-      // Valid types include only those accepted by "allOf" and the rest of this schema.
-      if( validTypes == null)
-        {
-        validTypes = allOfTypes;
-        }
-      else if( allOfTypes != null)
-        {
-        if( SetUtils.intersection( validTypes, allOfTypes).isEmpty())
-          {
-          throw new IllegalStateException( String.format( "\"allOf\" members accept types=%s but not required types=%s", allOfTypes, validTypes));
-          }
-        validTypes.retainAll( allOfTypes);
-        }
-        
-      // If "anyOf" specified, valid types may include any accepted by any member.
-      List<Schema> anyOfMembersTyped =
-        composedSchema.getAnyOf()
-        .stream()
-        .filter( member -> getValidTypes( api, member) != null)
-        .collect( toList());
-
-      Set<String> anyOfTypes =
-        anyOfMembersTyped.isEmpty()
-        ? null
-        : anyOfMembersTyped.stream().flatMap( member -> getValidTypes( api, member).stream()).collect( toSet());
-
-      // Valid types include only those accepted by "anyOf" and the rest of this schema.
-      if( validTypes == null)
-        {
-        validTypes = anyOfTypes;
-        }
-      else if( anyOfTypes != null)
-        {
-        if( SetUtils.intersection( validTypes, anyOfTypes).isEmpty())
-          {
-          throw new IllegalStateException( String.format( "\"anyOf\" members accept types=%s but not types=%s", anyOfTypes, validTypes));
-          }
-        validTypes.retainAll( anyOfTypes);
-        }
-        
-      // If "oneOf" specified, valid types may include any accepted by any member.
-      List<Schema> oneOfMembersTyped =
-        composedSchema.getOneOf()
-        .stream()
-        .filter( member -> getValidTypes( api, member) != null)
-        .collect( toList());
-
-      Set<String> oneOfTypes =
-        oneOfMembersTyped.isEmpty()
-        ? null
-        : oneOfMembersTyped.stream().flatMap( member -> getValidTypes( api, member).stream()).collect( toSet());
-
-      // Valid types include only those accepted by "oneOf" and the rest of this schema.
-      if( validTypes == null)
-        {
-        validTypes = oneOfTypes;
-        }
-      else if( oneOfTypes != null)
-        {
-        if( SetUtils.intersection( validTypes, oneOfTypes).isEmpty())
-          {
-          throw new IllegalStateException( String.format( "\"oneOf\" members accept types=%s but not types=%s", oneOfTypes, validTypes));
-          }
-        validTypes.retainAll( oneOfTypes);
-        }
-      }
-
-    return validTypes;
-    }
-
-  /**
    * Returns the subset of the given member schemas that represent inputs that are applicable when only instance of the given
    * types are valid.
    */
@@ -2530,11 +2400,10 @@ public abstract class InputModeller
    */
   private boolean isApplicableInput( OpenAPI api, Schema<?> schema, Set<String> validTypes)
     {
-    Set<String> schemaTypes;
     return
       validTypes == null
-      || (schemaTypes = getValidTypes( api, schema)) == null
-      || !SetUtils.intersection( schemaTypes, validTypes).isEmpty();
+      || getValidTypes( schema) == null
+      || !SetUtils.intersection( getValidTypes( schema), validTypes).isEmpty();
     }
 
   /**
@@ -2545,9 +2414,9 @@ public abstract class InputModeller
     return
       Optional.ofNullable( getNots( schema)).orElse( emptyList())
       .stream()
-      .map( not -> toEffectiveNot( api, schema.getType(), resolveSchema( api, not)))
+      .map( not -> toEffectiveNot( api, schema.getType(), analyzeSchema( api, not)))
       .filter( Objects::nonNull)
-      .reduce( (base, additional) -> resultFor( "not", () -> SchemaUtils.combineNotSchemas( context_, base, additional)))
+      .reduce( (base, additional) -> resultFor( "not", () -> SchemaUtils.combineNotSchemas( getContext(), base, additional)))
       .orElse( null);
     }
 
@@ -2577,7 +2446,7 @@ public abstract class InputModeller
   @SuppressWarnings("rawtypes")
   private Schema effectiveNotFor( String context, OpenAPI api, Schema<?> notSchema)
     {
-    Schema<?> resolvedNot = resolveSchema( api, notSchema);
+    Schema<?> resolvedNot = analyzeSchema( api, notSchema);
     return
       resolvedNot == null
       ? null
@@ -2622,8 +2491,6 @@ public abstract class InputModeller
    */
   private Schema<?> composedEffectiveNotType( OpenAPI api, String instanceType, ComposedSchema notSchema)
     {
-    resolveSchemaMembers( api, notSchema);
-    
     if( !notSchema.getAllOf().isEmpty())
       {
       notifyError(
@@ -2640,12 +2507,12 @@ public abstract class InputModeller
         .mapToObj( i -> resultFor( String.format( "oneOf[%s]", i), () -> toEffectiveNotType( api, instanceType, notSchema.getOneOf().get(i)))))
 
       .filter( Objects::nonNull)
-      .reduce( (base, additional) -> SchemaUtils.combineNotSchemas( context_, base, additional))
+      .reduce( (base, additional) -> SchemaUtils.combineNotSchemas( getContext(), base, additional))
       .orElse( null);
     
     return
       SchemaUtils.combineNotSchemas(
-        context_,
+        getContext(),
         notSchema,
         composedMemberNot);
     }
@@ -2687,8 +2554,6 @@ public abstract class InputModeller
   @SuppressWarnings("rawtypes")
   private Schema<?> composedEffectiveNotNull( OpenAPI api, ComposedSchema notSchema)
     {
-    resolveSchemaMembers( api, notSchema);
-    
     if( notSchema.getAllOf() != null)
       {
       notifyError(
@@ -2721,9 +2586,9 @@ public abstract class InputModeller
       null :
       
       SchemaUtils.combineNotSchemas(
-        context_,
+        getContext(),
         notSchema,
-        memberNots.build().stream().reduce( (base,additional) -> SchemaUtils.combineNotSchemas( context_, base, additional)).orElse( null));
+        memberNots.build().stream().reduce( (base,additional) -> SchemaUtils.combineNotSchemas( getContext(), base, additional)).orElse( null));
     }
 
   /**
@@ -2732,14 +2597,14 @@ public abstract class InputModeller
    */
   private Schema<?> mergeSubSchemas( String context, OpenAPI api, Schema<?> base, Schema<?> not)
     {
-    Schema<?> resolvedBase = resolveSchema( api, base);
-    Schema<?> resolvedNot = resolveSchema( api, not);
+    Schema<?> resolvedBase = analyzeSchema( api, base);
+    Schema<?> resolvedNot = analyzeSchema( api, not);
       
     return
       resultFor( context,
         () ->
         mergeSchemas(
-          context_,
+          getContext(),
           resolvedBase,
           toEffectiveNot( api, resolvedBase.getType(), resolvedNot)));
     }
@@ -2750,7 +2615,7 @@ public abstract class InputModeller
    */
   private Schema<?> combineSchemas( Schema<?> base, Schema<?> additional)
     {
-    return SchemaUtils.combineSchemas( context_, base, additional);
+    return SchemaUtils.combineSchemas( getContext(), base, additional);
     }
 
   /**
@@ -2808,19 +2673,6 @@ public abstract class InputModeller
 
       // If so, return the equivalent combined leaf schema
       .map( member -> combineSchemas( schema, member));
-    }
-
-  /**
-   * If the given schema is not a ComposedSchema instance, returns null.
-   * Otherwise, if the ComposedSchema member types are inconsistent, throws an exception.
-   * Otherwise, returns this ComposedSchema.
-   */
-  private ComposedSchema asValidComposedSchema( OpenAPI api, Schema<?> schema)
-    {
-    return
-      Optional.ofNullable( asComposedSchema( schema))
-      .map( c -> { getValidTypes( api, c); return c;})
-      .orElse( null);
     }
 
   /**
@@ -2932,35 +2784,11 @@ public abstract class InputModeller
     }
 
   /**
-   * Report an warning condition
+   * Returns a fully-analyzed version of the given schema.
    */
-  private void notifyWarning( String reason)
+  private Schema<?> analyzeSchema( OpenAPI api, Schema<?> schema)
     {
-    context_.warn( reason);
-    }
-
-  /**
-   * Report an error condition
-   */
-  private void notifyError( String reason, String resolution)
-    {
-    context_.error( reason, resolution);
-    }
-
-  /**
-   * Returns the result of the given supplier within the specified context.
-   */
-  private <T> T resultFor( String context, Supplier<T> supplier)
-    {
-    return context_.resultFor( context, supplier);
-    }
-
-  /**
-   * Changes the options used by this InputModeller.
-   */
-  private void setOptions( ModelOptions options)
-    {
-    options_ = options;
+    return analyzer_.analyze( api, schema);
     }
 
   /**
@@ -3065,8 +2893,8 @@ public abstract class InputModeller
     }
 
   private final View view_;
-  private final NotificationContext context_;
-  private ModelOptions options_;
+  private final ModelOptions options_;
+  private final SchemaAnalyzer analyzer_;
 
   private static final Pattern uriSegmentPattern_ = Pattern.compile( "([^{}]+)|\\{([^}]+)\\}");
 }

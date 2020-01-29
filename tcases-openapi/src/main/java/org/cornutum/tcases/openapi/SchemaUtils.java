@@ -120,6 +120,18 @@ public final class SchemaUtils
     }
 
   /**
+   * If the given schema is an ArraySchema instance, returns the casting result.
+   * Otherwise, returns null.
+   */
+  public static ArraySchema asArraySchema( Schema<?> schema)
+    {
+    return
+      schema instanceof ArraySchema
+      ? (ArraySchema) schema
+      : null;
+    }
+
+  /**
    * Returns a new schema that validates any instance that satisfies both the base schema and the additional schema.
    * Throws an exception if a consistent combination is not possible.
    */
@@ -397,8 +409,8 @@ public final class SchemaUtils
       : additional.getUniqueItems());     
 
     // Combine items
-    Schema<?> baseItems = base instanceof ArraySchema? ((ArraySchema) base).getItems() : null;
-    Schema<?> additionalItems = additional instanceof ArraySchema? ((ArraySchema) additional).getItems() : null;
+    Schema<?> baseItems = Optional.ofNullable( asArraySchema( base)).map( ArraySchema::getItems).orElse( null);
+    Schema<?> additionalItems = Optional.ofNullable( asArraySchema( additional)).map( ArraySchema::getItems).orElse( null);    
     combined.setItems( context.resultFor( "items", () -> combineSchemas( context, baseItems, additionalItems)));     
 
     return combined;
@@ -893,8 +905,8 @@ public final class SchemaUtils
       }     
 
     // Combine items
-    Schema<?> baseItems = base instanceof ArraySchema? ((ArraySchema) base).getItems() : null;
-    Schema<?> additionalItems = additional instanceof ArraySchema? ((ArraySchema) additional).getItems() : null;
+    Schema<?> baseItems = Optional.ofNullable( asArraySchema( base)).map( ArraySchema::getItems).orElse( null);
+    Schema<?> additionalItems = Optional.ofNullable( asArraySchema( additional)).map( ArraySchema::getItems).orElse( null);    
     combined.setItems( context.resultFor( "items", () -> combineNotSchemas( context, baseItems, additionalItems)));     
 
     return combined;
@@ -1318,8 +1330,8 @@ public final class SchemaUtils
     merged.setUniqueItems( mergeAssertions( "uniqueItems", base.getUniqueItems(), not.getUniqueItems()));
 
     // Merge items
-    Schema<?> baseItems = base instanceof ArraySchema? ((ArraySchema) base).getItems() : null;
-    Schema<?> notItems = not instanceof ArraySchema? ((ArraySchema) not).getItems() : null;
+    Schema<?> baseItems = Optional.ofNullable( asArraySchema( base)).map( ArraySchema::getItems).orElse( null);
+    Schema<?> notItems = Optional.ofNullable( asArraySchema( not)).map( ArraySchema::getItems).orElse( null);    
     merged.setItems( baseItems);
     setNotItems( merged, notItems);
 
