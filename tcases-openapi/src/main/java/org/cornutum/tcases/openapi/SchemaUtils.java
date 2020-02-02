@@ -213,17 +213,39 @@ public final class SchemaUtils
       .map( type -> (Schema<?>) additional.getAdditionalProperties())
       .orElse( null);
 
-    combined.setAdditionalProperties(
-      Boolean.FALSE.equals( base.getAdditionalProperties()) || Boolean.FALSE.equals( additional.getAdditionalProperties())?
-      (Object) Boolean.FALSE :
+    if( baseExtraSchema != null)
+      {
+      combined.setAdditionalProperties(
+        additionalExtraSchema != null?
+        (Object) context.resultFor( "additionalProperties", () -> combineSchemas( context, baseExtraSchema, additionalExtraSchema)) :
 
-      baseExtraSchema != null && additionalExtraSchema != null?
-      (Object) context.resultFor( "additionalProperties", () -> combineSchemas( context, baseExtraSchema, additionalExtraSchema)) :
-      
-      baseExtraSchema != null?
-      (Object) baseExtraSchema :
+        !Boolean.FALSE.equals( additional.getAdditionalProperties())?
+        baseExtraSchema :
 
-      (Object) additionalExtraSchema);      
+        Boolean.FALSE);
+      }
+    else if( additionalExtraSchema != null)
+      {
+      combined.setAdditionalProperties(
+        !Boolean.FALSE.equals( base.getAdditionalProperties())?
+        additionalExtraSchema :
+
+        Boolean.FALSE);
+      }
+    else
+      {
+      combined.setAdditionalProperties(
+        base.getAdditionalProperties() == null?
+        additional.getAdditionalProperties() :
+
+        additional.getAdditionalProperties() == null?
+        base.getAdditionalProperties() :
+        
+        combineAssertions(
+          "additionalProperties: %s",
+          (Boolean) base.getAdditionalProperties(),
+          (Boolean) additional.getAdditionalProperties()));
+      }
 
     // Combine maxProperties
     combined.setMaxProperties(
@@ -404,9 +426,13 @@ public final class SchemaUtils
 
     // Combine uniqueItems
     combined.setUniqueItems(
-      Boolean.TRUE.equals( base.getUniqueItems())
-      ? base.getUniqueItems() 
-      : additional.getUniqueItems());     
+      base.getUniqueItems() == null?
+      additional.getUniqueItems() :
+
+      additional.getUniqueItems() == null?
+      base.getUniqueItems() :
+
+      combineAssertions( "uniqueItems: %s", base.getUniqueItems(), additional.getUniqueItems()));
 
     // Combine items
     Schema<?> baseItems = Optional.ofNullable( asArraySchema( base)).map( ArraySchema::getItems).orElse( null);
@@ -588,21 +614,34 @@ public final class SchemaUtils
 
     // Combine nullable
     combined.setNullable(
-      Boolean.TRUE.equals( base.getNullable())
-      ? additional.getNullable()
-      : base.getNullable());
+      base.getNullable() == null?
+      additional.getNullable() :
+
+      additional.getNullable() == null?
+      base.getNullable() :
+
+      combineAssertions( "nullable: %s", base.getNullable(), additional.getNullable()));
+
 
     // Combine readOnly
     combined.setReadOnly(
-      Boolean.TRUE.equals( base.getReadOnly())
-      ? base.getReadOnly() 
-      : additional.getReadOnly());
+      base.getReadOnly() == null?
+      additional.getReadOnly() :
+
+      additional.getReadOnly() == null?
+      base.getReadOnly() :
+
+      combineAssertions( "readOnly: %s", base.getReadOnly(), additional.getReadOnly()));
 
     // Combine writeOnly
     combined.setWriteOnly(
-      Boolean.TRUE.equals( base.getWriteOnly())
-      ? base.getWriteOnly() 
-      : additional.getWriteOnly());
+      base.getWriteOnly() == null?
+      additional.getWriteOnly() :
+
+      additional.getWriteOnly() == null?
+      base.getWriteOnly() :
+
+      combineAssertions( "writeOnly: %s", base.getWriteOnly(), additional.getWriteOnly()));
 
     if( Boolean.TRUE.equals( combined.getReadOnly()) && Boolean.TRUE.equals( combined.getWriteOnly()))
       {
