@@ -60,6 +60,13 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .readOnly( false)
@@ -69,8 +76,6 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -130,6 +135,13 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "string").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .format( "otherFormat")
@@ -140,8 +152,6 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -198,6 +208,13 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .format( "otherFormat")
@@ -207,8 +224,6 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "integer").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -266,14 +281,19 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "object").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .writeOnly( true)
       .uniqueItems( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -333,6 +353,13 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "number").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .nullable( false)
@@ -344,8 +371,6 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "number").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -405,6 +430,13 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( true)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .format( "otherFormat")
@@ -415,8 +447,6 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -475,6 +505,13 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .format( "otherFormat")
@@ -485,8 +522,6 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -542,14 +577,19 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( true)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .nullable( true)
       .uniqueItems( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -602,6 +642,13 @@ public class CombineArraySchemaTest extends OpenApiTest
       .minItems( 45)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .nullable( false)
@@ -610,8 +657,6 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "string").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -670,6 +715,13 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "array")
       .format( "otherFormat")
@@ -680,8 +732,6 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 

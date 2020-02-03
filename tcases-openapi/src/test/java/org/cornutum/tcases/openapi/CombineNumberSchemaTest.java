@@ -59,6 +59,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 1.2)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "float")
@@ -70,8 +77,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.6)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -128,6 +133,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "double")
@@ -139,8 +151,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -197,6 +207,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.06)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "float")
@@ -208,8 +225,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.12)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -265,6 +280,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( null)
@@ -275,8 +297,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.10)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -331,6 +351,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.01)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "double")
@@ -342,8 +369,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -400,6 +425,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.3)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( null)
@@ -410,8 +442,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.1)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -468,6 +498,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "double")
@@ -479,8 +516,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -537,6 +572,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.1)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( null)
@@ -548,8 +590,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.3)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -606,6 +646,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", combineSchemas( context, new Schema<Object>(), base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "float")
@@ -617,8 +664,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.5)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
