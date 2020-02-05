@@ -274,7 +274,7 @@ public final class SchemaUtils
       additional.getMinProperties());
 
     // Combine required
-    combined.setRequired(
+    List<String> combinedRequired =
       Stream.concat(
         Optional.ofNullable( base.getRequired()).map( required -> required.stream()).orElse( Stream.empty()),
         Optional.ofNullable( additional.getRequired()).map( required -> required.stream()).orElse( Stream.empty()))
@@ -282,8 +282,29 @@ public final class SchemaUtils
         () -> new LinkedHashSet<String>(),
         (set, property) -> set.add( property),
         (set, other) -> set.addAll( other))
-      .stream().collect( toList()));
+      .stream().collect( toList());
+    combined.setRequired( combinedRequired);
 
+    // Combine not required
+    setNotRequired( combined, getNotRequired( base));
+    addNotRequired( combined, getNotRequired( additional));
+
+    Optional.ofNullable( getNotRequired( combined))
+      .flatMap( notRequired -> {
+        return
+          combinedRequired.stream()
+          .filter( property -> notRequired.contains( property))
+          .findFirst();
+        })
+      .ifPresent( property -> {
+        throw
+          new IllegalStateException(
+            String.format(
+              "Can't combine schema requiring {required: [%s]} with schema requiring {not: {required: [%s]}}",
+              property,
+              property));
+        });
+    
     // Combine properties
     Map<String,Schema> basePropertyDefs = Optional.ofNullable( base.getProperties()).orElse( emptyMap());
     Map<String,Schema> additionalPropertyDefs = Optional.ofNullable( additional.getProperties()).orElse( emptyMap());
@@ -352,6 +373,10 @@ public final class SchemaUtils
     // Combine pattern
     setPatterns( combined, getPatterns( base));
     addPatterns( combined, getPatterns( additional));
+
+    // Combine not patterns
+    setNotPatterns( combined, getNotPatterns( base));
+    addNotPatterns( combined, getNotPatterns( additional));
       
     return combined;
     }
@@ -532,7 +557,11 @@ public final class SchemaUtils
       base.getMultipleOf() :
 
       combineMultipleOf( base.getMultipleOf(), additional.getMultipleOf())); 
-    
+
+    // Combine not multipleOfs
+    setNotMultipleOfs( combined, getNotMultipleOfs( base));
+    addNotMultipleOfs( combined, getNotMultipleOfs( additional));
+
     return combined;
     }
 
@@ -571,9 +600,39 @@ public final class SchemaUtils
   public static <T extends Schema> T combineGenericSchemas( NotificationContext context, T combined, Schema base, Schema additional)
     {
     // Combine type
+    String baseType = base.getType();
+    String additionalType = additional.getType();
+
+    if( baseType == null)
+      {
+      Optional.ofNullable( getNotTypes( base))
+        .filter( notTypes -> notTypes.contains( additionalType))
+        .ifPresent( notTypes -> {
+          throw
+            new IllegalStateException(
+              String.format(
+                "Can't combine schema requiring {type: [%s]} with schema requiring {not: {type: [%s]}}",
+                additionalType,
+                additionalType));
+          });
+      }
+    else if( additionalType == null)
+      {
+      Optional.ofNullable( getNotTypes( additional))
+        .filter( notTypes -> notTypes.contains( baseType))
+        .ifPresent( notTypes -> {
+          throw
+            new IllegalStateException(
+              String.format(
+                "Can't combine schema requiring {type: [%s]} with schema requiring {not: {type: [%s]}}",
+                baseType,
+                baseType));
+          });
+      }
+
     combined.setType(
-      Optional.ofNullable( base.getType())
-      .orElse( additional.getType()));
+      Optional.ofNullable( baseType)
+      .orElse( additionalType));
 
     // Combine default
     combined.setDefault(
@@ -612,6 +671,10 @@ public final class SchemaUtils
       .map( enums -> enums.stream().collect( toList()))
       .orElseThrow( () -> new IllegalStateException( String.format( "enum=%s is not consistent with base enum=%s", additional.getEnum(), base.getEnum()))));
 
+    // Combine not enums
+    setNotEnums( combined, getNotEnums( base));
+    addNotEnums( combined, getNotEnums( additional));
+    
     // Combine nullable
     combined.setNullable(
       base.getNullable() == null?
@@ -1666,6 +1729,14 @@ public final class SchemaUtils
       }
 
     return merged;
+    }
+
+  /**
+   * Returns a new empty schema.
+   */
+  public static Schema<?> emptySchema()
+    {
+    return new Schema<Object>();
     }
 
   private static final Set<String> SCHEMA_TYPES =

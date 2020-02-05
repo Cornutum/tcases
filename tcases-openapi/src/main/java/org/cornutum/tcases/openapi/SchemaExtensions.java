@@ -53,6 +53,51 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns the composed set of types that must not be required when validating the given schema.
+   */
+  public static Set<String> getNotTypes( Schema<?> schema)
+    {
+    return getExtension( schema, EXT_NOT_TYPES);
+    }
+
+  /**
+   * Changes the composed set of types that must not be required when validating the given schema.
+   */
+  public static void setNotTypes( Schema<?> schema, Iterable<String> notTypes)
+    {
+    removeExtension( schema, EXT_NOT_TYPES);
+    addNotTypes( schema, notTypes);
+    }
+
+  /**
+   * Adds to the composed set of types that must not be required when validating the given schema.
+   */
+  public static void addNotType( Schema<?> schema, String type)
+    {
+    Set<String> notTypes = getExtension( schema, EXT_NOT_TYPES);
+    if( notTypes == null)
+      {
+      notTypes = new LinkedHashSet<String>();
+      setExtension( schema, EXT_NOT_TYPES, notTypes);
+      }
+    notTypes.add( type);
+    }
+
+  /**
+   * Adds to the composed set of types that must not be required when validating the given schema.
+   */
+  public static void addNotTypes( Schema<?> schema, Iterable<String> notTypes)
+    {
+    if( notTypes != null)
+      {
+      for( String type : notTypes)
+        {
+        addNotType( schema, type);
+        }
+      }
+    }
+
+  /**
    * Changes the instance types that can be validated by the given schema. 
    */
   public static void setValidTypes( Schema<?> schema, Set<String> validTypes)
@@ -61,7 +106,23 @@ public final class SchemaExtensions
     }
 
   /**
-   * Returns the composed set of patterns to match when validating the given "string" schema.
+   * Returns the disjunctive normal form of this given schema.
+   */
+  public static Dnf getDnf( Schema<?> schema)
+    {
+    return getExtension( schema, EXT_DNF);
+    }
+
+  /**
+   * Changes the disjunctive normal form of this given schema.
+   */
+  public static void setDnf( Schema<?> schema, Dnf dnf)
+    {
+    setExtension( schema, EXT_DNF, dnf);
+    }
+
+  /**
+   * Returns the composed set of patterns to match when validating the given string schema.
    */
   public static Set<String> getPatterns( Schema<?> schema)
     {
@@ -72,7 +133,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Changes the composed set of patterns to match when validating the given "string" schema.
+   * Changes the composed set of patterns to match when validating the given string schema.
    */
   public static void setPatterns( Schema<?> schema, Iterable<String> patterns)
     {
@@ -82,7 +143,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Changes the composed set of patterns to match when validating the given "string" schema.
+   * Changes the composed set of patterns to match when validating the given string schema.
    */
   public static void setPatterns( Schema<?> schema, String... patterns)
     {
@@ -90,7 +151,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Adds to the composed set of patterns to match when validating the given "string" schema.
+   * Adds to the composed set of patterns to match when validating the given string schema.
    */
   public static void addPatterns( Schema<?> schema, Iterable<String> patterns)
     {
@@ -104,7 +165,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Adds to the composed set of patterns to match when validating the given "string" schema.
+   * Adds to the composed set of patterns to match when validating the given string schema.
    */
   public static void addPattern( Schema<?> schema, String pattern)
     {
@@ -347,7 +408,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Adds to the composed set of multipleOfs to not match when validating the given "string" schema.
+   * Adds to the composed set of multipleOfs to not match when validating the given numeric schema.
    */
   public static void addNotMultipleOfs( Schema<?> schema, Iterable<BigDecimal> multipleOfs)
     {
@@ -403,7 +464,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Adds to the composed set of enums to not match when validating the given "string" schema.
+   * Adds to the composed set of enums to not match when validating the given schema.
    */
   public static void addNotEnums( Schema<?> schema, Iterable<Object> enums)
     {
@@ -467,7 +528,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Adds to the composed set of properties to not match when validating the given "string" schema.
+   * Adds to the composed set of properties to not match when validating the given object schema.
    */
   @SuppressWarnings("rawtypes")
   public static void addNotProperties( Schema<?> schema, Map<String,Schema> properties)
@@ -477,6 +538,51 @@ public final class SchemaExtensions
       for( String property : properties.keySet())
         {
         addNotProperty( schema, property, properties.get( property));
+        }
+      }
+    }
+
+  /**
+   * Returns the composed set of properties that must not be required when validating the given object schema.
+   */
+  public static Set<String> getNotRequired( Schema<?> schema)
+    {
+    return getExtension( schema, EXT_NOT_REQUIRED);
+    }
+
+  /**
+   * Changes the composed set of properties that must not be required when validating the given object schema.
+   */
+  public static void setNotRequired( Schema<?> schema, Iterable<String> notRequired)
+    {
+    removeExtension( schema, EXT_NOT_REQUIRED);
+    addNotRequired( schema, notRequired);
+    }
+
+  /**
+   * Adds to the composed set of properties that must not be required when validating the given object schema.
+   */
+  public static void addNotRequired( Schema<?> schema, String property)
+    {
+    Set<String> notRequired = getExtension( schema, EXT_NOT_REQUIRED);
+    if( notRequired == null)
+      {
+      notRequired = new LinkedHashSet<String>();
+      setExtension( schema, EXT_NOT_REQUIRED, notRequired);
+      }
+    notRequired.add( property);
+    }
+
+  /**
+   * Adds to the composed set of properties that must not be required when validating the given object schema.
+   */
+  public static void addNotRequired( Schema<?> schema, Iterable<String> notRequired)
+    {
+    if( notRequired != null)
+      {
+      for( String property : notRequired)
+        {
+        addNotRequired( schema, property);
         }
       }
     }
@@ -543,6 +649,7 @@ public final class SchemaExtensions
     return Optional.ofNullable( schema.getExtensions()).orElse( emptyMap());
     }
 
+  private static final String EXT_DNF = "x-tcases-dnf";
   private static final String EXT_NOTS = "x-tcases-nots";
   private static final String EXT_NOT_ADDITIONALPROPERTIES = "x-tcases-not-additionalProperties";
   private static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
@@ -551,6 +658,8 @@ public final class SchemaExtensions
   private static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
   private static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";
   private static final String EXT_NOT_PROPERTIES = "x-tcases-not-properties"; 
+  private static final String EXT_NOT_REQUIRED = "x-tcases-not-required";
+  private static final String EXT_NOT_TYPES = "x-tcases-not-types";
   private static final String EXT_PATTERNS = "x-tcases-patterns";
   private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
   }
