@@ -44,7 +44,7 @@ public final class SchemaOps
 
     return
       schema == null?
-      new ArrayList<Schema<?>>() :
+      notGeneric( emptySchema()) :
 
       "object".equals( type)?
       notObject( schema) :
@@ -283,6 +283,17 @@ public final class SchemaOps
     Optional.ofNullable( schema.getWriteOnly())
       .map( writeOnly -> assertNot( schema, writeOnly, (s,v) -> s.setWriteOnly( !v)))
       .ifPresent( s -> alternatives.add( s));
+
+    // Empty schema?
+    if( alternatives.isEmpty())
+      {
+      // Yes, return an alternative schema that will invalidate any instance.
+      alternatives.add(
+      assertNot(
+        emptySchema(),
+        SCHEMA_TYPES,
+        (s,v) -> { setNotTypes( s, v); s.setNullable( false); }));
+      }
     
     return alternatives;
     }
