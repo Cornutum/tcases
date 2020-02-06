@@ -22,7 +22,6 @@ import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.BooleanSchema;
-import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.NumberSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -32,14 +31,11 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.servers.ServerVariable;
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -1835,6 +1831,17 @@ public abstract class InputModeller extends ModelConditionReporter
     }
 
   /**
+   * Returns true if the base value is a multiple of the additional value.
+   */
+  private boolean isMultipleOf( BigDecimal base, BigDecimal additional)
+    {
+    return
+      base.compareTo( additional) >= 0
+      &&
+      base.remainder( additional).compareTo( BigDecimal.ZERO) == 0;
+    }
+
+  /**
    * Return the largest number less than or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
    */
   private BigDecimal multipleBelow( BigDecimal value, boolean inclusive, BigDecimal multipleOf, Set<BigDecimal> notMultipleOfs)
@@ -2044,210 +2051,6 @@ public abstract class InputModeller extends ModelConditionReporter
   private String alternativeProperty( String instanceTag, int i)
     {
     return instanceTag + "Alternative" + i;
-    }
-
-  /**
-   * Returns the effective "not" schema for instances of the given type that is equivalent to the given schema.
-   * Returns null if this schema is not effective.
-   */
-  private Schema<?> toEffectiveNotType( OpenAPI api, String instanceType, Schema<?> notSchema)
-    {
-    boolean effective = notSchema.getType() == null || Objects.equals( instanceType, notSchema.getType());
-    if( !effective)
-      {
-      notifyWarning(
-        String.format(
-          "Ignoring superfluous \"not\" schema of type=%s: always valid for instances of type=%s",
-          notSchema.getType(),
-          instanceType));
-      }
-    else if( notSchema.getNot() != null)
-      {
-      notifyError(
-        "The \"not\" schema contains another \"not\" assertion.",
-        "Ignoring unsupported double-negative assertion.");
-      }
-
-    return
-      !effective?
-      null :
-
-      notSchema instanceof ComposedSchema?
-      composedEffectiveNotType( api, instanceType, (ComposedSchema) notSchema) :
-
-      notSchema;
-    }
-
-  /**
-   * Returns the effective "not" schema for instances of the given type that is equivalent to the given schema.
-   * Returns null if this schema is not effective.
-   */
-  private Schema<?> composedEffectiveNotType( OpenAPI api, String instanceType, ComposedSchema notSchema)
-    {
-    if( !notSchema.getAllOf().isEmpty())
-      {
-      notifyError(
-        "\"not: {allOf: [...]}\" assertions are not supported",
-        "Ignoring \"allOf\" assertions in \"not\" schema");
-      }
-
-    Schema<?> composedMemberNot =
-      Stream.concat(
-        IntStream.range( 0, notSchema.getAnyOf().size())
-        .mapToObj( i -> resultFor( String.format( "anyOf[%s]", i), () -> toEffectiveNotType( api, instanceType, notSchema.getAnyOf().get(i)))),
-
-        IntStream.range( 0, notSchema.getOneOf().size())
-        .mapToObj( i -> resultFor( String.format( "oneOf[%s]", i), () -> toEffectiveNotType( api, instanceType, notSchema.getOneOf().get(i)))))
-
-      .filter( Objects::nonNull)
-      .reduce( (base, additional) -> SchemaUtils.combineNotSchemas( getContext(), base, additional))
-      .orElse( null);
-    
-    return
-      SchemaUtils.combineNotSchemas(
-        getContext(),
-        notSchema,
-        composedMemberNot);
-    }
-
-  /**
-   * Returns the effective "not" schema for instances of any type that is equivalent to the given schema.
-   * Returns null if this schema is not effective.
-   */
-  private Schema<?> toEffectiveNotNull( OpenAPI api, Schema<?> notSchema)
-    {
-    boolean effective = notSchema.getType() == null;
-    if( !effective)
-      {
-      notifyError(
-        String.format( "Can't apply \"not\" schema of type=%s when parent schema type is undefined", notSchema.getType()),
-        "Ignoring inapplicable \"not\" schema");
-      }
-    else if( notSchema.getNot() != null)
-      {
-      notifyError(
-        "The \"not\" schema contains another \"not\" assertion.",
-        "Ignoring unsupported double-negative assertion.");
-      }
-
-    return
-      !effective?
-      null :
-
-      notSchema instanceof ComposedSchema?
-      composedEffectiveNotNull( api, (ComposedSchema) notSchema) :
-
-      notSchema;
-    }
-
-  /**
-   * Returns the effective "not" schema for instances of any type that is equivalent to the given schema.
-   * Returns null if this schema is not effective.
-   */
-  @SuppressWarnings("rawtypes")
-  private Schema<?> composedEffectiveNotNull( OpenAPI api, ComposedSchema notSchema)
-    {
-    if( notSchema.getAllOf() != null)
-      {
-      notifyError(
-        "\"not: {allOf: [...]}\" assertions are not supported",
-        "Ignoring \"allOf\" assertions in \"not\" schema");
-      }
-
-    ListBuilder<Schema<?>> memberNots = ListBuilder.to();
-    boolean effective = true;
-    Schema<?> memberNot; 
-
-    for( Iterator<Schema> anyOfs = notSchema.getAnyOf().iterator();
-         
-         effective && anyOfs.hasNext();
-
-         memberNot = toEffectiveNotNull( api, anyOfs.next()),
-           effective = memberNot != null,
-           memberNots.add( Optional.ofNullable( memberNot)));
-
-    for( Iterator<Schema> oneOfs = notSchema.getOneOf().iterator();
-         
-         effective && oneOfs.hasNext();
-
-         memberNot = toEffectiveNotNull( api, oneOfs.next()),
-           effective = memberNot != null,
-           memberNots.add( Optional.ofNullable( memberNot)));
-    
-    return
-      !effective?
-      null :
-      
-      SchemaUtils.combineNotSchemas(
-        getContext(),
-        notSchema,
-        memberNots.build().stream().reduce( (base,additional) -> SchemaUtils.combineNotSchemas( getContext(), base, additional)).orElse( null));
-    }
-
-  /**
-   * Returns a new schema formed by combining the base schema with assertions from the additional schema.
-   * Throws an exception if a consistent combination is not possible.
-   */
-  private Schema<?> combineSchemas( Schema<?> base, Schema<?> additional)
-    {
-    return SchemaUtils.combineSchemas( getContext(), base, additional);
-    }
-
-  /**
-   * Returns a consolidated list of "allOf" members by combining all leaf members into a single schema.
-   */
-  @SuppressWarnings("rawtypes")
-  private List<Schema> combinedAllOf( List<Schema> members)
-    {
-    // After replacing any ComposedSchema members with equivalent leaf schemas...
-    List<Schema> memberEquivalents =
-      members.stream()
-      .map( member -> Optional.ofNullable( asComposedSchema( member)).flatMap( c -> combinedAllOf( c)).orElse( member))
-      .collect( toList());
-      
-    // ... return the list of remaining ComposedSchema members...
-    List<Schema> consolidated =
-      memberEquivalents.stream()
-      .map( SchemaUtils::asComposedSchema)
-      .filter( Objects::nonNull)
-      .collect( toList());
-
-    // ... adding a single schema combining all leaf members (if any)
-    IntStream.range( 0, memberEquivalents.size())
-      .mapToObj( i -> new SimpleEntry<Integer,Schema>( i, memberEquivalents.get(i)))
-      .filter( memberEntry -> asComposedSchema( memberEntry.getValue()) == null)
-      .reduce(
-        (combinedEntry, memberEntry) ->
-        resultFor( String.format( "allOf[%s]", memberEntry.getKey()),
-          () -> new SimpleEntry<Integer,Schema>( memberEntry.getKey(), combineSchemas( combinedEntry.getValue(), memberEntry.getValue()))))
-      .map( combinedEntry -> combinedEntry.getValue())
-      .ifPresent( combined -> consolidated.add( 0, combined));
-
-    return consolidated;
-    }
-
-  /**
-   * The given ComposedSchema, if it consists solely of "allOf" members, may be equivalent to a single leaf schema.
-   * If so, returns the equivalent schema. Otherwise, returns <CODE>Optional.emtpy()</CODE>.
-   */
-  @SuppressWarnings({ "rawtypes" })
-  private Optional<Schema> combinedAllOf( ComposedSchema schema)
-    {
-    return
-      // Does this schema define only "allOf" members?
-      schema.getAllOf().isEmpty() || !schema.getAnyOf().isEmpty() || !schema.getOneOf().isEmpty()?
-      Optional.empty() :
-      
-      // Yes, does its consolidated "allOf" list consist of a single member?
-      Optional.of( combinedAllOf( schema.getAllOf()))
-      .filter( members -> members.size() == 1)
-
-      // ...which is a leaf schema?
-      .map( members -> members.get(0))
-      .filter( member -> asComposedSchema( member) == null)
-
-      // If so, return the equivalent combined leaf schema
-      .map( member -> combineSchemas( schema, member));
     }
 
   /**

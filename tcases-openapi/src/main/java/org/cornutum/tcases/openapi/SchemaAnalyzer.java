@@ -602,7 +602,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
     return
       Dnf.exists( dnf)?
       dnf.getAlternatives().stream()
-      .map( alternative -> Dnf.of( SchemaOps.not( alternative)))
+      .map( alternative -> Dnf.of( SchemaUtils.not( alternative)))
       .reduce( this::allOf)
       .orElse( dnf)
 
