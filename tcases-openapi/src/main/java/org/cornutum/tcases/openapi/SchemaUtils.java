@@ -88,7 +88,7 @@ public final class SchemaUtils
    * Otherwise, returns null.
    */
   @SafeVarargs
-  public static String impliedType( String type, Schema<?> schema, Function<Schema<?>,Object>... accessors)
+  private static String impliedType( String type, Schema<?> schema, Function<Schema<?>,Object>... accessors)
     {
     return
       Stream.of( accessors)
@@ -194,7 +194,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings({ "rawtypes", "unchecked" })
-  public static Schema<?> combineObjectSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineObjectSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineGenericSchemas( context, base, additional);
 
@@ -329,7 +329,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings("rawtypes")
-  public static Schema<?> combineStringSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineStringSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineGenericSchemas( context, base, additional);
 
@@ -386,7 +386,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings("rawtypes")
-  public static Schema<?> combineIntegerSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineIntegerSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineNumericSchemas( context, base, additional);
 
@@ -410,7 +410,7 @@ public final class SchemaUtils
    * Returns a new schema that validates any instance that satisfies both the base schema and the additional schema.
    * Throws an exception if a consistent combination is not possible.
    */
-  public static Schema<?> combineBooleanSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineBooleanSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
     {
     return combineGenericSchemas( context, base, additional);
     }
@@ -419,7 +419,7 @@ public final class SchemaUtils
    * Returns a new schema that validates any instance that satisfies both the base schema and the additional schema.
    * Throws an exception if a consistent combination is not possible.
    */
-  public static Schema<?> combineArraySchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineArraySchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
     {
     ArraySchema combined = combineGenericSchemas( context, new ArraySchema(), base, additional);
 
@@ -472,7 +472,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings("rawtypes")
-  public static Schema<?> combineNumberSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineNumberSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineNumericSchemas( context, base, additional);
 
@@ -497,7 +497,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings("rawtypes")
-  public static Schema<?> combineNumericSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineNumericSchemas( NotificationContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineGenericSchemas( context, base, additional);
 
@@ -587,9 +587,9 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings({ "rawtypes" })
-  public static Schema combineGenericSchemas( NotificationContext context, Schema base, Schema additional)
+  private static Schema combineGenericSchemas( NotificationContext context, Schema base, Schema additional)
     {
-    return combineGenericSchemas( context, new Schema<Object>(), base, additional);
+    return combineGenericSchemas( context, emptySchema(), base, additional);
     }
 
   /**
@@ -597,7 +597,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings({ "rawtypes", "unchecked" })
-  public static <T extends Schema> T combineGenericSchemas( NotificationContext context, T combined, Schema base, Schema additional)
+  private static <T extends Schema> T combineGenericSchemas( NotificationContext context, T combined, Schema base, Schema additional)
     {
     // Combine type
     String baseType = base.getType();
@@ -616,7 +616,7 @@ public final class SchemaUtils
                 additionalType));
           });
       }
-    else if( additionalType == null)
+    if( additionalType == null)
       {
       Optional.ofNullable( getNotTypes( additional))
         .filter( notTypes -> notTypes.contains( baseType))
@@ -633,6 +633,9 @@ public final class SchemaUtils
     combined.setType(
       Optional.ofNullable( baseType)
       .orElse( additionalType));
+
+    setNotTypes( combined, getNotTypes( base));
+    addNotTypes( combined, getNotTypes( additional));
 
     // Combine default
     combined.setDefault(
@@ -1689,7 +1692,7 @@ public final class SchemaUtils
   /**
    * Returns the combination of the given boolean assertions. 
    */
-  public static Boolean combineAssertions( String assertionFormat, boolean base, boolean additional)
+  private static Boolean combineAssertions( String assertionFormat, boolean base, boolean additional)
     {
     if( base != additional)
       {
@@ -1739,7 +1742,7 @@ public final class SchemaUtils
     return new Schema<Object>();
     }
 
-  private static final Set<String> SCHEMA_TYPES =
+  public static final Set<String> SCHEMA_TYPES =
     Arrays.asList( "array", "boolean", "integer", "number", "object", "string")
     .stream().collect( toSet());
   }
