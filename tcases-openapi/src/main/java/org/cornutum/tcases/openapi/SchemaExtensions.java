@@ -432,18 +432,10 @@ public final class SchemaExtensions
   /**
    * Changes the composed set of enums to not match when validating the given schema.
    */
-  public static void setNotEnums( Schema<?> schema, Iterable<Object> enums)
+  public static void setNotEnums( Schema<?> schema, Iterable<?> enums)
     {
     removeExtension( schema, EXT_NOT_ENUMS);
     addNotEnums( schema, enums);
-    }
-
-  /**
-   * Changes the composed set of enums to not match when validating the given schema.
-   */
-  public static void setNotEnums( Schema<?> schema, Object... enums)
-    {
-    setNotEnums( schema, Arrays.asList( enums));
     }
 
   /**
@@ -466,7 +458,7 @@ public final class SchemaExtensions
   /**
    * Adds to the composed set of enums to not match when validating the given schema.
    */
-  public static void addNotEnums( Schema<?> schema, Iterable<Object> enums)
+  public static void addNotEnums( Schema<?> schema, Iterable<?> enums)
     {
     if( enums != null)
       {

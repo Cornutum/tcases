@@ -23,7 +23,7 @@
                         "schema": {
                             "oneOf": [
                                 {
-                                    "enum": [ true, false ]
+                                    "enum": [ false ]
                                 },
                                 {
                                     "enum": [ 1, 2, 3 ]

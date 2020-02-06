@@ -634,8 +634,11 @@ public final class SchemaUtils
       Optional.ofNullable( baseType)
       .orElse( additionalType));
 
-    setNotTypes( combined, getNotTypes( base));
-    addNotTypes( combined, getNotTypes( additional));
+    if( combined.getType() == null)
+      {
+      setNotTypes( combined, getNotTypes( base));
+      addNotTypes( combined, getNotTypes( additional));
+      }
 
     // Combine default
     combined.setDefault(
