@@ -702,19 +702,26 @@ public abstract class InputModeller extends ModelConditionReporter
    */
   private Stream<IVarDef> allSchemaVars( OpenAPI api, String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    List<Schema<?>> alternatives = getDnf( instanceSchema).getAlternatives().stream().collect( toList());
+    List<Schema<?>> alternatives =
+      Optional.ofNullable( instanceSchema)
+      .flatMap( s -> Optional.ofNullable( getDnf( s)))
+      .map( dnf -> dnf.getAlternatives().stream().collect( toList()))
+      .orElse( emptyList());
 
     return
+      alternatives.isEmpty()?
+      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, instanceSchema) :
+      
       alternatives.size() == 1?
-      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, alternatives.get(0), null) :
+      typeSchemaVars( api, instanceVarTag, instanceOptional, alternatives.get(0)) :
 
-      alternativeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, alternatives);
+      alternativeSchemaVars( api, instanceVarTag, instanceOptional, alternatives);
     }
   
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the given alternative schemas for the given instance.
    */
-  private Stream<IVarDef> alternativeSchemaVars( OpenAPI api, String instanceType, String instanceVarTag, boolean instanceOptional, List<Schema<?>> alternatives)
+  private Stream<IVarDef> alternativeSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema<?>> alternatives)
     {
     return
       Stream.of(
@@ -736,7 +743,7 @@ public abstract class InputModeller extends ModelConditionReporter
             i->
             VarSetBuilder.with( String.valueOf( i))
             .when( has( alternativeProperty( instanceVarTag, i)))
-            .members( typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, alternatives.get(i), i))
+            .members( typeSchemaVars( api, instanceVarTag, instanceOptional, alternatives.get(i)))
             .build()))
         
         .build());
@@ -745,13 +752,15 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> typeSchemaVars(
-    OpenAPI api,
-    String instanceType,
-    String instanceVarTag,
-    boolean instanceOptional,
-    Schema<?> instanceSchema,
-    Integer alternative)
+  private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+    {
+    return typeSchemaVars( api, instanceSchema.getType(), instanceVarTag, instanceOptional, instanceSchema);
+    }
+  
+  /**
+   * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
+   */
+  private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     Stream.Builder<IVarDef> typeVars = Stream.builder();
 
