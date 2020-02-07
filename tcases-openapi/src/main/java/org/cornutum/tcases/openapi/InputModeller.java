@@ -1650,11 +1650,9 @@ public abstract class InputModeller extends ModelConditionReporter
         {
         // Add boundary condition values
         TreeSet<Integer> boundaryValues = new TreeSet<Integer>();
-        if( minLength != null)
-          {
-          boundaryValues.add( minLength);
-          boundaryValues.add( minLength - 1);
-          }
+        int effMinLength = Optional.ofNullable( minLength).orElse(0);
+        boundaryValues.add( effMinLength);
+        boundaryValues.add( effMinLength - 1);
         if( maxLength != null)
           {
           boundaryValues.add( maxLength);
@@ -1667,7 +1665,7 @@ public abstract class InputModeller extends ModelConditionReporter
             length.values
               ( VarValueDefBuilder.with( i)
                 .type(
-                  (minLength != null && i < minLength) || (maxLength != null && i > maxLength)
+                  (i < effMinLength) || (maxLength != null && i > maxLength)
                   ? VarValueDef.Type.FAILURE
                   : VarValueDef.Type.VALID)
                 .build());
@@ -1675,7 +1673,6 @@ public abstract class InputModeller extends ModelConditionReporter
           }
         if( minLength == null)
           {
-          length.values( VarValueDefBuilder.with( 0).build());
           if( maxLength > 1)
             {
             length.values( VarValueDefBuilder.with( String.format( "< %s", maxLength)).build());
