@@ -358,7 +358,7 @@ public abstract class InputModeller extends ModelConditionReporter
             else
               {
               // Yes, use schema input model for contents
-              contentVar.members( instanceSchemaVars( api, mediaTypeVarTag, false, analyzeSchema( api, mediaTypeSchema)));
+              contentVar.members( instanceSchemaVars( mediaTypeVarTag, false, analyzeSchema( api, mediaTypeSchema)));
               }
 
             return contentVar.build();
@@ -384,7 +384,7 @@ public abstract class InputModeller extends ModelConditionReporter
           VarSetBuilder.with( parameterVarName)
           .type( parameterIn)
           .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
-          .members( instanceSchemaVars( api, parameterVarName, parameterSchema))
+          .members( instanceSchemaVars( parameterVarName, parameterSchema))
           .build();
         });
     }
@@ -405,7 +405,6 @@ public abstract class InputModeller extends ModelConditionReporter
         .map( content -> content.values().stream().findFirst().map( MediaType::getSchema).orElse( null))
         .orElse( null));
 
-    // Resolve any reference to another schema definition
     return analyzeSchema( api, schema);
     }
 
@@ -474,7 +473,7 @@ public abstract class InputModeller extends ModelConditionReporter
           Stream.of(
             VarDefBuilder.with( "Status-Code")
             .type( "response")
-            .values( responseStatusValues( api, responses))
+            .values( responseStatusValues( responses))
             .build()),
 
           responseVars( api, responses)));
@@ -483,7 +482,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the value definitions for the response status code variable.
    */
-  private Stream<VarValueDef> responseStatusValues( OpenAPI api, ApiResponses responses)
+  private Stream<VarValueDef> responseStatusValues( ApiResponses responses)
     {
     List<String> statusCodes =
       responses.keySet().stream()
@@ -565,7 +564,7 @@ public abstract class InputModeller extends ModelConditionReporter
         return
           VarSetBuilder.with( headerVarName)
           .members( headerDefinedVar( headerVarTag, header))
-          .members( instanceSchemaVars( api, headerVarTag, headerSchema))
+          .members( instanceSchemaVars( headerVarTag, headerSchema))
           .build();
         });
     }
@@ -669,34 +668,34 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private Stream<IVarDef> instanceSchemaVars( String instanceVarTag, Schema<?> instanceSchema)
     {
-    return instanceSchemaVars( api, instanceVarTag, true, instanceSchema);      
+    return instanceSchemaVars( instanceVarTag, true, instanceSchema);      
     }
 
   /**
    * Returns the {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> instanceSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> instanceSchemaVars( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     String instanceType = Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null);
     return
       // Missing schema (equivalent to an empty schema)?
       instanceSchema == null?
-      Stream.of( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema)) :
+      Stream.of( instanceTypeVar( instanceVarTag, instanceOptional, instanceSchema)) :
 
       // Unknown schema type?
       !isSchemaType( instanceType)?
       unknownSchemaVars( instanceType) :
 
       // No, return all input variables for this schema
-      allSchemaVars( api, instanceType, instanceVarTag, instanceOptional, instanceSchema);
+      allSchemaVars( instanceType, instanceVarTag, instanceOptional, instanceSchema);
     }
   
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by every alternative schema for the given instance.
    */
-  private Stream<IVarDef> allSchemaVars( OpenAPI api, String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> allSchemaVars( String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     List<Schema<?>> alternatives =
       Optional.ofNullable( instanceSchema)
@@ -706,18 +705,18 @@ public abstract class InputModeller extends ModelConditionReporter
 
     return
       alternatives.isEmpty()?
-      typeSchemaVars( api, instanceType, instanceVarTag, instanceOptional, instanceSchema) :
+      typeSchemaVars( instanceType, instanceVarTag, instanceOptional, instanceSchema) :
       
       alternatives.size() == 1?
-      typeSchemaVars( api, instanceVarTag, instanceOptional, alternatives.get(0)) :
+      typeSchemaVars( instanceVarTag, instanceOptional, alternatives.get(0)) :
 
-      alternativeSchemaVars( api, instanceVarTag, instanceOptional, alternatives);
+      alternativeSchemaVars( instanceVarTag, instanceOptional, alternatives);
     }
   
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the given alternative schemas for the given instance.
    */
-  private Stream<IVarDef> alternativeSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, List<Schema<?>> alternatives)
+  private Stream<IVarDef> alternativeSchemaVars( String instanceVarTag, boolean instanceOptional, List<Schema<?>> alternatives)
     {
     return
       Stream.of(
@@ -739,7 +738,7 @@ public abstract class InputModeller extends ModelConditionReporter
             i->
             VarSetBuilder.with( String.valueOf( i))
             .when( has( alternativeProperty( instanceVarTag, i)))
-            .members( typeSchemaVars( api, instanceVarTag, instanceOptional, alternatives.get(i)))
+            .members( typeSchemaVars( instanceVarTag, instanceOptional, alternatives.get(i)))
             .build()))
         
         .build());
@@ -748,22 +747,22 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> typeSchemaVars( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    return typeSchemaVars( api, instanceSchema.getType(), instanceVarTag, instanceOptional, instanceSchema);
+    return typeSchemaVars( instanceSchema.getType(), instanceVarTag, instanceOptional, instanceSchema);
     }
   
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> typeSchemaVars( OpenAPI api, String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> typeSchemaVars( String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     Stream.Builder<IVarDef> typeVars = Stream.builder();
 
-    typeVars.add( instanceTypeVar( api, instanceVarTag, instanceOptional, instanceSchema));
+    typeVars.add( instanceTypeVar( instanceVarTag, instanceOptional, instanceSchema));
     if( instanceType != null)
       {
-      typeVars.add( typeValueVar( api, instanceType, instanceVarTag, instanceSchema));
+      typeVars.add( typeValueVar( instanceType, instanceVarTag, instanceSchema));
       }
 
     return typeVars.build();
@@ -772,26 +771,26 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the type-specific {@link IVarDef input variable} for the value defined by the given instance schema.
    */
-  private IVarDef typeValueVar( OpenAPI api, String instanceType, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef typeValueVar( String instanceType, String instanceVarTag, Schema<?> instanceSchema)
     {
     return
       "object".equals( instanceType)?
-      objectValueVar( api, instanceVarTag, instanceSchema) :
+      objectValueVar( instanceVarTag, instanceSchema) :
       
       "string".equals( instanceType)?
-      stringValueVar( api, instanceVarTag, instanceSchema) :
+      stringValueVar( instanceVarTag, instanceSchema) :
       
       "integer".equals( instanceType)?
-      numberValueVar( api, instanceVarTag, instanceSchema) :
+      numberValueVar( instanceVarTag, instanceSchema) :
       
       "boolean".equals( instanceType)?
-      booleanValueVar( api, instanceVarTag, instanceSchema) :
+      booleanValueVar( instanceVarTag, instanceSchema) :
 
       "array".equals( instanceType)?
-      arrayValueVar( api, instanceVarTag, instanceSchema) :
+      arrayValueVar( instanceVarTag, instanceSchema) :
       
       // "number".equals( instanceType)
-      numberValueVar( api, instanceVarTag, instanceSchema);
+      numberValueVar( instanceVarTag, instanceSchema);
     }
 
   /**
@@ -806,9 +805,9 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variables} defined by the given array instance.
    */
-  private IVarDef arrayValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef arrayValueVar( String instanceVarTag, Schema<?> instanceSchema)
     {
-    VarDef arraySizeVar = arraySizeVar( api, instanceVarTag, instanceSchema);
+    VarDef arraySizeVar = arraySizeVar( instanceVarTag, instanceSchema);
 
     VarSetBuilder valueVar =
       VarSetBuilder.with( "Items")
@@ -823,13 +822,13 @@ public abstract class InputModeller extends ModelConditionReporter
     if( Optional.ofNullable( instanceSchema.getMaxItems()).orElse( Integer.MAX_VALUE) > 0)
       {
       valueVar
-        .members( arrayItemsVar( api, instanceVarTag, itemSchema, arraySizeVar));
+        .members( arrayItemsVar( instanceVarTag, itemSchema, arraySizeVar));
       }
 
     if( Optional.ofNullable( instanceSchema.getMaxItems()).orElse( Integer.MAX_VALUE) > 1)
       {
       valueVar
-        .members( arrayUniqueItemsVar( api, instanceVarTag, instanceSchema));
+        .members( arrayUniqueItemsVar( instanceVarTag, instanceSchema));
       }
     
     return valueVar.build();
@@ -838,7 +837,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link VarDef input variable} representing the size of an array instance.
    */
-  private VarDef arraySizeVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema)
+  private VarDef arraySizeVar( String instanceVarTag, Schema<?> arraySchema)
     {
     // Arrays size constrained?
     VarDefBuilder size = VarDefBuilder.with( "Size");
@@ -923,7 +922,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the items of the given array instance.
    */
-  private IVarDef arrayItemsVar( OpenAPI api, String instanceVarTag, Schema<?> itemSchema, VarDef arraySizeVar)
+  private IVarDef arrayItemsVar( String instanceVarTag, Schema<?> itemSchema, VarDef arraySizeVar)
     {
     boolean allowSizeZero = Optional.ofNullable( arraySizeVar.getValue( 0)).map( VarValueDef::isValid).orElse( false);
     ICondition itemsCondition = allowSizeZero? not( arrayItemsNoneProperty( instanceVarTag)) : null;
@@ -933,14 +932,14 @@ public abstract class InputModeller extends ModelConditionReporter
         () ->
         VarSetBuilder.with( "Contains")
         .when( itemsCondition)
-        .members( instanceSchemaVars( api, arrayItemsProperty( instanceVarTag), false, itemSchema))
+        .members( instanceSchemaVars( arrayItemsProperty( instanceVarTag), false, itemSchema))
         .build());
     }
 
   /**
    * Returns the {@link IVarDef input variable} representing the unique items property of an array instance.
    */
-  private IVarDef arrayUniqueItemsVar( OpenAPI api, String instanceVarTag, Schema<?> arraySchema)
+  private IVarDef arrayUniqueItemsVar( String instanceVarTag, Schema<?> arraySchema)
     {
     boolean uniqueRequired = Boolean.TRUE.equals( arraySchema.getUniqueItems());
 
@@ -956,7 +955,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the type of a instance.
    */
-  private IVarDef instanceTypeVar( OpenAPI api, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private IVarDef instanceTypeVar( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     String type = instanceSchema == null? null : instanceSchema.getType();
     Boolean nullable = instanceSchema == null? Boolean.FALSE : instanceSchema.getNullable();
@@ -990,7 +989,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the values for a number instance.
    */
-  private IVarDef numberValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef numberValueVar( String instanceVarTag, Schema<?> instanceSchema)
     {
     VarSetBuilder value =
       VarSetBuilder.with( "Value")
@@ -1196,7 +1195,7 @@ public abstract class InputModeller extends ModelConditionReporter
    * Returns the {@link IVarDef input variable} representing the values for an object instance.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef objectValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef objectValueVar( String instanceVarTag, Schema<?> instanceSchema)
     {
     // Ensure schema defined for all required properties, using a default empty schema if necessary.
     Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
@@ -1265,8 +1264,8 @@ public abstract class InputModeller extends ModelConditionReporter
     return
       VarSetBuilder.with( "Value")
       .when( has( instanceValueProperty( instanceVarTag)))
-      .members( iterableOf( objectPropertyCountVar( api, instanceVarTag, instanceSchema, constraints)))
-      .members( objectPropertiesVar( api, instanceVarTag, instanceSchema, constraints))
+      .members( iterableOf( objectPropertyCountVar( instanceVarTag, instanceSchema, constraints)))
+      .members( objectPropertiesVar( instanceVarTag, instanceSchema, constraints))
       .build();
     }
 
@@ -1301,7 +1300,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the number of properties for an object instance.
    */
-  private Optional<IVarDef> objectPropertyCountVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
+  private Optional<IVarDef> objectPropertyCountVar( String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
     {
     // Accumulate property count values depending on constraints
     ListBuilder<VarValueDef> countValues = ListBuilder.to();
@@ -1482,7 +1481,7 @@ public abstract class InputModeller extends ModelConditionReporter
    * Returns the {@link IVarDef input variable} representing the properties of an object instance.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef objectPropertiesVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
+  private IVarDef objectPropertiesVar( String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
     {
     Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
 
@@ -1500,14 +1499,13 @@ public abstract class InputModeller extends ModelConditionReporter
         .map(
           propertyDef ->
           objectPropertyVar(
-            api,
             instanceVarTag,
             propertyDef.getKey(),
             constraints.allRequired() || requiredProperties.contains( propertyDef.getKey()),
             propertyDef.getValue())))
 
       .members(
-        objectAdditionalVar( api, instanceVarTag, instanceSchema, constraints))
+        objectAdditionalVar( instanceVarTag, instanceSchema, constraints))
 
       .build();
     }
@@ -1515,7 +1513,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the values for an object instance property.
    */
-  private IVarDef objectPropertyVar( OpenAPI api, String instanceVarTag, String propertyName, boolean required, Schema<?> propertySchema)
+  private IVarDef objectPropertyVar( String instanceVarTag, String propertyName, boolean required, Schema<?> propertySchema)
     {
     return
       resultFor( propertyName,
@@ -1533,7 +1531,7 @@ public abstract class InputModeller extends ModelConditionReporter
           
           VarSetBuilder.with( propertyVarName)
           .members( instanceDefinedVar( propertyVarTag, required, objectPropertiesProperty( instanceVarTag)))
-          .members( instanceSchemaVars( api, propertyVarTag, propertySchema))
+          .members( instanceSchemaVars( propertyVarTag, propertySchema))
           .build();
         });
     }
@@ -1541,7 +1539,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the additional properties of an object instance.
    */
-  private IVarDef objectAdditionalVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
+  private IVarDef objectAdditionalVar( String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
     {
     boolean allowed =
       constraints.hasAdditional()
@@ -1562,7 +1560,7 @@ public abstract class InputModeller extends ModelConditionReporter
 
     return
       propertySchema != null?
-      objectPropertyVar( api, instanceVarTag, "Additional", required, propertySchema) :
+      objectPropertyVar( instanceVarTag, "Additional", required, propertySchema) :
 
       VarDefBuilder.with( "Additional")
       .values(
@@ -1580,7 +1578,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the values for a string instance.
    */
-  private IVarDef stringValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef stringValueVar( String instanceVarTag, Schema<?> instanceSchema)
     {
     IVarDef valueVar;
 
@@ -1773,7 +1771,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the values for a boolean instance.
    */
-  private IVarDef booleanValueVar( OpenAPI api, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef booleanValueVar( String instanceVarTag, Schema<?> instanceSchema)
     {
     List<Boolean> possibleValues = Arrays.asList( Boolean.TRUE, Boolean.FALSE);
     List<Boolean> excludedValues = getBooleanEnum( getNotEnums( instanceSchema));
