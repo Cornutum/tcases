@@ -10,16 +10,16 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="param0,param0AnyOf0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="0"/>
-        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -33,9 +33,9 @@
         <Var name="param0.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.0.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" NA="true">
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -43,16 +43,16 @@
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="param0,param0AnyOf0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="128"/>
-        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="128"/>
+        <Var name="param0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -67,9 +67,9 @@
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.0.Type" value="null" failure="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" NA="true">
+        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -84,9 +84,9 @@
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.0.Type" value="Not string" failure="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" NA="true">
+        <Var name="param0.Type" value="Not string" failure="true"/>
+        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -94,16 +94,16 @@
     <TestCase id="5" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="param0,param0AnyOf0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="129" failure="true"/>
-        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="129" failure="true"/>
+        <Var name="param0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -111,16 +111,16 @@
     <TestCase id="6" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="param0,param0AnyOf0Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.0.Type" value="string"/>
-        <Var name="param0.AnyOf.Members.0.Value.Length" value="0"/>
-        <Var name="param0.AnyOf.Members.0.Value.Matches-Pattern" value="No" failure="true">
+        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Value.Matches-Pattern" value="No" failure="true">
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>

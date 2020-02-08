@@ -20,138 +20,36 @@
           </Value>
         </Var>
         <VarSet name="application-json" when="application-json">
-          <VarSet name="AnyOf">
-            <VarSet name="Members">
-              <VarSet name="0">
-                <VarSet name="AnyOf">
-                  <VarSet name="Members">
-                    <Var name="Validated">
-                      <Value name="1">
-                        <When>
-                          <Equals property="application-jsonAnyOf0AnyOfMemberValidated" count="1"/>
-                        </When>
-                      </Value>
-                      <Value name="0" failure="true">
-                        <When>
-                          <Not property="application-jsonAnyOf0AnyOfMemberValidated">
-                          </Not>
-                        </When>
-                      </Value>
-                      <Value name="&gt; 1" once="true">
-                        <When>
-                          <MoreThan property="application-jsonAnyOf0AnyOfMemberValidated" min="1"/>
-                        </When>
-                      </Value>
-                    </Var>
-                    <VarSet name="0">
-                      <Var name="Type">
-                        <Value name="number" property="application-jsonAnyOf0AnyOf0Value"/>
-                      </Var>
-                      <VarSet name="Value" when="application-jsonAnyOf0AnyOf0Value">
-                        <Var name="Is">
-                          <Value name="0.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
-                          <Value name="&gt; 0.0" property="application-jsonAnyOf0AnyOf0Unbounded"/>
-                        </Var>
-                        <VarSet name="Multiple-Of" when="application-jsonAnyOf0AnyOf0Unbounded">
-                          <Var name="2_0">
-                            <Value name="Yes" property="application-jsonAnyOf0AnyOfMemberValidated">
-                              <Has name="multipleOf" value="2.0"/>
-                            </Value>
-                            <Value name="No">
-                              <Has name="memberValidated" value="false"/>
-                            </Value>
-                          </Var>
-                        </VarSet>
-                      </VarSet>
-                    </VarSet>
-                    <VarSet name="1">
-                      <Var name="Type">
-                        <Value name="number" property="application-jsonAnyOf0AnyOf1Value"/>
-                      </Var>
-                      <VarSet name="Value" when="application-jsonAnyOf0AnyOf1Value">
-                        <Var name="Is">
-                          <Value name="100.0" property="application-jsonAnyOf0AnyOfMemberValidated"/>
-                          <Value name="102.0">
-                            <Has name="memberValidated" value="false"/>
-                          </Value>
-                          <Value name="&lt; 100.0" property="application-jsonAnyOf0AnyOf1Unbounded, application-jsonAnyOf0AnyOfMemberValidated"/>
-                        </Var>
-                        <VarSet name="Multiple-Of" when="application-jsonAnyOf0AnyOf1Unbounded">
-                          <Var name="2_0">
-                            <Value name="Yes">
-                              <Has name="multipleOf" value="2.0"/>
-                            </Value>
-                          </Var>
-                        </VarSet>
-                      </VarSet>
-                    </VarSet>
-                  </VarSet>
-                </VarSet>
-                <VarSet name="OneOf">
-                  <VarSet name="Members">
-                    <Var name="Validated">
-                      <Value name="1">
-                        <When>
-                          <Equals property="application-jsonAnyOf0OneOfMemberValidated" count="1"/>
-                        </When>
-                      </Value>
-                      <Value name="0" failure="true">
-                        <When>
-                          <Not property="application-jsonAnyOf0OneOfMemberValidated">
-                          </Not>
-                        </When>
-                      </Value>
-                      <Value name="&gt; 1" failure="true">
-                        <When>
-                          <MoreThan property="application-jsonAnyOf0OneOfMemberValidated" min="1"/>
-                        </When>
-                      </Value>
-                    </Var>
-                    <VarSet name="0">
-                      <Var name="Type">
-                        <Value name="number" property="application-jsonAnyOf0OneOf0Value"/>
-                      </Var>
-                      <VarSet name="Value" when="application-jsonAnyOf0OneOf0Value">
-                        <Var name="Is">
-                          <Value name="&lt; 0" property="application-jsonAnyOf0OneOf0Unbounded"/>
-                          <Value name="0" property="application-jsonAnyOf0OneOfMemberValidated"/>
-                          <Value name="&gt; 0" property="application-jsonAnyOf0OneOf0Unbounded"/>
-                        </Var>
-                        <VarSet name="Multiple-Of" when="application-jsonAnyOf0OneOf0Unbounded">
-                          <Var name="2_0">
-                            <Value name="Yes" property="application-jsonAnyOf0OneOfMemberValidated">
-                              <Has name="multipleOf" value="2.0"/>
-                            </Value>
-                            <Value name="No">
-                              <Has name="memberValidated" value="false"/>
-                            </Value>
-                          </Var>
-                        </VarSet>
-                      </VarSet>
-                    </VarSet>
-                    <VarSet name="1">
-                      <Var name="Type">
-                        <Value name="number" property="application-jsonAnyOf0OneOf1Value"/>
-                      </Var>
-                      <VarSet name="Value" when="application-jsonAnyOf0OneOf1Value">
-                        <Var name="Is">
-                          <Value name="0.0" property="application-jsonAnyOf0OneOfMemberValidated"/>
-                          <Value name="2.0">
-                            <Has name="memberValidated" value="false"/>
-                          </Value>
-                          <Value name="&lt; 0.0" property="application-jsonAnyOf0OneOf1Unbounded, application-jsonAnyOf0OneOfMemberValidated"/>
-                        </Var>
-                        <VarSet name="Multiple-Of" when="application-jsonAnyOf0OneOf1Unbounded">
-                          <Var name="2_0">
-                            <Value name="Yes">
-                              <Has name="multipleOf" value="2.0"/>
-                            </Value>
-                          </Var>
-                        </VarSet>
-                      </VarSet>
-                    </VarSet>
-                  </VarSet>
-                </VarSet>
+          <VarSet name="Alternative">
+            <Var name="Used">
+              <Value name="0" property="application-jsonAlternative0"/>
+              <Value name="1" property="application-jsonAlternative1"/>
+            </Var>
+            <VarSet name="0" when="application-jsonAlternative0">
+              <Var name="Type">
+                <Value name="number" property="application-jsonValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not number" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="application-jsonValue">
+                <Var name="Is">
+                  <Value name="0.0" failure="true"/>
+                  <Value name="2.0"/>
+                  <Value name="100.0"/>
+                  <Value name="102.0" failure="true"/>
+                  <Value name="2.1" failure="true"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="1" when="application-jsonAlternative1">
+              <Var name="Type">
+                <Value name="number" property="application-jsonValue"/>
+              </Var>
+              <VarSet name="Value" when="application-jsonValue">
+                <Var name="Is">
+                  <Value name="-4.0" failure="true"/>
+                  <Value name="-2.0"/>
+                </Var>
               </VarSet>
             </VarSet>
           </VarSet>

@@ -10,7 +10,7 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAnyOf0AnyOf0Value,application-jsonAnyOf0AnyOf1Value,application-jsonAnyOf0AnyOfMemberValidated,application-jsonAnyOf0OneOf0Value,application-jsonAnyOf0OneOf1Value,application-jsonAnyOf0OneOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -18,30 +18,17 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" value="0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" value="102.0">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" value="0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" value="2.0">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.Used" value="0"/>
+        <Var name="Body.application-json.Alternative.0.Type" value="number"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="2.0"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAnyOf0AnyOf0Unbounded,application-jsonAnyOf0AnyOf0Value,application-jsonAnyOf0AnyOf1Value,application-jsonAnyOf0AnyOfMemberValidated,application-jsonAnyOf0OneOf0Unbounded,application-jsonAnyOf0OneOf0Value,application-jsonAnyOf0OneOf1Value,application-jsonAnyOf0OneOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -49,32 +36,17 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="&gt; 1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" value="&gt; 0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" value="Yes">
-          <Has name="multipleOf" value="2.0"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" value="100.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" value="&lt; 0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" value="Yes">
-          <Has name="multipleOf" value="2.0"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" value="2.0">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.Used" value="1"/>
+        <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" value="number"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" value="-2.0"/>
       </Input>
     </TestCase>
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAnyOf0AnyOf0Unbounded,application-jsonAnyOf0AnyOf0Value,application-jsonAnyOf0AnyOf1Unbounded,application-jsonAnyOf0AnyOf1Value,application-jsonAnyOf0AnyOfMemberValidated,application-jsonAnyOf0OneOf0Unbounded,application-jsonAnyOf0OneOf0Value,application-jsonAnyOf0OneOf1Value,application-jsonAnyOf0OneOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -82,62 +54,14 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" value="&gt; 0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" value="No">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" value="&lt; 100.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" value="Yes">
-          <Has name="multipleOf" value="2.0"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" value="No">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" value="0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.Used" value="0"/>
+        <Var name="Body.application-json.Alternative.0.Type" value="number"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="100.0"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAnyOf0AnyOf0Value,application-jsonAnyOf0AnyOf1Value,application-jsonAnyOf0AnyOfMemberValidated,application-jsonAnyOf0OneOf0Unbounded,application-jsonAnyOf0OneOf0Value,application-jsonAnyOf0OneOf1Unbounded,application-jsonAnyOf0OneOf1Value,application-jsonAnyOf0OneOfMemberValidated,Content"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" value="0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" value="102.0">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" value="&lt; 0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" value="No">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" value="&lt; 0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" value="Yes">
-          <Has name="multipleOf" value="2.0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="3" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="server" value="/"/>
@@ -145,23 +69,14 @@
       <Input type="request">
         <Var name="Body.Defined" value="No" failure="true"/>
         <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.Used" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="4" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="Content"/>
@@ -172,26 +87,35 @@
         <Var name="Body.Media-Type" value="Other" failure="true">
           <Has name="excluded" value="&apos;application/json&apos;"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.Used" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Alternative.Used" value="0"/>
+        <Var name="Body.application-json.Alternative.0.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAnyOf0AnyOf0Unbounded,application-jsonAnyOf0AnyOf0Value,application-jsonAnyOf0AnyOf1Value,application-jsonAnyOf0OneOf0Value,application-jsonAnyOf0OneOf1Value,application-jsonAnyOf0OneOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -199,32 +123,17 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="0" failure="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" value="&gt; 0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" value="No">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" value="102.0">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" value="0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" value="2.0">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.Used" value="0"/>
+        <Var name="Body.application-json.Alternative.0.Type" value="Not number" failure="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAnyOf0AnyOf0Unbounded,application-jsonAnyOf0AnyOf0Value,application-jsonAnyOf0AnyOf1Value,application-jsonAnyOf0AnyOfMemberValidated,application-jsonAnyOf0OneOf0Unbounded,application-jsonAnyOf0OneOf0Value,application-jsonAnyOf0OneOf1Value,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -232,34 +141,17 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" value="&gt; 0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" value="Yes">
-          <Has name="multipleOf" value="2.0"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" value="102.0">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="0" failure="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" value="No">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" value="2.0">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.Used" value="0"/>
+        <Var name="Body.application-json.Alternative.0.Type" value="number"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="0.0" failure="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAnyOf0AnyOf0Unbounded,application-jsonAnyOf0AnyOf0Value,application-jsonAnyOf0AnyOf1Value,application-jsonAnyOf0AnyOfMemberValidated,application-jsonAnyOf0OneOf0Value,application-jsonAnyOf0OneOf1Value,application-jsonAnyOf0OneOfMemberValidated,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -267,24 +159,47 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.Validated" value="1"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Is" value="&gt; 0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.0.Value.Multiple-Of.2_0" value="Yes">
-          <Has name="multipleOf" value="2.0"/>
+        <Var name="Body.application-json.Alternative.Used" value="0"/>
+        <Var name="Body.application-json.Alternative.0.Type" value="number"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="102.0" failure="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Is" value="102.0">
-          <Has name="memberValidated" value="false"/>
+        <Var name="Body.application-json.Alternative.Used" value="0"/>
+        <Var name="Body.application-json.Alternative.0.Type" value="number"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="2.1" failure="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/anyOf"/>
+      <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.AnyOf.Members.0.AnyOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Is" value="0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Type" value="number"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Is" value="0.0"/>
-        <Var name="Body.application-json.AnyOf.Members.0.OneOf.Members.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.Used" value="1"/>
+        <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Type" value="number"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" value="-4.0" failure="true"/>
       </Input>
     </TestCase>
   </Function>
