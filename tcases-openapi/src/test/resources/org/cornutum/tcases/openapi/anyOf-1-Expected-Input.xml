@@ -24,6 +24,7 @@
             <Var name="Used">
               <Value name="0" property="application-jsonAlternative0"/>
               <Value name="1" property="application-jsonAlternative1"/>
+              <Value name="2" property="application-jsonAlternative2"/>
             </Var>
             <VarSet name="0" when="application-jsonAlternative0">
               <Var name="Type">
@@ -33,11 +34,9 @@
               </Var>
               <VarSet name="Value" when="application-jsonValue">
                 <Var name="Is">
+                  <Value name="-4.0" failure="true"/>
+                  <Value name="-2.0"/>
                   <Value name="0.0" failure="true"/>
-                  <Value name="2.0"/>
-                  <Value name="100.0"/>
-                  <Value name="102.0" failure="true"/>
-                  <Value name="2.1" failure="true"/>
                 </Var>
               </VarSet>
             </VarSet>
@@ -47,9 +46,36 @@
               </Var>
               <VarSet name="Value" when="application-jsonValue">
                 <Var name="Is">
-                  <Value name="-4.0" failure="true"/>
-                  <Value name="-2.0"/>
+                  <Value name="100.0" failure="true"/>
+                  <Value name="102.0"/>
+                  <Value name="&gt; 102.0" property="application-jsonUnbounded"/>
                 </Var>
+                <VarSet name="Multiple-Of" when="application-jsonUnbounded">
+                  <Var name="2_0">
+                    <Value name="Yes">
+                      <Has name="multipleOf" value="2.0"/>
+                    </Value>
+                    <Value name="No" failure="true"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+            <VarSet name="2" when="application-jsonAlternative2">
+              <Var name="Type">
+                <Value name="number" property="application-jsonValue"/>
+              </Var>
+              <VarSet name="Value" when="application-jsonValue">
+                <Var name="Is">
+                  <Value name="-2.0"/>
+                  <Value name="&lt; -2.0" property="application-jsonUnbounded"/>
+                </Var>
+                <VarSet name="Multiple-Of" when="application-jsonUnbounded">
+                  <Var name="2_0">
+                    <Value name="Yes">
+                      <Has name="multipleOf" value="2.0"/>
+                    </Value>
+                  </Var>
+                </VarSet>
               </VarSet>
             </VarSet>
           </VarSet>

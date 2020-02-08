@@ -20,18 +20,39 @@
           </Value>
         </Var>
         <VarSet name="application-json" when="application-json">
-          <Var name="Type">
-            <Value name="number" property="application-jsonValue"/>
-            <Value name="null" once="true"/>
-            <Value name="Not number" failure="true"/>
-          </Var>
-          <VarSet name="Value" when="application-jsonValue">
-            <Var name="Is">
-              <Value name="-0.1" failure="true"/>
-              <Value name="0.0"/>
-              <Value name="100.0"/>
-              <Value name="100.1" failure="true"/>
+          <VarSet name="Alternative">
+            <Var name="Used">
+              <Value name="0" property="application-jsonAlternative0"/>
+              <Value name="1" property="application-jsonAlternative1"/>
             </Var>
+            <VarSet name="0" when="application-jsonAlternative0">
+              <Var name="Type">
+                <Value name="number" property="application-jsonValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not number" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="application-jsonValue">
+                <Var name="Is">
+                  <Value name="-0.1" failure="true"/>
+                  <Value name="0.0"/>
+                  <Value name="100.0"/>
+                  <Value name="100.1" failure="true"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="1" when="application-jsonAlternative1">
+              <Var name="Type">
+                <Value name="number" property="application-jsonValue"/>
+                <Value name="null" once="true"/>
+              </Var>
+              <VarSet name="Value" when="application-jsonValue">
+                <Var name="Is">
+                  <Value name="-0.1"/>
+                  <Value name="0.0" failure="true"/>
+                  <Value name="&lt; -0.1"/>
+                </Var>
+              </VarSet>
+            </VarSet>
           </VarSet>
         </VarSet>
       </VarSet>

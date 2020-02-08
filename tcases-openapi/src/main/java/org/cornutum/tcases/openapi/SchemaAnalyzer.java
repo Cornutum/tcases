@@ -533,45 +533,49 @@ public class SchemaAnalyzer extends ModelConditionReporter
     {
     // Ignoring any non-existent inputs...
     List<Dnf> choices = dnfs.stream().filter( Dnf::exists).collect( toList());
-    
-    // ... find pairs of schemas that can be combined
+
+    // ... find pairs of schemas that can be combined...
     List<Dnf> pairs = new ArrayList<Dnf>();
-
-    // Initially, all schemas are candidates for pairing
     Set<Integer> unpaired = IntStream.range( 0, choices.size()).mapToObj( Integer::valueOf).collect( toSet());
-    IntStream.range( 0, choices.size())
-      .forEach( i -> {
-        // Has this schema already been paired?
-        if( unpaired.contains(i))
-          {
-          // No, can another schema be combined with it?
-          IntStream.range( 0, choices.size())
-            .mapToObj( j -> {
-              Dnf pair =
-                // When pairing with a different schema...
-                i == j?
-                Dnf.of():
 
-                // ... is there a schema that validates this pair but none of the others?
-                allOf(
-                  choices.get(i),
-                  choices.get(j),
-                  noneOf( restOf( restOf( choices, Math.max( i, j)), Math.min( i, j))));
+    // ... unless fewer than 3 inputs. If so, skip pairing to ensure that, for each input schema, the resulting DNF contains
+    // alternatives to validate and invalidate that schema.
+    if( choices.size() >= 3)
+      {
+      IntStream.range( 0, choices.size())
+        .forEach( i -> {
+          // Has this schema already been paired?
+          if( unpaired.contains(i))
+            {
+            // No, can another schema be combined with it?
+            IntStream.range( 0, choices.size())
+              .mapToObj( j -> {
+                Dnf pair =
+                  // When pairing with a different schema...
+                  i == j?
+                  Dnf.of():
 
-              if( Dnf.defined( pair))
-                {
-                // Yes, continue looking for pairs among other schemas.
-                unpaired.remove( i);
-                unpaired.remove( j);
-                }
+                  // ... is there a schema that validates this pair but none of the others?
+                  allOf(
+                    choices.get(i),
+                    choices.get(j),
+                    noneOf( restOf( restOf( choices, Math.max( i, j)), Math.min( i, j))));
 
-              return pair;
-              })
-            .filter( Dnf::defined)
-            .findFirst()
-            .ifPresent( pair -> pairs.add( pair));
-          }
-        });
+                if( Dnf.defined( pair))
+                  {
+                  // Yes, continue looking for pairs among other schemas.
+                  unpaired.remove( i);
+                  unpaired.remove( j);
+                  }
+
+                return pair;
+                })
+              .filter( Dnf::defined)
+              .findFirst()
+              .ifPresent( pair -> pairs.add( pair));
+            }
+          });
+      }
 
     return
       // Any pairs found?
