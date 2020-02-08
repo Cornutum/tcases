@@ -112,7 +112,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR><TD> additional.enum </TD> <TD> Intersects base </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> null </TD> </TR>
-   * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.exclusiveMinimum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> null </TD> </TR>
    * </TABLE>
@@ -146,7 +146,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .enumNumbers( 0.24, 0.36, 0.48)
       .maximum( 2.00)
       .minimum( null)
-      .exclusiveMaximum( true)
+      .exclusiveMaximum( false)
       .exclusiveMinimum( null)
       .multipleOf( null)
       .build();
@@ -260,8 +260,8 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> > base </TD> </TR>
-   * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
-   * <TR><TD> additional.exclusiveMinimum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> Non-null </TD> </TR>
    * </TABLE>
    * </P>
@@ -292,8 +292,8 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .format( null)
       .maximum( 0.9)
       .minimum( -1.0)
-      .exclusiveMaximum( false)
-      .exclusiveMinimum( true)
+      .exclusiveMaximum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 0.10)
       .build();
 
@@ -305,9 +305,9 @@ public class CombineNumberSchemaTest extends OpenApiTest
       SchemaBuilder.ofType( "number")
       .format( null)
       .maximum( 0.9)
-      .exclusiveMaximum( false)
+      .exclusiveMaximum( true)
       .minimum( -1.0)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 0.10)
       .build();
     
@@ -398,7 +398,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR><TD> base.maximum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minimum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.exclusiveMaximum </TD> <TD> false </TD> </TR>
-   * <TR><TD> base.exclusiveMinimum </TD> <TD> true </TD> </TR>
+   * <TR><TD> base.exclusiveMinimum </TD> <TD> false</TD> </TR>
    * <TR><TD> base.multipleOf </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
@@ -421,7 +421,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .maximum( 0.0)
       .minimum( -2.0)
       .exclusiveMaximum( false)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 0.3)
       .build();
 
@@ -453,7 +453,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .maximum( 0.0)
       .exclusiveMaximum( false)
       .minimum( -2.0)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 0.3)
       .build();
     
@@ -599,7 +599,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .format( "float")
       .enumNumbers( -0.3, 0.0, 0.3)
       .maximum( null)
-      .exclusiveMaximum( null)
+      .exclusiveMaximum( false)
       .minimum( -1.0)
       .exclusiveMinimum( true)
       .multipleOf( 0.3)

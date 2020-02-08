@@ -530,24 +530,24 @@ public final class SchemaUtils
     
     // Combine exclusiveMaximum
     combined.setExclusiveMaximum(
-      combined.getMaximum() == null?
-      null :
+      base.getExclusiveMaximum() == null?
+      additional.getExclusiveMaximum() :
 
-      Objects.equals( combined.getMaximum(), base.getMaximum())?
+      additional.getExclusiveMaximum() == null?
       base.getExclusiveMaximum() :
- 
-      additional.getExclusiveMaximum());
+
+      combineAssertions( "exclusiveMaximum: %s", base.getExclusiveMaximum(), additional.getExclusiveMaximum()));
 
       
     // Combine exclusiveMinimum
     combined.setExclusiveMinimum(
-      combined.getMinimum() == null?
-      null :
+      base.getExclusiveMinimum() == null?
+      additional.getExclusiveMinimum() :
 
-      Objects.equals( combined.getMinimum(), base.getMinimum())?
+      additional.getExclusiveMinimum() == null?
       base.getExclusiveMinimum() :
- 
-      additional.getExclusiveMinimum());
+
+      combineAssertions( "exclusiveMinimum: %s", base.getExclusiveMinimum(), additional.getExclusiveMinimum()));
 
     // Combine multipleOf
     combined.setMultipleOf(
@@ -754,9 +754,10 @@ public final class SchemaUtils
     {
     String type = Optional.ofNullable( schema).map( Schema::getType).orElse( null);;
 
-    return
+    List<Schema<?>> alternatives = 
+
       schema == null?
-      notGeneric( emptySchema()) :
+      new ArrayList<Schema<?>>() :
 
       "object".equals( type)?
       notObject( schema) :
@@ -777,6 +778,19 @@ public final class SchemaUtils
       notNumber( schema) :
 
       notGeneric( schema);
+
+    // Empty schema?
+    if( alternatives.isEmpty())
+      {
+      // Yes, return an alternative schema that will invalidate any instance.
+      alternatives.add(
+        assertNot(
+          emptySchema(),
+          SCHEMA_TYPES,
+          (s,v) -> { setNotTypes( s, v); s.setNullable( false); }));
+      }
+
+    return alternatives;
     }
 
   /**
@@ -955,6 +969,16 @@ public final class SchemaUtils
       .map( min -> assertNot( schema, min, (s,v) -> s.setMinimum( min)))
       .ifPresent( s -> { s.setExclusiveMinimum( exclusiveMinimum); alternatives.add( s); });
 
+    // Not exclusive maximum
+    Optional.ofNullable( schema.getExclusiveMaximum())
+      .map( exclusive -> assertNot( schema, exclusive, (s,v) -> s.setExclusiveMaximum( !v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not exclusive minimum
+    Optional.ofNullable( schema.getExclusiveMinimum())
+      .map( exclusive -> assertNot( schema, exclusive, (s,v) -> s.setExclusiveMinimum( !v)))
+      .ifPresent( s -> alternatives.add( s));
+
     // Not multipleOf
     Optional.ofNullable( schema.getMultipleOf())
       .map( multipleOf -> assertNot( schema, multipleOf, (s,v) -> addNotMultipleOf( s, v)))
@@ -995,17 +1019,6 @@ public final class SchemaUtils
     Optional.ofNullable( schema.getWriteOnly())
       .map( writeOnly -> assertNot( schema, writeOnly, (s,v) -> s.setWriteOnly( !v)))
       .ifPresent( s -> alternatives.add( s));
-
-    // Empty schema?
-    if( alternatives.isEmpty())
-      {
-      // Yes, return an alternative schema that will invalidate any instance.
-      alternatives.add(
-      assertNot(
-        emptySchema(),
-        SCHEMA_TYPES,
-        (s,v) -> { setNotTypes( s, v); s.setNullable( false); }));
-      }
     
     return alternatives;
     }
@@ -1041,7 +1054,7 @@ public final class SchemaUtils
     return new Schema<Object>();
     }
 
-  public static final Set<String> SCHEMA_TYPES =
+  private static final Set<String> SCHEMA_TYPES =
     Arrays.asList( "array", "boolean", "integer", "number", "object", "string")
     .stream().collect( toSet());
   }

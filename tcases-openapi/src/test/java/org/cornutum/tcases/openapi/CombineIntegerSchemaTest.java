@@ -38,7 +38,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> Non-null </TD> </TR>
-   * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
+   * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
    * <TR><TD> additional.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> > base </TD> </TR>
    * </TABLE>
@@ -70,7 +70,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       SchemaBuilder.ofType( "integer")
       .format( "int32")
       .maximum( null)
-      .exclusiveMaximum( false)
+      .exclusiveMaximum( true)
       .minimum( 1)
       .exclusiveMinimum( false)
       .multipleOf( 4)
@@ -178,7 +178,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> base.maximum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minimum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.exclusiveMaximum </TD> <TD> true </TD> </TR>
-   * <TR><TD> base.exclusiveMinimum </TD> <TD> true </TD> </TR>
+   * <TR><TD> base.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> base.multipleOf </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> int32 </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> Subset of base </TD> </TR>
@@ -201,7 +201,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .maximum( 2000)
       .minimum( 20)
       .exclusiveMaximum( true)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 20)
       .build();
 
@@ -232,9 +232,9 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .format( "int32")
       .enums( 20, 200)
       .maximum( 200)
-      .exclusiveMaximum( null)
+      .exclusiveMaximum( true)
       .minimum( 20)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 20)
       .build();
     
@@ -476,7 +476,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> additional.enum </TD> <TD> Intersects base </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> > base </TD> </TR>
-   * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.exclusiveMinimum </TD> <TD> true </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> null </TD> </TR>
    * </TABLE>
@@ -510,7 +510,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .enums( 240, 360, 480, 600)
       .maximum( 720)
       .minimum( 24)
-      .exclusiveMaximum( true)
+      .exclusiveMaximum( false)
       .exclusiveMinimum( true)
       .multipleOf( null)
       .build();
@@ -551,7 +551,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> additional.maximum </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.exclusiveMaximum </TD> <TD> null </TD> </TR>
-   * <TR><TD> additional.exclusiveMinimum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> < base </TD> </TR>
    * </TABLE>
    * </P>
@@ -583,7 +583,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .maximum( 60)
       .minimum( 0)
       .exclusiveMaximum( null)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 3)
       .build();
 
@@ -595,7 +595,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       SchemaBuilder.ofType( "integer")
       .format( "int32")
       .maximum( 60)
-      .exclusiveMaximum( null)
+      .exclusiveMaximum( false)
       .minimum( 15)
       .exclusiveMinimum( false)
       .multipleOf( 15)
