@@ -56,6 +56,7 @@ import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.groupingBy;
 
 /**
  * Converts between OpenAPI models and Tcases input models.
@@ -720,30 +721,73 @@ public abstract class InputModeller extends ModelConditionReporter
     {
     return
       Stream.of(
-        VarSetBuilder.with( "Alternative")
-        .members(
-          VarDefBuilder.with( "Used")
-          .values(
+        combinedAlternativesVar(
+          VarSetBuilder.with( "Alternative")
+          .members(
+            VarDefBuilder.with( "Used")
+            .values(
+              IntStream.range( 0, alternatives.size())
+              .mapToObj(
+                i ->
+                VarValueDefBuilder.with( String.valueOf( i))
+                .properties( alternativeProperty( instanceVarTag, i))
+                .build()))
+            .build())
+
+          .members(
             IntStream.range( 0, alternatives.size())
             .mapToObj(
-              i ->
-              VarValueDefBuilder.with( String.valueOf( i))
-              .properties( alternativeProperty( instanceVarTag, i))
+              i->
+              VarSetBuilder.with( String.valueOf( i))
+              .when( has( alternativeProperty( instanceVarTag, i)))
+              .members( typeSchemaVars( instanceVarTag, instanceOptional, alternatives.get(i)))
               .build()))
-          .build())
-
-        .members(
-          IntStream.range( 0, alternatives.size())
-          .mapToObj(
-            i->
-            VarSetBuilder.with( String.valueOf( i))
-            .when( has( alternativeProperty( instanceVarTag, i)))
-            .members( typeSchemaVars( instanceVarTag, instanceOptional, alternatives.get(i)))
-            .build()))
         
-        .build());
+          .build()));
     }
-  
+
+  /**
+   * Returns a simplified form of the given alternatives variable set, eliminating redundant and superfluous variable bindings.
+   */
+  private IVarDef combinedAlternativesVar( VarSet alternativesVar)
+    {
+    // For all alternative failure bindings...
+    Map<String,List<VarBindingDef>> allFailures =
+    toStream( new VarDefIterator( alternativesVar.getMembers()))
+      .filter( var -> !"Used".equals( var.getName()))
+      .flatMap( var -> toStream( var.getValues()).filter( value -> !value.isValid()).map( value -> new VarBindingDef( var, value)))
+      .collect( groupingBy( binding -> alternativeVarName( binding.getVarDef())));
+
+    // ...remove duplicate failure bindings...
+    allFailures.keySet().stream()
+      // ...for top-level alternatives only
+      .filter( alternativeVar -> !alternativeVar.contains( ".Alternative."))
+      .forEach( alternativeVar -> {
+          allFailures.get( alternativeVar).stream()
+          .collect( groupingBy( VarBindingDef::getValueDef))
+          .forEach( (value,bindings) -> {
+            Optional.of( bindings)
+              .filter( b -> b.size() > 1)
+              .map( b -> b.subList( 1, b.size()).stream())
+              .ifPresent( dups -> dups.forEach( dup -> dup.getVarDef().removeValue( dup.getValueDef().getName())));
+            });
+        });
+    
+    return alternativesVar;
+    }
+
+  /**
+   * Returns the path name of the given variable, relative to the parent of all alternatives
+   */
+  private String alternativeVarName( VarDef var)
+    {
+    return
+      Optional.of( combinedAlternativeVarPattern_.matcher( var.getPathName()))
+      .filter( Matcher::matches)
+      .map( matcher -> matcher.group(1))
+      .orElseThrow( () -> new IllegalStateException( String.format( "%s is not an alternative variable", var)));
+    }
+
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
    */
@@ -2270,4 +2314,5 @@ public abstract class InputModeller extends ModelConditionReporter
   private final SchemaAnalyzer analyzer_;
 
   private static final Pattern uriSegmentPattern_ = Pattern.compile( "([^{}]+)|\\{([^}]+)\\}");
+  private static final Pattern combinedAlternativeVarPattern_ = Pattern.compile( "(?:.*\\.)?Alternative\\.\\d+\\.(.*)");
 }
