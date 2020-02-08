@@ -23,62 +23,49 @@
           <Value name="Yes" property="param1"/>
           <Value name="No"/>
         </Var>
-        <VarSet name="OneOf" when="param1">
-          <VarSet name="Members">
-            <Var name="Validated">
-              <Value name="1">
-                <When>
-                  <Equals property="param1OneOfMemberValidated" count="1"/>
-                </When>
-              </Value>
-              <Value name="0" failure="true">
-                <When>
-                  <Not property="param1OneOfMemberValidated">
-                  </Not>
-                </When>
-              </Value>
-              <Value name="&gt; 1" failure="true">
-                <When>
-                  <MoreThan property="param1OneOfMemberValidated" min="1"/>
-                </When>
-              </Value>
+        <VarSet name="Alternative">
+          <Var name="Used">
+            <Value name="0" property="param1Alternative0"/>
+            <Value name="1" property="param1Alternative1"/>
+            <Value name="2" property="param1Alternative2"/>
+          </Var>
+          <VarSet name="0" when="param1Alternative0">
+            <Var name="Type" when="param1">
+              <Value name="number" property="param1Value"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not number" failure="true"/>
             </Var>
-            <VarSet name="0">
-              <Var name="Type">
-                <Value name="boolean" property="param1OneOf0Value, param1OneOfMemberValidated"/>
-                <Value name="Not boolean">
-                  <Has name="memberValidated" value="false"/>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Is">
+                <Value name="&lt; 0">
+                  <Has name="excluded" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
                 </Value>
-              </Var>
-              <Var name="Value" when="param1OneOf0Value">
-                <Value name="true"/>
-                <Value name="false"/>
-              </Var>
-            </VarSet>
-            <VarSet name="1">
-              <Var name="Type">
-                <Value name="number" property="param1OneOf1Value"/>
-              </Var>
-              <VarSet name="Value" when="param1OneOf1Value">
-                <Var name="Is">
-                  <Value name="1" property="param1OneOfMemberValidated"/>
-                  <Value name="2" property="param1OneOfMemberValidated"/>
-                  <Value name="3" property="param1OneOfMemberValidated"/>
-                  <Value name="Other">
-                    <Has name="excluded" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
-                    <Has name="memberValidated" value="false"/>
-                  </Value>
-                </Var>
-              </VarSet>
-            </VarSet>
-            <VarSet name="2">
-              <Var name="Type">
-                <Value name="Not null" property="param1OneOf2Value, param1OneOfMemberValidated"/>
-                <Value name="null">
-                  <Has name="memberValidated" value="false"/>
+                <Value name="0"/>
+                <Value name="1" failure="true"/>
+                <Value name="2" failure="true"/>
+                <Value name="3" failure="true"/>
+                <Value name="&gt; 0">
+                  <Has name="excluded" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
                 </Value>
               </Var>
             </VarSet>
+          </VarSet>
+          <VarSet name="1" when="param1Alternative1">
+            <Var name="Type" when="param1">
+              <Value name="boolean" property="param1Value"/>
+              <Value name="Not boolean" failure="true"/>
+            </Var>
+            <Var name="Value" when="param1Value">
+              <Value name="true"/>
+              <Value name="false" failure="true"/>
+            </Var>
+          </VarSet>
+          <VarSet name="2" when="param1Alternative2">
+            <Var name="Type" when="param1">
+              <Value name="Not boolean,number" property="param1Value"/>
+              <Value name="boolean" failure="true"/>
+              <Value name="number" failure="true"/>
+            </Var>
           </VarSet>
         </VarSet>
       </VarSet>
