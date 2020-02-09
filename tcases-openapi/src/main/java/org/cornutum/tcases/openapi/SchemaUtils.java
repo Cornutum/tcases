@@ -645,10 +645,6 @@ public final class SchemaUtils
     combined.setDefault(
       Optional.ofNullable( additional.getDefault())
       .orElse( base.getDefault()));
-    
-    // Combine not
-    setNots( combined, getNots( base));
-    addNots( combined, getNots( additional));
 
     // Combine format
     combined.setFormat(

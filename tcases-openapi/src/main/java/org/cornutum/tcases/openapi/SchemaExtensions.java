@@ -242,73 +242,6 @@ public final class SchemaExtensions
     }
 
   /**
-   * Returns the composed set of "not" schemas to use when validating the given schema.
-   */
-  public static List<Schema<?>> getNots( Schema<?> schema)
-    {
-    if( !hasExtension( schema, EXT_NOTS))
-      {
-      setNots( schema, schema.getNot());
-      }
-
-    return getExtension( schema, EXT_NOTS);
-    }
-
-  /**
-   * Changes the composed set of "not" schemas to use when validating the given schema.
-   */
-  public static void setNots( Schema<?> schema, Iterable<Schema<?>> nots)
-    {
-    removeExtension( schema, EXT_NOTS);
-    schema.setNot( null);
-    addNots( schema, nots);
-    }
-
-  /**
-   * Changes the composed set of "not" schemas to use when validating the given schema.
-   */
-  public static void setNots( Schema<?> schema, Schema<?>... nots)
-    {
-    setNots( schema, Arrays.asList( nots));
-    }
-
-  /**
-   * Adds to the composed set of "not" schemas to use when validating the given schema.
-   */
-  public static void addNots( Schema<?> schema, Iterable<Schema<?>> nots)
-    {
-    if( nots != null)
-      {
-      for( Schema<?> not : nots)
-        {
-        addNot( schema, not);
-        }
-      }
-    }
-
-  /**
-   * Adds to the composed set of "not" schemas to use when validating the given schema.
-   */
-  public static void addNot( Schema<?> schema, Schema<?> not)
-    {
-    if( not != null)
-      {
-      if( schema.getNot() == null)
-        {
-        schema.setNot( not);
-        }
-
-      List<Schema<?>> nots = getExtension( schema, EXT_NOTS);
-      if( nots == null)
-        {
-        nots = new ArrayList<Schema<?>>();
-        setExtension( schema, EXT_NOTS, nots);
-        }
-      nots.add( not);
-      }
-    }
-
-  /**
    * Returns the composed set of multipleOfs to not match when validating the given numeric schema.
    */
   public static Set<BigDecimal> getNotMultipleOfs( Schema<?> schema)
@@ -504,7 +437,6 @@ public final class SchemaExtensions
     }
 
   private static final String EXT_DNF = "x-tcases-dnf";
-  private static final String EXT_NOTS = "x-tcases-nots";
   private static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
   private static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
   private static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";

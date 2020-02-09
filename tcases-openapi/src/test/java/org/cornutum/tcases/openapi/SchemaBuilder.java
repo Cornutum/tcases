@@ -264,12 +264,6 @@ public class SchemaBuilder
     return multipleOf( new BigDecimal( String.valueOf( multipleOf)));
     }
   
-  public SchemaBuilder nots( Schema<?>... nots)
-    {
-    SchemaExtensions.setNots( schema_, nots);
-    return this;
-    }
-  
   public SchemaBuilder notEnums( List<Object> enums)
     {
     SchemaExtensions.setNotEnums( schema_, enums);
