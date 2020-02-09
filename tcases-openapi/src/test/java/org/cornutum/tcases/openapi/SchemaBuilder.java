@@ -269,12 +269,6 @@ public class SchemaBuilder
     SchemaExtensions.setNots( schema_, nots);
     return this;
     }
-
-  public SchemaBuilder notAdditionalProperties( Schema<?> additionalProperties)
-    {
-    SchemaExtensions.setNotAdditionalProperties( schema_, additionalProperties);
-    return this;
-    }
   
   public SchemaBuilder notEnums( List<Object> enums)
     {
@@ -292,18 +286,6 @@ public class SchemaBuilder
     return notEnums( Arrays.stream( enums).mapToObj( d -> new BigDecimal( String.valueOf( d))).collect( toList()));
     }
   
-  public SchemaBuilder notItems( Schema<?> items)
-    {
-    SchemaExtensions.setNotItems( schema_, items);
-    return this;
-    }
-  
-  public SchemaBuilder notFormats( String... formats)
-    {
-    SchemaExtensions.setNotFormats( schema_, formats);
-    return this;
-    }
-  
   public SchemaBuilder notMultipleOfs( Number... multipleOfs)
     {
     SchemaExtensions.setNotMultipleOfs(
@@ -318,21 +300,6 @@ public class SchemaBuilder
   public SchemaBuilder notPatterns( String... patterns)
     {
     SchemaExtensions.setNotPatterns( schema_, patterns);
-    return this;
-    }
-  
-  @SuppressWarnings("rawtypes")
-  public SchemaBuilder notProperty( String name, Schema<?> schema)
-    {
-    Map<String,Schema> notProperties = Optional.ofNullable( SchemaExtensions.getNotProperties( schema_)).orElse( new HashMap<String,Schema>());
-    notProperties.put( name, schema);
-    return notProperties( notProperties);
-    }
-  
-  @SuppressWarnings("rawtypes")
-  public SchemaBuilder notProperties( Map<String,Schema> properties)
-    {
-    SchemaExtensions.setNotProperties( schema_, properties);
     return this;
     }
   

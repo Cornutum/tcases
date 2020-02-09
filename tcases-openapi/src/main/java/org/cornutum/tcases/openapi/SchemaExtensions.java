@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -183,62 +182,6 @@ public final class SchemaExtensions
         setExtension( schema, EXT_PATTERNS, patterns);
         }
       patterns.add( pattern);
-      }
-    }
-
-  /**
-   * Returns the composed set of formats to not match when validating the given schema.
-   */
-  public static Set<String> getNotFormats( Schema<?> schema)
-    {
-    return getExtension( schema, EXT_NOT_FORMATS);
-    }
-
-  /**
-   * Changes the composed set of formats to not match when validating the given schema.
-   */
-  public static void setNotFormats( Schema<?> schema, Iterable<String> formats)
-    {
-    removeExtension( schema, EXT_NOT_FORMATS);
-    addNotFormats( schema, formats);
-    }
-
-  /**
-   * Changes the composed set of formats to not match when validating the given schema.
-   */
-  public static void setNotFormats( Schema<?> schema, String... formats)
-    {
-    setNotFormats( schema, Arrays.asList( formats));
-    }
-
-  /**
-   * Adds to the composed set of formats to not match when validating the given schema.
-   */
-  public static void addNotFormats( Schema<?> schema, Iterable<String> formats)
-    {
-    if( formats != null)
-      {
-      for( String format : formats)
-        {
-        addNotFormat( schema, format);
-        }
-      }
-    }
-
-  /**
-   * Adds to the composed set of formats to not match when validating the given schema.
-   */
-  public static void addNotFormat( Schema<?> schema, String format)
-    {
-    if( format != null)
-      {
-      Set<String> formats = getExtension( schema, EXT_NOT_FORMATS);
-      if( formats == null)
-        {
-        formats = new LinkedHashSet<String>();
-        setExtension( schema, EXT_NOT_FORMATS, formats);
-        }
-      formats.add( format);
       }
     }
 
@@ -470,71 +413,6 @@ public final class SchemaExtensions
     }
 
   /**
-   * Returns the composed schema for additional properties to not match when validating the given object schema.
-   */
-  public static Schema<?> getNotAdditionalProperties( Schema<?> schema)
-    {
-    return getExtension( schema, EXT_NOT_ADDITIONALPROPERTIES);
-    }
-
-  /**
-   * Changes the composed schema for additional properties to not match when validating the given object schema.
-   */
-  public static void setNotAdditionalProperties( Schema<?> schema, Schema<?> additionalProperties)
-    {
-    setExtension( schema, EXT_NOT_ADDITIONALPROPERTIES, additionalProperties);
-    }
-
-  /**
-   * Returns the composed set of properties to not match when validating the given object schema.
-   */
-  @SuppressWarnings("rawtypes")
-  public static Map<String,Schema> getNotProperties( Schema<?> schema)
-    {
-    return getExtension( schema, EXT_NOT_PROPERTIES);
-    }
-
-  /**
-   * Changes the composed set of properties to not match when validating the given object schema.
-   */
-  @SuppressWarnings("rawtypes")
-  public static void setNotProperties( Schema<?> schema, Map<String,Schema> properties)
-    {
-    removeExtension( schema, EXT_NOT_PROPERTIES);
-    addNotProperties( schema, properties);
-    }
-
-  /**
-   * Adds to the composed set of properties to not match when validating the given object schema.
-   */
-  @SuppressWarnings("rawtypes")
-  public static void addNotProperty( Schema<?> schema, String name, Schema value)
-    {
-    Map<String,Schema> properties = getExtension( schema, EXT_NOT_PROPERTIES);
-    if( properties == null)
-      {
-      properties = new LinkedHashMap<String,Schema>();
-      setExtension( schema, EXT_NOT_PROPERTIES, properties);
-      }
-    properties.put( name, value);
-    }
-
-  /**
-   * Adds to the composed set of properties to not match when validating the given object schema.
-   */
-  @SuppressWarnings("rawtypes")
-  public static void addNotProperties( Schema<?> schema, Map<String,Schema> properties)
-    {
-    if( properties != null)
-      {
-      for( String property : properties.keySet())
-        {
-        addNotProperty( schema, property, properties.get( property));
-        }
-      }
-    }
-
-  /**
    * Returns the composed set of properties that must not be required when validating the given object schema.
    */
   public static Set<String> getNotRequired( Schema<?> schema)
@@ -577,22 +455,6 @@ public final class SchemaExtensions
         addNotRequired( schema, property);
         }
       }
-    }
-
-  /**
-   * Returns the composed schema array items to not match when validating the given array schema.
-   */
-  public static Schema<?> getNotItems( Schema<?> schema)
-    {
-    return getExtension( schema, EXT_NOT_ITEMS);
-    }
-
-  /**
-   * Changes the composed schema array items to not match when validating the given array schema.
-   */
-  public static void setNotItems( Schema<?> schema, Schema<?> items)
-    {
-    setExtension( schema, EXT_NOT_ITEMS, items);
     }
 
   /**
@@ -643,13 +505,9 @@ public final class SchemaExtensions
 
   private static final String EXT_DNF = "x-tcases-dnf";
   private static final String EXT_NOTS = "x-tcases-nots";
-  private static final String EXT_NOT_ADDITIONALPROPERTIES = "x-tcases-not-additionalProperties";
   private static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
-  private static final String EXT_NOT_FORMATS = "x-tcases-not-formats";
-  private static final String EXT_NOT_ITEMS = "x-tcases-not-items";
   private static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
   private static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";
-  private static final String EXT_NOT_PROPERTIES = "x-tcases-not-properties"; 
   private static final String EXT_NOT_REQUIRED = "x-tcases-not-required";
   private static final String EXT_NOT_TYPES = "x-tcases-not-types";
   private static final String EXT_PATTERNS = "x-tcases-patterns";
