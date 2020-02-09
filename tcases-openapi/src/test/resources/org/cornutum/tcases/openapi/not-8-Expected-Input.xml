@@ -13,180 +13,521 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <Var name="Type" when="param0">
-          <Value name="object" property="param0Value"/>
-          <Value name="null" failure="true"/>
-          <Value name="Not object" failure="true"/>
-        </Var>
-        <VarSet name="Value" when="param0Value">
-          <Var name="Property-Count">
-            <Value name="0" once="true">
-              <When>
-                <Not property="param0Properties">
-                </Not>
-              </When>
-            </Value>
-            <Value name="&gt; 0" when="param0Properties"/>
+        <VarSet name="Alternative">
+          <Var name="Used">
+            <Value name="0" property="param0Alternative0"/>
+            <Value name="1" property="param0Alternative1"/>
+            <Value name="2" property="param0Alternative2"/>
+            <Value name="3" property="param0Alternative3"/>
           </Var>
-          <VarSet name="Properties">
-            <VarSet name="alpha">
-              <Var name="Defined">
-                <Value name="Yes" property="param0Alpha, param0Properties"/>
-                <Value name="No"/>
-              </Var>
-              <Var name="Type" when="param0Alpha">
-                <Value name="string" property="param0AlphaValue"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not string" failure="true"/>
-              </Var>
-              <VarSet name="Value" when="param0AlphaValue">
-                <Var name="Length">
-                  <Value name="&gt; 0"/>
-                  <Value name="0"/>
-                </Var>
-              </VarSet>
-            </VarSet>
-            <VarSet name="bravo">
-              <Var name="Defined">
-                <Value name="Yes" property="param0Bravo, param0Properties"/>
-                <Value name="No"/>
-              </Var>
-              <Var name="Type" when="param0Bravo">
-                <Value name="array" property="param0BravoValue"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not array" failure="true"/>
-              </Var>
-              <VarSet name="Items" when="param0BravoValue">
-                <Var name="Size">
-                  <Value name="0" property="param0BravoItemsNone"/>
-                  <Value name="1"/>
-                  <Value name="&gt; 1" property="param0BravoItemsMany"/>
-                </Var>
-                <VarSet name="Contains">
-                  <When>
-                    <Not property="param0BravoItemsNone">
-                    </Not>
-                  </When>
-                  <Var name="Type">
-                    <Value name="string" property="param0BravoItemsValue"/>
+          <VarSet name="0" when="param0Alternative0">
+            <Var name="Type" when="param0">
+              <Value name="object" property="param0Value"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <VarSet name="Properties">
+                <VarSet name="bravo">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Bravo, param0Properties"/>
+                    <Value name="No" failure="true"/>
+                  </Var>
+                  <Var name="Type" when="param0Bravo">
+                    <Value name="array" property="param0BravoValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not array" failure="true"/>
+                  </Var>
+                  <VarSet name="Items" when="param0BravoValue">
+                    <Var name="Size">
+                      <Value name="0" property="param0BravoItemsNone"/>
+                      <Value name="1"/>
+                      <Value name="&gt; 1" property="param0BravoItemsMany"/>
+                    </Var>
+                    <VarSet name="Contains">
+                      <When>
+                        <Not property="param0BravoItemsNone">
+                        </Not>
+                      </When>
+                      <Var name="Type">
+                        <Value name="string" property="param0BravoItemsValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="param0BravoItemsValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0"/>
+                          <Value name="0"/>
+                        </Var>
+                        <VarSet name="Matches-Patterns">
+                          <Var name="0">
+                            <Has name="pattern" value="X+"/>
+                            <Value name="Yes"/>
+                            <Value name="No" failure="true"/>
+                          </Var>
+                          <Var name="1">
+                            <Has name="pattern" value="Y+"/>
+                            <Value name="Yes" failure="true"/>
+                            <Value name="No"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Unique" when="param0BravoItemsMany">
+                      <Value name="Yes"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="string" property="param0AlphaValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="param0BravoItemsValue">
+                  <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
                       <Value name="&gt; 0"/>
                       <Value name="0"/>
                     </Var>
-                    <VarSet name="Matches-Patterns">
-                      <Var name="0">
-                        <Has name="pattern" value="X+"/>
-                        <Value name="Yes"/>
-                        <Value name="No" failure="true"/>
-                      </Var>
-                      <Var name="1">
-                        <Has name="pattern" value="Y+"/>
-                        <Value name="Yes" failure="true"/>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="Additional">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Additional, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Additional">
+                    <Value name="object" property="param0AdditionalValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not object" failure="true"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AdditionalValue">
+                    <VarSet name="Properties">
+                      <VarSet name="required">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
+                          <Value name="No" failure="true"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalRequired">
+                          <Value name="string" property="param0AdditionalRequiredValue"/>
+                          <Value name="null" failure="true"/>
+                          <Value name="Not string" failure="true"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalRequiredValue">
+                          <Var name="Length">
+                            <Value name="&gt; 0"/>
+                            <Value name="0"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <VarSet name="optional">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
+                          <Value name="No"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalOptional">
+                          <Value name="integer" property="param0AdditionalOptionalValue"/>
+                          <Value name="null" failure="true"/>
+                          <Value name="Not integer" failure="true"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalOptionalValue">
+                          <Var name="Is">
+                            <Value name="&lt; 0"/>
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <Var name="Additional">
+                        <Value name="Yes" property="param0AdditionalProperties"/>
                         <Value name="No"/>
                       </Var>
                     </VarSet>
                   </VarSet>
                 </VarSet>
-                <Var name="Unique" when="param0BravoItemsMany">
-                  <Value name="Yes"/>
-                  <Value name="No"/>
-                </Var>
               </VarSet>
             </VarSet>
-            <VarSet name="charlie">
-              <Var name="Defined">
-                <Value name="Yes" property="param0Charlie, param0Properties"/>
-                <Value name="No"/>
-              </Var>
-              <Var name="Type" when="param0Charlie">
-                <Value name="number" failure="true"/>
-                <Value name="null"/>
-                <Value name="Not number"/>
-              </Var>
-            </VarSet>
-            <VarSet name="Additional">
-              <Var name="Defined">
-                <Value name="Yes" property="param0Additional, param0Properties"/>
-                <Value name="No"/>
-              </Var>
-              <Var name="Type" when="param0Additional">
-                <Value name="object" property="param0AdditionalValue"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not object" failure="true"/>
-              </Var>
-              <VarSet name="Value" when="param0AdditionalValue">
-                <Var name="Property-Count">
-                  <Value name="0" once="true">
-                    <When>
-                      <Not property="param0AdditionalProperties">
-                      </Not>
-                    </When>
-                  </Value>
-                  <Value name="&gt; 0" when="param0AdditionalProperties"/>
-                </Var>
-                <VarSet name="Properties">
-                  <VarSet name="required">
-                    <Var name="Defined">
-                      <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
-                      <Value name="No"/>
-                    </Var>
-                    <Var name="Type" when="param0AdditionalRequired">
-                      <Value name="string" property="param0AdditionalRequiredValue"/>
-                      <Value name="null" failure="true"/>
-                      <Value name="Not string" failure="true"/>
-                    </Var>
-                    <VarSet name="Value" when="param0AdditionalRequiredValue">
-                      <Var name="Length" when="param0AdditionalRequiredNotExcluded">
-                        <Value name="&gt; 0"/>
-                        <Value name="0"/>
-                      </Var>
-                      <Var name="Is">
-                        <Value name="Any" property="param0AdditionalRequiredNotExcluded">
-                          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
-                        </Value>
-                        <Value name="X" failure="true"/>
-                        <Value name="Y" failure="true"/>
-                        <Value name="Z" failure="true"/>
-                      </Var>
-                    </VarSet>
-                  </VarSet>
-                  <VarSet name="optional">
-                    <Var name="Defined">
-                      <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
-                      <Value name="No"/>
-                    </Var>
-                    <Var name="Type" when="param0AdditionalOptional">
-                      <Value name="integer" property="param0AdditionalOptionalValue"/>
-                      <Value name="null" failure="true"/>
-                      <Value name="Not integer" failure="true"/>
-                    </Var>
-                    <VarSet name="Value" when="param0AdditionalOptionalValue">
-                      <Var name="Is">
-                        <Value name="&lt; 0"/>
-                        <Value name="0"/>
-                        <Value name="&gt; 0"/>
-                      </Var>
-                    </VarSet>
-                  </VarSet>
-                  <VarSet name="extra">
-                    <Var name="Defined">
-                      <Value name="Yes" property="param0AdditionalExtra, param0AdditionalProperties"/>
-                      <Value name="No"/>
-                    </Var>
-                    <Var name="Type" when="param0AdditionalExtra">
-                      <Value name="boolean" failure="true"/>
-                      <Value name="null"/>
-                      <Value name="Not boolean"/>
-                    </Var>
-                  </VarSet>
-                  <Var name="Additional">
-                    <Value name="Yes" property="param0AdditionalProperties"/>
+          </VarSet>
+          <VarSet name="1" when="param0Alternative1">
+            <Var name="Type" when="param0">
+              <Value name="object" property="param0Value"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <VarSet name="Properties">
+                <VarSet name="bravo">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Bravo, param0Properties"/>
                     <Value name="No"/>
                   </Var>
+                  <Var name="Type" when="param0Bravo">
+                    <Value name="array" property="param0BravoValue"/>
+                  </Var>
+                  <VarSet name="Items" when="param0BravoValue">
+                    <Var name="Size">
+                      <Value name="0" property="param0BravoItemsNone"/>
+                      <Value name="1"/>
+                      <Value name="&gt; 1" property="param0BravoItemsMany"/>
+                    </Var>
+                    <VarSet name="Contains">
+                      <When>
+                        <Not property="param0BravoItemsNone">
+                        </Not>
+                      </When>
+                      <Var name="Type">
+                        <Value name="string" property="param0BravoItemsValue"/>
+                      </Var>
+                      <VarSet name="Value" when="param0BravoItemsValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0"/>
+                          <Value name="0"/>
+                        </Var>
+                        <Var name="Matches-Pattern">
+                          <Has name="pattern" value="X+"/>
+                          <Value name="Yes"/>
+                          <Value name="No" failure="true"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Unique" when="param0BravoItemsMany">
+                      <Value name="Yes"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="string" property="param0AlphaValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AlphaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="charlie">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Charlie, param0Properties"/>
+                    <Value name="No" failure="true"/>
+                  </Var>
+                  <Var name="Type" when="param0Charlie">
+                    <Value name="Not number" property="param0CharlieValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="number" failure="true"/>
+                  </Var>
+                </VarSet>
+                <VarSet name="Additional">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Additional, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Additional">
+                    <Value name="object" property="param0AdditionalValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AdditionalValue">
+                    <VarSet name="Properties">
+                      <VarSet name="required">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalRequired">
+                          <Value name="string" property="param0AdditionalRequiredValue"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalRequiredValue">
+                          <Var name="Length">
+                            <Value name="&gt; 0"/>
+                            <Value name="0"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <VarSet name="optional">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
+                          <Value name="No"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalOptional">
+                          <Value name="integer" property="param0AdditionalOptionalValue"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalOptionalValue">
+                          <Var name="Is">
+                            <Value name="&lt; 0"/>
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <Var name="Additional">
+                        <Value name="Yes" property="param0AdditionalProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="2" when="param0Alternative2">
+            <Var name="Type" when="param0">
+              <Value name="object" property="param0Value"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Property-Count">
+                <Value name="0" once="true">
+                  <When>
+                    <Not property="param0Properties">
+                    </Not>
+                  </When>
+                </Value>
+                <Value name="&gt; 0" when="param0Properties"/>
+              </Var>
+              <VarSet name="Properties">
+                <VarSet name="bravo">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Bravo, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Bravo">
+                    <Value name="array" property="param0BravoValue"/>
+                  </Var>
+                  <VarSet name="Items" when="param0BravoValue">
+                    <Var name="Size">
+                      <Value name="0" property="param0BravoItemsNone"/>
+                      <Value name="1"/>
+                      <Value name="&gt; 1" property="param0BravoItemsMany"/>
+                    </Var>
+                    <VarSet name="Contains">
+                      <When>
+                        <Not property="param0BravoItemsNone">
+                        </Not>
+                      </When>
+                      <Var name="Type">
+                        <Value name="string" property="param0BravoItemsValue"/>
+                      </Var>
+                      <VarSet name="Value" when="param0BravoItemsValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0"/>
+                          <Value name="0"/>
+                        </Var>
+                        <Var name="Matches-Pattern">
+                          <Has name="pattern" value="X+"/>
+                          <Value name="Yes"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Unique" when="param0BravoItemsMany">
+                      <Value name="Yes"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="string" property="param0AlphaValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AlphaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="Additional">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Additional, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Additional">
+                    <Value name="object" property="param0AdditionalValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AdditionalValue">
+                    <VarSet name="Properties">
+                      <VarSet name="optional">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
+                          <Value name="No"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalOptional">
+                          <Value name="integer" property="param0AdditionalOptionalValue"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalOptionalValue">
+                          <Var name="Is">
+                            <Value name="&lt; 0"/>
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <VarSet name="required">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalRequired">
+                          <Value name="string" property="param0AdditionalRequiredValue"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalRequiredValue">
+                          <Var name="Length" when="param0AdditionalRequiredNotExcluded">
+                            <Value name="&gt; 0"/>
+                            <Value name="0"/>
+                          </Var>
+                          <Var name="Is">
+                            <Value name="Any" property="param0AdditionalRequiredNotExcluded">
+                              <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;,&apos;Z&apos;"/>
+                            </Value>
+                            <Value name="X" failure="true"/>
+                            <Value name="Y" failure="true"/>
+                            <Value name="Z" failure="true"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <Var name="Additional">
+                        <Value name="Yes" property="param0AdditionalProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="3" when="param0Alternative3">
+            <Var name="Type" when="param0">
+              <Value name="object" property="param0Value"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Property-Count">
+                <Value name="0" once="true">
+                  <When>
+                    <Not property="param0Properties">
+                    </Not>
+                  </When>
+                </Value>
+                <Value name="&gt; 0" when="param0Properties"/>
+              </Var>
+              <VarSet name="Properties">
+                <VarSet name="bravo">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Bravo, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Bravo">
+                    <Value name="array" property="param0BravoValue"/>
+                  </Var>
+                  <VarSet name="Items" when="param0BravoValue">
+                    <Var name="Size">
+                      <Value name="0" property="param0BravoItemsNone"/>
+                      <Value name="1"/>
+                      <Value name="&gt; 1" property="param0BravoItemsMany"/>
+                    </Var>
+                    <VarSet name="Contains">
+                      <When>
+                        <Not property="param0BravoItemsNone">
+                        </Not>
+                      </When>
+                      <Var name="Type">
+                        <Value name="string" property="param0BravoItemsValue"/>
+                      </Var>
+                      <VarSet name="Value" when="param0BravoItemsValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0"/>
+                          <Value name="0"/>
+                        </Var>
+                        <Var name="Matches-Pattern">
+                          <Has name="pattern" value="X+"/>
+                          <Value name="Yes"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Unique" when="param0BravoItemsMany">
+                      <Value name="Yes"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="string" property="param0AlphaValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AlphaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="Additional">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Additional, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Additional">
+                    <Value name="object" property="param0AdditionalValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AdditionalValue">
+                    <VarSet name="Properties">
+                      <VarSet name="extra">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalExtra, param0AdditionalProperties"/>
+                          <Value name="No" failure="true"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalExtra">
+                          <Value name="Not boolean" property="param0AdditionalExtraValue"/>
+                          <Value name="null" failure="true"/>
+                          <Value name="boolean" failure="true"/>
+                        </Var>
+                      </VarSet>
+                      <VarSet name="optional">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
+                          <Value name="No"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalOptional">
+                          <Value name="integer" property="param0AdditionalOptionalValue"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalOptionalValue">
+                          <Var name="Is">
+                            <Value name="&lt; 0"/>
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <VarSet name="required">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalRequired">
+                          <Value name="string" property="param0AdditionalRequiredValue"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalRequiredValue">
+                          <Var name="Length">
+                            <Value name="&gt; 0"/>
+                            <Value name="0"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <Var name="Additional">
+                        <Value name="Yes" property="param0AdditionalProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
                 </VarSet>
               </VarSet>
             </VarSet>

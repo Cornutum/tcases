@@ -12,24 +12,709 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <Var name="Type" when="param0">
-          <Value name="number" property="param0Value"/>
-          <Value name="null" failure="true"/>
-          <Value name="Not number" failure="true"/>
-        </Var>
-        <VarSet name="Value" when="param0Value">
-          <Var name="Is">
-            <Value name="-0.1" failure="true"/>
-            <Value name="0.0"/>
-            <Value name="1.0" failure="true"/>
-            <Value name="1.1" failure="true"/>
-            <Value name="10.0" failure="true"/>
-            <Value name="11.0" failure="true"/>
-            <Value name="99.9"/>
-            <Value name="100.1" failure="true"/>
-            <Value name="2.0" failure="true"/>
-            <Value name="7.5" failure="true"/>
+        <VarSet name="Alternative">
+          <Var name="Used">
+            <Value name="0" property="param0Alternative0"/>
+            <Value name="1" property="param0Alternative1"/>
+            <Value name="2" property="param0Alternative2"/>
+            <Value name="3" property="param0Alternative3"/>
+            <Value name="4" property="param0Alternative4"/>
+            <Value name="5" property="param0Alternative5"/>
+            <Value name="6" property="param0Alternative6"/>
+            <Value name="7" property="param0Alternative7"/>
+            <Value name="8" property="param0Alternative8"/>
+            <Value name="9" property="param0Alternative9"/>
+            <Value name="10" property="param0Alternative10"/>
+            <Value name="11" property="param0Alternative11"/>
+            <Value name="12" property="param0Alternative12"/>
+            <Value name="13" property="param0Alternative13"/>
+            <Value name="14" property="param0Alternative14"/>
+            <Value name="15" property="param0Alternative15"/>
+            <Value name="16" property="param0Alternative16"/>
+            <Value name="17" property="param0Alternative17"/>
+            <Value name="18" property="param0Alternative18"/>
+            <Value name="19" property="param0Alternative19"/>
+            <Value name="20" property="param0Alternative20"/>
+            <Value name="21" property="param0Alternative21"/>
+            <Value name="22" property="param0Alternative22"/>
+            <Value name="23" property="param0Alternative23"/>
+            <Value name="24" property="param0Alternative24"/>
+            <Value name="25" property="param0Alternative25"/>
+            <Value name="26" property="param0Alternative26"/>
+            <Value name="27" property="param0Alternative27"/>
+            <Value name="28" property="param0Alternative28"/>
+            <Value name="29" property="param0Alternative29"/>
+            <Value name="30" property="param0Alternative30"/>
           </Var>
+          <VarSet name="0" when="param0Alternative0">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+              <Value name="Not number" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="-0.1" failure="true"/>
+                <Value name="0.0"/>
+                <Value name="1.0" failure="true"/>
+                <Value name="1.1" failure="true"/>
+                <Value name="10.0" failure="true"/>
+                <Value name="11.0" failure="true"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                  <Value name="No" failure="true"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="1" when="param0Alternative1">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="Yes" failure="true">
+                    <Has name="multipleOf" value="2.0"/>
+                  </Value>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="2" when="param0Alternative2">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="99.9" failure="true"/>
+                <Value name="100.0"/>
+                <Value name="&gt; 100.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="3" when="param0Alternative3">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="4" when="param0Alternative4">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="5" when="param0Alternative5">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="6" when="param0Alternative6">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="7" when="param0Alternative7">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="8" when="param0Alternative8">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="9" when="param0Alternative9">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="10" when="param0Alternative10">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="11" when="param0Alternative11">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="12" when="param0Alternative12">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="13" when="param0Alternative13">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="14" when="param0Alternative14">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.0"/>
+                <Value name="&gt; 100.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="15" when="param0Alternative15">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.0"/>
+                <Value name="&gt; 100.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="16" when="param0Alternative16">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.0"/>
+                <Value name="&gt; 100.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="17" when="param0Alternative17">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="18" when="param0Alternative18">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="19" when="param0Alternative19">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="20" when="param0Alternative20">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="21" when="param0Alternative21">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="22" when="param0Alternative22">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="100.1"/>
+                <Value name="&gt; 100.1" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="23" when="param0Alternative23">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="24" when="param0Alternative24">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="25" when="param0Alternative25">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="26" when="param0Alternative26">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="27" when="param0Alternative27">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="28" when="param0Alternative28">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="29" when="param0Alternative29">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="30" when="param0Alternative30">
+            <Var name="Type" when="param0">
+              <Value name="number" property="param0Value"/>
+              <Value name="null" once="true"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="0.0"/>
+                <Value name="&gt; 0.0" property="param0Unbounded"/>
+              </Var>
+              <VarSet name="Multiple-Of" when="param0Unbounded">
+                <Var name="0_1">
+                  <Value name="Yes">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
+                </Var>
+                <Var name="2_0">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
         </VarSet>
       </VarSet>
     </Input>

@@ -40,9 +40,14 @@
                 <Value name="Not string" failure="true"/>
               </Var>
               <VarSet name="Value" when="param0AlphaValue">
+                <Has name="format" value="date"/>
                 <Var name="Length">
                   <Value name="&gt; 0"/>
-                  <Value name="0"/>
+                </Var>
+                <Var name="Matches-Pattern">
+                  <Has name="pattern" value="1999-.*"/>
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
                 </Var>
               </VarSet>
             </VarSet>
@@ -106,23 +111,157 @@
           <Value name="Yes" property="param1"/>
           <Value name="No"/>
         </Var>
-        <Var name="Type" when="param1">
-          <Value name="string" property="param1Value"/>
-          <Value name="null" failure="true"/>
-          <Value name="Not string" failure="true"/>
-        </Var>
-        <VarSet name="Value" when="param1Value">
-          <Var name="Length" when="param1NotExcluded">
-            <Value name="&gt; 0"/>
-            <Value name="0"/>
+        <VarSet name="Alternative">
+          <Var name="Used">
+            <Value name="0" property="param1Alternative0"/>
+            <Value name="1" property="param1Alternative1"/>
+            <Value name="2" property="param1Alternative2"/>
+            <Value name="3" property="param1Alternative3"/>
+            <Value name="4" property="param1Alternative4"/>
+            <Value name="5" property="param1Alternative5"/>
+            <Value name="6" property="param1Alternative6"/>
+            <Value name="7" property="param1Alternative7"/>
           </Var>
-          <Var name="Is">
-            <Value name="Any" property="param1NotExcluded">
-              <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;"/>
-            </Value>
-            <Value name="X" failure="true"/>
-            <Value name="Y" failure="true"/>
-          </Var>
+          <VarSet name="0" when="param1Alternative0">
+            <Var name="Type" when="param1">
+              <Value name="string" property="param1Value"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Length" when="param1NotExcluded">
+                <Value name="4" failure="true"/>
+                <Value name="5"/>
+                <Value name="&gt; 5"/>
+              </Var>
+              <Var name="Is">
+                <Value name="Any" property="param1NotExcluded">
+                  <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
+                </Value>
+                <Value name="ABCDE" failure="true"/>
+                <Value name="FGHIJK" failure="true"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="1" when="param1Alternative1">
+            <Var name="Type" when="param1">
+              <Value name="string" property="param1Value"/>
+            </Var>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Length" when="param1NotExcluded">
+                <Value name="5"/>
+                <Value name="&gt; 5"/>
+              </Var>
+              <Var name="Is">
+                <Value name="Any" property="param1NotExcluded">
+                  <Has name="excluded" value="&apos;ABCDE&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="2" when="param1Alternative2">
+            <Var name="Type" when="param1">
+              <Value name="string" property="param1Value"/>
+            </Var>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Length" when="param1NotExcluded">
+                <Value name="&gt; 0"/>
+                <Value name="0"/>
+              </Var>
+              <Var name="Matches-Pattern" when="param1NotExcluded">
+                <Has name="pattern" value="W*T*F*"/>
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Is">
+                <Value name="Any" property="param1NotExcluded">
+                  <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="3" when="param1Alternative3">
+            <Var name="Type" when="param1">
+              <Value name="string" property="param1Value"/>
+            </Var>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Length" when="param1NotExcluded">
+                <Value name="5"/>
+                <Value name="&gt; 5"/>
+              </Var>
+              <Var name="Matches-Pattern" when="param1NotExcluded">
+                <Has name="pattern" value="W*T*F*"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Is">
+                <Value name="Any" property="param1NotExcluded">
+                  <Has name="excluded" value="&apos;ABCDE&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="4" when="param1Alternative4">
+            <Var name="Type" when="param1">
+              <Value name="string" property="param1Value"/>
+            </Var>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Length" when="param1NotExcluded">
+                <Value name="5"/>
+                <Value name="&gt; 5"/>
+              </Var>
+              <Var name="Is">
+                <Value name="Any" property="param1NotExcluded">
+                  <Has name="excluded" value="&apos;FGHIJK&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="5" when="param1Alternative5">
+            <Var name="Type" when="param1">
+              <Value name="string" property="param1Value"/>
+            </Var>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Length">
+                <Value name="5"/>
+                <Value name="&gt; 5"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="6" when="param1Alternative6">
+            <Var name="Type" when="param1">
+              <Value name="string" property="param1Value"/>
+            </Var>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Length" when="param1NotExcluded">
+                <Value name="5"/>
+                <Value name="&gt; 5"/>
+              </Var>
+              <Var name="Matches-Pattern" when="param1NotExcluded">
+                <Has name="pattern" value="W*T*F*"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Is">
+                <Value name="Any" property="param1NotExcluded">
+                  <Has name="excluded" value="&apos;FGHIJK&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="7" when="param1Alternative7">
+            <Var name="Type" when="param1">
+              <Value name="string" property="param1Value"/>
+            </Var>
+            <VarSet name="Value" when="param1Value">
+              <Var name="Length">
+                <Value name="5"/>
+                <Value name="&gt; 5"/>
+              </Var>
+              <Var name="Matches-Pattern">
+                <Has name="pattern" value="W*T*F*"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
         </VarSet>
       </VarSet>
     </Input>

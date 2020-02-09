@@ -1034,7 +1034,6 @@ public final class SchemaUtils
       {
       S alternative = schemaType.newInstance();
       alternative.setType( original.getType());
-      alternative.setFormat( original.getFormat());
 
       negater.accept( alternative, asserted);
 
