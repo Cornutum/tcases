@@ -30,6 +30,44 @@
               <Var name="Property-Count">
                 <Value name="&gt;= 11">
                   <When>
+                    <NotLessThan property="param0Properties" min="1"/>
+                  </When>
+                </Value>
+              </Var>
+              <VarSet name="Properties">
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="integer" property="param0AlphaValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not integer" failure="true"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AlphaValue">
+                    <Var name="Is">
+                      <Value name="&lt; 0"/>
+                      <Value name="0"/>
+                      <Value name="&gt; 0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <Var name="Additional">
+                  <Value name="Yes" property="param0Properties"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <VarSet name="1" when="param0Alternative1">
+            <Var name="Type" when="param0">
+              <Value name="object" property="param0Value"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Property-Count">
+                <Value name="&gt;= 11">
+                  <When>
                     <NotLessThan property="param0Properties" min="2"/>
                   </When>
                 </Value>
@@ -42,7 +80,6 @@
                   </Var>
                   <Var name="Type" when="param0Alpha">
                     <Value name="Not integer" property="param0AlphaValue"/>
-                    <Value name="null" failure="true"/>
                     <Value name="integer" failure="true"/>
                   </Var>
                 </VarSet>
@@ -58,12 +95,11 @@
                 </VarSet>
                 <Var name="Additional">
                   <Value name="Yes" property="param0Properties"/>
-                  <Value name="No" failure="true"/>
                 </Var>
               </VarSet>
             </VarSet>
           </VarSet>
-          <VarSet name="1" when="param0Alternative1">
+          <VarSet name="2" when="param0Alternative2">
             <Var name="Type" when="param0">
               <Value name="object" property="param0Value"/>
             </Var>
@@ -85,7 +121,6 @@
                   </Var>
                   <Var name="Type" when="param0Alpha">
                     <Value name="integer" property="param0AlphaValue"/>
-                    <Value name="Not integer" failure="true"/>
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Is">
@@ -98,41 +133,6 @@
                 <Var name="Additional">
                   <Value name="Yes" failure="true"/>
                   <Value name="No"/>
-                </Var>
-              </VarSet>
-            </VarSet>
-          </VarSet>
-          <VarSet name="2" when="param0Alternative2">
-            <Var name="Type" when="param0">
-              <Value name="object" property="param0Value"/>
-            </Var>
-            <VarSet name="Value" when="param0Value">
-              <Var name="Property-Count">
-                <Value name="&gt;= 11">
-                  <When>
-                    <NotLessThan property="param0Properties" min="1"/>
-                  </When>
-                </Value>
-              </Var>
-              <VarSet name="Properties">
-                <VarSet name="alpha">
-                  <Var name="Defined">
-                    <Value name="Yes" property="param0Alpha, param0Properties"/>
-                    <Value name="No"/>
-                  </Var>
-                  <Var name="Type" when="param0Alpha">
-                    <Value name="integer" property="param0AlphaValue"/>
-                  </Var>
-                  <VarSet name="Value" when="param0AlphaValue">
-                    <Var name="Is">
-                      <Value name="&lt; 0"/>
-                      <Value name="0"/>
-                      <Value name="&gt; 0"/>
-                    </Var>
-                  </VarSet>
-                </VarSet>
-                <Var name="Additional">
-                  <Value name="Yes" property="param0Properties"/>
                 </Var>
               </VarSet>
             </VarSet>

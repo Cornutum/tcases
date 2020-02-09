@@ -15,13 +15,13 @@ import org.apache.commons.collections4.multimap.AbstractSetValuedMap;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.Collections.emptySet;
-import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.toCollection;
 
 /**
  * Represents the disjunctive normal form of a schema. An instance is validated by a schema
@@ -64,7 +64,7 @@ public class Dnf
     return
       type == null
       ? getAlternatives()
-      : Stream.concat( getAlternatives( type).stream(), getAlternatives( null).stream()).collect( toSet());
+      : Stream.concat( getAlternatives( type).stream(), getAlternatives( null).stream()).collect( toCollection( LinkedHashSet::new));
     }
 
   /**
@@ -72,7 +72,7 @@ public class Dnf
    */
   public Set<Schema<?>> getAlternatives()
     {
-    return alternatives_.values().stream().collect( toSet());
+    return alternatives_.values().stream().collect( toCollection( LinkedHashSet::new));
     }
 
   /**
@@ -170,7 +170,7 @@ public class Dnf
      */
     public AlternativesMap()
       {
-      super( new HashMap<String,Set<Schema<?>>>());
+      super( new LinkedHashMap<String,Set<Schema<?>>>());
       }
 
     protected Set<Schema<?>> createCollection()

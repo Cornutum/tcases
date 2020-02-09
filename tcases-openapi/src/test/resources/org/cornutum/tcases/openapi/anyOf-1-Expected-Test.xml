@@ -20,10 +20,10 @@
         </Var>
         <Var name="Body.application-json.Alternative.Used" value="0"/>
         <Var name="Body.application-json.Alternative.0.Type" value="number"/>
-        <Var name="Body.application-json.Alternative.0.Value.Is" value="-2.0"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="102.0"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -43,9 +43,9 @@
         <Var name="Body.application-json.Alternative.Used" value="1"/>
         <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" value="number"/>
-        <Var name="Body.application-json.Alternative.1.Value.Is" value="102.0"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" value="-2.0"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -65,9 +65,9 @@
         <Var name="Body.application-json.Alternative.Used" value="2"/>
         <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" value="number"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" value="-2.0"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -76,7 +76,7 @@
     <TestCase id="3">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonUnbounded,application-jsonValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonUnbounded,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -84,14 +84,14 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.Alternative.Used" value="1"/>
-        <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
-        <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Type" value="number"/>
-        <Var name="Body.application-json.Alternative.1.Value.Is" value="&gt; 102.0"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" value="Yes">
+        <Var name="Body.application-json.Alternative.Used" value="0"/>
+        <Var name="Body.application-json.Alternative.0.Type" value="number"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="&gt; 102.0"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" value="Yes">
           <Has name="multipleOf" value="2.0"/>
         </Var>
+        <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -111,9 +111,9 @@
         <Var name="Body.application-json.Alternative.Used" value="2"/>
         <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" value="number"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" value="&lt; -2.0"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" value="Yes">
@@ -132,9 +132,9 @@
         <Var name="Body.application-json.Alternative.Used" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -154,9 +154,9 @@
         <Var name="Body.application-json.Alternative.Used" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -176,9 +176,9 @@
         <Var name="Body.application-json.Alternative.Used" value="0"/>
         <Var name="Body.application-json.Alternative.0.Type" value="null" failure="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -198,9 +198,9 @@
         <Var name="Body.application-json.Alternative.Used" value="0"/>
         <Var name="Body.application-json.Alternative.0.Type" value="Not number" failure="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -219,10 +219,10 @@
         </Var>
         <Var name="Body.application-json.Alternative.Used" value="0"/>
         <Var name="Body.application-json.Alternative.0.Type" value="number"/>
-        <Var name="Body.application-json.Alternative.0.Value.Is" value="-4.0" failure="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="100.0" failure="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -231,7 +231,7 @@
     <TestCase id="10" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonUnbounded,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -241,10 +241,10 @@
         </Var>
         <Var name="Body.application-json.Alternative.Used" value="0"/>
         <Var name="Body.application-json.Alternative.0.Type" value="number"/>
-        <Var name="Body.application-json.Alternative.0.Value.Is" value="0.0" failure="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Is" value="&gt; 102.0"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" value="No" failure="true"/>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -264,9 +264,9 @@
         <Var name="Body.application-json.Alternative.Used" value="1"/>
         <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" value="number"/>
-        <Var name="Body.application-json.Alternative.1.Value.Is" value="100.0" failure="true"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" NA="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" value="-4.0" failure="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>
@@ -275,7 +275,7 @@
     <TestCase id="12" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonUnbounded,application-jsonValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
@@ -286,9 +286,9 @@
         <Var name="Body.application-json.Alternative.Used" value="1"/>
         <Var name="Body.application-json.Alternative.0.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" NA="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Type" value="number"/>
-        <Var name="Body.application-json.Alternative.1.Value.Is" value="&gt; 102.0"/>
-        <Var name="Body.application-json.Alternative.1.Value.Multiple-Of.2_0" value="No" failure="true"/>
+        <Var name="Body.application-json.Alternative.1.Value.Is" value="0.0" failure="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Value.Multiple-Of.2_0" NA="true"/>

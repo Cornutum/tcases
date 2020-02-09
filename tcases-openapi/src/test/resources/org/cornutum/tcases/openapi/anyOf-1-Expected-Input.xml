@@ -34,18 +34,6 @@
               </Var>
               <VarSet name="Value" when="application-jsonValue">
                 <Var name="Is">
-                  <Value name="-4.0" failure="true"/>
-                  <Value name="-2.0"/>
-                  <Value name="0.0" failure="true"/>
-                </Var>
-              </VarSet>
-            </VarSet>
-            <VarSet name="1" when="application-jsonAlternative1">
-              <Var name="Type">
-                <Value name="number" property="application-jsonValue"/>
-              </Var>
-              <VarSet name="Value" when="application-jsonValue">
-                <Var name="Is">
                   <Value name="100.0" failure="true"/>
                   <Value name="102.0"/>
                   <Value name="&gt; 102.0" property="application-jsonUnbounded"/>
@@ -58,6 +46,18 @@
                     <Value name="No" failure="true"/>
                   </Var>
                 </VarSet>
+              </VarSet>
+            </VarSet>
+            <VarSet name="1" when="application-jsonAlternative1">
+              <Var name="Type">
+                <Value name="number" property="application-jsonValue"/>
+              </Var>
+              <VarSet name="Value" when="application-jsonValue">
+                <Var name="Is">
+                  <Value name="-4.0" failure="true"/>
+                  <Value name="-2.0"/>
+                  <Value name="0.0" failure="true"/>
+                </Var>
               </VarSet>
             </VarSet>
             <VarSet name="2" when="application-jsonAlternative2">
