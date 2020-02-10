@@ -1028,9 +1028,14 @@ public final class SchemaUtils
     Class<S> schemaType = (Class<S>) original.getClass();
     try
       {
+      // Create new empty alternative schema
       S alternative = schemaType.newInstance();
       alternative.setType( original.getType());
 
+      // Remove any additional format assertion automatically added by the Schema subclass.
+      alternative.setFormat( null);
+
+      // Apply negater to add the negated assertion.
       negater.accept( alternative, asserted);
 
       return alternative;
