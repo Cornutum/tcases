@@ -515,14 +515,15 @@ public class SchemaAnalyzer extends ModelConditionReporter
     }
 
   /**
-   * Returns the disjunctive normal form of the schema that validates any instance validated
-   * by non of the given schemas.
+   * Returns the disjunctive normal form of the schema that validates any instance <EM>not</EM> validated
+   * by any of the given schemas.
    */
   private Dnf noneOf( List<Dnf> dnfs)
     {
     return
       dnfs.stream()
-      .map( this::not)
+      .filter( Dnf::exists)
+      .flatMap( dnf -> dnf.getAlternatives().stream().map( alternative -> Dnf.of( SchemaUtils.not( alternative))))
       .reduce( this::allOf)
       .orElse( Dnf.NONEXISTENT);
     }
@@ -605,14 +606,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
    */
   private Dnf not( Dnf dnf)
     {
-    return
-      Dnf.exists( dnf)?
-      dnf.getAlternatives().stream()
-      .map( alternative -> Dnf.of( SchemaUtils.not( alternative)))
-      .reduce( this::allOf)
-      .orElse( dnf)
-
-      : Dnf.NONEXISTENT;
+    return noneOf( Arrays.asList( dnf));
     }
 
   /**
