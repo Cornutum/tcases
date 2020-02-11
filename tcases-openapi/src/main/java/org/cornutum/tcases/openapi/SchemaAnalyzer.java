@@ -376,71 +376,156 @@ public class SchemaAnalyzer extends ModelConditionReporter
    */
   private Dnf toDnf( Schema<?> schema, Set<String> validTypes)
     {
-    Dnf baseDnf = Dnf.of( schema);
+    return
+      allOf(
+        Dnf.of( schema),
 
-    Dnf withNot =
-      resultFor( "not",
+        getNotDnf( schema, validTypes),
+
+        resultFor(
+          "allOf",
+          () ->
+          withFailureIf(
+            allOf( getAllOfDnfs( schema, validTypes)),
+            Dnf::unsatisfiable,
+            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
+
+        resultFor(
+          "oneOf",
+          () ->
+          withFailureIf(
+            oneOf( getOneOfDnfs( schema, validTypes)),
+            Dnf::unsatisfiable,
+            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
+
+        resultFor(
+          "anyOf",
+          () ->
+          withFailureIf(
+            anyOf( getAnyOfDnfs( schema, validTypes)),
+            Dnf::unsatisfiable,
+            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))));
+    }
+
+  /**
+   * Returns the disjunctive normal form for the negation of the given schema
+   */
+  private Dnf dnfForNot( Schema<?> schema, Set<String> validTypes)
+    {
+    return
+      Optional.ofNullable( getDnf( schema))
+      .orElseGet( () -> {
+        Dnf dnf = toNotDnf( schema, validTypes);
+        setDnf( schema, dnf);
+        return dnf;
+        });
+    }
+
+  /**
+   * Returns the disjunctive normal form for the negation of the given schema
+   */
+  private Dnf toNotDnf( Schema<?> schema, Set<String> validTypes)
+    {
+    return
+      unionOf(
+        not( Dnf.of( schema)),
+
+        not( getNotDnf( schema, validTypes)),
+
+        resultFor(
+          "allOf",
+          () ->
+          withFailureIf(
+            notAllOf( getAllOfDnfs( schema, validTypes)),
+            Dnf::unsatisfiable,
+            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
+
+        resultFor(
+          "oneOf",
+          () ->
+          withFailureIf(
+            noneOf( getOneOfDnfs( schema, validTypes)),
+            Dnf::unsatisfiable,
+            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
+
+        resultFor(
+          "anyOf",
+          () ->
+          withFailureIf(
+            noneOf( getAnyOfDnfs( schema, validTypes)),
+            Dnf::unsatisfiable,
+            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))));
+    }
+
+  /**
+   * If the given schema defines a "not" assertion, returns its disjunctive normal form.
+   * Otherwise, returns {@link Dnf#NONEXISTENT}.
+   */
+  private Dnf getNotDnf( Schema<?> schema, Set<String> validTypes)
+    {
+    return
+      resultFor(
+        "not",
         () ->
         Optional.ofNullable( schema.getNot())
-        .map(
-          not ->
-          withFailureIf(
-            allOf( baseDnf, not( dnfFor( not, validTypes))),
-            Dnf::unsatisfiable,
-            () -> new IllegalStateException( "\"not\" assertion inconsistent with base schema")))
-        .orElse( baseDnf));
+        .map( not -> dnfForNot( not, validTypes))
+        .orElse( Dnf.NONEXISTENT));
+    }
 
+  /**
+   * If the given schema defines an "allOf" assertion, returns the disjunctive normal form for each member schema.
+   */
+  private List<Dnf> getAllOfDnfs( Schema<?> schema, Set<String> validTypes)
+    {
     return
-      Optional.ofNullable( asComposedSchema( schema))
-      .map(
-        composed ->
+      resultFor( "allOf",
+        () ->
+        Optional.ofNullable( asComposedSchema( schema))
+        .map(
+          composed ->
+          combinedAllOf( composed.getAllOf()).stream()
+          .map( member -> dnfFor( member, validTypes))
+          .collect( toList()))
+        .orElse( emptyList()));
+    }
 
-        withFailureIf(
-          allOf(
-            withNot,
+  /**
+   * If the given schema defines an "oneOf" assertion, returns the disjunctive normal form for each member schema.
+   */
+  private List<Dnf> getOneOfDnfs( Schema<?> schema, Set<String> validTypes)
+    {
+    return
+      resultFor( "oneOf",
+        () ->
+        Optional.ofNullable( asComposedSchema( schema))
+        .map(
+          composed ->
+          applicableMembers( "oneOf", validTypes, composed.getOneOf())
+          .map( member -> dnfFor( member, validTypes))
+          .collect( toList()))
+        .orElse( emptyList()));
+    }
 
-            resultFor(
-              "allOf",
-              () ->
-              withFailureIf(         
-                allOf(
-                  combinedAllOf( composed.getAllOf()).stream()
-                  .map( member -> dnfFor( member, validTypes))
-                  .collect( toList())),
-                Dnf::unsatisfiable,
-                () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
-
-            resultFor(
-              "oneOf",
-              () ->
-              withFailureIf(         
-                oneOf(
-                  applicableMembers( "oneOf", validTypes, composed.getOneOf())
-                  .map( member -> dnfFor( member, validTypes))
-                  .collect( toList())),
-                Dnf::unsatisfiable,
-                () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
-
-            resultFor(
-              "anyOf",
-              () ->
-              withFailureIf(         
-                anyOf(
-                  applicableMembers( "anyOf", validTypes, composed.getAnyOf())
-                  .map( member -> dnfFor( member, validTypes))
-                  .collect( toList())),
-                Dnf::unsatisfiable,
-                () -> new IllegalStateException( "This combination of schemas can't be satisfied")))),
-
-          Dnf::unsatisfiable,
-          () -> new IllegalStateException( "Boolean schema combinations inconsistent with base schema")))
-      
-      .orElse( withNot);
+  /**
+   * If the given schema defines an "anyOf" assertion, returns the disjunctive normal form for each member schema.
+   */
+  private List<Dnf> getAnyOfDnfs( Schema<?> schema, Set<String> validTypes)
+    {
+    return
+      resultFor( "anyOf",
+        () ->
+        Optional.ofNullable( asComposedSchema( schema))
+        .map(
+          composed ->
+          applicableMembers( "anyOf", validTypes, composed.getAnyOf())
+          .map( member -> dnfFor( member, validTypes))
+          .collect( toList()))
+        .orElse( emptyList()));
     }
 
   /**
    * Returns the disjunctive normal form of the schema that validates any instance validated
-   * by both of the given schemas.
+   * by all of the given schemas.
    */
   private Dnf allOf( Dnf... dnfs)
     {
@@ -449,7 +534,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
 
   /**
    * Returns the disjunctive normal form of the schema that validates any instance validated
-   * by both of the given schemas.
+   * by all of the given schemas.
    */
   private Dnf allOf( List<Dnf> dnfs)
     {
@@ -529,6 +614,19 @@ public class SchemaAnalyzer extends ModelConditionReporter
     }
 
   /**
+   * Returns the disjunctive normal form of the schema that validates any instance <EM>not</EM> validated
+   * by at least one of the given schemas.
+   */
+  private Dnf notAllOf( List<Dnf> dnfs)
+    {
+    return
+      Optional.of( dnfs.stream().filter( Dnf::exists).collect( toList()))
+      .filter( exist -> exist.size() == 1)
+      .map( this::noneOf)
+      .orElse( anyOf( dnfs));
+    }
+
+  /**
    * Returns the disjunctive normal form of the schema that validates any instance validated
    * by one or more of the given schemas.
    */
@@ -541,7 +639,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
     List<Dnf> pairs = new ArrayList<Dnf>();
     Set<Integer> unpaired = IntStream.range( 0, choices.size()).mapToObj( Integer::valueOf).collect( toCollection( LinkedHashSet::new));
 
-    // ... unless fewer than 3 inputs. If so, skip pairing to ensure that, for each input schema, the resulting DNF contains
+    // ... unless fewer than 3 inputs. If so, skip pairing to ensure that, for each input schema, the resulting DNF can contain
     // alternatives to validate and invalidate that schema.
     if( choices.size() >= 3)
       {
@@ -610,6 +708,26 @@ public class SchemaAnalyzer extends ModelConditionReporter
     }
 
   /**
+   * Returns the disjunctive normal form of the schema that the union of all the given DNFs.
+   */
+  private Dnf unionOf( List<Dnf> dnfs)
+    {
+    return
+      Optional.of( dnfs.stream().filter( Dnf::exists).collect( toList()))
+      .filter( exist -> !exist.isEmpty())
+      .map( exist -> Dnf.of( exist.stream().flatMap( dnf -> dnf.getAlternatives().stream())))
+      .orElse( Dnf.NONEXISTENT);
+    }
+
+  /**
+   * Returns the disjunctive normal form of the schema that the union of all the given DNFs.
+   */
+  private Dnf unionOf( Dnf... dnfs)
+    {
+    return unionOf( Arrays.asList( dnfs));
+    }
+
+  /**
    * Returns a consolidated list of "allOf" members by combining all leaf members into a single schema.
    */
   @SuppressWarnings("rawtypes")
@@ -625,17 +743,16 @@ public class SchemaAnalyzer extends ModelConditionReporter
           () -> Optional.ofNullable( asComposedSchema( members.get(i))).flatMap( c -> combinedAllOf( c)).orElse( members.get(i))))
       .collect( toList());
       
-    // ... return the list of remaining ComposedSchema members...
+    // ... return the list of remaining non-leaf members...
     List<Schema> consolidated =
       memberEquivalents.stream()
-      .map( SchemaUtils::asComposedSchema)
-      .filter( Objects::nonNull)
+      .filter( SchemaUtils::isNotLeafSchema)
       .collect( toList());
 
     // ... adding a single schema combining all leaf members (if any)
     IntStream.range( 0, memberEquivalents.size())
       .mapToObj( i -> new SimpleEntry<Integer,Schema>( i, memberEquivalents.get(i)))
-      .filter( memberEntry -> asComposedSchema( memberEntry.getValue()) == null)
+      .filter( memberEntry -> isLeafSchema( memberEntry.getValue()))
       .reduce(
         (combinedEntry, memberEntry) ->
         resultFor(
@@ -649,14 +766,14 @@ public class SchemaAnalyzer extends ModelConditionReporter
 
   /**
    * The given ComposedSchema, if it consists solely of "allOf" members, may be equivalent to a single leaf schema.
-   * If so, returns the equivalent schema. Otherwise, returns <CODE>Optional.emtpy()</CODE>.
+   * If so, returns the equivalent schema. Otherwise, returns <CODE>Optional.empty()</CODE>.
    */
   @SuppressWarnings({ "rawtypes" })
   private Optional<Schema> combinedAllOf( ComposedSchema schema)
     {
     return
       // Does this schema define only "allOf" members?
-      schema.getAllOf().isEmpty() || !schema.getAnyOf().isEmpty() || !schema.getOneOf().isEmpty()?
+      schema.getAllOf().isEmpty() || !schema.getAnyOf().isEmpty() || !schema.getOneOf().isEmpty() || schema.getNot() != null?
       Optional.empty() :
       
       // Yes, does its consolidated "allOf" list consist of a single member?
@@ -665,7 +782,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
 
       // ...which is a leaf schema?
       .map( members -> members.get(0))
-      .filter( member -> asComposedSchema( member) == null)
+      .filter( SchemaUtils::isLeafSchema)
 
       // If so, return the equivalent combined leaf schema
       .map( member -> combineSchemas( getContext(), schema, member));

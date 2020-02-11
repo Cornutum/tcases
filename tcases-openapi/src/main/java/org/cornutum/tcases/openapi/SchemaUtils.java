@@ -133,6 +133,22 @@ public final class SchemaUtils
     }
 
   /**
+   * Returns true if this is a basic schema without any boolean combinations of subschemas.
+   */
+  public static boolean isLeafSchema( Schema<?> schema)
+    {
+    return asComposedSchema( schema) == null && schema.getNot() == null;
+    }
+
+  /**
+   * Returns true if this schema asserts some any boolean combinations of subschemas.
+   */
+  public static boolean isNotLeafSchema( Schema<?> schema)
+    {
+    return !isLeafSchema( schema);
+    }
+
+  /**
    * Returns a new schema that validates any instance that satisfies both the base schema and the additional schema.
    * Throws an exception if a consistent combination is not possible.
    */

@@ -16,8 +16,6 @@
           <Var name="Used">
             <Value name="0" property="param0Alternative0"/>
             <Value name="1" property="param0Alternative1"/>
-            <Value name="2" property="param0Alternative2"/>
-            <Value name="3" property="param0Alternative3"/>
           </Var>
           <VarSet name="0" when="param0Alternative0">
             <Var name="Type" when="param0">
@@ -28,9 +26,8 @@
             <VarSet name="Value" when="param0Value">
               <Var name="Length">
                 <Value name="0"/>
-                <Value name="7"/>
-                <Value name="8" failure="true"/>
-                <Value name="&lt; 7"/>
+                <Value name="1"/>
+                <Value name="2" failure="true"/>
               </Var>
               <Var name="Matches-Pattern">
                 <Has name="pattern" value=".*"/>
@@ -46,8 +43,7 @@
             <VarSet name="Value" when="param0Value">
               <Var name="Length">
                 <Value name="0"/>
-                <Value name="7"/>
-                <Value name="&lt; 7"/>
+                <Value name="1"/>
               </Var>
               <VarSet name="Matches-Patterns">
                 <Var name="0">
@@ -56,53 +52,8 @@
                   <Value name="No" failure="true"/>
                 </Var>
                 <Var name="1">
-                  <Has name="pattern" value="Error"/>
+                  <Has name="pattern" value="[0-9]+"/>
                   <Value name="Yes" failure="true"/>
-                  <Value name="No"/>
-                </Var>
-              </VarSet>
-            </VarSet>
-          </VarSet>
-          <VarSet name="2" when="param0Alternative2">
-            <Var name="Type" when="param0">
-              <Value name="string" property="param0Value"/>
-            </Var>
-            <VarSet name="Value" when="param0Value">
-              <Var name="Length">
-                <Value name="0"/>
-                <Value name="7"/>
-                <Value name="&lt; 7"/>
-              </Var>
-              <VarSet name="Matches-Patterns">
-                <Var name="0">
-                  <Has name="pattern" value=".*"/>
-                  <Value name="Yes"/>
-                </Var>
-                <Var name="1">
-                  <Has name="pattern" value="[0-9]+"/>
-                  <Value name="No"/>
-                </Var>
-              </VarSet>
-            </VarSet>
-          </VarSet>
-          <VarSet name="3" when="param0Alternative3">
-            <Var name="Type" when="param0">
-              <Value name="string" property="param0Value"/>
-            </Var>
-            <VarSet name="Value" when="param0Value">
-              <Var name="Length">
-                <Value name="0"/>
-                <Value name="256"/>
-                <Value name="257" failure="true"/>
-                <Value name="&lt; 256"/>
-              </Var>
-              <VarSet name="Matches-Patterns">
-                <Var name="0">
-                  <Has name="pattern" value=".*"/>
-                  <Value name="Yes"/>
-                </Var>
-                <Var name="1">
-                  <Has name="pattern" value="[0-9]+"/>
                   <Value name="No"/>
                 </Var>
                 <Var name="2">

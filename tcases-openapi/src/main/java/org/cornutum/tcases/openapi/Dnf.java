@@ -156,6 +156,9 @@ public class Dnf
     return builder.toString();
     }
 
+  /**
+   * Designates a non-existent result for a DNF expression.
+   */
   public static final Dnf NONEXISTENT = null;
   
   private AlternativesMap alternatives_ = new AlternativesMap();
