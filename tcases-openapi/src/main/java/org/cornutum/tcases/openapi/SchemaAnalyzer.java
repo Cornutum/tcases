@@ -26,7 +26,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -54,9 +53,11 @@ public class SchemaAnalyzer extends ModelConditionReporter
   public Schema<?> analyze( OpenAPI api, Schema<?> schema)
     {
     Schema<?> resolved = resolve( api, schema);
-
     analyzeValidTypes( api, resolved);
-    analyzeDnf( resolved);
+    if( Dnf.unsatisfiable( analyzeDnf( resolved)))
+      {
+      throw new IllegalStateException( "This schema can't be satisfied by any instance");
+      }
     
     return resolved;
     }
@@ -328,20 +329,20 @@ public class SchemaAnalyzer extends ModelConditionReporter
   /**
    * Determines the disjunctive normal form of the given schema.
    */
-  private void analyzeDnf( Schema<?> schema)
+  private Dnf analyzeDnf( Schema<?> schema)
     {
-    if( schema != null)
-      {
-      analyzeDnf( schema, getValidTypes( schema));
-      }
+    return
+      Optional.ofNullable( schema)
+      .map( s -> analyzeDnf( s, getValidTypes( s)))
+      .orElse( Dnf.NONEXISTENT);
     }
 
   /**
    * Determines the disjunctive normal form of the given schema.
    */
-  private void analyzeDnf( Schema<?> schema, Set<String> validTypes)
+  private Dnf analyzeDnf( Schema<?> schema, Set<String> validTypes)
     {
-    dnfFor( schema, validTypes);
+    Dnf dnf = dnfFor( schema, validTypes);
     
     Optional.ofNullable( asArraySchema( schema))
       .ifPresent( array -> doFor( "items", () -> analyzeDnf( array.getItems())));
@@ -355,6 +356,8 @@ public class SchemaAnalyzer extends ModelConditionReporter
     Optional.ofNullable( schema.getAdditionalProperties())
       .filter( additional -> additional instanceof Schema)
       .ifPresent( additional -> doFor( "additionalProperties", () -> analyzeDnf( (Schema<?>) additional)));
+
+    return dnf;
     }
 
   /**
@@ -365,7 +368,13 @@ public class SchemaAnalyzer extends ModelConditionReporter
     return
       Optional.ofNullable( getDnf( schema))
       .orElseGet( () -> {
-        Dnf dnf = toDnf( schema, validTypes);
+
+        Dnf dnf =
+          withWarningIf(
+            toDnf( schema, validTypes),
+            Dnf::unsatisfiable,
+            String.format( "This schema can't be satisified by any instance of types=%s", validTypes));
+          
         setDnf( schema, dnf);
         return dnf;
         });
@@ -385,26 +394,26 @@ public class SchemaAnalyzer extends ModelConditionReporter
         resultFor(
           "allOf",
           () ->
-          withFailureIf(
+          withWarningIf(
             allOf( getAllOfDnfs( schema, validTypes)),
             Dnf::unsatisfiable,
-            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
+            "This combination of schemas can't be satisfied")),
 
         resultFor(
           "oneOf",
           () ->
-          withFailureIf(
+          withWarningIf(
             oneOf( getOneOfDnfs( schema, validTypes)),
             Dnf::unsatisfiable,
-            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
+            "This combination of schemas can't be satisfied")),
 
         resultFor(
           "anyOf",
           () ->
-          withFailureIf(
+          withWarningIf(
             anyOf( getAnyOfDnfs( schema, validTypes)),
             Dnf::unsatisfiable,
-            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))));
+            "This combination of schemas can't be satisfied")));
     }
 
   /**
@@ -415,7 +424,13 @@ public class SchemaAnalyzer extends ModelConditionReporter
     return
       Optional.ofNullable( getDnf( schema))
       .orElseGet( () -> {
-        Dnf dnf = toNotDnf( schema, validTypes);
+
+        Dnf dnf =
+          withWarningIf(
+            toNotDnf( schema, validTypes),
+            Dnf::unsatisfiable,
+            String.format( "This schema can't be satisified by any instance of types=%s", validTypes));
+        
         setDnf( schema, dnf);
         return dnf;
         });
@@ -435,26 +450,26 @@ public class SchemaAnalyzer extends ModelConditionReporter
         resultFor(
           "allOf",
           () ->
-          withFailureIf(
+          withWarningIf(
             notAllOf( getAllOfDnfs( schema, validTypes)),
             Dnf::unsatisfiable,
-            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
+            "This combination of schemas can't be satisfied")),
 
         resultFor(
           "oneOf",
           () ->
-          withFailureIf(
+          withWarningIf(
             noneOf( getOneOfDnfs( schema, validTypes)),
             Dnf::unsatisfiable,
-            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))),
+            "This combination of schemas can't be satisfied")),
 
         resultFor(
           "anyOf",
           () ->
-          withFailureIf(
+          withWarningIf(
             noneOf( getAnyOfDnfs( schema, validTypes)),
             Dnf::unsatisfiable,
-            () -> new IllegalStateException( "This combination of schemas can't be satisfied"))));
+            "This combination of schemas can't be satisfied")));
     }
 
   /**
@@ -478,15 +493,13 @@ public class SchemaAnalyzer extends ModelConditionReporter
   private List<Dnf> getAllOfDnfs( Schema<?> schema, Set<String> validTypes)
     {
     return
-      resultFor( "allOf",
-        () ->
-        Optional.ofNullable( asComposedSchema( schema))
-        .map(
-          composed ->
-          combinedAllOf( composed.getAllOf()).stream()
-          .map( member -> dnfFor( member, validTypes))
-          .collect( toList()))
-        .orElse( emptyList()));
+      Optional.ofNullable( asComposedSchema( schema))
+      .map(
+        composed ->
+        combinedAllOf( composed.getAllOf()).stream()
+        .map( member -> dnfFor( member, validTypes))
+        .collect( toList()))
+      .orElse( emptyList());
     }
 
   /**
@@ -495,15 +508,13 @@ public class SchemaAnalyzer extends ModelConditionReporter
   private List<Dnf> getOneOfDnfs( Schema<?> schema, Set<String> validTypes)
     {
     return
-      resultFor( "oneOf",
-        () ->
-        Optional.ofNullable( asComposedSchema( schema))
-        .map(
-          composed ->
-          applicableMembers( "oneOf", validTypes, composed.getOneOf())
-          .map( member -> dnfFor( member, validTypes))
-          .collect( toList()))
-        .orElse( emptyList()));
+      Optional.ofNullable( asComposedSchema( schema))
+      .map(
+        composed ->
+        applicableMembers( "oneOf", validTypes, composed.getOneOf())
+        .map( member -> dnfFor( member, validTypes))
+        .collect( toList()))
+      .orElse( emptyList());
     }
 
   /**
@@ -512,15 +523,13 @@ public class SchemaAnalyzer extends ModelConditionReporter
   private List<Dnf> getAnyOfDnfs( Schema<?> schema, Set<String> validTypes)
     {
     return
-      resultFor( "anyOf",
-        () ->
-        Optional.ofNullable( asComposedSchema( schema))
-        .map(
-          composed ->
-          applicableMembers( "anyOf", validTypes, composed.getAnyOf())
-          .map( member -> dnfFor( member, validTypes))
-          .collect( toList()))
-        .orElse( emptyList()));
+      Optional.ofNullable( asComposedSchema( schema))
+      .map(
+        composed ->
+        applicableMembers( "anyOf", validTypes, composed.getAnyOf())
+        .map( member -> dnfFor( member, validTypes))
+        .collect( toList()))
+      .orElse( emptyList());
     }
 
   /**
@@ -579,11 +588,10 @@ public class SchemaAnalyzer extends ModelConditionReporter
             Dnf.NONEXISTENT :
 
             // ... define a schema that validates only this choice
-            withErrorIf(
+            withWarningIf(
               allOf( member, noneOf( restOf( dnfs, i))),
               Dnf::undefined,
-              String.format( "oneOf[%s] can't be satisfied exclusively", i),
-              "Ignoring this schema");
+              String.format( "oneOf[%s] can't be satisfied exclusively -- ignoring this schema", i));
         })
       .filter( Dnf::exists)
       .collect( toList());
@@ -817,27 +825,14 @@ public class SchemaAnalyzer extends ModelConditionReporter
     }
 
   /**
-   * Returns the given result, reporting a failure if the given predicate is true.
+   * Returns the given result, notifying a warning if the given predicate is true.
    */
-  private <T> T withFailureIf( T result, Predicate<T> isFailure, Supplier<RuntimeException> failure)
+  private <T> T withWarningIf( T result, Predicate<T> isWarning, String reason)
     {
-    if( isFailure.test( result))
+    if( isWarning.test( result))
       {
-      throw failure.get();
+      notifyWarning( reason);
       }
     return result;
     }
-
-  /**
-   * Returns the given result, notifying an error if the given predicate is true.
-   */
-  private <T> T withErrorIf( T result, Predicate<T> isError, String reason, String resolution)
-    {
-    if( isError.test( result))
-      {
-      notifyError( reason, resolution);
-      }
-    return result;
-    }
-
   }
