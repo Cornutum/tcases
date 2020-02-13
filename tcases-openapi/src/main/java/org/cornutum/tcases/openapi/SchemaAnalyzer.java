@@ -333,31 +333,46 @@ public class SchemaAnalyzer extends ModelConditionReporter
     {
     return
       Optional.ofNullable( schema)
-      .map( s -> analyzeDnf( s, getValidTypes( s)))
+      .map( s -> dnfFor( s, getValidTypes( s)))
       .orElse( Dnf.NONEXISTENT);
     }
 
   /**
-   * Determines the disjunctive normal form of the given schema.
+   * Analyzes the disjunctive normal form of the items schema for the given array.
+   * If the items schema is unsatisfiable, returns {@link Dnf#UNDEFINED}.
+   * Otherwise, returns {@link Dnf#NONEXISTENT}.
    */
-  private Dnf analyzeDnf( Schema<?> schema, Set<String> validTypes)
+  private Dnf undefinedArrayItems( ArraySchema array)
     {
-    Dnf dnf = dnfFor( schema, validTypes);
-    
-    Optional.ofNullable( asArraySchema( schema))
-      .ifPresent( array -> doFor( "items", () -> analyzeDnf( array.getItems())));
+    return
+      resultFor( "items",
+        () -> 
+        Optional.of( analyzeDnf( array.getItems()))
+        .filter( Dnf::undefined)
+        .orElse( Dnf.NONEXISTENT));
+    }
 
-    Optional.ofNullable( schema.getProperties())
-      .ifPresent( properties -> {
-        properties.keySet().stream()
-          .forEach( p -> doFor( p, () -> analyzeDnf( properties.get( p))));
-        });
+  /**
+   * Analyzes the disjunctive normal form of each property schema for the given object.
+   * If any property schema is unsatisfiable, returns {@link Dnf#UNDEFINED}.
+   * Otherwise, returns {@link Dnf#NONEXISTENT}.
+   */
+  private Dnf undefinedObjectProperties( Schema<?> object)
+    {
+    return
+      allOf(
+        Optional.ofNullable( object.getProperties())
+        .flatMap(
+          properties -> properties.keySet().stream()
+          .map( p -> resultFor( p, () -> analyzeDnf( object.getProperties().get( p))))
+          .filter( Dnf::undefined)
+          .findFirst())
+        .orElse( Dnf.NONEXISTENT),
 
-    Optional.ofNullable( schema.getAdditionalProperties())
-      .filter( additional -> additional instanceof Schema)
-      .ifPresent( additional -> doFor( "additionalProperties", () -> analyzeDnf( (Schema<?>) additional)));
-
-    return dnf;
+        Optional.ofNullable( additionalPropertiesSchema( object))
+        .map( ap -> resultFor( "additionalProperties", () -> analyzeDnf( ap)))
+        .filter( Dnf::undefined)
+        .orElse( Dnf.NONEXISTENT));
     }
 
   /**
@@ -373,7 +388,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
           withWarningIf(
             toDnf( schema, validTypes),
             Dnf::unsatisfiable,
-            String.format( "This schema can't be satisified by any instance of types=%s", validTypes));
+            String.format( "This schema can't be satisfied by any instance of types=%s", validTypes));
           
         setDnf( schema, dnf);
         return dnf;
@@ -387,7 +402,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
     {
     return
       allOf(
-        Dnf.of( schema),
+        withSubSchemas( schema),
 
         getNotDnf( schema, validTypes),
 
@@ -429,11 +444,34 @@ public class SchemaAnalyzer extends ModelConditionReporter
           withWarningIf(
             toNotDnf( schema, validTypes),
             Dnf::unsatisfiable,
-            String.format( "This schema can't be satisified by any instance of types=%s", validTypes));
+            String.format( "This schema can't be satisfied by any instance of types=%s", validTypes));
         
         setDnf( schema, dnf);
         return dnf;
         });
+    }
+
+  /**
+   * Returns the disjunctive normal form of the given schema, combined with results of analyzing
+   * any subschema assertions for array items and object properties.
+   */
+  private Dnf withSubSchemas( Schema<?> schema)
+    {
+    return
+      allOf(
+        Dnf.of( schema),
+
+        Optional.ofNullable( asArraySchema( schema))
+        .filter( array -> array.getItems() != null)
+        .map( this::undefinedArrayItems)
+        .orElse( Dnf.NONEXISTENT),
+
+        Optional.ofNullable( schema.getProperties())
+        .map( p -> undefinedObjectProperties( schema))
+        .orElse(
+          Optional.ofNullable( additionalPropertiesSchema( schema))
+          .map( ap -> undefinedObjectProperties( schema))
+          .orElse( Dnf.NONEXISTENT)));
     }
 
   /**
@@ -443,7 +481,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
     {
     return
       unionOf(
-        not( Dnf.of( schema)),
+        not( withSubSchemas( schema)),
 
         not( getNotDnf( schema, validTypes)),
 
@@ -662,7 +700,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
                 Dnf pair =
                   // When pairing with a different schema...
                   i == j?
-                  Dnf.of():
+                  Dnf.UNDEFINED:
 
                   // ... is there a schema that validates this pair but none of the others?
                   allOf(

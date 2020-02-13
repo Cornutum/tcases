@@ -160,6 +160,12 @@ public class Dnf
    * Designates a non-existent result for a DNF expression.
    */
   public static final Dnf NONEXISTENT = null;
+
+  /**
+   * Designates an undefined result for a DNF expression.
+   */
+  public static final Dnf UNDEFINED = Dnf.of();
+
   
   private AlternativesMap alternatives_ = new AlternativesMap();
 

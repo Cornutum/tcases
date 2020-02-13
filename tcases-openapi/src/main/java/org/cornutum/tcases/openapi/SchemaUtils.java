@@ -133,6 +133,18 @@ public final class SchemaUtils
     }
 
   /**
+   * If the given schema asserts a schema for additional properties, returns
+   * the additional properties schema. Otherwise, returns null.
+   */
+  public static Schema<?> additionalPropertiesSchema( Schema<?> schema)
+    {
+    return
+      schema.getAdditionalProperties() instanceof Schema
+      ? (Schema<?>) schema.getAdditionalProperties()
+      : null;
+    }
+
+  /**
    * Returns true if this is a basic schema without any boolean combinations of subschemas.
    */
   public static boolean isLeafSchema( Schema<?> schema)
@@ -216,20 +228,8 @@ public final class SchemaUtils
     Schema combined = combineGenericSchemas( context, base, additional);
 
     // Combine additionalProperties
-    Schema<?> baseExtraSchema =
-      Optional.ofNullable( base.getAdditionalProperties())
-      .map( Object::getClass)
-      .filter( type -> !type.equals( Boolean.class))
-      .map( type -> (Schema<?>) base.getAdditionalProperties())
-      .orElse( null);
-
-    Schema<?> additionalExtraSchema =
-      Optional.ofNullable( additional.getAdditionalProperties())
-      .map( Object::getClass)
-      .filter( type -> !type.equals( Boolean.class))
-      .map( type -> (Schema<?>) additional.getAdditionalProperties())
-      .orElse( null);
-
+    Schema<?> baseExtraSchema = additionalPropertiesSchema( base);
+    Schema<?> additionalExtraSchema = additionalPropertiesSchema( additional);
     if( baseExtraSchema != null)
       {
       combined.setAdditionalProperties(

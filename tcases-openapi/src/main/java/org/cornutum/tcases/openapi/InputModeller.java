@@ -1597,10 +1597,7 @@ public abstract class InputModeller extends ModelConditionReporter
       .map( min -> min > constraints.getTotalCount())
       .orElse( false);
 
-    Schema<?> propertySchema =
-      instanceSchema.getAdditionalProperties() instanceof Schema
-      ? (Schema<?>)instanceSchema.getAdditionalProperties()
-      : null;
+    Schema<?> propertySchema = additionalPropertiesSchema( instanceSchema);
 
     return
       propertySchema != null?
