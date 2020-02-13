@@ -156,10 +156,16 @@ public abstract class OpenApiTest
    */
   protected OpenAPI readApi( String resource)
     {
-    String resourceFile = resource + ".json";
-    URL url = getClass().getResource( resourceFile);
-    InputStream document = getClass().getResourceAsStream( resourceFile);
-    assertThat( "Resource=" + resourceFile, document, is( notNullValue()));
+    URL url = null;
+    InputStream document = null;
+    List<String> docTypes = Arrays.asList( "json", "yaml", "yml"); 
+    for( int i = 0; document == null && i < docTypes.size(); i++)
+      {
+      String resourceFile = String.format( "%s.%s", resource, docTypes.get(i));
+      url = getClass().getResource( resourceFile);
+      document = getClass().getResourceAsStream( resourceFile);
+      }
+    assertThat( "OpenAPI spec for resource=" + resource, document, is( notNullValue()));
     
     try( OpenApiReader reader = new OpenApiReader( document, url))
       {
