@@ -29,9 +29,11 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -304,7 +306,40 @@ public abstract class OpenApiTest
     return saveExpectedDir_ != null;
     }
 
+  /**
+   * Returns {@link ModelOptions} to record conditions notified.
+   */
+  protected ModelOptions withConditionRecorder()
+    {
+    conditionRecorder_ =  new ModelConditionRecorder();
+    return ModelOptions.builder().notifier( conditionRecorder_).build();
+    }
+
+  protected ModelConditionRecorder getConditionRecorder()
+    {
+    return conditionRecorder_;
+    }
+  
+  protected void assertWarnings( String... warnings)
+    {
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( warnings));
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( emptyList()));
+    }
+
+  protected void assertErrors( String... errors)
+    {
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( errors));
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( emptyList()));
+    }
+  
+  protected void assertConditions( List<String> warnings, List<String> errors)
+    {
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( warnings));
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( errors));
+    }
+  
   private final SystemInputResources inputResources_ = new SystemInputResources( getClass());
   private final SystemTestResources testResources_ = new SystemTestResources( getClass());
   private final File saveExpectedDir_ = Optional.ofNullable( System.getProperty( "saveExpectedTo")).map( path -> new File( path)).orElse( null);
+  private ModelConditionRecorder conditionRecorder_;
   }
