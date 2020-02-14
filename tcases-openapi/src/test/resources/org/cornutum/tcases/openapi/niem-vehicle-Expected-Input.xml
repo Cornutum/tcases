@@ -1,0 +1,1569 @@
+<?xml version="1.0"?>
+<System name="NIEM-Vehicle-API">
+  <Has name="server" value="/"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_vehicles">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="200" property="status200"/>
+        <Value name="4XX" property="status4XX"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;200&apos;,&apos;4XX&apos;"/>
+        </Value>
+      </Var>
+      <VarSet name="200" when="status200">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="200Content"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="200Content">
+            <Value name="application-json" property="200application-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;"/>
+            </Value>
+          </Var>
+          <VarSet name="application-json" when="200application-json">
+            <VarSet name="Alternative">
+              <Var name="Used">
+                <Value name="0" property="200application-jsonAlternative0"/>
+                <Value name="1" property="200application-jsonAlternative1"/>
+              </Var>
+              <VarSet name="0" when="200application-jsonAlternative0">
+                <Var name="Type">
+                  <Value name="object" property="200application-jsonValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not object" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="200application-jsonValue">
+                  <Var name="Property-Count">
+                    <Value name="0" once="true">
+                      <When>
+                        <Not property="200application-jsonProperties">
+                        </Not>
+                      </When>
+                    </Value>
+                    <Value name="&gt; 0" when="200application-jsonProperties"/>
+                  </Var>
+                  <VarSet name="Properties">
+                    <VarSet name="VehicleMSRPAmount">
+                      <Var name="Defined">
+                        <Value name="Yes" property="200application-jsonProperties, 200application-jsonVehicleMSRPAmount"/>
+                        <Value name="No"/>
+                      </Var>
+                      <VarSet name="Alternative">
+                        <Var name="Used">
+                          <Value name="0" property="200application-jsonVehicleMSRPAmountAlternative0"/>
+                          <Value name="1" property="200application-jsonVehicleMSRPAmountAlternative1"/>
+                        </Var>
+                        <VarSet name="0" when="200application-jsonVehicleMSRPAmountAlternative0">
+                          <Var name="Type" when="200application-jsonVehicleMSRPAmount">
+                            <Value name="object" property="200application-jsonVehicleMSRPAmountValue"/>
+                          </Var>
+                          <VarSet name="Value" when="200application-jsonVehicleMSRPAmountValue">
+                            <Var name="Property-Count">
+                              <Value name="0" once="true">
+                                <When>
+                                  <Not property="200application-jsonVehicleMSRPAmountProperties">
+                                  </Not>
+                                </When>
+                              </Value>
+                              <Value name="&gt; 0" when="200application-jsonVehicleMSRPAmountProperties"/>
+                            </Var>
+                            <VarSet name="Properties">
+                              <VarSet name="Amount">
+                                <Var name="Defined">
+                                  <Value name="Yes" property="200application-jsonVehicleMSRPAmountAmount, 200application-jsonVehicleMSRPAmountProperties"/>
+                                  <Value name="No"/>
+                                </Var>
+                                <VarSet name="Alternative">
+                                  <Var name="Used">
+                                    <Value name="0" property="200application-jsonVehicleMSRPAmountAmountAlternative0"/>
+                                    <Value name="1" property="200application-jsonVehicleMSRPAmountAmountAlternative1"/>
+                                  </Var>
+                                  <VarSet name="0" when="200application-jsonVehicleMSRPAmountAmountAlternative0">
+                                    <Var name="Type" when="200application-jsonVehicleMSRPAmountAmount">
+                                      <Value name="number" property="200application-jsonVehicleMSRPAmountAmountValue"/>
+                                      <Value name="Not number" failure="true"/>
+                                    </Var>
+                                    <VarSet name="Value" when="200application-jsonVehicleMSRPAmountAmountValue">
+                                      <Var name="Is">
+                                        <Value name="&lt; 0"/>
+                                        <Value name="0"/>
+                                        <Value name="&gt; 0"/>
+                                      </Var>
+                                    </VarSet>
+                                  </VarSet>
+                                  <VarSet name="1" when="200application-jsonVehicleMSRPAmountAmountAlternative1">
+                                    <Var name="Type" when="200application-jsonVehicleMSRPAmountAmount">
+                                      <Value name="array" property="200application-jsonVehicleMSRPAmountAmountValue"/>
+                                      <Value name="Not array" failure="true"/>
+                                    </Var>
+                                    <VarSet name="Items" when="200application-jsonVehicleMSRPAmountAmountValue">
+                                      <Var name="Size">
+                                        <Value name="0" property="200application-jsonVehicleMSRPAmountAmountItemsNone"/>
+                                        <Value name="1"/>
+                                        <Value name="&gt; 1" property="200application-jsonVehicleMSRPAmountAmountItemsMany"/>
+                                      </Var>
+                                      <VarSet name="Contains">
+                                        <When>
+                                          <Not property="200application-jsonVehicleMSRPAmountAmountItemsNone">
+                                          </Not>
+                                        </When>
+                                        <Var name="Type">
+                                          <Value name="number" property="200application-jsonVehicleMSRPAmountAmountItemsValue"/>
+                                          <Value name="null" failure="true"/>
+                                          <Value name="Not number" failure="true"/>
+                                        </Var>
+                                        <VarSet name="Value" when="200application-jsonVehicleMSRPAmountAmountItemsValue">
+                                          <Var name="Is">
+                                            <Value name="&lt; 0"/>
+                                            <Value name="0"/>
+                                            <Value name="&gt; 0"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                      <Var name="Unique" when="200application-jsonVehicleMSRPAmountAmountItemsMany">
+                                        <Value name="Yes"/>
+                                        <Value name="No"/>
+                                      </Var>
+                                    </VarSet>
+                                  </VarSet>
+                                </VarSet>
+                              </VarSet>
+                              <VarSet name="Currency">
+                                <Var name="Defined">
+                                  <Value name="Yes" property="200application-jsonVehicleMSRPAmountCurrency, 200application-jsonVehicleMSRPAmountProperties"/>
+                                  <Value name="No"/>
+                                </Var>
+                                <VarSet name="Alternative">
+                                  <Var name="Used">
+                                    <Value name="0" property="200application-jsonVehicleMSRPAmountCurrencyAlternative0"/>
+                                    <Value name="1" property="200application-jsonVehicleMSRPAmountCurrencyAlternative1"/>
+                                    <Value name="2" property="200application-jsonVehicleMSRPAmountCurrencyAlternative2"/>
+                                    <Value name="3" property="200application-jsonVehicleMSRPAmountCurrencyAlternative3"/>
+                                    <Value name="4" property="200application-jsonVehicleMSRPAmountCurrencyAlternative4"/>
+                                  </Var>
+                                  <VarSet name="0" when="200application-jsonVehicleMSRPAmountCurrencyAlternative0">
+                                    <Var name="Type" when="200application-jsonVehicleMSRPAmountCurrency">
+                                      <Value name="string" property="200application-jsonVehicleMSRPAmountCurrencyValue"/>
+                                      <Value name="Not string" failure="true"/>
+                                    </Var>
+                                    <Var name="Value" when="200application-jsonVehicleMSRPAmountCurrencyValue">
+                                      <Value name="EUR"/>
+                                      <Value name="Other" failure="true">
+                                        <Has name="excluded" value="&apos;EUR&apos;"/>
+                                      </Value>
+                                    </Var>
+                                  </VarSet>
+                                  <VarSet name="1" when="200application-jsonVehicleMSRPAmountCurrencyAlternative1">
+                                    <Var name="Type" when="200application-jsonVehicleMSRPAmountCurrency">
+                                      <Value name="string" property="200application-jsonVehicleMSRPAmountCurrencyValue"/>
+                                    </Var>
+                                    <Var name="Value" when="200application-jsonVehicleMSRPAmountCurrencyValue">
+                                      <Value name="GBP"/>
+                                    </Var>
+                                  </VarSet>
+                                  <VarSet name="2" when="200application-jsonVehicleMSRPAmountCurrencyAlternative2">
+                                    <Var name="Type" when="200application-jsonVehicleMSRPAmountCurrency">
+                                      <Value name="string" property="200application-jsonVehicleMSRPAmountCurrencyValue"/>
+                                    </Var>
+                                    <Var name="Value" when="200application-jsonVehicleMSRPAmountCurrencyValue">
+                                      <Value name="USD"/>
+                                    </Var>
+                                  </VarSet>
+                                  <VarSet name="3" when="200application-jsonVehicleMSRPAmountCurrencyAlternative3">
+                                    <Var name="Type" when="200application-jsonVehicleMSRPAmountCurrency">
+                                      <Value name="object" property="200application-jsonVehicleMSRPAmountCurrencyValue"/>
+                                    </Var>
+                                    <VarSet name="Value" when="200application-jsonVehicleMSRPAmountCurrencyValue">
+                                      <Var name="Property-Count">
+                                        <Value name="0" once="true">
+                                          <When>
+                                            <Not property="200application-jsonVehicleMSRPAmountCurrencyProperties">
+                                            </Not>
+                                          </When>
+                                        </Value>
+                                        <Value name="&gt; 0" when="200application-jsonVehicleMSRPAmountCurrencyProperties"/>
+                                      </Var>
+                                      <VarSet name="Properties">
+                                        <VarSet name="rdfvalue">
+                                          <Var name="Defined">
+                                            <Value name="Yes" property="200application-jsonVehicleMSRPAmountCurrencyProperties, 200application-jsonVehicleMSRPAmountCurrencyRdfvalue"/>
+                                            <Value name="No"/>
+                                          </Var>
+                                          <VarSet name="Alternative">
+                                            <Var name="Used">
+                                              <Value name="0" property="200application-jsonVehicleMSRPAmountCurrencyRdfvalueAlternative0"/>
+                                              <Value name="1" property="200application-jsonVehicleMSRPAmountCurrencyRdfvalueAlternative1"/>
+                                              <Value name="2" property="200application-jsonVehicleMSRPAmountCurrencyRdfvalueAlternative2"/>
+                                            </Var>
+                                            <VarSet name="0" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalueAlternative0">
+                                              <Var name="Type" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalue">
+                                                <Value name="string" property="200application-jsonVehicleMSRPAmountCurrencyRdfvalueValue"/>
+                                              </Var>
+                                              <Var name="Value" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalueValue">
+                                                <Value name="EUR"/>
+                                              </Var>
+                                            </VarSet>
+                                            <VarSet name="1" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalueAlternative1">
+                                              <Var name="Type" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalue">
+                                                <Value name="string" property="200application-jsonVehicleMSRPAmountCurrencyRdfvalueValue"/>
+                                              </Var>
+                                              <Var name="Value" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalueValue">
+                                                <Value name="GBP"/>
+                                              </Var>
+                                            </VarSet>
+                                            <VarSet name="2" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalueAlternative2">
+                                              <Var name="Type" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalue">
+                                                <Value name="string" property="200application-jsonVehicleMSRPAmountCurrencyRdfvalueValue"/>
+                                              </Var>
+                                              <Var name="Value" when="200application-jsonVehicleMSRPAmountCurrencyRdfvalueValue">
+                                                <Value name="USD"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                        </VarSet>
+                                        <Var name="Additional">
+                                          <Value name="Yes" property="200application-jsonVehicleMSRPAmountCurrencyProperties"/>
+                                          <Value name="No"/>
+                                        </Var>
+                                      </VarSet>
+                                    </VarSet>
+                                  </VarSet>
+                                  <VarSet name="4" when="200application-jsonVehicleMSRPAmountCurrencyAlternative4">
+                                    <Var name="Type" when="200application-jsonVehicleMSRPAmountCurrency">
+                                      <Value name="array" property="200application-jsonVehicleMSRPAmountCurrencyValue"/>
+                                    </Var>
+                                    <VarSet name="Items" when="200application-jsonVehicleMSRPAmountCurrencyValue">
+                                      <Var name="Size">
+                                        <Value name="0" property="200application-jsonVehicleMSRPAmountCurrencyItemsNone"/>
+                                        <Value name="1"/>
+                                        <Value name="&gt; 1" property="200application-jsonVehicleMSRPAmountCurrencyItemsMany"/>
+                                      </Var>
+                                      <VarSet name="Contains">
+                                        <When>
+                                          <Not property="200application-jsonVehicleMSRPAmountCurrencyItemsNone">
+                                          </Not>
+                                        </When>
+                                        <Var name="Type">
+                                          <Value name="Not number,boolean,string,array,integer,object" property="200application-jsonVehicleMSRPAmountCurrencyItemsValue"/>
+                                          <Value name="number" failure="true"/>
+                                          <Value name="boolean" failure="true"/>
+                                          <Value name="string" failure="true"/>
+                                          <Value name="array" failure="true"/>
+                                          <Value name="integer" failure="true"/>
+                                          <Value name="object" failure="true"/>
+                                        </Var>
+                                      </VarSet>
+                                      <Var name="Unique" when="200application-jsonVehicleMSRPAmountCurrencyItemsMany">
+                                        <Value name="Yes"/>
+                                        <Value name="No"/>
+                                      </Var>
+                                    </VarSet>
+                                  </VarSet>
+                                </VarSet>
+                              </VarSet>
+                              <Var name="Additional">
+                                <Value name="Yes" property="200application-jsonVehicleMSRPAmountProperties"/>
+                                <Value name="No"/>
+                              </Var>
+                            </VarSet>
+                          </VarSet>
+                        </VarSet>
+                        <VarSet name="1" when="200application-jsonVehicleMSRPAmountAlternative1">
+                          <Var name="Type" when="200application-jsonVehicleMSRPAmount">
+                            <Value name="array" property="200application-jsonVehicleMSRPAmountValue"/>
+                          </Var>
+                          <VarSet name="Items" when="200application-jsonVehicleMSRPAmountValue">
+                            <Var name="Size">
+                              <Value name="0" property="200application-jsonVehicleMSRPAmountItemsNone"/>
+                              <Value name="1"/>
+                              <Value name="&gt; 1" property="200application-jsonVehicleMSRPAmountItemsMany"/>
+                            </Var>
+                            <VarSet name="Contains">
+                              <When>
+                                <Not property="200application-jsonVehicleMSRPAmountItemsNone">
+                                </Not>
+                              </When>
+                              <Var name="Type">
+                                <Value name="object" property="200application-jsonVehicleMSRPAmountItemsValue"/>
+                                <Value name="Not object" failure="true"/>
+                              </Var>
+                              <VarSet name="Value" when="200application-jsonVehicleMSRPAmountItemsValue">
+                                <Var name="Property-Count">
+                                  <Value name="0" once="true">
+                                    <When>
+                                      <Not property="200application-jsonVehicleMSRPAmountItemsProperties">
+                                      </Not>
+                                    </When>
+                                  </Value>
+                                  <Value name="&gt; 0" when="200application-jsonVehicleMSRPAmountItemsProperties"/>
+                                </Var>
+                                <VarSet name="Properties">
+                                  <VarSet name="Amount">
+                                    <Var name="Defined">
+                                      <Value name="Yes" property="200application-jsonVehicleMSRPAmountItemsAmount, 200application-jsonVehicleMSRPAmountItemsProperties"/>
+                                      <Value name="No"/>
+                                    </Var>
+                                    <VarSet name="Alternative">
+                                      <Var name="Used">
+                                        <Value name="0" property="200application-jsonVehicleMSRPAmountItemsAmountAlternative0"/>
+                                        <Value name="1" property="200application-jsonVehicleMSRPAmountItemsAmountAlternative1"/>
+                                      </Var>
+                                      <VarSet name="0" when="200application-jsonVehicleMSRPAmountItemsAmountAlternative0">
+                                        <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsAmount">
+                                          <Value name="number" property="200application-jsonVehicleMSRPAmountItemsAmountValue"/>
+                                        </Var>
+                                        <VarSet name="Value" when="200application-jsonVehicleMSRPAmountItemsAmountValue">
+                                          <Var name="Is">
+                                            <Value name="&lt; 0"/>
+                                            <Value name="0"/>
+                                            <Value name="&gt; 0"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                      <VarSet name="1" when="200application-jsonVehicleMSRPAmountItemsAmountAlternative1">
+                                        <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsAmount">
+                                          <Value name="array" property="200application-jsonVehicleMSRPAmountItemsAmountValue"/>
+                                        </Var>
+                                        <VarSet name="Items" when="200application-jsonVehicleMSRPAmountItemsAmountValue">
+                                          <Var name="Size">
+                                            <Value name="0" property="200application-jsonVehicleMSRPAmountItemsAmountItemsNone"/>
+                                            <Value name="1"/>
+                                            <Value name="&gt; 1" property="200application-jsonVehicleMSRPAmountItemsAmountItemsMany"/>
+                                          </Var>
+                                          <VarSet name="Contains">
+                                            <When>
+                                              <Not property="200application-jsonVehicleMSRPAmountItemsAmountItemsNone">
+                                              </Not>
+                                            </When>
+                                            <Var name="Type">
+                                              <Value name="number" property="200application-jsonVehicleMSRPAmountItemsAmountItemsValue"/>
+                                            </Var>
+                                            <VarSet name="Value" when="200application-jsonVehicleMSRPAmountItemsAmountItemsValue">
+                                              <Var name="Is">
+                                                <Value name="&lt; 0"/>
+                                                <Value name="0"/>
+                                                <Value name="&gt; 0"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                          <Var name="Unique" when="200application-jsonVehicleMSRPAmountItemsAmountItemsMany">
+                                            <Value name="Yes"/>
+                                            <Value name="No"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                    </VarSet>
+                                  </VarSet>
+                                  <VarSet name="Currency">
+                                    <Var name="Defined">
+                                      <Value name="Yes" property="200application-jsonVehicleMSRPAmountItemsCurrency, 200application-jsonVehicleMSRPAmountItemsProperties"/>
+                                      <Value name="No"/>
+                                    </Var>
+                                    <VarSet name="Alternative">
+                                      <Var name="Used">
+                                        <Value name="0" property="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative0"/>
+                                        <Value name="1" property="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative1"/>
+                                        <Value name="2" property="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative2"/>
+                                        <Value name="3" property="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative3"/>
+                                        <Value name="4" property="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative4"/>
+                                      </Var>
+                                      <VarSet name="0" when="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative0">
+                                        <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsCurrency">
+                                          <Value name="string" property="200application-jsonVehicleMSRPAmountItemsCurrencyValue"/>
+                                        </Var>
+                                        <Var name="Value" when="200application-jsonVehicleMSRPAmountItemsCurrencyValue">
+                                          <Value name="EUR"/>
+                                        </Var>
+                                      </VarSet>
+                                      <VarSet name="1" when="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative1">
+                                        <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsCurrency">
+                                          <Value name="string" property="200application-jsonVehicleMSRPAmountItemsCurrencyValue"/>
+                                        </Var>
+                                        <Var name="Value" when="200application-jsonVehicleMSRPAmountItemsCurrencyValue">
+                                          <Value name="GBP"/>
+                                        </Var>
+                                      </VarSet>
+                                      <VarSet name="2" when="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative2">
+                                        <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsCurrency">
+                                          <Value name="string" property="200application-jsonVehicleMSRPAmountItemsCurrencyValue"/>
+                                        </Var>
+                                        <Var name="Value" when="200application-jsonVehicleMSRPAmountItemsCurrencyValue">
+                                          <Value name="USD"/>
+                                        </Var>
+                                      </VarSet>
+                                      <VarSet name="3" when="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative3">
+                                        <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsCurrency">
+                                          <Value name="object" property="200application-jsonVehicleMSRPAmountItemsCurrencyValue"/>
+                                        </Var>
+                                        <VarSet name="Value" when="200application-jsonVehicleMSRPAmountItemsCurrencyValue">
+                                          <Var name="Property-Count">
+                                            <Value name="0" once="true">
+                                              <When>
+                                                <Not property="200application-jsonVehicleMSRPAmountItemsCurrencyProperties">
+                                                </Not>
+                                              </When>
+                                            </Value>
+                                            <Value name="&gt; 0" when="200application-jsonVehicleMSRPAmountItemsCurrencyProperties"/>
+                                          </Var>
+                                          <VarSet name="Properties">
+                                            <VarSet name="rdfvalue">
+                                              <Var name="Defined">
+                                                <Value name="Yes" property="200application-jsonVehicleMSRPAmountItemsCurrencyProperties, 200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalue"/>
+                                                <Value name="No"/>
+                                              </Var>
+                                              <VarSet name="Alternative">
+                                                <Var name="Used">
+                                                  <Value name="0" property="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueAlternative0"/>
+                                                  <Value name="1" property="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueAlternative1"/>
+                                                  <Value name="2" property="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueAlternative2"/>
+                                                </Var>
+                                                <VarSet name="0" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueAlternative0">
+                                                  <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalue">
+                                                    <Value name="string" property="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueValue"/>
+                                                  </Var>
+                                                  <Var name="Value" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueValue">
+                                                    <Value name="EUR"/>
+                                                  </Var>
+                                                </VarSet>
+                                                <VarSet name="1" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueAlternative1">
+                                                  <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalue">
+                                                    <Value name="string" property="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueValue"/>
+                                                  </Var>
+                                                  <Var name="Value" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueValue">
+                                                    <Value name="GBP"/>
+                                                  </Var>
+                                                </VarSet>
+                                                <VarSet name="2" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueAlternative2">
+                                                  <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalue">
+                                                    <Value name="string" property="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueValue"/>
+                                                  </Var>
+                                                  <Var name="Value" when="200application-jsonVehicleMSRPAmountItemsCurrencyRdfvalueValue">
+                                                    <Value name="USD"/>
+                                                  </Var>
+                                                </VarSet>
+                                              </VarSet>
+                                            </VarSet>
+                                            <Var name="Additional">
+                                              <Value name="Yes" property="200application-jsonVehicleMSRPAmountItemsCurrencyProperties"/>
+                                              <Value name="No"/>
+                                            </Var>
+                                          </VarSet>
+                                        </VarSet>
+                                      </VarSet>
+                                      <VarSet name="4" when="200application-jsonVehicleMSRPAmountItemsCurrencyAlternative4">
+                                        <Var name="Type" when="200application-jsonVehicleMSRPAmountItemsCurrency">
+                                          <Value name="array" property="200application-jsonVehicleMSRPAmountItemsCurrencyValue"/>
+                                        </Var>
+                                        <VarSet name="Items" when="200application-jsonVehicleMSRPAmountItemsCurrencyValue">
+                                          <Var name="Size">
+                                            <Value name="0" property="200application-jsonVehicleMSRPAmountItemsCurrencyItemsNone"/>
+                                            <Value name="1"/>
+                                            <Value name="&gt; 1" property="200application-jsonVehicleMSRPAmountItemsCurrencyItemsMany"/>
+                                          </Var>
+                                          <VarSet name="Contains">
+                                            <When>
+                                              <Not property="200application-jsonVehicleMSRPAmountItemsCurrencyItemsNone">
+                                              </Not>
+                                            </When>
+                                            <Var name="Type">
+                                              <Value name="Not number,boolean,string,array,integer,object" property="200application-jsonVehicleMSRPAmountItemsCurrencyItemsValue"/>
+                                            </Var>
+                                          </VarSet>
+                                          <Var name="Unique" when="200application-jsonVehicleMSRPAmountItemsCurrencyItemsMany">
+                                            <Value name="Yes"/>
+                                            <Value name="No"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                    </VarSet>
+                                  </VarSet>
+                                  <Var name="Additional">
+                                    <Value name="Yes" property="200application-jsonVehicleMSRPAmountItemsProperties"/>
+                                    <Value name="No"/>
+                                  </Var>
+                                </VarSet>
+                              </VarSet>
+                            </VarSet>
+                            <Var name="Unique" when="200application-jsonVehicleMSRPAmountItemsMany">
+                              <Value name="Yes"/>
+                              <Value name="No"/>
+                            </Var>
+                          </VarSet>
+                        </VarSet>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="base">
+                      <Var name="Defined">
+                        <Value name="Yes" property="200application-jsonBase, 200application-jsonProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="200application-jsonBase">
+                        <Value name="string" property="200application-jsonBaseValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="200application-jsonBaseValue">
+                        <Has name="format" value="uriref"/>
+                        <Var name="Length">
+                          <Value name="&gt; 0"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="VehicleIdentification">
+                      <Var name="Defined">
+                        <Value name="Yes" property="200application-jsonProperties, 200application-jsonVehicleIdentification"/>
+                        <Value name="No"/>
+                      </Var>
+                      <VarSet name="Alternative">
+                        <Var name="Used">
+                          <Value name="0" property="200application-jsonVehicleIdentificationAlternative0"/>
+                          <Value name="1" property="200application-jsonVehicleIdentificationAlternative1"/>
+                        </Var>
+                        <VarSet name="0" when="200application-jsonVehicleIdentificationAlternative0">
+                          <Var name="Type" when="200application-jsonVehicleIdentification">
+                            <Value name="object" property="200application-jsonVehicleIdentificationValue"/>
+                          </Var>
+                          <VarSet name="Value" when="200application-jsonVehicleIdentificationValue">
+                            <Var name="Property-Count">
+                              <Value name="0" once="true">
+                                <When>
+                                  <Not property="200application-jsonVehicleIdentificationProperties">
+                                  </Not>
+                                </When>
+                              </Value>
+                              <Value name="&gt; 0" when="200application-jsonVehicleIdentificationProperties"/>
+                            </Var>
+                            <VarSet name="Properties">
+                              <VarSet name="IdentificationID">
+                                <Var name="Defined">
+                                  <Value name="Yes" property="200application-jsonVehicleIdentificationIdentificationID, 200application-jsonVehicleIdentificationProperties"/>
+                                  <Value name="No"/>
+                                </Var>
+                                <VarSet name="Alternative">
+                                  <Var name="Used">
+                                    <Value name="0" property="200application-jsonVehicleIdentificationIdentificationIDAlternative0"/>
+                                    <Value name="1" property="200application-jsonVehicleIdentificationIdentificationIDAlternative1"/>
+                                  </Var>
+                                  <VarSet name="0" when="200application-jsonVehicleIdentificationIdentificationIDAlternative0">
+                                    <Var name="Type" when="200application-jsonVehicleIdentificationIdentificationID">
+                                      <Value name="string" property="200application-jsonVehicleIdentificationIdentificationIDValue"/>
+                                    </Var>
+                                    <VarSet name="Value" when="200application-jsonVehicleIdentificationIdentificationIDValue">
+                                      <Var name="Length">
+                                        <Value name="&gt; 0"/>
+                                        <Value name="0"/>
+                                      </Var>
+                                    </VarSet>
+                                  </VarSet>
+                                  <VarSet name="1" when="200application-jsonVehicleIdentificationIdentificationIDAlternative1">
+                                    <Var name="Type" when="200application-jsonVehicleIdentificationIdentificationID">
+                                      <Value name="array" property="200application-jsonVehicleIdentificationIdentificationIDValue"/>
+                                    </Var>
+                                    <VarSet name="Items" when="200application-jsonVehicleIdentificationIdentificationIDValue">
+                                      <Var name="Size">
+                                        <Value name="0" property="200application-jsonVehicleIdentificationIdentificationIDItemsNone"/>
+                                        <Value name="1"/>
+                                        <Value name="&gt; 1" property="200application-jsonVehicleIdentificationIdentificationIDItemsMany"/>
+                                      </Var>
+                                      <VarSet name="Contains">
+                                        <When>
+                                          <Not property="200application-jsonVehicleIdentificationIdentificationIDItemsNone">
+                                          </Not>
+                                        </When>
+                                        <Var name="Type">
+                                          <Value name="string" property="200application-jsonVehicleIdentificationIdentificationIDItemsValue"/>
+                                          <Value name="Not string" failure="true"/>
+                                        </Var>
+                                        <VarSet name="Value" when="200application-jsonVehicleIdentificationIdentificationIDItemsValue">
+                                          <Var name="Length">
+                                            <Value name="&gt; 0"/>
+                                            <Value name="0"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                      <Var name="Unique" when="200application-jsonVehicleIdentificationIdentificationIDItemsMany">
+                                        <Value name="Yes"/>
+                                        <Value name="No"/>
+                                      </Var>
+                                    </VarSet>
+                                  </VarSet>
+                                </VarSet>
+                              </VarSet>
+                              <Var name="Additional">
+                                <Value name="Yes" property="200application-jsonVehicleIdentificationProperties"/>
+                                <Value name="No"/>
+                              </Var>
+                            </VarSet>
+                          </VarSet>
+                        </VarSet>
+                        <VarSet name="1" when="200application-jsonVehicleIdentificationAlternative1">
+                          <Var name="Type" when="200application-jsonVehicleIdentification">
+                            <Value name="array" property="200application-jsonVehicleIdentificationValue"/>
+                          </Var>
+                          <VarSet name="Items" when="200application-jsonVehicleIdentificationValue">
+                            <Var name="Size">
+                              <Value name="0" property="200application-jsonVehicleIdentificationItemsNone"/>
+                              <Value name="1"/>
+                              <Value name="&gt; 1" property="200application-jsonVehicleIdentificationItemsMany"/>
+                            </Var>
+                            <VarSet name="Contains">
+                              <When>
+                                <Not property="200application-jsonVehicleIdentificationItemsNone">
+                                </Not>
+                              </When>
+                              <Var name="Type">
+                                <Value name="object" property="200application-jsonVehicleIdentificationItemsValue"/>
+                              </Var>
+                              <VarSet name="Value" when="200application-jsonVehicleIdentificationItemsValue">
+                                <Var name="Property-Count">
+                                  <Value name="0" once="true">
+                                    <When>
+                                      <Not property="200application-jsonVehicleIdentificationItemsProperties">
+                                      </Not>
+                                    </When>
+                                  </Value>
+                                  <Value name="&gt; 0" when="200application-jsonVehicleIdentificationItemsProperties"/>
+                                </Var>
+                                <VarSet name="Properties">
+                                  <VarSet name="IdentificationID">
+                                    <Var name="Defined">
+                                      <Value name="Yes" property="200application-jsonVehicleIdentificationItemsIdentificationID, 200application-jsonVehicleIdentificationItemsProperties"/>
+                                      <Value name="No"/>
+                                    </Var>
+                                    <VarSet name="Alternative">
+                                      <Var name="Used">
+                                        <Value name="0" property="200application-jsonVehicleIdentificationItemsIdentificationIDAlternative0"/>
+                                        <Value name="1" property="200application-jsonVehicleIdentificationItemsIdentificationIDAlternative1"/>
+                                      </Var>
+                                      <VarSet name="0" when="200application-jsonVehicleIdentificationItemsIdentificationIDAlternative0">
+                                        <Var name="Type" when="200application-jsonVehicleIdentificationItemsIdentificationID">
+                                          <Value name="string" property="200application-jsonVehicleIdentificationItemsIdentificationIDValue"/>
+                                        </Var>
+                                        <VarSet name="Value" when="200application-jsonVehicleIdentificationItemsIdentificationIDValue">
+                                          <Var name="Length">
+                                            <Value name="&gt; 0"/>
+                                            <Value name="0"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                      <VarSet name="1" when="200application-jsonVehicleIdentificationItemsIdentificationIDAlternative1">
+                                        <Var name="Type" when="200application-jsonVehicleIdentificationItemsIdentificationID">
+                                          <Value name="array" property="200application-jsonVehicleIdentificationItemsIdentificationIDValue"/>
+                                        </Var>
+                                        <VarSet name="Items" when="200application-jsonVehicleIdentificationItemsIdentificationIDValue">
+                                          <Var name="Size">
+                                            <Value name="0" property="200application-jsonVehicleIdentificationItemsIdentificationIDItemsNone"/>
+                                            <Value name="1"/>
+                                            <Value name="&gt; 1" property="200application-jsonVehicleIdentificationItemsIdentificationIDItemsMany"/>
+                                          </Var>
+                                          <VarSet name="Contains">
+                                            <When>
+                                              <Not property="200application-jsonVehicleIdentificationItemsIdentificationIDItemsNone">
+                                              </Not>
+                                            </When>
+                                            <Var name="Type">
+                                              <Value name="string" property="200application-jsonVehicleIdentificationItemsIdentificationIDItemsValue"/>
+                                            </Var>
+                                            <VarSet name="Value" when="200application-jsonVehicleIdentificationItemsIdentificationIDItemsValue">
+                                              <Var name="Length">
+                                                <Value name="&gt; 0"/>
+                                                <Value name="0"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                          <Var name="Unique" when="200application-jsonVehicleIdentificationItemsIdentificationIDItemsMany">
+                                            <Value name="Yes"/>
+                                            <Value name="No"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                    </VarSet>
+                                  </VarSet>
+                                  <Var name="Additional">
+                                    <Value name="Yes" property="200application-jsonVehicleIdentificationItemsProperties"/>
+                                    <Value name="No"/>
+                                  </Var>
+                                </VarSet>
+                              </VarSet>
+                            </VarSet>
+                            <Var name="Unique" when="200application-jsonVehicleIdentificationItemsMany">
+                              <Value name="Yes"/>
+                              <Value name="No"/>
+                            </Var>
+                          </VarSet>
+                        </VarSet>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="id">
+                      <Var name="Defined">
+                        <Value name="Yes" property="200application-jsonId, 200application-jsonProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="200application-jsonId">
+                        <Value name="string" property="200application-jsonIdValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="200application-jsonIdValue">
+                        <Has name="format" value="uriref"/>
+                        <Var name="Length">
+                          <Value name="&gt; 0"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="VehicleAxleQuantity">
+                      <Var name="Defined">
+                        <Value name="Yes" property="200application-jsonProperties, 200application-jsonVehicleAxleQuantity"/>
+                        <Value name="No"/>
+                      </Var>
+                      <VarSet name="Alternative">
+                        <Var name="Used">
+                          <Value name="0" property="200application-jsonVehicleAxleQuantityAlternative0"/>
+                          <Value name="1" property="200application-jsonVehicleAxleQuantityAlternative1"/>
+                        </Var>
+                        <VarSet name="0" when="200application-jsonVehicleAxleQuantityAlternative0">
+                          <Var name="Type" when="200application-jsonVehicleAxleQuantity">
+                            <Value name="integer" property="200application-jsonVehicleAxleQuantityValue"/>
+                            <Value name="Not integer" failure="true"/>
+                          </Var>
+                          <VarSet name="Value" when="200application-jsonVehicleAxleQuantityValue">
+                            <Var name="Is">
+                              <Value name="-1" failure="true"/>
+                              <Value name="0"/>
+                              <Value name="&gt; 0"/>
+                            </Var>
+                          </VarSet>
+                        </VarSet>
+                        <VarSet name="1" when="200application-jsonVehicleAxleQuantityAlternative1">
+                          <Var name="Type" when="200application-jsonVehicleAxleQuantity">
+                            <Value name="array" property="200application-jsonVehicleAxleQuantityValue"/>
+                          </Var>
+                          <VarSet name="Items" when="200application-jsonVehicleAxleQuantityValue">
+                            <Var name="Size">
+                              <Value name="0" property="200application-jsonVehicleAxleQuantityItemsNone"/>
+                              <Value name="1"/>
+                              <Value name="&gt; 1" property="200application-jsonVehicleAxleQuantityItemsMany"/>
+                            </Var>
+                            <VarSet name="Contains">
+                              <When>
+                                <Not property="200application-jsonVehicleAxleQuantityItemsNone">
+                                </Not>
+                              </When>
+                              <Var name="Type">
+                                <Value name="integer" property="200application-jsonVehicleAxleQuantityItemsValue"/>
+                                <Value name="Not integer" failure="true"/>
+                              </Var>
+                              <VarSet name="Value" when="200application-jsonVehicleAxleQuantityItemsValue">
+                                <Var name="Is">
+                                  <Value name="-1" failure="true"/>
+                                  <Value name="0"/>
+                                  <Value name="&gt; 0"/>
+                                </Var>
+                              </VarSet>
+                            </VarSet>
+                            <Var name="Unique" when="200application-jsonVehicleAxleQuantityItemsMany">
+                              <Value name="Yes"/>
+                              <Value name="No"/>
+                            </Var>
+                          </VarSet>
+                        </VarSet>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" property="200application-jsonProperties"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="1" when="200application-jsonAlternative1">
+                <Var name="Type">
+                  <Value name="array" property="200application-jsonValue"/>
+                </Var>
+                <VarSet name="Items" when="200application-jsonValue">
+                  <Var name="Size">
+                    <Value name="0" property="200application-jsonItemsNone"/>
+                    <Value name="1"/>
+                    <Value name="&gt; 1" property="200application-jsonItemsMany"/>
+                  </Var>
+                  <VarSet name="Contains">
+                    <When>
+                      <Not property="200application-jsonItemsNone">
+                      </Not>
+                    </When>
+                    <Var name="Type">
+                      <Value name="object" property="200application-jsonItemsValue"/>
+                    </Var>
+                    <VarSet name="Value" when="200application-jsonItemsValue">
+                      <Var name="Property-Count">
+                        <Value name="0" once="true">
+                          <When>
+                            <Not property="200application-jsonItemsProperties">
+                            </Not>
+                          </When>
+                        </Value>
+                        <Value name="&gt; 0" when="200application-jsonItemsProperties"/>
+                      </Var>
+                      <VarSet name="Properties">
+                        <VarSet name="VehicleMSRPAmount">
+                          <Var name="Defined">
+                            <Value name="Yes" property="200application-jsonItemsProperties, 200application-jsonItemsVehicleMSRPAmount"/>
+                            <Value name="No"/>
+                          </Var>
+                          <VarSet name="Alternative">
+                            <Var name="Used">
+                              <Value name="0" property="200application-jsonItemsVehicleMSRPAmountAlternative0"/>
+                              <Value name="1" property="200application-jsonItemsVehicleMSRPAmountAlternative1"/>
+                            </Var>
+                            <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountAlternative0">
+                              <Var name="Type" when="200application-jsonItemsVehicleMSRPAmount">
+                                <Value name="object" property="200application-jsonItemsVehicleMSRPAmountValue"/>
+                              </Var>
+                              <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountValue">
+                                <Var name="Property-Count">
+                                  <Value name="0" once="true">
+                                    <When>
+                                      <Not property="200application-jsonItemsVehicleMSRPAmountProperties">
+                                      </Not>
+                                    </When>
+                                  </Value>
+                                  <Value name="&gt; 0" when="200application-jsonItemsVehicleMSRPAmountProperties"/>
+                                </Var>
+                                <VarSet name="Properties">
+                                  <VarSet name="Amount">
+                                    <Var name="Defined">
+                                      <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountAmount, 200application-jsonItemsVehicleMSRPAmountProperties"/>
+                                      <Value name="No"/>
+                                    </Var>
+                                    <VarSet name="Alternative">
+                                      <Var name="Used">
+                                        <Value name="0" property="200application-jsonItemsVehicleMSRPAmountAmountAlternative0"/>
+                                        <Value name="1" property="200application-jsonItemsVehicleMSRPAmountAmountAlternative1"/>
+                                      </Var>
+                                      <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountAmountAlternative0">
+                                        <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountAmount">
+                                          <Value name="number" property="200application-jsonItemsVehicleMSRPAmountAmountValue"/>
+                                        </Var>
+                                        <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountAmountValue">
+                                          <Var name="Is">
+                                            <Value name="&lt; 0"/>
+                                            <Value name="0"/>
+                                            <Value name="&gt; 0"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                      <VarSet name="1" when="200application-jsonItemsVehicleMSRPAmountAmountAlternative1">
+                                        <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountAmount">
+                                          <Value name="array" property="200application-jsonItemsVehicleMSRPAmountAmountValue"/>
+                                        </Var>
+                                        <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountAmountValue">
+                                          <Var name="Size">
+                                            <Value name="0" property="200application-jsonItemsVehicleMSRPAmountAmountItemsNone"/>
+                                            <Value name="1"/>
+                                            <Value name="&gt; 1" property="200application-jsonItemsVehicleMSRPAmountAmountItemsMany"/>
+                                          </Var>
+                                          <VarSet name="Contains">
+                                            <When>
+                                              <Not property="200application-jsonItemsVehicleMSRPAmountAmountItemsNone">
+                                              </Not>
+                                            </When>
+                                            <Var name="Type">
+                                              <Value name="number" property="200application-jsonItemsVehicleMSRPAmountAmountItemsValue"/>
+                                            </Var>
+                                            <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountAmountItemsValue">
+                                              <Var name="Is">
+                                                <Value name="&lt; 0"/>
+                                                <Value name="0"/>
+                                                <Value name="&gt; 0"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                          <Var name="Unique" when="200application-jsonItemsVehicleMSRPAmountAmountItemsMany">
+                                            <Value name="Yes"/>
+                                            <Value name="No"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                    </VarSet>
+                                  </VarSet>
+                                  <VarSet name="Currency">
+                                    <Var name="Defined">
+                                      <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrency, 200application-jsonItemsVehicleMSRPAmountProperties"/>
+                                      <Value name="No"/>
+                                    </Var>
+                                    <VarSet name="Alternative">
+                                      <Var name="Used">
+                                        <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative0"/>
+                                        <Value name="1" property="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative1"/>
+                                        <Value name="2" property="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative2"/>
+                                        <Value name="3" property="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative3"/>
+                                        <Value name="4" property="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative4"/>
+                                      </Var>
+                                      <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative0">
+                                        <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrency">
+                                          <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyValue"/>
+                                        </Var>
+                                        <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyValue">
+                                          <Value name="EUR"/>
+                                        </Var>
+                                      </VarSet>
+                                      <VarSet name="1" when="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative1">
+                                        <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrency">
+                                          <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyValue"/>
+                                        </Var>
+                                        <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyValue">
+                                          <Value name="GBP"/>
+                                        </Var>
+                                      </VarSet>
+                                      <VarSet name="2" when="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative2">
+                                        <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrency">
+                                          <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyValue"/>
+                                        </Var>
+                                        <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyValue">
+                                          <Value name="USD"/>
+                                        </Var>
+                                      </VarSet>
+                                      <VarSet name="3" when="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative3">
+                                        <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrency">
+                                          <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyValue"/>
+                                        </Var>
+                                        <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyValue">
+                                          <Var name="Property-Count">
+                                            <Value name="0" once="true">
+                                              <When>
+                                                <Not property="200application-jsonItemsVehicleMSRPAmountCurrencyProperties">
+                                                </Not>
+                                              </When>
+                                            </Value>
+                                            <Value name="&gt; 0" when="200application-jsonItemsVehicleMSRPAmountCurrencyProperties"/>
+                                          </Var>
+                                          <VarSet name="Properties">
+                                            <VarSet name="rdfvalue">
+                                              <Var name="Defined">
+                                                <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalue"/>
+                                                <Value name="No"/>
+                                              </Var>
+                                              <VarSet name="Alternative">
+                                                <Var name="Used">
+                                                  <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueAlternative0"/>
+                                                  <Value name="1" property="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueAlternative1"/>
+                                                  <Value name="2" property="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueAlternative2"/>
+                                                </Var>
+                                                <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueAlternative0">
+                                                  <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalue">
+                                                    <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueValue"/>
+                                                  </Var>
+                                                  <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueValue">
+                                                    <Value name="EUR"/>
+                                                  </Var>
+                                                </VarSet>
+                                                <VarSet name="1" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueAlternative1">
+                                                  <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalue">
+                                                    <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueValue"/>
+                                                  </Var>
+                                                  <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueValue">
+                                                    <Value name="GBP"/>
+                                                  </Var>
+                                                </VarSet>
+                                                <VarSet name="2" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueAlternative2">
+                                                  <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalue">
+                                                    <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueValue"/>
+                                                  </Var>
+                                                  <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdfvalueValue">
+                                                    <Value name="USD"/>
+                                                  </Var>
+                                                </VarSet>
+                                              </VarSet>
+                                            </VarSet>
+                                            <Var name="Additional">
+                                              <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyProperties"/>
+                                              <Value name="No"/>
+                                            </Var>
+                                          </VarSet>
+                                        </VarSet>
+                                      </VarSet>
+                                      <VarSet name="4" when="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative4">
+                                        <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrency">
+                                          <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyValue"/>
+                                        </Var>
+                                        <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyValue">
+                                          <Var name="Size">
+                                            <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNone"/>
+                                            <Value name="1"/>
+                                            <Value name="&gt; 1" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsMany"/>
+                                          </Var>
+                                          <VarSet name="Contains">
+                                            <When>
+                                              <Not property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNone">
+                                              </Not>
+                                            </When>
+                                            <Var name="Type">
+                                              <Value name="Not number,boolean,string,array,integer,object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
+                                            </Var>
+                                          </VarSet>
+                                          <Var name="Unique" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsMany">
+                                            <Value name="Yes"/>
+                                            <Value name="No"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                    </VarSet>
+                                  </VarSet>
+                                  <Var name="Additional">
+                                    <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountProperties"/>
+                                    <Value name="No"/>
+                                  </Var>
+                                </VarSet>
+                              </VarSet>
+                            </VarSet>
+                            <VarSet name="1" when="200application-jsonItemsVehicleMSRPAmountAlternative1">
+                              <Var name="Type" when="200application-jsonItemsVehicleMSRPAmount">
+                                <Value name="array" property="200application-jsonItemsVehicleMSRPAmountValue"/>
+                              </Var>
+                              <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountValue">
+                                <Var name="Size">
+                                  <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsNone"/>
+                                  <Value name="1"/>
+                                  <Value name="&gt; 1" property="200application-jsonItemsVehicleMSRPAmountItemsMany"/>
+                                </Var>
+                                <VarSet name="Contains">
+                                  <When>
+                                    <Not property="200application-jsonItemsVehicleMSRPAmountItemsNone">
+                                    </Not>
+                                  </When>
+                                  <Var name="Type">
+                                    <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsValue"/>
+                                  </Var>
+                                  <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsValue">
+                                    <Var name="Property-Count">
+                                      <Value name="0" once="true">
+                                        <When>
+                                          <Not property="200application-jsonItemsVehicleMSRPAmountItemsProperties">
+                                          </Not>
+                                        </When>
+                                      </Value>
+                                      <Value name="&gt; 0" when="200application-jsonItemsVehicleMSRPAmountItemsProperties"/>
+                                    </Var>
+                                    <VarSet name="Properties">
+                                      <VarSet name="Amount">
+                                        <Var name="Defined">
+                                          <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsAmount, 200application-jsonItemsVehicleMSRPAmountItemsProperties"/>
+                                          <Value name="No"/>
+                                        </Var>
+                                        <VarSet name="Alternative">
+                                          <Var name="Used">
+                                            <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsAmountAlternative0"/>
+                                            <Value name="1" property="200application-jsonItemsVehicleMSRPAmountItemsAmountAlternative1"/>
+                                          </Var>
+                                          <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountItemsAmountAlternative0">
+                                            <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsAmount">
+                                              <Value name="number" property="200application-jsonItemsVehicleMSRPAmountItemsAmountValue"/>
+                                            </Var>
+                                            <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsAmountValue">
+                                              <Var name="Is">
+                                                <Value name="&lt; 0"/>
+                                                <Value name="0"/>
+                                                <Value name="&gt; 0"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                          <VarSet name="1" when="200application-jsonItemsVehicleMSRPAmountItemsAmountAlternative1">
+                                            <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsAmount">
+                                              <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsAmountValue"/>
+                                            </Var>
+                                            <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsAmountValue">
+                                              <Var name="Size">
+                                                <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsAmountItemsNone"/>
+                                                <Value name="1"/>
+                                                <Value name="&gt; 1" property="200application-jsonItemsVehicleMSRPAmountItemsAmountItemsMany"/>
+                                              </Var>
+                                              <VarSet name="Contains">
+                                                <When>
+                                                  <Not property="200application-jsonItemsVehicleMSRPAmountItemsAmountItemsNone">
+                                                  </Not>
+                                                </When>
+                                                <Var name="Type">
+                                                  <Value name="number" property="200application-jsonItemsVehicleMSRPAmountItemsAmountItemsValue"/>
+                                                </Var>
+                                                <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsAmountItemsValue">
+                                                  <Var name="Is">
+                                                    <Value name="&lt; 0"/>
+                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0"/>
+                                                  </Var>
+                                                </VarSet>
+                                              </VarSet>
+                                              <Var name="Unique" when="200application-jsonItemsVehicleMSRPAmountItemsAmountItemsMany">
+                                                <Value name="Yes"/>
+                                                <Value name="No"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                        </VarSet>
+                                      </VarSet>
+                                      <VarSet name="Currency">
+                                        <Var name="Defined">
+                                          <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrency, 200application-jsonItemsVehicleMSRPAmountItemsProperties"/>
+                                          <Value name="No"/>
+                                        </Var>
+                                        <VarSet name="Alternative">
+                                          <Var name="Used">
+                                            <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative0"/>
+                                            <Value name="1" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative1"/>
+                                            <Value name="2" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative2"/>
+                                            <Value name="3" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative3"/>
+                                            <Value name="4" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative4"/>
+                                          </Var>
+                                          <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative0">
+                                            <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrency">
+                                              <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue"/>
+                                            </Var>
+                                            <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue">
+                                              <Value name="EUR"/>
+                                            </Var>
+                                          </VarSet>
+                                          <VarSet name="1" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative1">
+                                            <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrency">
+                                              <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue"/>
+                                            </Var>
+                                            <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue">
+                                              <Value name="GBP"/>
+                                            </Var>
+                                          </VarSet>
+                                          <VarSet name="2" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative2">
+                                            <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrency">
+                                              <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue"/>
+                                            </Var>
+                                            <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue">
+                                              <Value name="USD"/>
+                                            </Var>
+                                          </VarSet>
+                                          <VarSet name="3" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative3">
+                                            <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrency">
+                                              <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue"/>
+                                            </Var>
+                                            <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue">
+                                              <Var name="Property-Count">
+                                                <Value name="0" once="true">
+                                                  <When>
+                                                    <Not property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyProperties">
+                                                    </Not>
+                                                  </When>
+                                                </Value>
+                                                <Value name="&gt; 0" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyProperties"/>
+                                              </Var>
+                                              <VarSet name="Properties">
+                                                <VarSet name="rdfvalue">
+                                                  <Var name="Defined">
+                                                    <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalue"/>
+                                                    <Value name="No"/>
+                                                  </Var>
+                                                  <VarSet name="Alternative">
+                                                    <Var name="Used">
+                                                      <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueAlternative0"/>
+                                                      <Value name="1" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueAlternative1"/>
+                                                      <Value name="2" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueAlternative2"/>
+                                                    </Var>
+                                                    <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueAlternative0">
+                                                      <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalue">
+                                                        <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueValue"/>
+                                                      </Var>
+                                                      <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueValue">
+                                                        <Value name="EUR"/>
+                                                      </Var>
+                                                    </VarSet>
+                                                    <VarSet name="1" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueAlternative1">
+                                                      <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalue">
+                                                        <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueValue"/>
+                                                      </Var>
+                                                      <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueValue">
+                                                        <Value name="GBP"/>
+                                                      </Var>
+                                                    </VarSet>
+                                                    <VarSet name="2" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueAlternative2">
+                                                      <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalue">
+                                                        <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueValue"/>
+                                                      </Var>
+                                                      <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdfvalueValue">
+                                                        <Value name="USD"/>
+                                                      </Var>
+                                                    </VarSet>
+                                                  </VarSet>
+                                                </VarSet>
+                                                <Var name="Additional">
+                                                  <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyProperties"/>
+                                                  <Value name="No"/>
+                                                </Var>
+                                              </VarSet>
+                                            </VarSet>
+                                          </VarSet>
+                                          <VarSet name="4" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyAlternative4">
+                                            <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrency">
+                                              <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue"/>
+                                            </Var>
+                                            <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyValue">
+                                              <Var name="Size">
+                                                <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNone"/>
+                                                <Value name="1"/>
+                                                <Value name="&gt; 1" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsMany"/>
+                                              </Var>
+                                              <VarSet name="Contains">
+                                                <When>
+                                                  <Not property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNone">
+                                                  </Not>
+                                                </When>
+                                                <Var name="Type">
+                                                  <Value name="Not number,boolean,string,array,integer,object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
+                                                </Var>
+                                              </VarSet>
+                                              <Var name="Unique" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsMany">
+                                                <Value name="Yes"/>
+                                                <Value name="No"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                        </VarSet>
+                                      </VarSet>
+                                      <Var name="Additional">
+                                        <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsProperties"/>
+                                        <Value name="No"/>
+                                      </Var>
+                                    </VarSet>
+                                  </VarSet>
+                                </VarSet>
+                                <Var name="Unique" when="200application-jsonItemsVehicleMSRPAmountItemsMany">
+                                  <Value name="Yes"/>
+                                  <Value name="No"/>
+                                </Var>
+                              </VarSet>
+                            </VarSet>
+                          </VarSet>
+                        </VarSet>
+                        <VarSet name="base">
+                          <Var name="Defined">
+                            <Value name="Yes" property="200application-jsonItemsBase, 200application-jsonItemsProperties"/>
+                            <Value name="No"/>
+                          </Var>
+                          <Var name="Type" when="200application-jsonItemsBase">
+                            <Value name="string" property="200application-jsonItemsBaseValue"/>
+                            <Value name="null" failure="true"/>
+                            <Value name="Not string" failure="true"/>
+                          </Var>
+                          <VarSet name="Value" when="200application-jsonItemsBaseValue">
+                            <Has name="format" value="uriref"/>
+                            <Var name="Length">
+                              <Value name="&gt; 0"/>
+                            </Var>
+                          </VarSet>
+                        </VarSet>
+                        <VarSet name="VehicleIdentification">
+                          <Var name="Defined">
+                            <Value name="Yes" property="200application-jsonItemsProperties, 200application-jsonItemsVehicleIdentification"/>
+                            <Value name="No"/>
+                          </Var>
+                          <VarSet name="Alternative">
+                            <Var name="Used">
+                              <Value name="0" property="200application-jsonItemsVehicleIdentificationAlternative0"/>
+                              <Value name="1" property="200application-jsonItemsVehicleIdentificationAlternative1"/>
+                            </Var>
+                            <VarSet name="0" when="200application-jsonItemsVehicleIdentificationAlternative0">
+                              <Var name="Type" when="200application-jsonItemsVehicleIdentification">
+                                <Value name="object" property="200application-jsonItemsVehicleIdentificationValue"/>
+                              </Var>
+                              <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationValue">
+                                <Var name="Property-Count">
+                                  <Value name="0" once="true">
+                                    <When>
+                                      <Not property="200application-jsonItemsVehicleIdentificationProperties">
+                                      </Not>
+                                    </When>
+                                  </Value>
+                                  <Value name="&gt; 0" when="200application-jsonItemsVehicleIdentificationProperties"/>
+                                </Var>
+                                <VarSet name="Properties">
+                                  <VarSet name="IdentificationID">
+                                    <Var name="Defined">
+                                      <Value name="Yes" property="200application-jsonItemsVehicleIdentificationIdentificationID, 200application-jsonItemsVehicleIdentificationProperties"/>
+                                      <Value name="No"/>
+                                    </Var>
+                                    <VarSet name="Alternative">
+                                      <Var name="Used">
+                                        <Value name="0" property="200application-jsonItemsVehicleIdentificationIdentificationIDAlternative0"/>
+                                        <Value name="1" property="200application-jsonItemsVehicleIdentificationIdentificationIDAlternative1"/>
+                                      </Var>
+                                      <VarSet name="0" when="200application-jsonItemsVehicleIdentificationIdentificationIDAlternative0">
+                                        <Var name="Type" when="200application-jsonItemsVehicleIdentificationIdentificationID">
+                                          <Value name="string" property="200application-jsonItemsVehicleIdentificationIdentificationIDValue"/>
+                                        </Var>
+                                        <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationIdentificationIDValue">
+                                          <Var name="Length">
+                                            <Value name="&gt; 0"/>
+                                            <Value name="0"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                      <VarSet name="1" when="200application-jsonItemsVehicleIdentificationIdentificationIDAlternative1">
+                                        <Var name="Type" when="200application-jsonItemsVehicleIdentificationIdentificationID">
+                                          <Value name="array" property="200application-jsonItemsVehicleIdentificationIdentificationIDValue"/>
+                                        </Var>
+                                        <VarSet name="Items" when="200application-jsonItemsVehicleIdentificationIdentificationIDValue">
+                                          <Var name="Size">
+                                            <Value name="0" property="200application-jsonItemsVehicleIdentificationIdentificationIDItemsNone"/>
+                                            <Value name="1"/>
+                                            <Value name="&gt; 1" property="200application-jsonItemsVehicleIdentificationIdentificationIDItemsMany"/>
+                                          </Var>
+                                          <VarSet name="Contains">
+                                            <When>
+                                              <Not property="200application-jsonItemsVehicleIdentificationIdentificationIDItemsNone">
+                                              </Not>
+                                            </When>
+                                            <Var name="Type">
+                                              <Value name="string" property="200application-jsonItemsVehicleIdentificationIdentificationIDItemsValue"/>
+                                            </Var>
+                                            <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationIdentificationIDItemsValue">
+                                              <Var name="Length">
+                                                <Value name="&gt; 0"/>
+                                                <Value name="0"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                          <Var name="Unique" when="200application-jsonItemsVehicleIdentificationIdentificationIDItemsMany">
+                                            <Value name="Yes"/>
+                                            <Value name="No"/>
+                                          </Var>
+                                        </VarSet>
+                                      </VarSet>
+                                    </VarSet>
+                                  </VarSet>
+                                  <Var name="Additional">
+                                    <Value name="Yes" property="200application-jsonItemsVehicleIdentificationProperties"/>
+                                    <Value name="No"/>
+                                  </Var>
+                                </VarSet>
+                              </VarSet>
+                            </VarSet>
+                            <VarSet name="1" when="200application-jsonItemsVehicleIdentificationAlternative1">
+                              <Var name="Type" when="200application-jsonItemsVehicleIdentification">
+                                <Value name="array" property="200application-jsonItemsVehicleIdentificationValue"/>
+                              </Var>
+                              <VarSet name="Items" when="200application-jsonItemsVehicleIdentificationValue">
+                                <Var name="Size">
+                                  <Value name="0" property="200application-jsonItemsVehicleIdentificationItemsNone"/>
+                                  <Value name="1"/>
+                                  <Value name="&gt; 1" property="200application-jsonItemsVehicleIdentificationItemsMany"/>
+                                </Var>
+                                <VarSet name="Contains">
+                                  <When>
+                                    <Not property="200application-jsonItemsVehicleIdentificationItemsNone">
+                                    </Not>
+                                  </When>
+                                  <Var name="Type">
+                                    <Value name="object" property="200application-jsonItemsVehicleIdentificationItemsValue"/>
+                                  </Var>
+                                  <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationItemsValue">
+                                    <Var name="Property-Count">
+                                      <Value name="0" once="true">
+                                        <When>
+                                          <Not property="200application-jsonItemsVehicleIdentificationItemsProperties">
+                                          </Not>
+                                        </When>
+                                      </Value>
+                                      <Value name="&gt; 0" when="200application-jsonItemsVehicleIdentificationItemsProperties"/>
+                                    </Var>
+                                    <VarSet name="Properties">
+                                      <VarSet name="IdentificationID">
+                                        <Var name="Defined">
+                                          <Value name="Yes" property="200application-jsonItemsVehicleIdentificationItemsIdentificationID, 200application-jsonItemsVehicleIdentificationItemsProperties"/>
+                                          <Value name="No"/>
+                                        </Var>
+                                        <VarSet name="Alternative">
+                                          <Var name="Used">
+                                            <Value name="0" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDAlternative0"/>
+                                            <Value name="1" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDAlternative1"/>
+                                          </Var>
+                                          <VarSet name="0" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDAlternative0">
+                                            <Var name="Type" when="200application-jsonItemsVehicleIdentificationItemsIdentificationID">
+                                              <Value name="string" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDValue"/>
+                                            </Var>
+                                            <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDValue">
+                                              <Var name="Length">
+                                                <Value name="&gt; 0"/>
+                                                <Value name="0"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                          <VarSet name="1" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDAlternative1">
+                                            <Var name="Type" when="200application-jsonItemsVehicleIdentificationItemsIdentificationID">
+                                              <Value name="array" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDValue"/>
+                                            </Var>
+                                            <VarSet name="Items" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDValue">
+                                              <Var name="Size">
+                                                <Value name="0" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsNone"/>
+                                                <Value name="1"/>
+                                                <Value name="&gt; 1" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsMany"/>
+                                              </Var>
+                                              <VarSet name="Contains">
+                                                <When>
+                                                  <Not property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsNone">
+                                                  </Not>
+                                                </When>
+                                                <Var name="Type">
+                                                  <Value name="string" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsValue"/>
+                                                </Var>
+                                                <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsValue">
+                                                  <Var name="Length">
+                                                    <Value name="&gt; 0"/>
+                                                    <Value name="0"/>
+                                                  </Var>
+                                                </VarSet>
+                                              </VarSet>
+                                              <Var name="Unique" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsMany">
+                                                <Value name="Yes"/>
+                                                <Value name="No"/>
+                                              </Var>
+                                            </VarSet>
+                                          </VarSet>
+                                        </VarSet>
+                                      </VarSet>
+                                      <Var name="Additional">
+                                        <Value name="Yes" property="200application-jsonItemsVehicleIdentificationItemsProperties"/>
+                                        <Value name="No"/>
+                                      </Var>
+                                    </VarSet>
+                                  </VarSet>
+                                </VarSet>
+                                <Var name="Unique" when="200application-jsonItemsVehicleIdentificationItemsMany">
+                                  <Value name="Yes"/>
+                                  <Value name="No"/>
+                                </Var>
+                              </VarSet>
+                            </VarSet>
+                          </VarSet>
+                        </VarSet>
+                        <VarSet name="id">
+                          <Var name="Defined">
+                            <Value name="Yes" property="200application-jsonItemsId, 200application-jsonItemsProperties"/>
+                            <Value name="No"/>
+                          </Var>
+                          <Var name="Type" when="200application-jsonItemsId">
+                            <Value name="string" property="200application-jsonItemsIdValue"/>
+                            <Value name="null" failure="true"/>
+                            <Value name="Not string" failure="true"/>
+                          </Var>
+                          <VarSet name="Value" when="200application-jsonItemsIdValue">
+                            <Has name="format" value="uriref"/>
+                            <Var name="Length">
+                              <Value name="&gt; 0"/>
+                            </Var>
+                          </VarSet>
+                        </VarSet>
+                        <VarSet name="VehicleAxleQuantity">
+                          <Var name="Defined">
+                            <Value name="Yes" property="200application-jsonItemsProperties, 200application-jsonItemsVehicleAxleQuantity"/>
+                            <Value name="No"/>
+                          </Var>
+                          <VarSet name="Alternative">
+                            <Var name="Used">
+                              <Value name="0" property="200application-jsonItemsVehicleAxleQuantityAlternative0"/>
+                              <Value name="1" property="200application-jsonItemsVehicleAxleQuantityAlternative1"/>
+                            </Var>
+                            <VarSet name="0" when="200application-jsonItemsVehicleAxleQuantityAlternative0">
+                              <Var name="Type" when="200application-jsonItemsVehicleAxleQuantity">
+                                <Value name="integer" property="200application-jsonItemsVehicleAxleQuantityValue"/>
+                              </Var>
+                              <VarSet name="Value" when="200application-jsonItemsVehicleAxleQuantityValue">
+                                <Var name="Is">
+                                  <Value name="0"/>
+                                  <Value name="&gt; 0"/>
+                                </Var>
+                              </VarSet>
+                            </VarSet>
+                            <VarSet name="1" when="200application-jsonItemsVehicleAxleQuantityAlternative1">
+                              <Var name="Type" when="200application-jsonItemsVehicleAxleQuantity">
+                                <Value name="array" property="200application-jsonItemsVehicleAxleQuantityValue"/>
+                              </Var>
+                              <VarSet name="Items" when="200application-jsonItemsVehicleAxleQuantityValue">
+                                <Var name="Size">
+                                  <Value name="0" property="200application-jsonItemsVehicleAxleQuantityItemsNone"/>
+                                  <Value name="1"/>
+                                  <Value name="&gt; 1" property="200application-jsonItemsVehicleAxleQuantityItemsMany"/>
+                                </Var>
+                                <VarSet name="Contains">
+                                  <When>
+                                    <Not property="200application-jsonItemsVehicleAxleQuantityItemsNone">
+                                    </Not>
+                                  </When>
+                                  <Var name="Type">
+                                    <Value name="integer" property="200application-jsonItemsVehicleAxleQuantityItemsValue"/>
+                                  </Var>
+                                  <VarSet name="Value" when="200application-jsonItemsVehicleAxleQuantityItemsValue">
+                                    <Var name="Is">
+                                      <Value name="0"/>
+                                      <Value name="&gt; 0"/>
+                                    </Var>
+                                  </VarSet>
+                                </VarSet>
+                                <Var name="Unique" when="200application-jsonItemsVehicleAxleQuantityItemsMany">
+                                  <Value name="Yes"/>
+                                  <Value name="No"/>
+                                </Var>
+                              </VarSet>
+                            </VarSet>
+                          </VarSet>
+                        </VarSet>
+                        <Var name="Additional">
+                          <Value name="Yes" property="200application-jsonItemsProperties"/>
+                          <Value name="No"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Unique" when="200application-jsonItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="4XX" when="status4XX">
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="Yes" property="4XXContent"/>
+            <Value name="No" failure="true"/>
+          </Var>
+          <Var name="Media-Type" when="4XXContent">
+            <Value name="application-json" property="4XXapplication-json">
+              <Has name="mediaType" value="application/json"/>
+            </Value>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;application/json&apos;"/>
+            </Value>
+          </Var>
+          <VarSet name="application-json" when="4XXapplication-json">
+            <Var name="Type">
+              <Value name="object" property="4XXapplication-jsonValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not object" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="4XXapplication-jsonValue">
+              <VarSet name="Properties">
+                <Var name="Additional">
+                  <Value name="Yes" property="4XXapplication-jsonProperties"/>
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

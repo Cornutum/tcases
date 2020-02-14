@@ -1,0 +1,300 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "NIEM Vehicle API",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/vehicles": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of all vehicle product offerings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Vehicle"                                       
+                                }
+                            }
+                        }
+                    },
+                    "4XX": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "Vehicle": {
+                "description": "A conveyance designed to carry an operator, passengers and/or cargo, over land.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/VehicleType"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/VehicleType"
+                        }
+                    }
+                ]
+            },
+            "VehicleAxleQuantity": {
+                "description": "A count of common axles of rotation of one or more wheels of a vehicle, whether power driven or freely rotating.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/nonNegativeInteger"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/nonNegativeInteger"
+                        }
+                    }
+                ]
+            },
+            "VehicleMSRPAmount": {
+                "description": "A manufacturer's suggested retail price of a vehicle; a price at which a manufacturer recommends a vehicle be sold.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/AmountType"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AmountType"
+                        }
+                    }
+                ]
+            },
+            "Amount": {
+                "description": "An amount of money.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/decimal"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/decimal"
+                        }
+                    }
+                ]
+            },
+            "Currency": {
+                "description": "A data concept for a unit of money or exchange.",
+                "oneOf": [
+                    {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/CurrencyCode"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "$ref": "#/components/schemas/CurrencyCode"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "CurrencyCode": {
+                "description": "A unit of money or exchange.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/CurrencyCodeType"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CurrencyCodeType"
+                        }
+                    }
+                ]
+            },
+            "VehicleIdentification": {
+                "description": "A unique identification for a specific vehicle.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/IdentificationType"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IdentificationType"
+                        }
+                    }
+                ]
+            },
+            "IdentificationID": {
+                "description": "An identifier.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/niem-string"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/niem-string"
+                        }
+                    }
+                ]
+            },
+            "VehicleType": {
+                "description": "A data type for a conveyance designed to carry an operator, passengers and/or cargo, over land.",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ConveyanceType"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "VehicleAxleQuantity": {
+                                "$ref": "#/components/schemas/VehicleAxleQuantity"
+                            },
+                            "VehicleIdentification": {
+                                "$ref": "#/components/schemas/VehicleIdentification"
+                            },
+                            "VehicleMSRPAmount": {
+                                "$ref": "#/components/schemas/VehicleMSRPAmount"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ConveyanceType": {
+                "description": "A data type for a means of transport from place to place.",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/_base"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ItemType"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {}
+                    }
+                ]
+            },
+            "ItemType": {
+                "description": "A data type for an article or thing.",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/_base"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {}
+                    }
+                ]
+            },
+            "AmountType": {
+                "description": "A data type for an amount of money.",
+                "type": "object",
+                "properties": {
+                    "Amount": {
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "Currency": {
+                        "$ref": "#/components/schemas/Currency"
+                    }
+                }
+            },
+            "CurrencyCodeType": {
+                "description": "A data type for a currency that qualifies a monetary amount.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/CurrencyCodeSimpleType"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rdf:value": {
+                                "$ref": "#/components/schemas/CurrencyCodeSimpleType"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CurrencyCodeSimpleType": {
+                "type": "string",
+                "description": "A data type for a currency that qualifies a monetary amount.",
+                "oneOf": [
+                    {
+                        "enum": [
+                            "EUR"
+                        ],
+                        "description": "Euro"
+                    },
+                    {
+                        "enum": [
+                            "GBP"
+                        ],
+                        "description": "Pound Sterling"
+                    },
+                    {
+                        "enum": [
+                            "USD"
+                        ],
+                        "description": "US Dollar"
+                    }
+                ]
+            },
+            "IdentificationType": {
+                "description": "A data type for a representation of an identity.",
+                "type": "object",
+                "properties": {
+                    "IdentificationID": {
+                        "$ref": "#/components/schemas/IdentificationID"
+                    }
+                }
+            },
+            "decimal": {
+                "description": "A data type for arbitrary precision decimal numbers.",
+                "type": "number"
+            },
+            "nonNegativeInteger": {
+                "description": "A data type for an integer with a minimum value of 0.",
+                "type": "integer",
+                "minimum": 0
+            },
+            "niem-string": {
+                "description": "A data type for character strings in XML.",
+                "type": "string"
+            },
+            "_base": {
+                "type": "object",
+                "properties": {
+                    "@id": {
+                        "type": "string",
+                        "format": "uriref"
+                    },
+                    "@base": {
+                        "type": "string",
+                        "format": "uriref"
+                    }
+                }
+            }
+        }
+    }
+}
