@@ -13,7 +13,9 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Vehicle"                                       
+                                    "items": {
+                                        "$ref": "#/components/schemas/Vehicle"
+                                    }
                                 }
                             }
                         }
@@ -49,112 +51,6 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/VehicleType"
-                        }
-                    }
-                ]
-            },
-            "VehicleAxleQuantity": {
-                "description": "A count of common axles of rotation of one or more wheels of a vehicle, whether power driven or freely rotating.",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/nonNegativeInteger"
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/nonNegativeInteger"
-                        }
-                    }
-                ]
-            },
-            "VehicleMSRPAmount": {
-                "description": "A manufacturer's suggested retail price of a vehicle; a price at which a manufacturer recommends a vehicle be sold.",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/AmountType"
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/AmountType"
-                        }
-                    }
-                ]
-            },
-            "Amount": {
-                "description": "An amount of money.",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/decimal"
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/decimal"
-                        }
-                    }
-                ]
-            },
-            "Currency": {
-                "description": "A data concept for a unit of money or exchange.",
-                "oneOf": [
-                    {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/CurrencyCode"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "anyOf": [
-                                {
-                                    "$ref": "#/components/schemas/CurrencyCode"
-                                }
-                            ]
-                        }
-                    }
-                ]
-            },
-            "CurrencyCode": {
-                "description": "A unit of money or exchange.",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/CurrencyCodeType"
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/CurrencyCodeType"
-                        }
-                    }
-                ]
-            },
-            "VehicleIdentification": {
-                "description": "A unique identification for a specific vehicle.",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/IdentificationType"
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/IdentificationType"
-                        }
-                    }
-                ]
-            },
-            "IdentificationID": {
-                "description": "An identifier.",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/niem-string"
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/niem-string"
                         }
                     }
                 ]
@@ -208,6 +104,71 @@
                     }
                 ]
             },
+            "VehicleAxleQuantity": {
+                "description": "A count of common axles of rotation of one or more wheels of a vehicle, whether power driven or freely rotating.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/nonNegativeInteger"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/nonNegativeInteger"
+                        }
+                    }
+                ]
+            },
+            "VehicleIdentification": {
+                "description": "A unique identification for a specific vehicle.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/IdentificationType"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IdentificationType"
+                        }
+                    }
+                ]
+            },
+            "IdentificationType": {
+                "description": "A data type for a representation of an identity.",
+                "type": "object",
+                "properties": {
+                    "IdentificationID": {
+                        "$ref": "#/components/schemas/IdentificationID"
+                    }
+                }
+            },
+            "IdentificationID": {
+                "description": "An identifier.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/niem-string"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/niem-string"
+                        }
+                    }
+                ]
+            },
+            "VehicleMSRPAmount": {
+                "description": "A manufacturer's suggested retail price of a vehicle; a price at which a manufacturer recommends a vehicle be sold.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/AmountType"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AmountType"
+                        }
+                    }
+                ]
+            },
             "AmountType": {
                 "description": "A data type for an amount of money.",
                 "type": "object",
@@ -220,6 +181,56 @@
                     }
                 }
             },
+            "Amount": {
+                "description": "An amount of money.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/decimal"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/decimal"
+                        }
+                    }
+                ]
+            },
+            "Currency": {
+                "description": "A data concept for a unit of money or exchange.",
+                "oneOf": [
+                    {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/CurrencyCode"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "$ref": "#/components/schemas/CurrencyCode"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "CurrencyCode": {
+                "description": "A unit of money or exchange.",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/CurrencyCodeType"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CurrencyCodeType"
+                        }
+                    }
+                ]
+            },
             "CurrencyCodeType": {
                 "description": "A data type for a currency that qualifies a monetary amount.",
                 "oneOf": [
@@ -229,7 +240,7 @@
                     {
                         "type": "object",
                         "properties": {
-                            "rdf:value": {
+                            "rdf-value": {
                                 "$ref": "#/components/schemas/CurrencyCodeSimpleType"
                             }
                         }
@@ -259,15 +270,6 @@
                         "description": "US Dollar"
                     }
                 ]
-            },
-            "IdentificationType": {
-                "description": "A data type for a representation of an identity.",
-                "type": "object",
-                "properties": {
-                    "IdentificationID": {
-                        "$ref": "#/components/schemas/IdentificationID"
-                    }
-                }
             },
             "decimal": {
                 "description": "A data type for arbitrary precision decimal numbers.",
