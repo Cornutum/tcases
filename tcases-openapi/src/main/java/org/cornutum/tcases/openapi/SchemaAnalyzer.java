@@ -16,6 +16,7 @@ import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import org.apache.commons.collections4.SetUtils;
+import org.cornutum.tcases.util.MapBuilder;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
 import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -457,21 +460,21 @@ public class SchemaAnalyzer extends ModelConditionReporter
    */
   private Dnf withSubSchemas( Schema<?> schema)
     {
-    return
-      allOf(
-        Dnf.of( schema),
-
-        Optional.ofNullable( asArraySchema( schema))
+    Dnf undefinedArrayItems =
+      Optional.ofNullable( asArraySchema( schema))
         .filter( array -> array.getItems() != null)
         .map( this::undefinedArrayItems)
-        .orElse( Dnf.NONEXISTENT),
+      .orElse( Dnf.NONEXISTENT);
 
-        Optional.ofNullable( schema.getProperties())
+    Dnf undefinedProperties =
+      Optional.ofNullable( schema.getProperties())
         .map( p -> undefinedObjectProperties( schema))
         .orElse(
           Optional.ofNullable( additionalPropertiesSchema( schema))
           .map( ap -> undefinedObjectProperties( schema))
-          .orElse( Dnf.NONEXISTENT)));
+          .orElse( Dnf.NONEXISTENT));
+    
+    return allOf( Dnf.of( schema), undefinedArrayItems, undefinedProperties);
     }
 
   /**
@@ -654,7 +657,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
     return
       dnfs.stream()
       .filter( Dnf::exists)
-      .flatMap( dnf -> dnf.getAlternatives().stream().map( alternative -> Dnf.of( SchemaUtils.not( alternative))))
+      .flatMap( dnf -> dnf.getAlternatives().stream().map( alternative -> Dnf.of( getInvalidators( alternative))))
       .reduce( this::allOf)
       .orElse( Dnf.NONEXISTENT);
     }
@@ -848,6 +851,349 @@ public class SchemaAnalyzer extends ModelConditionReporter
       {
       return null;
       }
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  private List<Schema<?>> getInvalidators( Schema<?> schema)
+    {
+    String type = Optional.ofNullable( schema).map( Schema::getType).orElse( null);;
+
+    List<Schema<?>> alternatives = 
+
+      schema == null?
+      new ArrayList<Schema<?>>() :
+
+      "object".equals( type)?
+      getObjectInvalidators( schema) :
+      
+      "string".equals( type)?
+      getStringInvalidators( schema) :
+      
+      "integer".equals( type)?
+      getIntegerInvalidators( schema) :
+      
+      "boolean".equals( type)?
+      getBooleanInvalidators( schema) :
+
+      "array".equals( type)?
+      getArrayInvalidators( schema) :
+      
+      "number".equals( type)?
+      getNumberInvalidators( schema) :
+
+      getGenericInvalidators( schema);
+
+    // Empty schema?
+    if( alternatives.isEmpty())
+      {
+      // Yes, return an alternative schema that will invalidate any instance.
+      alternatives.add(
+        assertNot(
+          emptySchema(),
+          SCHEMA_TYPES,
+          (s,v) -> { setNotTypes( s, v); s.setNullable( false); }));
+      }
+
+    return alternatives;
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given sub-schema.
+   */
+  private List<Schema<?>> getSubSchemaInvalidators( String context, Schema<?> schema)
+    {
+    return
+      resultFor( context, () -> {
+        System.out.println( getContext());
+        return
+          isLeafSchema( schema)?
+          getInvalidators( schema):
+          
+          getDnf( schema).getAlternatives().stream()
+          .map( this::leafSchemaOf)
+          .filter( Objects::nonNull)
+          .flatMap( s -> getInvalidators( s).stream())
+          .collect( toList());
+        });
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  @SuppressWarnings({ "rawtypes" })
+  private List<Schema<?>> getObjectInvalidators( Schema<?> schema)
+    {
+    List<Schema<?>> alternatives = getGenericInvalidators( schema);
+
+    // Not maxProperties
+    Optional.ofNullable( schema.getMaxProperties())
+      .map( maxProperties -> assertNot( schema, maxProperties, (s,v) -> s.setMinProperties( v + 1)))
+      .ifPresent( s -> alternatives.add( s));
+    
+    // Not minProperties
+    Optional.ofNullable( schema.getMinProperties())
+      .filter( minProperties -> minProperties > 0)
+      .map( minProperties -> assertNot( schema, minProperties, (s,v) -> s.setMaxProperties( v - 1)))
+      .ifPresent( s -> alternatives.add( s));
+    
+    // Not properties
+    Optional.ofNullable( schema.getProperties()).orElse( emptyMap())
+      .forEach( (property, propertySchema) -> {
+
+        List<String> notRequired =
+          Optional.ofNullable( schema.getRequired()).map( required -> required.contains( property)).orElse( false)
+          ? null
+          : Arrays.asList( property);
+        
+        getSubSchemaInvalidators( property, propertySchema).stream()
+          .map(
+            notSchema ->
+            assertNot(
+              schema,
+              (Schema) notSchema,
+              (s,v) -> { s.setProperties( MapBuilder.of( property, v).build()); s.setRequired( notRequired); }))
+          .forEach( s -> alternatives.add( s));
+        });
+
+    // Not required
+    Optional.ofNullable( schema.getRequired()).orElse( emptyList())
+      .stream()
+      .map( property -> assertNot( schema, property, (s,v) -> addNotRequired( s, v)))
+      .forEach( s -> alternatives.add( s));      
+
+    // Not additionalProperties
+    Optional.ofNullable( schema.getAdditionalProperties())
+      .ifPresent( ap -> {
+        if( ap instanceof Schema)
+          {
+          getSubSchemaInvalidators( "additionalProperties", (Schema<?>) ap).stream()
+            .map( notSchema -> assertNot( schema, notSchema, (s,v) -> s.setAdditionalProperties( v)))
+            .forEach( s -> alternatives.add( s));
+          }
+        else
+          {
+          alternatives.add( assertNot( schema, (Boolean) ap, (s,v) -> s.setAdditionalProperties( !v)));
+          }
+        });
+
+    return alternatives;
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  private List<Schema<?>> getStringInvalidators( Schema<?> schema)
+    {
+    List<Schema<?>> alternatives = getGenericInvalidators( schema);
+
+    // Not maxLength
+    Optional.ofNullable( schema.getMaxLength())
+      .map( maxLength -> assertNot( schema, maxLength, (s,v) -> s.setMinLength( v + 1)))
+      .ifPresent( s -> alternatives.add( s));
+    
+    // Not minLength
+    Optional.ofNullable( schema.getMinLength())
+      .filter( minLength -> minLength > 0)
+      .map( minLength -> assertNot( schema, minLength, (s,v) -> s.setMaxLength( v - 1)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not pattern
+    Optional.ofNullable( schema.getPattern())
+      .map( pattern -> assertNot( schema, pattern, (s,v) -> addNotPattern( s, v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    return alternatives;
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  private List<Schema<?>> getIntegerInvalidators( Schema<?> schema)
+    {
+    return getNumericInvalidators( schema);
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  private List<Schema<?>> getBooleanInvalidators( Schema<?> schema)
+    {
+    return getGenericInvalidators( schema);
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  private List<Schema<?>> getArrayInvalidators( Schema<?> schema)
+    {
+    List<Schema<?>> alternatives = getGenericInvalidators( schema);
+
+    // Not maxItems
+    Optional.ofNullable( schema.getMinItems())
+      .filter( max -> max > 0)
+      .map( max -> assertNot( schema, max, (s,v) -> s.setMaxItems( v - 1)))
+      .ifPresent( s -> alternatives.add( s));
+    
+    // Not minItems
+    Optional.ofNullable( schema.getMaxItems())
+      .map( min -> assertNot( schema, min, (s,v) -> s.setMinItems( v + 1)))
+      .ifPresent( s -> alternatives.add( s));
+    
+    // Not uniqueItems
+    Optional.ofNullable( schema.getUniqueItems())
+      .map( unique -> assertNot( schema, unique, (s,v) -> s.setUniqueItems( !v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not items
+    Optional.ofNullable( asArraySchema( schema))
+      .ifPresent(
+        array -> 
+        Optional.ofNullable( array.getItems())
+          .ifPresent(
+            items ->
+            getSubSchemaInvalidators( "items", items).stream()
+            .map( notItems -> assertNot( array, notItems, (s,v) -> s.setItems( notItems)))
+            .forEach( s -> alternatives.add( s))));
+    
+    return alternatives;
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  private List<Schema<?>> getNumberInvalidators( Schema<?> schema)
+    {
+    return getNumericInvalidators( schema);
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  private List<Schema<?>> getNumericInvalidators( Schema<?> schema)
+    {
+    List<Schema<?>> alternatives = getGenericInvalidators( schema);
+
+    // Not maximum
+    boolean exclusiveMaximum = !Boolean.TRUE.equals( schema.getExclusiveMinimum());
+    Optional.ofNullable( schema.getMinimum())
+      .map( max -> assertNot( schema, max, (s,v) -> s.setMaximum( max)))
+      .ifPresent( s -> { s.setExclusiveMaximum( exclusiveMaximum); alternatives.add( s); });
+    
+    // Not minimum
+    boolean exclusiveMinimum = !Boolean.TRUE.equals( schema.getExclusiveMaximum());
+    Optional.ofNullable( schema.getMaximum())
+      .map( min -> assertNot( schema, min, (s,v) -> s.setMinimum( min)))
+      .ifPresent( s -> { s.setExclusiveMinimum( exclusiveMinimum); alternatives.add( s); });
+
+    // Not exclusive maximum
+    Optional.ofNullable( schema.getExclusiveMaximum())
+      .map( exclusive -> assertNot( schema, exclusive, (s,v) -> s.setExclusiveMaximum( !v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not exclusive minimum
+    Optional.ofNullable( schema.getExclusiveMinimum())
+      .map( exclusive -> assertNot( schema, exclusive, (s,v) -> s.setExclusiveMinimum( !v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not multipleOf
+    Optional.ofNullable( schema.getMultipleOf())
+      .map( multipleOf -> assertNot( schema, multipleOf, (s,v) -> addNotMultipleOf( s, v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    return alternatives;
+    }
+
+  /**
+   * Returns a list of alternative schemas that would validate an instance that is <EM>not</EM> validated
+   * by the given schema.
+   */
+  private List<Schema<?>> getGenericInvalidators( Schema<?> schema)
+    {
+    List<Schema<?>> alternatives = new ArrayList<Schema<?>>();
+
+    // Not type
+    Optional.ofNullable( schema.getType())
+      .map( type -> assertNot( emptySchema(), type, (s,v) -> addNotType( s, v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not nullable
+    Optional.ofNullable( schema.getNullable())
+      .map( nullable -> assertNot( schema, nullable, (s,v) -> s.setNullable( !v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not enums
+    Optional.ofNullable( schema.getEnum())
+      .map( enums -> assertNot( schema, enums, (s,v) -> setNotEnums( s, v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not readOnly
+    Optional.ofNullable( schema.getReadOnly())
+      .map( readOnly -> assertNot( schema, readOnly, (s,v) -> s.setReadOnly( !v)))
+      .ifPresent( s -> alternatives.add( s));
+
+    // Not writeOnly
+    Optional.ofNullable( schema.getWriteOnly())
+      .map( writeOnly -> assertNot( schema, writeOnly, (s,v) -> s.setWriteOnly( !v)))
+      .ifPresent( s -> alternatives.add( s));
+    
+    return alternatives;
+    }
+
+  /**
+   * Returns an alternate schema that negates the assertion of the given value from the orginal schema.
+   */
+  @SuppressWarnings("unchecked")
+  private <S extends Schema<?>,V> Schema<?> assertNot( S original, V asserted, BiConsumer<S,V> negater)
+    {
+    Class<S> schemaType = (Class<S>) original.getClass();
+    try
+      {
+      // Create new empty alternative schema
+      S alternative = schemaType.newInstance();
+      alternative.setType( original.getType());
+
+      // Remove any additional format assertion automatically added by the Schema subclass.
+      alternative.setFormat( null);
+
+      // Apply negater to add the negated assertion.
+      negater.accept( alternative, asserted);
+
+      return alternative;
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( String.format( "Can't create alternative schema of type=%s", schemaType.getSimpleName()), e);
+      }
+    }
+
+  /**
+   * Returns a new leaf schema containing only the leaf assertions of the given schema.
+   * Returns null if the given schema is a {@link #isNotLeafSchema non-leaf schema} with no
+   * leaf assertions.
+   */
+  private Schema<?> leafSchemaOf( Schema<?> schema)
+    {
+    Schema<?> empty = emptySchema();
+    Schema<?> leafSchema = combineSchemas( getContext(), schema, empty);
+    
+    return
+      !leafSchema.equals( empty)?
+      leafSchema :
+
+      isLeafSchema( schema)? empty :
+      
+      null;
     }
 
   /**
