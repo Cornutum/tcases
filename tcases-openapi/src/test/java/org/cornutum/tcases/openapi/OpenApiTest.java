@@ -105,6 +105,29 @@ public abstract class OpenApiTest
   protected void verifyInputModel( String apiName, String expectedName, Function<OpenAPI,SystemInputDef> inputDefSupplier)
     {
     // Given...
+    SystemInputDef inputDef = verifiedInputModel( apiName, expectedName, inputDefSupplier);
+
+    // When...
+    SystemTestDef testDef = Tcases.getTests( inputDef, null, null);
+
+    // Then...
+    if( acceptAsExpected())
+      {
+      updateExpectedTestDef( expectedName, testDef);
+      }
+    else
+      {
+      SystemTestDef expectedTestDef = readExpectedTestDef( expectedName);
+      assertThat( apiName + " test cases", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
+      }
+    }
+
+  /**
+   * Verifies and returns the expected input model for the given API.
+   */
+  protected SystemInputDef verifiedInputModel( String apiName, String expectedName, Function<OpenAPI,SystemInputDef> inputDefSupplier)
+    {
+    // Given...
     OpenAPI api = readApi( apiName);
 
     // When...
@@ -121,19 +144,7 @@ public abstract class OpenApiTest
       assertThat( apiName + " input model", inputDef, matches( new SystemInputDefMatcher( expectedInputDef)));
       }
 
-    // When...
-    SystemTestDef testDef = Tcases.getTests( inputDef, null, null);
-
-    // Then...
-    if( acceptAsExpected())
-      {
-      updateExpectedTestDef( expectedName, testDef);
-      }
-    else
-      {
-      SystemTestDef expectedTestDef = readExpectedTestDef( expectedName);
-      assertThat( apiName + " test cases", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
-      }
+    return inputDef;
     }
 
   /**

@@ -38,6 +38,6 @@ public class ExamplesTest extends OpenApiTest
   @Test
   public void verifyNiemVehicleResponses()
     {
-    verifyResponseInputModel( "niem-vehicle");
+    verifiedInputModel( "niem-vehicle", "niem-vehicle", api -> getResponseInputModel( api));
     }
   }
