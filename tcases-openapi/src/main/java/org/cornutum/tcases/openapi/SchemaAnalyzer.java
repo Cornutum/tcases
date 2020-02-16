@@ -473,8 +473,13 @@ public class SchemaAnalyzer extends ModelConditionReporter
           Optional.ofNullable( additionalPropertiesSchema( schema))
           .map( ap -> undefinedObjectProperties( schema))
           .orElse( Dnf.NONEXISTENT));
+
+    Dnf leafSchema =
+      Optional.ofNullable( leafSchemaOf( schema))
+      .map( Dnf::of)
+      .orElse( Dnf.NONEXISTENT);
     
-    return allOf( Dnf.of( schema), undefinedArrayItems, undefinedProperties);
+    return allOf( leafSchema, undefinedArrayItems, undefinedProperties);
     }
 
   /**
@@ -914,8 +919,6 @@ public class SchemaAnalyzer extends ModelConditionReporter
           getInvalidators( schema):
           
           getDnf( schema).getAlternatives().stream()
-          .map( this::leafSchemaOf)
-          .filter( Objects::nonNull)
           .flatMap( s -> getInvalidators( s).stream())
           .collect( toList());
         });
