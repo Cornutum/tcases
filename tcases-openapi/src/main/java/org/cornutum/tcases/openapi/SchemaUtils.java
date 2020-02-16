@@ -772,6 +772,16 @@ public final class SchemaUtils
     return new Schema<Object>();
     }
 
+  /**
+   * Returns true if the given schema contains no assertions.
+   */
+  public static boolean isEmpty( Schema<?> schema)
+    {
+    return Optional.ofNullable( schema).map( s -> s.equals( EMPTY_SCHEMA)).orElse( true);
+    }
+
+  public static final Schema<?> EMPTY_SCHEMA = emptySchema();
+
   public static final Set<String> SCHEMA_TYPES =
     Arrays.asList( "array", "boolean", "integer", "number", "object", "string")
     .stream().collect( toSet());

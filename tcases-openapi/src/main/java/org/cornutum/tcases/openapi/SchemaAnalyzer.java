@@ -892,7 +892,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
       // Yes, return an alternative schema that will invalidate any instance.
       alternatives.add(
         assertNot(
-          emptySchema(),
+          EMPTY_SCHEMA,
           SCHEMA_TYPES,
           (s,v) -> { setNotTypes( s, v); s.setNullable( false); }));
       }
@@ -1124,7 +1124,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
 
     // Not type
     Optional.ofNullable( schema.getType())
-      .map( type -> assertNot( emptySchema(), type, (s,v) -> addNotType( s, v)))
+      .map( type -> assertNot( EMPTY_SCHEMA, type, (s,v) -> addNotType( s, v)))
       .ifPresent( s -> alternatives.add( s));
 
     // Not nullable
@@ -1184,16 +1184,10 @@ public class SchemaAnalyzer extends ModelConditionReporter
    */
   private Schema<?> leafSchemaOf( Schema<?> schema)
     {
-    Schema<?> empty = emptySchema();
-    Schema<?> leafSchema = combineSchemas( getContext(), schema, empty);
-    
     return
-      !leafSchema.equals( empty)?
-      leafSchema :
-
-      isLeafSchema( schema)? empty :
-      
-      null;
+      Optional.of( combineSchemas( getContext(), schema, EMPTY_SCHEMA))
+      .filter( leafSchema -> !isEmpty( leafSchema) || isLeafSchema( schema))
+      .orElse( null);
     }
 
   /**
