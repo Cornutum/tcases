@@ -913,7 +913,6 @@ public class SchemaAnalyzer extends ModelConditionReporter
     {
     return
       resultFor( context, () -> {
-        System.out.println( getContext());
         return
           isLeafSchema( schema)?
           getInvalidators( schema):
