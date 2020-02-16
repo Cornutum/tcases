@@ -326,7 +326,10 @@ public final class SchemaUtils
         "properties",
         () -> 
         Stream.concat( basePropertyDefs.keySet().stream(), additionalPropertyDefs.keySet().stream())
-        .collect( toSet())
+        .collect(
+          () -> new LinkedHashSet<String>(),
+          (properties, p) -> properties.add( p),
+          (properties, other) -> properties.addAll( other))
         .stream()
         .collect(
           () -> new LinkedHashMap<String,Schema>(),

@@ -28,6 +28,23 @@
             </Var>
             <VarSet name="Value" when="param0Value">
               <VarSet name="Properties">
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="string" property="param0AlphaValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not string" failure="true"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AlphaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
@@ -76,23 +93,6 @@
                     <Var name="Unique" when="param0BravoItemsMany">
                       <Value name="Yes"/>
                       <Value name="No"/>
-                    </Var>
-                  </VarSet>
-                </VarSet>
-                <VarSet name="alpha">
-                  <Var name="Defined">
-                    <Value name="Yes" property="param0Alpha, param0Properties"/>
-                    <Value name="No"/>
-                  </Var>
-                  <Var name="Type" when="param0Alpha">
-                    <Value name="string" property="param0AlphaValue"/>
-                    <Value name="null" failure="true"/>
-                    <Value name="Not string" failure="true"/>
-                  </Var>
-                  <VarSet name="Value" when="param0AlphaValue">
-                    <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -159,6 +159,21 @@
             </Var>
             <VarSet name="Value" when="param0Value">
               <VarSet name="Properties">
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="string" property="param0AlphaValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AlphaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
@@ -196,21 +211,6 @@
                     <Var name="Unique" when="param0BravoItemsMany">
                       <Value name="Yes"/>
                       <Value name="No"/>
-                    </Var>
-                  </VarSet>
-                </VarSet>
-                <VarSet name="alpha">
-                  <Var name="Defined">
-                    <Value name="Yes" property="param0Alpha, param0Properties"/>
-                    <Value name="No"/>
-                  </Var>
-                  <Var name="Type" when="param0Alpha">
-                    <Value name="string" property="param0AlphaValue"/>
-                  </Var>
-                  <VarSet name="Value" when="param0AlphaValue">
-                    <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -290,6 +290,21 @@
                 <Value name="&gt; 0" when="param0Properties"/>
               </Var>
               <VarSet name="Properties">
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="string" property="param0AlphaValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AlphaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
@@ -329,21 +344,6 @@
                     </Var>
                   </VarSet>
                 </VarSet>
-                <VarSet name="alpha">
-                  <Var name="Defined">
-                    <Value name="Yes" property="param0Alpha, param0Properties"/>
-                    <Value name="No"/>
-                  </Var>
-                  <Var name="Type" when="param0Alpha">
-                    <Value name="string" property="param0AlphaValue"/>
-                  </Var>
-                  <VarSet name="Value" when="param0AlphaValue">
-                    <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
-                    </Var>
-                  </VarSet>
-                </VarSet>
                 <VarSet name="Additional">
                   <Var name="Defined">
                     <Value name="Yes" property="param0Additional, param0Properties"/>
@@ -354,22 +354,6 @@
                   </Var>
                   <VarSet name="Value" when="param0AdditionalValue">
                     <VarSet name="Properties">
-                      <VarSet name="optional">
-                        <Var name="Defined">
-                          <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
-                          <Value name="No"/>
-                        </Var>
-                        <Var name="Type" when="param0AdditionalOptional">
-                          <Value name="integer" property="param0AdditionalOptionalValue"/>
-                        </Var>
-                        <VarSet name="Value" when="param0AdditionalOptionalValue">
-                          <Var name="Is">
-                            <Value name="&lt; 0"/>
-                            <Value name="0"/>
-                            <Value name="&gt; 0"/>
-                          </Var>
-                        </VarSet>
-                      </VarSet>
                       <VarSet name="required">
                         <Var name="Defined">
                           <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
@@ -389,6 +373,22 @@
                             <Value name="X" failure="true"/>
                             <Value name="Y" failure="true"/>
                             <Value name="Z" failure="true"/>
+                          </Var>
+                        </VarSet>
+                      </VarSet>
+                      <VarSet name="optional">
+                        <Var name="Defined">
+                          <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
+                          <Value name="No"/>
+                        </Var>
+                        <Var name="Type" when="param0AdditionalOptional">
+                          <Value name="integer" property="param0AdditionalOptionalValue"/>
+                        </Var>
+                        <VarSet name="Value" when="param0AdditionalOptionalValue">
+                          <Var name="Is">
+                            <Value name="&lt; 0"/>
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
                           </Var>
                         </VarSet>
                       </VarSet>
@@ -417,6 +417,21 @@
                 <Value name="&gt; 0" when="param0Properties"/>
               </Var>
               <VarSet name="Properties">
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0Alpha, param0Properties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0Alpha">
+                    <Value name="string" property="param0AlphaValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0AlphaValue">
+                    <Var name="Length">
+                      <Value name="&gt; 0"/>
+                      <Value name="0"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
@@ -456,21 +471,6 @@
                     </Var>
                   </VarSet>
                 </VarSet>
-                <VarSet name="alpha">
-                  <Var name="Defined">
-                    <Value name="Yes" property="param0Alpha, param0Properties"/>
-                    <Value name="No"/>
-                  </Var>
-                  <Var name="Type" when="param0Alpha">
-                    <Value name="string" property="param0AlphaValue"/>
-                  </Var>
-                  <VarSet name="Value" when="param0AlphaValue">
-                    <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
-                    </Var>
-                  </VarSet>
-                </VarSet>
                 <VarSet name="Additional">
                   <Var name="Defined">
                     <Value name="Yes" property="param0Additional, param0Properties"/>
@@ -481,16 +481,19 @@
                   </Var>
                   <VarSet name="Value" when="param0AdditionalValue">
                     <VarSet name="Properties">
-                      <VarSet name="extra">
+                      <VarSet name="required">
                         <Var name="Defined">
-                          <Value name="Yes" property="param0AdditionalExtra, param0AdditionalProperties"/>
-                          <Value name="No" failure="true"/>
+                          <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
                         </Var>
-                        <Var name="Type" when="param0AdditionalExtra">
-                          <Value name="Not boolean" property="param0AdditionalExtraValue"/>
-                          <Value name="null" failure="true"/>
-                          <Value name="boolean" failure="true"/>
+                        <Var name="Type" when="param0AdditionalRequired">
+                          <Value name="string" property="param0AdditionalRequiredValue"/>
                         </Var>
+                        <VarSet name="Value" when="param0AdditionalRequiredValue">
+                          <Var name="Length">
+                            <Value name="&gt; 0"/>
+                            <Value name="0"/>
+                          </Var>
+                        </VarSet>
                       </VarSet>
                       <VarSet name="optional">
                         <Var name="Defined">
@@ -508,19 +511,16 @@
                           </Var>
                         </VarSet>
                       </VarSet>
-                      <VarSet name="required">
+                      <VarSet name="extra">
                         <Var name="Defined">
-                          <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
+                          <Value name="Yes" property="param0AdditionalExtra, param0AdditionalProperties"/>
+                          <Value name="No" failure="true"/>
                         </Var>
-                        <Var name="Type" when="param0AdditionalRequired">
-                          <Value name="string" property="param0AdditionalRequiredValue"/>
+                        <Var name="Type" when="param0AdditionalExtra">
+                          <Value name="Not boolean" property="param0AdditionalExtraValue"/>
+                          <Value name="null" failure="true"/>
+                          <Value name="boolean" failure="true"/>
                         </Var>
-                        <VarSet name="Value" when="param0AdditionalRequiredValue">
-                          <Var name="Length">
-                            <Value name="&gt; 0"/>
-                            <Value name="0"/>
-                          </Var>
-                        </VarSet>
                       </VarSet>
                       <Var name="Additional">
                         <Value name="Yes" property="param0AdditionalProperties"/>
