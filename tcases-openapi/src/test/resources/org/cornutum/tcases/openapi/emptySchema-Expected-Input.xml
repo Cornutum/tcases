@@ -33,14 +33,11 @@
             <Var name="Type" when="param1">
               <Value name="Not boolean,number" property="param1Value"/>
               <Value name="null" failure="true"/>
-              <Value name="boolean" failure="true"/>
-              <Value name="number" failure="true"/>
             </Var>
           </VarSet>
           <VarSet name="1" when="param1Alternative1">
             <Var name="Type" when="param1">
               <Value name="number" property="param1Value"/>
-              <Value name="Not number" failure="true"/>
             </Var>
             <VarSet name="Value" when="param1Value">
               <Var name="Is">
@@ -60,7 +57,6 @@
           <VarSet name="2" when="param1Alternative2">
             <Var name="Type" when="param1">
               <Value name="boolean" property="param1Value"/>
-              <Value name="Not boolean" failure="true"/>
             </Var>
             <Var name="Value" when="param1Value">
               <Value name="true"/>

@@ -51,7 +51,7 @@
                     <Var name="Type">
                       <Value name="object" property="200application-jsonItemsValue"/>
                       <Value name="null" failure="true"/>
-                      <Value name="Not object" failure="true"/>
+                      <Value name="Not object,array" failure="true"/>
                     </Var>
                     <VarSet name="Value" when="200application-jsonItemsValue">
                       <Var name="Property-Count">
@@ -111,7 +111,7 @@
                             <VarSet name="0" when="200application-jsonItemsVehicleAxleQuantityAlternative0">
                               <Var name="Type" when="200application-jsonItemsVehicleAxleQuantity">
                                 <Value name="integer" property="200application-jsonItemsVehicleAxleQuantityValue"/>
-                                <Value name="Not integer" failure="true"/>
+                                <Value name="Not integer,array" failure="true"/>
                               </Var>
                               <VarSet name="Value" when="200application-jsonItemsVehicleAxleQuantityValue">
                                 <Var name="Is">
@@ -124,7 +124,6 @@
                             <VarSet name="1" when="200application-jsonItemsVehicleAxleQuantityAlternative1">
                               <Var name="Type" when="200application-jsonItemsVehicleAxleQuantity">
                                 <Value name="array" property="200application-jsonItemsVehicleAxleQuantityValue"/>
-                                <Value name="Not array" failure="true"/>
                               </Var>
                               <VarSet name="Items" when="200application-jsonItemsVehicleAxleQuantityValue">
                                 <Var name="Size">
@@ -196,7 +195,7 @@
                                       <VarSet name="0" when="200application-jsonItemsVehicleIdentificationIdentificationIDAlternative0">
                                         <Var name="Type" when="200application-jsonItemsVehicleIdentificationIdentificationID">
                                           <Value name="string" property="200application-jsonItemsVehicleIdentificationIdentificationIDValue"/>
-                                          <Value name="Not string" failure="true"/>
+                                          <Value name="Not string,array" failure="true"/>
                                         </Var>
                                         <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationIdentificationIDValue">
                                           <Var name="Length">
@@ -383,7 +382,7 @@
                                       <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountAmountAlternative0">
                                         <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountAmount">
                                           <Value name="number" property="200application-jsonItemsVehicleMSRPAmountAmountValue"/>
-                                          <Value name="Not number" failure="true"/>
+                                          <Value name="Not number,array" failure="true"/>
                                         </Var>
                                         <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountAmountValue">
                                           <Var name="Is">
@@ -462,6 +461,7 @@
                                       <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountCurrencyAlternative0">
                                         <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrency">
                                           <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyValue"/>
+                                          <Value name="Not string,object,array" failure="true"/>
                                         </Var>
                                         <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyValue">
                                           <Value name="EUR"/>
@@ -515,6 +515,7 @@
                                                 <VarSet name="0" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdf-valueAlternative0">
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdf-value">
                                                     <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyRdf-valueValue"/>
+                                                    <Value name="Not string" failure="true"/>
                                                   </Var>
                                                   <Var name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyRdf-valueValue">
                                                     <Value name="EUR"/>

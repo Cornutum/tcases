@@ -105,6 +105,23 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns if the input model for this schema required type checks
+   */
+  public static boolean getTypeChecked( Schema<?> schema)
+    {
+    Boolean checked = getExtension( schema, EXT_TYPE_CHECKED);
+    return Optional.ofNullable( checked).orElse( true);
+    }
+
+  /**
+   * Changes if the input model for this schema required type checks
+   */
+  public static void setTypeChecked( Schema<?> schema, boolean checked)
+    {
+    setExtension( schema, EXT_TYPE_CHECKED, checked);
+    }
+
+  /**
    * Returns the disjunctive normal form of this given schema.
    */
   public static Dnf getDnf( Schema<?> schema)
@@ -443,5 +460,6 @@ public final class SchemaExtensions
   private static final String EXT_NOT_REQUIRED = "x-tcases-not-required";
   private static final String EXT_NOT_TYPES = "x-tcases-not-types";
   private static final String EXT_PATTERNS = "x-tcases-patterns";
+  private static final String EXT_TYPE_CHECKED = "x-tcases-type-checked";
   private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
   }

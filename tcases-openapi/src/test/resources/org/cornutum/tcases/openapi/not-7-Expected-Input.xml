@@ -21,13 +21,11 @@
             <Var name="Type" when="param0">
               <Value name="Not string" property="param0Value"/>
               <Value name="null" failure="true"/>
-              <Value name="string" failure="true"/>
             </Var>
           </VarSet>
           <VarSet name="1" when="param0Alternative1">
             <Var name="Type" when="param0">
               <Value name="string" property="param0Value"/>
-              <Value name="Not string" failure="true"/>
             </Var>
             <VarSet name="Value" when="param0Value">
               <Var name="Length">

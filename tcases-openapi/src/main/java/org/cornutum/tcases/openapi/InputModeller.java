@@ -701,7 +701,7 @@ public abstract class InputModeller extends ModelConditionReporter
     List<Schema<?>> alternatives =
       Optional.ofNullable( instanceSchema)
       .flatMap( s -> Optional.ofNullable( getDnf( s)))
-      .map( dnf -> dnf.getAlternatives().stream().collect( toList()))
+      .map( dnf -> simplified( dnf).getAlternatives().stream().collect( toList()))
       .orElse( emptyList());
 
     return
@@ -1001,9 +1001,11 @@ public abstract class InputModeller extends ModelConditionReporter
    */
   private IVarDef instanceTypeVar( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
-    String type = instanceSchema == null? null : instanceSchema.getType();
-    Boolean nullable = instanceSchema == null? Boolean.FALSE : instanceSchema.getNullable();
-    Set<String> notTypes = Optional.ofNullable( instanceSchema).flatMap( s -> Optional.ofNullable( getNotTypes(s))).orElse( emptySet());
+    Optional<Schema<?>> schema = Optional.ofNullable( instanceSchema);
+    Optional<String> type = schema.flatMap( s -> Optional.ofNullable( s.getType()));
+    Boolean nullable = schema.map( s -> s.getNullable()).orElse( Boolean.FALSE);
+    Set<String> notTypes = schema.flatMap( s -> Optional.ofNullable( getNotTypes(s))).orElse( emptySet());
+    boolean typeChecked =  schema.map( s -> getTypeChecked( s)).orElse( true);
 
     return
       VarDefBuilder.with( "Type")
@@ -1012,8 +1014,7 @@ public abstract class InputModeller extends ModelConditionReporter
       // Expectations for valid types
       .values(
         VarValueDefBuilder.with(
-          Optional.ofNullable( type)
-          .orElse( String.format( "Not %s", notTypes.isEmpty()? "null" : notTypes.stream().collect( joining( ",")))))
+          type.orElse( String.format( "Not %s", notTypes.isEmpty()? "null" : notTypes.stream().collect( joining( ",")))))
         .properties( instanceValueProperty( instanceVarTag)).build())
 
       // Expectations for null type
@@ -1022,10 +1023,16 @@ public abstract class InputModeller extends ModelConditionReporter
 
       // Expectations for invalid types
       .values(
-          Optional.ofNullable( type)
-          .map( t -> Stream.of( String.format( "Not %s", t)))
-          .orElse( notTypes.stream())
-          .map( t -> VarValueDefBuilder.with( t).type( VarValueDef.Type.FAILURE).build()))
+        Optional.of( typeChecked)
+        .filter( checked -> checked)
+        .map( checked -> {
+          return
+            type
+            .map( t -> Stream.of( String.format( "Not %s", Stream.concat( Stream.of( t), notTypes.stream()).collect( joining( ",")))))
+            .orElse( notTypes.stream());
+          })
+        .orElse( Stream.empty())
+        .map( invalidType -> VarValueDefBuilder.with( invalidType).type( VarValueDef.Type.FAILURE).build()))
 
       .build();
     }
@@ -2203,6 +2210,49 @@ public abstract class InputModeller extends ModelConditionReporter
   private Schema<?> analyzeSchema( OpenAPI api, Schema<?> schema)
     {
     return analyzer_.analyze( api, schema);
+    }
+
+  /**
+   * Returns a new DNF that generates a simpler but equivalent input model.
+   */
+  public Dnf simplified( Dnf dnf)
+    {
+    return
+      Optional.of( dnf)
+      .map( this::simplifyTypeChecks)
+      .get();
+    }
+
+  /**
+   * Returns a DNF that eliminates redundant type checks.
+   */
+  private Dnf simplifyTypeChecks( Dnf dnf)
+    {
+    Set<String> types = dnf.getTypes();
+    if( types.size() > 1)
+      {
+      // Null type alternatives exist?
+      Schema<?> typeChecked; 
+      if( types.contains( "null"))
+        {
+        // Yes, an alternative exists for any type -- no alternative requires a type check
+        typeChecked = null;
+        }
+      else
+        {
+        // No, consolidate type check on a single alternative
+        List<String> typeList = types.stream().collect( toList());
+        typeChecked = dnf.getAlternatives( typeList.get(0)).stream().findFirst().get();
+        setNotTypes( typeChecked, typeList.subList( 1, typeList.size()));
+        }
+
+      // Designate no type check for all other alternatives
+      dnf.getAlternatives().stream()
+        .filter( s -> s != typeChecked)
+        .forEach( s -> setTypeChecked( s, false));
+      }
+    
+    return dnf;
     }
 
   /**

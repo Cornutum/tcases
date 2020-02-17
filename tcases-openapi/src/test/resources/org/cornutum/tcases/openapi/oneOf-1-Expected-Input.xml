@@ -21,7 +21,7 @@
             <Var name="Type" when="param0">
               <Value name="boolean" property="param0Value"/>
               <Value name="null" failure="true"/>
-              <Value name="Not boolean" failure="true"/>
+              <Value name="Not boolean,string" failure="true"/>
             </Var>
             <Var name="Value" when="param0Value">
               <Value name="true"/>
@@ -31,7 +31,6 @@
           <VarSet name="1" when="param0Alternative1">
             <Var name="Type" when="param0">
               <Value name="string" property="param0Value"/>
-              <Value name="Not string" failure="true"/>
             </Var>
             <VarSet name="Value" when="param0Value">
               <Var name="Length">
