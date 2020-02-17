@@ -21,7 +21,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.Collections.emptySet;
-import static java.util.stream.Collectors.toCollection;
 
 /**
  * Represents the disjunctive normal form of a schema. An instance is validated by a schema
@@ -64,7 +63,7 @@ public class Dnf
     return
       type == null
       ? getAlternatives()
-      : Stream.concat( getAlternatives( type).stream(), getAlternatives( null).stream()).collect( toCollection( LinkedHashSet::new));
+      : Stream.concat( getAlternatives( type).stream(), getAlternatives( null).stream()).collect( toOrderedSet());
     }
 
   /**
@@ -72,7 +71,7 @@ public class Dnf
    */
   public Set<Schema<?>> getAlternatives()
     {
-    return alternatives_.values().stream().collect( toCollection( LinkedHashSet::new));
+    return alternatives_.values().stream().collect( toOrderedSet());
     }
 
   /**

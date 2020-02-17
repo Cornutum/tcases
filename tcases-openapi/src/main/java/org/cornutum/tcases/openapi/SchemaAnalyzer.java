@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi;
 import static org.cornutum.tcases.openapi.OpenApiUtils.*;
 import static org.cornutum.tcases.openapi.SchemaExtensions.*;
 import static org.cornutum.tcases.openapi.SchemaUtils.*;
+import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ArraySchema;
@@ -21,7 +22,6 @@ import org.cornutum.tcases.util.MapBuilder;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -33,7 +33,6 @@ import java.util.stream.Stream;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
-import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
@@ -691,7 +690,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
 
     // ... find pairs of schemas that can be combined...
     List<Dnf> pairs = new ArrayList<Dnf>();
-    Set<Integer> unpaired = IntStream.range( 0, choices.size()).mapToObj( Integer::valueOf).collect( toCollection( LinkedHashSet::new));
+    Set<Integer> unpaired = IntStream.range( 0, choices.size()).mapToObj( Integer::valueOf).collect( toOrderedSet());
 
     // ... unless fewer than 3 inputs. If so, skip pairing to ensure that, for each input schema, the resulting DNF can contain
     // alternatives to validate and invalidate that schema.

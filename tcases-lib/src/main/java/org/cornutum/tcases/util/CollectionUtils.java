@@ -11,12 +11,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toCollection;
 
 /**
  * Defines methods for handling collections.
@@ -145,5 +149,13 @@ public final class CollectionUtils
       }
     
     return values.build();
+    }
+
+  /**
+   * Returns a {@link Collector} that accumulates set elements in insertion order
+   */
+  public static <T> Collector<T,?,Set<T>> toOrderedSet()
+    {
+    return toCollection( LinkedHashSet::new);
     }
 }

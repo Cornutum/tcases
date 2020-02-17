@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi;
 
 import static org.cornutum.tcases.openapi.SchemaExtensions.*;
+import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
@@ -15,7 +16,6 @@ import io.swagger.v3.oas.models.media.Schema;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -291,10 +291,7 @@ public final class SchemaUtils
       Stream.concat(
         Optional.ofNullable( base.getRequired()).map( required -> required.stream()).orElse( Stream.empty()),
         Optional.ofNullable( additional.getRequired()).map( required -> required.stream()).orElse( Stream.empty()))
-      .collect(
-        () -> new LinkedHashSet<String>(),
-        (set, property) -> set.add( property),
-        (set, other) -> set.addAll( other))
+      .collect( toOrderedSet())
       .stream().collect( toList());
     combined.setRequired( combinedRequired);
 
@@ -326,10 +323,7 @@ public final class SchemaUtils
         "properties",
         () -> 
         Stream.concat( basePropertyDefs.keySet().stream(), additionalPropertyDefs.keySet().stream())
-        .collect(
-          () -> new LinkedHashSet<String>(),
-          (properties, p) -> properties.add( p),
-          (properties, other) -> properties.addAll( other))
+        .collect( toOrderedSet())
         .stream()
         .collect(
           () -> new LinkedHashMap<String,Schema>(),
@@ -681,7 +675,7 @@ public final class SchemaUtils
 
       Optional.of( base.getEnum())
       .map( enums -> {
-          Set<Object> baseEnums = new LinkedHashSet<Object>( enums);
+          Set<Object> baseEnums = ((List<Object>)enums).stream().collect( toOrderedSet());
           baseEnums.retainAll( additional.getEnum());
           return baseEnums;
         })
