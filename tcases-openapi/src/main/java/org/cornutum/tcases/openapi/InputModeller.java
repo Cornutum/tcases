@@ -1002,10 +1002,12 @@ public abstract class InputModeller extends ModelConditionReporter
   private IVarDef instanceTypeVar( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
     Optional<Schema<?>> schema = Optional.ofNullable( instanceSchema);
-    Optional<String> type = schema.flatMap( s -> Optional.ofNullable( s.getType()));
     Boolean nullable = schema.map( s -> s.getNullable()).orElse( Boolean.FALSE);
-    Set<String> notTypes = schema.flatMap( s -> Optional.ofNullable( getNotTypes(s))).orElse( emptySet());
-    boolean typeChecked =  schema.map( s -> getTypeChecked( s)).orElse( true);
+
+    Optional<String> type = schema.flatMap( s -> Optional.ofNullable( s.getType()));
+    boolean typeChecked =  schema.map( s -> isTypeChecked( s)).orElse( true);
+    Set<String> notTypes = schema.flatMap( s -> Optional.ofNullable( getNotTypes( s))).orElse( emptySet());
+    Set<String> requiredTypes = schema.flatMap( s -> Optional.ofNullable( getRequiredTypes( s))).orElse( emptySet());
 
     return
       VarDefBuilder.with( "Type")
@@ -1023,15 +1025,12 @@ public abstract class InputModeller extends ModelConditionReporter
 
       // Expectations for invalid types
       .values(
-        Optional.of( typeChecked)
-        .filter( checked -> checked)
-        .map( checked -> {
-          return
-            type
-            .map( t -> Stream.of( String.format( "Not %s", Stream.concat( Stream.of( t), notTypes.stream()).collect( joining( ",")))))
-            .orElse( notTypes.stream());
-          })
-        .orElse( Stream.empty())
+        (typeChecked?
+         type
+         .map( t -> Stream.of( String.format( "Not %s", requiredTypes.stream().collect( joining( ",")))))
+         .orElse( notTypes.stream()):
+
+         Stream.empty())
         .map( invalidType -> VarValueDefBuilder.with( invalidType).type( VarValueDef.Type.FAILURE).build()))
 
       .build();

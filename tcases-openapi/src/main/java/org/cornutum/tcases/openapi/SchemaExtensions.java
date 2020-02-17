@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi;
 
+import static org.cornutum.tcases.util.CollectionUtils.*;
+
 import io.swagger.v3.oas.models.media.Schema;
 
 import java.math.BigDecimal;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
 
@@ -97,6 +100,29 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns the instance types required to validate the given schema.
+   */
+  public static Set<String> getRequiredTypes( Schema<?> schema)
+    {
+    return
+      Optional.ofNullable( schema.getType())
+
+      .map( type -> {
+        return
+          Stream.concat(
+            Stream.of( type),
+
+            Optional.ofNullable( getNotTypes( schema))
+            .map( notTypes -> notTypes.stream())
+            .orElse( Stream.empty()))
+
+          .collect( toOrderedSet());
+        })
+
+      .orElse( null);
+    }
+
+  /**
    * Changes the instance types that can be validated by the given schema. 
    */
   public static void setValidTypes( Schema<?> schema, Set<String> validTypes)
@@ -107,7 +133,7 @@ public final class SchemaExtensions
   /**
    * Returns if the input model for this schema required type checks
    */
-  public static boolean getTypeChecked( Schema<?> schema)
+  public static boolean isTypeChecked( Schema<?> schema)
     {
     Boolean checked = getExtension( schema, EXT_TYPE_CHECKED);
     return Optional.ofNullable( checked).orElse( true);
