@@ -30,11 +30,19 @@
                                     "oneOf": [
                                         {
                                             "type": "object",
-                                            "readOnly": false
+                                            "properties": {
+                                                "alpha": {
+                                                    "readOnly": false
+                                                }
+                                            }
                                         },
                                         {
                                             "type": "object",
-                                            "writeOnly": true
+                                            "properties": {
+                                                "alpha": {
+                                                    "writeOnly": true
+                                                }
+                                            }
                                         },
                                         {
                                             "maxLength": 1

@@ -141,6 +141,15 @@ public final class SchemaUtils
     }
 
   /**
+   * Returns the given schema designated as an object property schema.
+   */
+  public static Schema<?> toPropertySchema( Schema<?> schema)
+    {
+    setPropertySchema( schema, true);
+    return schema;
+    }
+
+  /**
    * Returns true if this is a basic schema without any boolean combinations of subschemas.
    */
   public static boolean isLeafSchema( Schema<?> schema)
@@ -709,35 +718,39 @@ public final class SchemaUtils
 
 
     // Combine readOnly
-    combined.setReadOnly(
-      base.getReadOnly() == null?
-      additional.getReadOnly() :
-
-      additional.getReadOnly() == null?
-      base.getReadOnly() :
-
-      combineAssertions( "readOnly: %s", base.getReadOnly(), additional.getReadOnly()));
-
-    // Combine writeOnly
-    combined.setWriteOnly(
-      base.getWriteOnly() == null?
-      additional.getWriteOnly() :
-
-      additional.getWriteOnly() == null?
-      base.getWriteOnly() :
-
-      combineAssertions( "writeOnly: %s", base.getWriteOnly(), additional.getWriteOnly()));
-
-    if( Boolean.TRUE.equals( combined.getReadOnly()) && Boolean.TRUE.equals( combined.getWriteOnly()))
+    setPropertySchema( combined, isPropertySchema( base) || isPropertySchema( additional));
+    if( isPropertySchema( combined))
       {
-      String baseProp = Boolean.TRUE.equals( base.getReadOnly())? "readOnly" : "writeOnly";
-      String additionalProp = Boolean.TRUE.equals( additional.getReadOnly())? "readOnly" : "writeOnly";
-      throw
-        new IllegalStateException(
-          String.format(
-            "Can't combine schema requiring %s=true with base schema requiring %s=true",
-            additionalProp,
-            baseProp));
+      combined.setReadOnly(
+        base.getReadOnly() == null?
+        additional.getReadOnly() :
+
+        additional.getReadOnly() == null?
+        base.getReadOnly() :
+
+        combineAssertions( "readOnly: %s", base.getReadOnly(), additional.getReadOnly()));
+
+      // Combine writeOnly
+      combined.setWriteOnly(
+        base.getWriteOnly() == null?
+        additional.getWriteOnly() :
+
+        additional.getWriteOnly() == null?
+        base.getWriteOnly() :
+
+        combineAssertions( "writeOnly: %s", base.getWriteOnly(), additional.getWriteOnly()));
+
+      if( Boolean.TRUE.equals( combined.getReadOnly()) && Boolean.TRUE.equals( combined.getWriteOnly()))
+        {
+        String baseProp = Boolean.TRUE.equals( base.getReadOnly())? "readOnly" : "writeOnly";
+        String additionalProp = Boolean.TRUE.equals( additional.getReadOnly())? "readOnly" : "writeOnly";
+        throw
+          new IllegalStateException(
+            String.format(
+              "Can't combine schema requiring %s=true with base schema requiring %s=true",
+              additionalProp,
+              baseProp));
+        }
       }
     
     return combined;

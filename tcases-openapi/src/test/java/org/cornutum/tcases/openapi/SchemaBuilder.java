@@ -32,15 +32,24 @@ public class SchemaBuilder
    */
   public static SchemaBuilder ofType( String type)
     {
+    return new SchemaBuilder( createSchema( type));
+    }
+
+  /**
+   * Returns a new schema of the given type.
+   */
+  private static Schema<?> createSchema( String type)
+    {
     Schema<?> schema =
       "array".equals( type)
       ? new ArraySchema()
       : new Schema<Object>();
 
     schema.setType( type);
-    return new SchemaBuilder( schema);
+
+    return schema;
     }
-  
+
   /**
    * Creates a new builder for an empty Schema with undefined type.
    */
@@ -65,6 +74,14 @@ public class SchemaBuilder
     ComposedSchema schema = new ComposedSchema();
     schema.setType( type);
     return new SchemaBuilder( schema);
+    }
+  
+  /**
+   * Creates a new builder for an object property Schema with the given type.
+   */
+  public static SchemaBuilder propertySchema( String type)
+    {
+    return new SchemaBuilder( SchemaUtils.toPropertySchema( createSchema( type)));
     }
 
   /**

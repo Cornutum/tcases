@@ -434,6 +434,23 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns if this is schema for an object property
+   */
+  public static boolean isPropertySchema( Schema<?> schema)
+    {
+    Boolean forProperty = getExtension( schema, EXT_PROPERTY_SCHEMA);
+    return Optional.ofNullable( forProperty).orElse( false);
+    }
+
+  /**
+   * Changes if this is schema for an object property
+   */
+  public static void setPropertySchema( Schema<?> schema, boolean forProperty)
+    {
+    setExtension( schema, EXT_PROPERTY_SCHEMA, forProperty);
+    }
+
+  /**
    * Returns true if the specified schema has a value for the given extension key.
    */
   private static boolean hasExtension( Schema<?> schema, String key)
@@ -486,6 +503,7 @@ public final class SchemaExtensions
   private static final String EXT_NOT_REQUIRED = "x-tcases-not-required";
   private static final String EXT_NOT_TYPES = "x-tcases-not-types";
   private static final String EXT_PATTERNS = "x-tcases-patterns";
+  private static final String EXT_PROPERTY_SCHEMA = "x-tcases-property-schema";
   private static final String EXT_TYPE_CHECKED = "x-tcases-type-checked";
   private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
   }

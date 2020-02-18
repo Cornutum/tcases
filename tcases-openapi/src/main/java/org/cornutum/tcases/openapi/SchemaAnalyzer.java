@@ -366,13 +366,13 @@ public class SchemaAnalyzer extends ModelConditionReporter
         Optional.ofNullable( object.getProperties())
         .flatMap(
           properties -> properties.keySet().stream()
-          .map( p -> resultFor( p, () -> analyzeDnf( object.getProperties().get( p))))
+          .map( p -> resultFor( p, () -> analyzeDnf( toPropertySchema( object.getProperties().get( p)))))
           .filter( Dnf::undefined)
           .findFirst())
         .orElse( Dnf.NONEXISTENT),
 
         Optional.ofNullable( additionalPropertiesSchema( object))
-        .map( ap -> resultFor( "additionalProperties", () -> analyzeDnf( ap)))
+        .map( ap -> resultFor( "additionalProperties", () -> analyzeDnf( toPropertySchema( ap))))
         .filter( Dnf::undefined)
         .orElse( Dnf.NONEXISTENT));
     }
@@ -1163,6 +1163,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
       // Create new empty alternative schema
       S alternative = schemaType.newInstance();
       alternative.setType( original.getType());
+      setPropertySchema( alternative, isPropertySchema( original));
 
       // Remove any additional format assertion automatically added by the Schema subclass.
       alternative.setFormat( null);
@@ -1188,7 +1189,23 @@ public class SchemaAnalyzer extends ModelConditionReporter
     return
       Optional.of( combineSchemas( getContext(), schema, EMPTY_SCHEMA))
       .filter( leafSchema -> !isEmpty( leafSchema) || isLeafSchema( schema))
+      .map( this::normalize)
       .orElse( null);
+    }
+
+  /**
+   * Returns this schema after normalizing context-dependent assertions.
+   */
+  private Schema<?> normalize( Schema<?> schema)
+    {
+    if( !isPropertySchema( schema))
+      {
+      // Ignore assertions that apply only to object properties.
+      schema.setReadOnly( null);
+      schema.setWriteOnly( null);
+      }
+    
+    return schema;
     }
 
   /**
