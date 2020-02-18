@@ -53,10 +53,11 @@ import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Converts between OpenAPI models and Tcases input models.
@@ -772,7 +773,7 @@ public abstract class InputModeller extends ModelConditionReporter
               .ifPresent( dups -> dups.forEach( dup -> dup.getVarDef().removeValue( dup.getValueDef().getName())));
             });
         });
-    
+
     return alternativesVar;
     }
 
@@ -1003,6 +1004,7 @@ public abstract class InputModeller extends ModelConditionReporter
     {
     Optional<Schema<?>> schema = Optional.ofNullable( instanceSchema);
     Boolean nullable = schema.map( s -> s.getNullable()).orElse( Boolean.FALSE);
+    boolean nullChecked =  schema.map( s -> isNullChecked( s)).orElse( true);
 
     Optional<String> type = schema.flatMap( s -> Optional.ofNullable( s.getType()));
     boolean typeChecked =  schema.map( s -> isTypeChecked( s)).orElse( true);
@@ -1021,11 +1023,17 @@ public abstract class InputModeller extends ModelConditionReporter
 
       // Expectations for null type
       .values(
-        VarValueDefBuilder.with( (Object) null).type( Boolean.TRUE.equals( nullable)? VarValueDef.Type.ONCE : VarValueDef.Type.FAILURE).build())
+        streamOf(
+          Optional.of( nullChecked)
+          .filter( checked -> checked)
+          .map(
+            checked ->
+            VarValueDefBuilder.with( (Object) null).type( Boolean.TRUE.equals( nullable)? VarValueDef.Type.ONCE : VarValueDef.Type.FAILURE).build())))
 
       // Expectations for invalid types
       .values(
         (typeChecked?
+
          type
          .map( t -> Stream.of( String.format( "Not %s", requiredTypes.stream().collect( joining( ",")))))
          .orElse( notTypes.stream()):
@@ -2219,6 +2227,7 @@ public abstract class InputModeller extends ModelConditionReporter
     return
       Optional.of( dnf)
       .map( this::simplifyTypeChecks)
+      .map( this::simplifyNullChecks)
       .get();
     }
 
@@ -2252,6 +2261,35 @@ public abstract class InputModeller extends ModelConditionReporter
       }
     
     return dnf;
+    }
+
+  /**
+   * Returns a DNF that eliminates redundant null checks.
+   */
+  private Dnf simplifyNullChecks( Dnf dnf)
+    {
+    List<Schema<?>> alternatives = dnf.getAlternatives().stream().collect( toList());
+
+    // Given the set of nullable assertions made by all alternatives...
+    Set<Boolean> nullables =
+      alternatives.stream()
+      .map( Schema::getNullable)
+      .filter( Objects::nonNull)
+      .collect( toSet());
+
+    // ... define a single common nullable assertion, with "true" prevailing in certain situations 
+    // that produce conflicting alternatives
+    boolean nullable = nullables.contains( Boolean.TRUE);
+
+    // Reforming alternatives with a common nullable assertion...
+    Dnf simplified = Dnf.of( dnf.getAlternatives().stream().map( s -> { s.setNullable( nullable); return s; }));
+
+    // ... designate null checking for only one of them.
+    List<Schema<?>> simplifiedAlternatives = simplified.getAlternatives().stream().collect( toList());
+    IntStream.range( 0, simplifiedAlternatives.size())
+      .forEach( i -> setNullChecked( simplifiedAlternatives.get(i), i == 0));
+
+    return simplified;
     }
 
   /**

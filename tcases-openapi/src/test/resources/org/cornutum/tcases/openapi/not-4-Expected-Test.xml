@@ -150,29 +150,6 @@
     <TestCase id="6">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative1"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value.Is" NA="true"/>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true"/>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="null"/>
-        <Var name="param0.Alternative.1.Value.Is" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value.Is" NA="true"/>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true"/>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="7">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -193,30 +170,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative2"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value.Is" NA="true"/>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true"/>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Is" NA="true"/>
-        <Var name="param0.Alternative.2.Type" value="null"/>
-        <Var name="param0.Alternative.2.Value.Is" NA="true"/>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true"/>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="9">
+    <TestCase id="7">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative2,param0Unbounded,param0Value"/>
@@ -241,7 +195,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="8" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative0"/>
@@ -264,7 +218,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="9" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative0,param0Value"/>
@@ -287,7 +241,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="10" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative0,param0Unbounded,param0Value"/>
@@ -310,7 +264,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="11" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative0,param0Unbounded,param0Value"/>
@@ -337,7 +291,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true">
+    <TestCase id="12" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -360,7 +314,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true">
+    <TestCase id="13" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -383,7 +337,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true">
+    <TestCase id="14" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -406,7 +360,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true">
+    <TestCase id="15" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -429,7 +383,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true">
+    <TestCase id="16" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -452,7 +406,7 @@
         <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true">
+    <TestCase id="17" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative2,param0Unbounded,param0Value"/>

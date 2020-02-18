@@ -131,7 +131,7 @@ public final class SchemaExtensions
     }
 
   /**
-   * Returns if the input model for this schema required type checks
+   * Returns if the input model for this schema requires type checks
    */
   public static boolean isTypeChecked( Schema<?> schema)
     {
@@ -140,11 +140,28 @@ public final class SchemaExtensions
     }
 
   /**
-   * Changes if the input model for this schema required type checks
+   * Changes if the input model for this schema requires type checks
    */
   public static void setTypeChecked( Schema<?> schema, boolean checked)
     {
     setExtension( schema, EXT_TYPE_CHECKED, checked);
+    }
+
+  /**
+   * Returns if the input model for this schema requires null checks
+   */
+  public static boolean isNullChecked( Schema<?> schema)
+    {
+    Boolean checked = getExtension( schema, EXT_NULL_CHECKED);
+    return Optional.ofNullable( checked).orElse( true);
+    }
+
+  /**
+   * Changes if the input model for this schema requires null checks
+   */
+  public static void setNullChecked( Schema<?> schema, boolean checked)
+    {
+    setExtension( schema, EXT_NULL_CHECKED, checked);
     }
 
   /**
@@ -502,6 +519,7 @@ public final class SchemaExtensions
   private static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";
   private static final String EXT_NOT_REQUIRED = "x-tcases-not-required";
   private static final String EXT_NOT_TYPES = "x-tcases-not-types";
+  private static final String EXT_NULL_CHECKED = "x-tcases-null-checked";
   private static final String EXT_PATTERNS = "x-tcases-patterns";
   private static final String EXT_PROPERTY_SCHEMA = "x-tcases-property-schema";
   private static final String EXT_TYPE_CHECKED = "x-tcases-type-checked";

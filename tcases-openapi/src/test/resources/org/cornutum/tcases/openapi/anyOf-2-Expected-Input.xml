@@ -28,7 +28,7 @@
             <VarSet name="0" when="application-jsonAlternative0">
               <Var name="Type">
                 <Value name="number" property="application-jsonValue"/>
-                <Value name="null" failure="true"/>
+                <Value name="null" once="true"/>
                 <Value name="Not number" failure="true"/>
               </Var>
               <VarSet name="Value" when="application-jsonValue">
@@ -43,7 +43,6 @@
             <VarSet name="1" when="application-jsonAlternative1">
               <Var name="Type">
                 <Value name="number" property="application-jsonValue"/>
-                <Value name="null" once="true"/>
               </Var>
               <VarSet name="Value" when="application-jsonValue">
                 <Var name="Is">
