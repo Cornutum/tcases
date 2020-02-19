@@ -2226,9 +2226,18 @@ public abstract class InputModeller extends ModelConditionReporter
     {
     return
       Optional.of( dnf)
+      .map( this::removeFalse)
       .map( this::simplifyTypeChecks)
       .map( this::simplifyNullChecks)
       .get();
+    }
+
+  /**
+   * Returns a DNF that eliminates superfluous "false" alternatives.
+   */
+  private Dnf removeFalse( Dnf dnf)
+    {
+    return Dnf.of( dnf.getAlternatives().stream().filter( s -> !isFalse( s)));
     }
 
   /**
