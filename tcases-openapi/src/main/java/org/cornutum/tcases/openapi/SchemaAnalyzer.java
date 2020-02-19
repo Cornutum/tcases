@@ -1205,18 +1205,6 @@ public class SchemaAnalyzer extends ModelConditionReporter
     }
 
   /**
-   * Returns a list of all given members except for the one at the excluded position.
-   */
-  private <T> List<T> restOf( List<T> members, int excluded)
-    {
-    return
-      IntStream.range( 0, members.size())
-      .filter( i -> i != excluded)
-      .mapToObj( i -> members.get(i))
-      .collect( toList());
-    }
-
-  /**
    * Returns the given result, notifying a warning if the given predicate is true.
    */
   private <T> T withWarningIf( T result, Predicate<T> isWarning, String reason)
