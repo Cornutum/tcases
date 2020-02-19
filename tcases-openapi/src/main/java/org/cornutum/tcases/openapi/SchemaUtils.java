@@ -775,6 +775,45 @@ public final class SchemaUtils
     }
 
   /**
+   * Returns a new copy of the given schema.
+   */
+  public static Schema<?> copySchema( Schema<?> schema)
+    {
+    return combineSchemas( DEFAULT_CONTEXT, schema, EMPTY_SCHEMA);
+    }
+
+  /**
+   * Returns true if the given schemas are equal, comparing values for only the specified extensions.
+   */
+  public static boolean equalsExtended( Schema<?> schema1, Schema<?> schema2, String... extensions)
+    {
+    Schema<?> compare1 = withExtensions( copySchema( schema1), extensions);
+    Schema<?> compare2 = withExtensions( copySchema( schema2), extensions);
+    return compare1.equals( compare2);
+    }
+
+  /**
+   * Returns the given schema after removing all but the given schemas.
+   */
+  private static Schema<?> withExtensions( Schema<?> schema, String... extensions)
+    {
+    Map<String,Object> extAll = schema.getExtensions();
+    if( extAll!= null)
+      {
+      schema.setExtensions( null);
+      for( String ext : extensions)
+        {
+        if( extAll.containsKey( ext))
+          {
+          schema.addExtension( ext, extAll.get( ext));
+          }
+        }
+      }
+
+    return schema;
+    }
+
+  /**
    * Returns a new empty schema.
    */
   public static Schema<?> emptySchema()
@@ -790,9 +829,39 @@ public final class SchemaUtils
     return Optional.ofNullable( schema).map( s -> s.equals( EMPTY_SCHEMA)).orElse( true);
     }
 
-  public static final Schema<?> EMPTY_SCHEMA = emptySchema();
+  /**
+   * Returns true if the given schema is the {@link #FALSE false schema}.
+   */
+  public static boolean isFalse( Schema<?> schema)
+    {
+    return equalsExtended( schema, FALSE_SCHEMA, EXT_NOT_TYPES);
+    }
+
+  /**
+   * Returns a new schema that will invalidate any instance.
+   */
+  private static Schema<?> falseSchema()
+    {
+    Schema<?> falsifier = emptySchema();
+    setNotTypes( falsifier, SCHEMA_TYPES);
+    falsifier.setNullable( false);
+
+    return falsifier;
+    }
 
   public static final Set<String> SCHEMA_TYPES =
     Arrays.asList( "array", "boolean", "integer", "number", "object", "string")
     .stream().collect( toSet());
+
+  /**
+   * A schema that contains no assertions.
+   */
+  public static final Schema<?> EMPTY_SCHEMA = emptySchema();
+
+  /**
+   * A schema that will invalidate any instance.
+   */
+  public static final Schema<?> FALSE_SCHEMA = falseSchema();
+
+  private static final NotificationContext DEFAULT_CONTEXT = new NotificationContext();
   }

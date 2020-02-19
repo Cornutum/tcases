@@ -513,15 +513,15 @@ public final class SchemaExtensions
     return Optional.ofNullable( schema.getExtensions()).orElse( emptyMap());
     }
 
-  private static final String EXT_DNF = "x-tcases-dnf";
-  private static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
-  private static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
-  private static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";
-  private static final String EXT_NOT_REQUIRED = "x-tcases-not-required";
-  private static final String EXT_NOT_TYPES = "x-tcases-not-types";
-  private static final String EXT_NULL_CHECKED = "x-tcases-null-checked";
-  private static final String EXT_PATTERNS = "x-tcases-patterns";
-  private static final String EXT_PROPERTY_SCHEMA = "x-tcases-property-schema";
-  private static final String EXT_TYPE_CHECKED = "x-tcases-type-checked";
-  private static final String EXT_VALID_TYPES = "x-tcases-valid-types";
+  static final String EXT_DNF = "x-tcases-dnf";
+  static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
+  static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
+  static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";
+  static final String EXT_NOT_REQUIRED = "x-tcases-not-required";
+  static final String EXT_NOT_TYPES = "x-tcases-not-types";
+  static final String EXT_NULL_CHECKED = "x-tcases-null-checked";
+  static final String EXT_PATTERNS = "x-tcases-patterns";
+  static final String EXT_PROPERTY_SCHEMA = "x-tcases-property-schema";
+  static final String EXT_TYPE_CHECKED = "x-tcases-type-checked";
+  static final String EXT_VALID_TYPES = "x-tcases-valid-types";
   }
