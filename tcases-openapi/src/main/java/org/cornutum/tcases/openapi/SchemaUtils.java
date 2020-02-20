@@ -846,7 +846,7 @@ public final class SchemaUtils
     }
 
   /**
-   * Returns true if the given schema is the {@link #FALSE false schema}.
+   * Returns true if the given schema is the {@link #FALSE_SCHEMA false schema}.
    */
   public static boolean isFalse( Schema<?> schema)
     {
