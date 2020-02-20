@@ -162,6 +162,25 @@ public final class CollectionUtils
     }
 
   /**
+   * Returns a set containing the given elements in iteration order.
+   */
+  public static <T> Set<T> asOrderedSet( Iterable<T> elements)
+    {
+    return
+      Optional.ofNullable( elements).map( CollectionUtils::toStream).orElse( Stream.empty())
+      .collect( toOrderedSet());
+    }
+
+  /**
+   * Returns a set containing the given elements in iteration order.
+   */
+  @SafeVarargs
+  public static <T> Set<T> asOrderedSet( T... elements)
+    {
+    return asOrderedSet( Arrays.asList( elements));
+    }
+
+  /**
    * Returns a list of all given members except for the one at the excluded position.
    */
   public static <T> List<T> restOf( List<T> members, int excluded)

@@ -495,7 +495,12 @@ public class CombinePropertySchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "Can't combine schema requiring readOnly=true with base schema requiring writeOnly=true")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {readOnly: true} with schema requiring {writeOnly: true}"));
+        });
     }
 
   @Test
@@ -516,7 +521,12 @@ public class CombinePropertySchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "Can't combine schema requiring {readOnly: false} with base schema requiring {readOnly: true}")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {readOnly: false} with schema requiring {readOnly: true}"));
+        });
     }
   
   @Test
@@ -539,6 +549,11 @@ public class CombinePropertySchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "Can't combine schema requiring {writeOnly: true} with base schema requiring {writeOnly: false}")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {writeOnly: true} with schema requiring {writeOnly: false}"));
+        });
     }
   }

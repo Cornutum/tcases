@@ -1064,8 +1064,8 @@ public abstract class InputModeller extends ModelConditionReporter
     Optional<String> unboundedProperty = Optional.ofNullable( hasMultipleOfs? unboundedValueProperty( instanceVarTag) : null);
 
     // Enumerated values?
-    List<BigDecimal> enums = getNumberEnum( instanceSchema);
-    List<BigDecimal> notEnums = getNumberEnum( getNotEnums( instanceSchema));
+    Set<BigDecimal> enums = getNumberEnum( instanceSchema);
+    Set<BigDecimal> notEnums = getNumberEnum( getNotEnums( instanceSchema));
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
@@ -1639,7 +1639,7 @@ public abstract class InputModeller extends ModelConditionReporter
 
     // Enumerated values?
     String format = instanceSchema.getFormat();
-    List<FormattedString> enums = getFormattedStrings( "enumerated", format, instanceSchema.getEnum());
+    Set<FormattedString> enums = getFormattedStrings( "enumerated", format, instanceSchema.getEnum());
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
@@ -1669,7 +1669,7 @@ public abstract class InputModeller extends ModelConditionReporter
         .orElse( null);
 
       // Get any excluded values (ignoring any with invalid length)
-      List<FormattedString> notEnums =
+      Set<FormattedString> notEnums =
         getFormattedStrings( "enumerated", format, getNotEnums( instanceSchema))
         .stream()
         .filter(
@@ -1677,7 +1677,7 @@ public abstract class InputModeller extends ModelConditionReporter
             int formattedLength = excluded.toString().length();
             return !(minLength != null && formattedLength < minLength) && !(maxLength != null && formattedLength > maxLength);
           })
-        .collect( toList());
+        .collect( toOrderedSet());
       Optional<String> notExcludedProperty = Optional.of( valueNotExcludedProperty( instanceVarTag)).filter( p -> !notEnums.isEmpty());
       Optional<ICondition> notExcluded = notExcludedProperty.map( p -> has( p));
       
@@ -1825,8 +1825,8 @@ public abstract class InputModeller extends ModelConditionReporter
    */
   private IVarDef booleanValueVar( String instanceVarTag, Schema<?> instanceSchema)
     {
-    List<Boolean> possibleValues = Arrays.asList( Boolean.TRUE, Boolean.FALSE);
-    List<Boolean> excludedValues = getBooleanEnum( getNotEnums( instanceSchema));
+    Set<Boolean> possibleValues = asOrderedSet( Boolean.TRUE, Boolean.FALSE);
+    Set<Boolean> excludedValues = getBooleanEnum( getNotEnums( instanceSchema));
 
     List<Boolean> allowedValues =
       Optional.of( getBooleanEnum( instanceSchema))
@@ -1878,17 +1878,6 @@ public abstract class InputModeller extends ModelConditionReporter
       }
 
     return min;
-    }
-
-  /**
-   * Returns true if the base value is a multiple of the additional value.
-   */
-  private boolean isMultipleOf( BigDecimal base, BigDecimal additional)
-    {
-    return
-      base.compareTo( additional) >= 0
-      &&
-      base.remainder( additional).compareTo( BigDecimal.ZERO) == 0;
     }
 
   /**
@@ -2106,22 +2095,21 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the enumerated number values defined by the given schema.
    */
-  private List<BigDecimal> getNumberEnum( Schema<?> schema)
+  private Set<BigDecimal> getNumberEnum( Schema<?> schema)
     {
     return
       schema instanceof NumberSchema
-      ? Optional.ofNullable( ((NumberSchema) schema).getEnum()).orElse( emptyList())
+      ? asOrderedSet( ((NumberSchema) schema).getEnum())
       : getNumberEnum( schema.getEnum());
     }
 
   /**
    * Returns the enumerated number values defined by the given list.
    */
-  private List<BigDecimal> getNumberEnum( List<?> values)
+  private Set<BigDecimal> getNumberEnum( Iterable<?> values)
     {
     return
-      Optional.ofNullable( values)
-      .orElse( emptyList())
+      asOrderedSet( values)
       .stream()
       .map( value -> {
         try
@@ -2133,28 +2121,27 @@ public abstract class InputModeller extends ModelConditionReporter
           throw new IllegalStateException( String.format( "Enumerated value=%s is not a number", value));
           }
         })
-      .collect( toList());
+      .collect( toOrderedSet());
     }
 
   /**
    * Returns the enumerated boolean values defined by the given schema.
    */
-  private List<Boolean> getBooleanEnum( Schema<?> schema)
+  private Set<Boolean> getBooleanEnum( Schema<?> schema)
     {
     return
       schema instanceof BooleanSchema
-      ? Optional.ofNullable( ((BooleanSchema) schema).getEnum()).orElse( emptyList())
+      ? asOrderedSet( ((BooleanSchema) schema).getEnum())
       : getBooleanEnum( schema.getEnum());
     }
 
   /**
    * Returns the enumerated boolean values defined by the given list.
    */
-  private List<Boolean> getBooleanEnum( List<?> values)
+  private Set<Boolean> getBooleanEnum( Iterable<?> values)
     {
     return
-      Optional.ofNullable( values)
-      .orElse( emptyList())
+      asOrderedSet( values)
       .stream()
       .map( value -> {
         Boolean booleanValue = null;
@@ -2178,7 +2165,7 @@ public abstract class InputModeller extends ModelConditionReporter
             
         return booleanValue;
         })
-      .collect( toList());
+      .collect( toOrderedSet());
     }
 
   /**
@@ -2199,11 +2186,11 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the given values as a formatted strings.
    */
-  private List<FormattedString> getFormattedStrings( String description, String format, List<?> value)
+  private Set<FormattedString> getFormattedStrings( String description, String format, Iterable<?> value)
     {
     try
       {
-      return FormattedString.of( format, value);
+      return asOrderedSet( FormattedString.of( format, value));
       }
     catch( Exception e)
       {

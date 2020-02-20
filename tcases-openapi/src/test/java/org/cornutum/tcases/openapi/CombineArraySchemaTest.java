@@ -721,7 +721,7 @@ public class CombineArraySchemaTest extends OpenApiTest
 
         Throwable cause = failure.getCause();
         assertThat( "Cause", cause, is( instanceOf( IllegalStateException.class)));
-        assertThat( "Cause", cause.getMessage(), is( "Can't combine schema of type=boolean with base schema of type=integer"));
+        assertThat( "Cause", cause.getMessage(), is( "Can't combine schema requiring {type: boolean} with schema requiring {type: integer}"));
         });
     }
 
@@ -749,7 +749,12 @@ public class CombineArraySchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "Can't combine schema requiring {uniqueItems: true} with base schema requiring {uniqueItems: false}")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {uniqueItems: true} with schema requiring {uniqueItems: false}"));
+        });
     }
   
   @Test
@@ -775,6 +780,11 @@ public class CombineArraySchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "Can't combine schema requiring {nullable: true} with base schema requiring {nullable: false}")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {nullable: true} with schema requiring {nullable: false}"));
+        });
     }
   }

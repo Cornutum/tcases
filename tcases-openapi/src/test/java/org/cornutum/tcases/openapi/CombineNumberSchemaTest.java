@@ -251,6 +251,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> base.format </TD> <TD> null </TD> </TR>
    * <TR><TD> base.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notEnums </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.maximum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minimum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.exclusiveMaximum </TD> <TD> true </TD> </TR>
@@ -258,6 +259,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR><TD> base.multipleOf </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notEnums </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
@@ -278,6 +280,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .exclusiveMaximum( true)
       .exclusiveMinimum( false)
       .multipleOf( null)
+      .notEnumNumbers( 1.2, 3.4, 5)
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -309,6 +312,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .minimum( -1.0)
       .exclusiveMinimum( false)
       .multipleOf( 0.10)
+      .notEnumNumbers( 1.2, 3.4, 5)
       .build();
     
     assertThat( "Number schema", combined, matches( new SchemaMatcher( expected)));
@@ -597,7 +601,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
     Schema<?> expected =
       SchemaBuilder.ofType( "number")
       .format( "float")
-      .enumNumbers( -0.3, 0.0, 0.3)
+      .enumNumbers( -0.3, 0.0)
       .maximum( null)
       .exclusiveMaximum( false)
       .minimum( -1.0)
@@ -735,7 +739,12 @@ public class CombineNumberSchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "enum=[1.0, 2.0, 3.0, 4.0] is not consistent with base enum=[-10.5, 0.0, 10.5]")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {enum: [1.0, 2.0, 3.0, 4.0]} with schema requiring {enum: [-10.5, 0.0, 10.5]}"));
+        });
     }
 
   /**
@@ -789,6 +798,11 @@ public class CombineNumberSchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "multipleOf=1.3 is not consistent with base multipleOf=0.5")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {multipleOf: 1.3} with schema requiring {multipleOf: 0.5}"));
+        });
     }
   }

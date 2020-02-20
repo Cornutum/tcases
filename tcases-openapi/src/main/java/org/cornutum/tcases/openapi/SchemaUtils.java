@@ -189,12 +189,7 @@ public final class SchemaUtils
 
       if( !Objects.equals( baseType, additionalType))
         {
-        throw
-          new IllegalStateException(
-            String.format(
-              "Can't combine schema of type=%s with base schema of type=%s",
-              additionalType,
-              baseType));
+        throw inconsistentAssertions( "type: %s", additionalType, baseType);
         }
 
       combined = 
@@ -309,19 +304,9 @@ public final class SchemaUtils
     addNotRequired( combined, getNotRequired( additional));
 
     Optional.ofNullable( getNotRequired( combined))
-      .flatMap( notRequired -> {
-        return
-          combinedRequired.stream()
-          .filter( property -> notRequired.contains( property))
-          .findFirst();
-        })
-      .ifPresent( property -> {
-        throw
-          new IllegalStateException(
-            String.format(
-              "Can't combine schema requiring {required: [%s]} with schema requiring {not: {required: [%s]}}",
-              property,
-              property));
+      .flatMap( nr -> combinedRequired.stream().filter( p -> nr.contains( p)).findFirst())
+      .ifPresent( p -> {
+        throw inconsistentNotAssertion( "required: [%s]", p);
         });
     
     // Combine properties
@@ -355,12 +340,7 @@ public final class SchemaUtils
     // Combine format
     if( base.getFormat() != null && additional.getFormat() != null && !base.getFormat().equals( additional.getFormat()))
       {
-      throw
-        new IllegalStateException(
-          String.format(
-            "format=%s is not consistent with base format=%s",
-            additional.getFormat(),
-            base.getFormat()));
+      throw inconsistentAssertions( "format: %s", additional.getFormat(), base.getFormat());
       }
     
     // Combine maxLength
@@ -396,6 +376,12 @@ public final class SchemaUtils
     // Combine not patterns
     setNotPatterns( combined, getNotPatterns( base));
     addNotPatterns( combined, getNotPatterns( additional));
+
+    Optional.ofNullable( getPatterns( combined))
+      .flatMap( ps -> Optional.ofNullable( getNotPatterns( combined)).flatMap( nps -> ps.stream().filter( p -> nps.contains( p)).findFirst()))
+      .ifPresent( p -> {
+        throw inconsistentNotAssertion( "pattern: '%s'", p);
+        });
       
     return combined;
     }
@@ -581,6 +567,12 @@ public final class SchemaUtils
     setNotMultipleOfs( combined, getNotMultipleOfs( base));
     addNotMultipleOfs( combined, getNotMultipleOfs( additional));
 
+    Optional.ofNullable( combined.getMultipleOf())
+      .flatMap( m -> Optional.ofNullable( getNotMultipleOfs( combined)).flatMap( nms -> nms.stream().filter( nm -> isMultipleOf( m, nm)).findFirst()))
+      .ifPresent( nm -> {
+        throw inconsistentNotAssertion( "multiple: %s", combined.getMultipleOf(), nm);
+        });
+
     return combined;
     }
 
@@ -593,12 +585,23 @@ public final class SchemaUtils
     BigDecimal max = base.compareTo( additional) > 0? base : additional;
     BigDecimal min = base.compareTo( additional) < 0? base : additional;
 
-    if( max.remainder( min).compareTo( BigDecimal.ZERO) != 0)
+    if( !isMultipleOf( max, min))
       {
-      throw new IllegalStateException( String.format( "multipleOf=%s is not consistent with base multipleOf=%s", additional, base));
+      throw inconsistentAssertions( "multipleOf: %s", additional, base);
       }
 
     return max;
+    }
+
+  /**
+   * Returns true if the given value is a multiple of the given factor.
+   */
+  public static boolean isMultipleOf( BigDecimal value, BigDecimal factor)
+    {
+    return
+      value.compareTo( factor) >= 0
+      &&
+      value.remainder( factor).compareTo( BigDecimal.ZERO) == 0;
     }
 
   /**
@@ -627,12 +630,7 @@ public final class SchemaUtils
       Optional.ofNullable( getNotTypes( base))
         .filter( notTypes -> notTypes.contains( additionalType))
         .ifPresent( notTypes -> {
-          throw
-            new IllegalStateException(
-              String.format(
-                "Can't combine schema requiring {type: [%s]} with schema requiring {not: {type: [%s]}}",
-                additionalType,
-                additionalType));
+          throw inconsistentNotAssertion( "type: %s", additionalType);
           });
       }
     if( additionalType == null)
@@ -640,12 +638,7 @@ public final class SchemaUtils
       Optional.ofNullable( getNotTypes( additional))
         .filter( notTypes -> notTypes.contains( baseType))
         .ifPresent( notTypes -> {
-          throw
-            new IllegalStateException(
-              String.format(
-                "Can't combine schema requiring {type: [%s]} with schema requiring {not: {type: [%s]}}",
-                baseType,
-                baseType));
+          throw inconsistentNotAssertion( "type: %s", baseType);
           });
       }
 
@@ -690,20 +683,16 @@ public final class SchemaUtils
         })
       .filter( enums -> !enums.isEmpty())
       .map( enums -> enums.stream().collect( toList()))
-      .orElseThrow( () -> new IllegalStateException( String.format( "enum=%s is not consistent with base enum=%s", additional.getEnum(), base.getEnum()))));
+      .orElseThrow( () -> inconsistentAssertions( "enum: %s", additional.getEnum(), base.getEnum())));
 
     // Combine not enums
     setNotEnums( combined, getNotEnums( base));
     addNotEnums( combined, getNotEnums( additional));
 
     Optional.ofNullable( combined.getEnum())
-      .flatMap( enums -> {
-        return
-          Optional.ofNullable( getNotEnums( combined))
-          .flatMap( notEnums -> enums.stream().filter( e -> notEnums.contains( e)).findFirst());
-        })
+      .flatMap( es -> Optional.ofNullable( getNotEnums( combined)).flatMap( nes -> es.stream().filter( e -> nes.contains( e)).findFirst()))
       .ifPresent( e -> {
-        throw new IllegalStateException( String.format( "'{enum=%s}' is not consistent with 'not: {enum=%s}'", e, e));
+        throw inconsistentNotAssertion( "enum: %s", e);
         });
     
     // Combine nullable
@@ -744,12 +733,7 @@ public final class SchemaUtils
         {
         String baseProp = Boolean.TRUE.equals( base.getReadOnly())? "readOnly" : "writeOnly";
         String additionalProp = Boolean.TRUE.equals( additional.getReadOnly())? "readOnly" : "writeOnly";
-        throw
-          new IllegalStateException(
-            String.format(
-              "Can't combine schema requiring %s=true with base schema requiring %s=true",
-              additionalProp,
-              baseProp));
+        throw inconsistentAssertions( "%s: true", additionalProp, baseProp);
         }
       }
     
@@ -763,15 +747,47 @@ public final class SchemaUtils
     {
     if( base != additional)
       {
-      throw
-        new IllegalStateException(
-          String.format(
-            "Can't combine schema requiring {" + assertionFormat + "} with base schema requiring {" + assertionFormat + "}",
-            additional,
-            base));
+      throw inconsistentAssertions( assertionFormat, additional, base);
       }
 
     return base;
+    }
+
+  /**
+   * Returns an exception reporting inconsistent assertions.
+   */
+  private static <T> IllegalStateException inconsistentAssertions( String assertFormat, T value, String otherFormat, T otherValue)
+    {
+    return
+      new IllegalStateException(
+        String.format(
+          "Can't combine schema requiring {" + assertFormat + "} with schema requiring {" + otherFormat + "}",
+          value,
+          otherValue));
+    }
+
+  /**
+   * Returns an exception reporting inconsistent assertions.
+   */
+  private static <T> IllegalStateException inconsistentAssertions( String assertFormat, T value, T otherValue)
+    {
+    return inconsistentAssertions( assertFormat, value, assertFormat, otherValue);
+    }
+
+  /**
+   * Returns an exception reporting inconsistent assertions.
+   */
+  private static <T> IllegalStateException inconsistentNotAssertion( String assertFormat, T value, T otherValue)
+    {
+    return inconsistentAssertions( assertFormat, value, String.format( "not: {%s}", assertFormat), otherValue);
+    }
+
+  /**
+   * Returns an exception reporting inconsistent assertions.
+   */
+  private static <T> IllegalStateException inconsistentNotAssertion( String assertFormat, T value)
+    {
+    return inconsistentNotAssertion( assertFormat, value, value);
     }
 
   /**

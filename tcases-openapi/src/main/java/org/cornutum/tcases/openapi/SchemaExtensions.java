@@ -12,12 +12,10 @@ import static org.cornutum.tcases.util.CollectionUtils.*;
 import io.swagger.v3.oas.models.media.Schema;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -360,7 +358,7 @@ public final class SchemaExtensions
   /**
    * Returns the composed set of enums to not match when validating the given schema.
    */
-  public static List<Object> getNotEnums( Schema<?> schema)
+  public static Set<Object> getNotEnums( Schema<?> schema)
     {
     return getExtension( schema, EXT_NOT_ENUMS);
     }
@@ -381,10 +379,10 @@ public final class SchemaExtensions
     {
     if( enumValue != null)
       {
-      List<Object> enums = getExtension( schema, EXT_NOT_ENUMS);
+      Set<Object> enums = getExtension( schema, EXT_NOT_ENUMS);
       if( enums == null)
         {
-        enums = new ArrayList<Object>();
+        enums = new LinkedHashSet<Object>();
         setExtension( schema, EXT_NOT_ENUMS, enums);
         }
       enums.add( enumValue);

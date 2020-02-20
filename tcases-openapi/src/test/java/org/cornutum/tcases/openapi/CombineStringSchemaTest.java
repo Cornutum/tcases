@@ -29,11 +29,13 @@ public class CombineStringSchemaTest extends OpenApiTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> base.format </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notEnums </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.maxLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minLength </TD> <TD> null </TD> </TR>
    * <TR><TD> base.pattern </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notEnums </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maxLength </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.minLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.pattern </TD> <TD> Non-null </TD> </TR>
@@ -50,6 +52,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( null)
       .patterns( "[A-Z]*")
+      .notEnums( "X", "Y", "Z", "Z")
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -77,6 +80,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( 128)
       .minLength( 1)
       .patterns( "[A-Z]*", "[0-9]*")
+      .notEnums( "X", "Y", "Z")
       .build();
     
     assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
@@ -408,11 +412,13 @@ public class CombineStringSchemaTest extends OpenApiTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> base.format </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notEnums </TD> <TD> null </TD> </TR>
    * <TR><TD> base.maxLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minLength </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.pattern </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> <FONT color="red"> Different from base  </FONT> </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notEnums </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.maxLength </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.minLength </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.pattern </TD> <TD> Non-null </TD> </TR>
@@ -437,13 +443,19 @@ public class CombineStringSchemaTest extends OpenApiTest
       .maxLength( null)
       .minLength( 32)
       .patterns( "[A-Z]*")
+      .notEnums( "Q", "K", "K")
       .build();
 
     NotificationContext context = new NotificationContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "format=date is not consistent with base format=byte")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {format: date} with schema requiring {format: byte}"));
+        });
     }
 
   /**
@@ -491,6 +503,128 @@ public class CombineStringSchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "enum=[Delta, Easy, Foxtrot] is not consistent with base enum=[Alpha, Bravo, Charlie]")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {enum: [Delta, Easy, Foxtrot]} with schema requiring {enum: [Alpha, Bravo, Charlie]}"));
+        });
+    }
+  
+  @Test
+  public void whenNotEnumsCombined()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "string")
+      .format( "date")
+      .maxLength( 128)
+      .minLength( null)
+      .patterns( "[A-Z]*")
+      .notEnums( "X", "Y", "Z", "Z")
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "string")
+      .format( null)
+      .maxLength( 256)
+      .minLength( 1)
+      .patterns( "[0-9]*")
+      .notEnums( "A", "B", "Z")
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "string")
+      .format( "date")
+      .maxLength( 128)
+      .minLength( 1)
+      .patterns( "[A-Z]*", "[0-9]*")
+      .notEnums( "A", "B", "X", "Y", "Z")
+      .build();
+    
+    assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotEnumsConsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "string")
+      .format( "date-time")
+      .enums( "Alpha", "Bravo", "Charlie")
+      .maxLength( 128)
+      .minLength( 16)
+      .patterns( ".*")
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "string")
+      .format( "date-time")
+      .enums( "Charlie", "Delta", "Easy")
+      .maxLength( null)
+      .minLength( 32)
+      .patterns()
+      .notEnums( "Delta", "Easy")
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "string")
+      .format( "date-time")
+      .enums( "Charlie")
+      .maxLength( 128)
+      .minLength( 32)
+      .patterns( ".*")
+      .notEnums( "Delta", "Easy")
+      .build();
+    
+    assertThat( "String schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotEnumsInconsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "string")
+      .format( "email")
+      .enums( "Alpha", "Bravo", "Charlie")
+      .maxLength( null)
+      .minLength( 8)
+      .patterns( "[A-Z]*")
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "string")
+      .format( "email")
+      .maxLength( 128)
+      .minLength( 1)
+      .patterns( ".*")
+      .notEnums( "Charlie")
+      .build();
+
+    // Then...
+    expectFailure( IllegalStateException.class)
+      .when( () -> combineSchemas( context, base, additional))
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {enum: Charlie} with schema requiring {not: {enum: Charlie}}"));
+        });
     }
   }
