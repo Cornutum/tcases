@@ -10,24 +10,22 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
-        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="string"/>
+        <Var name="param0.Alternative.0.Value.Length" value="11"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="string"/>
-        <Var name="param0.OneOf.Members.1.Value.Length" value="11">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -35,21 +33,22 @@
     <TestCase id="1">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
+      <Has name="properties" value="param0Alternative1"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Length" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" NA="true">
+        <Var name="param0.Alternative.Used" value="1"/>
+        <Var name="param0.Alternative.0.Type" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Value.Length" NA="true"/>
-        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" NA="true">
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -57,23 +56,22 @@
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.Value.Length" value="&gt; 1"/>
-        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="No">
-          <Has name="memberValidated" value="false"/>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="string"/>
+        <Var name="param0.Alternative.0.Value.Length" value="&gt; 11"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="string"/>
-        <Var name="param0.OneOf.Members.1.Value.Length" value="0"/>
-        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -81,47 +79,45 @@
     <TestCase id="3">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative1,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
-        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="No">
-          <Has name="memberValidated" value="false"/>
+        <Var name="param0.Alternative.Used" value="1"/>
+        <Var name="param0.Alternative.0.Type" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="string"/>
-        <Var name="param0.OneOf.Members.1.Value.Length" value="10"/>
-        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Alternative.1.Type" value="string"/>
+        <Var name="param0.Alternative.1.Value.Length" value="0"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.Value.Length" value="&gt; 1"/>
-        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="No">
-          <Has name="memberValidated" value="false"/>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="null" failure="true"/>
+        <Var name="param0.Alternative.0.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="string"/>
-        <Var name="param0.OneOf.Members.1.Value.Length" value="&lt; 10"/>
-        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -129,25 +125,22 @@
     <TestCase id="5" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value"/>
+      <Has name="properties" value="param0,param0Alternative0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
-        <Var name="param0.OneOf.Members.0.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
-        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="No">
-          <Has name="memberValidated" value="false"/>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="Not string" failure="true"/>
+        <Var name="param0.Alternative.0.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="string"/>
-        <Var name="param0.OneOf.Members.1.Value.Length" value="11">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
           <Has name="pattern" value="."/>
         </Var>
       </Input>
@@ -155,22 +148,68 @@
     <TestCase id="6" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
-        <Var name="param0.OneOf.Members.0.Type" value="string"/>
-        <Var name="param0.OneOf.Members.0.Value.Length" value="1"/>
-        <Var name="param0.OneOf.Members.0.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="string"/>
+        <Var name="param0.Alternative.0.Value.Length" value="10" failure="true"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
-        <Var name="param0.OneOf.Members.1.Type" value="string"/>
-        <Var name="param0.OneOf.Members.1.Value.Length" value="0"/>
-        <Var name="param0.OneOf.Members.1.Value.Matches-Pattern" value="Yes">
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/oneOf"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="string"/>
+        <Var name="param0.Alternative.0.Value.Length" value="11"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" value="No" failure="true">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/oneOf"/>
+      <Has name="properties" value="param0,param0Alternative1,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Alternative.Used" value="1"/>
+        <Var name="param0.Alternative.0.Type" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="."/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="string"/>
+        <Var name="param0.Alternative.1.Value.Length" value="1" failure="true"/>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" value="Yes">
           <Has name="pattern" value="."/>
         </Var>
       </Input>

@@ -23,9 +23,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 import java.math.BigDecimal;
@@ -46,6 +44,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "type", Schema::getType).matches( Matchers::equalTo));
     expectThat( valueOf( "additionalProperties", this::getAdditionalPropertiesBoolean).matches( Matchers::equalTo));
     expectThat( valueOf( "additionalProperties", this::getAdditionalPropertiesSchema).matches( SchemaMatcher::new));
+    expectThat( valueOf( "enum", Schema::getEnum).matches( Composites::containsMembers));
     expectThat( valueOf( "exclusiveMaximum", Schema::getExclusiveMaximum).matches( Matchers::equalTo));
     expectThat( valueOf( "exclusiveMinimum", Schema::getExclusiveMinimum).matches( Matchers::equalTo));
     expectThat( valueOf( "format", Schema::getFormat).matches( Matchers::equalTo));
@@ -60,14 +59,11 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "minimum", Schema::getMinimum).matches( Matchers::equalTo));
     expectThat( valueOf( "multipleOf", Schema::getMultipleOf).matches( Matchers::equalTo));
     expectThat( valueOf( "not", Schema::getNot).matches( SchemaMatcher::new));
-    expectThat( valueOf( "nots", this::getNots).matches( listsMembersMatching( SchemaMatcher::new)));
-    expectThat( valueOf( "notAdditionalProperties", this::getNotAdditionalProperties).matches( SchemaMatcher::new));
     expectThat( valueOf( "notEnums", this::getNotEnums).matches( Composites::containsMembers));
-    expectThat( valueOf( "notItems", this::getNotItems).matches( SchemaMatcher::new));
-    expectThat( valueOf( "notFormats", this::getNotFormats).matches( Composites::containsMembers));
     expectThat( valueOf( "notMultipleOfs", this::getNotMultipleOfs).matches( Composites::containsMembers));
     expectThat( valueOf( "notPatterns", this::getNotPatterns).matches( Composites::containsMembers));
-    expectThat( valueOf( "notProperties", this::getNotProperties).matches( containsMembersMatching( Property.Matcher::new)));
+    expectThat( valueOf( "notRequired", this::getNotRequired).matches( Composites::containsMembers));
+    expectThat( valueOf( "notTypes", this::getNotTypes).matches( Composites::containsMembers));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
     expectThat( valueOf( "patterns", this::getPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "properties", this::getProperties).matches( containsMembersMatching( Property.Matcher::new)));
@@ -121,45 +117,11 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     }
 
   /**
-   * Returns the composed set of schemas to not match when validating the given schema.
-   */
-  private Iterable<Schema> getNots( Schema schema)
-    {
-    return
-      Optional.ofNullable( SchemaExtensions.getNots( schema)).orElse( emptyList())
-      .stream().collect( toList());
-    }
-
-  /**
-   * Returns the "additionalProperties" schema to not match when validating the given schema.
-   */
-  public Schema getNotAdditionalProperties( Schema schema)
-    {
-    return SchemaExtensions.getNotAdditionalProperties( schema);
-    }
-
-  /**
    * Returns the composed set of enums to not match when validating the given schema.
    */
   private Iterable<Object> getNotEnums( Schema schema)
     {
     return SchemaExtensions.getNotEnums( schema);
-    }
-
-  /**
-   * Returns the "items" schema to not match when validating the given schema.
-   */
-  private Schema getNotItems( Schema schema)
-    {
-    return SchemaExtensions.getNotItems( schema);
-    }
-
-  /**
-   * Returns the composed set of formats to not match when validating the given schema.
-   */
-  private Iterable<String> getNotFormats( Schema schema)
-    {
-    return SchemaExtensions.getNotFormats( schema);
     }
 
   /**
@@ -179,14 +141,19 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     }
 
   /**
-   * Returns the composed set of property definitions to not match when validating the given schema.
+   * Returns the composed set of required assertions to not match when validating the given schema.
    */
-  private Set<Property> getNotProperties( Schema schema)
+  private Iterable<String> getNotRequired( Schema schema)
     {
-    return
-      Optional.ofNullable( (Map<String,Schema>) SchemaExtensions.getNotProperties( schema))
-      .map( properties -> properties.entrySet().stream().map( entry -> new Property( entry.getKey(), entry.getValue())).collect( toSet()))
-      .orElse( emptySet());
+    return SchemaExtensions.getNotRequired( schema);
+    }
+
+  /**
+   * Returns the composed set of types to not match when validating the given schema.
+   */
+  private Iterable<String> getNotTypes( Schema schema)
+    {
+    return SchemaExtensions.getNotTypes( schema);
     }
 
   /**

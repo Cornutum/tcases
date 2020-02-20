@@ -59,6 +59,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 1.2)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "float")
@@ -70,8 +77,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.6)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -103,13 +108,15 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR><TD> base.exclusiveMaximum </TD> <TD> false </TD> </TR>
    * <TR><TD> base.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> base.multipleOf </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notMultipleOfs </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> double </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> Intersects base </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> null </TD> </TR>
-   * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.exclusiveMinimum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notMultipleOfs </TD> <TD> null </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -126,21 +133,27 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .exclusiveMaximum( false)
       .exclusiveMinimum( false)
       .multipleOf( null)
+      .notMultipleOfs( 1.2, 3.4, 3.4, 1.2)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "double")
       .enumNumbers( 0.24, 0.36, 0.48)
       .maximum( 2.00)
       .minimum( null)
-      .exclusiveMaximum( true)
+      .exclusiveMaximum( false)
       .exclusiveMinimum( null)
       .multipleOf( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -154,6 +167,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .minimum( 0.00)
       .exclusiveMinimum( false)
       .multipleOf( null)
+      .notMultipleOfs( 1.2, 3.4)
       .build();
     
     assertThat( "Number schema", combined, matches( new SchemaMatcher( expected)));
@@ -197,6 +211,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.06)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "float")
@@ -208,8 +229,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.12)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -236,6 +255,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> base.format </TD> <TD> null </TD> </TR>
    * <TR><TD> base.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notEnums </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.maximum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minimum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.exclusiveMaximum </TD> <TD> true </TD> </TR>
@@ -243,10 +263,11 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR><TD> base.multipleOf </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notEnums </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> > base </TD> </TR>
-   * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
-   * <TR><TD> additional.exclusiveMinimum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> Non-null </TD> </TR>
    * </TABLE>
    * </P>
@@ -263,20 +284,26 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .exclusiveMaximum( true)
       .exclusiveMinimum( false)
       .multipleOf( null)
+      .notEnumNumbers( 1.2, 3.4, 5)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( null)
       .maximum( 0.9)
       .minimum( -1.0)
-      .exclusiveMaximum( false)
-      .exclusiveMinimum( true)
+      .exclusiveMaximum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 0.10)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -285,10 +312,11 @@ public class CombineNumberSchemaTest extends OpenApiTest
       SchemaBuilder.ofType( "number")
       .format( null)
       .maximum( 0.9)
-      .exclusiveMaximum( false)
+      .exclusiveMaximum( true)
       .minimum( -1.0)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 0.10)
+      .notEnumNumbers( 1.2, 3.4, 5)
       .build();
     
     assertThat( "Number schema", combined, matches( new SchemaMatcher( expected)));
@@ -331,6 +359,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.01)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "double")
@@ -342,8 +377,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -373,7 +406,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR><TD> base.maximum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minimum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.exclusiveMaximum </TD> <TD> false </TD> </TR>
-   * <TR><TD> base.exclusiveMinimum </TD> <TD> true </TD> </TR>
+   * <TR><TD> base.exclusiveMinimum </TD> <TD> false</TD> </TR>
    * <TR><TD> base.multipleOf </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
@@ -396,10 +429,17 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .maximum( 0.0)
       .minimum( -2.0)
       .exclusiveMaximum( false)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 0.3)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( null)
@@ -410,8 +450,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.1)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -423,7 +461,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .maximum( 0.0)
       .exclusiveMaximum( false)
       .minimum( -2.0)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 0.3)
       .build();
     
@@ -443,6 +481,8 @@ public class CombineNumberSchemaTest extends OpenApiTest
    * <TR><TD> base.exclusiveMaximum </TD> <TD> true </TD> </TR>
    * <TR><TD> base.exclusiveMinimum </TD> <TD> true </TD> </TR>
    * <TR><TD> base.multipleOf </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.multipleOf </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notMultipleOfs </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> double </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> Contains base </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> > base </TD> </TR>
@@ -468,6 +508,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "double")
@@ -477,10 +524,9 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .exclusiveMaximum( true)
       .exclusiveMinimum( null)
       .multipleOf( null)
+      .notMultipleOfs( 0.1, 2.0, 3.3)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -494,6 +540,7 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .minimum( -2.0)
       .exclusiveMinimum( true)
       .multipleOf( null)
+      .notMultipleOfs( 0.1, 2.0, 3.3)
       .build();
     
     assertThat( "Number schema", combined, matches( new SchemaMatcher( expected)));
@@ -537,6 +584,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.1)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( null)
@@ -548,8 +602,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.3)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -557,9 +609,9 @@ public class CombineNumberSchemaTest extends OpenApiTest
     Schema<?> expected =
       SchemaBuilder.ofType( "number")
       .format( "float")
-      .enumNumbers( -0.3, 0.0, 0.3)
+      .enumNumbers( -0.3, 0.0)
       .maximum( null)
-      .exclusiveMaximum( null)
+      .exclusiveMaximum( false)
       .minimum( -1.0)
       .exclusiveMinimum( true)
       .multipleOf( 0.3)
@@ -606,6 +658,13 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
       .format( "float")
@@ -617,8 +676,6 @@ public class CombineNumberSchemaTest extends OpenApiTest
       .multipleOf( 0.5)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -690,7 +747,12 @@ public class CombineNumberSchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "enum=[1.0, 2.0, 3.0, 4.0] is not consistent with base enum=[-10.5, 0.0, 10.5]")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {enum: [1.0, 2.0, 3.0, 4.0]} with schema requiring {enum: [-10.5, 0.0, 10.5]}"));
+        });
     }
 
   /**
@@ -744,6 +806,146 @@ public class CombineNumberSchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "multipleOf=1.3 is not consistent with base multipleOf=0.5")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {multipleOf: 1.3} with schema requiring {multipleOf: 0.5}"));
+        });
+    }
+  
+  @Test
+  public void whenNotMultipleOfsCombined()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "number")
+      .format( "float")
+      .enumNumbers( 0.00, 0.12, 0.24, 0.36)
+      .maximum( 1.00)
+      .minimum( 0.00)
+      .exclusiveMaximum( false)
+      .exclusiveMinimum( false)
+      .multipleOf( null)
+      .notMultipleOfs( 1.2)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "number")
+      .format( "double")
+      .enumNumbers( 0.24, 0.36, 0.48)
+      .maximum( 2.00)
+      .minimum( null)
+      .exclusiveMaximum( false)
+      .exclusiveMinimum( null)
+      .multipleOf( null)
+      .notMultipleOfs( 1.2, 3.4)
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "number")
+      .format( "float")
+      .enumNumbers( 0.24, 0.36)
+      .maximum( 1.00)
+      .exclusiveMaximum( false)
+      .minimum( 0.00)
+      .exclusiveMinimum( false)
+      .multipleOf( null)
+      .notMultipleOfs( 1.2, 3.4)
+      .build();
+    
+    assertThat( "Number schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotMultipleOfsConsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "number")
+      .format( null)
+      .enumNumbers( 1.2, 2.4, 3.6)
+      .maximum( 3.6)
+      .minimum( 1.2)
+      .exclusiveMaximum( true)
+      .exclusiveMinimum( false)
+      .multipleOf( 1.2)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "number")
+      .format( "float")
+      .enumNumbers( 0.0, 1.2, 2.4, 3.6, 4.8)
+      .maximum( null)
+      .minimum( 0.0)
+      .exclusiveMaximum( null)
+      .exclusiveMinimum( false)
+      .notMultipleOfs( 0.7, 2.4)
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "number")
+      .format( "float")
+      .enumNumbers( 1.2, 2.4, 3.6)
+      .maximum( 3.6)
+      .exclusiveMaximum( true)
+      .minimum( 1.2)
+      .exclusiveMinimum( false)
+      .multipleOf( 1.2)
+      .notMultipleOfs( 0.7, 2.4)
+      .build();
+    
+    assertThat( "Number schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotMultipleOfsInconsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "number")
+      .format( null)
+      .maximum( 1.234)
+      .minimum( -1.234)
+      .exclusiveMaximum( true)
+      .exclusiveMinimum( false)
+      .multipleOf( null)
+      .notEnumNumbers( 1.2, 3.4, 5)
+      .notMultipleOfs( 20.0, 5.0, 100.0)
+      .build();
+
+    // Given...
+    Schema<?> additional =
+      SchemaBuilder.ofType( "number")
+      .format( null)
+      .maximum( 0.9)
+      .minimum( -1.0)
+      .exclusiveMaximum( true)
+      .exclusiveMinimum( false)
+      .multipleOf( 10.0)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+    
+    expectFailure( IllegalStateException.class)
+      .when( () -> combineSchemas( context, base, additional))
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {multipleOf: 10.0} with schema requiring {not: {multipleOf: 5.0}}"));
+        });
     }
   }

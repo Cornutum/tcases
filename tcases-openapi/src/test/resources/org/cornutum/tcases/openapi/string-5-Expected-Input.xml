@@ -20,9 +20,9 @@
         <VarSet name="Value" when="param0Value">
           <Has name="default" value="X"/>
           <Var name="Length">
+            <Value name="0"/>
             <Value name="1"/>
             <Value name="2" failure="true"/>
-            <Value name="0"/>
           </Var>
         </VarSet>
       </VarSet>

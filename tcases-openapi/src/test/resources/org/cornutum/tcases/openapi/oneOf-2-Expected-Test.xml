@@ -10,131 +10,154 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value.Is" value="0"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value.Is" value="101">
-          <Has name="memberValidated" value="false"/>
-        </Var>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="number"/>
+        <Var name="param0.Alternative.0.Value.Is" value="101"/>
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="1">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
+      <Has name="properties" value="param0Alternative1"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.0.Value.Is" NA="true"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" NA="true"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.Used" value="1"/>
+        <Var name="param0.Alternative.0.Type" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value.Is" value="-1">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value.Is" value="100"/>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="number"/>
+        <Var name="param0.Alternative.0.Value.Is" value="&gt; 101"/>
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="3">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative1,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value.Is" value="&gt; 0"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value.Is" value="101">
-          <Has name="memberValidated" value="false"/>
-        </Var>
+        <Var name="param0.Alternative.Used" value="1"/>
+        <Var name="param0.Alternative.0.Type" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.1.Type" value="number"/>
+        <Var name="param0.Alternative.1.Value.Is" value="-1"/>
       </Input>
     </TestCase>
     <TestCase id="4">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative1,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="1"/>
-        <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value.Is" value="-1">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value.Is" value="&lt; 100"/>
+        <Var name="param0.Alternative.Used" value="1"/>
+        <Var name="param0.Alternative.0.Type" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.1.Type" value="number"/>
+        <Var name="param0.Alternative.1.Value.Is" value="&lt; -1"/>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value"/>
+      <Has name="properties" value="param0,param0Alternative0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="0" failure="true"/>
-        <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value.Is" value="-1">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value.Is" value="101">
-          <Has name="memberValidated" value="false"/>
-        </Var>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="null" failure="true"/>
+        <Var name="param0.Alternative.0.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0OneOf0Value,param0OneOf1OneOf0Value,param0OneOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Alternative0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.OneOf.Members.Validated" value="&gt; 1" failure="true"/>
-        <Var name="param0.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.0.Value.Is" value="0"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Type" value="number"/>
-        <Var name="param0.OneOf.Members.1.OneOf.Members.0.Value.Is" value="100"/>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="Not number" failure="true"/>
+        <Var name="param0.Alternative.0.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/oneOf"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Alternative.Used" value="0"/>
+        <Var name="param0.Alternative.0.Type" value="number"/>
+        <Var name="param0.Alternative.0.Value.Is" value="100" failure="true"/>
+        <Var name="param0.Alternative.1.Type" NA="true"/>
+        <Var name="param0.Alternative.1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/oneOf"/>
+      <Has name="properties" value="param0,param0Alternative1,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Alternative.Used" value="1"/>
+        <Var name="param0.Alternative.0.Type" NA="true"/>
+        <Var name="param0.Alternative.0.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.1.Type" value="number"/>
+        <Var name="param0.Alternative.1.Value.Is" value="0" failure="true"/>
       </Input>
     </TestCase>
   </Function>

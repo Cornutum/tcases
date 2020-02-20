@@ -32,15 +32,24 @@ public class SchemaBuilder
    */
   public static SchemaBuilder ofType( String type)
     {
+    return new SchemaBuilder( createSchema( type));
+    }
+
+  /**
+   * Returns a new schema of the given type.
+   */
+  private static Schema<?> createSchema( String type)
+    {
     Schema<?> schema =
       "array".equals( type)
       ? new ArraySchema()
       : new Schema<Object>();
 
     schema.setType( type);
-    return new SchemaBuilder( schema);
+
+    return schema;
     }
-  
+
   /**
    * Creates a new builder for an empty Schema with undefined type.
    */
@@ -65,6 +74,14 @@ public class SchemaBuilder
     ComposedSchema schema = new ComposedSchema();
     schema.setType( type);
     return new SchemaBuilder( schema);
+    }
+  
+  /**
+   * Creates a new builder for an object property Schema with the given type.
+   */
+  public static SchemaBuilder propertySchema( String type)
+    {
+    return new SchemaBuilder( SchemaUtils.toPropertySchema( createSchema( type)));
     }
 
   /**
@@ -264,18 +281,6 @@ public class SchemaBuilder
     return multipleOf( new BigDecimal( String.valueOf( multipleOf)));
     }
   
-  public SchemaBuilder nots( Schema<?>... nots)
-    {
-    SchemaExtensions.setNots( schema_, nots);
-    return this;
-    }
-
-  public SchemaBuilder notAdditionalProperties( Schema<?> additionalProperties)
-    {
-    SchemaExtensions.setNotAdditionalProperties( schema_, additionalProperties);
-    return this;
-    }
-  
   public SchemaBuilder notEnums( List<Object> enums)
     {
     SchemaExtensions.setNotEnums( schema_, enums);
@@ -290,18 +295,6 @@ public class SchemaBuilder
   public SchemaBuilder notEnumNumbers( double... enums)
     {
     return notEnums( Arrays.stream( enums).mapToObj( d -> new BigDecimal( String.valueOf( d))).collect( toList()));
-    }
-  
-  public SchemaBuilder notItems( Schema<?> items)
-    {
-    SchemaExtensions.setNotItems( schema_, items);
-    return this;
-    }
-  
-  public SchemaBuilder notFormats( String... formats)
-    {
-    SchemaExtensions.setNotFormats( schema_, formats);
-    return this;
     }
   
   public SchemaBuilder notMultipleOfs( Number... multipleOfs)
@@ -321,18 +314,15 @@ public class SchemaBuilder
     return this;
     }
   
-  @SuppressWarnings("rawtypes")
-  public SchemaBuilder notProperty( String name, Schema<?> schema)
+  public SchemaBuilder notRequired( String... required)
     {
-    Map<String,Schema> notProperties = Optional.ofNullable( SchemaExtensions.getNotProperties( schema_)).orElse( new HashMap<String,Schema>());
-    notProperties.put( name, schema);
-    return notProperties( notProperties);
+    SchemaExtensions.setNotRequired( schema_, Arrays.asList( required));
+    return this;
     }
   
-  @SuppressWarnings("rawtypes")
-  public SchemaBuilder notProperties( Map<String,Schema> properties)
+  public SchemaBuilder notTypes( String... types)
     {
-    SchemaExtensions.setNotProperties( schema_, properties);
+    SchemaExtensions.setNotTypes( schema_, Arrays.asList( types));
     return this;
     }
   

@@ -14,7 +14,7 @@
         </Var>
         <Var name="Type" when="param0">
           <Value name="string" property="param0Value"/>
-          <Value name="null" failure="true"/>
+          <Value name="null" once="true"/>
           <Value name="Not string" failure="true"/>
         </Var>
         <VarSet name="Value" when="param0Value">

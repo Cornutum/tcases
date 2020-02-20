@@ -7,11 +7,13 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.util.CollectionUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import static java.util.Collections.emptyList;
+import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -49,11 +51,10 @@ public abstract class FormattedString
   /**
    * Creates a FormattedString for each of the given objects.
    */
-  public static List<FormattedString> of( String format, List<?> objects)
+  public static List<FormattedString> of( String format, Iterable<?> objects)
     {
     return
-      Optional.ofNullable( objects).orElse( emptyList())
-      .stream()
+      Optional.ofNullable( objects).map( CollectionUtils::toStream).orElse( Stream.empty())
       .map( object -> of( format, object))
       .collect( toList());
     }

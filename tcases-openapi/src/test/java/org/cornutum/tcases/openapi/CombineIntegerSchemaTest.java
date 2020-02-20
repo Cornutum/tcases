@@ -38,7 +38,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> Non-null </TD> </TR>
-   * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
+   * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
    * <TR><TD> additional.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> > base </TD> </TR>
    * </TABLE>
@@ -59,18 +59,23 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 2)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( "int32")
       .maximum( null)
-      .exclusiveMaximum( false)
+      .exclusiveMaximum( true)
       .minimum( 1)
       .exclusiveMinimum( false)
       .multipleOf( 4)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -126,6 +131,13 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( "int32")
@@ -137,8 +149,6 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -168,7 +178,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> base.maximum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minimum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.exclusiveMaximum </TD> <TD> true </TD> </TR>
-   * <TR><TD> base.exclusiveMinimum </TD> <TD> true </TD> </TR>
+   * <TR><TD> base.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> base.multipleOf </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> int32 </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> Subset of base </TD> </TR>
@@ -191,10 +201,17 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .maximum( 2000)
       .minimum( 20)
       .exclusiveMaximum( true)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 20)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( "int32")
@@ -206,8 +223,6 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 10)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -217,9 +232,9 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .format( "int32")
       .enums( 20, 200)
       .maximum( 200)
-      .exclusiveMaximum( null)
+      .exclusiveMaximum( true)
       .minimum( 20)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 20)
       .build();
     
@@ -233,6 +248,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR align="left"><TH colspan=2> 3. Combine (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> base.format </TD> <TD> int64 </TD> </TR>
+   * <TR><TD> base.notEnums </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.enum </TD> <TD> null </TD> </TR>
    * <TR><TD> base.maximum </TD> <TD> null </TD> </TR>
    * <TR><TD> base.minimum </TD> <TD> Non-null </TD> </TR>
@@ -241,6 +257,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> base.multipleOf </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> int64 </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notEnums </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
@@ -261,8 +278,16 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .exclusiveMaximum( null)
       .exclusiveMinimum( true)
       .multipleOf( null)
+      .notEnums( 1, 2, 4)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( "int64")
@@ -273,8 +298,6 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 2)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -287,6 +310,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .minimum( 34)
       .exclusiveMinimum( true)
       .multipleOf( 2)
+      .notEnums( 1, 2, 4)
       .build();
     
     assertThat( "Integer schema", combined, matches( new SchemaMatcher( expected)));
@@ -330,6 +354,13 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 5)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( "int64")
@@ -341,8 +372,6 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -398,6 +427,13 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 3)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( null)
@@ -409,8 +445,6 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 27)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -446,7 +480,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> additional.enum </TD> <TD> Intersects base </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> > base </TD> </TR>
-   * <TR><TD> additional.exclusiveMaximum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMaximum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.exclusiveMinimum </TD> <TD> true </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> null </TD> </TR>
    * </TABLE>
@@ -467,19 +501,24 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( "int64")
       .enums( 240, 360, 480, 600)
       .maximum( 720)
       .minimum( 24)
-      .exclusiveMaximum( true)
+      .exclusiveMaximum( false)
       .exclusiveMinimum( true)
       .multipleOf( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -506,6 +545,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> base.format </TD> <TD> int32 </TD> </TR>
    * <TR><TD> base.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notEnums </TD> <TD> null </TD> </TR>
    * <TR><TD> base.maximum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.minimum </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.exclusiveMaximum </TD> <TD> false </TD> </TR>
@@ -513,10 +553,11 @@ public class CombineIntegerSchemaTest extends OpenApiTest
    * <TR><TD> base.multipleOf </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.enum </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notEnums </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.maximum </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.minimum </TD> <TD> < base </TD> </TR>
    * <TR><TD> additional.exclusiveMaximum </TD> <TD> null </TD> </TR>
-   * <TR><TD> additional.exclusiveMinimum </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.exclusiveMinimum </TD> <TD> false </TD> </TR>
    * <TR><TD> additional.multipleOf </TD> <TD> < base </TD> </TR>
    * </TABLE>
    * </P>
@@ -535,18 +576,24 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 15)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( null)
       .maximum( 60)
       .minimum( 0)
       .exclusiveMaximum( null)
-      .exclusiveMinimum( true)
+      .exclusiveMinimum( false)
       .multipleOf( 3)
+      .notEnums( 2, 3, 5, 8)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -555,10 +602,11 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       SchemaBuilder.ofType( "integer")
       .format( "int32")
       .maximum( 60)
-      .exclusiveMaximum( null)
+      .exclusiveMaximum( false)
       .minimum( 15)
       .exclusiveMinimum( false)
       .multipleOf( 15)
+      .notEnums( 2, 3, 5, 8)
       .build();
     
     assertThat( "Integer schema", combined, matches( new SchemaMatcher( expected)));
@@ -602,6 +650,13 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
       .format( null)
@@ -613,8 +668,6 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 10)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -686,7 +739,12 @@ public class CombineIntegerSchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "enum=[8, 24, 64] is not consistent with base enum=[9, 27, 81]")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {enum: [8, 24, 64]} with schema requiring {enum: [9, 27, 81]}"));
+        });
     }
 
   /**
@@ -740,6 +798,141 @@ public class CombineIntegerSchemaTest extends OpenApiTest
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "multipleOf=4 is not consistent with base multipleOf=3")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(), is( "Can't combine schema requiring {multipleOf: 4} with schema requiring {multipleOf: 3}"));
+        });
+    }
+  
+  @Test
+  public void whenNotEnumsCombined()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "integer")
+      .format( "int64")
+      .maximum( null)
+      .minimum( 34)
+      .exclusiveMaximum( null)
+      .exclusiveMinimum( true)
+      .multipleOf( null)
+      .notEnums( 1, 2, 4)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "integer")
+      .format( "int64")
+      .maximum( 568)
+      .minimum( null)
+      .exclusiveMaximum( false)
+      .exclusiveMinimum( null)
+      .multipleOf( 2)
+      .notEnums( 2, 4, 8)
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "integer")
+      .format( "int64")
+      .maximum( 568)
+      .exclusiveMaximum( false)
+      .minimum( 34)
+      .exclusiveMinimum( true)
+      .multipleOf( 2)
+      .notEnums( 1, 2, 4, 8)
+      .build();
+    
+    assertThat( "Integer schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotEnumsConsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "integer")
+      .format( "int64")
+      .maximum( null)
+      .minimum( 34)
+      .exclusiveMaximum( null)
+      .exclusiveMinimum( true)
+      .multipleOf( null)
+      .notEnums( 1, 2, 4)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "integer")
+      .format( "int64")
+      .enums( 3, 9, 27)
+      .maximum( 568)
+      .minimum( null)
+      .exclusiveMaximum( false)
+      .exclusiveMinimum( null)
+      .multipleOf( 2)
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "integer")
+      .format( "int64")
+      .enums( 3, 9, 27)
+      .maximum( 568)
+      .exclusiveMaximum( false)
+      .minimum( 34)
+      .exclusiveMinimum( true)
+      .multipleOf( 2)
+      .notEnums( 1, 2, 4)
+      .build();
+    
+    assertThat( "Integer schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotEnumsInconsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "integer")
+      .format( null)
+      .enums( 9, 27, 81)
+      .maximum( null)
+      .minimum( null)
+      .exclusiveMaximum( null)
+      .exclusiveMinimum( null)
+      .multipleOf( 3)
+      .build();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "integer")
+      .format( "int32")
+      .maximum( null)
+      .minimum( null)
+      .exclusiveMaximum( false)
+      .exclusiveMinimum( null)
+      .multipleOf( null)
+      .notEnums( 8, 9, 10)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+    
+    expectFailure( IllegalStateException.class)
+      .when( () -> combineSchemas( context, base, additional))
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {enum: 9} with schema requiring {not: {enum: 9}}"));
+        });
     }
   }
