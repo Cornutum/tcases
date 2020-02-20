@@ -29,9 +29,11 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -103,6 +105,29 @@ public abstract class OpenApiTest
   protected void verifyInputModel( String apiName, String expectedName, Function<OpenAPI,SystemInputDef> inputDefSupplier)
     {
     // Given...
+    SystemInputDef inputDef = verifiedInputModel( apiName, expectedName, inputDefSupplier);
+
+    // When...
+    SystemTestDef testDef = Tcases.getTests( inputDef, null, null);
+
+    // Then...
+    if( acceptAsExpected())
+      {
+      updateExpectedTestDef( expectedName, testDef);
+      }
+    else
+      {
+      SystemTestDef expectedTestDef = readExpectedTestDef( expectedName);
+      assertThat( apiName + " test cases", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
+      }
+    }
+
+  /**
+   * Verifies and returns the expected input model for the given API.
+   */
+  protected SystemInputDef verifiedInputModel( String apiName, String expectedName, Function<OpenAPI,SystemInputDef> inputDefSupplier)
+    {
+    // Given...
     OpenAPI api = readApi( apiName);
 
     // When...
@@ -119,19 +144,7 @@ public abstract class OpenApiTest
       assertThat( apiName + " input model", inputDef, matches( new SystemInputDefMatcher( expectedInputDef)));
       }
 
-    // When...
-    SystemTestDef testDef = Tcases.getTests( inputDef, null, null);
-
-    // Then...
-    if( acceptAsExpected())
-      {
-      updateExpectedTestDef( expectedName, testDef);
-      }
-    else
-      {
-      SystemTestDef expectedTestDef = readExpectedTestDef( expectedName);
-      assertThat( apiName + " test cases", testDef, matches( new SystemTestDefMatcher( expectedTestDef)));
-      }
+    return inputDef;
     }
 
   /**
@@ -154,10 +167,16 @@ public abstract class OpenApiTest
    */
   protected OpenAPI readApi( String resource)
     {
-    String resourceFile = resource + ".json";
-    URL url = getClass().getResource( resourceFile);
-    InputStream document = getClass().getResourceAsStream( resourceFile);
-    assertThat( "Resource=" + resourceFile, document, is( notNullValue()));
+    URL url = null;
+    InputStream document = null;
+    List<String> docTypes = Arrays.asList( "json", "yaml", "yml"); 
+    for( int i = 0; document == null && i < docTypes.size(); i++)
+      {
+      String resourceFile = String.format( "%s.%s", resource, docTypes.get(i));
+      url = getClass().getResource( resourceFile);
+      document = getClass().getResourceAsStream( resourceFile);
+      }
+    assertThat( "OpenAPI spec for resource=" + resource, document, is( notNullValue()));
     
     try( OpenApiReader reader = new OpenApiReader( document, url))
       {
@@ -304,7 +323,40 @@ public abstract class OpenApiTest
     return saveExpectedDir_ != null;
     }
 
+  /**
+   * Returns {@link ModelOptions} to record conditions notified.
+   */
+  protected ModelOptions withConditionRecorder()
+    {
+    conditionRecorder_ =  new ModelConditionRecorder();
+    return ModelOptions.builder().notifier( conditionRecorder_).build();
+    }
+
+  protected ModelConditionRecorder getConditionRecorder()
+    {
+    return conditionRecorder_;
+    }
+  
+  protected void assertWarnings( String... warnings)
+    {
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( warnings));
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( emptyList()));
+    }
+
+  protected void assertErrors( String... errors)
+    {
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( errors));
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( emptyList()));
+    }
+  
+  protected void assertConditions( List<String> warnings, List<String> errors)
+    {
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( warnings));
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( errors));
+    }
+  
   private final SystemInputResources inputResources_ = new SystemInputResources( getClass());
   private final SystemTestResources testResources_ = new SystemTestResources( getClass());
   private final File saveExpectedDir_ = Optional.ofNullable( System.getProperty( "saveExpectedTo")).map( path -> new File( path)).orElse( null);
+  private ModelConditionRecorder conditionRecorder_;
   }

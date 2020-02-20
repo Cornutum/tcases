@@ -86,7 +86,7 @@
         <Var name="2XX.Content.application-json.Type" NA="true"/>
         <Var name="2XX.Content.application-json.Value.Length" NA="true"/>
         <Var name="2XX.Content.text-javascript.Type" value="string"/>
-        <Var name="2XX.Content.text-javascript.Value.Length" value="16"/>
+        <Var name="2XX.Content.text-javascript.Value.Length" value="0"/>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -170,7 +170,7 @@
         <Var name="2XX.Content.application-json.Type" NA="true"/>
         <Var name="2XX.Content.application-json.Value.Length" NA="true"/>
         <Var name="2XX.Content.text-javascript.Type" value="string"/>
-        <Var name="2XX.Content.text-javascript.Value.Length" value="0"/>
+        <Var name="2XX.Content.text-javascript.Value.Length" value="16"/>
       </Input>
     </TestCase>
     <TestCase id="6">

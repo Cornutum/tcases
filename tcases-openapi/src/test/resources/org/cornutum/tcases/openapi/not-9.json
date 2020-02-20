@@ -19,7 +19,8 @@
                                     "type": "string",
                                     "not": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "date",
+                                        "pattern": "1999-.*"
                                     }
                                 },
                                 "bravo": {
@@ -44,20 +45,18 @@
                             "not": {
                                 "anyOf": [
                                     {
-                                        "type": "string",
-                                        "format": "date"
+                                        "maxLength": 4
                                     },
                                     {
                                         "type": "string",
-                                        "enum": [ "X" ]
+                                        "enum": [ "ABCDE" ]
+                                    },
+                                    {
+                                        "pattern": "W*T*F*"
                                     },
                                     {
                                         "type": "string",
-                                        "format": "byte"
-                                    },
-                                    {
-                                        "type": "string",
-                                        "enum": [ "Y" ]
+                                        "enum": [ "FGHIJK" ]
                                     }
                                 ]
                             }

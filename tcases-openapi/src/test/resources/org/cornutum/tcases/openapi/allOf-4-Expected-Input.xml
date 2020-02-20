@@ -19,9 +19,9 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Is">
-            <Value name="-10" failure="true"/>
-            <Value name="0"/>
-            <Value name="&gt; 0" property="param0Unbounded"/>
+            <Value name="0" failure="true"/>
+            <Value name="10"/>
+            <Value name="&gt; 10" property="param0Unbounded"/>
           </Var>
           <VarSet name="Multiple-Of" when="param0Unbounded">
             <Var name="10">

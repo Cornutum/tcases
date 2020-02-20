@@ -44,6 +44,11 @@
                   <Value name="&gt; 0"/>
                   <Value name="0"/>
                 </Var>
+                <Var name="Matches-Pattern">
+                  <Has name="pattern" value="1999-.*"/>
+                  <Value name="Yes" failure="true"/>
+                  <Value name="No"/>
+                </Var>
               </VarSet>
             </VarSet>
             <VarSet name="bravo">
@@ -113,15 +118,21 @@
         </Var>
         <VarSet name="Value" when="param1Value">
           <Var name="Length" when="param1NotExcluded">
-            <Value name="&gt; 0"/>
-            <Value name="0"/>
+            <Value name="4" failure="true"/>
+            <Value name="5"/>
+            <Value name="&gt; 5"/>
+          </Var>
+          <Var name="Matches-Pattern" when="param1NotExcluded">
+            <Has name="pattern" value="W*T*F*"/>
+            <Value name="Yes" failure="true"/>
+            <Value name="No"/>
           </Var>
           <Var name="Is">
             <Value name="Any" property="param1NotExcluded">
-              <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;"/>
+              <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
             </Value>
-            <Value name="X" failure="true"/>
-            <Value name="Y" failure="true"/>
+            <Value name="ABCDE" failure="true"/>
+            <Value name="FGHIJK" failure="true"/>
           </Var>
         </VarSet>
       </VarSet>

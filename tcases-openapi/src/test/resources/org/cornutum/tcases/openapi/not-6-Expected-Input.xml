@@ -12,58 +12,50 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <VarSet name="AnyOf" when="param0">
-          <VarSet name="Members">
-            <Var name="Validated">
-              <Value name="1">
-                <When>
-                  <Equals property="param0AnyOfMemberValidated" count="1"/>
-                </When>
-              </Value>
-              <Value name="0" failure="true">
-                <When>
-                  <Not property="param0AnyOfMemberValidated">
-                  </Not>
-                </When>
-              </Value>
-              <Value name="&gt; 1" once="true">
-                <When>
-                  <MoreThan property="param0AnyOfMemberValidated" min="1"/>
-                </When>
+        <VarSet name="Alternative">
+          <Var name="Used">
+            <Value name="0" property="param0Alternative0"/>
+            <Value name="1" property="param0Alternative1"/>
+          </Var>
+          <VarSet name="0" when="param0Alternative0">
+            <Var name="Type" when="param0">
+              <Value name="string" property="param0Value"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <Var name="Value" when="param0Value">
+              <Value name="Alpha"/>
+              <Value name="Bravo"/>
+              <Value name="Charlie"/>
+              <Value name="Other" failure="true">
+                <Has name="excluded" value="&apos;Alpha&apos;,&apos;Bravo&apos;,&apos;Charlie&apos;"/>
               </Value>
             </Var>
-            <VarSet name="0">
-              <Var name="Type">
-                <Value name="string" property="param0AnyOf0Value"/>
+          </VarSet>
+          <VarSet name="1" when="param0Alternative1">
+            <Var name="Type" when="param0">
+              <Value name="string" property="param0Value"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Length" when="param0NotExcluded">
+                <Value name="0"/>
+                <Value name="256"/>
+                <Value name="257" failure="true"/>
+                <Value name="&lt; 256"/>
               </Var>
-              <Var name="Value" when="param0AnyOf0Value">
-                <Value name="Alpha" property="param0AnyOfMemberValidated"/>
-                <Value name="Bravo" property="param0AnyOfMemberValidated"/>
-                <Value name="Charlie" property="param0AnyOfMemberValidated"/>
-                <Value name="Other">
+              <Var name="Matches-Pattern" when="param0NotExcluded">
+                <Has name="pattern" value="[0-9]+"/>
+                <Value name="Yes"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Is">
+                <Value name="Any" property="param0NotExcluded">
                   <Has name="excluded" value="&apos;Alpha&apos;,&apos;Bravo&apos;,&apos;Charlie&apos;"/>
-                  <Has name="memberValidated" value="false"/>
                 </Value>
+                <Value name="Alpha" failure="true"/>
+                <Value name="Bravo" failure="true"/>
+                <Value name="Charlie" failure="true"/>
               </Var>
-            </VarSet>
-            <VarSet name="1">
-              <Var name="Type">
-                <Value name="string" property="param0AnyOf1Value"/>
-              </Var>
-              <VarSet name="Value" when="param0AnyOf1Value">
-                <Var name="Length">
-                  <Value name="256"/>
-                  <Value name="0"/>
-                  <Value name="&lt; 256"/>
-                </Var>
-                <Var name="Matches-Pattern">
-                  <Has name="pattern" value="[0-9]+"/>
-                  <Value name="Yes" property="param0AnyOfMemberValidated"/>
-                  <Value name="No">
-                    <Has name="memberValidated" value="false"/>
-                  </Value>
-                </Var>
-              </VarSet>
             </VarSet>
           </VarSet>
         </VarSet>

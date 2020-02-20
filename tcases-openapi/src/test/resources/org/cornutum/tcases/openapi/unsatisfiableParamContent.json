@@ -1,0 +1,94 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "UnsatisfiableParamContent",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/request": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "not": {
+                                        "anyOf": [
+                                            {
+                                                "type": "object" 
+                                            },
+                                            {
+                                                "type": "number"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "alpha": {
+                                                    "readOnly": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "alpha": {
+                                                    "writeOnly": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "maxLength": 1
+                                        },
+                                        {
+                                            "minimum": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

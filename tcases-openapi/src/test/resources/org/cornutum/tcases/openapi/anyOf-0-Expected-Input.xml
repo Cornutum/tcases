@@ -12,28 +12,22 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <VarSet name="AnyOf" when="param0">
-          <VarSet name="Members">
-            <VarSet name="0">
-              <Var name="Type">
-                <Value name="string" property="param0AnyOf0Value"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not string" failure="true"/>
-              </Var>
-              <VarSet name="Value" when="param0AnyOf0Value">
-                <Var name="Length">
-                  <Value name="0"/>
-                  <Value name="128"/>
-                  <Value name="129" failure="true"/>
-                </Var>
-                <Var name="Matches-Pattern">
-                  <Has name="pattern" value="^[A-Z]*$"/>
-                  <Value name="Yes"/>
-                  <Value name="No" failure="true"/>
-                </Var>
-              </VarSet>
-            </VarSet>
-          </VarSet>
+        <Var name="Type" when="param0">
+          <Value name="string" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Length">
+            <Value name="0"/>
+            <Value name="128"/>
+            <Value name="129" failure="true"/>
+          </Var>
+          <Var name="Matches-Pattern">
+            <Has name="pattern" value="^[A-Z]*$"/>
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
         </VarSet>
       </VarSet>
     </Input>

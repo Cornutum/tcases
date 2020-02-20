@@ -10,19 +10,14 @@
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf2Value,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Type" value="null">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.2.Type" value="Not null"/>
+        <Var name="param0.Type" value="Not null"/>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -34,64 +29,20 @@
         <Var name="param0.Defined" value="No">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" NA="true"/>
-        <Var name="param0.AnyOf.Members.0.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.1.Type" NA="true"/>
-        <Var name="param0.AnyOf.Members.2.Type" NA="true"/>
+        <Var name="param0.Type" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0AnyOf0Value,param0AnyOf1Value,param0AnyOfMemberValidated"/>
+      <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="&gt; 1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.1.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.2.Type" value="null"/>
-      </Input>
-    </TestCase>
-    <TestCase id="3">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0AnyOf1Value,param0AnyOf2Value,param0AnyOfMemberValidated"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="1"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="null">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.Type" value="Not null"/>
-        <Var name="param0.AnyOf.Members.2.Type" value="Not null"/>
-      </Input>
-    </TestCase>
-    <TestCase id="4" failure="true">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0AnyOf2Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.Validated" value="0" failure="true"/>
-        <Var name="param0.AnyOf.Members.0.Type" value="null">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.1.Type" value="null">
-          <Has name="memberValidated" value="false"/>
-        </Var>
-        <Var name="param0.AnyOf.Members.2.Type" value="Not null"/>
+        <Var name="param0.Type" value="null" failure="true"/>
       </Input>
     </TestCase>
   </Function>

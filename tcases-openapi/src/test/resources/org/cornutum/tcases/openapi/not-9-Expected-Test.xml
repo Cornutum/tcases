@@ -23,6 +23,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -35,9 +38,12 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="string"/>
-        <Var name="param1.Value.Length" value="&gt; 0"/>
+        <Var name="param1.Value.Length" value="5"/>
+        <Var name="param1.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" value="Any">
-          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;"/>
+          <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
         </Var>
       </Input>
     </TestCase>
@@ -56,6 +62,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -69,6 +78,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -88,6 +100,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="string"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="0"/>
@@ -100,9 +115,12 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="string"/>
-        <Var name="param1.Value.Length" value="0"/>
+        <Var name="param1.Value.Length" value="&gt; 5"/>
+        <Var name="param1.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" value="Any">
-          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;"/>
+          <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
         </Var>
       </Input>
     </TestCase>
@@ -122,6 +140,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="string"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -135,6 +156,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -154,6 +178,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
@@ -168,9 +195,12 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="string"/>
-        <Var name="param1.Value.Length" value="&gt; 0"/>
+        <Var name="param1.Value.Length" value="5"/>
+        <Var name="param1.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" value="Any">
-          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;"/>
+          <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
         </Var>
       </Input>
     </TestCase>
@@ -190,6 +220,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="string"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="&gt; 1"/>
@@ -205,6 +238,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -224,6 +260,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="No"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="&gt; 1"/>
@@ -238,9 +277,12 @@
           <Has name="style" value="form"/>
         </Var>
         <Var name="param1.Type" value="string"/>
-        <Var name="param1.Value.Length" value="0"/>
+        <Var name="param1.Value.Length" value="&gt; 5"/>
+        <Var name="param1.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" value="Any">
-          <Has name="excluded" value="&apos;X&apos;,&apos;Y&apos;"/>
+          <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
         </Var>
       </Input>
     </TestCase>
@@ -260,6 +302,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -273,6 +318,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -292,6 +340,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -305,6 +356,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -324,6 +378,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -337,6 +394,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -356,6 +416,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="Not string" failure="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -369,13 +432,16 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
@@ -388,8 +454,11 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="string"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.bravo.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="Yes" failure="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
@@ -401,6 +470,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -420,6 +492,47 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="string"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param1.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true"/>
+        <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.alpha.Type" value="string"/>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="Not array" failure="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -433,38 +546,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
-        <Var name="param1.Value.Is" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="13" failure="true">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="string"/>
-        <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.bravo.Type" value="array"/>
-        <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
-        <Var name="param1.Defined" value="No">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Length" NA="true"/>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -484,6 +568,47 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="string"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="array"/>
+        <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param1.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true"/>
+        <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="15" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.alpha.Type" value="string"/>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
@@ -497,38 +622,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
-        <Var name="param1.Value.Is" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="15" failure="true">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="string"/>
-        <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.bravo.Type" value="array"/>
-        <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="A" failure="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
-        <Var name="param1.Defined" value="No">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Length" NA="true"/>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -548,12 +644,15 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="string"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="B" failure="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="A" failure="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
         <Var name="param1.Defined" value="No">
@@ -561,6 +660,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -580,6 +682,47 @@
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Type" value="string"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.bravo.Type" value="array"/>
+        <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="B" failure="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param1.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true"/>
+        <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="18" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object"/>
+        <Var name="param0.Value.Property-Count" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="param0.Value.Properties.alpha.Type" value="string"/>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
@@ -593,38 +736,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Value.Length" NA="true"/>
-        <Var name="param1.Value.Is" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="18" failure="true">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param1"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="No">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
-        <Var name="param1.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param1.Type" value="null" failure="true"/>
-        <Var name="param1.Value.Length" NA="true"/>
         <Var name="param1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -644,6 +758,47 @@
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="null" failure="true"/>
+        <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="20" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param1"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -657,44 +812,95 @@
         </Var>
         <Var name="param1.Type" value="Not string" failure="true"/>
         <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
         <Var name="param1.Value.Is" NA="true"/>
-      </Input>
-    </TestCase>
-    <TestCase id="20" failure="true">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/not"/>
-      <Has name="properties" value="param1,param1Value"/>
-      <Has name="server" value="/"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="No">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
-        <Var name="param1.Defined" value="Yes">
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param1.Type" value="string"/>
-        <Var name="param1.Value.Length" NA="true"/>
-        <Var name="param1.Value.Is" value="X" failure="true"/>
       </Input>
     </TestCase>
     <TestCase id="21" failure="true">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
+      <Has name="properties" value="param1,param1NotExcluded,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="string"/>
+        <Var name="param1.Value.Length" value="4" failure="true"/>
+        <Var name="param1.Value.Matches-Pattern" value="No">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
+        <Var name="param1.Value.Is" value="Any">
+          <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="22" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param1,param1NotExcluded,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="string"/>
+        <Var name="param1.Value.Length" value="5"/>
+        <Var name="param1.Value.Matches-Pattern" value="Yes" failure="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
+        <Var name="param1.Value.Is" value="Any">
+          <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="23" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
       <Has name="properties" value="param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="version" value="0.0.0"/>
@@ -708,6 +914,9 @@
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
@@ -721,7 +930,48 @@
         </Var>
         <Var name="param1.Type" value="string"/>
         <Var name="param1.Value.Length" NA="true"/>
-        <Var name="param1.Value.Is" value="Y" failure="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
+        <Var name="param1.Value.Is" value="ABCDE" failure="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="24" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Value.Property-Count" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="1999-.*"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
+        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="string"/>
+        <Var name="param1.Value.Length" NA="true"/>
+        <Var name="param1.Value.Matches-Pattern" NA="true">
+          <Has name="pattern" value="W*T*F*"/>
+        </Var>
+        <Var name="param1.Value.Is" value="FGHIJK" failure="true"/>
       </Input>
     </TestCase>
   </Function>

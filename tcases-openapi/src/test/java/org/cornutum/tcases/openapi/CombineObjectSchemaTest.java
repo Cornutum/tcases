@@ -39,7 +39,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
    * <TR><TD> additional.required </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.properties.members </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.properties.schema </TD> <TD> (not applicable) </TD> </TR>
-   * <TR><TD> additional.additionalProperties </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.additionalProperties </TD> <TD> false </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -55,6 +55,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( null)
@@ -62,11 +69,9 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .minProperties( 0)
       .required( "Alpha", "Bravo", "Charlie")
       .property( "Alpha", SchemaBuilder.ofType( "string").build())
-      .additionalProperties( true)
+      .additionalProperties( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -121,6 +126,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( null)
@@ -129,8 +141,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -185,6 +195,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( "otherFormat")
@@ -193,8 +210,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .required( "Delta")
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -221,12 +236,14 @@ public class CombineObjectSchemaTest extends OpenApiTest
    * <TR><TD> base.maxProperties </TD> <TD> null </TD> </TR>
    * <TR><TD> base.minProperties </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.required </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notRequired </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.properties </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.additionalProperties </TD> <TD> Schema </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.maxProperties </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.minProperties </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.required </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notRequired </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.properties.members </TD> <TD> Same </TD> </TR>
    * <TR><TD> additional.properties.schema </TD> <TD> Same </TD> </TR>
    * <TR><TD> additional.additionalProperties </TD> <TD> false </TD> </TR>
@@ -246,8 +263,16 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Bravo", SchemaBuilder.ofType( "number").build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .additionalProperties( SchemaBuilder.ofType( "object").build())
+      .notRequired( "Delta")
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( "otherFormat")
@@ -259,8 +284,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -274,6 +297,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Bravo", SchemaBuilder.ofType( "number").build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .additionalProperties( false)
+      .notRequired( "Delta")
       .build();
     
     assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
@@ -317,6 +341,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( null)
@@ -327,8 +358,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -385,6 +414,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( null)
@@ -395,8 +431,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -411,6 +445,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Bravo", SchemaBuilder.ofType( "number").build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .property( "Delta", SchemaBuilder.ofType( "string").build())
+      .additionalProperties( true)
       .build();
     
     assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
@@ -451,6 +486,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( "otherFormat")
@@ -462,8 +504,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -521,6 +561,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( "otherFormat")
@@ -529,8 +576,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .required( "Delta")
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -544,6 +589,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Alpha", SchemaBuilder.ofType( "string").build())
       .property( "Bravo", SchemaBuilder.ofType( "number").build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
+      .additionalProperties( true)
       .build();
     
     assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
@@ -583,6 +629,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( null)
@@ -590,8 +643,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .minProperties( 9)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -625,7 +676,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
    * <TR><TD> additional.required </TD> <TD> Intersects base </TD> </TR>
    * <TR><TD> additional.properties.members </TD> <TD> Same </TD> </TR>
    * <TR><TD> additional.properties.schema </TD> <TD> Different </TD> </TR>
-   * <TR><TD> additional.additionalProperties </TD> <TD> false </TD> </TR>
+   * <TR><TD> additional.additionalProperties </TD> <TD> true </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -645,6 +696,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( null)
@@ -654,11 +712,9 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Alpha", SchemaBuilder.ofType( "string").minLength( 1).build())
       .property( "Bravo", SchemaBuilder.ofType( "number").maximum( 1.23).build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").minimum( 0).build())
-      .additionalProperties( false)
+      .additionalProperties( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -672,7 +728,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Alpha", SchemaBuilder.ofType( "string").minLength( 1).build())
       .property( "Bravo", SchemaBuilder.ofType( "number").maximum( 1.23).build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").minimum( 0).build())
-      .additionalProperties( false)
+      .additionalProperties( true)
       .build();
     
     assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
@@ -715,6 +771,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( "otherFormat")
@@ -725,8 +788,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -783,6 +844,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( "otherFormat")
@@ -794,8 +862,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -810,6 +876,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Delta", SchemaBuilder.ofType( "array").build())
       .property( "Bravo", SchemaBuilder.ofType( "number").build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
+      .additionalProperties( true)
       .build();
     
     assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
@@ -849,6 +916,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .required( "Alpha", "Bravo", "Charlie")
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( null)
@@ -860,8 +934,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -917,6 +989,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( null)
@@ -925,8 +1004,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -980,6 +1057,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( "otherFormat")
@@ -989,8 +1073,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").required( "Foo").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -1043,6 +1125,13 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .build();
 
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
       .format( "otherFormat")
@@ -1055,8 +1144,6 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
-    
     // When...
     Schema<?> combined = combineSchemas( context, base, additional);
 
@@ -1094,7 +1181,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
    * <TR><TD> additional.required </TD> <TD> null </TD> </TR>
    * <TR><TD> additional.properties.members </TD> <TD> Missing </TD> </TR>
    * <TR><TD> additional.properties.schema </TD> <TD> <FONT color="red"> Inconsistent  </FONT> </TD> </TR>
-   * <TR><TD> additional.additionalProperties </TD> <TD> true </TD> </TR>
+   * <TR><TD> additional.additionalProperties </TD> <TD> false </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -1120,7 +1207,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .maxProperties( null)
       .minProperties( null)
       .property( "Bravo", SchemaBuilder.ofType( "array").build())
-      .additionalProperties( true)
+      .additionalProperties( false)
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -1132,7 +1219,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
         
         Throwable cause = failure.getCause();
         assertThat( "Cause", cause, is( instanceOf( IllegalStateException.class)));
-        assertThat( "Cause", cause.getMessage(), is( "Can't combine schema of type=array with base schema of type=number"));
+        assertThat( "Cause", cause.getMessage(), is( "Can't combine schema requiring {type: array} with schema requiring {type: number}"));
         });        
     }
 
@@ -1192,7 +1279,173 @@ public class CombineObjectSchemaTest extends OpenApiTest
         
         Throwable cause = failure.getCause();
         assertThat( "Cause", cause, is( instanceOf( IllegalStateException.class)));
-        assertThat( "Cause", cause.getMessage(), is( "Can't combine schema of type=integer with base schema of type=object"));
+        assertThat( "Cause", cause.getMessage(), is( "Can't combine schema requiring {type: integer} with schema requiring {type: object}"));
+        });
+    }
+  
+  @Test
+  public void whenInconsistentAdditionalProperties()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "object")
+      .format( "baseFormat")
+      .maxProperties( 10)
+      .minProperties( 1)
+      .additionalProperties( false)
+      .build();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "object")
+      .format( null)
+      .maxProperties( 11)
+      .minProperties( 0)
+      .required( "Alpha", "Bravo", "Charlie")
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .additionalProperties( true)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+    
+    expectFailure( IllegalStateException.class)
+      .when( () -> combineSchemas( context, base, additional))
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {additionalProperties: true} with schema requiring {additionalProperties: false}"));
+        });
+    }
+  
+  @Test
+  public void whenNotRequiredCombined()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "object")
+      .format( null)
+      .maxProperties( null)
+      .minProperties( 2)
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .property( "Bravo", SchemaBuilder.ofType( "number").build())
+      .property( "Charlie", SchemaBuilder.ofType( "integer").build())
+      .additionalProperties( SchemaBuilder.ofType( "object").build())
+      .notRequired( "Delta")
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "object")
+      .format( "otherFormat")
+      .maxProperties( 100)
+      .minProperties( 10)
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .property( "Bravo", SchemaBuilder.ofType( "number").build())
+      .property( "Charlie", SchemaBuilder.ofType( "integer").build())
+      .additionalProperties( false)
+      .notRequired( "Delta", "Easy")
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "object")
+      .format( "otherFormat")
+      .maxProperties( 100)
+      .minProperties( 10)
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .property( "Bravo", SchemaBuilder.ofType( "number").build())
+      .property( "Charlie", SchemaBuilder.ofType( "integer").build())
+      .additionalProperties( false)
+      .notRequired( "Delta", "Easy")
+      .build();
+    
+    assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotRequiredConsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "object")
+      .format( "baseFormat")
+      .maxProperties( 10)
+      .minProperties( 1)
+      .additionalProperties( false)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
+    Schema<?> additional =
+      SchemaBuilder.ofType( "object")
+      .format( null)
+      .maxProperties( 11)
+      .minProperties( 0)
+      .required( "Alpha", "Bravo", "Charlie")
+      .notRequired( "Delta", "Easy")
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .additionalProperties( false)
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "object")
+      .format( "baseFormat")
+      .maxProperties( 10)
+      .minProperties( 1)
+      .required( "Alpha", "Bravo", "Charlie")
+      .notRequired( "Delta", "Easy")
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .additionalProperties( false)
+      .build();
+    
+    assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotRequiredInconsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "object")
+      .format( "baseFormat")
+      .maxProperties( 10)
+      .minProperties( 1)
+      .notRequired( "Bravo")
+      .additionalProperties( false)
+      .build();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "object")
+      .format( null)
+      .maxProperties( 11)
+      .minProperties( 0)
+      .required( "Alpha", "Bravo", "Charlie")
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .additionalProperties( false)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+    
+    expectFailure( IllegalStateException.class)
+      .when( () -> combineSchemas( context, base, additional))
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {required: [Bravo]} with schema requiring {not: {required: [Bravo]}}"));
         });
     }
   }

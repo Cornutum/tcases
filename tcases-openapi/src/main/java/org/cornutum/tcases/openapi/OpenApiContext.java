@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import java.util.ArrayDeque;
@@ -79,6 +80,14 @@ public class OpenApiContext
   public String[] getLocation()
     {
     return toStream( context_.iterator()).toArray( String[]::new);
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( getLocation())
+      .toString();
     }
 
   private Deque<String> context_ = new ArrayDeque<String>();

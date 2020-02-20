@@ -11,12 +11,18 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Defines methods for handling collections.
@@ -145,5 +151,44 @@ public final class CollectionUtils
       }
     
     return values.build();
+    }
+
+  /**
+   * Returns a {@link Collector} that accumulates set elements in insertion order
+   */
+  public static <T> Collector<T,?,Set<T>> toOrderedSet()
+    {
+    return toCollection( LinkedHashSet::new);
+    }
+
+  /**
+   * Returns a set containing the given elements in iteration order.
+   */
+  public static <T> Set<T> asOrderedSet( Iterable<T> elements)
+    {
+    return
+      Optional.ofNullable( elements).map( CollectionUtils::toStream).orElse( Stream.empty())
+      .collect( toOrderedSet());
+    }
+
+  /**
+   * Returns a set containing the given elements in iteration order.
+   */
+  @SafeVarargs
+  public static <T> Set<T> asOrderedSet( T... elements)
+    {
+    return asOrderedSet( Arrays.asList( elements));
+    }
+
+  /**
+   * Returns a list of all given members except for the one at the excluded position.
+   */
+  public static <T> List<T> restOf( List<T> members, int excluded)
+    {
+    return
+      IntStream.range( 0, members.size())
+      .filter( i -> i != excluded)
+      .mapToObj( i -> members.get(i))
+      .collect( toList());
     }
 }

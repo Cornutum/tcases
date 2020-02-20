@@ -18,7 +18,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="0"/>
+        <Var name="param0.Value.Is" value="10"/>
         <Var name="param0.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
@@ -47,7 +47,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 10"/>
         <Var name="param0.Value.Multiple-Of.10" value="Yes">
           <Has name="multipleOf" value="10"/>
         </Var>
@@ -94,7 +94,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="-10" failure="true"/>
+        <Var name="param0.Value.Is" value="0" failure="true"/>
         <Var name="param0.Value.Multiple-Of.10" NA="true"/>
       </Input>
     </TestCase>
@@ -109,7 +109,7 @@
           <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Value.Is" value="&gt; 10"/>
         <Var name="param0.Value.Multiple-Of.10" value="No" failure="true"/>
       </Input>
     </TestCase>

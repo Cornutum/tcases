@@ -12,10 +12,30 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <Var name="Type" when="param0">
-          <Value name="Not null" property="param0Value"/>
-          <Value name="null" failure="true"/>
-        </Var>
+        <VarSet name="Alternative">
+          <Var name="Used">
+            <Value name="0" property="param0Alternative0"/>
+            <Value name="1" property="param0Alternative1"/>
+          </Var>
+          <VarSet name="0" when="param0Alternative0">
+            <Var name="Type" when="param0">
+              <Value name="Not string" property="param0Value"/>
+              <Value name="null" failure="true"/>
+            </Var>
+          </VarSet>
+          <VarSet name="1" when="param0Alternative1">
+            <Var name="Type" when="param0">
+              <Value name="string" property="param0Value"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Length">
+                <Value name="256" failure="true"/>
+                <Value name="257"/>
+                <Value name="&gt; 257"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
       </VarSet>
     </Input>
   </Function>

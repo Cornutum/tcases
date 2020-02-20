@@ -13,40 +13,34 @@
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>
-        <VarSet name="OneOf" when="param0">
-          <VarSet name="Members">
-            <VarSet name="0">
-              <Var name="Type">
-                <Value name="object" property="param0OneOf0Value"/>
-                <Value name="null" failure="true"/>
-                <Value name="Not object" failure="true"/>
+        <Var name="Type" when="param0">
+          <Value name="object" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Property-Count">
+            <Value name="&gt;= 2">
+              <When>
+                <NotLessThan property="param0Properties" min="1"/>
+              </When>
+            </Value>
+          </Var>
+          <VarSet name="Properties">
+            <VarSet name="alpha">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Alpha, param0Properties"/>
+                <Value name="No" failure="true"/>
               </Var>
-              <VarSet name="Value" when="param0OneOf0Value">
-                <Var name="Property-Count">
-                  <Value name="&gt;= 2">
-                    <When>
-                      <NotLessThan property="param0OneOf0Properties" min="1"/>
-                    </When>
-                  </Value>
-                </Var>
-                <VarSet name="Properties">
-                  <VarSet name="alpha">
-                    <Var name="Defined">
-                      <Value name="Yes" property="param0OneOf0Alpha, param0OneOf0Properties"/>
-                      <Value name="No" failure="true"/>
-                    </Var>
-                    <Var name="Type" when="param0OneOf0Alpha">
-                      <Value name="Not null" property="param0OneOf0AlphaValue"/>
-                      <Value name="null" failure="true"/>
-                    </Var>
-                  </VarSet>
-                  <Var name="Additional">
-                    <Value name="Yes" property="param0OneOf0Properties"/>
-                    <Value name="No" failure="true"/>
-                  </Var>
-                </VarSet>
-              </VarSet>
+              <Var name="Type" when="param0Alpha">
+                <Value name="Not null" property="param0AlphaValue"/>
+                <Value name="null" failure="true"/>
+              </Var>
             </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" property="param0Properties"/>
+              <Value name="No" failure="true"/>
+            </Var>
           </VarSet>
         </VarSet>
       </VarSet>

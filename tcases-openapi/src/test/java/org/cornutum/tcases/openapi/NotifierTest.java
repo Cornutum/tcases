@@ -10,16 +10,11 @@ package org.cornutum.tcases.openapi;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.Tcases;
-import org.apache.commons.collections4.ListValuedMap;
-import org.apache.commons.collections4.MultiMapUtils;
 import org.junit.Test;
-import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Arrays;
-import java.util.List;
-import static java.util.Collections.emptyList;
 
 /**
  * Runs tests for notifications using {@link ModelConditionNotifier}
@@ -142,51 +137,6 @@ public class NotifierTest extends OpenApiTest
    */
   protected ModelOptions getModelOptions()
     {
-    return ModelOptions.builder().notifier( conditionRecorder_).build();
+    return withConditionRecorder();
     }
-  
-  private void assertWarnings( String... warnings)
-    {
-    assertThat( "Warnings", conditionRecorder_.getWarnings(), listsMembers( warnings));
-    assertThat( "Errors", conditionRecorder_.getErrors(), listsMembers( emptyList()));
-    }
-
-  private void assertErrors( String... errors)
-    {
-    assertThat( "Errors", conditionRecorder_.getErrors(), listsMembers( errors));
-    assertThat( "Warnings", conditionRecorder_.getWarnings(), listsMembers( emptyList()));
-    }
-  
-  private void assertConditions( List<String> warnings, List<String> errors)
-    {
-    assertThat( "Warnings", conditionRecorder_.getWarnings(), listsMembers( warnings));
-    assertThat( "Errors", conditionRecorder_.getErrors(), listsMembers( errors));
-    }
-  
-  private static class ModelConditionRecorder implements ModelConditionNotifier
-    {
-    public void warn( String[] location, String reason)
-      {
-      conditions_.put( "warn", messageFor( location, reason, null));
-      }
-
-    public void error( String[] location, String reason, String resolution)
-      {
-      conditions_.put( "error", messageFor( location, reason, resolution));
-      }
-
-    public List<String> getWarnings()
-      {
-      return conditions_.get( "warn");
-      }
-
-    public List<String> getErrors()
-      {
-      return conditions_.get( "error");
-      }
-      
-    private ListValuedMap<String,String> conditions_ = MultiMapUtils.newListValuedHashMap();
-    }
-  
-  private ModelConditionRecorder conditionRecorder_ = new ModelConditionRecorder();
   }

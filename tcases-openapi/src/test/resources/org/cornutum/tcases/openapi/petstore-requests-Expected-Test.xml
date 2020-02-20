@@ -1,0 +1,742 @@
+<?xml version="1.0"?>
+<TestCases system="Swagger-Petstore">
+  <Has name="server" value="http://petstore.swagger.io/api"/>
+  <Has name="version" value="1.0.0"/>
+  <Function name="GET_pets">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/pets"/>
+    <Has name="server" value="http://petstore.swagger.io/api"/>
+    <Has name="version" value="1.0.0"/>
+    <TestCase id="0">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="limit,limitValue,tags,tagsItemsNone,tagsValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="array"/>
+        <Var name="tags.Items.Size" value="0"/>
+        <Var name="tags.Items.Contains.Type" NA="true"/>
+        <Var name="tags.Items.Contains.Value.Length" NA="true"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" value="integer"/>
+        <Var name="limit.Value.Is" value="&lt; 0">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" NA="true"/>
+        <Var name="tags.Items.Size" NA="true"/>
+        <Var name="tags.Items.Contains.Type" NA="true"/>
+        <Var name="tags.Items.Contains.Value.Length" NA="true"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" NA="true"/>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="limit,limitValue,tags,tagsItemsValue,tagsValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="array"/>
+        <Var name="tags.Items.Size" value="1"/>
+        <Var name="tags.Items.Contains.Type" value="string"/>
+        <Var name="tags.Items.Contains.Value.Length" value="&gt; 0"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" value="integer"/>
+        <Var name="limit.Value.Is" value="0">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="tags,tagsItemsMany,tagsItemsValue,tagsValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="array"/>
+        <Var name="tags.Items.Size" value="&gt; 1"/>
+        <Var name="tags.Items.Contains.Type" value="string"/>
+        <Var name="tags.Items.Contains.Value.Length" value="0"/>
+        <Var name="tags.Items.Unique" value="Yes"/>
+        <Var name="limit.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" NA="true"/>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="limit,limitValue,tags,tagsItemsMany,tagsItemsValue,tagsValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="array"/>
+        <Var name="tags.Items.Size" value="&gt; 1"/>
+        <Var name="tags.Items.Contains.Type" value="string"/>
+        <Var name="tags.Items.Contains.Value.Length" value="&gt; 0"/>
+        <Var name="tags.Items.Unique" value="No"/>
+        <Var name="limit.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" value="integer"/>
+        <Var name="limit.Value.Is" value="&gt; 0">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="tags"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="null" failure="true"/>
+        <Var name="tags.Items.Size" NA="true"/>
+        <Var name="tags.Items.Contains.Type" NA="true"/>
+        <Var name="tags.Items.Contains.Value.Length" NA="true"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" NA="true"/>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="tags"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="Not array" failure="true"/>
+        <Var name="tags.Items.Size" NA="true"/>
+        <Var name="tags.Items.Contains.Type" NA="true"/>
+        <Var name="tags.Items.Contains.Value.Length" NA="true"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" NA="true"/>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="tags,tagsValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="array"/>
+        <Var name="tags.Items.Size" value="1"/>
+        <Var name="tags.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="tags.Items.Contains.Value.Length" NA="true"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" NA="true"/>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="tags,tagsValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="array"/>
+        <Var name="tags.Items.Size" value="1"/>
+        <Var name="tags.Items.Contains.Type" value="Not string" failure="true"/>
+        <Var name="tags.Items.Contains.Value.Length" NA="true"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="No">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" NA="true"/>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="limit"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" NA="true"/>
+        <Var name="tags.Items.Size" NA="true"/>
+        <Var name="tags.Items.Contains.Type" NA="true"/>
+        <Var name="tags.Items.Contains.Value.Length" NA="true"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" value="null" failure="true"/>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="limit"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" NA="true"/>
+        <Var name="tags.Items.Size" NA="true"/>
+        <Var name="tags.Items.Contains.Type" NA="true"/>
+        <Var name="tags.Items.Contains.Value.Length" NA="true"/>
+        <Var name="tags.Items.Unique" NA="true"/>
+        <Var name="limit.Defined" value="Yes">
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" value="Not integer" failure="true"/>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="POST_pets">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/pets"/>
+    <Has name="server" value="http://petstore.swagger.io/api"/>
+    <Has name="version" value="1.0.0"/>
+    <TestCase id="0">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonTagValue,application-jsonValue,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" value="&gt; 0"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" value="string"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" value="&gt; 0"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" value="0"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonTagValue,application-jsonValue,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" value="&gt; 0"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" value="string"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" value="0"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="No" failure="true"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;application/json&apos;"/>
+        </Var>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="Not object" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="No" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" value="Not string" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" value="0"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" value="null" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
+        <Var name="Body.application-json.Value.Properties.name.Value.Length" value="0"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.tag.Type" value="Not string" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="GET_pets-id">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/pets/{id}"/>
+    <Has name="server" value="http://petstore.swagger.io/api"/>
+    <Has name="version" value="1.0.0"/>
+    <TestCase id="0">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id,idValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="integer"/>
+        <Var name="id.Value.Is" value="&lt; 0">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id,idValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="integer"/>
+        <Var name="id.Value.Is" value="0">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id,idValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="integer"/>
+        <Var name="id.Value.Is" value="&gt; 0">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="No" failure="true">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" NA="true"/>
+        <Var name="id.Value.Is" NA="true">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="null" failure="true"/>
+        <Var name="id.Value.Is" NA="true">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="Not integer" failure="true"/>
+        <Var name="id.Value.Is" NA="true">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="DELETE_pets-id">
+    <Has name="operation" value="DELETE"/>
+    <Has name="path" value="/pets/{id}"/>
+    <Has name="server" value="http://petstore.swagger.io/api"/>
+    <Has name="version" value="1.0.0"/>
+    <TestCase id="0">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id,idValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="integer"/>
+        <Var name="id.Value.Is" value="&lt; 0">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id,idValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="integer"/>
+        <Var name="id.Value.Is" value="0">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id,idValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="integer"/>
+        <Var name="id.Value.Is" value="&gt; 0">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="No" failure="true">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" NA="true"/>
+        <Var name="id.Value.Is" NA="true">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="null" failure="true"/>
+        <Var name="id.Value.Is" NA="true">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/pets/{id}"/>
+      <Has name="properties" value="id"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="path">
+        <Var name="id.Defined" value="Yes">
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="id.Type" value="Not integer" failure="true"/>
+        <Var name="id.Value.Is" NA="true">
+          <Has name="format" value="int64"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>
