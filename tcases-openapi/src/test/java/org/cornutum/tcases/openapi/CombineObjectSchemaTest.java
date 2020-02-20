@@ -236,12 +236,14 @@ public class CombineObjectSchemaTest extends OpenApiTest
    * <TR><TD> base.maxProperties </TD> <TD> null </TD> </TR>
    * <TR><TD> base.minProperties </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.required </TD> <TD> null </TD> </TR>
+   * <TR><TD> base.notRequired </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.properties </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> base.additionalProperties </TD> <TD> Schema </TD> </TR>
    * <TR><TD> additional.format </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.maxProperties </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.minProperties </TD> <TD> > base </TD> </TR>
    * <TR><TD> additional.required </TD> <TD> null </TD> </TR>
+   * <TR><TD> additional.notRequired </TD> <TD> Non-null </TD> </TR>
    * <TR><TD> additional.properties.members </TD> <TD> Same </TD> </TR>
    * <TR><TD> additional.properties.schema </TD> <TD> Same </TD> </TR>
    * <TR><TD> additional.additionalProperties </TD> <TD> false </TD> </TR>
@@ -261,6 +263,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Bravo", SchemaBuilder.ofType( "number").build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .additionalProperties( SchemaBuilder.ofType( "object").build())
+      .notRequired( "Delta")
       .build();
 
     NotificationContext context = new NotificationContext();
@@ -294,6 +297,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Bravo", SchemaBuilder.ofType( "number").build())
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .additionalProperties( false)
+      .notRequired( "Delta")
       .build();
     
     assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
@@ -1310,6 +1314,138 @@ public class CombineObjectSchemaTest extends OpenApiTest
           "Failure",
           failure.getMessage(),
           is( "Can't combine schema requiring {additionalProperties: true} with schema requiring {additionalProperties: false}"));
+        });
+    }
+  
+  @Test
+  public void whenNotRequiredCombined()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "object")
+      .format( null)
+      .maxProperties( null)
+      .minProperties( 2)
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .property( "Bravo", SchemaBuilder.ofType( "number").build())
+      .property( "Charlie", SchemaBuilder.ofType( "integer").build())
+      .additionalProperties( SchemaBuilder.ofType( "object").build())
+      .notRequired( "Delta")
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "object")
+      .format( "otherFormat")
+      .maxProperties( 100)
+      .minProperties( 10)
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .property( "Bravo", SchemaBuilder.ofType( "number").build())
+      .property( "Charlie", SchemaBuilder.ofType( "integer").build())
+      .additionalProperties( false)
+      .notRequired( "Delta", "Easy")
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "object")
+      .format( "otherFormat")
+      .maxProperties( 100)
+      .minProperties( 10)
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .property( "Bravo", SchemaBuilder.ofType( "number").build())
+      .property( "Charlie", SchemaBuilder.ofType( "integer").build())
+      .additionalProperties( false)
+      .notRequired( "Delta", "Easy")
+      .build();
+    
+    assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotRequiredConsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "object")
+      .format( "baseFormat")
+      .maxProperties( 10)
+      .minProperties( 1)
+      .additionalProperties( false)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+
+    // Then...
+    assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
+    assertThat( "With self", combineSchemas( context, base, base), matches( new SchemaMatcher( base)));
+
+    // Given...
+    Schema<?> additional =
+      SchemaBuilder.ofType( "object")
+      .format( null)
+      .maxProperties( 11)
+      .minProperties( 0)
+      .required( "Alpha", "Bravo", "Charlie")
+      .notRequired( "Delta", "Easy")
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .additionalProperties( false)
+      .build();
+
+    // When...
+    Schema<?> combined = combineSchemas( context, base, additional);
+
+    // Then...
+    Schema<?> expected =
+      SchemaBuilder.ofType( "object")
+      .format( "baseFormat")
+      .maxProperties( 10)
+      .minProperties( 1)
+      .required( "Alpha", "Bravo", "Charlie")
+      .notRequired( "Delta", "Easy")
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .additionalProperties( false)
+      .build();
+    
+    assertThat( "Object schema", combined, matches( new SchemaMatcher( expected)));
+    }
+  
+  @Test
+  public void whenNotRequiredInconsistent()
+    {
+    // Given...
+    Schema<?> base =
+      SchemaBuilder.ofType( "object")
+      .format( "baseFormat")
+      .maxProperties( 10)
+      .minProperties( 1)
+      .notRequired( "Bravo")
+      .additionalProperties( false)
+      .build();
+
+    Schema<?> additional =
+      SchemaBuilder.ofType( "object")
+      .format( null)
+      .maxProperties( 11)
+      .minProperties( 0)
+      .required( "Alpha", "Bravo", "Charlie")
+      .property( "Alpha", SchemaBuilder.ofType( "string").build())
+      .additionalProperties( false)
+      .build();
+
+    NotificationContext context = new NotificationContext();
+    
+    expectFailure( IllegalStateException.class)
+      .when( () -> combineSchemas( context, base, additional))
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Can't combine schema requiring {required: [Bravo]} with schema requiring {not: {required: [Bravo]}}"));
         });
     }
   }
