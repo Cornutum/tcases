@@ -570,7 +570,7 @@ public final class SchemaUtils
     Optional.ofNullable( combined.getMultipleOf())
       .flatMap( m -> Optional.ofNullable( getNotMultipleOfs( combined)).flatMap( nms -> nms.stream().filter( nm -> isMultipleOf( m, nm)).findFirst()))
       .ifPresent( nm -> {
-        throw inconsistentNotAssertion( "multiple: %s", combined.getMultipleOf(), nm);
+        throw inconsistentNotAssertion( "multipleOf: %s", combined.getMultipleOf(), nm);
         });
 
     return combined;
