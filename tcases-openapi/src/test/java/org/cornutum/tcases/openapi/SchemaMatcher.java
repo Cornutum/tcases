@@ -44,6 +44,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "type", Schema::getType).matches( Matchers::equalTo));
     expectThat( valueOf( "additionalProperties", this::getAdditionalPropertiesBoolean).matches( Matchers::equalTo));
     expectThat( valueOf( "additionalProperties", this::getAdditionalPropertiesSchema).matches( SchemaMatcher::new));
+    expectThat( valueOf( "enum", Schema::getEnum).matches( Composites::containsMembers));
     expectThat( valueOf( "exclusiveMaximum", Schema::getExclusiveMaximum).matches( Matchers::equalTo));
     expectThat( valueOf( "exclusiveMinimum", Schema::getExclusiveMinimum).matches( Matchers::equalTo));
     expectThat( valueOf( "format", Schema::getFormat).matches( Matchers::equalTo));
@@ -61,6 +62,8 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "notEnums", this::getNotEnums).matches( Composites::containsMembers));
     expectThat( valueOf( "notMultipleOfs", this::getNotMultipleOfs).matches( Composites::containsMembers));
     expectThat( valueOf( "notPatterns", this::getNotPatterns).matches( Composites::containsMembers));
+    expectThat( valueOf( "notRequired", this::getNotRequired).matches( Composites::containsMembers));
+    expectThat( valueOf( "notTypes", this::getNotTypes).matches( Composites::containsMembers));
     expectThat( valueOf( "nullable", Schema::getNullable).matches( Matchers::equalTo));
     expectThat( valueOf( "patterns", this::getPatterns).matches( Composites::containsMembers));
     expectThat( valueOf( "properties", this::getProperties).matches( containsMembersMatching( Property.Matcher::new)));
@@ -135,6 +138,22 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
   private Iterable<String> getNotPatterns( Schema schema)
     {
     return SchemaExtensions.getNotPatterns( schema);
+    }
+
+  /**
+   * Returns the composed set of required assertions to not match when validating the given schema.
+   */
+  private Iterable<String> getNotRequired( Schema schema)
+    {
+    return SchemaExtensions.getNotRequired( schema);
+    }
+
+  /**
+   * Returns the composed set of types to not match when validating the given schema.
+   */
+  private Iterable<String> getNotTypes( Schema schema)
+    {
+    return SchemaExtensions.getNotTypes( schema);
     }
 
   /**

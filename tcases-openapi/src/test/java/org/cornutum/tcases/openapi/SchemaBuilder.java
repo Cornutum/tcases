@@ -314,6 +314,18 @@ public class SchemaBuilder
     return this;
     }
   
+  public SchemaBuilder notRequired( String... required)
+    {
+    SchemaExtensions.setNotRequired( schema_, Arrays.asList( required));
+    return this;
+    }
+  
+  public SchemaBuilder notTypes( String... types)
+    {
+    SchemaExtensions.setNotTypes( schema_, Arrays.asList( types));
+    return this;
+    }
+  
   public SchemaBuilder nullable( Boolean nullable)
     {
     schema_.setNullable( nullable);
