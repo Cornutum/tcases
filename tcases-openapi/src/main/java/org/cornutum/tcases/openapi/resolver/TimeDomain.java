@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
 import org.cornutum.tcases.util.ToString;
 
 import java.util.Calendar;
@@ -21,7 +20,7 @@ import static java.util.Calendar.*;
 /**
  * Base class for a set of string-encoded time values that can be used by a request.
  */
-public abstract class TimeDomain extends AbstractStringDomain
+public abstract class TimeDomain extends RestrictedStringDomain
   {  
   /**
    * Creates a new TimeDomain instance.
@@ -75,33 +74,6 @@ public abstract class TimeDomain extends AbstractStringDomain
     Calendar maxDate = Calendar.getInstance();
     maxDate.set( YEAR, maxDate.get( YEAR) + 1);
     return maxDate.getTime();
-    }
-
-  /**
-   * Defines a constant length range for values in this domain.
-   */
-  public void setLengthRange( Integer length)
-    {
-    if( !getLengthRange().contains( length))
-      {
-      throw new RequestCaseException( String.format( "Invalid value length=%s -- length must be %s", length, getLengthRange()));
-      }
-    }
-
-  /**
-   * Defines the length range for values in this domain.
-   */
-  public void setLengthRange( Integer min, Integer max)
-    {
-    throw new RequestCaseException( String.format( "Invalid value length range=[%s,%s] -- length must be %s", min, max, getLengthRange()));
-    }
-
-  /**
-   * Defines the length range for values in this domain.
-   */
-  public void setLengthRange( Range range)
-    {
-    throw new RequestCaseException( String.format( "Invalid value length range=%s -- length must be %s", range, getLengthRange()));
     }
 
   /**
