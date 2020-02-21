@@ -7,14 +7,14 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.cornutum.tcases.FunctionTestDef;
 import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.io.SystemTestResource;
-
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.junit.Test;
+import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -62,6 +62,30 @@ public class RequestCaseDefinerTest
   public void forArrays()
     {
     getRequestCaseDefs( "array");
+    }
+  
+  @Test
+  public void forAllOfs()
+    {
+    getRequestCaseDefs( "allOf");
+    }
+  
+  @Test
+  public void forAnyOfs()
+    {
+    getRequestCaseDefs( "anyOf");
+    }
+  
+  @Test
+  public void forOneOfs()
+    {
+    getRequestCaseDefs( "oneOf");
+    }
+  
+  @Test
+  public void forNots()
+    {
+    getRequestCaseDefs( "not");
     }
 
   /**
@@ -114,7 +138,16 @@ public class RequestCaseDefinerTest
    */
   private Stream<File> getRequestTestResources( String baseName)
     {
-    return Arrays.stream( getResourceDir().listFiles( baseNameResources( baseName)));
+    String testBaseName = trimToNull( System.getProperty( "testBaseName"));
+
+    return
+      testBaseName == null?
+      Arrays.stream( getResourceDir().listFiles( baseNameResources( baseName))) :
+
+      testBaseName.startsWith( baseName)?
+      Arrays.stream( getResourceDir().listFiles( baseNameResources( testBaseName))) :
+
+      Stream.empty();      
     }
 
   /**

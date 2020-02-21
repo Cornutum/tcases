@@ -117,7 +117,7 @@ public final class VarProperties
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( String.format( "Can't get value set at path=%", path), e);
+      throw new RequestCaseException( String.format( "Can't get value set at path=%s", path), e);
       }
     }
 
@@ -241,6 +241,19 @@ public final class VarProperties
     }
 
   /**
+   * If the given properties define one of multiple alternative values, returns the properties of
+   * the specified alternative. Otherwise, returns <CODE>propertyValues</CODE>.
+   */
+  public static Map<String,Object> getAlternativePropertyValues( Map<String,Object> propertyValues)
+    {
+    return
+      Optional.ofNullable( propertyValues)
+      .flatMap( properties -> Optional.ofNullable( getPropertyValues( properties, "Alternative")))
+      .map( alternatives -> getPropertyValues( alternatives, String.valueOf( getVarBinding( alternatives, "Used").getValue())))
+      .orElse( propertyValues);
+    }
+
+  /**
    * Returns the accepted value types represented by the given properties.
    */
   public static Type[] getValueTypes( Map<String,Object> propertyValues)
@@ -266,13 +279,16 @@ public final class VarProperties
       Matcher matcher = valueTypePattern_.matcher( typeValue.get());
       if( !matcher.matches())
         {
-        throw new RequestCaseException( String.format( "Unknown value type=%", typeValue.get()));
+        throw new RequestCaseException( String.format( "Unknown value type=%s", typeValue.get()));
         }
 
-      Type baseType;
+      Type[] baseTypes;
       try
         {
-        baseType = Type.valueOf( matcher.group(2).toUpperCase());
+        baseTypes =
+          Arrays.stream( matcher.group(2).toUpperCase().split( ","))
+          .map( Type::valueOf)
+          .toArray( Type[]::new);
         }
       catch( Exception e)
         {
@@ -281,8 +297,8 @@ public final class VarProperties
 
       types =
         matcher.group(1) == null
-        ? Type.only( baseType)
-        : Type.not( baseType);
+        ? baseTypes
+        : Type.not( baseTypes);
       }
 
     return types;
@@ -293,7 +309,9 @@ public final class VarProperties
    */
   public static ValueDomain<?> toValueDomain( Map<String,Object> propertyValues)
     {
-    Type[] types = getValueTypes( propertyValues);
+    Map<String,Object> valueProperties =  getAlternativePropertyValues( propertyValues);
+    
+    Type[] types = getValueTypes( valueProperties);
 
     return
       types == null?
@@ -303,25 +321,25 @@ public final class VarProperties
       new MultiTypeDomain( types) :
 
       types[0] == Type.ARRAY?
-      toArrayDomain( propertyValues) :
+      toArrayDomain( valueProperties) :
 
       types[0] == Type.BOOLEAN?
-      toBooleanDomain( propertyValues) :
+      toBooleanDomain( valueProperties) :
 
       types[0] == Type.INTEGER?
-      toNumberDomain( Type.INTEGER, propertyValues) :
+      toNumberDomain( Type.INTEGER, valueProperties) :
 
       types[0] == Type.NULL?
       new NullDomain() :
 
       types[0] == Type.NUMBER?
-      toNumberDomain( Type.NUMBER, propertyValues) :
+      toNumberDomain( Type.NUMBER, valueProperties) :
 
       types[0] == Type.OBJECT?
-      toObjectDomain( propertyValues) :
+      toObjectDomain( valueProperties) :
 
       types[0] == Type.STRING?
-      toStringDomain( propertyValues) :
+      toStringDomain( valueProperties) :
 
       null;
     }
@@ -367,7 +385,6 @@ public final class VarProperties
   public static ValueDomain<?> toStringDomain( Map<String,Object> propertyValues)
     {
     String format;
-    Range lengthRange;
     Set<String> excluded;
 
     Map<String,Object> stringProperties = getIfPropertyValues( propertyValues, "Value");
@@ -378,26 +395,24 @@ public final class VarProperties
       : Optional.ofNullable( getVarBinding( stringProperties, "Is")).filter( v -> !v.isValueNA()).orElse( null);
 
     VarBinding length =
-      stringProperties == null
-      ? null
-      : expectVarBinding( stringProperties, "Length");
+      Optional.ofNullable( stringProperties)
+      .flatMap( properties -> Optional.of( expectVarBinding( properties, "Length")))
+      .filter( binding -> !binding.isValueNA())
+      .orElse( null);
     
     if( value != null)
       {
       format = value.getAnnotation( "format");
-      lengthRange = null;
       excluded = Optional.ofNullable( value.getAnnotationList( "excluded")).map( e -> e.stream().collect( toSet())).orElse( emptySet());
       }
     else if( length != null)
       {
       format = length.getAnnotation( "format");
-      lengthRange = Range.of( length);
       excluded = emptySet();
       }
     else
       {
       format = null;
-      lengthRange = null;
       excluded = emptySet();
       }
 
@@ -433,9 +448,9 @@ public final class VarProperties
 
         new AsciiStringDomain();
 
-      if( !("date".equals( format) || "date-time".equals( format)))
+      if( !("date".equals( format) || "date-time".equals( format)) && length != null)
         {
-        baseDomain.setLengthRange( lengthRange);
+        baseDomain.setLengthRange( Range.of( length));
         }
       baseDomain.setExcludedStrings( excluded);
       domain = baseDomain;

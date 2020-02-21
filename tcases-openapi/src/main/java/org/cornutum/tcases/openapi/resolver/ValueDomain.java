@@ -31,11 +31,15 @@ public interface ValueDomain<T>
     /**
      * Returns the set of all non-null types except for the specified excluded type.
      */
-    public static Type[] not( Type excluded)
+    public static Type[] not( Type... excluded)
       {
       return
         Arrays.stream( Type.values())
-        .filter( type -> !type.equals( NULL) && !type.equals( excluded) && !(excluded == NUMBER && type.equals( INTEGER)))
+        .filter( type -> {
+          return
+            !type.equals( NULL)
+            && Arrays.stream( excluded).noneMatch( e -> type.equals( e) || (type.equals( INTEGER) && e == NUMBER));
+          })
         .toArray( Type[]::new);
       }
 
