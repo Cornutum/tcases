@@ -20,6 +20,7 @@ import org.cornutum.tcases.openapi.reader.OpenApiReaderException;
 import static org.cornutum.tcases.util.CollectionUtils.membersOf;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import static org.apache.commons.lang3.StringUtils.trimToNull;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
@@ -357,6 +358,11 @@ public abstract class OpenApiTest
   
   private final SystemInputResources inputResources_ = new SystemInputResources( getClass());
   private final SystemTestResources testResources_ = new SystemTestResources( getClass());
-  private final File saveExpectedDir_ = Optional.ofNullable( System.getProperty( "saveExpectedTo")).map( path -> new File( path)).orElse( null);
+
+  private final File saveExpectedDir_ =
+    Optional.ofNullable( trimToNull( System.getProperty( "saveExpectedTo")))
+    .map( path -> new File( path))
+    .orElse( null);
+
   private ModelConditionRecorder conditionRecorder_;
   }
