@@ -193,6 +193,14 @@ public abstract class SequenceDomain<T> implements ValueDomain<T>
     return value1.equals( value2);
     }
 
+  /**
+   * Returns true if sequences in this domain are restricted to a constant length.  
+   */
+  protected boolean isRestrictedLength()
+    {
+    return false;
+    }
+
   public String toString()
     {
     return

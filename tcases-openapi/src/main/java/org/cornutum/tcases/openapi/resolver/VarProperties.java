@@ -426,6 +426,9 @@ public final class VarProperties
         "date-time".equals( format)?
         new DateTimeConstant( String.valueOf( value.getValue())) :
 
+        "uuid".equals( format)?
+        new UuidConstant( String.valueOf( value.getValue())) :
+
         "binary".equals( format)?
         new BinaryConstant( (byte[]) value.getValue()) :
 
@@ -440,6 +443,9 @@ public final class VarProperties
         "date-time".equals( format)?
         new DateTimeDomain() :
 
+        "uuid".equals( format)?
+        new UuidDomain() :
+
         "binary".equals( format)?
         new BinaryDomain() :
 
@@ -448,10 +454,11 @@ public final class VarProperties
 
         new AsciiStringDomain();
 
-      if( !("date".equals( format) || "date-time".equals( format)) && length != null)
-        {
-        baseDomain.setLengthRange( Range.of( length));
-        }
+      Optional.ofNullable( length)
+        .filter( binding -> !baseDomain.isRestrictedLength())
+        .map( Range::of)
+        .ifPresent( range -> baseDomain.setLengthRange( range));
+
       baseDomain.setExcludedStrings( excluded);
       domain = baseDomain;
       }

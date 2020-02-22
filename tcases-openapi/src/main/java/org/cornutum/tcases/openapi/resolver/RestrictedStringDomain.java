@@ -48,4 +48,12 @@ public abstract class RestrictedStringDomain extends AbstractStringDomain
     {
     throw new RequestCaseException( String.format( "Invalid value length range=%s -- length must be %s", range, getLengthRange()));
     }
+
+  /**
+   * Returns true if sequences in this domain are restricted to a constant length.  
+   */
+  protected boolean isRestrictedLength()
+    {
+    return true;
+    }
 }
