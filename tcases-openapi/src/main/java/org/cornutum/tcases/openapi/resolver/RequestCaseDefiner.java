@@ -10,12 +10,13 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.*;
 import static org.cornutum.tcases.openapi.resolver.VarProperties.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 
 import java.net.URI;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
-
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toMap;
 
@@ -181,16 +182,20 @@ public class RequestCaseDefiner
           Optional.ofNullable( propertyValues).map( VarProperties::getVarBindings).orElse( Stream.empty())))
       .allMatch( VarBinding::isValueValid));
         
+    Optional<String> mediaTypeSpecified =
+      Optional.ofNullable( mediaType)
+      .map( binding -> binding.getAnnotation( "mediaType"));
+
+    Optional<Set<String>> mediaTypesExcluded =
+      Optional.ofNullable( mediaType)
+      .flatMap( binding -> Optional.ofNullable( binding.getAnnotationList( "excluded")))
+      .map( excluded -> excluded.stream().collect( toOrderedSet()));    
+
     valueDef.setMediaType(
-      Optional.ofNullable( mediaType)
-      .map( binding -> binding.getAnnotation( "mediaType"))
-      .orElse( null));
-
-    valueDef.setNotMediaTypes(
-      Optional.ofNullable( mediaType)
-      .map( binding -> Optional.ofNullable( binding.getAnnotationList( "excluded")).orElse( null))
-      .orElse( null));    
-
+      mediaTypesExcluded
+      .map( excluded -> (ValueDomain<String>) MediaTypeDomain.except( excluded))
+      .orElse( mediaTypeSpecified.map( StringConstant::new).orElse( null)));
+      
     return valueDef;
     }
 

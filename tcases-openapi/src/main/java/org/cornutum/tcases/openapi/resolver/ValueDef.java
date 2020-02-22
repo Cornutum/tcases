@@ -72,35 +72,19 @@ public class ValueDef<T>
     }
   
   /**
-   * Changes the media type for this value.
+   * Changes the media type domain for this value.
    */
-  public void setMediaType( String mediaType)
+  public void setMediaType( ValueDomain<String> mediaType)
     {
     mediaType_ = mediaType;
     }
 
   /**
-   * Returns the media type for this value.
+   * Returns the media type domain for this value.
    */
-  public String getMediaType()
+  public ValueDomain<String> getMediaType()
     {
     return mediaType_;
-    }
-  
-  /**
-   * Changes the media types NOT allowed for this value.
-   */
-  public void setNotMediaTypes( Iterable<String> mediaTypes)
-    {
-    notMediaTypes_ = mediaTypes;
-    }
-
-  /**
-   * Returns the media types NOT allowed for this value.
-   */
-  public Iterable<String> getNotMediaTypes()
-    {
-    return notMediaTypes_;
     }
 
   public String toString()
@@ -115,6 +99,5 @@ public class ValueDef<T>
   private final ValueDomain<T> domain_;
   private boolean valid_;
   private String format_;
-  private String mediaType_;
-  private Iterable<String> notMediaTypes_;
+  private ValueDomain<String> mediaType_;
   }
