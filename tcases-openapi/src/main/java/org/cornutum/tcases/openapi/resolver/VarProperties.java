@@ -452,6 +452,9 @@ public final class VarProperties
         "byte".equals( format)?
         new Base64Domain() :
 
+        "email".equals( format)?
+        new EmailDomain() :
+
         new AsciiStringDomain();
 
       Optional.ofNullable( length)
