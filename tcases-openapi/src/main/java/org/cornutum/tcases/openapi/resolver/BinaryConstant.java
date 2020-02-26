@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 import java.util.Arrays;
 
 /**
@@ -28,5 +30,13 @@ public class BinaryConstant extends ConstantDomain<byte[]>
   public boolean contains( byte[] value)
     {
     return Arrays.equals( value, getValue());
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<byte[]> dataValueOf( byte[] value)
+    {
+    return new BinaryValue( value);
     }
   }

@@ -41,11 +41,19 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
     }
 
   /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<String> dataValueOf( String value)
+    {
+    return new StringValue( value);
+    }
+
+  /**
    * Returns a new random string.
    */
   protected String newValue( Random random)
     {
-    return newValue( random, getLengthRange().select( random));
+    return newValue( random, getLengthRange().selectValue( random));
     }
 
   /**

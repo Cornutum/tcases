@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ import static java.util.stream.Collectors.toSet;
 /**
  * Defines the properties of a set of object values that can be used by a request.
  */
-public class ObjectDomain implements ValueDomain<Map<String,Object>>
+public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
   {
   /**
    * Creates a new ObjectDomain instance.
@@ -119,28 +120,36 @@ public class ObjectDomain implements ValueDomain<Map<String,Object>>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<Map<String,Object>> values( Random random)
+  public Stream<DataValue<Map<String,DataValue<?>>>> values( Random random)
     {
-    return Stream.generate( () -> newObject( random));
+    return Stream.generate( () -> dataValueOf( newObject( random)));
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<Map<String,DataValue<?>>> dataValueOf( Map<String,DataValue<?>> value)
+    {
+    return new ObjectValue( value);
     }
 
   /**
    * Returns a new random object from this domain.
    */
-  private Map<String,Object> newObject( Random random)
+  private Map<String,DataValue<?>> newObject( Random random)
     {
     // Generate values for all specified properties
-    Map<String,Object> object =
+    Map<String,DataValue<?>> object =
       getPropertyDomains().entrySet().stream()
       .collect( toMap( e -> e.getKey(), e -> e.getValue().select( random)));
 
     // Additional properties needed?
-    int totalPropertyCount = object.size() + getAdditionalPropertyCount().select( random);
+    int totalPropertyCount = object.size() + getAdditionalPropertyCount().selectValue( random);
     while( object.size() < totalPropertyCount)
       {
       // Yes, add unique additional property.
       String additional;
-      while( object.containsKey( (additional = getAdditionalPropertyNames().select( random))));
+      while( object.containsKey( (additional = getAdditionalPropertyNames().selectValue( random))));
       object.put( additional, getAdditionalPropertyValues().select( random));
       }
 
@@ -150,11 +159,11 @@ public class ObjectDomain implements ValueDomain<Map<String,Object>>
   /**
    * Returns true if the given value belongs to this domain.
    */
-  public boolean contains( Map<String,Object> value)
+  public boolean contains( Map<String,DataValue<?>> value)
     {
     boolean containsProperties =
       getPropertyDomains().entrySet().stream()
-      .allMatch( e -> value.containsKey( e.getKey()) && e.getValue().containsObject( value.get( e.getKey())));
+      .allMatch( e -> value.containsKey( e.getKey()) && e.getValue().contains( value.get( e.getKey())));
 
     if( containsProperties)
       {
@@ -170,7 +179,7 @@ public class ObjectDomain implements ValueDomain<Map<String,Object>>
         .allMatch(
           p ->
           getAdditionalPropertyNames().contains( p)
-          && getAdditionalPropertyValues().containsObject( value.get(p)));
+          && getAdditionalPropertyValues().contains( value.get(p)));
       }
       
     return containsProperties;

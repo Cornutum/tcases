@@ -9,6 +9,8 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBindingBuilder;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
@@ -17,14 +19,13 @@ import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
 import java.util.List;
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 /**
  * Runs tests for {@link DateDomain}.
  */
 public class DateDomainTest extends ValueDomainTest
-  {  
+  {
   @Test
   public void whenConstant()
     {
@@ -33,9 +34,9 @@ public class DateDomainTest extends ValueDomainTest
     StringConstant domain = new DateConstant( value);
 
     // Then...
-    List<String> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<String> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getRandom()), is( value));
+    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( value, Type.STRING, "date")));
     assertThat( "Contains", domain.contains( value), is( true));
     assertThat( "Contains", domain.contains( ""), is( false));
     }
@@ -65,6 +66,12 @@ public class DateDomainTest extends ValueDomainTest
     assertThat( "Contains", domain.contains( "2019-02-20"), is( true));
     assertThat( "Contains", domain.contains( "2020-02-20"), is( false));
     assertThat( "Contains", domain.contains( ""), is( false));
+
+    // When...
+    DataValue<String> value = domain.select( getRandom());
+
+    // Then...
+    assertThat( "Value", value, matches( dataValueMatcher( value.getValue(), Type.STRING, "date")));
     }
 
   @Test

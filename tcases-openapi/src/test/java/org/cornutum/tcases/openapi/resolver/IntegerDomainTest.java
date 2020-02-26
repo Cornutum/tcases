@@ -9,14 +9,15 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBindingBuilder;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 import java.util.List;
@@ -50,9 +51,9 @@ public class IntegerDomainTest extends ValueDomainTest
     IntegerConstant domain = new IntegerConstant( -99);
 
     // Then...
-    List<Integer> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<Integer> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getRandom()), is( -99));
+    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( -99, Type.INTEGER, "int32")));
     }
 
   @Test
@@ -84,15 +85,15 @@ public class IntegerDomainTest extends ValueDomainTest
     domain.setNotMultipleOfs( Stream.of( 5, 2).collect( toSet()));
 
     // Then...
-    List<Integer> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<Integer> values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 1));
-    assertThat( "Value", domain.select( getRandom()), is( 9));
+    assertThat( "Value", domain.select( getRandom()), matches( dataValueMatcher( 9, Type.INTEGER, "int32")));
 
     // When...
     domain.setRange( 13, 20);
     
     // Then...
-    values = domain.values( getRandom()).limit( 10).collect( toList());
+    values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 0));
     expectFailure( IllegalStateException.class).when( () -> domain.select( getRandom()));
 

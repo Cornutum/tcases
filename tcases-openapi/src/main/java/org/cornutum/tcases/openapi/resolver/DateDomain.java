@@ -38,6 +38,14 @@ public class DateDomain extends TimeDomain
     }
 
   /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<String> dataValueOf( String value)
+    {
+    return new DateValue( value);
+    }
+
+  /**
    * Defines the initial length range for values in this domain.
    */
   protected void initLengthRange()

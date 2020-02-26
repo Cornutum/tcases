@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
@@ -41,7 +43,7 @@ public abstract class ValueDomainTest
    */
   protected <T> void verifyContainsValues( ValueDomain<T> domain, int limit)
     {
-    List<T> values = 
+    List<DataValue<T>> values = 
       domain.values( getRandom())
       .limit( limit)
       .collect( toList());
@@ -53,6 +55,36 @@ public abstract class ValueDomainTest
           String.format( "seed=%s, value=%s is member", getSeed(), value),
           domain.contains( value),
           is( true)));
+    }
+
+  /**
+   * Generates up to the given limit of random values from the given domain, verifying that each of is contained by the domain.
+   */
+  protected <T> List<DataValue<T>> dataValuesOf( ValueDomain<T> domain, int limit)
+    {
+    return
+      domain.values( getRandom())
+      .limit( limit)
+      .collect( toList());
+    }
+
+  /**
+   * Generates up to the given limit of random values from the given domain, verifying that each of is contained by the domain.
+   */
+  protected <T> List<T> valuesOf( ValueDomain<T> domain, int limit)
+    {
+    return
+      dataValuesOf( domain, limit).stream()
+      .map( DataValue::getValue)
+      .collect( toList());
+    }
+
+  /**
+   * Returns a Matcher for {@link DataValue} with the given properties.
+   */
+  protected DataValueMatcher dataValueMatcher( Object value, Type type, String format)
+    {
+    return new DataValueMatcher( DataValue.of( value, type, format));
     }
 
   private static long seed_;

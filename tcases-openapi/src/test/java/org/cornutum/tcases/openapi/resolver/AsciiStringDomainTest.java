@@ -9,13 +9,14 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBindingBuilder;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 import java.util.List;
@@ -30,12 +31,12 @@ public class AsciiStringDomainTest extends ValueDomainTest
     {
     // Given...
     String value = "Hello, world!";
-    StringConstant domain = new StringConstant( value);
+    StringConstant domain = new StringConstant( value, "myformat");
 
     // Then...
-    List<String> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<String> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getRandom()), is( value));
+    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( value, Type.STRING, "myformat")));
     assertThat( "Contains", domain.contains( value), is( true));
     assertThat( "Contains", domain.contains( ""), is( false));
     }
@@ -59,6 +60,12 @@ public class AsciiStringDomainTest extends ValueDomainTest
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOP"), is( false));
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOPQRSTUVWZYZABCDEFG"), is( false));
     assertThat( "Contains", domain.contains( "Mañana, Schrödinger"), is( false));
+
+    // When...
+    DataValue<String> value = domain.select( getRandom());
+
+    // Then...
+    assertThat( "Value", value, matches( dataValueMatcher( value.getValue(), Type.STRING, null)));
     }
 
   @Test

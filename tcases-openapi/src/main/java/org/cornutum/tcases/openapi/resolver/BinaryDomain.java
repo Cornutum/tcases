@@ -35,6 +35,14 @@ public class BinaryDomain extends SequenceDomain<byte[]>
     }
 
   /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<byte[]> dataValueOf( byte[] value)
+    {
+    return new BinaryValue( value);
+    }
+
+  /**
    * Changes the values excluded from this domain.
    */
   public void setExcludedStrings( Set<String> excluded)
@@ -66,7 +74,7 @@ public class BinaryDomain extends SequenceDomain<byte[]>
    */
   private byte[] newValue( Random random)
     {
-    byte[] bytes = new byte[ getLengthRange().select( random)];
+    byte[] bytes = new byte[ getLengthRange().selectValue( random)];
     random.nextBytes( bytes);
     return bytes;
     }

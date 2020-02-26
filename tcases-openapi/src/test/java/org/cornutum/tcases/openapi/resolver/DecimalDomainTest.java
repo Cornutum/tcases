@@ -9,14 +9,15 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBindingBuilder;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 import java.math.BigDecimal;
@@ -31,7 +32,7 @@ public class DecimalDomainTest extends ValueDomainTest
   public void whenNotMultipleOf()
     {
     // Given...
-    DecimalDomain domain = new DecimalDomain();
+    DecimalDomain domain = new DecimalDomain( "float");
 
     // When...
     domain.setRange( new BigDecimal( "7.0"), new BigDecimal( "10.0"));
@@ -39,15 +40,15 @@ public class DecimalDomainTest extends ValueDomainTest
     domain.setNotMultipleOfs( new String[]{ "5" });
 
     // Then...
-    List<BigDecimal> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<BigDecimal> values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 1));
-    assertThat( "Value", domain.select( getRandom()), is( new BigDecimal( "8.0")));
+    assertThat( "Value", domain.select( getRandom()), matches( dataValueMatcher( new BigDecimal( "8.0"), Type.NUMBER, "float")));
 
     // When...
     domain.setRange( new BigDecimal( "9.0"), new BigDecimal( "11.0"));
     
     // Then...
-    values = domain.values( getRandom()).limit( 10).collect( toList());
+    values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 0));
     expectFailure( IllegalStateException.class).when( () -> domain.select( getRandom()));
 
@@ -65,12 +66,12 @@ public class DecimalDomainTest extends ValueDomainTest
   public void whenConstant()
     {
     // Given...
-    DecimalConstant domain = new DecimalConstant( new BigDecimal( "-123456789.0"));
+    DecimalConstant domain = new DecimalConstant( new BigDecimal( "-123456789.0"), "double");
 
     // Then...
-    List<BigDecimal> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<BigDecimal> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getRandom()), is( new BigDecimal( "-123456789.0")));
+    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( new BigDecimal( "-123456789.0"), Type.NUMBER, "double")));
     }
   
   @Test

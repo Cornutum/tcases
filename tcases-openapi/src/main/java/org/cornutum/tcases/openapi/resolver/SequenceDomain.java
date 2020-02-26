@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Optional;
 import java.util.Random;
@@ -20,7 +21,7 @@ import static java.util.Collections.emptySet;
 /**
  * Base class for domains that define a set of byte/character sequences that can be used by a request.
  */
-public abstract class SequenceDomain<T> implements ValueDomain<T>
+public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
   {
   /**
    * Creates a new SequenceDomain instance.
@@ -152,11 +153,12 @@ public abstract class SequenceDomain<T> implements ValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<T> values( Random random)
+  public Stream<DataValue<T>> values( Random random)
     {
     return
       candidates( random)
-      .filter( value -> isNotExcluded( value, getExcluded()));
+      .filter( value -> isNotExcluded( value, getExcluded()))
+      .map( value -> dataValueOf( value));
     }
   
   /**

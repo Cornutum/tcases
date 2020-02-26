@@ -76,6 +76,14 @@ public class EmailDomain extends AbstractStringDomain
     }
 
   /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<String> dataValueOf( String value)
+    {
+    return new EmailValue( value);
+    }
+
+  /**
    * Returns true if the given value belongs to this domain.
    */
   public boolean contains( String value)

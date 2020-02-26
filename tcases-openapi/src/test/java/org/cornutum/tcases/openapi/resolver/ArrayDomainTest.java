@@ -8,12 +8,15 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Arrays;
 import java.util.List;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Runs tests for {@link ArrayDomain}.
@@ -51,7 +54,7 @@ public class ArrayDomainTest extends ValueDomainTest
     // Then...
     verifyContainsValues( domain, 1000);
 
-    assertThat( "Contains", domain.contains( listOf()), is( true));
+    assertThat( "Contains", domain.contains( listOf( new String[0])), is( true));
     assertThat( "Contains", domain.contains( listOf( "Constant", "Constant", "Constant")), is( true));
     assertThat( "Contains", domain.contains( listOf( "Constant", "Constant", "Nope")), is( false));
     assertThat( "Contains", domain.contains( listOf( "Constant", "Constant", "Constant", "Constant")), is( false));
@@ -81,21 +84,61 @@ public class ArrayDomainTest extends ValueDomainTest
   public void whenItemsUnique()
     {
     // Given...
-    ArrayDomain<Integer> domain = new ArrayDomain<Integer>(4);
+    ArrayDomain<Object> domain = new ArrayDomain<Object>(4);
 
     // When...
     domain.setItemCount( new IntegerConstant( 4));
-    domain.setItemValues( new IntegerDomain( 0, 4));
+    domain.setItemValues( new MultiTypeDomain( Type.BOOLEAN, Type.STRING, Type.INTEGER));
     domain.setItemsUnique( true);
     
     // Then...
     verifyContainsValues( domain, 1000);
 
-    assertThat( "Contains", domain.contains( listOf( 0, 1, 2, 4)), is( true));
-    assertThat( "Contains", domain.contains( listOf( 1, 2, 3, 4)), is( true));
-    assertThat( "Contains", domain.contains( listOf( 0, 1, 0, 4)), is( false));
-    assertThat( "Contains", domain.contains( listOf()), is( false));
-    assertThat( "Contains", domain.contains( listOf( 0, 1, 2, 3, 4)), is( false));
+    assertThat(
+      "Contains",
+      domain.contains(
+        listOf(
+          new BooleanValue(true),
+          new StringValue("true"),
+          new IntegerValue(0),
+          new IntegerValue(1))),
+      is( true));
+    assertThat(
+      "Contains",
+      domain.contains(
+        listOf(
+          new StringValue("one"),
+          new StringValue("two"),
+          new StringValue("three"),
+          new StringValue("four"))),
+      is( true));
+    assertThat(
+      "Contains",
+      domain.contains(
+        listOf(
+          new StringValue("one"),
+          new IntegerValue(2),
+          new StringValue("three"),
+          new IntegerValue(2))),
+      is( false));
+    assertThat(
+      "Contains",
+      domain.contains(
+        listOf(
+          new StringValue("one"),
+          new IntegerValue(2),
+          new StringValue("three"))),
+      is( false));
+    assertThat(
+      "Contains",
+      domain.contains(
+        listOf(
+          new BooleanValue(true),
+          new StringValue("true"),
+          new IntegerValue(0),
+          new BooleanValue(false),
+          new IntegerValue(1))),
+      is( false));
     }
 
   @Test
@@ -110,7 +153,7 @@ public class ArrayDomainTest extends ValueDomainTest
     // Then...
     verifyContainsValues( domain, 1000);
 
-    assertThat( "Contains", domain.contains( listOf()), is( true));
+    assertThat( "Contains", domain.contains( listOf( new String[0])), is( true));
     assertThat( "Contains", domain.contains( listOf( "Oops")), is( false));
     }
 
@@ -118,9 +161,48 @@ public class ArrayDomainTest extends ValueDomainTest
    * Returns a list of the given items.
    */
   @SafeVarargs
-  private final <T> List<T> listOf( T... items)
+  private final List<DataValue<Integer>> listOf( Integer... items)
     {
-    return Arrays.asList( items);
+    return
+      Arrays.stream( items)
+      .map( IntegerValue::new)
+      .collect( toList());
     }
 
+  /**
+   * Returns a list of the given items.
+   */
+  @SafeVarargs
+  private final List<DataValue<Long>> listOf( Long... items)
+    {
+    return
+      Arrays.stream( items)
+      .map( LongValue::new)
+      .collect( toList());
+    }
+
+  /**
+   * Returns a list of the given items.
+   */
+  @SafeVarargs
+  private final List<DataValue<String>> listOf( String... items)
+    {
+    return
+      Arrays.stream( items)
+      .map( StringValue::new)
+      .collect( toList());
+    }
+
+  /**
+   * Returns a list of the given items.
+   */
+  @SuppressWarnings("unchecked")
+  @SafeVarargs
+  private final List<DataValue<Object>> listOf( DataValue<?>... items)
+    {
+    return
+      Arrays.stream( items)
+      .map( item -> (DataValue<Object>) item)
+      .collect( toList());
+    }
   }

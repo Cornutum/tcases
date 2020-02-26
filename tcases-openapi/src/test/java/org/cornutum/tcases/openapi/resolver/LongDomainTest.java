@@ -9,14 +9,15 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBindingBuilder;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 import java.util.List;
@@ -49,15 +50,15 @@ public class LongDomainTest extends ValueDomainTest
     domain.setNotMultipleOfs( new String[]{ "5" });
 
     // Then...
-    List<Long> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<Long> values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 1));
-    assertThat( "Value", domain.select( getRandom()), is( 8L));
+    assertThat( "Value", domain.select( getRandom()), matches( dataValueMatcher( 8L, Type.INTEGER, "int64")));
 
     // When...
     domain.setRange( 9L, 11L);
     
     // Then...
-    values = domain.values( getRandom()).limit( 10).collect( toList());
+    values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 0));
     expectFailure( IllegalStateException.class).when( () -> domain.select( getRandom()));
 
@@ -78,9 +79,9 @@ public class LongDomainTest extends ValueDomainTest
     LongConstant domain = new LongConstant( -123456789L);
 
     // Then...
-    List<Long> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<Long> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getRandom()), is( -123456789L));
+    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( -123456789L, Type.INTEGER, "int64")));
     }
   
   @Test

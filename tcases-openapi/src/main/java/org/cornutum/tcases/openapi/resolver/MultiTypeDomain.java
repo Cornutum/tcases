@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Defines the set of values with any of a given list of types.
  */
-public class MultiTypeDomain implements ValueDomain<Object>
+public class MultiTypeDomain extends AbstractValueDomain<Object>
   {
   /**
    * Creates a new MultiTypeDomain instance.
@@ -34,9 +35,18 @@ public class MultiTypeDomain implements ValueDomain<Object>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<Object> values( Random random)
+  @SuppressWarnings("unchecked")
+  public Stream<DataValue<Object>> values( Random random)
     {
-    return Stream.generate( () -> typeDomains_.get( random.nextInt( typeDomains_.size())).select( random));
+    return Stream.generate( () -> (DataValue<Object>) typeDomains_.get( random.nextInt( typeDomains_.size())).select( random));
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<Object> dataValueOf( Object value)
+    {
+    throw new UnsupportedOperationException();
     }
 
   /**

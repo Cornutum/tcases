@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -22,7 +23,7 @@ import static java.util.stream.Collectors.joining;
 /**
  * Defines a set of numeric values that can be used by a request.
  */
-public abstract class NumberDomain<T extends Number & Comparable<T>> implements ValueDomain<T>
+public abstract class NumberDomain<T extends Number & Comparable<T>> extends AbstractValueDomain<T>
   {
   /**
    * Creates a new NumberDomain instance.

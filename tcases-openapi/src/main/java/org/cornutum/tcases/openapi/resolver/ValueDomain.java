@@ -7,7 +7,9 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import java.util.Arrays;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -15,47 +17,11 @@ import java.util.stream.Stream;
  * Defines a set of values that can be used by a request.
  */
 public interface ValueDomain<T>
-  {
-  enum Type
-    {
-    ARRAY, BOOLEAN, INTEGER, NULL, NUMBER, OBJECT, STRING;
-
-    /**
-     * Returns the set containing only the specified type.
-     */
-    public static Type[] only( Type type)
-      {
-      return new Type[]{ type };
-      }
-
-    /**
-     * Returns the set of all non-null types except for the specified excluded type.
-     */
-    public static Type[] not( Type... excluded)
-      {
-      return
-        Arrays.stream( Type.values())
-        .filter( type -> {
-          return
-            !type.equals( NULL)
-            && Arrays.stream( excluded).noneMatch( e -> type.equals( e) || (type.equals( INTEGER) && e == NUMBER));
-          })
-        .toArray( Type[]::new);
-      }
-
-    /**
-     * Returns the set of all non-null types.
-     */
-    public static Type[] any()
-      {
-      return not( NULL);
-      }
-    };
-  
+  {  
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<T> values( Random random);
+  public Stream<DataValue<T>> values( Random random);
 
   /**
    * Returns true if the given value belongs to this domain.
@@ -84,6 +50,14 @@ public interface ValueDomain<T>
     }
 
   /**
+   * Returns true if the given value belongs to this domain.
+   */
+  default public boolean contains( DataValue<?> value)
+    {
+    return containsObject( Optional.ofNullable( value).map( DataValue::getValue).orElse( null));
+    }
+
+  /**
    * Return the type(s) of values that belong to this domain.
    */
   public Type[] getTypes();
@@ -91,12 +65,20 @@ public interface ValueDomain<T>
   /**
    * Returns a random value from this domain.
    */
-  default public T select( Random random)
+  default public DataValue<T> select( Random random)
     {
     return
       values( random)
       .findFirst()
       .orElseThrow( () -> new IllegalStateException( String.format( "Domain=%s is empty", this)));
+    }
+
+  /**
+   * Returns a random value from this domain.
+   */
+  default public T selectValue( Random random)
+    {
+    return select( random).getValue();
     }
 
   /**

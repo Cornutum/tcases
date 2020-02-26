@@ -54,22 +54,6 @@ public class ValueDef<T>
     {
     return valid_;
     }
-
-  /**
-   * Changes the format of this value.
-   */
-  public void setFormat( String format)
-    {
-    format_ = format;
-    }
-
-  /**
-   * Returns the format of this value.
-   */
-  public String getFormat()
-    {
-    return format_;
-    }
   
   /**
    * Changes the media type domain for this value.
@@ -98,6 +82,5 @@ public class ValueDef<T>
 
   private final ValueDomain<T> domain_;
   private boolean valid_;
-  private String format_;
   private ValueDomain<String> mediaType_;
   }

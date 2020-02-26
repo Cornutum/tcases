@@ -23,6 +23,14 @@ public class DateConstant extends StringConstant
     }
 
   /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<String> dataValueOf( String value)
+    {
+    return new DateValue( value);
+    }
+
+  /**
    * Returns true if the given value is a valid date string.
    */
   public static boolean isDate( String value)

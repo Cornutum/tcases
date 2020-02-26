@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 import java.math.BigDecimal;
 
 /**
@@ -19,6 +21,25 @@ public class DecimalConstant extends ConstantDomain<BigDecimal>
    */
   public DecimalConstant( BigDecimal value)
     {
-    super( Type.NUMBER, value);
+    this( value, null);
     }
+  
+  /**
+   * Creates a new DecimalConstant instance.
+   */
+  public DecimalConstant( BigDecimal value, String format)
+    {
+    super( Type.NUMBER, value);
+    format_ = format;
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
+    {
+    return new DecimalValue( value, format_);
+    }
+
+  private final String format_;
   }

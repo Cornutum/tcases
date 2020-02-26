@@ -10,7 +10,7 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.DefUtils;
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
-import org.cornutum.tcases.openapi.resolver.ValueDomain.Type;
+import org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
@@ -432,7 +432,10 @@ public final class VarProperties
         "binary".equals( format)?
         new BinaryConstant( (byte[]) value.getValue()) :
 
-        new StringConstant( String.valueOf( value.getValue()));
+        "email".equals( format)?
+        new EmailConstant( String.valueOf( value.getValue())) :
+
+        new StringConstant( String.valueOf( value.getValue()), format);
       }
     else
       {
@@ -565,7 +568,7 @@ public final class VarProperties
       {
       valueDomain = 
         type == Type.NUMBER?
-        new DecimalConstant( new BigDecimal( range.getMax())) :
+        new DecimalConstant( new BigDecimal( range.getMax()), format) :
 
         "int64".equals( format)?
         new LongConstant( Long.valueOf( range.getMax())) :
@@ -576,7 +579,7 @@ public final class VarProperties
       {
       NumberDomain<?> numberDomain =       
         type == Type.NUMBER?
-        new DecimalDomain( range) :
+        new DecimalDomain( range, format) :
         
         "int64".equals( format)?
         new LongDomain( range) :

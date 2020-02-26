@@ -23,6 +23,14 @@ public class UuidConstant extends StringConstant
     }
 
   /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<String> dataValueOf( String value)
+    {
+    return new UuidValue( value);
+    }
+
+  /**
    * Returns true if the given value is a valid UUID string.
    */
   public static boolean isUuid( String value)

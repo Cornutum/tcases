@@ -9,6 +9,8 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBindingBuilder;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
@@ -17,7 +19,6 @@ import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
 import java.util.List;
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 /**
@@ -33,9 +34,9 @@ public class UuidDomainTest extends ValueDomainTest
     StringConstant domain = new UuidConstant( value);
 
     // Then...
-    List<String> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<String> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getRandom()), is( value));
+    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( value, Type.STRING, "uuid")));
     assertThat( "Contains", domain.contains( value), is( true));
     assertThat( "Contains", domain.contains( ""), is( false));
     }
@@ -63,6 +64,12 @@ public class UuidDomainTest extends ValueDomainTest
     verifyContainsValues( domain, 1000);
     assertThat( "Contains", domain.contains( "F81D4FAE-7DEC-11D0-A765-00A0C91E6BF6"), is( false));
     assertThat( "Contains", domain.contains( ""), is( false));
+
+    // When...
+    DataValue<String> value = domain.select( getRandom());
+
+    // Then...
+    assertThat( "Value", value, matches( dataValueMatcher( value.getValue(), Type.STRING, "uuid")));
     }
 
   @Test

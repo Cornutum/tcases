@@ -7,12 +7,14 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.List;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Runs tests for {@link NullDomain}.
@@ -26,9 +28,9 @@ public class NullDomainTest extends ValueDomainTest
     NullDomain domain = new NullDomain();
 
     // Then...
-    List<Object> values = domain.values( getRandom()).limit( 10).collect( toList());
+    List<Object> values = valuesOf( domain, 10);
     assertThat( "Null values size", values.size(), is( 1));
-    assertThat( "Null value", domain.select( getRandom()), nullValue());
+    assertThat( "Null value", domain.select( getRandom()), matches( dataValueMatcher( null, Type.NULL, null)));
 
     assertThat( "Contains", domain.contains( null), is( true));
     assertThat( "Contains", domain.contains( 1234), is( false));

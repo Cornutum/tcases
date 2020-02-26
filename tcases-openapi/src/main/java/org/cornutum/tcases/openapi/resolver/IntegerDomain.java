@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
@@ -120,7 +122,7 @@ public class IntegerDomain extends NumberDomain<Integer>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<Integer> values( Random random)
+  public Stream<DataValue<Integer>> values( Random random)
     {
     // Find smallest and largest multiples in range
     int multiple = Optional.ofNullable( getMultipleOf()).orElse( 1);
@@ -146,7 +148,7 @@ public class IntegerDomain extends NumberDomain<Integer>
     int multiplesCount = lastMultiple/multiple - firstMultiple/multiple + 1;
     final int originMultiple = firstMultiple;
     
-    return
+    Stream<Integer> integers =
       multiplesCount < 1?
       Stream.empty() :
 
@@ -158,5 +160,15 @@ public class IntegerDomain extends NumberDomain<Integer>
       .filter( i -> isNotExcluded( i, getExcluded()))
       .filter( i -> isNotMultipleOf( i, getNotMultipleOfs()))
       .mapToObj( Integer::new);
+
+    return integers.map( this::dataValueOf);
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<Integer> dataValueOf( Integer value)
+    {
+    return new IntegerValue( value);
     }
   }

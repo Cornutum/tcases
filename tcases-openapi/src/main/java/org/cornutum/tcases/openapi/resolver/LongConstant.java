@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 /**
  * Defines a singleton Long value set.
  */
@@ -18,5 +20,13 @@ public class LongConstant extends ConstantDomain<Long>
   public LongConstant( Long value)
     {
     super( Type.INTEGER, value);
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<Long> dataValueOf( Long value)
+    {
+    return new LongValue( value);
     }
   }

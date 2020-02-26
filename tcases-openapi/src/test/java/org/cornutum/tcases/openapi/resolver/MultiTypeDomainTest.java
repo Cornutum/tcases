@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.openapi.resolver.ValueDomain.Type;
+import org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import org.junit.Test;
 

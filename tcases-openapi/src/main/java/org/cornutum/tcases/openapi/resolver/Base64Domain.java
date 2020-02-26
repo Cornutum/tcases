@@ -39,6 +39,14 @@ public class Base64Domain extends SequenceDomain<String>
     }
 
   /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<String> dataValueOf( String value)
+    {
+    return new Base64Value( value);
+    }
+
+  /**
    * Changes the values excluded from this domain.
    */
   public void setExcludedStrings( Set<String> excluded)
@@ -158,7 +166,10 @@ public class Base64Domain extends SequenceDomain<String>
    */
   protected Stream<String> candidates( Random random)
     {
-    return getBytes().values( random) .map( Base64Domain::encoded);
+    return
+      getBytes().values( random)
+      .map( DataValue::getValue)
+      .map( Base64Domain::encoded);
     }
 
   private BinaryDomain bytes_;

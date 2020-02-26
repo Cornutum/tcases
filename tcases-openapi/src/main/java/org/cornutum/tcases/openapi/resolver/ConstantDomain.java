@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Objects;
 import java.util.Random;
@@ -16,7 +17,7 @@ import java.util.stream.Stream;
 /**
  * Defines a singleton value set.
  */
-public abstract class ConstantDomain<T> implements ValueDomain<T>
+public abstract class ConstantDomain<T> extends AbstractValueDomain<T>
   {
   /**
    * Creates a new ConstantDomain instance.
@@ -38,9 +39,9 @@ public abstract class ConstantDomain<T> implements ValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<T> values( Random random)
+  public Stream<DataValue<T>> values( Random random)
     {
-    return Stream.of( value_);
+    return Stream.of( dataValueOf( value_));
     }
 
   /**

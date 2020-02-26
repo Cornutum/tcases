@@ -7,11 +7,15 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
+import java.util.List;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
 
@@ -20,6 +24,31 @@ import static java.util.stream.Collectors.toSet;
  */
 public class EmailDomainTest extends ValueDomainTest
   {
+  @Test
+  public void whenConstant()
+    {
+    // Given...
+    String value = "me@mydomain.org";
+    StringConstant domain = new EmailConstant( value);
+
+    // Then...
+    List<String> values = valuesOf( domain, 10);
+    assertThat( "Constant values size", values.size(), is( 1));
+    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( value, Type.STRING, "email")));
+    assertThat( "Contains", domain.contains( value), is( true));
+    assertThat( "Contains", domain.contains( ""), is( false));
+    }
+
+  @Test
+  public void whenInvalidConstant()
+    {
+    // Given...
+    String value = "1999/01/10";
+
+    expectFailure( RequestCaseException.class)
+      .when( () -> new EmailConstant( value));
+    }
+  
   @Test
   public void whenDefaultLength()
     {
@@ -51,6 +80,12 @@ public class EmailDomainTest extends ValueDomainTest
     verifyContainsValues( domain, 1000);
     assertThat( "Contains", domain.contains( "you@mydomain.org"), is( true));
     assertThat( "Contains", domain.contains( "myself@mydomain.org"), is( false));
+
+    // When...
+    DataValue<String> value = domain.select( getRandom());
+
+    // Then...
+    assertThat( "Value", value, matches( dataValueMatcher( value.getValue(), Type.STRING, "email")));
     }
 
   @Test

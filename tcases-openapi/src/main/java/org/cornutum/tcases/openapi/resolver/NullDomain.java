@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Random;
 import java.util.stream.Stream;
@@ -15,7 +16,7 @@ import java.util.stream.Stream;
 /**
  * Defines a singleton null value set.
  */
-public class NullDomain implements ValueDomain<Object>
+public class NullDomain extends AbstractValueDomain<Object>
   {
   /**
    * Creates a new NullDomain instance.
@@ -27,17 +28,25 @@ public class NullDomain implements ValueDomain<Object>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<Object> values( Random random)
+  public Stream<DataValue<Object>> values( Random random)
     {
-    return Stream.builder().add( null).build();
+    return Stream.of( select( random));
     }
 
   /**
    * Returns a random value from this domain.
    */
-  public Object select( Random random)
+  public DataValue<Object> select( Random random)
     {
-    return null;
+    return dataValueOf( null);
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<Object> dataValueOf( Object value)
+    {
+    return new NullValue();
     }
 
   /**

@@ -25,6 +25,14 @@ public class DateTimeConstant extends StringConstant
     }
 
   /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<String> dataValueOf( String value)
+    {
+    return new DateTimeValue( value);
+    }
+
+  /**
    * Returns the time represented by the given value;
    */
   public static Date toTime( String value)

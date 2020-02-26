@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import static java.util.stream.Collectors.toSet;
 /**
  * Defines an array value set.
  */
-public class ArrayDomain<T> implements ValueDomain<List<T>>
+public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   {
   /**
    * Creates a new ArrayDomain instance.
@@ -154,22 +155,30 @@ public class ArrayDomain<T> implements ValueDomain<List<T>>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<List<T>> values( Random random)
+  public Stream<DataValue<List<DataValue<T>>>> values( Random random)
     {
-    return Stream.generate( () -> newArray( random));
+    return Stream.generate( () -> dataValueOf( newArray( random)));
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<List<DataValue<T>>> dataValueOf( List<DataValue<T>> value)
+    {
+    return new ArrayValue<T>( value);
     }
 
   /**
    * Returns a new random array from this domain.
    */
-  private List<T> newArray( Random random)
+  private List<DataValue<T>> newArray( Random random)
     {
-    List<T> items;
+    List<DataValue<T>> items;
     int itemCount;
-    T nextItem;
+    DataValue<T> nextItem;
     boolean itemsUnique = isItemsUnique();
 
-    for( items = new ArrayList<T>(), itemCount = getItemCount().select( random);
+    for( items = new ArrayList<DataValue<T>>(), itemCount = getItemCount().selectValue( random);
          items.size() < itemCount;
          items.add( nextItem))
       {
@@ -197,7 +206,7 @@ public class ArrayDomain<T> implements ValueDomain<List<T>>
   /**
    * Returns true if the given value belongs to this domain.
    */
-  public boolean contains( List<T> value)
+  public boolean contains( List<DataValue<T>> value)
     {
     int size = value.size();
 

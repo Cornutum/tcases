@@ -40,39 +40,39 @@ public class ObjectDomainTest extends ValueDomainTest
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( "a", new BigDecimal( "0.0"))
+        new MapBuilder<String,DataValue<?>>()
+        .put( "a", new DecimalValue( new BigDecimal( "0.0")))
         .build()),
       is( true));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
+        new MapBuilder<String,DataValue<?>>()
         .build()),
       is( false));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( "A", new BigDecimal( "0.0"))
+        new MapBuilder<String,DataValue<?>>()
+        .put( "A", new DecimalValue( new BigDecimal( "0.0")))
         .build()),
       is( false));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( "a", new BigDecimal( "-1.0"))
+        new MapBuilder<String,DataValue<?>>()
+        .put( "a", new DecimalValue( new BigDecimal( "-1.0")))
         .build()),
       is( false));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( "a", "0.0")
+        new MapBuilder<String,DataValue<?>>()
+        .put( "a", new StringValue( "0.0"))
         .build()),
       is( false));
     }
@@ -97,54 +97,54 @@ public class ObjectDomainTest extends ValueDomainTest
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( dateString( 2020, 1, 2), "ABCD")
-        .put( dateString( 2020, 1, 4), 0)
-        .put( dateString( 2020, 1, 6), new BigDecimal( "-1.00"))
+        new MapBuilder<String,DataValue<?>>()
+        .put( dateString( 2020, 1, 2), new StringValue( "ABCD"))
+        .put( dateString( 2020, 1, 4), new IntegerValue( 0))
+        .put( dateString( 2020, 1, 6), new DecimalValue( new BigDecimal( "-1.00")))
         .build()),
       is( true));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( dateString( 2020, 1, 2), "0")
-        .put( dateString( 2020, 1, 4), 100)
-        .put( dateString( 2020, 1, 6), new BigDecimal( "1.25"))
-        .put( dateString( 2020, 1, 1), "Howdy!")
-        .put( dateString( 2020, 1, 3), -987)
-        .put( dateString( 2020, 1, 5), emptyMap())
-        .put( dateString( 2020, 1, 7), BigDecimal.ZERO)
+        new MapBuilder<String,DataValue<?>>()
+        .put( dateString( 2020, 1, 2), new StringValue( "0"))
+        .put( dateString( 2020, 1, 4), new IntegerValue( 100))
+        .put( dateString( 2020, 1, 6), new DecimalValue( new BigDecimal( "1.25")))
+        .put( dateString( 2020, 1, 1), new StringValue( "Howdy!"))
+        .put( dateString( 2020, 1, 3), new IntegerValue( -987))
+        .put( dateString( 2020, 1, 5), new ObjectValue( emptyMap()))
+        .put( dateString( 2020, 1, 7), new DecimalValue( BigDecimal.ZERO))
         .build()),
       is( true));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( dateString( 2020, 1, 2), "0")
-        .put( dateString( 2020, 1, 4), 0)
+        new MapBuilder<String,DataValue<?>>()
+        .put( dateString( 2020, 1, 2), new StringValue( "0"))
+        .put( dateString( 2020, 1, 4), new IntegerValue( 0))
         .build()),
       is( false));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( dateString( 2020, 1, 2), "ABCD")
-        .put( dateString( 2020, 1, 4), 1)
-        .put( dateString( 2020, 1, 6), "-1.00")
+        new MapBuilder<String,DataValue<?>>()
+        .put( dateString( 2020, 1, 2), new StringValue( "ABCD"))
+        .put( dateString( 2020, 1, 4), new IntegerValue( 1))
+        .put( dateString( 2020, 1, 6), new StringValue( "-1.00"))
         .build()),
       is( false));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( dateString( 2020, 1, 2), "ABCD")
-        .put( dateString( 2020, 1, 4), 0)
-        .put( dateString( 2020, 1, 6), new BigDecimal( "0.12"))
-        .put( "myString", "?")
+        new MapBuilder<String,DataValue<?>>()
+        .put( dateString( 2020, 1, 2), new StringValue( "ABCD"))
+        .put( dateString( 2020, 1, 4), new IntegerValue( 0))
+        .put( dateString( 2020, 1, 6), new DecimalValue( new BigDecimal( "0.12")))
+        .put( "myString", new StringValue( "?"))
         .build()),
       is( false));
     }
@@ -164,24 +164,24 @@ public class ObjectDomainTest extends ValueDomainTest
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( "alpha", "ABCD")
+        new MapBuilder<String,DataValue<?>>()
+        .put( "alpha", new StringValue( "ABCD"))
         .build()),
       is( true));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
+        new MapBuilder<String,DataValue<?>>()
         .build()),
       is( false));
 
     assertThat(
       "Contains",
       domain.contains(
-        new MapBuilder<String,Object>()
-        .put( "alpha", "ABCD")
-        .put( "bravo", 0)
+        new MapBuilder<String,DataValue<?>>()
+        .put( "alpha", new StringValue( "ABCD"))
+        .put( "bravo", new IntegerValue( 0))
         .build()),
       is( false));
     }

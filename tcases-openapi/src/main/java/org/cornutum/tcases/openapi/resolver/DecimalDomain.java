@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -26,7 +28,15 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
    */
   public DecimalDomain()
     {
-    this( MAX_SIZE.longValue() / 2);
+    this( null);
+    }
+  
+  /**
+   * Creates a new DecimalDomain instance.
+   */
+  public DecimalDomain( String format)
+    {
+    this( MAX_SIZE.longValue() / 2, format);
     }
   
   /**
@@ -34,7 +44,16 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
    */
   public DecimalDomain( long maxRange)
     {
+    this( maxRange, null);
+    }
+  
+  /**
+   * Creates a new DecimalDomain instance.
+   */
+  public DecimalDomain( long maxRange, String format)
+    {
     super( Type.NUMBER, maxRange);
+    format_ = format;
     }
   
   /**
@@ -42,7 +61,15 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
    */
   public DecimalDomain( BigDecimal min, BigDecimal max)
     {
-    this();
+    this( min, max, null);
+    }
+  
+  /**
+   * Creates a new DecimalDomain instance.
+   */
+  public DecimalDomain( BigDecimal min, BigDecimal max, String format)
+    {
+    this( format);
     setRange( min, max);
     }
   
@@ -51,15 +78,23 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
    */
   public DecimalDomain( double min, double max)
     {
-    this( new BigDecimal( min), new BigDecimal( max));
+    this( min, max, null);
     }
   
   /**
    * Creates a new DecimalDomain instance.
    */
-  public DecimalDomain( Range range)
+  public DecimalDomain( double min, double max, String format)
     {
-    this();
+    this( new BigDecimal( min), new BigDecimal( max), format);
+    }
+  
+  /**
+   * Creates a new DecimalDomain instance.
+   */
+  public DecimalDomain( Range range, String format)
+    {
+    this( format);
     setRange( range);
     }
 
@@ -136,7 +171,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<BigDecimal> values( Random random)
+  public Stream<DataValue<BigDecimal>> values( Random random)
     {
     // Find smallest and largest (multiples) in range
     int unitScale =
@@ -168,7 +203,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
     long multiplesCount = divideFloor( lastMultiple.subtract( firstMultiple), multiple).add( BigDecimal.ONE).min( MAX_SIZE).longValue();
     final BigDecimal originMultiple = firstMultiple;
     
-    return
+    Stream<BigDecimal> decimals =
       multiplesCount < 1?
       Stream.empty() :
 
@@ -179,6 +214,16 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
       .mapToObj( i -> originMultiple.add( multiple.multiply( new BigDecimal(i))))
       .filter( d -> isNotExcluded( d, getExcluded()))
       .filter( d -> isNotMultipleOf( d, getNotMultipleOfs()));
+
+    return decimals.map( this::dataValueOf);
+    }
+
+  /**
+   * Returns a {@link DataValue} for the given value in this domain.
+   */
+  protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
+    {
+    return new DecimalValue( value, format_);
     }
 
   /**
@@ -202,5 +247,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
     return value.divideToIntegralValue( divisor);
     }
 
+  private final String format_;
+  
   private static final BigDecimal MAX_SIZE = new BigDecimal( Long.MAX_VALUE);
   }
