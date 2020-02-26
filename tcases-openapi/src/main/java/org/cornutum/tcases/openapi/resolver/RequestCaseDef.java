@@ -136,19 +136,19 @@ public class RequestCaseDef
     }
 
   /**
-   * Changes the name of the invalid input for this request.
+   * Changes the description of the invalid input for this request.
    */
-  public void setInvalidVar( String invalidVar)
+  public void setInvalidInput( String invalidInput)
     {
-    invalidVar_ = invalidVar;
+    invalidInput_ = invalidInput;
     }
 
   /**
-   * Returns the name of the invalid input for this request. Returns null for a valid request.
+   * Returns the description of the invalid input for this request. Returns null for a valid request.
    */
-  public String getInvalidVar()
+  public String getInvalidInput()
     {
-    return invalidVar_;
+    return invalidInput_;
     }
 
   /**
@@ -156,7 +156,7 @@ public class RequestCaseDef
    */
   public boolean isFailure()
     {
-    return getInvalidVar() != null;
+    return getInvalidInput() != null;
     }
 
   public String toString()
@@ -175,5 +175,5 @@ public class RequestCaseDef
   private String op_;
   private List<ParamDef> params_;
   private ValueDef<?> body_;
-  private String invalidVar_;
+  private String invalidInput_;
   }

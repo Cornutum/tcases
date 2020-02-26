@@ -74,9 +74,9 @@ public class RequestCaseDefiner
         Optional.ofNullable( testCase.getAnnotation( "operation"))
         .orElseThrow( () -> new RequestCaseException( "No operation annotation defined")));
 
-      requestCaseDef.setInvalidVar(
+      requestCaseDef.setInvalidInput(
         Optional.ofNullable( testCase.getInvalidValue())
-        .map( VarBinding::getVar)
+        .map( binding -> String.format( "%s=%s", binding.getVar(), binding.getValue()))
         .orElse( null));
 
       paramProperties( testCase)
