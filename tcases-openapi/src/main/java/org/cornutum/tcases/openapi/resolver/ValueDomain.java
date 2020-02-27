@@ -10,7 +10,6 @@ package org.cornutum.tcases.openapi.resolver;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Stream;
 
 /**
@@ -21,7 +20,7 @@ public interface ValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<T>> values( Random random);
+  public Stream<DataValue<T>> values( ResolverOptions options);
 
   /**
    * Returns true if the given value belongs to this domain.
@@ -65,10 +64,10 @@ public interface ValueDomain<T>
   /**
    * Returns a random value from this domain.
    */
-  default public DataValue<T> select( Random random)
+  default public DataValue<T> select( ResolverOptions options)
     {
     return
-      values( random)
+      values( options)
       .findFirst()
       .orElseThrow( () -> new IllegalStateException( String.format( "Domain=%s is empty", this)));
     }
@@ -76,9 +75,9 @@ public interface ValueDomain<T>
   /**
    * Returns a random value from this domain.
    */
-  default public T selectValue( Random random)
+  default public T selectValue( ResolverOptions options)
     {
-    return select( random).getValue();
+    return select( options).getValue();
     }
 
   /**

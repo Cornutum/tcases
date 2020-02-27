@@ -12,7 +12,6 @@ import org.cornutum.tcases.util.ToString;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.Calendar.*;
@@ -88,9 +87,9 @@ public abstract class TimeDomain extends RestrictedStringDomain
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<String> candidates( Random random)
+  protected Stream<String> candidates( ResolverOptions options)
     {
-    return timeValues( random).map( this::format);
+    return timeValues( options).map( this::format);
     }
 
   /**
@@ -106,7 +105,7 @@ public abstract class TimeDomain extends RestrictedStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected String newValue( Random random, int length)
+  protected String newValue( ResolverOptions options, int length)
     {
     throw new UnsupportedOperationException();
     }
@@ -114,7 +113,7 @@ public abstract class TimeDomain extends RestrictedStringDomain
   /**
    * Returns a random sequence of time values from this domain.
    */
-  protected abstract Stream<Date> timeValues( Random random);
+  protected abstract Stream<Date> timeValues( ResolverOptions options);
 
   /**
    * Reports a failure if the given value is not a valid time string. Otherwise, returns the given value.

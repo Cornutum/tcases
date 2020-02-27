@@ -13,7 +13,6 @@ import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toMap;
@@ -120,9 +119,9 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<Map<String,DataValue<?>>>> values( Random random)
+  public Stream<DataValue<Map<String,DataValue<?>>>> values( ResolverOptions options)
     {
-    return Stream.generate( () -> dataValueOf( newObject( random)));
+    return Stream.generate( () -> dataValueOf( newObject( options)));
     }
 
   /**
@@ -136,21 +135,21 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
   /**
    * Returns a new random object from this domain.
    */
-  private Map<String,DataValue<?>> newObject( Random random)
+  private Map<String,DataValue<?>> newObject( ResolverOptions options)
     {
     // Generate values for all specified properties
     Map<String,DataValue<?>> object =
       getPropertyDomains().entrySet().stream()
-      .collect( toMap( e -> e.getKey(), e -> e.getValue().select( random)));
+      .collect( toMap( e -> e.getKey(), e -> e.getValue().select( options)));
 
     // Additional properties needed?
-    int totalPropertyCount = object.size() + getAdditionalPropertyCount().selectValue( random);
+    int totalPropertyCount = object.size() + getAdditionalPropertyCount().selectValue( options);
     while( object.size() < totalPropertyCount)
       {
       // Yes, add unique additional property.
       String additional;
-      while( object.containsKey( (additional = getAdditionalPropertyNames().selectValue( random))));
-      object.put( additional, getAdditionalPropertyValues().select( random));
+      while( object.containsKey( (additional = getAdditionalPropertyNames().selectValue( options))));
+      object.put( additional, getAdditionalPropertyValues().select( options));
       }
 
     return object;

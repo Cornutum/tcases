@@ -10,7 +10,6 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
-import java.util.Random;
 import java.util.stream.Stream;
 
 /**
@@ -28,15 +27,15 @@ public class NullDomain extends AbstractValueDomain<Object>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<Object>> values( Random random)
+  public Stream<DataValue<Object>> values( ResolverOptions options)
     {
-    return Stream.of( select( random));
+    return Stream.of( select( options));
     }
 
   /**
    * Returns a random value from this domain.
    */
-  public DataValue<Object> select( Random random)
+  public DataValue<Object> select( ResolverOptions options)
     {
     return dataValueOf( null);
     }

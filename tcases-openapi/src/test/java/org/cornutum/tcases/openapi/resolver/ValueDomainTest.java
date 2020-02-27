@@ -44,7 +44,7 @@ public abstract class ValueDomainTest
   protected <T> void verifyContainsValues( ValueDomain<T> domain, int limit)
     {
     List<DataValue<T>> values = 
-      domain.values( getRandom())
+      domain.values( getResolverOptions())
       .limit( limit)
       .collect( toList());
 
@@ -63,7 +63,7 @@ public abstract class ValueDomainTest
   protected <T> List<DataValue<T>> dataValuesOf( ValueDomain<T> domain, int limit)
     {
     return
-      domain.values( getRandom())
+      domain.values( getResolverOptions())
       .limit( limit)
       .collect( toList());
     }
@@ -85,6 +85,14 @@ public abstract class ValueDomainTest
   protected DataValueMatcher dataValueMatcher( Object value, Type type, String format)
     {
     return new DataValueMatcher( DataValue.of( value, type, format));
+    }
+
+  /**
+   * Returns the {@link ResolverOptions} for this test.
+   */
+  protected ResolverOptions getResolverOptions()
+    {
+    return new ResolverOptions( getRandom());
     }
 
   private static long seed_;

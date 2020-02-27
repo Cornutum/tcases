@@ -146,6 +146,14 @@ public class RequestCaseTest
     return random_;
     }
 
+  /**
+   * Returns the {@link ResolverOptions} for this test.
+   */
+  protected ResolverOptions getResolverOptions()
+    {
+    return new ResolverOptions( getRandom());
+    }
+
   private static final String[] testGroups_ = new String[] {
     "allOf",
     "anyOf",

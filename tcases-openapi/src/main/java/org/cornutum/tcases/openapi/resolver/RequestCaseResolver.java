@@ -10,7 +10,6 @@ package org.cornutum.tcases.openapi.resolver;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Optional;
-import java.util.Random;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -22,9 +21,9 @@ public class RequestCaseResolver
   /**
    * Creates a new RequestCaseResolver instance.
    */
-  public RequestCaseResolver( Random random)
+  public RequestCaseResolver( ResolverOptions options)
     {
-    random_ = random;
+    options_ = options;
     }
 
   /**
@@ -122,7 +121,7 @@ public class RequestCaseResolver
     {
     try
       {
-      return domain.select( getRandom());
+      return domain.select( getOptions());
       }
     catch( Exception e)
       {
@@ -131,12 +130,12 @@ public class RequestCaseResolver
     }
 
   /**
-   * Returns the random number generator used to resolve request input data.
+   * Returns the options used to resolve an executable API test case.
    */
-  public Random getRandom()
+  public ResolverOptions getOptions()
     {
-    return random_;
+    return options_;
     }
 
-  private final Random random_;
+  private final ResolverOptions options_;
   }

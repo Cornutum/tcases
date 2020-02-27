@@ -11,7 +11,6 @@ import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Stream;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
@@ -122,7 +121,7 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<Long>> values( Random random)
+  public Stream<DataValue<Long>> values( ResolverOptions options)
     {
     // Find smallest and largest multiples in range
     long multiple = Optional.ofNullable( getMultipleOf()).orElse( 1L);
@@ -157,7 +156,7 @@ public class LongDomain extends NumberDomain<Long>
       multiplesCount == 1?
       Stream.of( firstMultiple) :
 
-      random.longs( 0, multiplesCount)
+      options.getRandom().longs( 0, multiplesCount)
       .map( i -> originMultiple + i * multiple)
       .filter( i -> isNotExcluded( i, getExcluded()))
       .filter( i -> isNotMultipleOf( i, getNotMultipleOfs()))

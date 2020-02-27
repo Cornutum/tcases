@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -51,21 +50,21 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   /**
    * Returns a new random string.
    */
-  protected String newValue( Random random)
+  protected String newValue( ResolverOptions options)
     {
-    return newValue( random, getLengthRange().selectValue( random));
+    return newValue( options, getLengthRange().selectValue( options));
     }
 
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected abstract String newValue( Random random, int length);
+  protected abstract String newValue( ResolverOptions options, int length);
   
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<String> candidates( Random random)
+  protected Stream<String> candidates( ResolverOptions options)
     {
-    return Stream.generate( () -> newValue( random));
+    return Stream.generate( () -> newValue( options));
     }
 }

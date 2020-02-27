@@ -14,7 +14,6 @@ import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
 
@@ -155,9 +154,9 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<List<DataValue<T>>>> values( Random random)
+  public Stream<DataValue<List<DataValue<T>>>> values( ResolverOptions options)
     {
-    return Stream.generate( () -> dataValueOf( newArray( random)));
+    return Stream.generate( () -> dataValueOf( newArray( options)));
     }
 
   /**
@@ -171,30 +170,30 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   /**
    * Returns a new random array from this domain.
    */
-  private List<DataValue<T>> newArray( Random random)
+  private List<DataValue<T>> newArray( ResolverOptions options)
     {
     List<DataValue<T>> items;
     int itemCount;
     DataValue<T> nextItem;
     boolean itemsUnique = isItemsUnique();
 
-    for( items = new ArrayList<DataValue<T>>(), itemCount = getItemCount().selectValue( random);
+    for( items = new ArrayList<DataValue<T>>(), itemCount = getItemCount().selectValue( options);
          items.size() < itemCount;
          items.add( nextItem))
       {
-      for( nextItem = getItemValues().select( random);
+      for( nextItem = getItemValues().select( options);
            itemsUnique && items.contains( nextItem);
-           nextItem = getItemValues().select( random));
+           nextItem = getItemValues().select( options));
       }
 
     if( !itemsUnique && itemCount > 1)
       {
       // Given a random target item...
-      int target = random.nextInt( itemCount);
+      int target = options.getRandom().nextInt( itemCount);
 
       // ...and a different source item...
       int source;
-      while( (source = random.nextInt( itemCount)) == target);
+      while( (source = options.getRandom().nextInt( itemCount)) == target);
 
       // ...ensure target item is a duplicate of the source item.
       items.set( target, items.get( source));

@@ -8,7 +8,6 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import java.util.Arrays;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
@@ -72,18 +71,18 @@ public class BinaryDomain extends SequenceDomain<byte[]>
   /**
    * Returns a new byte array.
    */
-  private byte[] newValue( Random random)
+  private byte[] newValue( ResolverOptions options)
     {
-    byte[] bytes = new byte[ getLengthRange().selectValue( random)];
-    random.nextBytes( bytes);
+    byte[] bytes = new byte[ getLengthRange().selectValue( options)];
+    options.getRandom().nextBytes( bytes);
     return bytes;
     }
   
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<byte[]> candidates( Random random)
+  protected Stream<byte[]> candidates( ResolverOptions options)
     {
-    return Stream.generate( () -> newValue( random));
+    return Stream.generate( () -> newValue( options));
     }
   }

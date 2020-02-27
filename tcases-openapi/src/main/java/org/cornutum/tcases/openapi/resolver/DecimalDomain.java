@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Stream;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
@@ -171,7 +170,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<BigDecimal>> values( Random random)
+  public Stream<DataValue<BigDecimal>> values( ResolverOptions options)
     {
     // Find smallest and largest (multiples) in range
     int unitScale =
@@ -210,7 +209,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
       multiplesCount == 1?
       Stream.of( firstMultiple) :
 
-      random.longs( 0, multiplesCount)
+      options.getRandom().longs( 0, multiplesCount)
       .mapToObj( i -> originMultiple.add( multiple.multiply( new BigDecimal(i))))
       .filter( d -> isNotExcluded( d, getExcluded()))
       .filter( d -> isNotMultipleOf( d, getNotMultipleOfs()));

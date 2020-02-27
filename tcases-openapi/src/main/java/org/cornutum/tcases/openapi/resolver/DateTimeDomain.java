@@ -11,7 +11,6 @@ import org.cornutum.tcases.openapi.FormattedString;
 import static org.cornutum.tcases.openapi.resolver.DateTimeConstant.*;
 
 import java.util.Date;
-import java.util.Random;
 import java.util.stream.Stream;
 
 /**
@@ -62,7 +61,7 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Returns a random sequence of time values from this domain.
    */
-  protected Stream<Date> timeValues( Random random)
+  protected Stream<Date> timeValues( ResolverOptions options)
     {
     long minTime = getMinDate().getTime();
     long maxTime = getMaxDate().getTime();
@@ -75,7 +74,7 @@ public class DateTimeDomain extends TimeDomain
       millis == 1?
       Stream.of( getMinDate()) :
 
-      random.longs( 0, millis)
+      options.getRandom().longs( 0, millis)
       .map( m -> minTime + m)
       .mapToObj( Date::new);
     }

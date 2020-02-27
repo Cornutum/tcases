@@ -12,7 +12,6 @@ import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
@@ -36,9 +35,9 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
    * Returns a random sequence of values from this domain.
    */
   @SuppressWarnings("unchecked")
-  public Stream<DataValue<Object>> values( Random random)
+  public Stream<DataValue<Object>> values( ResolverOptions options)
     {
-    return Stream.generate( () -> (DataValue<Object>) typeDomains_.get( random.nextInt( typeDomains_.size())).select( random));
+    return Stream.generate( () -> (DataValue<Object>) typeDomains_.get( options.getRandom().nextInt( typeDomains_.size())).select( options));
     }
 
   /**

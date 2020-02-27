@@ -11,7 +11,6 @@ import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
 
 import java.util.Base64;
 import java.util.Optional;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
@@ -164,10 +163,10 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<String> candidates( Random random)
+  protected Stream<String> candidates( ResolverOptions options)
     {
     return
-      getBytes().values( random)
+      getBytes().values( options)
       .map( DataValue::getValue)
       .map( Base64Domain::encoded);
     }

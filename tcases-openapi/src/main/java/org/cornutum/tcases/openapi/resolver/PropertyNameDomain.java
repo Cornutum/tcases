@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
@@ -62,12 +61,12 @@ public class PropertyNameDomain extends AbstractStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected String newValue( Random random, int length)
+  protected String newValue( ResolverOptions options, int length)
     {
     StringBuilder value = new StringBuilder();
     for( int i = 0; i < length; i++)
       {
-      value.append( getNameChars().charAt( random.nextInt( getNameChars().length())));
+      value.append( getNameChars().charAt( options.getRandom().nextInt( getNameChars().length())));
       }
 
     return value.toString();

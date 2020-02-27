@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
@@ -44,12 +43,12 @@ public class AsciiStringDomain extends AbstractStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected String newValue( Random random, int length)
+  protected String newValue( ResolverOptions options, int length)
     {
     StringBuilder value = new StringBuilder();
     for( int i = 0; i < length; i++)
       {
-      value.append( asciiPrintable_.charAt( random.nextInt( asciiPrintable_.length())));
+      value.append( asciiPrintable_.charAt( options.getRandom().nextInt( asciiPrintable_.length())));
       }
 
     return value.toString();

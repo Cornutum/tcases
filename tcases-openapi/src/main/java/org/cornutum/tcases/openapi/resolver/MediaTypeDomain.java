@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import java.util.Random;
 import java.util.Set;
 
 /**
@@ -44,9 +43,9 @@ public class MediaTypeDomain extends AbstractStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected String newValue( Random random, int length)
+  protected String newValue( ResolverOptions options, int length)
     {
-    return mediaTypes_[ random.nextInt( mediaTypes_.length)];
+    return mediaTypes_[ options.getRandom().nextInt( mediaTypes_.length)];
     }
 
   private static final String[] mediaTypes_ = new String[] {

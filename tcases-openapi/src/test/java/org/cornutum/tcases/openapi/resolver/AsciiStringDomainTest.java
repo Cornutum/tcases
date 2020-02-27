@@ -36,7 +36,7 @@ public class AsciiStringDomainTest extends ValueDomainTest
     // Then...
     List<String> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( value, Type.STRING, "myformat")));
+    assertThat( "Constant value", domain.select( getResolverOptions()), matches( dataValueMatcher( value, Type.STRING, "myformat")));
     assertThat( "Contains", domain.contains( value), is( true));
     assertThat( "Contains", domain.contains( ""), is( false));
     }
@@ -62,7 +62,7 @@ public class AsciiStringDomainTest extends ValueDomainTest
     assertThat( "Contains", domain.contains( "Mañana, Schrödinger"), is( false));
 
     // When...
-    DataValue<String> value = domain.select( getRandom());
+    DataValue<String> value = domain.select( getResolverOptions());
 
     // Then...
     assertThat( "Value", value, matches( dataValueMatcher( value.getValue(), Type.STRING, null)));

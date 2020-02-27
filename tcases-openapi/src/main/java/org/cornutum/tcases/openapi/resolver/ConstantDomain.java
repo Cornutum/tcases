@@ -11,7 +11,6 @@ import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Objects;
-import java.util.Random;
 import java.util.stream.Stream;
 
 /**
@@ -39,7 +38,7 @@ public abstract class ConstantDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<T>> values( Random random)
+  public Stream<DataValue<T>> values( ResolverOptions options)
     {
     return Stream.of( dataValueOf( value_));
     }

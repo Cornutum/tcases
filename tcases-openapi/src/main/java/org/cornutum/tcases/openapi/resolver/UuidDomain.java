@@ -12,7 +12,6 @@ import static org.cornutum.tcases.openapi.resolver.UuidConstant.isUuid;
 import static org.apache.commons.lang3.StringUtils.leftPad;
 
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * Defines a set of UUID string values that can be used by a request.
@@ -58,10 +57,10 @@ public class UuidDomain extends RestrictedStringDomain
    *
    * @see UUID#randomUUID
    */
-  protected String newValue( Random random, int length)
+  protected String newValue( ResolverOptions options, int length)
     {
     byte[] randomBytes = new byte[16];
-    random.nextBytes(randomBytes);
+    options.getRandom().nextBytes(randomBytes);
     randomBytes[6]  &= 0x0f;  /* clear version        */
     randomBytes[6]  |= 0x40;  /* set to version 4     */
     randomBytes[8]  &= 0x3f;  /* clear variant        */

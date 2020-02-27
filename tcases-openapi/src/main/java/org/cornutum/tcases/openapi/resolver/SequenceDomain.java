@@ -12,7 +12,6 @@ import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Optional;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -153,10 +152,10 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<T>> values( Random random)
+  public Stream<DataValue<T>> values( ResolverOptions options)
     {
     return
-      candidates( random)
+      candidates( options)
       .filter( value -> isNotExcluded( value, getExcluded()))
       .map( value -> dataValueOf( value));
     }
@@ -164,7 +163,7 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected abstract Stream<T> candidates( Random random);
+  protected abstract Stream<T> candidates( ResolverOptions options);
 
   /**
    * Returns true if the given value belongs to this domain.

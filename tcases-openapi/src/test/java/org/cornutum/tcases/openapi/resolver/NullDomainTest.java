@@ -30,7 +30,7 @@ public class NullDomainTest extends ValueDomainTest
     // Then...
     List<Object> values = valuesOf( domain, 10);
     assertThat( "Null values size", values.size(), is( 1));
-    assertThat( "Null value", domain.select( getRandom()), matches( dataValueMatcher( null, Type.NULL, null)));
+    assertThat( "Null value", domain.select( getResolverOptions()), matches( dataValueMatcher( null, Type.NULL, null)));
 
     assertThat( "Contains", domain.contains( null), is( true));
     assertThat( "Contains", domain.contains( 1234), is( false));

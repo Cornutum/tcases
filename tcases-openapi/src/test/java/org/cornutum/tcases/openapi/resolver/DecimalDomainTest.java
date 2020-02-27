@@ -42,7 +42,7 @@ public class DecimalDomainTest extends ValueDomainTest
     // Then...
     List<BigDecimal> values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 1));
-    assertThat( "Value", domain.select( getRandom()), matches( dataValueMatcher( new BigDecimal( "8.0"), Type.NUMBER, "float")));
+    assertThat( "Value", domain.select( getResolverOptions()), matches( dataValueMatcher( new BigDecimal( "8.0"), Type.NUMBER, "float")));
 
     // When...
     domain.setRange( new BigDecimal( "9.0"), new BigDecimal( "11.0"));
@@ -50,7 +50,7 @@ public class DecimalDomainTest extends ValueDomainTest
     // Then...
     values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 0));
-    expectFailure( IllegalStateException.class).when( () -> domain.select( getRandom()));
+    expectFailure( IllegalStateException.class).when( () -> domain.select( getResolverOptions()));
 
     // When...
     domain.setRange( new BigDecimal( "-11.0"), new BigDecimal( "11.0"));
@@ -71,7 +71,7 @@ public class DecimalDomainTest extends ValueDomainTest
     // Then...
     List<BigDecimal> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getRandom()), matches( dataValueMatcher( new BigDecimal( "-123456789.0"), Type.NUMBER, "double")));
+    assertThat( "Constant value", domain.select( getResolverOptions()), matches( dataValueMatcher( new BigDecimal( "-123456789.0"), Type.NUMBER, "double")));
     }
   
   @Test
