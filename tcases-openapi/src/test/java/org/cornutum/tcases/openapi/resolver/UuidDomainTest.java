@@ -47,7 +47,7 @@ public class UuidDomainTest extends ValueDomainTest
     // Given...
     String value = "f81d4fae 7dec 11d0 a765 00a0c91e6bf6";
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> new UuidConstant( value));
     }
 
@@ -93,7 +93,7 @@ public class UuidDomainTest extends ValueDomainTest
     // Given...
     UuidDomain domain = new UuidDomain();
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 0").build())));
     }
 
@@ -103,7 +103,7 @@ public class UuidDomainTest extends ValueDomainTest
     // Given...
     UuidDomain domain = new UuidDomain();
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( 8));
     }
   }

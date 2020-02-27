@@ -29,7 +29,7 @@ public abstract class RestrictedStringDomain extends AbstractStringDomain
     {
     if( !getLengthRange().contains( length))
       {
-      throw new RequestCaseException( String.format( "Invalid value length=%s -- length must be %s", length, getLengthRange()));
+      throw new ValueDomainException( String.format( "Invalid value length=%s -- length must be %s", length, getLengthRange()));
       }
     }
 
@@ -38,7 +38,7 @@ public abstract class RestrictedStringDomain extends AbstractStringDomain
    */
   public void setLengthRange( Integer min, Integer max)
     {
-    throw new RequestCaseException( String.format( "Invalid value length range=[%s,%s] -- length must be %s", min, max, getLengthRange()));
+    throw new ValueDomainException( String.format( "Invalid value length range=[%s,%s] -- length must be %s", min, max, getLengthRange()));
     }
 
   /**
@@ -46,7 +46,7 @@ public abstract class RestrictedStringDomain extends AbstractStringDomain
    */
   public void setLengthRange( Range range)
     {
-    throw new RequestCaseException( String.format( "Invalid value length range=%s -- length must be %s", range, getLengthRange()));
+    throw new ValueDomainException( String.format( "Invalid value length range=%s -- length must be %s", range, getLengthRange()));
     }
 
   /**

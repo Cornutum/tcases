@@ -45,7 +45,7 @@ public class EmailDomainTest extends ValueDomainTest
     // Given...
     String value = "1999/01/10";
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> new EmailConstant( value));
     }
   
@@ -94,10 +94,10 @@ public class EmailDomainTest extends ValueDomainTest
     // Given...
     EmailDomain domain = new EmailDomain();
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( 7, 400));
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( 6, 32));
     }
 
@@ -107,10 +107,10 @@ public class EmailDomainTest extends ValueDomainTest
     // Given...
     EmailDomain domain = new EmailDomain();
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( 6));
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( 400));
     }
   }

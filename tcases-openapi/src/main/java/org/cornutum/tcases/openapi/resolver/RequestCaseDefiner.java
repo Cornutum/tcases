@@ -39,56 +39,64 @@ public class RequestCaseDefiner
    */
   public RequestCaseDef toRequestCaseDef( TestCase testCase) throws RequestCaseException
     {
-    final RequestCaseDef requestCaseDef; 
-    if( testCase == null)
+    try
       {
-      requestCaseDef = null;
+      final RequestCaseDef requestCaseDef;
+
+      if( testCase == null)
+        {
+        requestCaseDef = null;
+        }
+      else
+        {
+        requestCaseDef = new RequestCaseDef();
+
+        requestCaseDef.setServer(
+          Optional.ofNullable( testCase.getAnnotation( "server"))
+          .map( uri -> {
+            try
+              {
+              return new URI( uri);
+              }
+            catch( Exception e)
+              {
+              throw new RequestCaseException( "Can't convert server URI", e);
+              }
+            })
+          .orElse( null));
+
+        requestCaseDef.setVersion(
+          Optional.ofNullable( testCase.getAnnotation( "version"))
+          .orElseThrow( () -> new RequestCaseException( "No version annotation defined")));
+
+        requestCaseDef.setPath(
+          Optional.ofNullable( testCase.getAnnotation( "path"))
+          .orElseThrow( () -> new RequestCaseException( "No path annotation defined")));
+
+        requestCaseDef.setOperation(
+          Optional.ofNullable( testCase.getAnnotation( "operation"))
+          .orElseThrow( () -> new RequestCaseException( "No operation annotation defined")));
+
+        requestCaseDef.setInvalidInput(
+          Optional.ofNullable( testCase.getInvalidValue())
+          .map( binding -> String.format( "%s=%s", binding.getVar(), binding.getValue()))
+          .orElse( null));
+
+        paramProperties( testCase)
+          .forEach( (paramName, paramProperties) -> requestCaseDef.addParam( toParamDef( paramName, paramProperties)));
+
+        requestCaseDef.setBody(
+          bodyValues( testCase)
+          .map( this::toBodyDef)
+          .orElse( null));
+        }
+
+      return requestCaseDef;
       }
-    else
+    catch( Exception e)
       {
-      requestCaseDef = new RequestCaseDef();
-
-      requestCaseDef.setServer(
-        Optional.ofNullable( testCase.getAnnotation( "server"))
-        .map( uri -> {
-          try
-            {
-            return new URI( uri);
-            }
-          catch( Exception e)
-            {
-            throw new RequestCaseException( "Can't convert server URI", e);
-            }
-          })
-        .orElse( null));
-
-      requestCaseDef.setVersion(
-        Optional.ofNullable( testCase.getAnnotation( "version"))
-        .orElseThrow( () -> new RequestCaseException( "No version annotation defined")));
-
-      requestCaseDef.setPath(
-        Optional.ofNullable( testCase.getAnnotation( "path"))
-        .orElseThrow( () -> new RequestCaseException( "No path annotation defined")));
-
-      requestCaseDef.setOperation(
-        Optional.ofNullable( testCase.getAnnotation( "operation"))
-        .orElseThrow( () -> new RequestCaseException( "No operation annotation defined")));
-
-      requestCaseDef.setInvalidInput(
-        Optional.ofNullable( testCase.getInvalidValue())
-        .map( binding -> String.format( "%s=%s", binding.getVar(), binding.getValue()))
-        .orElse( null));
-
-      paramProperties( testCase)
-        .forEach( (paramName, paramProperties) -> requestCaseDef.addParam( toParamDef( paramName, paramProperties)));
-
-      requestCaseDef.setBody(
-        bodyValues( testCase)
-        .map( this::toBodyDef)
-        .orElse( null));
+      throw new RequestCaseException( String.format( "Cant't convert test case=%s", testCase.getId()), e);
       }
-
-    return requestCaseDef;
     }
 
   /**

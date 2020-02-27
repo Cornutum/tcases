@@ -47,7 +47,7 @@ public class DateTimeDomainTest extends ValueDomainTest
     // Given...
     String value = "1999-01-10T02:03:45.678+HH:MM";
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> new DateTimeConstant( value));
     }
 
@@ -101,7 +101,7 @@ public class DateTimeDomainTest extends ValueDomainTest
     // Given...
     DateTimeDomain domain = new DateTimeDomain();
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "< 30").build())));
     }
 
@@ -111,7 +111,7 @@ public class DateTimeDomainTest extends ValueDomainTest
     // Given...
     DateTimeDomain domain = new DateTimeDomain();
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( 8));
     }
   }

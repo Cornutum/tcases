@@ -8,7 +8,7 @@
 package org.cornutum.tcases.openapi.resolver;
 
 /**
- * Reports a failure to convert a {@link org.cornutum.tcases.TestCase TestCase} into a {@link RequestCaseDef}.
+ * Reports a failure to convert a {@link org.cornutum.tcases.TestCase TestCase} into a {@link RequestCase}.
  */
 public class RequestCaseException extends RuntimeException
   {

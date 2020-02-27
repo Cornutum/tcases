@@ -33,25 +33,29 @@ public class RequestCaseResolver
    */
   public RequestCase resolve( RequestCaseDef requestCaseDef)
     {
-    RequestCase requestCase = new RequestCase();
+    try
+      {
+      RequestCase requestCase = new RequestCase();
 
-    requestCase.setServer( requestCaseDef.getServer());
-    requestCase.setVersion( requestCaseDef.getVersion());
-    requestCase.setPath( requestCaseDef.getPath());
-    requestCase.setOperation( requestCaseDef.getOperation());
-    requestCase.setInvalidInput( requestCaseDef.getInvalidInput());
+      requestCase.setServer( requestCaseDef.getServer());
+      requestCase.setVersion( requestCaseDef.getVersion());
+      requestCase.setPath( requestCaseDef.getPath());
+      requestCase.setOperation( requestCaseDef.getOperation());
+      requestCase.setInvalidInput( requestCaseDef.getInvalidInput());
 
-    requestCase.setParams(
-      toStream( requestCaseDef.getParams())
-      .map( paramDef -> resolveParamData( paramDef))
-      .collect( toList()));
+      requestCase.setParams(
+        toStream( requestCaseDef.getParams())
+        .map( paramDef -> resolveParamData( paramDef))
+        .collect( toList()));
 
-    requestCase.setBody(
-      Optional.ofNullable( requestCaseDef.getBody())
-      .map( this::resolveMessageData)
-      .orElse( null));
+      requestCase.setBody( resolveBody( requestCaseDef.getBody()));
     
-    return requestCase;
+      return requestCase;
+      }
+    catch( Exception e)
+      {
+      throw new RequestCaseException( String.format( "Can't resolve %s", requestCaseDef), e);
+      }
     }
 
   /**
@@ -59,13 +63,38 @@ public class RequestCaseResolver
    */
   private ParamData resolveParamData( ParamDef paramDef)
     {
-    ParamData paramData = new ParamData( paramDef.getName(), resolveMessageData( paramDef.getValue()));
+    try
+      {
+      ParamData paramData = new ParamData( paramDef.getName(), resolveMessageData( paramDef.getValue()));
 
-    paramData.setLocation( paramDef.getLocation());
-    paramData.setStyle( paramDef.getStyle());
-    paramData.setExploded( paramDef.isExploded());
+      paramData.setLocation( paramDef.getLocation());
+      paramData.setStyle( paramDef.getStyle());
+      paramData.setExploded( paramDef.isExploded());
 
-    return paramData;
+      return paramData;
+      }
+    catch( Exception e)
+      {
+      throw new RequestCaseException( String.format( "Can't resolve parameter=%s", paramDef.getName()), e);
+      }
+    }
+
+  /**
+   * Returns a resolved request body data object.
+   */
+  private MessageData resolveBody( ValueDef<?> body)
+    {
+    try
+      {
+      return
+        Optional.ofNullable( body)
+        .map( this::resolveMessageData)
+        .orElse( null);
+      }
+    catch( Exception e)
+      {
+      throw new RequestCaseException( "Can't resolve request body", e);
+      }
     }
 
   /**
@@ -75,15 +104,30 @@ public class RequestCaseResolver
     {
     DataValue<?> resolvedValue = 
       valueDef.isDefined()
-      ? valueDef.getDomain().select( getRandom())
+      ? domainValue( "value", valueDef.getDomain())
       : null;
 
     String resolvedMediaType =
       Optional.ofNullable( valueDef.getMediaType())
-      .map( mediaType -> mediaType.selectValue( getRandom()))
+      .map( mediaType -> domainValue( "mediaType", mediaType).getValue())
       .orElse( null);
     
     return new MessageData( resolvedValue, resolvedMediaType, valueDef.isValid());
+    }
+
+  /**
+   * Returns a random data value from the given {@link ValueDomain}.
+   */
+  private <T> DataValue<T> domainValue( String description, ValueDomain<T> domain)
+    {
+    try
+      {
+      return domain.select( getRandom());
+      }
+    catch( Exception e)
+      {
+      throw new RequestCaseException( String.format( "%s: Can't get value from %s", description, domain), e);
+      }
     }
 
   /**

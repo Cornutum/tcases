@@ -86,7 +86,7 @@ public final class VarProperties
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( String.format( "Can't get VarBinding for variable=%s", path), e);
+      throw new IllegalStateException( String.format( "Can't get VarBinding for variable=%s", path), e);
       }
     }
 
@@ -117,7 +117,7 @@ public final class VarProperties
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( String.format( "Can't get value set at path=%s", path), e);
+      throw new IllegalStateException( String.format( "Can't get value set at path=%s", path), e);
       }
     }
 
@@ -143,7 +143,7 @@ public final class VarProperties
     {
     return
       Optional.ofNullable( getVarBinding( propertyValues, path))
-      .orElseThrow( () -> new RequestCaseException( String.format( "Variable=%s is undefined", path)));
+      .orElseThrow( () -> new IllegalStateException( String.format( "Variable=%s is undefined", path)));
     }
 
   /**
@@ -153,7 +153,7 @@ public final class VarProperties
     {
     return
       Optional.ofNullable( getPropertyValues( propertyValues, path))
-      .orElseThrow( () -> new RequestCaseException( String.format( "No value set defined at path=%s", path)));
+      .orElseThrow( () -> new IllegalStateException( String.format( "No value set defined at path=%s", path)));
     }
 
   /**
@@ -279,7 +279,7 @@ public final class VarProperties
       Matcher matcher = valueTypePattern_.matcher( typeValue.get());
       if( !matcher.matches())
         {
-        throw new RequestCaseException( String.format( "Unknown value type=%s", typeValue.get()));
+        throw new IllegalStateException( String.format( "Unknown value type=%s", typeValue.get()));
         }
 
       Type[] baseTypes;
@@ -292,7 +292,7 @@ public final class VarProperties
         }
       catch( Exception e)
         {
-        throw new RequestCaseException( "Unknown value type", e);
+        throw new IllegalStateException( "Unknown value type", e);
         }
 
       types =

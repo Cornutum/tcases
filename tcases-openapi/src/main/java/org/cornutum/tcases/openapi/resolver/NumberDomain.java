@@ -274,7 +274,7 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> extends Abs
       Matcher matcher = numberRangePattern_.matcher( rangeDef);
       if( !matcher.matches())
         {
-        throw new RequestCaseException( String.format( "Invalid number range='%s'", rangeDef));
+        throw new ValueDomainException( String.format( "Invalid number range='%s'", rangeDef));
         }
 
       Set<String> excluded =

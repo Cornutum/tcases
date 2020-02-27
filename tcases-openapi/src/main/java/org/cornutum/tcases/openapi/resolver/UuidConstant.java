@@ -53,7 +53,7 @@ public class UuidConstant extends StringConstant
     {
     if( !isUuid( value))
       {
-      throw new RequestCaseException( String.format( "Value=%s is not a valid UUID", value));
+      throw new ValueDomainException( String.format( "Value=%s is not a valid UUID", value));
       }
 
     return value;

@@ -53,7 +53,7 @@ public class DateConstant extends StringConstant
     {
     if( !isDate( value))
       {
-      throw new RequestCaseException( String.format( "Value=%s is not a valid date", value));
+      throw new ValueDomainException( String.format( "Value=%s is not a valid date", value));
       }
 
     return value;

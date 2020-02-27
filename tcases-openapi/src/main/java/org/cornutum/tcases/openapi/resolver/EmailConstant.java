@@ -35,7 +35,7 @@ public class EmailConstant extends StringConstant
     {
     if( !EmailDomain.isEmail( value))
       {
-      throw new RequestCaseException( String.format( "Value=%s is not a valid email", value));
+      throw new ValueDomainException( String.format( "Value=%s is not a valid email", value));
       }
 
     return value;

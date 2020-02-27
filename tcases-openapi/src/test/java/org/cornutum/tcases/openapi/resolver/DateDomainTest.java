@@ -47,7 +47,7 @@ public class DateDomainTest extends ValueDomainTest
     // Given...
     String value = "1999/01/10";
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> new DateConstant( value));
     }
 
@@ -95,7 +95,7 @@ public class DateDomainTest extends ValueDomainTest
     // Given...
     DateDomain domain = new DateDomain();
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 0").build())));
     }
 
@@ -105,7 +105,7 @@ public class DateDomainTest extends ValueDomainTest
     // Given...
     DateDomain domain = new DateDomain();
 
-    expectFailure( RequestCaseException.class)
+    expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( 8));
     }
   }

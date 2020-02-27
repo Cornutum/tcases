@@ -51,7 +51,7 @@ public class EmailDomain extends AbstractStringDomain
     super.setLengthRange(
       Optional.ofNullable( length)
       .filter( l -> l >= MIN_LENGTH && l <= getMaxLength())
-      .orElseThrow( () -> new RequestCaseException( String.format( "Invalid email length=%s -- must be in [%s,%s]", length, MIN_LENGTH, getMaxLength()))));
+      .orElseThrow( () -> new ValueDomainException( String.format( "Invalid email length=%s -- must be in [%s,%s]", length, MIN_LENGTH, getMaxLength()))));
     }
 
   /**
@@ -63,14 +63,14 @@ public class EmailDomain extends AbstractStringDomain
 
       Optional.ofNullable( min)
       .filter( m -> m >= MIN_LENGTH)
-      .orElseThrow( () -> new RequestCaseException( String.format( "Invalid email length range=[%s,%s] -- must be >= %s", min, max, MIN_LENGTH))),
+      .orElseThrow( () -> new ValueDomainException( String.format( "Invalid email length range=[%s,%s] -- must be >= %s", min, max, MIN_LENGTH))),
 
       Optional.ofNullable( max)
       .map( m -> {
         return
           Optional.of( m)
           .filter( v -> v <= getMaxLength())
-          .orElseThrow( () -> new RequestCaseException( String.format( "Invalid email length range=[%s,%s] -- must be <= %s", min, max, getMaxLength())));
+          .orElseThrow( () -> new ValueDomainException( String.format( "Invalid email length range=[%s,%s] -- must be <= %s", min, max, getMaxLength())));
         })
       .orElse( null));
     }

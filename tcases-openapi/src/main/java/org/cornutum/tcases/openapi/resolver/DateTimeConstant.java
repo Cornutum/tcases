@@ -43,7 +43,7 @@ public class DateTimeConstant extends StringConstant
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( String.format( "Value=%s is not a valid date-time", value));
+      throw new ValueDomainException( String.format( "Value=%s is not a valid date-time", value));
       }
     }
 
@@ -70,7 +70,7 @@ public class DateTimeConstant extends StringConstant
     {
     if( !isDateTime( value))
       {
-      throw new RequestCaseException( String.format( "Value=%s is not a valid date-time", value));
+      throw new ValueDomainException( String.format( "Value=%s is not a valid date-time", value));
       }
 
     return value;
