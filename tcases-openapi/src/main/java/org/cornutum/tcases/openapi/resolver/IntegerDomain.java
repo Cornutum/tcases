@@ -145,7 +145,9 @@ public class IntegerDomain extends NumberDomain<Integer>
 
          lastMultiple -= multiple);
     
-    int multiplesCount = lastMultiple/multiple - firstMultiple/multiple + 1;
+    int multiplesCount = lastMultiple/multiple - firstMultiple/multiple;
+    multiplesCount += multiplesCount < Integer.MAX_VALUE? 1 : 0;
+
     final int originMultiple = firstMultiple;
     
     Stream<Integer> integers =

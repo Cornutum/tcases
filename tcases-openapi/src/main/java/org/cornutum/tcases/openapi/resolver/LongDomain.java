@@ -145,7 +145,9 @@ public class LongDomain extends NumberDomain<Long>
 
          lastMultiple -= multiple);
     
-    long multiplesCount = lastMultiple/multiple - firstMultiple/multiple + 1;
+    long multiplesCount = lastMultiple/multiple - firstMultiple/multiple;
+    multiplesCount += multiplesCount < Long.MAX_VALUE? 1 : 0;
+
     final long originMultiple = firstMultiple;
     
     Stream<Long> longs =
