@@ -1931,13 +1931,16 @@ public abstract class InputModeller extends ModelConditionReporter
     }
 
   /**
-   * Return the largest number less than or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
+   * Return the largest number less than (or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
    */
   private BigDecimal multipleBelow( BigDecimal value, boolean inclusive, BigDecimal multipleOf, Set<BigDecimal> notMultipleOfs)
     {
     BigDecimal below;
 
-    for( below = inclusive? value : value.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf);
+    for( below =
+           inclusive && isMultipleOf( value, multipleOf)
+           ? value
+           : value.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf);
 
          Stream.of( below)
            .filter( b -> notMultipleOfs.stream().anyMatch( m -> isMultipleOf( b, m)))
@@ -1956,7 +1959,10 @@ public abstract class InputModeller extends ModelConditionReporter
     {
     BigDecimal above;
 
-    for( above = inclusive? value : value.divide( multipleOf, 0, DOWN).add( BigDecimal.ONE).multiply( multipleOf);
+    for( above =
+           inclusive && isMultipleOf( value, multipleOf)
+           ? value
+           : value.divide( multipleOf, 0, DOWN).add( BigDecimal.ONE).multiply( multipleOf);
 
          Stream.of( above)
            .filter( a -> notMultipleOfs.stream().anyMatch( m -> isMultipleOf( a, m)))
