@@ -599,8 +599,8 @@ public final class SchemaUtils
   public static boolean isMultipleOf( BigDecimal value, BigDecimal factor)
     {
     return
-      value.compareTo( factor) >= 0
-      &&
+      value.compareTo( BigDecimal.ZERO) == 0
+      ||
       value.remainder( factor).compareTo( BigDecimal.ZERO) == 0;
     }
 
