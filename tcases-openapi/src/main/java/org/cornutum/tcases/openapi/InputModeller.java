@@ -852,37 +852,65 @@ public abstract class InputModeller extends ModelConditionReporter
    */
   private IVarDef arrayValueVar( String instanceVarTag, Schema<?> instanceSchema)
     {
-    VarDef arraySizeVar = arraySizeVar( instanceVarTag, instanceSchema);
-
-    VarSetBuilder valueVar =
-      VarSetBuilder.with( "Items")
-      .when( has( instanceValueProperty( instanceVarTag)))
-      .members( arraySizeVar);
-    
     Schema<?> itemSchema =
       Optional.ofNullable( asArraySchema( instanceSchema))
       .map( array -> array.getItems())
       .orElse( null);
 
-    if( Optional.ofNullable( instanceSchema.getMaxItems()).orElse( Integer.MAX_VALUE) > 0)
+    Optional<IVarDef> itemsVar = arrayItemsVar( instanceVarTag, instanceSchema, itemSchema);
+
+    // If the item schema defines a maximum number of possible values...
+    Optional<Integer> maxUniqueItems =
+      Optional.ofNullable( itemSchema)
+      .flatMap( s -> itemsVar)
+      .flatMap( items -> Optional.ofNullable( getMaxAlternativeValues( itemSchema)));
+
+    // ... and the items must be unique...
+    boolean uniqueRequired = Boolean.TRUE.equals( instanceSchema.getUniqueItems());
+    boolean failBelowMinItems = true;
+    boolean failAboveMaxItems = true;
+    if( uniqueRequired)
       {
-      valueVar
-        .members( arrayItemsVar( instanceVarTag, itemSchema, arraySizeVar));
+      // ... then, if necessary, adjust "minItems"
+      if( maxUniqueItems
+          .map( maxUnique -> Optional.ofNullable( instanceSchema.getMinItems()).map( minItems -> minItems > maxUnique).orElse( true))
+          .orElse( false))
+        {
+        notifyError(
+          String.format( "minItems=%s can exceed the number of unique item values possible", instanceSchema.getMinItems()),
+          String.format( "Adjusting to unique minItems=%s", maxUniqueItems.get()));
+
+        instanceSchema.setMinItems( maxUniqueItems.get());
+        failBelowMinItems = false;
+        }
+
+      // ... and, if necessary, adjust "maxItems"
+      if( maxUniqueItems
+          .map( maxUnique -> Optional.ofNullable( instanceSchema.getMaxItems()).map( maxItems -> maxItems > maxUnique).orElse( true))
+          .orElse( false))
+        {
+        notifyError(
+          String.format( "maxItems=%s can exceed the number of unique item values possible", instanceSchema.getMaxItems()),
+          String.format( "Adjusting to unique maxItems=%s", maxUniqueItems.get()));
+
+        instanceSchema.setMaxItems( maxUniqueItems.get());
+        failAboveMaxItems = false;
+        }
       }
 
-    if( Optional.ofNullable( instanceSchema.getMaxItems()).orElse( Integer.MAX_VALUE) > 1)
-      {
-      valueVar
-        .members( arrayUniqueItemsVar( instanceVarTag, instanceSchema));
-      }
-    
-    return valueVar.build();
+    return
+      VarSetBuilder.with( "Items")
+      .when( has( instanceValueProperty( instanceVarTag)))
+      .members( arraySizeVar( instanceVarTag, instanceSchema, failBelowMinItems, failAboveMaxItems))
+      .members( iterableOf( itemsVar))
+      .members( iterableOf( arrayUniqueItemsVar( instanceVarTag, instanceSchema)))
+      .build();
     }
 
   /**
    * Returns the {@link VarDef input variable} representing the size of an array instance.
    */
-  private VarDef arraySizeVar( String instanceVarTag, Schema<?> arraySchema)
+  private VarDef arraySizeVar( String instanceVarTag, Schema<?> arraySchema, boolean failBelowMinItems, boolean failAboveMaxItems)
     {
     // Arrays size constrained?
     VarDefBuilder size = VarDefBuilder.with( "Size");
@@ -908,13 +936,19 @@ public abstract class InputModeller extends ModelConditionReporter
       TreeSet<Integer> sizeValues = new TreeSet<Integer>();
       if( minItems != null)
         {
-        sizeValues.add( minItems - 1);
+        if( failBelowMinItems)
+          {
+          sizeValues.add( minItems - 1);
+          }
         sizeValues.add( minItems);
         }
       if( maxItems != null)
         {
         sizeValues.add( maxItems);
-        sizeValues.add( maxItems + 1);
+        if( failAboveMaxItems)
+          {
+          sizeValues.add( maxItems + 1);
+          }
         }
 
       boolean allowSizeZero = (minItems == null || minItems == 0);
@@ -967,34 +1001,43 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the items of the given array instance.
    */
-  private IVarDef arrayItemsVar( String instanceVarTag, Schema<?> itemSchema, VarDef arraySizeVar)
+  private Optional<IVarDef> arrayItemsVar( String instanceVarTag, Schema<?> arraySchema, Schema<?> itemSchema)
     {
-    boolean allowSizeZero = Optional.ofNullable( arraySizeVar.getValue( 0)).map( VarValueDef::isValid).orElse( false);
-    ICondition itemsCondition = allowSizeZero? not( arrayItemsNoneProperty( instanceVarTag)) : null;
-
     return
-      resultFor( "items",
-        () ->
-        VarSetBuilder.with( "Contains")
-        .when( itemsCondition)
-        .members( instanceSchemaVars( arrayItemsProperty( instanceVarTag), false, itemSchema))
-        .build());
+      Optional.ofNullable( arraySchema.getMaxItems()).map( maxItems -> maxItems <= 0).orElse( false)?
+      Optional.empty() :
+      
+      Optional.of(
+        resultFor( "items", () -> {
+          boolean allowSizeZero = Optional.ofNullable( arraySchema.getMinItems()).map( min -> min == 0).orElse( true);
+          ICondition itemsCondition = allowSizeZero? not( arrayItemsNoneProperty( instanceVarTag)) : null;
+
+          return
+            VarSetBuilder.with( "Contains")
+            .when( itemsCondition)
+            .members( instanceSchemaVars( arrayItemsProperty( instanceVarTag), false, itemSchema))
+            .build();
+          }));
     }
 
   /**
    * Returns the {@link IVarDef input variable} representing the unique items property of an array instance.
    */
-  private IVarDef arrayUniqueItemsVar( String instanceVarTag, Schema<?> arraySchema)
+  private Optional<IVarDef> arrayUniqueItemsVar( String instanceVarTag, Schema<?> arraySchema)
     {
     boolean uniqueRequired = Boolean.TRUE.equals( arraySchema.getUniqueItems());
 
     return
-      VarDefBuilder.with( "Unique")
-      .when( has( arrayItemsManyProperty( instanceVarTag)))
-      .values(
-        VarValueDefBuilder.with( "Yes").build(),
-        VarValueDefBuilder.with( "No").type( uniqueRequired? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
-      .build();
+      Optional.ofNullable( arraySchema.getMaxItems()).map( maxItems -> maxItems <= 1).orElse( false)?
+      Optional.empty() :
+
+      Optional.of(
+        VarDefBuilder.with( "Unique")
+        .when( has( arrayItemsManyProperty( instanceVarTag)))
+        .values(
+          VarValueDefBuilder.with( "Yes").build(),
+          VarValueDefBuilder.with( "No").type( uniqueRequired? VarValueDef.Type.FAILURE: VarValueDef.Type.VALID).build())
+        .build());
     }   
 
   /**
@@ -1071,6 +1114,7 @@ public abstract class InputModeller extends ModelConditionReporter
       // Yes, add valid and invalid values for this enumeration
       quantity.values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()));
       quantity.values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build());
+      setMaxValues( instanceSchema, enums.size());
       }
 
     // Boundary conditions defined?
@@ -1160,7 +1204,7 @@ public abstract class InputModeller extends ModelConditionReporter
             .build());
         }
 
-      // For any missing boundary, add a value designated an unbounded range
+      // For any missing boundary, add a value designating an unbounded range
       if( effectiveMinimum == null)
         {
         quantity.values(
@@ -1192,6 +1236,9 @@ public abstract class InputModeller extends ModelConditionReporter
               .type( VarValueDef.Type.FAILURE)
               .build());
             }
+
+          // Maximum values in this bounded range can be defined.
+          setMaxValues( instanceSchema, multiplesBetween( effectiveMinimum, maximum, multipleOf, notMultipleOfs));
           }
 
         notMultipleOfs.stream()
@@ -1651,6 +1698,8 @@ public abstract class InputModeller extends ModelConditionReporter
         .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
         .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
         .build();
+
+      setMaxValues( instanceSchema, enums.size());
       }
     else
       {
@@ -1840,7 +1889,8 @@ public abstract class InputModeller extends ModelConditionReporter
       {
       throw new IllegalStateException( "All possible boolean values have been excluded by this schema");
       }
-
+    setMaxValues( instanceSchema, allowedValues.size());
+    
     return
       VarDefBuilder.with( "Value")
       .has( "default", Objects.toString( instanceSchema.getDefault(), null))
@@ -1881,13 +1931,16 @@ public abstract class InputModeller extends ModelConditionReporter
     }
 
   /**
-   * Return the largest number less than or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
+   * Return the largest number less than (or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
    */
   private BigDecimal multipleBelow( BigDecimal value, boolean inclusive, BigDecimal multipleOf, Set<BigDecimal> notMultipleOfs)
     {
     BigDecimal below;
 
-    for( below = inclusive? value : value.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf);
+    for( below =
+           inclusive && isMultipleOf( value, multipleOf)
+           ? value
+           : value.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf);
 
          Stream.of( below)
            .filter( b -> notMultipleOfs.stream().anyMatch( m -> isMultipleOf( b, m)))
@@ -1906,7 +1959,10 @@ public abstract class InputModeller extends ModelConditionReporter
     {
     BigDecimal above;
 
-    for( above = inclusive? value : value.divide( multipleOf, 0, DOWN).add( BigDecimal.ONE).multiply( multipleOf);
+    for( above =
+           inclusive && isMultipleOf( value, multipleOf)
+           ? value
+           : value.divide( multipleOf, 0, DOWN).add( BigDecimal.ONE).multiply( multipleOf);
 
          Stream.of( above)
            .filter( a -> notMultipleOfs.stream().anyMatch( m -> isMultipleOf( a, m)))
@@ -1916,6 +1972,44 @@ public abstract class InputModeller extends ModelConditionReporter
          above = above.add( multipleOf));
            
     return above;
+    }
+
+  /**
+   * Return the number of values between the given mininim and maximum (inclusive) that satisfy the given (not-)multiple-of constraints.
+   */
+  private int multiplesBetween( BigDecimal min, BigDecimal max, BigDecimal multipleOf, Set<BigDecimal> notMultipleOfs)
+    {
+    int count = 0;
+
+    for( BigDecimal nextMultiple = min;
+         nextMultiple.compareTo( max) <= 0;
+         nextMultiple = nextMultiple.add( multipleOf))
+      {
+      BigDecimal checkValue = nextMultiple;
+      if( notMultipleOfs.stream().allMatch( m -> !isMultipleOf( checkValue, m)))
+        {
+        count++;
+        }
+      }
+
+    return count;
+    }
+
+  /**
+   * Returns the maximum number of non-null values that can satisfy any alternatives for this schema.
+   * Returns null if the number of satisfying values is unbounded.
+   */
+  private Integer getMaxAlternativeValues( Schema<?> schema)
+    {
+    return
+      Optional.ofNullable( getDnf( schema))
+      .map( dnf -> dnf.getAlternatives().stream())
+      .orElse( Stream.of( schema))
+      .map( s -> getMaxValues( s))
+      .filter( Objects::nonNull)
+      .sorted()
+      .findFirst()
+      .orElse( null);
     }
 
   /**

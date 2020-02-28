@@ -98,6 +98,19 @@ public class NotifierTest extends OpenApiTest
       "Numbers,/numbers,POST,param0: minimum=1000 is greater than maximum=99. Adjusting minimum to maximum.",
       "Numbers,/numbers,POST,param1: minimum=1231.23 is greater than maximum=121.77. Adjusting minimum to maximum.");
     }
+  
+  @Test
+  public void errorWhenInfeasibleUniqueItems()
+    {
+    // When...
+    getTests( getRequestInputModel( "errors-5"));
+    
+    // Then...
+    assertErrors(
+      "Arrays,/arrays,POST,param0: maxItems=10 can exceed the number of unique item values possible. Adjusting to unique maxItems=8.",
+      "Arrays,/arrays,POST,param1: minItems=4 can exceed the number of unique item values possible. Adjusting to unique minItems=3.",
+      "Arrays,/arrays,POST,param1: maxItems=null can exceed the number of unique item values possible. Adjusting to unique maxItems=3.");
+    }
 
   private SystemInputDef getRequestInputModel( String resource)
     {

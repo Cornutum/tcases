@@ -449,6 +449,23 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns the maximum number of non-null values that can satisfy this schema.
+   * Returns null if the number of satisfying values is unbounded.
+   */
+  public static Integer getMaxValues( Schema<?> schema)
+    {
+    return getExtension( schema, EXT_MAX_VALUES);
+    }
+
+  /**
+   * Changes the maximum number of non-null values that can satisfy this schema.
+   */
+  public static void setMaxValues( Schema<?> schema, Integer maxValues)
+    {
+    setExtension( schema, EXT_MAX_VALUES, maxValues);
+    }
+
+  /**
    * Returns if this is schema for an object property
    */
   public static boolean isPropertySchema( Schema<?> schema)
@@ -512,6 +529,7 @@ public final class SchemaExtensions
     }
 
   static final String EXT_DNF = "x-tcases-dnf";
+  static final String EXT_MAX_VALUES = "x-tcases-max-values";
   static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
   static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
   static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";

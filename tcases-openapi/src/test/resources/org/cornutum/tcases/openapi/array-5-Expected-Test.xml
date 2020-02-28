@@ -54,7 +54,7 @@
           <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Items.Size" value="2"/>
         <Var name="param0.Items.Contains.Type" value="boolean"/>
         <Var name="param0.Items.Contains.Value" value="true"/>
         <Var name="param0.Items.Unique" value="Yes"/>
@@ -72,7 +72,7 @@
           <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Items.Size" value="2"/>
         <Var name="param0.Items.Contains.Type" value="boolean"/>
         <Var name="param0.Items.Contains.Value" value="false"/>
         <Var name="param0.Items.Unique" value="Yes"/>
@@ -126,7 +126,7 @@
           <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Items.Size" value="2"/>
         <Var name="param0.Items.Contains.Type" value="null" failure="true"/>
         <Var name="param0.Items.Contains.Value" NA="true"/>
         <Var name="param0.Items.Unique" value="Yes"/>
@@ -144,7 +144,7 @@
           <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Items.Size" value="2"/>
         <Var name="param0.Items.Contains.Type" value="Not boolean" failure="true"/>
         <Var name="param0.Items.Contains.Value" NA="true"/>
         <Var name="param0.Items.Unique" value="Yes"/>
@@ -162,7 +162,7 @@
           <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Items.Size" value="2"/>
         <Var name="param0.Items.Contains.Type" value="boolean"/>
         <Var name="param0.Items.Contains.Value" value="true"/>
         <Var name="param0.Items.Unique" value="No" failure="true"/>
