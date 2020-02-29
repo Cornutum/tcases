@@ -1,27 +1,29 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//                    Copyright 2019, Cornutum Project
+//                    Copyright 2020, Cornutum Project
 //                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi;
+package org.cornutum.tcases.openapi.resolver;
+
+import org.cornutum.tcases.openapi.Notifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Reports conditions found when creating a Tcases model from an OpenAPI model.
+ * Reports conditions found when resolving an API {@link RequestCase}.
  */
-public interface ModelConditionNotifier extends Notifier
+public interface ResolverConditionNotifier extends Notifier
   {
   /**
-   * Returns a {@link ModelConditionNotifier} that ignores all conditions.
+   * Returns a {@link ResolverConditionNotifier} that ignores all conditions.
    */
-  public static ModelConditionNotifier ignore()
+  public static ResolverConditionNotifier ignore()
     {
     return
-      new ModelConditionNotifier()
+      new ResolverConditionNotifier()
         {
         public void warn( String[] location, String reason) {}
         public void error( String[] location, String reason, String resolution) {}
@@ -30,12 +32,12 @@ public interface ModelConditionNotifier extends Notifier
     }
 
   /**
-   * Returns a {@link ModelConditionNotifier} that logs all conditions, using the given {@link Logger}.
+   * Returns a {@link ResolverConditionNotifier} that logs all conditions, using the given {@link Logger}.
    */
-  public static ModelConditionNotifier log( final Logger logger)
+  public static ResolverConditionNotifier log( final Logger logger)
     {
     return
-      new ModelConditionNotifier()
+      new ResolverConditionNotifier()
         {
         public void warn( String[] location, String reason)
           {
@@ -55,29 +57,29 @@ public interface ModelConditionNotifier extends Notifier
     }
 
   /**
-   * Returns a {@link ModelConditionNotifier} that logs all conditions, using the default {@link Logger}.
+   * Returns a {@link ResolverConditionNotifier} that logs all conditions, using the default {@link Logger}.
    */
-  public static ModelConditionNotifier log()
+  public static ResolverConditionNotifier log()
     {
-    return log( LoggerFactory.getLogger( InputModeller.class));
+    return log( LoggerFactory.getLogger( RequestCaseResolver.class));
     }
 
   /**
-   * Returns a {@link ModelConditionNotifier} that throws an OpenApiException for any warning or error.
+   * Returns a {@link ResolverConditionNotifier} that throws an ResolverException for any warning or error.
    */
-  public static ModelConditionNotifier fail()
+  public static ResolverConditionNotifier fail()
     {
     return
-      new ModelConditionNotifier()
+      new ResolverConditionNotifier()
         {
         public void warn( String[] location, String reason)
           {
-          throw new OpenApiException( location, new OpenApiException( reason));
+          throw new ResolverException( location, new ResolverException( reason));
           }
         
         public void error( String[] location, String reason, String resolution)
           {
-          throw new OpenApiException( location, new OpenApiException( reason));
+          throw new ResolverException( location, new ResolverException( reason));
           }
 
         public String toString()

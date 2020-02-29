@@ -10,20 +10,20 @@ package org.cornutum.tcases.openapi;
 /**
  * Provides a context for reporting model conditions found when processing an OpenAPI specification
  */
-public class NotificationContext extends OpenApiContext
+public class ModelConditionContext extends OpenApiContext
   {
   /**
-   * Creates a new NotificationContext instance.
+   * Creates a new ModelConditionContext instance.
    */
-  public NotificationContext()
+  public ModelConditionContext()
     {
     this( null);
     }
   
   /**
-   * Creates a new NotificationContext instance.
+   * Creates a new ModelConditionContext instance.
    */
-  public NotificationContext( ModelConditionNotifier notifier)
+  public ModelConditionContext( ModelConditionNotifier notifier)
     {
     notifier_ =
       notifier == null

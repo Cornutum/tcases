@@ -163,10 +163,10 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<String> candidates( ResolverOptions options)
+  protected Stream<String> candidates( ResolverContext context)
     {
     return
-      getBytes().values( options)
+      getBytes().values( context)
       .map( DataValue::getValue)
       .map( Base64Domain::encoded);
     }

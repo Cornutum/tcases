@@ -27,15 +27,15 @@ public class NullDomain extends AbstractValueDomain<Object>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<Object>> values( ResolverOptions options)
+  public Stream<DataValue<Object>> values( ResolverContext context)
     {
-    return Stream.of( select( options));
+    return Stream.of( select( context));
     }
 
   /**
    * Returns a random value from this domain.
    */
-  public DataValue<Object> select( ResolverOptions options)
+  public DataValue<Object> select( ResolverContext context)
     {
     return dataValueOf( null);
     }

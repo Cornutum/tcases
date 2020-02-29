@@ -84,7 +84,7 @@ public abstract class InputModeller extends ModelConditionReporter
     {
     view_ = expectedValueOf( view, "Model view");
     options_ = Optional.ofNullable( options).orElse( new ModelOptions());
-    setContext( new NotificationContext( getOptions().getConditionNotifier()));
+    setContext( new ModelConditionContext( getOptions().getConditionNotifier()));
     analyzer_ = new SchemaAnalyzer( getContext());
     }
 

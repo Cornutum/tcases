@@ -154,9 +154,9 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<List<DataValue<T>>>> values( ResolverOptions options)
+  public Stream<DataValue<List<DataValue<T>>>> values( ResolverContext context)
     {
-    return Stream.generate( () -> dataValueOf( newArray( options)));
+    return Stream.generate( () -> dataValueOf( newArray( context)));
     }
 
   /**
@@ -170,30 +170,30 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   /**
    * Returns a new random array from this domain.
    */
-  private List<DataValue<T>> newArray( ResolverOptions options)
+  private List<DataValue<T>> newArray( ResolverContext context)
     {
     List<DataValue<T>> items;
     int itemCount;
     DataValue<T> nextItem;
     boolean itemsUnique = isItemsUnique();
 
-    for( items = new ArrayList<DataValue<T>>(), itemCount = getItemCount().selectValue( options);
+    for( items = new ArrayList<DataValue<T>>(), itemCount = getItemCount().selectValue( context);
          items.size() < itemCount;
          items.add( nextItem))
       {
-      for( nextItem = getItemValues().select( options);
+      for( nextItem = getItemValues().select( context);
            itemsUnique && items.contains( nextItem);
-           nextItem = getItemValues().select( options));
+           nextItem = getItemValues().select( context));
       }
 
     if( !itemsUnique && itemCount > 1)
       {
       // Given a random target item...
-      int target = options.getRandom().nextInt( itemCount);
+      int target = context.getRandom().nextInt( itemCount);
 
       // ...and a different source item...
       int source;
-      while( (source = options.getRandom().nextInt( itemCount)) == target);
+      while( (source = context.getRandom().nextInt( itemCount)) == target);
 
       // ...ensure target item is a duplicate of the source item.
       items.set( target, items.get( source));

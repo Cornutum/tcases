@@ -119,9 +119,9 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<Map<String,DataValue<?>>>> values( ResolverOptions options)
+  public Stream<DataValue<Map<String,DataValue<?>>>> values( ResolverContext context)
     {
-    return Stream.generate( () -> dataValueOf( newObject( options)));
+    return Stream.generate( () -> dataValueOf( newObject( context)));
     }
 
   /**
@@ -135,21 +135,21 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
   /**
    * Returns a new random object from this domain.
    */
-  private Map<String,DataValue<?>> newObject( ResolverOptions options)
+  private Map<String,DataValue<?>> newObject( ResolverContext context)
     {
     // Generate values for all specified properties
     Map<String,DataValue<?>> object =
       getPropertyDomains().entrySet().stream()
-      .collect( toMap( e -> e.getKey(), e -> e.getValue().select( options)));
+      .collect( toMap( e -> e.getKey(), e -> e.getValue().select( context)));
 
     // Additional properties needed?
-    int totalPropertyCount = object.size() + getAdditionalPropertyCount().selectValue( options);
+    int totalPropertyCount = object.size() + getAdditionalPropertyCount().selectValue( context);
     while( object.size() < totalPropertyCount)
       {
       // Yes, add unique additional property.
       String additional;
-      while( object.containsKey( (additional = getAdditionalPropertyNames().selectValue( options))));
-      object.put( additional, getAdditionalPropertyValues().select( options));
+      while( object.containsKey( (additional = getAdditionalPropertyNames().selectValue( context))));
+      object.put( additional, getAdditionalPropertyValues().select( context));
       }
 
     return object;

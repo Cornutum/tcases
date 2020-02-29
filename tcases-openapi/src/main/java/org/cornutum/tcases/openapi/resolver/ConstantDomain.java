@@ -38,7 +38,7 @@ public abstract class ConstantDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<T>> values( ResolverOptions options)
+  public Stream<DataValue<T>> values( ResolverContext context)
     {
     return Stream.of( dataValueOf( value_));
     }

@@ -88,11 +88,11 @@ public abstract class ValueDomainTest
     }
 
   /**
-   * Returns the {@link ResolverOptions} for this test.
+   * Returns the {@link ResolverContext} for this test.
    */
-  protected ResolverOptions getResolverOptions()
+  protected ResolverContext getResolverOptions()
     {
-    return new ResolverOptions( getRandom());
+    return new ResolverContext( getRandom());
     }
 
   private static long seed_;

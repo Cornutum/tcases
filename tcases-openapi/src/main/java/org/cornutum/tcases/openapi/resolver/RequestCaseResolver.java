@@ -21,9 +21,9 @@ public class RequestCaseResolver
   /**
    * Creates a new RequestCaseResolver instance.
    */
-  public RequestCaseResolver( ResolverOptions options)
+  public RequestCaseResolver( ResolverContext context)
     {
-    options_ = options;
+    context_ = context;
     }
 
   /**
@@ -53,7 +53,7 @@ public class RequestCaseResolver
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( String.format( "Can't resolve %s", requestCaseDef), e);
+      throw new ResolverException( String.format( "Can't resolve %s", requestCaseDef), e);
       }
     }
 
@@ -74,7 +74,7 @@ public class RequestCaseResolver
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( String.format( "Can't resolve parameter=%s", paramDef.getName()), e);
+      throw new ResolverException( String.format( "Can't resolve parameter=%s", paramDef.getName()), e);
       }
     }
 
@@ -92,7 +92,7 @@ public class RequestCaseResolver
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( "Can't resolve request body", e);
+      throw new ResolverException( "Can't resolve request body", e);
       }
     }
 
@@ -121,21 +121,21 @@ public class RequestCaseResolver
     {
     try
       {
-      return domain.select( getOptions());
+      return domain.select( getContext());
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( String.format( "%s: Can't get value from %s", description, domain), e);
+      throw new ResolverException( String.format( "%s: Can't get value from %s", description, domain), e);
       }
     }
 
   /**
-   * Returns the options used to resolve an executable API test case.
+   * Returns the context used to resolve an executable API test case.
    */
-  public ResolverOptions getOptions()
+  public ResolverContext getContext()
     {
-    return options_;
+    return context_;
     }
 
-  private final ResolverOptions options_;
+  private final ResolverContext context_;
   }

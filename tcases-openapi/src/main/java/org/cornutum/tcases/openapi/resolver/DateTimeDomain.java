@@ -61,7 +61,7 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Returns a random sequence of time values from this domain.
    */
-  protected Stream<Date> timeValues( ResolverOptions options)
+  protected Stream<Date> timeValues( ResolverContext context)
     {
     long minTime = getMinDate().getTime();
     long maxTime = getMaxDate().getTime();
@@ -74,7 +74,7 @@ public class DateTimeDomain extends TimeDomain
       millis == 1?
       Stream.of( getMinDate()) :
 
-      options.getRandom().longs( 0, millis)
+      context.getRandom().longs( 0, millis)
       .map( m -> minTime + m)
       .mapToObj( Date::new);
     }

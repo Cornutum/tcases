@@ -43,9 +43,9 @@ public class MediaTypeDomain extends AbstractStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected String newValue( ResolverOptions options, int length)
+  protected String newValue( ResolverContext context, int length)
     {
-    return mediaTypes_[ options.getRandom().nextInt( mediaTypes_.length)];
+    return mediaTypes_[ context.getRandom().nextInt( mediaTypes_.length)];
     }
 
   private static final String[] mediaTypes_ = new String[] {

@@ -20,7 +20,7 @@ public interface ValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<T>> values( ResolverOptions options);
+  public Stream<DataValue<T>> values( ResolverContext context);
 
   /**
    * Returns true if the given value belongs to this domain.
@@ -64,10 +64,10 @@ public interface ValueDomain<T>
   /**
    * Returns a random value from this domain.
    */
-  default public DataValue<T> select( ResolverOptions options)
+  default public DataValue<T> select( ResolverContext context)
     {
     return
-      values( options)
+      values( context)
       .findFirst()
       .orElseThrow( () -> new IllegalStateException( String.format( "Domain=%s is empty", this)));
     }
@@ -75,9 +75,9 @@ public interface ValueDomain<T>
   /**
    * Returns a random value from this domain.
    */
-  default public T selectValue( ResolverOptions options)
+  default public T selectValue( ResolverContext context)
     {
-    return select( options).getValue();
+    return select( context).getValue();
     }
 
   /**

@@ -44,7 +44,7 @@ public class SchemaAnalyzer extends ModelConditionReporter
   /**
    * Creates a new SchemaAnalyzer instance.
    */
-  public SchemaAnalyzer( NotificationContext context)
+  public SchemaAnalyzer( ModelConditionContext context)
     {
     setContext( context);
     }

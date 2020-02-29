@@ -50,21 +50,21 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   /**
    * Returns a new random string.
    */
-  protected String newValue( ResolverOptions options)
+  protected String newValue( ResolverContext context)
     {
-    return newValue( options, getLengthRange().selectValue( options));
+    return newValue( context, getLengthRange().selectValue( context));
     }
 
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected abstract String newValue( ResolverOptions options, int length);
+  protected abstract String newValue( ResolverContext context, int length);
   
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<String> candidates( ResolverOptions options)
+  protected Stream<String> candidates( ResolverContext context)
     {
-    return Stream.generate( () -> newValue( options));
+    return Stream.generate( () -> newValue( context));
     }
 }

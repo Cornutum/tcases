@@ -147,11 +147,11 @@ public class RequestCaseTest
     }
 
   /**
-   * Returns the {@link ResolverOptions} for this test.
+   * Returns the {@link ResolverContext} for this test.
    */
-  protected ResolverOptions getResolverOptions()
+  protected ResolverContext getResolverOptions()
     {
-    return new ResolverOptions( getRandom());
+    return new ResolverContext( getRandom());
     }
 
   private static final String[] testGroups_ = new String[] {

@@ -57,10 +57,10 @@ public class UuidDomain extends RestrictedStringDomain
    *
    * @see UUID#randomUUID
    */
-  protected String newValue( ResolverOptions options, int length)
+  protected String newValue( ResolverContext context, int length)
     {
     byte[] randomBytes = new byte[16];
-    options.getRandom().nextBytes(randomBytes);
+    context.getRandom().nextBytes(randomBytes);
     randomBytes[6]  &= 0x0f;  /* clear version        */
     randomBytes[6]  |= 0x40;  /* set to version 4     */
     randomBytes[8]  &= 0x3f;  /* clear variant        */

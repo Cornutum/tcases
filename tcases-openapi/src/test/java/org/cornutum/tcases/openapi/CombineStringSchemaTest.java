@@ -55,7 +55,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .notEnums( "X", "Y", "Z", "Z")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -118,7 +118,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( ".*")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -182,7 +182,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns()
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -248,7 +248,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .notPatterns( "A", "B", "B", "C")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -313,7 +313,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( "[A-Z]*")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -376,7 +376,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( ".*")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -450,7 +450,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .notEnums( "Q", "K", "K")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -503,7 +503,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( "[A-Z]*")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -528,7 +528,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .notEnums( "X", "Y", "Z", "Z")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "string")
@@ -568,7 +568,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( ".*")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "string")
@@ -610,7 +610,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .patterns( "[A-Z]*")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "string")
@@ -645,7 +645,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .notPatterns( "A", "B", "B", "C")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "string")
@@ -687,7 +687,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .notEnums( "X", "Y", "Z", "Z")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "string")
@@ -728,7 +728,7 @@ public class CombineStringSchemaTest extends OpenApiTest
       .notPatterns( "A", "B", "B", "C")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    ModelConditionContext context = new ModelConditionContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "string")

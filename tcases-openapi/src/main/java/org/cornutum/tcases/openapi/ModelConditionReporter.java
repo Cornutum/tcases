@@ -17,7 +17,7 @@ public abstract class ModelConditionReporter
   /**
    * Changes the NotificationContext for this reporter.
    */
-  protected void setContext( NotificationContext context)
+  protected void setContext( ModelConditionContext context)
     {
     context_ = context;
     }
@@ -25,7 +25,7 @@ public abstract class ModelConditionReporter
   /**
    * Returns the NotificationContext for this reporter.
    */
-  protected NotificationContext getContext()
+  protected ModelConditionContext getContext()
     {
     return context_;
     }
@@ -62,5 +62,5 @@ public abstract class ModelConditionReporter
     context_.doFor( context, action);
     }
 
-  private NotificationContext context_;
+  private ModelConditionContext context_;
   }

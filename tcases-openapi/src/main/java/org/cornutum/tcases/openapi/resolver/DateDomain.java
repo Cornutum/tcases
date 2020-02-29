@@ -55,7 +55,7 @@ public class DateDomain extends TimeDomain
   /**
    * Returns a random sequence of time values from this domain.
    */
-  protected Stream<Date> timeValues( ResolverOptions options)
+  protected Stream<Date> timeValues( ResolverContext context)
     {
     Calendar minDate =
       new Calendar.Builder()
@@ -91,7 +91,7 @@ public class DateDomain extends TimeDomain
       daysCount == 1?
       Stream.of( getMinDate()) :
 
-      options.getRandom().longs( 0, daysCount)
+      context.getRandom().longs( 0, daysCount)
       .map( d -> minTime + d * millisPerDay)
       .mapToObj( Date::new);
     }

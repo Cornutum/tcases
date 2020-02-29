@@ -71,18 +71,18 @@ public class BinaryDomain extends SequenceDomain<byte[]>
   /**
    * Returns a new byte array.
    */
-  private byte[] newValue( ResolverOptions options)
+  private byte[] newValue( ResolverContext context)
     {
-    byte[] bytes = new byte[ getLengthRange().selectValue( options)];
-    options.getRandom().nextBytes( bytes);
+    byte[] bytes = new byte[ getLengthRange().selectValue( context)];
+    context.getRandom().nextBytes( bytes);
     return bytes;
     }
   
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<byte[]> candidates( ResolverOptions options)
+  protected Stream<byte[]> candidates( ResolverContext context)
     {
-    return Stream.generate( () -> newValue( options));
+    return Stream.generate( () -> newValue( context));
     }
   }

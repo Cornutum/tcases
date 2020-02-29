@@ -121,7 +121,7 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<Long>> values( ResolverOptions options)
+  public Stream<DataValue<Long>> values( ResolverContext context)
     {
     // Find smallest and largest multiples in range
     long multiple = Optional.ofNullable( getMultipleOf()).orElse( 1L);
@@ -156,7 +156,7 @@ public class LongDomain extends NumberDomain<Long>
       multiplesCount == 1?
       Stream.of( firstMultiple) :
 
-      options.getRandom().longs( 0, multiplesCount)
+      context.getRandom().longs( 0, multiplesCount)
       .map( i -> originMultiple + i * multiple)
       .filter( i -> isNotExcluded( i, getExcluded()))
       .filter( i -> isNotMultipleOf( i, getNotMultipleOfs()))

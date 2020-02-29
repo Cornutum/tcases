@@ -116,21 +116,21 @@ public class EmailDomain extends AbstractStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected String newValue( ResolverOptions options, int length)
+  protected String newValue( ResolverContext context, int length)
     {
     int partsLength = length - 5;
     int localLengthMax = Math.min( MAX_LOCAL, partsLength - 1);
     int localLengthMin = length - MAX_DOMAIN - 1;
-    int localLength = Math.max( options.getRandom().nextInt( localLengthMax) + 1, localLengthMin);
+    int localLength = Math.max( context.getRandom().nextInt( localLengthMax) + 1, localLengthMin);
     int domainLength = partsLength - localLength;
 
     return
       new StringBuilder()
-      .append( randomPathOf( options, localPartChars_, localLength, localLength))
+      .append( randomPathOf( context, localPartChars_, localLength, localLength))
       .append( "@")
-      .append( randomPathOf( options, domainPartChars_, domainLength, MAX_LABEL))
+      .append( randomPathOf( context, domainPartChars_, domainLength, MAX_LABEL))
       .append( ".")
-      .append( topLevels_[ options.getRandom().nextInt( topLevels_.length)])
+      .append( topLevels_[ context.getRandom().nextInt( topLevels_.length)])
       .toString();
     }
 
@@ -138,12 +138,12 @@ public class EmailDomain extends AbstractStringDomain
    * Returns a path of the given length composed of dot-separated parts. Each part is
    * a random string composed of the given characters and no longer than the given <CODE>maxPartLength</CODE>.
    */
-  private static String randomPathOf( ResolverOptions options, String chars, int length, int maxPartLength)
+  private static String randomPathOf( ResolverContext context, String chars, int length, int maxPartLength)
     {
     double lengthd = length;
     int maxParts = (int) Math.floor( (lengthd + 1) / 2);
     int minParts = (int) Math.ceil( (lengthd + 1) / (maxPartLength + 1));
-    int parts = minParts + options.getRandom().nextInt( maxParts - minParts + 1);
+    int parts = minParts + context.getRandom().nextInt( maxParts - minParts + 1);
     int partLength = (int) Math.ceil( (lengthd - parts + 1) / parts);
 
     int tailLength;
@@ -152,19 +152,19 @@ public class EmailDomain extends AbstractStringDomain
 
     return
       IntStream.range( 0, parts)
-      .mapToObj( i -> randomStringOf( options, chars, i==0? prefixLength : partLength))
+      .mapToObj( i -> randomStringOf( context, chars, i==0? prefixLength : partLength))
       .collect( joining( "."));
     }
 
   /**
    * Returns a random string of the given length composed of the given characters.
    */
-  private static String randomStringOf( ResolverOptions options, String chars, int length)
+  private static String randomStringOf( ResolverContext context, String chars, int length)
     {
     StringBuilder randomString = new StringBuilder();
     for( int i = 0; i < length; i++)
       {
-      randomString.append( chars.charAt( options.getRandom().nextInt( chars.length())));
+      randomString.append( chars.charAt( context.getRandom().nextInt( chars.length())));
       }
     
     return randomString.toString();

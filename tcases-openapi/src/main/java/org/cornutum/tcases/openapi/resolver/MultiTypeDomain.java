@@ -35,9 +35,9 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
    * Returns a random sequence of values from this domain.
    */
   @SuppressWarnings("unchecked")
-  public Stream<DataValue<Object>> values( ResolverOptions options)
+  public Stream<DataValue<Object>> values( ResolverContext context)
     {
-    return Stream.generate( () -> (DataValue<Object>) typeDomains_.get( options.getRandom().nextInt( typeDomains_.size())).select( options));
+    return Stream.generate( () -> (DataValue<Object>) typeDomains_.get( context.getRandom().nextInt( typeDomains_.size())).select( context));
     }
 
   /**

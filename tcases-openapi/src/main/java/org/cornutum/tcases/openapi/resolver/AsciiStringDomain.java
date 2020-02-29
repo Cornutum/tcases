@@ -43,12 +43,12 @@ public class AsciiStringDomain extends AbstractStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected String newValue( ResolverOptions options, int length)
+  protected String newValue( ResolverContext context, int length)
     {
     StringBuilder value = new StringBuilder();
     for( int i = 0; i < length; i++)
       {
-      value.append( asciiPrintable_.charAt( options.getRandom().nextInt( asciiPrintable_.length())));
+      value.append( asciiPrintable_.charAt( context.getRandom().nextInt( asciiPrintable_.length())));
       }
 
     return value.toString();

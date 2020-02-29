@@ -152,10 +152,10 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<T>> values( ResolverOptions options)
+  public Stream<DataValue<T>> values( ResolverContext context)
     {
     return
-      candidates( options)
+      candidates( context)
       .filter( value -> isNotExcluded( value, getExcluded()))
       .map( value -> dataValueOf( value));
     }
@@ -163,7 +163,7 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected abstract Stream<T> candidates( ResolverOptions options);
+  protected abstract Stream<T> candidates( ResolverContext context);
 
   /**
    * Returns true if the given value belongs to this domain.

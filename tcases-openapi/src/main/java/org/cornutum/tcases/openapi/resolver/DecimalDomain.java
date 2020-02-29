@@ -170,7 +170,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<BigDecimal>> values( ResolverOptions options)
+  public Stream<DataValue<BigDecimal>> values( ResolverContext context)
     {
     // Find smallest and largest (multiples) in range
     int unitScale =
@@ -209,7 +209,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
       multiplesCount == 1?
       Stream.of( firstMultiple) :
 
-      options.getRandom().longs( 0, multiplesCount)
+      context.getRandom().longs( 0, multiplesCount)
       .mapToObj( i -> originMultiple.add( multiple.multiply( new BigDecimal(i))))
       .filter( d -> isNotExcluded( d, getExcluded()))
       .filter( d -> isNotMultipleOf( d, getNotMultipleOfs()));
