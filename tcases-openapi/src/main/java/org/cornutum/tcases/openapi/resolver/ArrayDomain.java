@@ -181,9 +181,10 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
          items.size() < itemCount;
          items.add( nextItem))
       {
-      for( nextItem = getItemValues().select( context);
-           itemsUnique && items.contains( nextItem);
-           nextItem = getItemValues().select( context));
+      nextItem =
+        context.resultFor(
+          String.format( "%sitem %s", itemsUnique? "unique " : "", items.size()),
+          () -> context.tryUntil( () -> Optional.of( getItemValues().select( context)).filter( item -> !( itemsUnique && items.contains( item)))));
       }
 
     if( !itemsUnique && itemCount > 1)

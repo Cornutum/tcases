@@ -36,7 +36,7 @@ public class DateTimeDomainTest extends ValueDomainTest
     // Then...
     List<String> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getResolverOptions()), matches( dataValueMatcher( value, Type.STRING, "date-time")));
+    assertThat( "Constant value", domain.select( getResolverContext()), matches( dataValueMatcher( value, Type.STRING, "date-time")));
     assertThat( "Contains", domain.contains( value), is( true));
     assertThat( "Contains", domain.contains( ""), is( false));
     }
@@ -74,7 +74,7 @@ public class DateTimeDomainTest extends ValueDomainTest
     assertThat( "Contains", domain.contains( ""), is( false));
 
     // When...
-    DataValue<String> value = domain.select( getResolverOptions());
+    DataValue<String> value = domain.select( getResolverContext());
 
     // Then...
     assertThat( "Value", value, matches( dataValueMatcher( value.getValue(), Type.STRING, "date-time")));

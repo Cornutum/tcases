@@ -34,7 +34,7 @@ public class EmailDomainTest extends ValueDomainTest
     // Then...
     List<String> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getResolverOptions()), matches( dataValueMatcher( value, Type.STRING, "email")));
+    assertThat( "Constant value", domain.select( getResolverContext()), matches( dataValueMatcher( value, Type.STRING, "email")));
     assertThat( "Contains", domain.contains( value), is( true));
     assertThat( "Contains", domain.contains( ""), is( false));
     }
@@ -82,7 +82,7 @@ public class EmailDomainTest extends ValueDomainTest
     assertThat( "Contains", domain.contains( "myself@mydomain.org"), is( false));
 
     // When...
-    DataValue<String> value = domain.select( getResolverOptions());
+    DataValue<String> value = domain.select( getResolverContext());
 
     // Then...
     assertThat( "Value", value, matches( dataValueMatcher( value.getValue(), Type.STRING, "email")));

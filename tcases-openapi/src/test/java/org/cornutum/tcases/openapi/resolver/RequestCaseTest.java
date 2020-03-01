@@ -149,7 +149,7 @@ public class RequestCaseTest
   /**
    * Returns the {@link ResolverContext} for this test.
    */
-  protected ResolverContext getResolverOptions()
+  protected ResolverContext getResolverContext()
     {
     return new ResolverContext( getRandom());
     }

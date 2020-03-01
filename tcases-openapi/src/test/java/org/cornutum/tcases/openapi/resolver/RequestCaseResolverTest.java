@@ -42,7 +42,7 @@ public class RequestCaseResolverTest extends RequestCaseTest
     {
     // Given...
     RequestCaseDefiner definer = new RequestCaseDefiner();
-    RequestCaseResolver resolver = new RequestCaseResolver( getResolverOptions());
+    RequestCaseResolver resolver = new RequestCaseResolver( getResolverContext());
     File testDefFile = getTestDefFile( testDefBase_);
 
     // When...
@@ -59,6 +59,20 @@ public class RequestCaseResolverTest extends RequestCaseTest
       {
       throw new RequestCaseException( String.format( "Can't get request case from file=%s", testDefFile.getName()), e);
       }
+    }
+
+  /**
+   * Returns the {@link ResolverContext} for this test.
+   */
+  protected ResolverContext getResolverContext()
+    {
+    return
+      ResolverContext.builder( getRandom())
+      .notifier(
+        "log".equals( System.getProperty( "testNotifier"))
+        ? ResolverConditionNotifier.log()
+        : ResolverConditionNotifier.fail())
+      .build();
     }
 
   private String testDefBase_;

@@ -53,7 +53,7 @@ public class IntegerDomainTest extends ValueDomainTest
     // Then...
     List<Integer> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getResolverOptions()), matches( dataValueMatcher( -99, Type.INTEGER, "int32")));
+    assertThat( "Constant value", domain.select( getResolverContext()), matches( dataValueMatcher( -99, Type.INTEGER, "int32")));
     }
 
   @Test
@@ -87,7 +87,7 @@ public class IntegerDomainTest extends ValueDomainTest
     // Then...
     List<Integer> values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 1));
-    assertThat( "Value", domain.select( getResolverOptions()), matches( dataValueMatcher( 9, Type.INTEGER, "int32")));
+    assertThat( "Value", domain.select( getResolverContext()), matches( dataValueMatcher( 9, Type.INTEGER, "int32")));
 
     // When...
     domain.setRange( 13, 20);
@@ -95,7 +95,7 @@ public class IntegerDomainTest extends ValueDomainTest
     // Then...
     values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 0));
-    expectFailure( IllegalStateException.class).when( () -> domain.select( getResolverOptions()));
+    expectFailure( IllegalStateException.class).when( () -> domain.select( getResolverContext()));
 
     // When...
     domain.setRange( -20, 20);

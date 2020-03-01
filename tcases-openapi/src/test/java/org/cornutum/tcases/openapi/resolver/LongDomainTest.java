@@ -52,7 +52,7 @@ public class LongDomainTest extends ValueDomainTest
     // Then...
     List<Long> values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 1));
-    assertThat( "Value", domain.select( getResolverOptions()), matches( dataValueMatcher( 8L, Type.INTEGER, "int64")));
+    assertThat( "Value", domain.select( getResolverContext()), matches( dataValueMatcher( 8L, Type.INTEGER, "int64")));
 
     // When...
     domain.setRange( 9L, 11L);
@@ -60,7 +60,7 @@ public class LongDomainTest extends ValueDomainTest
     // Then...
     values = valuesOf( domain, 10);
     assertThat( "Values size", values.size(), is( 0));
-    expectFailure( IllegalStateException.class).when( () -> domain.select( getResolverOptions()));
+    expectFailure( IllegalStateException.class).when( () -> domain.select( getResolverContext()));
 
     // When...
     domain.setRange( -11L, 11L);
@@ -81,7 +81,7 @@ public class LongDomainTest extends ValueDomainTest
     // Then...
     List<Long> values = valuesOf( domain, 10);
     assertThat( "Constant values size", values.size(), is( 1));
-    assertThat( "Constant value", domain.select( getResolverOptions()), matches( dataValueMatcher( -123456789L, Type.INTEGER, "int64")));
+    assertThat( "Constant value", domain.select( getResolverContext()), matches( dataValueMatcher( -123456789L, Type.INTEGER, "int64")));
     }
   
   @Test

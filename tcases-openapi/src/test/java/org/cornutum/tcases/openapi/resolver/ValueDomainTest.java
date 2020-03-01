@@ -44,7 +44,7 @@ public abstract class ValueDomainTest
   protected <T> void verifyContainsValues( ValueDomain<T> domain, int limit)
     {
     List<DataValue<T>> values = 
-      domain.values( getResolverOptions())
+      domain.values( getResolverContext())
       .limit( limit)
       .collect( toList());
 
@@ -63,7 +63,7 @@ public abstract class ValueDomainTest
   protected <T> List<DataValue<T>> dataValuesOf( ValueDomain<T> domain, int limit)
     {
     return
-      domain.values( getResolverOptions())
+      domain.values( getResolverContext())
       .limit( limit)
       .collect( toList());
     }
@@ -90,7 +90,7 @@ public abstract class ValueDomainTest
   /**
    * Returns the {@link ResolverContext} for this test.
    */
-  protected ResolverContext getResolverOptions()
+  protected ResolverContext getResolverContext()
     {
     return new ResolverContext( getRandom());
     }

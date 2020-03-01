@@ -7,10 +7,13 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.ExecutionContext;
+import org.cornutum.tcases.openapi.Notifier;
+
 import java.util.Optional;
 import java.util.Random;
-
-import org.cornutum.tcases.openapi.ExecutionContext;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * Defines options used to resolve an executable API test case.
@@ -24,6 +27,7 @@ public class ResolverContext extends ExecutionContext<ResolverException>
     {
     setRandom( random);
     setNotifier( null);
+    setMaxTries( 10000);
     }
   
   /**
@@ -58,7 +62,7 @@ public class ResolverContext extends ExecutionContext<ResolverException>
   /**
    * Changes the notifier that reports conditions that occur when resolving a test case.
    */
-  public void setNotifier( ResolverConditionNotifier notifier)
+  public void setNotifier( Notifier notifier)
     {
     notifier_ =
       notifier == null
@@ -69,11 +73,43 @@ public class ResolverContext extends ExecutionContext<ResolverException>
   /**
    * Returns the notifier that reports conditions that occur when resolving a test case.
    */
-  public ResolverConditionNotifier getNotifier()
+  public Notifier getNotifier()
     {
     return notifier_;
     }
-  
+
+  /**
+   * Changes the maximum attempts to resolve an input value before reporting failure.
+   */
+  public void setMaxTries( int maxTries)
+    {
+    maxTries_ = maxTries;
+    }
+
+  /**
+   * Returns the maximum attempts to resolve an input value before reporting failure.
+   */
+  public int getMaxTries()
+    {
+    return maxTries_;
+    }
+
+  /**
+   * Repeats evaluation of the given <CODE>valueSupplier</CODE> until a result is present or until
+   * the {@link #getMaxTries maximum tries} have been attempted. If the no more attempts are possible,
+   * reports a failure. Otherwise, returns the supplied result.
+   */
+  public <T> T tryUntil( Supplier<Optional<T>> valueSupplier)
+    {
+    return
+      Stream.generate( () -> valueSupplier.get())
+      .limit( getMaxTries())
+      .filter( Optional::isPresent)
+      .findFirst()
+      .map( Optional::get)
+      .orElseThrow( () -> new ResolverSkipException( getLocation(), String.format( "Unable to resolve a value after %s tries", getMaxTries())));
+    }
+
   /**
    * Reports a condition that will affect the expected test cat.
    *
@@ -113,6 +149,18 @@ public class ResolverContext extends ExecutionContext<ResolverException>
       resolverContext_ = new ResolverContext( random);
       }
 
+    public Builder notifier( Notifier notifier)
+      {
+      resolverContext_.setNotifier( notifier);
+      return this;
+      }
+
+    public Builder maxTries( int maxTries)
+      {
+      resolverContext_.setMaxTries( maxTries);
+      return this;
+      }
+
     public ResolverContext build()
       {
       return resolverContext_;
@@ -122,5 +170,6 @@ public class ResolverContext extends ExecutionContext<ResolverException>
     }
 
   private Random random_;
-  private ResolverConditionNotifier notifier_;
+  private Notifier notifier_;
+  private int maxTries_;
   }

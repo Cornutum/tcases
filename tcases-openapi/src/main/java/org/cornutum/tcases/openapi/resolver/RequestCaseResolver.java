@@ -56,6 +56,11 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
     
         return requestCase;
         }
+      catch( ResolverSkipException skip)
+        {
+        getNotifier().error( skip.getLocation(), skip.getMessage(), "No request case created for this test");
+        return null;
+        }
       catch( Exception e)
         {
         throw new ResolverException( String.format( "Can't resolve %s", requestCaseDef), e);
@@ -79,6 +84,10 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
 
         return paramData;
         }
+      catch( ResolverSkipException skip)
+        {
+        throw skip;
+        }
       catch( Exception e)
         {
         throw new ResolverException( String.format( "Can't resolve parameter=%s", paramDef.getName()), e);
@@ -98,6 +107,10 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
           Optional.ofNullable( body)
           .map( this::resolveMessageData)
           .orElse( null);
+        }
+      catch( ResolverSkipException skip)
+        {
+        throw skip;
         }
       catch( Exception e)
         {
@@ -132,6 +145,10 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
     try
       {
       return domain.select( getContext());
+      }
+    catch( ResolverSkipException skip)
+      {
+      throw skip;
       }
     catch( Exception e)
       {
