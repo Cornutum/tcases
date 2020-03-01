@@ -55,7 +55,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -126,7 +126,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -195,7 +195,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -266,7 +266,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .notRequired( "Delta")
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -341,7 +341,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -414,7 +414,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -486,7 +486,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -561,7 +561,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -629,7 +629,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -696,7 +696,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -771,7 +771,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -844,7 +844,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -916,7 +916,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .required( "Alpha", "Bravo", "Charlie")
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -989,7 +989,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -1057,7 +1057,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "object").build())
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -1125,7 +1125,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .property( "Charlie", SchemaBuilder.ofType( "integer").build())
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -1210,7 +1210,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( OpenApiException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -1270,7 +1270,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( SchemaBuilder.ofType( "integer").build())
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( OpenApiException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -1305,7 +1305,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( true)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -1333,7 +1333,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .notRequired( "Delta")
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "object")
@@ -1378,7 +1378,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -1437,7 +1437,7 @@ public class CombineObjectSchemaTest extends OpenApiTest
       .additionalProperties( false)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))

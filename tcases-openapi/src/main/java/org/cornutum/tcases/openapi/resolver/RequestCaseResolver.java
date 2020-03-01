@@ -10,20 +10,24 @@ package org.cornutum.tcases.openapi.resolver;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Optional;
+
+import org.cornutum.tcases.openapi.ConditionReporter;
+
 import static java.util.stream.Collectors.toList;
 
 /**
  * Resolves an {@link RequestCaseDef abstract test case} for an API request by producing a {@link RequestCase}
  * that describes an executable instance of this test case.
  */
-public class RequestCaseResolver
+public class RequestCaseResolver extends ConditionReporter<ResolverContext>
   {
   /**
    * Creates a new RequestCaseResolver instance.
    */
   public RequestCaseResolver( ResolverContext context)
     {
-    context_ = context;
+    super( context);
+    setNotifier( context.getNotifier());
     }
 
   /**
@@ -128,14 +132,4 @@ public class RequestCaseResolver
       throw new ResolverException( String.format( "%s: Can't get value from %s", description, domain), e);
       }
     }
-
-  /**
-   * Returns the context used to resolve an executable API test case.
-   */
-  public ResolverContext getContext()
-    {
-    return context_;
-    }
-
-  private final ResolverContext context_;
   }

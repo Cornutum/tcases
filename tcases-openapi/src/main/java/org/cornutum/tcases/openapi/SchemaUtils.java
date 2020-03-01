@@ -169,7 +169,7 @@ public final class SchemaUtils
    * Returns a new schema that validates any instance that satisfies both the base schema and the additional schema.
    * Throws an exception if a consistent combination is not possible.
    */
-  public static Schema<?> combineSchemas( ModelConditionContext context, Schema<?> base, Schema<?> additional)
+  public static Schema<?> combineSchemas( OpenApiContext context, Schema<?> base, Schema<?> additional)
     {
     Schema<?> combined;
 
@@ -223,7 +223,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings({ "rawtypes", "unchecked" })
-  private static Schema<?> combineObjectSchemas( ModelConditionContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineObjectSchemas( OpenApiContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineGenericSchemas( context, base, additional);
 
@@ -333,7 +333,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings("rawtypes")
-  private static Schema<?> combineStringSchemas( ModelConditionContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineStringSchemas( OpenApiContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineGenericSchemas( context, base, additional);
 
@@ -391,7 +391,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings("rawtypes")
-  private static Schema<?> combineIntegerSchemas( ModelConditionContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineIntegerSchemas( OpenApiContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineNumericSchemas( context, base, additional);
 
@@ -415,7 +415,7 @@ public final class SchemaUtils
    * Returns a new schema that validates any instance that satisfies both the base schema and the additional schema.
    * Throws an exception if a consistent combination is not possible.
    */
-  private static Schema<?> combineBooleanSchemas( ModelConditionContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineBooleanSchemas( OpenApiContext context, Schema<?> base, Schema<?> additional)
     {
     return combineGenericSchemas( context, base, additional);
     }
@@ -424,7 +424,7 @@ public final class SchemaUtils
    * Returns a new schema that validates any instance that satisfies both the base schema and the additional schema.
    * Throws an exception if a consistent combination is not possible.
    */
-  private static Schema<?> combineArraySchemas( ModelConditionContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineArraySchemas( OpenApiContext context, Schema<?> base, Schema<?> additional)
     {
     ArraySchema combined = combineGenericSchemas( context, new ArraySchema(), base, additional);
 
@@ -477,7 +477,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings("rawtypes")
-  private static Schema<?> combineNumberSchemas( ModelConditionContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineNumberSchemas( OpenApiContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineNumericSchemas( context, base, additional);
 
@@ -502,7 +502,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings("rawtypes")
-  private static Schema<?> combineNumericSchemas( ModelConditionContext context, Schema<?> base, Schema<?> additional)
+  private static Schema<?> combineNumericSchemas( OpenApiContext context, Schema<?> base, Schema<?> additional)
     {
     Schema combined = combineGenericSchemas( context, base, additional);
 
@@ -609,7 +609,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings({ "rawtypes" })
-  private static Schema combineGenericSchemas( ModelConditionContext context, Schema base, Schema additional)
+  private static Schema combineGenericSchemas( OpenApiContext context, Schema base, Schema additional)
     {
     return combineGenericSchemas( context, emptySchema(), base, additional);
     }
@@ -619,7 +619,7 @@ public final class SchemaUtils
    * Throws an exception if a consistent combination is not possible.
    */
   @SuppressWarnings({ "rawtypes", "unchecked" })
-  private static <T extends Schema> T combineGenericSchemas( ModelConditionContext context, T combined, Schema base, Schema additional)
+  private static <T extends Schema> T combineGenericSchemas( OpenApiContext context, T combined, Schema base, Schema additional)
     {
     // Combine type
     String baseType = base.getType();
@@ -879,5 +879,5 @@ public final class SchemaUtils
    */
   public static final Schema<?> FALSE_SCHEMA = falseSchema();
 
-  private static final ModelConditionContext DEFAULT_CONTEXT = new ModelConditionContext();
+  private static final OpenApiContext DEFAULT_CONTEXT = new OpenApiContext();
   }

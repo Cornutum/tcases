@@ -59,7 +59,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 2)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -131,7 +131,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -205,7 +205,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 20)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -281,7 +281,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .notEnums( 1, 2, 4)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -354,7 +354,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 5)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -427,7 +427,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 3)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -501,7 +501,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -576,7 +576,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 15)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -650,7 +650,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -735,7 +735,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( null)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -794,7 +794,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .multipleOf( 4)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -820,7 +820,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .notEnums( 1, 2, 4)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
@@ -866,7 +866,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .notEnums( 1, 2, 4)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "integer")
@@ -924,7 +924,7 @@ public class CombineIntegerSchemaTest extends OpenApiTest
       .notEnums( 8, 9, 10)
       .build();
 
-    ModelConditionContext context = new ModelConditionContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))

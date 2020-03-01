@@ -65,7 +65,7 @@ import static java.util.stream.Collectors.toSet;
  * OpenAPI models must conform to <U>OAS version 3</U>.
  * See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
  */
-public abstract class InputModeller extends ModelConditionReporter
+public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   {
   protected enum View { REQUEST, RESPONSE };
   
@@ -82,10 +82,14 @@ public abstract class InputModeller extends ModelConditionReporter
    */
   protected InputModeller( View view, ModelOptions options)
     {
+    super( new OpenApiContext());
     view_ = expectedValueOf( view, "Model view");
+
     options_ = Optional.ofNullable( options).orElse( new ModelOptions());
-    setContext( new ModelConditionContext( getOptions().getConditionNotifier()));
+    setNotifier( getOptions().getConditionNotifier());
+
     analyzer_ = new SchemaAnalyzer( getContext());
+    analyzer_.setNotifier( getNotifier());
     }
 
   /**
