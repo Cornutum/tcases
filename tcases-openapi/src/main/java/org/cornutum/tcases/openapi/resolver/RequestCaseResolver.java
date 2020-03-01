@@ -36,29 +36,31 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
    */
   public RequestCase resolve( RequestCaseDef requestCaseDef)
     {
-    try
-      {
-      RequestCase requestCase = new RequestCase();
+    return resultFor( String.valueOf( requestCaseDef), () -> {
+      try
+        {
+        RequestCase requestCase = new RequestCase();
 
-      requestCase.setServer( requestCaseDef.getServer());
-      requestCase.setVersion( requestCaseDef.getVersion());
-      requestCase.setPath( requestCaseDef.getPath());
-      requestCase.setOperation( requestCaseDef.getOperation());
-      requestCase.setInvalidInput( requestCaseDef.getInvalidInput());
+        requestCase.setServer( requestCaseDef.getServer());
+        requestCase.setVersion( requestCaseDef.getVersion());
+        requestCase.setPath( requestCaseDef.getPath());
+        requestCase.setOperation( requestCaseDef.getOperation());
+        requestCase.setInvalidInput( requestCaseDef.getInvalidInput());
 
-      requestCase.setParams(
-        toStream( requestCaseDef.getParams())
-        .map( paramDef -> resolveParamData( paramDef))
-        .collect( toList()));
+        requestCase.setParams(
+          toStream( requestCaseDef.getParams())
+          .map( paramDef -> resolveParamData( paramDef))
+          .collect( toList()));
 
-      requestCase.setBody( resolveBody( requestCaseDef.getBody()));
+        requestCase.setBody( resolveBody( requestCaseDef.getBody()));
     
-      return requestCase;
-      }
-    catch( Exception e)
-      {
-      throw new ResolverException( String.format( "Can't resolve %s", requestCaseDef), e);
-      }
+        return requestCase;
+        }
+      catch( Exception e)
+        {
+        throw new ResolverException( String.format( "Can't resolve %s", requestCaseDef), e);
+        }
+      });
     }
 
   /**
@@ -66,20 +68,22 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
    */
   private ParamData resolveParamData( ParamDef paramDef)
     {
-    try
-      {
-      ParamData paramData = new ParamData( paramDef.getName(), resolveMessageData( paramDef.getValue()));
+    return resultFor( paramDef.getName(), () -> { 
+      try
+        {
+        ParamData paramData = new ParamData( paramDef.getName(), resolveMessageData( paramDef.getValue()));
 
-      paramData.setLocation( paramDef.getLocation());
-      paramData.setStyle( paramDef.getStyle());
-      paramData.setExploded( paramDef.isExploded());
+        paramData.setLocation( paramDef.getLocation());
+        paramData.setStyle( paramDef.getStyle());
+        paramData.setExploded( paramDef.isExploded());
 
-      return paramData;
-      }
-    catch( Exception e)
-      {
-      throw new ResolverException( String.format( "Can't resolve parameter=%s", paramDef.getName()), e);
-      }
+        return paramData;
+        }
+      catch( Exception e)
+        {
+        throw new ResolverException( String.format( "Can't resolve parameter=%s", paramDef.getName()), e);
+        }
+      });
     }
 
   /**
@@ -87,17 +91,19 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
    */
   private MessageData resolveBody( ValueDef<?> body)
     {
-    try
-      {
-      return
-        Optional.ofNullable( body)
-        .map( this::resolveMessageData)
-        .orElse( null);
-      }
-    catch( Exception e)
-      {
-      throw new ResolverException( "Can't resolve request body", e);
-      }
+    return resultFor( "requestBody", () -> {
+      try
+        {
+        return
+          Optional.ofNullable( body)
+          .map( this::resolveMessageData)
+          .orElse( null);
+        }
+      catch( Exception e)
+        {
+        throw new ResolverException( "Can't resolve request body", e);
+        }
+      });
     }
 
   /**
@@ -107,12 +113,12 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
     {
     DataValue<?> resolvedValue = 
       valueDef.isDefined()
-      ? domainValue( "value", valueDef.getDomain())
+      ? resultFor( "value", () -> domainValue( valueDef.getDomain()))
       : null;
 
     String resolvedMediaType =
       Optional.ofNullable( valueDef.getMediaType())
-      .map( mediaType -> domainValue( "mediaType", mediaType).getValue())
+      .map( mediaType -> resultFor( "mediaType", () -> domainValue( mediaType).getValue()))
       .orElse( null);
     
     return new MessageData( resolvedValue, resolvedMediaType, valueDef.isValid());
@@ -121,7 +127,7 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
   /**
    * Returns a random data value from the given {@link ValueDomain}.
    */
-  private <T> DataValue<T> domainValue( String description, ValueDomain<T> domain)
+  private <T> DataValue<T> domainValue( ValueDomain<T> domain)
     {
     try
       {
@@ -129,7 +135,7 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
       }
     catch( Exception e)
       {
-      throw new ResolverException( String.format( "%s: Can't get value from %s", description, domain), e);
+      throw new ResolverException( String.format( "Can't get value from %s", domain), e);
       }
     }
   }

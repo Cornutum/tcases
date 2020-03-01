@@ -140,16 +140,22 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
     // Generate values for all specified properties
     Map<String,DataValue<?>> object =
       getPropertyDomains().entrySet().stream()
-      .collect( toMap( e -> e.getKey(), e -> e.getValue().select( context)));
+      .collect(
+        toMap(
+          e -> e.getKey(),
+          e -> context.resultFor( e.getKey(), () -> e.getValue().select( context))));
 
     // Additional properties needed?
-    int totalPropertyCount = object.size() + getAdditionalPropertyCount().selectValue( context);
+    int totalPropertyCount =
+      object.size()
+      + context.resultFor( "additionalPropertyCount", () -> getAdditionalPropertyCount().selectValue( context));
+    
     while( object.size() < totalPropertyCount)
       {
       // Yes, add unique additional property.
       String additional;
-      while( object.containsKey( (additional = getAdditionalPropertyNames().selectValue( context))));
-      object.put( additional, getAdditionalPropertyValues().select( context));
+      while( object.containsKey( (additional = context.resultFor( "additionalPropertyName", () -> getAdditionalPropertyNames().selectValue( context)))));
+      object.put( additional, context.resultFor( "additionalPropertyValue", () -> getAdditionalPropertyValues().select( context)));
       }
 
     return object;

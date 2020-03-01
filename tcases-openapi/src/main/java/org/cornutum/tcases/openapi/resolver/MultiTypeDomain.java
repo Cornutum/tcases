@@ -37,7 +37,12 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
   @SuppressWarnings("unchecked")
   public Stream<DataValue<Object>> values( ResolverContext context)
     {
-    return Stream.generate( () -> (DataValue<Object>) typeDomains_.get( context.getRandom().nextInt( typeDomains_.size())).select( context));
+    return
+      Stream.generate( () -> {
+        ValueDomain<?> domain = typeDomains_.get( context.getRandom().nextInt( typeDomains_.size()));
+        String type = String.valueOf( domain.getTypes()[0]).toLowerCase();
+        return context.resultFor( type, () -> (DataValue<Object>) domain.select( context));
+        });
     }
 
   /**
