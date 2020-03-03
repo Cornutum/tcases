@@ -53,10 +53,13 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
    */
   public void setLengthRange( Integer min, Integer max)
     {
-    IntegerDomain length = new IntegerDomain( getMaxLength());
-    length.setRange(
-      Optional.ofNullable( min).orElse( 0),
-      Optional.ofNullable( max).orElse( getMaxLength()));
+    // Resolve unspecified upper/lower bounds.
+    // If necessary, resolve an unspecified upper bound to exceed any specified lower bound.
+    int lowerBound = Optional.ofNullable( min).orElse( 0);
+    int upperBound = Optional.ofNullable( max).orElse( lowerBound > getMaxLength()? lowerBound + 1 : getMaxLength());
+
+    IntegerDomain length = new IntegerDomain();
+    length.setRange( lowerBound, upperBound);
     setLengthRange( length);
     }
 
