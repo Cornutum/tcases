@@ -17,7 +17,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="0"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -54,7 +56,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -93,7 +97,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -128,7 +134,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&lt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -165,7 +173,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="0">
           <Has name="format" value="int64"/>
         </Var>
@@ -202,7 +212,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -239,7 +251,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&lt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -276,7 +290,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="0"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -313,7 +329,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="0">
           <Has name="format" value="int64"/>
         </Var>
@@ -350,7 +368,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -387,7 +407,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -424,7 +446,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="null" failure="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -461,7 +485,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="Not array" failure="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -498,7 +524,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="null" failure="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -535,7 +563,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="Not integer" failure="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="Not integer" failure="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -572,7 +602,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -607,7 +639,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -644,7 +678,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -681,7 +717,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -718,7 +756,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -755,7 +795,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -792,7 +834,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -829,7 +873,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -866,7 +912,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -903,7 +951,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -940,7 +990,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -977,7 +1029,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" value="&gt; 1"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="format" value="int64"/>
         </Var>
@@ -1014,7 +1068,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -1049,7 +1105,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -1086,7 +1144,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>
@@ -1123,7 +1183,9 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
         <Var name="200.Headers.x-my-secret-header.Items.Size" NA="true"/>
-        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true"/>
+        <Var name="200.Headers.x-my-secret-header.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="200.Headers.x-my-secret-header.Items.Contains.Value.Is" NA="true">
           <Has name="format" value="int64"/>
         </Var>

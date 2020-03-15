@@ -69,9 +69,9 @@ public class RequestCaseResolverTest extends RequestCaseTest
     return
       ResolverContext.builder( getRandom())
       .notifier(
-        "log".equals( System.getProperty( "testNotifier"))
-        ? ResolverConditionNotifier.log()
-        : ResolverConditionNotifier.fail())
+        "fail".equals( System.getProperty( "testNotifier"))
+        ? ResolverConditionNotifier.fail()
+        : ResolverConditionNotifier.log())
       .build();
     }
 

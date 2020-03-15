@@ -17,7 +17,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="0"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -57,7 +59,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -99,7 +103,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="&gt; 0"/>
@@ -139,7 +145,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="&gt; 1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="0"/>
@@ -179,7 +187,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="&gt; 0"/>
@@ -219,7 +229,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="&gt; 1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="0"/>
@@ -259,7 +271,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -301,7 +315,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -341,7 +357,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -381,7 +399,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -421,7 +441,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="null" failure="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -461,7 +483,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="Not array" failure="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -501,7 +525,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="null" failure="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -541,7 +567,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="Not object" failure="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="Not object" failure="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -581,7 +609,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="No" failure="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -621,7 +651,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="null" failure="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -661,7 +693,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="Not string" failure="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -701,7 +735,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="&gt; 0"/>
@@ -741,7 +777,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="&gt; 0"/>
@@ -781,7 +819,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="&gt; 0"/>
@@ -821,7 +861,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="&gt; 0"/>
@@ -861,7 +903,9 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="array"/>
         <Var name="200.Content.application-json.Items.Size" value="1"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" value="object"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" value="Yes"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" value="string"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" value="&gt; 0"/>
@@ -901,7 +945,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -941,7 +987,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -983,7 +1031,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -1025,7 +1075,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -1067,7 +1119,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -1109,7 +1163,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -1151,7 +1207,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -1193,7 +1251,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -1235,7 +1295,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>
@@ -1277,7 +1339,9 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Size" NA="true"/>
-        <Var name="200.Content.application-json.Items.Contains.Type" NA="true"/>
+        <Var name="200.Content.application-json.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Type" NA="true"/>
         <Var name="200.Content.application-json.Items.Contains.Value.Properties.name.Value.Length" NA="true"/>

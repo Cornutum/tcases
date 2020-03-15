@@ -144,11 +144,13 @@
                   </Not>
                 </When>
                 <Var name="Type">
+                  <Has name="itemType" value="boolean"/>
                   <Value name="boolean" property="2XXtext-plainItemsValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
                 <Var name="Value" when="2XXtext-plainItemsValue">
+                  <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>

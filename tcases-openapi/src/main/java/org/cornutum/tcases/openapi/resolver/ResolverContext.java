@@ -99,7 +99,7 @@ public class ResolverContext extends ExecutionContext<ResolverException>
    * the {@link #getMaxTries maximum tries} have been attempted. If the no more attempts are possible,
    * reports a failure. Otherwise, returns the supplied result.
    */
-  public <T> T tryUntil( Supplier<Optional<T>> valueSupplier)
+  public <T> T tryUntil( Supplier<Optional<T>> valueSupplier) throws ResolverSkipException
     {
     return
       Stream.generate( () -> valueSupplier.get())

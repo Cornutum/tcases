@@ -67,12 +67,16 @@
                         </Not>
                       </When>
                       <Var name="Type">
+                        <Has name="itemType" value="string"/>
                         <Value name="string" property="param0BravoItemsValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
                       <VarSet name="Value" when="param0BravoItemsValue">
                         <Var name="Length">
+                          <Has name="itemMinLength" value="0"/>
+                          <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
+                          <Has name="itemPatterns" value="&apos;X+&apos;"/>
                           <Value name="&gt; 0"/>
                           <Value name="0"/>
                         </Var>
@@ -194,10 +198,13 @@
                         </Not>
                       </When>
                       <Var name="Type">
+                        <Has name="itemType" value="string"/>
                         <Value name="string" property="param0BravoItemsValue"/>
                       </Var>
                       <VarSet name="Value" when="param0BravoItemsValue">
                         <Var name="Length">
+                          <Has name="itemMinLength" value="0"/>
+                          <Has name="itemPatterns" value="&apos;X+&apos;"/>
                           <Value name="&gt; 0"/>
                           <Value name="0"/>
                         </Var>
@@ -325,10 +332,13 @@
                         </Not>
                       </When>
                       <Var name="Type">
+                        <Has name="itemType" value="string"/>
                         <Value name="string" property="param0BravoItemsValue"/>
                       </Var>
                       <VarSet name="Value" when="param0BravoItemsValue">
                         <Var name="Length">
+                          <Has name="itemMinLength" value="0"/>
+                          <Has name="itemPatterns" value="&apos;X+&apos;"/>
                           <Value name="&gt; 0"/>
                           <Value name="0"/>
                         </Var>
@@ -452,10 +462,13 @@
                         </Not>
                       </When>
                       <Var name="Type">
+                        <Has name="itemType" value="string"/>
                         <Value name="string" property="param0BravoItemsValue"/>
                       </Var>
                       <VarSet name="Value" when="param0BravoItemsValue">
                         <Var name="Length">
+                          <Has name="itemMinLength" value="0"/>
+                          <Has name="itemPatterns" value="&apos;X+&apos;"/>
                           <Value name="&gt; 0"/>
                           <Value name="0"/>
                         </Var>

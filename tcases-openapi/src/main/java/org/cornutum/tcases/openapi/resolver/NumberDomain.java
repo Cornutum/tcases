@@ -200,7 +200,7 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> extends Abs
     /**
      * Creates a new Range instance.
      */
-    private Range( String min, boolean minExclusive, String max, boolean maxExclusive, Set<String> excluded)
+    public Range( String min, boolean minExclusive, String max, boolean maxExclusive, Set<String> excluded)
       {
       min_ = min;
       minExclusive_ = minExclusive;

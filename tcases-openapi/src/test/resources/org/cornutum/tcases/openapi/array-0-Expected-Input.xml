@@ -27,6 +27,7 @@
           </Var>
           <VarSet name="Contains">
             <Var name="Type">
+              <Has name="itemType" value="number"/>
               <Value name="number" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not number" failure="true"/>

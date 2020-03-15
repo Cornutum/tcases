@@ -20,7 +20,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="0"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.Items.Unique" NA="true"/>
       </Input>
@@ -37,7 +39,9 @@
         </Var>
         <Var name="param0.Type" NA="true"/>
         <Var name="param0.Items.Size" NA="true"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.Items.Unique" NA="true"/>
       </Input>
@@ -55,7 +59,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="1"/>
-        <Var name="param0.Items.Contains.Type" value="object"/>
+        <Var name="param0.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.Items.Unique" NA="true"/>
       </Input>
@@ -73,7 +79,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="&gt; 1"/>
-        <Var name="param0.Items.Contains.Type" value="object"/>
+        <Var name="param0.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" value="No"/>
         <Var name="param0.Items.Unique" value="Yes"/>
       </Input>
@@ -91,7 +99,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="&gt; 1"/>
-        <Var name="param0.Items.Contains.Type" value="object"/>
+        <Var name="param0.Items.Contains.Type" value="object">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" value="Yes"/>
         <Var name="param0.Items.Unique" value="No"/>
       </Input>
@@ -109,7 +119,9 @@
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
         <Var name="param0.Items.Size" NA="true"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.Items.Unique" NA="true"/>
       </Input>
@@ -127,7 +139,9 @@
         </Var>
         <Var name="param0.Type" value="Not array" failure="true"/>
         <Var name="param0.Items.Size" NA="true"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.Items.Unique" NA="true"/>
       </Input>
@@ -145,7 +159,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="1"/>
-        <Var name="param0.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="param0.Items.Contains.Type" value="null" failure="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.Items.Unique" NA="true"/>
       </Input>
@@ -163,7 +179,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="1"/>
-        <Var name="param0.Items.Contains.Type" value="Not object" failure="true"/>
+        <Var name="param0.Items.Contains.Type" value="Not object" failure="true">
+          <Has name="itemType" value="object"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
         <Var name="param0.Items.Unique" NA="true"/>
       </Input>

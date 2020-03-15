@@ -29,8 +29,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -68,8 +73,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -106,8 +116,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="0"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="Yes"/>
@@ -146,8 +161,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -184,8 +204,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="Any">
           <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
         </Var>
@@ -226,8 +251,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="&gt; 1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" value="0"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" value="0">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="Any">
           <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
         </Var>
@@ -266,8 +296,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="&gt; 1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="Any">
           <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
         </Var>
@@ -308,8 +343,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -346,8 +386,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -384,8 +429,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -422,8 +472,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -460,8 +515,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="No"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -498,8 +558,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -536,8 +601,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="Not array" failure="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -574,8 +644,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="null" failure="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -612,8 +687,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="Not string" failure="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="Not string" failure="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -650,8 +730,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="A" failure="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -688,8 +773,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="B" failure="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -726,8 +816,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.bravo.Type" value="array"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" value="string">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" value="C" failure="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -764,8 +859,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -802,8 +902,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -840,8 +945,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -880,8 +990,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -920,8 +1035,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -958,8 +1078,13 @@
         <Var name="param0.Value.Properties.bravo.Defined" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Type" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true"/>
-        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true"/>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="0"/>
+          <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+        </Var>
         <Var name="param0.Value.Properties.bravo.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.bravo.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>

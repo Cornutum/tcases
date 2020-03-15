@@ -17,6 +17,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
@@ -49,6 +50,31 @@ public class UuidDomainTest extends ValueDomainTest
 
     expectFailure( ValueDomainException.class)
       .when( () -> new UuidConstant( value));
+    }
+  
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    List<String> uuids = Arrays.asList( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6", "f81d4fae-7dec-11d0-a765-00a0c91e6bf6", "f81d4fae-7dec-11d0-a765-00a0c91e6bf6");
+    UuidEnum domain = new UuidEnum( uuids);
+
+    // Then...
+    List<String> values = valuesOf( domain, 1000);
+    assertThat( "Enum values size", values.size(), is( 1000));
+    assertThat( "Enum values content", values.stream().collect( toSet()), containsMembers( Arrays.asList( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6")));
+    assertThat( "Contains", domain.contains( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"), is( true));
+    assertThat( "Contains", domain.contains( "f81d4fae-7dec-11d0-a765-00a0c91e6bf7"), is( false));
+    }
+
+  @Test
+  public void whenInvalidEnum()
+    {
+    // Given...
+    List<String> uuids = Arrays.asList( "H81d4Hae-7dec-11d0-a765-00a0c91e6bH6");
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new UuidEnum( uuids));
     }
 
   @Test

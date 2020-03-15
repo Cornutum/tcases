@@ -270,7 +270,21 @@ public final class VarProperties
       {
       types = null;
       }
-    else if( !typeValue.isPresent())
+    else 
+      {
+      types = getValueTypes( typeValue);
+      }
+
+    return types;
+    }
+
+  /**
+   * Returns the accepted value types represented by the given string.
+   */
+  private static Type[] getValueTypes( Optional<String> typeValue)
+    {
+    Type[] types;
+    if( !typeValue.isPresent())
       {
       types = Type.only( Type.NULL);
       }
@@ -345,6 +359,46 @@ public final class VarProperties
     }
 
   /**
+   * Returns the value domain for alternate array items specified by the given properties.
+   */
+  public static ValueDomain<?> toItemsDomain( Map<String,Object> propertyValues)
+    {
+    Map<String,Object> valueProperties =  getAlternativePropertyValues( propertyValues);
+
+    Type[] types = 
+      valueProperties == null?
+      Type.any() :
+      
+      Optional.ofNullable( expectVarBinding( valueProperties, "Type").getAnnotation( "itemType"))
+      .map( type -> getValueTypes( Optional.of( type)))
+      .orElse( null);
+
+    return
+      types == null?
+      null :
+      
+      types.length > 1?
+      new MultiTypeDomain( types) :
+
+      types[0] == Type.ARRAY?
+      toArrayItemsDomain( valueProperties) :
+
+      types[0] == Type.BOOLEAN?
+      toBooleanItemsDomain( valueProperties) :
+
+      types[0] == Type.INTEGER?
+      toNumberItemsDomain( Type.INTEGER, valueProperties) :
+
+      types[0] == Type.NUMBER?
+      toNumberItemsDomain( Type.NUMBER, valueProperties) :
+
+      types[0] == Type.STRING?
+      toStringItemsDomain( valueProperties) :
+
+      null;
+    }
+
+  /**
    * Returns the array domain specified by the given properties.
    */
   public static ArrayDomain<?> toArrayDomain( Map<String,Object> propertyValues)
@@ -358,8 +412,12 @@ public final class VarProperties
       }
     else
       {
-      ValueDomain<?> itemValues = toValueDomain( expectPropertyValues( items, "Contains"));
+      Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
+      ValueDomain<?> itemValues = toValueDomain( itemValueProperties);
       domain = itemValues == null? new ArrayDomain<Object>() : itemValues.arrayOf();
+
+      ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties);
+      domain.setOtherItemValues( otherItemValues);
       domain.setItemCount( Range.of( expectVarBinding( items, "Size")));
       domain.setItemsUnique( Optional.ofNullable( getVarBinding( items, "Unique")).map( u -> "Yes".equals( u.getValue())).orElse( false));
       }
@@ -602,6 +660,176 @@ public final class VarProperties
         .filter( binding -> "No".equals( binding.getValue()))
         .map( binding -> binding.getAnnotation( "multipleOf"))
         .toArray( String[]::new));
+
+      valueDomain = numberDomain;
+      }
+
+    return valueDomain;
+    }
+
+  /**
+   * Returns the array domain specified by the given properties.
+   */
+  public static ValueDomain<?> toArrayItemsDomain( Map<String,Object> propertyValues)
+    {
+    ArrayDomain<?> domain;
+
+    Map<String,Object> items = getPropertyValues( propertyValues, "Items");
+    if( items == null)
+      {
+      domain = new ArrayDomain<Object>();
+      }
+    else
+      {
+      Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
+      ValueDomain<?> itemValues = toValueDomain( itemValueProperties);
+      domain = itemValues == null? new ArrayDomain<Object>() : itemValues.arrayOf();
+
+      VarBinding size = expectVarBinding( items, "Size");
+      domain.setItemCount(
+        Optional.ofNullable( size.getAnnotation( "itemMinItems")).map( Integer::valueOf).orElse( null),
+        Optional.ofNullable( size.getAnnotation( "itemMaxItems")).map( Integer::valueOf).orElse( null));
+      }
+
+    return domain;
+    }
+
+  /**
+   * Returns the boolean domain specified by the given properties.
+   */
+  public static ValueDomain<?> toBooleanItemsDomain( Map<String,Object> propertyValues)
+    {
+    return
+      Optional.ofNullable( getVarBinding( propertyValues, "Value").getAnnotationList( "itemEnums"))
+      .map( enums -> new BooleanEnum( enums))
+      .orElse( null);
+    }
+
+  /**
+   * Returns the string domain specified by the given properties.
+   */
+  public static ValueDomain<?> toStringItemsDomain( Map<String,Object> propertyValues)
+    {
+    ValueDomain<?> domain;
+
+    VarBinding valueVar = getIfVarBinding( propertyValues, "Value");
+    if( valueVar != null)
+      {
+      String format = valueVar.getAnnotation( "format");
+      Iterable<String> enums = valueVar.getAnnotationList( "itemEnums");
+      domain =
+        "date".equals( format)?
+        new DateEnum( enums) :
+
+        "date-time".equals( format)?
+        new DateTimeEnum( enums) :
+
+        "uuid".equals( format)?
+        new UuidEnum( enums) :
+
+        "email".equals( format)?
+        new EmailEnum( enums) :
+
+        new StringEnum( enums, format);
+      }
+    else
+      {
+      VarBinding lengthVar = expectVarBinding( expectPropertyValues( propertyValues, "Value"), "Length");
+      String format = lengthVar.getAnnotation( "format");
+
+      SequenceDomain<?> baseDomain =
+        "date".equals( format)?
+        new DateDomain() :
+
+        "date-time".equals( format)?
+        new DateTimeDomain() :
+
+        "uuid".equals( format)?
+        new UuidDomain() :
+
+        "binary".equals( format)?
+        new BinaryDomain() :
+
+        "byte".equals( format)?
+        new Base64Domain() :
+
+        "email".equals( format)?
+        new EmailDomain() :
+
+        new AsciiStringDomain();
+
+      if( !baseDomain.isRestrictedLength())
+        {
+        Integer minLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMinLength")).map( Integer::valueOf).orElse( null);
+        Integer maxLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMaxLength")).map( Integer::valueOf).orElse( null);
+        baseDomain.setLengthRange( minLength, maxLength);
+        }
+
+      Set<String> excluded = Optional.ofNullable( lengthVar.getAnnotationList( "itemNotEnums")).map( e -> e.stream().collect( toSet())).orElse( emptySet());;
+      baseDomain.setExcludedStrings( excluded);
+      
+      domain = baseDomain;
+      }
+
+    return domain;
+    }
+
+  /**
+   * Returns the number domain specified by the given properties.
+   */
+  public static ValueDomain<?> toNumberItemsDomain( Type type, Map<String,Object> propertyValues)
+    {
+    Optional<VarBinding> is =
+      Optional.ofNullable( getPropertyValues( propertyValues, "Value"))
+      .map( valueProperties -> expectVarBinding( valueProperties, "Is"));
+
+    String format = is.map( binding -> binding.getAnnotation( "format")).orElse( null);
+    List<String> enums = is.map( binding -> binding.getAnnotationList( "itemEnums")).orElse( null);
+
+    ValueDomain<?> valueDomain;
+    if( enums != null)
+      {
+      valueDomain = 
+        type == Type.NUMBER?
+        new DecimalEnum( enums, format) :
+
+        "int64".equals( format)?
+        new LongEnum( enums) :
+
+        new IntegerEnum( enums);
+      }
+    else
+      {
+      String min =
+        is.flatMap( binding -> Optional.ofNullable( binding.getAnnotation( "itemMin")))
+        .orElse( null);
+      
+      String max =
+        is.flatMap( binding -> Optional.ofNullable( binding.getAnnotation( "itemMax")))
+        .orElse( null);
+
+      Set<String> excluded = 
+        is.flatMap( binding -> Optional.ofNullable( binding.getAnnotationList( "itemNotEnums")))
+        .map( List::stream)
+        .orElse( Stream.empty())
+        .collect( toSet());
+
+      Range range = new Range( min, false, max, false, excluded);
+      
+      NumberDomain<?> numberDomain =       
+        type == Type.NUMBER?
+        new DecimalDomain( range, format) :
+        
+        "int64".equals( format)?
+        new LongDomain( range) :
+        
+        new IntegerDomain( range);
+
+      is.flatMap( binding -> Optional.ofNullable( binding.getAnnotation( "itemMultipleOf")))
+        .ifPresent( multipleOf -> numberDomain.setMultipleOf( multipleOf));
+      
+      is.flatMap( binding -> Optional.ofNullable( binding.getAnnotationList( "itemNotMultipleOfs")))
+        .ifPresent( notMultipleOfs -> numberDomain.setNotMultipleOfs( notMultipleOfs.stream().toArray( String[]::new)));
 
       valueDomain = numberDomain;
       }

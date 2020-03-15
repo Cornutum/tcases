@@ -14,6 +14,7 @@ import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
 
@@ -38,6 +39,7 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
     maxItems_ = maxItems;
     setItemCount( null, null);
     setItemValues( null);
+    setOtherItemValues( null);
     }
 
   /**
@@ -120,7 +122,7 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
     }
 
   /**
-   * Changes the value domain for array items.
+   * Changes the value domain for required array items.
    */
   public void setItemValues( ValueDomain<T> itemValues)
     {
@@ -128,11 +130,28 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
     }
 
   /**
-   * Returns the value domain for array items.
+   * Returns the value domain for required array items.
    */
   public ValueDomain<T> getItemValues()
     {
     return itemValues_;
+    }
+
+  /**
+   * Changes the value domain for additional array items.
+   */
+  @SuppressWarnings("unchecked")
+  public void setOtherItemValues( ValueDomain<?> otherItemValues)
+    {
+    otherItemValues_ = (ValueDomain<T>) otherItemValues;
+    }
+
+  /**
+   * Returns the value domain for additional array items.
+   */
+  public ValueDomain<T> getOtherItemValues()
+    {
+    return otherItemValues_;
     }
 
   /**
@@ -172,35 +191,71 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
    */
   private List<DataValue<T>> newArray( ResolverContext context)
     {
-    List<DataValue<T>> items;
-    int itemCount;
-    DataValue<T> nextItem;
+    List<DataValue<T>> items = new ArrayList<DataValue<T>>();
     boolean itemsUnique = isItemsUnique();
+    DataValue<T> nextItem;
 
-    for( items = new ArrayList<DataValue<T>>(), itemCount = getItemCount().selectValue( context);
-         items.size() < itemCount;
-         items.add( nextItem))
+    // Select array items, observing any uniqueness constraint
+    try
       {
-      nextItem =
-        context.resultFor(
-          String.format( "%sitem %s", itemsUnique? "unique " : "", items.size()),
-          () -> context.tryUntil( () -> Optional.of( getItemValues().select( context)).filter( item -> !( itemsUnique && items.contains( item)))));
+      for( int itemCount = getItemCount().selectValue( context);
+           items.size() < itemCount;
+           items.add( nextItem))
+        {
+        nextItem =
+          context.resultFor(
+            String.format( "%sitem[%s] of %s", itemsUnique? "unique " : "", items.size(), itemCount),
+            () -> getNextItem( context, item -> !( itemsUnique && items.contains( item))));
+        }
+      }
+    catch( ResolverSkipException skip)
+      {
+      // Couldn't completed attempted array size. But is current array size satisfactory?
+      if( !getItemCount().contains( items.size()))
+        {
+        // No, report failure.
+        throw skip;
+        }
       }
 
-    if( !itemsUnique && itemCount > 1)
+    if( !itemsUnique && items.size() > 1)
       {
       // Given a random target item...
-      int target = context.getRandom().nextInt( itemCount);
+      int target = context.getRandom().nextInt( items.size());
 
       // ...and a different source item...
       int source;
-      while( (source = context.getRandom().nextInt( itemCount)) == target);
+      while( (source = context.getRandom().nextInt( items.size())) == target);
 
       // ...ensure target item is a duplicate of the source item.
       items.set( target, items.get( source));
       }
     
     return items;
+    }
+
+  /**
+   * Returns the random item for this array domain.
+   */
+  private DataValue<T> getNextItem( ResolverContext context, Predicate<DataValue<T>> itemFilter)
+    {
+    ValueDomain<T> otherItemValues;
+
+    try
+      {
+      // Try to select another satisfying item from the item value domain
+      return context.tryUntil( () -> Optional.of( getItemValues().select( context)).filter( itemFilter));
+      }
+    catch( ResolverSkipException skip)
+      {
+      // Or, if a value domain is defined for additional items...
+      otherItemValues =
+        Optional.ofNullable( getOtherItemValues())
+        .orElseThrow( () -> skip);
+      }
+
+    // Try to select another satisfying item from the additional item value domain
+    return context.tryUntil( () -> Optional.of( otherItemValues.select( context)).filter( itemFilter));
     }
 
   /**
@@ -236,5 +291,6 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   private final int maxItems_;
   private ValueDomain<Integer> itemCount_;
   private ValueDomain<T> itemValues_;
+  private ValueDomain<T> otherItemValues_;
   private boolean itemsUnique_;
   }

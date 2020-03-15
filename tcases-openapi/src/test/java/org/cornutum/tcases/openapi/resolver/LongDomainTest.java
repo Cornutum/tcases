@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.*;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,6 +28,31 @@ import java.util.List;
  */
 public class LongDomainTest extends ValueDomainTest
   {
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    List<String> longs = Arrays.asList( "1", "2", "3", "5", "3", "2", "1");
+    LongEnum domain = new LongEnum( longs);
+
+    // Then...
+    List<Long> values = valuesOf( domain, 1000);
+    assertThat( "Enum values size", values.size(), is( 1000));
+    assertThat( "Enum values content", values.stream().collect( toSet()), containsMembers( Arrays.asList( 1L, 2L, 3L, 5L)));
+    assertThat( "Contains", domain.contains( 5L), is( true));
+    assertThat( "Contains", domain.contains( 8L), is( false));
+    }
+
+  @Test
+  public void whenInvalidEnum()
+    {
+    // Given...
+    List<String> longs = Arrays.asList( "?");
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new LongEnum( longs));
+    }
+  
   @Test
   public void whenRangeTooBig()
     {

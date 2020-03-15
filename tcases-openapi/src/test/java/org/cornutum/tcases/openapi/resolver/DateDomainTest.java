@@ -17,6 +17,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
@@ -49,6 +50,31 @@ public class DateDomainTest extends ValueDomainTest
 
     expectFailure( ValueDomainException.class)
       .when( () -> new DateConstant( value));
+    }
+
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    List<String> dates = Arrays.asList( "1999-01-10", "2000-02-13", "1999-01-10");
+    DateEnum domain = new DateEnum( dates);
+
+    // Then...
+    List<String> values = valuesOf( domain, 1000);
+    assertThat( "Enum values size", values.size(), is( 1000));
+    assertThat( "Enum values content", values.stream().collect( toSet()), containsMembers( Arrays.asList( "1999-01-10", "2000-02-13")));
+    assertThat( "Contains", domain.contains( "2000-02-13"), is( true));
+    assertThat( "Contains", domain.contains( "2001-02-13"), is( false));
+    }
+
+  @Test
+  public void whenInvalidEnum()
+    {
+    // Given...
+    List<String> dates = Arrays.asList( "1999/01/10");
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new DateEnum( dates));
     }
 
   @Test

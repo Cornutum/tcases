@@ -49,6 +49,7 @@
                   </Var>
                   <VarSet name="0" when="200application-jsonItemsAlternative0">
                     <Var name="Type">
+                      <Has name="itemType" value="object"/>
                       <Value name="object" property="200application-jsonItemsValue"/>
                       <Value name="null" failure="true"/>
                       <Value name="Not object,array" failure="true"/>
@@ -137,12 +138,14 @@
                                     </Not>
                                   </When>
                                   <Var name="Type">
+                                    <Has name="itemType" value="integer"/>
                                     <Value name="integer" property="200application-jsonItemsVehicleAxleQuantityItemsValue"/>
                                     <Value name="null" failure="true"/>
                                     <Value name="Not integer" failure="true"/>
                                   </Var>
                                   <VarSet name="Value" when="200application-jsonItemsVehicleAxleQuantityItemsValue">
                                     <Var name="Is">
+                                      <Has name="itemMin" value="0"/>
                                       <Value name="-1" failure="true"/>
                                       <Value name="0"/>
                                       <Value name="&gt; 0"/>
@@ -220,11 +223,13 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="string"/>
                                               <Value name="string" property="200application-jsonItemsVehicleIdentificationIdentificationIDItemsValue"/>
                                               <Value name="Not string" failure="true"/>
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationIdentificationIDItemsValue">
                                               <Var name="Length">
+                                                <Has name="itemMinLength" value="0"/>
                                                 <Value name="&gt; 0"/>
                                                 <Value name="0"/>
                                               </Var>
@@ -261,6 +266,7 @@
                                     </Not>
                                   </When>
                                   <Var name="Type">
+                                    <Has name="itemType" value="object"/>
                                     <Value name="object" property="200application-jsonItemsVehicleIdentificationItemsValue"/>
                                     <Value name="Not object" failure="true"/>
                                   </Var>
@@ -312,10 +318,12 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsValue">
                                                   <Var name="Length">
+                                                    <Has name="itemMinLength" value="0"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -408,6 +416,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="number"/>
                                               <Value name="number" property="200application-jsonItemsVehicleMSRPAmountAmountItemsValue"/>
                                               <Value name="Not number" failure="true"/>
                                             </Var>
@@ -562,6 +571,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="Not string"/>
                                               <Value name="Not string" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                               <Value name="string" failure="true"/>
                                             </Var>
@@ -588,10 +598,13 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="string"/>
                                               <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
                                               <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
+                                                <Has name="itemMinLength" value="0"/>
+                                                <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
                                                 <Value name="&gt; 0"/>
                                                 <Value name="0"/>
                                               </Var>
@@ -625,10 +638,13 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="string"/>
                                               <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
                                               <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
+                                                <Has name="itemMinLength" value="0"/>
+                                                <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
                                                 <Value name="&gt; 0"/>
                                                 <Value name="0"/>
                                               </Var>
@@ -662,10 +678,13 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="string"/>
                                               <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
                                               <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
+                                                <Has name="itemMinLength" value="0"/>
+                                                <Has name="itemNotEnums" value="&apos;USD&apos;"/>
                                                 <Value name="&gt; 0"/>
                                                 <Value name="0"/>
                                               </Var>
@@ -699,6 +718,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="Not object"/>
                                               <Value name="Not object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                               <Value name="object" failure="true"/>
                                             </Var>
@@ -725,6 +745,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="object"/>
                                               <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -769,6 +790,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="object"/>
                                               <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -823,6 +845,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="object"/>
                                               <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -876,6 +899,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="object"/>
                                               <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -929,6 +953,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="Not array"/>
                                               <Value name="Not array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                               <Value name="array" failure="true"/>
                                             </Var>
@@ -955,6 +980,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                               <Value name="Not array" failure="true"/>
                                             </Var>
@@ -970,6 +996,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="Not string"/>
                                                   <Value name="Not string" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                   <Value name="null" failure="true"/>
                                                   <Value name="string" failure="true"/>
@@ -1003,6 +1030,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -1017,11 +1045,14 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                   <Value name="Not string" failure="true"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -1061,6 +1092,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -1075,10 +1107,13 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -1118,6 +1153,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -1132,10 +1168,13 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;USD&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -1175,6 +1214,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -1189,6 +1229,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="Not object"/>
                                                   <Value name="Not object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                   <Value name="object" failure="true"/>
                                                 </Var>
@@ -1221,6 +1262,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -1235,6 +1277,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                   <Value name="Not object" failure="true"/>
                                                 </Var>
@@ -1286,6 +1329,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -1300,6 +1344,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue">
@@ -1360,6 +1405,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -1374,6 +1420,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue">
@@ -1433,6 +1480,7 @@
                                               </Not>
                                             </When>
                                             <Var name="Type">
+                                              <Has name="itemType" value="array"/>
                                               <Value name="array" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                             </Var>
                                             <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -1447,6 +1495,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsValue">
@@ -1515,6 +1564,7 @@
                                     </Not>
                                   </When>
                                   <Var name="Type">
+                                    <Has name="itemType" value="object"/>
                                     <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsValue"/>
                                   </Var>
                                   <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsValue">
@@ -1566,6 +1616,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="number"/>
                                                   <Value name="number" property="200application-jsonItemsVehicleMSRPAmountItemsAmountItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsAmountItemsValue">
@@ -1714,6 +1765,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="Not string"/>
                                                   <Value name="Not string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                               </VarSet>
@@ -1739,10 +1791,13 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -1775,10 +1830,13 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -1811,10 +1869,13 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;USD&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -1847,6 +1908,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="Not object"/>
                                                   <Value name="Not object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                               </VarSet>
@@ -1872,6 +1934,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -1913,6 +1976,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -1965,6 +2029,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2017,6 +2082,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2069,6 +2135,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="Not array"/>
                                                   <Value name="Not array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                               </VarSet>
@@ -2094,6 +2161,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2108,6 +2176,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="Not string"/>
                                                       <Value name="Not string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                   </VarSet>
@@ -2139,6 +2208,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2153,10 +2223,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -2195,6 +2268,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2209,10 +2283,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -2251,6 +2328,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2265,10 +2343,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;USD&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -2307,6 +2388,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2321,6 +2403,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="Not object"/>
                                                       <Value name="Not object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                   </VarSet>
@@ -2352,6 +2435,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2366,6 +2450,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
@@ -2413,6 +2498,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2427,6 +2513,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
@@ -2485,6 +2572,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2499,6 +2587,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
@@ -2557,6 +2646,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -2571,6 +2661,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
@@ -2639,6 +2730,7 @@
                   </VarSet>
                   <VarSet name="1" when="200application-jsonItemsAlternative1">
                     <Var name="Type">
+                      <Has name="itemType" value="array"/>
                       <Value name="array" property="200application-jsonItemsValue"/>
                     </Var>
                     <VarSet name="Items" when="200application-jsonItemsValue">
@@ -2653,6 +2745,7 @@
                           </Not>
                         </When>
                         <Var name="Type">
+                          <Has name="itemType" value="object"/>
                           <Value name="object" property="200application-jsonItemsItemsValue"/>
                         </Var>
                         <VarSet name="Value" when="200application-jsonItemsItemsValue">
@@ -2737,10 +2830,12 @@
                                         </Not>
                                       </When>
                                       <Var name="Type">
+                                        <Has name="itemType" value="integer"/>
                                         <Value name="integer" property="200application-jsonItemsItemsVehicleAxleQuantityItemsValue"/>
                                       </Var>
                                       <VarSet name="Value" when="200application-jsonItemsItemsVehicleAxleQuantityItemsValue">
                                         <Var name="Is">
+                                          <Has name="itemMin" value="0"/>
                                           <Value name="0"/>
                                           <Value name="&gt; 0"/>
                                         </Var>
@@ -2816,10 +2911,12 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsItemsVehicleIdentificationIdentificationIDItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleIdentificationIdentificationIDItemsValue">
                                                   <Var name="Length">
+                                                    <Has name="itemMinLength" value="0"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -2856,6 +2953,7 @@
                                         </Not>
                                       </When>
                                       <Var name="Type">
+                                        <Has name="itemType" value="object"/>
                                         <Value name="object" property="200application-jsonItemsItemsVehicleIdentificationItemsValue"/>
                                       </Var>
                                       <VarSet name="Value" when="200application-jsonItemsItemsVehicleIdentificationItemsValue">
@@ -2906,10 +3004,12 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationIDItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationIDItemsValue">
                                                       <Var name="Length">
+                                                        <Has name="itemMinLength" value="0"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -3001,6 +3101,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="number"/>
                                                   <Value name="number" property="200application-jsonItemsItemsVehicleMSRPAmountAmountItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountAmountItemsValue">
@@ -3149,6 +3250,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="Not string"/>
                                                   <Value name="Not string" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                               </VarSet>
@@ -3174,10 +3276,13 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -3210,10 +3315,13 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -3246,10 +3354,13 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="string"/>
                                                   <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
                                                   <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
+                                                    <Has name="itemMinLength" value="0"/>
+                                                    <Has name="itemNotEnums" value="&apos;USD&apos;"/>
                                                     <Value name="&gt; 0"/>
                                                     <Value name="0"/>
                                                   </Var>
@@ -3282,6 +3393,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="Not object"/>
                                                   <Value name="Not object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                               </VarSet>
@@ -3307,6 +3419,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3348,6 +3461,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3400,6 +3514,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3452,6 +3567,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="object"/>
                                                   <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3504,6 +3620,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="Not array"/>
                                                   <Value name="Not array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                               </VarSet>
@@ -3529,6 +3646,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3543,6 +3661,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="Not string"/>
                                                       <Value name="Not string" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                   </VarSet>
@@ -3574,6 +3693,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3588,10 +3708,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -3630,6 +3753,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3644,10 +3768,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -3686,6 +3813,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3700,10 +3828,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;USD&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -3742,6 +3873,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3756,6 +3888,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="Not object"/>
                                                       <Value name="Not object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                   </VarSet>
@@ -3787,6 +3920,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3801,6 +3935,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue">
@@ -3848,6 +3983,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3862,6 +3998,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue">
@@ -3920,6 +4057,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -3934,6 +4072,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue">
@@ -3992,6 +4131,7 @@
                                                   </Not>
                                                 </When>
                                                 <Var name="Type">
+                                                  <Has name="itemType" value="array"/>
                                                   <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue"/>
                                                 </Var>
                                                 <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsValue">
@@ -4006,6 +4146,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsValue">
@@ -4073,6 +4214,7 @@
                                         </Not>
                                       </When>
                                       <Var name="Type">
+                                        <Has name="itemType" value="object"/>
                                         <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsValue"/>
                                       </Var>
                                       <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsValue">
@@ -4124,6 +4266,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="number"/>
                                                       <Value name="number" property="200application-jsonItemsItemsVehicleMSRPAmountItemsAmountItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsAmountItemsValue">
@@ -4272,6 +4415,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="Not string"/>
                                                       <Value name="Not string" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                   </VarSet>
@@ -4297,10 +4441,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -4333,10 +4480,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -4369,10 +4519,13 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="string"/>
                                                       <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
+                                                        <Has name="itemMinLength" value="0"/>
+                                                        <Has name="itemNotEnums" value="&apos;USD&apos;"/>
                                                         <Value name="&gt; 0"/>
                                                         <Value name="0"/>
                                                       </Var>
@@ -4405,6 +4558,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="Not object"/>
                                                       <Value name="Not object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                   </VarSet>
@@ -4430,6 +4584,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4471,6 +4626,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4523,6 +4679,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4575,6 +4732,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="object"/>
                                                       <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4627,6 +4785,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="Not array"/>
                                                       <Value name="Not array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                   </VarSet>
@@ -4652,6 +4811,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4666,6 +4826,7 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="Not string"/>
                                                           <Value name="Not string" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                       </VarSet>
@@ -4697,6 +4858,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4711,10 +4873,13 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="string"/>
                                                           <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                         <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
                                                           <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
+                                                            <Has name="itemMinLength" value="0"/>
+                                                            <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
                                                             <Value name="&gt; 0"/>
                                                             <Value name="0"/>
                                                           </Var>
@@ -4753,6 +4918,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4767,10 +4933,13 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="string"/>
                                                           <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                         <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
                                                           <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
+                                                            <Has name="itemMinLength" value="0"/>
+                                                            <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
                                                             <Value name="&gt; 0"/>
                                                             <Value name="0"/>
                                                           </Var>
@@ -4809,6 +4978,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4823,10 +4993,13 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="string"/>
                                                           <Value name="string" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                         <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
                                                           <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
+                                                            <Has name="itemMinLength" value="0"/>
+                                                            <Has name="itemNotEnums" value="&apos;USD&apos;"/>
                                                             <Value name="&gt; 0"/>
                                                             <Value name="0"/>
                                                           </Var>
@@ -4865,6 +5038,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4879,6 +5053,7 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="Not object"/>
                                                           <Value name="Not object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                       </VarSet>
@@ -4910,6 +5085,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4924,6 +5100,7 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="object"/>
                                                           <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                         <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
@@ -4971,6 +5148,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -4985,6 +5163,7 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="object"/>
                                                           <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                         <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
@@ -5043,6 +5222,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -5057,6 +5237,7 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="object"/>
                                                           <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                         <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">
@@ -5115,6 +5296,7 @@
                                                       </Not>
                                                     </When>
                                                     <Var name="Type">
+                                                      <Has name="itemType" value="array"/>
                                                       <Value name="array" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue"/>
                                                     </Var>
                                                     <VarSet name="Items" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsValue">
@@ -5129,6 +5311,7 @@
                                                           </Not>
                                                         </When>
                                                         <Var name="Type">
+                                                          <Has name="itemType" value="object"/>
                                                           <Value name="object" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue"/>
                                                         </Var>
                                                         <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsValue">

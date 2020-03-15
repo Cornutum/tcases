@@ -37,6 +37,7 @@
                   </Not>
                 </When>
                 <Var name="Type">
+                  <Has name="itemType" value="integer"/>
                   <Value name="integer" property="200HeaderX-my-secret-headerItemsValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not integer" failure="true"/>

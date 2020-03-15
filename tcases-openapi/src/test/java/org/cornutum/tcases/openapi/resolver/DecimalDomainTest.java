@@ -21,13 +21,42 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Runs tests for {@link DecimalDomain}.
  */
 public class DecimalDomainTest extends ValueDomainTest
-  {  
+  {
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    List<String> decimals = Arrays.asList( "09", "1.23", "45.678", "9");
+    DecimalEnum domain = new DecimalEnum( decimals, "float");
+
+    // Then...
+    List<BigDecimal> values = valuesOf( domain, 1000);
+    assertThat( "Enum values size", values.size(), is( 1000));
+    assertThat(
+      "Enum values content",
+      values.stream().collect( toSet()),
+      containsMembers( Arrays.asList( new BigDecimal("1.23"), new BigDecimal("45.678"), new BigDecimal("9"))));
+    assertThat( "Contains", domain.contains( new BigDecimal( "1.23")), is( true));
+    assertThat( "Contains", domain.contains( new BigDecimal( "1.24")), is( false));
+    }
+
+  @Test
+  public void whenInvalidEnum()
+    {
+    // Given...
+    List<String> decimals = Arrays.asList( "1.23", "?", "45.678", "9");
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new DecimalEnum( decimals, "double"));
+    }
+  
   @Test
   public void whenNotMultipleOf()
     {

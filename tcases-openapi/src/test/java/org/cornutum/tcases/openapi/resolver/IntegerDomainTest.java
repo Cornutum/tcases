@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.*;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,6 +28,31 @@ import java.util.List;
  */
 public class IntegerDomainTest extends ValueDomainTest
   {
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    List<String> integers = Arrays.asList( "1", "2", "3", "5", "3", "2", "1");
+    IntegerEnum domain = new IntegerEnum( integers);
+
+    // Then...
+    List<Integer> values = valuesOf( domain, 1000);
+    assertThat( "Enum values size", values.size(), is( 1000));
+    assertThat( "Enum values content", values.stream().collect( toSet()), containsMembers( Arrays.asList( 1, 2, 3, 5)));
+    assertThat( "Contains", domain.contains( 5), is( true));
+    assertThat( "Contains", domain.contains( 8), is( false));
+    }
+
+  @Test
+  public void whenInvalidEnum()
+    {
+    // Given...
+    List<String> integers = Arrays.asList( "?");
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new IntegerEnum( integers));
+    }
+  
   @Test
   public void whenNotMultipleOf()
     {

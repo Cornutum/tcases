@@ -15,6 +15,7 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
@@ -47,6 +48,31 @@ public class EmailDomainTest extends ValueDomainTest
 
     expectFailure( ValueDomainException.class)
       .when( () -> new EmailConstant( value));
+    }
+
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    List<String> emails = Arrays.asList( "me@mydomain.org", "me@mydomain.org", "myself@mydomain.org");
+    EmailEnum domain = new EmailEnum( emails);
+
+    // Then...
+    List<String> values = valuesOf( domain, 1000);
+    assertThat( "Enum values size", values.size(), is( 1000));
+    assertThat( "Enum values content", values.stream().collect( toSet()), containsMembers( Arrays.asList( "me@mydomain.org", "myself@mydomain.org")));
+    assertThat( "Contains", domain.contains( "myself@mydomain.org"), is( true));
+    assertThat( "Contains", domain.contains( "you@mydomain.org"), is( false));
+    }
+
+  @Test
+  public void whenInvalidEnum()
+    {
+    // Given...
+    List<String> emails = Arrays.asList( "myself");
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new EmailEnum( emails));
     }
   
   @Test
