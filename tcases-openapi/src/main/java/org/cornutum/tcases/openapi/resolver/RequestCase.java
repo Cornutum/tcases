@@ -24,9 +24,18 @@ public class RequestCase
   /**
    * Creates a new RequestCase instance.
    */
-  public RequestCase()
+  public RequestCase( int id)
     {
+    id_ = id;
     setParams( null);
+    }
+
+  /**
+   * Returns the id number for this test case.
+   */
+  public int getId()
+    {
+    return id_;
     }
 
   /**
@@ -163,12 +172,14 @@ public class RequestCase
     {
     return
       ToString.getBuilder( this)
+      .append( getId())
       .append( getOperation())
       .append( getPath())
       .append( isFailure()? "FAILURE" : "SUCCESS")
       .toString();
     }
 
+  private final int id_;
   private URI server_;
   private String version_;
   private String path_;

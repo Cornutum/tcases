@@ -24,9 +24,18 @@ public class RequestCaseDef
   /**
    * Creates a new RequestCaseDef instance.
    */
-  public RequestCaseDef()
+  public RequestCaseDef( int id)
     {
+    id_ = id;
     setParams( null);
+    }
+
+  /**
+   * Returns the id number for this test case.
+   */
+  public int getId()
+    {
+    return id_;
     }
 
   /**
@@ -163,12 +172,14 @@ public class RequestCaseDef
     {
     return
       ToString.getBuilder( this)
+      .append( getId())
       .append( getOperation())
       .append( getPath())
       .append( isFailure()? "FAILURE" : "SUCCESS")
       .toString();
     }
 
+  private final int id_;
   private URI server_;
   private String version_;
   private String path_;

@@ -39,7 +39,7 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
     return resultFor( String.valueOf( requestCaseDef), () -> {
       try
         {
-        RequestCase requestCase = new RequestCase();
+        RequestCase requestCase = new RequestCase( requestCaseDef.getId());
 
         requestCase.setServer( requestCaseDef.getServer());
         requestCase.setVersion( requestCaseDef.getVersion());
