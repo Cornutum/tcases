@@ -165,6 +165,7 @@ public class RequestCaseTest
     "object",
     "oneOf",
     "operations",
+    "petstore-requests",
     "string"
   };
 
