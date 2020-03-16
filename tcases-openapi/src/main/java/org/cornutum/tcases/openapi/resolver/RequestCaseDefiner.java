@@ -95,7 +95,7 @@ public class RequestCaseDefiner
       }
     catch( Exception e)
       {
-      throw new RequestCaseException( String.format( "Cant't convert test case=%s", testCase.getId()), e);
+      throw new RequestCaseException( String.format( "Can't convert test case=%s", testCase.getId()), e);
       }
     }
 
