@@ -392,6 +392,9 @@ public final class VarProperties
       types[0] == Type.NUMBER?
       toNumberItemsDomain( Type.NUMBER, valueProperties) :
 
+      types[0] == Type.OBJECT?
+      new ObjectDomain() :
+
       types[0] == Type.STRING?
       toStringItemsDomain( valueProperties) :
 
@@ -413,10 +416,11 @@ public final class VarProperties
     else
       {
       Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
-      ValueDomain<?> itemValues = toValueDomain( itemValueProperties);
-      domain = itemValues == null? new ArrayDomain<Object>() : itemValues.arrayOf();
-
       ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties);
+      ValueDomain<?> itemValues = toValueDomain( itemValueProperties);
+      ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
+      domain = itemDomain.arrayOf();
+
       domain.setOtherItemValues( otherItemValues);
       domain.setItemCount( Range.of( expectVarBinding( items, "Size")));
       domain.setItemsUnique( Optional.ofNullable( getVarBinding( items, "Unique")).map( u -> "Yes".equals( u.getValue())).orElse( false));
@@ -682,8 +686,10 @@ public final class VarProperties
     else
       {
       Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
+      ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties);
       ValueDomain<?> itemValues = toValueDomain( itemValueProperties);
-      domain = itemValues == null? new ArrayDomain<Object>() : itemValues.arrayOf();
+      ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
+      domain = itemDomain.arrayOf();
 
       VarBinding size = expectVarBinding( items, "Size");
       domain.setItemCount(
