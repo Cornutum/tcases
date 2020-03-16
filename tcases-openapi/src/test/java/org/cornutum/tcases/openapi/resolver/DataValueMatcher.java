@@ -23,8 +23,14 @@ public class DataValueMatcher extends BaseCompositeMatcher<DataValue<?>>
     {
     super( expected);
 
-    expectThat( valueOf( "value", DataValue::getValue).matches( Matchers::equalTo));
+    expectThat( valueOf( "value", this::getDataObject).matches( Matchers::equalTo));
     expectThat( valueOf( "type", DataValue::getType).matches( Matchers::equalTo));
     expectThat( valueOf( "format", DataValue::getFormat).matches( Matchers::equalTo));
     }
+
+  private Object getDataObject( DataValue<?> dataValue)
+    {
+    return (Object) dataValue.getValue();
+    }
+
   }
