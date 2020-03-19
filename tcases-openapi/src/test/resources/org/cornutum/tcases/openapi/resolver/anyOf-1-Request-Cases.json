@@ -1,0 +1,215 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 102.0
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -2.0
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -2.0
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 338122983158990910.5
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -3910846594820435582.8
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "data": null,
+            "valid": false
+        },
+        "invalidInput": "Body.Defined=No"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/xml",
+            "data": {
+                "type": "number",
+                "value": 33.3
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.Media-Type=Other"
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "null",
+                "value": null
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.0.Type=null"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "string",
+                        "value": "]%`4'D{w"
+                    },
+                    {
+                        "type": "string",
+                        "value": "*"
+                    },
+                    {
+                        "type": "string",
+                        "value": "*b<L"
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.0.Type=Not number"
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 100.0
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.0.Value.Is=100.0"
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 822598788478072481.2
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.0.Value.Multiple-Of.2_0=No"
+    },
+    {
+        "id": 11,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -4.0
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.1.Value.Is=-4.0"
+    },
+    {
+        "id": 12,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 0.0
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.1.Value.Is=0.0"
+    }
+]

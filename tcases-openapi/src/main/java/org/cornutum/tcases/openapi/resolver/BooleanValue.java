@@ -19,4 +19,12 @@ public class BooleanValue extends DataValue<Boolean>
     {
     super( value, Type.BOOLEAN, null);
     }
+
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
   }

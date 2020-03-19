@@ -1,0 +1,104 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "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",
+                    "format": "binary"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "",
+                    "format": "binary"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 872.3
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not string"
+    }
+]

@@ -22,6 +22,14 @@ public class NullValue extends DataValue<Object>
     super( null, Type.NULL, null);
     }
 
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
+
   public String toString()
     {
     return

@@ -132,7 +132,7 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns the base64 encoding of the given bytes.
    */
-  protected static String encoded( byte[] bytes)
+  public static String encoded( byte[] bytes)
     {
     return Base64.getEncoder().encodeToString( bytes);
     }
@@ -140,7 +140,7 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns the bytes represented by the given base64 encoding.
    */
-  protected static byte[] decoded( String base64)
+  public static byte[] decoded( String base64)
     {
     return Base64.getDecoder().decode( base64);
     }

@@ -19,4 +19,12 @@ public class LongValue extends DataValue<Long>
     {
     super( value, Type.INTEGER, "int64");
     }
+
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
   }

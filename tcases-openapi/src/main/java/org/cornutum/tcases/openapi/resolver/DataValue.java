@@ -95,7 +95,15 @@ public class DataValue<T>
     {
     return new DataValue<Object>( value, type, format);
     }
-  
+
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    throw new UnsupportedOperationException( "Can't visit a generic DataValue");
+    }
+
   public String toString()
     {
     return

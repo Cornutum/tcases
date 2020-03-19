@@ -44,7 +44,7 @@ public class RequestCaseTest
     {
     return
       getRequestTestResources( prefix)
-      .map( file -> file.getName().replaceAll( testDefSuffix_, ""))
+      .map( RequestCaseTest::getTestDefBaseName)
       .sorted();
     }
 
@@ -131,6 +131,14 @@ public class RequestCaseTest
     }
 
   /**
+   * Returns the base name of the given test definition file.
+   */
+  protected static String getTestDefBaseName( File testDefFile)
+    {
+    return testDefFile.getName().replaceAll( testDefSuffix_, "");
+    }
+
+  /**
    * Returns the Random seed for this test.
    */
   protected long getSeed()
@@ -154,6 +162,13 @@ public class RequestCaseTest
     return new ResolverContext( getRandom());
     }
 
+  private Random random_ = new Random( seed_);
+
+  private static long seed_ =
+    Optional.ofNullable( System.getProperty( "seed"))
+    .map( Long::valueOf)
+    .orElse( 6745393444958854970L);
+  
   private static final String[] testGroups_ = new String[] {
     "allOf",
     "anyOf",
@@ -170,17 +185,4 @@ public class RequestCaseTest
   };
 
   private static final String testDefSuffix_ = "-Expected-Test.xml";
-
-  private static long seed_;
-  private static Random random_;
-
-  static
-    {
-    seed_ =
-      Optional.ofNullable( System.getProperty( "seed"))
-      .map( Long::valueOf)
-      .orElse( new Random().nextLong());
-
-    random_ = new Random( seed_);
-    }
   }

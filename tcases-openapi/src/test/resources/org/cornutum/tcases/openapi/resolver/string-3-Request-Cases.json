@@ -1,0 +1,127 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "PA==",
+                    "format": "byte"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "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",
+                    "format": "byte"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 311,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not string"
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "",
+                    "format": "byte"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Length=0"
+    }
+]

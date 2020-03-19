@@ -9,13 +9,24 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.io.SystemTestResource;
+import org.cornutum.tcases.openapi.resolver.io.RequestCaseReader;
+import org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
 import org.junit.runners.Parameterized;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Runs tests for {@link RequestCaseResolver}.
@@ -46,19 +57,23 @@ public class RequestCaseResolverTest extends RequestCaseTest
     File testDefFile = getTestDefFile( testDefBase_);
 
     // When...
+    List<RequestCase> requestCases;
     try
       {
       SystemTestDef testDef = SystemTestResource.of( testDefFile).getSystemTestDef();
-      getRequestCaseDefs( definer, testDef).stream()
+      requestCases = 
+        getRequestCaseDefs( definer, testDef).stream()
         .map( requestCaseDef -> resolver.resolve( requestCaseDef))
-        .forEach( requestCase -> {
-          System.out.println( String.format( "%s: %s", testDefFile.getName(), requestCase));
-          });
+        .filter( Objects::nonNull)
+        .collect( toList());
       }
     catch( Exception e)
       {
       throw new RequestCaseException( String.format( "Can't get request case from file=%s", testDefFile.getName()), e);
       }
+
+    // Then...
+    verifyRequestCases( testDefFile, requestCases);
     }
 
   /**
@@ -75,5 +90,71 @@ public class RequestCaseResolverTest extends RequestCaseTest
       .build();
     }
 
+  /**
+   * Verifies that request cases defined from the given system test definition match expectations.
+   */
+  private void verifyRequestCases( File testDefFile, List<RequestCase> requestCases)
+    {
+    String baseName = getTestDefBaseName( testDefFile);
+    readRequestCases( baseName)
+      .forEach( requestCase -> System.out.println( String.format( "%s: %s", baseName, requestCase)));
+    
+    if( acceptAsExpected())
+      {
+      updateRequestCases( baseName, requestCases);
+      }
+    }
+
+  /**
+   * Returns the {@link RequestCase} objects represented by the given document resource.
+   */
+  protected List<RequestCase> readRequestCases( String baseName)
+    {
+    InputStream document = getClass().getResourceAsStream( String.format( "%s-Request-Cases.json", baseName));
+    assertThat( "Request cases for resource=" + baseName, document, is( notNullValue()));
+    
+    try( RequestCaseReader reader = new RequestCaseReader( document))
+      {
+      return reader.getRequestCases();
+      }
+    }
+
+  /**
+   * Updates the given {@link RequestCase} resource.
+   */
+  private void updateRequestCases( String baseName, List<RequestCase> requestCases)
+    {
+    File requestCaseFile = new File( saveExpectedDir_, requestCasesFor( baseName));
+    try( RequestCaseWriter writer = new RequestCaseWriter( new FileOutputStream( requestCaseFile)))
+      {
+      writer.write( requestCases);
+      }
+    catch( Exception e)
+      {
+      throw new RequestCaseException( String.format( "Can't write request cases to file=%s", requestCaseFile), e);
+      }
+    }
+
+  /**
+   * Returns the name of the request cases file with the given base name
+   */
+  private String requestCasesFor( String baseName)
+    {
+    return String.format( "%s-Request-Cases.json", baseName);
+    }
+
+  /**
+   * Returns true if all generated results are automatically accepted.
+   */
+  private boolean acceptAsExpected()
+    {
+    return saveExpectedDir_ != null;
+    }
+
   private String testDefBase_;
+
+  private final File saveExpectedDir_ =
+    Optional.ofNullable( StringUtils.trimToNull( System.getProperty( "saveExpectedTo")))
+    .map( path -> new File( path))
+    .orElse( null);
   }

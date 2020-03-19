@@ -1,0 +1,1366 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "cdpkfdhpngydmv": {
+                            "type": "string",
+                            "value": "s["
+                        },
+                        "flrbh": {
+                            "type": "string",
+                            "value": "t\\uM"
+                        },
+                        "ozdge": {
+                            "type": "object",
+                            "value": {
+                                "cxpijbdfzaymkdz": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "cgq": {
+                                    "type": "string",
+                                    "value": "c<2"
+                                }
+                            }
+                        },
+                        "vmifbrhac": {
+                            "type": "number",
+                            "value": 29.0
+                        },
+                        "xsc": {
+                            "type": "object",
+                            "value": {
+                                "c": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "^H"
+                                        }
+                                    ]
+                                },
+                                "wzkwgiietsyb": {
+                                    "type": "number",
+                                    "value": 119.1
+                                }
+                            }
+                        },
+                        "qgmofnigvtya": {
+                            "type": "string",
+                            "value": "6{"
+                        },
+                        "zmfncghy": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "gtxcpexsbwoneb": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "jredhzg": {
+                            "type": "string",
+                            "value": "_o"
+                        },
+                        "ybmgpmh": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "alpha": {
+                            "type": "integer",
+                            "value": -286487905,
+                            "format": "int32"
+                        },
+                        "ijwcjcjlymlwy": {
+                            "type": "string",
+                            "value": "{wM*8*"
+                        },
+                        "tvehglmzhvriwg": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "qr": {
+                            "type": "number",
+                            "value": -848.8
+                        },
+                        "lllinyhozbzsrxbl": {
+                            "type": "string",
+                            "value": "IsK"
+                        },
+                        "ebjxevstlmn": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "&b?lK{2h"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "eixdazm": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "mihwtlstzp": {
+                            "type": "integer",
+                            "value": -432,
+                            "format": "int32"
+                        },
+                        "exmczosccga": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "rezkjgmba": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "fusqjwpdihbxz": {
+                            "type": "integer",
+                            "value": -697,
+                            "format": "int32"
+                        },
+                        "vi": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "`dep5Ftn"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "\":"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "D4:uw"
+                                }
+                            ]
+                        },
+                        "iummgqkajnn": {
+                            "type": "object",
+                            "value": {
+                                "cnzo": {
+                                    "type": "number",
+                                    "value": 461.0
+                                },
+                                "ujogjixineeufck": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "iwmybjkacj": {
+                            "type": "number",
+                            "value": 294.9
+                        },
+                        "mceiygxo": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "uxlt": {
+                            "type": "integer",
+                            "value": 108,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bythncmq": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "uobfdomdlgpibwb": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "aed": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "gh": {
+                            "type": "object",
+                            "value": {
+                                "somsmvcksxdix": {
+                                    "type": "number",
+                                    "value": 265.3
+                                },
+                                "x": {
+                                    "type": "integer",
+                                    "value": -405,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "alpha": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "mzbsysnacrhlxx": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "vdyoerszye": {
+                            "type": "string",
+                            "value": "Y"
+                        },
+                        "wmgfpotexnzftxi": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "tyangmgjyzta": {
+                            "type": "number",
+                            "value": 397.1
+                        },
+                        "fisr": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "hnd": {
+                            "type": "integer",
+                            "value": 709,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "mzfuknzqlju": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "upkjqzodj": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "tvsjqe": {
+                            "type": "object",
+                            "value": {
+                                "lwsgotyzieopaqf": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "fb": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "iudypcw": {
+                            "type": "object",
+                            "value": {
+                                "qwdwnevsfx": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "heduboo": {
+                            "type": "integer",
+                            "value": -236,
+                            "format": "int32"
+                        },
+                        "qgmbpakasaogu": {
+                            "type": "string",
+                            "value": "{Lr>ddf5"
+                        },
+                        "syxirbchgly": {
+                            "type": "integer",
+                            "value": -92,
+                            "format": "int32"
+                        },
+                        "gw": {
+                            "type": "integer",
+                            "value": -695,
+                            "format": "int32"
+                        },
+                        "jsdzlzl": {
+                            "type": "string",
+                            "value": "3O-;"
+                        },
+                        "mukwskokuxrpxznd": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "AEm+ET"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "integer",
+                            "value": 950621639,
+                            "format": "int32"
+                        },
+                        "dyouuwadq": {
+                            "type": "string",
+                            "value": ".*/Y@S}"
+                        },
+                        "vivam": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "#X}bu (P"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "&tLxM"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "R"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "number",
+                            "value": -271.3
+                        },
+                        "yxrqcwtokegnltvf": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "kxjjhfiewfmpapz": {
+                            "type": "string",
+                            "value": "p>N0d"
+                        },
+                        "jcsupuhqhuo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "ow"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "RJ=\"8Uu^"
+                                }
+                            ]
+                        },
+                        "wnhrxnjioruzhs": {
+                            "type": "object",
+                            "value": {
+                                "lfyorqn": {
+                                    "type": "number",
+                                    "value": 519.1
+                                },
+                                "s": {
+                                    "type": "number",
+                                    "value": 786.1
+                                },
+                                "expuyr": {
+                                    "type": "number",
+                                    "value": 520.2
+                                }
+                            }
+                        },
+                        "v": {
+                            "type": "integer",
+                            "value": 575,
+                            "format": "int32"
+                        },
+                        "alpha": {
+                            "type": "object",
+                            "value": {
+                                "cbgoxaah": {
+                                    "type": "integer",
+                                    "value": 435,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "vtuhqnyujamxlfu": {
+                            "type": "integer",
+                            "value": -428,
+                            "format": "int32"
+                        },
+                        "oawrmc": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "nfdhvxpp": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "znltljqlwt": {
+                            "type": "number",
+                            "value": 388.1
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "integer",
+                            "value": -572642172,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "integer",
+                            "value": 554093866,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "alpha": {
+                            "type": "object",
+                            "value": {
+                                "cantftydravp": {
+                                    "type": "integer",
+                                    "value": 183,
+                                    "format": "int32"
+                                },
+                                "lytxpeiojzkvj": {
+                                    "type": "number",
+                                    "value": -712.8
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Type=null"
+    },
+    {
+        "id": 13,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Type=Not object"
+    },
+    {
+        "id": 14,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "imlsc": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "`fgJ${JX"
+                                }
+                            ]
+                        },
+                        "mxcyukatukdvdgb": {
+                            "type": "object",
+                            "value": {
+                                "v": {
+                                    "type": "integer",
+                                    "value": -482,
+                                    "format": "int32"
+                                },
+                                "htqvuysklonk": {
+                                    "type": "integer",
+                                    "value": -176,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "ylnmmsrqzoqagqr": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "nt": {
+                            "type": "number",
+                            "value": 154.0
+                        },
+                        "alpha": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "gcqzxmlrm": {
+                            "type": "number",
+                            "value": -155.7
+                        },
+                        "dvyznpj": {
+                            "type": "integer",
+                            "value": 506,
+                            "format": "int32"
+                        },
+                        "cevyhet": {
+                            "type": "string",
+                            "value": ":8"
+                        },
+                        "shwxzaq": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "'FFp3[cD"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "k"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "&|t5vCK"
+                                }
+                            ]
+                        },
+                        "venggfpehznz": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "iwvt": {
+                            "type": "string",
+                            "value": "y:"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.alpha.Type=null"
+    },
+    {
+        "id": 15,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "ovlid": {
+                            "type": "integer",
+                            "value": 573,
+                            "format": "int32"
+                        },
+                        "yfrhgldk": {
+                            "type": "string",
+                            "value": "#,:t\"S`9"
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "h`46"
+                        },
+                        "bpdujfcrgvtzvhg": {
+                            "type": "object",
+                            "value": {
+                                "ictcfzlihpm": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "h": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "wuf": {
+                            "type": "integer",
+                            "value": 984,
+                            "format": "int32"
+                        },
+                        "cwvddbwv": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ">& S{D"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "g6(3W"
+                                }
+                            ]
+                        },
+                        "pgycvfdol": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "goqggxexqjpohsy": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "qijfplholinglpmh": {
+                            "type": "integer",
+                            "value": 807,
+                            "format": "int32"
+                        },
+                        "yrnhmsvtpudkb": {
+                            "type": "string",
+                            "value": ">V|=KN"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.alpha.Type=Not integer"
+    },
+    {
+        "id": 16,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "integer",
+                            "value": -54394045,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional=No"
+    },
+    {
+        "id": 17,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "rlmeup": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "omapw": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "U1!` `F"
+                                }
+                            ]
+                        },
+                        "ngsudzimgaatwrqo": {
+                            "type": "number",
+                            "value": -135.1
+                        },
+                        "fgaecsijjuong": {
+                            "type": "integer",
+                            "value": 259,
+                            "format": "int32"
+                        },
+                        "diupiv": {
+                            "type": "integer",
+                            "value": -802,
+                            "format": "int32"
+                        },
+                        "ao": {
+                            "type": "object",
+                            "value": {
+                                "zgymzyimrqyxmnio": {
+                                    "type": "integer",
+                                    "value": -47,
+                                    "format": "int32"
+                                },
+                                "tzicehxwpi": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "hrcybjyz": {
+                                    "type": "string",
+                                    "value": "v"
+                                }
+                            }
+                        },
+                        "ud": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "tkqdxhbfwnoqd": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "bravo": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "rxkyui": {
+                            "type": "object",
+                            "value": {
+                                "sszweurtwod": {
+                                    "type": "string",
+                                    "value": "3"
+                                },
+                                "nfcwlnrrumjgcn": {
+                                    "type": "number",
+                                    "value": -229.3
+                                }
+                            }
+                        },
+                        "gsmitce": {
+                            "type": "integer",
+                            "value": -129,
+                            "format": "int32"
+                        },
+                        "hf": {
+                            "type": "integer",
+                            "value": 894,
+                            "format": "int32"
+                        },
+                        "booqwjcpt": {
+                            "type": "number",
+                            "value": -518.2
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Properties.alpha.Defined=No"
+    },
+    {
+        "id": 18,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "object",
+                            "value": {
+                                "aibifeaapzb": {
+                                    "type": "string",
+                                    "value": "=[`Pa"
+                                }
+                            }
+                        },
+                        "mzoqofpukdjenab": {
+                            "type": "number",
+                            "value": 511.7
+                        },
+                        "jetamg": {
+                            "type": "integer",
+                            "value": 14,
+                            "format": "int32"
+                        },
+                        "qvkaiowgcqgwa": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "alpha": {
+                            "type": "integer",
+                            "value": -269739457,
+                            "format": "int32"
+                        },
+                        "x": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "xp": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "jtffmbpefqfqq": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "naxdgud": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "sqpkdhnmmzy": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "dfwoqoqv": {
+                            "type": "object",
+                            "value": {
+                                "fbnm": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "temzkzwckz": {
+                                    "type": "integer",
+                                    "value": -855,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "efddtvbajlgvjbf": {
+                            "type": "string",
+                            "value": "$sU\\l,"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Properties.alpha.Type=integer"
+    },
+    {
+        "id": 19,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "jiewanuhs": {
+                            "type": "string",
+                            "value": "~lb<#"
+                        },
+                        "uawpqhglaf": {
+                            "type": "integer",
+                            "value": 980,
+                            "format": "int32"
+                        },
+                        "kmnelqpvpl": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "tdg": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "K4"
+                        },
+                        "w": {
+                            "type": "string",
+                            "value": "g5cu"
+                        },
+                        "gokwelgla": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "wtjahxevdfnche": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "mfF"
+                                }
+                            ]
+                        },
+                        "xkjdtlctsl": {
+                            "type": "string",
+                            "value": "^S:F+"
+                        },
+                        "rxlgvr": {
+                            "type": "number",
+                            "value": -548.2
+                        },
+                        "ydouznz": {
+                            "type": "number",
+                            "value": 673.8
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Properties.bravo.Defined=No"
+    },
+    {
+        "id": 20,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "epna": {
+                            "type": "string",
+                            "value": "9%"
+                        },
+                        "s": {
+                            "type": "integer",
+                            "value": 141,
+                            "format": "int32"
+                        },
+                        "wzh": {
+                            "type": "number",
+                            "value": 288.3
+                        },
+                        "ttkglerhlgztpn": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "RO\\"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "RR`~6"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "trqxroszekja": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "e": {
+                            "type": "object",
+                            "value": {
+                                "gsqgnrjvixalf": {
+                                    "type": "integer",
+                                    "value": -77,
+                                    "format": "int32"
+                                },
+                                "mqjt": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "}]"
+                                        }
+                                    ]
+                                },
+                                "hwnjbmteeypi": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "alpha": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "r~"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "\\d8l= S"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "^A6>|V"
+                                }
+                            ]
+                        },
+                        "abtffdr": {
+                            "type": "integer",
+                            "value": 693,
+                            "format": "int32"
+                        },
+                        "tquvdcbv": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "yw": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Properties.bravo.Type=null"
+    },
+    {
+        "id": 21,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "zwep": {
+                            "type": "object",
+                            "value": {
+                                "zopchmsxg": {
+                                    "type": "string",
+                                    "value": "R+{T8*hW"
+                                },
+                                "rtoid": {
+                                    "type": "integer",
+                                    "value": -530,
+                                    "format": "int32"
+                                },
+                                "ezqifgawpik": {
+                                    "type": "number",
+                                    "value": -162.1
+                                }
+                            }
+                        },
+                        "xibveufemifawrll": {
+                            "type": "integer",
+                            "value": 1024,
+                            "format": "int32"
+                        },
+                        "alpha": {
+                            "type": "integer",
+                            "value": -831781577,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.2.Value.Properties.Additional=Yes"
+    }
+]

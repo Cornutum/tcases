@@ -24,6 +24,14 @@ public class ObjectValue extends DataValue<Map<String,DataValue<?>>>
     super( value, Type.OBJECT, null);
     }
 
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
+
   public String toString()
     {
     return

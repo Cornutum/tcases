@@ -19,4 +19,12 @@ public class IntegerValue extends DataValue<Integer>
     {
     super( value, Type.INTEGER, "int32");
     }
+
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
   }

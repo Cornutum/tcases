@@ -29,4 +29,12 @@ public class DecimalValue extends DataValue<BigDecimal>
     {
     this( value, null);
     }
+
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
   }

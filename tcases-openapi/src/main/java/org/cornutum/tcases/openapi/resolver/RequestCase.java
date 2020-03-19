@@ -47,6 +47,21 @@ public class RequestCase
     }
 
   /**
+   * Changes the server URI for this request.
+   */
+  public void setServer( String uri)
+    {
+    try
+      {
+      setServer( new URI( uri));
+      }
+    catch( Exception e)
+      {
+      throw new RequestCaseException( String.format( "Invalid URI=%s", uri), e);
+      }
+    }
+
+  /**
    * Returns the server URI for this request.
    */
   public URI getServer()

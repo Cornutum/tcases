@@ -22,6 +22,14 @@ public class BinaryValue extends DataValue<byte[]>
     super( value, Type.STRING, "binary");
     }
 
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
+
   public String toString()
     {
     return

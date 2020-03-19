@@ -34,6 +34,14 @@ public class StringValue extends DataValue<String>
     super( value, Type.STRING, format);
     }
 
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
+
   public String toString()
     {
     ToStringBuilder builder =

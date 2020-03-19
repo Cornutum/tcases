@@ -580,7 +580,7 @@ public final class VarProperties
         int expectedPropertyCountMax = expectedPropertyCount.getMax();
         int additionalPropertyCountMax =
           expectedPropertyCountMax == expectedPropertyCount.getMaxRange()
-          ? Math.max( 256, additionalPropertyCountMin + 2)
+          ? additionalPropertyCountMin + 2
           : expectedPropertyCountMax - definedPropertyCount;
 
         domain.setAdditionalPropertyCount( new IntegerDomain( additionalPropertyCountMin, additionalPropertyCountMax));

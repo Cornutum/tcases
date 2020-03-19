@@ -21,4 +21,12 @@ public class ArrayValue<T> extends DataValue<List<DataValue<T>>>
     {
     super( value, Type.ARRAY, null);
     }
+
+  /**
+   * Implements the Visitor pattern for this data value.
+   */
+  public void accept( DataValueVisitor visitor)
+    {
+    visitor.visit( this);
+    }
   }
