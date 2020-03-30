@@ -82,9 +82,9 @@ public abstract class ValueDomainTest
   /**
    * Returns a Matcher for {@link DataValue} with the given properties.
    */
-  protected DataValueMatcher dataValueMatcher( Object value, Type type, String format)
+  protected <T> DataValueMatcher<T> dataValueMatcher( T value, Type type, String format)
     {
-    return new DataValueMatcher( DataValue.of( value, type, format));
+    return new DataValueMatcher<T>( DataValue.of( value, type, format));
     }
 
   /**

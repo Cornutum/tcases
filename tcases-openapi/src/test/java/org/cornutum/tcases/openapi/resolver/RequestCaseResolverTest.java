@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
 import org.junit.runners.Parameterized;
+import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
@@ -96,12 +97,13 @@ public class RequestCaseResolverTest extends RequestCaseTest
   private void verifyRequestCases( File testDefFile, List<RequestCase> requestCases)
     {
     String baseName = getTestDefBaseName( testDefFile);
-    readRequestCases( baseName)
-      .forEach( requestCase -> System.out.println( String.format( "%s: %s", baseName, requestCase)));
-    
     if( acceptAsExpected())
       {
       updateRequestCases( baseName, requestCases);
+      }
+    else
+      {
+      assertThat( baseName, requestCases, listsMembers( RequestCaseMatcher::new, readRequestCases( baseName)));
       }
     }
 

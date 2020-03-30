@@ -55,7 +55,7 @@ public class UuidDomain extends RestrictedStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    *
-   * @see UUID#randomUUID
+   * @see java.util.UUID#randomUUID
    */
   protected String newValue( ResolverContext context, int length)
     {

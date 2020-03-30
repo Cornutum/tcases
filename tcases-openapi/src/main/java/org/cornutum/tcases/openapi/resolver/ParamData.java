@@ -10,6 +10,8 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import org.cornutum.tcases.util.ToString;
 
+import java.util.Objects;
+
 /**
  * Defines a request parameter data object.
  */
@@ -88,6 +90,25 @@ public class ParamData extends MessageData
     return exploded_;
     }
 
+  public boolean equals( Object object)
+    {
+    ParamData other =
+      object instanceof ParamData
+      ? (ParamData) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( other.getName(), getName());
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( getName());
+    }
+  
   public String toString()
     {
     return

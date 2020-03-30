@@ -183,6 +183,25 @@ public class RequestCase
     return getInvalidInput() != null;
     }
 
+  public boolean equals( Object object)
+    {
+    RequestCase other =
+      object instanceof RequestCase
+      ? (RequestCase) object
+      : null;
+
+    return
+      other != null
+      && other.getId() == getId();
+    }
+
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ getId();
+    }
+  
   public String toString()
     {
     return

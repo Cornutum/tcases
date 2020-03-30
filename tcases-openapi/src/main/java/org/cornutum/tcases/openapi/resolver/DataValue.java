@@ -91,9 +91,9 @@ public class DataValue<T>
   /**
    * Creates a new DataValue instance.
    */
-  public static DataValue<Object> of( Object value, Type type, String format)
+  public static <T> DataValue<T> of( T value, Type type, String format)
     {
-    return new DataValue<Object>( value, type, format);
+    return new DataValue<T>( value, type, format);
     }
 
   /**

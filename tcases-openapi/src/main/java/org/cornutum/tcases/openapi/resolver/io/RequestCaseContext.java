@@ -11,7 +11,7 @@ import org.cornutum.tcases.openapi.ExecutionContext;
 import org.cornutum.tcases.openapi.resolver.RequestCaseException;
 
 /**
- * Provides a context for exceptions that occur when processing {@link RequestCase} definitions.
+ * Provides a context for exceptions that occur when processing {@link org.cornutum.tcases.openapi.resolver.RequestCase} definitions.
  */
 public class RequestCaseContext extends ExecutionContext<RequestCaseException>
   {
