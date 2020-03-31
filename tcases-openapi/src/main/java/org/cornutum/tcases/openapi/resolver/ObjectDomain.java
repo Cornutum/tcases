@@ -143,7 +143,9 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
       .collect(
         toMap(
           e -> e.getKey(),
-          e -> context.resultFor( e.getKey(), () -> e.getValue().select( context))));
+          e -> context.resultFor( e.getKey(), () -> e.getValue().select( context)),
+          (v1, v2) -> { throw new IllegalStateException( "Duplicated object property name"); },
+          LinkedHashMap::new));
 
     // Additional properties needed?
     int totalPropertyCount =

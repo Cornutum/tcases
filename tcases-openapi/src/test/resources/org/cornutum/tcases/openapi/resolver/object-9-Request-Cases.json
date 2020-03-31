@@ -65,10 +65,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "zmfncghy": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "myNumber": {
                             "type": "number",
                             "value": 0
@@ -77,6 +73,10 @@
                             "type": "integer",
                             "value": -184459035,
                             "format": "int32"
+                        },
+                        "zmfncghy": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -132,11 +132,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "p": {
-                            "type": "object",
-                            "value": {
-                            }
-                        },
                         "myNumber": {
                             "type": "number",
                             "value": -4280503944217793149.5
@@ -145,6 +140,11 @@
                             "type": "integer",
                             "value": 0,
                             "format": "int32"
+                        },
+                        "p": {
+                            "type": "object",
+                            "value": {
+                            }
                         }
                     }
                 },
@@ -248,11 +248,6 @@
                             "type": "string",
                             "value": ""
                         },
-                        "qe": {
-                            "type": "integer",
-                            "value": -935,
-                            "format": "int32"
-                        },
                         "myBoolean": {
                             "type": "boolean",
                             "value": true
@@ -264,6 +259,11 @@
                         "myInteger": {
                             "type": "integer",
                             "value": -540231401,
+                            "format": "int32"
+                        },
+                        "qe": {
+                            "type": "integer",
+                            "value": -935,
                             "format": "int32"
                         }
                     }
@@ -369,6 +369,14 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "myBoolean": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "myNumber": {
+                            "type": "number",
+                            "value": 348588708282420896.1
+                        },
                         "mmpqfu": {
                             "type": "array",
                             "value": [
@@ -381,14 +389,6 @@
                                     "value": "D"
                                 }
                             ]
-                        },
-                        "myBoolean": {
-                            "type": "null",
-                            "value": null
-                        },
-                        "myNumber": {
-                            "type": "number",
-                            "value": 348588708282420896.1
                         }
                     }
                 },
@@ -424,13 +424,13 @@
                                         }
                                     ]
                                 },
-                                "ioimlurvy": {
-                                    "type": "number",
-                                    "value": -548.1
-                                },
                                 "mihwtlstzp": {
                                     "type": "number",
                                     "value": 32.5
+                                },
+                                "ioimlurvy": {
+                                    "type": "number",
+                                    "value": -548.1
                                 }
                             }
                         },
@@ -464,6 +464,10 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "myBoolean": {
+                            "type": "boolean",
+                            "value": true
+                        },
                         "bjxevstlmngwv": {
                             "type": "boolean",
                             "value": true
@@ -476,10 +480,6 @@
                                     "value": "AcSV"
                                 }
                             ]
-                        },
-                        "myBoolean": {
-                            "type": "boolean",
-                            "value": true
                         }
                     }
                 },
@@ -503,6 +503,14 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "myBoolean": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "myNumber": {
+                            "type": "null",
+                            "value": null
+                        },
                         "xqrtwnoiummgqk": {
                             "type": "array",
                             "value": [
@@ -515,14 +523,6 @@
                                     "value": "a9A+*A,"
                                 }
                             ]
-                        },
-                        "myBoolean": {
-                            "type": "boolean",
-                            "value": true
-                        },
-                        "myNumber": {
-                            "type": "null",
-                            "value": null
                         }
                     }
                 },

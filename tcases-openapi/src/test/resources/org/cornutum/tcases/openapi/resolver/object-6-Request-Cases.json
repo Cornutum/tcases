@@ -85,10 +85,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "zmfncghy": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "myNumber": {
                             "type": "number",
                             "value": 0
@@ -97,6 +93,10 @@
                             "type": "integer",
                             "value": -184459035,
                             "format": "int32"
+                        },
+                        "zmfncghy": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -267,17 +267,9 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "baveebjxevstlm": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "myString": {
                             "type": "string",
                             "value": ""
-                        },
-                        "mbvrezkjg": {
-                            "type": "boolean",
-                            "value": true
                         },
                         "myBoolean": {
                             "type": "boolean",
@@ -291,6 +283,14 @@
                             "type": "integer",
                             "value": -1067495110,
                             "format": "int32"
+                        },
+                        "mbvrezkjg": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "baveebjxevstlm": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -395,10 +395,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "qr": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "myBoolean": {
                             "type": "null",
                             "value": null
@@ -406,6 +402,10 @@
                         "myNumber": {
                             "type": "number",
                             "value": 377646644836214180.2
+                        },
+                        "qr": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -527,10 +527,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "fckshuxlts": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "myBoolean": {
                             "type": "boolean",
                             "value": true
@@ -539,6 +535,10 @@
                             "type": "object",
                             "value": {
                             }
+                        },
+                        "fckshuxlts": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -669,11 +669,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "rhlxxymtv": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
                         "myBoolean": {
                             "type": "boolean",
                             "value": true
@@ -681,6 +676,11 @@
                         "myNumber": {
                             "type": "number",
                             "value": 535052608019002400.7
+                        },
+                        "rhlxxymtv": {
+                            "type": "array",
+                            "value": [
+                            ]
                         }
                     }
                 },

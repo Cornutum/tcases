@@ -19,10 +19,6 @@
                             "type": "string",
                             "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
                         },
-                        "mfncghyfhg": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "myBoolean": {
                             "type": "boolean",
                             "value": true
@@ -35,6 +31,10 @@
                             "type": "integer",
                             "value": -184459035,
                             "format": "int32"
+                        },
+                        "mfncghyfhg": {
+                            "type": "boolean",
+                            "value": true
                         },
                         "cp": {
                             "type": "object",
@@ -117,10 +117,6 @@
                             "type": "string",
                             "value": ""
                         },
-                        "nebwihjre": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "myBoolean": {
                             "type": "boolean",
                             "value": true
@@ -128,6 +124,10 @@
                         "myNumber": {
                             "type": "number",
                             "value": 379967812976751998.0
+                        },
+                        "nebwihjre": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -150,13 +150,18 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "xltsmpyfisrhuuo": {
-                            "type": "number",
-                            "value": -414.8
-                        },
                         "myString": {
                             "type": "string",
                             "value": "t{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\"]Y,9fw7?5 KJYu$s]/HfvwpDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z&b?lK{2hFED"
+                        },
+                        "myNumber": {
+                            "type": "number",
+                            "value": -4175001406727204082.4
+                        },
+                        "myInteger": {
+                            "type": "integer",
+                            "value": 630195575,
+                            "format": "int32"
                         },
                         "x": {
                             "type": "object",
@@ -176,19 +181,14 @@
                                 }
                             }
                         },
-                        "myNumber": {
-                            "type": "number",
-                            "value": -4175001406727204082.4
-                        },
-                        "myInteger": {
-                            "type": "integer",
-                            "value": 630195575,
-                            "format": "int32"
-                        },
                         "ujogjixineeufck": {
                             "type": "object",
                             "value": {
                             }
+                        },
+                        "xltsmpyfisrhuuo": {
+                            "type": "number",
+                            "value": -414.8
                         }
                     }
                 },

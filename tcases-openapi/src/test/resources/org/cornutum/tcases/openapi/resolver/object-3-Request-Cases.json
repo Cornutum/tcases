@@ -15,22 +15,22 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "flrbh": {
-                            "type": "string",
-                            "value": "t\\uM"
-                        },
-                        "ijwcjcjlymlwy": {
-                            "type": "string",
-                            "value": "{wM*8*"
-                        },
                         "myInteger": {
                             "type": "integer",
                             "value": -286487905,
                             "format": "int32"
                         },
+                        "ijwcjcjlymlwy": {
+                            "type": "string",
+                            "value": "{wM*8*"
+                        },
                         "tvehglmzhvriwg": {
                             "type": "boolean",
                             "value": true
+                        },
+                        "flrbh": {
+                            "type": "string",
+                            "value": "t\\uM"
                         }
                     }
                 },
@@ -116,23 +116,23 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "myInteger": {
+                            "type": "integer",
+                            "value": 277339484,
+                            "format": "int32"
+                        },
                         "cqwncerecohw": {
                             "type": "string",
                             "value": "<S)^d"
-                        },
-                        "mofnig": {
-                            "type": "boolean",
-                            "value": true
                         },
                         "sybnoo": {
                             "type": "integer",
                             "value": 439,
                             "format": "int32"
                         },
-                        "myInteger": {
-                            "type": "integer",
-                            "value": 277339484,
-                            "format": "int32"
+                        "mofnig": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },

@@ -12,6 +12,7 @@ import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -289,7 +290,9 @@ public final class RequestCaseJson
         .collect(
           toMap(
             key -> key,
-            key -> context.resultFor( key, () -> asDataValue( context, json.get( key))))));
+            key -> context.resultFor( key, () -> asDataValue( context, json.get( key))),
+            (v1, v2) -> { throw new IllegalStateException( "Duplicated object property name"); },
+            LinkedHashMap::new)));
     }
 
   /**

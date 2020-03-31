@@ -15,10 +15,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "wartvehglmzhv": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "alpha": {
                             "type": "integer",
                             "value": -326,
@@ -28,6 +24,10 @@
                             "type": "object",
                             "value": {
                             }
+                        },
+                        "wartvehglmzhv": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -109,10 +109,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "qgmofnigvtya": {
-                            "type": "string",
-                            "value": "6{"
-                        },
                         "vzmgsfxsc": {
                             "type": "object",
                             "value": {
@@ -130,6 +126,10 @@
                                     "value": 119.1
                                 }
                             }
+                        },
+                        "qgmofnigvtya": {
+                            "type": "string",
+                            "value": "6{"
                         }
                     }
                 },
@@ -153,13 +153,13 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "mfncghyfhg": {
-                            "type": "boolean",
-                            "value": true
-                        },
                         "alpha": {
                             "type": "null",
                             "value": null
+                        },
+                        "mfncghyfhg": {
+                            "type": "boolean",
+                            "value": true
                         },
                         "cp": {
                             "type": "object",

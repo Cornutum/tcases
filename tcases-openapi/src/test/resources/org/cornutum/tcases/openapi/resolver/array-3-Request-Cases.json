@@ -127,14 +127,14 @@
                         {
                             "type": "object",
                             "value": {
-                                "ljpizmfncghyfhg": {
-                                    "type": "boolean",
-                                    "value": true
-                                },
                                 "gmofnigvt": {
                                     "type": "array",
                                     "value": [
                                     ]
+                                },
+                                "ljpizmfncghyfhg": {
+                                    "type": "boolean",
+                                    "value": true
                                 },
                                 "cp": {
                                     "type": "object",
@@ -164,13 +164,13 @@
                         {
                             "type": "object",
                             "value": {
-                                "vmifbrhac": {
-                                    "type": "number",
-                                    "value": 29.0
-                                },
                                 "dpkfdhpngydmv": {
                                     "type": "string",
                                     "value": "s["
+                                },
+                                "vmifbrhac": {
+                                    "type": "number",
+                                    "value": 29.0
                                 }
                             }
                         },
@@ -191,6 +191,10 @@
                                     "type": "number",
                                     "value": -808.1
                                 },
+                                "ny": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
                                 "zbz": {
                                     "type": "array",
                                     "value": [
@@ -199,10 +203,6 @@
                                             "value": "avN2IsK"
                                         }
                                     ]
-                                },
-                                "ny": {
-                                    "type": "boolean",
-                                    "value": true
                                 }
                             }
                         },
@@ -233,6 +233,10 @@
                         {
                             "type": "object",
                             "value": {
+                                "ihbxzm": {
+                                    "type": "number",
+                                    "value": -563.9
+                                },
                                 "mybjkacj": {
                                     "type": "number",
                                     "value": 294.9
@@ -241,10 +245,6 @@
                                     "type": "integer",
                                     "value": -432,
                                     "format": "int32"
-                                },
-                                "ihbxzm": {
-                                    "type": "number",
-                                    "value": -563.9
                                 }
                             }
                         },

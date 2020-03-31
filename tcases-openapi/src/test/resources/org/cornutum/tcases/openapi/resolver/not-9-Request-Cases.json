@@ -81,6 +81,10 @@
                             "type": "string",
                             "value": "hhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5"
                         },
+                        "zggalllinyhozb": {
+                            "type": "boolean",
+                            "value": true
+                        },
                         "rxblbqeyqwex": {
                             "type": "object",
                             "value": {
@@ -97,10 +101,6 @@
                         "ihbxzm": {
                             "type": "number",
                             "value": -563.9
-                        },
-                        "zggalllinyhozb": {
-                            "type": "boolean",
-                            "value": true
                         }
                     }
                 },
@@ -393,13 +393,13 @@
                                 }
                             ]
                         },
-                        "ekfhtbgdvoa": {
-                            "type": "number",
-                            "value": 72.7
-                        },
                         "aoqafpyewpuridpg": {
                             "type": "number",
                             "value": 572.9
+                        },
+                        "ekfhtbgdvoa": {
+                            "type": "number",
+                            "value": 72.7
                         }
                     }
                 },
@@ -634,11 +634,6 @@
                         "bravo": {
                             "type": "object",
                             "value": {
-                                "vickgveyrfw": {
-                                    "type": "integer",
-                                    "value": -255,
-                                    "format": "int32"
-                                },
                                 "abgebujzijras": {
                                     "type": "string",
                                     "value": "WT"
@@ -646,6 +641,11 @@
                                 "bnzosoaijfh": {
                                     "type": "integer",
                                     "value": -726,
+                                    "format": "int32"
+                                },
+                                "vickgveyrfw": {
+                                    "type": "integer",
+                                    "value": -255,
                                     "format": "int32"
                                 }
                             }

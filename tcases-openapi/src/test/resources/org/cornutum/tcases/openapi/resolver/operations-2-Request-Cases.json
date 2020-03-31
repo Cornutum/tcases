@@ -51,10 +51,6 @@
                         "value": -710,
                         "format": "int32"
                     },
-                    "iwg": {
-                        "type": "boolean",
-                        "value": true
-                    },
                     "jwl": {
                         "type": "array",
                         "value": [
@@ -67,6 +63,10 @@
                                 "value": "a|8C"
                             }
                         ]
+                    },
+                    "iwg": {
+                        "type": "boolean",
+                        "value": true
                     }
                 }
             },
@@ -250,14 +250,6 @@
             "data": {
                 "type": "object",
                 "value": {
-                    "qgmofnigvtya": {
-                        "type": "string",
-                        "value": "6{"
-                    },
-                    "zmfncghy": {
-                        "type": "boolean",
-                        "value": true
-                    },
                     "gsfxsc": {
                         "type": "object",
                         "value": {
@@ -275,6 +267,14 @@
                                 "value": 119.1
                             }
                         }
+                    },
+                    "qgmofnigvtya": {
+                        "type": "string",
+                        "value": "6{"
+                    },
+                    "zmfncghy": {
+                        "type": "boolean",
+                        "value": true
                     }
                 }
             },

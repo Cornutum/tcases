@@ -102,6 +102,10 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "izmfncghyfhgtxc": {
+                            "type": "boolean",
+                            "value": true
+                        },
                         "xsbwonebwihjr": {
                             "type": "array",
                             "value": [
@@ -114,10 +118,6 @@
                                     "value": "k]_oN"
                                 }
                             ]
-                        },
-                        "izmfncghyfhgtxc": {
-                            "type": "boolean",
-                            "value": true
                         },
                         "bmg": {
                             "type": "array",

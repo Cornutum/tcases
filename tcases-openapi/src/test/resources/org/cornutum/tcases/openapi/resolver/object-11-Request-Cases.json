@@ -353,14 +353,14 @@
                         "myBoolean": {
                             "type": "object",
                             "value": {
-                                "wfeixda": {
-                                    "type": "integer",
-                                    "value": -344,
-                                    "format": "int32"
-                                },
                                 "xmczosccg": {
                                     "type": "integer",
                                     "value": -178,
+                                    "format": "int32"
+                                },
+                                "wfeixda": {
+                                    "type": "integer",
+                                    "value": -344,
                                     "format": "int32"
                                 }
                             }
@@ -536,6 +536,15 @@
                             "type": "string",
                             "value": ""
                         },
+                        "myNumber": {
+                            "type": "number",
+                            "value": -4263668710691676462.9
+                        },
+                        "cjbdhcmihwtlstzp": {
+                            "type": "integer",
+                            "value": -432,
+                            "format": "int32"
+                        },
                         "vi": {
                             "type": "array",
                             "value": [
@@ -552,15 +561,6 @@
                                     "value": "D4:uw"
                                 }
                             ]
-                        },
-                        "myNumber": {
-                            "type": "number",
-                            "value": -4263668710691676462.9
-                        },
-                        "cjbdhcmihwtlstzp": {
-                            "type": "integer",
-                            "value": -432,
-                            "format": "int32"
                         }
                     }
                 },
