@@ -275,7 +275,7 @@ public final class RequestCaseJson
     {
     return
       "int64".equals( format)
-      ? new LongValue( json.longValue())
+      ? new LongValue( json.longValueExact())
       : new IntegerValue( json.intValueExact());
     }
 
