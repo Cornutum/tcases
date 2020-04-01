@@ -7,17 +7,12 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.FunctionTestDef;
-import org.cornutum.tcases.SystemTestDef;
-import static org.cornutum.tcases.util.CollectionUtils.toStream;
-
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -89,37 +84,6 @@ public class RequestCaseTest
       {
       throw new RuntimeException( "Can't get resource directory path", e);
       }
-    }
-
-  /**
-   * Returns the request cases for the given system test definition.
-   */
-  protected List<RequestCaseDef> getRequestCaseDefs( RequestCaseDefiner definer, SystemTestDef testDef)
-    {
-    return
-      toStream( testDef.getFunctionTestDefs())
-      .flatMap( function -> getRequestCaseDefs( definer, function).stream())
-      .collect( toList());
-    }
-
-  /**
-   * Returns the request cases for the given function test definition.
-   */
-  protected List<RequestCaseDef> getRequestCaseDefs( RequestCaseDefiner definer, FunctionTestDef testDef)
-    {
-    return
-      toStream( testDef.getTestCases())
-      .map( testCase -> {
-        try
-          {
-          return definer.toRequestCaseDef( testCase);
-          }
-        catch( Exception e)
-          {
-          throw new RequestCaseException( String.format( "Can't get request case for test case=%s", testCase.getId()), e);
-          }
-        })
-      .collect( toList());
     }
 
   /**

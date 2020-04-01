@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.io.SystemTestResource;
 
 import org.junit.Test;
@@ -45,14 +44,12 @@ public class RequestCaseDefinerTest extends RequestCaseTest
   public void getRequestCaseDefs()
     {
     // Given...
-    RequestCaseDefiner definer = new RequestCaseDefiner();
     File testDefFile = getTestDefFile( testDefBase_);
 
-    // When...
     try
       {
-      SystemTestDef testDef = SystemTestResource.of( testDefFile).getSystemTestDef();
-      List<RequestCaseDef> requestCaseDefs = getRequestCaseDefs( definer, testDef);
+      // When...
+      List<RequestCaseDef> requestCaseDefs = RequestCases.getRequestCaseDefs( SystemTestResource.of( testDefFile).getSystemTestDef());
 
       // Then...
       for( RequestCaseDef requestCaseDef : requestCaseDefs)

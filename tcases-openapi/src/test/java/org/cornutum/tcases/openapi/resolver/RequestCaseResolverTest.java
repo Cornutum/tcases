@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.io.SystemTestResource;
 import org.cornutum.tcases.openapi.resolver.io.RequestCaseReader;
 import org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter;
@@ -25,9 +24,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Runs tests for {@link RequestCaseResolver}.
@@ -53,20 +50,16 @@ public class RequestCaseResolverTest extends RequestCaseTest
   public void verifyRequestCases()
     {
     // Given...
-    RequestCaseDefiner definer = new RequestCaseDefiner();
-    RequestCaseResolver resolver = new RequestCaseResolver( getResolverContext());
     File testDefFile = getTestDefFile( testDefBase_);
 
     // When...
     List<RequestCase> requestCases;
     try
       {
-      SystemTestDef testDef = SystemTestResource.of( testDefFile).getSystemTestDef();
-      requestCases = 
-        getRequestCaseDefs( definer, testDef).stream()
-        .map( requestCaseDef -> resolver.resolve( requestCaseDef))
-        .filter( Objects::nonNull)
-        .collect( toList());
+      requestCases =
+        RequestCases.getRequestCases(
+          SystemTestResource.of( testDefFile).getSystemTestDef(),
+          getResolverContext());
       }
     catch( Exception e)
       {
