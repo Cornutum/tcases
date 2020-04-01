@@ -13,6 +13,10 @@ import org.cornutum.tcases.TcasesJson;
 import org.cornutum.tcases.openapi.ModelOptions;
 import org.cornutum.tcases.openapi.TcasesOpenApi;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
+import org.cornutum.tcases.openapi.resolver.RequestCase;
+import org.cornutum.tcases.openapi.resolver.RequestCases;
+import org.cornutum.tcases.openapi.resolver.ResolverContext;
+import org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter;
 
 import java.io.File;
 import java.io.InputStream;
@@ -275,5 +279,30 @@ public final class TcasesOpenApiIO
   public static void writeTests( SystemTestDef testDef, OutputStream outputStream)
     {
     TcasesJson.writeTests( testDef, outputStream);
+    }
+
+  /**
+   * Writes a {@link org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter JSON document} listing test cases defined by the given
+   * request test case definitions to the given output stream.
+   */
+  public static void writeRequestCases( SystemTestDef testDef, ResolverContext context, OutputStream outputStream)
+    {
+    writeRequestCases( RequestCases.getRequestCases( testDef, context), outputStream);
+    }
+
+  /**
+   * Writes a {@link org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter JSON document} listing the given request test cases
+   * to the given output stream.
+   */
+  public static void writeRequestCases( Iterable<RequestCase> requestCases, OutputStream outputStream)
+    {
+    try( RequestCaseWriter writer = new RequestCaseWriter( outputStream))
+      {
+      writer.write( requestCases);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write request test cases", e);
+      }
     }
   }
