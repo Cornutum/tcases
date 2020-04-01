@@ -15,6 +15,8 @@ import org.cornutum.tcases.io.TestDefToHtmlFilter;
 import org.cornutum.tcases.io.TestDefToJUnitFilter;
 import org.cornutum.tcases.io.TransformFilter;
 import org.cornutum.tcases.openapi.io.TcasesOpenApiIO;
+import org.cornutum.tcases.openapi.resolver.ResolverConditionNotifier;
+import org.cornutum.tcases.openapi.resolver.ResolverContext;
 import org.cornutum.tcases.util.MapBuilder;
 
 import org.apache.commons.io.IOUtils;
@@ -31,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.Random;
 
 /**
  * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec.
@@ -48,29 +51,14 @@ public class ApiCommand
    * <TR valign="top">
    * <TD colspan="3">
    * <NOBR>
-   * [-C | S]
-   * [-I]
-   * [-c {log | fail | ignore}]
-   * [-f <I>outFile</I>]
-   * [-o <I>outDir</I>]
-   * [-R]
-   * [-W]
-   * [-x <I>transformDef</I> | -J | -H]
-   * [-p <I>name</I>=<I>value</I>]
-   * [-T <I>contentType</I>]
-   * [-v]
-   * [<I>apiSpec</I>]
+   * [<I>option</I>...] [<I>apiSpec</I>]
    * </NOBR>
    * </TD>
    * </TR>
    *
    * <TR valign="top">
-   * <TD>
-   * &nbsp; where:
-   * </TD>
-   * <TD>
-   * </TD>
-   * <TD>
+   * <TD colspan="3">
+   * where each <I>option</I> is one of the following:
    * </TD>
    * </TR>
    *
@@ -79,11 +67,12 @@ public class ApiCommand
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR>-C | -S</NOBR>
+   * <NOBR>-C | -S | -D</NOBR>
    * </TD>
    * <TD>
-   * If <I>-C</I> is given, produce results to test inputs to an API client, i.e. API responses.
-   * If <I>-S</I> is given, produce results to test inputs to an API server, i.e. API requests.
+   * If <I>-C</I> is given, produce test models for an API client, i.e. API response tests.
+   * If <I>-S</I> is given, produce test models for an API server, i.e. API request tests.
+   * If <I>-D</I> is given, produce request test cases for an API server, i.e. API request tests.
    * If neither is given, the default is <I>-S</I>.
    * </TD>
    * </TR>
@@ -96,8 +85,9 @@ public class ApiCommand
    * <NOBR>-I</NOBR>
    * </TD>
    * <TD>
-   * Produce an {@link SystemInputDef input definition file} for either an API client (<I>-C</I>) or an API server (<I>-P</I>).
-   * If omitted, produce the corresponding {@link org.cornutum.tcases.SystemTestDef test definition file}.
+   * Produce an {@link SystemInputDef input definition file} for either an API client (<I>-C</I>) or an API server (<I>-S</I>).
+   * If omitted, produce either the corresponding {@link org.cornutum.tcases.SystemTestDef test definition file}
+   * or list of {@link org.cornutum.tcases.openapi.resolver.RequestCase request test cases} (<I>-D</I>).
    * </TD>
    * </TR>
    *
@@ -106,12 +96,14 @@ public class ApiCommand
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR>[-c {log | fail | ignore}]</NOBR>
+   * <NOBR>-c M[,R] </NOBR>
    * </TD>
    * <TD>
-   * Defines how input modelling conditions are reported. If <CODE>log</CODE> is specified, conditions are reported using log messages.
+   * Defines how input modelling and request case resolution conditions are reported. Both <CODE>M</CODE> (for modelling condtions) and <CODE>R</CODE> (for
+   * resolution conditions) must be one of <CODE>log</CODE>, <CODE>fail</CODE>, or <CODE>ignore</CODE>.
+   * If <CODE>log</CODE> is specified, conditions are reported using log messages.
    * If <CODE>fail</CODE> is specified, any condition will cause an exception. If <CODE>ignore</CODE> is specified, all conditions
-   * are silently ignored. If <I>-c</I> is omitted, the default is <CODE>log</CODE>.
+   * are silently ignored. If <CODE>R</CODE> is omitted, the default is <CODE>log</CODE>. If <I>-c</I> is omitted, the default is <CODE>log,log</CODE>.
    * </TD>
    * </TR>
    *
@@ -228,6 +220,32 @@ public class ApiCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-r <I>seed</I> </NOBR>
+   * </TD>
+   * <TD>
+   * When <I>-D</I> is specified, use the given random number seed to generate request test case input values. 
+   * If omitted, the default random number seed is derived from the <I>apiSpec</I> name.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-m <I>maxTries</I> </NOBR>
+   * </TD>
+   * <TD>
+   * When <I>-D</I> is specified, defines the maximum attempts made to resolve a request test case input value before reporting failure.
+   * If omitted, the default value is 10000.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-T <I>contentType</I> </NOBR>
    * </TD>
    * <TD>
@@ -264,8 +282,9 @@ public class ApiCommand
    * Suppose that the base name of <I>apiSpec</I> (less any extension) is <I>B</I>. Then, assuming
    * defaults for all options, output will be a test definition for API requests written to a file
    * named "<I>B</I>-Requests-Test.json". If <I>-C</I> is specified, output will be a test
-   * definition for API responses written to a file named "<I>B</I>-Responses-Test.json". If
-   * <I>-I</I> is specified, output will be the corresponding input definition, written to either
+   * definition for API responses written to a file named "<I>B</I>-Responses-Test.json".
+   * If <I>-D</I> is specified, output will be a list of request test cases written to a file named "<I>B</I>-Request-Cases.json".
+   * If <I>-I</I> is specified, output will be the corresponding input definition, written to either
    * "<I>B</I>-Requests-Input.json" or "<I>B</I>-Responses-Input.json", respectively.
    * </OL>
    *
@@ -288,6 +307,7 @@ public class ApiCommand
       setServerTest( true);
       setTests( true);
       setModelOptions( new ModelOptions());
+      setResolverContext( new ResolverContext( new Random()));
       }
 
     /**
@@ -330,7 +350,7 @@ public class ApiCommand
           {
           throwUsageException();
           }
-        setOnCondition( args[i]);
+        setConditionNotifiers( args[i]);
         }
 
       else if( arg.equals( "-f"))
@@ -378,11 +398,19 @@ public class ApiCommand
       else if( arg.equals( "-C"))
         {
         setServerTest( false);
+        setRequestCases( false);
         }
 
       else if( arg.equals( "-S"))
         {
         setServerTest( true);
+        setRequestCases( false);
+        }
+
+      else if( arg.equals( "-D"))
+        {
+        setServerTest( true);
+        setRequestCases( true);
         }
 
       else if( arg.equals( "-I"))
@@ -444,6 +472,40 @@ public class ApiCommand
           }
         String value = binding.substring( valuePos+1);
         getTransformParams().put( name, value);
+        }
+
+      else if( arg.equals( "-r"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        try
+          {
+          setRandomSeed( Long.valueOf( args[i]));
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid random seed", e);
+          }
+        }
+
+      else if( arg.equals( "-m"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwUsageException();
+          }
+        try
+          {
+          setMaxTries( Integer.parseInt( args[i]));
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid random seed", e);
+          }
         }
 
       else
@@ -511,7 +573,7 @@ public class ApiCommand
         ( "Usage: "
           + ApiCommand.class.getSimpleName()
           + " [-v]"
-          + " [-C | -S]"
+          + " [-C | -S | -D]"
           + " [-I]"
           + " [-R]"
           + " [-W]"
@@ -520,6 +582,8 @@ public class ApiCommand
           + " [-o outDir]"
           + " [-x transformDef | -J | -H]"
           + " [-p name=value]"
+          + " [-r seed]"
+          + " [-m maxTries]"
           + " [-T contentType]"
           + " [apiSpec]",
           cause);
@@ -587,6 +651,22 @@ public class ApiCommand
     public boolean isTests()
       {
       return tests_;
+      }
+
+    /**
+     * Changes if test case output consists of a list of request test cases (true) or a test definition (false).
+     */
+    public void setRequestCases( boolean requestCases)
+      {
+      requestCases_ = requestCases;
+      }
+
+    /**
+     * Returns if test case output consists of a list of request test cases (true) or a test definition (false).
+     */
+    public boolean isRequestCases()
+      {
+      return requestCases_;
       }
 
     /**
@@ -681,9 +761,83 @@ public class ApiCommand
       }
 
     /**
+     * Changes the request case resolution options.
+     */
+    public void setResolverContext( ResolverContext resolverContext)
+      {
+      resolverContext_ = resolverContext;
+      }
+
+    /**
+     * Returns the request case resolution options.
+     */
+    public ResolverContext getResolverContext()
+      {
+      return resolverContext_;
+      }
+
+    /**
+     * Changes the random number generator seed for request case resolution.
+     */
+    public void setRandomSeed( Long seed)
+      {
+      randomSeed_ = seed;
+      getResolverContext().setRandom( new Random( seed));      
+      }
+
+    /**
+     * Returns the random number generator seed for request case resolution.
+     */
+    public Long getRandomSeed()
+      {
+      return randomSeed_;
+      }
+
+    /**
+     * Returns the default random number generator seed for request case resolution.
+     */
+    public Long getDefaultRandomSeed()
+      {
+      return
+        Optional.ofNullable( getApiSpec())
+        .map( spec -> (long) spec.getName().hashCode())
+        .orElse( new Random().nextLong());
+      }
+
+    /**
+     * Changes the maximum attempts made to resolve a request test case input value before reporting failure..
+     */
+    public void setMaxTries( int maxTries)
+      {
+      getResolverContext().setMaxTries( maxTries);
+      }
+
+    /**
+     * Returns the maximum attempts made to resolve a request test case input value before reporting failure..
+     */
+    public int getMaxTries()
+      {
+      return getResolverContext().getMaxTries();
+      }
+
+    /**
+     * Changes condition notifiers for input modelling and request case resolution conditions.
+     */
+    public void setConditionNotifiers( String notifierList)
+      {
+      String[] notifiers = notifierList.split( ",", -1);
+
+      String modelNotifier = notifiers.length > 0? StringUtils.trimToNull( notifiers[0]) : null;
+      setOnModellingCondition( Optional.ofNullable( modelNotifier).orElse( "log"));
+
+      String resolveNotifier = notifiers.length > 1? StringUtils.trimToNull( notifiers[1]) : null;
+      setOnResolverCondition( Optional.ofNullable( resolveNotifier).orElse( "log"));
+      }
+
+    /**
      * Changes the input modelling condition notifier.
      */
-    public void setOnCondition( String notifier)
+    public void setOnModellingCondition( String notifier)
       {
       getModelOptions().setConditionNotifier(
         Optional.ofNullable(
@@ -699,6 +853,38 @@ public class ApiCommand
           null)
 
         .orElseThrow( () -> getUsageException( "Unknown condition notifier: " + notifier, null)));
+      }
+
+    /**
+     * Changes the request case resolution condition notifier.
+     */
+    public void setOnResolverCondition( String notifier)
+      {
+      getResolverContext().setNotifier(
+        Optional.ofNullable(
+          "log".equals( notifier)?
+          ResolverConditionNotifier.log() :
+
+          "fail".equals( notifier)?
+          ResolverConditionNotifier.fail() :
+
+          "ignore".equals( notifier)?
+          ResolverConditionNotifier.ignore() :
+
+          null)
+
+        .orElseThrow( () -> getUsageException( "Unknown condition notifier: " + notifier, null)));
+      }
+
+    /**
+     * Changes the input modelling condition notifier.
+     *
+     * @deprecated Replace using {@link #onModellingCondition onModellingCondition()}.
+     */
+    @Deprecated
+    public void setOnCondition( String notifier)
+      {
+      setOnModellingCondition( notifier);
       }
 
     /**
@@ -780,7 +966,11 @@ public class ApiCommand
       {
       StringBuilder builder = new StringBuilder();
 
-      if( isServerTest())
+      if( isRequestCases())
+        {
+        builder.append( " -D");
+        }
+      else if( isServerTest())
         {
         builder.append( " -S");
         }
@@ -837,6 +1027,16 @@ public class ApiCommand
           }
         }
 
+      if( isRequestCases())
+        {
+        builder.append( " -m ").append( getMaxTries());
+
+        if( getRandomSeed() != null)
+          {
+          builder.append( " -r ").append( getRandomSeed());
+          }
+        }
+
       if( getContentType() != null)
         {
         builder.append( " -T ").append( getContentType());
@@ -855,13 +1055,16 @@ public class ApiCommand
     private File outFile_;
     private boolean serverTest_;
     private boolean tests_;
+    private boolean requestCases_;
     private TransformType transformType_;
     private File transformDef_;
     private Map<String,Object> transformParams_ = new HashMap<String,Object>();
     private String contentType_;
     private ModelOptions modelOptions_;
+    private ResolverContext resolverContext_;
     private File workingDir_;
     private boolean showVersion_;
+    private Long randomSeed_;
 
     public static class Builder
       {
@@ -1037,14 +1240,15 @@ public class ApiCommand
       if( outputFile == null && apiSpecFile != null)
         {
         // No, use default name
+        boolean requestTestCases = options.isTests() && options.isRequestCases();
         outputFile =
           new File(
             String.format(
               "%s%s-%s-%s.json",
               Optional.ofNullable( apiSpecFile.getParent()).map( p -> p + "/").orElse( ""),
               getBaseName( apiSpecFile.getName()),
-              options.isServerTest()? "Requests" : "Responses",
-              options.isTests()? "Test" : "Input"));
+              requestTestCases? "Request" : options.isServerTest()? "Requests" : "Responses",
+              requestTestCases? "Cases" : options.isTests()? "Test" : "Input"));
         }
       if( outputFile != null)
         {
@@ -1128,6 +1332,15 @@ public class ApiCommand
       else if( transformer != null)
         {
         TcasesIO.writeTests( Tcases.getTests( inputDef, null, null), outputStream);
+        }
+      else if( options.isRequestCases())
+        {
+        if( options.getRandomSeed() == null)
+          {
+          options.setRandomSeed( options.getDefaultRandomSeed());
+          }
+        logger_.info( "Generating request test cases using random seed={}", options.getRandomSeed());
+        TcasesOpenApiIO.writeRequestCases( Tcases.getTests( inputDef, null, null), options.getResolverContext(), outputStream);
         }
       else
         {

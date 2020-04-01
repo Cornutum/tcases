@@ -14,5 +14,17 @@
             <Include var="Output-File.Defined"/>
             <Include var="Output-Dir.Defined"/>
         </Combine>
+        <Combine tuples="2">
+            <Include var="Output-File.Defined"/>
+            <Include var="Request-Cases.Selected"/>
+        </Combine>
+        <Combine tuples="2">
+            <Include var="Output-File.Defined"/>
+            <Include var="Request-Cases.Selected"/>
+        </Combine>
+        <Combine tuples="2">
+            <Include var="Model-Type"/>
+            <Include var="Request-Cases.Selected"/>
+        </Combine>
     </TupleGenerator>
 </Generators>
