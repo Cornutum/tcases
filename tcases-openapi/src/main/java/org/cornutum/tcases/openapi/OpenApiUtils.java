@@ -17,7 +17,6 @@ import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 
-import java.util.Objects;
 import java.util.Optional;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
@@ -54,7 +53,10 @@ public final class OpenApiUtils
    */
   public static Parameter resolveParameter( OpenAPI api, Parameter parameter)
     {
-    return componentParameterRef( api, parameter.get$ref()).orElse( parameter);
+    return
+      Optional.ofNullable( parameter.get$ref())
+      .map( ref -> componentParameterRef( api, ref))
+      .orElse( parameter);
     }
 
   /**
@@ -63,9 +65,13 @@ public final class OpenApiUtils
   public static Schema<?> resolveSchema( OpenAPI api, Schema<?> schema)
     {
     return
-      schema == null
-      ? null
-      : resolveSchemaType( componentSchemaRef( api, schema.get$ref()).orElse( schema));
+      schema == null?
+      null :
+      
+      resolveSchemaType(
+        Optional.ofNullable( schema.get$ref())
+        .map( ref -> componentSchemaRef( api, ref))
+        .orElse( schema));
     }
 
   /**
@@ -102,7 +108,10 @@ public final class OpenApiUtils
    */
   public static RequestBody resolveRequestBody( OpenAPI api, RequestBody requestBody)
     {
-    return componentRequestBodyRef( api, requestBody.get$ref()).orElse( requestBody);
+    return
+      Optional.ofNullable( requestBody.get$ref())
+      .map( ref -> componentRequestBodyRef( api, ref))
+      .orElse( requestBody);
     }
 
   /**
@@ -110,7 +119,10 @@ public final class OpenApiUtils
    */
   public static ApiResponse resolveResponse( OpenAPI api, ApiResponse response)
     {
-    return componentResponseRef( api, response.get$ref()).orElse( response);
+    return
+      Optional.ofNullable( response.get$ref())
+      .map( ref -> componentResponseRef( api, ref))
+      .orElse( response);
     }
 
   /**
@@ -118,83 +130,71 @@ public final class OpenApiUtils
    */
   public static Header resolveHeader( OpenAPI api, Header header)
     {
-    return componentHeaderRef( api, header.get$ref()).orElse( header);
+    return
+      Optional.ofNullable( header.get$ref())
+      .map( ref -> componentHeaderRef( api, ref))
+      .orElse( header);
     }
 
   /**
    * When the given reference is non-null, returns the component parameter referenced.
    */
-  public static Optional<Parameter> componentParameterRef( OpenAPI api, String reference)
+  public static Parameter componentParameterRef( OpenAPI api, String reference)
     {
     return
       Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_PARAMETERS_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getParameters(), "Component parameters").get( name))
-      .filter( Objects::nonNull);
+      .flatMap( ref -> Optional.ofNullable( componentName( COMPONENTS_PARAMETERS_REF, ref)))
+      .flatMap( name -> Optional.ofNullable( expectedValueOf( expectedValueOf( api.getComponents(), "Components").getParameters(), "Component parameters").get( name)))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't resolve parameter reference=%s", reference)));
     }
 
   /**
    * When the given reference is non-null, returns the component schema referenced.
    */
   @SuppressWarnings("rawtypes")
-  public static Optional<Schema> componentSchemaRef( OpenAPI api, String reference)
+  public static Schema componentSchemaRef( OpenAPI api, String reference)
     {
     return
       Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_SCHEMAS_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getSchemas(), "Component schemas").get( name))
-      .filter( Objects::nonNull);
+      .flatMap( ref -> Optional.ofNullable( componentName( COMPONENTS_SCHEMAS_REF, ref)))
+      .flatMap( name -> Optional.ofNullable( expectedValueOf( expectedValueOf( api.getComponents(), "Components").getSchemas(), "Component schemas").get( name)))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't resolve schema reference=%s", reference)));
     }
 
   /**
    * When the given reference is non-null, returns the component request body referenced.
    */
-  public static Optional<RequestBody> componentRequestBodyRef( OpenAPI api, String reference)
+  public static RequestBody componentRequestBodyRef( OpenAPI api, String reference)
     {
     return
       Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_REQUEST_BODIES_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getRequestBodies(), "Component request bodies").get( name))
-      .filter( Objects::nonNull);
+      .flatMap( ref -> Optional.ofNullable( componentName( COMPONENTS_REQUEST_BODIES_REF, ref)))
+      .flatMap( name -> Optional.ofNullable( expectedValueOf( expectedValueOf( api.getComponents(), "Components").getRequestBodies(), "Component request bodies").get( name)))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't resolve request body reference=%s", reference)));
     }
 
   /**
    * When the given reference is non-null, returns the component response referenced.
    */
-  public static Optional<ApiResponse> componentResponseRef( OpenAPI api, String reference)
+  public static ApiResponse componentResponseRef( OpenAPI api, String reference)
     {
     return
       Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_RESPONSES_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getResponses(), "Component responses").get( name))
-      .filter( Objects::nonNull);
+      .flatMap( ref -> Optional.ofNullable( componentName( COMPONENTS_RESPONSES_REF, ref)))
+      .flatMap( name -> Optional.ofNullable( expectedValueOf( expectedValueOf( api.getComponents(), "Components").getResponses(), "Component responses").get( name)))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't resolve response reference=%s", reference)));
     }
 
   /**
    * When the given reference is non-null, returns the component header referenced.
    */
-  public static Optional<Header> componentHeaderRef( OpenAPI api, String reference)
+  public static Header componentHeaderRef( OpenAPI api, String reference)
     {
     return
       Optional.ofNullable( reference)
-
-      .map( ref -> componentName( COMPONENTS_HEADERS_REF, ref))
-      .filter( Objects::nonNull)
-
-      .map( name -> expectedValueOf( expectedValueOf( api.getComponents(), "Components").getHeaders(), "Component headers").get( name))
-      .filter( Objects::nonNull);
+      .flatMap( ref -> Optional.ofNullable( componentName( COMPONENTS_HEADERS_REF, ref)))
+      .flatMap( name -> Optional.ofNullable( expectedValueOf( expectedValueOf( api.getComponents(), "Components").getHeaders(), "Component headers").get( name)))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't resolve header reference=%s", reference)));
     }
 
   /**
