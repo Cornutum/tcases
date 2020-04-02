@@ -93,7 +93,7 @@ public class ApiCommandTest
     
     expectFailure( OpenApiException.class)
       .when( () -> ApiCommand.run( new Options( failArgs)))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "Error processing AllOf, /allOf, POST, param0, allOf[0], anyOf[2]")));
+      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "Error processing AllOf, /allOf, POST, param0, allOf, oneOf, oneOf[0]")));
     }
 
   /**
