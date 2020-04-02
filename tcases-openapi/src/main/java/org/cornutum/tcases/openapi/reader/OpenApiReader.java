@@ -11,8 +11,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.ObjectMapperFactory;
+import io.swagger.v3.parser.OpenAPIResolver;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 import io.swagger.v3.parser.util.OpenAPIDeserializer;
+import io.swagger.v3.parser.util.ResolverFully;
+
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -166,7 +169,8 @@ public class OpenApiReader implements Closeable
       throw new OpenApiReaderException( getLocation(), e);
       }
 
-    SwaggerParseResult parseResult= new OpenAPIDeserializer().deserialize( json, Objects.toString( getLocation(), null));
+    String location = Objects.toString( getLocation(), null);
+    SwaggerParseResult parseResult= new OpenAPIDeserializer().deserialize( json, location);
 
     Optional.of( parseResult)
       .map( SwaggerParseResult::getMessages)
@@ -174,7 +178,18 @@ public class OpenApiReader implements Closeable
       .map( messages -> new OpenApiReaderException( getLocation(), messages))
       .ifPresent( failure -> { throw failure; });
 
-    return parseResult.getOpenAPI();
+    OpenAPI api = parseResult.getOpenAPI();
+    try
+      {
+      api = new OpenAPIResolver( api, null, location).resolve();
+      new ResolverFully( false).resolveFully( api);
+      }
+    catch( Exception e)
+      {
+      throw new OpenApiReaderException( getLocation(), e);
+      }
+
+    return api;
     }
 
   public void close()
