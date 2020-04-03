@@ -398,18 +398,15 @@ public class ApiCommand
       else if( arg.equals( "-C"))
         {
         setServerTest( false);
-        setRequestCases( false);
         }
 
       else if( arg.equals( "-S"))
         {
         setServerTest( true);
-        setRequestCases( false);
         }
 
       else if( arg.equals( "-D"))
         {
-        setServerTest( true);
         setRequestCases( true);
         }
 
@@ -627,6 +624,7 @@ public class ApiCommand
     public void setServerTest( boolean serverTest)
       {
       serverTest_ = serverTest;
+      requestCases_ = false;
       }
 
     /**
@@ -643,6 +641,10 @@ public class ApiCommand
     public void setTests( boolean tests)
       {
       tests_ = tests;
+      if( !tests)
+        {
+        requestCases_ = false;
+        }
       }
 
     /**
@@ -659,6 +661,10 @@ public class ApiCommand
     public void setRequestCases( boolean requestCases)
       {
       requestCases_ = requestCases;
+      if( requestCases)
+        {
+        serverTest_ = true;
+        }
       }
 
     /**
