@@ -788,7 +788,10 @@ public class ApiCommand
     public void setRandomSeed( Long seed)
       {
       randomSeed_ = seed;
-      getResolverContext().setRandom( new Random( seed));      
+      if( seed != null)
+        {
+        getResolverContext().setRandom( new Random( seed));
+        }
       }
 
     /**
@@ -834,10 +837,10 @@ public class ApiCommand
       String[] notifiers = notifierList.split( ",", -1);
 
       String modelNotifier = notifiers.length > 0? StringUtils.trimToNull( notifiers[0]) : null;
-      setOnModellingCondition( Optional.ofNullable( modelNotifier).orElse( "log"));
+      setOnModellingCondition( modelNotifier);
 
       String resolveNotifier = notifiers.length > 1? StringUtils.trimToNull( notifiers[1]) : null;
-      setOnResolverCondition( Optional.ofNullable( resolveNotifier).orElse( "log"));
+      setOnResolverCondition( resolveNotifier);
       }
 
     /**
@@ -847,7 +850,7 @@ public class ApiCommand
       {
       getModelOptions().setConditionNotifier(
         Optional.ofNullable(
-          "log".equals( notifier)?
+          notifier == null || "log".equals( notifier)?
           ModelConditionNotifier.log() :
 
           "fail".equals( notifier)?
@@ -868,7 +871,7 @@ public class ApiCommand
       {
       getResolverContext().setNotifier(
         Optional.ofNullable(
-          "log".equals( notifier)?
+          notifier == null || "log".equals( notifier)?
           ResolverConditionNotifier.log() :
 
           "fail".equals( notifier)?
@@ -1109,6 +1112,12 @@ public class ApiCommand
         return this;
         }
 
+      public Builder requestCases()
+        {
+        options_.setRequestCases( true);
+        return this;
+        }
+
       public Builder transformType( TransformType transformType)
         {
         options_.setTransformType( transformType);
@@ -1145,9 +1154,24 @@ public class ApiCommand
         return this;
         }
 
+      /**
+       * @deprecated Replace with {@link #onModelCondition onModelCondition()}
+       */
+      @Deprecated
       public Builder onCondition( String notifier)
         {
-        options_.setOnCondition( notifier==null? "log" : notifier);
+        return onModellingCondition( notifier);
+        }
+
+      public Builder onModellingCondition( String notifier)
+        {
+        options_.setOnModellingCondition( notifier);
+        return this;
+        }
+
+      public Builder onResolverCondition( String notifier)
+        {
+        options_.setOnResolverCondition( notifier);
         return this;
         }
 
@@ -1160,6 +1184,18 @@ public class ApiCommand
       public Builder enforceWriteOnly()
         {
         options_.setWriteOnlyEnforced( true);
+        return this;
+        }
+
+      public Builder maxTries( int maxTries)
+        {
+        options_.setMaxTries( maxTries);
+        return this;
+        }
+
+      public Builder random( Long seed)
+        {
+        options_.setRandomSeed( seed);
         return this;
         }
 
