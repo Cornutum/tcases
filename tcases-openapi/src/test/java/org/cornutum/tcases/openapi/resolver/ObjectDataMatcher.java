@@ -20,7 +20,6 @@ public class ObjectDataMatcher extends BaseCompositeMatcher<Map<String,DataValue
   /**
    * Creates a new ObjectDataMatcher instance.
    */
-  @SuppressWarnings("unchecked")
   public ObjectDataMatcher( Map<String,DataValue<?>> expected)
     {
     super( expected);
@@ -40,7 +39,8 @@ public class ObjectDataMatcher extends BaseCompositeMatcher<Map<String,DataValue
   /**
    * A {@link Function} that returns the value of a specific data property.
    */
-  public static class PropertyAccessor implements Function<Map<String,DataValue<?>>,DataValue<?>>
+  @SuppressWarnings("rawtypes")
+public static class PropertyAccessor implements Function<Map<String,DataValue<?>>,DataValue>
     {
     /**
      * Creates a new PropertyAccessor instance.
@@ -50,7 +50,7 @@ public class ObjectDataMatcher extends BaseCompositeMatcher<Map<String,DataValue
       key_ = key;
       }
 
-    public DataValue<?> apply( Map<String,DataValue<?>> data)
+    public DataValue apply( Map<String,DataValue<?>> data)
       {
       return data.get( key_);
       }

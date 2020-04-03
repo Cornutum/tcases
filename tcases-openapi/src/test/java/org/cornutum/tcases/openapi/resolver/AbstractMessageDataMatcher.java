@@ -22,8 +22,14 @@ public abstract class AbstractMessageDataMatcher<T extends MessageData> extends 
     {
     super( expected);
 
-    expectThat( valueOf( "value", MessageData::getValue).matches( DataValueMatcher::new));
+    expectThat( valueOf( "value", this::getDataValue).matches( DataValueMatcher::new));
     expectThat( valueOf( "mediaType", MessageData::getMediaType).matches( Matchers::equalTo));
     expectThat( valueOf( "valid", MessageData::isValid).matches( Matchers::equalTo));
+    }
+
+  @SuppressWarnings("rawtypes")
+  private DataValue getDataValue( T messageData)
+    {
+    return messageData.getValue();
     }
   }

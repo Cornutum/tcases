@@ -18,12 +18,13 @@ import java.util.Map;
 /**
  * A composite matcher for {@link DataValue} objects.
  */
-public class DataValueMatcher<T> extends BaseCompositeMatcher<DataValue<T>>
+@SuppressWarnings("rawtypes")
+public class DataValueMatcher extends BaseCompositeMatcher<DataValue>
   {
   /**
    * Creates a new DataValueMatcher instance.
    */
-  public DataValueMatcher( DataValue<T> expected)
+  public DataValueMatcher( DataValue expected)
     {
     super( expected);
 
@@ -40,15 +41,15 @@ public class DataValueMatcher<T> extends BaseCompositeMatcher<DataValue<T>>
     }
 
   @SuppressWarnings("unchecked")
-  private List<DataValue<T>> getArrayData( DataValue<T> dataValue)
+  private List<DataValue> getArrayData( DataValue dataValue)
     {
     return
       dataValue.getType().equals( ARRAY)
-      ? (List<DataValue<T>>) dataValue.getValue()
+      ? (List<DataValue>) dataValue.getValue()
       : null;
     }
 
-  private Boolean getBooleanData( DataValue<T> dataValue)
+  private Boolean getBooleanData( DataValue dataValue)
     {
     return
       dataValue.getType().equals( BOOLEAN)
@@ -56,7 +57,7 @@ public class DataValueMatcher<T> extends BaseCompositeMatcher<DataValue<T>>
       : null;
     }
 
-  private Number getIntegerData( DataValue<T> dataValue)
+  private Number getIntegerData( DataValue dataValue)
     {
     return
       dataValue.getType().equals( INTEGER)
@@ -64,7 +65,7 @@ public class DataValueMatcher<T> extends BaseCompositeMatcher<DataValue<T>>
       : null;
     }
 
-  private Object getNullData( DataValue<T> dataValue)
+  private Object getNullData( DataValue dataValue)
     {
     return
       dataValue.getType().equals( NULL)
@@ -72,7 +73,7 @@ public class DataValueMatcher<T> extends BaseCompositeMatcher<DataValue<T>>
       : "?";
     }
 
-  private Number getNumberData( DataValue<T> dataValue)
+  private Number getNumberData( DataValue dataValue)
     {
     return
       dataValue.getType().equals( NUMBER)
@@ -81,7 +82,7 @@ public class DataValueMatcher<T> extends BaseCompositeMatcher<DataValue<T>>
     }
 
   @SuppressWarnings("unchecked")
-  private Map<String,DataValue<?>> getObjectData( DataValue<T> dataValue)
+  private Map<String,DataValue<?>> getObjectData( DataValue dataValue)
     {
     return
       dataValue.getType().equals( OBJECT)
@@ -89,7 +90,7 @@ public class DataValueMatcher<T> extends BaseCompositeMatcher<DataValue<T>>
       : null;
     }
 
-  private String getStringData( DataValue<T> dataValue)
+  private String getStringData( DataValue dataValue)
     {
     return
       dataValue.getType().equals( STRING) && !"binary".equals( dataValue.getFormat())
@@ -97,7 +98,7 @@ public class DataValueMatcher<T> extends BaseCompositeMatcher<DataValue<T>>
       : null;
     }
 
-  private byte[] getBinaryData( DataValue<T> dataValue)
+  private byte[] getBinaryData( DataValue dataValue)
     {
     return
       dataValue.getType().equals( STRING) && "binary".equals( dataValue.getFormat())
