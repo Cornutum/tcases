@@ -399,7 +399,7 @@ public class ApiMojoTest
           causes.build().collect( toList()),
           listsMembers(
             "Can't generate requested models",
-            "Error processing AllOf, /allOf, POST, param0, allOf[0], anyOf[2]",
+            "Error processing AllOf, /allOf, POST, param0, allOf, oneOf, oneOf[0]",
             "Ignoring this schema -- not applicable when only instance types=[string] can be valid"));
         });
     }
