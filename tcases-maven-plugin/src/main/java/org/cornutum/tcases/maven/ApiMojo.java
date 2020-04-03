@@ -90,16 +90,27 @@ public class ApiMojo extends AbstractMojo
           options.setTransformParams( getTransformParams());
           }
         options.setTests( !isInputModels());
-        options.setOnCondition( getOnCondition());
+        options.setOnModellingCondition( "log".equals( getOnModellingCondition())? getOnCondition() : getOnModellingCondition());
         options.setReadOnlyEnforced( isReadOnlyEnforced());
         options.setWriteOnlyEnforced( isWriteOnlyEnforced());
         
-        // Generate requested models for this API spec
-        options.setServerTest( true);
-        options.setTransformDef( resolveTransformDefFile( apiDef, options.isServerTest()));
-        options.setOutFile( resolveTransformOutFile( apiDef, options.isServerTest()));
+        // Generate requested request test models for this API spec
+        if( isRequestCases())
+          {
+          options.setRequestCases( true);
+          options.setOnResolverCondition( getOnResolverCondition());
+          options.setMaxTries( getMaxTries());
+          options.setRandomSeed( getRandom());
+          }
+        else
+          {
+          options.setServerTest( true);
+          options.setTransformDef( resolveTransformDefFile( apiDef, options.isServerTest()));
+          options.setOutFile( resolveTransformOutFile( apiDef, options.isServerTest()));
+          }
         ApiCommand.run( options);
 
+        // Generate requested response test models for this API spec
         options.setServerTest( false);
         options.setTransformDef( resolveTransformDefFile( apiDef, options.isServerTest()));
         options.setOutFile( resolveTransformOutFile( apiDef, options.isServerTest()));
@@ -408,6 +419,38 @@ public class ApiMojo extends AbstractMojo
     }
 
   /**
+   * Changes how input modelling conditions are handled.
+   */
+  public void setOnModellingCondition( String onCondition)
+    {
+    this.onModellingCondition = onCondition;
+    }
+
+  /**
+   * Returns how input modelling conditions are handled.
+   */
+  public String getOnModellingCondition()
+    {
+    return onModellingCondition;
+    }
+
+  /**
+   * Changes how request case resolver conditions are handled.
+   */
+  public void setOnResolverCondition( String onCondition)
+    {
+    this.onResolverCondition = onCondition;
+    }
+
+  /**
+   * Returns how request case resolver conditions are handled.
+   */
+  public String getOnResolverCondition()
+    {
+    return onResolverCondition;
+    }
+
+  /**
    * Changes if the API will strictly enforce the exclusion of "readOnly" properties from requests. 
    */
   public void setReadOnlyEnforced( boolean readOnlyEnforced)
@@ -437,6 +480,54 @@ public class ApiMojo extends AbstractMojo
   public boolean isWriteOnlyEnforced()
     {
     return writeOnlyEnforced;
+    }
+
+  /**
+   * Changes if resolved request test cases will be produced for API requests. 
+   */
+  public void setRequestCases( boolean requestCases)
+    {
+    this.requestCases = requestCases;
+    }
+
+  /**
+   * Returns if resolved request test cases will be produced for API requests.
+   */
+  public boolean isRequestCases()
+    {
+    return requestCases;
+    }
+
+  /**
+   * Changes the maximum attempts made to resolve a request test case input value before reporting failure.
+   */
+  public void setMaxTries( int maxTries)
+    {
+    this.maxTries = maxTries;
+    }
+
+  /**
+   * Returns the maximum attempts made to resolve a request test case input value before reporting failure.
+   */
+  public int getMaxTries()
+    {
+    return maxTries;
+    }
+
+  /**
+   * Changes the random number generator seed for request case resolution.
+   */
+  public void setRandom( Long random)
+    {
+    this.random = random;
+    }
+
+  /**
+   * Returns the random number generator seed for request case resolution.
+   */
+  public Long getRandom()
+    {
+    return random;
     }
   
   /**
@@ -535,10 +626,24 @@ public class ApiMojo extends AbstractMojo
   private boolean inputModels;
 
   /**
-   * Defines how input modelling conditions are handled. Valid values are "log", "fail", or "ignore".
+   * (Obsolete) Defines how input modelling conditions are handled.
+   *
+   * @deprecated Replace with "onModellingCondition"
    */
   @Parameter(property="onCondition",defaultValue="log")
   private String onCondition;
+
+  /**
+   * Defines how input modelling conditions are handled. Valid values are "log", "fail", or "ignore".
+   */
+  @Parameter(property="onModellingCondition",defaultValue="log")
+  private String onModellingCondition;
+
+  /**
+   * Defines how request case resolver conditions are handled. Valid values are "log", "fail", or "ignore".
+   */
+  @Parameter(property="onResolverCondition",defaultValue="log")
+  private String onResolverCondition;
 
   /**
    * Defines if the API will strictly enforce the exclusion of "readOnly" properties from requests. 
@@ -551,6 +656,24 @@ public class ApiMojo extends AbstractMojo
    */
   @Parameter(property="writeOnlyEnforced",defaultValue="false")
   private boolean writeOnlyEnforced;
+
+  /**
+   * Defines if resolved request test cases will be produced for API requests. 
+   */
+  @Parameter(property="requestCases",defaultValue="false")
+  private boolean requestCases;
+
+  /**
+   * Defines the maximum attempts made to resolve a request test case input value before reporting failure.
+   */
+  @Parameter(property="maxTries",defaultValue="10000")
+  private int maxTries;
+
+  /**
+   * Defines the random number generator seed for request case resolution.
+   */
+  @Parameter(property="random")
+  private Long random;
 
   @Parameter(readonly=true,defaultValue="${basedir}")
   private File baseDir_;

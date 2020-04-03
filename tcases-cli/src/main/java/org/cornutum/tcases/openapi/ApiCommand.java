@@ -888,7 +888,7 @@ public class ApiCommand
     /**
      * Changes the input modelling condition notifier.
      *
-     * @deprecated Replace using {@link #onModellingCondition onModellingCondition()}.
+     * @deprecated Replace using {@link #setOnModellingCondition setOnModellingCondition()}.
      */
     @Deprecated
     public void setOnCondition( String notifier)
@@ -1155,7 +1155,7 @@ public class ApiCommand
         }
 
       /**
-       * @deprecated Replace with {@link #onModelCondition onModelCondition()}
+       * @deprecated Replace with {@link #onModellingCondition onModellingCondition()}
        */
       @Deprecated
       public Builder onCondition( String notifier)

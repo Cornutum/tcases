@@ -563,13 +563,13 @@ mvn tcases:api -Dproject=My-API
   that will affect how test cases are generated. Warning conditions are
   reported with an explanation of the situation. Error conditions report elements in your spec that
   may need to be changed to generate tests correctly. By default, conditions are reported by writing
-  log messages. But you can use the <<<onCondition>>> parameter to request different handling of
+  log messages. But you can use the <<<onModellingCondition>>> parameter to request different handling of
   such conditions.
 
   For example, when you run the following command, any input modelling condition in your specs will cause <<<tcases:api>>> to report a failure.
 
 +--------
-mvn tcases:api -DonCondition=fail
+mvn tcases:api -DonModellingCondition=fail
 +--------
 
 ** {What is the API Input Space?}
