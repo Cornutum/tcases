@@ -42,6 +42,7 @@
                   </Not>
                 </When>
                 <Var name="Type">
+                  <Has name="itemType" value="object"/>
                   <Value name="object" property="200application-jsonItemsValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not object" failure="true"/>

@@ -1,0 +1,3684 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
+                        },
+                        "pizmfncghyfhgtx": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -1025518191,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\"]Y,9fw7?5 KJYu$s]/HfvwpDFT Dsdo=T.~p4;!"
+                                },
+                                "cjbdhcmihwtlstzp": {
+                                    "type": "integer",
+                                    "value": -432,
+                                    "format": "int32"
+                                },
+                                "vi": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "`dep5Ftn"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "\":"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "D4:uw"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "rezkjgmba": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -845397842,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "V'Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^"
+                                },
+                                "ndchn": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "wgh": {
+                                    "type": "object",
+                                    "value": {
+                                        "somsmvcksxdix": {
+                                            "type": "number",
+                                            "value": 265.3
+                                        },
+                                        "x": {
+                                            "type": "integer",
+                                            "value": -405,
+                                            "format": "int32"
+                                        }
+                                    }
+                                },
+                                "wmgfpotexnzftxi": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                }
+                            }
+                        },
+                        "axjsdzlz": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -243220978,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "@3O-;]90Q2kNWES$tnaIbbEvzR;]Y#'(0I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ T.n+4e/QXQFo"
+                                },
+                                "mcm": {
+                                    "type": "string",
+                                    "value": "X}"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "u (P,&tLxMMRrgg;PU{$X/&13;Oq9B]BAEm+ET;&8pY>.SkrSOH<zOh.ISql!.*/Y@S}4zRlE7O]^Oj;R(hB:\\#EOdZX@_#9h>Sx*]@2vCg\\z\"N`DZ<):0'yx-G\\$L MJd0T$mTU|Te.j./Z~wa[oW79@!}GdOxSX4_HQoZsW F4j#G(9$4Z9gxd+p>N0dO\\9hw3dRq9;79pOa~ZqI^em4Hd@2*2WW}8ow RJ=\"8Uu^|"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "T\\<*e}$Yl!&( 3hQ.G3P{C_2`OKs914cJYO&=(T>{hfh'##I/*uigZ6GmM&Pm%` %DKf!jA,:\\(DkCa \"+#%nm,B5L3@': xQ`YeX<nq9zrZ\\>W/i'FFp3[cDuks&|t5vCKQjPAF_@KB&HOD7y]8s#C'wGb{A1k?w"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "RX{T1Jrw#^pfc'V[nyu0(uBY\"upE!j`fgJ${JXIpa67M2i@.lwXgIZjb%WWDG:>2AvL#|L1:8E;u#>Dmy:o27HkDZ%rt)listU>?]sAviyah`46\"yhpb\"~'tm1ZV>& S{DOg6(3Wtz>n"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "bF%j|UIqx[@`~t0Yub'x>\"&w<b|xQ#,:t\"S`9T\\[450nSg],I=BTHC6;vgsi}{1YsSiTi|>S:c`%\";D'[b&IY0S#=[fBQR|Yk_o#)?iw1sv09rscxxp8%X/#>V|=KN(ip@[:+&r"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "EMcN.PyrD\\.9M5:</v2\\t|3I;&@@K~$JU@ihst_E[pP)^oQ)x4U1!` `FGJ+1Z~3\"P(Ys|!DI,F) >*$t{egzYY<JB](%E4N9BRTWHzX(0o|HhJW4M.w(:\"QB6?Nu^7M%pKSwr/BFl6m"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "V$v2vn mLDewSA>qQZ=`bnm^hT=[M~LM]2iAtQ*{M*H< yoM\\Z<]t%QO{7_`&pEdwsXr3Fgmd J| =o_oc=[`Pal#.G`.4{wREEbl'H<q%|EdyDlPp`z<rpJW"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "wMgaqlhIs"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "/-b9X9sg~x>>tB%,/k~ c\"V_Ak1T=Jco~ D\\X2>_qzE`@c% Kg,)xak\\Q:bcGrj6(F(g8\\'gX'uf8ui~Y+F>-X(mg(f3NDGZW$sU\\l,8dK4Ush*wg5cupL@=wy5R:7{*B}O$/dmfFfe^>quwQw]Cb_@R\"-+\"mX(o!+EUV<<>`=CBg2d\"Ow:e6KT6;IUFdOY}vLS&K8^S:F+,*V$`$p.VlD}[!xuGEGh_MV$i:26U'~lb<#C"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "wr~#\\d8l= SP^A6>|V@<p idGE`zGK-[#'o/K*#@m"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "xlw4ejJJBF<m?ms"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "X,SRO\\FRR`~6E'JU(8+l\"o! G-M3VX_UxHz~rHo&3mshX&U{Bu9J_GI'ekwfY})Fo{JuFa}]]Sd8$&x9_%Bh,Bu3p}9%{Q,2e>=R/-)D`0Q;@f_~3+2Dys=ohR+{T8*h"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "$:%2Z7Udz)VMKq)8$Zc\\DOqfvFSDLh@^8BwBC)q*6(H](E4iEMT205M.w2pMI;$BwM\"4-/cp^f1W<R,',~~6E'{_>(ZTh_wt'k_.uo}b#<`j^P@xz&}?\"e,XS$plN ~[0E(:bVT}nN+D8~L7Ni'\\|_}g7N@:04p}o)\"&0 V|_3bYGA\"vho1:\"%13?BvplkOt4ublrE>JSCa+m&{#pK5{JxIb?+TH#eN7PJo\"Y[b-YBNtB~L{[#pc _qpTW"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "`v^=H{"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "2TJiVK2,f#x9fs\\z0U^n;3[,h7 -5)L7~N[?fj\"|_n]elp:aA?k5O}NCLA1\"7\"4n'#CeJ@`EJ+{HM/mwM`,.BR0A#!Z3Y!}Zg4Dbm"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Z;sjRz4\" X}x3B"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "ak+~?D:?5j_D&;leD)#wGUu?pED[.7c/\\B~PaT\\:4x7j+(}Tn[?V50smO.%s8!QXwg~b*]ALUF&CH~0V_Pd`-3xbZmws?v2Rpj/f1^i^2iVySVmj8~t++\".1L9Mk_d~2x&q}7Lf19C-A Kg~K4XfU^7i&{<p94(=j4*lDd@=q| o?%]s rPt/*vom*\\V:v/&5fr=P=Wa~s''#"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "dswuoqmlf": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "fj": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "#'Ql*w'|x)7 i+Fs/fIf)U^d)oG\"y0ls;+4F0T?1&^fD}V]j-U~2g=dDBY2MZ{Kjd$>-T,V2Zpid~eSCkct=I%B2H_}OtD^*b}mMlhvG/h+kgJ1|Rx^X<fl0>UO! -:}'OT7c(VNF8W6H@5HYFGoE`c@T\\Gq7oQ^LQ_kr{l~f-$mJSHA\\.TsZ#y,Rd>5V+#^f(Fn"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "y/c^PS{u{j>X+c+mz=(BJ`)Q%Y?C~r2Y$Q^:~]7kY~)2XReg230od3D2R%rXN$wvKQOG\"UBx{D|=G#U_+$fF/-~Wv^Ij3QRe]QgSxqqIFk\"Y[cn<w:EYv3qSUy>{V@DVZ#y?]>?H^YNRWo,V67l'D{8AvIQT;wrW_2bSG0gNzVEBzAVheOMT3RzN`fTSro"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "#'Ql*w'|x)7 i+Fs/fIf)U^d)oG\"y0ls;+4F0T?1&^fD}V]j-U~2g=dDBY2MZ{Kjd$>-T,V2Zpid~eSCkct=I%B2H_}OtD^*b}mMlhvG/h+kgJ1|Rx^X<fl0>UO! -:}'OT7c(VNF8W6H@5HYFGoE`c@T\\Gq7oQ^LQ_kr{l~f-$mJSHA\\.TsZ#y,Rd>5V+#^f(Fn"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "!IV^~0]\\K#|k%mTt5y_bI&q:q1a ]DkTwZx7-AD3m,>56P~)=\\&QQsh0pC^0iZ][l9hgky;oYMI!>2AoP<x&V'tL2DG:tZX`sd3(d#D_jIn=h;hylj]hjD7S"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "oIG0PxZFw4IEWD78](;}-T~CjbL+qt:p_74B*rt)(Tl`faB*GO|3>~N:L.WROM U[)6t|]a]_`hvb;.k(ov:4,\"/w)v]B`VV /n\"LB0MuH\"Vt]W`{J{;Z73tB}7LL2Z}+iO3pFe\"^6&7XQZm85j,n,O<w kD)Awt0K93L=D4r>!=d`mRox8mx@e$0`6H~iAJ{,XtT=@)4W8r<_*]WTp_9;b?2:piu4RDl`UPTIE$A9=KuGLSrg}M."
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "V+$@wZ$v7%D\\z5soZ<Hi|o^EIU!<rs+jt<}sEKs0:]x`Qv$S(P\\Q~Qkr]6L>}DXTz k$O,pt.z<#82?;$URwF$ VpxtPj\"aye\"\\g:hAWO#!"
+                        },
+                        "j": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "Wxb$_`[x'0,m}qV$6|@WwWnU;KcSda5m\\l NDt7<jmHGOIwc*Eb+3;L=Axqz`&Q?D%tIK]JG+/:?U/WIyoq"
+                                },
+                                "asxdztmlqlbi": {
+                                    "type": "string",
+                                    "value": "[O5+\\"
+                                },
+                                "fjzzssyjrpdz": {
+                                    "type": "string",
+                                    "value": "*I!"
+                                },
+                                "uyskiwnhwjvqgel": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "Nd8yCU)"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "w`xS"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "eqgkgqozasjm": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 998332240,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "nhptigfwnhhw": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 429237475,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "ww": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 339666034,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "n`nk$U$&b\"JPJ5YeDxMR%(]necb|EUa[1zWu\\2y$,D_@7&swhL9~o(XbW-U=gv2|**b6;A`zNrty}j!qHxVXZy\\T-qIU=?KXIcQ*)(LRO=;Prs$(7hM+*Y kq>ueSUy ,wr2B*~x_x!ZFAb@QO>sj=IV'r?#C|*\\nk\"CS$4]BVTuU@R0Gq8xc}'mJq4o7D;WVKqu*6CV&=,8mrK"
+                        },
+                        "charlie": {
+                            "type": "string",
+                            "value": ";c"
+                        },
+                        "v": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -111254371,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "%\"_}s FcMKg9ok`=Plt6J~_fOgLwQ9IPH4v9}9|G!?Sdkj6i'o$1JrJ96'pyFgS=2'4!1H~Qi.X)p|`2#XkY[5{#_@&\\$<N]K=Q'F4#R*-j\\m\\j|j/3!ZfYWo{qEFoZ)DiMa(K/\\DW;u*j\"C?lsNptCBOuUr%$^|m=]z I3SY]ud.c3~SAY'D[yHHC'd)5x|Q4M*|:s;2C]6"
+                                },
+                                "fwvcjwgzemnfc": {
+                                    "type": "number",
+                                    "value": -733.4
+                                },
+                                "urcoojo": {
+                                    "type": "number",
+                                    "value": 924.5
+                                },
+                                "aoo": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "rflfcrwdhxnlsn": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -7370727,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "/@xG=LFzsm;bVCvW/t"
+                                },
+                                "hevdlcsxsnhc": {
+                                    "type": "object",
+                                    "value": {
+                                    }
+                                },
+                                "zysnbxoqkbtwuoqf": {
+                                    "type": "string",
+                                    "value": "YcqkO(6"
+                                },
+                                "x": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "kwwdnbtj": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -483522559,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "[[Q/YW9\\y:(MN*WazDVopn:{%!"
+                                },
+                                "ud": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "V"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "l*r"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "A)K@1r7"
+                                        }
+                                    ]
+                                },
+                                "mziapexkrixwyj": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "|6"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "uangtzyrqtex": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "charlie": {
+                            "type": "object",
+                            "value": {
+                                "dqglmsppzbuofpj": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "r)FS/Z* ?o4wol8TB#J>UY]%+~vtHp$FXd`B0g4X|\\{K\\E/&sLj*!I7urAs13./#r#1,io.:N=YWu;b?(Z_cbh.G,MuF0"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "charlie": {
+                            "type": "object",
+                            "value": {
+                                "eszarqwxpfem": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                },
+                                "hznnf": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "kbrjygbrlgr": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "nchaqdblvayph": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "$rz3[q|BV\"N@~\\/d:}%rbwRqnyV]jkUpTTd'QGW!q TmR@T*9a^NIzCWE)6,yhEX9,l9k6f])m{qle^74zeSR9{aNY4G 2#jtKv37$\\jT,L6KVsJ3YCiZ;57XZP{svzzo`Dt[,:5Mu**Hr#daxwST;zEvc&i`ez/#)nj/`b"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "_1=#te}sG^IGe3_[{zNsZ8Xd|c\"i6A-Wx!Rcb;RA-uYS6`u^_3h8q:pK&psPFAIT^"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "K&Y3{!m1rS.?UlY$Iz|\\t<1'\\dI~;~TL[,l&o<=@2[g't;~ZxbRh1[e9({jKgZpgVB=`7^QG\"8YgUlbB%_-^XuZ!z@+:YY'BEZiq\\2=UYMof13'XuWaQn{s$:f% '2[M{Y}@m`"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "xe+!vi=prkD6c|i5>6o;;08qwX nAd^\"Q~4Ba;aQ;nmpQ3Z5a^[fZVe|g{+$g8{z'{0a:Ly9[,a.:k"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "PP', 0.xG*|'IL BRiGvJz}p1DrAn1/{>xN+}:wl mbdP2g_M27%Xj$UdN6DqC+V?^b9n=a(g_%s-C1r|r5t^3}9%&mcg\"V_mz52xk$'07wCF@Hc}@rQC}Zm)%{1LGpA s $@87hN/jW,(<JI^see@>5eRh%8,oPiHT4&$=F/D"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "L;$vdK+i~e!2|jt|D5.s\\Y[cs'0y<WTh;Q'l4X/#6&tTXg8@-%0~!j{0<\"zk4aDstY<=f7rGg\"9o4l*)(${:vlt]qPJSv}QSHDA\\MrUxp&udXGAhpVOSZHl>eC6*@fu>uDn!fBk{cKcLern*2uI}`CwI.IT(x~m?~bApUOPpy(vyAk(Wf.P1w~j}^,t|Z+_Id\"EJ|;\"e8"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "7BXdPS,y%;j^dIh\\(Wu6%\\O`w/;FG \">Az *h:+ ;5AbQrAzQ[Q%l=sho*qc,xb;JI=jmuTL/6bXSe%Y7&FWAXgDG&]`OZG5x1i{tX}([XvIs6}%'v).p^:r\" o{FN;fEE95C$FCNMLYlYBc?^M\\n)3J5uesQ4p"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "ZjbL@CYExxBlRGa}u/|`P#~N55r(-O=xzJ`h7s2^<"
+                                }
+                            ]
+                        },
+                        "charlie": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "!1rXi<#-`^95OIY&>*k.T1\"{2UzLp\"9L-~e$zo)o1<}EcV]uQ:]Q'x_E08LNSK9^2?WSw8t'(y4$ L)f"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "JM{L^QJ=by(jF%;;p#Z7m$h@:BGZ'^X$N?L`Q_nS0Y2Qe,3@X|\\uDC?!3{kPo&)k#bI%CE|e'2BsD8K)y{wcZ2*IvD_mms)-_\\`9FqG##zZIbY Gx>S]%2QH>Ij}\\PW>nOm\"D-Xdwkz}y+1mf0|~3f_g6JB^vEC1j#&I|?;1Xunc&w$0\"r3?uF$RdtWVgXvP@1[tDs0[0XI<MQ4pY1sqS4?y1Z`#+T4AJvM}MluZRX"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "z1<jc;S~!HdChqkd>?/_2_jHS YgPzMBg$lum]C2W*(;<u{\"c&#~<dw5w5C@t|[;b/,*q~i|=##m8bQqX!.*zCI=K}7#Jm3m0[CF3Z7^kud[i)]<!OV)Vy6f}fdT@R e\"*~>'hlen<8%Qgyt>~d9{y?0n;?7^y}).%+=m<#76"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Obo'bnGtR\"T0QQ@LB>S>W9e`4[Quam*EBL:rRjuU6&K1bpBTT}Bl%zdM<-xp1?>p>Ps5i'y0&@[2I)C"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "C\\MZJ'?aL]B]F<bmR>c C$|^b0 9*kr]s\\8i[L] JT4oa(B8+IXi@&0-:CXm>b C*AP)hD\"MtD9{0a_W JmBl4l(CIOY+WHqRi&"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "!rk^!>Um~BIy~-|khQ/Ah\\(+1`'$N5.An#{j\"+D9%qs(Ov#a$eVFc8r;tCSft~Q-)%hB[-B!iN?]-{1<<ny+AwcC\\\\{m(jPE/$XYU$-a!_6%R;<~2q8hG\\\\XU`vrhx-sgp]Q.+kXKWi&P$x\"Mdkx2>|jj=X:%ySZCSm_g[x:j0NqYp{0?2>3ur.o.C!7gNze'tNQPocML\"tB0Fp^XmXzzlrnA6QV^Pu)U\\Tf"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "d;uEutle2KL8'"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "~q;\\CN)?H/<l`<T;n=SB?++,&\\JUAiZ:*<h0Z,7NOd6qe\\;H`y>\"lfPK5;!h?oNpY:9p)jUNTfbJSA;&m(gouT)|+Y_FPfVega\"nWlNq0Tb\\2C@x+o@\"&PQ3%}<MT<}o4;_^dmW~x4IBj7}?"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Sl3=$B>G]\\zWKcuANxHXTG{b\"x^\\2tM$Brs`,^xK3Vi_25vIz07|(vjNK9B$DuTz)&W0Ar#.k-DUL1(u|s7m[DaH yJ~Y%+,Y7!PDmozVI#D)>*CQ811]`W\"L,$D:G@EduZ4]}PyRbF0"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ";Zs0nAOM*S}pcU7Z[6Ub\"!gr uU^M:^!jw[].,,Saq&+7`H>"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "d;uEutle2KL8'"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "$uNu2Uh,EWQD>DvIY@m8YfH4LUeQ__3T.dC'OEdJt\\ogj7JW)P1u'(@&ryx^\\-~dLa]]$'8`xN}S=uUu7hdXR*[sE"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "}|DJBFkc^w^eDrJ6R:Toc1My@0L\"{&GA{#bz1hSZ$qnr_*vfd[z~^zIeD8__'M\\x?pxV0m0Woo<H{^iJ9*~4\\cd/[tilCA!833x}aD?pFjm-%yitKA3:tR1ox-=r6&<cpQcM`hsC-DiR.i\\I;8+*LQZ;yVAif|a7E&\\W=5"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Te_[Q=dKXW=z_6JwzTpzFN{zi&J8\"$,^?3L6GUZe|:`j65\"s-j3?{M$%4i@KzB!h5cZJq@<mPf'6&/n3qvt<-#of%ZkB6iBwQmk)dFK=?-o'Q;Z5Q=X*\"=lz8>a\\vR+zHp(A3j"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "~9KL.)OQk n2R2'NQT\"g\"krGLcyN\\p#TX[IQ^;Ss/O]4\"TGLs*B0n>^>J$+WY|e_i'\"ssc%dp<PdNpHBWM].$5FC2SjBW=B<PyQF;9J]^cx|\\B!Uq.Z[]P8\\hN~0#3%AfzMV8zq^R5[e+[.@G9d|UXkr;+<VJ*KI6y8gV4KRNzKQd|m2*!F(xK/wv8\"k1u.! [1)G=oa}f#R`udlb+6@x+%i<qgbZ"
+                        },
+                        "charlie": {
+                            "type": "string",
+                            "value": "(8e)"
+                        },
+                        "uf": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "zr%-MJ{65.]Ia731~\\uv,kdQ(EPSNMr`yO\\\"-9xXK02Zn+]-RI6igE* \\svV QAJ*i@*j\\]]v3uL"
+                                },
+                                "vbe": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "P"
+                                        }
+                                    ]
+                                },
+                                "riutdgtem": {
+                                    "type": "number",
+                                    "value": -909.7
+                                },
+                                "xoklifauwrjnjq": {
+                                    "type": "number",
+                                    "value": -405.6
+                                }
+                            }
+                        },
+                        "fs": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "KHJb)Nn{IM#U`2Vs{qi=2B39~0[-RV_\\z9fQDzk0I qe{p8.&r'&;>($]mQYXZ:c%q8=z`4<7')_E$x9f3p4a=<UJ1m'Jrg->-MJB>aV/16U(y\\VZA14tb72_Vb!,oW(tTaW_bplk8FkC3T$d1R?]/q.T}=ytw`q"
+                                },
+                                "qsxgtjthriogfuvj": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "J+"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "69{Bzms"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "igfkyvej": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "X@BkcI~KMI04/>\"\"P|c}%>{RFxh}d<!31o!"
+                                },
+                                "imrnajkbv": {
+                                    "type": "string",
+                                    "value": "p!#"
+                                },
+                                "wnctvyoysghvvvj": {
+                                    "type": "number",
+                                    "value": -811.7
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "charlie": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "mbuwwxniawgtggus": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 111856420,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "rkxz": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 478720248,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "X/18d^QIk%wBFa3j]%6Vm6SO8/guOp5% eE,+K@JOk4Z(&`Y8G>F+F.\\eQAx4Loinu$F7ciJe;Gv"
+                        },
+                        "byx": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -231138805,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "Qw;RS4/3S,BpdDmz=d;vU1.K:iA5a)Q2$vD]DC$_^!e_-h<(g|?(o]vO6WCxXS$L+!ClPbU~Afai>[|510S53%yar\\:988*e+p<>*O92&Eh06#\\LE^v#:ux?e)$OFtMgD&N]^zij^P;VBO.[oMeI]38#>0]\\8t~OC-`II[b^Bjr}u\"kJllzj%&#B(POF  1HKd??j(` X;^C)V`aBczF"
+                                },
+                                "le": {
+                                    "type": "object",
+                                    "value": {
+                                        "f": {
+                                            "type": "boolean",
+                                            "value": true
+                                        },
+                                        "go": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "bT"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": " "
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "zkfwxpx": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -60478497,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "MPx0>3_pPXZ[%.fZ:9m*j\":>JRK+Y.b^~>yCLFg.6[I\"ujA8y2:p%lL>&cVTij1dXX3c>:6^7/e;<`X!>|prE@-RJh1}&#l,80ar3JOd%E2Exj,n_%FJrWk5'&L|l3&.(!fU5.e,g$='P?!+tr=Y%O_.G{2M!&''|n)B0{}^I=F(T687a`}D`18@9\"fJ7B^#l6?:.mIyy6k;0e\"{cGt:=*"
+                                },
+                                "qjyhhmqi": {
+                                    "type": "string",
+                                    "value": "n,iG$=c"
+                                },
+                                "lspcjdijhn": {
+                                    "type": "number",
+                                    "value": 923.0
+                                }
+                            }
+                        },
+                        "lwpjfslhyfq": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -901741974,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "tFy,A63CsF%%nY'sy6c|~\"\"ppq&?<|/8\\b}h<.6@@_Lc(_0wq~5nu+ gbQQp], ;L{hpCpvEGD95x=&[QW+>ER8/Q-"
+                                },
+                                "kprcyuqqlluays": {
+                                    "type": "object",
+                                    "value": {
+                                        "hccc": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "="
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "~{7J$.$k~DzDPm],F;To*w^eHi\"apCQ{="
+                                }
+                            ]
+                        },
+                        "z": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ",O)y#hPX\\|i+*#oPL7Y0M]~q`.L%o'\\kC&G_?dh)\"%}ul7(A#-\\UY9q+!d)+ih^/gT|1=p*FSQ_>m:Y3iD{ASYD25k$,=0l!\\7=0l2|kCRtuKY_&219nY+b"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "|dA4?13{s/n|#o7Wp4&^\"y;<)3txp)3+snRmr+Y7eu1 5DcN<*}=^xwX5{O/K#|7vR7wi#28M3))y @c*&Zjb#OAfLUf6%gX*N6sm_.%</6;B6i_*56)VJ*a=?Z$=@'w8/X!2J$OKN0{CSuQ #RdM),&9 k=@C\"l;,7lZ7i:f hf `dI }`0nhkL0RyRSG Q|}yh=wUwG(Eb>S(=%D[:\"MJw75tqn_;S1-;p$};EH#o(L%aQ^(BH3Xy3t _mrd^5"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "wDI-g{dvjkew^0(Kr)RLS}7FkK8IcPNlkP:{e]4+5+r8DF`a3t=b1S%[L]?;b7('c1"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "tH?i_~"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "=px_A+MqhC]+:xWkclk=B=lglcOFm},0O38<pxBv@Mp,3~0J'hK'LYywc1>')EZ!`A~(g!*%5d_=ex~&\"&\\peNbvBLp2O68XlWR18Fg/4ad!.?b_ W\">2zLb!;e56QH{ <}bWt `hBTGKL'Gm~-DPzae#7![Pdnu9Ydt0zT>aeh0BVPU"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "WXDTJ+lyu(79>M8(R]y^odc HCDS<gRA3 V7E[OA_h,I+I=,-=I<pIXB_,/z#9p-*?1z+aKCt;ZMC\"KrJ_FFi\"?R<6q5V<.9qoR9/TTdH{N5{K}:uV|-oj5v ]H#`wpGQ)\"==}qE[dM +=-Qz'lBG^9VY$[i{n7y<4eInn?-^o)3B28a4@ds:_GORVSpJ^gpp`?@ 8NN3vQ$g/%NDB[Z'NcUVn^hoY%K2MIdOHP5m:}fTfKv(G?5gWDI"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "c9M29:kk#+>y&fp4v*{@/s*41QjKd6JXnqL2shfd30LzSGJQMeT)]]!Hd*kRzr*WX7M9`@)b.1zcwX+Khqv1ab-- =-ji&j'[uZvas&=C\\S-5\\K-_t z@%LF=3Rp<E)N)C:~oH~3Zu`6dk#:8\"SPe7yTE$~\"xNDNUD@@5YC6Vb #]20pG3j'9!^L#2QrEa^|96:}hZ~d\",s1|#gmed16@\">\"#S+^Rb#f; M4-YUiNkk^6B:qbp"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "(`&@s}bn?o6"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "]/vRq~FBS2Sp9X`xkLol6~$E6_e!?6dZ\\wCkQGr>NaF};;Ir&g%KKIWSGVS|(V*\"9=^U(qD9jtqI|o=[.,[!NL@t,TpT-ve<|sb!%',\\eXur)h/_YeffK<!TRdm1:/0nk5\\QCcM 'SgUB:)|PF/:$k*J"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "j:jn)B70W|Tih\"EKg^arAtx,~i9z&3?;?_A?hDbt-s@oe\"Nx\\S7GVi?3(TIPT!PrL>5INf0)q:p_h,?CFF:\"cL<a5uruT5|-jgtcwI:[#BV~Be$~oba(nR[D8i`MFg&~?=v+ ,Y=1Pcq%[#||W>r0 (c7d}[/ bJ,O&8uS=R~j\"=l,"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "g~qHcJ}@[E7eqW#AS{O=^U\"|C 3|'eUIRSN674eI_*kg9gaX,,EW&l@OX}zt~z}xgLz#J{T/Oz|x3^R.g7Vw1vR|OoHL%|c(P1*0'^V 2T1 G*f$hFNqs/k[x,CDV8GS2$\\XOe`jR%`Qx'huJr80?{U70$qf:-BcgZj#>[hhj->b/~F5j0|^LN"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "g~qHcJ}@[E7eqW#AS{O=^U\"|C 3|'eUIRSN674eI_*kg9gaX,,EW&l@OX}zt~z}xgLz#J{T/Oz|x3^R.g7Vw1vR|OoHL%|c(P1*0'^V 2T1 G*f$hFNqs/k[x,CDV8GS2$\\XOe`jR%`Qx'huJr80?{U70$qf:-BcgZj#>[hhj->b/~F5j0|^LN"
+                                }
+                            ]
+                        },
+                        "xjgnlll": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "4g&t,N_Kyoau0\":Ra{|Z$y9pp_rP_\"{{;jkZZZ(//^ZX--U?r:uM\\bGr]a)=0;fnVH~!>*Df9l}]-?ERX\\:d&}Q_Uin,V~t)oYq$TZ$mCP,n4i[1<^Y:yh9's_!N U'pivY6?\"wf0["
+                                },
+                                "lhuksscxbna": {
+                                    "type": "integer",
+                                    "value": 4,
+                                    "format": "int32"
+                                },
+                                "yjfpfqjsov": {
+                                    "type": "number",
+                                    "value": 249.6
+                                }
+                            }
+                        },
+                        "julkky": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "*A3DVkf;:'~X--a<M}K&3JQ#Bo~bg)I~'G[r;aS`Hw<\\GEdmvefAx/w6:'rKoo+P4+/t/R^NY#\\Tlz|l*kS_xs1Ip:IZgK;oo;)hlrgqRL-_OfGExZW%13orC`: R?z/ap`2t[;V!PIqO_]#u6DF~de4NVI}**on\\5po1ED; rw2!EC;La\\82-c'KRet_p-@Hu-x0G*\"S*bkE(ZK{#7Kh i[YV7s^t&gvFc7CBD%{(zQ^b6$'WJ"
+                                },
+                                "hyvhvhliqdo": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "mxshmaf": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "'SCr}~{R}}!10xT;X|pI^M=vh#>ERkMxv<:EHYOd\\Zc#\":LBuRALQkTIj06V:R^vE{TaVzv^2A\\;V{XZ:5O*SPXon\\2uG,i+r5p~*Oj|M) E4eH)XS82[dh@Gd'1JyhE!xaX9DIUbuLoWzUmieQvf?KI2*!.`{u?|+gt/#\"s>zNG7YT\" H`3-\"GE }`YZ3}:yai(*<R{yv]`AV*"
+                                },
+                                "cufvgbwuorvln": {
+                                    "type": "integer",
+                                    "value": 917,
+                                    "format": "int32"
+                                },
+                                "romuloskbxgcgblv": {
+                                    "type": "string",
+                                    "value": "T"
+                                },
+                                "ctbq": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "buhgllutvgzjpgdf": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 852422710,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "vejzubejuohaakr": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 1015822975,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "; ,=UJPGvkrdup]/\\yrH>\"[#C9aUi^;'xGp;c*js<<q+E+B4`[\\u%THB#>*}\"D2(vxBhK'T(_!3{5k:f\".%HeR)`8?Lu+*:D/MujvtASNL3@.C\"y7Jjb7KN~e:W_A~Km<tr60AQQOZ``I<eNuDM'^FuElT;F#kft[F3$)-N}Fz>[mj&/ZsO&WV{\"^ULZgP)a'S?S}L.Nt5+L>>\\NGmaKT' "
+                        },
+                        "ulygoz": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "object",
+                                    "value": {
+                                        "pyrknpomtayvxb": {
+                                            "type": "number",
+                                            "value": -977.6
+                                        }
+                                    }
+                                },
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -850711310,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ":PqG#\"L+Pe5a;;yF4|?Vclg*a3NRYyRM|xV413>fpR iI4#K}Cqgx)pgsKU>]IqA7M/1'ub+IXVHG~0}HNhtT@q\"Mn8~GV#$DZ,]is,75Z,TD[1n5QTA5DZn'n0SU-'e).1L8]Ez^F\"E'#:n+Q3e+mk*\\fA^}AJ1(<%=<6RTv,POdn`bb7B{hcec2NxCu|uQw/8VwDu*%u($x[9jGu.+C;pEw}c{.B7Qr17!S2; \""
+                                },
+                                "sgharbcre": {
+                                    "type": "integer",
+                                    "value": -406,
+                                    "format": "int32"
+                                },
+                                "j": {
+                                    "type": "object",
+                                    "value": {
+                                        "mmjvbhbeyvnhci": {
+                                            "type": "boolean",
+                                            "value": true
+                                        },
+                                        "eelstd": {
+                                            "type": "integer",
+                                            "value": -551,
+                                            "format": "int32"
+                                        }
+                                    }
+                                },
+                                "brdfnlnerilb": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "eavvvlddoaujthwz": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "object",
+                                    "value": {
+                                        "lvnpcpa": {
+                                            "type": "string",
+                                            "value": "B1w +-!"
+                                        },
+                                        "inpmtbijknkrul": {
+                                            "type": "string",
+                                            "value": "{1%+e"
+                                        },
+                                        "sgmseu": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "'"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "03&9{,"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -199749950,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "l5|R@Us[d%/RkbWEt[#Eo_&Zq,SXZ-K*5x5);VN`Sx-ucaHWW\"YCmog+LgX{]-?2<[Gc{Fpf-mkhqdhCt2Wf)_gY~HLH+&[JpIy%x~mzdGsJlf/+.3a*;?7&Lj8z.l$:N:|/0XvxC^Nyv[#91fi(72CG]oB.\"AlD*OVQAJY\\*"
+                                },
+                                "oxjlcmf": {
+                                    "type": "number",
+                                    "value": -730.5
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ";g_vu:]bJR=FEAi6#7pMaAjZ4%qZ5`a*10kZ,&@j)#zQ`c#=Wi(x}|?NIxxvF;\"#OX0w:%c/YtNovV/dngPI#7p|Jd^ougekCc%, a'%6+W)cv\\)A^S`rp3g^EZwiO^ c,\\hCM&j^i4HDmv>!=Q]X4bHMI TOq/n]iK_FX"
+                                }
+                            ]
+                        },
+                        "jsxakfeirvrkhdh": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "string",
+                                    "value": "~fmzVQr"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "jsxwbrereagkemet": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "string",
+                                    "value": "k\"6Mk9"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "ij=HHv*Qq!r9HF3CE}qf2Amy0?g+oD&WHf^7QZK~yrW?yj9[5RpR&D8t7N80}fn_CN RB* @x'-3#%JoZv9zp-fr$1CeOQ]4i9$\"K\"KSRD(>7Q{=7m@d%QBzF@g9}%P~K,*v(EkFa.`zK.'7Z+"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "R!;hF<2lk7d*7.'~nTkP\";^k}qXTgq4XpP._m,N&[FWH__Scp~b-17[\">7@<9]0ml-/H6G5`e+9GRS\"n>WE~,Cmz/vKoWh"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "41l/GuXT?b\"o ,6 he7.t5I;A-frn9hrlVB?I'0-Tw=?EA9p:B"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "y-tv>Q=vvpU4uNo&*w^;i2nd ]PV;>!I8jD+(jO\"(zm>RETWs{L|5V(:gKQlY*IqeZ+\"=#$[#<<e<ak*(SjA^Kz]=E'{M+|khzN099u ~ bgynt3L?5P(rZDn59$cpiwbnU^aKmo/Vl7z0a30U &B#NZ!\\AgB'6UK(!\"h2vka&yEuKJj?o\\]O[bWi$dOs)-W:~t7;j`rRMc>h&I6VZbbyAQ`>%0>aLvTCI'Jb~$+*q9crOL<e!Ebt vPwk8"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "bUS]:\".#K?q_Ws2!YgN3dz,M&a~.uk2t4t`-2KsP7-aD$xYsxGT0JqNb_^l]X U!!}NAD\"E6Tnmk6ov1#9nz{Pcqr#cZ22WyK+P.$9([j8\\OJ|+2r'o'g\\J5:A9&tJGa&d88Tcfg2/;2_xE/T9pu![h84%nJT3u_'G)T*tbD/]TWre5@m`>S?^e+nfCr'=;DA|UerA9t/z#Yva5LMxmM1O)Pu7<F XDa:i.a1+%z7tk)9W%<[Dc3uJ[kdW>"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "mKed2&@1Snb\\/t'nCP3y~6?>G^I6Sd/Qq!>/c|>OcG+4}nO*z.x).[.sQ)"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "X~.m32=8S8.{'>qkr=v5Zs`}(]L2,vhFu;L15zjeu/2&Fk%'r,g |#1O(,LXGd,kP2[F`0"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ">-LmL\\heW%2akCZS]TP+>LjFKL'|_pu0H{8V|il_x*|p;$YjR?qI~'Dt*}=?Qf=HoR PA:J!/!'W@c]7o!Jn3$#iN1}no)ehxPFA+Kmrj-Tnw{tr]PY}<,??D2+M0,j2N-{P8"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "QbF&G_3VME{7d]=~nc#Rvgv0SM=O,p|nm<yBwy$gub\\Qt5~\\Vnt@\\uSTOTa]St4EHPHGGv`4$,gGgY$k|rVVJ# \\q7J?N64\\U`U<g$rU\"uUx:kZ?V1JQ%@.AVM_8G$s~2H]^2|}|^Fp]7V_{MK:V*aw2YMA%oz0a5H<H*9}L.`dD/}}>*CO=RX!9yGenB$="
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "A\\d_qfw[bc(tG\"cDxcVYVR<q!@'=w}$+w9TQeBKTq.91//u+^e!;eL=TU6gh&bYfjD;o `"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "]nQJsWe;U4.MgSw{@1`B3ngyXh/M+%\"i2&zF@CG+~$7G/$7z$654`@K>Z@a61Hx7.;`l^|n<\\I_s=B:_"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Cm)d|kS%q[k./a6bSNli-WUO7CuZe2lnK[ gHyH&#H\"*.y0"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "gKJur~#n?2'AY3yE*\"R{=JbWu\"@}A<E/;W7Yv+W8Pb\\(Sdbxf#{p\\DF;)XG7L6=\\z;C{]4p'NB]Lzg6'}c1:frYJ]I<e?k-Q=EC-Qno(o@s*I}<SsG8G1U]~s&?La^E? G8]g5E3@T`x:m0?7PYv(ybK&I<LW-MlYh%KT=\"3<%WOYtVzv-?+Krt:17}AN@`/\\%+y!zeez*uo;|U-+lbQn>Ug5O1;tE2z[>Jw&}7"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "3x5l3uCeJs5'YDHi6Ec;b|4|R~36@&YF GcpQpsnO~RNOCA%"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "J\".B(?GR{FM%4&%9H.rdJT`j<bv[dC:%$E\"l?j> $4{<C`%DM93OYGQ~\\z,=y^Y6_Y[&.*l5j)k50on?)@=4OqS$$0Z7D|(HQY#jYNF+\\,Q)YmUpeTeV\\He>tA,k$IF{KI\"j9Gz+EE{~[+`3 ?f\"ALgBbMz-3ve>0sJzN?V6)qOkpsPA9&w<|6mil3{tsg/$<:L1w\"%}T6fyYmt=j~_CF%o\\g&#rER@F{.@KR:]J"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Zy2~B\",_JC\\CV{U66fz\\`_W|&nrP'"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "K;4@N'.`:v2JX.C\"!0/'CL>^tW0o|"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "{[J7dVUFnx39.6hlc{ouEP|lE~!y27x?@.pNay_X'w"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "_5ex\"FD}hY*yn/_U%t`~wT#\"P`V6,,eFsT\"pTwvizX&P#Uk"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "C|8|U7FS0FkK7?Esjvd0yXl-:N7(,/GA)[ipr' AOW$u(==d[72_*0FBT3|G!-4(xHP6`wQ#qu0 s/$<}\\@ FD^w!\\}+I]&LGqLPMg9#kOBZY5JqpQ^`yocjzKi;osLZ21H0pR@\"2f-LCyYj/rg6ix;k_UmOwL~fEv>2>o_#*O<Y<+)kh,u,Z+M\\R0Bj:nAl*hJn0kY#"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "3x5l3uCeJs5'YDHi6Ec;b|4|R~36@&YF GcpQpsnO~RNOCA%"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "e8S`\"DOf^,Y<%ePmu2+Q'>r%Jt:GXvy=13{Qd7@k]c W^fyw:=6m-,w.M3l6uw0\\Ki(DcOp=]UhqgNoJe'krE^x4ONvjZ{`_!jcF/xVlMG(?{I\"WO>"
+                                }
+                            ]
+                        },
+                        "sgidxfn": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "integer",
+                                    "value": -669,
+                                    "format": "int32"
+                                },
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "3wQV%rY\\>7d~;feCcR]$R:)iEx*qY9snT8`kp*rXX6'\\WFaeJ96;}]u`>Ve9{,;'crz1sT^C=l1Cx&xi.2 jB.?Qo+Ro;fh#u]tX(,~8-~Nv|,FJ=OLddI)Hvsj+MN2E#U{eMDP/JrL4#%EJM,9b`Cb'p+-e+<7VB<bogJjKM5~@G;SZh)1F2S_ZqQbknN#p]oMQyYs~1:S\"+FXFPtgIiHj[Zu!F]OhW1af%0#CLBf6#!I6|EvWno7B.?R4ZHcB"
+                                },
+                                "yvmzkvtfkxvy": {
+                                    "type": "object",
+                                    "value": {
+                                        "jnwxle": {
+                                            "type": "string",
+                                            "value": "ea0'h"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "cfwvxuuz": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "object",
+                                    "value": {
+                                    }
+                                },
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 414245670,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        },
+                        "llcwbjsurkhnoetv": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "object",
+                                    "value": {
+                                        "oydincexye": {
+                                            "type": "string",
+                                            "value": "i>~x$D"
+                                        },
+                                        "lkyjt": {
+                                            "type": "integer",
+                                            "value": 740,
+                                            "format": "int32"
+                                        },
+                                        "zmtxqlbxyxbaf": {
+                                            "type": "string",
+                                            "value": "qk"
+                                        }
+                                    }
+                                },
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 534612136,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Type=null"
+    },
+    {
+        "id": 29,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "integer",
+                    "value": -216,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Type=Not object"
+    },
+    {
+        "id": 30,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "Tr\\Dzqhzb:is`~j{,[ixD4@R4k]n% ljsp{]sM7p,*QwHb3]at@y\"*ZvoiHn[7E-&EL&pG%g)jrh?<TIsRESfmfLcW#N{`wU':GEE``.vtcHNFl!xU{O]v7f<:XZ+<UD_Q'd]\"jI.?IMp?beQ`ch0,r]z%o\"~QRH,IBt8!NMa5^U$/A:EriqCN=#$\\ry\"C6:i:pi#kl4p!i7rf"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "=er0pB)Zr?'xYH'Jj$pCzu|4<iWrd}xDz#~Rb%=cVt(D9~ <x_fCG`rg\"ztmS&w1OAd_*NQ`'QrjNr(8fTvRW%o~6/N$ZCyiyZe.efR"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "aV>E_BZ`]RE H96?76\\T "
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "[PUo[Nwh<5\"-[J!("
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "S}pTKp4:sEJ2R#N49VN@3\\'=CZt]r\\/_hkZ^)+-Nv|`7-7u2{W6eSA|PCJ\"<66C<\\e|Vz^a%0t4>!RAf::/C5Wa]#]1tRaz#hM#&{lg!(-=Im>_eIzY;oc:6X?7NQDoy91wBA!D$;Z>sXh6J~'_}xQ3'9:~)nUYXO(2~i$r68VoUCzprsr73-f^+NR|!k\";jrj[xd<LCH%|<wPglNmX2pLr,(a~p_<H=>7."
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "y[SB>H\"WZWCDeAPn{UpXeD|\"sy,jgGH7e\"R!\"t8:lfrJO3!l&(1C~:,Nb-K%HtO}QPj#iXicQ&kQx+l#iCEuT4}3]se]s|hT7SnE|,r}j'P9yA%$OH0V]w4yY}0>.kFh'0$k2~(R~+:~x/iUIu6'r,aJU{W%K %:kW#WW7/W94v@6L)&x59 ei>K#b0Tz1rJ[v@{N;S@S]>{<3dTu"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "-4E `R'pQ$?&ey`+j73hExc  ^:{+-y!9>2'$'06WD+\\,@{|:a\"UkrZdBH6R>?9l])D%n2"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.alpha.Type=null"
+    },
+    {
+        "id": 31,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "."
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "%]uMsN&G_y,M(@#c6D=QDrY;JSET<@ K/8e`,4`UQfXre8#jY3jKg%6s#%_8.nVIf$]aZ}2{Ts#_bpTH->i+o)m}-UQMp6P$../_:`.j?bmM@T1Yq@[2J|g1vTLJ=(NO\\o<zz6jl(_!-!$PA.]j*OSKGv4!sFf2LbxNLMm*Q1*pDGPnjlec"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "k)sLmM'v0*66T.9<^;,yj#-`(i_:Ox x9[stap<U=UR3Om^g<ZuQo(,KnaG"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "number",
+                            "value": 566.2
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.alpha.Type=Not string"
+    },
+    {
+        "id": 32,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Defined=No"
+    },
+    {
+        "id": 33,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Type=null"
+    },
+    {
+        "id": 34,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "number",
+                            "value": 1005.0
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Type=Not array"
+    },
+    {
+        "id": 35,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "KY|CLO;K[pja_@af1~oO&xcD[FA2;%7g1pUB=1sLw#^B)\"3Cx.c=YH{BKN3( BbF{XNeWN=V<@ q<|t2RyQ[A66FfVCulD68N%KWn!!9rZI#*]VFRXqrw%&!EZ(iPU97}|}n<C\\1(r}FY>r5Xrng5Of#q>9aZ4|8.yX(:._7PNk26b^'yKF'vsfDIlp%_H*[!bbh[gjh6c*%##+zBQevv%a^_yC<=}'lwJQ"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "vs)rJL6mQdTS;.[&7\"wkuBEYjx]AI6cAwR.aQX,TSW^U-c|LyiT@z+{T)%\\{@!x)tzl)PEu<tS#w%d`+@U8 }"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ")4iyU-X.:WosdH|Woak{Y.rL5mOZC\\Yg/k8)IhMA](Uf&.8L?>7BFR=YiRlBgOqqCsib#6L7vZ,SL\":`Ts1{UVO$(Rlk+$h(0=o2ZL\\.pJk,@'J'n:KDJ3g~{+Fbz%OhpMGR'fD\\1\\7CVx6/^\\_Cs-jM\">~mv'?deF[VP/vFGmY,=-$^b`q"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "^2ibgi#fuE-(f4zsBu/V=AQ?AhY^=V'u?h;)Tvl0b6VYs:1C]?0Y]%1KU{C%\"\"_Ax|r0aB4L}MrdNwy5&i6fJB8,so}&OXWm&4WlpF)o&\\99oWZg/+,YAhpZ<=IiP^2W.L&q5iJb<JCSKp~{5$Mee*J~O89'H.Q5gi_pHY'YVR[ANbe+B<x1"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "kcpSbS~f=TM=O&kjLAV Z#2:Xth*@_u8rGn|)tPt(5Elvu\\9"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "7r`:%PNyU"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "U-WJDA+c4t?;D@JIfU&B:rP&3gG:rEefsEl0H+ :B{yN07UP=\\"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "&r='WkLS;@@%6(m+~0%[a~ec\"0pD=fXBDYFyum[QqJGoM[r9WC{[ZfUo1'&*G`M-x}P[ZxPsQ|1{%u]YqyR23f9L\\M5}R+GcI`O[Yypy|~d+``%FH%+ 5^tnX5P)u ;|S4JM}vyaiPL}E_5`w7lTUx7a[l!_XQxKB?.K}-ha\\Y{Uae7=@&opm;2@[J#Ax4~ne#8$wSl$<*qB52&#O)\\ll\\Gq3rqGqG%K8$60]R#e!cn0^ pq"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "3=y`;muDqCZO|_k&3t%SWGweB^Eq|3d@A=RmCcjlWf(_qJK70bsqAiDcf?oHj:\"|`#=;[O!!Xas??t#,}c'E3 GqW=EF~Cd^{BYqX\"4E^cPE tg-0EE`Qf>_x^xExWP*G|w}wdR0;~>.5>tO9jhWH<e^[b'un&#Ps ~0(~86%BO5LW%`IfMB!*H`R!Pu0x=OU5=1Sd'RTr0}@@~D0ajv=QpM|Dez{=hMhF&ry"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Pl109`2~PY%(Nq\\wC%z|Q@vX}aEXbSf+weh((wELq&fP^P`B|f];&RM)SPNEj7@wr1bJwnEb2T}d}rxJyWWdI3(urBE~6V-In=&5HlJEO%y'{BnegW*G!1fk8#0HR$7~?<@3^Jy\\SM?w=aP:(HS%~sNs]RFKZE8CU?m]=[N]T.{IqOs\"1}Y%-+^{lD>ky:SH5t)YLXaIK)6IFuR!r~d.It*_$QHrZq^b'WpBBiQK>#"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "_o%tGG{@|o!b:RBBz/x3,L-]>s8PC*xCxe[Hln&0oJ=&T'k6`Pir$^pSt*^MlQ_biV ab'5\\96fz{B26:zQ &A@*F?W&!V$P%zbmdS2w~7O. %C` yS,DZ`ZJ>]"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "`h__$;QV|XnQkmRL%iWJ\"p%1\":xa=.{?\\8_MD5TxmOLEIo+T0J:avnkd5gzb1\"=0jb{.J!BR)#@9b$*hJE2%KN)_5)X/-_`lWsR3x8hyi!4w]T3u>J00\"ic4_d8T'-S|0'q-MYpQnz{QKCXmWH'N5=F)g5s$2^NVzEu3X+OiZvHk0 g2\"0PU7F ? {\"(]-ToVQ$>zCL8b^7GY6xy({mh<IDlR]fLgjw2VaG$@ S&r["
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ",$xFc|jg,{Qhe8W?>8/G#Hx2^VVPliRd3MnI>raGrPt-'??jm#`7 9gWJvE5F_O1MIf60Y5m +\\yASaK[9(TvhhW0*g7#z!%gFBYK:erY(y]e4w,2[p:T'y47O7|sWG(#\\k9;Vmu.$`mYjm?C$7k{by"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "gBJuU901htE5(mwXFt_,&~Z4Ti?pU>gCo9hdn|UA!CT[Gl[Fd!4i<crT_Sx<mkc{i~4Esc<+mPgd2R1SU13aZA2:^E#+d+R;i9#!WZ\\X9)?LLE8>SQUEC,s<6[Z8n4\"<7}pmet%:{?'aJN6(_KGNhZUT^~jZ1!`njFLs2It8|vqa6=}P*GDo7:Wh&D)"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type=null"
+    },
+    {
+        "id": 36,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "integer",
+                                    "value": -96,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "object",
+                                    "value": {
+                                        "vfqxzjsiwkcntsgw": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "!"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "^wFwp$"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "value": {
+                                        "pe": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": ",@}6YQhc"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "hJX"
+                                                }
+                                            ]
+                                        },
+                                        "drjtouaxhjuhdbj": {
+                                            "type": "string",
+                                            "value": ""
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "number",
+                                    "value": -225.5
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -268,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                },
+                                {
+                                    "type": "number",
+                                    "value": 271.9
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type=Not string"
+    },
+    {
+        "id": 37,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "&(E@)xb&]u$;KguJ"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "FQ$_)&ntLkR,&uI[\\Y=P7Pd^(LQSc+d5Z,6)~g2@$Ol[6#=]~w[g8P2Y{ti5p8;gZT}1$wZvq@c8,_(');1f%X9PbC|]LypE*\\\\,pIH(wO$slP`8N\\41~r\"+- JGfQfN`Mc#]/fSn7)DHI_lYjiO:@94x7@3 Zd66%\"e/q'OAI^}!ImOKN WzN<h*B}dWHln}"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "d[(WmhO%@8o/I}X*rMhesq$.9c(c@,4!zbT$1(=~O@p2w,gUjuKup;OE<0BfDBk?yRewX7+lo|Vaw^m)j5y<ek2$hr[r.o*uOInl)3KWyA!RtB6#It[2$MbGfqSy{r4gjHSrx6Dv\\|,&6-uP@n0cf;[) EOJ-o.zr^pw$=c\"}]5Ds5H3AS~t'yyf+^PI9?7j*F,Mv$Df7,x*Cr%uG8*Tk\" bd9[KmD-s[`n.=vh{Nl2]8Dm00J4-n@TOV;llUr"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": " W@Hr@K8n);_):G4{+^YB S323~Bwt,EYU`ZlBGo-w,ATgp9+UgNtZiB@vI~U]BNtGi<k8na W#I!Uv>x~7Egm,'>IH|@kdP}Z=ODX=t5|^Kl`RhUW)SrgQhj)Q"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "hjqzB(kxq$~.52PdY|LmXev^"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "tacZTHU3b+iB4SwRpprVp`p^j@/8u&U-aaB;$5fM.XR3R=`vCdo(5gr+`9X$^d5Lc9];5;}G`ITjU{v:gQC[E)>=t$[k_RjS~nc3Qjvm7(O/PQ|Lj6C1#}_|8;u50/W|o>tw|v?z/p,u`r4Q`5H)|Q#\\@2j$<clf\"p<?bt<hwQ{g/or_107.Q[8yKoi8ipS^0k?+sSLzY!T^#"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0=No"
+    },
+    {
+        "id": 38,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "QX<X{q#}(wFi@fwf4Y)o@8[Bl1=gmvPA< O"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Fpw65f*OF"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "McwYq?c=^lvID.w&ok4V>D&nq2p~Ne>h5*vy}pu[q#Dh2buX:7%~.cp8@1<MxQqe)l%hGl]@0>':+`SR\\8!#D[Z}Yq<|YAZs"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "=Pr;CNSZ\"hF%kJlO3A%?T#S}|Exq<8<4ZO=V.okc0HD#B@9o$ZuPZ@nSzVam&7yC'bGV*+b$\\4(X"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "JJ2&hRWFE2E*o(Yz&Tx^s~"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "p`;Ak;3l`|"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1=Yes"
+    },
+    {
+        "id": 39,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "AJ3QxN^.p`[Twpa5^|6jGXx4U?Tfe.aj;PA`QlI5E~*=HM8I\\`V|z3dN2|YVl0]8sgjm}Az{SJak?Fj\\E9(17dDU>[0_hK#RyL~8WJmqh;Yn]=8XszAj,5l#`n]bt+P,4bLoEwMc]){#J'kZ"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "MLQR-$:BH\"tjmbxI!2'IqgPOPX9@Hmy*FU#[u\"^IJRU!GO5\"}25)u,V2tq!DU|'#HWKQ P<3t0ZA>0L,S88R-h6K5?hP%_m5NJ_zDkdr0k2|bZ< D^{*eKr.{S),4MA@ta:i7$~vP6Ht'3R`r3},m>S!ndgesmph/-72}sj`j_Gi1"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "6Gj!v5:'gX]SO5vf!c)BVwnglcV3.Sf^rw;n1;,X!N>b{Eh N9F/B59n1ZVsnlr-K^8\"@13\\Kjg[66o3!}@QoBP9J+0TsgH=pnE.rYaz?hl&@82-7$Hv\"X]5%/GI`{Pg~Dn0;}3fK{;thli7h0o!@:U:uw,L[e\\w@y\\&6[;1I@uDS1q=J)h^_4~J4kK+78A^;GgFBVuR6lH-Qm@= Xn5@h'm?gUQWMwVXda7O#v<')^F=F5M'K%Dq`"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "K{%\\Q8JP8|;maTG_wwcTd(sg><]/5Gh-9Ic8?Cb*M^OL3Rf#M>1G@JQh2(QFO}Mh\"9Bx)a-<G'w>=ZzspYgv|\"ocQ@E[d:>Y/mSoq"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "ibfm": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Type=null"
+    },
+    {
+        "id": 40,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "-M39k,BvkH/fdxn It)!)a3jcw+_:UbpR[.xKRzlduX##!.pT%s\\|KPIk[Qj]}$P<<}!Z-p{"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "`nA8"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "2h_\\Y06c3P\"{8l^k'\"/]D-JZZigdfV;tb[w+/f)udY7ZW@] >\\pkca&!?,0'cok-x2!5(tt eE8c8A?4:44a?&'o,r)n65S>u.j}WOX\"Vg_c9Tm*]7/&.V1[9!EH98d)]'11QI,q-S}r2ztn'`Y7%+_>i:-Bfj*CBRM}0S9ro8nMD:x6jpNJfpkM^3(Rs.nr<]W|t8*k*|=]`4N0YaeY2=<4A`.zf,4 wcbQGiR?scD,yS4"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "tv/wf`Yg5!Ai1W4Y@o<MMkq{XoQAKK\\?z;Mhh_})-E'wbhi<Kw22X\\ui;c<^]H/P*/4Ay4m+c{q5*)}=<,~]@/w.,dAu~<uWIklz~qlP&3Cg/!}8[gZK{zrV(>$n7&}6;;6R96fU>$|xT!i/I*=L"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "FsW'Ur0\\j5^=#D-Z a_1)7a.n`N,?f<Xvq?$S=T_2rv.nRf*liYVlPU&thNyp<q,w?]gBBm[K--hR`s3f/I7W*ii`"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "GwzlA&HHeF1mJpV(c[G;EH0ZNN K+$VkF$z?M7%{%!Xl6f#K8/,.@x[Cein7w2cBZ(N>%gQx6QwS}>#PY>%L$D\"d+T).!h|oMXG||hw yiC&jly}Q@\\^pKOUk|GoJd.~?OfiC{:4^6_#*SB5PTvAS(}}]_\\BB.PUgi"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "M4(kqh@Qy@yJ|5M%40/^T4O7zaC(5J,?~:tX^7yv&8}sn+('xXp-llU(*bI\\Tu7z\"2Q*!n1#z%Lp)ZxY'[UVXgm\\7w77NY@DB)*jGaMwR; x:Grv{F9=,1/aDL0^%o64yTmU,Xvko/`!A^VYbxzXIf=ZM]l<B=\\-eT+g~gkCUwKpqt?1u\\xt.w[{/FUdo3/.83HWQlXOiU<"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "vfsqaclw": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "oqjunrpkcbvufg": {
+                            "type": "string",
+                            "value": "kS}r"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Type=Not object"
+    },
+    {
+        "id": 41,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ";,=a+W_V.wp[ /TbFnK;Ej`2&n@y[!Io]\"bP}ldhgce~}f#7#Ym9ec}wG)?^(iMB}tO'#{H9J*iAk%uw3KX26,H9pxHq^ @x.`T<$D[eQrpPhtJ`ZX.E8Y.}i-3P#4 DU&F3pV\"%):{Q=#S6,XG*CrdB{%^GZeIe.!F~*3/2](>"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "u\\TU8|t7>xQ5D o$Ro6MBvL?[p\\V^!:'}2n,B$+SF\":zAWTsV^aF@Kv8UQtN?r{*l;"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "s~C%v>|aclH/gj0Y^0(?cg~Iv?vi%<`4U]>|@&{2A+'abX D8IxOi*fFIKu\"3nS%z.&DiS,*Z{/YIu/y|iL)3<2miTS.9(wDj3&Jb#Go;XrBfcm+hjkeb\"'b$+E}7_"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "vxdwdzup": {
+                            "type": "object",
+                            "value": {
+                                "nxpokwksxzymocgb": {
+                                    "type": "integer",
+                                    "value": -415,
+                                    "format": "int32"
+                                },
+                                "mmdenpbif": {
+                                    "type": "string",
+                                    "value": ":y\\"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Defined=No"
+    },
+    {
+        "id": 42,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "Zbv[}h2,u3c}i:lOP ).$NND3xV)^raq[ES"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "k,b_UUeC@s0S+lmyDXo1r|fZ`J3i78PC H9\"VS) )\"C=!{O=q|AF]aVNrMO@Sx!AU?sR0B]5JKFMY&zgXv@mrGPA~m!OqI\"d+CR6@MR`i>1fu&@t6RWY9L]f\\dfhJ7`5s-`pzp\\n`ebC6 B=#hP/5SL^_BS-%Ctw[N/p9}eJlB6WFfA\"}7fgkF^M!'7Ys.)ux6+^8sa]*iO"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ">=&hKtrg]T<Ae3DCQ6mI>L`t,JFyf*D<?wPV9K<xfxnA&p?|L7OSm=dbw$\"n6@lxUT2@B~fS}]il,.:pKY<oZSl}*da=T#Oo-B\\r@sB%Xs!"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "huyrvivmgvquo": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "icwiwjueawh": {
+                                    "type": "number",
+                                    "value": 893.6
+                                },
+                                "hlkc": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "qzpx": {
+                                    "type": "number",
+                                    "value": 511.6
+                                }
+                            }
+                        },
+                        "ukcb": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "ar": {
+                                    "type": "integer",
+                                    "value": 893,
+                                    "format": "int32"
+                                },
+                                "r": {
+                                    "type": "number",
+                                    "value": -10.8
+                                },
+                                "knpxbvewu": {
+                                    "type": "integer",
+                                    "value": 841,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "tlpsg": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "ntnj": {
+                                    "type": "number",
+                                    "value": 497.5
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=null"
+    },
+    {
+        "id": 43,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "k2ZX5WQbs|F8)AOqaC+#d$g r#L:/&=Lf*o[N''f=FtB/9@YXq6!P],rz\"Pa[u$'jt:/NhmQ-4!wf;>Hp6xioiSb's#p!g 3.<[%A\\Nwkk,JN\\wjG0f%q3[}>P6LrU-G0*\"}!bQ65&{i= _W[3hlJmJQ%))[^V\\QBBQG9m6}vdmB3sJ36Aw_w7j,5[Bm{wk,@,Eh\"/K@]Ro|?p=Nq&!Zfq?kY-$_^*"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "HaH-~K@[ek'k`Y1]'1h~Tv@2>r'57D|F_RKZSAJBdY~qgWBmyjo%\"7ItW'AU[)uPX zMPCNj(%~R4mSseC/?=>BB7];p{zP\\pgt/<CR\"KCTq+b>>jutt{IV7wZTT&)5</\"MrMzuRdV#~V]CCt~>^>{!\\-lh"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Zrm*Rp:0,\\LT?CQYCe6G:CNb3$Y{Ov3cE~U'AfWnA`3\\>,EoO^->s@u)ILL|e])\"F'"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "J3q*b"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "4w \"<;.;<mElOCJt"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "<:ct3&A.\"5x9}QC;0+mbpf*XQ\\OEWn'#J)e\\m/GV.C3]iGz|?)1\\!g*"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "!IgS|\\Sr't^+s1^i?M?V|,8Fn3,T/{JnOR?3:TKD0t)t \\qW&@eiXH_9fLx@A]<GwW}[GI1?e7_k/vx9_yP#*nL_0|qviIITxoG,~^9m9&2|O.@50.]A"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "^^fHb\\bKXr|?GoB0#{R,!#rtAeE*)VO(PJk`i\\cgPrP/y%g=9HvzvF"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "2/=,s%}n1ujfF:yW6&kp0H:sX.QfSyaDg~34/47LyDFHYV0qZch_6ae>o}+$H^mhOYwlyl-&,p89K*uro8pN_-U)+\"31Wkb+ -QnUxyYD6~S$i.5-('TxqlWC/,Jm_S2:W$J@=\"e{X5*2dM-Ii:>&0[C6>&a:^HQjam^7/^EVE^i]spQ_:?IHMZMXAP@l-[1sJP$(2]sN3}8JT@`>"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Jy@d>,9^Wv@A?bRpFjp\"b2t]gK1'Tp-Jy'mrfBc*'H,|ycK0]gQ$qaRhxTuVoKrMvHQ-A\"a|uWrFmzd^7f~JyAD[NAeFJ&"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "iBHFEdStpz]r|cpUp+,U:Hr ;IU,#(zHNJGu |+[`/7*gU:a\"?8CV}mc,D1nVgf?$r~[*eeB%D\"6-nLrIyI[{'P0C-bOZ"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Af9^lf,VTS<OjP?ZHzf}`Uj/b;-qp-j2'/R+ritf,(lctRGspC!X.=6?79\\Fat\\M{<2b/%%^)-=Zv2@PbX1]+PW*Hrd4S!2?HZ&\\d\\bmLWQlQ;GsqVssdi[\"U+o6)\"q\"\"1C5%s`xTiD-$:)ge~hTD"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "3*jz;ULn\"dWARi8S*kS-kPXjgyz89Df!xIEGi}DP~HKzUI\"C;{Xg?+>+!?l`w0\\:}=Pt0C=mTjz29SbK'"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "tgnngylkzlmgcwkg": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "q\"$]8*{"
+                                        }
+                                    ]
+                                },
+                                "htbziieomonkcr": {
+                                    "type": "number",
+                                    "value": 223.8
+                                }
+                            }
+                        },
+                        "fyoikbdnchlyq": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "}m%I"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "@J^>T`V["
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "p6G#>uC9"
+                                        }
+                                    ]
+                                },
+                                "jzqgcgpoktsbffv": {
+                                    "type": "integer",
+                                    "value": 474,
+                                    "format": "int32"
+                                },
+                                "yoe": {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                "xuwqpqphm": {
+                                    "type": "number",
+                                    "value": 1006.8
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=Not string"
+    },
+    {
+        "id": 44,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "]4q]eNdqRTIU0eg6@h2scRz5XiTB^\"[9hh\\j47,/Nic.ArUC:#SV b<i7xb.e/wFG)kz#-3WqNMsY^*r*F!5us ?wNvcpJE,.Pq f\".$UyRo>^$rC[,`;cJMPIDs;SfrK3C6pXO)(:4<\\vK\"rO'(E`?2p&"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "T@<!w-D(_]d^u0?i+72F,c0=D817BMTyH984_ 8[k_+"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": " Yg?~r"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "5q >UW+}@j21j42>Q[<er':_n''>,!iruoSr-r7xk;ttuh/5DMU=/d:1tAhRQh}SBf}:v[m-((hT(_5u8%/N_]N$HUrVUrQRla8TF<OE).L\\Qr\"Aw\"9O*E,'3<8>k!EyraF{C4Jm%6YCytl.nrFCB-g+qKqrzV^^t7J!soY!EZ7\\yfBzrBfUQ$@A01$'tT}!%@ jfT,NJ7oq'Y8H}@Yfi@:q4s'V-|S<Q6c\"4d5<n<(-O8.}J"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "y.krU+o[)r4(?=TjFY>w!%hf5,T9/)ti{>xN]cz#`rzKegR`63IomKBgB*2j>a+\"Zygqcz-$`UpEff+&Gj>6bjTDm&|0BWLrTVsoAn9LIubj+ ##\"bPL#)s7-WyEBG|,R8NY)\\+?h,nK:D3Z8@4?^C7\"j}@~dN>RTxUBw2<vl<j;HuY]~OD.yDMA;G, +y?XKknTgU!lxx_/#)/.SK[5:P]MPp!Ba2Gh$Z*k!N+[]~l1g%"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "?qPu}n04,,1U21KM'umg=*()I(@7e^c>Pv77rJ>1<6CxsGR_&YK-)#YB'x.FHkZ#FPJG)vXw2*ORanatIb1LKg:;?jea*?4g8Fc8\\BGy*Ex*6ww~cn'`[g(ac{O('dV3aSI5Erj<K|<*i-6PY'5<7Vp;;aPwn`Nj|mrZsZ};id|Asd@If5?t<?.\"~`mQ-z&\"9%>cAj"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Ccfgv?U1B`r4)w(Pp&=Qrt4s>:CL x>:U4;I7;H/gZ/ HAPN<u+\\\\3P8Eg^r.R9\"\"fWojY)$A0![^%.,I-kh[,iPrW]Njpv&."
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "&xPDvU o]Wip-~I4HEr_6 oRyOKmt2{WC$&mj"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "t": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ";q=QnpaO,/XQ?9cl476"
+                                },
+                                "casufoqdaqpcgwsy": {
+                                    "type": "string",
+                                    "value": "uPD;m:I"
+                                },
+                                "bhxwejqvtediubs": {
+                                    "type": "number",
+                                    "value": -567.2
+                                },
+                                "kxkwnomntwg": {
+                                    "type": "object",
+                                    "value": {
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=null"
+    },
+    {
+        "id": 45,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "*@qYAg[BX-2M`89)+'$.%m+&xCALzhHf7m'70=WENN[f':E`B/<|ia $'yS,rG{#EB)Z)i5@FN4R(2lt4F+s%NxIb2v(2}3!h*rj#G~mjmZ#k.8>bN*c'xUqYM}2('#W8/oh:$%]^K,"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "X+*|{c(;U5jF>\\\\blV6`a4yWsta#k4v6)36U,@NF:tsh#@:{(-K=Lx&dryW{<hX`a{.KzUwv'=>>d!l1&iYdc~\\%'oeC8OwF}W2P \"EpM5yh/BXeUsIL_JOn1=m_$7bVc6gvP4 \\p]Ag55=~%3Lw_P&+>;cu?SO|NfJ_v$*N<.6/!wXXs(7dJ@`fR9.8*Ul3HsY8*S|Wl<W$~*H%$_rUXj,,0QS8300o*5N&)T\"iRFcX87g~Bano"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "ggt0g)@h-R=^ioP]TIf'hGTn1^Q< 5^'k.U!+z|OaL49pAGAyE st{^kgPUtQ3"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "k&}UX,_JP4ueNgA}B^V3]5(bp9{(]6c3vX2b#^fn?3]<=2+l|mQ/*.a??&x+HJaw^/-m*(Nf*S+@!v|_O^/EI5rbs}73'-;q!~Fsh9nY7dCSJw[?80\"84`Ov^jG)JOm;{UA1?f^/5j{kA#<'jUje2>y$iez"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "i^MiUz_BTw xet,y4v@>}ePX8]Z.itzxjY}a7=(%V0W^\"g+#x@>sa-<C?Ahq,a0N .yYH{RFWDNd][Bcz/tF:^?ferNg])5!\\5yAmONb_q(sA;4VcOlB<:RO.X^g(<Xdr5j/\\jLHt%*A;K;#rG0<T"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "m6+$kkalD[mX{=y\\xDsbqkZ&M>6rFX#hKF6Vfkfs4:XQVUUJ.VkKSP6JWIgF"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "C/xJ'i,Ts1s^E7l\\y fkt=0))ksD]B{N9.B <5]sm8QoVk 9R_N2^EUk$%/cod.CwQ*fur3mt1-`dvVgM+8Cy+b?0ZudMT(nRp2&y]6+lp 0b5:S/>?wnj^w@U8/FRYT"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "EFasq"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "#wJUKa_m]9aVHBY-c|zan{:]o1> g~4+2rDXkcbH?N&/s8[87TzS1=^Lu.W^<[m:A=tK@xd{9dd;Ouv%6Pjm+){wn&F>]\".#D}x5x!1cf|s\\jC.WBN[@Yy\"E|/UJWNN3W$yyR8vt=%gYj(QIV;y3i^Y"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "gkizqpbhko": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "number",
+                                    "value": -519.1
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "vrQsNYf1k}Aw1}+n6v,o6Il+.mJPd@uuxeffj,DW?gEQYuh<.:UZ;j&9^pUHXqCU`F8)]-'Z*A0@?xzajoQyD7t(N #q2:O\\97oG$ISfMZ.21WsJ*(LO4DH53Vj:tcV2>r9q,MWtBW'b1yClK2F9]4k&5"
+                                },
+                                "hg": {
+                                    "type": "number",
+                                    "value": -72.3
+                                },
+                                "g": {
+                                    "type": "string",
+                                    "value": "m~?"
+                                },
+                                "vfasg": {
+                                    "type": "number",
+                                    "value": 405.8
+                                }
+                            }
+                        },
+                        "zpvnkvnlie": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "l?Rjzvz+=zn\\.~5|am_g\\hbK[00{sV)gOxM|AZfSAE6p'yhnZ#L|Vdz8:h{H8k<%csg=~<Oz2M37)\" pOCp0J+8}slu4Vh^]_IVd|*cz;kna\\_,vHA7BwMzk'PV/t1DYx/Ny>y_kk%l0pjOIdNIa?v%#"
+                                },
+                                "rtziwxnozuiylvhh": {
+                                    "type": "integer",
+                                    "value": 638,
+                                    "format": "int32"
+                                },
+                                "rgfpooforstmcpzb": {
+                                    "type": "object",
+                                    "value": {
+                                        "qgxoycozikho": {
+                                            "type": "integer",
+                                            "value": -443,
+                                            "format": "int32"
+                                        }
+                                    }
+                                },
+                                "ahrnahsmx": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=Not integer"
+    },
+    {
+        "id": 46,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "charlie": {
+                            "type": "string",
+                            "value": "5"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern=No"
+    },
+    {
+        "id": 47,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Properties.charlie.Defined=No"
+    },
+    {
+        "id": 48,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "charlie": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Properties.charlie.Type=null"
+    },
+    {
+        "id": 49,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "charlie": {
+                            "type": "number",
+                            "value": -4530873717292253327.4
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Properties.charlie.Type=number"
+    },
+    {
+        "id": 50,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "nfuhabsnh": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "X"
+                                },
+                                "zrjizcuxiygtwm": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "~g<|j"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "8E3sFEIj"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "tkizblzqfjsfjzg": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "X"
+                                },
+                                "huwusehvuibgxmr": {
+                                    "type": "number",
+                                    "value": 271.4
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=X"
+    },
+    {
+        "id": 51,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "bsidhq": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "Y"
+                                },
+                                "zvblnmqdnoweh": {
+                                    "type": "number",
+                                    "value": -359.9
+                                },
+                                "lfmvp": {
+                                    "type": "string",
+                                    "value": "`"
+                                }
+                            }
+                        },
+                        "ggvlrk": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "Y"
+                                },
+                                "ped": {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=Y"
+    },
+    {
+        "id": 52,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "rokx": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "Z"
+                                },
+                                "hlfgfpxhkqilovsc": {
+                                    "type": "string",
+                                    "value": "Rq. 4e|l"
+                                },
+                                "oyfpeesfbmouhl": {
+                                    "type": "string",
+                                    "value": "Cg"
+                                }
+                            }
+                        },
+                        "bpjwjn": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "Z"
+                                },
+                                "etdglcndzni": {
+                                    "type": "integer",
+                                    "value": 254,
+                                    "format": "int32"
+                                },
+                                "zabdenvwr": {
+                                    "type": "number",
+                                    "value": -488.2
+                                },
+                                "oipo": {
+                                    "type": "number",
+                                    "value": 703.2
+                                }
+                            }
+                        },
+                        "gdvgwxvmvevrga": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "Z"
+                                },
+                                "jdvl": {
+                                    "type": "object",
+                                    "value": {
+                                        "zadyenvjdtjr": {
+                                            "type": "string",
+                                            "value": ""
+                                        }
+                                    }
+                                },
+                                "tkwrvmpixga": {
+                                    "type": "integer",
+                                    "value": 68,
+                                    "format": "int32"
+                                },
+                                "kunfdcajfcpuz": {
+                                    "type": "string",
+                                    "value": "vG9R3k"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=Z"
+    },
+    {
+        "id": 53,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "djsok": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "M6$H].dx|e%\\r+w)]z7\"xW}0|*(YK%[?&'VRq)Mh0_[%BZ'Gjpvw?12yj5g`.-HLB(pY 0f^6/uhluYs%zObe!nJ^J*(yS7G{Vej\\aU0Y+!mR^\\_]Vr;cbWn>]UNx[^VGW1<hmA)NHVwK}}K?[X3b8"
+                                },
+                                "plwintbdqb": {
+                                    "type": "number",
+                                    "value": -538.4
+                                }
+                            }
+                        },
+                        "nlsqnfesv": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "pVH_B*vGzOP6ihuH(3fGS*.(5XQR|F+Bv{8<o-Gm>!5Am<JDw^*!7+&M*Ka&<``QCX>8wTYAk`tnn,D7j6fe}:;eWT0kg.')B@e?!N=_r3Ge>RYs>m'M*g[oZnYB2+;N/j/>E\\tvkHIYfD9`ZsuGq TP,zbIEi/SG9<Mal%~,5mNEYh(M)ze*FEtwy"
+                                },
+                                "nubrpoov": {
+                                    "type": "number",
+                                    "value": 861.1
+                                },
+                                "hz": {
+                                    "type": "string",
+                                    "value": "20"
+                                },
+                                "zyjoprgngibhhw": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "kgv": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "6?$8<7\\<P1*5eQv`ZL|(|C,r;%=&$))POE0|vlI}kq.KQ{H6QOLs'eK\"Rg^IwkMh"
+                                },
+                                "egcbuuuqkzkh": {
+                                    "type": "integer",
+                                    "value": -183,
+                                    "format": "int32"
+                                },
+                                "gi": {
+                                    "type": "number",
+                                    "value": 211.2
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Defined=No"
+    },
+    {
+        "id": 54,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "viwm": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "cp>6x9x#/C$[?5tEUs\"\\Ko!L7kO~}Z}V5+qeP/O'iyG<b^q}):C8O:nMq_t-'ba_&)N-P_\"W:p*8j>!<$Ws6+[8da+wvJ'0B{x;ncnWVr"
+                                },
+                                "phudbtbqtnihlf": {
+                                    "type": "string",
+                                    "value": "\"vA[HDT"
+                                }
+                            }
+                        },
+                        "buxcqecmyr": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "rRf;}HXFf~RUqV*wgc8=dwPN\\OGYSi|5o@?jR28D't SP,q%t8QdKkIu4]<<|)YQB3x0} t#\"l8BT (B@&[Fu q>')f"
+                                },
+                                "jdfcf": {
+                                    "type": "integer",
+                                    "value": 707,
+                                    "format": "int32"
+                                },
+                                "dq": {
+                                    "type": "integer",
+                                    "value": 572,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "dmwvbwegywn": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "h*\"os8RclF0Wf%1-Pn$W[>~~0W$Bq&KO\\5 dMT_GY7{c/dpe\\oF~?ndWo+Mvm't~}L:+_PVL-ev7Z\\8Sws({?RJ}kGp@5[YNO](Nk7L?LIYI3n1zLUw.iLF\"'Z254J$3>H=egN+'e!Dxa<^W@z@\\Q<,piAWY0\\c545q>MZj&&[a3:-qp|)`J tV7Vh5aAt(^Qu[6~l_x"
+                                },
+                                "kkk": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "s#0)@O"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": ""
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "ugnFvt"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=null"
+    },
+    {
+        "id": 55,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "ikqjcj": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "{E.491dv.HJ6L:\",rGp-g=NnD*# \\Ye~6NaF@,8]sotC/bex|5NB9Wch+p.X:.2Q48aNt}Pvc@]Nej0VcC~DSF4t9<bWAR]6`aG}]z~7|<-u-CC8f1S`8HXp=ZO,9\"(]:o?R*LhJ*j)F(TG4$b9Yh29_{X]D.Vo*e.#l$vaFm~.Mc<2<n5,t$Ov0y(Iwa?vs=rT{^<C\\~,&E%u\\gai(\\\"+s<E1VdX5EF\"bR^@2AC"
+                                },
+                                "frhtdhrnpqfs": {
+                                    "type": "object",
+                                    "value": {
+                                        "dvpmb": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "a\"m5"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "kvuiaiwxob": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "Vl}yp+x8\"aO:Bfs6j<yKF[s'@Wn!pEz[1.J%OEYJiO0f*!~+zy\"%jvv'M.u'*R%Dj_P6P3AxrCwuYk)f?)4Y>nzdA?}`FFBF;DK]1Yd/RCBLQwFi!1iMn6/JQXZC(@AvxkK?UfbVf5G#F&u%nO0\"2wFj_VV!HY:|hH0}>SBcQkOGW-r(CF=/^IAWi~}mknEq_kPdLUcPR7eetKb5UA^oh%}!#KQg%lrQl*9k$z,Q>R=Uy5jFAT"
+                                },
+                                "turo": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "mBRfbY"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "dtz": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "dwhhvi": {
+                                    "type": "object",
+                                    "value": {
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=boolean"
+    }
+]

@@ -1,0 +1,122 @@
+
+[
+    {
+        "id": 0,
+        "server": "http://www.cornutum.org/tcases/reducer/api",
+        "version": "0.0.0",
+        "path": "/operations",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "x": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "hhlf~$]"
+                                }
+                            ]
+                        },
+                        "wyxwjwlawartveh": {
+                            "type": "integer",
+                            "value": 105,
+                            "format": "int32"
+                        },
+                        "zh": {
+                            "type": "number",
+                            "value": 694.6
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "http://www.cornutum.org/tcases/reducer/api",
+        "version": "0.0.0",
+        "path": "/operations",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "http://www.cornutum.org/tcases/reducer/api",
+        "version": "0.0.0",
+        "path": "/operations",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "http://www.cornutum.org/tcases/reducer/api",
+        "version": "0.0.0",
+        "path": "/operations",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "http://www.cornutum.org/tcases/reducer/api",
+        "version": "0.0.0",
+        "path": "/operations",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 387.2
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not object"
+    }
+]

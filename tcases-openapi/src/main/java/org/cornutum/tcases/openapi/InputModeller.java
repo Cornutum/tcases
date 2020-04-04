@@ -65,7 +65,7 @@ import static java.util.stream.Collectors.toSet;
  * OpenAPI models must conform to <U>OAS version 3</U>.
  * See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
  */
-public abstract class InputModeller extends ModelConditionReporter
+public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   {
   protected enum View { REQUEST, RESPONSE };
   
@@ -82,10 +82,14 @@ public abstract class InputModeller extends ModelConditionReporter
    */
   protected InputModeller( View view, ModelOptions options)
     {
+    super( new OpenApiContext());
     view_ = expectedValueOf( view, "Model view");
+
     options_ = Optional.ofNullable( options).orElse( new ModelOptions());
-    setContext( new NotificationContext( getOptions().getConditionNotifier()));
+    setNotifier( getOptions().getConditionNotifier());
+
     analyzer_ = new SchemaAnalyzer( getContext());
+    analyzer_.setNotifier( getNotifier());
     }
 
   /**
@@ -680,24 +684,32 @@ public abstract class InputModeller extends ModelConditionReporter
    */
   private Stream<IVarDef> instanceSchemaVars( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
     {
+    return instanceSchemaVars( instanceVarTag, instanceOptional, instanceSchema, false);
+    }
+
+  /**
+   * Returns the {@link IVarDef input variables} defined by the schema for the given instance.
+   */
+  private Stream<IVarDef> instanceSchemaVars( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, boolean instanceItem)
+    {
     String instanceType = Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null);
     return
       // Missing schema (equivalent to an empty schema)?
       instanceSchema == null?
-      Stream.of( instanceTypeVar( instanceVarTag, instanceOptional, instanceSchema)) :
+      Stream.of( instanceTypeVar( instanceVarTag, instanceOptional, instanceSchema, instanceItem)) :
 
       // Unknown schema type?
       !isSchemaType( instanceType)?
       unknownSchemaVars( instanceType) :
 
       // No, return all input variables for this schema
-      allSchemaVars( instanceType, instanceVarTag, instanceOptional, instanceSchema);
+      allSchemaVars( instanceType, instanceVarTag, instanceOptional, instanceSchema, instanceItem);
     }
   
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by every alternative schema for the given instance.
    */
-  private Stream<IVarDef> allSchemaVars( String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> allSchemaVars( String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, boolean instanceItem)
     {
     List<Schema<?>> alternatives =
       Optional.ofNullable( instanceSchema)
@@ -707,18 +719,18 @@ public abstract class InputModeller extends ModelConditionReporter
 
     return
       alternatives.isEmpty()?
-      typeSchemaVars( instanceType, instanceVarTag, instanceOptional, instanceSchema) :
+      typeSchemaVars( instanceType, instanceVarTag, instanceOptional, instanceSchema, instanceItem) :
       
       alternatives.size() == 1?
-      typeSchemaVars( instanceVarTag, instanceOptional, alternatives.get(0)) :
+      typeSchemaVars( instanceVarTag, instanceOptional, alternatives.get(0), instanceItem) :
 
-      alternativeSchemaVars( instanceVarTag, instanceOptional, alternatives);
+      alternativeSchemaVars( instanceVarTag, instanceOptional, alternatives, instanceItem);
     }
   
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the given alternative schemas for the given instance.
    */
-  private Stream<IVarDef> alternativeSchemaVars( String instanceVarTag, boolean instanceOptional, List<Schema<?>> alternatives)
+  private Stream<IVarDef> alternativeSchemaVars( String instanceVarTag, boolean instanceOptional, List<Schema<?>> alternatives, boolean instanceItem)
     {
     return
       Stream.of(
@@ -741,7 +753,7 @@ public abstract class InputModeller extends ModelConditionReporter
               i->
               VarSetBuilder.with( String.valueOf( i))
               .when( has( alternativeProperty( instanceVarTag, i)))
-              .members( typeSchemaVars( instanceVarTag, instanceOptional, alternatives.get(i)))
+              .members( typeSchemaVars( instanceVarTag, instanceOptional, alternatives.get(i), instanceItem))
               .build()))
         
           .build()));
@@ -792,22 +804,22 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> typeSchemaVars( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> typeSchemaVars( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, boolean instanceItem)
     {
-    return typeSchemaVars( instanceSchema.getType(), instanceVarTag, instanceOptional, instanceSchema);
+    return typeSchemaVars( instanceSchema.getType(), instanceVarTag, instanceOptional, instanceSchema, instanceItem);
     }
   
   /**
    * Returns the type-specific {@link IVarDef input variables} defined by the schema for the given instance.
    */
-  private Stream<IVarDef> typeSchemaVars( String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private Stream<IVarDef> typeSchemaVars( String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, boolean instanceItem)
     {
     Stream.Builder<IVarDef> typeVars = Stream.builder();
 
-    typeVars.add( instanceTypeVar( instanceVarTag, instanceOptional, instanceSchema));
+    typeVars.add( instanceTypeVar( instanceVarTag, instanceOptional, instanceSchema, instanceItem));
     if( instanceType != null)
       {
-      typeVars.add( typeValueVar( instanceType, instanceVarTag, instanceSchema));
+      typeVars.add( typeValueVar( instanceType, instanceVarTag, instanceSchema, instanceItem));
       }
 
     return typeVars.build();
@@ -816,26 +828,26 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the type-specific {@link IVarDef input variable} for the value defined by the given instance schema.
    */
-  private IVarDef typeValueVar( String instanceType, String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef typeValueVar( String instanceType, String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
     return
       "object".equals( instanceType)?
-      objectValueVar( instanceVarTag, instanceSchema) :
+      objectValueVar( instanceVarTag, instanceSchema, instanceItem) :
       
       "string".equals( instanceType)?
-      stringValueVar( instanceVarTag, instanceSchema) :
+      stringValueVar( instanceVarTag, instanceSchema, instanceItem) :
       
       "integer".equals( instanceType)?
-      numberValueVar( instanceVarTag, instanceSchema) :
+      numberValueVar( instanceVarTag, instanceSchema, instanceItem) :
       
       "boolean".equals( instanceType)?
-      booleanValueVar( instanceVarTag, instanceSchema) :
+      booleanValueVar( instanceVarTag, instanceSchema, instanceItem) :
 
       "array".equals( instanceType)?
-      arrayValueVar( instanceVarTag, instanceSchema) :
+      arrayValueVar( instanceVarTag, instanceSchema, instanceItem) :
       
       // "number".equals( instanceType)
-      numberValueVar( instanceVarTag, instanceSchema);
+      numberValueVar( instanceVarTag, instanceSchema, instanceItem);
     }
 
   /**
@@ -850,7 +862,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variables} defined by the given array instance.
    */
-  private IVarDef arrayValueVar( String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef arrayValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
     Schema<?> itemSchema =
       Optional.ofNullable( asArraySchema( instanceSchema))
@@ -901,7 +913,7 @@ public abstract class InputModeller extends ModelConditionReporter
     return
       VarSetBuilder.with( "Items")
       .when( has( instanceValueProperty( instanceVarTag)))
-      .members( arraySizeVar( instanceVarTag, instanceSchema, failBelowMinItems, failAboveMaxItems))
+      .members( arraySizeVar( instanceVarTag, instanceSchema, instanceItem, failBelowMinItems, failAboveMaxItems))
       .members( iterableOf( itemsVar))
       .members( iterableOf( arrayUniqueItemsVar( instanceVarTag, instanceSchema)))
       .build();
@@ -910,7 +922,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link VarDef input variable} representing the size of an array instance.
    */
-  private VarDef arraySizeVar( String instanceVarTag, Schema<?> arraySchema, boolean failBelowMinItems, boolean failAboveMaxItems)
+  private VarDef arraySizeVar( String instanceVarTag, Schema<?> arraySchema, boolean instanceItem, boolean failBelowMinItems, boolean failAboveMaxItems)
     {
     // Arrays size constrained?
     VarDefBuilder size = VarDefBuilder.with( "Size");
@@ -995,6 +1007,12 @@ public abstract class InputModeller extends ModelConditionReporter
         }
       }
 
+    if( instanceItem)
+      {
+      size.hasIf( "itemMinItems", minItems);
+      size.hasIf( "itemMaxItems", maxItems);
+      }
+    
     return size.build();
     }
 
@@ -1015,7 +1033,7 @@ public abstract class InputModeller extends ModelConditionReporter
           return
             VarSetBuilder.with( "Contains")
             .when( itemsCondition)
-            .members( instanceSchemaVars( arrayItemsProperty( instanceVarTag), false, itemSchema))
+            .members( instanceSchemaVars( arrayItemsProperty( instanceVarTag), false, itemSchema, true))
             .build();
           }));
     }
@@ -1043,7 +1061,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the type of a instance.
    */
-  private IVarDef instanceTypeVar( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+  private IVarDef instanceTypeVar( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, boolean instanceItem)
     {
     Optional<Schema<?>> schema = Optional.ofNullable( instanceSchema);
     Boolean nullable = schema.map( s -> s.getNullable()).orElse( Boolean.FALSE);
@@ -1054,14 +1072,16 @@ public abstract class InputModeller extends ModelConditionReporter
     Set<String> notTypes = schema.flatMap( s -> Optional.ofNullable( getNotTypes( s))).orElse( emptySet());
     Set<String> requiredTypes = schema.flatMap( s -> Optional.ofNullable( getRequiredTypes( s))).orElse( emptySet());
 
+    String validTypes = type.orElse( String.format( "Not %s", notTypes.isEmpty()? "null" : notTypes.stream().collect( joining( ","))));
+
     return
       VarDefBuilder.with( "Type")
       .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
+      .hasIf( "itemType", Optional.of( validTypes).filter( itemType -> instanceItem))
 
       // Expectations for valid types
       .values(
-        VarValueDefBuilder.with(
-          type.orElse( String.format( "Not %s", notTypes.isEmpty()? "null" : notTypes.stream().collect( joining( ",")))))
+        VarValueDefBuilder.with( validTypes)
         .properties( instanceValueProperty( instanceVarTag)).build())
 
       // Expectations for null type
@@ -1090,7 +1110,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the values for a number instance.
    */
-  private IVarDef numberValueVar( String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef numberValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
     VarSetBuilder value =
       VarSetBuilder.with( "Value")
@@ -1105,6 +1125,8 @@ public abstract class InputModeller extends ModelConditionReporter
     Set<BigDecimal> notMultipleOfs = Optional.ofNullable( getNotMultipleOfs( instanceSchema)).orElse( emptySet());
     boolean hasMultipleOfs = !(multipleOf == null && notMultipleOfs.isEmpty());
     Optional<String> unboundedProperty = Optional.ofNullable( hasMultipleOfs? unboundedValueProperty( instanceVarTag) : null);
+    BigDecimal effectiveMaximum = null;
+    BigDecimal effectiveMinimum = null;
 
     // Enumerated values?
     Set<BigDecimal> enums = getNumberEnum( instanceSchema);
@@ -1175,7 +1197,8 @@ public abstract class InputModeller extends ModelConditionReporter
         .orElse( null);
            
       // Ensure min/max range is feasible
-      BigDecimal effectiveMinimum = 
+      effectiveMaximum = maximum;
+      effectiveMinimum = 
         Optional.ofNullable( minimum)
         .map( min -> Optional.ofNullable( maximum).map( max -> adjustedMinOf( "imum", min, max)).orElse( min))
         .orElse( null);
@@ -1241,12 +1264,13 @@ public abstract class InputModeller extends ModelConditionReporter
           setMaxValues( instanceSchema, multiplesBetween( effectiveMinimum, maximum, multipleOf, notMultipleOfs));
           }
 
+        BigDecimal nextMultiple = effectiveMinimum.add( effectiveMultipleOf);
         notMultipleOfs.stream()
           .forEach(
             m -> {
             // Select a value within bounds that fails each not-multiple-of constraint.
             BigDecimal notMultipleOfFailure;
-            for( notMultipleOfFailure = effectiveMinimum.add( effectiveMultipleOf);
+            for( notMultipleOfFailure = nextMultiple;
                  notMultipleOfFailure.compareTo( maximum) < 0 && !isMultipleOf( notMultipleOfFailure, m);
                  notMultipleOfFailure = notMultipleOfFailure.add( effectiveMultipleOf));
             if( notMultipleOfFailure.compareTo( maximum) < 0)
@@ -1257,6 +1281,24 @@ public abstract class InputModeller extends ModelConditionReporter
                 .build());
               }
             });
+        }
+      }
+
+    // Does this schema define the items of an array?
+    if( instanceItem)
+      {
+      // Yes, annotate with constraints that apply to all array items
+      if( !enums.isEmpty())
+        {
+        quantity.has( "itemEnums", enums);
+        }
+      else
+        {
+        quantity.hasIf( "itemMin", effectiveMinimum);
+        quantity.hasIf( "itemMax", effectiveMaximum);
+        quantity.hasIf( "itemNotEnums", notEnums);
+        quantity.hasIf( "itemMultipleOf", multipleOf);
+        quantity.hasIf( "itemNotMultipleOfs", notMultipleOfs);
         }
       }
 
@@ -1300,7 +1342,7 @@ public abstract class InputModeller extends ModelConditionReporter
    * Returns the {@link IVarDef input variable} representing the values for an object instance.
    */
   @SuppressWarnings("rawtypes")
-  private IVarDef objectValueVar( String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef objectValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
     // Ensure schema defined for all required properties, using a default empty schema if necessary.
     Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
@@ -1680,7 +1722,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the values for a string instance.
    */
-  private IVarDef stringValueVar( String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef stringValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
     IVarDef valueVar;
 
@@ -1694,6 +1736,7 @@ public abstract class InputModeller extends ModelConditionReporter
         VarDefBuilder.with( "Value")
         .has( "format", format)
         .has( "default", Objects.toString( getFormattedString( "default", format, instanceSchema.getDefault()), null))
+        .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
         .when( has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
         .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
@@ -1787,6 +1830,17 @@ public abstract class InputModeller extends ModelConditionReporter
           length.values( VarValueDefBuilder.with( String.format( "> %s", minLength)).build());
           }
         }
+
+      // Does this schema define the items of an array?
+      if( instanceItem)
+        {
+        length.hasIf( "itemMinLength", Optional.ofNullable( minLength).orElse(0));
+        length.hasIf( "itemMaxLength", maxLength);
+        length.hasIf( "itemNotEnums", notEnums);
+        length.hasIf( "itemPatterns", getPatterns( instanceSchema));
+        length.hasIf( "itemNotPatterns", getNotPatterns( instanceSchema));
+        }
+      
       valueVarSet.members( length.build());
 
       // Add variables for any pattern assertions
@@ -1872,7 +1926,7 @@ public abstract class InputModeller extends ModelConditionReporter
   /**
    * Returns the {@link IVarDef input variable} representing the values for a boolean instance.
    */
-  private IVarDef booleanValueVar( String instanceVarTag, Schema<?> instanceSchema)
+  private IVarDef booleanValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
     Set<Boolean> possibleValues = asOrderedSet( Boolean.TRUE, Boolean.FALSE);
     Set<Boolean> excludedValues = getBooleanEnum( getNotEnums( instanceSchema));
@@ -1894,6 +1948,7 @@ public abstract class InputModeller extends ModelConditionReporter
     return
       VarDefBuilder.with( "Value")
       .has( "default", Objects.toString( instanceSchema.getDefault(), null))
+      .hasIf( "itemEnums", Optional.of( allowedValues).filter( e -> instanceItem).orElse( null))
       .when( has( instanceValueProperty( instanceVarTag)))
       .values(
         possibleValues.stream()

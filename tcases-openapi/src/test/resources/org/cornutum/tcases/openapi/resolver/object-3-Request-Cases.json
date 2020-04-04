@@ -1,0 +1,247 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "myInteger": {
+                            "type": "integer",
+                            "value": -286487905,
+                            "format": "int32"
+                        },
+                        "ijwcjcjlymlwy": {
+                            "type": "string",
+                            "value": "{wM*8*"
+                        },
+                        "tvehglmzhvriwg": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "flrbh": {
+                            "type": "string",
+                            "value": "t\\uM"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "myInteger": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "myInteger": {
+                            "type": "integer",
+                            "value": 277339484,
+                            "format": "int32"
+                        },
+                        "cqwncerecohw": {
+                            "type": "string",
+                            "value": "<S)^d"
+                        },
+                        "sybnoo": {
+                            "type": "integer",
+                            "value": 439,
+                            "format": "int32"
+                        },
+                        "mofnig": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -951.5
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not object"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.myInteger.Defined=No"
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "myInteger": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.myInteger.Type=null"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "myInteger": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "{<h}W\"Sk"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "%-L"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.myInteger.Type=Not integer"
+    }
+]

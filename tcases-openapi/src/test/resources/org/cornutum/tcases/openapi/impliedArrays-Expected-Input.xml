@@ -26,6 +26,7 @@
           </Var>
           <VarSet name="Contains">
             <Var name="Type">
+              <Has name="itemType" value="Not null"/>
               <Value name="Not null" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>
             </Var>
@@ -60,6 +61,7 @@
               </Not>
             </When>
             <Var name="Type">
+              <Has name="itemType" value="Not null"/>
               <Value name="Not null" property="param1ItemsValue"/>
               <Value name="null" failure="true"/>
             </Var>
@@ -90,6 +92,7 @@
               </Not>
             </When>
             <Var name="Type">
+              <Has name="itemType" value="Not null"/>
               <Value name="Not null" property="param2ItemsValue"/>
               <Value name="null" failure="true"/>
             </Var>

@@ -1,0 +1,296 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "integer",
+                        "value": -286487905,
+                        "format": "int32"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "integer",
+                        "value": 0,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 558027118,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 919711491,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -475010304,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 614035771,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 531029789,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -167038666,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 2060673,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -777657818,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 642563896,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 324284831,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -322482237,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 882511292,
+                        "format": "int32"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "integer",
+                        "value": 583519182,
+                        "format": "int32"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "integer",
+                        "value": -757064037,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -757064037,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -76701105,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -844692461,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -751794758,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -498580416,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": -1002880112,
+                        "format": "int32"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "data": null,
+            "valid": false
+        },
+        "invalidInput": "Body.Defined=No"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "integer",
+                "value": 824,
+                "format": "int32"
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.Media-Type=Other"
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "null",
+                "value": null
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Type=null"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "(`K"
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Type=Not array"
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "null",
+                        "value": null
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Type=null"
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "boolean",
+                        "value": true
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Type=Not integer"
+    }
+]

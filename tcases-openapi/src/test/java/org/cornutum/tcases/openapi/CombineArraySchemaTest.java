@@ -56,7 +56,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -122,7 +122,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "string").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -188,7 +188,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -251,7 +251,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "object").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -315,7 +315,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "number").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -382,7 +382,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -448,7 +448,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -512,7 +512,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -571,7 +571,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .minItems( 45)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -637,7 +637,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.empty().build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -712,7 +712,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "boolean").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( OpenApiException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -745,7 +745,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .uniqueItems( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -776,7 +776,7 @@ public class CombineArraySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "string").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))

@@ -42,8 +42,13 @@ public final class CollectionUtils
    */
   public static <T> Stream<T> toStream( Iterator<T> iterator)
     {
-    Iterable<T> iterable = () -> iterator;
-    return toStream( iterable);
+    return
+      Optional.ofNullable( iterator)
+      .map( i -> {
+        Iterable<T> iterable = () -> i;
+        return toStream( iterable);
+        })
+      .orElse( null);
     }
 
   /**
@@ -51,7 +56,10 @@ public final class CollectionUtils
    */
   public static <T> Stream<T> toStream( Iterable<T> iterable)
     {
-    return StreamSupport.stream( iterable.spliterator(), false);
+    return
+      Optional.ofNullable( iterable)
+      .map( i -> StreamSupport.stream( i.spliterator(), false))
+      .orElse( null);
     }
 
   /**

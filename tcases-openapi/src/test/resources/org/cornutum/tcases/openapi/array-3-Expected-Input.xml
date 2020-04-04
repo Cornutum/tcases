@@ -30,6 +30,7 @@
               </Not>
             </When>
             <Var name="Type">
+              <Has name="itemType" value="object"/>
               <Value name="object" property="param0ItemsValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>

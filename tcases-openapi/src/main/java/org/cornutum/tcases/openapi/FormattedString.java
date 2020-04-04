@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.util.CollectionUtils;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
@@ -158,7 +159,7 @@ public abstract class FormattedString
 
     public String formatted()
       {
-      return new SimpleDateFormat("yyyy-MM-dd").format( object_);
+      return getDateFormat().format( object_);
       }
 
     private java.util.Date object_;
@@ -186,7 +187,7 @@ public abstract class FormattedString
 
     public String formatted()
       {
-      return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format( object_);
+      return getDateTimeFormat().format( object_);
       }
 
     private java.util.Date object_;
@@ -218,6 +219,22 @@ public abstract class FormattedString
       }
 
     private UUID object_;
+    }
+
+  /**
+   * Returns the DateFormat for date strings.
+   */
+  public static DateFormat getDateFormat()
+    {
+    return new SimpleDateFormat("yyyy-MM-dd");
+    }
+
+  /**
+   * Returns the DateFormat for date-time strings.
+   */
+  public static DateFormat getDateTimeFormat()
+    {
+    return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
     }
 
   }

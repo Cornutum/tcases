@@ -44,7 +44,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       SchemaBuilder.propertySchema( "integer")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -93,7 +93,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .readOnly( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // When...
     Schema<?> notProperty = copySchema( base);
@@ -142,7 +142,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .readOnly( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -192,7 +192,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .writeOnly( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // When...
     Schema<?> notProperty = copySchema( base);
@@ -244,7 +244,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .writeOnly( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -294,7 +294,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .writeOnly( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -343,7 +343,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .writeOnly( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -391,7 +391,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .readOnly( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -437,7 +437,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .writeOnly( true)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -491,7 +491,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .writeOnly( null)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -517,7 +517,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .readOnly( false)
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))
@@ -545,7 +545,7 @@ public class CombinePropertySchemaTest extends OpenApiTest
       .items( SchemaBuilder.ofType( "number").build())
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))

@@ -585,6 +585,268 @@ public class ApiMojoTest
         
     assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
     }
+
+  /**
+   * Tests {@link ApiMojo#execute execute()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 10. execute (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> ApiDefPatterns.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Defined-By </TD> <TD> apiDefs </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Matched </TD> <TD> Many </TD> </TR>
+   * <TR><TD> ContentType </TD> <TD> Default </TD> </TR>
+   * <TR><TD> InputDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OutDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Junit </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Html </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Path </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformParams </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Java </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> InputModels </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> OnCondition </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> ReadOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> WriteOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> RequestCases </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> OnModellingCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OnResolverCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> MaxTries </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Random </TD> <TD> Default </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void execute_10() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-project-10");
+
+    // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir, "**/*Api.json");
+    assertThat( "API defs", expectedApiDefs.length, is( 2));
+
+    List<String> expectedTestDefs = 
+    Arrays.stream( expectedApiDefs)
+      .flatMap( apiDef -> {
+        String expectedApiDefDir = getPath( apiDef);
+        String expectedApiDefName = getBaseName( apiDef);
+        return
+          Stream.of(
+            String.format( "%s%s-Request-Cases.json", expectedApiDefDir, expectedApiDefName),
+            String.format( "%s%s-Responses-Test.json", expectedApiDefDir, expectedApiDefName));
+        })
+      .collect( toList());
+        
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
+    }
+
+  /**
+   * Tests {@link ApiMojo#execute execute()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 11. execute (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> ApiDefPatterns.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Defined-By </TD> <TD> project </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Matched </TD> <TD> One </TD> </TR>
+   * <TR><TD> ContentType </TD> <TD> Default </TD> </TR>
+   * <TR><TD> InputDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OutDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Junit </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Html </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Path </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformParams </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Java </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> InputModels </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> OnCondition </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> ReadOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> WriteOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> RequestCases </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> OnModellingCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OnResolverCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> MaxTries </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> Random </TD> <TD> Defined </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void execute_11() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-project-11");
+
+    // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+    apiMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/openapi");
+    assertThat( "Out dir", apiMojo.getOutDirFile(), is( expectedOutDir));
+
+    String[] expectedApiDefs = findPathsMatching( expectedInputDir, "**/OtherApi*");
+    assertThat( "API defs", expectedApiDefs.length, is( 1));
+
+    List<String> expectedTestDefs = 
+    Arrays.stream( expectedApiDefs)
+      .flatMap( apiDef -> {
+        String expectedApiDefDir = getPath( apiDef);
+        String expectedApiDefName = getBaseName( apiDef);
+        return
+          Stream.of(
+            String.format( "%s%s-Request-Cases.json", expectedApiDefDir, expectedApiDefName),
+            String.format( "%s%s-Responses-Test.json", expectedApiDefDir, expectedApiDefName));
+        })
+      .collect( toList());
+        
+    assertThat( "Test defs", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTestDefs));
+    }
+
+  /**
+   * Tests {@link ApiMojo#execute execute()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 12. execute (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> ApiDefPatterns.Count </TD> <TD> None </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Defined-By </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Matched </TD> <TD> One </TD> </TR>
+   * <TR><TD> ContentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> InputDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OutDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Junit </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Html </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Path </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformParams </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Java </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> InputModels </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> OnCondition </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> ReadOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> WriteOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> RequestCases </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> OnModellingCondition </TD> <TD> <FONT color="red"> fail  </FONT> </TD> </TR>
+   * <TR><TD> OnResolverCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> MaxTries </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Random </TD> <TD> Default </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void execute_12() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-project-12");
+
+    // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+
+    expectFailure( MojoExecutionException.class)
+      .when( () -> apiMojo.execute())
+      .then( failure -> {
+        Stream.Builder<String> causes = Stream.builder();
+        for( Throwable cause = failure; cause != null; cause = cause.getCause())
+          {
+          causes.add( cause.getMessage());
+          }
+          
+        assertThat(
+          "Causes",
+          causes.build().collect( toList()),
+          listsMembers(
+            "Can't generate requested models",
+            "Error processing AllOf, /allOf, POST, param0, allOf, oneOf, oneOf[0]",
+            "Ignoring this schema -- not applicable when only instance types=[string] can be valid"));
+        });
+      }
+
+  /**
+   * Tests {@link ApiMojo#execute execute()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 13. execute (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> ApiDefPatterns.Count </TD> <TD> None </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Defined-By </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> ApiDefPatterns.Matched </TD> <TD> One </TD> </TR>
+   * <TR><TD> ContentType </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> InputDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OutDir </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Junit </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Html </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Path </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformDef.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformParams </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Params </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> TransformOutFile.Java </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> InputModels </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> OnCondition </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> ReadOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> WriteOnlyEnforced </TD> <TD> Default </TD> </TR>
+   * <TR><TD> RequestCases </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> OnModellingCondition </TD> <TD> Default </TD> </TR>
+   * <TR><TD> OnResolverCondition </TD> <TD> <FONT color="red"> fail  </FONT> </TD> </TR>
+   * <TR><TD> MaxTries </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Random </TD> <TD> Default </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void execute_13() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-project-13");
+
+    // When...
+    ApiMojo apiMojo = (ApiMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api");
+    clean( apiMojo);
+
+    expectFailure( MojoExecutionException.class)
+      .when( () -> apiMojo.execute())
+      .then( failure -> {
+        Stream.Builder<String> causes = Stream.builder();
+        for( Throwable cause = failure; cause != null; cause = cause.getCause())
+          {
+          causes.add( cause.getMessage());
+          }
+          
+        assertThat(
+          "Causes",
+          causes.build().collect( toList()),
+          listsMembers(
+            "Can't generate requested models",
+            "Error processing RequestCaseDef[3,POST,/array,SUCCESS], param0, value, unique item[1] of 11",
+            "Unable to resolve a value after 10000 tries"));
+        });
+    }
   
   /**
    * Returns the set of paths relative to the given base directory matching any of the given patterns.

@@ -1,0 +1,126 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "dfbe5eb4-1bc3-4c0d-a3f0-00127f67ce71",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "9136f2bb-6885-485c-a045-d459b2903fd8",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 126.6
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not string"
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "055ea3ed-fed5-4f47-b4e2-32c938be4dbf",
+                    "format": "uuid"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value=Other"
+    }
+]

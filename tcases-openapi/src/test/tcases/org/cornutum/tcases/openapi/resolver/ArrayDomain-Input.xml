@@ -1,0 +1,20 @@
+<System name="ValueDomain">
+    <Function name="ArrayDomain">
+        <Input>
+            <Var name="Item-Count">
+                <Value name="Constant"/>
+                <Value name="Below-Max"/>
+                <Value name="Above-Min"/>
+            </Var>
+            <Var name="Item-Values">
+                <Value name="Constant"/>
+                <Value name="Bounded"/>
+                <Value name="Unbounded" property="valuesUnbounded"/>
+            </Var>
+            <Var name="Items-Unique" when="valuesUnbounded">
+                <Value name="Yes"/>
+                <Value name="No"/>
+            </Var>
+        </Input>
+    </Function>
+</System>

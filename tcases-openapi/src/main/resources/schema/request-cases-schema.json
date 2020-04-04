@@ -1,0 +1,244 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://www.cornutum.org/tcases/request-cases-schema.json",
+    "title": "Request Test Cases",
+    "description": "Defines test cases for API requests (version: ${project.version})",
+
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/requestCase"
+    },
+
+    "definitions": {
+        "requestCase": {
+            "description": "Defines an API request test case",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "server": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "version": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "path": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "operation": {
+                    "type": "string",
+                    "enum": [ "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/parameter"
+                    }
+                },
+                "body": {
+                    "$ref": "#/definitions/messageData"
+                },
+                "invalidInput": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "required": [ "id" ],
+            "additionalProperties": false
+        },
+
+        "parameter": {
+            "description": "Defines an API request parameter value",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "in": {
+                    "type": "string",
+                    "enum": [ "cookie", "header", "path", "query" ]
+                },
+                "style": {
+                    "type": "string",
+                    "enum": [ "deepObject", "form", "label", "matrix", "pipeDelimited", "simple", "spaceDelimited"]
+                },
+                "explode": {
+                    "type": "boolean"
+                },
+                "mediaType": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "data": {
+                    "$ref": "#/definitions/dataValue"
+                },
+                "valid": {
+                    "type": "boolean"
+                }
+            },
+            "required": [ "name", "in", "style", "data", "valid" ],
+            "additionalProperties": false
+        },
+
+        "messageData": {
+            "description": "Defines the data for an API request input",
+            "type": "object",
+            "properties": {
+                "mediaType": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "data": {
+                    "$ref": "#/definitions/dataValue"
+                },
+                "valid": {
+                    "type": "boolean"
+                }
+            },
+            "required": [ "data", "valid" ],
+            "additionalProperties": false
+        },
+
+        "dataValue": {
+            "description": "Defines an input data value",
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "array"
+                        },
+                        "value": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dataValue"
+                            }
+                        },
+                        "format": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "boolean"
+                        },
+                        "value": {
+                            "type": "boolean"
+                        },
+                        "format": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "integer"
+                        },
+                        "value": {
+                            "type": "integer"
+                        },
+                        "format": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "null"
+                        },
+                        "value": {
+                            "type": "null"
+                        },
+                        "format": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "number"
+                        },
+                        "value": {
+                            "type": "number"
+                        },
+                        "format": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "object"
+                        },
+                        "value": {
+                            "type": "object",
+                            "patternProperties": {
+                                ".": {
+                                    "$ref": "#/definitions/dataValue"
+                                }
+                            }
+                        },
+                        "format": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "string"
+                        },
+                        "value": {
+                            "type": "string"
+                        },
+                        "format": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            ],
+            "required": [ "type", "value" ]
+        }
+    }
+}

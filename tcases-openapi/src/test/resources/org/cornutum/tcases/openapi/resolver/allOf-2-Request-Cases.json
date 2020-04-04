@@ -1,0 +1,955 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "alpha": {
+                            "type": "integer",
+                            "value": -326,
+                            "format": "int32"
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "jwcjcjlymlwyxwj": {
+                            "type": "integer",
+                            "value": -844692461,
+                            "format": "int32"
+                        },
+                        "awa": {
+                            "type": "integer",
+                            "value": -396953445,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "string",
+                            "value": "3"
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "integer",
+                                    "value": -419062191,
+                                    "format": "int32"
+                                }
+                            ]
+                        },
+                        "mzhvriwg": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "lfl": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "bhlvz": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "alpha": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "}4-"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "+U~"
+                                }
+                            ]
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -380193223,
+                                    "format": "int32"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "alpha": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "ohwzkwgiiets": {
+                            "type": "integer",
+                            "value": 713018918,
+                            "format": "int32"
+                        },
+                        "nooqqgmofn": {
+                            "type": "integer",
+                            "value": 133023122,
+                            "format": "int32"
+                        },
+                        "vty": {
+                            "type": "integer",
+                            "value": 21665281,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "6{"
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "integer",
+                                    "value": 1024275209,
+                                    "format": "int32"
+                                }
+                            ]
+                        },
+                        "fncghyfh": {
+                            "type": "integer",
+                            "value": -931428280,
+                            "format": "int32"
+                        },
+                        "xcpexs": {
+                            "type": "integer",
+                            "value": -509798676,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "alpha": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "M[_Jf"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "29nXt"
+                                }
+                            ]
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "integer",
+                                    "value": -247091458,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -359285380,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -830053508,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -399756644,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -172545367,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -780757367,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -830053508,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -31250075,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -188204916,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -772178468,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -838169851,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -205899568,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -15980363,
+                                    "format": "int32"
+                                }
+                            ]
+                        },
+                        "kfdhpn": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "ydmvbjyxcvmifb": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "HcY=x\\"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not object"
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "Q"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Property-Count=< 3"
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "alpha": {
+                            "type": "integer",
+                            "value": -27,
+                            "format": "int32"
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "cgq": {
+                            "type": "integer",
+                            "value": 316150985,
+                            "format": "int32"
+                        },
+                        "bnkncxp": {
+                            "type": "integer",
+                            "value": 780924740,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.bravo.Type=null"
+    },
+    {
+        "id": 11,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "9sI;5("
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "jgGr"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "number",
+                            "value": -808.1
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "yhozbzsrxb": {
+                            "type": "integer",
+                            "value": 337119652,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.bravo.Type=Not boolean"
+    },
+    {
+        "id": 12,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "IsK"
+                        },
+                        "charlie": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "xmczosccg": {
+                            "type": "integer",
+                            "value": 940408290,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.charlie.Type=null"
+    },
+    {
+        "id": 13,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "alpha": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "charlie": {
+                            "type": "object",
+                            "value": {
+                                "xdazmmpq": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "vwp"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "FT Dsdo="
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": ".~p4;!D"
+                                        }
+                                    ]
+                                },
+                                "cjbdhcmihwtlstzp": {
+                                    "type": "number",
+                                    "value": 32.5
+                                },
+                                "ioimlurvy": {
+                                    "type": "number",
+                                    "value": -548.1
+                                }
+                            }
+                        },
+                        "ooqzmmbvr": {
+                            "type": "integer",
+                            "value": 199674935,
+                            "format": "int32"
+                        },
+                        "k": {
+                            "type": "integer",
+                            "value": 352175314,
+                            "format": "int32"
+                        },
+                        "mba": {
+                            "type": "integer",
+                            "value": 228343982,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.charlie.Type=Not array"
+    },
+    {
+        "id": 14,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "alpha": {
+                            "type": "object",
+                            "value": {
+                                "jxevstlmngw": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                },
+                                "kiohmejom": {
+                                    "type": "integer",
+                                    "value": -743,
+                                    "format": "int32"
+                                },
+                                "ygxoj": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                }
+                            }
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "null",
+                                    "value": null
+                                }
+                            ]
+                        },
+                        "wnoiummgqkajnnsj": {
+                            "type": "integer",
+                            "value": 413390001,
+                            "format": "int32"
+                        },
+                        "nzoyzq": {
+                            "type": "integer",
+                            "value": 921233522,
+                            "format": "int32"
+                        },
+                        "jogjixineeufcksh": {
+                            "type": "integer",
+                            "value": 826313654,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.charlie.Items.Contains.Type=null"
+    },
+    {
+        "id": 15,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "alpha": {
+                            "type": "number",
+                            "value": -282.3
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            ]
+                        },
+                        "yfisrhuuobfdom": {
+                            "type": "integer",
+                            "value": 683319539,
+                            "format": "int32"
+                        },
+                        "gpibwbtvmzbsys": {
+                            "type": "integer",
+                            "value": 172024609,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.charlie.Items.Contains.Type=Not integer"
+    },
+    {
+        "id": 16,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "rhlxxymtv": {
+                            "type": "integer",
+                            "value": 516906186,
+                            "format": "int32"
+                        },
+                        "oers": {
+                            "type": "integer",
+                            "value": 296367760,
+                            "format": "int32"
+                        },
+                        "elnwzbythncmqv": {
+                            "type": "integer",
+                            "value": 523053930,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.alpha.Defined=No"
+    },
+    {
+        "id": 17,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "angmgjyztatk": {
+                            "type": "integer",
+                            "value": 362524765,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.alpha.Type=null"
+    },
+    {
+        "id": 18,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "alpha": {
+                            "type": "integer",
+                            "value": -846,
+                            "format": "int32"
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "chnaedrwghygi": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "omsmv": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "ksxdixxgpkxsotwm": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Additional.Type=null"
+    },
+    {
+        "id": 19,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": false
+                        },
+                        "alpha": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "texnzftx": {
+                            "type": "string",
+                            "value": "OUKk5L"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Additional.Type=Not integer"
+    }
+]

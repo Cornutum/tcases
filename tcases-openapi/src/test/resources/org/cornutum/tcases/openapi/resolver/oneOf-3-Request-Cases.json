@@ -1,0 +1,203 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "integer",
+                            "value": -326,
+                            "format": "int32"
+                        },
+                        "jwcjcjlymlwyxwj": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "wartvehglmzhv": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "string",
+                    "value": "gUnbd:8"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not object"
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "vzmgsfxsc": {
+                            "type": "object",
+                            "value": {
+                                "c": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "^H"
+                                        }
+                                    ]
+                                },
+                                "wzkwgiietsyb": {
+                                    "type": "number",
+                                    "value": 119.1
+                                }
+                            }
+                        },
+                        "qgmofnigvtya": {
+                            "type": "string",
+                            "value": "6{"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.alpha.Defined=No"
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "mfncghyfhg": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "cp": {
+                            "type": "object",
+                            "value": {
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.alpha.Type=null"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "integer",
+                            "value": -49,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Additional=No"
+    }
+]

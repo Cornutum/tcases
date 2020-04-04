@@ -64,6 +64,15 @@
         <project.build.date>${maven.build.timestamp}</project.build.date>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
     
     <dependencies>
         <dependency>

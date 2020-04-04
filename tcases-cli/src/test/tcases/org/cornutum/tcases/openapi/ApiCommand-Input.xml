@@ -1,7 +1,7 @@
 <System name="ApiCommand">
     <Function name="run">
         <Input>
-            <Var name="Perspective">
+            <Var name="Perspective" whenNot="requestCases">
                 <Value name="Default"/>
                 <Value name="Client"/>
                 <Value name="Server"/>
@@ -45,12 +45,32 @@
                 <Value name="Yes"/>
                 <Value name="No"/>
             </Var>
-            <Var name="Output-Transformer" whenNot="modelInput">
+            <Var name="Output-Transformer" whenNot="modelInput,requestCases">
                 <Value name="None"/>
                 <Value name="JUnit" once="true"/>
                 <Value name="Html" once="true"/>
                 <Value name="Custom" once="true"/>
             </Var>
+            <VarSet name="Request-Cases">
+                <Var name="Selected">
+                    <Value name="Yes" property="requestCases"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Random-Seed" when="requestCases">
+                    <Value name="Defined"/>
+                    <Value name="Default"/>
+                </Var>
+                <Var name="Max-Tries" when="requestCases">
+                    <Value name="Defined"/>
+                    <Value name="Default"/>
+                </Var>
+                <Var name="Condition-Handler" when="requestCases">
+                    <Value name="Default"/>
+                    <Value name="Log"/>
+                    <Value name="Fail"/>
+                    <Value name="Ignore"/>
+                </Var>
+            </VarSet>
             <VarSet name="Api-Spec">
                 <Var name="Defined">
                     <Value name="Yes" property="apiSpec"/>

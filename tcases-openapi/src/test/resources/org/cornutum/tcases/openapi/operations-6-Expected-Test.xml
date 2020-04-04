@@ -25,7 +25,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="0"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -56,7 +58,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
+        <Var name="param1.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" value="&lt; 0"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -85,7 +89,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="&gt; 1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
+        <Var name="param1.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" value="0"/>
         <Var name="param1.Items.Unique" value="Yes"/>
       </Input>
@@ -116,7 +122,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
+        <Var name="param1.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" value="&gt; 0"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -145,7 +153,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="&gt; 1"/>
-        <Var name="param1.Items.Contains.Type" value="integer"/>
+        <Var name="param1.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" value="&lt; 0"/>
         <Var name="param1.Items.Unique" value="No"/>
       </Input>
@@ -176,7 +186,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="0"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -205,7 +217,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="0"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -234,7 +248,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="0"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -263,7 +279,9 @@
         </Var>
         <Var name="param1.Type" NA="true"/>
         <Var name="param1.Items.Size" NA="true"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -292,7 +310,9 @@
         </Var>
         <Var name="param1.Type" value="null" failure="true"/>
         <Var name="param1.Items.Size" NA="true"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -321,7 +341,9 @@
         </Var>
         <Var name="param1.Type" value="Not array" failure="true"/>
         <Var name="param1.Items.Size" NA="true"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -350,7 +372,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="param1.Items.Contains.Type" value="null" failure="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -379,7 +403,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="1"/>
-        <Var name="param1.Items.Contains.Type" value="Not integer" failure="true"/>
+        <Var name="param1.Items.Contains.Type" value="Not integer" failure="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -408,7 +434,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="0"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -439,7 +467,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="0"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>
@@ -470,7 +500,9 @@
         </Var>
         <Var name="param1.Type" value="array"/>
         <Var name="param1.Items.Size" value="0"/>
-        <Var name="param1.Items.Contains.Type" NA="true"/>
+        <Var name="param1.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param1.Items.Contains.Value.Is" NA="true"/>
         <Var name="param1.Items.Unique" NA="true"/>
       </Input>

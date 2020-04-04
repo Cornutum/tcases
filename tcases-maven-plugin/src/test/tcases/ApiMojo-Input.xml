@@ -36,19 +36,19 @@
         <Value name="Other" once="true"/>
       </Var>
 
-      <Var name="Junit" when="apiDef" whenNot="inputModels,html,xslt">
+      <Var name="Junit" when="apiDef" whenNot="inputModels,requestCases,html,xslt">
         <Value name="Default"/>
         <Value name="Yes" once="true" property="junit"/>
         <Value name="No" once="true"/>
       </Var>
 
-      <Var name="Html" when="apiDef" whenNot="inputModels,junit,xslt">
+      <Var name="Html" when="apiDef" whenNot="inputModels,requestCases,junit,xslt">
         <Value name="Default"/>
         <Value name="Yes" once="true" property="html"/>
         <Value name="No" once="true"/>
       </Var>
 
-      <VarSet name="TransformDef" when="apiDef" whenNot="inputModels,html,junit">
+      <VarSet name="TransformDef" when="apiDef" whenNot="inputModels,requestCases,html,junit">
           <Var name="Defined">
               <Value name="Yes" once="true" property="xslt"/>
               <Value name="No"/>
@@ -83,13 +83,13 @@
           </Var>
       </VarSet>
 
-      <Var name="InputModels" when="apiDef">
+      <Var name="InputModels" when="apiDef" whenNot="requestCases">
         <Value name="Default"/>
         <Value name="Yes" once="true" property="inputModels"/>
         <Value name="No" once="true"/>
       </Var>
 
-      <Var name="OnCondition" when="apiDef">
+      <Var name="OnCondition" when="apiDef" whenNot="requestCases">
         <Value name="Default"/>
         <Value name="fail" failure="true"/>
       </Var>
@@ -104,6 +104,32 @@
         <Value name="Default"/>
         <Value name="Yes" once="true"/>
         <Value name="No" once="true"/>
+      </Var>
+
+      <Var name="RequestCases" when="apiDef">
+        <Value name="Default"/>
+        <Value name="Yes" property="requestCases"/>
+        <Value name="No"/>
+      </Var>
+
+      <Var name="OnModellingCondition" when="requestCases">
+        <Value name="Default"/>
+        <Value name="fail" failure="true"/>
+      </Var>
+
+      <Var name="OnResolverCondition" when="requestCases">
+        <Value name="Default"/>
+        <Value name="fail" failure="true"/>
+      </Var>
+
+      <Var name="MaxTries" when="requestCases">
+        <Value name="Default"/>
+        <Value name="Defined"/>
+      </Var>
+
+      <Var name="Random" when="requestCases">
+        <Value name="Default"/>
+        <Value name="Defined"/>
       </Var>
 
     </Input>

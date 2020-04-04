@@ -247,8 +247,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="0"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -278,8 +282,12 @@
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
         <Var name="4XX.Content.Media-Type" value="text-plain">
@@ -313,8 +321,12 @@
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -346,8 +358,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="1"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="boolean"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" value="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="boolean">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" value="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -379,8 +395,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="&gt; 1"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="boolean"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" value="false"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="boolean">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" value="false">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" value="Yes"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -412,8 +432,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="&gt; 1"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="boolean"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" value="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="boolean">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" value="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" value="No"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -443,8 +467,12 @@
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
         <Var name="4XX.Content.Media-Type" value="text-plain">
@@ -476,8 +504,12 @@
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
         <Var name="4XX.Content.Media-Type" value="text-plain">
@@ -511,8 +543,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="0"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -544,8 +580,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="0"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -577,8 +617,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="0"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -612,8 +656,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="0"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -645,8 +693,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="0"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -678,8 +730,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="0"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -711,8 +767,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="0"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -742,8 +802,12 @@
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -775,8 +839,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -808,8 +876,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="null" failure="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -841,8 +913,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="Not array" failure="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -874,8 +950,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="1"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="null" failure="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="null" failure="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -907,8 +987,12 @@
         </Var>
         <Var name="2XX.Content.text-plain.Type" value="array"/>
         <Var name="2XX.Content.text-plain.Items.Size" value="1"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="Not boolean" failure="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" value="Not boolean" failure="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -938,8 +1022,12 @@
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" value="No" failure="true"/>
         <Var name="4XX.Content.Media-Type" NA="true"/>
@@ -969,8 +1057,12 @@
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
         <Var name="4XX.Content.Media-Type" value="Other" failure="true">
@@ -1002,8 +1094,12 @@
         <Var name="2XX.Content.Media-Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Type" NA="true"/>
         <Var name="2XX.Content.text-plain.Items.Size" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true"/>
-        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true"/>
+        <Var name="2XX.Content.text-plain.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="boolean"/>
+        </Var>
+        <Var name="2XX.Content.text-plain.Items.Contains.Value" NA="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+        </Var>
         <Var name="2XX.Content.text-plain.Items.Unique" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
         <Var name="4XX.Content.Media-Type" value="text-plain">

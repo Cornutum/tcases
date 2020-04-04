@@ -1,0 +1,742 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -286487905,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "object",
+                "value": {
+                    "ijwcjcjlymlwy": {
+                        "type": "string",
+                        "value": "{wM*8*"
+                    },
+                    "tvehglmzhvriwg": {
+                        "type": "boolean",
+                        "value": true
+                    },
+                    "flrbh": {
+                        "type": "string",
+                        "value": "t\\uM"
+                    }
+                }
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -796402340,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 1206996,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 879233385,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 762719053,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 370967595,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -996301434,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 329359047,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -380193223,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -193844762,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 847821773,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 434696929,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "object",
+                "value": {
+                }
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -790749656,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 510393855,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        }
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -679221724,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -663974986,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -364713690,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -364713690,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -434446249,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "object",
+                "value": {
+                    "ybno": {
+                        "type": "object",
+                        "value": {
+                            "gmofnigvt": {
+                                "type": "array",
+                                "value": [
+                                ]
+                            },
+                            "ljpizmfncghyfhg": {
+                                "type": "array",
+                                "value": [
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        },
+        "invalidInput": "param0.Defined=No"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        },
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 626.0
+                },
+                "valid": false
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        },
+        "invalidInput": "param0.Type=Not integer"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 481411266,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        },
+        "invalidInput": "param1.Defined=No"
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 884681505,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        },
+        "invalidInput": "param1.Type=null"
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 563943148,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -933,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        },
+        "invalidInput": "param1.Type=Not array"
+    },
+    {
+        "id": 11,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 451020651,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "null",
+                            "value": null
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        },
+        "invalidInput": "param1.Items.Contains.Type=null"
+    },
+    {
+        "id": 12,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 89805398,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "J"
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        },
+        "invalidInput": "param1.Items.Contains.Type=Not integer"
+    },
+    {
+        "id": 13,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 907873936,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "text/plain",
+            "data": {
+                "type": "string",
+                "value": "9nXt"
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.Media-Type=Other"
+    },
+    {
+        "id": 14,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 673985180,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "null",
+                "value": null
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Type=null"
+    },
+    {
+        "id": 15,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/operations/${param1}/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 901196457,
+                    "format": "int32"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "boolean",
+                "value": true
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Type=Not object"
+    }
+]

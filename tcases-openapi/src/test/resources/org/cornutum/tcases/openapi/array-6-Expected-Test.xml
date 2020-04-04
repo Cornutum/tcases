@@ -20,7 +20,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="1"/>
-        <Var name="param0.Items.Contains.Type" value="number"/>
+        <Var name="param0.Items.Contains.Type" value="number">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" value="&lt; 0"/>
       </Input>
     </TestCase>
@@ -36,7 +38,9 @@
         </Var>
         <Var name="param0.Type" NA="true"/>
         <Var name="param0.Items.Size" NA="true"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -53,7 +57,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="0"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -70,7 +76,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="1"/>
-        <Var name="param0.Items.Contains.Type" value="number"/>
+        <Var name="param0.Items.Contains.Type" value="number">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" value="0"/>
       </Input>
     </TestCase>
@@ -87,7 +95,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="1"/>
-        <Var name="param0.Items.Contains.Type" value="number"/>
+        <Var name="param0.Items.Contains.Type" value="number">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" value="&gt; 0"/>
       </Input>
     </TestCase>
@@ -104,7 +114,9 @@
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
         <Var name="param0.Items.Size" NA="true"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -121,7 +133,9 @@
         </Var>
         <Var name="param0.Type" value="Not array" failure="true"/>
         <Var name="param0.Items.Size" NA="true"/>
-        <Var name="param0.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -138,7 +152,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="2" failure="true"/>
-        <Var name="param0.Items.Contains.Type" value="number"/>
+        <Var name="param0.Items.Contains.Type" value="number">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" value="&lt; 0"/>
       </Input>
     </TestCase>
@@ -155,7 +171,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="1"/>
-        <Var name="param0.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="param0.Items.Contains.Type" value="null" failure="true">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" NA="true"/>
       </Input>
     </TestCase>
@@ -172,7 +190,9 @@
         </Var>
         <Var name="param0.Type" value="array"/>
         <Var name="param0.Items.Size" value="1"/>
-        <Var name="param0.Items.Contains.Type" value="Not number" failure="true"/>
+        <Var name="param0.Items.Contains.Type" value="Not number" failure="true">
+          <Has name="itemType" value="number"/>
+        </Var>
         <Var name="param0.Items.Contains.Value.Is" NA="true"/>
       </Input>
     </TestCase>

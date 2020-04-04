@@ -1,0 +1,170 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 0.0
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -0.1
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "null",
+                "value": null
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 100.0
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -4273563035268397094.6
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "data": null,
+            "valid": false
+        },
+        "invalidInput": "Body.Defined=No"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "text/xml",
+            "data": {
+                "type": "boolean",
+                "value": true
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.Media-Type=Other"
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "hlf~$]%`"
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.0.Type=Not number"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -0.1
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.0.Value.Is=-0.1"
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 100.1
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.0.Value.Is=100.1"
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/anyOf",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 0.0
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Alternative.1.Value.Is=0.0"
+    }
+]

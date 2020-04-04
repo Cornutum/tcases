@@ -1,0 +1,26 @@
+<System name="ValueDomain">
+    <Function name="ObjectDomain">
+        <Input>
+            <Var name="Properties">
+                <Value name="None" when="additional"/>
+                <Value name="One" property="properties"/>
+                <Value name="Many" property="properties"/>
+            </Var>
+            <VarSet name="Additional-Properties">
+                <Var name="Count">
+                    <Value name="None" when="properties"/>
+                    <Value name="One" property="additional"/>
+                    <Value name="Many" property="additional"/>
+                </Var>
+                <Var name="Name-Domain" when="additional">
+                    <Value name="Default"/>
+                    <Value name="Other"/>
+                </Var>
+                <Var name="Value-Domain" when="additional">
+                    <Value name="Default"/>
+                    <Value name="Other"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

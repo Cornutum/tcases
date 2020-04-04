@@ -18,6 +18,7 @@
       <outputDirectory>docs</outputDirectory>
       <includes>
           <include>org.cornutum.tcases:tcases-io</include>
+          <include>org.cornutum.tcases:tcases-openapi</include>
       </includes>
       <unpack>true</unpack>
       <unpackOptions>

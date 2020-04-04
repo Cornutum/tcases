@@ -30,7 +30,7 @@ public class CombineGenericSchemaTest extends OpenApiTest
       .notTypes( "object", "string")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     // Then...
     assertThat( "With empty", copySchema( base), matches( new SchemaMatcher( base)));
@@ -63,7 +63,7 @@ public class CombineGenericSchemaTest extends OpenApiTest
       .notTypes( "object", "string")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
 
     Schema<?> additional =
       SchemaBuilder.ofType( "number")
@@ -97,7 +97,7 @@ public class CombineGenericSchemaTest extends OpenApiTest
       SchemaBuilder.ofType( "string")
       .build();
 
-    NotificationContext context = new NotificationContext();
+    OpenApiContext context = new OpenApiContext();
     
     expectFailure( IllegalStateException.class)
       .when( () -> combineSchemas( context, base, additional))

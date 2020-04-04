@@ -39,14 +39,14 @@ import static java.util.stream.Collectors.toSet;
 /**
  * Analyzes the input space defined by an OpenAPI schema.
  */
-public class SchemaAnalyzer extends ModelConditionReporter
+public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
   {
   /**
    * Creates a new SchemaAnalyzer instance.
    */
-  public SchemaAnalyzer( NotificationContext context)
+  public SchemaAnalyzer( OpenApiContext context)
     {
-    setContext( context);
+    super( context);
     }
 
   /**

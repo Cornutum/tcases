@@ -33,6 +33,7 @@
               </Var>
               <VarSet name="Contains">
                 <Var name="Type">
+                  <Has name="itemType" value="Not number"/>
                   <Value name="Not number" property="param0ItemsValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="number" failure="true"/>
@@ -55,11 +56,13 @@
               </Var>
               <VarSet name="Contains">
                 <Var name="Type">
+                  <Has name="itemType" value="number"/>
                   <Value name="number" property="param0ItemsValue"/>
                   <Value name="Not number" failure="true"/>
                 </Var>
                 <VarSet name="Value" when="param0ItemsValue">
                   <Var name="Is">
+                    <Has name="itemMin" value="11"/>
                     <Value name="10" failure="true"/>
                     <Value name="11"/>
                     <Value name="&gt; 11"/>
@@ -83,10 +86,12 @@
               </Var>
               <VarSet name="Contains">
                 <Var name="Type">
+                  <Has name="itemType" value="number"/>
                   <Value name="number" property="param0ItemsValue"/>
                 </Var>
                 <VarSet name="Value" when="param0ItemsValue">
                   <Var name="Is">
+                    <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
                     <Value name="&lt; 0" property="param0ItemsUnbounded"/>
                     <Value name="0"/>
                     <Value name="&gt; 0" property="param0ItemsUnbounded"/>

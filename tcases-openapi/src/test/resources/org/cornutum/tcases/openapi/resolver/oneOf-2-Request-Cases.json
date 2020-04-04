@@ -1,0 +1,184 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 101
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 338122983158990909.5
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -1
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -3910846594820435582.8
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Type=null"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Type=Not number"
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 100
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Is=100"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 0
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Is=0"
+    }
+]

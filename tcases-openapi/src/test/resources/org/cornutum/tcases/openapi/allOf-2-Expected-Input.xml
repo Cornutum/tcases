@@ -69,6 +69,7 @@
                     </Not>
                   </When>
                   <Var name="Type">
+                    <Has name="itemType" value="integer"/>
                     <Value name="integer" property="param0CharlieItemsValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not integer" failure="true"/>

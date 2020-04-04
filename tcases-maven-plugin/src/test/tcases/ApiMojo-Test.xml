@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<TestCases system="ApiMojo">
+  <Function name="execute">
+    <TestCase id="0">
+      <Has name="properties" value="apiDefs,inputPatterns"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="Many"/>
+        <Var name="ApiDefPatterns.Defined-By" value="apiDefs"/>
+        <Var name="ApiDefPatterns.Matched" value="None"/>
+        <Var name="ContentType" NA="true"/>
+        <Var name="InputDir" value="Other"/>
+        <Var name="OutDir" NA="true"/>
+        <Var name="Junit" NA="true"/>
+        <Var name="Html" NA="true"/>
+        <Var name="TransformDef.Defined" NA="true"/>
+        <Var name="TransformDef.Path" NA="true"/>
+        <Var name="TransformDef.Params" NA="true"/>
+        <Var name="TransformParams" NA="true"/>
+        <Var name="TransformOutFile.Defined" NA="true"/>
+        <Var name="TransformOutFile.Params" NA="true"/>
+        <Var name="TransformOutFile.Java" NA="true"/>
+        <Var name="InputModels" NA="true"/>
+        <Var name="OnCondition" NA="true"/>
+        <Var name="ReadOnlyEnforced" NA="true"/>
+        <Var name="WriteOnlyEnforced" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="properties" value="apiDef,inputPatterns,xslt"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="One"/>
+        <Var name="ApiDefPatterns.Defined-By" value="apiDef"/>
+        <Var name="ApiDefPatterns.Matched" value="Many"/>
+        <Var name="ContentType" value="yaml"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Other"/>
+        <Var name="Junit" NA="true"/>
+        <Var name="Html" NA="true"/>
+        <Var name="TransformDef.Defined" value="Yes"/>
+        <Var name="TransformDef.Path" value="Relative"/>
+        <Var name="TransformDef.Params" value="Yes"/>
+        <Var name="TransformParams" value="No"/>
+        <Var name="TransformOutFile.Defined" value="No"/>
+        <Var name="TransformOutFile.Params" NA="true"/>
+        <Var name="TransformOutFile.Java" NA="true"/>
+        <Var name="InputModels" value="Default"/>
+        <Var name="OnCondition" value="Default"/>
+        <Var name="ReadOnlyEnforced" value="No"/>
+        <Var name="WriteOnlyEnforced" value="Default"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2">
+      <Has name="properties" value="apiDef,html"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="None"/>
+        <Var name="ApiDefPatterns.Defined-By" NA="true"/>
+        <Var name="ApiDefPatterns.Matched" value="One"/>
+        <Var name="ContentType" NA="true"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Default"/>
+        <Var name="Junit" NA="true"/>
+        <Var name="Html" value="Yes"/>
+        <Var name="TransformDef.Defined" NA="true"/>
+        <Var name="TransformDef.Path" NA="true"/>
+        <Var name="TransformDef.Params" NA="true"/>
+        <Var name="TransformParams" NA="true"/>
+        <Var name="TransformOutFile.Defined" NA="true"/>
+        <Var name="TransformOutFile.Params" NA="true"/>
+        <Var name="TransformOutFile.Java" NA="true"/>
+        <Var name="InputModels" value="No"/>
+        <Var name="OnCondition" value="Default"/>
+        <Var name="ReadOnlyEnforced" value="Yes"/>
+        <Var name="WriteOnlyEnforced" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3">
+      <Has name="properties" value="apiDef,apiDefs,inputPatterns,transformOutFile,xslt"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="Many"/>
+        <Var name="ApiDefPatterns.Defined-By" value="apiDefs"/>
+        <Var name="ApiDefPatterns.Matched" value="Many"/>
+        <Var name="ContentType" value="Default"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Default"/>
+        <Var name="Junit" NA="true"/>
+        <Var name="Html" NA="true"/>
+        <Var name="TransformDef.Defined" value="Yes"/>
+        <Var name="TransformDef.Path" value="Absolute"/>
+        <Var name="TransformDef.Params" value="No"/>
+        <Var name="TransformParams" value="Yes"/>
+        <Var name="TransformOutFile.Defined" value="Yes"/>
+        <Var name="TransformOutFile.Params" value="No"/>
+        <Var name="TransformOutFile.Java" value="Yes"/>
+        <Var name="InputModels" value="Default"/>
+        <Var name="OnCondition" value="Default"/>
+        <Var name="ReadOnlyEnforced" value="Default"/>
+        <Var name="WriteOnlyEnforced" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4">
+      <Has name="properties" value="apiDef,inputPatterns"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="One"/>
+        <Var name="ApiDefPatterns.Defined-By" value="project"/>
+        <Var name="ApiDefPatterns.Matched" value="One"/>
+        <Var name="ContentType" value="Default"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Default"/>
+        <Var name="Junit" value="Default"/>
+        <Var name="Html" value="No"/>
+        <Var name="TransformDef.Defined" value="No"/>
+        <Var name="TransformDef.Path" NA="true"/>
+        <Var name="TransformDef.Params" NA="true"/>
+        <Var name="TransformParams" NA="true"/>
+        <Var name="TransformOutFile.Defined" NA="true"/>
+        <Var name="TransformOutFile.Params" NA="true"/>
+        <Var name="TransformOutFile.Java" NA="true"/>
+        <Var name="InputModels" value="Default"/>
+        <Var name="OnCondition" value="Default"/>
+        <Var name="ReadOnlyEnforced" value="Default"/>
+        <Var name="WriteOnlyEnforced" value="Default"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5">
+      <Has name="properties" value="apiDef"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="None"/>
+        <Var name="ApiDefPatterns.Defined-By" NA="true"/>
+        <Var name="ApiDefPatterns.Matched" value="Many"/>
+        <Var name="ContentType" NA="true"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Default"/>
+        <Var name="Junit" value="No"/>
+        <Var name="Html" value="Default"/>
+        <Var name="TransformDef.Defined" value="No"/>
+        <Var name="TransformDef.Path" NA="true"/>
+        <Var name="TransformDef.Params" NA="true"/>
+        <Var name="TransformParams" NA="true"/>
+        <Var name="TransformOutFile.Defined" NA="true"/>
+        <Var name="TransformOutFile.Params" NA="true"/>
+        <Var name="TransformOutFile.Java" NA="true"/>
+        <Var name="InputModels" value="Default"/>
+        <Var name="OnCondition" value="Default"/>
+        <Var name="ReadOnlyEnforced" value="Default"/>
+        <Var name="WriteOnlyEnforced" value="Default"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6">
+      <Has name="properties" value="apiDef,apiDefs,inputModels,inputPatterns"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="Many"/>
+        <Var name="ApiDefPatterns.Defined-By" value="apiDefs"/>
+        <Var name="ApiDefPatterns.Matched" value="One"/>
+        <Var name="ContentType" value="Default"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Default"/>
+        <Var name="Junit" NA="true"/>
+        <Var name="Html" NA="true"/>
+        <Var name="TransformDef.Defined" NA="true"/>
+        <Var name="TransformDef.Path" NA="true"/>
+        <Var name="TransformDef.Params" NA="true"/>
+        <Var name="TransformParams" NA="true"/>
+        <Var name="TransformOutFile.Defined" NA="true"/>
+        <Var name="TransformOutFile.Params" NA="true"/>
+        <Var name="TransformOutFile.Java" NA="true"/>
+        <Var name="InputModels" value="Yes"/>
+        <Var name="OnCondition" value="Default"/>
+        <Var name="ReadOnlyEnforced" value="Default"/>
+        <Var name="WriteOnlyEnforced" value="Default"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7">
+      <Has name="properties" value="apiDef,inputPatterns,junit"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="One"/>
+        <Var name="ApiDefPatterns.Defined-By" value="apiDef"/>
+        <Var name="ApiDefPatterns.Matched" value="Many"/>
+        <Var name="ContentType" value="Default"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Default"/>
+        <Var name="Junit" value="Yes"/>
+        <Var name="Html" NA="true"/>
+        <Var name="TransformDef.Defined" NA="true"/>
+        <Var name="TransformDef.Path" NA="true"/>
+        <Var name="TransformDef.Params" NA="true"/>
+        <Var name="TransformParams" NA="true"/>
+        <Var name="TransformOutFile.Defined" NA="true"/>
+        <Var name="TransformOutFile.Params" NA="true"/>
+        <Var name="TransformOutFile.Java" NA="true"/>
+        <Var name="InputModels" value="Default"/>
+        <Var name="OnCondition" value="Default"/>
+        <Var name="ReadOnlyEnforced" value="Default"/>
+        <Var name="WriteOnlyEnforced" value="Default"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8">
+      <Has name="properties" value="apiDef,transformOutFile,xslt"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="None"/>
+        <Var name="ApiDefPatterns.Defined-By" NA="true"/>
+        <Var name="ApiDefPatterns.Matched" value="One"/>
+        <Var name="ContentType" NA="true"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Default"/>
+        <Var name="Junit" NA="true"/>
+        <Var name="Html" NA="true"/>
+        <Var name="TransformDef.Defined" value="Yes"/>
+        <Var name="TransformDef.Path" value="Relative"/>
+        <Var name="TransformDef.Params" value="Yes"/>
+        <Var name="TransformParams" value="No"/>
+        <Var name="TransformOutFile.Defined" value="Yes"/>
+        <Var name="TransformOutFile.Params" value="Yes"/>
+        <Var name="TransformOutFile.Java" value="No"/>
+        <Var name="InputModels" value="Default"/>
+        <Var name="OnCondition" value="Default"/>
+        <Var name="ReadOnlyEnforced" value="Default"/>
+        <Var name="WriteOnlyEnforced" value="Default"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="properties" value="apiDef,apiDefs,inputPatterns"/>
+      <Input type="arg">
+        <Var name="ApiDefPatterns.Count" value="Many"/>
+        <Var name="ApiDefPatterns.Defined-By" value="apiDefs"/>
+        <Var name="ApiDefPatterns.Matched" value="Many"/>
+        <Var name="ContentType" value="Default"/>
+        <Var name="InputDir" value="Default"/>
+        <Var name="OutDir" value="Default"/>
+        <Var name="Junit" value="Default"/>
+        <Var name="Html" value="Default"/>
+        <Var name="TransformDef.Defined" value="No"/>
+        <Var name="TransformDef.Path" NA="true"/>
+        <Var name="TransformDef.Params" NA="true"/>
+        <Var name="TransformParams" NA="true"/>
+        <Var name="TransformOutFile.Defined" NA="true"/>
+        <Var name="TransformOutFile.Params" NA="true"/>
+        <Var name="TransformOutFile.Java" NA="true"/>
+        <Var name="InputModels" value="Default"/>
+        <Var name="OnCondition" value="fail" failure="true"/>
+        <Var name="ReadOnlyEnforced" value="Default"/>
+        <Var name="WriteOnlyEnforced" value="Default"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

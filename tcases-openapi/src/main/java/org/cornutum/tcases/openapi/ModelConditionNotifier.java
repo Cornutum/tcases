@@ -7,32 +7,14 @@
 
 package org.cornutum.tcases.openapi;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Reports conditions found when creating a Tcases model from an OpenAPI model.
  */
-public interface ModelConditionNotifier
+public interface ModelConditionNotifier extends Notifier
   {
-  /**
-   * Reports a condition in the OpenAPI model that will affect the expected Tcases model.
-   *
-   * @param location The path to the location of the condition in the OpenAPI model
-   * @param reason  A description of the condition
-   */
-  void warn( String[] location, String reason);
-
-  /**
-   * Reports an error in the OpenAPI model that would have resulted in an inconsistent or infeasible Tcases model.
-   *
-   * @param location The path to the location of the error in the OpenAPI model
-   * @param reason  A description of the problem
-   * @param resolution  A description of how the problem was resolved
-   */
-  void error( String[] location, String reason, String resolution);
-
   /**
    * Returns a {@link ModelConditionNotifier} that ignores all conditions.
    */
@@ -103,18 +85,5 @@ public interface ModelConditionNotifier
           return "FAIL";
           }   
         };
-    }
-
-  /**
-   * Returns a message for the given condition arguments.
-   */
-  default String messageFor( String[] location, String reason, String resolution)
-    {
-    return
-      String.format(
-        "%s: %s.%s",
-        StringUtils.join( location, ","),
-        reason,
-        StringUtils.isBlank( resolution)? "" : String.format( " %s.", resolution));
     }
   }

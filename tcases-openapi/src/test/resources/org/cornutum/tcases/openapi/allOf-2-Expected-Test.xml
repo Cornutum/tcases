@@ -26,7 +26,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -54,7 +56,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
@@ -83,7 +87,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="&lt; 0"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -112,7 +118,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="&gt; 1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" value="Yes"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -141,7 +149,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -170,7 +180,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="&gt; 0"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -199,7 +211,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="&gt; 1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="&lt; 0"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" value="No"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -228,7 +242,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
@@ -257,7 +273,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
@@ -286,7 +304,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="No"/>
         <Var name="param0.Value.Properties.charlie.Type" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -315,7 +335,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -344,7 +366,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -373,7 +397,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -402,7 +428,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="Not array" failure="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" NA="true"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -431,7 +459,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="null" failure="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="null" failure="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -460,7 +490,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="1"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="Not integer" failure="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="Not integer" failure="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -489,7 +521,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="No" failure="true"/>
@@ -518,7 +552,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -547,7 +583,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
@@ -576,7 +614,9 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes"/>
         <Var name="param0.Value.Properties.charlie.Type" value="array"/>
         <Var name="param0.Value.Properties.charlie.Items.Size" value="0"/>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true"/>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+        </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true"/>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true"/>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>

@@ -49,6 +49,7 @@
               </Not>
             </When>
             <Var name="Type">
+              <Has name="itemType" value="integer"/>
               <Value name="integer" property="param1ItemsValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not integer" failure="true"/>
