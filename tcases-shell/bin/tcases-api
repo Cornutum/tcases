@@ -9,12 +9,15 @@ pgm=`basename $0`
 
 usage()
 {
-  echo Usage: $pgm "[-v] [-C | -S] [-I] [-R] [-W] [-x xsltDef | -J | -H] [-p name=value] [-c notifier] [-f outFile] [-o outDir] [apiSpec]" >&2
+  echo Usage: $pgm "[option...] [apiSpec]" >&2
   echo "" >&2
-  echo "  -C, -S      If -C is given, produce results to test inputs to an API client, i.e. API responses. If -S is given," >&2
-  echo "              produce results to test inputs to an API server, i.e. API requests. If neither is given, the default is -S." >&2
+  echo "where each 'option' is one of the following:" >&2
   echo "" >&2
-  echo "  -I          Produce an input definition file for either an API client (-C) or an API server (-P). If omitted," >&2
+  echo "  -C, -S, -D  If -C is given, produce results to test inputs to an API client, i.e. API responses. If -S is given," >&2
+  echo "              produce results to test inputs to an API server, i.e. API requests. If -D is given, produce request" >&2
+  echo "              test cases for an API server, i.e. API request tests. If none of these is given, the default is -S." >&2
+  echo "" >&2
+  echo "  -I          Produce an input definition file for either an API client (-C) or an API server (-S). If omitted," >&2
   echo "              produce the corresponding test definition file." >&2
   echo "" >&2
   echo "  -R          If specified, tests will be generated assuming that the API will strictly enforce exclusion of 'readOnly'" >&2
@@ -23,9 +26,11 @@ usage()
   echo "  -W          If specified, tests will be generated assuming that the API will strictly enforce exclusion of 'writeOnly'" >&2
   echo "              properties from responses. If omitted, no strict enforcement is assumed." >&2
   echo "" >&2
-  echo "  -c notifier Defines how input modelling conditions are reported. If notifier is 'log', conditions are reported using" >&2
-  echo "              log messages. If notifier is 'fail', any condition will cause an exception. If notifier is 'ignore', all" >&2
-  echo "              conditions are silently ignored. If omitted, the default is 'log'." >&2
+  echo "  -c M[R]     Defines how input modelling and request case resolution conditions are reported. Both M (for modelling conditions)" >&2
+  echo "              and R (for resolution conditions) must be one of 'log', 'fail', or 'ignore'. If 'log' is specified, conditions are" >&2
+  echo "              reported using log messages. If 'fail' is specified, any condition will cause an exception. If 'ignore' is specified," >&2
+  echo "              all conditions are silently ignored. If R is omitted, the default is 'log'. If <I>-c</I> is omitted, the default is" >&2
+  echo "              'log,log'." >&2
   echo "" >&2
   echo "  -f outFile  If -f is defined, output is written to the specified outFile, relative to the given outDir." >&2
   echo "              If omitted, the default outFile is derived from the apiSpec." >&2
@@ -48,6 +53,17 @@ usage()
   echo "  -p name=value  Defines the value of a transform parameter. Any number of -p options" >&2
   echo "              may be specified. This option is meaningful only if the -x or -J option is given." >&2
   echo "" >&2
+  echo "  -r seed     When -D is specified, use the given random number seed to generate request test case" >&2
+  echo "              input values. If omitted, the default random number seed is derived from the 'apiSpec' name." >&2
+  echo "" >&2
+  echo "  -m maxTries When -D is specified, defines the maximum attempts made to resolve a request test case input" >&2
+  echo "              value before reporting failure. If omitted, the default value is 10000." >&2
+  echo "" >&2
+  echo "  -T docType  Defines the content type of the OpenApi specification. The 'docType' must be one of 'json', 'yaml'," >&2
+  echo "              or 'yml'. If omitted, the default content type is derived from the 'apiSpec' name. " >&2
+  echo "              If the 'apiSpec' is read from standard input or does not have a recognized extension, the default" >&2
+  echo "              content type is 'json'." >&2
+  echo "" >&2
   echo "  -v          Prints the current command version identifier to standard output." >&2
   echo "" >&2
   echo "  apiSpec     An OpenApi v3 API spec is read from the given apiSpec file. If omitted, the API spec is read from" >&2
@@ -57,7 +73,8 @@ usage()
   echo "              Suppose that the base name of apiSpec (less any extension) is B. Then, assuming defaults for all" >&2
   echo "              options, output will be a test definition for API requests written to a file named 'B-Requests-Test.json'." >&2
   echo "              If -C is specified, output will be a test definition for API responses written to a file named" >&2 
-  echo "              'B-Responses-Test.json'. If -I is specified, output will be the corresponding input definition, written" >&2
+  echo "              'B-Responses-Test.json'. If -D is specified, output will be a list of request test cases written to a file" >&2
+  echo "              named 'B-Request-Cases.json'. If -I is specified, output will be the corresponding input definition, written" >&2
   echo "              to either 'B-Requests-Input.json' or 'B-Responses-Input.json', respectively." >&2
 }
 
@@ -65,6 +82,7 @@ while [ $# -gt 0 ] ; do
   case $1 in
     -C) isClient="$1";;
     -S) isServer="$1";;
+    -D) isRequestCases="$1";;
     -I) isInput="$1";;
     -R) enforceRO="$1";;
     -W) enforceWO="$1";;
@@ -77,6 +95,9 @@ while [ $# -gt 0 ] ; do
     -J) isJUnit="$1";;
     -x) shift; xsltDef="$1";;
     -p) shift; params="$params -p $1";;
+    -r) shift; random="$1";;
+    -m) shift; maxTries="$1";;
+    -T) shift; contentType="$1";;
     -v) showVersion="$1";;
     -*) usage; exit 1;;
      *) break;;
@@ -128,6 +149,7 @@ java \
   $showVersion \
   $isClient \
   $isServer \
+  $isRequestCases \
   $isInput \
   $enforceRO \
   $enforceWO \
@@ -138,5 +160,8 @@ java \
   $isHtml \
   ${xsltDef:+-x "$xsltDef"} \
   ${params} \
+  ${random:+-r "$random"} \
+  ${maxTries:+-m "$maxTries"} \
+  ${contentType:+-T "$contentType"} \
   ${apiSpec:+"$apiSpec"}
 

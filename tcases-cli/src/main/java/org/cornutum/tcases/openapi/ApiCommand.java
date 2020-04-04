@@ -73,7 +73,7 @@ public class ApiCommand
    * If <I>-C</I> is given, produce test models for an API client, i.e. API response tests.
    * If <I>-S</I> is given, produce test models for an API server, i.e. API request tests.
    * If <I>-D</I> is given, produce request test cases for an API server, i.e. API request tests.
-   * If neither is given, the default is <I>-S</I>.
+   * If none of these is given, the default is <I>-S</I>.
    * </TD>
    * </TR>
    *
@@ -99,11 +99,12 @@ public class ApiCommand
    * <NOBR>-c M[,R] </NOBR>
    * </TD>
    * <TD>
-   * Defines how input modelling and request case resolution conditions are reported. Both <CODE>M</CODE> (for modelling condtions) and <CODE>R</CODE> (for
+   * Defines how input modelling and request case resolution conditions are reported. Both <CODE>M</CODE> (for modelling conditions) and <CODE>R</CODE> (for
    * resolution conditions) must be one of <CODE>log</CODE>, <CODE>fail</CODE>, or <CODE>ignore</CODE>.
    * If <CODE>log</CODE> is specified, conditions are reported using log messages.
    * If <CODE>fail</CODE> is specified, any condition will cause an exception. If <CODE>ignore</CODE> is specified, all conditions
    * are silently ignored. If <CODE>R</CODE> is omitted, the default is <CODE>log</CODE>. If <I>-c</I> is omitted, the default is <CODE>log,log</CODE>.
+
    * </TD>
    * </TR>
    *
@@ -250,8 +251,8 @@ public class ApiCommand
    * </TD>
    * <TD>
    * Defines the content type of the OpenApi specification. The <I>contentType</I> must be one of "json", "yaml", or "yml".
-   * The default content type is assumed for any file that is not specified explicitly or that does not have a recognized extension.
-   * If omitted, the default content type is derived from the <I>apiSpec</I> name.
+   * If omitted, the default content type is derived from the <I>apiSpec</I> name. If the <I>apiSpec</I> is read from standard
+   * input or does not have a recognized extension, the default content type is "json".
    * </TD>
    * </TR>
    *
