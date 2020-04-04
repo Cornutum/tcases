@@ -4,6 +4,7 @@
 
   - [Using OpenAPI to model your API? ](#using-openapi-to-model-your-api)
   - [Then use Tcases to generate your API test cases ](#then-use-tcases-to-generate-your-api-test-cases)
+  - [How do you run generated API test cases?](#how-do-you-run-generated-api-test-cases)
   - [Why Tcases for OpenAPI? ](#why-tcases-for-openapi)
   - [Is your OpenAPI spec an input model? No, it's two! ](#is-your-openapi-spec-an-input-model-no-its-two)
   - [Running Tcases for OpenAPI from the command line ](#running-tcases-for-openapi-from-the-command-line)
@@ -156,6 +157,20 @@ JSON Guide*](http://www.cornutum.org/tcases/docs/Tcases-Json.htm#testCases).
 }
 ```
 
+## How do you run generated API test cases? ##
+
+Ideally, Tcases for OpenAPI would produce a test program that you could immediately run. Ideally, this test program would
+execute all API requests against an actual API server, applying a comprehensive set of request input data and automatically verifying
+the expected responses. Bam! Job done!
+
+Unfortunately, that is not possible -- you have to construct at least some of this test program yourself.
+But fortunately, Tcases for OpenAPI provides options to automate some of the process. For details, see
+[*Running API Test Cases*](Running-Api-Test-Cases.md).
+
+Although it's still up to you complete this test program, Tcases for OpenAPI gives you a lot to work with. Think of it as detailed
+guidance on how to use a fairly small number of test cases to gain [high confidence in your API](#want-high-confidence-in-your-api).
+
+
 ## Why Tcases for OpenAPI? ##
 
 ### Want high confidence in your API? ##
@@ -292,7 +307,7 @@ mvn tcases:api -Dproject=my-api
 # OpenAPI spec found in ${basedir}/src/test/tcases/openapi. Report a failure if
 # any input modelling condition is found.
 
-mvn tcases:api -Dhtml=true -DonCondition=fail
+mvn tcases:api -Dhtml=true -DonModellingCondition=fail
 ```
 
 
@@ -399,20 +414,8 @@ To use Tcases for OpenAPI effectively, there are some things to keep in mind whe
 
      * But don't mix schema keyword types. Tcases for OpenAPI does not accept schema definitions that imply multiple types.  For example, a `minLength` keyword,
        which implies `type: "string"`, together with an `items` keyword, which implies `type: "array"`, is not accepted. Although mixed-type schemas are allowed in OpenAPI,
-       they imply a very large and complex input space. (Probably much more than was actually intended!). Fortunately, it's easy to avoid them. In cases where
+       they imply a very large and complex input space. (Probably much more than was actually intended!) Fortunately, it's easy to avoid them. In cases where
        different types of values are actually expected, you can define this explicitly using the `oneOf` keyword.
-
-  1. **`not` must narrow.** This rule is your key to understanding how Tcases for OpenAPI handles `not` schemas: a `not` schema must "narrow" (i.e. reduce) the set of
-     instances that can be validated by the parent schema. When the parent schema validates only instances of a single type, its `not` schema must also apply only to
-     instances of the same type. If a `not` schema has a `type` (explicit or implied) that is different from its parent schema `type` (explicit or implied), it is
-     superfluous -- it can never narrow the set of valid instances -- so Tcases for OpenAPI will ignore it (with a [warning](#semantic-linting-with-tcases-for-openapi)).
-
-     Some other tips for using `not` schemas with Tcases for OpenAPI:
-
-     * No double negatives! A `not` schema that contains another `not` assertion is not supported and is ignored (with an [error](#semantic-linting-with-tcases-for-openapi)).
-
-     * `allOf` assertions in a `not` schema are not supported and are ignored (with an [error](#semantic-linting-with-tcases-for-openapi)). If necessary, you can get an equivalent result
-        with an `anyOf` assertion containing a list of `not` schemas.
 
 ## Test case generation tips ##
 
