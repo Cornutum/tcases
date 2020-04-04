@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver.io;
 
-import org.cornutum.tcases.openapi.resolver.RequestCase;
+import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.cornutum.tcases.util.MapBuilder;
 
 import org.apache.commons.io.IOUtils;
@@ -23,31 +23,31 @@ import javax.json.JsonWriterFactory;
 import static javax.json.stream.JsonGenerator.PRETTY_PRINTING;
 
 /**
- * Writes a set of {@link RequestCase} objects in the form of a JSON document.
+ * Writes a  {@link RequestTestDef} object in the form of a JSON document.
  *
  */
-public class RequestCaseWriter implements Closeable
+public class RequestTestDefWriter implements Closeable
   {
   /**
-   * Creates a new RequestCaseWriter object that writes to standard output.
+   * Creates a new RequestTestDefWriter object that writes to standard output.
    */
-  public RequestCaseWriter()
+  public RequestTestDefWriter()
     {
     this( (Writer) null);
     }
   
   /**
-   * Creates a new RequestCaseWriter object that writes to the given stream.
+   * Creates a new RequestTestDefWriter object that writes to the given stream.
    */
-  public RequestCaseWriter( OutputStream stream)
+  public RequestTestDefWriter( OutputStream stream)
     {
     this( writerFor( stream));
     }
   
   /**
-   * Creates a new RequestCaseWriter object that writes to the given stream.
+   * Creates a new RequestTestDefWriter object that writes to the given stream.
    */
-  public RequestCaseWriter( Writer writer)
+  public RequestTestDefWriter( Writer writer)
     {
     setWriter( writer);
     }
@@ -55,12 +55,12 @@ public class RequestCaseWriter implements Closeable
   /**
    * Writes the given request cases in the form of a JSON document.
    */
-  public void write( Iterable<RequestCase> requestCases)
+  public void write( RequestTestDef requestTestDef)
     {
     JsonWriterFactory writerFactory = Json.createWriterFactory( MapBuilder.of( PRETTY_PRINTING, true).build());
     JsonWriter jsonWriter = writerFactory.createWriter( getWriter());
 
-    jsonWriter.write( RequestCaseJson.toJson( requestCases));
+    jsonWriter.write( RequestCaseJson.toJson( requestTestDef));
     }
 
   /**

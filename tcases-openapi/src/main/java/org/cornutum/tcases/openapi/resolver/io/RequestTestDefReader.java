@@ -7,8 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver.io;
 
-import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestCaseException;
+import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.apache.commons.io.IOUtils;
 import org.leadpony.justify.api.JsonSchema;
 import org.leadpony.justify.api.JsonValidationService;
@@ -16,36 +16,35 @@ import org.leadpony.justify.api.ProblemHandler;
 
 import java.io.Closeable;
 import java.io.InputStream;
-import java.util.List;
 import javax.json.JsonArray;
 import javax.json.JsonReader;
 
 /**
- * Reads {@link RequestCase} objects from an JSON document.
+ * Reads a {@link RequestTestDef} object from an JSON document.
  *
  */
-public class RequestCaseReader implements Closeable
+public class RequestTestDefReader implements Closeable
   {  
   /**
-   * Creates a new RequestCaseReader object.
+   * Creates a new RequestTestDefReader object.
    */
-  public RequestCaseReader()
+  public RequestTestDefReader()
     {
     this( null);
     }
   
   /**
-   * Creates a new RequestCaseReader object.
+   * Creates a new RequestTestDefReader object.
    */
-  public RequestCaseReader( InputStream stream)
+  public RequestTestDefReader( InputStream stream)
     {
     setInputStream( stream);
     }
 
   /**
-   * Returns a stream of {@link RequestCase} instances.
+   * Returns a {@link RequestTestDef} instance.
    */
-  public List<RequestCase> getRequestCases()
+  public RequestTestDef getRequestTestDef()
     {
     JsonValidationService service = JsonValidationService.newInstance();
     JsonSchema schema = service.readSchema( getClass().getResourceAsStream( "/schema/request-cases-schema.json"));
@@ -62,7 +61,7 @@ public class RequestCaseReader implements Closeable
         throw new RequestCaseException( "Invalid request case definition", e);
         }
 
-      return RequestCaseJson.asRequestCases( json);
+      return new RequestTestDef( RequestCaseJson.asRequestCases( json));
       }
     }
 

@@ -43,10 +43,10 @@ public final class RequestCaseJson
   /**
    * Returns the JSON array that represents the given request cases.
    */
-  public static JsonArray toJson( Iterable<RequestCase> requestCases)
+  public static JsonArray toJson( RequestTestDef requestTestDef)
     {
     JsonArrayBuilder builder = Json.createArrayBuilder();
-    for( RequestCase requestCase : requestCases)
+    for( RequestCase requestCase : requestTestDef.getRequestCases())
       {
       builder.add( toJson( requestCase));
       }

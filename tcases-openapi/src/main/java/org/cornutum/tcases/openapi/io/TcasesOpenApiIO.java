@@ -13,10 +13,10 @@ import org.cornutum.tcases.TcasesJson;
 import org.cornutum.tcases.openapi.ModelOptions;
 import org.cornutum.tcases.openapi.TcasesOpenApi;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
-import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestCases;
+import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.cornutum.tcases.openapi.resolver.ResolverContext;
-import org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter;
+import org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter;
 
 import java.io.File;
 import java.io.InputStream;
@@ -282,7 +282,7 @@ public final class TcasesOpenApiIO
     }
 
   /**
-   * Writes a {@link org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter JSON document} listing test cases defined by the given
+   * Writes a {@link org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter JSON document} listing test cases defined by the given
    * request test case definitions to the given output stream.
    */
   public static void writeRequestCases( SystemTestDef testDef, ResolverContext context, OutputStream outputStream)
@@ -291,14 +291,14 @@ public final class TcasesOpenApiIO
     }
 
   /**
-   * Writes a {@link org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter JSON document} listing the given request test cases
+   * Writes a {@link org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter JSON document} listing the given request test cases
    * to the given output stream.
    */
-  public static void writeRequestCases( Iterable<RequestCase> requestCases, OutputStream outputStream)
+  public static void writeRequestCases( RequestTestDef requestTestDef, OutputStream outputStream)
     {
-    try( RequestCaseWriter writer = new RequestCaseWriter( outputStream))
+    try( RequestTestDefWriter writer = new RequestTestDefWriter( outputStream))
       {
-      writer.write( requestCases);
+      writer.write( requestTestDef);
       }
     catch( Exception e)
       {

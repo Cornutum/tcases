@@ -32,15 +32,16 @@ public final class RequestCases
   /**
    * Returns the request cases resolved for the given system test definition.
    */
-  public static List<RequestCase> getRequestCases( SystemTestDef testDef, ResolverContext context)
+  public static RequestTestDef getRequestCases( SystemTestDef testDef, ResolverContext context)
     {
     RequestCaseResolver resolver = new RequestCaseResolver( context);
 
     return
-      getRequestCaseDefs( testDef).stream()
-      .map( requestCaseDef -> resolver.resolve( requestCaseDef))
-      .filter( Objects::nonNull)
-      .collect( toList());
+      new RequestTestDef(
+        getRequestCaseDefs( testDef).stream()
+        .map( requestCaseDef -> resolver.resolve( requestCaseDef))
+        .filter( Objects::nonNull)
+        .collect( toList()));
     }
 
   /**

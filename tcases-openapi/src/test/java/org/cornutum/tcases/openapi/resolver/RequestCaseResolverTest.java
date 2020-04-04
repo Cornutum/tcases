@@ -8,8 +8,8 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.io.SystemTestResource;
-import org.cornutum.tcases.openapi.resolver.io.RequestCaseReader;
-import org.cornutum.tcases.openapi.resolver.io.RequestCaseWriter;
+import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
+import org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -23,7 +23,6 @@ import static org.hamcrest.Matchers.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -53,10 +52,10 @@ public class RequestCaseResolverTest extends RequestCaseTest
     File testDefFile = getTestDefFile( testDefBase_);
 
     // When...
-    List<RequestCase> requestCases;
+    RequestTestDef requestTestDef;
     try
       {
-      requestCases =
+      requestTestDef =
         RequestCases.getRequestCases(
           SystemTestResource.of( testDefFile).getSystemTestDef(),
           getResolverContext());
@@ -67,7 +66,7 @@ public class RequestCaseResolverTest extends RequestCaseTest
       }
 
     // Then...
-    verifyRequestCases( testDefFile, requestCases);
+    verifyRequestCases( testDefFile, requestTestDef);
     }
 
   /**
@@ -87,42 +86,45 @@ public class RequestCaseResolverTest extends RequestCaseTest
   /**
    * Verifies that request cases defined from the given system test definition match expectations.
    */
-  private void verifyRequestCases( File testDefFile, List<RequestCase> requestCases)
+  private void verifyRequestCases( File testDefFile, RequestTestDef requestTestDef)
     {
     String baseName = getTestDefBaseName( testDefFile);
     if( acceptAsExpected())
       {
-      updateRequestCases( baseName, requestCases);
+      updateRequestCases( baseName, requestTestDef);
       }
     else
       {
-      assertThat( baseName, requestCases, listsMembers( RequestCaseMatcher::new, readRequestCases( baseName)));
+      assertThat(
+        baseName,
+        requestTestDef.getRequestCases(),
+        listsMembers( RequestCaseMatcher::new, readRequestCases( baseName).getRequestCases()));
       }
     }
 
   /**
    * Returns the {@link RequestCase} objects represented by the given document resource.
    */
-  protected List<RequestCase> readRequestCases( String baseName)
+  protected RequestTestDef readRequestCases( String baseName)
     {
     InputStream document = getClass().getResourceAsStream( String.format( "%s-Request-Cases.json", baseName));
     assertThat( "Request cases for resource=" + baseName, document, is( notNullValue()));
     
-    try( RequestCaseReader reader = new RequestCaseReader( document))
+    try( RequestTestDefReader reader = new RequestTestDefReader( document))
       {
-      return reader.getRequestCases();
+      return reader.getRequestTestDef();
       }
     }
 
   /**
    * Updates the given {@link RequestCase} resource.
    */
-  private void updateRequestCases( String baseName, List<RequestCase> requestCases)
+  private void updateRequestCases( String baseName, RequestTestDef requestTestDef)
     {
     File requestCaseFile = new File( saveExpectedDir_, requestCasesFor( baseName));
-    try( RequestCaseWriter writer = new RequestCaseWriter( new FileOutputStream( requestCaseFile)))
+    try( RequestTestDefWriter writer = new RequestTestDefWriter( new FileOutputStream( requestCaseFile)))
       {
-      writer.write( requestCases);
+      writer.write( requestTestDef);
       }
     catch( Exception e)
       {

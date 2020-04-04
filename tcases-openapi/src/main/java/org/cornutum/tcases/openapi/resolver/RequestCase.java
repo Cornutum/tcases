@@ -11,7 +11,9 @@ import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.net.URI;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
@@ -19,7 +21,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Describes an executable test case for an API request.
  */
-public class RequestCase
+public class RequestCase implements Comparable<RequestCase>
   {
   /**
    * Creates a new RequestCase instance.
@@ -183,6 +185,15 @@ public class RequestCase
     return getInvalidInput() != null;
     }
 
+  public int compareTo( RequestCase other)
+    {
+    return
+      Comparator.comparing( RequestCase::getPath)
+      .thenComparing( RequestCase::getOperation)
+      .thenComparingInt( RequestCase::getId)
+      .compare( this, other);
+    }
+  
   public boolean equals( Object object)
     {
     RequestCase other =
@@ -192,14 +203,20 @@ public class RequestCase
 
     return
       other != null
-      && other.getId() == getId();
+      && other.getId() == getId()
+      && Objects.equals( other.getPath(), getPath())
+      && Objects.equals( other.getOperation(), getOperation())
+      ;
     }
 
   public int hashCode()
     {
     return
       getClass().hashCode()
-      ^ getId();
+      ^ getId()
+      ^ Objects.hashCode( getPath())
+      ^ Objects.hashCode( getOperation())
+      ;
     }
   
   public String toString()
