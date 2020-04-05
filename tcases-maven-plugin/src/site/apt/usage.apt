@@ -556,6 +556,27 @@ mvn tcases:api
 mvn tcases:api -Dproject=My-API
 +--------
 
+** {Generating Request Inputs}
+
+  Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI spec
+  named <<<$\{basedir\}/src/test/tcases/openapi/org/myapp/My-API.yaml>>> 
+
+  What happens when you run the following command?
+
++--------
+mvn tcases:api -Dproject=My-API -DrequestCases=true
++--------
+
+  Instead of the usual descriptions of API test cases, you'll find a different file in the
+  <<<$\{basedir\}/target/tcases/openapi/org/myapp>>> directory named <<<My-API-Request-Cases.json>>>. This is a
+  {{{https://github.com/Cornutum/tcases/blob/master/tcases-openapi/Request-Test-Definition.md#request-test-definition-guide}request
+  test definition}} that lists actual input values for all API requests defined in <<<My-API.yaml>>>.
+
+  Why is this useful? A request test definition automates one step in the creation of a test program that executes all API
+  request test cases against an actual API server.  For details, see
+  {{{https://github.com/Cornutum/tcases/blob/master/tcases-openapi/Running-Api-Test-Cases.md#running-api-test-cases}Running
+  API Test Cases}}.
+
 ** {Handling API Input Modelling Conditions}
 
   Tcases for OpenAPI reports
