@@ -69,6 +69,10 @@ public class RequestCaseDefiner
           Optional.ofNullable( testCase.getAnnotation( "version"))
           .orElseThrow( () -> new RequestCaseException( "No version annotation defined")));
 
+        requestCaseDef.setApi(
+          Optional.ofNullable( testCase.getAnnotation( "title"))
+          .orElseThrow( () -> new RequestCaseException( "No title annotation defined")));
+
         requestCaseDef.setPath(
           Optional.ofNullable( testCase.getAnnotation( "path"))
           .orElseThrow( () -> new RequestCaseException( "No path annotation defined")));

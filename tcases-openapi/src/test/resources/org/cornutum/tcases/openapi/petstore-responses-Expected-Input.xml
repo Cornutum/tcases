@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="Swagger-Petstore">
   <Has name="server" value="http://petstore.swagger.io/api"/>
+  <Has name="title" value="Swagger Petstore"/>
   <Has name="version" value="1.0.0"/>
   <Function name="GET_pets">
     <Input type="response">

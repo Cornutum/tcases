@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="NIEM-Vehicle-API">
   <Has name="server" value="/"/>
+  <Has name="title" value="NIEM Vehicle API"/>
   <Has name="version" value="0.0.0"/>
   <Function name="GET_vehicles">
     <Input type="response">

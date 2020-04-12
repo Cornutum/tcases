@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <TestCases system="Responses">
   <Has name="server" value="/"/>
+  <Has name="title" value="Responses"/>
   <Has name="version" value="0.0.0"/>
   <Function name="TRACE_responses">
     <Has name="server" value="/"/>
+    <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerProperties,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -36,6 +39,7 @@
     <TestCase id="1">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -64,6 +68,7 @@
     <TestCase id="2">
       <Has name="properties" value="2XXContent,2XXtext-javascript,2XXtext-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -92,6 +97,7 @@
     <TestCase id="3">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -120,6 +126,7 @@
     <TestCase id="4">
       <Has name="properties" value="2XXContent,2XXtext-javascript,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -148,6 +155,7 @@
     <TestCase id="5">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerProperties,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-javascript,2XXtext-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -176,6 +184,7 @@
     <TestCase id="6">
       <Has name="properties" value="2XXContent,2XXtext-javascript,2XXtext-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -204,6 +213,7 @@
     <TestCase id="7" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -232,6 +242,7 @@
     <TestCase id="8" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -260,6 +271,7 @@
     <TestCase id="9" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -288,6 +300,7 @@
     <TestCase id="10" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -316,6 +329,7 @@
     <TestCase id="11" failure="true">
       <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -342,6 +356,7 @@
     <TestCase id="12" failure="true">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -370,6 +385,7 @@
     <TestCase id="13" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -398,6 +414,7 @@
     <TestCase id="14" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -426,6 +443,7 @@
     <TestCase id="15" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -454,6 +472,7 @@
     <TestCase id="16" failure="true">
       <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -482,6 +501,7 @@
     <TestCase id="17" failure="true">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-javascript,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>
@@ -510,6 +530,7 @@
     <TestCase id="18" failure="true">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-javascript,2XXtext-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="2XX"/>

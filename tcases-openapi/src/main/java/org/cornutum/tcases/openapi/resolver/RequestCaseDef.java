@@ -71,6 +71,22 @@ public class RequestCaseDef
     }
 
   /**
+   * Changes the name of the API that defines this request.
+   */
+  public void setApi( String api)
+    {
+    api_ = api;
+    }
+
+  /**
+   * Returns the name of the API that defines this request.
+   */
+  public String getApi()
+    {
+    return api_;
+    }
+
+  /**
    * Changes the path for this request.
    */
   public void setPath( String path)
@@ -182,6 +198,7 @@ public class RequestCaseDef
   private final int id_;
   private URI server_;
   private String version_;
+  private String api_;
   private String path_;
   private String op_;
   private List<ParamDef> params_;

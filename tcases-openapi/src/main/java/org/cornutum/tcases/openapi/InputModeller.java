@@ -115,6 +115,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         () -> {
         SystemInputDef inputDef =
           SystemInputDefBuilder.with( toIdentifier( title))
+          .has( "title", title)
           .has( "version", info.getVersion())
           .hasIf( "server", membersOf( api.getServers()).findFirst().map( InputModeller::getServerUrl))
           .functions( entriesOf( api.getPaths()).flatMap( path -> pathRequestDefs( api, path.getKey(), path.getValue())))
@@ -209,6 +210,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         () -> {
         SystemInputDef inputDef =
           SystemInputDefBuilder.with( toIdentifier( title))
+          .has( "title", title)
           .has( "version", info.getVersion())
           .hasIf( "server", membersOf( api.getServers()).findFirst().map( InputModeller::getServerUrl))
           .functions( entriesOf( api.getPaths()).flatMap( path -> pathResponseDefs( api, path.getKey(), path.getValue())))

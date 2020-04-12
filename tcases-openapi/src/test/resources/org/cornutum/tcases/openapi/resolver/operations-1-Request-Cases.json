@@ -4,6 +4,7 @@
         "id": 0,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "GET",
         "parameters": [
@@ -25,6 +26,7 @@
         "id": 1,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "GET",
         "parameters": [
@@ -42,6 +44,7 @@
         "id": 2,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "GET",
         "parameters": [
@@ -63,6 +66,7 @@
         "id": 3,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "GET",
         "parameters": [
@@ -84,6 +88,7 @@
         "id": 4,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "GET",
         "parameters": [
@@ -105,6 +110,7 @@
         "id": 5,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "GET",
         "parameters": [
@@ -126,6 +132,7 @@
         "id": 0,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "HEAD",
         "parameters": [
@@ -147,6 +154,7 @@
         "id": 1,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "HEAD",
         "parameters": [
@@ -164,6 +172,7 @@
         "id": 2,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "HEAD",
         "parameters": [
@@ -185,6 +194,7 @@
         "id": 3,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "HEAD",
         "parameters": [
@@ -206,6 +216,7 @@
         "id": 4,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "HEAD",
         "parameters": [
@@ -227,6 +238,7 @@
         "id": 5,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "HEAD",
         "parameters": [
@@ -248,6 +260,7 @@
         "id": 0,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "PATCH",
         "body": {
@@ -303,6 +316,7 @@
         "id": 1,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "PATCH",
         "body": {
@@ -314,6 +328,7 @@
         "id": 2,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "PATCH",
         "body": {
@@ -330,6 +345,7 @@
         "id": 3,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "PATCH",
         "body": {
@@ -347,6 +363,7 @@
         "id": 4,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "PATCH",
         "body": {
@@ -363,6 +380,7 @@
         "id": 5,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "PATCH",
         "body": {
@@ -379,6 +397,7 @@
         "id": 0,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "POST",
         "parameters": [
@@ -399,6 +418,7 @@
         "id": 1,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "POST",
         "parameters": [
@@ -416,6 +436,7 @@
         "id": 2,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "POST",
         "parameters": [
@@ -436,6 +457,7 @@
         "id": 3,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "POST",
         "parameters": [
@@ -457,6 +479,7 @@
         "id": 4,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "POST",
         "parameters": [
@@ -478,6 +501,7 @@
         "id": 0,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -552,6 +576,7 @@
         "id": 1,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -573,6 +598,7 @@
         "id": 2,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -603,6 +629,7 @@
         "id": 3,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -628,6 +655,7 @@
         "id": 4,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -685,6 +713,7 @@
         "id": 5,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -719,6 +748,7 @@
         "id": 6,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -746,6 +776,7 @@
         "id": 7,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -772,6 +803,7 @@
         "id": 8,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "PATCH",
         "parameters": [
@@ -798,6 +830,7 @@
         "id": 0,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [
@@ -832,6 +865,7 @@
         "id": 1,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [
@@ -853,6 +887,7 @@
         "id": 2,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [
@@ -883,6 +918,7 @@
         "id": 3,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [
@@ -908,6 +944,7 @@
         "id": 4,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [
@@ -946,6 +983,7 @@
         "id": 5,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [
@@ -981,6 +1019,7 @@
         "id": 6,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [
@@ -1020,6 +1059,7 @@
         "id": 7,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [
@@ -1046,6 +1086,7 @@
         "id": 8,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operationNew",
         "operation": "TRACE",
         "parameters": [

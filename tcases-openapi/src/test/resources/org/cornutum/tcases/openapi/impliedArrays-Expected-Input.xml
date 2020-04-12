@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="Array">
   <Has name="server" value="/"/>
+  <Has name="title" value="Array"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_array">
     <Has name="operation" value="POST"/>

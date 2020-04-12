@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="Integer">
   <Has name="server" value="/"/>
+  <Has name="title" value="Integer"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_integer">
     <Has name="operation" value="POST"/>

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="Empty">
   <Has name="server" value="/"/>
+  <Has name="title" value="Empty"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_empty">
     <Has name="operation" value="POST"/>

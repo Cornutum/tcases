@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="AllOf">
   <Has name="server" value="/"/>
+  <Has name="title" value="AllOf"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_allOf">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/allOf"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="AllOf"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -42,6 +45,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="No">
@@ -73,6 +77,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -104,6 +109,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsMany,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -135,6 +141,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -166,6 +173,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -197,6 +205,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsMany,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -228,6 +237,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -259,6 +269,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -290,6 +301,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -321,6 +333,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -352,6 +365,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -383,6 +397,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -414,6 +429,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -445,6 +461,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -476,6 +493,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -507,6 +525,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -538,6 +557,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -569,6 +589,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
@@ -600,6 +621,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">

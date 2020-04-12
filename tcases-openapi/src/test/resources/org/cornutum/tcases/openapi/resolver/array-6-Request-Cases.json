@@ -4,6 +4,7 @@
         "id": 0,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -29,6 +30,7 @@
         "id": 1,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -46,6 +48,7 @@
         "id": 2,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -67,6 +70,7 @@
         "id": 3,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -92,6 +96,7 @@
         "id": 4,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -117,6 +122,7 @@
         "id": 5,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -138,6 +144,7 @@
         "id": 6,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -159,6 +166,7 @@
         "id": 7,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -189,6 +197,7 @@
         "id": 8,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [
@@ -215,6 +224,7 @@
         "id": 9,
         "server": "/",
         "version": "0.0.0",
+        "api": "Array",
         "path": "/array",
         "operation": "POST",
         "parameters": [

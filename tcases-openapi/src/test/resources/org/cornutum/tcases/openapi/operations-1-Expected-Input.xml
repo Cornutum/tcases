@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="Operations">
   <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+  <Has name="title" value="Operations"/>
   <Has name="version" value="0.0.0"/>
   <Function name="GET_operations">
     <Has name="operation" value="GET"/>
