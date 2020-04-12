@@ -4,6 +4,7 @@
         "id": 0,
         "server": "/",
         "version": "0.0.0",
+        "api": "String",
         "path": "/string",
         "operation": "POST",
         "parameters": [
@@ -24,6 +25,7 @@
         "id": 1,
         "server": "/",
         "version": "0.0.0",
+        "api": "String",
         "path": "/string",
         "operation": "POST",
         "parameters": [
@@ -41,6 +43,7 @@
         "id": 2,
         "server": "/",
         "version": "0.0.0",
+        "api": "String",
         "path": "/string",
         "operation": "POST",
         "parameters": [
@@ -61,6 +64,7 @@
         "id": 3,
         "server": "/",
         "version": "0.0.0",
+        "api": "String",
         "path": "/string",
         "operation": "POST",
         "parameters": [
@@ -81,6 +85,7 @@
         "id": 4,
         "server": "/",
         "version": "0.0.0",
+        "api": "String",
         "path": "/string",
         "operation": "POST",
         "parameters": [
@@ -102,6 +107,7 @@
         "id": 5,
         "server": "/",
         "version": "0.0.0",
+        "api": "String",
         "path": "/string",
         "operation": "POST",
         "parameters": [

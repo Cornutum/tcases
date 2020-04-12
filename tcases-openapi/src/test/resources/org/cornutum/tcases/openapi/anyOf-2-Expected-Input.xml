@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="AnyOf">
   <Has name="server" value="/"/>
+  <Has name="title" value="AnyOf"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_anyOf">
     <Has name="operation" value="POST"/>

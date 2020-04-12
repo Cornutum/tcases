@@ -4,6 +4,7 @@
         "id": 0,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -37,6 +38,7 @@
         "id": 1,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -62,6 +64,7 @@
         "id": 2,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -99,6 +102,7 @@
         "id": 3,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -160,6 +164,7 @@
         "id": 4,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -229,6 +234,7 @@
         "id": 5,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -258,6 +264,7 @@
         "id": 6,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -287,6 +294,7 @@
         "id": 7,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -321,6 +329,7 @@
         "id": 8,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -355,6 +364,7 @@
         "id": 9,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -384,6 +394,7 @@
         "id": 10,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "GET",
         "parameters": [
@@ -413,6 +424,7 @@
         "id": 0,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -441,6 +453,7 @@
         "id": 1,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -461,6 +474,7 @@
         "id": 2,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -498,6 +512,7 @@
         "id": 3,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -510,6 +525,7 @@
         "id": 4,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -526,6 +542,7 @@
         "id": 5,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -542,6 +559,7 @@
         "id": 6,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -558,6 +576,7 @@
         "id": 7,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -575,6 +594,7 @@
         "id": 8,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -596,6 +616,7 @@
         "id": 9,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -618,6 +639,7 @@
         "id": 10,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -643,6 +665,7 @@
         "id": 11,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets",
         "operation": "POST",
         "body": {
@@ -668,6 +691,7 @@
         "id": 0,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "GET",
         "parameters": [
@@ -689,6 +713,7 @@
         "id": 1,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "GET",
         "parameters": [
@@ -710,6 +735,7 @@
         "id": 2,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "GET",
         "parameters": [
@@ -731,6 +757,7 @@
         "id": 3,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "GET",
         "parameters": [
@@ -749,6 +776,7 @@
         "id": 4,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "GET",
         "parameters": [
@@ -770,6 +798,7 @@
         "id": 5,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "GET",
         "parameters": [
@@ -791,6 +820,7 @@
         "id": 0,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "DELETE",
         "parameters": [
@@ -812,6 +842,7 @@
         "id": 1,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "DELETE",
         "parameters": [
@@ -833,6 +864,7 @@
         "id": 2,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "DELETE",
         "parameters": [
@@ -854,6 +886,7 @@
         "id": 3,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "DELETE",
         "parameters": [
@@ -872,6 +905,7 @@
         "id": 4,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "DELETE",
         "parameters": [
@@ -893,6 +927,7 @@
         "id": 5,
         "server": "http://petstore.swagger.io/api",
         "version": "1.0.0",
+        "api": "Swagger Petstore",
         "path": "/pets/{id}",
         "operation": "DELETE",
         "parameters": [

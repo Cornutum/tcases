@@ -25,6 +25,7 @@ public class RequestCaseMatcher extends BaseCompositeMatcher<RequestCase>
     expectThat( valueOf( "id", RequestCase::getId).matches( Matchers::equalTo));
     expectThat( valueOf( "server", RequestCase::getServer).matches( Matchers::equalTo));
     expectThat( valueOf( "version", RequestCase::getVersion).matches( Matchers::equalTo));
+    expectThat( valueOf( "api", RequestCase::getApi).matches( Matchers::equalTo));
     expectThat( valueOf( "path", RequestCase::getPath).matches( Matchers::equalTo));
     expectThat( valueOf( "operation", RequestCase::getOperation).matches( Matchers::equalTo));
     expectThat( valueOf( "params", RequestCase::getParams).matches( containsMembersMatching( ParamDataMatcher::new)));

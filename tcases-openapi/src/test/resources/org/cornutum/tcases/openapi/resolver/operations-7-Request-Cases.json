@@ -4,6 +4,7 @@
         "id": 0,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "body": {
@@ -38,6 +39,7 @@
         "id": 1,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "body": {
@@ -49,6 +51,7 @@
         "id": 2,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "body": {
@@ -65,6 +68,7 @@
         "id": 3,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "body": {
@@ -82,6 +86,7 @@
         "id": 4,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "body": {
@@ -98,6 +103,7 @@
         "id": 5,
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "body": {

@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="Operations">
   <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+  <Has name="title" value="Operations"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_operations">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/operations"/>
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+    <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -26,6 +29,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -39,6 +43,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -54,6 +59,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -69,6 +75,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -84,6 +91,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>

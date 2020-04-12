@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="Operations">
   <Has name="server" value="/"/>
+  <Has name="title" value="Operations"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_operations">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/operations"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -39,6 +42,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -64,6 +68,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -91,6 +96,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param0,param1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -116,6 +122,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param0,param1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -140,6 +147,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -165,6 +173,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param1"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -190,6 +199,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param1"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -215,6 +225,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="Content,param1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -242,6 +253,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content,param1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -269,6 +281,7 @@
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content,param1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">

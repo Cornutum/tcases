@@ -88,6 +88,22 @@ public class RequestCase implements Comparable<RequestCase>
     }
 
   /**
+   * Changes the name of the API that defines this request.
+   */
+  public void setApi( String api)
+    {
+    api_ = api;
+    }
+
+  /**
+   * Returns the name of the API that defines this request.
+   */
+  public String getApi()
+    {
+    return api_;
+    }
+
+  /**
    * Changes the path for this request.
    */
   public void setPath( String path)
@@ -188,7 +204,8 @@ public class RequestCase implements Comparable<RequestCase>
   public int compareTo( RequestCase other)
     {
     return
-      Comparator.comparing( RequestCase::getPath)
+      Comparator.comparing( RequestCase::getApi)
+      .thenComparing( RequestCase::getPath)
       .thenComparing( RequestCase::getOperation)
       .thenComparingInt( RequestCase::getId)
       .compare( this, other);
@@ -204,6 +221,7 @@ public class RequestCase implements Comparable<RequestCase>
     return
       other != null
       && other.getId() == getId()
+      && Objects.equals( other.getApi(), getApi())
       && Objects.equals( other.getPath(), getPath())
       && Objects.equals( other.getOperation(), getOperation())
       ;
@@ -214,6 +232,7 @@ public class RequestCase implements Comparable<RequestCase>
     return
       getClass().hashCode()
       ^ getId()
+      ^ Objects.hashCode( getApi())
       ^ Objects.hashCode( getPath())
       ^ Objects.hashCode( getOperation())
       ;
@@ -233,6 +252,7 @@ public class RequestCase implements Comparable<RequestCase>
   private final int id_;
   private URI server_;
   private String version_;
+  private String api_;
   private String path_;
   private String op_;
   private List<ParamData> params_;

@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <TestCases system="Objects">
   <Has name="server" value="/"/>
+  <Has name="title" value="Objects"/>
   <Has name="version" value="0.0.0"/>
   <Function name="GET_objects">
     <Has name="server" value="/"/>
+    <Has name="title" value="Objects"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -33,6 +36,7 @@
     <TestCase id="1">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -58,6 +62,7 @@
     <TestCase id="2" failure="true">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -81,6 +86,7 @@
     <TestCase id="3" failure="true">
       <Has name="properties" value="defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -106,6 +112,7 @@
     <TestCase id="4" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -131,6 +138,7 @@
     <TestCase id="5" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -156,6 +164,7 @@
     <TestCase id="6" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -181,6 +190,7 @@
     <TestCase id="7" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -206,6 +216,7 @@
     <TestCase id="8" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -231,6 +242,7 @@
     <TestCase id="9" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -256,6 +268,7 @@
     <TestCase id="10" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -281,6 +294,7 @@
     <TestCase id="11" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -306,6 +320,7 @@
     <TestCase id="12" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -331,6 +346,7 @@
     <TestCase id="13" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">
@@ -356,6 +372,7 @@
     <TestCase id="14" failure="true">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
       <Input type="response">
         <Var name="Status-Code" value="Other">

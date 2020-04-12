@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="AnyOf">
   <Has name="server" value="/"/>
+  <Has name="title" value="AnyOf"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_anyOf">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/anyOf"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="AnyOf"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -34,6 +37,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -56,6 +60,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative2,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -78,6 +83,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonUnbounded,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -102,6 +108,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative2,application-jsonUnbounded,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -125,6 +132,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="No" failure="true"/>
@@ -145,6 +153,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -167,6 +176,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -189,6 +199,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -211,6 +222,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -233,6 +245,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonUnbounded,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -255,6 +268,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -277,6 +291,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>

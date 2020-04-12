@@ -4,6 +4,7 @@
         "id": 0,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [
@@ -25,6 +26,7 @@
         "id": 1,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [
@@ -42,6 +44,7 @@
         "id": 2,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [
@@ -67,6 +70,7 @@
         "id": 3,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [
@@ -96,6 +100,7 @@
         "id": 4,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [
@@ -157,6 +162,7 @@
         "id": 5,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [
@@ -178,6 +184,7 @@
         "id": 6,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [
@@ -199,6 +206,7 @@
         "id": 7,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [
@@ -225,6 +233,7 @@
         "id": 8,
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
+        "api": "Operations",
         "path": "/operations",
         "operation": "POST",
         "parameters": [

@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="Not">
   <Has name="server" value="/"/>
+  <Has name="title" value="Not"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_not">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/not"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="Not"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -24,6 +27,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
@@ -37,6 +41,7 @@
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">

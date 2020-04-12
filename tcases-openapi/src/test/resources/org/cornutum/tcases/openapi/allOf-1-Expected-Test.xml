@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="AllOf">
   <Has name="server" value="/"/>
+  <Has name="title" value="AllOf"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_allOf">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/allOf"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="AllOf"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItemsNone,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -32,6 +35,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -52,6 +56,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItemsMany,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -72,6 +77,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -92,6 +98,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonItemsMany,application-jsonItemsValue,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -111,6 +118,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="No" failure="true"/>
@@ -129,6 +137,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -149,6 +158,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -169,6 +179,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -189,6 +200,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -209,6 +221,7 @@
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>

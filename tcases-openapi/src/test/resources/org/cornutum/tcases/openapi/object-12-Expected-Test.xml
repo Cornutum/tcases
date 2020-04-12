@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="Object">
   <Has name="server" value="/"/>
+  <Has name="title" value="Object"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_object">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/object"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="Object"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -29,6 +32,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -47,6 +51,7 @@
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -65,6 +70,7 @@
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -83,6 +89,7 @@
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -101,6 +108,7 @@
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -119,6 +127,7 @@
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Additional,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -137,6 +146,7 @@
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Additional,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">

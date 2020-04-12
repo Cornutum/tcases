@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="Empty">
   <Has name="server" value="/"/>
+  <Has name="title" value="Empty"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_empty">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/empty"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="Empty"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param0,param0Value,param1,param1Alternative0,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -34,6 +37,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param1Alternative1"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
@@ -56,6 +60,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param0,param1,param1Alternative2,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -78,6 +83,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param1,param1Alternative1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
@@ -102,6 +108,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param0,param0Value,param1,param1Alternative1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -124,6 +131,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param1,param1Alternative1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
@@ -148,6 +156,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param0,param0Value,param1,param1Alternative0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -170,6 +179,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param0,param0Value,param1,param1Alternative1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -192,6 +202,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param0,param0Value,param1,param1Alternative1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -214,6 +225,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param0,param0Value,param1,param1Alternative1,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -236,6 +248,7 @@
       <Has name="path" value="/empty"/>
       <Has name="properties" value="param0,param0Value,param1,param1Alternative2,param1Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Empty"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">

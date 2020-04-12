@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="Swagger-Petstore">
   <Has name="server" value="http://petstore.swagger.io/api"/>
+  <Has name="title" value="Swagger Petstore"/>
   <Has name="version" value="1.0.0"/>
   <Function name="GET_pets">
     <Has name="operation" value="GET"/>
     <Has name="path" value="/pets"/>
     <Has name="server" value="http://petstore.swagger.io/api"/>
+    <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit,limitValue,tags,tagsItemsNone,tagsValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="Yes">
@@ -40,6 +43,7 @@
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="No">
@@ -69,6 +73,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit,limitValue,tags,tagsItemsValue,tagsValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="Yes">
@@ -98,6 +103,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags,tagsItemsMany,tagsItemsValue,tagsValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="Yes">
@@ -127,6 +133,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit,limitValue,tags,tagsItemsMany,tagsItemsValue,tagsValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="Yes">
@@ -156,6 +163,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="Yes">
@@ -185,6 +193,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="Yes">
@@ -214,6 +223,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags,tagsValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="Yes">
@@ -243,6 +253,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags,tagsValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="Yes">
@@ -272,6 +283,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="No">
@@ -301,6 +313,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="query">
         <Var name="tags.Defined" value="No">
@@ -330,12 +343,14 @@
     <Has name="operation" value="POST"/>
     <Has name="path" value="/pets"/>
     <Has name="server" value="http://petstore.swagger.io/api"/>
+    <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonTagValue,application-jsonValue,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -357,6 +372,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonValue,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -378,6 +394,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonTagValue,application-jsonValue,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -398,6 +415,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="No" failure="true"/>
@@ -417,6 +435,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -438,6 +457,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -459,6 +479,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -480,6 +501,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -501,6 +523,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -522,6 +545,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -543,6 +567,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -564,6 +589,7 @@
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -585,12 +611,14 @@
     <Has name="operation" value="GET"/>
     <Has name="path" value="/pets/{id}"/>
     <Has name="server" value="http://petstore.swagger.io/api"/>
+    <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -607,6 +635,7 @@
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -623,6 +652,7 @@
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -638,6 +668,7 @@
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="No" failure="true">
@@ -654,6 +685,7 @@
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -670,6 +702,7 @@
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -686,12 +719,14 @@
     <Has name="operation" value="DELETE"/>
     <Has name="path" value="/pets/{id}"/>
     <Has name="server" value="http://petstore.swagger.io/api"/>
+    <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="DELETE"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -708,6 +743,7 @@
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -724,6 +760,7 @@
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -739,6 +776,7 @@
       <Has name="operation" value="DELETE"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="No" failure="true">
@@ -755,6 +793,7 @@
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">
@@ -771,6 +810,7 @@
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
       <Input type="path">
         <Var name="id.Defined" value="Yes">

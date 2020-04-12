@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="Integer">
   <Has name="server" value="/"/>
+  <Has name="title" value="Integer"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_integer">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/integer"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="Integer"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/integer"/>
       <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Integer"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -31,6 +34,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/integer"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Integer"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
@@ -50,6 +54,7 @@
       <Has name="path" value="/integer"/>
       <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Integer"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -69,6 +74,7 @@
       <Has name="path" value="/integer"/>
       <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Integer"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -89,6 +95,7 @@
       <Has name="path" value="/integer"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Integer"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -108,6 +115,7 @@
       <Has name="path" value="/integer"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Integer"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
@@ -127,6 +135,7 @@
       <Has name="path" value="/integer"/>
       <Has name="properties" value="param0,param0Unbounded,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Integer"/>
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">

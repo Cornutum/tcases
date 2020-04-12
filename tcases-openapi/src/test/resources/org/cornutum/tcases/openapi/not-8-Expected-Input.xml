@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="Not">
   <Has name="server" value="/"/>
+  <Has name="title" value="Not"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_not">
     <Has name="operation" value="POST"/>

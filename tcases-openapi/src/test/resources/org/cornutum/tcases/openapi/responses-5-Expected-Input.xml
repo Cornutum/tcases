@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <System name="Responses">
   <Has name="server" value="/"/>
+  <Has name="title" value="Responses"/>
   <Has name="version" value="0.0.0"/>
   <Function name="TRACE_responses">
     <Input type="response">

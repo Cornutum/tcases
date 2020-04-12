@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="AnyOf">
   <Has name="server" value="/"/>
+  <Has name="title" value="AnyOf"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_anyOf">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/anyOf"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="AnyOf"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -51,6 +54,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0Alternative1"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -90,6 +94,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alternative2,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -129,6 +134,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0Alternative3"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
@@ -168,6 +174,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alternative0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -207,6 +214,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -246,6 +254,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -285,6 +294,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -324,6 +334,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative2,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -363,6 +374,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative2,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -402,6 +414,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative2,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -441,6 +454,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -480,6 +494,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alternative0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -519,6 +534,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alternative0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -558,6 +574,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -597,6 +614,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -636,6 +654,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -675,6 +694,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alternative1,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -714,6 +734,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0Alternative1,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -753,6 +774,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative1,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -792,6 +814,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
@@ -831,6 +854,7 @@
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative2,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">

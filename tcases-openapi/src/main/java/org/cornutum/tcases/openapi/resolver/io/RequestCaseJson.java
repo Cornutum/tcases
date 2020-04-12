@@ -63,6 +63,7 @@ public final class RequestCaseJson
     builder.add( ID, requestCase.getId());
     Optional.ofNullable( requestCase.getServer()).ifPresent( server -> builder.add( SERVER, server.toString()));
     Optional.ofNullable( requestCase.getVersion()).ifPresent( version -> builder.add( VERSION, version));
+    Optional.ofNullable( requestCase.getApi()).ifPresent( api -> builder.add( API, api));
     Optional.ofNullable( requestCase.getPath()).ifPresent( path -> builder.add( PATH, path));
     Optional.ofNullable( requestCase.getOperation()).ifPresent( op -> builder.add( OPERATION, op));
 
@@ -158,6 +159,7 @@ public final class RequestCaseJson
 
         requestCase.setServer( context.resultFor( SERVER, () -> json.getString( SERVER, null)));
         requestCase.setVersion( context.resultFor( VERSION, () -> json.getString( VERSION, null)));
+        requestCase.setApi( context.resultFor( API, () -> json.getString( API, null)));
         requestCase.setPath( context.resultFor( PATH, () -> json.getString( PATH, null)));
         requestCase.setOperation( context.resultFor( OPERATION, () -> json.getString( OPERATION, null)));
         requestCase.setInvalidInput( context.resultFor( INVALID_INPUT, () -> json.getString( INVALID_INPUT, null)));
@@ -415,6 +417,7 @@ public final class RequestCaseJson
     private JsonValue json_;
     }
 
+  private static final String API = "api";
   private static final String BODY = "body";
   private static final String DATA = "data";
   private static final String EXPLODE = "explode";

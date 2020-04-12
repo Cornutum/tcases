@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <TestCases system="Array">
   <Has name="server" value="/"/>
+  <Has name="title" value="Array"/>
   <Has name="version" value="0.0.0"/>
   <Function name="POST_array-param0">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/array/${param0}"/>
     <Has name="server" value="/"/>
+    <Has name="title" value="Array"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsItemsNone,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -38,6 +41,7 @@
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="No">
@@ -65,6 +69,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -92,6 +97,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsItemsMany,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -119,6 +125,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsItemsMany,param0ItemsItemsValue,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -146,6 +153,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -173,6 +181,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -200,6 +209,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsItemsNone,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -227,6 +237,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsMany,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -254,6 +265,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsMany,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -281,6 +293,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -308,6 +321,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
@@ -335,6 +349,7 @@
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsItemsNone,param0ItemsMany,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
