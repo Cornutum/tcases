@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.util.ToString;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -88,7 +90,7 @@ public class RequestTestDef
     {
     return
       requestCases_.stream()
-      .filter( requestCase -> requestCase.getPath().equals( path))
+      .filter( requestCase -> path == null || requestCase.getPath().equals( path))
       .sorted()
       .collect( toList());
     }
@@ -96,11 +98,11 @@ public class RequestTestDef
   /**
    * Returns all API request test cases for the given operation on the given resource path.
    */
-  public List<RequestCase> getRequestCases( String path, String operation)
+  public List<RequestCase> getRequestCases( String path, String op)
     {
     return
       requestCases_.stream()
-      .filter( requestCase -> requestCase.getPath().equals( path) && requestCase.getOperation().equals( operation))
+      .filter( requestCase -> (path == null || requestCase.getPath().equals( path)) && (op == null || requestCase.getOperation().equalsIgnoreCase( op)))
       .sorted()
       .collect( toList());
     }
@@ -125,6 +127,26 @@ public class RequestTestDef
       getRequestCases( path).stream()
       .map( RequestCase::getOperation)
       .collect( toCollection( LinkedHashSet::new));
+    }
+
+  /**
+   * Returns the name of the API for these request test cases.
+   */
+  public String getApi()
+    {
+    return
+      requestCases_.stream()
+      .map( RequestCase::getApi)
+      .findFirst()
+      .orElse( null);
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( getApi())
+      .toString();
     }
 
   private List<RequestCase> requestCases_ = new ArrayList<RequestCase>();
