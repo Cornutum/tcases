@@ -39,6 +39,18 @@ public class JavaTestTarget extends TestTarget
     }
 
   /**
+   * Changes the Java package defined for this target to the package containing the given class.
+   */
+  public void setPackage( Class<?> packageMember)
+    {
+    setPackage(
+      Optional.ofNullable( packageMember)
+      .map( Class::getPackage)
+      .map( Package::getName)
+      .orElse( null));
+    }
+
+  /**
    * Returns the Java package defined for this target.
    */
   public String getPackage()
@@ -194,6 +206,12 @@ public class JavaTestTarget extends TestTarget
     protected TestTarget getTestTarget()
       {
       return target_;
+      }
+
+    public Builder inPackage( Class<?> packageMember)
+      {
+      target_.setPackage( packageMember);
+      return this;
       }
 
     public Builder inPackage( String packageName)
