@@ -1,0 +1,116 @@
+<System name="JUnitTestWriter">
+    <Function name="writeTest">
+        <Input>
+            <VarSet name="Source">
+                <VarSet name="Request-Cases">
+                    <Var name="Api-Name">
+                        <Value name="Test-Class-Name"/>
+                        <Value name="Java-Identifier"/>
+                        <Value name="File-Name"/>
+                        <Value name="Any-Name"/>
+                    </Var>
+                    <Var name="Count">
+                        <Value name="Some"/>
+                        <Value name="None" once="true">
+                            <When>
+                                <AnyOf property="path, op"/>
+                            </When>
+                        </Value>
+                    </Var>
+                </VarSet>
+                <Var name="Path">
+                    <Value name="Defined" property="path"/>
+                    <Value name="Default"/>
+                </Var>
+                <Var name="Operation">
+                    <Value name="Defined" property="op"/>
+                    <Value name="Default"/>
+                </Var>
+            </VarSet>
+            
+            <VarSet name="Target">
+                <VarSet name="Test-Name">
+                    <Var name="Defined">
+                        <Value name="Yes" property="testName"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Value" when="testName">
+                        <Value name="Test-Class-Name"/>
+                        <Value name="Java-Identifier"/>
+                        <Value name="File-Name"/>
+                        <Value name="Any-Name"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="Output-Stream">
+                    <Var name="Defined">
+                        <Value name="Yes"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="Output-File">
+                    <Var name="Defined">
+                        <Value name="Yes" property="file"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Path" when="file">
+                        <Value name="Relative"/>
+                        <Value name="Absolute"/>
+                    </Var>
+                    <VarSet name="Dir" when="file">
+                        <Var name="Exists">
+                            <Value name="Yes"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="In-Maven-Project">
+                            <Value name="Yes" property="mavenDir"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                    <Var name="Name" when="file">
+                        <Value name="Test-Class-Name"/>
+                        <Value name="Java-Identifier"/>
+                        <Value name="File-Name"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="Output-Dir">
+                    <Var name="Defined">
+                        <Value name="Yes" property="dir"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Path" when="dir">
+                        <Value name="Relative"/>
+                        <Value name="Absolute"/>
+                    </Var>
+                    <VarSet name="Dir" when="dir">
+                        <Var name="Exists">
+                            <Value name="Yes"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="In-Maven-Project">
+                            <Value name="Yes" property="mavenDir"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+
+                <Var name="Package">
+                    <Value name="Defined"/>
+                    <Value name="Default" when="mavenDir"/>
+                    <Value name="Undefined" whenNot="mavenDir" failure="true"/>
+                </Var>
+                <VarSet name="BaseClass">
+                    <Var name="Defined">
+                        <Value name="Class" property="baseClass"/>
+                        <Value name="Name" property="baseClass"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="In-Package" when="baseClass">
+                        <Value name="Yes"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+            
+        </Input>
+    </Function>
+</System>

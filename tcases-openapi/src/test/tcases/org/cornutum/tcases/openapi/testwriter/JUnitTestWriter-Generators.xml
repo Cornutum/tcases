@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="writeTest" seed="1306774915405407232" tuples="1">
+    <Combine tuples="0">
+      <Include var="Target.Output-Dir.Defined"/>
+      <Include var="Target.Output-File.Defined"/>
+      <Include var="Target.Output-Stream.Defined"/>
+    </Combine>
+    <Combine tuples="0">
+      <Include var="Target.Output-File.Defined"/>
+      <Include var="Target.Test-Name.Defined"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>
