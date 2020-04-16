@@ -10,5 +10,9 @@
       <Include var="Target.Output-File.Defined"/>
       <Include var="Target.Test-Name.Defined"/>
     </Combine>
+    <Combine tuples="0">
+      <Include var="Source.Path"/>
+      <Include var="Source.Operation"/>
+    </Combine>
   </TupleGenerator>
 </Generators>
