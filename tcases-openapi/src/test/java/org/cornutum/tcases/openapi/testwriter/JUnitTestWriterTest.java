@@ -7,29 +7,21 @@
 
 package org.cornutum.tcases.openapi.testwriter;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.Optional;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
-import org.cornutum.tcases.openapi.resolver.RequestTestDef;
-import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
-
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.fail;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.Arrays;
+import static java.util.stream.Collectors.joining;
 
 /**
  * Runs tests for {@link JUnitTestWriter}.
  */
-public class JUnitTestWriterTest
+public class JUnitTestWriterTest extends TestWriterTest
   {
   /**
    * Tests {@link JUnitTestWriter#writeTest writeTest()} using the following inputs.
@@ -113,53 +105,42 @@ public class JUnitTestWriterTest
    * </P>
    */
   @Test
-  public void writeTest_1()
+  public void writeTest_1() throws Exception
     {
-    // properties = dir,op,path,testName
-
     // Given...
-    //
-    //   Source.Request-Cases.Api-Name = Any-Name
-    //
-    //   Source.Request-Cases.Count = None
-    //
-    //   Source.Path = Defined
-    //
-    //   Source.Operation = Defined
-    //
-    //   Target.Test-Name.Defined = Yes
-    //
-    //   Target.Test-Name.Value = Any-Name
-    //
-    //   Target.Output-Stream.Defined = Yes
-    //
-    //   Target.Output-File.Defined = No
-    //
-    //   Target.Output-File.Path = (not applicable)
-    //
-    //   Target.Output-File.Dir.Exists = (not applicable)
-    //
-    //   Target.Output-File.Dir.In-Maven-Project = (not applicable)
-    //
-    //   Target.Output-File.Name = (not applicable)
-    //
-    //   Target.Output-Dir.Defined = Yes
-    //
-    //   Target.Output-Dir.Path = Absolute
-    //
-    //   Target.Output-Dir.Dir.Exists = No
-    //
-    //   Target.Output-Dir.Dir.In-Maven-Project = No
-    //
-    //   Target.Package = Defined
-    //
-    //   Target.BaseClass.Defined = No
-    //
-    //   Target.BaseClass.In-Package = (not applicable)
+    String testDefName = "testDef-1";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .path( "/posts")
+      .operation( "trace")
+      .build();
+
+    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    File outDir = new File( getResourceDir(), testDefName);
+    FileUtils.deleteQuietly( outDir);
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( "someTime-tests** (* more || <")
+      .toStream( outStream)
+      .inDir( outDir)
+      .inPackage( "org.examples")
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
     
     // When...
+    testWriter.writeTest( source, target);
 
-    // Then...
+    // Then
+    String outStreamResults = outStream.toString( "UTF-8");
+    assertThat( "Output stream empty", outStreamResults.isEmpty(), is( true));
+    
+    String outFileName = "SomeTimeTestsMoreTest.java";
+    File outFile = new File( outDir, outFileName);
+    String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
     }
 
   /**
@@ -170,7 +151,7 @@ public class JUnitTestWriterTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> Source.Request-Cases.Api-Name </TD> <TD> Java-Identifier </TD> </TR>
    * <TR><TD> Source.Request-Cases.Count </TD> <TD> Some </TD> </TR>
-   * <TR><TD> Source.Path </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Source.Path </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Source.Operation </TD> <TD> Default </TD> </TR>
    * <TR><TD> Target.Test-Name.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Target.Test-Name.Value </TD> <TD> (not applicable) </TD> </TR>
@@ -191,53 +172,37 @@ public class JUnitTestWriterTest
    * </P>
    */
   @Test
-  public void writeTest_2()
+  public void writeTest_2() throws Exception
     {
-    // properties = baseClass,file,mavenDir
-
     // Given...
-    //
-    //   Source.Request-Cases.Api-Name = Java-Identifier
-    //
-    //   Source.Request-Cases.Count = Some
-    //
-    //   Source.Path = Default
-    //
-    //   Source.Operation = Default
-    //
-    //   Target.Test-Name.Defined = No
-    //
-    //   Target.Test-Name.Value = (not applicable)
-    //
-    //   Target.Output-Stream.Defined = No
-    //
-    //   Target.Output-File.Defined = Yes
-    //
-    //   Target.Output-File.Path = Absolute
-    //
-    //   Target.Output-File.Dir.Exists = Yes
-    //
-    //   Target.Output-File.Dir.In-Maven-Project = Yes
-    //
-    //   Target.Output-File.Name = Test-Class-Name
-    //
-    //   Target.Output-Dir.Defined = No
-    //
-    //   Target.Output-Dir.Path = (not applicable)
-    //
-    //   Target.Output-Dir.Dir.Exists = (not applicable)
-    //
-    //   Target.Output-Dir.Dir.In-Maven-Project = (not applicable)
-    //
-    //   Target.Package = Default
-    //
-    //   Target.BaseClass.Defined = Class
-    //
-    //   Target.BaseClass.In-Package = Yes
+    String testDefName = "testDef-2";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .path( "/posts/{post-id}")
+      .build();
+
+    String outFileName = "TestSomething";
+    Class<?> baseClass = org.cornutum.tcases.openapi.OpenApiTest.class;
+    String baseClassPath = Arrays.stream( baseClass.getPackage().getName().split( "\\.")).collect( joining( "/"));
+    File outDir = new File( getResourceDir(), String.format( "src/test/java/%s", baseClassPath));
+    outDir.mkdirs();
+
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .toFile( new File( outDir, outFileName))
+      .extending( baseClass)
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
     
     // When...
+    testWriter.writeTest( source, target);
 
-    // Then...
+    // Then
+    File outFile = new File( target.getFile().getParentFile(), outFileName + ".java");
+    String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
     }
 
   /**
@@ -248,7 +213,7 @@ public class JUnitTestWriterTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> Source.Request-Cases.Api-Name </TD> <TD> File-Name </TD> </TR>
    * <TR><TD> Source.Request-Cases.Count </TD> <TD> Some </TD> </TR>
-   * <TR><TD> Source.Path </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> Source.Path </TD> <TD> Default </TD> </TR>
    * <TR><TD> Source.Operation </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Target.Test-Name.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Target.Test-Name.Value </TD> <TD> File-Name </TD> </TR>
@@ -269,53 +234,51 @@ public class JUnitTestWriterTest
    * </P>
    */
   @Test
-  public void writeTest_3()
+  public void writeTest_3() throws Exception
     {
-    // properties = baseClass,dir,file,mavenDir,op,path,testName
-
     // Given...
-    //
-    //   Source.Request-Cases.Api-Name = File-Name
-    //
-    //   Source.Request-Cases.Count = Some
-    //
-    //   Source.Path = Defined
-    //
-    //   Source.Operation = Defined
-    //
-    //   Target.Test-Name.Defined = Yes
-    //
-    //   Target.Test-Name.Value = File-Name
-    //
-    //   Target.Output-Stream.Defined = Yes
-    //
-    //   Target.Output-File.Defined = Yes
-    //
-    //   Target.Output-File.Path = Relative
-    //
-    //   Target.Output-File.Dir.Exists = No
-    //
-    //   Target.Output-File.Dir.In-Maven-Project = No
-    //
-    //   Target.Output-File.Name = Java-Identifier
-    //
-    //   Target.Output-Dir.Defined = Yes
-    //
-    //   Target.Output-Dir.Path = Relative
-    //
-    //   Target.Output-Dir.Dir.Exists = Yes
-    //
-    //   Target.Output-Dir.Dir.In-Maven-Project = Yes
-    //
-    //   Target.Package = Defined
-    //
-    //   Target.BaseClass.Defined = Name
-    //
-    //   Target.BaseClass.In-Package = No
+    String testDefName = "testDef-3";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .operation( "GET")
+      .build();
+
+    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+
+    String outFileName = "jsonPlaceHolder_0_16_0";
+    File outDir = new File( String.format( "%s/src/main/java/org/cornutum", testDefName));
+
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( "api-0.16.0.json")
+      .toStream( outStream)
+      .toFile( outFileName)
+      .inDir( outDir)
+      .inPackage( "org.examples")
+      .extending( "org.cornutum.tcases.openapi.OpenApiTest")
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
     
     // When...
+    try
+      {
+      outDir.mkdirs();
+      testWriter.writeTest( source, target);
 
-    // Then...
+      // Then
+      String outStreamResults = outStream.toString( "UTF-8");
+      assertThat( "Output stream empty", outStreamResults.isEmpty(), is( true));
+
+      File outFile = new File( outDir, outFileName + "Test.java");
+      String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+      verifyTest( testDefName, outFileResults);
+      }
+    finally
+      {
+      FileUtils.deleteQuietly( outDir);
+      }
     }
 
   /**
@@ -326,7 +289,7 @@ public class JUnitTestWriterTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> Source.Request-Cases.Api-Name </TD> <TD> Test-Class-Name </TD> </TR>
    * <TR><TD> Source.Request-Cases.Count </TD> <TD> Some </TD> </TR>
-   * <TR><TD> Source.Path </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Source.Path </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Source.Operation </TD> <TD> Default </TD> </TR>
    * <TR><TD> Target.Test-Name.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Target.Test-Name.Value </TD> <TD> (not applicable) </TD> </TR>
@@ -334,12 +297,12 @@ public class JUnitTestWriterTest
    * <TR><TD> Target.Output-File.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Target.Output-File.Path </TD> <TD> Absolute </TD> </TR>
    * <TR><TD> Target.Output-File.Dir.Exists </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> Target.Output-File.Dir.In-Maven-Project </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Target.Output-File.Dir.In-Maven-Project </TD> <TD> No </TD> </TR>
    * <TR><TD> Target.Output-File.Name </TD> <TD> File-Name </TD> </TR>
    * <TR><TD> Target.Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Target.Output-Dir.Path </TD> <TD> Absolute </TD> </TR>
    * <TR><TD> Target.Output-Dir.Dir.Exists </TD> <TD> No </TD> </TR>
-   * <TR><TD> Target.Output-Dir.Dir.In-Maven-Project </TD> <TD> No </TD> </TR>
+   * <TR><TD> Target.Output-Dir.Dir.In-Maven-Project </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Target.Package </TD> <TD> Default </TD> </TR>
    * <TR><TD> Target.BaseClass.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Target.BaseClass.In-Package </TD> <TD> (not applicable) </TD> </TR>
@@ -347,53 +310,37 @@ public class JUnitTestWriterTest
    * </P>
    */
   @Test
-  public void writeTest_4()
+  public void writeTest_4() throws Exception
     {
-    // properties = dir,file,mavenDir
-
     // Given...
-    //
-    //   Source.Request-Cases.Api-Name = Test-Class-Name
-    //
-    //   Source.Request-Cases.Count = Some
-    //
-    //   Source.Path = Default
-    //
-    //   Source.Operation = Default
-    //
-    //   Target.Test-Name.Defined = No
-    //
-    //   Target.Test-Name.Value = (not applicable)
-    //
-    //   Target.Output-Stream.Defined = No
-    //
-    //   Target.Output-File.Defined = Yes
-    //
-    //   Target.Output-File.Path = Absolute
-    //
-    //   Target.Output-File.Dir.Exists = Yes
-    //
-    //   Target.Output-File.Dir.In-Maven-Project = Yes
-    //
-    //   Target.Output-File.Name = File-Name
-    //
-    //   Target.Output-Dir.Defined = Yes
-    //
-    //   Target.Output-Dir.Path = Absolute
-    //
-    //   Target.Output-Dir.Dir.Exists = No
-    //
-    //   Target.Output-Dir.Dir.In-Maven-Project = No
-    //
-    //   Target.Package = Default
-    //
-    //   Target.BaseClass.Defined = No
-    //
-    //   Target.BaseClass.In-Package = (not applicable)
+    String testDefName = "testDef-4";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .path( "/posts")
+      .build();
+
+    File outFile = new File( getResourceDir(), "tests@cornutum.org+more$$");
+    outFile.getParentFile().mkdirs();
+    
+    File outDir = new File( getResourceDir(), String.format( "%s/src/main/java/org/cornutum", testDefName));
+    FileUtils.deleteQuietly( outDir);
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .toFile( outFile)
+      .inDir( outDir)
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
     
     // When...
+    testWriter.writeTest( source, target);
 
-    // Then...
+    // Then
+    File resultsFile = new File( outDir, outFile.getName());
+    String outFileResults = FileUtils.readFileToString( resultsFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
     }
 
   /**
@@ -425,53 +372,50 @@ public class JUnitTestWriterTest
    * </P>
    */
   @Test
-  public void writeTest_5()
+  public void writeTest_5() throws Exception
     {
-    // properties = baseClass,file,op,path,testName
-
     // Given...
-    //
-    //   Source.Request-Cases.Api-Name = Any-Name
-    //
-    //   Source.Request-Cases.Count = Some
-    //
-    //   Source.Path = Defined
-    //
-    //   Source.Operation = Defined
-    //
-    //   Target.Test-Name.Defined = Yes
-    //
-    //   Target.Test-Name.Value = Test-Class-Name
-    //
-    //   Target.Output-Stream.Defined = Yes
-    //
-    //   Target.Output-File.Defined = Yes
-    //
-    //   Target.Output-File.Path = Relative
-    //
-    //   Target.Output-File.Dir.Exists = No
-    //
-    //   Target.Output-File.Dir.In-Maven-Project = No
-    //
-    //   Target.Output-File.Name = Test-Class-Name
-    //
-    //   Target.Output-Dir.Defined = No
-    //
-    //   Target.Output-Dir.Path = (not applicable)
-    //
-    //   Target.Output-Dir.Dir.Exists = (not applicable)
-    //
-    //   Target.Output-Dir.Dir.In-Maven-Project = (not applicable)
-    //
-    //   Target.Package = Defined
-    //
-    //   Target.BaseClass.Defined = Class
-    //
-    //   Target.BaseClass.In-Package = Yes
+    String testDefName = "testDef-5";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .path( "/posts/{post-id}")
+      .operation( "put")
+      .build();
+
+    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    
+    String outFileName = "TestJsonPlaceholder.java";
+    File outFile = new File( testDefName, outFileName);
+    FileUtils.deleteQuietly( outFile.getParentFile());
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( "ApiTests")
+      .toStream( outStream)
+      .toFile( outFile)
+      .inPackage( org.cornutum.tcases.openapi.OpenApiTest.class)
+      .extending( org.cornutum.tcases.openapi.OpenApiTest.class)
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
     
     // When...
+    try
+      {
+      testWriter.writeTest( source, target);
 
-    // Then...
+      // Then
+      String outStreamResults = outStream.toString( "UTF-8");
+      assertThat( "Output stream empty", outStreamResults.isEmpty(), is( true));
+
+      String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+      verifyTest( testDefName, outFileResults);
+      }
+    finally
+      {
+      FileUtils.deleteQuietly( outFile.getParentFile());
+      }
     }
 
   /**
@@ -503,53 +447,32 @@ public class JUnitTestWriterTest
    * </P>
    */
   @Test
-  public void writeTest_6()
+  public void writeTest_6() throws Exception
     {
-    // properties = baseClass
-
     // Given...
-    //
-    //   Source.Request-Cases.Api-Name = Java-Identifier
-    //
-    //   Source.Request-Cases.Count = Some
-    //
-    //   Source.Path = Default
-    //
-    //   Source.Operation = Default
-    //
-    //   Target.Test-Name.Defined = No
-    //
-    //   Target.Test-Name.Value = (not applicable)
-    //
-    //   Target.Output-Stream.Defined = Yes
-    //
-    //   Target.Output-File.Defined = No
-    //
-    //   Target.Output-File.Path = (not applicable)
-    //
-    //   Target.Output-File.Dir.Exists = (not applicable)
-    //
-    //   Target.Output-File.Dir.In-Maven-Project = (not applicable)
-    //
-    //   Target.Output-File.Name = (not applicable)
-    //
-    //   Target.Output-Dir.Defined = No
-    //
-    //   Target.Output-Dir.Path = (not applicable)
-    //
-    //   Target.Output-Dir.Dir.Exists = (not applicable)
-    //
-    //   Target.Output-Dir.Dir.In-Maven-Project = (not applicable)
-    //
-    //   Target.Package = Defined
-    //
-    //   Target.BaseClass.Defined = Name
-    //
-    //   Target.BaseClass.In-Package = No
+    String testDefName = "testDef-6";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .build();
+
+    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .toStream( outStream)
+      .inPackage( "org.examples")
+      .extending( "org.examples.util.ExampleTest")
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
     
     // When...
+    testWriter.writeTest( source, target);
 
-    // Then...
+    // Then
+    String outStreamResults = outStream.toString( "UTF-8");
+    verifyTest( testDefName, outStreamResults);
     }
 
   /**
@@ -560,7 +483,7 @@ public class JUnitTestWriterTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> Source.Request-Cases.Api-Name </TD> <TD> File-Name </TD> </TR>
    * <TR><TD> Source.Request-Cases.Count </TD> <TD> Some </TD> </TR>
-   * <TR><TD> Source.Path </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> Source.Path </TD> <TD> Default </TD> </TR>
    * <TR><TD> Source.Operation </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Target.Test-Name.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Target.Test-Name.Value </TD> <TD> Java-Identifier </TD> </TR>
@@ -581,53 +504,41 @@ public class JUnitTestWriterTest
    * </P>
    */
   @Test
-  public void writeTest_7()
+  public void writeTest_7() throws Exception
     {
-    // properties = dir,mavenDir,op,path,testName
-
     // Given...
-    //
-    //   Source.Request-Cases.Api-Name = File-Name
-    //
-    //   Source.Request-Cases.Count = Some
-    //
-    //   Source.Path = Defined
-    //
-    //   Source.Operation = Defined
-    //
-    //   Target.Test-Name.Defined = Yes
-    //
-    //   Target.Test-Name.Value = Java-Identifier
-    //
-    //   Target.Output-Stream.Defined = No
-    //
-    //   Target.Output-File.Defined = No
-    //
-    //   Target.Output-File.Path = (not applicable)
-    //
-    //   Target.Output-File.Dir.Exists = (not applicable)
-    //
-    //   Target.Output-File.Dir.In-Maven-Project = (not applicable)
-    //
-    //   Target.Output-File.Name = (not applicable)
-    //
-    //   Target.Output-Dir.Defined = Yes
-    //
-    //   Target.Output-Dir.Path = Relative
-    //
-    //   Target.Output-Dir.Dir.Exists = Yes
-    //
-    //   Target.Output-Dir.Dir.In-Maven-Project = Yes
-    //
-    //   Target.Package = Default
-    //
-    //   Target.BaseClass.Defined = No
-    //
-    //   Target.BaseClass.In-Package = (not applicable)
+    String testDefName = "testDef-7";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .operation( "POST")
+      .build();
+
+    File outDir = new File( String.format( "%s/java/org/cornutum", testDefName));
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( "jsonPlaceholder_API")
+      .inDir( outDir)
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
     
     // When...
+    try
+      {
+      outDir.mkdirs();
+      testWriter.writeTest( source, target);
 
-    // Then...
+      // Then
+      File outFile = new File( outDir, "JsonPlaceholder_APITest.java");
+      String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+      verifyTest( testDefName, outFileResults);
+      }
+    finally
+      {
+      FileUtils.deleteQuietly( outDir);
+      }
     }
 
   /**
@@ -638,7 +549,7 @@ public class JUnitTestWriterTest
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
    * <TR><TD> Source.Request-Cases.Api-Name </TD> <TD> Test-Class-Name </TD> </TR>
    * <TR><TD> Source.Request-Cases.Count </TD> <TD> Some </TD> </TR>
-   * <TR><TD> Source.Path </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Source.Path </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Source.Operation </TD> <TD> Default </TD> </TR>
    * <TR><TD> Target.Test-Name.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Target.Test-Name.Value </TD> <TD> (not applicable) </TD> </TR>
@@ -659,206 +570,32 @@ public class JUnitTestWriterTest
    * </P>
    */
   @Test
-  public void writeTest_8()
+  public void writeTest_8() throws Exception
     {
-    // properties = baseClass,file
-
     // Given...
-    //
-    //   Source.Request-Cases.Api-Name = Test-Class-Name
-    //
-    //   Source.Request-Cases.Count = Some
-    //
-    //   Source.Path = Default
-    //
-    //   Source.Operation = Default
-    //
-    //   Target.Test-Name.Defined = No
-    //
-    //   Target.Test-Name.Value = (not applicable)
-    //
-    //   Target.Output-Stream.Defined = No
-    //
-    //   Target.Output-File.Defined = Yes
-    //
-    //   Target.Output-File.Path = Absolute
-    //
-    //   Target.Output-File.Dir.Exists = Yes
-    //
-    //   Target.Output-File.Dir.In-Maven-Project = No
-    //
-    //   Target.Output-File.Name = Java-Identifier
-    //
-    //   Target.Output-Dir.Defined = No
-    //
-    //   Target.Output-Dir.Path = (not applicable)
-    //
-    //   Target.Output-Dir.Dir.Exists = (not applicable)
-    //
-    //   Target.Output-Dir.Dir.In-Maven-Project = (not applicable)
-    //
-    //   Target.Package = Undefined
-    //
-    //   Target.BaseClass.Defined = Class
-    //
-    //   Target.BaseClass.In-Package = Yes
+    String testDefName = "testDef-8";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .path( "/posts")
+      .build();
+
+    File outFile = new File( getResourceDir(), testDefName);
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .toFile( outFile)
+      .extending( org.cornutum.tcases.openapi.OpenApiTest.class)
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
     
     // When...
-
-    // Then...
+    assertTestWriterException(
+      () -> testWriter.writeTest( source, target),
+      "Can't write test=TestDef8",
+      String.format( "No package defined for target=%s", target));
     }
-
-  /**
-   * Verifies that the test writer results for the given request test definition match expectations.
-   */
-  protected void verifyTest( String testDefName, String testWriterResults)
-    {
-    File expectedResults = getExpectedTestResults( testDefName);
-    if( acceptAsExpected())
-      {
-      updateTestResults( expectedResults.getName(), testWriterResults);
-      }
-    else
-      {
-      String expected;
-      try
-        {
-        expected = FileUtils.readFileToString( expectedResults, "UTF-8");
-        }
-      catch( Exception e)
-        {
-        throw new RuntimeException( String.format( "Can't read expected results for testDef=%s", testDefName), e);
-        }
-
-      assertTestResultsEqual( testDefName, testWriterResults, expected);
-      }
-    }
-
-  /**
-   * Reports a failure if the actual test results are not equal to the expected results.
-   */
-  protected void assertTestResultsEqual( String testDefName, String actual, String expected)
-    {
-    int diffStart = StringUtils.indexOfDifference( actual, expected);
-    if( diffStart >= 0)
-      {
-      int sampleSize = 16;
-      int sampleStart = Math.max( 0, diffStart - sampleSize/2);
-      int actualSampleEnd = Math.min( diffStart + sampleSize/2, actual.length());
-      int expectedSampleEnd = Math.min( diffStart + sampleSize/2, expected.length());
-
-      fail(
-        String.format(
-          "Unexpected results for %s starting at index=%s -- expected '%s%s%s' but was '%s%s%s'",
-          testDefName,
-          diffStart,
-          sampleStart == 0? "" : "...",
-          expected.substring( sampleStart, expectedSampleEnd).replaceAll( "\\n", "\\\\n"),
-          expectedSampleEnd == expected.length()? "" : "...",
-          sampleStart == 0? "" : "...",
-          actual.substring( sampleStart, actualSampleEnd).replaceAll( "\\n", "\\\\n"),
-          actualSampleEnd == actual.length()? "" : "..."));
-      }
-    }
-
-  /**
-   * Updates expected test writer results.
-   */
-  private void updateTestResults( String expectedResultsName, String actualResults)
-    {
-    try
-      {
-      File expectedResults = new File( saveExpectedDir_, expectedResultsName);
-      FileUtils.write( expectedResults, actualResults, "UTF-8");
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( String.format( "Can't update expectedResults=%s", expectedResultsName), e);
-      }
-    }
-
-  /**
-   * Returns the {@link RequestTestDef} object represented by the given document resource.
-   */
-  protected RequestTestDef requestTestDefFor( String testDefName)
-    {
-    InputStream document = getClass().getResourceAsStream( String.format( "%s-Request-Cases.json", testDefName));
-    assertThat( "Request cases for resource=" + testDefName, document, is( notNullValue()));
-    
-    try( RequestTestDefReader reader = new RequestTestDefReader( document))
-      {
-      return reader.getRequestTestDef();
-      }
-    }
-
-  /**
-   * Verifies that the test writer results for the given request test definition match expectations.
-   */
-  protected File getExpectedTestResults( String testDefName)
-    {
-    return new File( getResourceDir(), testDefName + "-Expected-Test.java");
-    }
-
-  /**
-   * Runs the given Runnable and returns the results printed to standard output
-   */
-  private String toStdOut( Runnable runnable)
-    {
-    try
-      {
-      PrintStream prevOut = System.out;
-      PrintStream newOut = null;
-      ByteArrayOutputStream newOutBytes = null;
-
-      try
-        {
-        newOutBytes = new ByteArrayOutputStream();
-        newOut = new PrintStream( newOutBytes, true, "UTF-8");
-        System.setOut( newOut);
-
-        runnable.run();
-        }
-      finally
-        {
-        IOUtils.closeQuietly( newOut);
-        System.setOut( prevOut);
-        }
-
-      return new String( newOutBytes.toByteArray(), "UTF-8");
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't get results from standard output", e);
-      }
-    }
-
-  /**
-   * Returns the location of resource files.
-   */
-  protected File getResourceDir()
-    {
-    try
-      {
-      return new File( getClass().getResource( ".").toURI().getPath());
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't get resource directory path", e);
-      }
-    }
-
-  /**
-   * Returns true if all generated results are automatically accepted.
-   */
-  private boolean acceptAsExpected()
-    {
-    return saveExpectedDir_ != null;
-    }
-
-  private final File saveExpectedDir_ =
-    Optional.ofNullable( StringUtils.trimToNull( System.getProperty( "saveExpectedTo")))
-    .map( path -> new File( path))
-    .orElse( null);
 
   /**
    * A mock {@link TestCaseWriter}

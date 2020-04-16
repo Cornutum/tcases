@@ -1,0 +1,1820 @@
+
+[
+    {
+        "id": 0,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "userId",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 1,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "userId",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "userId",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 10,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "userId",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "userId.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "userId",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "userId.Type=Not integer"
+    },
+    {
+        "id": 5,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "userId",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "userId.Value.Is=0"
+    },
+    {
+        "id": 6,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "userId",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 11,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "userId.Value.Is=11"
+    },
+    {
+        "id": 0,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "sj0PAS1z^d-!xNO\\}u_S7}/9jCC5pBG|u=w{::DKu~y2Mk4n|6$7.xXox9<U(PCPEA|aV.,90\\nJzbj:B:C|IAvo0h0k-/+sY*tlULX|!5m<UV2eh*x~k<](\"*Xa?}'2l[;n*NTwD=N2 x+?:q_j`xJb&;{P J-"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "\"Zv0+x<bLH7UbvC^R7D<GXxwPs;>!E2Jose?<CpJfPvlq_:AKu*?%U]k9* PQIj6W|Z:vD8i0j,shQO+`E>0Fk<8d'= 6?]U2]Z.t-cV}wtJnu$axcvyVFx]syDebW5)OOu4o|NQY='w!}U,_y;;l1*iD5SZ!u2HZ7\\(Lsk8*%@ m5T~e7;\"m6]Na; {fl$fH7~Zc1HN[%E!YODh\\^ m<jjkDlI4{*Q*lsJGTB5WVL{qw7uO[iUu.(85D:ZCqT |"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "hvvxfyypjw": {
+                                "type": "boolean",
+                                "value": true
+                            },
+                            "lwpxdfdtzugc": {
+                                "type": "array",
+                                "value": [
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 10,
+                                "format": "int32"
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                        }
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "|(N`QIVhJ*p~:|(lBH<4*p%9yT S6|T\"Gi7Kg`ORmN_^'PdKP<BOVc9YHKK<[81y^pVw2q)f~+~&tbIqK6W+pl"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "n4C+/s$KHE%Jb&:X`9{Pn5Mhg|Y>,oWF.WR#ND?uqhpGKY3@unwBgQ\\@bz"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "gnosrdpemm": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": "BR^m"
+                                    }
+                                ]
+                            },
+                            "zxxqnmz": {
+                                "type": "object",
+                                "value": {
+                                    "jecpdhhdhdxfvmkz": {
+                                        "type": "array",
+                                        "value": [
+                                        ]
+                                    }
+                                }
+                            },
+                            "csyrieq": {
+                                "type": "number",
+                                "value": 624.7
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "w}dbQrvtIs{*;5k2j@>AW9U'!)nuI-<vB3]XnY\"V-xKx>-Q}yUXW\"LbR[[(WY/$?XnaOXQryqO]A_v1o\\@Bz#e}2oB<@;(E88s_e#p:.ht^yfi5,gB+$)h[dy0>\\;)Q>"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "w|n5[mcq%mG}3'gsT43&&gkO_q!\\l\\YL|Vq-da)n\"a/'6ax!(|plvlFh{uX2eMGC]pOB?6%jK,-Bj$UiGy,`)A??b1`?]MA3]=R"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "jdhuorawk": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": "$&0"
+                                    },
+                                    {
+                                        "type": "string",
+                                        "value": "!*m]Ae"
+                                    }
+                                ]
+                            },
+                            "vzkmhps": {
+                                "type": "object",
+                                "value": {
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "L&E`sYG%!f4a#-U_)aN$M$?cL){<dy%] 4yq"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "X7p|Ow\"UBQMyB8fGCMEN^_5:y*hjN:qn(H:I yuYqk_N:{^C^z$`)5HZEKhsBRc[Jm:h5V*\"+Xfe&^CQ!$a\"$ev$w)?<]0w`K(]-rj@c?>_A*(<Oxt&_|p_ZYGMI1_~.}q}n(KAbkjF7\"QtaIgNz^{j-LB8jlAWM/\\o(wPs\"e/Bl;#,-> 9(c"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "pobaqprfbwopikz": {
+                                "type": "object",
+                                "value": {
+                                    "hqas": {
+                                        "type": "array",
+                                        "value": [
+                                            {
+                                                "type": "string",
+                                                "value": "4%_O%Z}z"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "fqcpqmaunuwlta": {
+                                "type": "object",
+                                "value": {
+                                    "rhqttirmftmh": {
+                                        "type": "boolean",
+                                        "value": true
+                                    },
+                                    "vomppets": {
+                                        "type": "array",
+                                        "value": [
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "s5p4>ni\\Q_$c< bEYB6NnA$X>3V#QG}N#P9]5*z?S[n8`R\"n[f^7P2)O/ljXN|!"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "MR,(\"r`-03EaI}@x4IlRksBsevu+XC8,7GX9qt6|M/7H c yy?\"N=9i%UREo:OEV|f8^|l%Iah+UV'E7BxHPI0g<#yTYkje[@e:DNH3JUOh($?[[*3s<bv,!l>Ri*ZCK`r}(QgL\\?}fTS-:0qs& %bEnSUlA7"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "zduwj": {
+                                "type": "integer",
+                                "value": -942,
+                                "format": "int32"
+                            },
+                            "vcnhratmlnvlik": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": ""
+                                    },
+                                    {
+                                        "type": "string",
+                                        "value": "fRm>"
+                                    }
+                                ]
+                            },
+                            "fforum": {
+                                "type": "object",
+                                "value": {
+                                    "awufhhwuuxrg": {
+                                        "type": "string",
+                                        "value": "QZ2dZ;"
+                                    },
+                                    "cftttuyzehkychb": {
+                                        "type": "number",
+                                        "value": -617.2
+                                    },
+                                    "znuwkbtxuyr": {
+                                        "type": "array",
+                                        "value": [
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "s5p4>ni\\Q_$c< bEYB6NnA$X>3V#QG}N#P9]5*z?S[n8`R\"n[f^7P2)O/ljXN|!"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "MR,(\"r`-03EaI}@x4IlRksBsevu+XC8,7GX9qt6|M/7H c yy?\"N=9i%UREo:OEV|f8^|l%Iah+UV'E7BxHPI0g<#yTYkje[@e:DNH3JUOh($?[[*3s<bv,!l>Ri*ZCK`r}(QgL\\?}fTS-:0qs& %bEnSUlA7"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "zduwj": {
+                                "type": "integer",
+                                "value": -942,
+                                "format": "int32"
+                            },
+                            "vcnhratmlnvlik": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": ""
+                                    },
+                                    {
+                                        "type": "string",
+                                        "value": "fRm>"
+                                    }
+                                ]
+                            },
+                            "fforum": {
+                                "type": "object",
+                                "value": {
+                                    "awufhhwuuxrg": {
+                                        "type": "string",
+                                        "value": "QZ2dZ;"
+                                    },
+                                    "cftttuyzehkychb": {
+                                        "type": "number",
+                                        "value": -617.2
+                                    },
+                                    "znuwkbtxuyr": {
+                                        "type": "array",
+                                        "value": [
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "p~,Y-C'krm|aq)O[l~z dO?[ma[k7$:+S{rF%Y'}}[8]qnu+#[#Rx[RY(1mQU;U=q2^ J\\3[q?q|xv(@1R6NJIY6,Y?N k)\\{vBe_s;f^x WLb$ PL1!&Ru2'QMic_wv()GK=J\\\\wnh7-4bk9yO81^R;\\)V\\nKFxG`@.s7Fo$Mr:7YMFPzZ,G1>@q\\9(z.{Spjc pFO5hVnm0ZZfA{u\\8Z0\\i[U5gs&L["
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "[mp,kJ;Z8kxF0x|U%~J<9[-K'F\"\"o\\agNf>``w7+SglXc- -Q9k|Ojy;7p(T24l3+<\"zt8tIc@1=tN[9{HQauy(2NRe9$J]uU$A#dVblaRMYJx''5CzS@l^RVz&wY#U1s/<Gdpi+gU0(."
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "fgclxn": {
+                                "type": "integer",
+                                "value": 605,
+                                "format": "int32"
+                            },
+                            "lirsq": {
+                                "type": "boolean",
+                                "value": true
+                            },
+                            "lekaugzwrta": {
+                                "type": "object",
+                                "value": {
+                                    "hmwrcipo": {
+                                        "type": "number",
+                                        "value": 634.5
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "'0/#?kp Q|CF|!:G0|JjcwuKFjH$Y&ir(ac{_cFB6ytU&7n??H|CSVl_jMZ:MQqC`K x&2iI;?p5]E`eUgY4Ogz8-XdJc[q\\ m/=~;l3A!zk(|\\?3_#N5{i`e>6,|0pPcL*3mV;,#3CGne4e+T/W*axl;cs#VSEi&2KKtTi=ML5^zYx#Dap4G4P'r4gXhgse(w6TAxo?jz;{ j(>D|?b7IUP|9(-U/IVeNRPQd-9:aj7W#'m+;EXZr"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "1Y^`MEOf&k/5^$3}HRPvqD*9xbV(J1UA>X/_Bn@Qz*3PaUGb{Sp9dp?@}\"?Ch/7E0p%)?W!of^>T/4pEVC}&3(U,qt~,8s:\\NqY}.~|/9>\\uB\\iYww"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "t": {
+                                "type": "array",
+                                "value": [
+                                ]
+                            },
+                            "dhrnskvnjq": {
+                                "type": "boolean",
+                                "value": true
+                            },
+                            "ollyhkhfzoh": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": "-s,"
+                                    },
+                                    {
+                                        "type": "string",
+                                        "value": "SVAUj;1"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "ET_@"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": ":%\\,Gw8eG<O!1m-3dGE)Ist}ReuQ\" ,f\"kB!@.d>Q[;P5azFrPl(tP0),b<V;A{G~pH.l^UTG*A&d9/wRpD91tu9#0L$.{S5}E?~`$cjPpxSD-'\"\"/TVamk*w;lr`0*d&;32MUxjA;C@{e!;w?s:4.o*olR+>LK}lZQ1lrX|4{\"N32kK\\#;7&\\e~Vw]?}-OtplRlQrV`csK8E|H'45?H?A*UI\\wKgQ?n0bBeQb74<pj~^cE!d3SO$,j 5{^8s9}x"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "qmmgkgxzzghefqtn": {
+                                "type": "string",
+                                "value": "N`"
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "'MFg,3avkXc/H[GZX'D/>]%TvD9M~B=Gu]',%s=n]=%^Y|L0{eVyu=wnqGvRt.hP j3R5jb:&.6{IBY_G5d#/\"gL.lv678RJR;s|,f$u8-xO<Kb=xnHf"
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "WoJ%Ap1aC& \\j|<PjR+]39]s^VB8e'T(V6D9~!n=mo_n<5N<>6Y1+`[[}$n'U~fv6D;Lqei_c#SNah$tzV3v\\R(9;#/&.U!\"]8EdCA{x>07c|A)'R`S8S1L)}d}q~GQ@kqWV=$u-W8PtK]_Nj(<c|b)OPSWkrFV.7~+#(Nc`)(Zh8^ZZwRqy_(7 ZXeX=j;SNgWzfEd'p~6PdLdH8l~P8;jbOZ2o +UiSxAasrL_5RG\\c9EMdtP*wSs3SA5P1"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "fcewppzqxxxnelcn": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": "8"
+                                    }
+                                ]
+                            },
+                            "isqahwkgex": {
+                                "type": "integer",
+                                "value": 719,
+                                "format": "int32"
+                            },
+                            "b": {
+                                "type": "array",
+                                "value": [
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": "36 |%%$TS3*.]%Ztmo`[&!-s8't$oK@X:%HSyH3Pjxl@zg[PLp3>fNOHYKDtVrbW)87#\"xi6yh)#LIc&KCQB$,y}x\"}RD/V;Z$n[lRR4gO-fTef~NC\"pmK\\U-Z@5=jh5u_6KC\\<b)61Q=646Vz)qnhmzT:k-Fbn(^Vd55jpMEs`_t{`G$@vi'N9mc}O<LfSbxTvC<Y'\\76x.b~+bH\"fuEh^OyV]="
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": "~iuC =t[vJ$B//+v4F&I&zDlhw62f(]^-I"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 1,
+                                "format": "int32"
+                            },
+                            "nmqe": {
+                                "type": "number",
+                                "value": 90.3
+                            },
+                            "uuvpbekivqbgsw": {
+                                "type": "boolean",
+                                "value": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 4,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "data": null,
+            "valid": false
+        },
+        "invalidInput": "Body.Defined=No"
+    },
+    {
+        "id": 5,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "text/plain",
+            "data": {
+                "type": "boolean",
+                "value": true
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.Media-Type=Other"
+    },
+    {
+        "id": 6,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "null",
+                "value": null
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Type=null"
+    },
+    {
+        "id": 7,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -552,
+                "format": "int32"
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Type=Not array"
+    },
+    {
+        "id": 8,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "null",
+                        "value": null
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Type=null"
+    },
+    {
+        "id": 9,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "string",
+                        "value": "@P'IymW3"
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Type=Not object"
+    },
+    {
+        "id": 10,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.userId.Defined=No"
+    },
+    {
+        "id": 11,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "userId": {
+                                "type": "null",
+                                "value": null
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.userId.Type=null"
+    },
+    {
+        "id": 12,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "userId": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": "FM"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.userId.Type=Not integer"
+    },
+    {
+        "id": 13,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 0,
+                                "format": "int32"
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.userId.Value.Is=0"
+    },
+    {
+        "id": 14,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 11,
+                                "format": "int32"
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.userId.Value.Is=11"
+    },
+    {
+        "id": 15,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 10,
+                                "format": "int32"
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.title.Defined=No"
+    },
+    {
+        "id": 16,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "title": {
+                                "type": "null",
+                                "value": null
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 10,
+                                "format": "int32"
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.title.Type=null"
+    },
+    {
+        "id": 17,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "body": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "title": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": "@@j}\"}"
+                                    }
+                                ]
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 10,
+                                "format": "int32"
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.title.Type=Not string"
+    },
+    {
+        "id": 18,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 10,
+                                "format": "int32"
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.body.Defined=No"
+    },
+    {
+        "id": 19,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "body": {
+                                "type": "null",
+                                "value": null
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 10,
+                                "format": "int32"
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.body.Type=null"
+    },
+    {
+        "id": 20,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "object",
+                        "value": {
+                            "title": {
+                                "type": "string",
+                                "value": ""
+                            },
+                            "body": {
+                                "type": "object",
+                                "value": {
+                                    "ibtxhr": {
+                                        "type": "array",
+                                        "value": [
+                                            {
+                                                "type": "string",
+                                                "value": "np:F,IV"
+                                            },
+                                            {
+                                                "type": "string",
+                                                "value": "e"
+                                            }
+                                        ]
+                                    },
+                                    "pkamedqfwmz": {
+                                        "type": "array",
+                                        "value": [
+                                            {
+                                                "type": "string",
+                                                "value": "qZW"
+                                            },
+                                            {
+                                                "type": "string",
+                                                "value": "A<F=w~~G"
+                                            }
+                                        ]
+                                    },
+                                    "ji": {
+                                        "type": "integer",
+                                        "value": 489,
+                                        "format": "int32"
+                                    }
+                                }
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "value": 10,
+                                "format": "int32"
+                            }
+                        }
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Items.Contains.Value.Properties.body.Type=Not string"
+    },
+    {
+        "id": 0,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 1,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 100,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Defined=No"
+    },
+    {
+        "id": 3,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Type=Not integer"
+    },
+    {
+        "id": 5,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Value.Is=0"
+    },
+    {
+        "id": 6,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 101,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Value.Is=101"
+    },
+    {
+        "id": 0,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PUT",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 1,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PUT",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 100,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PUT",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Defined=No"
+    },
+    {
+        "id": 3,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PUT",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PUT",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Type=Not integer"
+    },
+    {
+        "id": 5,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PUT",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Value.Is=0"
+    },
+    {
+        "id": 6,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PUT",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 101,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Value.Is=101"
+    },
+    {
+        "id": 0,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 1,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 100,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Defined=No"
+    },
+    {
+        "id": 3,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "FXu&L?!o"
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Type=Not integer"
+    },
+    {
+        "id": 5,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Value.Is=0"
+    },
+    {
+        "id": 6,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 101,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Value.Is=101"
+    },
+    {
+        "id": 0,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PATCH",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 1,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PATCH",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 100,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PATCH",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Defined=No"
+    },
+    {
+        "id": 3,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PATCH",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PATCH",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": ">J{_"
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Type=Not integer"
+    },
+    {
+        "id": 5,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PATCH",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Value.Is=0"
+    },
+    {
+        "id": 6,
+        "server": "https://jsonplaceholder.typicode.com",
+        "version": "0.16.0",
+        "api": "json-placeholder#api{16}$",
+        "path": "/posts/{post-id}",
+        "operation": "PATCH",
+        "parameters": [
+            {
+                "name": "post-id",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 101,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "post-id.Value.Is=101"
+    }
+]
