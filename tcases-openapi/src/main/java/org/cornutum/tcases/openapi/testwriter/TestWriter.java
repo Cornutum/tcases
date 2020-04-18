@@ -38,11 +38,7 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
    */
   public void writeTest( S source, T target)
     {
-    String testName =
-      getTestName(
-        Optional.ofNullable( getTestBaseName( source, target))
-        .orElseThrow( () -> new TestWriterException( String.format( "No test name defined by source=%s, target=%s", source, target))));
-                    
+    String testName = getTestName( source, target);
     File targetFile = getTargetFile( target, testName);
 
     File targetDir =
@@ -90,6 +86,25 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
       
       closeQuietly( fileStream);
       }
+    }
+
+  /**
+   * Returns the test file written for the given source and target. Returns null if the test is written to a stream.
+   */
+  public File getTestFile( S source, T target)
+    {
+    return getTargetFile( target, getTestName( source, target));
+    }
+
+  /**
+   * Returns the test name derived from the given source and target.
+   */
+  protected String getTestName( S source, T target)
+    {
+    return
+      getTestName(
+        Optional.ofNullable( getTestBaseName( source, target))
+        .orElseThrow( () -> new TestWriterException( String.format( "No test name defined by source=%s, target=%s", source, target))));
     }
 
   /**
