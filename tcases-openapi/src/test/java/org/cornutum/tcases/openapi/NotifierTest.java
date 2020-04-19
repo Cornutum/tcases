@@ -63,6 +63,7 @@ public class NotifierTest extends OpenApiTest
         "Object,/object,POST,param0,myObject: minProperties=0 is superfluous -- same as required.",
         "Object,/object,POST,param0,myObject: maxProperties=0 is superfluous -- same as the total number of properties."),
       Arrays.asList(
+        "Object,/object,POST,param0: style=form is not valid for a header parameter. Using style=simple instead.",
         "Object,/object,POST,param0,myString: minLength=1 is greater than maxLength=0. Adjusting minLength to maxLength.",
         "Object,/object,POST,param0,myArray: minItems=10 is greater than maxItems=0. Adjusting minItems to maxItems.",
         "Object,/object,POST,param0,myObject: minProperties=1 is greater than maxProperties=0. Adjusting minProperties to maxProperties."));
@@ -110,6 +111,76 @@ public class NotifierTest extends OpenApiTest
       "Arrays,/arrays,POST,param0: maxItems=10 can exceed the number of unique item values possible. Adjusting to unique maxItems=8.",
       "Arrays,/arrays,POST,param1: minItems=4 can exceed the number of unique item values possible. Adjusting to unique minItems=3.",
       "Arrays,/arrays,POST,param1: maxItems=null can exceed the number of unique item values possible. Adjusting to unique maxItems=3.");
+    }
+  
+  @Test
+  public void errorWhenInvalidStyles()
+    {
+    // When...
+    getTests( getRequestInputModel( "styles"));
+    
+    // Then...
+    assertErrors(
+      "Styles,/query/integer,GET,matrixParam: style=matrix is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/integer,GET,labelParam: style=label is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/integer,GET,simpleParam: style=simple is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/integer,GET,spaceDelimitedParam: style=spaceDelimited is not applicable for parameter type=integer. Using style=form instead.",
+      "Styles,/query/integer,GET,pipeDelimitedParam: style=pipeDelimited is not applicable for parameter type=integer. Using style=form instead.",
+      "Styles,/query/integer,GET,deepObjectParam: style=deepObject is not applicable for parameter type=integer. Using style=form instead.",
+      "Styles,/query/array,GET,matrixParam: style=matrix is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/array,GET,labelParam: style=label is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/array,GET,simpleParam: style=simple is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/array,GET,deepObjectParam: style=deepObject is not applicable for parameter type=array. Using style=form instead.",
+      "Styles,/query/object,GET,matrixParam: style=matrix is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/object,GET,labelParam: style=label is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/object,GET,simpleParam: style=simple is not valid for a query parameter. Using style=form instead.",
+      "Styles,/query/object,GET,spaceDelimitedParam: style=spaceDelimited is not applicable for parameter type=object. Using style=form instead.",
+      "Styles,/query/object,GET,pipeDelimitedParam: style=pipeDelimited is not applicable for parameter type=object. Using style=form instead.",
+      "Styles,/header/integer,GET,matrixParam: style=matrix is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/integer,GET,labelParam: style=label is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/integer,GET,formParam: style=form is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/integer,GET,spaceDelimitedParam: style=spaceDelimited is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/integer,GET,pipeDelimitedParam: style=pipeDelimited is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/integer,GET,deepObjectParam: style=deepObject is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/array,GET,matrixParam: style=matrix is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/array,GET,labelParam: style=label is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/array,GET,formParam: style=form is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/array,GET,spaceDelimitedParam: style=spaceDelimited is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/array,GET,pipeDelimitedParam: style=pipeDelimited is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/array,GET,deepObjectParam: style=deepObject is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/object,GET,matrixParam: style=matrix is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/object,GET,labelParam: style=label is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/object,GET,formParam: style=form is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/object,GET,spaceDelimitedParam: style=spaceDelimited is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/object,GET,pipeDelimitedParam: style=pipeDelimited is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/header/object,GET,deepObjectParam: style=deepObject is not valid for a header parameter. Using style=simple instead.",
+      "Styles,/cookie/integer,GET,matrixParam: style=matrix is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/integer,GET,labelParam: style=label is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/integer,GET,simpleParam: style=simple is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/integer,GET,spaceDelimitedParam: style=spaceDelimited is not applicable for parameter type=integer. Using style=form instead.",
+      "Styles,/cookie/integer,GET,pipeDelimitedParam: style=pipeDelimited is not applicable for parameter type=integer. Using style=form instead.",
+      "Styles,/cookie/integer,GET,deepObjectParam: style=deepObject is not applicable for parameter type=integer. Using style=form instead.",
+      "Styles,/cookie/array,GET,matrixParam: style=matrix is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/array,GET,labelParam: style=label is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/array,GET,simpleParam: style=simple is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/array,GET,deepObjectParam: style=deepObject is not applicable for parameter type=array. Using style=form instead.",
+      "Styles,/cookie/object,GET,matrixParam: style=matrix is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/object,GET,labelParam: style=label is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/object,GET,simpleParam: style=simple is not valid for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/object,GET,spaceDelimitedParam: style=spaceDelimited is not applicable for parameter type=object. Using style=form instead.",
+      "Styles,/cookie/object,GET,pipeDelimitedParam: style=pipeDelimited is not applicable for parameter type=object. Using style=form instead.",
+      "Styles,/path/integer/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,formParam: style=form is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/integer/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,spaceDelimitedParam: style=spaceDelimited is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/integer/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,pipeDelimitedParam: style=pipeDelimited is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/integer/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,deepObjectParam: style=deepObject is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/array/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,formParam: style=form is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/array/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,spaceDelimitedParam: style=spaceDelimited is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/array/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,pipeDelimitedParam: style=pipeDelimited is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/array/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,deepObjectParam: style=deepObject is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/object/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,formParam: style=form is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/object/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,spaceDelimitedParam: style=spaceDelimited is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/object/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,pipeDelimitedParam: style=pipeDelimited is not valid for a path parameter. Using style=simple instead.",
+      "Styles,/path/object/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,deepObjectParam: style=deepObject is not valid for a path parameter. Using style=simple instead.");
     }
 
   private SystemInputDef getRequestInputModel( String resource)
