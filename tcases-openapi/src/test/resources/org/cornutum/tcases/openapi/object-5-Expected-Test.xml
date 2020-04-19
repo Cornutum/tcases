@@ -19,7 +19,7 @@
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Properties.Additional" value="Yes"/>
@@ -34,7 +34,7 @@
       <Input type="header">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" NA="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -50,7 +50,7 @@
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="object"/>
         <Var name="param0.Value.Properties.Additional" value="No"/>
@@ -66,7 +66,7 @@
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="null" failure="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>
@@ -82,7 +82,7 @@
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="simple"/>
         </Var>
         <Var name="param0.Type" value="Not object" failure="true"/>
         <Var name="param0.Value.Properties.Additional" NA="true"/>

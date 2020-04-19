@@ -419,14 +419,13 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns the style of the given parameter.
    */
-  private Parameter.StyleEnum parameterStyle( Parameter parameter)
+  private Parameter.StyleEnum parameterStyle( Parameter parameter, String parameterType)
     {
     String in = parameter.getIn();
-    Parameter.StyleEnum style = parameter.getStyle();
     
     return
-      style != null?
-      style :
+      parameter.getStyle() != null?
+      getApplicableStyle( parameter, parameterType) :
 
       in.equals( "path")?
       Parameter.StyleEnum.SIMPLE :
@@ -435,6 +434,117 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       Parameter.StyleEnum.SIMPLE :
 
       Parameter.StyleEnum.FORM;
+    }
+
+  /**
+   * If the parameter specifies an applicable style, returns the specified style.
+   * Otherwise reports a modelling condition and returns a default applicable style.
+   */
+  private Parameter.StyleEnum getApplicableStyle( Parameter parameter, String parameterType)
+    {
+    Parameter.StyleEnum specified = parameter.getStyle();
+    Parameter.StyleEnum applicable; 
+
+    String in = parameter.getIn();
+    if( "query".equals( in) ||  "cookie".equals( in))
+      {
+      switch( specified)
+        {
+        case FORM:
+          {
+          applicable = specified;
+          break;
+          }
+        case DEEPOBJECT:
+          {
+          if( "object".equals( parameterType))
+            {
+            applicable = specified;
+            }
+          else
+            {
+            applicable = Parameter.StyleEnum.FORM;
+            notifyError(
+              String.format( "style=%s is not applicable for parameter type=%s", specified, parameterType),
+              String.format( "Using style=%s instead", applicable));
+            }
+          break;
+          }
+        case PIPEDELIMITED:
+        case SPACEDELIMITED:
+          {
+          if( "array".equals( parameterType))
+            {
+            applicable = specified;
+            }
+          else
+            {
+            applicable = Parameter.StyleEnum.FORM;
+            notifyError(
+              String.format( "style=%s is not applicable for parameter type=%s", specified, parameterType),
+              String.format( "Using style=%s instead", applicable));
+            }
+          break;
+          }
+        default:
+          {
+          applicable = Parameter.StyleEnum.FORM;
+          notifyError(
+            String.format( "style=%s is not valid for a %s parameter", specified, in),
+            String.format( "Using style=%s instead", applicable));
+          break;
+          }
+        }
+      }
+    
+    else if( "path".equals( in))
+      {
+      switch( specified)
+        {
+        case SIMPLE:
+        case MATRIX:
+        case LABEL:
+          {
+          applicable = specified;
+          break;
+          }
+        default:
+          {
+          applicable = Parameter.StyleEnum.SIMPLE;
+          notifyError(
+            String.format( "style=%s is not valid for a %s parameter", specified, in),
+            String.format( "Using style=%s instead", applicable));
+          break;
+          }
+        }
+      }
+    
+    else if( "header".equals( in))
+      {
+      switch( specified)
+        {
+        case SIMPLE:
+          {
+          applicable = specified;
+          break;
+          }
+        default:
+          {
+          applicable = Parameter.StyleEnum.SIMPLE;
+          notifyError(
+            String.format( "style=%s is not valid for a %s parameter", specified, in),
+            String.format( "Using style=%s instead", applicable));
+          break;
+          }
+        }
+      }
+    
+    else
+      {
+      throw new OpenApiException( String.format( "'%s' is not a valid parameter location", in)); 
+      }
+
+    return applicable;
     }
 
   /**
@@ -460,7 +570,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private IVarDef parameterDefinedVar( String parameterVarTag, String parameterType, Parameter parameter)
     {
-    Parameter.StyleEnum parameterStyle = parameterStyle( parameter);
+    Parameter.StyleEnum parameterStyle = parameterStyle( parameter, parameterType);
       
     return
       VarDefBuilder.with( instanceDefinedVar( parameterVarTag, Boolean.TRUE.equals( parameter.getRequired())))

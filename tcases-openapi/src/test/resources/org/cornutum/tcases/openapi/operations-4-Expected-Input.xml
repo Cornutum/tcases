@@ -9,7 +9,7 @@
     <Input type="cookie">
       <VarSet name="param0">
         <Var name="Defined">
-          <Has name="style" value="matrix"/>
+          <Has name="style" value="form"/>
           <Value name="Yes" property="param0"/>
           <Value name="No"/>
         </Var>

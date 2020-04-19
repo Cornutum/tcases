@@ -11,7 +11,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": {
                     "type": "array",
@@ -33,7 +33,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": null,
                 "valid": true
@@ -51,7 +51,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": {
                     "type": "array",
@@ -77,7 +77,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": {
                     "type": "array",
@@ -107,7 +107,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": {
                     "type": "array",
@@ -169,7 +169,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": {
                     "type": "null",
@@ -191,7 +191,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": {
                     "type": "boolean",
@@ -213,7 +213,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": {
                     "type": "array",
@@ -240,7 +240,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "label",
+                "style": "form",
                 "explode": true,
                 "data": {
                     "type": "array",

@@ -1,0 +1,1202 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Styles",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/query/integer": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "query",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "query",
+                        "style": "label",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "query",
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "query",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "query",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "query",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/query/array": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "query",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "query",
+                        "style": "label",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "query",
+                        "style": "simple",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "query",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "query",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "query",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/query/object": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "query",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "query",
+                        "style": "label",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "query",
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "query",
+                        "style": "simple",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "query",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "query",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "query",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/header/integer": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "header",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "header",
+                        "style": "label",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "header",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "header",
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "header",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "header",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "header",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/header/array": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "header",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "header",
+                        "style": "label",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "header",
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "header",
+                        "style": "simple",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "header",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "header",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "header",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/header/object": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "header",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "header",
+                        "style": "label",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "header",
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "header",
+                        "style": "simple",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "header",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "header",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "header",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/cookie/integer": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "cookie",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "cookie",
+                        "style": "label",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "cookie",
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "cookie",
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "cookie",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "cookie",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "cookie",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/cookie/array": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "cookie",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "cookie",
+                        "style": "label",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "cookie",
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "cookie",
+                        "style": "simple",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "cookie",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "cookie",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "cookie",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/cookie/object": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "cookie",
+                        "style": "matrix",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "cookie",
+                        "style": "label",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "cookie",
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "cookie",
+                        "style": "simple",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "cookie",
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "cookie",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "cookie",
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/path/integer/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "label",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/path/array/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "label",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/path/object/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "matrixParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "labelParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "label",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "formParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "simpleParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "spaceDelimitedParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "spaceDelimited",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "pipeDelimitedParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "deepObjectParam",
+                        "in": "path",
+                        "required": true,
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "number"
+                                },
+                                "B": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
