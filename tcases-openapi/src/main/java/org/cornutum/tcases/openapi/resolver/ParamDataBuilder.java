@@ -36,6 +36,11 @@ public class ParamDataBuilder extends AbstractMessageDataBuilder<ParamDataBuilde
     return this;
     }
 
+  public ParamDataBuilder exploded()
+    {
+    return exploded( true);
+    }
+
   public ParamDataBuilder exploded( boolean exploded)
     {
     exploded_ = exploded;
