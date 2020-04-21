@@ -56,19 +56,19 @@ public final class TestWriterUtils
             {
             if( !(type.equals( OBJECT) || type.equals( NULL)))
               {
-              throw new TestWriterException( String.format( "Style=% is not applicable for data type=%s", style, type));
+              throw new TestWriterException( String.format( "Style=%s is not applicable for data type=%s", style, type));
               }
             }
           else if( "pipeDelimited".equals( style) || "spaceDelimited".equals( style))
             {
             if( !(type.equals( ARRAY) || type.equals( NULL)))
               {
-              throw new TestWriterException( String.format( "Style=% is not applicable for data type=%s", style, type));
+              throw new TestWriterException( String.format( "Style=%s is not applicable for data type=%s", style, type));
               }
             }
           else if( !"form".equals( style))
             {
-            throw new TestWriterException( String.format( "Style=% is not applicable for a %s parameter", style, param.getLocation()));
+            throw new TestWriterException( String.format( "Style=%s is not applicable for a %s parameter", style, param.getLocation()));
             }
           break;
           }
@@ -77,7 +77,7 @@ public final class TestWriterUtils
           {
           if( !("simple".equals( style) || "matrix".equals( style) || "label".equals( style)))
             {
-            throw new TestWriterException( String.format( "Style=% is not applicable for a %s parameter", style, param.getLocation()));
+            throw new TestWriterException( String.format( "Style=%s is not applicable for a %s parameter", style, param.getLocation()));
             }
           break;
           }
@@ -86,7 +86,7 @@ public final class TestWriterUtils
           {
           if( !"simple".equals( style))
             {
-            throw new TestWriterException( String.format( "Style=% is not applicable for a %s parameter", style, param.getLocation()));
+            throw new TestWriterException( String.format( "Style=%s is not applicable for a %s parameter", style, param.getLocation()));
             }
           break;
           }
