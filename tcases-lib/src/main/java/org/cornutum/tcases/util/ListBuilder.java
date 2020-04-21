@@ -15,13 +15,24 @@ import java.util.Optional;
  * Provide a fluent List constructor.
  */
 public class ListBuilder<T>
-  {  
+  { 
   /**
    * Creates a new ListBuilder object.
    */
-  private ListBuilder( List<T> list)
+  protected ListBuilder()
     {
-    list_ = list;
+    this( null);
+    }
+  
+  /**
+   * Creates a new ListBuilder object.
+   */
+  protected ListBuilder( List<T> list)
+    {
+    list_ =
+      list == null
+      ? new ArrayList<T>()
+      : list;
     }
 
   /**
@@ -37,7 +48,7 @@ public class ListBuilder<T>
    */
   public static <T> ListBuilder<T> to( List<T> list)
     {
-    return new ListBuilder<T>( list == null? new ArrayList<T>() : list);
+    return new ListBuilder<T>( list);
     }
   
   /**
