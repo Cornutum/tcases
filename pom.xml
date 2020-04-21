@@ -119,6 +119,11 @@
             <version>3.1.1</version>
         </plugin>
         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>3.1.0</version>
+        </plugin>
+        <plugin>
             <groupId>org.cornutum.tcases</groupId>
             <artifactId>tcases-maven-plugin</artifactId>
             <version>${project.version}</version>
@@ -275,6 +280,7 @@
     <module>tcases-shell</module>
     <module>tcases-maven-plugin</module>
     <module>tcases-openapi</module>
+    <module>tcases-rest-assured</module>
   </modules>
 
 </project>
