@@ -37,6 +37,14 @@ public class MessageData
     }
 
   /**
+   * Returns the data value type.
+   */
+  public DataValue.Type getType()
+    {
+    return Optional.ofNullable( getValue()).map( DataValue::getType).orElse( null);
+    }
+
+  /**
    * Returns if this is a valid data value.
    */
   public boolean isValid()
