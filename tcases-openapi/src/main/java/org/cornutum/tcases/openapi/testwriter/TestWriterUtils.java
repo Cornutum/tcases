@@ -22,6 +22,7 @@ import java.util.Objects;
 import java.util.Optional;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Define common methods for representing request test definitions in API tests.
@@ -104,17 +105,20 @@ public final class TestWriterUtils
     List<Map.Entry<String,String>> bindings = QueryParameterEncoder.encode( param);
     if( urlEncoded)
       {
-      bindings.stream()
-        .forEach( binding -> {
-          try
-            {
-            binding.setValue( URLEncoder.encode( binding.getValue(), "UTF-8"));
-            }
-          catch( Exception e)
-            {
-            throw new TestWriterException( String.format( "%: can't encode parameter=%s", param, binding.getKey()), e);
-            }
-          });
+      bindings = 
+        bindings.stream()
+        .map( binding -> {
+            try
+              {
+              String encodedKey = URLEncoder.encode( binding.getKey(), "UTF-8");
+              String encodedValue = URLEncoder.encode( binding.getValue(), "UTF-8");
+              return new SimpleEntry<String,String>( encodedKey, encodedValue);
+              }
+            catch( Exception e)
+              {
+              throw new TestWriterException( String.format( "%: can't encode parameter=%s", param, binding), e);
+              }})
+        .collect( toList());
       }
     
     return bindings;
@@ -198,7 +202,7 @@ public final class TestWriterUtils
         }
       else
         {
-        String delim = "pipeDelimited".equals( style_)? "|" : "spaceDelimited".equals( style_)? "" : ",";
+        String delim = "pipeDelimited".equals( style_)? "|" : "spaceDelimited".equals( style_)? " " : ",";
 
         bindParam(
           data.getValue().stream()
