@@ -10,11 +10,11 @@
         <version>3.3.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tcases-openapi</artifactId>
+    <artifactId>tcases-rest-assured</artifactId>
     <packaging>jar</packaging>
 
-    <name>Tcases OpenAPI</name>
-    <description>Creates test models for OpenAPI documents</description>
+    <name>Tcases TestCaseWriter for REST Assured</name>
+    <description>Prints executable API test cases using REST Assured </description>
     <url>https://github.com/Cornutum/tcases</url>
 
     <developers>
@@ -75,19 +75,18 @@
 
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
                 <executions>
                     <execution>
+                        <id>add-api-test-sources</id>
                         <goals>
-                            <goal>test-jar</goal>
+                            <goal>add-test-source</goal>
                         </goals>
                         <configuration>
-                            <includes>
-                                <include>org/cornutum/tcases/openapi/resolver/*Matcher.class</include>
-                                <include>org/cornutum/tcases/openapi/resolver/ValueDomainTest.class</include>
-                                <include>org/cornutum/tcases/openapi/testwriter/TestWriterTest.class</include>
-                            </includes>
+                            <sources>
+                                <source>${project.build.directory}/generated-test-sources/java</source>
+                            </sources>
                         </configuration>
                     </execution>
                 </executions>
@@ -98,14 +97,8 @@
     <dependencies>
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
-            <artifactId>tcases-io</artifactId>
+            <artifactId>tcases-openapi</artifactId>
             <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.swagger.parser.v3</groupId>
-            <artifactId>swagger-parser</artifactId>
-            <version>2.0.19</version>
         </dependency>
         
         <dependency>
@@ -128,19 +121,17 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
         </dependency>
-        
+
         <dependency>
-            <groupId>org.cornutum.tcases</groupId>
-            <artifactId>tcases-lib</artifactId>
-            <classifier>tests</classifier>
-            <type>test-jar</type>
-            <version>${project.version}</version>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.3.0</version>
             <scope>test</scope>
         </dependency>
         
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
-            <artifactId>tcases-io</artifactId>
+            <artifactId>tcases-openapi</artifactId>
             <classifier>tests</classifier>
             <type>test-jar</type>
             <version>${project.version}</version>
