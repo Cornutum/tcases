@@ -36,7 +36,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".123.45"));
@@ -51,7 +51,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".123.45"));
@@ -69,7 +69,7 @@ public class LabelValueEncoderTest
       ;
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ""));
@@ -87,7 +87,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( "."));
@@ -102,7 +102,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( "."));
@@ -120,7 +120,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".A.B"));
@@ -135,7 +135,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".A.B"));
@@ -153,7 +153,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".name.X.sex.true"));
@@ -168,7 +168,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".name=X.sex=true"));

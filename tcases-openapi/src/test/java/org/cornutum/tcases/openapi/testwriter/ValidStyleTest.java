@@ -13,7 +13,6 @@ import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 
 import org.junit.Test;
-import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
@@ -21,7 +20,7 @@ import static org.hamcrest.Matchers.*;
  * Runs tests for {@link TestWriterUtils#getValidStyle}.
  */
 @SuppressWarnings("unchecked")
-public class ValidStyleTest
+public class ValidStyleTest extends TestWriterTest
   {
   @Test
   public void whenQueryMatrixInteger()
@@ -969,25 +968,15 @@ public class ValidStyleTest
   
   private void expectInvalidStyleType( ParamData param)
     {
-    expectFailure( TestWriterException.class)
-      .when( () -> TestWriterUtils.getValidStyle( param))
-      .then( failure -> {
-        assertThat(
-          "Failure",
-          failure.getMessage(),
-          is( String.format( "Style=%s is not applicable for data type=%s", param.getStyle(), param.getType())));
-        });
+    assertTestWriterException(
+      () -> TestWriterUtils.getValidStyle( param),
+      String.format( "Style=%s is not applicable for data type=%s", param.getStyle(), param.getType()));
     }
 
   private void expectInvalidStyleLocation( ParamData param)
     {
-    expectFailure( TestWriterException.class)
-      .when( () -> TestWriterUtils.getValidStyle( param))
-      .then( failure -> {
-        assertThat(
-          "Failure",
-          failure.getMessage(),
-          is( String.format( "Style=%s is not applicable for a %s parameter", param.getStyle(), param.getLocation())));
-        });
+    assertTestWriterException(
+      () -> TestWriterUtils.getValidStyle( param),
+      String.format( "Style=%s is not applicable for a %s parameter", param.getStyle(), param.getLocation()));
     }
   }

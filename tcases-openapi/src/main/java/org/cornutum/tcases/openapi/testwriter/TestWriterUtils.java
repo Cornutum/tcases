@@ -98,47 +98,94 @@ public final class TestWriterUtils
     }
 
   /**
+   * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter.
+   * All parameter names and values are URL-encoded if necessary.
+   */
+  public static List<Map.Entry<String,String>> getQueryParameters( ParamData param)
+    {
+    return getQueryParameters( param, true);
+    }
+
+
+  /**
    * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter. 
    */
   public static List<Map.Entry<String,String>> getQueryParameters( ParamData param, boolean urlEncoded)
     {
-    List<Map.Entry<String,String>> bindings = QueryParameterEncoder.encode( param);
-    if( urlEncoded)
+    try
       {
-      bindings = 
-        bindings.stream()
-        .map( binding -> {
-            try
-              {
-              String encodedKey = URLEncoder.encode( binding.getKey(), "UTF-8");
-              String encodedValue = URLEncoder.encode( binding.getValue(), "UTF-8");
-              return new SimpleEntry<String,String>( encodedKey, encodedValue);
-              }
-            catch( Exception e)
-              {
-              throw new TestWriterException( String.format( "%: can't encode parameter=%s", param, binding), e);
-              }})
-        .collect( toList());
+      List<Map.Entry<String,String>> bindings = QueryParameterEncoder.encode( param);
+
+      return
+        urlEncoded
+        ? bindings.stream().map( TestWriterUtils::urlEncoded).collect( toList())
+        : bindings;
       }
-    
-    return bindings;
+    catch( Exception e)
+      {
+      throw new TestWriterException( String.format( "%s: can't get query parameter values", param), e);
+      }
     }
 
   /**
-   * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
+   * Returns the value of the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
+   * The result is URL-encoded if necessary.
    */
   public static String getPathParameterValue( ParamData param)
     {
-    String style = getValidStyle( param);
-    
-    return
-      "label".equals( style)?
-      LabelValueEncoder.encode( param) : 
+    return getPathParameterValue( param, true);
+    }
 
-      "matrix".equals( style)?
-      MatrixValueEncoder.encode( param) : 
+  /**
+   * Returns the value of the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
+   */
+  public static String getPathParameterValue( ParamData param, boolean urlEncoded)
+    {
+    try
+      {
+      String style = getValidStyle( param);
 
-      SimpleValueEncoder.encode( param);
+      String value =
+        "label".equals( style)?
+        LabelValueEncoder.encode( param) : 
+
+        "matrix".equals( style)?
+        MatrixValueEncoder.encode( param) : 
+
+        SimpleValueEncoder.encode( param);
+
+      return
+        urlEncoded
+        ? urlEncoded( value)
+        : value;
+      }
+    catch( Exception e)
+      {
+      throw new TestWriterException( String.format( "%s: can't get path parameter value", param), e);
+      }
+    }
+
+  /**
+   * Returns the URL-encoded form of the given value.
+   */
+  public static String urlEncoded( String value)
+    {
+    try
+      {
+      return URLEncoder.encode( value, "UTF-8");
+      }
+    catch( Exception e)
+      {
+      throw new IllegalArgumentException( String.format( "Can't encode value='%s'", value), e);
+      }
+    }
+
+  /**
+   * Returns the URL-encoded form of the given binding.
+   */
+  private static Map.Entry<String,String> urlEncoded( Map.Entry<String,String> binding)
+    {
+    return new SimpleEntry<String,String>( urlEncoded( binding.getKey()), urlEncoded( binding.getValue()));
     }
 
   /**
