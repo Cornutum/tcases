@@ -98,7 +98,7 @@ public final class TestWriterUtils
     }
 
   /**
-   * Returns the set of request query parameter bindings defined by the given {@link ParamDef.Location#QUERY QUERY} parameter. 
+   * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter. 
    */
   public static List<Map.Entry<String,String>> getQueryParameters( ParamData param, boolean urlEncoded)
     {
@@ -125,7 +125,7 @@ public final class TestWriterUtils
     }
 
   /**
-   * Returns the set of request query parameter bindings defined by the given {@link ParamDef.Location#QUERY QUERY} parameter. 
+   * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
    */
   public static String getPathParameterValue( ParamData param)
     {
@@ -142,7 +142,7 @@ public final class TestWriterUtils
     }
 
   /**
-   * Returns a set of request query parameter bindings defined by the given {@link ParamDef.Location#QUERY} parameter. 
+   * Returns a set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY} parameter. 
    */
   public static class QueryParameterEncoder implements DataValueVisitor
     {
