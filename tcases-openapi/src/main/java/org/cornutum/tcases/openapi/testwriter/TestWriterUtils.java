@@ -595,7 +595,7 @@ public final class TestWriterUtils
 
     public void visit( NullValue data)
       {
-      encoded_ = matrixParamOf( data);
+      encoded_ = matrixOf( name_);
       }
 
     public void visit( ObjectValue data)
