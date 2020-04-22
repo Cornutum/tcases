@@ -36,7 +36,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=123.45"));
@@ -51,7 +51,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=123.45"));
@@ -69,7 +69,7 @@ public class MatrixValueEncoderTest
       ;
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ""));
@@ -87,7 +87,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam"));
@@ -102,7 +102,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam"));
@@ -120,7 +120,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=A,B"));
@@ -135,7 +135,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=A;myParam=B"));
@@ -153,7 +153,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=name,X,sex,true"));
@@ -168,7 +168,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";name=X;sex=true"));

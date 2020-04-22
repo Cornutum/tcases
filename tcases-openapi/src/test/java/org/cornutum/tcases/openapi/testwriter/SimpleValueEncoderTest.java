@@ -13,7 +13,6 @@ import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 
 import org.junit.Test;
-import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
@@ -23,7 +22,7 @@ import java.math.BigDecimal;
  * Runs tests for {@link TestWriterUtils.SimpleValueEncoder}.
  */
 @SuppressWarnings("unchecked")
-public class SimpleValueEncoderTest
+public class SimpleValueEncoderTest extends TestWriterTest
   {
   @Test
   public void whenPathStyleInvalid()
@@ -36,14 +35,10 @@ public class SimpleValueEncoderTest
       .decimalData( new BigDecimal( "123.45"))
       .build();
 
-    expectFailure( TestWriterException.class)
-      .when( () -> TestWriterUtils.getPathParameterValue( param))
-      .then( failure -> {
-        assertThat(
-          "Failure",
-          failure.getMessage(),
-          is( String.format( "Style=%s is not applicable for a %s parameter", param.getStyle(), param.getLocation())));
-        });
+    assertTestWriterException(
+      () -> TestWriterUtils.getPathParameterValue( param),
+      String.format( "%s: can't get path parameter value", param),
+      String.format( "Style=%s is not applicable for a %s parameter", param.getStyle(), param.getLocation()));
     }
   
   @Test
@@ -58,7 +53,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "123.45"));
@@ -73,7 +68,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "123.45"));
@@ -91,7 +86,7 @@ public class SimpleValueEncoderTest
       ;
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( ""));
@@ -109,7 +104,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( ""));
@@ -124,7 +119,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( ""));
@@ -142,7 +137,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "A,B"));
@@ -157,7 +152,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "A,B"));
@@ -175,7 +170,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "name,X,sex,?"));
@@ -190,10 +185,16 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "name=X,sex=?"));
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param);
+    
+    // Then...
+    assertThat( "Simple encoding", encoded, is( "name%3DX%2Csex%3D%3F"));
     }
 
   }
