@@ -26,8 +26,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -175,6 +178,31 @@ public abstract class TestWriterTest
       {
       throw new RuntimeException( "Can't get results from standard output", e);
       }
+    }
+
+  /**
+   * Returns the <CODE>generated-test-sources</CODE> directory for this test.
+   */
+  protected File getGeneratedTestDir()
+    {
+    File resourceDir = getResourceDir();
+    List<String> resourcePath = Arrays.stream( resourceDir.getPath().split( "/")).collect( toList());
+
+    int targetEnd = resourcePath.indexOf( "target") + 1;
+    int packageStart = targetEnd + 1;
+
+    List<String> generatedTestPath =
+      Stream.concat(
+        Stream.concat(
+          resourcePath.subList( 0, targetEnd).stream(),
+          Arrays.asList( "generated-test-sources", "java").stream()),
+        resourcePath.subList( packageStart, resourcePath.size()).stream())
+      .collect( toList());
+
+    File generatedTestDir = new File( generatedTestPath.stream().collect( joining( "/")));
+    generatedTestDir.mkdirs();
+
+    return generatedTestDir;
     }
 
   /**
