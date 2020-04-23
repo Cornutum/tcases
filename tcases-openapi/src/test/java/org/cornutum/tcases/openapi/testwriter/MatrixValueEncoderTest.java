@@ -43,7 +43,7 @@ public class MatrixValueEncoderTest
 
     // Given...
     param =
-      param( "myParam")
+      param( "my Param")
       .location( PATH)
       .style( "matrix")
       .decimalData( new BigDecimal( "123.45"))
@@ -54,7 +54,13 @@ public class MatrixValueEncoderTest
     encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Matrix encoding", encoded, is( ";myParam=123.45"));
+    assertThat( "Matrix encoding", encoded, is( ";my Param=123.45"));
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param);
+    
+    // Then...
+    assertThat( "Matrix encoding", encoded, is( ";my%20Param=123.45"));
     }
   
   @Test
@@ -130,7 +136,7 @@ public class MatrixValueEncoderTest
       param( "myParam")
       .location( PATH)
       .style( "matrix")
-      .arrayData( stringOf( "A"), stringOf( "B"))
+      .arrayData( stringOf( "A"), stringOf( "B C"))
       .exploded()
       .build();
 
@@ -138,7 +144,13 @@ public class MatrixValueEncoderTest
     encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Matrix encoding", encoded, is( ";myParam=A;myParam=B"));
+    assertThat( "Matrix encoding", encoded, is( ";myParam=A;myParam=B C"));
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param);
+    
+    // Then...
+    assertThat( "Matrix encoding", encoded, is( ";myParam=A;myParam=B%20C"));
     }
   
   @Test

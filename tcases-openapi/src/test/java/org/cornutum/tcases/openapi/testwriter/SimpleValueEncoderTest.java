@@ -147,7 +147,7 @@ public class SimpleValueEncoderTest extends TestWriterTest
       param( "myParam")
       .location( PATH)
       .style( "simple")
-      .arrayData( stringOf( "A"), stringOf( "B"))
+      .arrayData( stringOf( "A"), stringOf( "B C"))
       .exploded()
       .build();
 
@@ -155,7 +155,13 @@ public class SimpleValueEncoderTest extends TestWriterTest
     encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "A,B"));
+    assertThat( "Simple encoding", encoded, is( "A,B C"));
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param);
+    
+    // Then...
+    assertThat( "Simple encoding", encoded, is( "A,B%20C"));
     }
   
   @Test
@@ -166,21 +172,21 @@ public class SimpleValueEncoderTest extends TestWriterTest
       param( "myParam")
       .location( PATH)
       .style( "simple")
-      .objectData( object().with( "name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
       .build();
 
     // When...
     String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "name,X,sex,?"));
+    assertThat( "Simple encoding", encoded, is( "nick name,X,sex,?"));
 
     // Given...
     param =
       param( "myParam")
       .location( PATH)
       .style( "simple")
-      .objectData( object().with( "name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
       .exploded()
       .build();
 
@@ -188,13 +194,13 @@ public class SimpleValueEncoderTest extends TestWriterTest
     encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "name=X,sex=?"));
+    assertThat( "Simple encoding", encoded, is( "nick name=X,sex=?"));
 
     // When...
     encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "name%3DX%2Csex%3D%3F"));
+    assertThat( "Simple encoding", encoded, is( "nick%20name=X,sex=%3F"));
     }
 
   }
