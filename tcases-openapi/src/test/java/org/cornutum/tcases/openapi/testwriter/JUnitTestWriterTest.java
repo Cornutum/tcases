@@ -7,8 +7,6 @@
 
 package org.cornutum.tcases.openapi.testwriter;
 
-import org.cornutum.tcases.io.IndentedWriter;
-import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
