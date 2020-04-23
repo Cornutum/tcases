@@ -281,6 +281,7 @@
     <module>tcases-maven-plugin</module>
     <module>tcases-openapi</module>
     <module>tcases-rest-assured</module>
+    <module>tcases-moco</module>
   </modules>
 
 </project>
