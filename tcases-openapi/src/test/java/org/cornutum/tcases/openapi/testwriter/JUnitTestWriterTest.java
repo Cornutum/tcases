@@ -596,44 +596,4 @@ public class JUnitTestWriterTest extends TestWriterTest
       "Can't write test=TestDef8",
       String.format( "No package defined for target=%s", target));
     }
-
-  /**
-   * A mock {@link TestCaseWriter}
-   */
-  public class MockTestCaseWriter implements TestCaseWriter
-    {
-    /**
-     * Writes the dependencies for target test cases to the given stream.
-     */
-    public void writeDependencies( String testName, IndentedWriter targetWriter)
-      {
-      targetWriter.println( "// Test case dependencies");
-      }
-
-    /**
-     * Writes the declarations for target test cases to the given stream.
-     */
-    public void writeDeclarations( String testName, IndentedWriter targetWriter)
-      {
-      targetWriter.println( "// Test case declarations");
-      }
-  
-    /**
-     * Writes a target test case to the given stream.
-     */
-    public void writeTestCase( String testName, RequestCase requestCase, IndentedWriter targetWriter)
-      {
-      targetWriter.println( "// Given...");
-      targetWriter.println( "// When...");
-      targetWriter.println( "// Then...");
-      }
-
-    /**
-     * Writes the closing for target test cases the given stream.
-     */
-    public void writeClosing( String testName, IndentedWriter targetWriter)
-      {
-      targetWriter.println( "// Test case closing");
-      }
-    }
   }
