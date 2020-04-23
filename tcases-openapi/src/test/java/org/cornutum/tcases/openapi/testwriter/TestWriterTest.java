@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.testwriter;
 
+import org.cornutum.tcases.io.IndentedWriter;
+import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
 
@@ -210,4 +212,44 @@ public abstract class TestWriterTest
     Optional.ofNullable( StringUtils.trimToNull( System.getProperty( "saveExpectedTo")))
     .map( path -> new File( path))
     .orElse( null);
+
+  /**
+   * A mock {@link TestCaseWriter}
+   */
+  public class MockTestCaseWriter implements TestCaseWriter
+    {
+    /**
+     * Writes the dependencies for target test cases to the given stream.
+     */
+    public void writeDependencies( String testName, IndentedWriter targetWriter)
+      {
+      targetWriter.println( "// Test case dependencies");
+      }
+
+    /**
+     * Writes the declarations for target test cases to the given stream.
+     */
+    public void writeDeclarations( String testName, IndentedWriter targetWriter)
+      {
+      targetWriter.println( "// Test case declarations");
+      }
+  
+    /**
+     * Writes a target test case to the given stream.
+     */
+    public void writeTestCase( String testName, RequestCase requestCase, IndentedWriter targetWriter)
+      {
+      targetWriter.println( "// Given...");
+      targetWriter.println( "// When...");
+      targetWriter.println( "// Then...");
+      }
+
+    /**
+     * Writes the closing for target test cases the given stream.
+     */
+    public void writeClosing( String testName, IndentedWriter targetWriter)
+      {
+      targetWriter.println( "// Test case closing");
+      }
+    }
   }
