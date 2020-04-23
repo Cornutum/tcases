@@ -130,7 +130,7 @@ public class LabelValueEncoderTest
       param( "myParam")
       .location( PATH)
       .style( "label")
-      .arrayData( stringOf( "A"), stringOf( "B"))
+      .arrayData( stringOf( "A"), stringOf( "B C"))
       .exploded()
       .build();
 
@@ -138,7 +138,13 @@ public class LabelValueEncoderTest
     encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Label encoding", encoded, is( ".A.B"));
+    assertThat( "Label encoding", encoded, is( ".A.B C"));
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param);
+    
+    // Then...
+    assertThat( "Label encoding", encoded, is( ".A.B%20C"));
     }
   
   @Test

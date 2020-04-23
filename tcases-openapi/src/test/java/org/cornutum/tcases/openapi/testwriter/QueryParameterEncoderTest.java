@@ -13,6 +13,7 @@ import org.cornutum.tcases.util.ListBuilder;
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
+import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.uriEncoded;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
@@ -21,7 +22,6 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 import java.util.Map;
-import java.net.URLEncoder;
 import java.util.AbstractMap.SimpleEntry;
 import static java.util.Collections.emptyList;
 
@@ -90,7 +90,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
 
     // Given...
     param =
-      param( "myParam")
+      param( "my Param")
       .location( QUERY)
       .style( "form")
       .integerData( 123)
@@ -106,7 +106,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       params,
       containsMembers(
         params()
-        .binding( "myParam", "123")
+        .binding( "my Param", "123")
         .build()));
     }
   
@@ -454,7 +454,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       param( "myParam")
       .location( QUERY)
       .style( "form")
-      .objectData( object().with( "name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
       .build();
 
     // When...
@@ -466,7 +466,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       params,
       containsMembers(
         params()
-        .encoding( "myParam", "name,X,sex,?")
+        .encoding( "myParam", "nick name,X,sex,?")
         .build()));
 
     // Given...
@@ -474,7 +474,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       param( "myParam")
       .location( QUERY)
       .style( "form")
-      .objectData( object().with( "name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
       .exploded()
       .build();
 
@@ -487,7 +487,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       params,
       containsMembers(
         params()
-        .binding( "name", "X")
+        .binding( "nick name", "X")
         .binding( "sex", "?")
         .build()));
     }
@@ -500,7 +500,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       param( "myParam")
       .location( QUERY)
       .style( "deepObject")
-      .objectData( object().with( "name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
       .build();
 
     // When...
@@ -512,8 +512,8 @@ public class QueryParameterEncoderTest extends TestWriterTest
       params,
       containsMembers(
         params()
-        .encoding( "myParam[name]", "X")
-        .encoding( "myParam[sex]", "?")
+        .encodingDeep( "myParam", "nick name", "X")
+        .encodingDeep( "myParam", "sex", "?")
         .build()));
 
     // Given...
@@ -521,7 +521,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       param( "myParam")
       .location( QUERY)
       .style( "deepObject")
-      .objectData( object().with( "name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
       .exploded()
       .build();
 
@@ -534,7 +534,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       params,
       containsMembers(
         params()
-        .binding( "myParam[name]", "X")
+        .binding( "myParam[nick name]", "X")
         .binding( "myParam[sex]", "?")
         .build()));
     }
@@ -554,19 +554,12 @@ public class QueryParameterEncoderTest extends TestWriterTest
     
     public BindingsBuilder encoding( String name, String value)
       {
-      return binding( encode( name), encode( value));
+      return binding( uriEncoded( name), uriEncoded( value));
       }
-
-    private String encode( String value)
+    
+    public BindingsBuilder encodingDeep( String name, String property, String value)
       {
-      try
-        {
-        return URLEncoder.encode( value, "UTF-8");
-        }
-      catch( Exception e)
-        {
-        throw new IllegalArgumentException( String.format( "Can't encode value='%s'", value), e);
-        }
+      return binding( String.format( "%s[%s]", uriEncoded( name), uriEncoded( property)), uriEncoded( value));
       }
     }
 

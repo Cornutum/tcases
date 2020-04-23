@@ -12,7 +12,7 @@ import org.cornutum.tcases.openapi.resolver.*;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type.*;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 
-import java.net.URLEncoder;
+import java.net.URI;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,6 @@ import java.util.Objects;
 import java.util.Optional;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Define common methods for representing request test definitions in API tests.
@@ -99,7 +98,7 @@ public final class TestWriterUtils
 
   /**
    * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter.
-   * All parameter names and values are URL-encoded if necessary.
+   * All parameter names and values are URI-encoded if necessary.
    */
   public static List<Map.Entry<String,String>> getQueryParameters( ParamData param)
     {
@@ -110,16 +109,11 @@ public final class TestWriterUtils
   /**
    * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter. 
    */
-  public static List<Map.Entry<String,String>> getQueryParameters( ParamData param, boolean urlEncoded)
+  public static List<Map.Entry<String,String>> getQueryParameters( ParamData param, boolean uriEncoded)
     {
     try
       {
-      List<Map.Entry<String,String>> bindings = QueryParameterEncoder.encode( param);
-
-      return
-        urlEncoded
-        ? bindings.stream().map( TestWriterUtils::urlEncoded).collect( toList())
-        : bindings;
+      return QueryParameterEncoder.encode( param, uriEncoded);
       }
     catch( Exception e)
       {
@@ -129,7 +123,7 @@ public final class TestWriterUtils
 
   /**
    * Returns the value of the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
-   * The result is URL-encoded if necessary.
+   * The result is URI-encoded if necessary.
    */
   public static String getPathParameterValue( ParamData param)
     {
@@ -139,25 +133,20 @@ public final class TestWriterUtils
   /**
    * Returns the value of the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
    */
-  public static String getPathParameterValue( ParamData param, boolean urlEncoded)
+  public static String getPathParameterValue( ParamData param, boolean uriEncoded)
     {
     try
       {
       String style = getValidStyle( param);
 
-      String value =
+      return
         "label".equals( style)?
-        LabelValueEncoder.encode( param) : 
+        LabelValueEncoder.encode( param, uriEncoded) : 
 
         "matrix".equals( style)?
-        MatrixValueEncoder.encode( param) : 
+        MatrixValueEncoder.encode( param, uriEncoded) : 
 
-        SimpleValueEncoder.encode( param);
-
-      return
-        urlEncoded
-        ? urlEncoded( value)
-        : value;
+        SimpleValueEncoder.encode( param, uriEncoded);
       }
     catch( Exception e)
       {
@@ -166,13 +155,13 @@ public final class TestWriterUtils
     }
 
   /**
-   * Returns the URL-encoded form of the given value.
+   * Returns the URI-encoded form of the given value.
    */
-  public static String urlEncoded( String value)
+  public static String uriEncoded( String value)
     {
     try
       {
-      return URLEncoder.encode( value, "UTF-8");
+      return new URI( null, null, value, null).toASCIIString();
       }
     catch( Exception e)
       {
@@ -181,23 +170,17 @@ public final class TestWriterUtils
     }
 
   /**
-   * Returns the URL-encoded form of the given binding.
-   */
-  private static Map.Entry<String,String> urlEncoded( Map.Entry<String,String> binding)
-    {
-    return new SimpleEntry<String,String>( urlEncoded( binding.getKey()), urlEncoded( binding.getValue()));
-    }
-
-  /**
    * Returns a set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY} parameter. 
    */
-  public static class QueryParameterEncoder implements DataValueVisitor
+  public static class QueryParameterEncoder extends UriEncoder implements DataValueVisitor
     {
     /**
      * Creates a new QueryParameterEncoder instance.
      */
-    private QueryParameterEncoder( ParamData param)
+    private QueryParameterEncoder( ParamData param, boolean uriEncoded)
       {
+      super( uriEncoded);
+      
       if( !param.getLocation().equals( QUERY))
         {
         throw new TestWriterException( String.format( "%s is not a %s parameter", param, QUERY));
@@ -209,9 +192,9 @@ public final class TestWriterUtils
       value_ = param.getValue();
       }
 
-    public static List<Map.Entry<String,String>> encode( ParamData param)
+    public static List<Map.Entry<String,String>> encode( ParamData param, boolean uriEncoded)
       {
-      return new QueryParameterEncoder( param).accepted();
+      return new QueryParameterEncoder( param, uriEncoded).accepted();
       }
 
     private List<Map.Entry<String,String>> accepted()
@@ -225,9 +208,19 @@ public final class TestWriterUtils
         .orElse( emptyList());
       }
 
+    private void add( String name, String value)
+      {
+      bindings_.add( new SimpleEntry<String,String>( name, value));
+      }
+
     private void bind( String name, Object value)
       {
-      bindings_.add( new SimpleEntry<String,String>( name, Objects.toString( value, "")));
+      add( uriOf( name), uriOf( Objects.toString( value, "")));
+      }
+
+    private void bindDeep( String property, Object value)
+      {
+      add( String.format( "%s[%s]", uriOf( name_), uriOf( property)), uriOf( Objects.toString( value, "")));
       }
 
     private void bindParam( Object value)
@@ -245,7 +238,7 @@ public final class TestWriterUtils
       if( exploded_)
         {
         data.getValue().stream()
-          .forEach( value -> bindParam( SimpleValueEncoder.encode( value)));
+          .forEach( value -> bindParam( SimpleValueEncoder.encode( value, false)));
         }
       else
         {
@@ -253,7 +246,7 @@ public final class TestWriterUtils
 
         bindParam(
           data.getValue().stream()
-          .map( SimpleValueEncoder::encode)
+          .map( item -> SimpleValueEncoder.encode( item, false))
           .collect( joining( delim)));
         }
       }
@@ -293,22 +286,19 @@ public final class TestWriterUtils
       if( "deepObject".equals( style_))
         {
         data.getValue()
-          .forEach( (property, value) -> bind( String.format( "%s[%s]", name_, property), SimpleValueEncoder.encode( value)));
+          .forEach( (property, value) -> bindDeep( property, SimpleValueEncoder.encode( value, false)));
+        }
+      else if( exploded_)
+        {
+        data.getValue()
+          .forEach( (property, value) -> bind( property, SimpleValueEncoder.encode( value, false)));
         }
       else
         {
-        if( exploded_)
-          {
-          data.getValue()
-            .forEach( (property, value) -> bind( property, SimpleValueEncoder.encode( value)));
-          }
-        else
-          {
-          bindParam(
-            data.getValue().entrySet().stream()
-            .flatMap( entry -> Arrays.asList( entry.getKey(), SimpleValueEncoder.encode( entry.getValue())).stream())
-            .collect( joining( ",")));
-          }
+        bindParam(
+          data.getValue().entrySet().stream()
+          .flatMap( entry -> Arrays.asList( entry.getKey(), SimpleValueEncoder.encode( entry.getValue(), false)).stream())
+          .collect( joining( ",")));
         }
       }
 
@@ -327,30 +317,31 @@ public final class TestWriterUtils
   /**
    * Returns an encoding of a {@link DataValue} in the "simple" style.
    */
-  public static class SimpleValueEncoder implements DataValueVisitor
+  public static class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
     {
     /**
      * Creates a new SimpleValueEncoder instance.
      */
-    private SimpleValueEncoder( DataValue<?> value, boolean exploded)
+    private SimpleValueEncoder( DataValue<?> value, boolean exploded, boolean uriEncoded)
       {
+      super( uriEncoded);
       value_ = value;
       exploded_ = exploded;
       }
 
-    public static String encode( ParamData param)
+    public static String encode( ParamData param, boolean uriEncoded)
       {
-      return encode( param.getValue(), param.isExploded());
+      return encode( param.getValue(), param.isExploded(), uriEncoded);
       }
 
-    public static String encode( DataValue<?> value)
+    public static String encode( DataValue<?> value, boolean uriEncoded)
       {
-      return encode( value, false);
+      return encode( value, false, uriEncoded);
       }
 
-    public static String encode( DataValue<?> value, boolean exploded)
+    public static String encode( DataValue<?> value, boolean exploded, boolean uriEncoded)
       {
-      return new SimpleValueEncoder( value, exploded).accepted();
+      return new SimpleValueEncoder( value, exploded, uriEncoded).accepted();
       }
 
     private String accepted()
@@ -366,14 +357,14 @@ public final class TestWriterUtils
 
     private String stringOf( DataValue<?> value)
       {
-      return Objects.toString( value.getValue(), "");
+      return uriOf( Objects.toString( value.getValue(), ""));
       }
     
     public void visit( ArrayValue<?> data)
       {
       encoded_ =
         data.getValue().stream()
-        .map( SimpleValueEncoder::encode)
+        .map( item -> SimpleValueEncoder.encode( item, isUriEncoded()))
         .collect( joining( ","));
       }
 
@@ -413,14 +404,14 @@ public final class TestWriterUtils
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .map( entry -> String.format( "%s=%s", entry.getKey(), SimpleValueEncoder.encode( entry.getValue())))
+          .map( entry -> String.format( "%s=%s", uriOf( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), isUriEncoded())))
           .collect( joining( ","));
         }
       else
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .flatMap( entry -> Arrays.asList( entry.getKey(), SimpleValueEncoder.encode( entry.getValue())).stream())
+          .flatMap( entry -> Arrays.asList( uriOf( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), isUriEncoded())).stream())
           .collect( joining( ","));
         }
       }
@@ -438,25 +429,26 @@ public final class TestWriterUtils
   /**
    * Returns an encoding of a {@link DataValue} in the "label" style.
    */
-  public static class LabelValueEncoder implements DataValueVisitor
+  public static class LabelValueEncoder extends UriEncoder implements DataValueVisitor
     {
     /**
      * Creates a new LabelValueEncoder instance.
      */
-    private LabelValueEncoder( DataValue<?> value, boolean exploded)
+    private LabelValueEncoder( DataValue<?> value, boolean exploded, boolean uriEncoded)
       {
+      super( uriEncoded);
       value_ = value;
       exploded_ = exploded;
       }
 
-    public static String encode( ParamData param)
+    public static String encode( ParamData param, boolean uriEncoded)
       {
-      return encode( param.getValue(), param.isExploded());
+      return encode( param.getValue(), param.isExploded(), uriEncoded);
       }
 
-    public static String encode( DataValue<?> value, boolean exploded)
+    public static String encode( DataValue<?> value, boolean exploded, boolean uriEncoded)
       {
-      return new LabelValueEncoder( value, exploded).accepted();
+      return new LabelValueEncoder( value, exploded, uriEncoded).accepted();
       }
 
     private String accepted()
@@ -472,7 +464,7 @@ public final class TestWriterUtils
 
     private String labelOf( DataValue<?> value)
       {
-      return labelOf( Objects.toString( value.getValue(), ""));
+      return labelOf( uriOf( Objects.toString( value.getValue(), "")));
       }
 
     private String labelOf( String value)
@@ -484,7 +476,7 @@ public final class TestWriterUtils
       {
       encoded_ =
         data.getValue().stream()
-        .map( SimpleValueEncoder::encode)
+        .map( item -> SimpleValueEncoder.encode( item, isUriEncoded()))
         .map( this::labelOf)
         .collect( joining());
       }
@@ -525,14 +517,14 @@ public final class TestWriterUtils
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .map( entry -> labelOf( String.format( "%s=%s", entry.getKey(), SimpleValueEncoder.encode( entry.getValue()))))
+          .map( entry -> labelOf( String.format( "%s=%s", uriOf( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), isUriEncoded()))))
           .collect( joining());
         }
       else
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .flatMap( entry -> Arrays.asList( entry.getKey(), SimpleValueEncoder.encode( entry.getValue())).stream())
+          .flatMap( entry -> Arrays.asList( uriOf( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), isUriEncoded())).stream())
           .map( this::labelOf)
           .collect( joining());
         }
@@ -551,26 +543,27 @@ public final class TestWriterUtils
   /**
    * Returns an encoding of a {@link DataValue} in the "matrix" style.
    */
-  public static class MatrixValueEncoder implements DataValueVisitor
+  public static class MatrixValueEncoder extends UriEncoder implements DataValueVisitor
     {
     /**
      * Creates a new MatrixValueEncoder instance.
      */
-    private MatrixValueEncoder( String name, DataValue<?> value, boolean exploded)
+    private MatrixValueEncoder( String name, DataValue<?> value, boolean exploded, boolean uriEncoded)
       {
+      super( uriEncoded);
       name_ = name;
       value_ = value;
       exploded_ = exploded;
       }
 
-    public static String encode( ParamData param)
+    public static String encode( ParamData param, boolean uriEncoded)
       {
-      return encode( param.getName(), param.getValue(), param.isExploded());
+      return encode( param.getName(), param.getValue(), param.isExploded(), uriEncoded);
       }
 
-    public static String encode( String name, DataValue<?> value, boolean exploded)
+    public static String encode( String name, DataValue<?> value, boolean exploded, boolean uriEncoded)
       {
-      return new MatrixValueEncoder( name, value, exploded).accepted();
+      return new MatrixValueEncoder( name, value, exploded, uriEncoded).accepted();
       }
 
     private String accepted()
@@ -591,7 +584,12 @@ public final class TestWriterUtils
 
     private String matrixParamOf( String value)
       {
-      return matrixOf( String.format( "%s=%s", name_, value));
+      return matrixParamOf( name_, value);
+      }
+
+    private String matrixParamOf( String name, String value)
+      {
+      return matrixOf( String.format( "%s=%s", uriOf( name), uriOf( value)));
       }
 
     private String matrixOf( String value)
@@ -605,13 +603,13 @@ public final class TestWriterUtils
         {
         encoded_ =
           data.getValue().stream()
-          .map( SimpleValueEncoder::encode)
+          .map( item -> SimpleValueEncoder.encode( item, false))
           .map( this::matrixParamOf)
           .collect( joining());
         }
       else
         {
-        encoded_ = matrixParamOf( SimpleValueEncoder.encode( data));
+        encoded_ = matrixParamOf( SimpleValueEncoder.encode( data, false));
         }
       }
 
@@ -651,12 +649,12 @@ public final class TestWriterUtils
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .map( entry -> matrixOf( String.format( "%s=%s", entry.getKey(), SimpleValueEncoder.encode( entry.getValue()))))
+          .map( entry -> matrixParamOf( entry.getKey(), SimpleValueEncoder.encode( entry.getValue(), false)))
           .collect( joining());
         }
       else
         {
-        encoded_ = matrixParamOf( SimpleValueEncoder.encode( data));
+        encoded_ = matrixParamOf( SimpleValueEncoder.encode( data, false));
         }
       }
 
@@ -669,6 +667,42 @@ public final class TestWriterUtils
     private final boolean exploded_;
     private final DataValue<?> value_;
     private String encoded_;
+    }
+
+  /**
+   * Base class for URI encoders.
+   */
+  private static class UriEncoder
+    {
+    /**
+     * Creates a new UriEncoder instance.
+     */
+    protected UriEncoder( boolean uriEncoded)
+      {
+      uriEncoded_ = uriEncoded;
+      }
+
+    /**
+     * Returns if URI encoding is enabled for this encoder.
+     */
+    public boolean isUriEncoded()
+      {
+      return uriEncoded_;
+      }
+
+    /**
+     * If encoding is enabled, returns the URI-coded form of the given value.
+     * Otherwise, returns the value.
+     */
+    protected String uriOf( String value)
+      {
+      return
+        uriEncoded_
+        ? uriEncoded( value)
+        : value;
+      }
+
+    private final boolean uriEncoded_;
     }
 
   }
