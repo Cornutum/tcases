@@ -5,9 +5,10 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.corntum.tcases.openapi.restassured;
+package org.cornutum.tcases.openapi.restassured;
 
 import org.apache.commons.io.FileUtils;
+import org.cornutum.tcases.openapi.restassured.RestAssuredTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.JUnitTestWriter;
 import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestSource;
