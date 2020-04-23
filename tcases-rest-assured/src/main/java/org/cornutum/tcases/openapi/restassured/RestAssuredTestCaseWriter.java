@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.corntum.tcases.openapi.restassured;
+package org.cornutum.tcases.openapi.restassured;
 
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.io.IndentedWriter;

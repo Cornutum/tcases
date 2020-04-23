@@ -1,4 +1,4 @@
-package org.corntum.tcases.openapi.restassured;
+package org.cornutum.tcases.openapi.restassured;
 
 
 import org.junit.Test;
@@ -11,6 +11,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPosts_0() {
         given()
+            .queryParam( "userId", "1")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts")
         .then()
@@ -31,6 +32,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPosts_2() {
         given()
+            .queryParam( "userId", "10")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts")
         .then()
@@ -41,6 +43,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPosts_3() {
         given()
+            .queryParam( "userId", "")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts")
         .then()
@@ -52,6 +55,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPosts_4() {
         given()
+            .queryParam( "userId", "true")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts")
         .then()
@@ -63,6 +67,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPosts_5() {
         given()
+            .queryParam( "userId", "0")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts")
         .then()
@@ -74,6 +79,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPosts_6() {
         given()
+            .queryParam( "userId", "11")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts")
         .then()
@@ -312,6 +318,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void deletePostsPostId_0() {
         given()
+            .pathParam( "post-id", "1")
         .when()
             .request( "DELETE", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -322,6 +329,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void deletePostsPostId_1() {
         given()
+            .pathParam( "post-id", "100")
         .when()
             .request( "DELETE", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -332,6 +340,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void deletePostsPostId_2() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "DELETE", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -343,6 +352,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void deletePostsPostId_3() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "DELETE", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -354,6 +364,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void deletePostsPostId_4() {
         given()
+            .pathParam( "post-id", "FXu&L%3F!o")
         .when()
             .request( "DELETE", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -365,6 +376,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void deletePostsPostId_5() {
         given()
+            .pathParam( "post-id", "0")
         .when()
             .request( "DELETE", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -376,6 +388,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void deletePostsPostId_6() {
         given()
+            .pathParam( "post-id", "101")
         .when()
             .request( "DELETE", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -387,6 +400,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPostsPostId_0() {
         given()
+            .pathParam( "post-id", "1")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -397,6 +411,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPostsPostId_1() {
         given()
+            .pathParam( "post-id", "100")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -407,6 +422,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPostsPostId_2() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -418,6 +434,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPostsPostId_3() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -429,6 +446,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPostsPostId_4() {
         given()
+            .pathParam( "post-id", "true")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -440,6 +458,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPostsPostId_5() {
         given()
+            .pathParam( "post-id", "0")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -451,6 +470,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void getPostsPostId_6() {
         given()
+            .pathParam( "post-id", "101")
         .when()
             .request( "GET", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -462,6 +482,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void patchPostsPostId_0() {
         given()
+            .pathParam( "post-id", "1")
         .when()
             .request( "PATCH", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -472,6 +493,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void patchPostsPostId_1() {
         given()
+            .pathParam( "post-id", "100")
         .when()
             .request( "PATCH", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -482,6 +504,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void patchPostsPostId_2() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "PATCH", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -493,6 +516,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void patchPostsPostId_3() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "PATCH", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -504,6 +528,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void patchPostsPostId_4() {
         given()
+            .pathParam( "post-id", "%3EJ%7B_")
         .when()
             .request( "PATCH", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -515,6 +540,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void patchPostsPostId_5() {
         given()
+            .pathParam( "post-id", "0")
         .when()
             .request( "PATCH", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -526,6 +552,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void patchPostsPostId_6() {
         given()
+            .pathParam( "post-id", "101")
         .when()
             .request( "PATCH", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -537,6 +564,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void putPostsPostId_0() {
         given()
+            .pathParam( "post-id", "1")
         .when()
             .request( "PUT", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -547,6 +575,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void putPostsPostId_1() {
         given()
+            .pathParam( "post-id", "100")
         .when()
             .request( "PUT", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -557,6 +586,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void putPostsPostId_2() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "PUT", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -568,6 +598,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void putPostsPostId_3() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "PUT", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -579,6 +610,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void putPostsPostId_4() {
         given()
+            .pathParam( "post-id", "")
         .when()
             .request( "PUT", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -590,6 +622,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void putPostsPostId_5() {
         given()
+            .pathParam( "post-id", "0")
         .when()
             .request( "PUT", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
@@ -601,6 +634,7 @@ public class JSONPlaceholderApiTest {
     @Test
     public void putPostsPostId_6() {
         given()
+            .pathParam( "post-id", "101")
         .when()
             .request( "PUT", "https://jsonplaceholder.typicode.com/posts/{post-id}")
         .then()
