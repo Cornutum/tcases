@@ -11,7 +11,10 @@ import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestSource;
 import org.cornutum.tcases.openapi.testwriter.TestWriterTest;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
+
+import java.io.File;
 
 /**
  * Runs tests for {@link RestServerTestWriter}.
@@ -19,10 +22,10 @@ import org.junit.Test;
 public class RestServerTestWriterTest extends TestWriterTest
   {
   @Test
-  public void writeTest_0()
+  public void writeTest_0() throws Exception
     {
     // Given...
-    String testDefName = "testDef-0";
+    String testDefName = "RequestTestDef0";
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
@@ -30,8 +33,7 @@ public class RestServerTestWriterTest extends TestWriterTest
     
     JavaTestTarget target =
       JavaTestTarget.builder()
-      .inPackage( "org.examples")
-      .extending( "org.examples.util.BaseClass")
+      .named( testDefName)
       .inDir( getGeneratedTestDir())
       .build();
 
@@ -40,9 +42,11 @@ public class RestServerTestWriterTest extends TestWriterTest
     RestServerTestWriter testWriter = new RestServerTestWriter( config, new MockTestCaseWriter());
     
     // When...
-    String results = toStdOut( () -> testWriter.writeTest( source, target));
+    testWriter.writeTest( source, target);
 
     // Then
-    verifyTest( testDefName, results);
+    File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
+    String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
     }
   }

@@ -14,6 +14,9 @@ import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 
+import java.net.URI;
+import java.util.Optional;
+
 /**
  * Writes the source code for REST Assured test cases that execute API requests.
  */
@@ -47,7 +50,7 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
   /**
    * Writes a target test case to the given stream.
    */
-  public void writeTestCase( String testName, RequestCase requestCase, IndentedWriter targetWriter)
+  public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
     targetWriter.println( "given()");
     targetWriter.indent();
@@ -56,7 +59,7 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
 
     targetWriter.println( ".when()");
     targetWriter.indent();
-    writeRequest( testName, requestCase, targetWriter);
+    writeRequest( testName, testServer, requestCase, targetWriter);
     targetWriter.unindent();
 
     targetWriter.println( ".then()");
@@ -152,13 +155,13 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
   /**
    * Writes the request definition for a target test case to the given stream.
    */
-  protected void writeRequest( String testName, RequestCase requestCase, IndentedWriter targetWriter)
+  protected void writeRequest( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
     targetWriter.println(
       String.format(
         ".request( \"%s\", \"%s%s\")",
         requestCase.getOperation().toUpperCase(),
-        StringUtils.stripEnd( String.valueOf( requestCase.getServer()), "/"),
+        StringUtils.stripEnd( String.valueOf( Optional.ofNullable( testServer).orElse( requestCase.getServer())), "/"),
         requestCase.getPath()));
     }
   

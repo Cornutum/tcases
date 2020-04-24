@@ -8,11 +8,13 @@
 package org.cornutum.tcases.openapi.moco;
 
 import org.cornutum.tcases.io.IndentedWriter;
+import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.testwriter.JUnitTestWriter;
 import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
 import org.cornutum.tcases.util.ListBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import static java.util.stream.Collectors.joining;
@@ -29,6 +31,24 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     {
     super( testCaseWriter);
     setConfigWriter( writerFor( serverConfig));
+    }
+
+  /**
+   * Returns a URI for the API server used by the given test case. If non-null, this supersedes
+   * the server URI defined by this {@link RequestCase request case}.
+   */
+  protected URI getTestServer( RequestCase requestCase)
+    {
+    return getConfigWriter().getTestServer( requestCase);
+    }
+
+  /**
+   * Returns the URI scheme used in requests to the Moco server.
+   */
+  public String getServerScheme()
+    {
+    // By default, use "http"
+    return "http";
     }
 
   /**
@@ -117,7 +137,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     } 
 
   /**
-   * Changes the {@link ConfigWriter} for this test writer.
+   * Changes the {@link MocoServerTestWriter.ConfigWriter} for this test writer.
    */
   private void setConfigWriter( ConfigWriter<?> configWriter)
     {
@@ -125,7 +145,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     }
 
   /**
-   * Returns the {@link ConfigWriter} for this test writer.
+   * Returns the {@link MocoServerTestWriter.ConfigWriter} for this test writer.
    */
   protected ConfigWriter<?> getConfigWriter()
     {
@@ -166,7 +186,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Writes server configuration dependencies to the given stream.
      */
-    protected void writeConfigDependencies( IndentedWriter targetWriter)
+    public void writeConfigDependencies( IndentedWriter targetWriter)
       {
       targetWriter.println( String.format( "import org.junit.%s;", getConfig().getRuleType()));
       }
@@ -174,7 +194,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Writes server configuration initializations to the given stream.
      */
-    protected void writeConfigInit( IndentedWriter targetWriter)
+    public void writeConfigInit( IndentedWriter targetWriter)
       {
       // By default, none.
       }
@@ -182,7 +202,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Writes the server configuration TestRule to the given stream.
      */
-    protected void writeConfigRule( IndentedWriter targetWriter)
+    public void writeConfigRule( IndentedWriter targetWriter)
       {
       String ruleType = getConfig().getRuleType();
 
@@ -200,7 +220,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the Moco server factory arguments for this server configuration.
      */
-    protected List<String> getServerFactoryConfigArgs()
+    public List<String> getServerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
       return args.add( String.valueOf( getConfig().getPort())).build();
@@ -217,7 +237,23 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory arguments for server configuration.
      */
-    protected abstract List<String> getRunnerFactoryConfigArgs();
+    public abstract List<String> getRunnerFactoryConfigArgs();
+
+    /**
+     * Returns a URI for the API server used by the given test case. If non-null, this supersedes
+     * the server URI defined by this {@link RequestCase request case}.
+     */
+    public URI getTestServer( RequestCase requestCase)
+      {
+      try
+        {
+        return new URI( getServerScheme(), null, "localhost", getConfig().getPort(), null, null, null);
+        }
+      catch( Exception e)
+        {
+        throw new IllegalArgumentException( "Can't define test server URI", e);
+        }
+      }
 
     private final C config_;
     }
@@ -250,7 +286,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory arguments for server configuration.
      */
-    protected List<String> getRunnerFactoryConfigArgs()
+    public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
       return
@@ -289,7 +325,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory arguments for server configuration.
      */
-    protected List<String> getRunnerFactoryConfigArgs()
+    public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
       return
@@ -316,7 +352,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory arguments for server configuration.
      */
-    protected List<String> getRunnerFactoryConfigArgs()
+    public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
       return
@@ -328,7 +364,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Writes server configuration dependencies to the given stream.
      */
-    protected void writeConfigDependencies( IndentedWriter targetWriter)
+    public void writeConfigDependencies( IndentedWriter targetWriter)
       {
       super.writeConfigDependencies( targetWriter);
       writePojoDependencies( targetWriter);
@@ -337,7 +373,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Writes server configuration initializations to the given stream.
      */
-    protected void writeConfigInit( IndentedWriter targetWriter)
+    public void writeConfigInit( IndentedWriter targetWriter)
       {
       targetWriter.println();
       targetWriter.println( String.format( "private static %s %s;", getServerClass(), getConfig().getName()));

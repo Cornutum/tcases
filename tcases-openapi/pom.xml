@@ -86,7 +86,7 @@
                             <includes>
                                 <include>org/cornutum/tcases/openapi/resolver/*Matcher.class</include>
                                 <include>org/cornutum/tcases/openapi/resolver/ValueDomainTest.class</include>
-                                <include>org/cornutum/tcases/openapi/testwriter/TestWriterTest.class</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/TestWriterTest*.class</include>
                             </includes>
                         </configuration>
                     </execution>
