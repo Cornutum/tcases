@@ -10,6 +10,8 @@ package org.cornutum.tcases.openapi.testwriter;
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 
+import java.net.URI;
+
 /**
  * Writes the source code for test cases that execute API requests.
  */
@@ -26,9 +28,10 @@ public interface TestCaseWriter
   public void writeDeclarations( String testName, IndentedWriter targetWriter);
   
   /**
-   * Writes a target test case to the given stream.
+   * Writes a target test case to the given stream. If non-null, the specified <CODE>testServer</CODE> supersedes
+   * the URI for the API server defined by the <CODE>requestCase</CODE>.
    */
-  public void writeTestCase( String testName, RequestCase requestCase, IndentedWriter targetWriter);
+  public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter);
 
   /**
    * Writes the closing for target test cases the given stream.

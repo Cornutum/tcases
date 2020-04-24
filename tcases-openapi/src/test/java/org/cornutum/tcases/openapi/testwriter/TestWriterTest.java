@@ -26,6 +26,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -265,10 +266,10 @@ public abstract class TestWriterTest
     /**
      * Writes a target test case to the given stream.
      */
-    public void writeTestCase( String testName, RequestCase requestCase, IndentedWriter targetWriter)
+    public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
       {
       targetWriter.println( "// Given...");
-      targetWriter.println( "// When...");
+      targetWriter.println( String.format( "// When testServer=%s...", testServer));
       targetWriter.println( "// Then...");
       }
 

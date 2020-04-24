@@ -16,6 +16,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -188,7 +189,7 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
    */
   protected void writeTestCase( T target, String testName, RequestCase requestCase, IndentedWriter targetWriter)
     {
-    getTestCaseWriter().writeTestCase( testName, requestCase, targetWriter);
+    getTestCaseWriter().writeTestCase( testName, getTestServer( requestCase), requestCase, targetWriter);
     }
 
   /**
@@ -211,6 +212,16 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
   protected TestCaseWriter getTestCaseWriter()
     {
     return testCaseWriter_;
+    }
+
+  /**
+   * Returns a URI for the API server used by the given test case. If non-null, this supersedes
+   * the server URI defined by this {@link RequestCase request case}.
+   */
+  protected URI getTestServer( RequestCase requestCase)
+    {
+    // By default, none defined.
+    return null;
     }
 
   private final TestCaseWriter testCaseWriter_;
