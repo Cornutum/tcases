@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.moco;
 
+import org.cornutum.tcases.util.ToString;
+
 import java.util.Optional;
 
 /**
@@ -36,6 +38,15 @@ public class MocoServerConfigResource extends MocoServerConfig
   public void accept( ConfigVisitor visitor)
     {
     visitor.visit( this);
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .appendSuper( super.toString())
+      .append( "path", getPath())
+      .build();
     }
 
   private final String path_;
