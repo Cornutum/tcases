@@ -5,13 +5,13 @@ import org.junit.Test;
 
 import com.github.dreamhead.moco.junit.MocoJunitRunner;
 import static com.github.dreamhead.moco.Moco.*;
-import org.junit.Rule;
+import org.junit.ClassRule;
 // Test case dependencies
 
-public class RequestTestDef0Test {
+public class RequestTestDef4Test {
 
-    @Rule
-    public MocoJunitRunner runner = MocoJunitRunner.jsonRestRunner( 12306, file( "/Users/kerrykimbrough/repos/tcases/tcases-moco/target/test-classes/org/cornutum/tcases/openapi/moco/myConfig.json"));
+    @ClassRule
+    public static MocoJunitRunner runner = MocoJunitRunner.jsonSocketRunner( 12306, pathResource( "mocoConfig.json"));
     // Test case declarations
 
     @Test

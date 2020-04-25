@@ -11,14 +11,14 @@ import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
 
 /**
- * A JUnitTestWriter for API tests that use a <a href="https://github.com/dreamhead/moco/blob/master/moco-doc/junit.md#rest-server">Moco RestServer</a>
+ * A JUnitTestWriter for API tests that use a <a href="https://github.com/dreamhead/moco/blob/master/moco-doc/junit.md#socket-server">Moco SocketServer</a>
  */
-public class RestServerTestWriter extends MocoServerTestWriter
+public class SocketServerTestWriter extends MocoServerTestWriter
   {
   /**
-   * Creates a new RestServerTestWriter instance.
+   * Creates a new SocketServerTestWriter instance.
    */
-  public RestServerTestWriter( MocoServerConfig serverConfig, TestCaseWriter testCaseWriter)
+  public SocketServerTestWriter( MocoServerConfig serverConfig, TestCaseWriter testCaseWriter)
     {
     super( serverConfig, null, testCaseWriter);
     }
@@ -28,7 +28,7 @@ public class RestServerTestWriter extends MocoServerTestWriter
    */
   protected String getServerClass()
     {
-    return "RestServer";
+    return "SocketServer";
     }
 
   /**
@@ -36,7 +36,7 @@ public class RestServerTestWriter extends MocoServerTestWriter
    */
   protected String getServerFactory()
     {
-    return "restServer";
+    return "socketServer";
     }
 
   /**
@@ -44,7 +44,7 @@ public class RestServerTestWriter extends MocoServerTestWriter
    */
   protected String getRunnerFactory()
     {
-    return "restRunner";
+    return "socketRunner";
     }    
 
   /**
@@ -52,7 +52,6 @@ public class RestServerTestWriter extends MocoServerTestWriter
    */
   protected void writePojoDependencies( IndentedWriter targetWriter)
     {
-    targetWriter.println( "import com.github.dreamhead.moco.RestServer;");
-    targetWriter.println( "import static com.github.dreamhead.moco.MocoRest.*;");
+    targetWriter.println( "import com.github.dreamhead.moco.SocketServer;");
     }
   }

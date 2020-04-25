@@ -11,16 +11,16 @@ import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
 
 /**
- * A JUnitTestWriter for API tests that use a <a href="https://github.com/dreamhead/moco/blob/master/moco-doc/junit.md#rest-server">Moco RestServer</a>
+ * A JUnitTestWriter for API tests that use a <a href="https://github.com/dreamhead/moco/blob/master/moco-doc/junit.md#https-server">Moco HttpsServer</a>
  */
-public class RestServerTestWriter extends MocoServerTestWriter
+public class HttpsServerTestWriter extends MocoServerTestWriter
   {
   /**
-   * Creates a new RestServerTestWriter instance.
+   * Creates a new HttpsServerTestWriter instance.
    */
-  public RestServerTestWriter( MocoServerConfig serverConfig, TestCaseWriter testCaseWriter)
+  public HttpsServerTestWriter( MocoServerConfig serverConfig, CertConfig certConfig, TestCaseWriter testCaseWriter)
     {
-    super( serverConfig, null, testCaseWriter);
+    super( serverConfig, certConfig, testCaseWriter);
     }
 
   /**
@@ -28,7 +28,7 @@ public class RestServerTestWriter extends MocoServerTestWriter
    */
   protected String getServerClass()
     {
-    return "RestServer";
+    return "HttpsServer";
     }
 
   /**
@@ -36,7 +36,7 @@ public class RestServerTestWriter extends MocoServerTestWriter
    */
   protected String getServerFactory()
     {
-    return "restServer";
+    return "httpsServer";
     }
 
   /**
@@ -44,15 +44,14 @@ public class RestServerTestWriter extends MocoServerTestWriter
    */
   protected String getRunnerFactory()
     {
-    return "restRunner";
-    }    
+    return "httpsRunner";
+    } 
 
   /**
    * Writes the target test dependencies for the POJO server configuration to the given stream.
    */
   protected void writePojoDependencies( IndentedWriter targetWriter)
     {
-    targetWriter.println( "import com.github.dreamhead.moco.RestServer;");
-    targetWriter.println( "import static com.github.dreamhead.moco.MocoRest.*;");
+    targetWriter.println( "import com.github.dreamhead.moco.HttpsServer;");
     }
   }
