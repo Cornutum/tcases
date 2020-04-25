@@ -28,10 +28,11 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
   /**
    * Creates a new MocoServerTestWriter instance.
    */
-  protected MocoServerTestWriter( MocoServerConfig serverConfig, TestCaseWriter testCaseWriter)
+  protected MocoServerTestWriter( MocoServerConfig serverConfig, CertConfig certConfig, TestCaseWriter testCaseWriter)
     {
     super( testCaseWriter);
     setConfigWriter( writerFor( serverConfig));
+    getConfigWriter().setCertConfigWriter( writerFor( certConfig));
     }
 
   /**
@@ -159,6 +160,17 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     config.accept( visitor);
     return visitor.configWriter_;
     }
+  
+  private Optional<CertConfigWriter<?>> writerFor( CertConfig certConfig)
+    {
+    return
+      Optional.ofNullable( certConfig)
+      .map( config -> {
+        CertConfigWriterVisitor visitor = new CertConfigWriterVisitor();
+        config.accept( visitor);
+        return visitor.certConfigWriter_;
+        });
+    }
 
   public String toString()
     {
@@ -197,6 +209,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     public void writeConfigDependencies( IndentedWriter targetWriter)
       {
       targetWriter.println( String.format( "import org.junit.%s;", getConfig().getRuleType()));
+      getCertConfigWriter().ifPresent( cert -> cert.writeConfigDependencies( targetWriter));
       }
 
     /**
@@ -204,7 +217,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
      */
     public void writeConfigInit( IndentedWriter targetWriter)
       {
-      // By default, none.
+      getCertConfigWriter().ifPresent( cert -> cert.writeConfigInit( targetWriter));
       }
 
     /**
@@ -231,7 +244,11 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     public List<String> getServerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
-      return args.add( String.valueOf( getConfig().getPort())).build();
+
+      args.add( String.valueOf( getConfig().getPort()));
+      getCertConfigWriter().ifPresent( cert -> cert.getServerFactoryConfigArgs().forEach( certArg -> args.add( certArg)));
+
+      return args.build();
       }
 
     /**
@@ -263,7 +280,24 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
         }
       }
 
+    /**
+     * Changes the {@link HttpsServerTestWriter.CertConfigWriter} for this test writer.
+     */
+    private void setCertConfigWriter( Optional<CertConfigWriter<?>> certConfigWriter)
+      {
+      certConfigWriter_ = certConfigWriter;
+      }
+
+  /**
+   * Returns the {@link HttpsServerTestWriter.CertConfigWriter} for this test writer.
+   */
+  protected Optional<CertConfigWriter<?>> getCertConfigWriter()
+    {
+    return certConfigWriter_;
+    }
+
     private final C config_;
+    private Optional<CertConfigWriter<?>> certConfigWriter_;
     }
 
   /**
@@ -297,11 +331,14 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
-      return
-        args
+
+      args
         .add( String.valueOf( getConfig().getPort()))
-        .add( String.format( "\"%s\"", getConfig().getPath()))
-        .build();
+        .add( String.format( "file( \"%s\")", getConfig().getPath()));
+
+      getCertConfigWriter().ifPresent( cert -> cert.getRunnerFactoryConfigArgs().forEach( certArg -> args.add( certArg)));
+
+      return args.build();
       }
     }
 
@@ -336,11 +373,14 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
-      return
-        args
+
+      args
         .add( String.valueOf( getConfig().getPort()))
-        .add( String.format( "pathResource( \"%s\")", getConfig().getPath()))
-        .build();
+        .add( String.format( "pathResource( \"%s\")", getConfig().getPath()));
+
+      getCertConfigWriter().ifPresent( cert -> cert.getRunnerFactoryConfigArgs().forEach( certArg -> args.add( certArg)));
+
+      return args.build();
       }
     }
 
@@ -363,10 +403,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
-      return
-        args
-        .add( getConfig().getName())
-        .build();
+      return args.add( getConfig().getName()).build();
       }
 
     /**
@@ -383,6 +420,8 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
      */
     public void writeConfigInit( IndentedWriter targetWriter)
       {
+      super.writeConfigInit( targetWriter);
+      
       targetWriter.println();
       targetWriter.println( String.format( "private static %s %s;", getServerClass(), getConfig().getName()));
 
@@ -426,6 +465,150 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
       }
 
     private ConfigWriter<?> configWriter_;
+    }
+
+  /**
+   * Base class for certificate configuration writers.
+   */
+  private abstract class CertConfigWriter<C extends CertConfig>
+    {
+    /**
+     * Creates a new CertConfigWriter instance.
+     */
+    protected CertConfigWriter( C config)
+      {
+      config_ = config;
+      }
+
+    /**
+     * Returns the {@link CertConfig} for this test writer.
+     */
+    protected C getConfig()
+      {
+      return config_;
+      }
+
+    /**
+     * Writes certificate configuration dependencies to the given stream.
+     */
+    public void writeConfigDependencies( IndentedWriter targetWriter)
+      {
+      targetWriter.println( "import com.github.dreamhead.moco.HttpsCertificate;");
+      targetWriter.println( "import static com.github.dreamhead.moco.HttpsCertificate.certificate;");
+      }
+
+    /**
+     * Writes certificate configuration initializations to the given stream.
+     */
+    public void writeConfigInit( IndentedWriter targetWriter)
+      {
+      targetWriter.println(
+        String.format(
+          "private static final HttpsCertificate %s = certificate( %s);",
+          getConfig().getName(),
+          getCertFactoryConfigArgs().stream().collect( joining( ", "))));
+      }
+
+    /**
+     * Returns the certificate factory arguments for this certificate configuration.
+     */
+    protected abstract List<String> getCertFactoryConfigArgs();
+
+    /**
+     * Returns the server factory arguments for certificate configuration.
+     */
+    public List<String> getServerFactoryConfigArgs()
+      {
+      ListBuilder<String> args = ListBuilder.to();
+      return args.add( getConfig().getName()).build();
+      }
+
+    /**
+     * Returns the MocoJunitRunner factory arguments for certificate configuration.
+     */
+    public List<String> getRunnerFactoryConfigArgs()
+      {
+      ListBuilder<String> args = ListBuilder.to();
+      return args.add( getConfig().getName()).build();
+      }
+
+    private final C config_;
+    }
+
+  /**
+   * Writes test definitions based on {@link CertConfigFile} configuration.
+   */
+  private class CertConfigFileWriter extends CertConfigWriter<CertConfigFile>
+    {
+    /**
+     * Creates a new CertConfigFileWriter instance.
+     */
+    public CertConfigFileWriter( CertConfigFile certConfig)
+      {
+      super( certConfig);
+      }
+
+    /**
+     * Returns the certificate factory arguments for this certificate configuration.
+     */
+    protected List<String> getCertFactoryConfigArgs()
+      {
+      ListBuilder<String> args = ListBuilder.to();
+
+      args
+        .add( String.format( "file( \"%s\")", getConfig().getPath()))
+        .add( String.format( "\"%s\"", getConfig().getKeyStorePassword()))
+        .add( String.format( "\"%s\"", getConfig().getCertPassword()));
+
+      return args.build();
+      }
+    }
+
+  /**
+   * Writes test definitions based on {@link CertConfigResource} configuration.
+   */
+  private class CertConfigResourceWriter extends CertConfigWriter<CertConfigResource>
+    {
+    /**
+     * Creates a new CertConfigResourceWriter instance.
+     */
+    public CertConfigResourceWriter( CertConfigResource certConfig)
+      {
+      super( certConfig);
+      }
+
+    /**
+     * Returns the certificate factory arguments for this certificate configuration.
+     */
+    protected List<String> getCertFactoryConfigArgs()
+      {
+      ListBuilder<String> args = ListBuilder.to();
+
+      args
+        .add( String.format( "pathResource( \"%s\")", getConfig().getPath()))
+        .add( String.format( "\"%s\"", getConfig().getKeyStorePassword()))
+        .add( String.format( "\"%s\"", getConfig().getCertPassword()));
+
+      return args.build();
+      }
+    }
+
+  /**
+   * Creates a {@link CertConfigWriter} for a {@link CertConfig} instance.
+   */
+  private class CertConfigWriterVisitor implements CertConfigVisitor
+    {    
+    public void visit( CertConfigFile certConfig)
+      {
+      certConfigWriter_ = new CertConfigFileWriter( certConfig);
+      }
+
+    public void visit( CertConfigResource certConfig)
+      {
+      certConfigWriter_ = new CertConfigResourceWriter( certConfig);
+      }
+
+    private CertConfigWriter<?> certConfigWriter_;
     }
 
   }

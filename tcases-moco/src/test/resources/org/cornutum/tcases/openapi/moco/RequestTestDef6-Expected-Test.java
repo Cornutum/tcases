@@ -6,12 +6,21 @@ import org.junit.Test;
 import com.github.dreamhead.moco.junit.MocoJunitRunner;
 import static com.github.dreamhead.moco.Moco.*;
 import org.junit.Rule;
+import com.github.dreamhead.moco.RestServer;
+import static com.github.dreamhead.moco.MocoRest.*;
 // Test case dependencies
 
-public class RequestTestDef0Test {
+public class RequestTestDef6Test {
+
+    private static RestServer mocoServer;
+
+    static {
+        mocoServer = restServer( 12306);
+        mocoServer.response( "Your request has been ignored.");
+    }
 
     @Rule
-    public MocoJunitRunner runner = MocoJunitRunner.jsonRestRunner( 12306, file( "/Users/kerrykimbrough/repos/tcases/tcases-moco/target/test-classes/org/cornutum/tcases/openapi/moco/myConfig.json"));
+    public MocoJunitRunner runner = MocoJunitRunner.restRunner( mocoServer);
     // Test case declarations
 
     @Test

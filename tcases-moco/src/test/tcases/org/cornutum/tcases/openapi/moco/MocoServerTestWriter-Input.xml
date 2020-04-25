@@ -1,0 +1,59 @@
+<System name="MocoServerTestWriter">
+    <Function name="writeTest">
+        <Input>
+            <Var name="ServerType">
+                <Value name="Http"/>
+                <Value name="Https" property="https"/>                    
+                <Value name="Socket"/>                    
+                <Value name="Rest"/>                    
+            </Var>
+            <VarSet name="Config">
+                <Var name="Name" when="sourcePojo">
+                    <Value name="Defined"/>
+                    <Value name="Default"/>                    
+                </Var>
+                <Var name="Port">
+                    <Value name="Defined"/>
+                    <Value name="Default"/>                    
+                </Var>
+                <Var name="EachTest">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                    <Value name="Default"/>                    
+                </Var>
+                <VarSet name="Source">
+                    <Var name="Type">
+                        <Value name="JSON" property="sourceJson"/>
+                        <Value name="Pojo" property="sourcePojo"/>
+                    </Var>
+                    <Var name="Content">
+                        <Value name="File" when="sourceJson"/>
+                        <Value name="Resource" when="sourceJson"/>
+                        <Value name="Pojo" when="sourcePojo"/>
+                        <Value name="None" when="sourcePojo"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+            <VarSet name="Certificate" when="https">
+                <Var name="Name">
+                    <Value name="Defined"/>
+                    <Value name="Default"/> 
+                </Var>
+                <Var name="Source">
+                    <Value name="File"/>
+                    <Value name="Resource"/> 
+                </Var>
+                <VarSet name="Passwords">
+                    <Var name="KeyStore">
+                        <Value name="Defined"/>
+                        <Value name="Undefined" failure="true"/> 
+                    </Var>
+                    <Var name="Cert">
+                        <Value name="Defined"/>
+                        <Value name="Undefined" failure="true"/> 
+                    </Var>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

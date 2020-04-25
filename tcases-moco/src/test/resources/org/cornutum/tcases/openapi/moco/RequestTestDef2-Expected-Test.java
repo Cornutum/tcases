@@ -5,13 +5,24 @@ import org.junit.Test;
 
 import com.github.dreamhead.moco.junit.MocoJunitRunner;
 import static com.github.dreamhead.moco.Moco.*;
-import org.junit.Rule;
+import org.junit.ClassRule;
+import com.github.dreamhead.moco.HttpsCertificate;
+import static com.github.dreamhead.moco.HttpsCertificate.certificate;
+import com.github.dreamhead.moco.HttpsServer;
 // Test case dependencies
 
-public class RequestTestDef0Test {
+public class RequestTestDef2Test {
+    private static final HttpsCertificate DEFAULT_CERTIFICATE = certificate( file( "/Users/kerrykimbrough/repos/tcases/tcases-moco/target/test-classes/org/cornutum/tcases/openapi/moco/myCert.cks"), "kss!", "css!");
 
-    @Rule
-    public MocoJunitRunner runner = MocoJunitRunner.jsonRestRunner( 12306, file( "/Users/kerrykimbrough/repos/tcases/tcases-moco/target/test-classes/org/cornutum/tcases/openapi/moco/myConfig.json"));
+    private static HttpsServer mocoServer;
+
+    static {
+        mocoServer = httpsServer( 12306, DEFAULT_CERTIFICATE);
+        mocoServer.response( "Your request has been received.");
+    }
+
+    @ClassRule
+    public static MocoJunitRunner runner = MocoJunitRunner.httpsRunner( mocoServer);
     // Test case declarations
 
     @Test

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="writeTest" seed="1580680620431085568" tuples="1">
+      <Combine tuples="2">
+          <Include var="ServerType"/>
+          <Include var="Config.Source.Type"/>
+      </Combine>
+  </TupleGenerator>
+</Generators>
