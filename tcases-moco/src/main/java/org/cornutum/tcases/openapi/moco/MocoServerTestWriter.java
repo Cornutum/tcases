@@ -13,6 +13,7 @@ import org.cornutum.tcases.openapi.testwriter.JUnitTestWriter;
 import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
 import org.cornutum.tcases.util.ListBuilder;
+import org.cornutum.tcases.util.ToString;
 
 import java.net.URI;
 import java.util.List;
@@ -159,7 +160,14 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     return visitor.configWriter_;
     }
 
-
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( getConfigWriter().getConfig())
+      .build();
+    }
+  
   private ConfigWriter<?> configWriter_;
   
   /**
