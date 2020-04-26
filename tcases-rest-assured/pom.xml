@@ -102,6 +102,18 @@
         </dependency>
         
         <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-moco</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.dreamhead</groupId>
+            <artifactId>moco-junit</artifactId>
+        </dependency>
+        
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
