@@ -442,109 +442,15 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private Parameter.StyleEnum getApplicableStyle( Parameter parameter, String parameterType)
     {
-    Parameter.StyleEnum specified = parameter.getStyle();
-    Parameter.StyleEnum applicable; 
-
-    String in = parameter.getIn();
-    if( "query".equals( in) ||  "cookie".equals( in))
+    try
       {
-      switch( specified)
-        {
-        case FORM:
-          {
-          applicable = specified;
-          break;
-          }
-        case DEEPOBJECT:
-          {
-          if( "object".equals( parameterType))
-            {
-            applicable = specified;
-            }
-          else
-            {
-            applicable = Parameter.StyleEnum.FORM;
-            notifyError(
-              String.format( "style=%s is not applicable for parameter type=%s", specified, parameterType),
-              String.format( "Using style=%s instead", applicable));
-            }
-          break;
-          }
-        case PIPEDELIMITED:
-        case SPACEDELIMITED:
-          {
-          if( "array".equals( parameterType))
-            {
-            applicable = specified;
-            }
-          else
-            {
-            applicable = Parameter.StyleEnum.FORM;
-            notifyError(
-              String.format( "style=%s is not applicable for parameter type=%s", specified, parameterType),
-              String.format( "Using style=%s instead", applicable));
-            }
-          break;
-          }
-        default:
-          {
-          applicable = Parameter.StyleEnum.FORM;
-          notifyError(
-            String.format( "style=%s is not valid for a %s parameter", specified, in),
-            String.format( "Using style=%s instead", applicable));
-          break;
-          }
-        }
+      return ifApplicableStyle( parameter.getStyle(), parameter.getIn(), parameterType);
       }
-    
-    else if( "path".equals( in))
+    catch( InvalidStyleException e)
       {
-      switch( specified)
-        {
-        case SIMPLE:
-        case MATRIX:
-        case LABEL:
-          {
-          applicable = specified;
-          break;
-          }
-        default:
-          {
-          applicable = Parameter.StyleEnum.SIMPLE;
-          notifyError(
-            String.format( "style=%s is not valid for a %s parameter", specified, in),
-            String.format( "Using style=%s instead", applicable));
-          break;
-          }
-        }
+      notifyError( e.getMessage(), String.format( "Using style=%s instead", e.getValidStyle()));
+      return Parameter.StyleEnum.valueOf( e.getValidStyle().toUpperCase());
       }
-    
-    else if( "header".equals( in))
-      {
-      switch( specified)
-        {
-        case SIMPLE:
-          {
-          applicable = specified;
-          break;
-          }
-        default:
-          {
-          applicable = Parameter.StyleEnum.SIMPLE;
-          notifyError(
-            String.format( "style=%s is not valid for a %s parameter", specified, in),
-            String.format( "Using style=%s instead", applicable));
-          break;
-          }
-        }
-      }
-    
-    else
-      {
-      throw new OpenApiException( String.format( "'%s' is not a valid parameter location", in)); 
-      }
-
-    return applicable;
     }
 
   /**

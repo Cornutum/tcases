@@ -14,6 +14,7 @@ import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
+import io.swagger.v3.oas.models.parameters.Parameter.StyleEnum;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 
@@ -203,6 +204,129 @@ public final class OpenApiUtils
   public static String componentName( String refType, String ref)
     {
     return ref.startsWith( refType)? ref.substring( refType.length()) : null;
+    }
+
+  /**
+   * Returns the given parameter "style" property if it is applicable for the given
+   * parameter "in" and "type" properties. Otherwise, throws an {@link InvalidStyleException}.
+   */
+  public static String ifApplicableStyle( String style, String in, String type) throws InvalidStyleException
+    {
+    return String.valueOf( ifApplicableStyle( StyleEnum.valueOf( style.toUpperCase()), in, type));
+    }
+
+  /**
+   * Returns the given parameter "style" property if it is applicable for the given
+   * parameter "in" and "type" properties. Otherwise, throws an {@link InvalidStyleException}.
+   */
+  public static StyleEnum ifApplicableStyle( StyleEnum style, String in, String type) throws InvalidStyleException
+    {
+    StyleEnum specified = style;
+    StyleEnum applicable;
+
+    type = Optional.ofNullable( type).orElse( "null");
+
+    if( "query".equals( in) ||  "cookie".equals( in))
+      {
+      switch( specified)
+        {
+        case FORM:
+          {
+          applicable = specified;
+          break;
+          }
+        case DEEPOBJECT:
+          {
+          if( "object".equals( type) || "null".equals( type))
+            {
+            applicable = specified;
+            }
+          else
+            {
+            applicable = StyleEnum.FORM;
+            throw
+              new InvalidStyleException(
+                String.format( "style=%s is not applicable for parameter type=%s", specified, type),
+                applicable.toString());
+            }
+          break;
+          }
+        case PIPEDELIMITED:
+        case SPACEDELIMITED:
+          {
+          if( "array".equals( type) || "null".equals( type))
+            {
+            applicable = specified;
+            }
+          else
+            {
+            applicable = StyleEnum.FORM;
+            throw
+              new InvalidStyleException(
+                String.format( "style=%s is not applicable for parameter type=%s", specified, type),
+                applicable.toString());
+            }
+          break;
+          }
+        default:
+          {
+          applicable = StyleEnum.FORM;
+          throw
+            new InvalidStyleException(
+              String.format( "style=%s is not applicable for a %s parameter", specified, in),
+              applicable.toString());
+          }
+        }
+      }
+    
+    else if( "path".equals( in))
+      {
+      switch( specified)
+        {
+        case SIMPLE:
+        case MATRIX:
+        case LABEL:
+          {
+          applicable = specified;
+          break;
+          }
+        default:
+          {
+          applicable = StyleEnum.SIMPLE;
+          throw
+            new InvalidStyleException(
+              String.format( "style=%s is not applicable for a %s parameter", specified, in),
+              applicable.toString());
+          }
+        }
+      }
+    
+    else if( "header".equals( in))
+      {
+      switch( specified)
+        {
+        case SIMPLE:
+          {
+          applicable = specified;
+          break;
+          }
+        default:
+          {
+          applicable = StyleEnum.SIMPLE;
+          throw
+            new InvalidStyleException(
+              String.format( "style=%s is not applicable for a %s parameter", specified, in),
+              applicable.toString());
+          }
+        }
+      }
+    
+    else
+      {
+      throw new OpenApiException( String.format( "'%s' is not a valid parameter location", in)); 
+      }
+
+    return applicable;
     }
 
   private static final String COMPONENTS_PARAMETERS_REF = "#/components/parameters/";
