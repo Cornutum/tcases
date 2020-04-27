@@ -12,6 +12,9 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 import java.util.Optional;
 
 import org.cornutum.tcases.openapi.ConditionReporter;
+import org.cornutum.tcases.openapi.InvalidStyleException;
+import org.cornutum.tcases.openapi.OpenApiUtils;
+import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 
 import static java.util.stream.Collectors.toList;
 
@@ -81,7 +84,7 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
         ParamData paramData = new ParamData( paramDef.getName(), resolveMessageData( paramDef.getValue()));
 
         paramData.setLocation( paramDef.getLocation());
-        paramData.setStyle( paramDef.getStyle());
+        paramData.setStyle( getApplicableStyle( paramDef.getStyle(), paramDef.getLocation(), paramData.getType()));
         paramData.setExploded( paramDef.isExploded());
 
         return paramData;
@@ -95,6 +98,28 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
         throw new ResolverException( String.format( "Can't resolve parameter=%s", paramDef.getName()), e);
         }
       });
+    }
+
+  /**
+   * Returns the validated style attribute for the given parameter. When the specified style
+   * is not applicable for this parameter, returns a default applicable style.
+   */
+  private String getApplicableStyle( String style, Location location, DataValue.Type type)
+    {
+    try
+      {
+      return
+        OpenApiUtils.ifApplicableStyle(
+          style,
+          String.valueOf( location).toLowerCase(),
+          String.valueOf( type).toLowerCase());
+      }
+    catch( InvalidStyleException e)
+      {
+      String applicableStyle = e.getValidStyle();
+      notifyWarning( String.format( "%s -- using style=%s instead", e.getMessage(), applicableStyle));
+      return applicableStyle;
+      }
     }
 
   /**

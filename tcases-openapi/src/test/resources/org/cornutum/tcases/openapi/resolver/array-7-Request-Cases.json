@@ -165,7 +165,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "pipeDelimited",
+                "style": "form",
                 "explode": false,
                 "data": {
                     "type": "boolean",
