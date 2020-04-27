@@ -259,7 +259,7 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "deepObject",
+                "style": "form",
                 "explode": false,
                 "data": {
                     "type": "array",
