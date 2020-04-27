@@ -38,7 +38,7 @@ public class SimpleValueEncoderTest extends TestWriterTest
     assertTestWriterException(
       () -> TestWriterUtils.getPathParameterValue( param),
       String.format( "%s: can't get path parameter value", param),
-      String.format( "Style=%s is not applicable for a %s parameter", param.getStyle(), param.getLocation()));
+      String.format( "style=%s is not applicable for a %s parameter", param.getStyle(), String.valueOf( param.getLocation()).toLowerCase()));
     }
   
   @Test

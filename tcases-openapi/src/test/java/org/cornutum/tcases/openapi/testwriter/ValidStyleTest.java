@@ -970,13 +970,13 @@ public class ValidStyleTest extends TestWriterTest
     {
     assertTestWriterException(
       () -> TestWriterUtils.getValidStyle( param),
-      String.format( "Style=%s is not applicable for data type=%s", param.getStyle(), param.getType()));
+      String.format( "style=%s is not applicable for parameter type=%s", param.getStyle(), String.valueOf( param.getType()).toLowerCase()));
     }
 
   private void expectInvalidStyleLocation( ParamData param)
     {
     assertTestWriterException(
       () -> TestWriterUtils.getValidStyle( param),
-      String.format( "Style=%s is not applicable for a %s parameter", param.getStyle(), param.getLocation()));
+      String.format( "style=%s is not applicable for a %s parameter", param.getStyle(), String.valueOf( param.getLocation()).toLowerCase()));
     }
   }
