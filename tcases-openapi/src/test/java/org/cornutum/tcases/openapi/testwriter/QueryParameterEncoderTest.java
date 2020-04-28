@@ -26,7 +26,7 @@ import java.util.AbstractMap.SimpleEntry;
 import static java.util.Collections.emptyList;
 
 /**
- * Runs tests for {@link TestWriterUtils.QueryParameterEncoder}.
+ * Runs tests for {@link TestWriterUtils.FormParameterEncoder}.
  */
 @SuppressWarnings("unchecked")
 public class QueryParameterEncoderTest extends TestWriterTest
@@ -45,7 +45,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
     assertTestWriterException(
       () -> TestWriterUtils.getQueryParameters( param, false),
       String.format( "%s: can't get query parameter values", param),
-      String.format( "Style=%s is not applicable for a %s parameter", param.getStyle(), param.getLocation()));
+      String.format( "style=%s is not applicable for a %s parameter", param.getStyle(), String.valueOf( param.getLocation()).toLowerCase()));
     }
   
   @Test

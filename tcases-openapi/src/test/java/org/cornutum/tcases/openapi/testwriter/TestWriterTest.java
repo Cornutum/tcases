@@ -131,13 +131,41 @@ public abstract class TestWriterTest
    */
   protected RequestTestDef requestTestDefFor( String testDefName)
     {
-    InputStream document = getResourceClass().getResourceAsStream( String.format( "%s-Request-Cases.json", testDefName));
+    return requestTestDefFor( getResourceClass(), testDefName);
+    }
+
+  /**
+   * Returns the {@link RequestTestDef} object represented by the given document resource.
+   */
+  protected RequestTestDef requestTestDefFor( Class<?> resourceClass, String testDefName)
+    {
+    InputStream document = resourceClass.getResourceAsStream( String.format( "%s-Request-Cases.json", testDefName));
     assertThat( "Request cases for resource=" + testDefName, document, is( notNullValue()));
     
     try( RequestTestDefReader reader = new RequestTestDefReader( document))
       {
       return reader.getRequestTestDef();
       }
+    }
+
+  /**
+   * Returns the specified standard {@link RequestTestDef} object.
+   */
+  protected RequestTestDef stdRequestTestDef( String testDefName)
+    {
+    return requestTestDefFor( TestWriterTest.class, testDefName);
+    }
+
+  /**
+   * Returns the resource path to the  Moco server configuration file for the specified standard {@link RequestTestDef} object.
+   */
+  protected String stdMocoServerConfig( String testDefName)
+    {
+    return
+      String.format(
+        "%s/%s-Moco.json",
+        TestWriterTest.class.getPackage().getName().replaceAll( "\\.", "/"),
+        testDefName);
     }
 
   /**

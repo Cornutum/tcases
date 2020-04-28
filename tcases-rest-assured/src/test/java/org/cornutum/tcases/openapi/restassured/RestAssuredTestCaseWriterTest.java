@@ -8,8 +8,10 @@
 package org.cornutum.tcases.openapi.restassured;
 
 import org.apache.commons.io.FileUtils;
+import org.cornutum.tcases.openapi.moco.MocoServerConfig;
+import org.cornutum.tcases.openapi.moco.MocoServerTestWriter;
+import org.cornutum.tcases.openapi.moco.RestServerTestWriter;
 import org.cornutum.tcases.openapi.restassured.RestAssuredTestCaseWriter;
-import org.cornutum.tcases.openapi.testwriter.JUnitTestWriter;
 import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestSource;
 import org.cornutum.tcases.openapi.testwriter.TestWriterTest;
@@ -25,10 +27,10 @@ public class RestAssuredTestCaseWriterTest extends TestWriterTest
   public void writeTest_0() throws Exception
     {
     // Given...
-    String testDefName = "JSONPlaceholder-Api";
+    String testDefName = "OpenApiTest";
     
     TestSource source =
-      TestSource.from( requestTestDefFor( testDefName))
+      TestSource.from( stdRequestTestDef( testDefName))
       .build();
     
     JavaTestTarget target =
@@ -37,7 +39,9 @@ public class RestAssuredTestCaseWriterTest extends TestWriterTest
       .inDir( getGeneratedTestDir())
       .build();
 
-    JUnitTestWriter testWriter = new JUnitTestWriter( new RestAssuredTestCaseWriter());
+    MocoServerConfig serverConfig = MocoServerConfig.resource( stdMocoServerConfig( testDefName)).build();
+
+    MocoServerTestWriter testWriter = new RestServerTestWriter( serverConfig, new RestAssuredTestCaseWriter());
     
     // When...
     testWriter.writeTest( source, target);

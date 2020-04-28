@@ -76,6 +76,52 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>api-specs</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/test-classes</outputDirectory>
+                            <resources>       
+                                <resource>
+                                    <directory>src/test/tcases/openapi</directory>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                    </includes>
+                                </resource>     
+                                <resource>
+                                    <directory>${project.build.directory}/tcases/openapi</directory>
+                                    <includes>
+                                        <include>**/*-Request-Cases.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.cornutum.tcases</groupId>
+                <artifactId>tcases-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>std-test-defs</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>api</goal>
+                        </goals>
+                        <configuration>
+                            <requestCases>true</requestCases>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <executions>
                     <execution>
@@ -87,6 +133,8 @@
                                 <include>org/cornutum/tcases/openapi/resolver/*Matcher.class</include>
                                 <include>org/cornutum/tcases/openapi/resolver/ValueDomainTest.class</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/TestWriterTest*.class</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/OpenApiTest.json</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/OpenApiTest-Request-Cases.json</include>
                             </includes>
                         </configuration>
                     </execution>
