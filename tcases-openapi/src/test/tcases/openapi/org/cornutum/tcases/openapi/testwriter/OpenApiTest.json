@@ -6,18 +6,18 @@
     },
     "paths": {
         "/posts": {
-            "delete": {
+            "trace": {
                 "parameters": [
                     {
-                        "name": "Post-Id",
+                        "name": "postId",
                         "required": true,
                         "in": "cookie",
-                        "style": "spaceDelimited",
+                        "style": "pipeDelimited",
                         "schema": {
                             "type": "array",
                             "items": {
                                 "type": "string",
-                                "enum": [ "Why?", "@Home", "/Because/"]
+                                "enum": [ "A", "B", "C"]
                             },
                             "minItems": 1,
                             "maxItems": 2,

@@ -58,9 +58,9 @@
                         </When> 
                     </Value>
                     <Value name="spaceDelimited" property="spaceDelimited">
-                        <When>
+                        <When>c
                             <AllOf property="array">
-                                <AnyOf property="query, cookie"/>
+                                <AnyOf property="query"/>
                             </AllOf>
                         </When> 
                     </Value>

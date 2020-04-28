@@ -2,7 +2,7 @@
     {
         "request": {
             "uri": "/posts",
-            "method": "delete"
+            "method": "trace"
         },
 
         "response": {
