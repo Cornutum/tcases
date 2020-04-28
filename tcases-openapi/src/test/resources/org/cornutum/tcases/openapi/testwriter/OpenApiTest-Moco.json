@@ -1,0 +1,12 @@
+[
+    {
+        "request": {
+            "uri": "/posts",
+            "method": "delete"
+        },
+
+        "response": {
+            "status": 200
+        }
+    }
+]

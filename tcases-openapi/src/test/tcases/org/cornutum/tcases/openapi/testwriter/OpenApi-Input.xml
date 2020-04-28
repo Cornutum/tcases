@@ -1,0 +1,109 @@
+<System name="OpenAPI">
+    <Function name="Request">
+        <Input> 
+            <Var name="Operation">
+                <Value name="DELETE" property="delete"/>
+                <Value name="GET" property="get"/>
+                <Value name="HEAD" property="head"/>
+                <Value name="OPTIONS" property="options"/>
+                <Value name="PATCH" property="patch"/>
+                <Value name="POST" property="post"/>
+                <Value name="PUT" property="put"/>
+                <Value name="TRACE" property="trace"/>
+            </Var>
+
+            <VarSet name="Parameters">
+                <Var name="Count">
+                    <Value name="0" whenNot="delete, patch, put"/>
+                    <Value name="1" property="params"/>
+                    <Value name="&gt; 1" property="params"/>
+                </Var>
+                <VarSet name="Name" when="params">
+                    <Var name="Contains-Reserved">
+                        <Value name="Yes" whenNot="cookie, header"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+                <Var name="Location" when="params">
+                    <Value name="query" property="query"/>
+                    <Value name="path" property="path"/>
+                    <Value name="cookie" property="cookie"/>
+                    <Value name="header" property="header"/>
+                </Var>
+                <Var name="Style" when="params">
+                    <Value name="deepObject" property="deepObject">
+                        <When>
+                            <AllOf property="object">
+                                <AnyOf property="query, cookie"/>
+                            </AllOf>
+                        </When> 
+                    </Value>
+                    <Value name="form" property="form">
+                        <When>
+                            <AnyOf property="query, cookie"/>
+                        </When> 
+                    </Value>
+                    <Value name="label" property="label" when="path"/>
+                    <Value name="matrix" property="matrix" when="path"/>
+                    <Value name="pipeDelimited" property="pipeDelimited">
+                        <When>
+                            <AllOf property="array">
+                                <AnyOf property="query, cookie"/>
+                            </AllOf>
+                        </When> 
+                    </Value>
+                    <Value name="simple" property="simple">
+                        <When>
+                            <AnyOf property="header, path"/>
+                        </When> 
+                    </Value>
+                    <Value name="spaceDelimited" property="spaceDelimited">
+                        <When>
+                            <AllOf property="array">
+                                <AnyOf property="query, cookie"/>
+                            </AllOf>
+                        </When> 
+                    </Value>
+                </Var>
+                <Var name="Exploded" when="params">
+                    <Value name="Yes" >
+                        <When>
+                            <AllOf>
+                                <AnyOf property="object, array"/>
+                                <AnyOf property="matrix, label, form, simple"/>
+                            </AllOf>
+                        </When>
+                    </Value>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Type" when="params">
+                    <Value name="array" property="array"/>
+                    <Value name="boolean" property="boolean"/>
+                    <Value name="integer" property="integer"/>
+                    <Value name="number" property="number"/>
+                    <Value name="object" property="object"/>
+                    <Value name="string" property="string"/>
+                </Var>
+                <VarSet name="Value" when="params">
+                    <Var name="Contains-Reserved">
+                        <When>
+                            <AnyOf property="string, object, array"/>
+                        </When>
+                        <Value name="Yes"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+
+            <Var name="Body">
+                <Value name="Yes">
+                    <When>
+                        <AnyOf property="options, patch, post, put"/>
+                    </When>
+                </Value>
+                <Value name="No"/>
+            </Var>
+        </Input>
+
+    </Function>
+</System>
