@@ -7,9 +7,10 @@
 
 package org.cornutum.tcases.openapi.testwriter;
 
+import org.cornutum.tcases.openapi.InvalidStyleException;
+import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.openapi.resolver.*;
 
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type.*;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 
 import java.net.URI;
@@ -20,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.joining;
 
@@ -42,58 +45,18 @@ public final class TestWriterUtils
    */
   public static String getValidStyle( ParamData param)
     {
-    String style = param.getStyle();
-    DataValue.Type type = param.getType();
-
-    if( type != null)
+    try
       {
-      switch( param.getLocation())
-        {
-        case QUERY:
-        case COOKIE:
-          {
-          if( "deepObject".equals( style))
-            {
-            if( !(type.equals( OBJECT) || type.equals( NULL)))
-              {
-              throw new TestWriterException( String.format( "Style=%s is not applicable for data type=%s", style, type));
-              }
-            }
-          else if( "pipeDelimited".equals( style) || "spaceDelimited".equals( style))
-            {
-            if( !(type.equals( ARRAY) || type.equals( NULL)))
-              {
-              throw new TestWriterException( String.format( "Style=%s is not applicable for data type=%s", style, type));
-              }
-            }
-          else if( !"form".equals( style))
-            {
-            throw new TestWriterException( String.format( "Style=%s is not applicable for a %s parameter", style, param.getLocation()));
-            }
-          break;
-          }
-
-        case PATH:
-          {
-          if( !("simple".equals( style) || "matrix".equals( style) || "label".equals( style)))
-            {
-            throw new TestWriterException( String.format( "Style=%s is not applicable for a %s parameter", style, param.getLocation()));
-            }
-          break;
-          }
-
-        case HEADER:
-          {
-          if( !"simple".equals( style))
-            {
-            throw new TestWriterException( String.format( "Style=%s is not applicable for a %s parameter", style, param.getLocation()));
-            }
-          break;
-          }
-        }
+      return
+        OpenApiUtils.ifApplicableStyle(
+          param.getStyle(),
+          String.valueOf( param.getLocation()).toLowerCase(),
+          String.valueOf( param.getType()).toLowerCase());
       }
-
-    return style;
+    catch( InvalidStyleException e)
+      {
+      throw new TestWriterException( e.getMessage());
+      }
     }
 
   /**
@@ -113,7 +76,12 @@ public final class TestWriterUtils
     {
     try
       {
-      return QueryParameterEncoder.encode( param, uriEncoded);
+      if( !param.getLocation().equals( QUERY))
+        {
+        throw new TestWriterException( String.format( "%s is not a %s parameter", param, QUERY));
+        }
+      
+      return FormParameterEncoder.encode( param, uriEncoded);
       }
     catch( Exception e)
       {
@@ -155,6 +123,27 @@ public final class TestWriterUtils
     }
 
   /**
+   * Returns the set of request cookie parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#COOKIE COOKIE} parameter.
+   * All parameter names and values are URI-encoded if necessary.
+   */
+  public static List<Map.Entry<String,String>> getCookieParameters( ParamData param)
+    {
+    try
+      {
+      if( !param.getLocation().equals( COOKIE))
+        {
+        throw new TestWriterException( String.format( "%s is not a %s parameter", param, COOKIE));
+        }
+      
+      return FormParameterEncoder.encode( param, false);
+      }
+    catch( Exception e)
+      {
+      throw new TestWriterException( String.format( "%s: can't get cookie parameter values", param), e);
+      }
+    }
+
+  /**
    * Returns the URI-encoded form of the given value.
    */
   public static String uriEncoded( String value)
@@ -170,22 +159,32 @@ public final class TestWriterUtils
     }
 
   /**
-   * Returns a set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY} parameter. 
+   * Returns a string containing the source code for a Java string literal representing the given value.
    */
-  public static class QueryParameterEncoder extends UriEncoder implements DataValueVisitor
+  public static String stringLiteral( Object value)
+    {
+    Matcher escapeMatcher = literalEscaped_.matcher( Objects.toString( value, ""));
+    StringBuffer escaped = new StringBuffer();
+    while( escapeMatcher.find())
+      {
+      escapeMatcher.appendReplacement( escaped, String.format( "\\\\%s", Matcher.quoteReplacement( escapeMatcher.group())));
+    }
+    escapeMatcher.appendTail( escaped);
+
+    return String.format( "\"%s\"", escaped.toString());
+    }
+
+  /**
+   * Returns the name/value pairs that encode a parameter in the "form" style.
+   */
+  public static class FormParameterEncoder extends UriEncoder implements DataValueVisitor
     {
     /**
      * Creates a new QueryParameterEncoder instance.
      */
-    private QueryParameterEncoder( ParamData param, boolean uriEncoded)
+    private FormParameterEncoder( ParamData param, boolean uriEncoded)
       {
       super( uriEncoded);
-      
-      if( !param.getLocation().equals( QUERY))
-        {
-        throw new TestWriterException( String.format( "%s is not a %s parameter", param, QUERY));
-        }
-
       name_ = param.getName();
       style_ = getValidStyle( param);
       exploded_ = param.isExploded();
@@ -194,7 +193,7 @@ public final class TestWriterUtils
 
     public static List<Map.Entry<String,String>> encode( ParamData param, boolean uriEncoded)
       {
-      return new QueryParameterEncoder( param, uriEncoded).accepted();
+      return new FormParameterEncoder( param, uriEncoded).accepted();
       }
 
     private List<Map.Entry<String,String>> accepted()
@@ -705,4 +704,5 @@ public final class TestWriterUtils
     private final boolean uriEncoded_;
     }
 
+  private static final Pattern literalEscaped_ = Pattern.compile( "[\\\\\"]");
   }
