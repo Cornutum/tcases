@@ -17,6 +17,7 @@ import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.Parameter.StyleEnum;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
+import static io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.*;
 
 import java.util.Optional;
 import static java.util.Collections.emptyList;
@@ -243,7 +244,7 @@ public final class OpenApiUtils
             }
           else
             {
-            applicable = StyleEnum.FORM;
+            applicable = FORM;
             throw
               new InvalidStyleException(
                 String.format( "style=%s is not applicable for parameter type=%s", specified, type),
@@ -254,23 +255,32 @@ public final class OpenApiUtils
         case PIPEDELIMITED:
         case SPACEDELIMITED:
           {
-          if( "array".equals( type) || "null".equals( type))
+          if( !( "array".equals( type) || "null".equals( type)))
             {
-            applicable = specified;
-            }
-          else
-            {
-            applicable = StyleEnum.FORM;
+            applicable = FORM;
             throw
               new InvalidStyleException(
                 String.format( "style=%s is not applicable for parameter type=%s", specified, type),
                 applicable.toString());
             }
+          else if( specified == SPACEDELIMITED && "cookie".equals( in))
+            {
+            applicable = FORM;
+            throw
+              new InvalidStyleException(
+                String.format( "style=%s is not applicable for a %s parameter", specified, in),
+                applicable.toString());
+            }
+          else
+            {
+            applicable = specified;
+            }
+            
           break;
           }
         default:
           {
-          applicable = StyleEnum.FORM;
+          applicable = FORM;
           throw
             new InvalidStyleException(
               String.format( "style=%s is not applicable for a %s parameter", specified, in),
@@ -292,7 +302,7 @@ public final class OpenApiUtils
           }
         default:
           {
-          applicable = StyleEnum.SIMPLE;
+          applicable = SIMPLE;
           throw
             new InvalidStyleException(
               String.format( "style=%s is not applicable for a %s parameter", specified, in),
@@ -312,7 +322,7 @@ public final class OpenApiUtils
           }
         default:
           {
-          applicable = StyleEnum.SIMPLE;
+          applicable = SIMPLE;
           throw
             new InvalidStyleException(
               String.format( "style=%s is not applicable for a %s parameter", specified, in),

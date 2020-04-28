@@ -163,6 +163,7 @@ public class NotifierTest extends OpenApiTest
       "Styles,/cookie/array,GET,matrixParam: style=matrix is not applicable for a cookie parameter. Using style=form instead.",
       "Styles,/cookie/array,GET,labelParam: style=label is not applicable for a cookie parameter. Using style=form instead.",
       "Styles,/cookie/array,GET,simpleParam: style=simple is not applicable for a cookie parameter. Using style=form instead.",
+      "Styles,/cookie/array,GET,spaceDelimitedParam: style=spaceDelimited is not applicable for a cookie parameter. Using style=form instead.",
       "Styles,/cookie/array,GET,deepObjectParam: style=deepObject is not applicable for parameter type=array. Using style=form instead.",
       "Styles,/cookie/object,GET,matrixParam: style=matrix is not applicable for a cookie parameter. Using style=form instead.",
       "Styles,/cookie/object,GET,labelParam: style=label is not applicable for a cookie parameter. Using style=form instead.",

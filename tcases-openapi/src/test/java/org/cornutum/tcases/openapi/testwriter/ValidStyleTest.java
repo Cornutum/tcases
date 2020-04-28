@@ -777,7 +777,7 @@ public class ValidStyleTest extends TestWriterTest
     ParamData param = param( "myParam").location( COOKIE).style( "spaceDelimited").nullData().build();
 
     // Then...
-    expectValidStyle( param);
+    expectInvalidStyleLocation( param);
     }
   
   @Test
@@ -866,7 +866,7 @@ public class ValidStyleTest extends TestWriterTest
     ParamData param = param( "myParam").location( COOKIE).style( "spaceDelimited").arrayData( stringOf( "A"), stringOf( "B")).build();
 
     // Then...
-    expectValidStyle( param);
+    expectInvalidStyleLocation( param);
     }
   
   @Test
