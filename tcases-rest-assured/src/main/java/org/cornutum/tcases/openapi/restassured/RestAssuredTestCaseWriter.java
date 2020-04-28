@@ -12,6 +12,8 @@ import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
+import org.cornutum.tcases.openapi.testwriter.TestWriterException;
+
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 
 import java.net.URI;
@@ -52,21 +54,28 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
    */
   public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
-    targetWriter.println( "given()");
-    targetWriter.indent();
-    writeParams( testName, requestCase, targetWriter);
-    targetWriter.unindent();
+    try
+      {
+      targetWriter.println( "given()");
+      targetWriter.indent();
+      writeParams( testName, requestCase, targetWriter);
+      targetWriter.unindent();
 
-    targetWriter.println( ".when()");
-    targetWriter.indent();
-    writeRequest( testName, testServer, requestCase, targetWriter);
-    targetWriter.unindent();
+      targetWriter.println( ".when()");
+      targetWriter.indent();
+      writeRequest( testName, testServer, requestCase, targetWriter);
+      targetWriter.unindent();
 
-    targetWriter.println( ".then()");
-    targetWriter.indent();
-    writeExpectResponse( testName, requestCase, targetWriter);
-    targetWriter.println( ";");
-    targetWriter.unindent();
+      targetWriter.println( ".then()");
+      targetWriter.indent();
+      writeExpectResponse( testName, requestCase, targetWriter);
+      targetWriter.println( ";");
+      targetWriter.unindent();
+      }
+    catch( Exception e)
+      {
+      throw new TestWriterException( String.format( "Can't write test case=%s", requestCase), e);
+      }
     }
 
   /**
@@ -127,7 +136,7 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
   protected void writeQueryParam( String testName, ParamData param, IndentedWriter targetWriter)
     {
     getQueryParameters( param, true).stream()
-      .forEach( entry -> targetWriter.println( String.format( ".queryParam( \"%s\", \"%s\")", entry.getKey(), entry.getValue())));
+      .forEach( entry -> targetWriter.println( String.format( ".queryParam( %s, %s)", stringLiteral( entry.getKey()), stringLiteral( entry.getValue()))));
     }
   
   /**
@@ -135,7 +144,7 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
    */
   protected void writePathParam( String testName, ParamData param, IndentedWriter targetWriter)
     {
-    targetWriter.println( String.format( ".pathParam( \"%s\", \"%s\")", param.getName(), getPathParameterValue( param)));
+    targetWriter.println( String.format( ".pathParam( %s, %s)", stringLiteral( param.getName()), stringLiteral( getPathParameterValue( param))));
     }
   
   /**
@@ -150,6 +159,8 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
    */
   protected void writeCookieParam( String testName, ParamData param, IndentedWriter targetWriter)
     {
+    getCookieParameters( param).stream()
+      .forEach( entry -> targetWriter.println( String.format( ".cookie( %s, %s)", stringLiteral( entry.getKey()), stringLiteral( entry.getValue()))));
     }
   
   /**
@@ -157,12 +168,17 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
    */
   protected void writeRequest( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
+    String requestUrl =
+      String.format(
+        "%s%s",
+        StringUtils.stripEnd( String.valueOf( Optional.ofNullable( testServer).orElse( requestCase.getServer())), "/"),
+        requestCase.getPath());
+
     targetWriter.println(
       String.format(
-        ".request( \"%s\", \"%s%s\")",
-        requestCase.getOperation().toUpperCase(),
-        StringUtils.stripEnd( String.valueOf( Optional.ofNullable( testServer).orElse( requestCase.getServer())), "/"),
-        requestCase.getPath()));
+        ".request( %s, %s)",
+        stringLiteral( requestCase.getOperation().toUpperCase()),
+        stringLiteral( requestUrl)));
     }
   
   /**
