@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 /**
@@ -19,7 +20,15 @@ public class StringConstant extends ConstantDomain<String>
    */
   public StringConstant( String value)
     {
-    this( value, null);
+    this( value, (String) null);
+    }
+  
+  /**
+   * Creates a new StringConstant instance.
+   */
+  public StringConstant( String value, Characters chars)
+    {
+    this( value, null, chars);
     }
   
   /**
@@ -27,8 +36,21 @@ public class StringConstant extends ConstantDomain<String>
    */
   public StringConstant( String value, String format)
     {
+    this( value, format, Characters.ANY);
+    }
+  
+  /**
+   * Creates a new StringConstant instance.
+   */
+  public StringConstant( String value, String format, Characters chars)
+    {
     super( Type.STRING, value);
     format_ = format;
+
+    if( !chars.allowed( value))
+      {
+      throw new ValueDomainException( String.format( "'%s' is not allowed by %s", value, chars));
+      }
     }
 
   /**

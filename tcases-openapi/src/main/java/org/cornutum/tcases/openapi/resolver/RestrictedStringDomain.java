@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
 
 /**
@@ -17,9 +18,9 @@ public abstract class RestrictedStringDomain extends AbstractStringDomain
   /**
    * Creates a new RestrictedStringDomain instance.
    */
-  protected RestrictedStringDomain( int maxLength)
+  protected RestrictedStringDomain( int maxLength, Characters chars)
     {
-    super( maxLength);
+    super( maxLength, chars);
     }
 
   /**

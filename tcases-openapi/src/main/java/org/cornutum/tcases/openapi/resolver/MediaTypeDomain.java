@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
+
 import java.util.Set;
 
 /**
@@ -19,7 +21,7 @@ public class MediaTypeDomain extends AbstractStringDomain
    */
   public MediaTypeDomain()
     {
-    super( 256);
+    super( 256, Characters.ASCII);
     }
 
   /**

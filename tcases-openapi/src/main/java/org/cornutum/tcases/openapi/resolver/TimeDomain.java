@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.util.ToString;
 
 import java.util.Calendar;
@@ -26,7 +27,7 @@ public abstract class TimeDomain extends RestrictedStringDomain
    */
   protected TimeDomain( int maxLength, Date minDate, Date maxDate)
     {
-    super( maxLength);
+    super( maxLength, Characters.ASCII);
     setDateRange( minDate, maxDate);
     }
 

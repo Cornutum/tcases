@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 /**
@@ -19,8 +20,24 @@ public class StringEnum extends EnumDomain<String>
    */
   public StringEnum( Iterable<String> enums, String format)
     {
+    this( enums, format, Characters.ANY);
+    }
+  
+  /**
+   * Creates a new StringEnum instance.
+   */
+  public StringEnum( Iterable<String> enums, String format, Characters chars)
+    {
     super( Type.STRING, enums);
     format_ = format;
+
+    for( String value : enums)
+      {
+      if( !chars.allowed( value))
+        {
+        throw new ValueDomainException( String.format( "'%s' is not allowed by %s", value, chars));
+        }
+      }
     }
 
   /**

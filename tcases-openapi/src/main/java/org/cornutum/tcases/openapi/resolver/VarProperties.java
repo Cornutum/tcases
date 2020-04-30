@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.DefUtils;
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.AbstractMap.SimpleEntry;
@@ -321,7 +322,7 @@ public final class VarProperties
   /**
    * Returns the value domain specified by the given properties.
    */
-  public static ValueDomain<?> toValueDomain( Map<String,Object> propertyValues)
+  public static ValueDomain<?> toValueDomain( Map<String,Object> propertyValues, Characters chars)
     {
     Map<String,Object> valueProperties =  getAlternativePropertyValues( propertyValues);
     
@@ -335,7 +336,7 @@ public final class VarProperties
       new MultiTypeDomain( types) :
 
       types[0] == Type.ARRAY?
-      toArrayDomain( valueProperties) :
+      toArrayDomain( valueProperties, chars) :
 
       types[0] == Type.BOOLEAN?
       toBooleanDomain( valueProperties) :
@@ -350,10 +351,10 @@ public final class VarProperties
       toNumberDomain( Type.NUMBER, valueProperties) :
 
       types[0] == Type.OBJECT?
-      toObjectDomain( valueProperties) :
+      toObjectDomain( valueProperties, chars) :
 
       types[0] == Type.STRING?
-      toStringDomain( valueProperties) :
+      toStringDomain( valueProperties, chars) :
 
       null;
     }
@@ -361,7 +362,7 @@ public final class VarProperties
   /**
    * Returns the value domain for alternate array items specified by the given properties.
    */
-  public static ValueDomain<?> toItemsDomain( Map<String,Object> propertyValues)
+  public static ValueDomain<?> toItemsDomain( Map<String,Object> propertyValues, Characters chars)
     {
     Map<String,Object> valueProperties =  getAlternativePropertyValues( propertyValues);
 
@@ -381,7 +382,7 @@ public final class VarProperties
       new MultiTypeDomain( types) :
 
       types[0] == Type.ARRAY?
-      toArrayItemsDomain( valueProperties) :
+      toArrayItemsDomain( valueProperties, chars) :
 
       types[0] == Type.BOOLEAN?
       toBooleanItemsDomain( valueProperties) :
@@ -396,7 +397,7 @@ public final class VarProperties
       new ObjectDomain() :
 
       types[0] == Type.STRING?
-      toStringItemsDomain( valueProperties) :
+      toStringItemsDomain( valueProperties, chars) :
 
       null;
     }
@@ -404,7 +405,7 @@ public final class VarProperties
   /**
    * Returns the array domain specified by the given properties.
    */
-  public static ArrayDomain<?> toArrayDomain( Map<String,Object> propertyValues)
+  public static ArrayDomain<?> toArrayDomain( Map<String,Object> propertyValues, Characters chars)
     {
     ArrayDomain<?> domain;
 
@@ -416,8 +417,8 @@ public final class VarProperties
     else
       {
       Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
-      ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties);
-      ValueDomain<?> itemValues = toValueDomain( itemValueProperties);
+      ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties, chars);
+      ValueDomain<?> itemValues = toValueDomain( itemValueProperties, chars);
       ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
       domain = itemDomain.arrayOf();
 
@@ -444,7 +445,7 @@ public final class VarProperties
   /**
    * Returns the string domain specified by the given properties.
    */
-  public static ValueDomain<?> toStringDomain( Map<String,Object> propertyValues)
+  public static ValueDomain<?> toStringDomain( Map<String,Object> propertyValues, Characters chars)
     {
     String format;
     Set<String> excluded;
@@ -495,9 +496,9 @@ public final class VarProperties
         new BinaryConstant( (byte[]) value.getValue()) :
 
         "email".equals( format)?
-        new EmailConstant( String.valueOf( value.getValue())) :
+        new EmailConstant( String.valueOf( value.getValue()), chars) :
 
-        new StringConstant( String.valueOf( value.getValue()), format);
+        new StringConstant( String.valueOf( value.getValue()), format, chars);
       }
     else
       {
@@ -518,9 +519,9 @@ public final class VarProperties
         new Base64Domain() :
 
         "email".equals( format)?
-        new EmailDomain() :
+        new EmailDomain( chars) :
 
-        new AsciiStringDomain();
+        new AsciiStringDomain( chars);
 
       Optional.ofNullable( length)
         .filter( binding -> !baseDomain.isRestrictedLength())
@@ -537,7 +538,7 @@ public final class VarProperties
   /**
    * Returns the object domain specified by the given properties.
    */
-  public static ValueDomain<?> toObjectDomain( Map<String,Object> propertyValues)
+  public static ValueDomain<?> toObjectDomain( Map<String,Object> propertyValues, Characters chars)
     {
     ObjectDomain domain = new ObjectDomain();
 
@@ -549,14 +550,14 @@ public final class VarProperties
       domain.setPropertyDomains(
         properties.keySet().stream()
         .filter( p -> !p.equals( "Additional"))
-        .map( p -> new SimpleEntry<String,ValueDomain<?>>( p, toPropertyDomain( expectPropertyValues( properties, p))))
+        .map( p -> new SimpleEntry<String,ValueDomain<?>>( p, toPropertyDomain( expectPropertyValues( properties, p), chars)))
         .filter( e -> e.getValue() != null)
         .collect( toMap( SimpleEntry::getKey, SimpleEntry::getValue)));
 
       Map<String,Object> additionalProperties = getIfPropertyValues( properties, "Additional");
       ValueDomain<?> additionalPropertyValues =
         additionalProperties != null?
-        toPropertyDomain( additionalProperties) :
+        toPropertyDomain( additionalProperties, chars) :
 
         "Yes".equals( expectVarBinding( properties, "Additional").getValue())?
         new MultiTypeDomain( Type.any()) :
@@ -593,11 +594,11 @@ public final class VarProperties
   /**
    * Returns the object property domain specified by the given properties.
    */
-  private static ValueDomain<?> toPropertyDomain( Map<String,Object> propertyValues)
+  private static ValueDomain<?> toPropertyDomain( Map<String,Object> propertyValues, Characters chars)
     {
     return
       "Yes".equals( expectVarBinding( propertyValues, "Defined").getValue())
-      ? toValueDomain( propertyValues)
+      ? toValueDomain( propertyValues, chars)
       : null;
     }
 
@@ -674,7 +675,7 @@ public final class VarProperties
   /**
    * Returns the array domain specified by the given properties.
    */
-  public static ValueDomain<?> toArrayItemsDomain( Map<String,Object> propertyValues)
+  public static ValueDomain<?> toArrayItemsDomain( Map<String,Object> propertyValues, Characters chars)
     {
     ArrayDomain<?> domain;
 
@@ -686,8 +687,8 @@ public final class VarProperties
     else
       {
       Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
-      ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties);
-      ValueDomain<?> itemValues = toValueDomain( itemValueProperties);
+      ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties, chars);
+      ValueDomain<?> itemValues = toValueDomain( itemValueProperties, chars);
       ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
       domain = itemDomain.arrayOf();
 
@@ -714,7 +715,7 @@ public final class VarProperties
   /**
    * Returns the string domain specified by the given properties.
    */
-  public static ValueDomain<?> toStringItemsDomain( Map<String,Object> propertyValues)
+  public static ValueDomain<?> toStringItemsDomain( Map<String,Object> propertyValues, Characters chars)
     {
     ValueDomain<?> domain;
 
@@ -734,9 +735,9 @@ public final class VarProperties
         new UuidEnum( enums) :
 
         "email".equals( format)?
-        new EmailEnum( enums) :
+        new EmailEnum( enums, chars) :
 
-        new StringEnum( enums, format);
+        new StringEnum( enums, format, chars);
       }
     else
       {
@@ -760,9 +761,9 @@ public final class VarProperties
         new Base64Domain() :
 
         "email".equals( format)?
-        new EmailDomain() :
+        new EmailDomain( chars) :
 
-        new AsciiStringDomain();
+        new AsciiStringDomain( chars);
 
       if( !baseDomain.isRestrictedLength())
         {

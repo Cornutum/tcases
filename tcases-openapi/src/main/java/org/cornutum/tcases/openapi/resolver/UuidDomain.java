@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import static org.cornutum.tcases.openapi.resolver.UuidConstant.isUuid;
 
 import static org.apache.commons.lang3.StringUtils.leftPad;
@@ -23,7 +24,7 @@ public class UuidDomain extends RestrictedStringDomain
    */
   public UuidDomain()
     {
-    super( 37);
+    super( 37, Characters.ASCII);
     }
 
   /**

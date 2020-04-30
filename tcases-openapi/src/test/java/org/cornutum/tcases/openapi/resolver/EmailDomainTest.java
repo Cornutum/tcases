@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
+
 import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
@@ -17,6 +19,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
 
@@ -29,7 +32,7 @@ public class EmailDomainTest extends ValueDomainTest
   public void whenConstant()
     {
     // Given...
-    String value = "me@mydomain.org";
+    String value = "me;myself;i@mydomain.org";
     StringConstant domain = new EmailConstant( value);
 
     // Then...
@@ -48,6 +51,18 @@ public class EmailDomainTest extends ValueDomainTest
 
     expectFailure( ValueDomainException.class)
       .when( () -> new EmailConstant( value));
+
+    // Given...
+    String valueNotAllowed = "me;myself;i@mydomain.org";
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new EmailConstant( valueNotAllowed, Characters.COOKIE_VALUE));
+
+    // Given...
+    String notToken = "me@mydomain.org";
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new EmailConstant( notToken, Characters.TOKEN));
     }
 
   @Test
@@ -73,6 +88,18 @@ public class EmailDomainTest extends ValueDomainTest
 
     expectFailure( ValueDomainException.class)
       .when( () -> new EmailEnum( emails));
+
+    // Given...
+    List<String> valueNotAllowed = Arrays.asList( "me;myself;i@mydomain.org");
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new EmailEnum( valueNotAllowed, Characters.COOKIE_VALUE));
+
+    // Given...
+    List<String> notToken = Arrays.asList( "me@mydomain.org");
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new EmailEnum( notToken, Characters.TOKEN));
     }
   
   @Test
@@ -138,5 +165,21 @@ public class EmailDomainTest extends ValueDomainTest
 
     expectFailure( ValueDomainException.class)
       .when( () -> domain.setLengthRange( 400));
+    }
+
+  @Test
+  public void whenCharsDefined()
+    {
+    // Given...
+    EmailDomain domain = new EmailDomain( Characters.COOKIE_VALUE);
+
+    // Then
+    assertThat( "Email cookie", domain.contains( "me;myself;i@mydomain.org"), is( false));
+
+    List<String> values = valuesOf( domain, 1000);
+    assertThat(
+      "Email cookies",
+      values.stream().filter( e -> !Characters.COOKIE_VALUE.allowed( e)).findFirst(),
+      is( Optional.empty()));
     }
   }

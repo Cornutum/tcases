@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
+
 /**
  * Defines a singleton email string value set.
  */
@@ -17,7 +19,15 @@ public class EmailConstant extends StringConstant
    */
   public EmailConstant( String value)
     {
-    super( assertEmail( value));
+    this( value, Characters.ASCII);
+    }
+  
+  /**
+   * Creates a new EmailConstant instance.
+   */
+  public EmailConstant( String value, Characters chars)
+    {
+    super( assertEmail( value), chars);
     }
 
   /**

@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import java.util.stream.IntStream;
+import org.cornutum.tcases.openapi.Characters;
 
 /**
  * Defines a set of object property name values that can be used by a request.
@@ -27,9 +27,8 @@ public class PropertyNameDomain extends AbstractStringDomain
    */
   public PropertyNameDomain( int minLength, int maxLength)
     {
-    super( maxLength);
+    super( maxLength, new PropertyName());
     setLengthRange( minLength, maxLength);
-    setNameChars( asciiAlpha_);
     }
 
   /**
@@ -37,7 +36,7 @@ public class PropertyNameDomain extends AbstractStringDomain
    */
   public void setNameChars( String nameChars)
     {
-    nameChars_ = nameChars;
+    getPropertyName().setNameChars( nameChars);
     }
 
   /**
@@ -45,7 +44,7 @@ public class PropertyNameDomain extends AbstractStringDomain
    */
   public String getNameChars()
     {
-    return nameChars_;
+    return getPropertyName().getNameChars();
     }
 
   /**
@@ -72,17 +71,57 @@ public class PropertyNameDomain extends AbstractStringDomain
     return value.toString();
     }
 
+  private PropertyName getPropertyName()
+    {
+    return (PropertyName) getCharacters();
+    }
+  
   /**
    * Returns true is the given value contains only allowed name characters.
    */
   private boolean isName( String value)
     {
-    return
-      IntStream.range( 0, value.length())
-      .allMatch( i -> getNameChars().indexOf( value.charAt(i)) >= 0);
+    return getPropertyName().allowed( value);
     }
 
-  private String nameChars_;
-  
-  private final static String asciiAlpha_ = "abcdefghijklmnopqrstuvwxyz";
-}
+  /**
+   * Defines the set of characters allowed in an object property name.
+   */
+  public static class PropertyName extends Characters.Base
+    {
+    /**
+     * Return the name of this set of characters.
+     */
+    public String getName()
+      {
+      return "PROPERTY_NAME";
+      }
+
+    /**
+     * Changes the set of chars allowed in property names.
+     */
+    public void setNameChars( String nameChars)
+      {
+      nameChars_ = nameChars;
+      }
+
+    /**
+     * Returns the set of chars allowed in property names.
+     */
+    public String getNameChars()
+      {
+      return nameChars_;
+      }
+    
+    /**
+     * Returns true if and only if the given character is allowed.
+     */
+    public boolean allowed( char c)
+      {
+      return getNameChars().indexOf( c) >= 0;
+      }
+
+    // By default, use only lower-case alphabetic chars.
+    private String nameChars_ = "abcdefghijklmnopqrstuvwxyz";
+    }
+  }
