@@ -394,7 +394,7 @@ public final class VarProperties
       toNumberItemsDomain( Type.NUMBER, valueProperties) :
 
       types[0] == Type.OBJECT?
-      new ObjectDomain() :
+      new ObjectDomain( chars) :
 
       types[0] == Type.STRING?
       toStringItemsDomain( valueProperties, chars) :
@@ -540,7 +540,7 @@ public final class VarProperties
    */
   public static ValueDomain<?> toObjectDomain( Map<String,Object> propertyValues, Characters chars)
     {
-    ObjectDomain domain = new ObjectDomain();
+    ObjectDomain domain = new ObjectDomain( chars);
 
     Map<String,Object> value = getPropertyValues( propertyValues, "Value");
     if( value != null)

@@ -7,16 +7,19 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.openapi.FormattedString;
 import org.cornutum.tcases.util.MapBuilder;
 
 import org.junit.Test;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import static java.util.Collections.emptyMap;
 
 /**
@@ -84,9 +87,13 @@ public class ObjectDomainTest extends ValueDomainTest
     ObjectDomain domain = new ObjectDomain();
 
     // When...
-    domain.getPropertyDomains().put(dateString( 2020, 1, 2), new AsciiStringDomain( 4));
-    domain.getPropertyDomains().put(dateString( 2020, 1, 4), new IntegerDomain( 0, 100));
-    domain.getPropertyDomains().put(dateString( 2020, 1, 6), new DecimalDomain( -1.25, 1.25));
+    MapBuilder<String,ValueDomain<?>> properties = new MapBuilder<String,ValueDomain<?>>();
+    domain.setPropertyDomains(
+      properties
+      .put( dateString( 2020, 1, 2), new AsciiStringDomain( 4))
+      .put( dateString( 2020, 1, 4), new IntegerDomain( 0, 100))
+      .put( dateString( 2020, 1, 6), new DecimalDomain( -1.25, 1.25))
+      .build());
 
     domain.setAdditionalPropertyCount( new IntegerDomain( 0, 4));
     domain.setAdditionalPropertyNames( new DateDomain( date( 2020, 1, 1), date( 2020, 1, 7)));
@@ -156,7 +163,8 @@ public class ObjectDomainTest extends ValueDomainTest
     ObjectDomain domain = new ObjectDomain();
 
     // When...
-    domain.getPropertyDomains().put( "alpha", new AsciiStringDomain( 4));
+    MapBuilder<String,ValueDomain<?>> properties = new MapBuilder<String,ValueDomain<?>>();
+    domain.setPropertyDomains( properties.put( "alpha", new AsciiStringDomain( 4)).build());
 
     // Then...
     verifyContainsValues( domain, 1000);
@@ -184,6 +192,20 @@ public class ObjectDomainTest extends ValueDomainTest
         .put( "bravo", new IntegerValue( 0))
         .build()),
       is( false));
+    }
+
+  @Test
+  public void whenInvalidPropertyName()
+    {
+    // Given...
+    ObjectDomain domain = new ObjectDomain( Characters.TOKEN);
+
+    // When...
+    Map<String,ValueDomain<?>> properties = new MapBuilder<String,ValueDomain<?>>().put( "<id>", new AsciiStringDomain( 4)).build();
+
+    // Then...
+    expectFailure( ValueDomainException.class)
+      .when( () -> domain.setPropertyDomains( properties));
     }
 
   /**

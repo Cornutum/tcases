@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
+import static java.util.Collections.unmodifiableMap;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
 
@@ -30,15 +32,41 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
     {
     this( null, null);
     }
+  
+  /**
+   * Creates a new ObjectDomain instance.
+   */
+  public ObjectDomain( Characters chars)
+    {
+    this( null, null, chars);
+    }
+  
   /**
    * Creates a new ObjectDomain instance.
    */
   public ObjectDomain( ValueDomain<Integer> additionalPropertyCount, ValueDomain<?> additionalPropertyValues)
     {
+    this( additionalPropertyCount, additionalPropertyValues, Characters.ANY);
+    }
+  
+  /**
+   * Creates a new ObjectDomain instance.
+   */
+  public ObjectDomain( ValueDomain<Integer> additionalPropertyCount, ValueDomain<?> additionalPropertyValues, Characters chars)
+    {
+    chars_ = chars;
     setPropertyDomains( null);
     setAdditionalPropertyNames( null);
     setAdditionalPropertyCount( additionalPropertyCount);
     setAdditionalPropertyValues( additionalPropertyValues);
+    }
+
+  /**
+   * Returns the set of characters allowed in property names and values for this domain.
+   */
+  public Characters getCharacters()
+    {
+    return chars_;
     }
 
   /**
@@ -49,6 +77,11 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
     propertyDomains_ =
       Optional.ofNullable( propertyDomains)
       .orElse( new LinkedHashMap<String,ValueDomain<?>>());
+
+    propertyDomains_.keySet().stream()
+      .filter( name -> !getCharacters().allowed( name))
+      .findFirst()
+      .ifPresent( name -> { throw new ValueDomainException( String.format( "Property name='%s' is not allowed by %s", name, getCharacters())); });
     }
 
   /**
@@ -56,7 +89,7 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
    */
   public Map<String,ValueDomain<?>> getPropertyDomains()
     {
-    return propertyDomains_;
+    return unmodifiableMap( propertyDomains_);
     }
 
   /**
@@ -209,6 +242,7 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
       .toString();
     }
 
+  private final Characters chars_;
   private Map<String,ValueDomain<?>> propertyDomains_;
   private ValueDomain<Integer> additionalPropertyCount_;
   private AbstractStringDomain additionalPropertyNames_;
