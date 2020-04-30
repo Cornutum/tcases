@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import java.util.regex.Pattern;
+import org.cornutum.tcases.openapi.Characters;
 
 /**
  * Defines a set of ASCII string values that can be used by a request.
@@ -19,7 +19,7 @@ public class AsciiStringDomain extends AbstractStringDomain
    */
   public AsciiStringDomain()
     {
-    this( 256);
+    this( Characters.ASCII);
     }
   
   /**
@@ -27,17 +27,27 @@ public class AsciiStringDomain extends AbstractStringDomain
    */
   public AsciiStringDomain( int maxLength)
     {
-    super( maxLength);
+    this( maxLength, Characters.ASCII);
     }
-
+  
   /**
-   * Returns true if the given value belongs to this domain.
+   * Creates a new AsciiStringDomain instance.
    */
-  public boolean contains( String value)
+  public AsciiStringDomain( Characters chars)
     {
-    return
-      super.contains( value)
-      && !nonAsciiPrintable_.matcher( value).find();
+    this( 256, chars);
+    }
+  
+  /**
+   * Creates a new AsciiStringDomain instance.
+   */
+  public AsciiStringDomain( int maxLength, Characters chars)
+    {
+    super( maxLength, chars);
+
+    allowedChars_ =
+      chars.filtered( Characters.Ascii.chars())
+      .orElseThrow( () -> new ValueDomainException( String.format( "Character set=%s does not accept any ASCII characters", chars)));
     }
 
   /**
@@ -48,27 +58,11 @@ public class AsciiStringDomain extends AbstractStringDomain
     StringBuilder value = new StringBuilder();
     for( int i = 0; i < length; i++)
       {
-      value.append( asciiPrintable_.charAt( context.getRandom().nextInt( asciiPrintable_.length())));
+      value.append( allowedChars_.charAt( context.getRandom().nextInt( allowedChars_.length())));
       }
 
     return value.toString();
     }
 
-  private final static Pattern nonAsciiPrintable_ = Pattern.compile( "\\P{Print}");
-
-  private static String asciiPrintableChars()
-    {
-    StringBuilder asciiChars = new StringBuilder();
-    for( int codePoint = 0; codePoint < 128; codePoint++)
-      {
-      asciiChars.appendCodePoint( codePoint);
-      }
-
-    return
-      nonAsciiPrintable_
-      .matcher( asciiChars.toString())
-      .replaceAll( "");
-    }
-
-  private final static String asciiPrintable_ = asciiPrintableChars();
-}
+  private final String allowedChars_;
+  }

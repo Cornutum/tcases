@@ -8,9 +8,11 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.openapi.Characters;
+import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import static org.cornutum.tcases.openapi.resolver.VarProperties.*;
-import static org.cornutum.tcases.util.CollectionUtils.toStream;
 import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.net.URI;
 import java.util.Map;
@@ -154,9 +156,20 @@ public class RequestCaseDefiner
     paramDef.setLocation( defined.getType());
     paramDef.setStyle( defined.getAnnotation( "style"));
     paramDef.setExploded( Boolean.parseBoolean( defined.getAnnotation( "explode")));
-    paramDef.setValue( toValueDef( defined, null, propertyValues));
+    paramDef.setValue( toValueDef( defined, null, propertyValues, getParamCharacters( paramDef)));
     
     return paramDef;
+    }
+
+  /**
+   * Returns the characters allowed in values for the given parameter.
+   */
+  private Characters getParamCharacters( ParamDef param)
+    {
+    return
+      param.getLocation().equals( Location.COOKIE)
+      ? Characters.COOKIE_VALUE
+      : Characters.ANY;
     }
 
   /**
@@ -168,13 +181,13 @@ public class RequestCaseDefiner
     VarBinding contentDefined = expectVarBinding( bodyValues, "Defined");
     Map<String,Object> contentValues = getPropertyValues( bodyValues, String.valueOf( mediaType.getValue()));
     
-    return toValueDef( contentDefined, mediaType, contentValues);
+    return toValueDef( contentDefined, mediaType, contentValues, Characters.ANY);
     }
 
   /**
    * Returns the value definition specified by the given properties.
    */
-  private ValueDef<?> toValueDef( VarBinding defined, VarBinding mediaType, Map<String,Object> propertyValues)
+  private ValueDef<?> toValueDef( VarBinding defined, VarBinding mediaType, Map<String,Object> propertyValues, Characters chars)
     {
     boolean valueDefined =
       Optional.ofNullable( defined)
@@ -183,7 +196,7 @@ public class RequestCaseDefiner
 
     ValueDef<?> valueDef =
       valueDefined
-      ? toValueDomain( propertyValues).valueOf()
+      ? toValueDomain( propertyValues, chars).valueOf()
       : new ValueDef<Object>( null);
       
     valueDef.setValid(

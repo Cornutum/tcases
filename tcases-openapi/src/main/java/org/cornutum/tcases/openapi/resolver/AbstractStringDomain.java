@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
+
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -18,9 +20,18 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   /**
    * Creates a new AbstractStringDomain instance.
    */
-  protected AbstractStringDomain( int maxLength)
+  protected AbstractStringDomain( int maxLength, Characters chars)
     {
     super( maxLength);
+    chars_ = chars;
+    }
+
+  /**
+   * Returns the set of characters allowed in values for this domain.
+   */
+  public Characters getCharacters()
+    {
+    return chars_;
     }
 
   /**
@@ -67,4 +78,16 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
     {
     return Stream.generate( () -> newValue( context));
     }
+
+  /**
+   * Returns true if the given value belongs to this domain.
+   */
+  public boolean contains( String value)
+    {
+    return
+      super.contains( value)
+      && getCharacters().allowed( value);
+    }
+
+  private final Characters chars_;
 }
