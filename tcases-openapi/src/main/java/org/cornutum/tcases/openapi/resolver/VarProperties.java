@@ -333,7 +333,7 @@ public final class VarProperties
       null :
       
       types.length > 1?
-      new MultiTypeDomain( types) :
+      new MultiTypeDomain( chars, types) :
 
       types[0] == Type.ARRAY?
       toArrayDomain( valueProperties, chars) :
@@ -379,7 +379,7 @@ public final class VarProperties
       null :
       
       types.length > 1?
-      new MultiTypeDomain( types) :
+      new MultiTypeDomain( chars, types) :
 
       types[0] == Type.ARRAY?
       toArrayItemsDomain( valueProperties, chars) :
@@ -560,7 +560,7 @@ public final class VarProperties
         toPropertyDomain( additionalProperties, chars) :
 
         "Yes".equals( expectVarBinding( properties, "Additional").getValue())?
-        new MultiTypeDomain( Type.any()) :
+        new MultiTypeDomain( chars, Type.any()) :
 
         null;
 
