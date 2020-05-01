@@ -110,7 +110,7 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
     {
     additionalPropertyValues_ =
       additionalPropertyValues == null
-      ? new MultiTypeDomain( Type.any())
+      ? new MultiTypeDomain( getCharacters(), Type.any())
       : additionalPropertyValues;
     }
 
