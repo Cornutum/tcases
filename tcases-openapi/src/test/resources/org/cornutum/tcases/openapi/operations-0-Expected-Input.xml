@@ -8,6 +8,7 @@
     <Has name="path" value="/operations"/>
     <Input type="query">
       <VarSet name="id">
+        <Has name="paramName" value="id"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
           <Value name="Yes" property="id"/>

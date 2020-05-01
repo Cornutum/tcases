@@ -18,24 +18,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value.Is" value="&lt; 0"/>
+        <Var name="param2.Type" value="number">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&lt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -55,24 +70,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Is" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -90,24 +120,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value.Is" value="0"/>
+        <Var name="param2.Type" value="number">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" value="0">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -127,24 +172,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&lt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&gt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -162,24 +222,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="number"/>
-        <Var name="param2.Value.Is" value="&gt; 0"/>
+        <Var name="param2.Type" value="number">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Is" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -199,24 +274,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -234,24 +324,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -269,24 +374,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -304,24 +424,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="null" failure="true"/>
-        <Var name="param1.Value.Is" NA="true"/>
+        <Var name="param1.Type" value="null" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -339,24 +474,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="Not number" failure="true"/>
-        <Var name="param1.Value.Is" NA="true"/>
+        <Var name="param1.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -374,24 +524,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="null" failure="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" value="null" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -409,24 +574,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="Not number" failure="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -444,24 +624,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -481,24 +676,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -518,24 +728,39 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param2.Defined" value="No">
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Is" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Is" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
       </Input>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
       <Input type="query">
         <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="number"/>
-        <Var name="param1.Value.Is" value="&lt; 0"/>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>

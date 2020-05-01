@@ -8,6 +8,7 @@
     <Has name="path" value="/string"/>
     <Input type="header">
       <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
         <Var name="Defined">
           <Has name="style" value="simple"/>
           <Value name="Yes" property="param0"/>

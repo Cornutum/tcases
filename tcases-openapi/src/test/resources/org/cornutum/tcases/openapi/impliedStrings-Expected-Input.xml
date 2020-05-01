@@ -8,6 +8,7 @@
     <Has name="path" value="/string"/>
     <Input type="query">
       <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
           <Value name="Yes" property="param0"/>
@@ -27,6 +28,7 @@
         </VarSet>
       </VarSet>
       <VarSet name="param1">
+        <Has name="paramName" value="param1"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
           <Value name="Yes" property="param1"/>
@@ -46,6 +48,7 @@
         </VarSet>
       </VarSet>
       <VarSet name="param2">
+        <Has name="paramName" value="param2"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
           <Value name="Yes" property="param2"/>

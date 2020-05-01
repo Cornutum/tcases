@@ -15,6 +15,7 @@ import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -114,11 +115,11 @@ public class RequestCaseDefiner
     return
       toStream( testCase.getVarBindings())
       .filter( binding -> !"request".equals( binding.getType()))
-      .collect( groupingBy( this::getParamName))
+      .collect( groupingBy( this::getInputName))
       .entrySet().stream()
       .collect(
         toMap(
-          paramBindings -> paramBindings.getKey(),
+          paramBindings -> getParamName( paramBindings.getValue()),
           paramBindings -> getPropertyValues( paramBindings.getValue())));
     }
 
@@ -131,18 +132,29 @@ public class RequestCaseDefiner
     return
       toStream( testCase.getVarBindings())
       .filter( binding -> "request".equals( binding.getType()))
-      .collect( groupingBy( this::getParamName))
+      .collect( groupingBy( this::getInputName))
       .entrySet().stream()
       .findFirst()
       .map( bodyBindings -> getPropertyValues( bodyBindings.getValue()));
     }
 
   /**
-   * Returns the request parameter name for the given variable binding.
+   * Returns the request input name for the given variable binding.
    */
-  private String getParamName( VarBinding binding)
+  private String getInputName( VarBinding binding)
     {
     return getPathFirst( getVarPath( binding));
+    }
+
+  /**
+   * Returns the request parameter name for the given variable bindings.
+   */
+  private String getParamName( List<VarBinding> bindings)
+    {
+    VarBinding binding = bindings.get(0);
+    return
+      Optional.ofNullable( binding.getAnnotation( "paramName"))
+      .orElseThrow( () -> new RequestCaseException( String.format( "No parameter name defined for var=%s", getInputName( binding))));
     }
 
   /**

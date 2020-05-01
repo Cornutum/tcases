@@ -19,13 +19,24 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not null">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -37,13 +48,24 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2" failure="true">
@@ -56,13 +78,24 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -75,13 +108,24 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="Not object" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -94,13 +138,24 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No" failure="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -113,13 +168,24 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -132,13 +198,24 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="Not null"/>
-        <Var name="param0.Value.Properties.Additional" value="No" failure="true"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not null">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

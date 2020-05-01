@@ -391,6 +391,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         return
           VarSetBuilder.with( parameterVarName)
           .type( parameterIn)
+          .has( "paramName", parameter.getName())
           .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
           .members( instanceSchemaVars( parameterVarName, parameterSchema))
           .build();

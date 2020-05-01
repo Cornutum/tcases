@@ -18,21 +18,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&lt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -52,21 +67,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="1">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" value="&lt; 0"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -84,21 +114,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="&gt; 1"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" value="0"/>
-        <Var name="param1.Items.Unique" value="Yes"/>
+        <Var name="param1.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" value="Yes">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -118,21 +163,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&lt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="1">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" value="&gt; 0"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -150,21 +210,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="&gt; 1"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" value="&lt; 0"/>
-        <Var name="param1.Items.Unique" value="No"/>
+        <Var name="param1.Items.Contains.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" value="No">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -184,21 +259,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -216,21 +306,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -248,21 +353,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="Not integer" failure="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
+        <Var name="param0.Type" value="Not integer" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -280,21 +400,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No" failure="true">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Items.Size" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -312,21 +447,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="null" failure="true"/>
-        <Var name="param1.Items.Size" NA="true"/>
+        <Var name="param1.Type" value="null" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -344,21 +494,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="Not array" failure="true"/>
-        <Var name="param1.Items.Size" NA="true"/>
+        <Var name="param1.Type" value="Not array" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -376,21 +541,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="1">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" value="null" failure="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -408,21 +588,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="1"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="1">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" value="Not integer" failure="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="No"/>
@@ -440,21 +635,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -474,21 +684,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
@@ -508,21 +733,36 @@
       <Has name="version" value="0.0.0"/>
       <Input type="path">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
-        <Var name="param0.Value.Is" value="&gt; 0"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param1.Type" value="array"/>
-        <Var name="param1.Items.Size" value="0"/>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true"/>
-        <Var name="param1.Items.Unique" NA="true"/>
+        <Var name="param1.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
       </Input>
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>

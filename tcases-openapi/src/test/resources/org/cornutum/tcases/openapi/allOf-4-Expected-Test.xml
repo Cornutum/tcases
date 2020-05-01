@@ -18,11 +18,18 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="10"/>
-        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="10">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.10" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -33,11 +40,18 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
-        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.10" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -49,12 +63,18 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 10"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 10">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Multiple-Of.10" value="Yes">
           <Has name="multipleOf" value="10"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -67,11 +87,18 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
-        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.10" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -83,11 +110,18 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value.Is" NA="true"/>
-        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
+        <Var name="param0.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.10" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -99,11 +133,18 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="0" failure="true"/>
-        <Var name="param0.Value.Multiple-Of.10" NA="true"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="0" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.10" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -115,11 +156,18 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="number"/>
-        <Var name="param0.Value.Is" value="&gt; 10"/>
-        <Var name="param0.Value.Multiple-Of.10" value="No" failure="true"/>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="&gt; 10">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Multiple-Of.10" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

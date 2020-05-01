@@ -19,14 +19,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="Not integer"/>
-        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.Additional.Type" value="Not string"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" value="Not string">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -38,14 +51,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -58,14 +84,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="null"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Type" value="null">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -78,14 +117,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="Not object" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -98,14 +150,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No" failure="true"/>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.Additional.Type" value="Not string"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" value="Not string">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -118,14 +183,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.Additional.Type" value="Not string"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" value="Not string">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -138,14 +216,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="integer" failure="true"/>
-        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.Additional.Type" value="Not string"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="integer" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" value="Not string">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -158,14 +249,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="Not integer"/>
-        <Var name="param0.Value.Properties.Additional.Defined" value="No" failure="true"/>
-        <Var name="param0.Value.Properties.Additional.Type" NA="true"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -178,14 +282,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="Not integer"/>
-        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.Additional.Type" value="null" failure="true"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
@@ -198,14 +315,27 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2"/>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.alpha.Type" value="Not integer"/>
-        <Var name="param0.Value.Properties.Additional.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.Additional.Type" value="string" failure="true"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" value="string" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>
