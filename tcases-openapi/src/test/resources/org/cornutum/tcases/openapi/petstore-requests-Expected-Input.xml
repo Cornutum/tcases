@@ -8,6 +8,7 @@
     <Has name="path" value="/pets"/>
     <Input type="query">
       <VarSet name="tags">
+        <Has name="paramName" value="tags"/>
         <Var name="Defined">
           <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
@@ -51,6 +52,7 @@
         </VarSet>
       </VarSet>
       <VarSet name="limit">
+        <Has name="paramName" value="limit"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
           <Value name="Yes" property="limit"/>
@@ -146,6 +148,7 @@
     <Has name="path" value="/pets/{id}"/>
     <Input type="path">
       <VarSet name="id">
+        <Has name="paramName" value="id"/>
         <Var name="Defined">
           <Has name="style" value="simple"/>
           <Value name="Yes" property="id"/>
@@ -172,6 +175,7 @@
     <Has name="path" value="/pets/{id}"/>
     <Input type="path">
       <VarSet name="id">
+        <Has name="paramName" value="id"/>
         <Var name="Defined">
           <Has name="style" value="simple"/>
           <Value name="Yes" property="id"/>

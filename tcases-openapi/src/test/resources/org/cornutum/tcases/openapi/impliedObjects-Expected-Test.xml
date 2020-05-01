@@ -19,45 +19,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="0"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="object"/>
-        <Var name="param1.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param1.Type" value="object">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="object"/>
-        <Var name="param2.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.alpha.Type" value="Not null"/>
-        <Var name="param2.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.bravo.Type" value="Not null"/>
-        <Var name="param2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param2.Type" value="object">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" value="Not null">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" value="Not null">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" value="object"/>
-        <Var name="param3.Value.Property-Count" value="0"/>
-        <Var name="param3.Value.Properties.alpha.Defined" value="No"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" value="No"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" value="No"/>
+        <Var name="param3.Type" value="object">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" value="0">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" value="No">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" value="object"/>
-        <Var name="param4.Value.Properties.Additional" value="No"/>
+        <Var name="param4.Type" value="object">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -69,45 +116,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -120,45 +214,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&lt;= 1"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&lt;= 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="object"/>
-        <Var name="param1.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param1.Value.Properties.Additional" value="Yes"/>
+        <Var name="param1.Type" value="object">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="object"/>
-        <Var name="param2.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.alpha.Type" value="Not null"/>
-        <Var name="param2.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.bravo.Type" value="Not null"/>
-        <Var name="param2.Value.Properties.Additional" value="No"/>
+        <Var name="param2.Type" value="object">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" value="Not null">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" value="Not null">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" value="object"/>
-        <Var name="param3.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param3.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param3.Value.Properties.alpha.Type" value="Not null"/>
-        <Var name="param3.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param3.Value.Properties.bravo.Type" value="Not null"/>
-        <Var name="param3.Value.Properties.Additional" value="Yes"/>
+        <Var name="param3.Type" value="object">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" value="Not null">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" value="Not null">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" value="object"/>
-        <Var name="param4.Value.Properties.Additional" value="No"/>
+        <Var name="param4.Type" value="object">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -171,45 +312,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -222,45 +410,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="Not object" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -273,45 +508,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt; 1" failure="true"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 1" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -324,45 +606,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="null" failure="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" value="null" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -375,45 +704,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="Not object" failure="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -426,45 +802,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" value="object"/>
-        <Var name="param1.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="param1.Value.Properties.Additional" value="No" failure="true"/>
+        <Var name="param1.Type" value="object">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" value="No" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
@@ -477,45 +900,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="null" failure="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" value="null" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
@@ -528,45 +998,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="Not object" failure="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
@@ -579,45 +1096,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="object"/>
-        <Var name="param2.Value.Properties.alpha.Defined" value="No" failure="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.bravo.Type" value="Not null"/>
-        <Var name="param2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param2.Type" value="object">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" value="No" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" value="Not null">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
@@ -630,45 +1194,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="object"/>
-        <Var name="param2.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.alpha.Type" value="null" failure="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.bravo.Type" value="Not null"/>
-        <Var name="param2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param2.Type" value="object">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" value="null" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" value="Not null">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
@@ -681,45 +1292,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="object"/>
-        <Var name="param2.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.alpha.Type" value="Not null"/>
-        <Var name="param2.Value.Properties.bravo.Defined" value="No" failure="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param2.Type" value="object">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" value="Not null">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" value="No" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
@@ -732,45 +1390,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" value="object"/>
-        <Var name="param2.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.alpha.Type" value="Not null"/>
-        <Var name="param2.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param2.Value.Properties.bravo.Type" value="null" failure="true"/>
-        <Var name="param2.Value.Properties.Additional" value="Yes"/>
+        <Var name="param2.Type" value="object">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" value="Not null">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" value="null" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="15" failure="true">
@@ -783,45 +1488,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" value="null" failure="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" value="null" failure="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="16" failure="true">
@@ -834,45 +1586,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" value="Not object" failure="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="17" failure="true">
@@ -885,45 +1684,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" value="object"/>
-        <Var name="param3.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param3.Value.Properties.alpha.Defined" value="Yes"/>
-        <Var name="param3.Value.Properties.alpha.Type" value="null" failure="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" value="No"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" value="No"/>
+        <Var name="param3.Type" value="object">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" value="null" failure="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="18" failure="true">
@@ -936,45 +1782,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" value="object"/>
-        <Var name="param3.Value.Property-Count" value="&gt; 0"/>
-        <Var name="param3.Value.Properties.alpha.Defined" value="No"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" value="Yes"/>
-        <Var name="param3.Value.Properties.bravo.Type" value="null" failure="true"/>
-        <Var name="param3.Value.Properties.Additional" value="No"/>
+        <Var name="param3.Type" value="object">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" value="No">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" value="null" failure="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" NA="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="19" failure="true">
@@ -987,45 +1880,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" value="null" failure="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" value="null" failure="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="20" failure="true">
@@ -1038,45 +1978,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" value="Not object" failure="true"/>
-        <Var name="param4.Value.Properties.Additional" NA="true"/>
+        <Var name="param4.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="21" failure="true">
@@ -1089,45 +2076,92 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param1.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param1.Type" NA="true"/>
-        <Var name="param1.Value.Property-Count" NA="true"/>
-        <Var name="param1.Value.Properties.Additional" NA="true"/>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
         <Var name="param2.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param2"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param2.Type" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param2.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param2.Value.Properties.Additional" NA="true"/>
+        <Var name="param2.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
         <Var name="param3.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param3"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param3.Type" NA="true"/>
-        <Var name="param3.Value.Property-Count" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.alpha.Type" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Defined" NA="true"/>
-        <Var name="param3.Value.Properties.bravo.Type" NA="true"/>
-        <Var name="param3.Value.Properties.Additional" NA="true"/>
+        <Var name="param3.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
+        <Var name="param3.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param3"/>
+        </Var>
         <Var name="param4.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param4"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param4.Type" value="object"/>
-        <Var name="param4.Value.Properties.Additional" value="Yes" failure="true"/>
+        <Var name="param4.Type" value="object">
+          <Has name="paramName" value="param4"/>
+        </Var>
+        <Var name="param4.Value.Properties.Additional" value="Yes" failure="true">
+          <Has name="paramName" value="param4"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

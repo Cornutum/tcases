@@ -19,17 +19,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="0"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" NA="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -41,17 +50,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" NA="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -64,17 +82,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="2"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="boolean">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" value="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="Yes"/>
+        <Var name="param0.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -87,17 +114,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="2"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="boolean">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" value="false">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="Yes"/>
+        <Var name="param0.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -110,17 +146,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" NA="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -133,17 +178,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" value="Not array" failure="true"/>
-        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Type" value="Not array" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" NA="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -156,17 +210,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="2"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="null" failure="true">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" NA="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="Yes"/>
+        <Var name="param0.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -179,17 +242,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="2"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="Not boolean" failure="true">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" NA="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="Yes"/>
+        <Var name="param0.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -202,17 +274,26 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="spaceDelimited"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="2"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="boolean">
           <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Value" value="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="No" failure="true"/>
+        <Var name="param0.Items.Unique" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

@@ -18,14 +18,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Length" value="0">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Matches-Pattern" value="Yes">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Za-z0-9]+"/>
         </Var>
       </Input>
@@ -38,14 +43,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Length" NA="true">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Matches-Pattern" NA="true">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Za-z0-9]+"/>
         </Var>
       </Input>
@@ -59,14 +69,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="null"/>
+        <Var name="param0.Type" value="null">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Length" NA="true">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Matches-Pattern" NA="true">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Za-z0-9]+"/>
         </Var>
       </Input>
@@ -80,14 +95,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Length" value="&gt; 0">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Matches-Pattern" value="Yes">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Za-z0-9]+"/>
         </Var>
       </Input>
@@ -101,14 +121,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="Not string" failure="true"/>
+        <Var name="param0.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Length" NA="true">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Matches-Pattern" NA="true">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Za-z0-9]+"/>
         </Var>
       </Input>
@@ -122,14 +147,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Length" value="0">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Matches-Pattern" value="No" failure="true">
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Za-z0-9]+"/>
         </Var>
       </Input>

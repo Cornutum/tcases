@@ -19,20 +19,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myString.Type" value="string"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -44,20 +69,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -70,20 +120,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&lt; 0"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -96,20 +171,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myString.Type" value="string"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="0"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -122,20 +222,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" value="0"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5">
@@ -148,20 +273,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6">
@@ -174,20 +324,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7">
@@ -200,20 +375,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" value="false"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="false">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8">
@@ -226,20 +426,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true">
@@ -252,20 +477,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true">
@@ -278,20 +528,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="Not object" failure="true"/>
-        <Var name="param0.Value.Property-Count" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
@@ -304,20 +579,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&lt; 1" failure="true"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
@@ -330,20 +630,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="&gt; 1" failure="true"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myString.Type" value="string"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myNumber.Type" value="number"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&lt; 0"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" value="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 1" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
@@ -356,20 +681,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myString.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
@@ -382,20 +732,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myString.Type" value="Not string" failure="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="15" failure="true">
@@ -408,20 +783,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myNumber.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="16" failure="true">
@@ -434,20 +834,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myNumber.Type" value="Not number" failure="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="17" failure="true">
@@ -460,20 +885,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="18" failure="true">
@@ -486,20 +936,45 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="deepObject"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Property-Count" value="1"/>
-        <Var name="param0.Value.Properties.myString.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myString.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No"/>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true"/>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes"/>
-        <Var name="param0.Value.Properties.myBoolean.Type" value="Not boolean" failure="true"/>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" value="Not boolean" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

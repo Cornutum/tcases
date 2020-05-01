@@ -18,12 +18,16 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value" value="Bad">
           <Has name="default" value="Bad"/>
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -35,12 +39,16 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value" NA="true">
           <Has name="default" value="Bad"/>
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -53,12 +61,16 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value" value="Worse">
           <Has name="default" value="Bad"/>
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -71,12 +83,16 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value" NA="true">
           <Has name="default" value="Bad"/>
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -89,12 +105,16 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="Not string" failure="true"/>
+        <Var name="param0.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value" NA="true">
           <Has name="default" value="Bad"/>
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -107,13 +127,17 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value" value="Other" failure="true">
           <Has name="default" value="Bad"/>
           <Has name="excluded" value="&apos;Bad&apos;,&apos;Worse&apos;"/>
           <Has name="format" value="password"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>

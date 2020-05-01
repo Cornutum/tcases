@@ -19,34 +19,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="array"/>
-        <Var name="param0.Alternative.0.Items.Size" value="1"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" value="Not number">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -59,34 +87,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -99,34 +155,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" value="array"/>
-        <Var name="param0.Alternative.2.Items.Size" value="1"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" value="&lt; 0">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -139,34 +223,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="array"/>
-        <Var name="param0.Alternative.0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" value="Not number">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" value="Yes"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -179,34 +291,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="array"/>
-        <Var name="param0.Alternative.0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" value="Not number">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" value="No"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5">
@@ -219,34 +359,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="array"/>
-        <Var name="param0.Alternative.1.Items.Size" value="1"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" value="11">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6">
@@ -259,34 +427,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="array"/>
-        <Var name="param0.Alternative.1.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" value="&gt; 11">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" value="Yes"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7">
@@ -299,34 +495,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="array"/>
-        <Var name="param0.Alternative.1.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" value="11">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" value="No"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8">
@@ -339,34 +563,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" value="array"/>
-        <Var name="param0.Alternative.2.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" value="0">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" value="Yes"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9">
@@ -379,34 +631,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" value="array"/>
-        <Var name="param0.Alternative.2.Items.Size" value="1"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="10">
@@ -419,34 +699,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" value="array"/>
-        <Var name="param0.Alternative.2.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" value="&lt; 0">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No"/>
-        <Var name="param0.Alternative.2.Items.Unique" value="No"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true">
@@ -459,34 +767,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="null" failure="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
@@ -499,34 +835,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="Not array" failure="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="Not array" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
@@ -539,34 +903,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="array"/>
-        <Var name="param0.Alternative.0.Items.Size" value="0" failure="true"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" value="0" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" value="Not number">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
@@ -579,34 +971,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="array"/>
-        <Var name="param0.Alternative.0.Items.Size" value="1"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" value="null" failure="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="15" failure="true">
@@ -619,34 +1039,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="array"/>
-        <Var name="param0.Alternative.0.Items.Size" value="1"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" value="number" failure="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="16" failure="true">
@@ -659,34 +1107,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="array"/>
-        <Var name="param0.Alternative.1.Items.Size" value="1"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" value="Not number" failure="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="17" failure="true">
@@ -699,34 +1175,62 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="array"/>
-        <Var name="param0.Alternative.1.Items.Size" value="1"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" value="10" failure="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" NA="true">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true"/>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="18" failure="true">
@@ -739,36 +1243,63 @@
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.Used" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="Not number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Items.Size" NA="true"/>
+        <Var name="param0.Alternative.0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Items.Contains.Type" NA="true">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Items.Contains.Value.Is" NA="true">
           <Has name="itemMin" value="11"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Items.Unique" NA="true"/>
-        <Var name="param0.Alternative.2.Type" value="array"/>
-        <Var name="param0.Alternative.2.Items.Size" value="1"/>
+        <Var name="param0.Alternative.1.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.2.Items.Contains.Type" value="number">
           <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Is" value="&gt; 0">
           <Has name="itemNotMultipleOfs" value="&apos;5&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="Yes" failure="true">
           <Has name="multipleOf" value="5"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Items.Unique" NA="true"/>
+        <Var name="param0.Alternative.2.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

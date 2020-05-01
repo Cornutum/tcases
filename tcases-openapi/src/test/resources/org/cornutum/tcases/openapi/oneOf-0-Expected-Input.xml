@@ -8,6 +8,7 @@
     <Has name="path" value="/oneOf"/>
     <Input type="query">
       <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
           <Value name="Yes" property="param0"/>
