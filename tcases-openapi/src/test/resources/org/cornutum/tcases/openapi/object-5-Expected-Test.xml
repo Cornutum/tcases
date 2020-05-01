@@ -19,10 +19,15 @@
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Properties.Additional" value="Yes"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -34,10 +39,15 @@
       <Input type="header">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -50,10 +60,15 @@
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="object"/>
-        <Var name="param0.Value.Properties.Additional" value="No"/>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true">
@@ -66,10 +81,15 @@
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true">
@@ -82,10 +102,15 @@
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="Not object" failure="true"/>
-        <Var name="param0.Value.Properties.Additional" NA="true"/>
+        <Var name="param0.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 /**
@@ -19,7 +20,15 @@ public class EmailEnum extends StringEnum
    */
   public EmailEnum( Iterable<String> enums)
     {
-    super( assertEmails( enums), "email");
+    this( enums, Characters.ASCII);
+    }
+  
+  /**
+   * Creates a new EmailEnum instance.
+   */
+  public EmailEnum( Iterable<String> enums, Characters chars)
+    {
+    super( assertEmails( enums), "email", chars);
     }
 
   /**

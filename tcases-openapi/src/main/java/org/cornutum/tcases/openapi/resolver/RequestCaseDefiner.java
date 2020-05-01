@@ -8,11 +8,14 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.openapi.Characters;
+import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import static org.cornutum.tcases.openapi.resolver.VarProperties.*;
-import static org.cornutum.tcases.util.CollectionUtils.toStream;
 import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -112,11 +115,11 @@ public class RequestCaseDefiner
     return
       toStream( testCase.getVarBindings())
       .filter( binding -> !"request".equals( binding.getType()))
-      .collect( groupingBy( this::getParamName))
+      .collect( groupingBy( this::getInputName))
       .entrySet().stream()
       .collect(
         toMap(
-          paramBindings -> paramBindings.getKey(),
+          paramBindings -> getParamName( paramBindings.getValue()),
           paramBindings -> getPropertyValues( paramBindings.getValue())));
     }
 
@@ -129,18 +132,29 @@ public class RequestCaseDefiner
     return
       toStream( testCase.getVarBindings())
       .filter( binding -> "request".equals( binding.getType()))
-      .collect( groupingBy( this::getParamName))
+      .collect( groupingBy( this::getInputName))
       .entrySet().stream()
       .findFirst()
       .map( bodyBindings -> getPropertyValues( bodyBindings.getValue()));
     }
 
   /**
-   * Returns the request parameter name for the given variable binding.
+   * Returns the request input name for the given variable binding.
    */
-  private String getParamName( VarBinding binding)
+  private String getInputName( VarBinding binding)
     {
     return getPathFirst( getVarPath( binding));
+    }
+
+  /**
+   * Returns the request parameter name for the given variable bindings.
+   */
+  private String getParamName( List<VarBinding> bindings)
+    {
+    VarBinding binding = bindings.get(0);
+    return
+      Optional.ofNullable( binding.getAnnotation( "paramName"))
+      .orElseThrow( () -> new RequestCaseException( String.format( "No parameter name defined for var=%s", getInputName( binding))));
     }
 
   /**
@@ -154,9 +168,17 @@ public class RequestCaseDefiner
     paramDef.setLocation( defined.getType());
     paramDef.setStyle( defined.getAnnotation( "style"));
     paramDef.setExploded( Boolean.parseBoolean( defined.getAnnotation( "explode")));
-    paramDef.setValue( toValueDef( defined, null, propertyValues));
+    paramDef.setValue( toValueDef( defined, null, propertyValues, getParamCharacters( paramDef)));
     
     return paramDef;
+    }
+
+  /**
+   * Returns the characters allowed in values for the given parameter.
+   */
+  private Characters getParamCharacters( ParamDef param)
+    {
+    return Location.getCharacters( param.getLocation());
     }
 
   /**
@@ -168,13 +190,13 @@ public class RequestCaseDefiner
     VarBinding contentDefined = expectVarBinding( bodyValues, "Defined");
     Map<String,Object> contentValues = getPropertyValues( bodyValues, String.valueOf( mediaType.getValue()));
     
-    return toValueDef( contentDefined, mediaType, contentValues);
+    return toValueDef( contentDefined, mediaType, contentValues, Characters.ANY);
     }
 
   /**
    * Returns the value definition specified by the given properties.
    */
-  private ValueDef<?> toValueDef( VarBinding defined, VarBinding mediaType, Map<String,Object> propertyValues)
+  private ValueDef<?> toValueDef( VarBinding defined, VarBinding mediaType, Map<String,Object> propertyValues, Characters chars)
     {
     boolean valueDefined =
       Optional.ofNullable( defined)
@@ -183,7 +205,7 @@ public class RequestCaseDefiner
 
     ValueDef<?> valueDef =
       valueDefined
-      ? toValueDomain( propertyValues).valueOf()
+      ? toValueDomain( propertyValues, chars).valueOf()
       : new ValueDef<Object>( null);
       
     valueDef.setValid(

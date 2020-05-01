@@ -7,16 +7,16 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
+import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import static java.util.Collections.emptyList;
-import static java.util.stream.Collectors.toList;
+import java.util.stream.IntStream;
 
 /**
  * Describes an executable test case for an API request.
@@ -140,9 +140,14 @@ public class RequestCase implements Comparable<RequestCase>
    */
   public void setParams( Iterable<ParamData> params)
     {
-    params_ =
-      toStream( Optional.ofNullable( params).orElse( emptyList()))
-      .collect( toList());
+    params_ = new ArrayList<ParamData>();
+    if( params != null)
+      {
+      for( ParamData param : params)
+        {
+        addParam( param);
+        }
+      }
     }
 
   /**
@@ -158,7 +163,7 @@ public class RequestCase implements Comparable<RequestCase>
    */
   public void addParam( ParamData param)
     {
-    params_.add( param);
+    params_.add( DataValueChars.allowed( param));
     }
 
   /**
@@ -258,4 +263,114 @@ public class RequestCase implements Comparable<RequestCase>
   private List<ParamData> params_;
   private MessageData body_;
   private String invalidInput_;
+  
+
+  /**
+   * Verifies consistency of {@link ParamData} with a set of {@link Characters allowed characters}.
+   */
+  private static class DataValueChars extends RequestCaseContext implements DataValueVisitor
+    {
+    /**
+     * Returns the given {@link ParamData} if it is consistent with the {@link Characters allowed characters} for this
+     * parameter. Otherwise, throws a RequestCaseException.
+     */
+    public static ParamData allowed( ParamData param)
+      {
+      return new DataValueChars( param).allowed();
+      }
+
+    /**
+     * Creates a new DataValueChars instance.
+     */
+    private DataValueChars( ParamData param)
+      {
+      param_ = param;
+      chars_ = getParamCharacters( param);
+      }
+
+    /**
+     * Returns the characters allowed in values for the given parameter.
+     */
+    private Characters getParamCharacters( ParamData param)
+      {
+      return Location.getCharacters( param.getLocation());
+      }
+    
+    /**
+     * Returns this {@link ParamData} if it is consistent with the required {@link Characters}.
+     * Otherwise, throws a RequestCaseException.
+     *
+     */
+    private ParamData allowed()
+      {
+      DataValue<?> value = param_.getValue();
+      if( value != null)
+        {
+        doFor( String.valueOf( param_), () -> value.accept( this));
+        }
+
+      return param_;
+      }
+
+    public void visit( ArrayValue<?> data)
+      {
+      IntStream.range( 0, data.getValue().size())
+        .forEach( i -> doFor( String.format( "item[%s]", i), () -> data.getValue().get(i).accept( this)));
+      }
+
+    public void visit( BinaryValue data)
+      {
+      // Non-text value
+      }
+
+    public void visit( BooleanValue data)
+      {
+      // Non-text value
+      }
+
+    public void visit( DecimalValue data)
+      {
+      // Non-text value
+      }
+
+    public void visit( IntegerValue data)
+      {
+      // Non-text value
+      }
+
+    public void visit( LongValue data)
+      {
+      // Non-text value
+      }
+
+    public void visit( NullValue data)
+      {
+      // Non-text value
+      }
+
+    public void visit( ObjectValue data)
+      {
+      doFor( "properties", () -> {
+        data.getValue()
+          .forEach( (name, value) -> {
+            if( !chars_.allowed( name))
+              {
+              throw new RequestCaseException( String.format( "Property name='%s' is not allowed by %s", name, chars_));
+              }
+            doFor( name, () -> value.accept( this));
+            });
+        });
+      }
+    
+    public void visit( StringValue data)
+      {
+      if( !chars_.allowed( data.getValue()))
+        {
+        throw new RequestCaseException( String.format( "Value='%s' is not allowed by %s", data.getValue(), chars_));
+        }
+      }
+
+    private final ParamData param_;
+    private final Characters chars_;
+    }
   }

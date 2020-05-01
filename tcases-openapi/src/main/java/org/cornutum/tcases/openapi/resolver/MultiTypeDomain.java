@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
@@ -25,10 +26,28 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
    */
   public MultiTypeDomain( Type... types)
     {
+    this( Characters.ANY, types);
+    }
+  
+  /**
+   * Creates a new MultiTypeDomain instance.
+   */
+  public MultiTypeDomain( Characters chars, Type... types)
+    {
+    chars_ = chars;
+    
     typeDomains_ =
       Arrays.stream( types)
       .map( this::getValueDomain)
       .collect( toList());
+    }
+
+  /**
+   * Returns the set of characters allowed in values for this domain.
+   */
+  public Characters getCharacters()
+    {
+    return chars_;
     }
   
   /**
@@ -139,7 +158,8 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
     return
       new ObjectDomain(
         new IntegerDomain( 0, 3),
-        new MultiTypeDomain( Type.not( Type.OBJECT)));
+        new MultiTypeDomain( getCharacters(), Type.not( Type.OBJECT)),
+        getCharacters());
     }
 
   /**
@@ -147,7 +167,7 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
    */
   private ValueDomain<?> getStringDomain()
     {
-    return new AsciiStringDomain( 8);
+    return new AsciiStringDomain( 8, getCharacters());
     }
 
   public String toString()
@@ -158,5 +178,6 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
       .toString();
     }
 
+  private final Characters chars_;
   private final List<ValueDomain<?>> typeDomains_;
   }

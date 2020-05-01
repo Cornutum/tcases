@@ -18,14 +18,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Is" value="102">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Multiple-Of.3" NA="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -37,14 +42,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Multiple-Of.3" NA="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -57,15 +67,20 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Is" value="&gt; 102">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Multiple-Of.3" value="Yes">
           <Has name="format" value="int32"/>
           <Has name="multipleOf" value="3"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -78,14 +93,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Multiple-Of.3" NA="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -98,14 +118,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="Not integer" failure="true"/>
+        <Var name="param0.Type" value="Not integer" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Is" NA="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Multiple-Of.3" NA="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -118,14 +143,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Is" value="99" failure="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Multiple-Of.3" NA="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -138,14 +168,19 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="integer"/>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Is" value="&gt; 102">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Multiple-Of.3" value="No" failure="true">
           <Has name="format" value="int32"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>

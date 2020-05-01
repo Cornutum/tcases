@@ -19,15 +19,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="0"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -39,15 +49,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -60,15 +80,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="1"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="object">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -81,15 +111,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="object">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" value="No"/>
-        <Var name="param0.Items.Unique" value="Yes"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -102,15 +142,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="&gt; 1"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="object">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" value="Yes"/>
-        <Var name="param0.Items.Unique" value="No"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true">
@@ -123,15 +173,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true">
@@ -144,15 +204,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="Not array" failure="true"/>
-        <Var name="param0.Items.Size" NA="true"/>
+        <Var name="param0.Type" value="Not array" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true">
@@ -165,15 +235,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="1"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="null" failure="true">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true">
@@ -186,15 +266,25 @@
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
           <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="array"/>
-        <Var name="param0.Items.Size" value="1"/>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Type" value="Not object" failure="true">
           <Has name="itemType" value="object"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true"/>
-        <Var name="param0.Items.Unique" NA="true"/>
+        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

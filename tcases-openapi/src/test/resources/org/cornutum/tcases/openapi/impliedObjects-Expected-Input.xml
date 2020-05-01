@@ -8,6 +8,7 @@
     <Has name="path" value="/object"/>
     <Input type="query">
       <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
         <Var name="Defined">
           <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
@@ -47,6 +48,7 @@
         </VarSet>
       </VarSet>
       <VarSet name="param1">
+        <Has name="paramName" value="param1"/>
         <Var name="Defined">
           <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
@@ -75,6 +77,7 @@
         </VarSet>
       </VarSet>
       <VarSet name="param2">
+        <Has name="paramName" value="param2"/>
         <Var name="Defined">
           <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
@@ -116,6 +119,7 @@
         </VarSet>
       </VarSet>
       <VarSet name="param3">
+        <Has name="paramName" value="param3"/>
         <Var name="Defined">
           <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
@@ -166,6 +170,7 @@
         </VarSet>
       </VarSet>
       <VarSet name="param4">
+        <Has name="paramName" value="param4"/>
         <Var name="Defined">
           <Has name="explode" value="true"/>
           <Has name="style" value="form"/>

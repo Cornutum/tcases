@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -22,7 +24,7 @@ public class EmailDomain extends AbstractStringDomain
    */
   public EmailDomain()
     {
-    super( MAX_LOCAL + MAX_DOMAIN + 1);
+    this( Characters.ASCII);
     }
   
   /**
@@ -30,7 +32,33 @@ public class EmailDomain extends AbstractStringDomain
    */
   public EmailDomain( int maxLength)
     {
-    this();
+    this( maxLength, Characters.ASCII);
+    }
+  
+  /**
+   * Creates a new EmailDomain instance.
+   */
+  public EmailDomain( Characters chars)
+    {
+    super( MAX_LOCAL + MAX_DOMAIN + 1, chars);
+
+    allowedLocalPartChars_ =
+      chars.filtered( localPartChars_)
+      .orElseThrow(
+        () -> new ValueDomainException( String.format( "%s doesn't allow any of the required characters for the local part of an email addresss", chars)));
+
+    allowedDomainPartChars_ =
+      chars.filtered( domainPartChars_)
+      .orElseThrow(
+        () -> new ValueDomainException( String.format( "%s doesn't allow any of the required characters for the domain part of an email addresss", chars)));
+    }
+  
+  /**
+   * Creates a new EmailDomain instance.
+   */
+  public EmailDomain( int maxLength, Characters chars)
+    {
+    this( chars);
     setLengthRange( MIN_LENGTH, maxLength);
     }
 
@@ -126,9 +154,9 @@ public class EmailDomain extends AbstractStringDomain
 
     return
       new StringBuilder()
-      .append( randomPathOf( context, localPartChars_, localLength, localLength))
+      .append( randomPathOf( context, allowedLocalPartChars_, localLength, localLength))
       .append( "@")
-      .append( randomPathOf( context, domainPartChars_, domainLength, MAX_LABEL))
+      .append( randomPathOf( context, allowedDomainPartChars_, domainLength, MAX_LABEL))
       .append( ".")
       .append( topLevels_[ context.getRandom().nextInt( topLevels_.length)])
       .toString();
@@ -180,6 +208,9 @@ public class EmailDomain extends AbstractStringDomain
       .map( i -> value.charAt(i))
       .allMatch( c -> chars.indexOf( c) >= 0);
     }
+
+  private final String allowedLocalPartChars_;
+  private final String allowedDomainPartChars_;
 
   private static final int MIN_LENGTH = 7;
   private static final int MAX_LOCAL = 64;

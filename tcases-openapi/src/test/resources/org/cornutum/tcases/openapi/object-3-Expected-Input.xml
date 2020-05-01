@@ -8,6 +8,7 @@
     <Has name="path" value="/object/${param0}"/>
     <Input type="path">
       <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
         <Var name="Defined">
           <Has name="explode" value="false"/>
           <Has name="style" value="label"/>

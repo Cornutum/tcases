@@ -602,7 +602,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "M"
+                    "value": "B"
                 },
                 "valid": false
             }

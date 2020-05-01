@@ -18,30 +18,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="string"/>
-        <Var name="param0.Alternative.0.Value" value="A"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" value="A">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1">
@@ -53,30 +78,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2">
@@ -88,30 +138,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" value="string"/>
-        <Var name="param0.Alternative.2.Value" value="A"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" value="A">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3">
@@ -123,30 +198,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="3"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4">
@@ -158,30 +258,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="string"/>
-        <Var name="param0.Alternative.0.Value" value="B"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" value="B">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5">
@@ -193,30 +318,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="string"/>
-        <Var name="param0.Alternative.0.Value" value="C"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" value="C">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6">
@@ -228,30 +378,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="string"/>
-        <Var name="param0.Alternative.1.Value.Length" value="2"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7">
@@ -263,30 +438,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="string"/>
-        <Var name="param0.Alternative.1.Value.Length" value="&gt; 2"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" value="&gt; 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8">
@@ -298,30 +498,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" value="string"/>
-        <Var name="param0.Alternative.2.Value" value="B"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" value="B">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9">
@@ -333,30 +558,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" value="string"/>
-        <Var name="param0.Alternative.2.Value" value="C"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" value="C">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="10">
@@ -368,31 +618,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="3"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" value="string"/>
-        <Var name="param0.Alternative.3.Value.Length" value="1"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Is" value="Any">
           <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -405,30 +679,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="null" failure="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true">
@@ -440,30 +739,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="Not string" failure="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true">
@@ -475,32 +799,56 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="0"/>
-        <Var name="param0.Alternative.0.Type" value="string"/>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.0.Value" value="Other" failure="true">
           <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="14" failure="true">
@@ -512,30 +860,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="string"/>
-        <Var name="param0.Alternative.1.Value.Length" value="1" failure="true"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" value="1" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="15" failure="true">
@@ -547,30 +920,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="string"/>
-        <Var name="param0.Alternative.1.Value.Length" value="2"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="16" failure="true">
@@ -582,30 +980,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="1"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" value="string"/>
-        <Var name="param0.Alternative.1.Value.Length" value="2"/>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" value="2">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" NA="true"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" NA="true"/>
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="17" failure="true">
@@ -617,31 +1040,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="3"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" value="string"/>
-        <Var name="param0.Alternative.3.Value.Length" value="0" failure="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" value="0" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Is" value="Any">
           <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -654,31 +1101,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="3"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" value="string"/>
-        <Var name="param0.Alternative.3.Value.Length" value="2" failure="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" value="2" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Is" value="Any">
           <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -691,31 +1162,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="3"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" value="string"/>
-        <Var name="param0.Alternative.3.Value.Length" value="1"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" value="Yes" failure="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Is" value="Any">
           <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+          <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
@@ -728,30 +1223,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="3"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" value="string"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" value="A" failure="true"/>
+        <Var name="param0.Alternative.3.Value.Is" value="A" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="21" failure="true">
@@ -763,30 +1283,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="3"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" value="string"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" value="B" failure="true"/>
+        <Var name="param0.Alternative.3.Value.Is" value="B" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="22" failure="true">
@@ -798,30 +1343,55 @@
       <Has name="version" value="0.0.0"/>
       <Input type="header">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="3"/>
-        <Var name="param0.Alternative.0.Type" NA="true"/>
-        <Var name="param0.Alternative.0.Value" NA="true"/>
-        <Var name="param0.Alternative.1.Type" NA="true"/>
-        <Var name="param0.Alternative.1.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.Used" value="3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" NA="true"/>
-        <Var name="param0.Alternative.2.Value" NA="true"/>
-        <Var name="param0.Alternative.3.Type" value="string"/>
-        <Var name="param0.Alternative.3.Value.Length" NA="true"/>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value=".*"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="XXX"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Is" value="C" failure="true"/>
+        <Var name="param0.Alternative.3.Value.Is" value="C" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

@@ -18,11 +18,17 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Matches-Pattern" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -35,11 +41,17 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" NA="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -53,11 +65,17 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="128"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" value="128">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Matches-Pattern" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -71,11 +89,17 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="null" failure="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -89,11 +113,17 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="Not string" failure="true"/>
-        <Var name="param0.Value.Length" NA="true"/>
+        <Var name="param0.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -107,11 +137,17 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="129" failure="true"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" value="129" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Matches-Pattern" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>
@@ -125,11 +161,17 @@
       <Has name="version" value="0.0.0"/>
       <Input type="cookie">
         <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Type" value="string"/>
-        <Var name="param0.Value.Length" value="0"/>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Matches-Pattern" value="No" failure="true">
+          <Has name="paramName" value="param0"/>
           <Has name="pattern" value="^[A-Z]*$"/>
         </Var>
       </Input>

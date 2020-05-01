@@ -8,6 +8,7 @@
     <Has name="path" value="/operations/${param0}"/>
     <Input type="cookie">
       <VarSet name="param2">
+        <Has name="paramName" value="param2"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
           <Value name="Yes" property="param2"/>
@@ -29,6 +30,7 @@
     </Input>
     <Input type="path">
       <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
         <Var name="Defined">
           <Has name="style" value="simple"/>
           <Value name="Yes" property="param0"/>
@@ -50,6 +52,7 @@
     </Input>
     <Input type="query">
       <VarSet name="param1">
+        <Has name="paramName" value="param1"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
           <Value name="Yes" property="param1"/>
