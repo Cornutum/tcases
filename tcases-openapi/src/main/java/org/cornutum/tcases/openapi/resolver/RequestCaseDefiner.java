@@ -166,10 +166,7 @@ public class RequestCaseDefiner
    */
   private Characters getParamCharacters( ParamDef param)
     {
-    return
-      param.getLocation().equals( Location.COOKIE)
-      ? Characters.COOKIE_VALUE
-      : Characters.ANY;
+    return Location.getCharacters( param.getLocation());
     }
 
   /**
