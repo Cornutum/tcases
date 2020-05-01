@@ -5,10 +5,9 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver.io;
+package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.ExecutionContext;
-import org.cornutum.tcases.openapi.resolver.RequestCaseException;
 
 /**
  * Provides a context for exceptions that occur when processing {@link org.cornutum.tcases.openapi.resolver.RequestCase} definitions.

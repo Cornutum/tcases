@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.util.ToString;
 
 /**
@@ -14,7 +15,21 @@ import org.cornutum.tcases.util.ToString;
  */
 public class ParamDef
   {
-  public enum Location{ QUERY, PATH, HEADER, COOKIE};
+  public enum Location
+    {
+      QUERY, PATH, HEADER, COOKIE;
+
+      /**
+       * Returns the characters allowed in parameter values in this location.
+       */
+      public static Characters getCharacters( Location location)
+        {
+        return
+          location.equals( Location.COOKIE)
+          ? Characters.COOKIE_VALUE
+          : Characters.ANY;
+        }
+    };
   
   /**
    * Creates a new ParamDef instance.
