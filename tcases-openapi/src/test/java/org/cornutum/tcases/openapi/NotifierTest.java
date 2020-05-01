@@ -182,6 +182,15 @@ public class NotifierTest extends OpenApiTest
       "Styles,/path/object/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,pipeDelimitedParam: style=pipeDelimited is not valid for a path parameter. Using style=simple instead.",
       "Styles,/path/object/{matrixParam}/{labelParam}/{formParam}/{simpleParam}/{spaceDelimitedParam}/{pipeDelimitedParam}/{deepObjectParam},GET,deepObjectParam: style=deepObject is not valid for a path parameter. Using style=simple instead.");
     }
+  
+  @Test
+  public void failureWhenInvalidParamName()
+    {
+    assertOpenApiException(
+      () -> getTests( getRequestInputModel( "characters-0")),
+      "Error processing Characters, /password, POST, <password>",
+      "Parameter name='<password>' contains characters not allowed in a cookie name");
+    }
 
   private SystemInputDef getRequestInputModel( String resource)
     {

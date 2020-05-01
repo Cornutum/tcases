@@ -379,19 +379,25 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private IVarDef parameterVarDef( OpenAPI api, Parameter parameter)
     {
+    String parameterName = parameter.getName();
     return
-      resultFor( parameter.getName(),
+      resultFor( parameterName,
         () ->
         {
-        String parameterVarName = toIdentifier( parameter.getName());
-        String parameterIn = expectedValueOf( parameter.getIn(), "in", parameter.getName());
+        String parameterIn = expectedValueOf( parameter.getIn(), "in", parameterName);
+        if( parameterIn.equals( "cookie") && !Characters.TOKEN.allowed( parameterName))
+          {
+          throw new IllegalStateException( String.format( "Parameter name='%s' contains characters not allowed in a cookie name", parameterName));
+          }
+        
+        String parameterVarName = toIdentifier( parameterName);
         Schema<?> parameterSchema = parameterSchema( api, parameter);
         String parameterType = parameterSchema.getType();
 
         return
           VarSetBuilder.with( parameterVarName)
           .type( parameterIn)
-          .has( "paramName", parameter.getName())
+          .has( "paramName", parameterName)
           .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
           .members( instanceSchemaVars( parameterVarName, parameterSchema))
           .build();
