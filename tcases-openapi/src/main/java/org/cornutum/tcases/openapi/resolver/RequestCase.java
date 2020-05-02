@@ -8,7 +8,7 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
-import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.util.ToString;
 
 import java.net.URI;
@@ -293,7 +293,7 @@ public class RequestCase implements Comparable<RequestCase>
      */
     private Characters getParamCharacters( ParamData param)
       {
-      return Location.getCharacters( param.getLocation());
+      return OpenApiUtils.getParamCharacters( String.valueOf( param.getLocation()).toLowerCase(), param.getStyle());
       }
     
     /**
