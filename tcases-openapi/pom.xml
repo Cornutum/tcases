@@ -63,6 +63,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.date>${maven.build.timestamp}</project.build.date>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+        <tcases.maven.version>3.4.0</tcases.maven.version>
     </properties>
 
     <build>
@@ -107,7 +108,7 @@
             <plugin>
                 <groupId>org.cornutum.tcases</groupId>
                 <artifactId>tcases-maven-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>${tcases.maven.version}</version>
                 <executions>
                     <execution>
                         <id>std-test-defs</id>
