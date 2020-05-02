@@ -2,11 +2,71 @@
     {
         "request": {
             "uri": "/posts",
-            "method": "trace"
+            "method": "trace",
+            "cookies": {
+                "postId": "A"
+            }
+        },
+
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "request": {
+            "uri": "/posts",
+            "method": "trace",
+            "cookies": {
+                "postId": "B|A"
+            }
+        },
+
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "request": {
+            "uri": "/posts",
+            "method": "trace",
+            "cookies": {
+                "postId": "C"
+            }
+        },
+
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "request": {
+            "uri": "/posts/0/approved=true,likes=0",
+            "method": "delete"
+        },
+
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "request": {
+            "uri": "/posts/0/likes=599390980",
+            "method": "delete"
+        },
+
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "request": {
+            "uri": "/posts/1027936426/approved=false",
+            "method": "delete"
         },
 
         "response": {
             "status": 200
         }
     }
+
 ]
