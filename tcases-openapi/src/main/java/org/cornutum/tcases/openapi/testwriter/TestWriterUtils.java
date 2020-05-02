@@ -150,7 +150,8 @@ public final class TestWriterUtils
     {
     try
       {
-      return new URI( null, null, value, null).toASCIIString();
+      String uri = new URI( "http", null, "/" + value, null).toASCIIString();
+      return uri.substring( 6);
       }
     catch( Exception e)
       {
