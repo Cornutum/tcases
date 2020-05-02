@@ -421,10 +421,16 @@ public final class VarProperties
       ValueDomain<?> itemValues = toValueDomain( itemValueProperties, chars);
       ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
       domain = itemDomain.arrayOf();
-
       domain.setOtherItemValues( otherItemValues);
-      domain.setItemCount( Range.of( expectVarBinding( items, "Size")));
-      domain.setItemsUnique( Optional.ofNullable( getVarBinding( items, "Unique")).map( u -> "Yes".equals( u.getValue())).orElse( false));
+
+      VarBinding size = expectVarBinding( items, "Size");
+      domain.setItemCount( Range.of( size));
+
+      domain.setItemsUnique(
+        Optional.ofNullable( getVarBinding( items, "Unique"))
+        .filter( u -> !u.isValueNA())
+        .map( u -> "Yes".equals( u.getValue()))
+        .orElse( size.getAnnotation( "itemsUnique") != null));
       }
 
     return domain;

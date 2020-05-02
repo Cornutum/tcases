@@ -26,6 +26,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" value="0">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
@@ -57,6 +58,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" NA="true">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
@@ -89,6 +91,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" value="2">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="boolean">
@@ -121,6 +124,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" value="2">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="boolean">
@@ -153,6 +157,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" NA="true">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
@@ -185,6 +190,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" NA="true">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" NA="true">
@@ -217,6 +223,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" value="2">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="null" failure="true">
@@ -249,6 +256,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" value="2">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="Not boolean" failure="true">
@@ -281,6 +289,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Size" value="2">
+          <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="boolean">
