@@ -107,6 +107,7 @@
             <plugin>
                 <groupId>org.cornutum.tcases</groupId>
                 <artifactId>tcases-maven-plugin</artifactId>
+                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <id>std-test-defs</id>
