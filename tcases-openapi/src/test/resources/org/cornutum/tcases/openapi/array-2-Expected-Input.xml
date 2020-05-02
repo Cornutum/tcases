@@ -22,6 +22,7 @@
         </Var>
         <VarSet name="Items" when="param0Value">
           <Var name="Size">
+            <Has name="itemsUnique" value="true"/>
             <Value name="2" failure="true"/>
             <Value name="3" property="param0ItemsMany"/>
             <Value name="&gt; 3" property="param0ItemsMany"/>
