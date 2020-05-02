@@ -86,6 +86,7 @@
         </Var>
         <VarSet name="Items" when="param2Value">
           <Var name="Size">
+            <Has name="itemsUnique" value="true"/>
             <Value name="0" property="param2ItemsNone"/>
             <Value name="1"/>
             <Value name="&gt; 1" property="param2ItemsMany"/>

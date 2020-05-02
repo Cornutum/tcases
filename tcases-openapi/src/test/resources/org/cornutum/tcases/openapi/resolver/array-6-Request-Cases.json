@@ -180,7 +180,7 @@
                     "value": [
                         {
                             "type": "number",
-                            "value": -4570599510802610477.3
+                            "value": -3771481703099349098.6
                         },
                         {
                             "type": "number",
@@ -239,6 +239,18 @@
                         {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "string",
+                                    "value": "j"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "kdd~"
+                                }
                             ]
                         }
                     ]

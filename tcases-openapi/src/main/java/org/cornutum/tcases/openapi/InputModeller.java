@@ -1037,6 +1037,12 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       size.hasIf( "itemMinItems", minItems);
       size.hasIf( "itemMaxItems", maxItems);
       }
+
+    boolean uniqueRequired = Boolean.TRUE.equals( arraySchema.getUniqueItems());
+    if( uniqueRequired)
+      {
+      size.has( "itemsUnique", true);
+      }
     
     return size.build();
     }

@@ -66,7 +66,7 @@ public class ResolverContext extends ExecutionContext<ResolverException>
     {
     notifier_ =
       notifier == null
-      ? ResolverConditionNotifier.fail()
+      ? ResolverConditionNotifier.log()
       : notifier;
     }
 
