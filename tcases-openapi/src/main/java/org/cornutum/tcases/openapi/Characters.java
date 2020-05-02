@@ -58,6 +58,31 @@ public interface Characters
       : Optional.of( filtered.toString());
     }
 
+  /**
+   * Returns a {@link Characters} that with the same allowed characters as the given
+   * <CODE>chars</CODE> but excluding the given delimiter.
+   */
+  public static Characters delimited( Characters chars, char delimiter)
+    {
+    return
+      new Base()
+        {
+        public String getName()
+          {
+          return
+            String.format(
+              "%s(%s)",
+              chars.getName(),
+              Character.getName( Character.codePointAt( new char[]{delimiter}, 0)));
+          }
+        
+        public boolean allowed( char c)
+          {
+          return chars.allowed( c) && c != delimiter;
+          }
+        };
+    }
+
   public static final Any ANY = new Any();
   public static final Ascii ASCII = new Ascii();
   public static final CookieValue COOKIE_VALUE = new CookieValue();

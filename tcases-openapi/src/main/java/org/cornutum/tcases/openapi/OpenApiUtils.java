@@ -49,6 +49,31 @@ public final class OpenApiUtils
     }
 
   /**
+   * Returns the characters allowed in values for a parameter with the given properties.
+   */
+  public static Characters getParamCharacters( String location, String style)
+    {
+    Characters locationChars =
+      "cookie".equals( location)
+      ? Characters.COOKIE_VALUE
+      : Characters.ANY;
+
+    Character delimiter =
+      "spaceDelimited".equals( style)?
+      Character.valueOf( ' ') :
+
+      "pipeDelimited".equals( style)?
+      Character.valueOf( '|') :
+
+      null;
+    
+    return
+      Optional.ofNullable( delimiter)
+      .map( d -> Characters.delimited( locationChars, d))
+      .orElse( locationChars);
+    }
+
+  /**
    * If the given parameter is defined by a reference, returns the referenced parameter. Otherwise, returns the given parameter.
    */
   public static Parameter resolveParameter( OpenAPI api, Parameter parameter)
