@@ -10,10 +10,11 @@ package org.cornutum.tcases.openapi.testwriter;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.util.ListBuilder;
 
+import org.cornutum.tcases.openapi.testwriter.TestWriterUtils.UriEncoder.Component;
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
-import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.uriEncoded;
+import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.UriEncoder.uriEncoded;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
@@ -541,11 +542,16 @@ public class QueryParameterEncoderTest extends TestWriterTest
 
   private BindingsBuilder params()
     {
-    return new BindingsBuilder();
+    return new BindingsBuilder( Component.QUERY);
     }
   
   private static class BindingsBuilder extends ListBuilder<Map.Entry<String,String>>
     {
+    public BindingsBuilder( Component component)
+      {
+      component_ = component;
+      }
+    
     public BindingsBuilder binding( String name, String value)
       {
       add( new SimpleEntry<String,String>(name, value));
@@ -554,13 +560,15 @@ public class QueryParameterEncoderTest extends TestWriterTest
     
     public BindingsBuilder encoding( String name, String value)
       {
-      return binding( uriEncoded( name), uriEncoded( value));
+      return binding( uriEncoded( component_, name), uriEncoded( component_, value));
       }
     
     public BindingsBuilder encodingDeep( String name, String property, String value)
       {
-      return binding( String.format( "%s[%s]", uriEncoded( name), uriEncoded( property)), uriEncoded( value));
+      return binding( String.format( "%s[%s]", uriEncoded( component_, name), uriEncoded( component_, property)), uriEncoded( component_, value));
       }
+
+    private Component component_;
     }
 
   }

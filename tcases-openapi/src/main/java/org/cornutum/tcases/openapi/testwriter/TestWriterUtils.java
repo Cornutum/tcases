@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi.testwriter;
 import org.cornutum.tcases.openapi.InvalidStyleException;
 import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.openapi.resolver.*;
+import org.cornutum.tcases.openapi.testwriter.TestWriterUtils.UriEncoder.Component;
 
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 
@@ -80,8 +81,9 @@ public final class TestWriterUtils
         {
         throw new TestWriterException( String.format( "%s is not a %s parameter", param, QUERY));
         }
-      
-      return FormParameterEncoder.encode( param, uriEncoded);
+
+      Component component = uriEncoded? Component.QUERY : Component.NONE;
+      return FormParameterEncoder.encode( param, component);
       }
     catch( Exception e)
       {
@@ -106,15 +108,16 @@ public final class TestWriterUtils
     try
       {
       String style = getValidStyle( param);
-
+      Component component = uriEncoded? Component.PATH : Component.NONE;
+      
       return
         "label".equals( style)?
-        LabelValueEncoder.encode( param, uriEncoded) : 
+        LabelValueEncoder.encode( param, component) : 
 
         "matrix".equals( style)?
-        MatrixValueEncoder.encode( param, uriEncoded) : 
+        MatrixValueEncoder.encode( param, component) : 
 
-        SimpleValueEncoder.encode( param, uriEncoded);
+        SimpleValueEncoder.encode( param, component);
       }
     catch( Exception e)
       {
@@ -135,27 +138,11 @@ public final class TestWriterUtils
         throw new TestWriterException( String.format( "%s is not a %s parameter", param, COOKIE));
         }
       
-      return FormParameterEncoder.encode( param, false);
+      return FormParameterEncoder.encode( param, Component.NONE);
       }
     catch( Exception e)
       {
       throw new TestWriterException( String.format( "%s: can't get cookie parameter values", param), e);
-      }
-    }
-
-  /**
-   * Returns the URI-encoded form of the given value.
-   */
-  public static String uriEncoded( String value)
-    {
-    try
-      {
-      String uri = new URI( "http", null, "/" + value, null).toASCIIString();
-      return uri.substring( 6);
-      }
-    catch( Exception e)
-      {
-      throw new IllegalArgumentException( String.format( "Can't encode value='%s'", value), e);
       }
     }
 
@@ -181,20 +168,20 @@ public final class TestWriterUtils
   public static class FormParameterEncoder extends UriEncoder implements DataValueVisitor
     {
     /**
-     * Creates a new QueryParameterEncoder instance.
+     * Creates a new FormParameterEncoder instance.
      */
-    private FormParameterEncoder( ParamData param, boolean uriEncoded)
+    private FormParameterEncoder( ParamData param, Component component)
       {
-      super( uriEncoded);
+      super( component);
       name_ = param.getName();
       style_ = getValidStyle( param);
       exploded_ = param.isExploded();
       value_ = param.getValue();
       }
 
-    public static List<Map.Entry<String,String>> encode( ParamData param, boolean uriEncoded)
+    public static List<Map.Entry<String,String>> encode( ParamData param, Component component)
       {
-      return new FormParameterEncoder( param, uriEncoded).accepted();
+      return new FormParameterEncoder( param, component).accepted();
       }
 
     private List<Map.Entry<String,String>> accepted()
@@ -215,12 +202,12 @@ public final class TestWriterUtils
 
     private void bind( String name, Object value)
       {
-      add( uriOf( name), uriOf( Objects.toString( value, "")));
+      add( uriEncoded( name), uriEncoded( Objects.toString( value, "")));
       }
 
     private void bindDeep( String property, Object value)
       {
-      add( String.format( "%s[%s]", uriOf( name_), uriOf( property)), uriOf( Objects.toString( value, "")));
+      add( String.format( "%s[%s]", uriEncoded( name_), uriEncoded( property)), uriEncoded( Objects.toString( value, "")));
       }
 
     private void bindParam( Object value)
@@ -238,7 +225,7 @@ public final class TestWriterUtils
       if( exploded_)
         {
         data.getValue().stream()
-          .forEach( value -> bindParam( SimpleValueEncoder.encode( value, false)));
+          .forEach( value -> bindParam( SimpleValueEncoder.encode( value, Component.NONE)));
         }
       else
         {
@@ -246,7 +233,7 @@ public final class TestWriterUtils
 
         bindParam(
           data.getValue().stream()
-          .map( item -> SimpleValueEncoder.encode( item, false))
+          .map( item -> SimpleValueEncoder.encode( item, Component.NONE))
           .collect( joining( delim)));
         }
       }
@@ -286,18 +273,18 @@ public final class TestWriterUtils
       if( "deepObject".equals( style_))
         {
         data.getValue()
-          .forEach( (property, value) -> bindDeep( property, SimpleValueEncoder.encode( value, false)));
+          .forEach( (property, value) -> bindDeep( property, SimpleValueEncoder.encode( value, Component.NONE)));
         }
       else if( exploded_)
         {
         data.getValue()
-          .forEach( (property, value) -> bind( property, SimpleValueEncoder.encode( value, false)));
+          .forEach( (property, value) -> bind( property, SimpleValueEncoder.encode( value, Component.NONE)));
         }
       else
         {
         bindParam(
           data.getValue().entrySet().stream()
-          .flatMap( entry -> Arrays.asList( entry.getKey(), SimpleValueEncoder.encode( entry.getValue(), false)).stream())
+          .flatMap( entry -> Arrays.asList( entry.getKey(), SimpleValueEncoder.encode( entry.getValue(), Component.NONE)).stream())
           .collect( joining( ",")));
         }
       }
@@ -322,26 +309,26 @@ public final class TestWriterUtils
     /**
      * Creates a new SimpleValueEncoder instance.
      */
-    private SimpleValueEncoder( DataValue<?> value, boolean exploded, boolean uriEncoded)
+    private SimpleValueEncoder( DataValue<?> value, boolean exploded, Component component)
       {
-      super( uriEncoded);
+      super( component);
       value_ = value;
       exploded_ = exploded;
       }
 
-    public static String encode( ParamData param, boolean uriEncoded)
+    public static String encode( ParamData param, Component component)
       {
-      return encode( param.getValue(), param.isExploded(), uriEncoded);
+      return encode( param.getValue(), param.isExploded(), component);
       }
 
-    public static String encode( DataValue<?> value, boolean uriEncoded)
+    public static String encode( DataValue<?> value, Component component)
       {
-      return encode( value, false, uriEncoded);
+      return encode( value, false, component);
       }
 
-    public static String encode( DataValue<?> value, boolean exploded, boolean uriEncoded)
+    public static String encode( DataValue<?> value, boolean exploded, Component component)
       {
-      return new SimpleValueEncoder( value, exploded, uriEncoded).accepted();
+      return new SimpleValueEncoder( value, exploded, component).accepted();
       }
 
     private String accepted()
@@ -357,14 +344,14 @@ public final class TestWriterUtils
 
     private String stringOf( DataValue<?> value)
       {
-      return uriOf( Objects.toString( value.getValue(), ""));
+      return uriEncoded( Objects.toString( value.getValue(), ""));
       }
     
     public void visit( ArrayValue<?> data)
       {
       encoded_ =
         data.getValue().stream()
-        .map( item -> SimpleValueEncoder.encode( item, isUriEncoded()))
+        .map( item -> SimpleValueEncoder.encode( item, getComponent()))
         .collect( joining( ","));
       }
 
@@ -404,14 +391,14 @@ public final class TestWriterUtils
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .map( entry -> String.format( "%s=%s", uriOf( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), isUriEncoded())))
+          .map( entry -> String.format( "%s=%s", uriEncoded( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), getComponent())))
           .collect( joining( ","));
         }
       else
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .flatMap( entry -> Arrays.asList( uriOf( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), isUriEncoded())).stream())
+          .flatMap( entry -> Arrays.asList( uriEncoded( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), getComponent())).stream())
           .collect( joining( ","));
         }
       }
@@ -434,21 +421,21 @@ public final class TestWriterUtils
     /**
      * Creates a new LabelValueEncoder instance.
      */
-    private LabelValueEncoder( DataValue<?> value, boolean exploded, boolean uriEncoded)
+    private LabelValueEncoder( DataValue<?> value, boolean exploded, Component component)
       {
-      super( uriEncoded);
+      super( component);
       value_ = value;
       exploded_ = exploded;
       }
 
-    public static String encode( ParamData param, boolean uriEncoded)
+    public static String encode( ParamData param, Component component)
       {
-      return encode( param.getValue(), param.isExploded(), uriEncoded);
+      return encode( param.getValue(), param.isExploded(), component);
       }
 
-    public static String encode( DataValue<?> value, boolean exploded, boolean uriEncoded)
+    public static String encode( DataValue<?> value, boolean exploded, Component component)
       {
-      return new LabelValueEncoder( value, exploded, uriEncoded).accepted();
+      return new LabelValueEncoder( value, exploded, component).accepted();
       }
 
     private String accepted()
@@ -464,7 +451,7 @@ public final class TestWriterUtils
 
     private String labelOf( DataValue<?> value)
       {
-      return labelOf( uriOf( Objects.toString( value.getValue(), "")));
+      return labelOf( uriEncoded( Objects.toString( value.getValue(), "")));
       }
 
     private String labelOf( String value)
@@ -476,7 +463,7 @@ public final class TestWriterUtils
       {
       encoded_ =
         data.getValue().stream()
-        .map( item -> SimpleValueEncoder.encode( item, isUriEncoded()))
+        .map( item -> SimpleValueEncoder.encode( item, getComponent()))
         .map( this::labelOf)
         .collect( joining());
       }
@@ -517,14 +504,14 @@ public final class TestWriterUtils
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .map( entry -> labelOf( String.format( "%s=%s", uriOf( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), isUriEncoded()))))
+          .map( entry -> labelOf( String.format( "%s=%s", uriEncoded( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), getComponent()))))
           .collect( joining());
         }
       else
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .flatMap( entry -> Arrays.asList( uriOf( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), isUriEncoded())).stream())
+          .flatMap( entry -> Arrays.asList( uriEncoded( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), getComponent())).stream())
           .map( this::labelOf)
           .collect( joining());
         }
@@ -548,22 +535,22 @@ public final class TestWriterUtils
     /**
      * Creates a new MatrixValueEncoder instance.
      */
-    private MatrixValueEncoder( String name, DataValue<?> value, boolean exploded, boolean uriEncoded)
+    private MatrixValueEncoder( String name, DataValue<?> value, boolean exploded, Component component)
       {
-      super( uriEncoded);
+      super( component);
       name_ = name;
       value_ = value;
       exploded_ = exploded;
       }
 
-    public static String encode( ParamData param, boolean uriEncoded)
+    public static String encode( ParamData param, Component component)
       {
-      return encode( param.getName(), param.getValue(), param.isExploded(), uriEncoded);
+      return encode( param.getName(), param.getValue(), param.isExploded(), component);
       }
 
-    public static String encode( String name, DataValue<?> value, boolean exploded, boolean uriEncoded)
+    public static String encode( String name, DataValue<?> value, boolean exploded, Component component)
       {
-      return new MatrixValueEncoder( name, value, exploded, uriEncoded).accepted();
+      return new MatrixValueEncoder( name, value, exploded, component).accepted();
       }
 
     private String accepted()
@@ -589,7 +576,7 @@ public final class TestWriterUtils
 
     private String matrixParamOf( String name, String value)
       {
-      return matrixOf( String.format( "%s=%s", uriOf( name), uriOf( value)));
+      return matrixOf( String.format( "%s=%s", uriEncoded( name), uriEncoded( value)));
       }
 
     private String matrixOf( String value)
@@ -603,13 +590,13 @@ public final class TestWriterUtils
         {
         encoded_ =
           data.getValue().stream()
-          .map( item -> SimpleValueEncoder.encode( item, false))
+          .map( item -> SimpleValueEncoder.encode( item, Component.NONE))
           .map( this::matrixParamOf)
           .collect( joining());
         }
       else
         {
-        encoded_ = matrixParamOf( SimpleValueEncoder.encode( data, false));
+        encoded_ = matrixParamOf( SimpleValueEncoder.encode( data, Component.NONE));
         }
       }
 
@@ -649,12 +636,12 @@ public final class TestWriterUtils
         {
         encoded_ = 
           data.getValue().entrySet().stream()
-          .map( entry -> matrixParamOf( entry.getKey(), SimpleValueEncoder.encode( entry.getValue(), false)))
+          .map( entry -> matrixParamOf( entry.getKey(), SimpleValueEncoder.encode( entry.getValue(), Component.NONE)))
           .collect( joining());
         }
       else
         {
-        encoded_ = matrixParamOf( SimpleValueEncoder.encode( data, false));
+        encoded_ = matrixParamOf( SimpleValueEncoder.encode( data, Component.NONE));
         }
       }
 
@@ -672,37 +659,103 @@ public final class TestWriterUtils
   /**
    * Base class for URI encoders.
    */
-  private static class UriEncoder
+  public static abstract class UriEncoder
     {
+    public enum Component { NONE, PATH, QUERY };
+    
     /**
      * Creates a new UriEncoder instance.
      */
-    protected UriEncoder( boolean uriEncoded)
+    protected UriEncoder( Component component)
       {
-      uriEncoded_ = uriEncoded;
+      component_ = component;
       }
 
     /**
-     * Returns if URI encoding is enabled for this encoder.
+     * Returns the URI component to be encoded
      */
-    public boolean isUriEncoded()
+    public Component getComponent()
       {
-      return uriEncoded_;
+      return component_;
       }
 
     /**
      * If encoding is enabled, returns the URI-coded form of the given value.
      * Otherwise, returns the value.
      */
-    protected String uriOf( String value)
+    protected String uriEncoded( String value)
       {
-      return
-        uriEncoded_
-        ? uriEncoded( value)
-        : value;
+      return uriEncoded( getComponent(), value);
       }
 
-    private final boolean uriEncoded_;
+    /**
+     * Returns the encoded form of the given value as it would appear in the given URI component.
+     */
+    public static String uriEncoded( Component component, String value)
+      {
+      String encoded;
+      switch( Optional.ofNullable( component).orElse( Component.NONE))
+        {
+        case QUERY:
+          {
+          encoded =
+            uriMatcher( null, value).group(2)
+            .replaceAll( "\\?", "%3F")
+            .replaceAll( "=",   "%3D")
+            .replaceAll( "\\&", "%26")
+            ;
+          break;
+          }
+        case PATH:
+          {
+          encoded = uriMatcher( value, null).group(1);
+          break;
+          }
+        case NONE:
+          {
+          encoded = value;
+          break;
+          }
+        default:
+          {
+          throw new IllegalArgumentException( String.format( "Unknown component=%s", component));
+          }
+        }
+
+      return encoded;
+      }
+
+    private static Matcher uriMatcher( String path, String query)
+      {
+      try
+        {
+        String uri =
+          new URI(
+            "http",
+            null,
+            "host",
+            -1,
+            "/" + Optional.ofNullable( path).orElse( "path"),
+            Optional.ofNullable( query).orElse( "query"),
+            null)
+          .toASCIIString();
+        
+        Matcher matcher = uriPattern_.matcher( uri);
+        if( !matcher.matches())
+          {
+          throw new IllegalArgumentException( String.format( "Can't recognize uri=%s", uri));
+          }
+        
+        return matcher;
+        }
+      catch( Exception e)
+        {
+        throw new IllegalArgumentException( String.format( "Can't encode path='%s', query='%s'", path, query), e);
+        }
+      }
+
+    private final Component component_;
+    private static final Pattern uriPattern_ = Pattern.compile( "http://host/([^?]*)\\?(.*)");
     }
 
   private static final Pattern literalEscaped_ = Pattern.compile( "[\\\\\"]");
