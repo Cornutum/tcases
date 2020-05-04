@@ -17,6 +17,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  * Runs tests for {@link TestWriterUtils.SimpleValueEncoder}.
@@ -201,6 +202,125 @@ public class SimpleValueEncoderTest extends TestWriterTest
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "nick%20name=X,sex=%3F"));
+    }
+  
+  @Test
+  public void whenHeaderStyleInvalid()
+    {
+    // Given...
+    ParamData param =
+      param( "myParam")
+      .location( HEADER)
+      .style( "form")
+      .decimalData( new BigDecimal( "123.45"))
+      .build();
+
+    assertTestWriterException(
+      () -> TestWriterUtils.getHeaderParameterValue( param),
+      String.format( "%s: can't get header parameter value", param),
+      String.format( "style=%s is not applicable for a %s parameter", param.getStyle(), String.valueOf( param.getLocation()).toLowerCase()));
+    }
+  
+  @Test
+  public void whenHeaderLocationInvalid()
+    {
+    // Given...
+    ParamData param =
+      param( "myParam")
+      .location( PATH)
+      .style( "simple")
+      .decimalData( new BigDecimal( "123.45"))
+      .build();
+
+    assertTestWriterException(
+      () -> TestWriterUtils.getHeaderParameterValue( param),
+      String.format( "%s: can't get header parameter value", param),
+      String.format( "%s is not a %s parameter", param, HEADER));
+    }
+  
+  @Test
+  public void whenHeaderValueReserved()
+    {
+    // Given...
+    String reservedChars = "?X=Y&A=B 1|2|3";
+    ParamData param =
+      param( "myParam")
+      .location( HEADER)
+      .style( "simple")
+      .stringData( reservedChars)
+      .build();
+
+    // When...
+    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
+
+    // Then...
+    assertThat( "Header value", value.orElse(null), is( reservedChars));
+    }
+  
+  @Test
+  public void whenHeaderValueQuoted()
+    {
+    // Given...
+    String lws = " ...ends here.";
+    ParamData param =
+      param( "myParam")
+      .location( HEADER)
+      .style( "simple")
+      .stringData( lws)
+      .build();
+
+    // When...
+    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
+
+    // Then...
+    assertThat( "Header value", value.orElse(null), is( String.format( "\"%s\"", lws)));
+    
+    // Given...
+    String tws = "Starts here... ";
+    param =
+      param( "myParam")
+      .location( HEADER)
+      .style( "simple")
+      .stringData( tws)
+      .build();
+
+    // When...
+    value = TestWriterUtils.getHeaderParameterValue( param);
+
+    // Then...
+    assertThat( "Header value", value.orElse(null), is( String.format( "\"%s\"", tws)));
+
+    // Given...
+    String empty = "";
+    param =
+      param( "myParam")
+      .location( HEADER)
+      .style( "simple")
+      .stringData( empty)
+      .build();
+
+    // When...
+    value = TestWriterUtils.getHeaderParameterValue( param);
+
+    // Then...
+    assertThat( "Header value", value.orElse(null), is( empty));
+    }
+  
+  @Test
+  public void whenHeaderValueUndefined()
+    {
+    // Given...
+    ParamData param =
+      param( "myParam")
+      .location( HEADER)
+      .style( "simple")
+      .build();
+
+    // When...
+    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
+
+    // Then...
+    assertThat( "Header value", value, is( Optional.empty()));
     }
 
   }
