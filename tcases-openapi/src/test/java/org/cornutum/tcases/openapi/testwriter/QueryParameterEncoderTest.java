@@ -78,7 +78,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -99,7 +99,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = TestWriterUtils.getQueryParameters( param);
     
     // Then...
     assertThat(
@@ -141,7 +141,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -186,7 +186,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -207,7 +207,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = TestWriterUtils.getQueryParameters( param);
     
     // Then...
     assertThat(
@@ -231,7 +231,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -276,7 +276,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -321,7 +321,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -367,7 +367,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -413,7 +413,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -459,7 +459,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -480,7 +480,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = TestWriterUtils.getQueryParameters( param);
     
     // Then...
     assertThat(
@@ -505,7 +505,7 @@ public class QueryParameterEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
