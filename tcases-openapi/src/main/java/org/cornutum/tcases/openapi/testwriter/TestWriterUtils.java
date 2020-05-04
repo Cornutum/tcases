@@ -107,6 +107,11 @@ public final class TestWriterUtils
     {
     try
       {
+      if( !param.getLocation().equals( PATH))
+        {
+        throw new TestWriterException( String.format( "%s is not a %s parameter", param, PATH));
+        }
+      
       String style = getValidStyle( param);
       Component component = uriEncoded? Component.PATH : Component.NONE;
       
@@ -122,6 +127,31 @@ public final class TestWriterUtils
     catch( Exception e)
       {
       throw new TestWriterException( String.format( "%s: can't get path parameter value", param), e);
+      }
+    }
+
+  /**
+   * Returns the value of the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#HEADER HEADER} parameter.
+   * Returns <CODE>Optional.empty()</CODE> if no value is defined for this parameter.
+   */
+  public static Optional<String> getHeaderParameterValue( ParamData param)
+    {
+    try
+      {
+      if( !param.getLocation().equals( HEADER))
+        {
+        throw new TestWriterException( String.format( "%s is not a %s parameter", param, HEADER));
+        }
+      
+      return
+        Optional.of( getValidStyle( param))
+        .filter( style -> "simple".equals( style))
+        .map( style -> Optional.ofNullable( param.getValue()).map( v -> quoted( SimpleValueEncoder.encode( param, Component.NONE))))
+        .orElseThrow( () -> new IllegalStateException( String.format( "style=%s is not applicable for a HEADER parameter", getValidStyle( param))));
+      }
+    catch( Exception e)
+      {
+      throw new TestWriterException( String.format( "%s: can't get header parameter value", param), e);
       }
     }
 
@@ -160,6 +190,18 @@ public final class TestWriterUtils
     escapeMatcher.appendTail( escaped);
 
     return String.format( "\"%s\"", escaped.toString());
+    }
+
+  /**
+   * If the given value contains leading or trailing whitespace, returns the given value enclosed in double quotes.
+   * Otherwise, returns the given value.
+   */
+  private static String quoted( String value)
+    {
+    return
+      !value.isEmpty() && (Character.isWhitespace( value.charAt( 0)) || Character.isWhitespace( value.charAt( value.length() - 1)))
+      ? String.format( "\"%s\"", value)
+      : value;
     }
 
   /**

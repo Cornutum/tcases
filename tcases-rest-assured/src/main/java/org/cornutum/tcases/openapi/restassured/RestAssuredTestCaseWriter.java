@@ -152,6 +152,8 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
    */
   protected void writeHeaderParam( String testName, ParamData param, IndentedWriter targetWriter)
     {
+    getHeaderParameterValue( param)
+      .ifPresent( value -> targetWriter.println( String.format( ".header( %s, %s)", stringLiteral( param.getName()), stringLiteral( value))));
     }
   
   /**
