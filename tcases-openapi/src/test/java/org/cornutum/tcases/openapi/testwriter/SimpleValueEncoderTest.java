@@ -53,7 +53,7 @@ public class SimpleValueEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    String encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "123.45"));
@@ -86,7 +86,7 @@ public class SimpleValueEncoderTest extends TestWriterTest
       ;
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    String encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( ""));
@@ -119,7 +119,7 @@ public class SimpleValueEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( ""));
@@ -152,13 +152,13 @@ public class SimpleValueEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "A,B C"));
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "A,B%20C"));
@@ -191,13 +191,13 @@ public class SimpleValueEncoderTest extends TestWriterTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "nick name=X,sex=?"));
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "nick%20name=X,sex=%3F"));

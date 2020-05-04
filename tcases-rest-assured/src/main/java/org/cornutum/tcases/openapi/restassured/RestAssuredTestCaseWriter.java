@@ -135,7 +135,7 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
    */
   protected void writeQueryParam( String testName, ParamData param, IndentedWriter targetWriter)
     {
-    getQueryParameters( param, true).stream()
+    getQueryParameters( param).stream()
       .forEach( entry -> targetWriter.println( String.format( ".queryParam( %s, %s)", stringLiteral( entry.getKey()), stringLiteral( entry.getValue()))));
     }
   

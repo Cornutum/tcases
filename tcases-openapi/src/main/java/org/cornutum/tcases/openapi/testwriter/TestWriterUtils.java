@@ -62,11 +62,11 @@ public final class TestWriterUtils
 
   /**
    * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter.
-   * All parameter names and values are URI-encoded if necessary.
+   * All parameter names and values are returned without URI encodeding.
    */
   public static List<Map.Entry<String,String>> getQueryParameters( ParamData param)
     {
-    return getQueryParameters( param, true);
+    return getQueryParameters( param, false);
     }
 
 
@@ -93,11 +93,11 @@ public final class TestWriterUtils
 
   /**
    * Returns the value of the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
-   * The result is URI-encoded if necessary.
+   * The result is returned without URI encodeding.
    */
   public static String getPathParameterValue( ParamData param)
     {
-    return getPathParameterValue( param, true);
+    return getPathParameterValue( param, false);
     }
 
   /**
