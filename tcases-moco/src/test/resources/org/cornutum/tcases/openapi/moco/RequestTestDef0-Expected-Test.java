@@ -11,7 +11,7 @@ import org.junit.Rule;
 public class RequestTestDef0Test {
 
     @Rule
-    public MocoJunitRunner runner = MocoJunitRunner.jsonRestRunner( 12306, file( "/Users/kerrykimbrough/repos/tcases/tcases-moco/target/test-classes/org/cornutum/tcases/openapi/moco/myConfig.json"));
+    public MocoJunitRunner runner = MocoJunitRunner.jsonRestRunner( 12306, file( "/Users/kerrykimbrough/repos/tcases/tcases-moco/target/test-classes/org/cornutum/tcases/openapi/moco/any-Moco.json"));
     // Test case declarations
 
     @Test

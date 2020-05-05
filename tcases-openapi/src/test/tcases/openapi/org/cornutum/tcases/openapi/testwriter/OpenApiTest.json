@@ -33,6 +33,47 @@
                         "$ref": "#/components/responses/failure"
                     }
                 }
+            },
+            
+            "options": {
+                "parameters": [
+                    {
+                        "name": "X-Post-Types",
+                        "required": true,
+                        "in": "header",
+                        "style": "simple",
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "enum": [ "1001", "2345", "7700"]
+                            },
+                            "minItems": 2,
+                            "maxItems": 2,
+                            "uniqueItems": true
+                        }
+                    },
+                    {
+                        "name": "X-User-Id",
+                        "required": true,
+                        "in": "header",
+                        "style": "simple",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
             }
         },
         "/posts/{userId}/{[attributes]}": {
@@ -68,6 +109,31 @@
                             },
                             "minProperties": 1,
                             "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/post": {
+            "put": {
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "required": true,
+                        "in": "query",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "number",
+                            "minimum": 0
                         }
                     }
                 ],
