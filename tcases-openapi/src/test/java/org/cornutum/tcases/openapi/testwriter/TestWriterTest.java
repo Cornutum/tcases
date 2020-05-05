@@ -155,19 +155,6 @@ public abstract class TestWriterTest
     {
     return requestTestDefFor( TestWriterTest.class, testDefName);
     }
-
-  /**
-   * Returns the resource path to the  Moco server configuration file for the specified standard {@link RequestTestDef} object.
-   */
-  protected String stdMocoServerConfig( String testDefName)
-    {
-    return
-      String.format(
-        "%s/%s-Moco.json",
-        TestWriterTest.class.getPackage().getName().replaceAll( "\\.", "/"),
-        testDefName);
-    }
-
   /**
    * Verifies that the test writer results for the given request test definition match expectations.
    */

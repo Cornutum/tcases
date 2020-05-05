@@ -14,7 +14,7 @@ public class RequestTestDef5Test {
     private static final HttpsCertificate myCertificate = certificate( pathResource( "myCert.cks"), "kss!", "css!");
 
     @ClassRule
-    public static MocoJunitRunner runner = MocoJunitRunner.jsonHttpsRunner( 7777, file( "mocoConfig.json"), myCertificate);
+    public static MocoJunitRunner runner = MocoJunitRunner.jsonHttpsRunner( 7777, file( "/Users/kerrykimbrough/repos/tcases/tcases-moco/target/test-classes/org/cornutum/tcases/openapi/moco/any-Moco.json"), myCertificate);
     // Test case declarations
 
     @Test

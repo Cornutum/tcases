@@ -11,7 +11,7 @@ import org.junit.ClassRule;
 public class RequestTestDef4Test {
 
     @ClassRule
-    public static MocoJunitRunner runner = MocoJunitRunner.jsonSocketRunner( 12306, pathResource( "mocoConfig.json"));
+    public static MocoJunitRunner runner = MocoJunitRunner.jsonSocketRunner( 12306, pathResource( "org/cornutum/tcases/openapi/moco/any-Moco.json"));
     // Test case declarations
 
     @Test

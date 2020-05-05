@@ -9,19 +9,18 @@ package org.cornutum.tcases.openapi.restassured;
 
 import org.apache.commons.io.FileUtils;
 import org.cornutum.tcases.openapi.moco.MocoServerConfig;
+import org.cornutum.tcases.openapi.moco.MocoServerTest;
 import org.cornutum.tcases.openapi.moco.MocoServerTestWriter;
 import org.cornutum.tcases.openapi.moco.RestServerTestWriter;
 import org.cornutum.tcases.openapi.restassured.RestAssuredTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestSource;
-import org.cornutum.tcases.openapi.testwriter.TestWriterTest;
-
 import org.junit.Test;
 
 /**
  * Runs tests for {@link RestAssuredTestCaseWriter}
  */
-public class RestAssuredTestCaseWriterTest extends TestWriterTest
+public class RestAssuredTestCaseWriterTest extends MocoServerTest
   {
   @Test
   public void writeTest_0() throws Exception

@@ -11,7 +11,6 @@ import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.moco.MocoServerConfigPojo.PojoWriter;
 import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestSource;
-import org.cornutum.tcases.openapi.testwriter.TestWriterTest;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -22,7 +21,7 @@ import java.io.File;
 /**
  * Runs tests for {@link RestServerTestWriter}.
  */
-public class MocoServerTestWriterTest extends TestWriterTest
+public class MocoServerTestWriterTest extends MocoServerTest
   {
   /**
    * Tests {@link MocoServerTestWriter#writeTest writeTest()} using the following inputs.
@@ -60,7 +59,7 @@ public class MocoServerTestWriterTest extends TestWriterTest
       .build();
 
     MocoServerConfig config =
-      MocoServerConfig.file( new File( getResourceDir(), "myConfig.json"))
+      MocoServerConfig.file( mocoServerConfigFile( "any"))
       .forEachTest()
       .build();
     
@@ -276,7 +275,7 @@ public class MocoServerTestWriterTest extends TestWriterTest
       .build();
 
     MocoServerConfig config =
-      MocoServerConfig.resource( "mocoConfig.json")
+      MocoServerConfig.resource( stdMocoServerConfig( "any"))
       .name( "myServer")
       .forEachTest( false)
       .build();
@@ -328,7 +327,7 @@ public class MocoServerTestWriterTest extends TestWriterTest
       .build();
 
     MocoServerConfig config =
-      MocoServerConfig.file( "mocoConfig.json")
+      MocoServerConfig.file( mocoServerConfigFile( "any").getPath())
       .port( 7777)
       .build();
 
@@ -439,7 +438,7 @@ public class MocoServerTestWriterTest extends TestWriterTest
       .build();
 
     MocoServerConfig config =
-      MocoServerConfig.resource( "configs/httpConfig.json")
+      MocoServerConfig.resource( stdMocoServerConfig( "any"))
       .port( 321)
       .forEachTest( false)
       .build();
