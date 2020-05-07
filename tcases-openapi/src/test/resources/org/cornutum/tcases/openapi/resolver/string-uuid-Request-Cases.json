@@ -1,0 +1,659 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "3c15d95d-e89c-4d0f-9aa2-85c2055ea3ed",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "fed55f47-74e2-42c9-b8be-4dbf6b62166c",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "01e33e80-4ac4-4b23-ae7e-99cc3d63a8a6",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "849f8e59-771b-44e9-9997-8fc5385f670b",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "6288b950-343d-4025-9b44-dbf625084e1b",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "within.Type=null"
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "*b<L"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%IRa|8C("
+                        },
+                        {
+                            "type": "string",
+                            "value": "K"
+                        }
+                    ]
+                },
+                "valid": false
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "904cb817-9f53-4322-9aa9-db4572347b08",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "6eb9592f-5fd3-4d45-b386-30caa6a76021",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "within.Type=Not string"
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "8f346e87-de4a-47a3-8aef-33417061445",
+                    "format": "uuid"
+                },
+                "valid": false
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "856c9597-b19a-49ab-b7ba-0f21a7d52400",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "cc1f88b9-d012-40e8-9956-ecda550839ac",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "within.Value.Length=35"
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "0a4b3b09-8c3d-43a7-b16c-ad52cb53e4680",
+                    "format": "uuid"
+                },
+                "valid": false
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "987711e5-c0e5-41b3-8d3c-bca1fafbd7bc",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "41eef397-46cc-472f-a817-d9b005236ae2",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "within.Value.Length=37"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "48d285d4-adc0-454c-909c-9fb011f38e05",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "af683f5b-2811-4637-899c-ffd45f115a94",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "outside.Type=null"
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "b60f60fd-c885-4362-b1c3-a69f9daebbb4",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "-HZ"
+                        }
+                    ]
+                },
+                "valid": false
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "218bdb8f-7570-4b25-a6f6-b65047176dd6",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "outside.Type=Not string"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "ed919f2d-012c-4502-823c-fce05b504a93",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "f72e5ee9-c6c1-42ea-9166-1a7a5a3d889",
+                    "format": "uuid"
+                },
+                "valid": false
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "fc883c7b-3f08-448b-a73c-2748bc2a4e31",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "outside.Value.Length=35"
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "acaa1b65-8e89-47c1-b87d-085c3f88d703",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "8ea750d1-8d10-4790-96e6-eb5b1e8ecc180",
+                    "format": "uuid"
+                },
+                "valid": false
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "20abbf05-2273-47a8-b8d1-77c583816339",
+                    "format": "uuid"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "outside.Value.Length=37"
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "41567669-d62d-4a43-bc67-4197394ced89",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "d30ec4b5-a8a4-448a-aeb9-6194a55b670d",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Type=null"
+    },
+    {
+        "id": 11,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "9c25952a-1f1d-4a6c-8a2e-d3d2f6fad741",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "6cf6bf5a-9ec5-42b9-bf18-d5e79b9cd974",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Type=Not string"
+    },
+    {
+        "id": 12,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "fb5d8b62-f57a-4bd5-b5c6-0c9d36655850",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "51556e6b-112d-4d22-8e98-6f6cc952467c",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "157190e9-b7fb-4223-8816-151c9e71746",
+                    "format": "uuid"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Value.Length=35"
+    },
+    {
+        "id": 13,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Uuid",
+        "path": "/uuid",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "675118fe-9076-4ed3-99bb-a5c297c51cd1",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "aa66c951-8c78-479d-b6f9-b52fb70597b8",
+                    "format": "uuid"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "562c10a0-2aac-4ba8-8ea4-968d058450da0",
+                    "format": "uuid"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Value.Length=37"
+    }
+]

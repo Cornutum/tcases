@@ -120,9 +120,13 @@ public class DateDomainTest extends ValueDomainTest
     {
     // Given...
     DateDomain domain = new DateDomain();
+    domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 10").build()));
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 0").build())));
+    // When...
+    DataValue<String> value = domain.select( getResolverContext());
+
+    // Then...
+    assertThat( "Invalid date", DateConstant.isDate( value.getValue()), is( false));
     }
 
   @Test
@@ -130,8 +134,12 @@ public class DateDomainTest extends ValueDomainTest
     {
     // Given...
     DateDomain domain = new DateDomain();
+    domain.setLengthRange( 8);
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( 8));
+    // When...
+    DataValue<String> value = domain.select( getResolverContext());
+
+    // Then...
+    assertThat( "Invalid date", DateConstant.isDate( value.getValue()), is( false));
     }
   }

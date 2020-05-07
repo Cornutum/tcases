@@ -34,7 +34,6 @@ public final class OpenApiUtils
     // Static methods only
     }
 
-
   /**
    * Returns the given value if non-null. Otherwise, throws an exception.
    */
@@ -46,6 +45,32 @@ public final class OpenApiUtils
       }
 
     return value;
+    }
+
+  /**
+   * Returns the maximum length of a string in the given format. Returns null if this format has no maximum length.
+   */
+  public static Integer stringFormatMax( String format)
+    {
+    return
+      "email".equals( format)?      Integer.valueOf( 320) :
+      "date".equals( format)?       Integer.valueOf(  10) :
+      "date-time".equals( format)?  Integer.valueOf(  29) :
+      "uuid".equals( format)?       Integer.valueOf(  36) :
+      null;
+    }
+
+  /**
+   * Returns the minimum length of a string in the given format. Returns null if this format has no minimum length.
+   */
+  public static Integer stringFormatMin( String format)
+    {
+    return
+      "email".equals( format)?      Integer.valueOf(  7) :
+      "date".equals( format)?       Integer.valueOf( 10) :
+      "date-time".equals( format)?  Integer.valueOf( 29) :
+      "uuid".equals( format)?       Integer.valueOf( 36) :
+      null;
     }
 
   /**

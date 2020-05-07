@@ -9,6 +9,8 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.FormattedString;
 
+import java.util.regex.Pattern;
+
 /**
  * Defines a singleton date string value set.
  */
@@ -37,8 +39,9 @@ public class DateConstant extends StringConstant
     {
     try
       {
-      FormattedString.getDateFormat().parse( value);
-      return true;
+      return
+        date_.matcher( value).matches()
+        && FormattedString.getDateFormat().parse( value) != null;
       }
     catch( Exception e)
       {
@@ -58,4 +61,6 @@ public class DateConstant extends StringConstant
 
     return value;
     }
+
+  private static final Pattern date_ = Pattern.compile( "[0-9]{4}-[0-9]{2}-[0-9]{2}");
   }

@@ -53,6 +53,12 @@ public class EmailDomainTest extends ValueDomainTest
       .when( () -> new EmailConstant( value));
 
     // Given...
+    String trailingAt = "me@mydomain.org@";
+
+    expectFailure( ValueDomainException.class)
+      .when( () -> new EmailConstant( trailingAt));
+
+    // Given...
     String valueNotAllowed = "me;myself;i@mydomain.org";
 
     expectFailure( ValueDomainException.class)
@@ -146,12 +152,13 @@ public class EmailDomainTest extends ValueDomainTest
     {
     // Given...
     EmailDomain domain = new EmailDomain();
+    domain.setLengthRange( 0, 6);
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( 7, 400));
+    // When...
+    DataValue<String> value = domain.select( getResolverContext());
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( 6, 32));
+    // Then...
+    assertThat( "Invalid email", EmailDomain.isEmail( value.getValue()), is( false));
     }
 
   @Test
@@ -159,12 +166,22 @@ public class EmailDomainTest extends ValueDomainTest
     {
     // Given...
     EmailDomain domain = new EmailDomain();
+    domain.setLengthRange( 6);
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( 6));
+    // When...
+    DataValue<String> value = domain.select( getResolverContext());
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( 400));
+    // Then...
+    assertThat( "Invalid email", EmailDomain.isEmail( value.getValue()), is( false));
+
+    // Given...
+    domain.setLengthRange( 400);
+
+    // When...
+    value = domain.select( getResolverContext());
+
+    // Then...
+    assertThat( "Invalid email", EmailDomain.isEmail( value.getValue()), is( false));
     }
 
   @Test

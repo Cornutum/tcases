@@ -1,0 +1,75 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Email",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/email": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "within",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "email",
+                            "minLength": 7,
+                            "maxLength": 320
+                        }
+                    },
+                    {
+                        "name": "outside",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "email",
+                            "minLength": 6,
+                            "maxLength": 321
+                        }
+                    },
+                    {
+                        "name": "none",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,614 @@
+<?xml version="1.0"?>
+<TestCases system="Date">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Date"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_date">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/date"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Date"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="No">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" NA="true">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="No">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" NA="true">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="No">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" NA="true">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="null" failure="true">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="Not string" failure="true">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="9" failure="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="11" failure="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="null" failure="true">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="Not string" failure="true">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="9" failure="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="11" failure="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="null" failure="true">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="Not string" failure="true">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" NA="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="9" failure="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/date"/>
+      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Date"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="within.Defined" value="Yes">
+          <Has name="paramName" value="within"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="within.Type" value="string">
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="within.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="within"/>
+        </Var>
+        <Var name="outside.Defined" value="Yes">
+          <Has name="paramName" value="outside"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="outside.Type" value="string">
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="outside.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="outside"/>
+        </Var>
+        <Var name="none.Defined" value="Yes">
+          <Has name="paramName" value="none"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="none.Type" value="string">
+          <Has name="paramName" value="none"/>
+        </Var>
+        <Var name="none.Value.Length" value="11" failure="true">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="none"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

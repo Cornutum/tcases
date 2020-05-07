@@ -128,9 +128,13 @@ public class DateTimeDomainTest extends ValueDomainTest
     {
     // Given...
     DateTimeDomain domain = new DateTimeDomain();
+    domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 29").build()));
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "< 30").build())));
+    // When...
+    DataValue<String> value = domain.select( getResolverContext());
+
+    // Then...
+    assertThat( "Invalid date-time", DateTimeConstant.isDateTime( value.getValue()), is( false));
     }
 
   @Test
@@ -138,8 +142,12 @@ public class DateTimeDomainTest extends ValueDomainTest
     {
     // Given...
     DateTimeDomain domain = new DateTimeDomain();
+    domain.setLengthRange( 8);
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( 8));
+    // When...
+    DataValue<String> value = domain.select( getResolverContext());
+
+    // Then...
+    assertThat( "Invalid date-time", DateTimeConstant.isDateTime( value.getValue()), is( false));
     }
   }

@@ -8,6 +8,10 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
+import static org.cornutum.tcases.openapi.OpenApiUtils.stringFormatMax;
+import static org.cornutum.tcases.openapi.OpenApiUtils.stringFormatMin;
+
+import static org.apache.commons.lang3.StringUtils.rightPad;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -40,7 +44,7 @@ public class EmailDomain extends AbstractStringDomain
    */
   public EmailDomain( Characters chars)
     {
-    super( MAX_LOCAL + MAX_DOMAIN + 1, chars);
+    super( MAX_LENGTH, chars);
 
     allowedLocalPartChars_ =
       chars.filtered( localPartChars_)
@@ -71,38 +75,6 @@ public class EmailDomain extends AbstractStringDomain
     }
 
   /**
-   * Defines a constant length range for values in this domain.
-   */
-  public void setLengthRange( Integer length)
-    {
-    super.setLengthRange(
-      Optional.ofNullable( length)
-      .filter( l -> l >= MIN_LENGTH && l <= getMaxLength())
-      .orElseThrow( () -> new ValueDomainException( String.format( "Invalid email length=%s -- must be in [%s,%s]", length, MIN_LENGTH, getMaxLength()))));
-    }
-
-  /**
-   * Defines the length range for values in this domain.
-   */
-  public void setLengthRange( Integer min, Integer max)
-    {
-    super.setLengthRange(
-
-      Optional.ofNullable( min)
-      .filter( m -> m >= MIN_LENGTH)
-      .orElseThrow( () -> new ValueDomainException( String.format( "Invalid email length range=[%s,%s] -- must be >= %s", min, max, MIN_LENGTH))),
-
-      Optional.ofNullable( max)
-      .map( m -> {
-        return
-          Optional.of( m)
-          .filter( v -> v <= getMaxLength())
-          .orElseThrow( () -> new ValueDomainException( String.format( "Invalid email length range=[%s,%s] -- must be <= %s", min, max, getMaxLength())));
-        })
-      .orElse( null));
-    }
-
-  /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
   protected DataValue<String> dataValueOf( String value)
@@ -125,7 +97,7 @@ public class EmailDomain extends AbstractStringDomain
    */
   public static boolean isEmail( String value)
     {
-    String[] parts = value.split( "@");
+    String[] parts = value.split( "@", -1);
     String[] localParts = parts.length == 2? parts[0].split( "\\.") : null;
     String[] domainParts = parts.length == 2? parts[1].split( "\\.") : null;
 
@@ -146,20 +118,36 @@ public class EmailDomain extends AbstractStringDomain
    */
   protected String newValue( ResolverContext context, int length)
     {
-    int partsLength = length - 5;
-    int localLengthMax = Math.min( MAX_LOCAL, partsLength - 1);
-    int localLengthMin = length - MAX_DOMAIN - 1;
-    int localLength = Math.max( context.getRandom().nextInt( localLengthMax) + 1, localLengthMin);
-    int domainLength = partsLength - localLength;
+    String value;
 
-    return
-      new StringBuilder()
-      .append( randomPathOf( context, allowedLocalPartChars_, localLength, localLength))
-      .append( "@")
-      .append( randomPathOf( context, allowedDomainPartChars_, domainLength, MAX_LABEL))
-      .append( ".")
-      .append( topLevels_[ context.getRandom().nextInt( topLevels_.length)])
-      .toString();
+    // If invalid length, ensure new value is an invalid email address.
+    if( length < MIN_LENGTH)
+      {
+      value = newValue( context, MIN_LENGTH).replace( "@", "").substring( 0, length);
+      }
+    else if( length > MAX_LENGTH)
+      {
+      value = rightPad( newValue( context, MAX_LENGTH), length, '@');
+      }
+    else
+      {
+      int partsLength = length - 5;
+      int localLengthMax = Math.min( MAX_LOCAL, partsLength - 1);
+      int localLengthMin = length - MAX_DOMAIN - 1;
+      int localLength = Math.max( context.getRandom().nextInt( localLengthMax) + 1, localLengthMin);
+      int domainLength = partsLength - localLength;
+
+      value =
+        new StringBuilder()
+        .append( randomPathOf( context, allowedLocalPartChars_, localLength, localLength))
+        .append( "@")
+        .append( randomPathOf( context, allowedDomainPartChars_, domainLength, MAX_LABEL))
+        .append( ".")
+        .append( topLevels_[ context.getRandom().nextInt( topLevels_.length)])
+        .toString();
+      }
+
+    return value;
     }
 
   /**
@@ -212,7 +200,8 @@ public class EmailDomain extends AbstractStringDomain
   private final String allowedLocalPartChars_;
   private final String allowedDomainPartChars_;
 
-  private static final int MIN_LENGTH = 7;
+  private static final int MIN_LENGTH = stringFormatMin( "email");
+  private static final int MAX_LENGTH = stringFormatMax( "email");
   private static final int MAX_LOCAL = 64;
   private static final int MAX_DOMAIN = 255;
   private static final int MAX_LABEL = 63;

@@ -1,0 +1,615 @@
+
+[
+    {
+        "id": 0,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "t@9.gov",
+                    "format": "email"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "0@t.gov",
+                    "format": "email"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "e@x.com",
+                    "format": "email"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "7~4oxrjAJIpA3.vx'E4|{b1zX+LxfD.2~~'LY*CS;s!}GSM.#&7cCcO^O5=kJ9a&@E.iW2F.nSyD.5iaz.dHr2.ZOZL.Yutc.NloL.XGdW.ZGnm.whOb.c89J.D6nv.rKzG.mRSU.Pc0f.6TnE.Cvjg.bDB1.Z8Ab.KPDX.izmB.Qe1p.z5ME.Rsy5.O1N4.s4Zv.oMMA.gxTq.hKrP.YxV5.JjIK.EIPZ.6kaz.XDGD.aNSz.19iP.ftTN.4KS4.iGn8.yfKI.Ay4i.sv4N.aKHP.wdoY.9g9g.aOTa.Bn0J.hZ1Q.vi2I.qwPl.com",
+                    "format": "email"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "F.}h.ha.w~.P*.9V.Az.hF.^A.Rd.Yo.*E.Lm.V7.KJ.x#.VW.mU.^7.C!.+9.%o@W9.cu.fW.Bk.id.31.Ez.oR.ny.j6.Id.n3.QY.sX.qS.H2.ek.cU.4Y.56.Pv.ip.B2.3A.IW.8O.6G.UC.PD.DW.hO.yH.PK.ef.kQ.Qz.64.VU.tU.ZA.su.18.ow.le.H7.HW.yt.sd.si.T7.oY.8p.nh.yQ.xh.Oh.cV.yL.5X.Uj.Hq.mm.7y.yT.pl.Z3.kO.jV.Ha.gS.3s.jg.mD.5a.Jz.0J.zZ.Im.of.mH.uE.Ls.Y4.vs.org",
+                    "format": "email"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "3.yp.G;.9j.sn._6.qp.5e.6N.*c.yC.K0.yy.;S.SW.JT.Gr.lM.H^.j4.eB.=a@d.1sHs.v5ZB.VnmS.ieUf.TexP.pVFt.tpRn.taon.3gcV.hKrR.E6N3.KwYj.rSeS.qMww.6Jm1.3Cs3.LuM1.Ra3M.boQC.L7k2.t8XM.aC52.6CNu.t6Bu.DtbX.zsvU.8YWt.sPcj.qpEU.eb3M.bFu7.8MWc.oKyM.4wh7.DZ97.RY7l.Z5W3.5t0w.zcFs.3I7P.9iVO.GGws.u3yN.pTNA.qMiw.zkoN.6dtK.T6Dm.k6La.0oep.net",
+                    "format": "email"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "within.Type=null"
+    },
+    {
+        "id": 4,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 325.1
+                },
+                "valid": false
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "within.Type=Not string"
+    },
+    {
+        "id": 5,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "^Q.org",
+                    "format": "email"
+                },
+                "valid": false
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "within.Value.Length=6"
+    },
+    {
+        "id": 6,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "-Y%w.JumEfiwjw.t/b*rmui9.}uNk2DS0P._zC*w7's`.Oh|!=MjfB.DH*7ZZ/N5@VY.Nk.bD.Ai.vQ.j9.HR.to.Ik.14.Fm.xD.pd.NL.Sx.bp.j5.ZX.Tf.3l.rq.KO.YF.Co.tX.Vs.E0.9C.Na.3i.4w.ep.ZH.66.QN.u9.3r.jA.ju.3D.Jb.5x.Ea.J2.JP.Yi.Qt.3N.oi.JA.3M.2X.z4.5a.t7.m7.5k.ib.CH.46.pc.cO.nL.Ip.2p.08.NE.21.1R.Q6.f6.Zg.v2.72.va.jH.dk.4O.t1.Av.lc.yQ.gW.Qb.gov@",
+                    "format": "email"
+                },
+                "valid": false
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "within.Value.Length=321"
+    },
+    {
+        "id": 7,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "outside.Type=null"
+    },
+    {
+        "id": 8,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "dravp": {
+                            "type": "integer",
+                            "value": 183,
+                            "format": "int32"
+                        },
+                        "ngshwxzaqq": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "FF"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "3[cD"
+                                }
+                            ]
+                        },
+                        "udxctfnyeumxcyu": {
+                            "type": "integer",
+                            "value": 724,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "outside.Type=Not string"
+    },
+    {
+        "id": 9,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "oP.edu",
+                    "format": "email"
+                },
+                "valid": false
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "outside.Value.Length=6"
+    },
+    {
+        "id": 10,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "y.EE.3B.3Y.fl.6_.u`.m8.;&.XU.J4.pH.CH.G2.1'.Un.Rb.vv.i0.Et.8k.=/@fe.9N.Fc.i8.ws.2j.NQ.OE.Ze.PA.kQ.oM.3J.qH.nL.gU.5u.Mz.Kl.oJ.Zl.bs.ho.G1.jn.2Y.ou.KE.mV.bG.lT.a9.2o.7V.xa.JZ.Lx.Mg.Lc.5e.jz.A4.a4.z3.jX.C7.cJ.tI.eF.U8.rd.yi.nz.LZ.HK.AK.x3.LQ.DC.u6.qn.Xo.1M.su.1D.JU.bT.5C.9F.ux.mP.wn.BV.VX.w4.W0.nl.jh.f2.Ho.VU.vr.ox.66.com@",
+                    "format": "email"
+                },
+                "valid": false
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "outside.Value.Length=321"
+    },
+    {
+        "id": 11,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Type=null"
+    },
+    {
+        "id": 12,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Type=Not string"
+    },
+    {
+        "id": 13,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "~B.net",
+                    "format": "email"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Value.Length=6"
+    },
+    {
+        "id": 14,
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Email",
+        "path": "/email",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "xLxh.rYy8f$$te.Pl3Q{HWPg.&4&-I?uB$.VFu{YUZ9y.J7p*|Pl%Y.FOP;80Y2U@gG.6i.NS.VR.Zu.i5.de.mM.uY.1V.cA.dY.uI.JP.WK.PO.y3.IB.tY.Ix.NX.be.op.22.Z9.lT.YS.OQ.zM.81.2J.N4.JQ.By.0z.iA.7A.Fc.Zx.Dj.UC.Q3.ew.qT.Wq.0i.q8.j7.qu.va.oo.Si.T6.IX.qO.er.OH.Kq.mv.Aq.KP.62.l6.pq.0E.Cf.jf.ks.mF.3K.Vu.zt.Jn.8I.H9.Q3.m0.tV.8g.uO.J8.QM.Za.Fi.gov@",
+                    "format": "email"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Value.Length=321"
+    }
+]

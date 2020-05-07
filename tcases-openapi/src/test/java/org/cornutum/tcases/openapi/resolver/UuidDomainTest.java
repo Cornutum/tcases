@@ -118,9 +118,13 @@ public class UuidDomainTest extends ValueDomainTest
     {
     // Given...
     UuidDomain domain = new UuidDomain();
+    domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 36").build()));
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 0").build())));
+    // When...
+    DataValue<String> value = domain.select( getResolverContext());
+
+    // Then...
+    assertThat( "Invalid UUID", UuidConstant.isUuid( value.getValue()), is( false));
     }
 
   @Test
@@ -128,8 +132,12 @@ public class UuidDomainTest extends ValueDomainTest
     {
     // Given...
     UuidDomain domain = new UuidDomain();
+    domain.setLengthRange( 8);
 
-    expectFailure( ValueDomainException.class)
-      .when( () -> domain.setLengthRange( 8));
+    // When...
+    DataValue<String> value = domain.select( getResolverContext());
+
+    // Then...
+    assertThat( "Invalid UUID", UuidConstant.isUuid( value.getValue()), is( false));
     }
   }

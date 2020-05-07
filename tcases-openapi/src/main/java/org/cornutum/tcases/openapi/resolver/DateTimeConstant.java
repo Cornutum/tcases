@@ -10,6 +10,8 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.openapi.FormattedString;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Defines a singleton String value set.
@@ -54,8 +56,10 @@ public class DateTimeConstant extends StringConstant
     {
     try
       {
-      toTime( value);
-      return true;
+      Matcher dtm = dateTime_.matcher( value);
+      return
+        dtm.matches()
+        && toTime( formatDateTime( dtm.group(1), dtm.group(2), dtm.group(3), dtm.group(4))) != null;
       }
     catch( Exception e)
       {
@@ -75,4 +79,21 @@ public class DateTimeConstant extends StringConstant
 
     return value;
     }
+
+  private static String formatDateTime( String date, String time, String ms, String zone)
+    {
+    return
+      String.format(
+        "%sT%s%s%s",
+        date,
+        time,
+        ms == null? ".000" : ms,
+        zone.equals( "Z")? "+00:00" : zone);
+    }
+  
+  private static final String date_ = "([0-9]{4}-[0-9]{2}-[0-9]{2})";
+  private static final String time_ = "([0-9]{2}:[0-9]{2}:[0-9]{2})";
+  private static final String ms_ = "(\\.[0-9]{3})?";
+  private static final String zone_ = "(Z|[+\\-][0-9]{2}:[0-9]{2})";
+  private static final Pattern dateTime_ = Pattern.compile( String.format( "%sT%s%s%s", date_, time_, ms_, zone_));
   }

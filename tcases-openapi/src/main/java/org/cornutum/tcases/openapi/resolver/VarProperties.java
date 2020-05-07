@@ -530,7 +530,6 @@ public final class VarProperties
         new AsciiStringDomain( chars);
 
       Optional.ofNullable( length)
-        .filter( binding -> !baseDomain.isRestrictedLength())
         .map( Range::of)
         .ifPresent( range -> baseDomain.setLengthRange( range));
 
@@ -771,12 +770,9 @@ public final class VarProperties
 
         new AsciiStringDomain( chars);
 
-      if( !baseDomain.isRestrictedLength())
-        {
-        Integer minLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMinLength")).map( Integer::valueOf).orElse( null);
-        Integer maxLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMaxLength")).map( Integer::valueOf).orElse( null);
-        baseDomain.setLengthRange( minLength, maxLength);
-        }
+      Integer minLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMinLength")).map( Integer::valueOf).orElse( null);
+      Integer maxLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMaxLength")).map( Integer::valueOf).orElse( null);
+      baseDomain.setLengthRange( minLength, maxLength);
 
       Set<String> excluded = Optional.ofNullable( lengthVar.getAnnotationList( "itemNotEnums")).map( e -> e.stream().collect( toSet())).orElse( emptySet());;
       baseDomain.setExcludedStrings( excluded);
