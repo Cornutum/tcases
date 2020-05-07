@@ -8,23 +8,25 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
+import static org.cornutum.tcases.openapi.OpenApiUtils.stringFormatMax;
 import static org.cornutum.tcases.openapi.resolver.UuidConstant.isUuid;
 
 import static org.apache.commons.lang3.StringUtils.leftPad;
+import static org.apache.commons.lang3.StringUtils.rightPad;
 
 import java.util.Arrays;
 
 /**
  * Defines a set of UUID string values that can be used by a request.
  */
-public class UuidDomain extends RestrictedStringDomain
+public class UuidDomain extends AbstractStringDomain
   {
   /**
    * Creates a new UuidDomain instance.
    */
   public UuidDomain()
     {
-    super( 37, Characters.ASCII);
+    super( MAX_LENGTH + 1, Characters.ASCII);
     }
 
   /**
@@ -40,7 +42,7 @@ public class UuidDomain extends RestrictedStringDomain
    */
   protected void initLengthRange()
     {
-    setLengthRange( new IntegerConstant( 36));
+    setLengthRange( new IntegerConstant( MAX_LENGTH));
     }
 
   /**
@@ -67,7 +69,7 @@ public class UuidDomain extends RestrictedStringDomain
     randomBytes[8]  &= 0x3f;  /* clear variant        */
     randomBytes[8]  |= 0x80;  /* set to IETF variant  */
     
-    return
+    String value =
       String.format(
         "%s-%s-%s-%s-%s",
         toHex( randomBytes, 0, 4),
@@ -75,6 +77,16 @@ public class UuidDomain extends RestrictedStringDomain
         toHex( randomBytes, 6, 2),
         toHex( randomBytes, 8, 2),
         toHex( randomBytes, 10, 6));
+
+    // If invalid length, ensure time value is invalid.
+    return
+      length < value.length()?
+      value.substring( 0, length) :
+
+      length > value.length()?
+      rightPad( value, length, '0')
+      
+      : value;
     }
 
   /**
@@ -97,4 +109,6 @@ public class UuidDomain extends RestrictedStringDomain
 
     return hex.toString();
     }
+
+  private static final int MAX_LENGTH = stringFormatMax( "uuid");
 }

@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import java.util.UUID;
+import java.util.regex.Pattern;
 
 /**
  * Defines a singleton UUID string value set.
@@ -35,15 +35,7 @@ public class UuidConstant extends StringConstant
    */
   public static boolean isUuid( String value)
     {
-    try
-      {
-      UUID.fromString( value);
-      return true;
-      }
-    catch( Exception e)
-      {
-      return false;
-      }
+    return uuid_.matcher( value).matches();
     }
 
   /**
@@ -58,4 +50,6 @@ public class UuidConstant extends StringConstant
 
     return value;
     }
+
+  private static final Pattern uuid_ = Pattern.compile( "\\p{XDigit}{8}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{12}");
   }

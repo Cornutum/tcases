@@ -1785,9 +1785,9 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .when( has( instanceValueProperty( instanceVarTag)));
 
       // Ensure min/max range is feasible
-      Integer maxLength = instanceSchema.getMaxLength();
+      Integer maxLength = maxStringFormat( format, instanceSchema.getMaxLength());
       Integer minLength = 
-        Optional.ofNullable( instanceSchema.getMinLength())
+        Optional.ofNullable( minStringFormat( format, instanceSchema.getMinLength()))
         .map( min -> Optional.ofNullable( maxLength).map( max -> adjustedMinOf( "Length", min, max)).orElse( min))
         .orElse( null);
 
@@ -1990,6 +1990,76 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             .build();
           }))
       .build();
+    }
+
+  /**
+   * If the given <CODE>maxLength</CODE> is valid for a string in the given format, returns <CODE>maxLength</CODE>.
+   * Otherwise, returns the format-specific maximum length.
+   */
+  private Integer maxStringFormat( String format, Integer maxLength)
+    {
+    Integer max;
+    Integer maxAllowed = stringFormatMax( format);
+
+    if( maxAllowed == null)
+      {
+      max = maxLength;
+      }
+    else if( maxLength == null)
+      {
+      max = maxAllowed;
+      }
+    else if( maxLength <= maxAllowed)
+      {
+      max = maxLength;
+      }
+    else
+      {
+      notifyWarning(
+        String.format(
+          "maxLength=%s exceeds maximum allowed for format=%s -- using maxLength=%s instead",
+          maxLength,
+          format,
+          maxAllowed));
+      max = maxAllowed;
+      }
+
+    return max;
+    }
+
+  /**
+   * If the given <CODE>minLength</CODE> is valid for a string in the given format, returns <CODE>minLength</CODE>.
+   * Otherwise, returns the format-specific minimum length.
+   */
+  private Integer minStringFormat( String format, Integer minLength)
+    {
+    Integer min;
+    Integer minAllowed = stringFormatMin( format);
+
+    if( minAllowed == null)
+      {
+      min = minLength;
+      }
+    else if( minLength == null)
+      {
+      min = minAllowed;
+      }
+    else if( minLength >= minAllowed)
+      {
+      min = minLength;
+      }
+    else
+      {
+      notifyWarning(
+        String.format(
+          "minLength=%s is below the minimum allowed for format=%s -- using minLength=%s instead",
+          minLength,
+          format,
+          minAllowed));
+      min = minAllowed;
+      }
+
+    return min;
     }
 
   /**

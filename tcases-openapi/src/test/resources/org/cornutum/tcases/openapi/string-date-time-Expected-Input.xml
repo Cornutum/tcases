@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<System name="Date-Time">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Date-Time"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_date-time">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/date-time"/>
+    <Input type="query">
+      <VarSet name="within">
+        <Has name="paramName" value="within"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="within"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="within">
+          <Value name="string" property="withinValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="withinValue">
+          <Has name="format" value="date-time"/>
+          <Var name="Length">
+            <Value name="28" failure="true"/>
+            <Value name="29"/>
+            <Value name="30" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="outside">
+        <Has name="paramName" value="outside"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="outside"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="outside">
+          <Value name="string" property="outsideValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="outsideValue">
+          <Has name="format" value="date-time"/>
+          <Var name="Length">
+            <Value name="28" failure="true"/>
+            <Value name="29"/>
+            <Value name="30" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="none">
+        <Has name="paramName" value="none"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="none"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="none">
+          <Value name="string" property="noneValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="noneValue">
+          <Has name="format" value="date-time"/>
+          <Var name="Length">
+            <Value name="28" failure="true"/>
+            <Value name="29"/>
+            <Value name="30" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
