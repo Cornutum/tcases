@@ -9,20 +9,23 @@ package org.cornutum.tcases.openapi.restassured;
 
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.io.IndentedWriter;
+import org.cornutum.tcases.openapi.resolver.BinaryValue;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
-import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
+import org.cornutum.tcases.openapi.resolver.io.DataValueBinary;
+import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
-
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 
 import java.net.URI;
 import java.util.Optional;
+import java.util.stream.IntStream;
+import static java.util.stream.Collectors.joining;
 
 /**
  * Writes the source code for REST Assured test cases that execute API requests.
  */
-public class RestAssuredTestCaseWriter implements TestCaseWriter
+public class RestAssuredTestCaseWriter extends TestCaseContentWriter
   {
   /**
    * Creates a new RestAssuredTestCaseWriter instance.
@@ -59,6 +62,7 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
       targetWriter.println( "given()");
       targetWriter.indent();
       writeParams( testName, requestCase, targetWriter);
+      writeBody( testName, requestCase, targetWriter);
       targetWriter.unindent();
 
       targetWriter.println( ".when()");
@@ -183,6 +187,88 @@ public class RestAssuredTestCaseWriter implements TestCaseWriter
         stringLiteral( requestUrl)));
     }
   
+  /**
+   * Writes the request body for a target test case to the given stream.
+   */
+  protected void writeBody( String testName, RequestCase requestCase, IndentedWriter targetWriter)
+    {
+    Optional.ofNullable( requestCase.getBody())
+      .ifPresent( body -> {
+        Optional.ofNullable( body.getValue())
+          .ifPresent( value -> {
+
+            // Write binary value?
+            String mediaType = body.getMediaType();
+
+            byte[] bytes = 
+              "application/octet-stream".equals( mediaType) || (mediaType == null && value.getClass().equals( BinaryValue.class))
+              ? DataValueBinary.toBytes( value)
+              : null;
+
+            if( bytes != null)
+              {
+              // Yes
+              writeBodyBinary( testName, bytes, targetWriter);
+              }
+            else
+              {
+              // No, serialize body value according to media type
+              targetWriter.println(
+                String.format(
+                  ".request().body( %s)",
+                  stringLiteral(
+                    Optional.ofNullable( getConverter( mediaType))
+                    .orElseThrow( () -> new TestWriterException( String.format( "No serializer defined for mediaType=%s", mediaType)))
+                    .convert( value))));
+              }
+            });
+        });
+    }
+  
+  /**
+   * Writes the request body as a byte array for a target test case to the given stream.
+   */
+  protected void writeBodyBinary( String testName, byte[] bytes, IndentedWriter targetWriter)
+    {
+    // If small value...
+    final int lineSize = 16;
+    if( bytes.length <= lineSize)
+      {
+      // ... write a single line
+      targetWriter.println( String.format( ".request().body( new byte[]{%s})", initializerFor( bytes, 0, bytes.length)));
+      }
+    else
+      {
+      // Otherwise, write as multiple lines.
+      targetWriter.println( ".request().body(");
+      targetWriter.indent();
+      targetWriter.println( "new byte[] {");
+      targetWriter.indent();
+
+      int from;
+      for( from = 0; bytes.length - from > lineSize; from += lineSize)
+        {
+        targetWriter.println( String.format( "%s,", initializerFor( bytes, from, from + lineSize)));
+        }
+      targetWriter.println( initializerFor( bytes, from, bytes.length));
+        
+      targetWriter.unindent();
+      targetWriter.println( "})");
+      targetWriter.unindent();
+      }
+    }
+
+  /**
+   * Returns the initializer code for the given byte array segment.
+   */
+  private String initializerFor( byte[] bytes, int start, int end)
+    {
+    return
+      IntStream.range( start, end)
+      .mapToObj( i -> StringUtils.leftPad( String.valueOf( bytes[i]), 4))
+      .collect( joining( ","));
+    }
+
   /**
    * Writes response expectations for a target test case to the given stream.
    */
