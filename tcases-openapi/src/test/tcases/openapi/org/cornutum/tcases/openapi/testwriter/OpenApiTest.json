@@ -120,6 +120,36 @@
                         "$ref": "#/components/responses/failure"
                     }
                 }
+            },
+            
+            "get": {
+                "parameters": [
+                    {
+                        "name": "ids",
+                        "required": true,
+                        "in": "query",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 100
+                            },
+                            "minItems": 1,
+                            "maxItems": 4,
+                            "uniqueItems": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
             }
         },
         "/posts/{userId}/{[attributes]}": {
@@ -183,6 +213,111 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+
+            "head": {
+                "parameters": [
+                    {
+                        "name": "user attributes",
+                        "required": true,
+                        "in": "query",
+                        "style": "deepObject",
+                        "explode": false,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user type": {
+                                    "type": "string",
+                                    "enum": [ "Typical User", "VIP!" ]
+                                }
+                            },
+                            "required": [ "user type" ],
+                            "additionalProperties": false
+                        }
+                    },
+                    {
+                        "name": "post?",
+                        "required": true,
+                        "in": "query",
+                        "style": "deepObject",
+                        "explode": false,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "post references": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer",
+                                        "enum": [ 0, 1, 2 ]
+                                    },
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "uniqueItems": true
+                                }
+                            },
+                            "required": [ "post references" ],
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+            
+            "patch": {
+                "parameters": [
+                    {
+                        "name": "Post Marks",
+                        "required": true,
+                        "in": "query",
+                        "style": "spaceDelimited",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [ "{X}", "<Y>", "#Z" ]
+                            },
+                            "minItems": 1,
+                            "maxItems": 3
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "approved": {
+                                        "type": "boolean"
+                                    },
+                                    "reviewer": {
+                                        "type": "string",
+                                        "enum": [ "Larry Moe", "(?)", "Me+You"]
+                                    }
+                                },
+                                "required": [ "approved", "reviewer" ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/success"
