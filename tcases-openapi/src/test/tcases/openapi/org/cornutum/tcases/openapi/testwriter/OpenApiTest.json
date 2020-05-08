@@ -74,6 +74,52 @@
                         "$ref": "#/components/responses/failure"
                     }
                 }
+            },
+            
+            "post": {
+                "parameters": [
+                    {
+                        "name": "approved",
+                        "required": true,
+                        "in": "cookie",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "maxLength": 32
+                                    },
+                                    "text": {
+                                        "type": "string",
+                                        "minLength": 0,
+                                        "maxLength": 64
+                                    }
+                                },
+                                "required": [ "email", "text" ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
             }
         },
         "/posts/{userId}/{[attributes]}": {

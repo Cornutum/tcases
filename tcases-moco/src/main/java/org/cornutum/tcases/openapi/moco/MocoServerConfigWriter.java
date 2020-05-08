@@ -7,9 +7,21 @@
 
 package org.cornutum.tcases.openapi.moco;
 
+import org.cornutum.tcases.openapi.resolver.ArrayValue;
+import org.cornutum.tcases.openapi.resolver.Base64Domain;
+import org.cornutum.tcases.openapi.resolver.BinaryValue;
+import org.cornutum.tcases.openapi.resolver.BooleanValue;
+import org.cornutum.tcases.openapi.resolver.DataValue;
+import org.cornutum.tcases.openapi.resolver.DataValueVisitor;
+import org.cornutum.tcases.openapi.resolver.DecimalValue;
+import org.cornutum.tcases.openapi.resolver.IntegerValue;
+import org.cornutum.tcases.openapi.resolver.LongValue;
+import org.cornutum.tcases.openapi.resolver.NullValue;
+import org.cornutum.tcases.openapi.resolver.ObjectValue;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestCaseException;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
+import org.cornutum.tcases.openapi.resolver.StringValue;
 import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
 import org.cornutum.tcases.util.MapBuilder;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
@@ -22,9 +34,19 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
+
+import static java.util.Collections.emptyList;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -155,6 +177,8 @@ public class MocoServerConfigWriter implements Closeable
     expectedQueries( requestCase).ifPresent( queries -> expected.add( "queries", queries));
     expectedHeaders( requestCase).ifPresent( headers -> expected.add( "headers", headers));
     expectedCookies( requestCase).ifPresent( cookies -> expected.add( "cookies", cookies));
+    expectedEmptyBody( requestCase).ifPresent( emptyBody -> expected.add( "text", emptyBody));
+    expectedJsonBody( requestCase).ifPresent( jsonBody -> expected.add( "json_paths", jsonBody));
 
     return expected.build();
     }
@@ -216,6 +240,36 @@ public class MocoServerConfigWriter implements Closeable
     }
 
   /**
+   * Returns the JSON object that represents the expected JSON request body for the given request case.
+   */
+  private Optional<JsonObject> expectedJsonBody( RequestCase requestCase)
+    {
+    JsonObjectBuilder jsonBody = Json.createObjectBuilder();
+
+    Optional.ofNullable( requestCase.getBody())
+      .filter( body -> "application/json".equals( body.getMediaType()))
+      .map( body -> DataValueJsonPath.expected( body.getValue()))
+      .orElse( emptyList())
+      .stream().forEach( entry -> jsonBody.add( entry.getKey(), entry.getValue()));
+
+    return Optional.of( jsonBody.build()).filter( json -> !json.isEmpty());
+    }
+
+  /**
+   * Returns the JSON value that represents the expected empty request body for the given request case.
+   */
+  private Optional<JsonObject> expectedEmptyBody( RequestCase requestCase)
+    {
+    JsonObjectBuilder emptyBody = Json.createObjectBuilder();
+
+    if( !Optional.ofNullable( requestCase.getBody()).flatMap( body -> Optional.ofNullable( body.getValue())).isPresent())
+      {
+      emptyBody.add( "exist", "false");
+      }
+    return Optional.of( emptyBody.build()).filter( json -> !json.isEmpty());
+    }
+
+  /**
    * Returns the JSON object that represents the expected header parameters for the given request case.
    */
   private Optional<JsonObject> expectedHeaders( RequestCase requestCase)
@@ -262,4 +316,147 @@ public class MocoServerConfigWriter implements Closeable
   private Writer writer_;
 
   private static final Pattern pathParam_ = Pattern.compile( "\\{([^}]+)\\}");
+
+  /**
+   * Returns the expected JsonPath assertions for a {@link DataValue}.
+   */
+  private static class DataValueJsonPath implements DataValueVisitor
+    {
+    /**
+     * Creates a new DataValueJsonPath instance.
+     */
+    private DataValueJsonPath( DataValue<?> value)
+      {
+      value_ = value;
+      }
+
+    /**
+     * Returns the expected JsonPath assertions for the given {@link DataValue}.
+     */
+    public static List<Map.Entry<String,String>> expected( DataValue<?> value)
+      {
+      return new DataValueJsonPath( value).getExpected();
+      }
+
+    /**
+     * Returns the expected JsonPath assertions for this {@link DataValue}.
+     */
+    private List<Map.Entry<String,String>> getExpected()
+      {
+      if( value_ != null)
+        {
+        value_.accept( this);
+        }
+      
+      return expected_;
+      }
+
+    /**
+     * Adds an assertion of this value for the current JSON path.
+     */
+    private void expect( DataValue<?> value)
+      {
+      expect( Objects.toString( value.getValue(), ""));
+      }
+
+    /**
+     * Adds an assertion of this value for the current JSON path.
+     */
+    private void expect( String value)
+      {
+      expected_.add( new SimpleEntry<String,String>( getJsonPath(), value));
+      }
+
+    /**
+     * With the given property added to the path, perform the given action.
+     */
+    private void forProperty( String value, Runnable action)
+      {
+      path_.addFirst( "." + value);
+      action.run();
+      }
+
+    /**
+     * With the given array member added to the path, perform the given action.
+     */
+    private void forMember( int i, Runnable action)
+      {
+      path_.addFirst( "[" + i + "]");
+      action.run();
+      }
+
+    /**
+     * With the given object member added to the path, perform the given action.
+     */
+    private void forMember( String member, Runnable action)
+      {
+      path_.addFirst( "['" + member + "']");
+      action.run();
+      }
+
+    /**
+     * Returns the current JSON path.
+     */
+    private String getJsonPath()
+      {
+      StringBuilder jsonPath = new StringBuilder().append( "$");
+      String next;
+      while( (next = path_.pollFirst()) != null)
+        {
+        jsonPath.append( next);
+        }
+      return jsonPath.toString();
+      }
+    
+    public void visit( ArrayValue<?> data)
+      {
+      int length = data.getValue().size();
+      forProperty( "length()", () -> expect( String.valueOf( length)));
+      IntStream.range( 0, length).forEach( i -> forMember( i, () -> data.getValue().get(i).accept( this)));
+      }
+
+    public void visit( BinaryValue data)
+      {
+      expect( Base64Domain.encoded( data.getValue()));
+      }
+
+    public void visit( BooleanValue data)
+      {
+      expect( data);
+      }
+
+    public void visit( DecimalValue data)
+      {
+      expect( data);
+      }
+
+    public void visit( IntegerValue data)
+      {
+      expect( data);
+      }
+
+    public void visit( LongValue data)
+      {
+      expect( data);
+      }
+
+    public void visit( NullValue data)
+      {
+      expect( data);
+      }
+
+    public void visit( ObjectValue data)
+      {
+      data.getValue().forEach( (member,value) -> forMember( member, () -> value.accept( this)));
+      }
+
+    public void visit( StringValue data)
+      {
+      expect( data);
+      }
+
+    private DataValue<?> value_;
+    private Deque<String> path_ = new ArrayDeque<String>();
+    private List<Map.Entry<String,String>> expected_ = new ArrayList<Map.Entry<String,String>>();
+    }
   }
