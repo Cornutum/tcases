@@ -10,9 +10,11 @@ package org.cornutum.tcases.openapi.restassured;
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.BinaryValue;
+import org.cornutum.tcases.openapi.resolver.DataValue;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.io.DataValueBinary;
+import org.cornutum.tcases.openapi.resolver.io.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
@@ -197,7 +199,6 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
         Optional.ofNullable( body.getValue())
           .ifPresent( value -> {
 
-            // Write binary value?
             String mediaType = body.getMediaType();
 
             byte[] bytes = 
@@ -205,10 +206,17 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
               ? DataValueBinary.toBytes( value)
               : null;
 
+            // Write binary value?
             if( bytes != null)
               {
               // Yes
               writeBodyBinary( testName, bytes, targetWriter);
+              }
+
+            // Write form value?
+            else if( "application/x-www-form-urlencoded".equals( mediaType))
+              {
+              writeBodyForm( testName, value, targetWriter);
               }
             else
               {
@@ -256,6 +264,22 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
       targetWriter.println( "})");
       targetWriter.unindent();
       }
+    }
+  
+  /**
+   * Writes the request body as an x-www-form-urlencoded form for a target test case to the given stream.
+   */
+  protected void writeBodyForm( String testName, DataValue<?> value, IndentedWriter targetWriter)
+    {
+    FormUrlEncoder.encode( value, false)
+      .stream()
+      .forEach( entry -> {
+        targetWriter.println(
+          String.format(
+            ".formParam( %s, %s)",
+            stringLiteral( entry.getKey()),
+            stringLiteral( entry.getValue())));
+        });
     }
 
   /**
