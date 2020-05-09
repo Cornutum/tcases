@@ -22,6 +22,7 @@ import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestCaseException;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.cornutum.tcases.openapi.resolver.StringValue;
+import org.cornutum.tcases.openapi.resolver.io.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
 import org.cornutum.tcases.util.MapBuilder;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
@@ -179,6 +180,7 @@ public class MocoServerConfigWriter implements Closeable
     expectedCookies( requestCase).ifPresent( cookies -> expected.add( "cookies", cookies));
     expectedEmptyBody( requestCase).ifPresent( emptyBody -> expected.add( "text", emptyBody));
     expectedJsonBody( requestCase).ifPresent( jsonBody -> expected.add( "json_paths", jsonBody));
+    expectedFormBody( requestCase).ifPresent( formBody -> expected.add( "forms", formBody));
 
     return expected.build();
     }
@@ -253,6 +255,22 @@ public class MocoServerConfigWriter implements Closeable
       .stream().forEach( entry -> jsonBody.add( entry.getKey(), entry.getValue()));
 
     return Optional.of( jsonBody.build()).filter( json -> !json.isEmpty());
+    }
+
+  /**
+   * Returns the JSON object that represents the expected form request body for the given request case.
+   */
+  private Optional<JsonObject> expectedFormBody( RequestCase requestCase)
+    {
+    JsonObjectBuilder formBody = Json.createObjectBuilder();
+
+    Optional.ofNullable( requestCase.getBody())
+      .filter( body -> "application/x-www-form-urlencoded".equals( body.getMediaType()))
+      .map( body -> FormUrlEncoder.encode( body.getValue(), false))
+      .orElse( emptyList())
+      .stream().forEach( entry -> formBody.add( entry.getKey(), entry.getValue()));
+
+    return Optional.of( formBody.build()).filter( json -> !json.isEmpty());
     }
 
   /**
