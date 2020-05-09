@@ -5,9 +5,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.testwriter;
+package org.cornutum.tcases.openapi.resolver.io;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
+import org.cornutum.tcases.openapi.resolver.io.SimpleValueEncoder;
+import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
+
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
@@ -20,28 +23,11 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
- * Runs tests for {@link TestWriterUtils.SimpleValueEncoder}.
+ * Runs tests for {@link SimpleValueEncoder}.
  */
 @SuppressWarnings("unchecked")
-public class SimpleValueEncoderTest extends TestWriterTest
-  {
-  @Test
-  public void whenPathStyleInvalid()
-    {
-    // Given...
-    ParamData param =
-      param( "myParam")
-      .location( PATH)
-      .style( "form")
-      .decimalData( new BigDecimal( "123.45"))
-      .build();
-
-    assertTestWriterException(
-      () -> TestWriterUtils.getPathParameterValue( param),
-      String.format( "%s: can't get path parameter value", param),
-      String.format( "style=%s is not applicable for a %s parameter", param.getStyle(), String.valueOf( param.getLocation()).toLowerCase()));
-    }
-  
+public class SimpleValueEncoderTest
+  {  
   @Test
   public void whenSimpleDecimal()
     {
@@ -202,40 +188,6 @@ public class SimpleValueEncoderTest extends TestWriterTest
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "nick%20name=X,sex=%3F"));
-    }
-  
-  @Test
-  public void whenHeaderStyleInvalid()
-    {
-    // Given...
-    ParamData param =
-      param( "myParam")
-      .location( HEADER)
-      .style( "form")
-      .decimalData( new BigDecimal( "123.45"))
-      .build();
-
-    assertTestWriterException(
-      () -> TestWriterUtils.getHeaderParameterValue( param),
-      String.format( "%s: can't get header parameter value", param),
-      String.format( "style=%s is not applicable for a %s parameter", param.getStyle(), String.valueOf( param.getLocation()).toLowerCase()));
-    }
-  
-  @Test
-  public void whenHeaderLocationInvalid()
-    {
-    // Given...
-    ParamData param =
-      param( "myParam")
-      .location( PATH)
-      .style( "simple")
-      .decimalData( new BigDecimal( "123.45"))
-      .build();
-
-    assertTestWriterException(
-      () -> TestWriterUtils.getHeaderParameterValue( param),
-      String.format( "%s: can't get header parameter value", param),
-      String.format( "%s is not a %s parameter", param, HEADER));
     }
   
   @Test

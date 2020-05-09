@@ -5,16 +5,17 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.testwriter;
+package org.cornutum.tcases.openapi.resolver.io;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
+import org.cornutum.tcases.openapi.resolver.io.FormParameterEncoder;
+import org.cornutum.tcases.openapi.resolver.io.UriEncoder.Component;
+import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
 import org.cornutum.tcases.util.ListBuilder;
-
-import org.cornutum.tcases.openapi.testwriter.TestWriterUtils.UriEncoder.Component;
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
-import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.UriEncoder.uriEncoded;
+import static org.cornutum.tcases.openapi.resolver.io.UriEncoder.uriEncoded;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
@@ -27,45 +28,11 @@ import java.util.AbstractMap.SimpleEntry;
 import static java.util.Collections.emptyList;
 
 /**
- * Runs tests for {@link TestWriterUtils.FormParameterEncoder}.
+ * Runs tests for {@link FormParameterEncoder}.
  */
 @SuppressWarnings("unchecked")
-public class QueryParameterEncoderTest extends TestWriterTest
-  {
-  @Test
-  public void whenQueryMatrixInteger()
-    {
-    // Given...
-    ParamData param =
-      param( "myParam")
-      .location( QUERY)
-      .style( "matrix")
-      .integerData( 123)
-      .build();
-
-    assertTestWriterException(
-      () -> TestWriterUtils.getQueryParameters( param, false),
-      String.format( "%s: can't get query parameter values", param),
-      String.format( "style=%s is not applicable for a %s parameter", param.getStyle(), String.valueOf( param.getLocation()).toLowerCase()));
-    }
-  
-  @Test
-  public void whenPathFormInteger()
-    {
-    // Given...
-    ParamData param =
-      param( "myParam")
-      .location( PATH)
-      .style( "form")
-      .integerData( 123)
-      .build();
-
-    assertTestWriterException(
-      () -> TestWriterUtils.getQueryParameters( param, false),
-      String.format( "%s: can't get query parameter values", param),
-      String.format( "%s is not a QUERY parameter", param));
-    }
-  
+public class QueryParameterEncoderTest
+  {  
   @Test
   public void whenQueryFormInteger()
     {

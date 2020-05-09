@@ -5,9 +5,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.testwriter;
+package org.cornutum.tcases.openapi.resolver.io;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
+import org.cornutum.tcases.openapi.resolver.io.MatrixValueEncoder;
+import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
+
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
@@ -19,7 +22,7 @@ import static org.hamcrest.Matchers.*;
 import java.math.BigDecimal;
 
 /**
- * Runs tests for {@link TestWriterUtils.MatrixValueEncoder}.
+ * Runs tests for {@link MatrixValueEncoder}.
  */
 @SuppressWarnings("unchecked")
 public class MatrixValueEncoderTest

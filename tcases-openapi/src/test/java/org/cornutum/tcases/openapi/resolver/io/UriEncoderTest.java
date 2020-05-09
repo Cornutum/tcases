@@ -5,11 +5,9 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.testwriter;
+package org.cornutum.tcases.openapi.resolver.io;
 
-import org.cornutum.tcases.openapi.testwriter.TestWriterUtils.UriEncoder;
-import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.UriEncoder.Component.*;
-import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.UriEncoder.uriEncoded;
+import static org.cornutum.tcases.openapi.resolver.io.UriEncoder.Component.*;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
@@ -57,7 +55,7 @@ public class UriEncoderTest
     {
     assertThat(
       String.format( "%s: '%s'", component, value),
-      uriEncoded( component, value),
+      UriEncoder.uriEncoded( component, value),
       is( encoded));
     }
   }
