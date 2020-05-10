@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // 
 //                    Copyright 2020, Cornutum Project
 //                             www.cornutum.org
@@ -22,6 +22,7 @@ import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestCaseException;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.cornutum.tcases.openapi.resolver.StringValue;
+import org.cornutum.tcases.openapi.resolver.io.DataValueText;
 import org.cornutum.tcases.openapi.resolver.io.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
 import org.cornutum.tcases.util.MapBuilder;
@@ -54,6 +55,7 @@ import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.json.JsonWriter;
 import javax.json.JsonWriterFactory;
 import static javax.json.stream.JsonGenerator.PRETTY_PRINTING;
@@ -95,7 +97,14 @@ public class MocoServerConfigWriter implements Closeable
     JsonWriterFactory writerFactory = Json.createWriterFactory( MapBuilder.of( PRETTY_PRINTING, true).build());
     JsonWriter jsonWriter = writerFactory.createWriter( getWriter());
 
-    jsonWriter.write( expectedConfigs( requestCases));
+    try
+      {
+      jsonWriter.write( expectedConfigs( requestCases));
+      }
+    catch( Exception e)
+      {
+      throw new RequestCaseException( String.format( "Can't write Moco server configuration for %s", requestCases), e);
+      }
     }
 
   /**
@@ -158,12 +167,19 @@ public class MocoServerConfigWriter implements Closeable
    */
   private JsonObject expectedConfig( RequestCase requestCase)
     {
-    JsonObjectBuilder expected = Json.createObjectBuilder();
+    try
+      {
+      JsonObjectBuilder expected = Json.createObjectBuilder();
 
-    expected.add( "request", expectedRequest( requestCase));
-    expected.add( "response", expectedResponse( requestCase));
+      expected.add( "request", expectedRequest( requestCase));
+      expected.add( "response", expectedResponse( requestCase));
 
-    return expected.build();
+      return expected.build();
+      }
+    catch( Exception e)
+      {
+      throw new RequestCaseException( String.format( "Can't write Moco server configuration for %s", requestCase), e);
+      }
     }
 
   /**
@@ -181,6 +197,7 @@ public class MocoServerConfigWriter implements Closeable
     expectedEmptyBody( requestCase).ifPresent( emptyBody -> expected.add( "text", emptyBody));
     expectedJsonBody( requestCase).ifPresent( jsonBody -> expected.add( "json_paths", jsonBody));
     expectedFormBody( requestCase).ifPresent( formBody -> expected.add( "forms", formBody));
+    expectedTextBody( requestCase).ifPresent( textBody -> expected.add( "text", textBody));
 
     return expected.build();
     }
@@ -271,6 +288,22 @@ public class MocoServerConfigWriter implements Closeable
       .stream().forEach( entry -> formBody.add( entry.getKey(), entry.getValue()));
 
     return Optional.of( formBody.build()).filter( json -> !json.isEmpty());
+    }
+
+  /**
+   * Returns the JSON object that represents the expected text request body for the given request case.
+   */
+  private Optional<JsonValue> expectedTextBody( RequestCase requestCase)
+    {
+    JsonObjectBuilder textBody = Json.createObjectBuilder();
+
+    Optional.ofNullable( requestCase.getBody())
+      .filter( body -> body.getValue() != null)
+      .filter( body -> body.getMediaType().startsWith( "text/"))
+      .map( body -> DataValueText.toText( body.getValue()))
+      .ifPresent( text -> textBody.add( "body", text));
+
+    return Optional.ofNullable( textBody.build().get( "body"));
     }
 
   /**
