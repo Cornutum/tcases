@@ -466,6 +466,7 @@ public class OpenApiTest {
     public void putPost_0() {
         given()
             .queryParam( "postId", "0")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "true")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -479,6 +480,7 @@ public class OpenApiTest {
     public void putPost_1() {
         given()
             .queryParam( "postId", "28999950531402111.8")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "(?)")
         .when()
@@ -492,6 +494,7 @@ public class OpenApiTest {
     public void putPost_2() {
         given()
             .queryParam( "postId", "0")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "true")
             .formParam( "reviewer", "Me+You")
         .when()
@@ -504,6 +507,7 @@ public class OpenApiTest {
     @Test
     public void putPost_3() {
         given()
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -518,6 +522,7 @@ public class OpenApiTest {
     public void putPost_4() {
         given()
             .queryParam( "postId", "")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -532,6 +537,7 @@ public class OpenApiTest {
     public void putPost_5() {
         given()
             .queryParam( "postId", "jg-")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -546,6 +552,7 @@ public class OpenApiTest {
     public void putPost_6() {
         given()
             .queryParam( "postId", "-1")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -572,6 +579,7 @@ public class OpenApiTest {
     public void putPost_8() {
         given()
             .queryParam( "postId", "448997346156574075.8")
+            .contentType( "text/plain")
             .request().body( "[\"MlyFy,$\",\"iP22^\"]")
         .when()
             .request( "PUT", "http://localhost:12306/post")
@@ -585,6 +593,7 @@ public class OpenApiTest {
     public void putPost_9() {
         given()
             .queryParam( "postId", "571802726739922035.8")
+            .contentType( "application/x-www-form-urlencoded")
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()
@@ -597,6 +606,7 @@ public class OpenApiTest {
     public void putPost_10() {
         given()
             .queryParam( "postId", "180496212748754591.4")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "number", "682.4")
         .when()
             .request( "PUT", "http://localhost:12306/post")
@@ -610,6 +620,7 @@ public class OpenApiTest {
     public void putPost_11() {
         given()
             .queryParam( "postId", "673335475426531261.3")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "http://localhost:12306/post")
@@ -623,6 +634,7 @@ public class OpenApiTest {
     public void putPost_12() {
         given()
             .queryParam( "postId", "408953493899394760.6")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -637,6 +649,7 @@ public class OpenApiTest {
     public void putPost_13() {
         given()
             .queryParam( "postId", "704936566657433448.3")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "[bd|Gb&!")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -651,6 +664,7 @@ public class OpenApiTest {
     public void putPost_14() {
         given()
             .queryParam( "postId", "395913240289997151.7")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
         .when()
             .request( "PUT", "http://localhost:12306/post")
@@ -664,6 +678,7 @@ public class OpenApiTest {
     public void putPost_15() {
         given()
             .queryParam( "postId", "129624029192585112.5")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "")
         .when()
@@ -678,6 +693,7 @@ public class OpenApiTest {
     public void putPost_16() {
         given()
             .queryParam( "postId", "701243072640385781.2")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "obuuyffctnwssfrb,EqV&$")
         .when()
@@ -692,6 +708,7 @@ public class OpenApiTest {
     public void putPost_17() {
         given()
             .queryParam( "postId", "6066229520155986.0")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "~E_{ilb'3*76s/1*rt}aB2-ZF:6&HQoL9#`4:\"7\",Dt6K7BH.fpq-a=|e3 ,,NUhF&4hVmkeev1$d?/ vGu(m6v {g\"YtKRC&!R@O^fH|v&,QP2q>\\EL&:s{t\\'[EZ|t9bR_?<uo(/nD+[y0N#$g*yaTi0q{}X#wb$H9#1=NKr}esL&'I")
         .when()
@@ -706,6 +723,7 @@ public class OpenApiTest {
     public void putPost_18() {
         given()
             .queryParam( "postId", "214226054972517301.1")
+            .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
             .formParam( "i", "occjduoicfrrgd,true")
@@ -1208,6 +1226,7 @@ public class OpenApiTest {
     public void postPosts_0() {
         given()
             .cookie( "approved", "true")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"e@0.gov\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1231,6 +1250,7 @@ public class OpenApiTest {
     public void postPosts_2() {
         given()
             .cookie( "approved", "true")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"Y{1jvMl\\\\?fP`ZaHE\\\\}tmHpOpb:$|%5.0?^pN_OoNhEW$zT1VtY<H:$J9Ab/K7&)E\",\"email\":\"3Nl.qSfS@M.LI.pD.4T.4n.ho.Z5.edu\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1278,6 +1298,7 @@ public class OpenApiTest {
     public void postPosts_6() {
         given()
             .cookie( "approved", "false")
+            .contentType( "text/xml")
             .request().body( "{\"ephkogszzqfbirw\":[\"\\\"(\"]}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1291,6 +1312,7 @@ public class OpenApiTest {
     public void postPosts_7() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "null")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1304,6 +1326,7 @@ public class OpenApiTest {
     public void postPosts_8() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "true")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1317,6 +1340,7 @@ public class OpenApiTest {
     public void postPosts_9() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1330,6 +1354,7 @@ public class OpenApiTest {
     public void postPosts_10() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":null}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1343,6 +1368,7 @@ public class OpenApiTest {
     public void postPosts_11() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":[\";o\",\"rs<Gk?Z\",\"qe0*h)/\"]}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1356,6 +1382,7 @@ public class OpenApiTest {
     public void postPosts_12() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"kU.com\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1369,6 +1396,7 @@ public class OpenApiTest {
     public void postPosts_13() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"/^~hm.L6en9.amxqj@hmW.7Od.eN5.edu\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1382,6 +1410,7 @@ public class OpenApiTest {
     public void postPosts_14() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"email\":\"_@b.org\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1395,6 +1424,7 @@ public class OpenApiTest {
     public void postPosts_15() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":null,\"email\":\"{@y.net\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1408,6 +1438,7 @@ public class OpenApiTest {
     public void postPosts_16() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":{\"x\":true,\"hruqlcoji\":[]},\"email\":\"x@z.net\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1421,6 +1452,7 @@ public class OpenApiTest {
     public void postPosts_17() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"|w`=C8;V~x]FkwIVg-us5r0!]cKW/BU<tb$Q2<fbMlh$?7iFs\\\"Nx$~*VJQWa{@n8Y\",\"email\":\"K@q.com\"}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1434,6 +1466,7 @@ public class OpenApiTest {
     public void postPosts_18() {
         given()
             .cookie( "approved", "false")
+            .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"M@1.gov\",\"zhbygokxf\":true,\"hbwvniykc\":true}")
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1448,6 +1481,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "=")
             .cookie( "region", "=")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\";@p.org\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1461,6 +1495,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "8Vr3?yf*R>MA(|%p")
             .cookie( "region", "z}@x8U}z3%?N$)|r")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"uof)@Pxh_%0+3b#tkKys=2JtkX\\\"mXVZ]bCFkngr[zxur1da$%Pz\\\"a>Orl/(Y}a_q\",\"email\":\"04t.8rM.?GY.I3X.q$m.-c|@O.YA.net\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1472,6 +1507,7 @@ public class OpenApiTest {
     @Test
     public void putPosts_2() {
         given()
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"H@F.net\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1485,6 +1521,7 @@ public class OpenApiTest {
     public void putPosts_3() {
         given()
             .cookie( "postId", "")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"k@f.org\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1498,6 +1535,7 @@ public class OpenApiTest {
     public void putPosts_4() {
         given()
             .cookie( "postId", "")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"A@I.edu\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1511,6 +1549,7 @@ public class OpenApiTest {
     public void putPosts_5() {
         given()
             .cookie( "region", "^")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"R@V.edu\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1525,6 +1564,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "")
             .cookie( "region", "L")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"c@Q.net\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1539,6 +1579,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "-525")
             .cookie( "region", "n")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"-@2.net\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1553,6 +1594,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "")
             .cookie( "region", "T")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"?@q.com\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1567,6 +1609,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "J$7j'AJKsh61`bvz&")
             .cookie( "region", "f")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"{@M.net\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1580,6 +1623,7 @@ public class OpenApiTest {
     public void putPosts_10() {
         given()
             .cookie( "country", "i")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"8@T.net\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1594,6 +1638,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "k")
             .cookie( "region", "")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"Z@m.edu\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1608,6 +1653,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "b")
             .cookie( "region", "385")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"6@v.org\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1622,6 +1668,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "=")
             .cookie( "region", "")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"B@s.gov\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1636,6 +1683,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "}")
             .cookie( "region", "tH`mF~v>f|K%35t[U")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"{@C.org\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1652,6 +1700,7 @@ public class OpenApiTest {
             .cookie( "region", "=")
             .cookie( "bhlxx", "true")
             .cookie( "ylgzuj", "true")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"|@c.gov\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1679,6 +1728,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "-")
             .cookie( "region", "+")
+            .contentType( "text/xml")
             .request().body( "-180.9")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1693,6 +1743,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "I")
             .cookie( "region", "(")
+            .contentType( "text/plain")
             .request().body( "null")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1707,6 +1758,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "p")
             .cookie( "region", "S")
+            .contentType( "text/plain")
             .request().body( "-1012")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1721,6 +1773,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "`")
             .cookie( "region", "L")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1735,6 +1788,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "G")
             .cookie( "region", "c")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":null}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1749,6 +1803,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "U")
             .cookie( "region", "@")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":{\"zxcpsbfk\":205.2}}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1763,6 +1818,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "X")
             .cookie( "region", "t")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"ob.org\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1777,6 +1833,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "'")
             .cookie( "region", "U")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"I.I._.e.I.L.=.F@7AJ80YeutBC5e.gov\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1791,6 +1848,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "}")
             .cookie( "region", "F")
+            .contentType( "text/plain")
             .request().body( "{\"email\":\"P@D.net\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1805,6 +1863,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "]")
             .cookie( "region", "Z")
+            .contentType( "text/plain")
             .request().body( "{\"text\":null,\"email\":\"4@2.edu\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1819,6 +1878,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "<")
             .cookie( "region", "+")
+            .contentType( "text/plain")
             .request().body( "{\"text\":true,\"email\":\"c@U.gov\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1833,6 +1893,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "@")
             .cookie( "region", "G")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"H`|VKsrWoge0ICD|JPt TLg/#+P9F03USC(F12J)k+BE<&oGTJh<RrmNe6-yTg=G<\",\"email\":\"Q@y.org\"}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
@@ -1847,6 +1908,7 @@ public class OpenApiTest {
         given()
             .cookie( "country", "i")
             .cookie( "region", "3")
+            .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"F@5.edu\",\"clgvcbvnaj\":{\"aq\":[]},\"rcnlkwzqpejqpnfd\":{\"jivkhk\":[\"9 O X\",\"\"],\"c\":true},\"eleszxltbtohx\":true}")
         .when()
             .request( "PUT", "http://localhost:12306/posts")
