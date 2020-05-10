@@ -200,6 +200,7 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
           .ifPresent( value -> {
 
             String mediaType = body.getMediaType();
+            targetWriter.println( String.format( ".contentType( %s)", stringLiteral( mediaType)));
 
             byte[] bytes = 
               "application/octet-stream".equals( mediaType) || (mediaType == null && value.getClass().equals( BinaryValue.class))

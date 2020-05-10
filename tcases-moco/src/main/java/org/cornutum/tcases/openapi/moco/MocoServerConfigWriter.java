@@ -331,6 +331,14 @@ public class MocoServerConfigWriter implements Closeable
       .filter( param -> param.getLocation() == HEADER)
       .forEach( param -> TestWriterUtils.getHeaderParameterValue( param).ifPresent( value -> headers.add( param.getName(), value)));
 
+    Optional.ofNullable( requestCase.getBody())
+      .flatMap( body -> Optional.ofNullable( body.getMediaType()))
+      .ifPresent( mediaType -> {
+        JsonObjectBuilder contentType = Json.createObjectBuilder();
+        contentType.add( "contain", mediaType);
+        headers.add( "Content-Type", contentType.build());
+        });
+
     return Optional.of( headers.build()).filter( json -> !json.isEmpty());
     }
 
