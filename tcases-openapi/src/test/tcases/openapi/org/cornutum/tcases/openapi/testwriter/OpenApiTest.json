@@ -150,8 +150,69 @@
                         "$ref": "#/components/responses/failure"
                     }
                 }
+            },
+
+            "put": {
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "required": true,
+                        "in": "cookie",
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "country": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 16
+                                },
+                                "region": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 16
+                                }
+                            },
+                            "required": [ "country", "region" ],
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "text/plain": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "maxLength": 32
+                                    },
+                                    "text": {
+                                        "type": "string",
+                                        "minLength": 0,
+                                        "maxLength": 64
+                                    }
+                                },
+                                "required": [ "email", "text" ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
             }
         },
+        
         "/posts/{userId}/{[attributes]}": {
             "delete": {
                 "parameters": [
@@ -198,6 +259,47 @@
                 }
             }
         },
+
+        "/posts/{attributes}": {
+            "trace": {
+                "parameters": [
+                    {
+                        "name": "attributes",
+                        "required": true,
+                        "in": "path",
+                        "style": "matrix",
+                        "explode": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "approved": {
+                                    "type": "boolean"
+                                },
+                                "likes": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                },
+                                "subject": {
+                                    "type": "string",
+                                    "enum": [ "A Day In Hell", "What? Me, worry?" ]
+                                }
+                            },
+                            "required": [ "approved", "likes" ],
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        
         "/post": {
             "put": {
                 "parameters": [
@@ -315,6 +417,44 @@
                             },
                             "minItems": 1,
                             "maxItems": 3
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        
+        "/post/{userId}/{approved}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "style": "label",
+                        "explode": false,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000
+                        }
+                    },
+                    {
+                        "name": "approved",
+                        "required": true,
+                        "in": "path",
+                        "style": "label",
+                        "explode": false,
+                        "schema": {
+                            "type": "integer",
+                            "enum": [ 0, 1 ]
                         }
                     }
                 ],
