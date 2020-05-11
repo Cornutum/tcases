@@ -474,6 +474,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
       setTestCase( new TestCase( requireInteger( attributes, ID_ATR)));
+      getTestCase().setName( StringUtils.trimToNull( getAttribute( attributes, NAME_ATR)));
 
       String failureAtr = StringUtils.trimToNull( getAttribute( attributes, FAILURE_ATR));
       boolean failure = failureAtr != null && BooleanUtils.toBoolean( failureAtr);
@@ -540,7 +541,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
      */
     protected Set<String> addAttributes( Set<String> attributes)
       {
-      return addAttributeList( super.addAttributes( attributes), ID_ATR, FAILURE_ATR);
+      return addAttributeList( super.addAttributes( attributes), ID_ATR, FAILURE_ATR, NAME_ATR);
       }
 
     /**

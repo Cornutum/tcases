@@ -9,7 +9,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="String"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
       <Has name="properties" value="param0,param0Value"/>
@@ -31,7 +31,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
       <Has name="server" value="/"/>
@@ -52,7 +52,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
       <Has name="properties" value="param0"/>
@@ -74,7 +74,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="param0.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
       <Has name="properties" value="param0,param0Value"/>
@@ -96,7 +96,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="param0.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
       <Has name="properties" value="param0"/>

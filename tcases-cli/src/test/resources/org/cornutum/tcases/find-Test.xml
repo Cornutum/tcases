@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TestCases system="Examples">
   <Function name="find">
-    <TestCase id="0">
+    <TestCase id="0" name="pattern.size=&apos;empty&apos;">
       <Has name="properties" value="empty,fileExists,fileName,quoted"/>
       <Input type="arg">
         <Var name="pattern.size" value="empty"/>
@@ -17,7 +17,7 @@
         <Var name="file.contents.patternsInLine" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="pattern.size=&apos;singleChar&apos;">
       <Has name="properties" value="fileExists,fileName,matchable,singleChar"/>
       <Input type="arg">
         <Var name="pattern.size" value="singleChar"/>
@@ -33,7 +33,7 @@
         <Var name="file.contents.patternsInLine" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="pattern.size=&apos;manyChars&apos;">
       <Has name="properties" value="fileExists,fileName,match,matchable,quoted"/>
       <Input type="arg">
         <Var name="pattern.size" value="manyChars"/>
@@ -49,7 +49,7 @@
         <Var name="file.contents.patternsInLine" value="one"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="pattern.blanks=&apos;one&apos;">
       <Has name="properties" value="fileExists,fileName,many,match,matchable,quoted,singleChar"/>
       <Input type="arg">
         <Var name="pattern.size" value="singleChar"/>
@@ -65,7 +65,7 @@
         <Var name="file.contents.patternsInLine" value="many"/>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="pattern.embeddedQuotes=&apos;one&apos;">
       <Has name="properties" value="fileExists,fileName,match,matchable"/>
       <Input type="arg">
         <Var name="pattern.size" value="manyChars"/>
@@ -81,7 +81,7 @@
         <Var name="file.contents.patternsInLine" value="one"/>
       </Input>
     </TestCase>
-    <TestCase id="5">
+    <TestCase id="5" name="pattern.embeddedQuotes=&apos;many&apos;">
       <Has name="properties" value="fileExists,fileName,many,match,matchable,quoted"/>
       <Input type="arg">
         <Var name="pattern.size" value="manyChars"/>
@@ -97,7 +97,7 @@
         <Var name="file.contents.patternsInLine" value="one"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="pattern.quoted=&apos;unterminated&apos;">
       <Has name="properties" value="empty,fileExists,fileName"/>
       <Input type="arg">
         <Var name="pattern.size" value="empty"/>
@@ -113,7 +113,7 @@
         <Var name="file.contents.patternsInLine" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="fileName=&apos;missing&apos;">
       <Input type="arg">
         <Var name="pattern.size" NA="true"/>
         <Var name="pattern.quoted" NA="true"/>
@@ -128,7 +128,7 @@
         <Var name="file.contents.patternsInLine" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="file.exists=&apos;no&apos;">
       <Has name="properties" value="fileName"/>
       <Input type="arg">
         <Var name="pattern.size" NA="true"/>
@@ -144,7 +144,7 @@
         <Var name="file.contents.patternsInLine" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="file.contents.linesLongerThanPattern=&apos;none&apos;">
       <Has name="properties" value="fileExists,fileName,singleChar"/>
       <Input type="arg">
         <Var name="pattern.size" value="singleChar"/>

@@ -9,7 +9,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="id.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
@@ -29,7 +29,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="id.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/operations"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
@@ -48,7 +48,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="id.Value.Is=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
@@ -68,7 +68,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="id.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
@@ -88,7 +88,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="id.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id"/>
@@ -108,7 +108,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id"/>
@@ -135,7 +135,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="id.Defined=&apos;Yes&apos;">
       <Has name="operation" value="HEAD"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
@@ -155,7 +155,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="id.Defined=&apos;No&apos;">
       <Has name="operation" value="HEAD"/>
       <Has name="path" value="/operations"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
@@ -174,7 +174,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="id.Value.Is=&apos;0&apos;">
       <Has name="operation" value="HEAD"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
@@ -194,7 +194,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="id.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="HEAD"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id,idValue"/>
@@ -214,7 +214,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="id.Type=null">
       <Has name="operation" value="HEAD"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id"/>
@@ -234,7 +234,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="HEAD"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="id"/>
@@ -261,7 +261,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content"/>
@@ -277,7 +277,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Body.Defined=&apos;No&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
@@ -290,7 +290,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="Body.application-json.Value.Properties.Additional=&apos;No&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
@@ -306,7 +306,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="Content"/>
@@ -322,7 +322,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content"/>
@@ -338,7 +338,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content"/>
@@ -361,7 +361,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="param0,param0Value"/>
@@ -381,7 +381,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operationNew"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
@@ -400,7 +400,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="param0.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="param0,param0Value"/>
@@ -420,7 +420,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="param0"/>
@@ -440,7 +440,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="param0.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="param0"/>
@@ -467,7 +467,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="id.Defined=&apos;Yes&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id,idValue"/>
@@ -495,7 +495,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="id.Defined=&apos;No&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
@@ -520,7 +520,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="id.Value.Is=&apos;0&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonValue,Content,id,idValue"/>
@@ -548,7 +548,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="id.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="id,idValue"/>
@@ -574,7 +574,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="id.Type=null">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
@@ -602,7 +602,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
@@ -630,7 +630,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="Content"/>
@@ -658,7 +658,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,Content"/>
@@ -686,7 +686,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,Content"/>
@@ -721,7 +721,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="id.Defined=&apos;Yes&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id,idValue"/>
@@ -749,7 +749,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="id.Defined=&apos;No&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
@@ -774,7 +774,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="id.Value.Is=&apos;0&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonValue,Content,id,idValue"/>
@@ -802,7 +802,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="id.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="id,idValue"/>
@@ -828,7 +828,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="id.Type=null">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
@@ -856,7 +856,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
@@ -884,7 +884,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="Content"/>
@@ -912,7 +912,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,Content"/>
@@ -940,7 +940,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
       <Has name="properties" value="application-json,Content"/>

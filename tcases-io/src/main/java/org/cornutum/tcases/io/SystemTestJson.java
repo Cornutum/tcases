@@ -108,6 +108,7 @@ public final class SystemTestJson
   private static TestCase asTestCase( JsonObject json)
     {
     TestCase testCase = new TestCase( json.getInt( ID_KEY));
+    testCase.setName( json.getString( NAME_KEY, null));
 
     try
       {
@@ -117,7 +118,7 @@ public final class SystemTestJson
 
       // Get test case bindings.
       json.keySet().stream()
-        .filter( key -> !(key.equals( ID_KEY) || key.equals( HAS_KEY)))
+        .filter( key -> !(key.equals( ID_KEY) || key.equals( HAS_KEY) || key.equals( NAME_KEY)))
         .forEach( varType -> getVarBindings( varType, json.getJsonObject( varType)).forEach( binding -> testCase.addVarBinding( binding)));
 
       long failureCount =
@@ -260,6 +261,7 @@ public final class SystemTestJson
     JsonObjectBuilder builder = Json.createObjectBuilder();
 
     builder.add( ID_KEY, testCase.getId());
+    Optional.ofNullable( testCase.getName()).ifPresent( name -> builder.add( NAME_KEY, name));
     addAnnotations( builder, testCase);
 
     Arrays.stream( testCase.getVarTypes()).forEach( varType -> builder.add( varType, toJson( testCase, varType)));
@@ -325,6 +327,7 @@ public final class SystemTestJson
   private static final String FAILURE_KEY = "failure";
   private static final String HAS_KEY = "has";
   private static final String ID_KEY = "id";
+  private static final String NAME_KEY = "name";
   private static final String NA_KEY = "NA";
   private static final String SYSTEM_KEY = "system";
   private static final String TEST_CASES_KEY = "testCases";

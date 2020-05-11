@@ -9,7 +9,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="AllOf"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative0,param0Value"/>
@@ -69,7 +69,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0Alternative1"/>
@@ -129,7 +129,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="param0.Alternative.Used=&apos;2&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative2,param0Value"/>
@@ -189,7 +189,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="param0.Alternative.Used=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0Alternative3"/>
@@ -249,7 +249,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="param0.Alternative.0.Value=&apos;B&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative0,param0Value"/>
@@ -309,7 +309,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5">
+    <TestCase id="5" name="param0.Alternative.0.Value=&apos;C&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative0,param0Value"/>
@@ -369,7 +369,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6">
+    <TestCase id="6" name="param0.Alternative.1.Type=&apos;string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -429,7 +429,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7">
+    <TestCase id="7" name="param0.Alternative.1.Value.Length=&apos;&gt; 2&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -489,7 +489,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8">
+    <TestCase id="8" name="param0.Alternative.2.Value=&apos;B&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative2,param0Value"/>
@@ -549,7 +549,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9">
+    <TestCase id="9" name="param0.Alternative.2.Value=&apos;C&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative2,param0Value"/>
@@ -609,7 +609,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10">
+    <TestCase id="10" name="param0.Alternative.3.Type=&apos;string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative3,param0NotExcluded,param0Value"/>
@@ -670,7 +670,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="param0.Alternative.0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative0"/>
@@ -730,7 +730,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="12" failure="true" name="param0.Alternative.0.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative0"/>
@@ -790,7 +790,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="13" failure="true" name="param0.Alternative.0.Value=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative0,param0Value"/>
@@ -851,7 +851,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true">
+    <TestCase id="14" failure="true" name="param0.Alternative.1.Value.Length=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -911,7 +911,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true">
+    <TestCase id="15" failure="true" name="param0.Alternative.1.Value.Matches-Patterns.0=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -971,7 +971,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true">
+    <TestCase id="16" failure="true" name="param0.Alternative.1.Value.Matches-Patterns.1=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative1,param0Value"/>
@@ -1031,7 +1031,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true">
+    <TestCase id="17" failure="true" name="param0.Alternative.3.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative3,param0NotExcluded,param0Value"/>
@@ -1092,7 +1092,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true">
+    <TestCase id="18" failure="true" name="param0.Alternative.3.Value.Length=&apos;2&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative3,param0NotExcluded,param0Value"/>
@@ -1153,7 +1153,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true">
+    <TestCase id="19" failure="true" name="param0.Alternative.3.Value.Matches-Patterns.1=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative3,param0NotExcluded,param0Value"/>
@@ -1214,7 +1214,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="20" failure="true">
+    <TestCase id="20" failure="true" name="param0.Alternative.3.Value.Is=&apos;A&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative3,param0Value"/>
@@ -1274,7 +1274,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="21" failure="true">
+    <TestCase id="21" failure="true" name="param0.Alternative.3.Value.Is=&apos;B&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative3,param0Value"/>
@@ -1334,7 +1334,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="22" failure="true">
+    <TestCase id="22" failure="true" name="param0.Alternative.3.Value.Is=&apos;C&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alternative3,param0Value"/>

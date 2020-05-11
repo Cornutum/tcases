@@ -9,7 +9,7 @@
     <Has name="server" value="http://petstore.swagger.io/api"/>
     <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="tags.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit,limitValue,tags,tagsItemsNone,tagsValue"/>
@@ -52,7 +52,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="tags.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
@@ -94,7 +94,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="tags.Items.Size=&apos;1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit,limitValue,tags,tagsItemsValue,tagsValue"/>
@@ -137,7 +137,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="tags.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags,tagsItemsMany,tagsItemsValue,tagsValue"/>
@@ -180,7 +180,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="tags.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit,limitValue,tags,tagsItemsMany,tagsItemsValue,tagsValue"/>
@@ -223,7 +223,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="tags.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags"/>
@@ -266,7 +266,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="tags.Type=&apos;Not array&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags"/>
@@ -309,7 +309,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="tags.Items.Contains.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags,tagsValue"/>
@@ -352,7 +352,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="tags.Items.Contains.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="tags,tagsValue"/>
@@ -395,7 +395,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="limit.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit"/>
@@ -438,7 +438,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="limit.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit"/>
@@ -488,7 +488,7 @@
     <Has name="server" value="http://petstore.swagger.io/api"/>
     <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonTagValue,application-jsonValue,Content"/>
@@ -510,7 +510,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Body.application-json.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonValue,Content"/>
@@ -532,7 +532,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="Body.application-json.Value.Properties.tag.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonTagValue,application-jsonValue,Content"/>
@@ -554,7 +554,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="Body.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
@@ -573,7 +573,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="Content"/>
@@ -595,7 +595,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,Content"/>
@@ -617,7 +617,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,Content"/>
@@ -639,7 +639,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="Body.application-json.Value.Properties.name.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
@@ -661,7 +661,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="Body.application-json.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,Content"/>
@@ -683,7 +683,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="Body.application-json.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,Content"/>
@@ -705,7 +705,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="Body.application-json.Value.Properties.tag.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content"/>
@@ -727,7 +727,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="Body.application-json.Value.Properties.tag.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="application-json,application-jsonName,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content"/>
@@ -756,7 +756,7 @@
     <Has name="server" value="http://petstore.swagger.io/api"/>
     <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="id.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
@@ -777,7 +777,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="id.Value.Is=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
@@ -798,7 +798,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="id.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
@@ -819,7 +819,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="id.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
@@ -839,7 +839,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="id.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id"/>
@@ -860,7 +860,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id"/>
@@ -888,7 +888,7 @@
     <Has name="server" value="http://petstore.swagger.io/api"/>
     <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="id.Defined=&apos;Yes&apos;">
       <Has name="operation" value="DELETE"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
@@ -909,7 +909,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="id.Value.Is=&apos;0&apos;">
       <Has name="operation" value="DELETE"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
@@ -930,7 +930,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="id.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="DELETE"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id,idValue"/>
@@ -951,7 +951,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="id.Defined=&apos;No&apos;">
       <Has name="operation" value="DELETE"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
@@ -971,7 +971,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="id.Type=null">
       <Has name="operation" value="DELETE"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id"/>
@@ -992,7 +992,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="DELETE"/>
       <Has name="path" value="/pets/{id}"/>
       <Has name="properties" value="id"/>

@@ -9,7 +9,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Object"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Properties,param0Value"/>
@@ -39,7 +39,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="server" value="/"/>
@@ -68,7 +68,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="properties" value="param0"/>
@@ -98,7 +98,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="param0.Value.Properties.myInteger.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Properties,param0Value"/>
@@ -128,7 +128,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="param0.Value.Properties.myInteger.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="properties" value="param0,param0MyInteger,param0MyIntegerValue,param0Properties,param0Value"/>
@@ -158,7 +158,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="param0.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="properties" value="param0"/>
@@ -188,7 +188,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="param0.Value.Properties.myInteger.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="properties" value="param0,param0Value"/>
@@ -218,7 +218,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="param0.Value.Properties.myInteger.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="properties" value="param0,param0MyInteger,param0Properties,param0Value"/>
@@ -248,7 +248,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="param0.Value.Properties.myInteger.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object/${param0}"/>
       <Has name="properties" value="param0,param0MyInteger,param0Properties,param0Value"/>

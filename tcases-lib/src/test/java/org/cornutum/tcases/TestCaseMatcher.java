@@ -24,6 +24,7 @@ public class TestCaseMatcher extends BaseCompositeMatcher<TestCase>
     super( expected);
 
     expectThat( valueOf( "id", TestCase::getId).matches( Matchers::equalTo));
+    expectThat( valueOf( "name", TestCase::getName).matches( Matchers::equalTo));
     expectThat( valueOf( "bindings", TestCase::getVarBindings).matches( visitsMembersMatching( VarBindingMatcher::new)));
     expectThat( matches( AnnotatedMatcher::new));
     }

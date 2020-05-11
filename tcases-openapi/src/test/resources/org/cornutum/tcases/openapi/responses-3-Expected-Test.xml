@@ -7,7 +7,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
