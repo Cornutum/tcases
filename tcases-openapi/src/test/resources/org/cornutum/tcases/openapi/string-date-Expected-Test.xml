@@ -9,7 +9,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Date"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="within.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
@@ -52,7 +52,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="within.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="server" value="/"/>
@@ -94,7 +94,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2" failure="true">
+    <TestCase id="2" failure="true" name="within.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within"/>
@@ -137,7 +137,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="within.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within"/>
@@ -180,7 +180,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="within.Value.Length=&apos;9&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
@@ -223,7 +223,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="within.Value.Length=&apos;11&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
@@ -266,7 +266,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="outside.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,within,withinValue"/>
@@ -309,7 +309,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="outside.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,within,withinValue"/>
@@ -352,7 +352,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="outside.Value.Length=&apos;9&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
@@ -395,7 +395,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="outside.Value.Length=&apos;11&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
@@ -438,7 +438,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="none.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,outside,outsideValue,within,withinValue"/>
@@ -481,7 +481,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="none.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,outside,outsideValue,within,withinValue"/>
@@ -524,7 +524,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="12" failure="true" name="none.Value.Length=&apos;9&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
@@ -567,7 +567,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="13" failure="true" name="none.Value.Length=&apos;11&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date"/>
       <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>

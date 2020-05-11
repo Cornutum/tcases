@@ -7,7 +7,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;2XX&apos;">
       <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -29,7 +29,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -53,7 +53,7 @@
         <Var name="2XX.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="2XX.Headers.x-standard-header.Value=&apos;that&apos;">
       <Has name="properties" value="2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -75,7 +75,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="2XX.Headers.x-extra-header.Value.Length=&apos;&gt; 1&apos;">
       <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -97,7 +97,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="2XX.Headers.x-standard-header.Defined=&apos;No&apos;">
       <Has name="properties" value="status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -119,7 +119,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="2XX.Headers.x-standard-header.Type=null">
       <Has name="properties" value="2XXHeaderX-standard-header,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -141,7 +141,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="2XX.Headers.x-standard-header.Type=&apos;Not string&apos;">
       <Has name="properties" value="2XXHeaderX-standard-header,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -163,7 +163,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="2XX.Headers.x-standard-header.Value=&apos;Other&apos;">
       <Has name="properties" value="2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -187,7 +187,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="2XX.Headers.x-extra-header.Type=null">
       <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -209,7 +209,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="2XX.Headers.x-extra-header.Type=&apos;Not string&apos;">
       <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -231,7 +231,7 @@
         <Var name="2XX.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="2XX.Headers.x-extra-header.Value.Length=&apos;0&apos;">
       <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -258,7 +258,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;202&apos;">
       <Has name="properties" value="status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -268,7 +268,7 @@
         <Var name="202.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -285,7 +285,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;201&apos;">
       <Has name="properties" value="status201"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -295,7 +295,7 @@
         <Var name="201.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -312,7 +312,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;203&apos;">
       <Has name="properties" value="status203"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -322,7 +322,7 @@
         <Var name="203.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -339,7 +339,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;204&apos;">
       <Has name="properties" value="status204"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -349,7 +349,7 @@
         <Var name="204.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -366,7 +366,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;206&apos;">
       <Has name="properties" value="status206"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -376,7 +376,7 @@
         <Var name="206.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -393,7 +393,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;205&apos;">
       <Has name="properties" value="status205"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -403,7 +403,7 @@
         <Var name="205.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>

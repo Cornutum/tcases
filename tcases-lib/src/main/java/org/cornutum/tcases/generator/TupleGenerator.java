@@ -193,6 +193,8 @@ public class TupleGenerator implements ITestCaseGenerator
         TestCase baseTest = baseCases.next();
         TestCaseDef testCase = new TestCaseDef();
         testCase.setId( baseTest.getId());
+        testCase.setName( baseTest.getName());
+        
         logger_.debug( "Adding base test={}", baseTest);
 
         // For each variable binding...
@@ -357,6 +359,7 @@ public class TupleGenerator implements ITestCaseGenerator
     TestCaseDef newCase = new TestCaseDef();
     try
       {
+      newCase.setName( tuple);
       newCase.addBindings( tuple);
       }
     catch( Exception e)

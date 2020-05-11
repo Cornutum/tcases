@@ -9,7 +9,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Object"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Value"/>
@@ -36,7 +36,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="server" value="/"/>
@@ -62,7 +62,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="param0.Value.Property-Count=&apos;&lt;= 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Properties,param0Value"/>
@@ -89,7 +89,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
@@ -116,7 +116,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="param0.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
@@ -143,7 +143,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="param0.Value.Property-Count=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Properties,param0Value"/>
@@ -170,7 +170,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="param0.Value.Properties.alpha.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Value"/>

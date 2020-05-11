@@ -67,6 +67,22 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     }
 
   /**
+   * Changes the test case name.
+   */
+  public void setName( String name)
+    {
+    name_ = name;
+    }
+
+  /**
+   * Returns the test case name.
+   */
+  public String getName()
+    {
+    return name_;
+    }
+
+  /**
    * Returns the type of this test case.
    */
   public Type getType()
@@ -193,6 +209,7 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     return
       ToString.getBuilder( this)
       .append( getId())
+      .append( getName())
       .append( getType())
       .append( bindings)
       .toString();
@@ -223,6 +240,7 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     }
 
   private int id_;
+  private String name_;
   private List<VarBinding> varBindings_ = new ArrayList<VarBinding>();
   }
 

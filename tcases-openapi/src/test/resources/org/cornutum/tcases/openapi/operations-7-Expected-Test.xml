@@ -9,7 +9,7 @@
     <Has name="server" value="http://www.cornutum.org/tcases/api"/>
     <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content"/>
@@ -25,7 +25,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Body.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
@@ -38,7 +38,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="Body.application-json.Value.Properties.Additional=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonValue,Content"/>
@@ -54,7 +54,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="Content"/>
@@ -70,7 +70,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content"/>
@@ -86,7 +86,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content"/>
