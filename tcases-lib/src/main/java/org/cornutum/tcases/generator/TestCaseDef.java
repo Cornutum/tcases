@@ -10,6 +10,7 @@ package org.cornutum.tcases.generator;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.util.CollectionUtils.toCsv;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.joining;
 
 /**
  * Constructs a definition of a {@link TestCase test case}.
@@ -67,6 +69,35 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   public Integer getId()
     {
     return id_;
+    }
+
+  /**
+   * Changes the (optional) name for this test case.
+   */
+  public void setName( String name)
+    {
+    name_ = name;
+    }
+
+  /**
+   * Changes the name for this test case to identify the given tuple.
+   */
+  public void setName( Tuple tuple)
+    {
+    setName(
+      toStream( tuple.getBindings())
+      .map( VarBindingDef::getVarDef)
+      .sorted( Comparator.comparing( IVarDef::getPosition))
+      .map( varDef -> String.format( "%s=%s", varDef.getPathName(), toCsv( Stream.of( tuple.getBinding( varDef).getName()))))
+      .collect( joining( "&")));
+    }
+
+  /**
+   * Returns the (optional) name for this test case.
+   */
+  public String getName()
+    {
+    return name_;
     }
 
   /**
@@ -479,6 +510,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   public TestCase createTestCase( int id)
     {
     TestCase testCase = new TestCase( id);
+    testCase.setName( getName());
     for( VarDef var : bindings_.keySet())
       {
       testCase.addVarBinding( VarBinding.create( var, bindings_.get( var)));
@@ -538,12 +570,14 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     return
       ToString.getBuilder( this)
       .append( "id", getId())
+      .append( "name", getName())
       .append( "bindings", bindings.toString())
       .append( "properties", properties_)
       .toString();
     }
 
   private Integer id_;
+  private String name_;
   private Map<VarDef,VarValueDef> bindings_ = new LinkedHashMap<VarDef,VarValueDef>();
   private PropertySet properties_ = new PropertySet();
   private IConjunct required_;

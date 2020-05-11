@@ -7,7 +7,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -26,7 +26,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Other.Content.Media-Type=&apos;text-javascript&apos;">
       <Has name="properties" value="defaultContent,defaulttext-javascript,defaulttext-javascriptValue,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -45,7 +45,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" value="&lt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="Other.Content.text-javascript.Type=null">
       <Has name="properties" value="defaultContent,defaulttext-javascript,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -64,7 +64,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="Other.Content.text-javascript.Value.Is=&apos;0&apos;">
       <Has name="properties" value="defaultContent,defaulttext-javascript,defaulttext-javascriptValue,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -83,7 +83,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" value="0"/>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="Other.Content.text-javascript.Value.Is=&apos;&gt; 0&apos;">
       <Has name="properties" value="defaultContent,defaulttext-javascript,defaulttext-javascriptValue,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -102,7 +102,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" value="&gt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="Other.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -119,7 +119,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="Other.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -138,7 +138,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="Other.Content.application-json.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -157,7 +157,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="Other.Content.application-json.Type=&apos;Not integer&apos;">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -176,7 +176,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="Other.Content.application-json.Value.Is=&apos;15&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -195,7 +195,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="Other.Content.application-json.Value.Is=&apos;17&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -214,7 +214,7 @@
         <Var name="Other.Content.text-javascript.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="Other.Content.text-javascript.Type=&apos;Not integer&apos;">
       <Has name="properties" value="defaultContent,defaulttext-javascript,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -238,7 +238,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;2XX&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -276,7 +276,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;4XX&apos;">
       <Has name="properties" value="4XXContent,4XXtext-plain,4XXtext-plainValue,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -314,7 +314,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" value="&gt; 0"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -352,7 +352,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="2XX.Headers.x-standard-header.Value.Is=&apos;10&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -390,7 +390,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="2XX.Headers.x-standard-header.Value.Is=&apos;100&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsMany,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -428,7 +428,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5">
+    <TestCase id="5" name="2XX.Content.text-plain.Items.Unique=&apos;No&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsMany,2XXtext-plainItemsValue,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -466,7 +466,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6">
+    <TestCase id="6" name="4XX.Content.text-plain.Type=null">
       <Has name="properties" value="4XXContent,4XXtext-plain,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -504,7 +504,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7">
+    <TestCase id="7" name="4XX.Content.text-plain.Value.Length=&apos;0&apos;">
       <Has name="properties" value="4XXContent,4XXtext-plain,4XXtext-plainValue,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -542,7 +542,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" value="0"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="2XX.Headers.x-standard-header.Defined=&apos;No&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -580,7 +580,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="2XX.Headers.x-standard-header.Type=null">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -618,7 +618,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="2XX.Headers.x-standard-header.Type=&apos;Not integer&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -656,7 +656,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="2XX.Headers.x-standard-header.Value.Is=&apos;Other&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -696,7 +696,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="12" failure="true" name="2XX.Headers.x-extra-header.Type=null">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -734,7 +734,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="13" failure="true" name="2XX.Headers.x-extra-header.Type=&apos;Not integer&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -772,7 +772,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true">
+    <TestCase id="14" failure="true" name="2XX.Headers.x-extra-header.Value.Is=&apos;0&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainItemsNone,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -810,7 +810,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true">
+    <TestCase id="15" failure="true" name="2XX.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -846,7 +846,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true">
+    <TestCase id="16" failure="true" name="2XX.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -884,7 +884,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true">
+    <TestCase id="17" failure="true" name="2XX.Content.text-plain.Type=null">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -922,7 +922,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true">
+    <TestCase id="18" failure="true" name="2XX.Content.text-plain.Type=&apos;Not array&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -960,7 +960,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true">
+    <TestCase id="19" failure="true" name="2XX.Content.text-plain.Items.Contains.Type=null">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -998,7 +998,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="20" failure="true">
+    <TestCase id="20" failure="true" name="2XX.Content.text-plain.Items.Contains.Type=&apos;Not boolean&apos;">
       <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,2XXtext-plain,2XXtext-plainValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1036,7 +1036,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="21" failure="true">
+    <TestCase id="21" failure="true" name="4XX.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1072,7 +1072,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="22" failure="true">
+    <TestCase id="22" failure="true" name="4XX.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1110,7 +1110,7 @@
         <Var name="4XX.Content.text-plain.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="23" failure="true">
+    <TestCase id="23" failure="true" name="4XX.Content.text-plain.Type=&apos;Not string&apos;">
       <Has name="properties" value="4XXContent,4XXtext-plain,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1153,7 +1153,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;202&apos;">
       <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,202text-javascript,202text-javascriptProperties,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1175,7 +1175,7 @@
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1197,7 +1197,7 @@
         <Var name="Other.Content.Defined" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="202.Headers.x-my-app-header.Value.Properties.Additional=&apos;No&apos;">
       <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerValue,202text-javascript,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1219,7 +1219,7 @@
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="202.Headers.x-my-app-header.Defined=&apos;No&apos;">
       <Has name="properties" value="202Content,202text-javascript,202text-javascriptProperties,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1241,7 +1241,7 @@
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="202.Headers.x-my-app-header.Type=null">
       <Has name="properties" value="202Content,202HeaderX-my-app-header,202text-javascript,202text-javascriptProperties,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1263,7 +1263,7 @@
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="202.Headers.x-my-app-header.Type=&apos;Not object&apos;">
       <Has name="properties" value="202Content,202HeaderX-my-app-header,202text-javascript,202text-javascriptProperties,202text-javascriptValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1285,7 +1285,7 @@
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="202.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1305,7 +1305,7 @@
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="202.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1327,7 +1327,7 @@
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="202.Content.text-javascript.Type=null">
       <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,202text-javascript,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -1349,7 +1349,7 @@
         <Var name="Other.Content.Defined" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="202.Content.text-javascript.Type=&apos;Not object&apos;">
       <Has name="properties" value="202Content,202HeaderX-my-app-header,202HeaderX-my-app-headerProperties,202HeaderX-my-app-headerValue,202text-javascript,status202"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>

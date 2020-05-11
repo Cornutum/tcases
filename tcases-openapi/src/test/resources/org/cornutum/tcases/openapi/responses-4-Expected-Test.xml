@@ -7,7 +7,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;2XX&apos;">
       <Has name="properties" value="status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -25,7 +25,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;4XX&apos;">
       <Has name="properties" value="4XXapplication-json,4XXapplication-jsonProperties,4XXapplication-jsonValue,4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -45,7 +45,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -67,7 +67,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="4XX.Content.application-json.Value.Properties.Additional=&apos;No&apos;">
       <Has name="properties" value="4XXapplication-json,4XXapplication-jsonValue,4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -87,7 +87,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="Other.Content.application-json.Value.Properties.Additional=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -109,7 +109,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="4XX.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -127,7 +127,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="4XX.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -147,7 +147,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="4XX.Content.application-json.Type=null">
       <Has name="properties" value="4XXapplication-json,4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -167,7 +167,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="4XX.Content.application-json.Type=&apos;Not object&apos;">
       <Has name="properties" value="4XXapplication-json,4XXContent,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -187,7 +187,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="Other.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -207,7 +207,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="Other.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -229,7 +229,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="Other.Content.application-json.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
@@ -251,7 +251,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="12" failure="true" name="Other.Content.application-json.Type=&apos;Not object&apos;">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>

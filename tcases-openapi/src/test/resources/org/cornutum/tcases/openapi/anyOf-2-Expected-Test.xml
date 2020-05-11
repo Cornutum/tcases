@@ -9,7 +9,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="AnyOf"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
@@ -28,7 +28,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Body.application-json.Alternative.Used=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
@@ -47,7 +47,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" value="-0.1"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="Body.application-json.Alternative.0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,Content"/>
@@ -66,7 +66,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="Body.application-json.Alternative.0.Value.Is=&apos;100.0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
@@ -85,7 +85,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="Body.application-json.Alternative.1.Value.Is=&apos;&lt; -0.1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
@@ -104,7 +104,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" value="&lt; -0.1"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="Body.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="server" value="/"/>
@@ -120,7 +120,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="Content"/>
@@ -139,7 +139,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="Body.application-json.Alternative.0.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,Content"/>
@@ -158,7 +158,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="Body.application-json.Alternative.0.Value.Is=&apos;-0.1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
@@ -177,7 +177,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="Body.application-json.Alternative.0.Value.Is=&apos;100.1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
@@ -196,7 +196,7 @@
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="Body.application-json.Alternative.1.Value.Is=&apos;0.0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
       <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>

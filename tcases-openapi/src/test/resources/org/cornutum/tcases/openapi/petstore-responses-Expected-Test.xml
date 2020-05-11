@@ -7,7 +7,7 @@
     <Has name="server" value="http://petstore.swagger.io/api"/>
     <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;200&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsNone,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -50,7 +50,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -95,7 +95,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="200.Content.application-json.Items.Size=&apos;1&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsTagValue,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -138,7 +138,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="200.Content.application-json.Items.Size=&apos;&gt; 1&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsMany,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -181,7 +181,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="200.Content.application-json.Items.Contains.Value.Properties.tag.Value.Length=&apos;0&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsTagValue,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -224,7 +224,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5">
+    <TestCase id="5" name="200.Content.application-json.Items.Unique=&apos;No&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsMany,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -267,7 +267,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6">
+    <TestCase id="6" name="Other.Content.application-json.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -312,7 +312,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="7">
+    <TestCase id="7" name="Other.Content.application-json.Value.Properties.code.Value.Is=&apos;&gt; 0&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -357,7 +357,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="200.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -398,7 +398,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="200.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -441,7 +441,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="200.Content.application-json.Type=null">
       <Has name="properties" value="200application-json,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -484,7 +484,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="200.Content.application-json.Type=&apos;Not array&apos;">
       <Has name="properties" value="200application-json,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -527,7 +527,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="12" failure="true" name="200.Content.application-json.Items.Contains.Type=null">
       <Has name="properties" value="200application-json,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -570,7 +570,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="13" failure="true" name="200.Content.application-json.Items.Contains.Type=&apos;Not object&apos;">
       <Has name="properties" value="200application-json,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -613,7 +613,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true">
+    <TestCase id="14" failure="true" name="200.Content.application-json.Items.Contains.Value.Properties.name.Defined=&apos;No&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsTagValue,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -656,7 +656,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true">
+    <TestCase id="15" failure="true" name="200.Content.application-json.Items.Contains.Value.Properties.name.Type=null">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsName,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsTagValue,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -699,7 +699,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true">
+    <TestCase id="16" failure="true" name="200.Content.application-json.Items.Contains.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsName,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsTagValue,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -742,7 +742,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true">
+    <TestCase id="17" failure="true" name="200.Content.application-json.Items.Contains.Value.Properties.tag.Type=null">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -785,7 +785,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true">
+    <TestCase id="18" failure="true" name="200.Content.application-json.Items.Contains.Value.Properties.tag.Type=&apos;Not string&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsIdValue,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -828,7 +828,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true">
+    <TestCase id="19" failure="true" name="200.Content.application-json.Items.Contains.Value.Properties.id.Defined=&apos;No&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsTagValue,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -871,7 +871,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="20" failure="true">
+    <TestCase id="20" failure="true" name="200.Content.application-json.Items.Contains.Value.Properties.id.Type=null">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsTagValue,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -914,7 +914,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="21" failure="true">
+    <TestCase id="21" failure="true" name="200.Content.application-json.Items.Contains.Value.Properties.id.Type=&apos;Not integer&apos;">
       <Has name="properties" value="200application-json,200application-jsonItemsId,200application-jsonItemsName,200application-jsonItemsNameValue,200application-jsonItemsProperties,200application-jsonItemsTag,200application-jsonItemsTagValue,200application-jsonItemsValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -957,7 +957,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="22" failure="true">
+    <TestCase id="22" failure="true" name="Other.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1000,7 +1000,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="23" failure="true">
+    <TestCase id="23" failure="true" name="Other.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1045,7 +1045,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="24" failure="true">
+    <TestCase id="24" failure="true" name="Other.Content.application-json.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1090,7 +1090,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="25" failure="true">
+    <TestCase id="25" failure="true" name="Other.Content.application-json.Type=&apos;Not object&apos;">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1135,7 +1135,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="26" failure="true">
+    <TestCase id="26" failure="true" name="Other.Content.application-json.Value.Properties.code.Defined=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1180,7 +1180,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="27" failure="true">
+    <TestCase id="27" failure="true" name="Other.Content.application-json.Value.Properties.code.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1225,7 +1225,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="28" failure="true">
+    <TestCase id="28" failure="true" name="Other.Content.application-json.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1270,7 +1270,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="29" failure="true">
+    <TestCase id="29" failure="true" name="Other.Content.application-json.Value.Properties.message.Defined=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1315,7 +1315,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="30" failure="true">
+    <TestCase id="30" failure="true" name="Other.Content.application-json.Value.Properties.message.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1360,7 +1360,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="31" failure="true">
+    <TestCase id="31" failure="true" name="Other.Content.application-json.Value.Properties.message.Type=&apos;Not string&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1410,7 +1410,7 @@
     <Has name="server" value="http://petstore.swagger.io/api"/>
     <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;200&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonTag,200application-jsonTagValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1448,7 +1448,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1488,7 +1488,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="200.Content.application-json.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1526,7 +1526,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="200.Content.application-json.Value.Properties.tag.Value.Length=&apos;0&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonTag,200application-jsonTagValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1564,7 +1564,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="Other.Content.application-json.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1604,7 +1604,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="5">
+    <TestCase id="5" name="Other.Content.application-json.Value.Properties.code.Value.Is=&apos;&gt; 0&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1644,7 +1644,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="200.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1680,7 +1680,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="200.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1718,7 +1718,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="200.Content.application-json.Type=null">
       <Has name="properties" value="200application-json,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1756,7 +1756,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="200.Content.application-json.Type=&apos;Not object&apos;">
       <Has name="properties" value="200application-json,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1794,7 +1794,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="200.Content.application-json.Value.Properties.name.Defined=&apos;No&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1832,7 +1832,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="200.Content.application-json.Value.Properties.name.Type=null">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1870,7 +1870,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="12" failure="true" name="200.Content.application-json.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1908,7 +1908,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="13" failure="true" name="200.Content.application-json.Value.Properties.tag.Type=null">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonTag,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1946,7 +1946,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true">
+    <TestCase id="14" failure="true" name="200.Content.application-json.Value.Properties.tag.Type=&apos;Not string&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonTag,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -1984,7 +1984,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true">
+    <TestCase id="15" failure="true" name="200.Content.application-json.Value.Properties.id.Defined=&apos;No&apos;">
       <Has name="properties" value="200application-json,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2022,7 +2022,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true">
+    <TestCase id="16" failure="true" name="200.Content.application-json.Value.Properties.id.Type=null">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2060,7 +2060,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true">
+    <TestCase id="17" failure="true" name="200.Content.application-json.Value.Properties.id.Type=&apos;Not integer&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2098,7 +2098,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true">
+    <TestCase id="18" failure="true" name="Other.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2136,7 +2136,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true">
+    <TestCase id="19" failure="true" name="Other.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2176,7 +2176,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="20" failure="true">
+    <TestCase id="20" failure="true" name="Other.Content.application-json.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2216,7 +2216,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="21" failure="true">
+    <TestCase id="21" failure="true" name="Other.Content.application-json.Type=&apos;Not object&apos;">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2256,7 +2256,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="22" failure="true">
+    <TestCase id="22" failure="true" name="Other.Content.application-json.Value.Properties.code.Defined=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2296,7 +2296,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="23" failure="true">
+    <TestCase id="23" failure="true" name="Other.Content.application-json.Value.Properties.code.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2336,7 +2336,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="24" failure="true">
+    <TestCase id="24" failure="true" name="Other.Content.application-json.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2376,7 +2376,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="25" failure="true">
+    <TestCase id="25" failure="true" name="Other.Content.application-json.Value.Properties.message.Defined=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2416,7 +2416,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="26" failure="true">
+    <TestCase id="26" failure="true" name="Other.Content.application-json.Value.Properties.message.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2456,7 +2456,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="27" failure="true">
+    <TestCase id="27" failure="true" name="Other.Content.application-json.Value.Properties.message.Type=&apos;Not string&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2501,7 +2501,7 @@
     <Has name="server" value="http://petstore.swagger.io/api"/>
     <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;200&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonTag,200application-jsonTagValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2539,7 +2539,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2579,7 +2579,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="200.Content.application-json.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2617,7 +2617,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="200.Content.application-json.Value.Properties.tag.Value.Length=&apos;0&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonTag,200application-jsonTagValue,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2655,7 +2655,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4">
+    <TestCase id="4" name="Other.Content.application-json.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2695,7 +2695,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="5">
+    <TestCase id="5" name="Other.Content.application-json.Value.Properties.code.Value.Is=&apos;&gt; 0&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2735,7 +2735,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="200.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2771,7 +2771,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="200.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2809,7 +2809,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="200.Content.application-json.Type=null">
       <Has name="properties" value="200application-json,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2847,7 +2847,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="200.Content.application-json.Type=&apos;Not object&apos;">
       <Has name="properties" value="200application-json,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2885,7 +2885,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="200.Content.application-json.Value.Properties.name.Defined=&apos;No&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2923,7 +2923,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="200.Content.application-json.Value.Properties.name.Type=null">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2961,7 +2961,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="12" failure="true" name="200.Content.application-json.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -2999,7 +2999,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="13" failure="true" name="200.Content.application-json.Value.Properties.tag.Type=null">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonTag,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3037,7 +3037,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true">
+    <TestCase id="14" failure="true" name="200.Content.application-json.Value.Properties.tag.Type=&apos;Not string&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonIdValue,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonTag,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3075,7 +3075,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true">
+    <TestCase id="15" failure="true" name="200.Content.application-json.Value.Properties.id.Defined=&apos;No&apos;">
       <Has name="properties" value="200application-json,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3113,7 +3113,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true">
+    <TestCase id="16" failure="true" name="200.Content.application-json.Value.Properties.id.Type=null">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3151,7 +3151,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true">
+    <TestCase id="17" failure="true" name="200.Content.application-json.Value.Properties.id.Type=&apos;Not integer&apos;">
       <Has name="properties" value="200application-json,200application-jsonId,200application-jsonName,200application-jsonNameValue,200application-jsonProperties,200application-jsonValue,200Content,status200"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3189,7 +3189,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true">
+    <TestCase id="18" failure="true" name="Other.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3227,7 +3227,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true">
+    <TestCase id="19" failure="true" name="Other.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3267,7 +3267,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="20" failure="true">
+    <TestCase id="20" failure="true" name="Other.Content.application-json.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3307,7 +3307,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="21" failure="true">
+    <TestCase id="21" failure="true" name="Other.Content.application-json.Type=&apos;Not object&apos;">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3347,7 +3347,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="22" failure="true">
+    <TestCase id="22" failure="true" name="Other.Content.application-json.Value.Properties.code.Defined=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3387,7 +3387,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="23" failure="true">
+    <TestCase id="23" failure="true" name="Other.Content.application-json.Value.Properties.code.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3427,7 +3427,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="24" failure="true">
+    <TestCase id="24" failure="true" name="Other.Content.application-json.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3467,7 +3467,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="25" failure="true">
+    <TestCase id="25" failure="true" name="Other.Content.application-json.Value.Properties.message.Defined=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3507,7 +3507,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="26" failure="true">
+    <TestCase id="26" failure="true" name="Other.Content.application-json.Value.Properties.message.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3547,7 +3547,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="27" failure="true">
+    <TestCase id="27" failure="true" name="Other.Content.application-json.Value.Properties.message.Type=&apos;Not string&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3592,7 +3592,7 @@
     <Has name="server" value="http://petstore.swagger.io/api"/>
     <Has name="title" value="Swagger Petstore"/>
     <Has name="version" value="1.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="Status-Code=&apos;204&apos;">
       <Has name="properties" value="status204"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3614,7 +3614,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3640,7 +3640,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="Other.Content.application-json.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3666,7 +3666,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="3">
+    <TestCase id="3" name="Other.Content.application-json.Value.Properties.code.Value.Is=&apos;&gt; 0&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3692,7 +3692,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="Other.Content.Defined=&apos;No&apos;">
       <Has name="properties" value="statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3716,7 +3716,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="Other.Content.Media-Type=&apos;Other&apos;">
       <Has name="properties" value="defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3742,7 +3742,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="Other.Content.application-json.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3768,7 +3768,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="Other.Content.application-json.Type=&apos;Not object&apos;">
       <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3794,7 +3794,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="Other.Content.application-json.Value.Properties.code.Defined=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3820,7 +3820,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="Other.Content.application-json.Value.Properties.code.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3846,7 +3846,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="Other.Content.application-json.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonMessage,defaultapplication-jsonMessageValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3872,7 +3872,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true">
+    <TestCase id="11" failure="true" name="Other.Content.application-json.Value.Properties.message.Defined=&apos;No&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3898,7 +3898,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true">
+    <TestCase id="12" failure="true" name="Other.Content.application-json.Value.Properties.message.Type=null">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
@@ -3924,7 +3924,7 @@
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true">
+    <TestCase id="13" failure="true" name="Other.Content.application-json.Value.Properties.message.Type=&apos;Not string&apos;">
       <Has name="properties" value="defaultapplication-json,defaultapplication-jsonCode,defaultapplication-jsonCodeValue,defaultapplication-jsonMessage,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>

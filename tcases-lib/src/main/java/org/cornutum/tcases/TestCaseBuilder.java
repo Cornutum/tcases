@@ -88,6 +88,15 @@ public class TestCaseBuilder extends AnnotatedBuilder<TestCaseBuilder>
     }
 
   /**
+   * Changes the test case name.
+   */
+  public TestCaseBuilder name( String name)
+    {
+    testCase_.setName( name);
+    return this;
+    }
+
+  /**
    * Adds variable bindings to the test case.
    */
   public TestCaseBuilder bind( VarBinding... bindings)

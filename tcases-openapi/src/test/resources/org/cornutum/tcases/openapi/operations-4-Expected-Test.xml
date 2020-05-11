@@ -9,7 +9,7 @@
     <Has name="server" value="/"/>
     <Has name="title" value="Operations"/>
     <Has name="version" value="0.0.0"/>
-    <TestCase id="0">
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
@@ -47,7 +47,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param1,param1Value"/>
@@ -83,7 +83,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="param0.Value=&apos;false&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
@@ -121,7 +121,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param0,param1,param1Value"/>
@@ -157,7 +157,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="param0.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param0,param1,param1Value"/>
@@ -193,7 +193,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="param1.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="server" value="/"/>
@@ -228,7 +228,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="param1.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param1"/>
@@ -264,7 +264,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="param1.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="param1"/>
@@ -300,7 +300,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true">
+    <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="Content,param1,param1Value"/>
@@ -338,7 +338,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true">
+    <TestCase id="9" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content,param1,param1Value"/>
@@ -376,7 +376,7 @@
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true">
+    <TestCase id="10" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
       <Has name="properties" value="application-json,Content,param1,param1Value"/>

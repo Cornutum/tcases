@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TestCases system="Tcases">
   <Function name="run">
-    <TestCase id="0">
+    <TestCase id="0" name="outDir.defined=&apos;Yes&apos;">
       <Has name="properties" value="inFile,outDir,outFile,params,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
@@ -20,7 +20,7 @@
         <Var name="isJUnit" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="1">
+    <TestCase id="1" name="outDir.defined=&apos;No&apos;">
       <Has name="properties" value="isJUnit,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
@@ -39,7 +39,7 @@
         <Var name="isJUnit" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="2">
+    <TestCase id="2" name="outFile.path.isAbsolute=&apos;No&apos;">
       <Has name="properties" value="inFile,outDir,outFile,testFile,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="Yes"/>
@@ -58,7 +58,7 @@
         <Var name="isJUnit" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true">
+    <TestCase id="3" failure="true" name="outFile.isTestFile=&apos;Yes&apos;">
       <Has name="properties" value="isJUnit,outFile,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
@@ -77,7 +77,7 @@
         <Var name="isJUnit" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true">
+    <TestCase id="4" failure="true" name="transform.path.exists=&apos;No&apos;">
       <Has name="properties" value="params,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
@@ -96,7 +96,7 @@
         <Var name="isJUnit" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true">
+    <TestCase id="5" failure="true" name="transformParams.assignsValue=&apos;No&apos;">
       <Has name="properties" value="isJUnit,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
@@ -115,7 +115,7 @@
         <Var name="isJUnit" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true">
+    <TestCase id="6" failure="true" name="transformParams.nameDefined=&apos;No&apos;">
       <Has name="properties" value="isJUnit,params"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>
@@ -134,7 +134,7 @@
         <Var name="isJUnit" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true">
+    <TestCase id="7" failure="true" name="isJUnit=&apos;NotAllowed&apos;">
       <Has name="properties" value="params,transform"/>
       <Input type="arg">
         <Var name="outDir.defined" value="No"/>

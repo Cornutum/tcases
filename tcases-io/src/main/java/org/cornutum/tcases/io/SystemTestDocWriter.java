@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * Writes a {@link SystemTestDef} in the form of an XML document.
@@ -92,6 +93,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
       .element( TESTCASE_TAG)
       .attribute( ID_ATR, String.valueOf( testCase.getId()))
       .attributeIf( testCase.getType() == TestCase.Type.FAILURE, FAILURE_ATR, "true")
+      .attributeIf( NAME_ATR, Optional.ofNullable( testCase.getName()))
       .content( () ->
         {
         writeAnnotations( testCase);
