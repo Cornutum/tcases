@@ -155,8 +155,9 @@ public abstract class TestWriterTest
     {
     return requestTestDefFor( TestWriterTest.class, testDefName);
     }
+  
   /**
-   * Verifies that the test writer results for the given request test definition match expectations.
+   * Returns the expected test writer results for the specified {@link RequestTestDef}.
    */
   protected File getExpectedTestResults( String testDefName)
     {

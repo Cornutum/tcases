@@ -11,14 +11,14 @@ import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 
 /**
- * Writes Java source code for a JUnit test that executes API requests.
+ * Writes Java source code for a TestNG test that executes API requests.
  */
-public class JUnitTestWriter extends AnnotatedJavaTestWriter
+public class TestNgTestWriter extends AnnotatedJavaTestWriter
   {
   /**
-   * Creates a new JUnitTestWriter instance.
+   * Creates a new TestNgTestWriter instance.
    */
-  public JUnitTestWriter( TestCaseWriter testCaseWriter)
+  public TestNgTestWriter( TestCaseWriter testCaseWriter)
     {
     super( testCaseWriter);
     }
@@ -28,7 +28,7 @@ public class JUnitTestWriter extends AnnotatedJavaTestWriter
    */
   protected void writeTestAnnotationDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
-    targetWriter.println( "import org.junit.Test;");
+    targetWriter.println( "import org.testng.annotations.Test;");
     }
 
   /**
