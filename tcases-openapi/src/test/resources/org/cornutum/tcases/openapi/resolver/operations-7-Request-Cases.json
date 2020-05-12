@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "Body.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -37,6 +38,7 @@
     },
     {
         "id": 1,
+        "name": "Body.Defined='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -49,6 +51,7 @@
     },
     {
         "id": 2,
+        "name": "Body.application-json.Value.Properties.Additional='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -66,6 +69,7 @@
     },
     {
         "id": 3,
+        "name": "Body.Media-Type='Other'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -84,6 +88,7 @@
     },
     {
         "id": 4,
+        "name": "Body.application-json.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -101,6 +106,7 @@
     },
     {
         "id": 5,
+        "name": "Body.application-json.Type='Not object'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",

@@ -61,6 +61,7 @@ public final class RequestCaseJson
     JsonObjectBuilder builder = Json.createObjectBuilder();
 
     builder.add( ID, requestCase.getId());
+    Optional.ofNullable( requestCase.getName()).ifPresent( name -> builder.add( NAME, name));
     Optional.ofNullable( requestCase.getServer()).ifPresent( server -> builder.add( SERVER, server.toString()));
     Optional.ofNullable( requestCase.getVersion()).ifPresent( version -> builder.add( VERSION, version));
     Optional.ofNullable( requestCase.getApi()).ifPresent( api -> builder.add( API, api));
@@ -157,6 +158,7 @@ public final class RequestCaseJson
       context.resultFor( String.valueOf( json.get( ID)), () -> {
         RequestCase requestCase = new RequestCase( json.getInt( ID));
 
+        requestCase.setName( context.resultFor( NAME, () -> json.getString( NAME, null)));
         requestCase.setServer( context.resultFor( SERVER, () -> json.getString( SERVER, null)));
         requestCase.setVersion( context.resultFor( VERSION, () -> json.getString( VERSION, null)));
         requestCase.setApi( context.resultFor( API, () -> json.getString( API, null)));

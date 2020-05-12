@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -101,6 +102,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -119,6 +121,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Alternative.Used='2'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -141,6 +144,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Alternative.Used='3'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -159,6 +163,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -273,6 +278,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -353,6 +359,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -464,6 +471,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Alternative.1.Type='object'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -565,6 +573,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Alternative.2.Value.Property-Count='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -592,6 +601,7 @@
     },
     {
         "id": 9,
+        "name": "param0.Alternative.2.Value.Properties.alpha.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -619,6 +629,7 @@
     },
     {
         "id": 10,
+        "name": "param0.Alternative.2.Value.Properties.alpha.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -646,6 +657,7 @@
     },
     {
         "id": 11,
+        "name": "param0.Alternative.3.Type='object'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -687,6 +699,7 @@
     },
     {
         "id": 12,
+        "name": "param0.Alternative.0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -709,6 +722,7 @@
     },
     {
         "id": 13,
+        "name": "param0.Alternative.0.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -731,6 +745,7 @@
     },
     {
         "id": 14,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -832,6 +847,7 @@
     },
     {
         "id": 15,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Type='Not integer'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -917,6 +933,7 @@
     },
     {
         "id": 16,
+        "name": "param0.Alternative.0.Value.Properties.Additional='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -945,6 +962,7 @@
     },
     {
         "id": 17,
+        "name": "param0.Alternative.1.Value.Properties.alpha.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -1054,6 +1072,7 @@
     },
     {
         "id": 18,
+        "name": "param0.Alternative.1.Value.Properties.alpha.Type='integer'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -1147,6 +1166,7 @@
     },
     {
         "id": 19,
+        "name": "param0.Alternative.1.Value.Properties.bravo.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -1221,6 +1241,7 @@
     },
     {
         "id": 20,
+        "name": "param0.Alternative.1.Value.Properties.bravo.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -1336,6 +1357,7 @@
     },
     {
         "id": 21,
+        "name": "param0.Alternative.2.Value.Properties.Additional='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",

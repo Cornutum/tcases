@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -48,6 +49,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -74,6 +76,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -106,6 +109,7 @@
     },
     {
         "id": 3,
+        "name": "param1.Alternative.1.Type='number'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -135,6 +139,7 @@
     },
     {
         "id": 4,
+        "name": "param1.Alternative.1.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -167,6 +172,7 @@
     },
     {
         "id": 5,
+        "name": "param1.Alternative.1.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -196,6 +202,7 @@
     },
     {
         "id": 6,
+        "name": "param1.Alternative.0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -238,6 +245,7 @@
     },
     {
         "id": 7,
+        "name": "param1.Alternative.1.Value.Is='1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -289,6 +297,7 @@
     },
     {
         "id": 8,
+        "name": "param1.Alternative.1.Value.Is='2'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -323,6 +332,7 @@
     },
     {
         "id": 9,
+        "name": "param1.Alternative.1.Value.Is='3'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -356,6 +366,7 @@
     },
     {
         "id": 10,
+        "name": "param1.Alternative.2.Value='false'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",

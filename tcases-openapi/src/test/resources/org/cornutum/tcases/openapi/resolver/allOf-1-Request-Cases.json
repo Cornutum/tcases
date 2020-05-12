@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "Body.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -19,6 +20,7 @@
     },
     {
         "id": 1,
+        "name": "Body.application-json.Items.Size='1'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -41,6 +43,7 @@
     },
     {
         "id": 2,
+        "name": "Body.application-json.Items.Size='> 1'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -123,6 +126,7 @@
     },
     {
         "id": 3,
+        "name": "Body.application-json.Items.Contains.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -145,6 +149,7 @@
     },
     {
         "id": 4,
+        "name": "Body.application-json.Items.Unique='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -197,6 +202,7 @@
     },
     {
         "id": 5,
+        "name": "Body.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -210,6 +216,7 @@
     },
     {
         "id": 6,
+        "name": "Body.Media-Type='Other'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -228,6 +235,7 @@
     },
     {
         "id": 7,
+        "name": "Body.application-json.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -245,6 +253,7 @@
     },
     {
         "id": 8,
+        "name": "Body.application-json.Type='Not array'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -262,6 +271,7 @@
     },
     {
         "id": 9,
+        "name": "Body.application-json.Items.Contains.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -284,6 +294,7 @@
     },
     {
         "id": 10,
+        "name": "Body.application-json.Items.Contains.Type='Not integer'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",

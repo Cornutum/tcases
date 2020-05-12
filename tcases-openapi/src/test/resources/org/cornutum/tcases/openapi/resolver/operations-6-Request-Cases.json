@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -57,6 +58,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -100,6 +102,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -193,6 +196,7 @@
     },
     {
         "id": 3,
+        "name": "param1.Items.Contains.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -236,6 +240,7 @@
     },
     {
         "id": 4,
+        "name": "param1.Items.Unique='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -319,6 +324,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -354,6 +360,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -392,6 +399,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Type='Not integer'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -430,6 +438,7 @@
     },
     {
         "id": 8,
+        "name": "param1.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -465,6 +474,7 @@
     },
     {
         "id": 9,
+        "name": "param1.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -503,6 +513,7 @@
     },
     {
         "id": 10,
+        "name": "param1.Type='Not array'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -542,6 +553,7 @@
     },
     {
         "id": 11,
+        "name": "param1.Items.Contains.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -585,6 +597,7 @@
     },
     {
         "id": 12,
+        "name": "param1.Items.Contains.Type='Not integer'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -628,6 +641,7 @@
     },
     {
         "id": 13,
+        "name": "Body.Media-Type='Other'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -671,6 +685,7 @@
     },
     {
         "id": 14,
+        "name": "Body.application-json.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -714,6 +729,7 @@
     },
     {
         "id": 15,
+        "name": "Body.application-json.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",

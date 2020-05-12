@@ -53,6 +53,7 @@ public class RequestCaseDefiner
       else
         {
         requestCaseDef = new RequestCaseDef( testCase.getId());
+        requestCaseDef.setName( testCase.getName());
 
         requestCaseDef.setServer(
           Optional.ofNullable( testCase.getAnnotation( "server"))

@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Number",
@@ -24,6 +25,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Number",
@@ -42,6 +44,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Value.Is='< -1.234'",
         "server": "/",
         "version": "0.0.0",
         "api": "Number",
@@ -64,6 +67,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Number",
@@ -86,6 +90,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Type='Not number'",
         "server": "/",
         "version": "0.0.0",
         "api": "Number",
@@ -108,6 +113,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Value.Is='-1.233'",
         "server": "/",
         "version": "0.0.0",
         "api": "Number",
