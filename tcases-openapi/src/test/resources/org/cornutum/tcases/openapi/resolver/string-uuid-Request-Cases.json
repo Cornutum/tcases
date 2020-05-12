@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "within.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -48,6 +49,7 @@
     },
     {
         "id": 1,
+        "name": "within.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -82,6 +84,7 @@
     },
     {
         "id": 2,
+        "name": "within.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -128,6 +131,7 @@
     },
     {
         "id": 3,
+        "name": "within.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -187,6 +191,7 @@
     },
     {
         "id": 4,
+        "name": "within.Value.Length='35'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -234,6 +239,7 @@
     },
     {
         "id": 5,
+        "name": "within.Value.Length='37'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -281,6 +287,7 @@
     },
     {
         "id": 6,
+        "name": "outside.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -327,6 +334,7 @@
     },
     {
         "id": 7,
+        "name": "outside.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -378,6 +386,7 @@
     },
     {
         "id": 8,
+        "name": "outside.Value.Length='35'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -425,6 +434,7 @@
     },
     {
         "id": 9,
+        "name": "outside.Value.Length='37'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -472,6 +482,7 @@
     },
     {
         "id": 10,
+        "name": "none.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -518,6 +529,7 @@
     },
     {
         "id": 11,
+        "name": "none.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -564,6 +576,7 @@
     },
     {
         "id": 12,
+        "name": "none.Value.Length='35'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",
@@ -611,6 +624,7 @@
     },
     {
         "id": 13,
+        "name": "none.Value.Length='37'",
         "server": "/",
         "version": "0.0.0",
         "api": "Uuid",

@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -28,6 +29,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -46,6 +48,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Items.Size='3'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -80,6 +83,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Items.Contains.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -106,6 +110,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Items.Unique='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -140,6 +145,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -162,6 +168,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Type='Not array'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -185,6 +192,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Items.Size='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -208,6 +216,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Items.Size='4'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -247,6 +256,7 @@
     },
     {
         "id": 9,
+        "name": "param0.Items.Contains.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",
@@ -274,6 +284,7 @@
     },
     {
         "id": 10,
+        "name": "param0.Items.Contains.Type='Not number'",
         "server": "/",
         "version": "0.0.0",
         "api": "Array",

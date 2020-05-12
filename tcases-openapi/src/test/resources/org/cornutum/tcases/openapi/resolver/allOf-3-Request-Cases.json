@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -23,6 +24,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -41,6 +43,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Alternative.Used='2'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -62,6 +65,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Alternative.Used='3'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -80,6 +84,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Alternative.0.Value='B'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -101,6 +106,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Alternative.0.Value='C'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -122,6 +128,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Alternative.1.Type='string'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -143,6 +150,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Alternative.1.Value.Length='> 2'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -164,6 +172,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Alternative.2.Value='B'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -185,6 +194,7 @@
     },
     {
         "id": 9,
+        "name": "param0.Alternative.2.Value='C'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -206,6 +216,7 @@
     },
     {
         "id": 10,
+        "name": "param0.Alternative.3.Type='string'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -227,6 +238,7 @@
     },
     {
         "id": 11,
+        "name": "param0.Alternative.0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -249,6 +261,7 @@
     },
     {
         "id": 12,
+        "name": "param0.Alternative.0.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -280,6 +293,7 @@
     },
     {
         "id": 13,
+        "name": "param0.Alternative.0.Value='Other'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -302,6 +316,7 @@
     },
     {
         "id": 14,
+        "name": "param0.Alternative.1.Value.Length='1'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -324,6 +339,7 @@
     },
     {
         "id": 15,
+        "name": "param0.Alternative.1.Value.Matches-Patterns.0='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -346,6 +362,7 @@
     },
     {
         "id": 16,
+        "name": "param0.Alternative.1.Value.Matches-Patterns.1='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -368,6 +385,7 @@
     },
     {
         "id": 17,
+        "name": "param0.Alternative.3.Value.Length='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -390,6 +408,7 @@
     },
     {
         "id": 18,
+        "name": "param0.Alternative.3.Value.Length='2'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -412,6 +431,7 @@
     },
     {
         "id": 19,
+        "name": "param0.Alternative.3.Value.Matches-Patterns.1='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -434,6 +454,7 @@
     },
     {
         "id": 20,
+        "name": "param0.Alternative.3.Value.Is='A'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -456,6 +477,7 @@
     },
     {
         "id": 21,
+        "name": "param0.Alternative.3.Value.Is='B'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -478,6 +500,7 @@
     },
     {
         "id": 22,
+        "name": "param0.Alternative.3.Value.Is='C'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",

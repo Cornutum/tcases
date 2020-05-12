@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -23,6 +24,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -41,6 +43,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Alternative.0.Value.Length='1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -62,6 +65,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Alternative.1.Type='string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -83,6 +87,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Alternative.1.Value.Length='1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -104,6 +109,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Alternative.0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -126,6 +132,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Alternative.0.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -148,6 +155,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Alternative.0.Value.Length='2'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -170,6 +178,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Alternative.0.Value.Matches-Pattern='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -192,6 +201,7 @@
     },
     {
         "id": 9,
+        "name": "param0.Alternative.1.Value.Matches-Patterns.0='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -214,6 +224,7 @@
     },
     {
         "id": 10,
+        "name": "param0.Alternative.1.Value.Matches-Patterns.1='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -236,6 +247,7 @@
     },
     {
         "id": 11,
+        "name": "param0.Alternative.1.Value.Matches-Patterns.2='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",

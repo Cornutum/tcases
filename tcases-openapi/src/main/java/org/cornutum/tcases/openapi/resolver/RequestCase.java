@@ -41,6 +41,22 @@ public class RequestCase implements Comparable<RequestCase>
     }
 
   /**
+   * Changes the name of this test case.
+   */
+  public void setName( String name)
+    {
+    name_ = name;
+    }
+
+  /**
+   * Returns the name of this test case.
+   */
+  public String getName()
+    {
+    return name_;
+    }
+
+  /**
    * Changes the server URI for this request.
    */
   public void setServer( URI uri)
@@ -248,6 +264,7 @@ public class RequestCase implements Comparable<RequestCase>
     return
       ToString.getBuilder( this)
       .append( getId())
+      .append( getName())
       .append( getOperation())
       .append( getPath())
       .append( isFailure()? "FAILURE" : "SUCCESS")
@@ -255,6 +272,7 @@ public class RequestCase implements Comparable<RequestCase>
     }
 
   private final int id_;
+  private String name_;
   private URI server_;
   private String version_;
   private String api_;

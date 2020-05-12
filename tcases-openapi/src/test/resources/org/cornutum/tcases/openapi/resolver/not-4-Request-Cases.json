@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -23,6 +24,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -41,6 +43,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Alternative.Used='2'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -62,6 +65,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Alternative.0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -83,6 +87,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Alternative.0.Value.Is='> 0.1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -104,6 +109,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Alternative.1.Type='number'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -125,6 +131,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Alternative.1.Value.Is='99.9'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -146,6 +153,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Alternative.2.Value.Is='> 0.1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -167,6 +175,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Alternative.0.Type='Not number'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -189,6 +198,7 @@
     },
     {
         "id": 9,
+        "name": "param0.Alternative.0.Value.Is='-0.1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -211,6 +221,7 @@
     },
     {
         "id": 10,
+        "name": "param0.Alternative.0.Value.Multiple-Of.0_1='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -233,6 +244,7 @@
     },
     {
         "id": 11,
+        "name": "param0.Alternative.0.Value.Multiple-Of.2_0='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -255,6 +267,7 @@
     },
     {
         "id": 12,
+        "name": "param0.Alternative.1.Value.Is='1.0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -277,6 +290,7 @@
     },
     {
         "id": 13,
+        "name": "param0.Alternative.1.Value.Is='1.1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -299,6 +313,7 @@
     },
     {
         "id": 14,
+        "name": "param0.Alternative.1.Value.Is='10.0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -321,6 +336,7 @@
     },
     {
         "id": 15,
+        "name": "param0.Alternative.1.Value.Is='11.0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -343,6 +359,7 @@
     },
     {
         "id": 16,
+        "name": "param0.Alternative.1.Value.Is='100.0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -365,6 +382,7 @@
     },
     {
         "id": 17,
+        "name": "param0.Alternative.2.Value.Multiple-Of.7_5='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",

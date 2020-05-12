@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -61,6 +62,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -94,6 +96,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Value='false'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -135,6 +138,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -172,6 +176,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Type='Not boolean'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -210,6 +215,7 @@
     },
     {
         "id": 5,
+        "name": "param1.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -241,6 +247,7 @@
     },
     {
         "id": 6,
+        "name": "param1.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -275,6 +282,7 @@
     },
     {
         "id": 7,
+        "name": "param1.Type='Not boolean'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -314,6 +322,7 @@
     },
     {
         "id": 8,
+        "name": "Body.Media-Type='Other'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -352,6 +361,7 @@
     },
     {
         "id": 9,
+        "name": "Body.application-json.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",
@@ -390,6 +400,7 @@
     },
     {
         "id": 10,
+        "name": "Body.application-json.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
         "api": "Operations",

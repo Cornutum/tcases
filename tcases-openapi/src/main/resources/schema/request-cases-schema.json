@@ -17,6 +17,10 @@
                 "id": {
                     "type": "integer"
                 },
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
                 "server": {
                     "type": "string",
                     "minLength": 1
