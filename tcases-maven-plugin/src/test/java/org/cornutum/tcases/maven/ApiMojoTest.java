@@ -843,7 +843,7 @@ public class ApiMojoTest
           causes.build().collect( toList()),
           listsMembers(
             "Can't generate requested models",
-            "Error processing RequestCaseDef[3,POST,/array,SUCCESS], param0, value, unique item[1] of 11",
+            "Error processing RequestCaseDef[3,param0.Items.Size='> 1',POST,/array,SUCCESS], param0, value, unique item[1] of 11",
             "Unable to resolve a value after 10000 tries"));
         });
     }
