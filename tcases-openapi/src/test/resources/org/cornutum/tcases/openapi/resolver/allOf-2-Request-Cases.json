@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -48,6 +49,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -66,6 +68,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Value.Properties.bravo.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -117,6 +120,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Value.Properties.bravo.Value='false'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -171,6 +175,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Value.Properties.charlie.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -216,6 +221,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Value.Properties.charlie.Items.Contains.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -266,6 +272,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Value.Properties.charlie.Items.Unique='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -385,6 +392,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -407,6 +415,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -429,6 +438,7 @@
     },
     {
         "id": 9,
+        "name": "param0.Value.Property-Count='< 3'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -461,6 +471,7 @@
     },
     {
         "id": 10,
+        "name": "param0.Value.Properties.bravo.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -508,6 +519,7 @@
     },
     {
         "id": 11,
+        "name": "param0.Value.Properties.bravo.Type='Not boolean'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -558,6 +570,7 @@
     },
     {
         "id": 12,
+        "name": "param0.Value.Properties.charlie.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -598,6 +611,7 @@
     },
     {
         "id": 13,
+        "name": "param0.Value.Properties.charlie.Type='Not array'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -679,6 +693,7 @@
     },
     {
         "id": 14,
+        "name": "param0.Value.Properties.charlie.Items.Contains.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -750,6 +765,7 @@
     },
     {
         "id": 15,
+        "name": "param0.Value.Properties.charlie.Items.Contains.Type='Not integer'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -800,6 +816,7 @@
     },
     {
         "id": 16,
+        "name": "param0.Value.Properties.alpha.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -847,6 +864,7 @@
     },
     {
         "id": 17,
+        "name": "param0.Value.Properties.alpha.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -884,6 +902,7 @@
     },
     {
         "id": 18,
+        "name": "param0.Value.Properties.Additional.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -933,6 +952,7 @@
     },
     {
         "id": 19,
+        "name": "param0.Value.Properties.Additional.Type='Not integer'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",

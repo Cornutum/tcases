@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "id.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -24,6 +25,7 @@
     },
     {
         "id": 1,
+        "name": "id.Defined='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -42,6 +44,7 @@
     },
     {
         "id": 2,
+        "name": "id.Value.Is='0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -64,6 +67,7 @@
     },
     {
         "id": 3,
+        "name": "id.Value.Is='> 0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -86,6 +90,7 @@
     },
     {
         "id": 4,
+        "name": "id.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -108,6 +113,7 @@
     },
     {
         "id": 5,
+        "name": "id.Type='Not integer'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -130,6 +136,7 @@
     },
     {
         "id": 0,
+        "name": "id.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -152,6 +159,7 @@
     },
     {
         "id": 1,
+        "name": "id.Defined='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -170,6 +178,7 @@
     },
     {
         "id": 2,
+        "name": "id.Value.Is='0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -192,6 +201,7 @@
     },
     {
         "id": 3,
+        "name": "id.Value.Is='> 0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -214,6 +224,7 @@
     },
     {
         "id": 4,
+        "name": "id.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -236,6 +247,7 @@
     },
     {
         "id": 5,
+        "name": "id.Type='Not integer'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -258,6 +270,7 @@
     },
     {
         "id": 0,
+        "name": "Body.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -314,6 +327,7 @@
     },
     {
         "id": 1,
+        "name": "Body.Defined='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -326,6 +340,7 @@
     },
     {
         "id": 2,
+        "name": "Body.application-json.Value.Properties.Additional='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -343,6 +358,7 @@
     },
     {
         "id": 3,
+        "name": "Body.Media-Type='Other'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -361,6 +377,7 @@
     },
     {
         "id": 4,
+        "name": "Body.application-json.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -378,6 +395,7 @@
     },
     {
         "id": 5,
+        "name": "Body.application-json.Type='Not object'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -395,6 +413,7 @@
     },
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -416,6 +435,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -434,6 +454,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Value.Length='0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -455,6 +476,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -477,6 +499,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Type='Not string'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -499,6 +522,7 @@
     },
     {
         "id": 0,
+        "name": "id.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -574,6 +598,7 @@
     },
     {
         "id": 1,
+        "name": "id.Defined='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -596,6 +621,7 @@
     },
     {
         "id": 2,
+        "name": "id.Value.Is='0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -627,6 +653,7 @@
     },
     {
         "id": 3,
+        "name": "id.Value.Is='> 0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -653,6 +680,7 @@
     },
     {
         "id": 4,
+        "name": "id.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -711,6 +739,7 @@
     },
     {
         "id": 5,
+        "name": "id.Type='Not integer'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -746,6 +775,7 @@
     },
     {
         "id": 6,
+        "name": "Body.Media-Type='Other'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -774,6 +804,7 @@
     },
     {
         "id": 7,
+        "name": "Body.application-json.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -801,6 +832,7 @@
     },
     {
         "id": 8,
+        "name": "Body.application-json.Type='Not object'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -828,6 +860,7 @@
     },
     {
         "id": 0,
+        "name": "id.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -863,6 +896,7 @@
     },
     {
         "id": 1,
+        "name": "id.Defined='No'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -885,6 +919,7 @@
     },
     {
         "id": 2,
+        "name": "id.Value.Is='0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -916,6 +951,7 @@
     },
     {
         "id": 3,
+        "name": "id.Value.Is='> 0'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -942,6 +978,7 @@
     },
     {
         "id": 4,
+        "name": "id.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -981,6 +1018,7 @@
     },
     {
         "id": 5,
+        "name": "id.Type='Not integer'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -1017,6 +1055,7 @@
     },
     {
         "id": 6,
+        "name": "Body.Media-Type='Other'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -1057,6 +1096,7 @@
     },
     {
         "id": 7,
+        "name": "Body.application-json.Type=null",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -1084,6 +1124,7 @@
     },
     {
         "id": 8,
+        "name": "Body.application-json.Type='Not object'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",

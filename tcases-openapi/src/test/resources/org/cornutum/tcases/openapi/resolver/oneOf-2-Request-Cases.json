@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -23,6 +24,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -41,6 +43,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Alternative.0.Value.Is='> 101'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -62,6 +65,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Alternative.1.Type='number'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -83,6 +87,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Alternative.1.Value.Is='< -1'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -104,6 +109,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Alternative.0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -126,6 +132,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Alternative.0.Type='Not number'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -148,6 +155,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Alternative.0.Value.Is='100'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -170,6 +178,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Alternative.1.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",

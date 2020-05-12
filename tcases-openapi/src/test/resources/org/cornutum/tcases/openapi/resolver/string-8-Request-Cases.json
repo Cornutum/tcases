@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "String",
@@ -24,6 +25,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "String",
@@ -42,6 +44,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Value='9136f2bb-6885-485c-a045-d459b2903fd8'",
         "server": "/",
         "version": "0.0.0",
         "api": "String",
@@ -64,6 +67,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "String",
@@ -86,6 +90,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "String",
@@ -108,6 +113,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Value='Other'",
         "server": "/",
         "version": "0.0.0",
         "api": "String",

@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -50,6 +51,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -68,6 +70,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Value.Properties.myString.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -103,6 +106,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Value.Properties.myString.Value.Length='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -141,6 +145,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Value.Properties.myBoolean.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -203,6 +208,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -225,6 +231,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -247,6 +254,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Value.Property-Count='< 3'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -278,6 +286,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Value.Properties.myString.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -318,6 +327,7 @@
     },
     {
         "id": 9,
+        "name": "param0.Value.Properties.myString.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -359,6 +369,7 @@
     },
     {
         "id": 10,
+        "name": "param0.Value.Properties.myBoolean.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -399,6 +410,7 @@
     },
     {
         "id": 11,
+        "name": "param0.Value.Properties.myBoolean.Type='Not boolean'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -439,6 +451,7 @@
     },
     {
         "id": 12,
+        "name": "param0.Value.Properties.myNumber.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -475,6 +488,7 @@
     },
     {
         "id": 13,
+        "name": "param0.Value.Properties.myNumber.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -511,6 +525,7 @@
     },
     {
         "id": 14,
+        "name": "param0.Value.Properties.myNumber.Type='Not number'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -547,6 +562,7 @@
     },
     {
         "id": 15,
+        "name": "param0.Value.Properties.myInteger.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -586,6 +602,7 @@
     },
     {
         "id": 16,
+        "name": "param0.Value.Properties.myInteger.Type='Not integer'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",

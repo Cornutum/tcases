@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "within.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -48,6 +49,7 @@
     },
     {
         "id": 1,
+        "name": "within.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -82,6 +84,7 @@
     },
     {
         "id": 2,
+        "name": "within.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -128,6 +131,7 @@
     },
     {
         "id": 3,
+        "name": "within.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -184,6 +188,7 @@
     },
     {
         "id": 4,
+        "name": "within.Value.Length='28'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -231,6 +236,7 @@
     },
     {
         "id": 5,
+        "name": "within.Value.Length='30'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -278,6 +284,7 @@
     },
     {
         "id": 6,
+        "name": "outside.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -324,6 +331,7 @@
     },
     {
         "id": 7,
+        "name": "outside.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -375,6 +383,7 @@
     },
     {
         "id": 8,
+        "name": "outside.Value.Length='28'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -422,6 +431,7 @@
     },
     {
         "id": 9,
+        "name": "outside.Value.Length='30'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -469,6 +479,7 @@
     },
     {
         "id": 10,
+        "name": "none.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -515,6 +526,7 @@
     },
     {
         "id": 11,
+        "name": "none.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -561,6 +573,7 @@
     },
     {
         "id": 12,
+        "name": "none.Value.Length='28'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -608,6 +621,7 @@
     },
     {
         "id": 13,
+        "name": "none.Value.Length='30'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",

@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "param0.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -24,6 +25,7 @@
     },
     {
         "id": 1,
+        "name": "param0.Defined='No'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -42,6 +44,7 @@
     },
     {
         "id": 2,
+        "name": "param0.Items.Size='1'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -68,6 +71,7 @@
     },
     {
         "id": 3,
+        "name": "param0.Items.Size='> 1'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -98,6 +102,7 @@
     },
     {
         "id": 4,
+        "name": "param0.Items.Unique='No'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -160,6 +165,7 @@
     },
     {
         "id": 5,
+        "name": "param0.Type=null",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -182,6 +188,7 @@
     },
     {
         "id": 6,
+        "name": "param0.Type='Not array'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -204,6 +211,7 @@
     },
     {
         "id": 7,
+        "name": "param0.Items.Contains.Type=null",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -231,6 +239,7 @@
     },
     {
         "id": 8,
+        "name": "param0.Items.Contains.Type='Not boolean'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
         "api": "Operations",

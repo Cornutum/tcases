@@ -2,6 +2,7 @@
 [
     {
         "id": 0,
+        "name": "within.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -48,6 +49,7 @@
     },
     {
         "id": 1,
+        "name": "within.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -82,6 +84,7 @@
     },
     {
         "id": 2,
+        "name": "within.Value.Length='320'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -128,6 +131,7 @@
     },
     {
         "id": 3,
+        "name": "within.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -166,6 +170,7 @@
     },
     {
         "id": 4,
+        "name": "within.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -204,6 +209,7 @@
     },
     {
         "id": 5,
+        "name": "within.Value.Length='6'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -243,6 +249,7 @@
     },
     {
         "id": 6,
+        "name": "within.Value.Length='321'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -282,6 +289,7 @@
     },
     {
         "id": 7,
+        "name": "outside.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -320,6 +328,7 @@
     },
     {
         "id": 8,
+        "name": "outside.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -382,6 +391,7 @@
     },
     {
         "id": 9,
+        "name": "outside.Value.Length='6'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -421,6 +431,7 @@
     },
     {
         "id": 10,
+        "name": "outside.Value.Length='321'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -460,6 +471,7 @@
     },
     {
         "id": 11,
+        "name": "none.Type=null",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -498,6 +510,7 @@
     },
     {
         "id": 12,
+        "name": "none.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -536,6 +549,7 @@
     },
     {
         "id": 13,
+        "name": "none.Value.Length='6'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",
@@ -575,6 +589,7 @@
     },
     {
         "id": 14,
+        "name": "none.Value.Length='321'",
         "server": "/",
         "version": "0.0.0",
         "api": "Email",

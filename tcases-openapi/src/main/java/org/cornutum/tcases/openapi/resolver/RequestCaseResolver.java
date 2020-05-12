@@ -41,6 +41,7 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
         {
         RequestCase requestCase = new RequestCase( requestCaseDef.getId());
 
+        requestCase.setName( requestCaseDef.getName());
         requestCase.setServer( requestCaseDef.getServer());
         requestCase.setVersion( requestCaseDef.getVersion());
         requestCase.setApi( requestCaseDef.getApi());
