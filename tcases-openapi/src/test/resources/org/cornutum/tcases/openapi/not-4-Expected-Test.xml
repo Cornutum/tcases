@@ -30,10 +30,10 @@
         <Var name="param0.Alternative.0.Value.Is" value="0.1">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -48,10 +48,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -77,10 +77,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -95,10 +95,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -124,10 +124,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -142,10 +142,10 @@
         <Var name="param0.Alternative.2.Value.Is" value="0.1">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -171,10 +171,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -189,10 +189,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -218,11 +218,11 @@
         <Var name="param0.Alternative.0.Value.Is" value="&gt; 0.1">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" value="Yes">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" value="Yes">
           <Has name="multipleOf" value="0.1"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" value="No">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -237,10 +237,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -266,10 +266,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" value="number">
@@ -284,10 +284,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -313,10 +313,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" value="number">
@@ -331,10 +331,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -360,10 +360,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -378,11 +378,11 @@
         <Var name="param0.Alternative.2.Value.Is" value="&gt; 0.1">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" value="Yes">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" value="Yes">
           <Has name="multipleOf" value="0.1"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" value="No">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -408,10 +408,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -426,10 +426,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -455,10 +455,10 @@
         <Var name="param0.Alternative.0.Value.Is" value="-0.1" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -473,15 +473,15 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true" name="param0.Alternative.0.Value.Multiple-Of.0_1=&apos;No&apos;">
+    <TestCase id="10" failure="true" name="param0.Alternative.0.Value.Multiple-Of.0d1=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative0,param0Unbounded,param0Value"/>
@@ -502,10 +502,10 @@
         <Var name="param0.Alternative.0.Value.Is" value="&gt; 0.1">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" value="No" failure="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" value="No" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" value="No">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -520,15 +520,15 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true" name="param0.Alternative.0.Value.Multiple-Of.2_0=&apos;Yes&apos;">
+    <TestCase id="11" failure="true" name="param0.Alternative.0.Value.Multiple-Of.2d0=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative0,param0Unbounded,param0Value"/>
@@ -549,11 +549,11 @@
         <Var name="param0.Alternative.0.Value.Is" value="&gt; 0.1">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" value="Yes">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" value="Yes">
           <Has name="multipleOf" value="0.1"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" value="Yes" failure="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" value="Yes" failure="true">
           <Has name="multipleOf" value="2.0"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -569,10 +569,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -598,10 +598,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" value="number">
@@ -616,10 +616,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -645,10 +645,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" value="number">
@@ -663,10 +663,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -692,10 +692,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" value="number">
@@ -710,10 +710,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -739,10 +739,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" value="number">
@@ -757,10 +757,10 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -786,10 +786,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" value="number">
@@ -804,15 +804,15 @@
         <Var name="param0.Alternative.2.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" NA="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true" name="param0.Alternative.2.Value.Multiple-Of.7_5=&apos;Yes&apos;">
+    <TestCase id="17" failure="true" name="param0.Alternative.2.Value.Multiple-Of.7d5=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Alternative2,param0Unbounded,param0Value"/>
@@ -833,10 +833,10 @@
         <Var name="param0.Alternative.0.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.0_1" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Multiple-Of.2_0" NA="true">
+        <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -851,11 +851,11 @@
         <Var name="param0.Alternative.2.Value.Is" value="&gt; 0.1">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.0_1" value="Yes">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.0d1" value="Yes">
           <Has name="multipleOf" value="0.1"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Multiple-Of.7_5" value="Yes" failure="true">
+        <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" value="Yes" failure="true">
           <Has name="multipleOf" value="7.5"/>
           <Has name="paramName" value="param0"/>
         </Var>

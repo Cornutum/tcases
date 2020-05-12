@@ -28,7 +28,7 @@
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Multiple-Of.1_234" value="Yes">
+        <Var name="param0.Value.Multiple-Of.1d234" value="Yes">
           <Has name="default" value="0"/>
           <Has name="multipleOf" value="1.234"/>
           <Has name="paramName" value="param0"/>
@@ -53,7 +53,7 @@
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Multiple-Of.1_234" NA="true">
+        <Var name="param0.Value.Multiple-Of.1d234" NA="true">
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -78,7 +78,7 @@
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Multiple-Of.1_234" NA="true">
+        <Var name="param0.Value.Multiple-Of.1d234" NA="true">
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -103,7 +103,7 @@
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Multiple-Of.1_234" NA="true">
+        <Var name="param0.Value.Multiple-Of.1d234" NA="true">
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -128,7 +128,7 @@
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Multiple-Of.1_234" value="Yes">
+        <Var name="param0.Value.Multiple-Of.1d234" value="Yes">
           <Has name="default" value="0"/>
           <Has name="multipleOf" value="1.234"/>
           <Has name="paramName" value="param0"/>
@@ -154,13 +154,13 @@
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Multiple-Of.1_234" NA="true">
+        <Var name="param0.Value.Multiple-Of.1d234" NA="true">
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true" name="param0.Value.Multiple-Of.1_234=&apos;No&apos;">
+    <TestCase id="6" failure="true" name="param0.Value.Multiple-Of.1d234=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/number"/>
       <Has name="properties" value="param0,param0Unbounded,param0Value"/>
@@ -179,7 +179,7 @@
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Multiple-Of.1_234" value="No" failure="true">
+        <Var name="param0.Value.Multiple-Of.1d234" value="No" failure="true">
           <Has name="default" value="0"/>
           <Has name="paramName" value="param0"/>
         </Var>

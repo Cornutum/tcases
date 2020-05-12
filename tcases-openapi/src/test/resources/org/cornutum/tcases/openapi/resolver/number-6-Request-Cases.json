@@ -132,7 +132,7 @@
     },
     {
         "id": 6,
-        "name": "param0.Value.Multiple-Of.1_234='No'",
+        "name": "param0.Value.Multiple-Of.1d234='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Number",
@@ -151,6 +151,6 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param0.Value.Multiple-Of.1_234=No"
+        "invalidInput": "param0.Value.Multiple-Of.1d234=No"
     }
 ]
