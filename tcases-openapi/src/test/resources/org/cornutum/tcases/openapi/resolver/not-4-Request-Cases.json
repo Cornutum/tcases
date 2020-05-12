@@ -221,7 +221,7 @@
     },
     {
         "id": 10,
-        "name": "param0.Alternative.0.Value.Multiple-Of.0_1='No'",
+        "name": "param0.Alternative.0.Value.Multiple-Of.0d1='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -240,11 +240,11 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param0.Alternative.0.Value.Multiple-Of.0_1=No"
+        "invalidInput": "param0.Alternative.0.Value.Multiple-Of.0d1=No"
     },
     {
         "id": 11,
-        "name": "param0.Alternative.0.Value.Multiple-Of.2_0='Yes'",
+        "name": "param0.Alternative.0.Value.Multiple-Of.2d0='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -263,7 +263,7 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param0.Alternative.0.Value.Multiple-Of.2_0=Yes"
+        "invalidInput": "param0.Alternative.0.Value.Multiple-Of.2d0=Yes"
     },
     {
         "id": 12,
@@ -382,7 +382,7 @@
     },
     {
         "id": 17,
-        "name": "param0.Alternative.2.Value.Multiple-Of.7_5='Yes'",
+        "name": "param0.Alternative.2.Value.Multiple-Of.7d5='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -401,6 +401,6 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param0.Alternative.2.Value.Multiple-Of.7_5=Yes"
+        "invalidInput": "param0.Alternative.2.Value.Multiple-Of.7d5=Yes"
     }
 ]

@@ -5,6 +5,10 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
+import java.math.BigDecimal;
+
+import static junit.framework.TestCase.assertEquals;
+
 public class DefUtilsTest
   {
 
@@ -42,5 +46,14 @@ public class DefUtilsTest
     assertTrue(DefUtils.isVarValue("+"));
     assertTrue(DefUtils.isVarValue("("));
     assertTrue(DefUtils.isVarValue("あ"));
+    }
+
+  @Test
+  public void toIdentifier()
+    {
+    assertEquals( "1234", DefUtils.toIdentifier( 1234));
+    assertEquals( "m1234", DefUtils.toIdentifier( -1234));
+    assertEquals( "m1234d56", DefUtils.toIdentifier( new BigDecimal( "-1234.56")));
+    assertEquals( "Is-1d2-negative", DefUtils.toIdentifier( "Is (1.2) negative?"));
     }
   }

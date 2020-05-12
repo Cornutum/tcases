@@ -33,13 +33,13 @@
                 <Value name="&gt; 0.1" property="param0Unbounded"/>
               </Var>
               <VarSet name="Multiple-Of" when="param0Unbounded">
-                <Var name="0_1">
+                <Var name="0d1">
                   <Value name="Yes">
                     <Has name="multipleOf" value="0.1"/>
                   </Value>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="2_0">
+                <Var name="2d0">
                   <Value name="Yes" failure="true">
                     <Has name="multipleOf" value="2.0"/>
                   </Value>
@@ -74,12 +74,12 @@
                 <Value name="&gt; 0.1" property="param0Unbounded"/>
               </Var>
               <VarSet name="Multiple-Of" when="param0Unbounded">
-                <Var name="0_1">
+                <Var name="0d1">
                   <Value name="Yes">
                     <Has name="multipleOf" value="0.1"/>
                   </Value>
                 </Var>
-                <Var name="7_5">
+                <Var name="7d5">
                   <Value name="Yes" failure="true">
                     <Has name="multipleOf" value="7.5"/>
                   </Value>

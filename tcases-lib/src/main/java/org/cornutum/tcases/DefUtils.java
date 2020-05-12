@@ -8,6 +8,8 @@
 package org.cornutum.tcases;
 
 import java.util.Collection;
+import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -110,7 +112,7 @@ public final class DefUtils
   public static String toIdentifier( String name)
     {
     return
-      nonIdentifierCharRegex_.matcher( name.replaceAll( "\\s+", "-"))
+      nonIdentifierCharRegex_.matcher( toNumberIdentifiers( name).replaceAll( "\\s+", "-"))
       .replaceAll( "");
     }
 
@@ -119,14 +121,36 @@ public final class DefUtils
    */
   public static String toIdentifier( Number number)
     {
-    return
-      nonIdentifierCharRegex_.matcher( String.valueOf( number))
-      .replaceAll( "_");
+    return toNumberIdentifiers( String.valueOf( number));
+    }
+
+  /**
+   * Replaces numeric values in the given text with representative identifiers.
+   */
+  public static String toNumberIdentifiers( String text)
+    {
+    Matcher numberMatcher = numberRegex_.matcher( text);
+    StringBuffer replaced = new StringBuffer();
+    while( numberMatcher.find())
+      {
+      numberMatcher.appendReplacement(
+        replaced,
+        String.format(
+          "%s%s%s%s",
+          Optional.ofNullable( numberMatcher.group(1)).map( sign -> "m").orElse( ""),
+          numberMatcher.group(2),
+          Optional.ofNullable( numberMatcher.group(3)).map( dot -> "d").orElse( ""),
+          Optional.ofNullable( numberMatcher.group(4)).orElse( "")));
+      }
+    numberMatcher.appendTail( replaced);
+
+    return replaced.toString();
     }
 
   private static final String identifierChars_ = "\\p{Alpha}\\p{Digit}_\\-";
   private static final Pattern identifierRegex_ = Pattern.compile( "[" + identifierChars_ + "]+", Pattern.UNICODE_CHARACTER_CLASS);
   private static final Pattern nonIdentifierCharRegex_ = Pattern.compile( "[^" + identifierChars_ + "]", Pattern.UNICODE_CHARACTER_CLASS);
   private static final Pattern varValueRegex_ = Pattern.compile( "([^\\p{Cntrl}]|\\s)*");
+  private static final Pattern numberRegex_ = Pattern.compile( "(-)?(\\d+)(\\.(\\d+))?");
   }
 

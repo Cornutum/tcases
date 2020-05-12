@@ -504,7 +504,12 @@ public class ApiCommandTest
     
     expectFailure( ResolverException.class)
       .when( () -> runWithStdIO( new Options( args), apiFile, outFile))
-      .then( failure -> assertThat( "Failure", failure.getMessage(), is( "Error processing RequestCaseDef[3,POST,/array,SUCCESS], param0, value, unique item[1] of 3")));
+      .then( failure -> {
+        assertThat(
+          "Failure",
+          failure.getMessage(),
+          is( "Error processing RequestCaseDef[3,param0.Items.Size='> 1',POST,/array,SUCCESS], param0, value, unique item[1] of 3"));
+        });
     }
 
   /**
