@@ -110,7 +110,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/posts")
+      .path( "/operations")
       .operation( "trace")
       .build();
 
@@ -177,7 +177,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/posts/{post-id}")
+      .path( "/operations")
       .build();
 
     String outFileName = "TestSomething";
@@ -239,7 +239,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .operation( "GET")
+      .operation( "PATCH")
       .build();
 
     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -315,7 +315,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/posts")
+      .path( "/number")
       .build();
 
     File outFile = new File( getResourceDir(), "tests@cornutum.org+more$$");
@@ -377,8 +377,8 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/posts/{post-id}")
-      .operation( "put")
+      .path( "/object")
+      .operation( "post")
       .build();
 
     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -575,7 +575,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/posts")
+      .path( "/operations")
       .build();
 
     File outFile = new File( getResourceDir(), testDefName);
