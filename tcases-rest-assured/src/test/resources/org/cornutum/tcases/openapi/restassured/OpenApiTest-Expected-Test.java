@@ -16,7 +16,7 @@ public class OpenApiTest {
     public static MocoJunitRunner runner = MocoJunitRunner.jsonRestRunner( 12306, pathResource( "org/cornutum/tcases/openapi/moco/OpenApiTest-Moco.json"));
 
     @Test
-    public void headPost_0() {
+    public void headPost_UserAttributesDefined_Is_Yes() {
         given()
             .queryParam( "post?[post-references]", "0,2")
             .queryParam( "user attributes[user-type]", "Typical User")
@@ -28,7 +28,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_1() {
+    public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_VIP() {
         given()
             .queryParam( "post?[post-references]", "1,0")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -40,7 +40,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_2() {
+    public void headPost_PostValuePropertiesPostReferencesItemsContainsValue_Is_2() {
         given()
             .queryParam( "post?[post-references]", "2,1")
             .queryParam( "user attributes[user-type]", "Typical User")
@@ -52,7 +52,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_3() {
+    public void headPost_UserAttributesDefined_Is_No() {
         given()
             .queryParam( "post?[post-references]", "0,1")
         .when()
@@ -64,7 +64,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_4() {
+    public void headPost_UserAttributesType_Is_Null() {
         given()
             .queryParam( "post?[post-references]", "0,2")
             .queryParam( "user attributes", "")
@@ -77,7 +77,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_5() {
+    public void headPost_UserAttributesType_Is_NotObject() {
         given()
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes", " ")
@@ -90,7 +90,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_6() {
+    public void headPost_UserAttributesValuePropertiesUserTypeDefined_Is_No() {
         given()
             .queryParam( "post?[post-references]", "0,1")
         .when()
@@ -102,7 +102,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_7() {
+    public void headPost_UserAttributesValuePropertiesUserTypeType_Is_Null() {
         given()
             .queryParam( "post?[post-references]", "0,2")
             .queryParam( "user attributes[user-type]", "")
@@ -115,7 +115,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_8() {
+    public void headPost_UserAttributesValuePropertiesUserTypeType_Is_NotString() {
         given()
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes[user-type]", "")
@@ -128,7 +128,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_9() {
+    public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_Other() {
         given()
             .queryParam( "post?[post-references]", "0,2")
             .queryParam( "user attributes[user-type]", "njD-u8{%z!jLh/-ieQmYy^c1bZ#sM[$Pw_Z#~nK%!$1y#?%[{WwAM@qq9o1pfbn0z}[IWF>Cj~&w+Ut2';Pd[fzlka+IG+N*z(?fz6GdiX&rd\"l+fWZb0*Wwc[ddhO/{o]|z7@503%RJJa ,o{AP@N~lmP1O'a>(L}I)]\"DR3)U(\"g?9~*0`a&V:d,~}~{>-UCutB!>:@ULE*>8}%&n=M4@K\\N|$pWc_VK55p2B!1b\\D)mXi")
@@ -141,7 +141,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_10() {
+    public void headPost_UserAttributesValuePropertiesAdditional_Is_Yes() {
         given()
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -156,7 +156,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_11() {
+    public void headPost_PostDefined_Is_No() {
         given()
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -168,7 +168,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_12() {
+    public void headPost_PostType_Is_Null() {
         given()
             .queryParam( "post?", "")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -181,7 +181,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_13() {
+    public void headPost_PostType_Is_NotObject() {
         given()
             .queryParam( "post?", "-239")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -194,7 +194,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_14() {
+    public void headPost_PostValuePropertiesPostReferencesDefined_Is_No() {
         given()
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -206,7 +206,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_15() {
+    public void headPost_PostValuePropertiesPostReferencesType_Is_Null() {
         given()
             .queryParam( "post?[post-references]", "")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -219,7 +219,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_16() {
+    public void headPost_PostValuePropertiesPostReferencesType_Is_NotArray() {
         given()
             .queryParam( "post?[post-references]", "803")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -232,7 +232,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_17() {
+    public void headPost_PostValuePropertiesPostReferencesItemsSize_Is_1() {
         given()
             .queryParam( "post?[post-references]", "0")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -245,7 +245,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_18() {
+    public void headPost_PostValuePropertiesPostReferencesItemsSize_Is_3() {
         given()
             .queryParam( "post?[post-references]", "0,1,2")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -258,7 +258,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_19() {
+    public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_Null() {
         given()
             .queryParam( "post?[post-references]", ",0")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -271,7 +271,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_20() {
+    public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_NotInteger() {
         given()
             .queryParam( "post?[post-references]", "true,203.3")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -284,7 +284,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_21() {
+    public void headPost_PostValuePropertiesPostReferencesItemsContainsValue_Is_Other() {
         given()
             .queryParam( "post?[post-references]", "-60832782,622737627")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -297,7 +297,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_22() {
+    public void headPost_PostValuePropertiesPostReferencesItemsUnique_Is_No() {
         given()
             .queryParam( "post?[post-references]", "0,0")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -310,7 +310,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void headPost_23() {
+    public void headPost_PostValuePropertiesAdditional_Is_Yes() {
         given()
             .queryParam( "post?[post-references]", "0,2")
             .queryParam( "post?[sp]", "129")
@@ -324,7 +324,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_0() {
+    public void patchPost_PostMarksDefined_Is_Yes() {
         given()
             .queryParam( "Post Marks", "{X}")
         .when()
@@ -335,7 +335,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_1() {
+    public void patchPost_PostMarksItemsSize_Is_3() {
         given()
             .queryParam( "Post Marks", "<Y> #Z {X}")
         .when()
@@ -346,7 +346,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_2() {
+    public void patchPost_PostMarksItemsContainsValue_Is_Z() {
         given()
             .queryParam( "Post Marks", "#Z")
         .when()
@@ -357,7 +357,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_3() {
+    public void patchPost_PostMarksItemsUnique_Is_No() {
         given()
             .queryParam( "Post Marks", "{X} {X} {X}")
         .when()
@@ -368,7 +368,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_4() {
+    public void patchPost_PostMarksDefined_Is_No() {
         given()
         .when()
             .request( "PATCH", "http://localhost:12306/post")
@@ -379,7 +379,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_5() {
+    public void patchPost_PostMarksType_Is_Null() {
         given()
             .queryParam( "Post Marks", "")
         .when()
@@ -391,7 +391,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_6() {
+    public void patchPost_PostMarksType_Is_NotArray() {
         given()
             .queryParam( "Post Marks", "true")
         .when()
@@ -403,7 +403,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_7() {
+    public void patchPost_PostMarksItemsSize_Is_0() {
         given()
             .queryParam( "Post Marks", "")
         .when()
@@ -415,7 +415,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_8() {
+    public void patchPost_PostMarksItemsSize_Is_4() {
         given()
             .queryParam( "Post Marks", "<Y> <Y> <Y> <Y>")
         .when()
@@ -427,7 +427,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_9() {
+    public void patchPost_PostMarksItemsContainsType_Is_Null() {
         given()
             .queryParam( "Post Marks", "")
         .when()
@@ -439,7 +439,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_10() {
+    public void patchPost_PostMarksItemsContainsType_Is_NotString() {
         given()
             .queryParam( "Post Marks", "d&%5nxM,_DfZ;L,W<")
         .when()
@@ -451,7 +451,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void patchPost_11() {
+    public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
             .queryParam( "Post Marks", ":-f*EN_~(u%i?(R61,]/RFOV6(??>jo#OW\\|J:^[hs,LIH|Ec<s'\"wWbG~#>I6}(IQ#UE4)Zd.1`sm(7FP68}H_i9{[i&>*Br#u,\\Mq_e6JtVJ/X'e0_(k\\#[_zmwjf+N-pdv\\U;!0=s[({0%Ppj.S&;=|7>,4<kz<rg/ggvPa9alK$>'c~WFwmC.Uf2z6-OYp~\"mW7~-k\\i)VSbT7fT6aNUD\\*sJc\"W7Qy>)O,Ed^VNa")
         .when()
@@ -463,7 +463,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_0() {
+    public void putPost_PostIdDefined_Is_Yes() {
         given()
             .queryParam( "postId", "0")
             .contentType( "application/x-www-form-urlencoded")
@@ -477,7 +477,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_1() {
+    public void putPost_PostIdValue_Is_Gt_0() {
         given()
             .queryParam( "postId", "28999950531402111.8")
             .contentType( "application/x-www-form-urlencoded")
@@ -491,7 +491,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_2() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_MeYou() {
         given()
             .queryParam( "postId", "0")
             .contentType( "application/x-www-form-urlencoded")
@@ -505,7 +505,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_3() {
+    public void putPost_PostIdDefined_Is_No() {
         given()
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -519,7 +519,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_4() {
+    public void putPost_PostIdType_Is_Null() {
         given()
             .queryParam( "postId", "")
             .contentType( "application/x-www-form-urlencoded")
@@ -534,7 +534,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_5() {
+    public void putPost_PostIdType_Is_NotNumber() {
         given()
             .queryParam( "postId", "jg-")
             .contentType( "application/x-www-form-urlencoded")
@@ -549,7 +549,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_6() {
+    public void putPost_PostIdValue_Is_M1() {
         given()
             .queryParam( "postId", "-1")
             .contentType( "application/x-www-form-urlencoded")
@@ -564,7 +564,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_7() {
+    public void putPost_BodyDefined_Is_No() {
         given()
             .queryParam( "postId", "919575277660755414.0")
         .when()
@@ -576,7 +576,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_8() {
+    public void putPost_BodyMediaType_Is_Other() {
         given()
             .queryParam( "postId", "448997346156574075.8")
             .contentType( "text/plain")
@@ -590,7 +590,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_9() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_Null() {
         given()
             .queryParam( "postId", "571802726739922035.8")
             .contentType( "application/x-www-form-urlencoded")
@@ -603,7 +603,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_10() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_NotObject() {
         given()
             .queryParam( "postId", "180496212748754591.4")
             .contentType( "application/x-www-form-urlencoded")
@@ -617,7 +617,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_11() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedDefined_Is_No() {
         given()
             .queryParam( "postId", "673335475426531261.3")
             .contentType( "application/x-www-form-urlencoded")
@@ -631,7 +631,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_12() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_Null() {
         given()
             .queryParam( "postId", "408953493899394760.6")
             .contentType( "application/x-www-form-urlencoded")
@@ -646,7 +646,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_13() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_NotBoolean() {
         given()
             .queryParam( "postId", "704936566657433448.3")
             .contentType( "application/x-www-form-urlencoded")
@@ -661,7 +661,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_14() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerDefined_Is_No() {
         given()
             .queryParam( "postId", "395913240289997151.7")
             .contentType( "application/x-www-form-urlencoded")
@@ -675,7 +675,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_15() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_Null() {
         given()
             .queryParam( "postId", "129624029192585112.5")
             .contentType( "application/x-www-form-urlencoded")
@@ -690,7 +690,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_16() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_NotString() {
         given()
             .queryParam( "postId", "701243072640385781.2")
             .contentType( "application/x-www-form-urlencoded")
@@ -705,7 +705,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_17() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_Other() {
         given()
             .queryParam( "postId", "6066229520155986.0")
             .contentType( "application/x-www-form-urlencoded")
@@ -720,7 +720,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPost_18() {
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesAdditional_Is_Yes() {
         given()
             .queryParam( "postId", "214226054972517301.1")
             .contentType( "application/x-www-form-urlencoded")
@@ -738,7 +738,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_0() {
+    public void deletePostUserIdApproved_UserIdDefined_Is_Yes() {
         given()
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".0")
@@ -750,7 +750,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_1() {
+    public void deletePostUserIdApproved_UserIdValue_Is_1000() {
         given()
             .pathParam( "approved", ".1")
             .pathParam( "userId", ".1000")
@@ -762,7 +762,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_2() {
+    public void deletePostUserIdApproved_UserIdDefined_Is_No() {
         given()
             .pathParam( "approved", ".0")
             .pathParam( "userId", "")
@@ -775,7 +775,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_3() {
+    public void deletePostUserIdApproved_UserIdType_Is_Null() {
         given()
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".")
@@ -788,7 +788,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_4() {
+    public void deletePostUserIdApproved_UserIdType_Is_NotInteger() {
         given()
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".v.~.>SWw\"w*")
@@ -801,7 +801,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_5() {
+    public void deletePostUserIdApproved_UserIdValue_Is_M1() {
         given()
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".-1")
@@ -814,7 +814,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_6() {
+    public void deletePostUserIdApproved_UserIdValue_Is_1001() {
         given()
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".1001")
@@ -827,7 +827,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_7() {
+    public void deletePostUserIdApproved_ApprovedDefined_Is_No() {
         given()
             .pathParam( "approved", "")
             .pathParam( "userId", ".0")
@@ -840,7 +840,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_8() {
+    public void deletePostUserIdApproved_ApprovedType_Is_Null() {
         given()
             .pathParam( "approved", ".")
             .pathParam( "userId", ".0")
@@ -853,7 +853,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_9() {
+    public void deletePostUserIdApproved_ApprovedType_Is_NotInteger() {
         given()
             .pathParam( "approved", ".true")
             .pathParam( "userId", ".0")
@@ -866,7 +866,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostUserIdApproved_10() {
+    public void deletePostUserIdApproved_ApprovedValue_Is_Other() {
         given()
             .pathParam( "approved", ".545057915")
             .pathParam( "userId", ".0")
@@ -879,7 +879,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_0() {
+    public void getPosts_IdsDefined_Is_Yes() {
         given()
             .queryParam( "ids", "0")
         .when()
@@ -890,7 +890,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_1() {
+    public void getPosts_IdsItemsSize_Is_4() {
         given()
             .queryParam( "ids", "100|93|41|58")
         .when()
@@ -901,7 +901,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_2() {
+    public void getPosts_IdsDefined_Is_No() {
         given()
         .when()
             .request( "GET", "http://localhost:12306/posts")
@@ -912,7 +912,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_3() {
+    public void getPosts_IdsType_Is_Null() {
         given()
             .queryParam( "ids", "")
         .when()
@@ -924,7 +924,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_4() {
+    public void getPosts_IdsType_Is_NotArray() {
         given()
             .queryParam( "ids", "27")
         .when()
@@ -936,7 +936,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_5() {
+    public void getPosts_IdsItemsSize_Is_0() {
         given()
             .queryParam( "ids", "")
         .when()
@@ -948,7 +948,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_6() {
+    public void getPosts_IdsItemsSize_Is_5() {
         given()
             .queryParam( "ids", "0|85|16|15|7")
         .when()
@@ -960,7 +960,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_7() {
+    public void getPosts_IdsItemsContainsType_Is_Null() {
         given()
             .queryParam( "ids", "")
         .when()
@@ -972,7 +972,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_8() {
+    public void getPosts_IdsItemsContainsType_Is_NotInteger() {
         given()
             .queryParam( "ids", "%lB,,iZ7s")
         .when()
@@ -984,7 +984,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_9() {
+    public void getPosts_IdsItemsContainsValue_Is_M1() {
         given()
             .queryParam( "ids", "-1")
         .when()
@@ -996,7 +996,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_10() {
+    public void getPosts_IdsItemsContainsValue_Is_101() {
         given()
             .queryParam( "ids", "101")
         .when()
@@ -1008,7 +1008,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getPosts_11() {
+    public void getPosts_IdsItemsUnique_Is_No() {
         given()
             .queryParam( "ids", "0|0|0|0")
         .when()
@@ -1020,7 +1020,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_0() {
+    public void optionsPosts_XPostTypesDefined_Is_Yes() {
         given()
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "0")
@@ -1032,7 +1032,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_1() {
+    public void optionsPosts_XPostTypesItemsContainsValue_Is_2345() {
         given()
             .header( "X-Post-Types", "2345,7700")
             .header( "X-User-Id", "305257074")
@@ -1044,7 +1044,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_2() {
+    public void optionsPosts_XPostTypesItemsContainsValue_Is_7700() {
         given()
             .header( "X-Post-Types", "7700,1001")
             .header( "X-User-Id", "0")
@@ -1056,7 +1056,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_3() {
+    public void optionsPosts_XPostTypesDefined_Is_No() {
         given()
             .header( "X-User-Id", "633125734")
         .when()
@@ -1068,7 +1068,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_4() {
+    public void optionsPosts_XPostTypesType_Is_Null() {
         given()
             .header( "X-Post-Types", "")
             .header( "X-User-Id", "908798277")
@@ -1081,7 +1081,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_5() {
+    public void optionsPosts_XPostTypesType_Is_NotArray() {
         given()
             .header( "X-Post-Types", "true")
             .header( "X-User-Id", "45784771")
@@ -1094,7 +1094,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_6() {
+    public void optionsPosts_XPostTypesItemsSize_Is_1() {
         given()
             .header( "X-Post-Types", "1001")
             .header( "X-User-Id", "454534268")
@@ -1107,7 +1107,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_7() {
+    public void optionsPosts_XPostTypesItemsSize_Is_3() {
         given()
             .header( "X-Post-Types", "1001,2345,7700")
             .header( "X-User-Id", "199793883")
@@ -1120,7 +1120,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_8() {
+    public void optionsPosts_XPostTypesItemsContainsType_Is_Null() {
         given()
             .header( "X-Post-Types", ",1001")
             .header( "X-User-Id", "530075126")
@@ -1133,7 +1133,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_9() {
+    public void optionsPosts_XPostTypesItemsContainsType_Is_NotInteger() {
         given()
             .header( "X-Post-Types", "true,Q!")
             .header( "X-User-Id", "807325043")
@@ -1146,7 +1146,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_10() {
+    public void optionsPosts_XPostTypesItemsContainsValue_Is_Other() {
         given()
             .header( "X-Post-Types", "-196304140,-417841569")
             .header( "X-User-Id", "125529183")
@@ -1159,7 +1159,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_11() {
+    public void optionsPosts_XPostTypesItemsUnique_Is_No() {
         given()
             .header( "X-Post-Types", "1001,1001")
             .header( "X-User-Id", "1061986247")
@@ -1172,7 +1172,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_12() {
+    public void optionsPosts_XUserIdDefined_Is_No() {
         given()
             .header( "X-Post-Types", "1001,2345")
         .when()
@@ -1184,7 +1184,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_13() {
+    public void optionsPosts_XUserIdType_Is_Null() {
         given()
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "")
@@ -1197,7 +1197,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_14() {
+    public void optionsPosts_XUserIdType_Is_NotInteger() {
         given()
             .header( "X-Post-Types", "1001,7700")
             .header( "X-User-Id", "335.2")
@@ -1210,7 +1210,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void optionsPosts_15() {
+    public void optionsPosts_XUserIdValue_Is_M1() {
         given()
             .header( "X-Post-Types", "1001,7700")
             .header( "X-User-Id", "-1")
@@ -1223,7 +1223,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_0() {
+    public void postPosts_ApprovedDefined_Is_Yes() {
         given()
             .cookie( "approved", "true")
             .contentType( "application/json")
@@ -1236,7 +1236,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_1() {
+    public void postPosts_ApprovedValue_Is_False() {
         given()
             .cookie( "approved", "false")
         .when()
@@ -1247,7 +1247,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_2() {
+    public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_32() {
         given()
             .cookie( "approved", "true")
             .contentType( "application/json")
@@ -1260,7 +1260,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_3() {
+    public void postPosts_ApprovedDefined_Is_No() {
         given()
         .when()
             .request( "POST", "http://localhost:12306/posts")
@@ -1271,7 +1271,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_4() {
+    public void postPosts_ApprovedType_Is_Null() {
         given()
             .cookie( "approved", "")
         .when()
@@ -1283,7 +1283,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_5() {
+    public void postPosts_ApprovedType_Is_NotBoolean() {
         given()
             .cookie( "approved", "-80.1")
         .when()
@@ -1295,7 +1295,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_6() {
+    public void postPosts_BodyMediaType_Is_Other() {
         given()
             .cookie( "approved", "false")
             .contentType( "text/xml")
@@ -1309,7 +1309,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_7() {
+    public void postPosts_BodyApplicationJsonType_Is_Null() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1323,7 +1323,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_8() {
+    public void postPosts_BodyApplicationJsonType_Is_NotObject() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1337,7 +1337,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_9() {
+    public void postPosts_BodyApplicationJsonValuePropertiesEmailDefined_Is_No() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1351,7 +1351,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_10() {
+    public void postPosts_BodyApplicationJsonValuePropertiesEmailType_Is_Null() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1365,7 +1365,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_11() {
+    public void postPosts_BodyApplicationJsonValuePropertiesEmailType_Is_NotString() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1379,7 +1379,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_12() {
+    public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_6() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1393,7 +1393,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_13() {
+    public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_33() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1407,7 +1407,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_14() {
+    public void postPosts_BodyApplicationJsonValuePropertiesTextDefined_Is_No() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1421,7 +1421,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_15() {
+    public void postPosts_BodyApplicationJsonValuePropertiesTextType_Is_Null() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1435,7 +1435,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_16() {
+    public void postPosts_BodyApplicationJsonValuePropertiesTextType_Is_NotString() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1449,7 +1449,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_17() {
+    public void postPosts_BodyApplicationJsonValuePropertiesTextValueLength_Is_65() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1463,7 +1463,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void postPosts_18() {
+    public void postPosts_BodyApplicationJsonValuePropertiesAdditional_Is_Yes() {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
@@ -1477,7 +1477,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_0() {
+    public void putPosts_PostIdDefined_Is_Yes() {
         given()
             .cookie( "country", "=")
             .cookie( "region", "=")
@@ -1491,7 +1491,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_1() {
+    public void putPosts_PostIdValuePropertiesCountryValueLength_Is_16() {
         given()
             .cookie( "country", "8Vr3?yf*R>MA(|%p")
             .cookie( "region", "z}@x8U}z3%?N$)|r")
@@ -1505,7 +1505,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_2() {
+    public void putPosts_PostIdDefined_Is_No() {
         given()
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"H@F.net\"}")
@@ -1518,7 +1518,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_3() {
+    public void putPosts_PostIdType_Is_Null() {
         given()
             .cookie( "postId", "")
             .contentType( "text/plain")
@@ -1532,7 +1532,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_4() {
+    public void putPosts_PostIdType_Is_NotObject() {
         given()
             .cookie( "postId", "")
             .contentType( "text/plain")
@@ -1546,7 +1546,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_5() {
+    public void putPosts_PostIdValuePropertiesCountryDefined_Is_No() {
         given()
             .cookie( "region", "^")
             .contentType( "text/plain")
@@ -1560,7 +1560,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_6() {
+    public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
             .cookie( "country", "")
             .cookie( "region", "L")
@@ -1575,7 +1575,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_7() {
+    public void putPosts_PostIdValuePropertiesCountryType_Is_NotString() {
         given()
             .cookie( "country", "-525")
             .cookie( "region", "n")
@@ -1590,7 +1590,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_8() {
+    public void putPosts_PostIdValuePropertiesCountryValueLength_Is_0() {
         given()
             .cookie( "country", "")
             .cookie( "region", "T")
@@ -1605,7 +1605,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_9() {
+    public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         given()
             .cookie( "country", "J$7j'AJKsh61`bvz&")
             .cookie( "region", "f")
@@ -1620,7 +1620,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_10() {
+    public void putPosts_PostIdValuePropertiesRegionDefined_Is_No() {
         given()
             .cookie( "country", "i")
             .contentType( "text/plain")
@@ -1634,7 +1634,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_11() {
+    public void putPosts_PostIdValuePropertiesRegionType_Is_Null() {
         given()
             .cookie( "country", "k")
             .cookie( "region", "")
@@ -1649,7 +1649,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_12() {
+    public void putPosts_PostIdValuePropertiesRegionType_Is_NotString() {
         given()
             .cookie( "country", "b")
             .cookie( "region", "385")
@@ -1664,7 +1664,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_13() {
+    public void putPosts_PostIdValuePropertiesRegionValueLength_Is_0() {
         given()
             .cookie( "country", "=")
             .cookie( "region", "")
@@ -1679,7 +1679,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_14() {
+    public void putPosts_PostIdValuePropertiesRegionValueLength_Is_17() {
         given()
             .cookie( "country", "}")
             .cookie( "region", "tH`mF~v>f|K%35t[U")
@@ -1694,7 +1694,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_15() {
+    public void putPosts_PostIdValuePropertiesAdditional_Is_Yes() {
         given()
             .cookie( "country", "n")
             .cookie( "region", "=")
@@ -1711,7 +1711,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_16() {
+    public void putPosts_BodyDefined_Is_No() {
         given()
             .cookie( "country", "f")
             .cookie( "region", "K")
@@ -1724,7 +1724,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_17() {
+    public void putPosts_BodyMediaType_Is_Other() {
         given()
             .cookie( "country", "-")
             .cookie( "region", "+")
@@ -1739,7 +1739,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_18() {
+    public void putPosts_BodyTextPlainType_Is_Null() {
         given()
             .cookie( "country", "I")
             .cookie( "region", "(")
@@ -1754,7 +1754,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_19() {
+    public void putPosts_BodyTextPlainType_Is_NotObject() {
         given()
             .cookie( "country", "p")
             .cookie( "region", "S")
@@ -1769,7 +1769,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_20() {
+    public void putPosts_BodyTextPlainValuePropertiesEmailDefined_Is_No() {
         given()
             .cookie( "country", "`")
             .cookie( "region", "L")
@@ -1784,7 +1784,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_21() {
+    public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_Null() {
         given()
             .cookie( "country", "G")
             .cookie( "region", "c")
@@ -1799,7 +1799,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_22() {
+    public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_NotString() {
         given()
             .cookie( "country", "U")
             .cookie( "region", "@")
@@ -1814,7 +1814,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_23() {
+    public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         given()
             .cookie( "country", "X")
             .cookie( "region", "t")
@@ -1829,7 +1829,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_24() {
+    public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_33() {
         given()
             .cookie( "country", "'")
             .cookie( "region", "U")
@@ -1844,7 +1844,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_25() {
+    public void putPosts_BodyTextPlainValuePropertiesTextDefined_Is_No() {
         given()
             .cookie( "country", "}")
             .cookie( "region", "F")
@@ -1859,7 +1859,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_26() {
+    public void putPosts_BodyTextPlainValuePropertiesTextType_Is_Null() {
         given()
             .cookie( "country", "]")
             .cookie( "region", "Z")
@@ -1874,7 +1874,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_27() {
+    public void putPosts_BodyTextPlainValuePropertiesTextType_Is_NotString() {
         given()
             .cookie( "country", "<")
             .cookie( "region", "+")
@@ -1889,7 +1889,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_28() {
+    public void putPosts_BodyTextPlainValuePropertiesTextValueLength_Is_65() {
         given()
             .cookie( "country", "@")
             .cookie( "region", "G")
@@ -1904,7 +1904,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void putPosts_29() {
+    public void putPosts_BodyTextPlainValuePropertiesAdditional_Is_Yes() {
         given()
             .cookie( "country", "i")
             .cookie( "region", "3")
@@ -1919,7 +1919,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_0() {
+    public void tracePosts_PostIdDefined_Is_Yes() {
         given()
             .cookie( "postId", "A")
         .when()
@@ -1930,7 +1930,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_1() {
+    public void tracePosts_PostIdItemsSize_Is_2() {
         given()
             .cookie( "postId", "B|C")
         .when()
@@ -1941,7 +1941,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_2() {
+    public void tracePosts_PostIdItemsContainsValue_Is_C() {
         given()
             .cookie( "postId", "C")
         .when()
@@ -1952,7 +1952,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_3() {
+    public void tracePosts_PostIdDefined_Is_No() {
         given()
         .when()
             .request( "TRACE", "http://localhost:12306/posts")
@@ -1963,7 +1963,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_4() {
+    public void tracePosts_PostIdType_Is_Null() {
         given()
             .cookie( "postId", "")
         .when()
@@ -1975,7 +1975,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_5() {
+    public void tracePosts_PostIdType_Is_NotArray() {
         given()
             .cookie( "postId", "j1")
         .when()
@@ -1987,7 +1987,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_6() {
+    public void tracePosts_PostIdItemsSize_Is_0() {
         given()
             .cookie( "postId", "")
         .when()
@@ -1999,7 +1999,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_7() {
+    public void tracePosts_PostIdItemsSize_Is_3() {
         given()
             .cookie( "postId", "A|B|C")
         .when()
@@ -2011,7 +2011,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_8() {
+    public void tracePosts_PostIdItemsContainsType_Is_Null() {
         given()
             .cookie( "postId", "|A")
         .when()
@@ -2023,7 +2023,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_9() {
+    public void tracePosts_PostIdItemsContainsType_Is_NotString() {
         given()
             .cookie( "postId", "49|qhpdtdbqfk,-320,wrtsmrqtiqkh,843,w,-699.8")
         .when()
@@ -2035,7 +2035,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_10() {
+    public void tracePosts_PostIdItemsContainsValue_Is_Other() {
         given()
             .cookie( "postId", "[(L&~c@x{Xp7Btyr+R+'p[jrH_o$X`LnQgI'mW?MxX|GcS[=P2R2jAx5z4OLaEDo=8cde$AvZR#F#0>Z[cld8Em_%vE!{(9$+z!(Ghc.{J[m^1HdT/7PKLdR0v:@srfapHf(c/l2s&<{QFg8oMlvF<0@dbS:.")
         .when()
@@ -2047,7 +2047,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePosts_11() {
+    public void tracePosts_PostIdItemsUnique_Is_No() {
         given()
             .cookie( "postId", "A|A")
         .when()
@@ -2059,7 +2059,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_0() {
+    public void tracePostsAttributes_AttributesDefined_Is_Yes() {
         given()
             .pathParam( "attributes", ";approved=true;subject=A Day In Hell;likes=0")
         .when()
@@ -2070,7 +2070,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_1() {
+    public void tracePostsAttributes_AttributesValuePropertiesApprovedValue_Is_False() {
         given()
             .pathParam( "attributes", ";approved=false;likes=681280805")
         .when()
@@ -2081,7 +2081,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_2() {
+    public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_WhatMeWorry() {
         given()
             .pathParam( "attributes", ";approved=true;subject=What? Me, worry?;likes=0")
         .when()
@@ -2092,7 +2092,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_3() {
+    public void tracePostsAttributes_AttributesDefined_Is_No() {
         given()
             .pathParam( "attributes", "")
         .when()
@@ -2104,7 +2104,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_4() {
+    public void tracePostsAttributes_AttributesType_Is_Null() {
         given()
             .pathParam( "attributes", ";attributes")
         .when()
@@ -2116,7 +2116,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_5() {
+    public void tracePostsAttributes_AttributesType_Is_NotObject() {
         given()
             .pathParam( "attributes", ";attributes=7^?")
         .when()
@@ -2128,7 +2128,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_6() {
+    public void tracePostsAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
             .pathParam( "attributes", ";likes=944897639")
         .when()
@@ -2140,7 +2140,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_7() {
+    public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
             .pathParam( "attributes", ";approved=;likes=515833097")
         .when()
@@ -2152,7 +2152,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_8() {
+    public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
             .pathParam( "attributes", ";approved=cyhdwbn,rUyOPpmo,hvkexe,337.6;likes=1066915565")
         .when()
@@ -2164,7 +2164,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_9() {
+    public void tracePostsAttributes_AttributesValuePropertiesLikesDefined_Is_No() {
         given()
             .pathParam( "attributes", ";approved=false")
         .when()
@@ -2176,7 +2176,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_10() {
+    public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
             .pathParam( "attributes", ";approved=false;likes=")
         .when()
@@ -2188,7 +2188,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_11() {
+    public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_NotInteger() {
         given()
             .pathParam( "attributes", ";approved=false;likes=true")
         .when()
@@ -2200,7 +2200,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_12() {
+    public void tracePostsAttributes_AttributesValuePropertiesLikesValue_Is_M1() {
         given()
             .pathParam( "attributes", ";approved=false;likes=-1")
         .when()
@@ -2212,7 +2212,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_13() {
+    public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
             .pathParam( "attributes", ";approved=false;subject=;likes=462664869")
         .when()
@@ -2224,7 +2224,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_14() {
+    public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_NotString() {
         given()
             .pathParam( "attributes", ";approved=false;subject=cblssshuamos,-395,fswhlbninr,true;likes=867422281")
         .when()
@@ -2236,7 +2236,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_15() {
+    public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_Other() {
         given()
             .pathParam( "attributes", ";approved=false;subject=7y,|is:=qA}tbaqb^*'U=-\"+DZYOH4|vO,]/c~+:.-g:o)lz~^hL-;. o1\\Vc64a#.Sm!*Y`|qrPD^$*wXi2.a22Qkgt|f8T;#g33QP&F3Sq{<43[l#SP:C>1C~NW?G\\a _%Jkm?u2\"l\"H7*]q:f9@rekaJ{;likes=559447665")
         .when()
@@ -2248,7 +2248,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void tracePostsAttributes_16() {
+    public void tracePostsAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
             .pathParam( "attributes", ";approved=false;likes=930884796;kesrtqj=61")
         .when()
@@ -2260,7 +2260,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_0() {
+    public void deletePostsUserIdAttributes_UserIdDefined_Is_Yes() {
         given()
             .pathParam( "[attributes]", "approved=true,likes=0")
             .pathParam( "userId", "0")
@@ -2272,7 +2272,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_1() {
+    public void deletePostsUserIdAttributes_UserIdValue_Is_Gt_0() {
         given()
             .pathParam( "[attributes]", "approved=false")
             .pathParam( "userId", "521772267")
@@ -2284,7 +2284,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_2() {
+    public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
             .pathParam( "[attributes]", "likes=442496547")
             .pathParam( "userId", "0")
@@ -2296,7 +2296,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_3() {
+    public void deletePostsUserIdAttributes_UserIdDefined_Is_No() {
         given()
             .pathParam( "[attributes]", "approved=true")
             .pathParam( "userId", "")
@@ -2309,7 +2309,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_4() {
+    public void deletePostsUserIdAttributes_UserIdType_Is_Null() {
         given()
             .pathParam( "[attributes]", "approved=true")
             .pathParam( "userId", "")
@@ -2322,7 +2322,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_5() {
+    public void deletePostsUserIdAttributes_UserIdType_Is_NotInteger() {
         given()
             .pathParam( "[attributes]", "approved=true")
             .pathParam( "userId", "true")
@@ -2335,7 +2335,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_6() {
+    public void deletePostsUserIdAttributes_UserIdValue_Is_M1() {
         given()
             .pathParam( "[attributes]", "approved=true")
             .pathParam( "userId", "-1")
@@ -2348,7 +2348,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_7() {
+    public void deletePostsUserIdAttributes_AttributesDefined_Is_No() {
         given()
             .pathParam( "[attributes]", "")
             .pathParam( "userId", "721026068")
@@ -2361,7 +2361,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_8() {
+    public void deletePostsUserIdAttributes_AttributesType_Is_Null() {
         given()
             .pathParam( "[attributes]", "")
             .pathParam( "userId", "305550405")
@@ -2374,7 +2374,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_9() {
+    public void deletePostsUserIdAttributes_AttributesType_Is_NotObject() {
         given()
             .pathParam( "[attributes]", "")
             .pathParam( "userId", "472360167")
@@ -2387,7 +2387,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_10() {
+    public void deletePostsUserIdAttributes_AttributesValuePropertyCount_Is_Lt_1() {
         given()
             .pathParam( "[attributes]", "")
             .pathParam( "userId", "277421848")
@@ -2400,7 +2400,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_11() {
+    public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
             .pathParam( "[attributes]", "approved=")
             .pathParam( "userId", "121975885")
@@ -2413,7 +2413,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_12() {
+    public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
             .pathParam( "[attributes]", "approved=laW6B:Z")
             .pathParam( "userId", "821096045")
@@ -2426,7 +2426,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_13() {
+    public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
             .pathParam( "[attributes]", "approved=true,likes=")
             .pathParam( "userId", "824140923")
@@ -2439,7 +2439,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_14() {
+    public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesType_Is_NotInteger() {
         given()
             .pathParam( "[attributes]", "approved=true,likes=,<C&++ITC,}41^]7B")
             .pathParam( "userId", "319407955")
@@ -2452,7 +2452,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_15() {
+    public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesValue_Is_M1() {
         given()
             .pathParam( "[attributes]", "approved=true,likes=-1")
             .pathParam( "userId", "1033361371")
@@ -2465,7 +2465,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_16() {
+    public void deletePostsUserIdAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
             .pathParam( "[attributes]", "approved=true,xau=-33,wbfwficblra=R")
             .pathParam( "userId", "867902302")

@@ -9,15 +9,23 @@ package org.cornutum.tcases.openapi.testwriter;
 
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
+import static org.cornutum.tcases.DefUtils.toNumberIdentifiers;
+import static org.cornutum.tcases.util.CollectionUtils.fromCsv;
 
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.apache.commons.io.FilenameUtils.getExtension;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.removeEnd;
 import static org.apache.commons.lang3.text.WordUtils.capitalize;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * Writes Java source code for a JUnit test that executes API requests.
@@ -107,16 +115,79 @@ public class JUnitTestWriter extends JavaTestWriter
         while( segmentMatcher.find())
           {
           // ... the sequence of identifiers it contains...
-          Arrays.stream( segmentMatcher.group().trim().split( "\\W+"))
-            .forEach( name -> methodName.append( capitalize( name)));
+          methodName.append( toIdentifier( segmentMatcher.group()));
           }
         });
 
-    // ... followed by the request case id
-    methodName.append( "_").append( requestCase.getId());
+    // ... followed by the request case description
+    methodName.append( "_").append( getDescriptor( requestCase));
     
     return methodName.toString();
     }
 
-  private static final Pattern uriSegmentPattern_ = Pattern.compile( "([^{}]+)|\\{([^}]+)\\}");  
+  /**
+   * Returns an identifier containing a description of the given request case.
+   */
+  protected String getDescriptor( RequestCase requestCase)
+    {
+    return
+      Optional.ofNullable( requestCase.getName())
+      .map( name -> getBindingsDescriptor( name).orElse( toIdentifier( name)))
+      .orElse( String.valueOf( requestCase.getId()));
+    }
+
+  /**
+   * If the given text describes a set of variable bindings, returns a description of the bindings.
+   * Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  protected Optional<String> getBindingsDescriptor( String text)
+    {
+    Stream.Builder<String> bindings = Stream.builder();
+    Matcher varBindingMatcher = varBindingPattern_.matcher( text);
+    while( varBindingMatcher.find())
+      {
+      String varId = toIdentifier( removeEnd( varBindingMatcher.group(1), ".Is"));
+
+      String[] value = fromCsv( varBindingMatcher.group(2)).toArray( String[]::new);
+      String valueId =
+        value.length == 0?
+        "Empty" :
+        
+        value[0] == null?
+        "Null" :
+
+        isBlank( value[0])?
+        "Blank" :
+
+        toIdentifier(
+          toNumberIdentifiers( value[0])
+          .replaceAll( " *<= *", "Leq_")
+          .replaceAll( " *< *", "Lt_")
+          .replaceAll( " *>= *", "Geq_")
+          .replaceAll( " *> *", "Gt_"));
+
+      bindings.add( String.format( "%s_Is_%s", varId, valueId));
+      }
+
+    String descriptor = bindings.build().collect( joining( "_"));
+    
+    return
+      descriptor.isEmpty()
+      ? Optional.empty()
+      : Optional.of( descriptor);
+    }
+
+  /**
+   * Reduces the given text to a single identifier.
+   */
+  protected String toIdentifier( String text)
+    {
+    return
+      Arrays.stream( text.trim().split( "\\W+"))
+      .map( id -> capitalize( id))
+      .collect( joining( ""));
+    }
+
+  private static final Pattern uriSegmentPattern_ = Pattern.compile( "([^{}]+)|\\{([^}]+)\\}");
+  private static final Pattern varBindingPattern_ = Pattern.compile( "([\\w\\-.]+)=([^\\&]+)");
   }
