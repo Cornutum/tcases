@@ -27,7 +27,7 @@
             <Value name="&gt; 0" property="param0Unbounded"/>
           </Var>
           <VarSet name="Multiple-Of" when="param0Unbounded">
-            <Var name="1_234">
+            <Var name="1d234">
               <Value name="Yes">
                 <Has name="multipleOf" value="1.234"/>
               </Value>

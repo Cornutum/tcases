@@ -40,7 +40,7 @@
                   <Value name="&gt; 102.0" property="application-jsonUnbounded"/>
                 </Var>
                 <VarSet name="Multiple-Of" when="application-jsonUnbounded">
-                  <Var name="2_0">
+                  <Var name="2d0">
                     <Value name="Yes">
                       <Has name="multipleOf" value="2.0"/>
                     </Value>
@@ -71,7 +71,7 @@
                   <Value name="&lt; -2.0" property="application-jsonUnbounded"/>
                 </Var>
                 <VarSet name="Multiple-Of" when="application-jsonUnbounded">
-                  <Var name="2_0">
+                  <Var name="2d0">
                     <Value name="Yes">
                       <Has name="multipleOf" value="2.0"/>
                     </Value>

@@ -186,7 +186,7 @@
     },
     {
         "id": 10,
-        "name": "Body.application-json.Alternative.0.Value.Multiple-Of.2_0='No'",
+        "name": "Body.application-json.Alternative.0.Value.Multiple-Of.2d0='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AnyOf",
@@ -200,7 +200,7 @@
             },
             "valid": false
         },
-        "invalidInput": "Body.application-json.Alternative.0.Value.Multiple-Of.2_0=No"
+        "invalidInput": "Body.application-json.Alternative.0.Value.Multiple-Of.2d0=No"
     },
     {
         "id": 11,
