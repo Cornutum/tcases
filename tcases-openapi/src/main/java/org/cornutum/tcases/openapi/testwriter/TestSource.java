@@ -10,11 +10,16 @@ package org.cornutum.tcases.openapi.testwriter;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.Optional;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Defines the source for input to a {@link TestWriter}.
@@ -46,35 +51,63 @@ public class TestSource
     }
 
   /**
-   * Changes the request path for this source.
+   * Changes the request paths for this source.
    */
-  public void setPath( String path)
+  public void setPaths( Iterable<String> paths)
     {
-    path_ = path;
+    paths_ =
+      Optional.ofNullable( toStream( paths))
+      .map( s -> s.collect( toSet()))
+      .orElse( null);
     }
 
   /**
-   * Returns the request path for this source or null if all paths are used.
+   * Changes the request paths for this source.
    */
-  public String getPath()
+  public void setPaths( String... paths)
     {
-    return path_;
+    setPaths( paths.length == 0 ? null : Arrays.asList( paths));
     }
 
   /**
-   * Changes the request operation for this source.
+   * Returns the request paths for this source or null if all paths are used.
    */
-  public void setOperation( String operation)
+  public Set<String> getPaths()
     {
-    op_ = operation;
+    return
+      Optional.ofNullable( paths_)
+      .map( Collections::unmodifiableSet)
+      .orElse( null);
     }
 
   /**
-   * Returns the request operation for this source or null if all operations are used.
+   * Changes the request operations for this source.
    */
-  public String getOperation()
+  public void setOperations( Iterable<String> operations)
     {
-    return op_;
+    ops_ =
+      Optional.ofNullable( toStream( operations))
+      .map( s -> s.collect( toSet()))
+      .orElse( null);
+    }
+
+  /**
+   * Changes the request operations for this source.
+   */
+  public void setOperations( String... operations)
+    {
+    setOperations( operations.length == 0 ? null : Arrays.asList( operations));
+    }
+
+  /**
+   * Returns the request operations for this source or null if all operations are used.
+   */
+  public Set<String> getOperations()
+    {
+    return
+      Optional.ofNullable( ops_)
+      .map( Collections::unmodifiableSet)
+      .orElse( null);
     }
 
   /**
@@ -82,7 +115,7 @@ public class TestSource
    */
   public List<RequestCase> getRequestCases()
     {
-    return getTestDef().getRequestCases( getPath(), getOperation());
+    return getTestDef().getRequestCases( getPaths(), getOperations());
     }
 
   public String toString()
@@ -90,8 +123,8 @@ public class TestSource
     ToStringBuilder builder = ToString.getBuilder( this);
 
     builder.append( getTestDef());
-    Optional.ofNullable( getOperation()).ifPresent( op -> builder.append( op));
-    Optional.ofNullable( getPath()).ifPresent( p -> builder.append( p));
+    Optional.ofNullable( getOperations()).ifPresent( ops -> builder.append( ops));
+    Optional.ofNullable( getPaths()).ifPresent( paths -> builder.append( paths));
     
     return builder.toString();    
     }
@@ -105,8 +138,8 @@ public class TestSource
     }
   
   private RequestTestDef testDef_;
-  private String path_;
-  private String op_;
+  private Set<String> paths_;
+  private Set<String> ops_;
 
   /**
    * Builds a {@link TestSource} instance.
@@ -121,15 +154,15 @@ public class TestSource
       source_ = new TestSource( testDef);
       }
 
-    public Builder path( String path)
+    public Builder paths( String... paths)
       {
-      source_.setPath( path);
+      source_.setPaths( paths);
       return this;
       }
 
-    public Builder operation( String operation)
+    public Builder operations( String... operations)
       {
-      source_.setOperation( operation);
+      source_.setOperations( operations);
       return this;
       }
     
