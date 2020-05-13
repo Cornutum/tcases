@@ -10,13 +10,18 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.util.ToString;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Describes executable test cases for the API requests defined by an OpenAPI spec.
@@ -89,20 +94,34 @@ public class RequestTestDef
   public List<RequestCase> getRequestCases( String path)
     {
     return
-      requestCases_.stream()
-      .filter( requestCase -> path == null || requestCase.getPath().equals( path))
-      .sorted()
-      .collect( toList());
+      getRequestCases(
+        Optional.ofNullable( path).map( Collections::singleton).orElse( null),
+        null);
     }
 
   /**
-   * Returns all API request test cases for the given operation on the given resource path.
+   * Returns all API request test cases for the given operations on the given resource path.
    */
-  public List<RequestCase> getRequestCases( String path, String op)
+  public List<RequestCase> getRequestCases( String path, String... ops)
+    {
+    return
+      getRequestCases(
+        Optional.ofNullable( path).map( Collections::singleton).orElse( null),
+        Arrays.stream( ops).collect( toSet()));
+    }
+
+  /**
+   * Returns all API request test cases for the given resource paths and operations on the given resource path.
+   */
+  public List<RequestCase> getRequestCases( Collection<String> paths, Collection<String> ops)
     {
     return
       requestCases_.stream()
-      .filter( requestCase -> (path == null || requestCase.getPath().equals( path)) && (op == null || requestCase.getOperation().equalsIgnoreCase( op)))
+      .filter( rc -> {
+        return
+          (paths == null || paths.stream().anyMatch( p -> p.equalsIgnoreCase( rc.getPath())))
+          && (ops == null || ops.stream().anyMatch( o -> o.equalsIgnoreCase( rc.getOperation())));
+        })
       .sorted()
       .collect( toList());
     }

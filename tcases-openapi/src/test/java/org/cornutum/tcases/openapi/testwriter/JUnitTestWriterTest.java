@@ -57,6 +57,8 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
+      .paths()
+      .operations()
       .build();
     
     JavaTestTarget target =
@@ -110,8 +112,8 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/operations")
-      .operation( "trace")
+      .paths( "/operations")
+      .operations( "trace")
       .build();
 
     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -177,7 +179,8 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/operations")
+      .paths( "/operations", "/number")
+      .operations( "patch", "get")
       .build();
 
     String outFileName = "TestSomething";
@@ -239,7 +242,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .operation( "PATCH")
+      .operations( "PATCH")
       .build();
 
     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -315,7 +318,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/number")
+      .paths( "/number")
       .build();
 
     File outFile = new File( getResourceDir(), "tests@cornutum.org+more$$");
@@ -377,8 +380,8 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/object")
-      .operation( "post")
+      .paths( "/object")
+      .operations( "post")
       .build();
 
     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -509,7 +512,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .operation( "POST")
+      .operations( "POST")
       .build();
 
     File outDir = new File( String.format( "%s/java/org/cornutum", testDefName));
@@ -575,7 +578,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     
     TestSource source =
       TestSource.from( requestTestDefFor( testDefName))
-      .path( "/operations")
+      .paths( "/operations")
       .build();
 
     File outFile = new File( getResourceDir(), testDefName);
