@@ -144,7 +144,10 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
       targetFile == null?
       new File( targetDir, testName.replaceAll( "[/<>|:& \\\\]+", "-")) :
 
-      new File( targetDir, targetFile.getName());
+      targetFile.isAbsolute()?
+      targetFile :
+      
+      new File( targetDir, targetFile.getPath());
     }
 
   /**
