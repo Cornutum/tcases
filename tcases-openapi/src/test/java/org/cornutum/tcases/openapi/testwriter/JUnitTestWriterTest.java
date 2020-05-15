@@ -304,7 +304,7 @@ public class JUnitTestWriterTest extends TestWriterTest
    * <TR><TD> Target.Output-Dir.Path </TD> <TD> Absolute </TD> </TR>
    * <TR><TD> Target.Output-Dir.Dir.Exists </TD> <TD> No </TD> </TR>
    * <TR><TD> Target.Output-Dir.Dir.In-Maven-Project </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> Target.Package </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Target.Package </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Target.BaseClass.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Target.BaseClass.In-Package </TD> <TD> (not applicable) </TD> </TR>
    * </TABLE>
@@ -331,6 +331,7 @@ public class JUnitTestWriterTest extends TestWriterTest
       JavaTestTarget.builder()
       .toFile( outFile)
       .inDir( outDir)
+      .inPackage( "org.examples")
       .build();
 
     JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
@@ -339,7 +340,7 @@ public class JUnitTestWriterTest extends TestWriterTest
     testWriter.writeTest( source, target);
 
     // Then
-    File resultsFile = new File( outDir, outFile.getName());
+    File resultsFile = outFile;
     String outFileResults = FileUtils.readFileToString( resultsFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
     }

@@ -1,4 +1,4 @@
-package org.cornutum;
+package org.examples;
 
 
 import org.junit.Test;
