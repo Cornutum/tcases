@@ -1,0 +1,101 @@
+<System name="ApiTestCommand">
+    <Function name="run">
+        <Input>
+            <Var name="Test-Type">
+                <Value name="Default"/>
+                <Value name="junit"/>
+                <Value name="testng"/>
+                <Value name="moco" property="moco"/>
+            </Var>
+            <Var name="Exec-Type">
+                <Value name="Default"/>
+                <Value name="restassured"/>
+            </Var>
+            <Var name="Test-Name">
+                <Value name="Default"/>
+                <Value name="Simple"/>
+                <Value name="Fqn" property="testNameFqn"/>
+            </Var>
+            <Var name="Test-Package">
+                <Value name="Default"/>
+                <Value name="Defined"/>
+                <Value name="Undefined" failure="true" whenNot="testNameFqn, outputFile, outputDir"/>
+            </Var>
+            <Var name="Base-Class">
+                <Value name="Default"/>
+                <Value name="Simple"/>
+                <Value name="Fqn"/>
+            </Var>
+            <VarSet name="Output-File">
+                <Var name="Defined">
+                    <Value name="Yes" property="outputFile"/>
+                    <Value name="No"/>                    
+                </Var>
+                <Var name="Path" when="outputFile">
+                    <Value name="Relative"/>
+                    <Value name="Absolute"/>
+                </Var>
+            </VarSet>
+            <VarSet name="Output-Dir">
+                <Var name="Defined">
+                    <Value name="Yes" property="outputDir"/>
+                    <Value name="No"/>                    
+                </Var>
+                <Var name="Exists" when="outputDir">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
+            </VarSet>
+            <Var name="Moco-Test-Config" when="moco">
+                <Value name="Defined"/>
+                <Value name="Undefined" failure="true"/>
+            </Var>
+            <Var name="Paths">
+                <Value name="Default"/>
+                <Value name="One"/>
+                <Value name="Many"/>
+            </Var>
+            <Var name="Operations">
+                <Value name="Default"/>
+                <Value name="One"/>
+                <Value name="Many"/>
+            </Var>
+            <VarSet name="Condition-Handler">
+                <Var name="Modelling">
+                    <Value name="Default"/>
+                    <Value name="Log"/>
+                    <Value name="Fail" failure="true"/>
+                    <Value name="Ignore"/>                    
+                </Var>
+                <Var name="Resolver">
+                    <Value name="Default"/>
+                    <Value name="Log"/>
+                    <Value name="Fail" failure="true"/>
+                    <Value name="Ignore"/>                    
+                </Var>
+            </VarSet>
+            <Var name="Read-Only-Enforced">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+            </Var>
+            <Var name="Random-Seed">
+                <Value name="Defined"/>
+                <Value name="Default" when="apiSpec"/>
+            </Var>
+            <Var name="Max-Tries">
+                <Value name="Defined"/>
+                <Value name="Default"/>
+            </Var>
+            <VarSet name="Api-Spec">
+                <Var name="Defined">
+                    <Value name="Yes" property="apiSpec"/>
+                    <Value name="No"/>                    
+                </Var>
+                <Var name="Path" when="apiSpec">
+                    <Value name="Relative"/>
+                    <Value name="Absolute"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>
