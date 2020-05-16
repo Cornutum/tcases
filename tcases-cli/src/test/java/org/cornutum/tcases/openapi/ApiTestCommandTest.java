@@ -8,12 +8,13 @@
 package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.openapi.ApiTestCommand.Options;
+import org.cornutum.tcases.openapi.OpenApiException;
+import org.cornutum.tcases.openapi.resolver.ResolverException;
 import org.cornutum.tcases.openapi.testwriter.TestWriterTest;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
-import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -599,8 +600,8 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> Default </TD> </TR>
-   * <TR><TD> Condition-Handler.Modelling </TD> <TD> Fail </TD> </TR>
-   * <TR><TD> Condition-Handler.Resolver </TD> <TD> Ignore </TD> </TR>
+   * <TR><TD> Condition-Handler.Modelling </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Condition-Handler.Resolver </TD> <TD> Default </TD> </TR>
    * <TR><TD> Read-Only-Enforced </TD> <TD> <FONT color="red"> Yes  </FONT> </TD> </TR>
    * <TR><TD> Random-Seed </TD> <TD> Default </TD> </TR>
    * <TR><TD> Max-Tries </TD> <TD> Defined </TD> </TR>
@@ -614,24 +615,25 @@ public class ApiTestCommandTest extends TestWriterTest
     {
     // Given...
     File apiFile = apiSpecFor( getResourceClass(), "read-only-enforced");
-    File outDir = new File( getResourceDir(), "failures");
+    File outDir = new File( getResourceDir(), "java/org/cornutum/readonly");
     
     String[] args =
       {
         "-n", "ReadOnlyTest",
         "-b", "MyBaseClass",
         "-o", outDir.getPath(),
-        "-c", "fail,ignore",
         "-R",
         "-m", "1",
         apiFile.getPath()
       };
 
+    // When...
     ApiTestCommand.run( new Options( args));
     
-    // When...
-    //    expectFailure( RuntimeException.class)
-    //      .when( () -> ApiTestCommand.run( new Options( args)));
+    // Then...
+    File testFile = new File( outDir, "ReadOnlyTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
+    verifyTest( "api-test-9", testFileResults);
     }
 
   /**
@@ -640,7 +642,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TABLE border="1" cellpadding="8">
    * <TR align="left"><TH colspan=2> 10. run (<FONT color="red">Failure</FONT>) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Test-Type </TD> <TD> moco </TD> </TR>
+   * <TR><TD> Test-Type </TD> <TD> Default </TD> </TR>
    * <TR><TD> Exec-Type </TD> <TD> Default </TD> </TR>
    * <TR><TD> Test-Name </TD> <TD> Simple </TD> </TR>
    * <TR><TD> Test-Package </TD> <TD> Default </TD> </TR>
@@ -649,7 +651,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> No </TD> </TR>
-   * <TR><TD> Moco-Test-Config </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> One </TD> </TR>
    * <TR><TD> Condition-Handler.Modelling </TD> <TD> <FONT color="red"> Fail  </FONT> </TD> </TR>
@@ -665,51 +667,24 @@ public class ApiTestCommandTest extends TestWriterTest
   @Test
   public void run_10() throws Exception
     {
-    // properties = apiSpec,moco,outputDir
-
     // Given...
-    //
-    //   Test-Type = moco
-    //
-    //   Exec-Type = Default
-    //
-    //   Test-Name = Simple
-    //
-    //   Test-Package = Default
-    //
-    //   Base-Class = Simple
-    //
-    //   Output-File.Defined = No
-    //
-    //   Output-File.Path = (not applicable)
-    //
-    //   Output-Dir.Defined = Yes
-    //
-    //   Output-Dir.Exists = No
-    //
-    //   Moco-Test-Config = Defined
-    //
-    //   Paths = Default
-    //
-    //   Operations = One
-    //
-    //   Condition-Handler.Modelling = Fail
-    //
-    //   Condition-Handler.Resolver = Ignore
-    //
-    //   Read-Only-Enforced = No
-    //
-    //   Random-Seed = Default
-    //
-    //   Max-Tries = Defined
-    //
-    //   Api-Spec.Defined = Yes
-    //
-    //   Api-Spec.Path = Absolute
+    File apiFile = apiSpecFor( getResourceClass(), "modelling-condition");
+    File outDir = new File( getResourceDir(), "conditions");
     
-    // When...
+    String[] args =
+      {
+        "-p", "org.cornutum",
+        "-o", outDir.getPath(),
+        "-c", "fail,ignore",
+        apiFile.getPath()
+      };
 
-    // Then...
+    // When...
+    assertFailure(
+      OpenApiException.class,
+      () -> ApiTestCommand.run( new Options( args)),
+      "Error processing Numbers, /numbers, POST, param0",
+      "minimum=1000 is greater than maximum=99");
     }
 
   /**
@@ -743,51 +718,20 @@ public class ApiTestCommandTest extends TestWriterTest
   @Test
   public void run_11() throws Exception
     {
-    // properties = apiSpec,moco
-
     // Given...
-    //
-    //   Test-Type = moco
-    //
-    //   Exec-Type = Default
-    //
-    //   Test-Name = Simple
-    //
-    //   Test-Package = Undefined
-    //
-    //   Base-Class = Simple
-    //
-    //   Output-File.Defined = No
-    //
-    //   Output-File.Path = (not applicable)
-    //
-    //   Output-Dir.Defined = No
-    //
-    //   Output-Dir.Exists = (not applicable)
-    //
-    //   Moco-Test-Config = Defined
-    //
-    //   Paths = Default
-    //
-    //   Operations = One
-    //
-    //   Condition-Handler.Modelling = Default
-    //
-    //   Condition-Handler.Resolver = Ignore
-    //
-    //   Read-Only-Enforced = No
-    //
-    //   Random-Seed = Default
-    //
-    //   Max-Tries = Defined
-    //
-    //   Api-Spec.Defined = Yes
-    //
-    //   Api-Spec.Path = Absolute
+    File apiFile = stdApiSpec( "OpenApiTest");
     
-    // When...
+    String[] args =
+      {
+        apiFile.getPath()
+      };
 
-    // Then...
+    // When...
+    assertTestWriterException(
+      () -> ApiTestCommand.run( new Options( args)),
+      "JUnitTestWriter[]: Can't write test for TestSource[RequestTestDef[OpenAPI Request Test Cases]]",
+      "Can't write test=OpenAPIRequestTestCases",
+      "No package defined for target=JavaTestTarget[package=<null>,STDOUT]");
     }
 
   /**
@@ -821,51 +765,24 @@ public class ApiTestCommandTest extends TestWriterTest
   @Test
   public void run_12() throws Exception
     {
-    // properties = apiSpec,moco,outputDir
-
     // Given...
-    //
-    //   Test-Type = moco
-    //
-    //   Exec-Type = Default
-    //
-    //   Test-Name = Simple
-    //
-    //   Test-Package = Default
-    //
-    //   Base-Class = Simple
-    //
-    //   Output-File.Defined = No
-    //
-    //   Output-File.Path = (not applicable)
-    //
-    //   Output-Dir.Defined = Yes
-    //
-    //   Output-Dir.Exists = No
-    //
-    //   Moco-Test-Config = Defined
-    //
-    //   Paths = Default
-    //
-    //   Operations = One
-    //
-    //   Condition-Handler.Modelling = Default
-    //
-    //   Condition-Handler.Resolver = Fail
-    //
-    //   Read-Only-Enforced = No
-    //
-    //   Random-Seed = Default
-    //
-    //   Max-Tries = Defined
-    //
-    //   Api-Spec.Defined = Yes
-    //
-    //   Api-Spec.Path = Absolute
+    File apiFile = apiSpecFor( getResourceClass(), "resolver-condition");
+    File outFile = new File( getResourceDir(), "java/org/cornutum/MyTest.java");
     
-    // When...
+    String[] args =
+      {
+        "-n", "Condition",
+        "-f", outFile.getPath(),
+        "-c", ",fail",
+        apiFile.getPath()
+      };
 
-    // Then...
+    // When...
+    assertFailure(
+      ResolverException.class,
+      () -> ApiTestCommand.run( new Options( args)),
+      "Error processing RequestCaseDef[3,param0.Items.Size='> 1',POST,/array,SUCCESS], param0, value, unique item[1] of 6",
+      "Unable to resolve a value after 10000 tries");
     }
 
   /**

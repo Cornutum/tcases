@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -1372,18 +1373,32 @@ public class ApiTestCommand
    */
   private static File getTestFile( TestWriter<?,?> testWriter, TestSource testSource, TestTarget testTarget)
     {
+    Throwable failure = null;
+    File testFile = null;
+
     try
       {
-      return
+      testFile =
         (File)
         testWriter.getClass()
         .getMethod( "getTestFile", TestSource.class, TestTarget.class)
         .invoke( testWriter, testSource, testTarget);
       }
+    catch( InvocationTargetException ite)
+      {
+      failure = ite.getCause();
+      }
     catch( Exception e)
       {
-      throw new IllegalStateException( String.format( "Can't get test file for %s", testWriter), e);
+      failure = e;
       }
+
+    if( failure != null)
+      {
+      throw new TestWriterException( String.format( "Can't get test file for %s", testWriter), failure);
+      }
+
+    return testFile;
     }
 
   /**
@@ -1391,15 +1406,26 @@ public class ApiTestCommand
    */
   private static void writeTest( TestWriter<?,?> testWriter, TestSource testSource, TestTarget testTarget)
     {
+    Throwable failure = null;
+
     try
       {
       testWriter.getClass()
         .getMethod( "writeTest", TestSource.class, TestTarget.class)
         .invoke( testWriter, testSource, testTarget);
       }
+    catch( InvocationTargetException ite)
+      {
+      failure = ite.getCause();
+      }
     catch( Exception e)
       {
-      throw new IllegalStateException( String.format( "Can't get test file for %s", testWriter), e);
+      failure = e;
+      }
+
+    if( failure != null)
+      {
+      throw new TestWriterException( String.format( "%s: Can't write test for %s", testWriter, testSource), failure);
       }
     }
 

@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.testwriter;
 
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
+import org.cornutum.tcases.util.ToString;
 
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.apache.commons.io.IOUtils.closeQuietly;
@@ -225,6 +226,13 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
     {
     // By default, none defined.
     return null;
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .toString();
     }
 
   private final TestCaseWriter testCaseWriter_;

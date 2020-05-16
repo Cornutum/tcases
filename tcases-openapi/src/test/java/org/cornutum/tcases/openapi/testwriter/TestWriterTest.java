@@ -71,7 +71,15 @@ public abstract class TestWriterTest
    */
   protected void assertTestWriterException( Failable failable, String... expected)
     {
-    expectFailure( TestWriterException.class)
+    assertFailure( TestWriterException.class, failable, expected);
+    }
+
+  /**
+   * Verifies that a failure occurs when the given Failable is executed.
+   */
+  protected <F extends Throwable> void assertFailure( Class<F> failureType, Failable failable, String... expected)
+    {
+    expectFailure( failureType)
       .when( failable)
       .then( failure -> {
         Stream.Builder<String> causes = Stream.builder();
