@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="run" seed="6340595452597827584" tuples="1">
+      <Combine tuples="2">
+          <Include var="Output-File.Defined"/>
+          <Include var="Output-Dir.Defined"/>
+      </Combine>
+      <Combine tuples="2">
+          <Include var="Test-Name"/>
+          <Include var="Test-Package"/>
+      </Combine>
+      <Combine tuples="2">
+          <Include var="Test-Name"/>
+          <Include var="Base-Class"/>
+      </Combine>
+  </TupleGenerator>
+</Generators>

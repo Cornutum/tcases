@@ -80,6 +80,18 @@
             <artifactId>tcases-openapi</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-rest-assured</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-moco</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -114,6 +126,15 @@
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
             <artifactId>tcases-io</artifactId>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-openapi</artifactId>
             <classifier>tests</classifier>
             <type>test-jar</type>
             <version>${project.version}</version>
