@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
@@ -154,6 +155,39 @@ public abstract class TestWriterTest
   protected RequestTestDef stdRequestTestDef( String testDefName)
     {
     return requestTestDefFor( TestWriterTest.class, testDefName);
+    }
+
+  /**
+   * Returns the path to the OpenAPI spec represented by the given document resource.
+   */
+  protected File apiSpecFor( Class<?> resourceClass, String apiName)
+    {
+    String apiSpecFilename = String.format( "%s.json", apiName);
+    InputStream document = resourceClass.getResourceAsStream( apiSpecFilename);
+    assertThat( "OpenAPI spec for resource=" + apiName, document, is( notNullValue()));
+
+    File apiSpecFile = new File( getResourceDir(), apiSpecFilename);
+    if( !resourceClass.equals( getResourceClass()))
+      {
+      try
+        {
+        FileUtils.copyInputStreamToFile( document, apiSpecFile);
+        }
+      catch( Exception e)
+        {
+        throw new IllegalStateException( String.format( "Can't copy %s to %s", apiSpecFilename, getResourceDir()), e);
+        }
+      }
+    
+    return apiSpecFile;
+    }
+
+  /**
+   * Returns the path to the OpenAPI spec represented by the given document resource.
+   */
+  protected File stdApiSpec( String apiName)
+    {
+    return apiSpecFor( TestWriterTest.class, apiName);
     }
   
   /**
