@@ -287,13 +287,12 @@ public class ApiCommand
    * If <I>-D</I> is specified, output will be a list of request test cases written to a file named "<I>B</I>-Request-Cases.json".
    * If <I>-I</I> is specified, output will be the corresponding input definition, written to either
    * "<I>B</I>-Requests-Input.json" or "<I>B</I>-Responses-Input.json", respectively.
-   * </OL>
+   * </TD>
+   * </TR>
    *
    * </TABLE>
    * </CODE>
    * </BLOCKQUOTE>
-   * <P/>
-   *
    */
   public static class Options
     {
@@ -502,7 +501,7 @@ public class ApiCommand
           }
         catch( Exception e)
           {
-          throwUsageException( "Invalid random seed", e);
+          throwUsageException( "Invalid max tries", e);
           }
         }
 
