@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Delta,param0DeltaValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Delta,param0DeltaValue,param0Echo,param0EchoValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfProperties,param0GolfValue,param0Hotel,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -49,10 +49,10 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="string">
+        <Var name="param0.Value.Properties.charlie.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.charlie.Value" value="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -62,6 +62,54 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" value="Yes">
@@ -111,7 +159,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" NA="true">
@@ -121,6 +169,54 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" NA="true">
@@ -168,10 +264,10 @@
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="string">
+        <Var name="param0.Value.Properties.charlie.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" value="0">
+        <Var name="param0.Value.Properties.charlie.Value" value="false">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="No">
@@ -183,6 +279,54 @@
         <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Properties.Additional" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
@@ -191,7 +335,7 @@
     <TestCase id="3" name="param0.Value.Properties.alpha.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Echo,param0EchoValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Hotel,param0HotelProperties,param0HotelRooms,param0HotelRoomsValue,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -231,7 +375,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -243,12 +387,384 @@
         <Var name="param0.Value.Properties.delta.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true" name="param0.Type=null">
+    <TestCase id="4" name="param0.Value.Properties.echo.Value.Is=&apos;&gt; 0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Echo,param0EchoValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" value="boolean">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" value="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" name="param0.Value.Properties.foxtrot.Value.Is=&apos;&gt; 0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfProperties,param0GolfValue,param0Hotel,param0HotelProperties,param0HotelRooms,param0HotelRoomsValue,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is=&apos;&gt; 0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Echo,param0EchoValue,param0Hotel,param0HotelProperties,param0HotelRooms,param0HotelRoomsValue,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" value="boolean">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" value="false">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
@@ -291,7 +807,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" NA="true">
@@ -303,12 +819,60 @@
         <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
+        <Var name="param0.Value.Properties.echo.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Properties.Additional" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true" name="param0.Type=&apos;Not object&apos;">
+    <TestCase id="8" failure="true" name="param0.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
@@ -351,7 +915,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" NA="true">
@@ -363,15 +927,63 @@
         <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
+        <Var name="param0.Value.Properties.echo.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Properties.Additional" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true" name="param0.Value.Property-Count=&apos;&lt; 2&apos;">
+    <TestCase id="9" failure="true" name="param0.Value.Property-Count=&apos;&lt; 2&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -387,22 +999,22 @@
         <Var name="param0.Value.Property-Count" value="&lt; 2" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="string">
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
@@ -411,7 +1023,7 @@
         <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="No">
@@ -423,15 +1035,63 @@
         <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Value.Properties.Additional" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="param0.Value.Properties.alpha.Type=null">
+    <TestCase id="10" failure="true" name="param0.Value.Properties.alpha.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Alpha,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -456,42 +1116,90 @@
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="string">
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="string">
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Defined" value="No">
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Type" NA="true">
+        <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true" name="param0.Value.Properties.alpha.Type=&apos;Not string&apos;">
+    <TestCase id="11" failure="true" name="param0.Value.Properties.alpha.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Alpha,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -516,42 +1224,90 @@
         <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="string">
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="string">
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Defined" value="No">
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Type" NA="true">
+        <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true" name="param0.Value.Properties.bravo.Type=null">
+    <TestCase id="12" failure="true" name="param0.Value.Properties.bravo.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -567,13 +1323,13 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 2">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -585,33 +1341,81 @@
         <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="string">
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Defined" value="No">
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Type" NA="true">
+        <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true" name="param0.Value.Properties.bravo.Type=&apos;Not string&apos;">
+    <TestCase id="13" failure="true" name="param0.Value.Properties.bravo.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -627,13 +1431,13 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 2">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -645,33 +1449,81 @@
         <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="string">
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Defined" value="No">
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Type" NA="true">
+        <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true" name="param0.Value.Properties.charlie.Type=null">
+    <TestCase id="14" failure="true" name="param0.Value.Properties.charlie.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Charlie,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -687,22 +1539,22 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 2">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="string">
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -711,27 +1563,75 @@
         <Var name="param0.Value.Properties.charlie.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Defined" value="No">
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Type" NA="true">
+        <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true" name="param0.Value.Properties.charlie.Type=&apos;Not string&apos;">
+    <TestCase id="15" failure="true" name="param0.Value.Properties.charlie.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Charlie,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -747,51 +1647,99 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 2">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="string">
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="Not string" failure="true">
+        <Var name="param0.Value.Properties.charlie.Type" value="Not boolean" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Defined" value="No">
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Type" NA="true">
+        <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true" name="param0.Value.Properties.delta.Type=null">
+    <TestCase id="16" failure="true" name="param0.Value.Properties.delta.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Delta,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -807,31 +1755,31 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 2">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="string">
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="string">
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -843,15 +1791,63 @@
         <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true" name="param0.Value.Properties.delta.Type=&apos;Not string&apos;">
+    <TestCase id="17" failure="true" name="param0.Value.Properties.delta.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Charlie,param0CharlieValue,param0Delta,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -867,31 +1863,31 @@
         <Var name="param0.Value.Property-Count" value="&gt;= 2">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Type" NA="true">
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="string">
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="string">
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -903,7 +1899,1135 @@
         <Var name="param0.Value.Properties.delta.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="18" failure="true" name="param0.Value.Properties.echo.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Echo,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="19" failure="true" name="param0.Value.Properties.echo.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Echo,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" value="Not integer" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="20" failure="true" name="param0.Value.Properties.foxtrot.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0Golf,param0GolfValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="21" failure="true" name="param0.Value.Properties.foxtrot.Type=&apos;Not number&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0Golf,param0GolfValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="22" failure="true" name="param0.Value.Properties.golf.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="23" failure="true" name="param0.Value.Properties.golf.Type=&apos;Not object&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="24" failure="true" name="param0.Value.Properties.hotel.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Hotel,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="25" failure="true" name="param0.Value.Properties.hotel.Type=&apos;Not object&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Hotel,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="26" failure="true" name="param0.Value.Properties.hotel.Value.Properties.rooms.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Hotel,param0HotelProperties,param0HotelRooms,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="27" failure="true" name="param0.Value.Properties.hotel.Value.Properties.rooms.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Delta,param0DeltaValue,param0Foxtrot,param0FoxtrotValue,param0Golf,param0GolfValue,param0Hotel,param0HotelProperties,param0HotelRooms,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 2">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.echo.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.foxtrot.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.golf.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Type" value="Not integer" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>

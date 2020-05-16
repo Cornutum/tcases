@@ -1704,6 +1704,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           excludedFromView( propertySchema)?
 
           VarSetBuilder.with( propertyVarName)
+          .has( "excludedType", Optional.ofNullable( propertySchema.getType()).orElse( "Not null"))
           .members( instanceDefinedVar( propertyVarTag, Definition.EXCLUDED))
           .build() :
           
