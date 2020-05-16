@@ -26,6 +26,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" value="Yes">
@@ -49,6 +50,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" NA="true">
@@ -73,6 +75,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" value="No">
@@ -97,6 +100,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" NA="true">
@@ -121,6 +125,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" NA="true">
@@ -145,6 +150,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes" failure="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" value="Yes">

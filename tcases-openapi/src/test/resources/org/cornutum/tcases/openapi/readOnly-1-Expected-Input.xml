@@ -74,16 +74,14 @@
                 <Value name="No"/>
               </Var>
               <Var name="Type" when="param0Charlie">
-                <Value name="string" property="param0CharlieValue"/>
+                <Value name="boolean" property="param0CharlieValue"/>
                 <Value name="null" failure="true"/>
-                <Value name="Not string" failure="true"/>
+                <Value name="Not boolean" failure="true"/>
               </Var>
-              <VarSet name="Value" when="param0CharlieValue">
-                <Var name="Length">
-                  <Value name="&gt; 0"/>
-                  <Value name="0"/>
-                </Var>
-              </VarSet>
+              <Var name="Value" when="param0CharlieValue">
+                <Value name="true"/>
+                <Value name="false"/>
+              </Var>
             </VarSet>
             <VarSet name="delta">
               <Var name="Defined">
@@ -100,6 +98,107 @@
                   <Value name="&gt; 0"/>
                   <Value name="0"/>
                 </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="echo">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Echo, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Echo">
+                <Value name="integer" property="param0EchoValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0EchoValue">
+                <Var name="Is">
+                  <Value name="&lt; 0"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="foxtrot">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Foxtrot, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Foxtrot">
+                <Value name="number" property="param0FoxtrotValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not number" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0FoxtrotValue">
+                <Var name="Is">
+                  <Value name="&lt; 0"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="golf">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Golf, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Golf">
+                <Value name="object" property="param0GolfValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not object" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0GolfValue">
+                <VarSet name="Properties">
+                  <Var name="Additional">
+                    <Value name="Yes" property="param0GolfProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+            </VarSet>
+            <VarSet name="hotel">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Hotel, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Hotel">
+                <Value name="object" property="param0HotelValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not object" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0HotelValue">
+                <Var name="Property-Count">
+                  <Value name="0" once="true">
+                    <When>
+                      <Not property="param0HotelProperties">
+                      </Not>
+                    </When>
+                  </Value>
+                  <Value name="&gt; 0" when="param0HotelProperties"/>
+                </Var>
+                <VarSet name="Properties">
+                  <VarSet name="rooms">
+                    <Var name="Defined">
+                      <Value name="Yes" property="param0HotelProperties, param0HotelRooms"/>
+                      <Value name="No"/>
+                    </Var>
+                    <Var name="Type" when="param0HotelRooms">
+                      <Value name="integer" property="param0HotelRoomsValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not integer" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="param0HotelRoomsValue">
+                      <Var name="Is">
+                        <Value name="&lt; 0"/>
+                        <Value name="0"/>
+                        <Value name="&gt; 0"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Additional">
+                    <Value name="Yes" property="param0HotelProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
               </VarSet>
             </VarSet>
             <Var name="Additional">

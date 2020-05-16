@@ -259,8 +259,19 @@ public final class VarProperties
    */
   public static Type[] getValueTypes( Map<String,Object> propertyValues)
     {
-    Optional<VarBinding> typeDef = Optional.ofNullable( propertyValues).map( pv -> expectVarBinding( pv, "Type")).filter( td -> !td.isValueNA());
-    Optional<String> typeValue = typeDef.flatMap( td -> Optional.ofNullable( td.getValue()).map( String::valueOf));
+    Optional<VarBinding> typeDef =
+      Optional.ofNullable( propertyValues)
+      .flatMap( pv -> Optional.ofNullable( getVarBinding( pv, "Type")))
+      .filter( td -> !td.isValueNA());
+    
+    Optional<String> typeValue =
+      typeDef
+      .flatMap( td -> Optional.ofNullable( td.getValue()).map( String::valueOf));
+
+    Optional<String> excludedTypeValue =
+      Optional.ofNullable( propertyValues)
+      .flatMap( pv -> Optional.ofNullable( getVarBinding( pv, "Defined")))
+      .map( defined -> defined.getAnnotation( "excludedType"));      
 
     Type[] types;
     if( propertyValues == null)
@@ -269,7 +280,10 @@ public final class VarProperties
       }
     else if( !typeDef.isPresent())
       {
-      types = null;
+      types =
+        excludedTypeValue.isPresent()
+        ? getValueTypes( excludedTypeValue)
+        : null;
       }
     else 
       {

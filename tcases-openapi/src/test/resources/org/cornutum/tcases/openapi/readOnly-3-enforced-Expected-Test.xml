@@ -26,6 +26,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -38,6 +39,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -70,6 +72,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" NA="true">
@@ -82,6 +85,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" NA="true">
@@ -115,6 +119,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -127,6 +132,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -160,6 +166,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" NA="true">
@@ -172,6 +179,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" NA="true">
@@ -205,6 +213,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" NA="true">
@@ -217,6 +226,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" NA="true">
@@ -250,6 +260,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes" failure="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -262,6 +273,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -295,6 +307,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="No" failure="true">
@@ -307,6 +320,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -340,6 +354,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -352,6 +367,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -385,6 +401,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -397,6 +414,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -430,6 +448,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -442,6 +461,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes" failure="true">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -475,6 +495,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -487,6 +508,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="No" failure="true">
@@ -520,6 +542,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -532,6 +555,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -565,6 +589,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -577,6 +602,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
@@ -610,6 +636,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
@@ -622,6 +649,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
+          <Has name="excludedType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.delta.Defined" value="Yes">
