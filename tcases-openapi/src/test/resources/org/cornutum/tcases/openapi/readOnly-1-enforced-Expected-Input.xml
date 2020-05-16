@@ -35,6 +35,7 @@
           </Var>
           <VarSet name="Properties">
             <VarSet name="alpha">
+              <Has name="excludedType" value="string"/>
               <Var name="Defined">
                 <Value name="Yes" failure="true"/>
                 <Value name="No"/>
@@ -58,6 +59,7 @@
               </VarSet>
             </VarSet>
             <VarSet name="charlie">
+              <Has name="excludedType" value="boolean"/>
               <Var name="Defined">
                 <Value name="Yes" failure="true"/>
                 <Value name="No"/>
@@ -78,6 +80,53 @@
                   <Value name="&gt; 0"/>
                   <Value name="0"/>
                 </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="echo">
+              <Has name="excludedType" value="integer"/>
+              <Var name="Defined">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+            <VarSet name="foxtrot">
+              <Has name="excludedType" value="number"/>
+              <Var name="Defined">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+            <VarSet name="golf">
+              <Has name="excludedType" value="object"/>
+              <Var name="Defined">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+            <VarSet name="hotel">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Hotel, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Hotel">
+                <Value name="object" property="param0HotelValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not object" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="param0HotelValue">
+                <VarSet name="Properties">
+                  <VarSet name="rooms">
+                    <Has name="excludedType" value="integer"/>
+                    <Var name="Defined">
+                      <Value name="Yes" failure="true"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                  <Var name="Additional">
+                    <Value name="Yes" property="param0HotelProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
               </VarSet>
             </VarSet>
             <Var name="Additional">

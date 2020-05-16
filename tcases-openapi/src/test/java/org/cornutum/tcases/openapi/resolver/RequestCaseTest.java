@@ -145,6 +145,7 @@ public class RequestCaseTest
     "oneOf",
     "operations",
     "petstore-requests",
+    "readOnly-1-enforced",
     "string"
   };
 

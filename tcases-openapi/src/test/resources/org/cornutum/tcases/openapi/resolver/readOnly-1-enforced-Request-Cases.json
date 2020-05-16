@@ -1,0 +1,881 @@
+
+[
+    {
+        "id": 0,
+        "name": "param0.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "string",
+                            "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
+                        },
+                        "delta": {
+                            "type": "string",
+                            "value": "6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\""
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "aahwfeixdazmmpq": {
+                                    "type": "number",
+                                    "value": -437.5
+                                },
+                                "jwpdihbxzmn": {
+                                    "type": "object",
+                                    "value": {
+                                        "mybjkacj": {
+                                            "type": "boolean",
+                                            "value": true
+                                        },
+                                        "hcmihwtlstzpiwhv": {
+                                            "type": "boolean",
+                                            "value": true
+                                        },
+                                        "i": {
+                                            "type": "boolean",
+                                            "value": true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "rvypdzdaoo": {
+                            "type": "integer",
+                            "value": -600,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "param0.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "param0.Value.Properties.bravo.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                            }
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "param0.Value.Properties.bravo.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "bvrezkjgmb": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "param0.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 5,
+        "name": "param0.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "integer",
+                    "value": 94,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not object"
+    },
+    {
+        "id": 6,
+        "name": "param0.Value.Property-Count='< 2'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "string",
+                            "value": "Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7("
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Property-Count=< 2"
+    },
+    {
+        "id": 7,
+        "name": "param0.Value.Properties.alpha.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "alpha": {
+                            "type": "string",
+                            "value": "zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5as@3O-;]90Q2kNWES$tnaIbbEvzR;]Y#'(0I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ T.n+4e/QXQFoMTvrLW#X}bu (P,&tLxMMRrgg;PU{$X/&13;Oq9B]BAEm+ET;&8pY>.SkrSOH<zOh.ISql!.*/Y@S}4zRlE7O]^Oj;R(hB:\\#E"
+                        },
+                        "delta": {
+                            "type": "string",
+                            "value": "dZX@_#9h>Sx*]@2vCg\\z\"N`DZ<):0'yx-G\\$L MJd0T$mTU|Te.j./Z~wa[oW79@!}GdOxSX4_HQoZsW F4j#G(9$4Z9gxd+p>N"
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "bnfdhvxpppioawr": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "qI^e"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "4Hd@2"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "2"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.alpha.Defined=Yes"
+    },
+    {
+        "id": 8,
+        "name": "param0.Value.Properties.bravo.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "delta": {
+                            "type": "string",
+                            "value": "W}8ow RJ=\"8Uu^|B}T\\<*e}$Yl!&("
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "llfyorqnyanbsjc": {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                "xpuyrgjiuva": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "#I/*"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "igZ6Gm"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "&Pm%` %D"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.bravo.Type=null"
+    },
+    {
+        "id": 9,
+        "name": "param0.Value.Properties.bravo.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "number",
+                            "value": -1.7
+                        },
+                        "delta": {
+                            "type": "string",
+                            "value": "A,:\\(DkCa \"+#%nm,B5L3@': xQ`YeX<nq9zrZ\\>W/i'FFp3["
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "judxc": {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                "yeumxcyu": {
+                                    "type": "integer",
+                                    "value": 724,
+                                    "format": "int32"
+                                },
+                                "ukdvdgbm": {
+                                    "type": "integer",
+                                    "value": -633,
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.bravo.Type=Not string"
+    },
+    {
+        "id": 10,
+        "name": "param0.Value.Properties.charlie.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "string",
+                            "value": "'wGb{A1k?w(RX{T1Jrw#^pfc'V[nyu0(uBY\"upE!j`fgJ${JXIpa67M2i@.lwXgIZjb%WWDG:>2AvL#|L1:8E;u#>Dmy:o27HkDZ%rt)listU>?]sAviyah`46\"yhpb\"~'tm1ZV>& S{DOg6(3Wtz>n1bF%j|UIqx[@`~t0Yub'x>\"&w<b|xQ#,:t\"S`9T\\[450nSg],I=BTHC6;vgsi}{1YsSiTi|>S:c`%\";D'[b&IY"
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "mgoqg": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": ""
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "_o#)"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "iw1sv0"
+                                        }
+                                    ]
+                                },
+                                "msvtpudkbvsyqumb": {
+                                    "type": "integer",
+                                    "value": -167,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "charlie": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.charlie.Defined=Yes"
+    },
+    {
+        "id": 11,
+        "name": "param0.Value.Properties.delta.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "fgnfnmsrxky": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.delta.Type=null"
+    },
+    {
+        "id": 12,
+        "name": "param0.Value.Properties.delta.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "object",
+                            "value": {
+                                "sszweurtwod": {
+                                    "type": "string",
+                                    "value": "3"
+                                },
+                                "nfcwlnrrumjgcn": {
+                                    "type": "number",
+                                    "value": -229.3
+                                }
+                            }
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "mapwezwrj": {
+                                    "type": "integer",
+                                    "value": 679,
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.delta.Type=Not string"
+    },
+    {
+        "id": 13,
+        "name": "param0.Value.Properties.echo.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "string",
+                            "value": "`FGJ+1Z~"
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "vhrlm": {
+                                    "type": "object",
+                                    "value": {
+                                        "kiifgaecsijj": {
+                                            "type": "integer",
+                                            "value": -158,
+                                            "format": "int32"
+                                        },
+                                        "gwmuudewdaoe": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "X(0o|"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "hJW4M."
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": ""
+                                                }
+                                            ]
+                                        },
+                                        "osoptzi": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "M%pKS"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "r/"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "ybjyzomrrgs": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "DewSA>qQ"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "=`bnm"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "echo": {
+                            "type": "integer",
+                            "value": -805048416,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.echo.Defined=Yes"
+    },
+    {
+        "id": 14,
+        "name": "param0.Value.Properties.foxtrot.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "foxtrot": {
+                            "type": "number",
+                            "value": -4201185483677567774.1
+                        },
+                        "delta": {
+                            "type": "string",
+                            "value": "[M~LM]2iAtQ*{M*H< yoM\\"
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "vtkqdxhbfwn": {
+                                    "type": "object",
+                                    "value": {
+                                        "vepsaibifeaapzb": {
+                                            "type": "string",
+                                            "value": "=[`Pa"
+                                        },
+                                        "whjeta": {
+                                            "type": "boolean",
+                                            "value": true
+                                        },
+                                        "oyisq": {
+                                            "type": "integer",
+                                            "value": -658,
+                                            "format": "int32"
+                                        }
+                                    }
+                                },
+                                "hnm": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                },
+                                "cbymzo": {
+                                    "type": "object",
+                                    "value": {
+                                        "p": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "Mga"
+                                                }
+                                            ]
+                                        },
+                                        "bvfeyxqqhn": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "~"
+                                                }
+                                            ]
+                                        },
+                                        "dsgcqv": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": " c\"V_Ak"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": ""
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "=Jco"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.foxtrot.Defined=Yes"
+    },
+    {
+        "id": 15,
+        "name": "param0.Value.Properties.golf.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "golf": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "delta": {
+                            "type": "string",
+                            "value": " D\\X2>_qzE`@c% Kg,)xak\\Q:bcGrj6(F(g8\\'gX'uf8ui~Y+F>-X(m"
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "gv": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "fxieqns": {
+                                    "type": "string",
+                                    "value": "8"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.golf.Defined=Yes"
+    },
+    {
+        "id": 16,
+        "name": "param0.Value.Properties.hotel.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "string",
+                            "value": "K4Ush*wg5cupL@=wy5R:7{*B}O$/dmfFfe^>quwQw]Cb_@R\"-+\"mX(o!+EUV<<>`=CBg2d\"Ow:e6KT"
+                        },
+                        "hotel": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.hotel.Type=null"
+    },
+    {
+        "id": 17,
+        "name": "param0.Value.Properties.hotel.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "string",
+                            "value": ";IUFdOY}vLS&K8^S:F+,*V$`$p.VlD}[!xuGEGh_MV$i:26U'~lb<#Ctwr~#\\d8l= SP^A6>|V@<p idGE`zGK-[#'o/K*#@mPxlw4ejJJBF<m?msiX,SRO\\FRR`~6E'JU(8+l\"o! G-M3VX_UxHz~rHo&3mshX&U{Bu9J_GI'ekwfY})Fo{JuFa}]]Sd8$&x9_%Bh,Bu3p}9%{Q,2e>=R/-)D`0Q;@f_~3+2Dys=ohR+{T8*hW$:%2Z7U"
+                        },
+                        "hotel": {
+                            "type": "number",
+                            "value": 669.5
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.hotel.Type=Not object"
+    },
+    {
+        "id": 18,
+        "name": "param0.Value.Properties.hotel.Value.Properties.rooms.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "delta": {
+                            "type": "string",
+                            "value": "MKq)8$Zc\\DOqfvFSDLh@^8BwBC)q*6(H](E4iEMT205M.w2pMI;$BwM\"4-/cp^f1W<R,',~~6E'{_>(ZTh_wt'k_.uo}b#<`j^P@xz&}?\"e,XS$plN ~[0E(:bVT}nN+D8~L7Ni'\\|_}g7N@:04p}o)\"&0 V|_3bYGA\"vho1:\"%13?BvplkOt4ublrE>JSCa+m&{#pK5{"
+                        },
+                        "hotel": {
+                            "type": "object",
+                            "value": {
+                                "rooms": {
+                                    "type": "integer",
+                                    "value": 570875324,
+                                    "format": "int32"
+                                },
+                                "xvbvfsrevwvibgg": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "mwcq": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "hegigmaypvesiyzb": {
+                                    "type": "number",
+                                    "value": -8.7
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.hotel.Value.Properties.rooms.Defined=Yes"
+    }
+]

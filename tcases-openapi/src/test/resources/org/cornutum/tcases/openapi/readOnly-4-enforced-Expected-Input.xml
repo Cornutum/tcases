@@ -23,6 +23,7 @@
         <VarSet name="Value" when="param0Value">
           <VarSet name="Properties">
             <VarSet name="alpha">
+              <Has name="excludedType" value="string"/>
               <Var name="Defined">
                 <Value name="Yes" failure="true"/>
                 <Value name="No"/>

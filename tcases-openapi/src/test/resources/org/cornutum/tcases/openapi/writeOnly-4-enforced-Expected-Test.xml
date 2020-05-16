@@ -21,7 +21,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
@@ -37,7 +39,9 @@
         <Var name="Other.Content.Defined" value="No" failure="true"/>
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -55,7 +59,9 @@
           <Has name="excluded" value="&apos;application/json&apos;"/>
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -73,7 +79,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="null" failure="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -91,7 +99,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="Not object" failure="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="excludedType" value="string"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -109,7 +119,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes" failure="true">
+          <Has name="excludedType" value="string"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
@@ -127,7 +139,9 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No">
+          <Has name="excludedType" value="string"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes" failure="true"/>
       </Input>
     </TestCase>

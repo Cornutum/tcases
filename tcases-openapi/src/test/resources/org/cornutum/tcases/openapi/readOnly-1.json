@@ -24,12 +24,33 @@
                                     "writeOnly": true
                                 },
                                 "charlie": {
-                                    "type": "string",
+                                    "type": "boolean",
                                     "readOnly": true
                                 },
                                 "delta": {
                                     "type": "string",
                                     "writeOnly": true
+                                },
+                                "echo": {
+                                    "type": "integer",
+                                    "readOnly": true
+                                },
+                                "foxtrot": {
+                                    "type": "number",
+                                    "readOnly": true
+                                },
+                                "golf": {
+                                    "type": "object",
+                                    "readOnly": true
+                                },
+                                "hotel": {
+                                    "type": "object",
+                                    "properties": {
+                                        "rooms": {
+                                            "type": "integer",
+                                            "readOnly": true
+                                        }
+                                    }
                                 }
                             },
                             "required": [ "charlie" ],
