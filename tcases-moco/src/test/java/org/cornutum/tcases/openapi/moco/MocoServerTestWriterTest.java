@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.moco;
 
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.moco.MocoServerConfigPojo.PojoWriter;
+import org.cornutum.tcases.openapi.moco.MocoServerConfigPojo.PojoWriterFactory;
 import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestSource;
 
@@ -16,10 +17,12 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 /**
- * Runs tests for {@link RestServerTestWriter}.
+ * Runs tests for {@link MocoServerTestWriter}.
  */
 public class MocoServerTestWriterTest extends MocoServerTest
   {
@@ -72,6 +75,18 @@ public class MocoServerTestWriterTest extends MocoServerTest
     File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
     String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
+
+    // Given...
+    MocoServerTestWriter testWriterConfig =
+      readTestConfig( testConfigFor( testWriter, config, null))
+      .createTestWriter( new MockTestCaseWriter());
+
+    // When...
+    testWriterConfig.writeTest( source, target);
+
+    // Then
+    outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
     }
 
   /**
@@ -110,7 +125,7 @@ public class MocoServerTestWriterTest extends MocoServerTest
       .build();
 
     MocoServerConfig config =
-      MocoServerConfig.pojo()
+      MocoServerConfig.pojo( NullPojoWriterFactory.class.getName())
       .name( "myServer")
       .port( 56789)
       .forEachTest( false)
@@ -124,6 +139,18 @@ public class MocoServerTestWriterTest extends MocoServerTest
     // Then
     File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
     String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
+
+    // Given...
+    MocoServerTestWriter testWriterConfig =
+      readTestConfig( testConfigFor( testWriter, config, null))
+      .createTestWriter( new MockTestCaseWriter());
+
+    // When...
+    testWriterConfig.writeTest( source, target);
+
+    // Then
+    outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
     }
 
@@ -163,14 +190,7 @@ public class MocoServerTestWriterTest extends MocoServerTest
       .build();
 
     MocoServerConfig config =
-      MocoServerConfig.pojo(
-        new PojoWriter()
-          {
-          public void writePojo( String serverName, IndentedWriter targetWriter)
-            {
-            targetWriter.println( String.format( "%s.response( \"Your request has been received.\");", serverName));
-            }
-          })
+      MocoServerConfig.pojo( MockPojoWriterFactory.class.getName())
       .build();
 
     CertConfig certConfig = new CertConfigFile( new File( getResourceDir(), "myCert.cks"), "kss!", "css!");
@@ -183,6 +203,18 @@ public class MocoServerTestWriterTest extends MocoServerTest
     // Then
     File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
     String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
+
+    // Given...
+    MocoServerTestWriter testWriterConfig =
+      readTestConfig( testConfigFor( testWriter, config, certConfig))
+      .createTestWriter( new MockTestCaseWriter());
+
+    // When...
+    testWriterConfig.writeTest( source, target);
+
+    // Then
+    outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
     }
 
@@ -222,7 +254,7 @@ public class MocoServerTestWriterTest extends MocoServerTest
       .build();
 
     MocoServerConfig config =
-      MocoServerConfig.pojo()
+      MocoServerConfig.pojo( NullPojoWriterFactory.class.getName())
       .name( "myServer")
       .port( 321)
       .forEachTest()
@@ -236,6 +268,18 @@ public class MocoServerTestWriterTest extends MocoServerTest
     // Then
     File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
     String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
+
+    // Given...
+    MocoServerTestWriter testWriterConfig =
+      readTestConfig( testConfigFor( testWriter, config, null))
+      .createTestWriter( new MockTestCaseWriter());
+
+    // When...
+    testWriterConfig.writeTest( source, target);
+
+    // Then
+    outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
     }
 
@@ -288,6 +332,18 @@ public class MocoServerTestWriterTest extends MocoServerTest
     // Then
     File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
     String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
+
+    // Given...
+    MocoServerTestWriter testWriterConfig =
+      readTestConfig( testConfigFor( testWriter, config, null))
+      .createTestWriter( new MockTestCaseWriter());
+
+    // When...
+    testWriterConfig.writeTest( source, target);
+
+    // Then
+    outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
     }
 
@@ -342,6 +398,18 @@ public class MocoServerTestWriterTest extends MocoServerTest
     File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
     String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
+
+    // Given...
+    MocoServerTestWriter testWriterConfig =
+      readTestConfig( testConfigFor( testWriter, config, certConfig))
+      .createTestWriter( new MockTestCaseWriter());
+
+    // When...
+    testWriterConfig.writeTest( source, target);
+
+    // Then
+    outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
     }
 
   /**
@@ -380,14 +448,7 @@ public class MocoServerTestWriterTest extends MocoServerTest
       .build();
 
     MocoServerConfig config =
-      MocoServerConfig.pojo(
-        new PojoWriter()
-          {
-          public void writePojo( String serverName, IndentedWriter targetWriter)
-            {
-            targetWriter.println( String.format( "%s.response( \"Your request has been ignored.\");", serverName));
-            }
-          })
+      MocoServerConfig.pojo( MockPojoWriterFactory.class.getName())
       .forEachTest()
       .build();
     
@@ -399,6 +460,18 @@ public class MocoServerTestWriterTest extends MocoServerTest
     // Then
     File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
     String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
+
+    // Given...
+    MocoServerTestWriter testWriterConfig =
+      readTestConfig( testConfigFor( testWriter, config, null))
+      .createTestWriter( new MockTestCaseWriter());
+
+    // When...
+    testWriterConfig.writeTest( source, target);
+
+    // Then
+    outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
     }
 
@@ -452,6 +525,18 @@ public class MocoServerTestWriterTest extends MocoServerTest
     File outFile = new File( getGeneratedTestDir(), testDefName + "Test.java");
     String outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
     verifyTest( testDefName, outFileResults);
+
+    // Given...
+    MocoServerTestWriter testWriterConfig =
+      readTestConfig( testConfigFor( testWriter, config, null))
+      .createTestWriter( new MockTestCaseWriter());
+
+    // When...
+    testWriterConfig.writeTest( source, target);
+
+    // Then
+    outFileResults = FileUtils.readFileToString( outFile, "UTF-8");
+    verifyTest( testDefName, outFileResults);
     }
 
   @Test
@@ -466,5 +551,54 @@ public class MocoServerTestWriterTest extends MocoServerTest
     {
     expectFailure( IllegalArgumentException.class)
       .when( () -> new CertConfigFile( "myCert.cks", "kss!", null));
+    }
+
+  private MocoTestConfig testConfigFor( MocoServerTestWriter testWriter, MocoServerConfig serverConfig, CertConfig certConfig)
+    {
+    return
+      MocoTestConfig.builder( testWriter.getServerClass())
+      .serverConfig( serverConfig)
+      .certConfig( certConfig)
+      .build();
+    }
+
+  private MocoTestConfig readTestConfig( MocoTestConfig testConfig)
+    {
+    ByteArrayOutputStream testConfigOut = new ByteArrayOutputStream();
+    try( MocoTestConfigWriter writer = new MocoTestConfigWriter( testConfigOut))
+      {
+      writer.write( testConfig);
+      }
+
+    MocoTestConfig testConfigIn;
+    try( MocoTestConfigReader reader = new MocoTestConfigReader( new ByteArrayInputStream( testConfigOut.toByteArray())))
+      {
+      testConfigIn = reader.getMocoTestConfig();
+      }
+
+    return testConfigIn;
+    }
+  
+  public static class MockPojoWriterFactory implements PojoWriterFactory
+    {
+    public PojoWriter createPojoWriter()
+      {
+      return
+        new PojoWriter()
+          {
+          public void writePojo( String serverName, IndentedWriter targetWriter)
+            {
+            targetWriter.println( String.format( "%s.response( \"Your request has been received.\");", serverName));
+            }
+        };
+      }
+    }
+  
+  public static class NullPojoWriterFactory implements PojoWriterFactory
+    {
+    public PojoWriter createPojoWriter()
+      {
+      return null;
+      }
     }
   }

@@ -129,16 +129,40 @@ public abstract class MocoServerConfig
    */
   public static Builder pojo()
     {
-    return pojo( null);
+    return pojo( (MocoServerConfigPojo.PojoWriter) null);
     }
     
   /**
    * Creates a new Builder for a MocoServerConfigPojo instance.
    */
-  public static Builder pojo( MocoServerConfigPojo.PojoWriter pojo)
+  public static Builder pojo( MocoServerConfigPojo.PojoWriter writer)
     {
-    return new Builder( new MocoServerConfigPojo( pojo));
+    return new Builder( new MocoServerConfigPojo( writer));
     }
+    
+  /**
+   * Creates a new Builder for a MocoServerConfigPojo instance.
+   */
+  public static Builder pojo( MocoServerConfigPojo.PojoWriterFactory factory)
+    {
+    return new Builder( new MocoServerConfigPojo( factory));
+    }
+    
+  /**
+   * Creates a new Builder for a MocoServerConfigPojo instance.
+   */
+  public static Builder pojo( String factoryClass)
+    {
+    try
+      {
+      return new Builder( new MocoServerConfigPojo( factoryClass));
+      }
+    catch( Exception e)
+      {
+      throw new IllegalArgumentException( String.format( "Invalid factory class=%s", factoryClass), e);
+      }
+    }
+  
   private Integer port_;
   private String name_;
   private boolean eachTest_;

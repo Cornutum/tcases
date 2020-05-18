@@ -368,7 +368,7 @@ public class MocoServerConfigWriter implements Closeable
       }
     catch( Exception e)
       {
-      throw new RuntimeException( "Can't create writer", e);
+      throw new IllegalStateException( "Can't create writer", e);
       }
     }
 
