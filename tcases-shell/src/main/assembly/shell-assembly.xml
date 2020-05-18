@@ -19,6 +19,7 @@
       <includes>
           <include>org.cornutum.tcases:tcases-io</include>
           <include>org.cornutum.tcases:tcases-openapi</include>
+          <include>org.cornutum.tcases:tcases-moco</include>
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
@@ -59,6 +60,8 @@
         <include>tcases-reducer.bat</include>
         <include>tcases-api</include>
         <include>tcases-api.bat</include>
+        <include>tcases-api-test</include>
+        <include>tcases-api-test.bat</include>
       </includes>
       <fileMode>0755</fileMode>
     </fileSet>

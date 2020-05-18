@@ -11,6 +11,7 @@ import org.cornutum.tcases.openapi.resolver.io.DataValueConverter;
 import org.cornutum.tcases.openapi.resolver.io.DataValueJson;
 import org.cornutum.tcases.openapi.resolver.io.DataValueText;
 import org.cornutum.tcases.util.MapBuilder;
+import org.cornutum.tcases.util.ToString;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,7 +19,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 /**
  * Base class for TestCaseWriter implementations that specify how to serialize data in a specific 
@@ -143,6 +143,13 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
   private String subtype( Matcher mediaRangeMatcher)
     {
     return mediaRangeMatcher.group(2);
+    }
+
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .build();
     }
 
   private Map<String,DataValueConverter<String>> converters_ = new HashMap<String,DataValueConverter<String>>();

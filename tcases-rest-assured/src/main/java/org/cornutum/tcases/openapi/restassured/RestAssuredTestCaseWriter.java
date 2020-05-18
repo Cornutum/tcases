@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.restassured;
 
-import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.BinaryValue;
 import org.cornutum.tcases.openapi.resolver.DataValue;
@@ -17,7 +16,10 @@ import org.cornutum.tcases.openapi.resolver.io.DataValueBinary;
 import org.cornutum.tcases.openapi.resolver.io.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
+import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.net.URI;
 import java.util.Optional;
