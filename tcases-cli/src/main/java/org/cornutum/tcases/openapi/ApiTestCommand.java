@@ -10,6 +10,8 @@ package org.cornutum.tcases.openapi;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.Tcases;
 import org.cornutum.tcases.openapi.io.TcasesOpenApiIO;
+import org.cornutum.tcases.openapi.moco.MocoServerTestWriter;
+import org.cornutum.tcases.openapi.moco.MocoTestConfigReader;
 import org.cornutum.tcases.openapi.resolver.*;
 import org.cornutum.tcases.openapi.restassured.RestAssuredTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.*;
@@ -21,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -1091,7 +1094,7 @@ public class ApiTestCommand
           }
         case MOCO:
           {
-          testWriter = null;
+          testWriter = createMocoServerTestWriter( testCaseWriter);
           break;
           }
         default:
@@ -1100,6 +1103,39 @@ public class ApiTestCommand
           }
         }
       
+      return testWriter;
+      }
+    
+    /**
+     * Creates a new {@link MocoServerTestWriter} instance.
+     */
+    private MocoServerTestWriter createMocoServerTestWriter( TestCaseWriter testCaseWriter)
+      {
+      MocoServerTestWriter testWriter;
+    
+      try
+        {
+        File configFile =
+          Optional.ofNullable( getMocoTestConfig())
+          .orElseThrow( () -> new IllegalArgumentException( "No Moco server test configuration defined"));
+
+        InputStream configStream =
+          Optional.ofNullable(
+            configFile.exists()
+            ? new FileInputStream( configFile)
+            : getClass().getResourceAsStream( configFile.getPath()))
+          .orElseThrow( () -> new IllegalStateException( String.format( "Moco server test configuration=%s not found")));
+
+        try( MocoTestConfigReader reader = new MocoTestConfigReader( configStream))
+          {
+          testWriter = reader.getMocoTestConfig().createTestWriter( testCaseWriter);
+          }
+        }
+      catch( Exception e)
+        {
+        throw new TestWriterException( "Can't create Moco test writer", e);
+        }
+
       return testWriter;
       }
     

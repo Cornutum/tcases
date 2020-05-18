@@ -9,6 +9,10 @@ package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.openapi.ApiTestCommand.Options;
 import org.cornutum.tcases.openapi.OpenApiException;
+import org.cornutum.tcases.openapi.moco.CertConfigResource;
+import org.cornutum.tcases.openapi.moco.MocoServerConfig;
+import org.cornutum.tcases.openapi.moco.MocoTestConfig;
+import org.cornutum.tcases.openapi.moco.MocoTestConfigWriter;
 import org.cornutum.tcases.openapi.resolver.ResolverException;
 import org.cornutum.tcases.openapi.testwriter.TestWriterTest;
 
@@ -19,6 +23,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
@@ -115,51 +120,36 @@ public class ApiTestCommandTest extends TestWriterTest
   @Test
   public void run_1() throws Exception
     {
-    // properties = apiSpec,moco,outputDir
-
     // Given...
-    //
-    //   Test-Type = moco
-    //
-    //   Exec-Type = Default
-    //
-    //   Test-Name = Default
-    //
-    //   Test-Package = Default
-    //
-    //   Base-Class = Simple
-    //
-    //   Output-File.Defined = No
-    //
-    //   Output-File.Path = (not applicable)
-    //
-    //   Output-Dir.Defined = Yes
-    //
-    //   Output-Dir.Exists = No
-    //
-    //   Moco-Test-Config = Defined
-    //
-    //   Paths = One
-    //
-    //   Operations = Default
-    //
-    //   Condition-Handler.Modelling = Log
-    //
-    //   Condition-Handler.Resolver = Log
-    //
-    //   Read-Only-Enforced = No
-    //
-    //   Random-Seed = Default
-    //
-    //   Max-Tries = Defined
-    //
-    //   Api-Spec.Defined = Yes
-    //
-    //   Api-Spec.Path = Absolute
-    
-    // When...
+    File apiFile = stdApiSpec( "OpenApiTest");
+    File outDir = new File( getResourceDir(), "java/org/cornutum/moco");
 
+    File testConfigFile = new File( getResourceDir(), "mocoRestServer.json");
+    MocoTestConfig testConfig =
+      MocoTestConfig.builder( "RestServer")
+      .serverConfig( MocoServerConfig.file( new File( getResourceDir(), "myRestServerConfig.json")).build())
+      .build();
+    writeMocoTestConfig( testConfig, testConfigFile);
+    
+    String[] args =
+      {
+        "-t", "moco",
+        "-b", "MyBaseClass",
+        "-o", outDir.getPath(),
+        "-M", testConfigFile.getPath(),
+        "-P", "/post",
+        "-c", "log,log",
+        "-m", "123",
+        apiFile.getPath()
+      };
+
+    // When...
+    ApiTestCommand.run( new Options( args));
+    
     // Then...
+    File testFile = new File( outDir, "OpenAPIRequestTestCasesTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
+    verifyTest( "api-test-1", testFileResults);
     }
 
   /**
@@ -362,51 +352,38 @@ public class ApiTestCommandTest extends TestWriterTest
   @Test
   public void run_5() throws Exception
     {
-    // properties = apiSpec,moco,outputDir,testNameFqn
-
     // Given...
-    //
-    //   Test-Type = moco
-    //
-    //   Exec-Type = Default
-    //
-    //   Test-Name = Fqn
-    //
-    //   Test-Package = Default
-    //
-    //   Base-Class = Default
-    //
-    //   Output-File.Defined = No
-    //
-    //   Output-File.Path = (not applicable)
-    //
-    //   Output-Dir.Defined = Yes
-    //
-    //   Output-Dir.Exists = No
-    //
-    //   Moco-Test-Config = Defined
-    //
-    //   Paths = Many
-    //
-    //   Operations = Many
-    //
-    //   Condition-Handler.Modelling = Ignore
-    //
-    //   Condition-Handler.Resolver = Default
-    //
-    //   Read-Only-Enforced = No
-    //
-    //   Random-Seed = Default
-    //
-    //   Max-Tries = Defined
-    //
-    //   Api-Spec.Defined = Yes
-    //
-    //   Api-Spec.Path = Absolute
-    
-    // When...
+    File apiFile = stdApiSpec( "OpenApiTest");
+    File outDir = new File( getResourceDir(), "java/org/cornutum/moco");
 
+    File testConfigFile = new File( getResourceDir(), "mocoHttpsServer.json");
+    MocoTestConfig testConfig =
+      MocoTestConfig.builder( "HttpsServer")
+      .serverConfig( MocoServerConfig.resource( "myMocoServerConfig").port( 9999).forEachTest().build())
+      .certConfig( new CertConfigResource( "myCertificate", "myCert.cks", "kss!", "css!"))
+      .build();
+    writeMocoTestConfig( testConfig, testConfigFile);
+    
+    String[] args =
+      {
+        "-t", "moco",
+        "-n", "org.cornutum.moco.MyMocoTest",
+        "-o", outDir.getPath(),
+        "-M", testConfigFile.getName(),
+        "-P", "/post, /posts",
+        "-O", "get, delete, put",
+        "-c", "ignore,",
+        "-m", "123",
+        apiFile.getPath()
+      };
+
+    // When...
+    ApiTestCommand.run( new Options( args));
+    
     // Then...
+    File testFile = new File( outDir, "MyMocoTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
+    verifyTest( "api-test-5", testFileResults);
     }
 
   /**
@@ -816,51 +793,32 @@ public class ApiTestCommandTest extends TestWriterTest
   @Test
   public void run_13() throws Exception
     {
-    // properties = apiSpec,moco,outputDir
-
     // Given...
-    //
-    //   Test-Type = moco
-    //
-    //   Exec-Type = Default
-    //
-    //   Test-Name = Simple
-    //
-    //   Test-Package = Default
-    //
-    //   Base-Class = Simple
-    //
-    //   Output-File.Defined = No
-    //
-    //   Output-File.Path = (not applicable)
-    //
-    //   Output-Dir.Defined = Yes
-    //
-    //   Output-Dir.Exists = No
-    //
-    //   Moco-Test-Config = Undefined
-    //
-    //   Paths = Default
-    //
-    //   Operations = One
-    //
-    //   Condition-Handler.Modelling = Default
-    //
-    //   Condition-Handler.Resolver = Ignore
-    //
-    //   Read-Only-Enforced = No
-    //
-    //   Random-Seed = Default
-    //
-    //   Max-Tries = Defined
-    //
-    //   Api-Spec.Defined = Yes
-    //
-    //   Api-Spec.Path = Absolute
-    
-    // When...
+    File apiFile = stdApiSpec( "OpenApiTest");
+    File outDir = new File( getResourceDir(), "java/org/cornutum/moco");
 
-    // Then...
+    File testConfigFile = new File( getResourceDir(), "mocoHttpServer.json");
+    MocoTestConfig testConfig =
+      MocoTestConfig.builder( "HttpServer")
+      .serverConfig( MocoServerConfig.resource( "myMocoServerConfig").build())
+      .build();
+    writeMocoTestConfig( testConfig, testConfigFile);
+    
+    String[] args =
+      {
+        "-t", "moco",
+        "-n", "MyMocoTest",
+        "-b", "MyBaseClass",
+        "-o", outDir.getPath(),
+        "-O", "get",
+        "-c", ",ignore",
+        apiFile.getPath()
+      };
+
+    assertTestWriterException(
+      () -> ApiTestCommand.run( new Options( args)),
+      "Can't create Moco test writer",
+      "No Moco server test configuration defined");
     }
 
   /**
@@ -904,6 +862,22 @@ public class ApiTestCommandTest extends TestWriterTest
         {
         stdOut.append( new String( newOutBytes.toByteArray(), Charset.forName( "UTF-8")));
         }
+      }
+    }
+
+  /**
+   * Writes the given {@link MocoTestConfig} to a file.
+   */
+  private void writeMocoTestConfig( MocoTestConfig testConfig, File destFile)
+    {
+    destFile.getParentFile().mkdirs();
+    try( MocoTestConfigWriter writer = new MocoTestConfigWriter( new FileOutputStream( destFile)))
+      {
+      writer.write( testConfig);
+      }
+    catch( Exception e)
+      {
+      throw new IllegalStateException( String.format( "Can't write Moco test configuration to %s", destFile), e);
       }
     }
   }
