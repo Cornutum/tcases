@@ -16,7 +16,7 @@ public class RequestTestDef6Test {
 
     static {
         mocoServer = restServer( 12306);
-        mocoServer.response( "Your request has been ignored.");
+        mocoServer.response( "Your request has been received.");
     }
 
     @Rule

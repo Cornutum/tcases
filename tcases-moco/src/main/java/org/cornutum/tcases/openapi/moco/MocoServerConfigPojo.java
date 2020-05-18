@@ -7,19 +7,38 @@
 
 package org.cornutum.tcases.openapi.moco;
 
+import java.util.Optional;
+
 import org.cornutum.tcases.io.IndentedWriter;
 
 /**
  * POJO configuration for a <a href="https://github.com/dreamhead/moco/blob/master/moco-doc/junit.md">Moco server</a>.
  */
 public class MocoServerConfigPojo extends MocoServerConfig
-  {
+  {  
   /**
    * Creates a new MocoServerConfigPojo instance.
    */
-  public MocoServerConfigPojo()
+  public MocoServerConfigPojo( PojoWriterFactory factory)
     {
-    this( null);
+    setFactory( factory);
+    }
+  
+  /**
+   * Creates a new MocoServerConfigPojo instance.
+   */
+  public MocoServerConfigPojo( Class<PojoWriterFactory> factoryClass) throws InstantiationException, IllegalAccessException
+    {
+    this( factoryClass.newInstance());
+    }
+  
+  /**
+   * Creates a new MocoServerConfigPojo instance.
+   */
+  @SuppressWarnings("unchecked")
+  public MocoServerConfigPojo( String factoryClassName) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+    {
+    this( (Class<PojoWriterFactory>) Class.forName( factoryClassName));
     }
   
   /**
@@ -35,7 +54,31 @@ public class MocoServerConfigPojo extends MocoServerConfig
    */
   public PojoWriter getPojoWriter()
     {
+    if( pojoWriter_ == null)
+      {
+      pojoWriter_ =
+        Optional.ofNullable( getFactory())
+        .map( PojoWriterFactory::createPojoWriter)
+        .orElse( null);
+      }
+    
     return pojoWriter_;
+    }
+
+  /**
+   * Changes the {@link PojoWriterFactory} for this server configuration.
+   */
+  public void setFactory( PojoWriterFactory factory)
+    {
+    factory_ = factory;
+    }
+
+  /**
+   * Returns the {@link PojoWriterFactory} for this server configuration.
+   */
+  public PojoWriterFactory getFactory()
+    {
+    return factory_;
     }
 
   /**
@@ -46,7 +89,8 @@ public class MocoServerConfigPojo extends MocoServerConfig
     visitor.visit( this);
     }
 
-  private final PojoWriter pojoWriter_;
+  private PojoWriter pojoWriter_;
+  private PojoWriterFactory factory_;
 
   /**
    * Writes the Mojo API code to configure the given server.
@@ -57,6 +101,17 @@ public class MocoServerConfigPojo extends MocoServerConfig
      * Writes the Mojo API code to configure the given server.
      */
     public void writePojo( String serverName, IndentedWriter targetWriter);
+    }
+  
+  /**
+   * Writes the Mojo API code to configure the given server.
+   */
+  public interface PojoWriterFactory
+    {
+    /**
+     * Writes the Mojo API code to configure the given server.
+     */
+    public PojoWriter createPojoWriter();
     }
 
   }

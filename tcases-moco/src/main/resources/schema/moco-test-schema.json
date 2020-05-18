@@ -1,0 +1,102 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://www.cornutum.org/tcases/moco-test-schema.json",
+    "title": "Moco Server Test Configuration",
+    "description": "Defines how tests created by a MocoServerTestWriter will access a Moco server (version: ${project.version})",
+
+    "type": "object",
+    "properties": {
+
+        "server": {
+            "description": "Defines the Moco server type",
+            "type": "string",
+            "enum": [ "HttpServer", "HttpsServer", "RestServer", "SocketServer" ]
+        },
+
+        "runner": {
+            "description": "Defines how the Moco server runner will be configured in generated tests",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "For POJO configurations, the name of the Moco server variable",
+                    "default": "mocoServer",
+                    "type": "string"
+                },
+                "port": {
+                    "description": "The Moco server port",
+                    "default": "12306",
+                    "type": "integer"
+                },
+                "eachTest": {
+                    "description": "If true, (re)starts a Moco server for each test method. Otherwise, (re)starts once per test class",
+                    "default": "false",
+                    "type": "boolean"
+                },
+                "config": {
+                    "description": "Defines the source of the Moco server configuration",
+                    "type": "object",
+                    "properties": {
+                        "file": {
+                            "description": "Path to a file containing the Moco server configuration",
+                            "type": "string"
+                        },
+                        "resource": {
+                            "description": "Path to a resource containing the Moco server configuration",
+                            "type": "string"
+                        },
+                        "pojoWriterFactory": {
+                            "description": "Fully-qualified class name for a MocoServerConfigPojo.PojoWriterFactory implementation",
+                            "type": "string"
+                        }
+                    },
+                    "minProperties": 1,
+                    "maxProperties": 1,
+                    "additionalProperties": false
+                }
+            },
+            "required": [ "config" ],
+            "additionalProperties": false
+        },
+
+        "certificate": {
+            "description": "Defines how an HttpsCertificate will be configured in generated tests",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "The name of the HttpsCertificate variable",
+                    "default": "DEFAULT_CERTIFICATE",
+                    "type": "string"
+                },
+                "keyStorePassword": {
+                    "description": "The key store password",
+                    "type": "string"
+                },
+                "certPassword": {
+                    "description": "The certificate password",
+                    "type": "string"
+                },
+                "config": {
+                    "description": "Defines access to certificate data",
+                    "type": "object",
+                    "properties": {
+                        "file": {
+                            "description": "Path to a file containing certificate data",
+                            "type": "string"
+                        },
+                        "resource": {
+                            "description": "Path to a resource containing certificate data",
+                            "type": "string"
+                        }
+                    },
+                    "minProperties": 1,
+                    "maxProperties": 1,
+                    "additionalProperties": false
+                }
+            },
+            "required": [ "config", "keyStorePassword", "certPassword"],
+            "additionalProperties": false
+        }
+    },
+    "required": [ "server", "runner" ],
+    "additionalProperties": false
+}

@@ -29,7 +29,7 @@ public abstract class CertConfig
 
     certPassword_ =
       Optional.ofNullable( certPassword)
-      .orElseThrow( () -> new IllegalArgumentException( "The certificat password must be defined"));
+      .orElseThrow( () -> new IllegalArgumentException( "The certificate password must be defined"));
     }
 
   /**
