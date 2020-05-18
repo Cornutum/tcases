@@ -71,11 +71,11 @@ public class ApiTestCommand
    * <NOBR>-t testType </NOBR>
    * </TD>
    * <TD>
-   * Defines the test framework used to run API tests. Valid values are <CODE>junit</CODE>, <CODE>testng</CODE>, or <CODE>moco</CODE>.
-   * If omitted, the default is <CODE>junit</CODE>.
+   * Defines the test framework used to run API tests. Valid values are "junit", "testng", or "moco".
+   * If omitted, the default is "junit".
    * <P/>
-   * Use <CODE>moco</CODE> to generate a JUnit test that sends requests to a <A href="https://github.com/dreamhead/moco">Moco stub server</A>.
-   * To define the Moco server test configuration, use the <CODE>-M</CODE> option.
+   * Use "moco" to generate a JUnit test that sends requests to a <A href="https://github.com/dreamhead/moco">Moco stub server</A>.
+   * To define the Moco server test configuration, use the <I>-M</I> option.
    * </TD>
    * </TR>
    *
@@ -87,8 +87,8 @@ public class ApiTestCommand
    * <NOBR>-e execType </NOBR>
    * </TD>
    * <TD>
-   * Defines the request execution interface used to run API tests. Valid values are <CODE>restassured</CODE>.
-   * If omitted, the default is <CODE>restassured</CODE>.
+   * Defines the request execution interface used to run API tests. Valid values are "restassured".
+   * If omitted, the default is "restassured".
    * </TD>
    * </TR>
    *
@@ -97,11 +97,11 @@ public class ApiTestCommand
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR>-name testName </NOBR>
+   * <NOBR>-n testName </NOBR>
    * </TD>
    * <TD>
    * Defines the name of the test class that is generated. This can be either a fully-qualified class name
-   * or a simple class name. If omitted, the default is based on the title of the <CODE>apiSpec</CODE>.
+   * or a simple class name. If omitted, the default is based on the title of the <I>apiSpec</I>.
    * </TD>
    * </TR>
    *
@@ -113,8 +113,8 @@ public class ApiTestCommand
    * <NOBR>-p testPackage </NOBR>
    * </TD>
    * <TD>
-   * Defines the package for the test class that is generated. This can be omitted if the <CODE>testName</CODE>
-   * is a fully-qualified class name or if the package can be determined from the <CODE>outDir</CODE>.
+   * Defines the package for the test class that is generated. This can be omitted if the <I>testName</I>
+   * is a fully-qualified class name or if the package can be determined from the <I>outDir</I>.
    * </TD>
    * </TR>
    *
@@ -127,7 +127,7 @@ public class ApiTestCommand
    * </TD>
    * <TD>
    * If defined, specifies a base class for the generated test class. This can be a fully-qualified class name
-   * or a simple class name, if the <CODE>baseClass</CODE> belongs to the same package as the generated test class.
+   * or a simple class name, if the <I>baseClass</I> belongs to the same package as the generated test class.
    * </TD>
    * </TR>
    *
@@ -136,10 +136,10 @@ public class ApiTestCommand
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR>-f <I>outFile</I> </NOBR>
+   * <NOBR>-f outFile </NOBR>
    * </TD>
    * <TD>
-   * If <I>-f</I> is defined, output is written to the specified <I>outFile</I>, relative to the given <I>outDir</I>.
+   * If defined, output is written to the specified <I>outFile</I>, relative to the given <I>outDir</I>.
    * If omitted, the default <I>outFile</I> is derived from the <I>testName</I>.
    * </TD>
    * </TR>
@@ -154,8 +154,7 @@ public class ApiTestCommand
    * <TD>
    * If <I>-o</I> is defined, output is written to the specified directory.
    * If omitted, the default <I>outDir</I> is the directory containing the <I>apiSpec</I> or,
-   * if reading from standard input, the current working directory. If an output path cannot be
-   * derived, output is written to standard output.
+   * if reading from standard input, output is written to standard output.
    * </TD>
    * </TR>
    *
@@ -167,7 +166,7 @@ public class ApiTestCommand
    * <NOBR>-M mocoTestConfig </NOBR>
    * </TD>
    * <TD>
-   * When the <CODE>testType</CODE> is <CODE>moco</CODE>, specifies the Moco server test configuration file.
+   * When the <I>testType</I> is "moco", specifies the Moco server test configuration file.
    * </TD>
    * </TR>
    *
@@ -179,8 +178,8 @@ public class ApiTestCommand
    * <NOBR>-P paths </NOBR>
    * </TD>
    * <TD>
-   * If defined, tests are generated only for the specified API resource paths. <CODE>paths</CODE> must be a comma-separated list
-   * of resource paths defined in the <CODE>apiSpec</CODE>.
+   * If defined, tests are generated only for the specified API resource paths. <I>paths</I> must be a comma-separated list
+   * of resource paths defined in the <I>apiSpec</I>.
    * If omitted, tests are generated for all resource paths.
    * </TD>
    * </TR>
@@ -193,8 +192,8 @@ public class ApiTestCommand
    * <NOBR>-O operations </NOBR>
    * </TD>
    * <TD>
-   * If defined, tests are generated only for the specified HTTP methods. <CODE>operations</CODE> must be a comma-separated list
-   * of path operations defined in the <CODE>apiSpec</CODE>.
+   * If defined, tests are generated only for the specified HTTP methods. <I>operations</I> must be a comma-separated list
+   * of path operations defined in the <I>apiSpec</I>.
    * If omitted, tests are generated for all operations.
    * </TD>
    * </TR>
@@ -221,11 +220,11 @@ public class ApiTestCommand
    * <NOBR>-c M[,R] </NOBR>
    * </TD>
    * <TD>
-   * Defines how input modelling and request case resolution conditions are reported. Both <CODE>M</CODE> (for modelling conditions) and <CODE>R</CODE> (for
-   * resolution conditions) must be one of <CODE>log</CODE>, <CODE>fail</CODE>, or <CODE>ignore</CODE>.
-   * If <CODE>log</CODE> is specified, conditions are reported using log messages.
-   * If <CODE>fail</CODE> is specified, any condition will cause an exception. If <CODE>ignore</CODE> is specified, all conditions
-   * are silently ignored. If <CODE>R</CODE> is omitted, the default is <CODE>log</CODE>. If <I>-c</I> is omitted, the default is <CODE>log,log</CODE>.
+   * Defines how input modelling and request case resolution conditions are reported. Both <I>M</I> (for modelling conditions) and <I>R</I> (for
+   * resolution conditions) must be one of "log", "fail", or "ignore".
+   * If "log" is specified, conditions are reported using log messages.
+   * If "fail" is specified, any condition will cause an exception. If "ignore" is specified, all conditions
+   * are silently ignored. If <I>R</I> is omitted, the default is "log". If <I>-c</I> is omitted, the default is "log,log".
    * </TD>
    * </TR>
    *
@@ -1369,11 +1368,6 @@ public class ApiTestCommand
       apiSpecFile = new File( options.getWorkingDir(), apiSpecFile.getPath());
       }
 
-    File inputDir =
-      apiSpecFile==null
-      ? options.getWorkingDir()
-      : apiSpecFile.getParentFile();
-    
     // Generate requested input definition
     logger_.info( "Reading API spec from {}", Objects.toString( apiSpecFile,  "standard input"));
     SystemInputDef inputDef = TcasesOpenApiIO.getRequestInputModel( apiSpecFile, options.getContentType(), options.getModelOptions());
@@ -1395,10 +1389,12 @@ public class ApiTestCommand
       TestWriter<?,?> testWriter = options.getTestWriter( testCaseWriter);
 
       TestTarget testTarget = options.getTestTarget();
-      Optional.ofNullable( getTestFile( testWriter, testSource, testTarget))
-        .filter( file -> !file.isAbsolute())
-        .ifPresent( file -> testTarget.setDir( inputDir));
+      if( getTestFile( testWriter, testSource, testTarget) == null && apiSpecFile != null)
+        {
+        testTarget.setDir( apiSpecFile.getParentFile());
+        }
 
+      logger_.info( "Writing API test using {} and {}", testWriter, testCaseWriter);
       logger_.info( "Writing API test to {}", Objects.toString( getTestFile( testWriter, testSource, testTarget),  "standard output"));
       writeTest( testWriter, testSource, testTarget);
       }

@@ -257,11 +257,11 @@ public class ApiTestCommandTest extends TestWriterTest
       };
     
     // When...
-    StringBuffer stdOut = new StringBuffer();
-    runWithStdIO( new Options( args), null, stdOut);
+    ApiTestCommand.run( new Options( args));
         
     // Then...
-    String testFileResults = stdOut.toString();
+    File testFile = new File( apiFile.getParentFile(), "OpenAPIRequestTestCasesTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-3", testFileResults);
     }
 
@@ -494,11 +494,11 @@ public class ApiTestCommandTest extends TestWriterTest
       };
     
     // When...
-    StringBuffer stdOut = new StringBuffer();
-    runWithStdIO( new Options( args), null, stdOut);
+    ApiTestCommand.run( new Options( args));
         
     // Then...
-    String testFileResults = stdOut.toString();
+    File testFile = new File( apiFile.getParentFile(), "WhyNotTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-7", testFileResults);
     }
 
@@ -698,14 +698,11 @@ public class ApiTestCommandTest extends TestWriterTest
     // Given...
     File apiFile = stdApiSpec( "OpenApiTest");
     
-    String[] args =
-      {
-        apiFile.getPath()
-      };
+    String[] args = new String[0];
 
     // When...
     assertTestWriterException(
-      () -> ApiTestCommand.run( new Options( args)),
+      () -> runWithStdIO( new Options( args), apiFile, null),
       "JUnitTestWriter[]: Can't write test for TestSource[RequestTestDef[OpenAPI Request Test Cases]]",
       "Can't write test=OpenAPIRequestTestCases",
       "No package defined for target=JavaTestTarget[package=<null>,STDOUT]");
@@ -819,6 +816,27 @@ public class ApiTestCommandTest extends TestWriterTest
       () -> ApiTestCommand.run( new Options( args)),
       "Can't create Moco test writer",
       "No Moco server test configuration defined");
+    }
+
+  @Test
+  public void whenPrintToStdout() throws Exception
+    {
+    // Given...
+    File apiFile = stdApiSpec( "OpenApiTest");
+    
+    String[] args =
+      {
+        "-p", "org.cornutum.examples",
+        "-r", "99999"
+      };
+    
+    // When...
+    StringBuffer stdOut = new StringBuffer();
+    runWithStdIO( new Options( args), apiFile, stdOut);
+        
+    // Then...
+    String testFileResults = stdOut.toString();
+    verifyTest( "api-test-stdout", testFileResults);
     }
 
   /**
