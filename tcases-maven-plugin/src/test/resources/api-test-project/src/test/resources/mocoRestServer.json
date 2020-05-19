@@ -1,0 +1,9 @@
+{
+    "server": "RestServer",
+    "runner": {
+        "config": {
+            "resource": "myRestServerConfig.json"
+        },
+        "port": 9999
+    }
+}
