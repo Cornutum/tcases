@@ -1,0 +1,47 @@
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>api-test-project</artifactId>
+  <version>3.4.0</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.cornutum.tcases</groupId>
+        <artifactId>tcases-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+            <baseClass>MyBaseClass</baseClass>
+            <contentType>json</contentType>
+            <execType>restassured</execType>
+            <maxTries>12345</maxTries>
+            <mocoTestConfig>src/test/resources/mocoRestServer.json</mocoTestConfig>
+            <onModellingCondition>ignore</onModellingCondition>
+            <onResolverCondition>ignore</onResolverCondition>
+            <operations>
+                <operation>post</operation>
+                <operation>put</operation>
+            </operations>
+            <paths>
+                <path>/post</path>
+                <path>/posts</path>
+            </paths>
+            <random>98765</random>
+            <readOnlyEnforced>true</readOnlyEnforced>
+            <testName>MyTest</testName>
+            <testPackage>org.cornutum.mojo</testPackage>
+            <testType>moco</testType>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
