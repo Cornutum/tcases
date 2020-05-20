@@ -23,6 +23,8 @@ A `RequestCase` object defines the inputs for a test case that invokes a specifi
 | id            | integer | :registered:    | An id number that uniquely identifies this test case among all tests for the given path and operation |
 | path          | string | :registered:     | The request path |
 | operation     | string | :registered:     | The HTTP operation for this request |
+| api           | string | :registered:     | The title of the API that defines this request |
+| name          | string |                  | A descriptive name for this test case |
 | server        | string |                  | The API server URL |
 | version       | string |                  | The version of the OpenAPI spec that defines this request |
 | parameters    | \[[`ParamData`](#paramdata)\] |     | The parameter values for this request |
