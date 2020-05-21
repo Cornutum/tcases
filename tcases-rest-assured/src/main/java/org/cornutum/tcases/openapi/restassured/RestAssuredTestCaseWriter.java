@@ -12,10 +12,11 @@ import org.cornutum.tcases.openapi.resolver.BinaryValue;
 import org.cornutum.tcases.openapi.resolver.DataValue;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
-import org.cornutum.tcases.openapi.resolver.io.DataValueBinary;
-import org.cornutum.tcases.openapi.resolver.io.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
+import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
+import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
+
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 
 import org.apache.commons.lang3.StringUtils;
