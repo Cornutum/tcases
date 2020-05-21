@@ -4,9 +4,14 @@
 
   - [Overview](#overview)
   - [Generating executable tests](#generating-executable-tests)
+    - [Getting started](#getting-started) 
+    - [How does it work?](#how-does-it-work)
+    - [Example: REST Assured and JUnit](#example-rest-assured-and-junit) 
+    - [Example: Create a specific TestNG class](#example-create-a-specific-testng-class)
+    - [Understanding the TestWriter API](#understanding-the-testwriter-api)    
   - [Generating request inputs](#generating-request-inputs)
-    - [Instead of this...](#instead-of-this)
-    - [Do this...](#do-this)
+    - [Instead of input descriptions...](#instead-of-input-descriptions)
+    - [Get actual input values...](#get-actual-input-values)
     - [How does input resolution work?](#how-does-input-resolution-work)
   
 ## Overview ##
@@ -36,35 +41,6 @@ That leaves part #4: defining the expected responses. But that's the part of the
 Tcases for OpenAPI has no way to predict what your API will do for any request, much less a request using random inputs.
 
 ## Generating executable tests ##
-
-### How does it work? ###
-
-Most API test programs are organized around two different kinds of interfaces.
-
-First, there is the overall test framework that is used to run test cases and report results.  In the Java world,
-[JUnit](https://junit.org/junit4/) and [TestNG](https://testng.org/doc/) are the most widely used examples of such
-frameworks. For test developers, such frameworks generally define how to designate individual tests and how to control their
-execution. And they are general-purpose, equally applicable for all kinds of testing. There is nothing about them that
-specifically supports API testing.
-
-So API tests must also rely on an additional set of "request execution" interfaces. These are the interfaces used to construct a
-request message, deliver it to an API server, and collect the resulting response. Here, too, there are many alternatives,
-depending on the programming language and framework used for the test.  In the Java world, the candidates range from basic APIs
-like [HttpClient](http://hc.apache.org/httpcomponents-client-ga/tutorial/html/fluent.html) to domain-specific micro-languages
-like [REST Assured](https://github.com/rest-assured/rest-assured).
-
-When Tcases For OpenAPI generates an executable test, the result is one or more source code files that represent the test
-program. You can immediately build this source code and run the test (although one of the crucial elements of the test -- the
-verification of expected results -- is largely missing). To do this, Tcases For OpenAPI brings together three elements:
-
-  * A [request test definition](Request-Test-Definition.md) that defines the inputs for request test cases (and that is created
-    automatically from an OpenAPI spec via [input resolution](README.md#do-this)),
-  
-  * a [TestWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) that is
-    responsible for producing the code required for a specific testframework,
-
-  * and a [TestCaseWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html)
-    that is reponsible for producing the code that uses a specific request execution interface to submit API requests.
   
 ### Getting started  ###
 
@@ -77,14 +53,33 @@ class.  To get help at the command line, run `tcases-api-test -help`.
 `tcases-api-test` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
 [*Tcases: The Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install).
 
-You can also generate tests with the [Tcases Maven Plugin](READMD.md#running-tcases-for-openapi-using-maven)
+You can also generate tests with the [Tcases Maven Plugin](README.md#running-tcases-for-openapi-using-maven)
 using the [`tcases:api-test`](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-test-mojo.html) goal.
 
+### How does it work? ###
+
+When Tcases for OpenAPI generates an executable test, the result is one or more source code files that represent the test
+program. You can immediately build this source code and run the test (although one of the crucial elements of a test -- the
+verification of expected results -- is largely missing).
+
+To do this, Tcases for OpenAPI uses the [TestWriter API](#understanding-the-testwriter-api) to bring together the following
+three elements:
+
+  * A [request test definition](Request-Test-Definition.md) that defines the inputs for request test cases (and that is created
+    automatically from an OpenAPI spec via [input resolution](#get-actual-input-values)),
+  
+  * a [TestWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) that is
+    responsible for producing the code required for a specific [test framework](#test-framework),
+
+  * and a [TestCaseWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html)
+    that is reponsible for producing the code that uses a specific [request execution interface](#request-execution) to submit
+    API requests.
 
 ### Example: REST Assured and JUnit  ###
 
-By default, Tcases For OpenAPI generates a JUnit test class that uses REST Assured to execute requests. The package containing
-the test class can be determined automatically from the destination directory if it follows Maven project conventions.
+By default, Tcases for OpenAPI generates a JUnit test class that uses REST Assured to execute requests.  By default, the name of
+the test case is derived from the `title` of the OpenAPI spec.  The package containing the test class can also be determined
+automatically from the destination directory if it follows Maven project conventions.
 
 ```bash
 # Generate JUnit tests for requests defined in 'petstore-expanded.yaml'. Write results to 'SwaggerPetstoreTest.java'.
@@ -125,6 +120,57 @@ public class SwaggerPetstoreTest {
     public void getPets_TagsDefined_Is_Yes() {
         given()
             .queryParam( "limit", "-736708634")
+            .queryParam( "tags", "")
+        .when()
+            .request( "GET", "http://petstore.swagger.io/api/pets")
+        .then()
+            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            ;
+    }
+...
+}
+```
+### Example: Create a specific TestNG class  ###
+
+Tcases for OpenAPI also supports [TestNG](https://testng.org/doc/), another widely-used Java test framework.  You can also use
+other options to control the name (`-n`) and package (`-p`) of the generated test class or to control the input resolution
+process.
+
+
+```bash
+# Generate TestNG tests for requests defined in 'petstore-expanded.yaml'. Write results to './MyTests.java'.
+# Define a specific seed for the generation of random input values. 
+tcases-api-test -t testng -n MyTests -b MyBaseClass -p org.examples.testng -r 345589 petstore-expanded.yaml
+```
+
+You can see the difference in the `tcases-api-test.log` file:
+
+```
+14:20:18.570 INFO  o.c.t.openapi.ApiTestCommand - M.N.P (YYYY-MM-DD)
+14:20:18.574 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
+14:20:18.905 INFO  o.c.t.openapi.ApiTestCommand - Generating request test cases using random seed=345589
+...
+14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing API test using TestNgTestWriter[] and RestAssuredTestCaseWriter[]
+14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing API test to ./MyTests.java
+```
+
+And also in the the generated source code in `MyTests.java`:
+
+```java
+package org.examples.testng;
+
+import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+public class MyTests extends MyBaseClass {
+
+    @Test
+    public void getPets_TagsDefined_Is_Yes() {
+        given()
+            .queryParam( "limit", "-889243316")
+            .queryParam( "tags", "")
         .when()
             .request( "GET", "http://petstore.swagger.io/api/pets")
         .then()
@@ -135,11 +181,40 @@ public class SwaggerPetstoreTest {
 }
 ```
 
-### API testing with Moco ###
+### Understanding the TestWriter API ###
+
+The `tcases-api-test` command is implemented using the TestWriter API. Using this Java API, you can extend Tcases for OpenAPI
+to generate tests that use different test frameworks and even different programming languages.
+
+#### The basics ####
+
+Most API test programs are organized around two different kinds of interfaces.
+
+First, there is the overall <A name="test-framework">"test framework"</A> that is used to run test cases and report results.  In
+the Java world, [JUnit](https://junit.org/junit4/) and [TestNG](https://testng.org/doc/) are the most widely used examples of
+such frameworks. For test developers, such frameworks generally define how to designate individual tests and how to control
+their execution. And they are general-purpose, equally applicable for all kinds of testing. There is nothing about them that
+specifically supports API testing. To create tests for a different test framework, create a new subclass of the basic
+[TestWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) class.
+
+So API tests must also rely on an additional set of <A name="request-execution">"request execution"</A> interfaces. These are
+the interfaces used to construct a request message, deliver it to an API server, and collect the resulting response. Here, too,
+there are many alternatives, depending on the programming language and framework used for the test.  In the Java world, the
+candidates range from basic APIs like [HttpClient](http://hc.apache.org/httpcomponents-client-ga/tutorial/html/fluent.html) to
+domain-specific micro-languages like [REST Assured](https://github.com/rest-assured/rest-assured). To create tests that use a
+different execution interface, create a new implementation of the
+[TestCaseWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html) interface.
+TestCaseWriter implementations often start with a subclass of
+[TestCaseContentWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseContentWriter.html).
+
+#### Creating an API test, step-by-step ####
+
+Here's a step-by-step outline of how to use the TestWriter API to convert an OpenAPI spec into an executable test.
+
 
 ## Generating request inputs ##
 
-### Instead of this... ###
+### Instead of input descriptions... ###
 
 By default, Tcases for OpenAPI produces a JSON document that *describes* the input values for each test case, but only in a
 general way.  It's left for you to choose the actual input values that match these descriptions. The following example uses the
@@ -219,7 +294,7 @@ tcases-api -T yaml < petstore-expanded.yaml
 This describes a test case for the `GET /pets` request in which the `limit` parameter is a negative integer. It could be any negative integer, but you still
 have to choose the one to use in your test.
 
-### Do this... ###
+### Get actual input values... ###
 
 But compare the result of the previous command to the result of the command below. Specifying the `-D` option (or, when using
 [Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html), `-DrequestCases=true`) produces an entirely
