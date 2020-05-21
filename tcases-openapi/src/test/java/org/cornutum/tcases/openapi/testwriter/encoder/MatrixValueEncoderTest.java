@@ -5,11 +5,11 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver.io;
+package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
-import org.cornutum.tcases.openapi.resolver.io.SimpleValueEncoder;
 import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
+import org.cornutum.tcases.openapi.testwriter.encoder.MatrixValueEncoder;
 
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
@@ -20,22 +20,21 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 /**
- * Runs tests for {@link SimpleValueEncoder}.
+ * Runs tests for {@link MatrixValueEncoder}.
  */
 @SuppressWarnings("unchecked")
-public class SimpleValueEncoderTest
+public class MatrixValueEncoderTest
   {  
   @Test
-  public void whenSimpleDecimal()
+  public void whenMatrixDecimal()
     {
     // Given...
     ParamData param =
       param( "myParam")
       .location( PATH)
-      .style( "simple")
+      .style( "matrix")
       .decimalData( new BigDecimal( "123.45"))
       .build();
 
@@ -43,13 +42,13 @@ public class SimpleValueEncoderTest
     String encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "123.45"));
+    assertThat( "Matrix encoding", encoded, is( ";myParam=123.45"));
 
     // Given...
     param =
-      param( "myParam")
+      param( "my Param")
       .location( PATH)
-      .style( "simple")
+      .style( "matrix")
       .decimalData( new BigDecimal( "123.45"))
       .exploded()
       .build();
@@ -58,17 +57,23 @@ public class SimpleValueEncoderTest
     encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "123.45"));
+    assertThat( "Matrix encoding", encoded, is( ";my Param=123.45"));
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    
+    // Then...
+    assertThat( "Matrix encoding", encoded, is( ";my%20Param=123.45"));
     }
   
   @Test
-  public void whenSimpleUndefined()
+  public void whenMatrixUndefined()
     {
     // Given...
     ParamData param =
       param( "myParam")
       .location( PATH)
-      .style( "simple")
+      .style( "matrix")
       .build()
       ;
 
@@ -76,17 +81,17 @@ public class SimpleValueEncoderTest
     String encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( ""));
+    assertThat( "Matrix encoding", encoded, is( ""));
     }
   
   @Test
-  public void whenSimpleNull()
+  public void whenMatrixNull()
     {
     // Given...
     ParamData param =
       param( "myParam")
       .location( PATH)
-      .style( "simple")
+      .style( "matrix")
       .nullData()
       .build();
 
@@ -94,13 +99,13 @@ public class SimpleValueEncoderTest
     String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( ""));
+    assertThat( "Matrix encoding", encoded, is( ";myParam"));
 
     // Given...
     param =
       param( "myParam")
       .location( PATH)
-      .style( "simple")
+      .style( "matrix")
       .nullData()
       .exploded()
       .build();
@@ -109,17 +114,17 @@ public class SimpleValueEncoderTest
     encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( ""));
+    assertThat( "Matrix encoding", encoded, is( ";myParam"));
     }
   
   @Test
-  public void whenSimpleArray()
+  public void whenMatrixArray()
     {
     // Given...
     ParamData param =
       param( "myParam")
       .location( PATH)
-      .style( "simple")
+      .style( "matrix")
       .arrayData( stringOf( "A"), stringOf( "B"))
       .build();
 
@@ -127,13 +132,13 @@ public class SimpleValueEncoderTest
     String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "A,B"));
+    assertThat( "Matrix encoding", encoded, is( ";myParam=A,B"));
 
     // Given...
     param =
       param( "myParam")
       .location( PATH)
-      .style( "simple")
+      .style( "matrix")
       .arrayData( stringOf( "A"), stringOf( "B C"))
       .exploded()
       .build();
@@ -142,38 +147,38 @@ public class SimpleValueEncoderTest
     encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "A,B C"));
+    assertThat( "Matrix encoding", encoded, is( ";myParam=A;myParam=B C"));
 
     // When...
     encoded = TestWriterUtils.getPathParameterValue( param, true);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "A,B%20C"));
+    assertThat( "Matrix encoding", encoded, is( ";myParam=A;myParam=B%20C"));
     }
   
   @Test
-  public void whenSimpleObject()
+  public void whenMatrixArrayEmpty()
     {
     // Given...
     ParamData param =
       param( "myParam")
       .location( PATH)
-      .style( "simple")
-      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .style( "matrix")
+      .arrayData()
       .build();
 
     // When...
     String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "nick name,X,sex,?"));
+    assertThat( "Matrix encoding", encoded, is( ";myParam="));
 
     // Given...
     param =
       param( "myParam")
       .location( PATH)
-      .style( "simple")
-      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .style( "matrix")
+      .arrayData()
       .exploded()
       .build();
 
@@ -181,98 +186,46 @@ public class SimpleValueEncoderTest
     encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "nick name=X,sex=?"));
+    assertThat( "Matrix encoding", encoded, is( ";myParam="));
 
     // When...
     encoded = TestWriterUtils.getPathParameterValue( param, true);
     
     // Then...
-    assertThat( "Simple encoding", encoded, is( "nick%20name=X,sex=%3F"));
+    assertThat( "Matrix encoding", encoded, is( ";myParam="));
     }
   
   @Test
-  public void whenHeaderValueReserved()
+  public void whenMatrixObject()
     {
     // Given...
-    String reservedChars = "?X=Y&A=B 1|2|3";
     ParamData param =
       param( "myParam")
-      .location( HEADER)
-      .style( "simple")
-      .stringData( reservedChars)
+      .location( PATH)
+      .style( "matrix")
+      .objectData( object().with( "name", stringOf( "X")).with( "sex", valueOf( true)))
       .build();
 
     // When...
-    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
-
-    // Then...
-    assertThat( "Header value", value.orElse(null), is( reservedChars));
-    }
-  
-  @Test
-  public void whenHeaderValueQuoted()
-    {
-    // Given...
-    String lws = " ...ends here.";
-    ParamData param =
-      param( "myParam")
-      .location( HEADER)
-      .style( "simple")
-      .stringData( lws)
-      .build();
-
-    // When...
-    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
-
-    // Then...
-    assertThat( "Header value", value.orElse(null), is( String.format( "\"%s\"", lws)));
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
     
+    // Then...
+    assertThat( "Matrix encoding", encoded, is( ";myParam=name,X,sex,true"));
+
     // Given...
-    String tws = "Starts here... ";
     param =
       param( "myParam")
-      .location( HEADER)
-      .style( "simple")
-      .stringData( tws)
+      .location( PATH)
+      .style( "matrix")
+      .objectData( object().with( "name", stringOf( "X")).with( "sex", valueOf( true)))
+      .exploded()
       .build();
 
     // When...
-    value = TestWriterUtils.getHeaderParameterValue( param);
-
+    encoded = TestWriterUtils.getPathParameterValue( param);
+    
     // Then...
-    assertThat( "Header value", value.orElse(null), is( String.format( "\"%s\"", tws)));
-
-    // Given...
-    String empty = "";
-    param =
-      param( "myParam")
-      .location( HEADER)
-      .style( "simple")
-      .stringData( empty)
-      .build();
-
-    // When...
-    value = TestWriterUtils.getHeaderParameterValue( param);
-
-    // Then...
-    assertThat( "Header value", value.orElse(null), is( empty));
-    }
-  
-  @Test
-  public void whenHeaderValueUndefined()
-    {
-    // Given...
-    ParamData param =
-      param( "myParam")
-      .location( HEADER)
-      .style( "simple")
-      .build();
-
-    // When...
-    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
-
-    // Then...
-    assertThat( "Header value", value, is( Optional.empty()));
+    assertThat( "Matrix encoding", encoded, is( ";name=X;sex=true"));
     }
 
   }

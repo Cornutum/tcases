@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver.io;
+package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import java.util.Objects;
 

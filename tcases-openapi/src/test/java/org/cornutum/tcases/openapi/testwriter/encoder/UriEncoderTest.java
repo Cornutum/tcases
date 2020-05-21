@@ -5,11 +5,13 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver.io;
+package org.cornutum.tcases.openapi.testwriter.encoder;
 
-import static org.cornutum.tcases.openapi.resolver.io.UriEncoder.Component.*;
+import org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder;
+import static org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder.Component.*;
 
 import org.junit.Test;
+
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 

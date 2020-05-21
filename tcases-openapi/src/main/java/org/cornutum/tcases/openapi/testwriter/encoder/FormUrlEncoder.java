@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver.io;
+package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ArrayValue;
 import org.cornutum.tcases.openapi.resolver.Base64Domain;
@@ -19,7 +19,7 @@ import org.cornutum.tcases.openapi.resolver.LongValue;
 import org.cornutum.tcases.openapi.resolver.NullValue;
 import org.cornutum.tcases.openapi.resolver.ObjectValue;
 import org.cornutum.tcases.openapi.resolver.StringValue;
-import org.cornutum.tcases.openapi.resolver.io.UriEncoder.Component;
+import org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder.Component;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;

@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver.io;
+package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ArrayValue;
 import org.cornutum.tcases.openapi.resolver.Base64Domain;
@@ -27,14 +27,14 @@ import java.util.Optional;
 import static java.util.stream.Collectors.joining;
 
 /**
- * Returns an encoding of a {@link DataValue} in the "simple" style.
+ * Returns an encoding of a {@link DataValue} in the "label" style.
  */
-public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
+public class LabelValueEncoder extends UriEncoder implements DataValueVisitor
   {
   /**
-   * Creates a new SimpleValueEncoder instance.
+   * Creates a new LabelValueEncoder instance.
    */
-  private SimpleValueEncoder( DataValue<?> value, boolean exploded, Component component)
+  private LabelValueEncoder( DataValue<?> value, boolean exploded, Component component)
     {
     super( component);
     value_ = value;
@@ -46,14 +46,9 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
     return encode( param.getValue(), param.isExploded(), component);
     }
 
-  public static String encode( DataValue<?> value, Component component)
-    {
-    return encode( value, false, component);
-    }
-
   public static String encode( DataValue<?> value, boolean exploded, Component component)
     {
-    return new SimpleValueEncoder( value, exploded, component).accepted();
+    return new LabelValueEncoder( value, exploded, component).accepted();
     }
 
   private String accepted()
@@ -67,9 +62,14 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
       .orElse( "");
     }
 
-  private String stringOf( DataValue<?> value)
+  private String labelOf( DataValue<?> value)
     {
-    return uriEncoded( Objects.toString( value.getValue(), ""));
+    return labelOf( uriEncoded( Objects.toString( value.getValue(), "")));
+    }
+
+  private String labelOf( String value)
+    {
+    return String.format( ".%s", value);
     }
     
   public void visit( ArrayValue<?> data)
@@ -77,37 +77,38 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
     encoded_ =
       data.getValue().stream()
       .map( item -> SimpleValueEncoder.encode( item, getComponent()))
-      .collect( joining( ","));
+      .map( this::labelOf)
+      .collect( joining());
     }
 
   public void visit( BinaryValue data)
     {
-    encoded_ = Base64Domain.encoded( data.getValue());
+    encoded_ = labelOf( Base64Domain.encoded( data.getValue()));
     }
 
   public void visit( BooleanValue data)
     {
-    encoded_ = stringOf( data);
+    encoded_ = labelOf( data);
     }
 
   public void visit( DecimalValue data)
     {
-    encoded_ = stringOf( data);
+    encoded_ = labelOf( data);
     }
 
   public void visit( IntegerValue data)
     {
-    encoded_ = stringOf( data);
+    encoded_ = labelOf( data);
     }
 
   public void visit( LongValue data)
     {
-    encoded_ = stringOf( data);
+    encoded_ = labelOf( data);
     }
 
   public void visit( NullValue data)
     {
-    encoded_ = stringOf( data);
+    encoded_ = labelOf( data);
     }
 
   public void visit( ObjectValue data)
@@ -116,21 +117,22 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
       {
       encoded_ = 
         data.getValue().entrySet().stream()
-        .map( entry -> String.format( "%s=%s", uriEncoded( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), getComponent())))
-        .collect( joining( ","));
+        .map( entry -> labelOf( String.format( "%s=%s", uriEncoded( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), getComponent()))))
+        .collect( joining());
       }
     else
       {
       encoded_ = 
         data.getValue().entrySet().stream()
         .flatMap( entry -> Arrays.asList( uriEncoded( entry.getKey()), SimpleValueEncoder.encode( entry.getValue(), getComponent())).stream())
-        .collect( joining( ","));
+        .map( this::labelOf)
+        .collect( joining());
       }
     }
 
   public void visit( StringValue data)
     {
-    encoded_ = stringOf( data);
+    encoded_ = labelOf( data);
     }
   
   private final boolean exploded_;

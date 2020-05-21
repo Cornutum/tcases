@@ -7,9 +7,9 @@
 
 package org.cornutum.tcases.openapi.testwriter;
 
-import org.cornutum.tcases.openapi.resolver.io.DataValueConverter;
-import org.cornutum.tcases.openapi.resolver.io.DataValueJson;
-import org.cornutum.tcases.openapi.resolver.io.DataValueText;
+import org.cornutum.tcases.openapi.testwriter.encoder.DataValueConverter;
+import org.cornutum.tcases.openapi.testwriter.encoder.DataValueJson;
+import org.cornutum.tcases.openapi.testwriter.encoder.DataValueText;
 import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.ToString;
 

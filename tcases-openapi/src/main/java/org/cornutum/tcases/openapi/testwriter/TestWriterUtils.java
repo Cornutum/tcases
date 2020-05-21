@@ -8,11 +8,11 @@
 package org.cornutum.tcases.openapi.testwriter;
 
 import org.cornutum.tcases.openapi.resolver.*;
-import org.cornutum.tcases.openapi.resolver.io.FormParameterEncoder;
-import org.cornutum.tcases.openapi.resolver.io.LabelValueEncoder;
-import org.cornutum.tcases.openapi.resolver.io.MatrixValueEncoder;
-import org.cornutum.tcases.openapi.resolver.io.SimpleValueEncoder;
-import org.cornutum.tcases.openapi.resolver.io.UriEncoder.Component;
+import org.cornutum.tcases.openapi.testwriter.encoder.FormParameterEncoder;
+import org.cornutum.tcases.openapi.testwriter.encoder.LabelValueEncoder;
+import org.cornutum.tcases.openapi.testwriter.encoder.MatrixValueEncoder;
+import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
+import org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder.Component;
 
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 
@@ -24,7 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Define common methods for representing request test definitions in API tests.
+ * Defines common methods for representing request test definitions in API tests.
  */
 public final class TestWriterUtils
   {
