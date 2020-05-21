@@ -323,6 +323,51 @@ public class QueryParameterEncoderTest
     }
   
   @Test
+  public void whenQueryFormArrayEmpty()
+    {
+    // Given...
+    ParamData param =
+      param( "myParam")
+      .location( QUERY)
+      .style( "form")
+      .arrayData()
+      .build();
+
+    // When...
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    
+    // Then...
+    assertThat(
+      "Parameters",
+      params,
+      containsMembers(
+        params()
+        .encoding( "myParam", "")
+        .build()));
+
+    // Given...
+    param =
+      param( "myParam")
+      .location( QUERY)
+      .style( "form")
+      .arrayData()
+      .exploded()
+      .build();
+
+    // When...
+    params = TestWriterUtils.getQueryParameters( param, false);
+    
+    // Then...
+    assertThat(
+      "Parameters",
+      params,
+      containsMembers(
+        params()
+        .binding( "myParam", "")
+        .build()));
+    }
+  
+  @Test
   public void whenQuerySpaceDelimitedArray()
     {
     // Given...

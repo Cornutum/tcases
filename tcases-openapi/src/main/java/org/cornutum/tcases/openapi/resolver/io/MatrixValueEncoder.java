@@ -84,7 +84,11 @@ public class MatrixValueEncoder extends UriEncoder implements DataValueVisitor
     
   public void visit( ArrayValue<?> data)
     {
-    if( exploded_)
+    if( data.getValue().isEmpty())
+      {
+      encoded_ = matrixParamOf( "");
+      }
+    else if( exploded_)
       {
       encoded_ =
         data.getValue().stream()
