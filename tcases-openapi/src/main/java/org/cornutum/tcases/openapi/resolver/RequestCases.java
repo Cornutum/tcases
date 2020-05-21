@@ -66,14 +66,6 @@ public final class RequestCases
   /**
    * Returns the request case definitions for the given function test definition.
    */
-  public static List<RequestCaseDef> getRequestCaseDefs( FunctionTestDef testDef)
-    {
-    return getRequestCaseDefs( new RequestCaseDefiner(), testDef);
-    }
-
-  /**
-   * Returns the request case definitions for the given function test definition.
-   */
   private static List<RequestCaseDef> getRequestCaseDefs( RequestCaseDefiner definer, FunctionTestDef testDef)
     {
     return
