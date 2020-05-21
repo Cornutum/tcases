@@ -91,7 +91,11 @@ public class FormParameterEncoder extends UriEncoder implements DataValueVisitor
     
   public void visit( ArrayValue<?> data)
     {
-    if( exploded_)
+    if( data.getValue().isEmpty())
+      {
+      bindParam( "");
+      }
+    else if( exploded_)
       {
       data.getValue().stream()
         .forEach( value -> bindParam( SimpleValueEncoder.encode( value, Component.NONE)));

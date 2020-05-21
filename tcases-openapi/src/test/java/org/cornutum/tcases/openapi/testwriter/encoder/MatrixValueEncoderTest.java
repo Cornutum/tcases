@@ -157,6 +157,45 @@ public class MatrixValueEncoderTest
     }
   
   @Test
+  public void whenMatrixArrayEmpty()
+    {
+    // Given...
+    ParamData param =
+      param( "myParam")
+      .location( PATH)
+      .style( "matrix")
+      .arrayData()
+      .build();
+
+    // When...
+    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    
+    // Then...
+    assertThat( "Matrix encoding", encoded, is( ";myParam="));
+
+    // Given...
+    param =
+      param( "myParam")
+      .location( PATH)
+      .style( "matrix")
+      .arrayData()
+      .exploded()
+      .build();
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param);
+    
+    // Then...
+    assertThat( "Matrix encoding", encoded, is( ";myParam="));
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    
+    // Then...
+    assertThat( "Matrix encoding", encoded, is( ";myParam="));
+    }
+  
+  @Test
   public void whenMatrixObject()
     {
     // Given...

@@ -16,7 +16,6 @@ import org.cornutum.tcases.openapi.resolver.io.DataValueBinary;
 import org.cornutum.tcases.openapi.resolver.io.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
-import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 
 import org.apache.commons.lang3.StringUtils;

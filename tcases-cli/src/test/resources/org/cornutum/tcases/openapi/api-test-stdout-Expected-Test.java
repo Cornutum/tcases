@@ -2110,7 +2110,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesType_Is_NotObject() {
         given()
-            .pathParam( "attributes", "")
+            .pathParam( "attributes", ";attributes=")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
