@@ -523,6 +523,9 @@ mvn tcases:tcases -DdefaultTupleSize=2
   generates test cases for your API directly from an OpenAPI v3 specification. To
   run it, use the {{{./api-mojo.html}tcases:api}} goal.
 
+  You can even translate an OpenAPI v3 specification directly into an {{{Generating_Executable_API_Tests} executable test program}},
+  using the {{{./api-test-mojo.html}tcases:api-test}} goal.
+
 ** {Generating API Test Cases}
 
   Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI spec
@@ -555,6 +558,24 @@ mvn tcases:api
 +--------
 mvn tcases:api -Dproject=My-API
 +--------
+
+** {Generating Executable API Tests}
+
+  Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI spec
+  named <<<$\{basedir\}/src/test/tcases/openapi/org/myapp/My-API.yaml>>> 
+
+  What happens when you run the following command, this time using the {{{./api-test-mojo.html}api-test}} goal
+
++--------
+mvn tcases:api-test -Dproject=My-API 
++--------
+
+  Congratulations! You just created a new JUnit test for your API! You'll find the source for the new
+  test class in <<<$\{basedir\}/target/generated-test-sources/java/org/myapp/MyApiTest.java>>>.
+  Build and execute this test to run all test cases for every requests defined in <<<My-API.yaml>>>.
+
+  How was this test constructed? And what does it really do? For answers, see
+  {{{https://github.com/Cornutum/tcases/blob/master/tcases-openapi/Running-Api-Test-Cases.md#generating-executable-tests}Generating executable tests}}.
 
 ** {Generating Request Inputs}
 
