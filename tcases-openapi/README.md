@@ -392,6 +392,9 @@ which operate directly with the [Java API for OpenAPI](https://github.com/swagge
 classes are based on the [Tcases Core API](http://www.cornutum.org/tcases/docs/api/) for manipulating system and test
 models.
 
+Your Java application can even produce executable tests, using the [TestWriter API](Running-Api-Test-Cases.md#understanding-the-testwriter-api)
+for Tcases for OpenAPI.
+
 ## OpenAPI tips ##
 
 To use Tcases for OpenAPI effectively, there are some things to keep in mind when you're building your OpenAPI spec.
