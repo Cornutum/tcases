@@ -23,10 +23,10 @@ the expected responses. Bam! Job done!
 But is this even possible? Yes, it is -- mostly.
 Consider that any such test program must combine all of the following elements.
 
-  1. The framework for organizing test execution, e.g. JUnit, etc.
-  1. The interfaces for submitting HTTP requests and receiving responses
-  1. The actual request inputs
-  1. The expected response outputs
+  1. :white_check_mark: The framework for organizing test execution, e.g. JUnit, etc.
+  1. :white_check_mark: The interfaces for submitting HTTP requests and receiving responses
+  1. :white_check_mark: The actual request inputs
+  1. :x: The expected response outputs
 
 One of the most complicated parts is #3. But Tcases for OpenAPI can automatically generate random request input values,
 including valid values that satisfy the requirements of the OpenAPI spec as well as invalid values that test API error
@@ -59,8 +59,7 @@ using the [`tcases:api-test`](http://www.cornutum.org/tcases/docs/tcases-maven-p
 ### How does it work? ###
 
 When Tcases for OpenAPI generates an executable test, the result is one or more source code files that represent the test
-program. You can immediately build this source code and run the test (although one of the crucial elements of a test -- the
-verification of expected results -- is largely missing).
+program. You can immediately build this source code and run the test.
 
 To do this, Tcases for OpenAPI uses the [TestWriter API](#understanding-the-testwriter-api) to bring together the following
 three elements:
@@ -68,21 +67,23 @@ three elements:
   * A [request test definition](Request-Test-Definition.md) that defines the inputs for request test cases (and that is created
     automatically from an OpenAPI spec via [input resolution](#get-actual-input-values)),
   
-  * a [TestWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) that is
+  * a [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) that is
     responsible for producing the code required for a specific [test framework](#test-framework),
 
-  * and a [TestCaseWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html)
+  * and a [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html)
     that is reponsible for producing the code that uses a specific [request execution interface](#request-execution) to submit
     API requests.
 
 ### Example: REST Assured and JUnit  ###
 
-By default, Tcases for OpenAPI generates a JUnit test class that uses REST Assured to execute requests.  By default, the name of
-the test case is derived from the `title` of the OpenAPI spec.  The package containing the test class can also be determined
-automatically from the destination directory if it follows Maven project conventions.
+By default, Tcases for OpenAPI generates a JUnit test class that uses [REST Assured](https://github.com/rest-assured/rest-assured)
+to execute requests.  The name of the test class, by default, is derived from the `title` of the OpenAPI spec.  The package
+containing the test class can also be determined automatically from the destination directory if it follows Maven project
+conventions.
 
 ```bash
-# Generate JUnit tests for requests defined in 'petstore-expanded.yaml'. Write results to 'SwaggerPetstoreTest.java'.
+# Generate JUnit tests for requests defined in 'petstore-expanded.yaml'.
+# Write results to 'SwaggerPetstoreTest.java'.
 tcases-api-test -o src/test/java/org/examples petstore-expanded.yaml
 ```
 
@@ -133,14 +134,15 @@ public class SwaggerPetstoreTest {
 ### Example: Create a specific TestNG class  ###
 
 Tcases for OpenAPI also supports [TestNG](https://testng.org/doc/), another widely-used Java test framework.  You can also use
-other options to control the name (`-n`) and package (`-p`) of the generated test class or to control the input resolution
+other options to control the name and package of the generated test class or to control the input resolution
 process.
 
 
 ```bash
-# Generate TestNG tests for requests defined in 'petstore-expanded.yaml'. Write results to './MyTests.java'.
-# Define a specific seed for the generation of random input values. 
-tcases-api-test -t testng -n MyTests -b MyBaseClass -p org.examples.testng -r 345589 petstore-expanded.yaml
+# Generate TestNG tests for requests defined in 'petstore-expanded.yaml'.
+# Use a specific seed for the generation of random input values. 
+# Write results to './MyTests.java'.
+tcases-api-test -t testng -r 345589 -n org.examples.testng.MyTests -b MyBaseClass  petstore-expanded.yaml
 ```
 
 You can see the difference in the `tcases-api-test.log` file:
@@ -195,22 +197,50 @@ the Java world, [JUnit](https://junit.org/junit4/) and [TestNG](https://testng.o
 such frameworks. For test developers, such frameworks generally define how to designate individual tests and how to control
 their execution. And they are general-purpose, equally applicable for all kinds of testing. There is nothing about them that
 specifically supports API testing. To create tests for a different test framework, create a new subclass of the basic
-[TestWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) class.
+[`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) class.
+Several [helpful utilties](#some-helpful-utilities) are available to make this easier.
 
-So API tests must also rely on an additional set of <A name="request-execution">"request execution"</A> interfaces. These are
+Also, API tests must rely on an additional set of <A name="request-execution">"request execution"</A> interfaces. These are
 the interfaces used to construct a request message, deliver it to an API server, and collect the resulting response. Here, too,
 there are many alternatives, depending on the programming language and framework used for the test.  In the Java world, the
 candidates range from basic APIs like [HttpClient](http://hc.apache.org/httpcomponents-client-ga/tutorial/html/fluent.html) to
 domain-specific micro-languages like [REST Assured](https://github.com/rest-assured/rest-assured). To create tests that use a
 different execution interface, create a new implementation of the
-[TestCaseWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html) interface.
-TestCaseWriter implementations often start with a subclass of
-[TestCaseContentWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseContentWriter.html).
+[`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html) interface.
+`TestCaseWriter` implementations often start with a subclass of
+[`TestCaseContentWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseContentWriter.html).
+Several [helpful utilties](#some-helpful-utilities) are available to make this easier.
 
 #### Creating an API test, step-by-step ####
 
 Here's a step-by-step outline of how to use the TestWriter API to convert an OpenAPI spec into an executable test.
 
+  1. Create a [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html) instance.
+  1. Create a [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) instance that uses this `TestCaseWriter`.
+  1. Generate a request test definition for an OpenAPI spec.
+     * Generate a Tcases system test definition for an OpenAPI spec using one of the `getRequestTests()` methods of
+       the [`TcasesOpenApiIO`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/io/TcasesOpenApiIO.html)
+       class.
+     * Generate a request test definition using [`getRequestCases`()](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestCases.html#getRequestCases-org.cornutum.tcases.SystemTestDef-org.cornutum.tcases.openapi.resolver.ResolverContext-).
+  1. Create a [`TestSource`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestSource.html) to represent
+     the parts of the request test definition to be tested.
+  1. Create a [`TestTarget`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestTarget.html) that
+     defines the test source file to be generated. Note that this `TestTarget` must be compatible with the `TestWriter`.
+  1. Call [`TestWriter.writeTest()`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html#writeTest-S-T-).
+
+#### Some helpful utilities ####
+
+  - **To serialize a request parameter** according to the `style` and `explode` properties specified in the OpenAPI spec, use the public methods
+    of the [`TestWriterUtils`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriterUtils.html) class,
+    such as [`getQueryParameters()`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriterUtils.html#getQueryParameters-org.cornutum.tcases.openapi.resolver.ParamData-).
+
+  - **To serialize form data** using the `application/x-www-form-urlencoded` media type, use the
+    [`FormUrlConverter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/FormUrlConverter.html).
+
+  - **To serialize request body data** using another media type specified in the OpenAPI spec, use a
+    [`DataValueConverter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/DataValueConverter.html).
+    The `TestCaseContentWriter` class automatically registers converters for many common media types. Alternatively, create and register your own
+    implementation.
 
 ## Generating request inputs ##
 
