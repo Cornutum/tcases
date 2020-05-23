@@ -2,10 +2,11 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.3.0](ReleaseNotes.md#330)) is now available at the Maven Central Repository.
-    See [HowToDownload](HowToDownload.md) for download instructions.
+  * The latest version ([Tcases 3.4.0](ReleaseNotes.md#340)) is now available at the Maven Central Repository.
+    See [*How To Download Tcases*](HowToDownload.md) for download instructions.
 
-  * Tcases 3.3.0 delivers significant improvements to Tcases for OpenAPI. See the [release notes](ReleaseNotes.md#330) for details.
+  * Tcases 3.4.0 introduces an important new capability for Tcases for OpenAPI: generating an executable test directly from an OpenAPI v3 spec.
+    See the [release notes](ReleaseNotes.md#340) for details.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 

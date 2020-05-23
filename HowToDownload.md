@@ -8,6 +8,7 @@ To get the command line version of Tcases, download the Tcases binary distributi
   1. Search for "tcases-shell".
   1. You will see the most recent release of `tcases-shell`. (To see all N previous versions, select `(N)` under "Latest Version".)
   1. Use the :arrow_down: button to select the type of file you want to download. Choose either a ZIP file or a compressed tar file (tar.gz).
+  1. See *The Complete Guide* for [tips on installation](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install).
 
 
 ## Tcases Libraries
@@ -58,6 +59,32 @@ The core models for Tcases objects. For the current version, see the [release no
 <dependency>
   <groupId>org.cornutum.tcases</groupId>
   <artifactId>tcases-openapi</artifactId>
+  <version>...</version>
+</dependency>
+```
+
+#### tcases-rest-assured
+(Since 3.4.0) Provides a [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/restassured/RestAssuredTestCaseWriter.html)
+implementation for [REST Assured](https://github.com/rest-assured/rest-assured).
+For the current version, see the [release notes](ReleaseNotes.md).
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-rest-assured</artifactId>
+  <version>...</version>
+</dependency>
+```
+
+#### tcases-moco
+(Since 3.4.0) Provides a [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/moco/MocoServerTestWriter.html)
+implementation for JUnit API tests using a [Moco](https://github.com/dreamhead/moco) stub server.
+For the current version, see the [release notes](ReleaseNotes.md).
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-moco</artifactId>
   <version>...</version>
 </dependency>
 ```

@@ -163,12 +163,8 @@ Ideally, Tcases for OpenAPI would produce a test program that you could immediat
 execute all API requests against an actual API server, applying a comprehensive set of request input data and automatically verifying
 the expected responses. Bam! Job done!
 
-Unfortunately, that is not possible -- you have to construct at least some of this test program yourself.
-But fortunately, Tcases for OpenAPI provides options to automate some of the process. For details, see
-[*Running API Test Cases*](Running-Api-Test-Cases.md).
-
-Although it's still up to you complete this test program, Tcases for OpenAPI gives you a lot to work with. Think of it as detailed
-guidance on how to use a fairly small number of test cases to gain [high confidence in your API](#want-high-confidence-in-your-api).
+But is this even possible? Yes, it is -- mostly.
+For details, see [*Running API Test Cases*](Running-Api-Test-Cases.md).
 
 
 ## Why Tcases for OpenAPI? ##
@@ -395,6 +391,9 @@ classes like [`TcasesOpenApi`](http://www.cornutum.org/tcases/docs/api/org/cornu
 which operate directly with the [Java API for OpenAPI](https://github.com/swagger-api/swagger-parser). In turn, both
 classes are based on the [Tcases Core API](http://www.cornutum.org/tcases/docs/api/) for manipulating system and test
 models.
+
+Your Java application can even produce executable tests, using the [TestWriter API](Running-Api-Test-Cases.md#understanding-the-testwriter-api)
+for Tcases for OpenAPI.
 
 ## OpenAPI tips ##
 

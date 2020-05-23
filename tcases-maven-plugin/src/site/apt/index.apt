@@ -36,6 +36,8 @@ Tcases Plugin
 
   * {{{./api-mojo.html}tcases:api}} Runs {{{./usage.html#Running_Tcases_For_OpenAPI}Tcases for OpenAPI}}.
 
+  * {{{./api-test-mojo.html}tcases:api-test}} Runs Tcases for OpenAPI to {{{./usage.html#Generating_Executable_API_Tests}generate executable API tests}}.
+
 * Usage
 
   General instructions on how to use the Tcases Plugin can be found on the {{{./usage.html}usage page}}.  
