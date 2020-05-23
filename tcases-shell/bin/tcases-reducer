@@ -5,7 +5,7 @@
 # 
 #######################################################################
 
-pgm=`basename $0`
+pgm=`basename "$0"`
 
 usage()
 {
@@ -85,12 +85,12 @@ if [ $# -ne 0 ] ; then
   usage; exit 1
 fi
 
-binDir=`dirname $0`
-releaseDir=`cd $binDir/..; pwd`
+binDir=`dirname "$0"`
+releaseDir=`cd "$binDir"/..; pwd`
 libDir=${releaseDir}/lib
 
 classPath=${libDir}
-for jar in ${libDir}/*.jar; do
+for jar in "${libDir}"/*.jar; do
   classPath="${classPath}:${jar}"
 done
 
