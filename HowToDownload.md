@@ -8,6 +8,7 @@ To get the command line version of Tcases, download the Tcases binary distributi
   1. Search for "tcases-shell".
   1. You will see the most recent release of `tcases-shell`. (To see all N previous versions, select `(N)` under "Latest Version".)
   1. Use the :arrow_down: button to select the type of file you want to download. Choose either a ZIP file or a compressed tar file (tar.gz).
+  1. See *The Complete Guide* for [tips on installation](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install).
 
 
 ## Tcases Libraries
