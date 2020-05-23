@@ -235,7 +235,7 @@ Here's a step-by-step outline of how to use the TestWriter API to convert an Ope
     such as [`getQueryParameters()`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriterUtils.html#getQueryParameters-org.cornutum.tcases.openapi.resolver.ParamData-).
 
   - **To serialize form data** using the `application/x-www-form-urlencoded` media type, use the
-    [`FormUrlConverter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/FormUrlConverter.html).
+    [`FormUrlEncoder`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/FormUrlEncoder.html).
 
   - **To serialize request body data** using another media type specified in the OpenAPI spec, use a
     [`DataValueConverter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/DataValueConverter.html).
