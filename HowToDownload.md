@@ -62,6 +62,32 @@ The core models for Tcases objects. For the current version, see the [release no
 </dependency>
 ```
 
+#### tcases-rest-assured
+(Since 3.4.0) Provides a [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/restassured/RestAssuredTestCaseWriter.html)
+implementation for [REST Assured](https://github.com/rest-assured/rest-assured).
+For the current version, see the [release notes](ReleaseNotes.md).
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-rest-assured</artifactId>
+  <version>...</version>
+</dependency>
+```
+
+#### tcases-moco
+(Since 3.4.0) Provides a [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/moco/MocoServerTestWriter.html)
+implementation for JUnit API tests using a [Moco](https://github.com/dreamhead/moco) stub server.
+For the current version, see the [release notes](ReleaseNotes.md).
+
+```xml
+<dependency>
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases-moco</artifactId>
+  <version>...</version>
+</dependency>
+```
+
 #### tcases-ant
 (Since 2.0.0) Provides an Ant task for running Tcases. For the current version, see the [release notes](ReleaseNotes.md).
 
