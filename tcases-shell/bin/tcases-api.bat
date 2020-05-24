@@ -41,11 +41,11 @@ goto argsRead
 :argsDone
 
 set API_CP=%TCASES_LIB%
-for %%j in (%TCASES_LIB%\*.jar) do call :cpConcat %%j
+for %%j in ("%TCASES_LIB%"\*.jar) do call :cpConcat "%%j"
 goto apiRun
 
 :cpConcat
-set API_CP=%API_CP%;%1
+set API_CP=%API_CP%;%~1
 goto :eof
 
 :apiRun

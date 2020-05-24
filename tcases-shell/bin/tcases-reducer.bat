@@ -41,11 +41,11 @@ goto argsRead
 :argsDone
 
 set REDUCER_CP=%TCASES_LIB%
-for %%j in (%TCASES_LIB%\*.jar) do call :cpConcat %%j
+for %%j in ("%TCASES_LIB%"\*.jar) do call :cpConcat "%%j"
 goto reducerRun
 
 :cpConcat
-set REDUCER_CP=%REDUCER_CP%;%1
+set REDUCER_CP=%REDUCER_CP%;%~1
 goto :eof
 
 :reducerRun

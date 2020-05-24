@@ -41,11 +41,11 @@ goto argsRead
 :argsDone
 
 set TCASES_CP=%TCASES_LIB%
-for %%j in (%TCASES_LIB%\*.jar) do call :cpConcat %%j
+for %%j in ("%TCASES_LIB%"\*.jar) do call :cpConcat "%%j"
 goto tcasesRun
 
 :cpConcat
-set TCASES_CP=%TCASES_CP%;%1
+set TCASES_CP=%TCASES_CP%;%~1
 goto :eof
 
 :tcasesRun
