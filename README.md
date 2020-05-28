@@ -20,13 +20,19 @@ Tcases gives you a way to define the input space for your system in a form that 
 
 ## How Does It Work? ##
 
-First, you create a system input definition, a document that defines your system as a set of functions. For each system function, the system input definition defines the variables that characterize the function input space.
+First, you create a system input definition, a document that defines your system as a set of functions. For each system
+function, the system input definition defines the variables that characterize the function input space. If you are testing a Web
+service API, you can even [generate a system input definition automatically](tcases-openapi/README.md) from an OpenAPI spec.
 
 Then, you can create a generator definition. That's another document that defines the coverage you want for each system function. The generator definition is optional. You can skip this step and still get a basic level of coverage.
 
 Finally, you run Tcases. Tcases is a Java program that you can run from the command line or using the [Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/). The command line version of Tcases comes with built-in support for running using a shell script or an ant target. Using your input definition and your generator definition, Tcases generates a system test definition. The system test definition is a document that lists, for each system function, a set of test cases that provides the specified level of coverage. Each test case defines a specific value for every function input variable. Tcases generates not only valid input values that define successful test cases but also invalid values for the tests cases that are needed to verify expected error handling.
 
-Of course, the system test definition is not something you can execute directly. But it follows a well-defined schema, which means you can use a variety of XML transformation tools to convert it into a form that is suitable for testing your system. For example, Tcases comes with a built-in transformer that converts a system test definition into a Java source code template for a JUnit or TestNG test class.
+Of course, the system test definition is not something you can execute directly. (Unless it was [derived automatically from an
+OpenAPI spec](tcases-openapi/README.md#how-do-you-run-generated-api-test-cases)!) But it follows a well-defined schema, which
+means you can use a variety of transformation tools to convert it into a form that is suitable for testing your system. For
+example, Tcases comes with a built-in transformer that converts a system test definition into a Java source code template for a
+JUnit or TestNG test class.
 
 ## Get Started! ##
 
