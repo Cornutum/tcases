@@ -34,7 +34,8 @@ Consider the standard example for an OpenAPI (Version 3) specification: the [Pet
 API](https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v3.0/petstore-expanded.yaml). This defines all of
 the requests and responses for an API to access the resources of the Swagger Pet Store.
 
-Suppose you wanted to test this API. What test cases would you need? To find out, run this command:
+Suppose you wanted to test this API. What test cases would you need? To find out, run the following command.
+(Note: Some [setup](#running-tcases-for-openapi-from-the-command-line) required.)
 
 ```
 tcases-api petstore-expanded.yaml
@@ -231,7 +232,8 @@ if you are using a Windows command line, you can run Tcases for OpenAPI with the
 syntax.
 
 `tcases-api` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
-[*Tcases: The Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install).
+[*Tcases: The Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install). After installation, you can
+find OpenAPI examples in the `docs/examples/openapi` subdirectory.
 
 For details about the interface to the `tcases-api` command (and the `tcases-api.bat` command, too), see the Javadoc for
 the [`ApiCommand.Options`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ApiCommand.Options.html)
