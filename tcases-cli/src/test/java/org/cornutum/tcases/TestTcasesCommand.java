@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Optional;
 
 /**
  * Runs tests for {@link TcasesCommand#main}.
@@ -814,23 +815,7 @@ public class TestTcasesCommand
         inFile.getPath()
       };
 
-    // When...
-    Exception failure = null;
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
-    // Then...
-    assertThat( "Exception thrown", failure != null, is( true));
-    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
-
-    String cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertThat( "Cause", cause, is( "Invalid -p option: parameter name undefined"));
+    assertUsageException( args, "Invalid -p option: parameter name undefined");
     }
 
   /**
@@ -910,23 +895,7 @@ public class TestTcasesCommand
         inFile.getPath()
       };
 
-    // When...
-    Exception failure = null;
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
-    // Then...
-    assertThat( "Exception thrown", failure != null, is( true));
-    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
-
-    String cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertThat( "Cause", cause, is( "Invalid -p option: must be name=value"));
+    assertUsageException( args, "Invalid -p option: must be name=value");
     }
 
   /**
@@ -1011,75 +980,7 @@ public class TestTcasesCommand
         inFile.getPath()
       };
 
-    // When...
-    Exception failure = null;
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
-    // Then...
-    assertThat( "Exception thrown", failure != null, is( true));
-    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
-
-    String cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertThat( "Cause", cause, is( "Can't specify multiple output transforms"));
-
-    // Given...
-    args = new String[]
-      {
-        "-H",
-        "-x", transformFile.getPath(),
-        inFile.getPath()
-      };
-
-    // When...
-    failure = null;
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
-    // Then...
-    assertThat( "Exception thrown", failure != null, is( true));
-    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
-
-    cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertThat( "Cause", cause, is( "Can't specify multiple output transforms"));
-
-    // Given...
-    args = new String[]
-      {
-        "-H",
-        "-J",
-        inFile.getPath()
-      };
-
-    // When...
-    failure = null;
-    try
-      {
-      TcasesCommand.run( new Options( args));
-      }
-    catch( Exception expected)
-      {
-      failure = expected;
-      }
-
-    // Then...
-    assertThat( "Exception thrown", failure != null, is( true));
-    assertThat( "Usage exception", failure.getMessage().startsWith( "Usage: "), is( true));
-
-    cause = failure.getCause()==null? null : failure.getCause().getMessage();
-    assertThat( "Cause", cause, is( "Can't specify multiple output transforms"));
+    assertUsageException( args, "Can't specify multiple output transforms");
     }
 
   /**
@@ -1517,6 +1418,21 @@ public class TestTcasesCommand
         
     // Then...
     assertThat( "Test def created", outFile.exists(), is( true));
+    }
+
+  /**
+   * Reports a failure if using the given command arguments does not produce the expected exception.
+   */
+  private void assertUsageException( String[] args, String error)
+    {
+    expectFailure( IllegalArgumentException.class)
+      .when( () -> TcasesCommand.run( new Options( args)))
+      .then( failure -> {
+        assertThat
+          ( "Error",
+            Optional.ofNullable( failure.getCause()).map( Throwable::getMessage).orElse( null),
+            is( error));
+        });
     }
 
   /**
