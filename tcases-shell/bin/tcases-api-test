@@ -7,112 +7,22 @@
 
 pgm=`basename "$0"`
 
-usage()
+runJava()
 {
-  echo Usage: $pgm "[option...] [apiSpec]" >&2
-  echo "" >&2
-  echo "where each 'option' is one of the following:" >&2
-  echo "" >&2
-  echo "-t testType " >&2
-  echo "    Defines the test framework used to run API tests. Valid values are 'junit', 'testng', or 'moco'." >&2
-  echo "    If omitted, the default is 'junit'." >&2
-  echo "" >&2
-  echo "    Use 'moco' to generate a JUnit test that sends requests to a Moco stub server. To define " >&2
-  echo "    the Moco server test configuration, use the '-M' option." >&2
-  echo "" >&2
-  echo "-e execType " >&2
-  echo "    Defines the request execution interface used to run API tests. Valid values are 'restassured'." >&2
-  echo "    If omitted, the default is 'restassured'." >&2
-  echo "" >&2
-  echo "-n testName " >&2
-  echo "    Defines the name of the test class that is generated. This can be either a fully-qualified class name" >&2
-  echo "    or a simple class name. If omitted, the default is based on the title of the 'apiSpec'." >&2
-  echo "" >&2
-  echo "-p testPackage " >&2
-  echo "    Defines the package for the test class that is generated. This can be omitted if the 'testName'" >&2
-  echo "    is a fully-qualified class name or if the package can be determined from the 'outDir'." >&2
-  echo "" >&2
-  echo "-b baseClass " >&2
-  echo "    If defined, specifies a base class for the generated test class. This can be a fully-qualified class" >&2
-  echo "    name or a simple class name, if the 'baseClass' belongs to the same package as the generated test class." >&2
-  echo "" >&2
-  echo "-f outFile " >&2
-  echo "    If defined, output is written to the specified 'outFile', relative to the given 'outDir'." >&2
-  echo "    If omitted, the default 'outFile' is derived from the 'testName'." >&2
-  echo "" >&2
-  echo "-o outDir " >&2
-  echo "    If '-o' is defined, output is written to the specified directory. If omitted, the default " >&2
-  echo "    'outDir' is the directory containing the 'apiSpec' or, if reading from standard input," >&2
-  echo "    output is written to standard output." >&2
-  echo "" >&2
-  echo "-M mocoTestConfig " >&2
-  echo "    When the 'testType' is 'moco', specifies the Moco server test configuration file." >&2
-  echo "" >&2
-  echo "-P paths " >&2
-  echo "    If defined, tests are generated only for the specified API resource paths. 'paths' must be a" >&2
-  echo "    comma-separated list of resource paths defined in the 'apiSpec'. If omitted, tests are generated " >&2
-  echo "    for all resource paths." >&2
-  echo "" >&2
-  echo "-O operations " >&2
-  echo "    If defined, tests are generated only for the specified HTTP methods. 'operations' must be a" >&2
-  echo "    comma-separated list of path operations defined in the 'apiSpec'. If omitted, tests are generated " >&2
-  echo "    for all operations." >&2
-  echo "" >&2
-  echo "-T contentType " >&2
-  echo "    Defines the content type of the OpenApi specification. The 'contentType' must be one of 'json', 'yaml'," >&2
-  echo "    or 'yml'. If omitted, the default content type is derived from the 'apiSpec' name. If the 'apiSpec'" >&2
-  echo "    is read from standard input or does not have a recognized extension, the default content type is 'json'." >&2
-  echo "" >&2
-  echo "-c M[,R] " >&2
-  echo "    Defines how input modelling and request case resolution conditions are reported. Both 'M' (for modelling conditions)" >&2
-  echo "    and 'R' (for resolution conditions) must be one of 'log', 'fail', or 'ignore'. If 'log' is specified, conditions" >&2
-  echo "    are reported using log messages. If 'fail' is specified, any condition will cause an exception." >&2
-  echo "    If 'ignore' is specified, all conditions are silently ignored. If 'R' is omitted, the default is 'log'." >&2
-  echo "    If '-c' is omitted, the default is 'log,log'." >&2
-  echo "" >&2
-  echo "-R " >&2
-  echo "    If specified, tests will be generated assuming that the API will strictly enforce exclusion of 'readOnly'" >&2
-  echo "    properties from request parameters. If omitted, no strict enforcement is assumed." >&2
-  echo "" >&2
-  echo "-r seed " >&2
-  echo "    If defined, use the given random number seed to generate request test case input values. " >&2
-  echo "    If omitted, the default random number seed is derived from the 'apiSpec' name." >&2
-  echo "" >&2
-  echo "-m maxTries " >&2
-  echo "    Defines the maximum attempts made to resolve a request test case input value before reporting failure." >&2
-  echo "    If omitted, the default value is 10000." >&2
-  echo "" >&2
-  echo "-v " >&2
-  echo "    Prints the current command version identifier to standard output." >&2
-  echo "" >&2
-  echo "apiSpec " >&2
-  echo "    An OpenAPI v3 API spec is read from the given 'apiSpec' file. If omitted, the API spec is" >&2
-  echo "    read from standard input. If no 'outFile' is specified, output is written to a default file" >&2
-  echo "    derived from the 'apiSpec' or, if no 'apiSpec' is given, to standard output." >&2
+  java \
+    -cp "$classPath" \
+    -D${logDest}="$logFile" \
+    -Dtcases.log.level="$logLevel" \
+    org.cornutum.tcases.openapi.ApiTestCommand \
+    $@
 }
 
+args=
 while [ $# -gt 0 ] ; do
   case $1 in
-    -t) shift; testType="$1";;
-    -e) shift; execType="$1";;
-    -n) shift; testName="$1";;
-    -p) shift; testPackage="$1";;
-    -b) shift; baseClass="$1";;
-    -f) shift; outFile="$1";;
-    -o) shift; outDir="$1";;
-    -M) shift; mocoTestConfig="$1";;
-    -P) shift; paths="$1";;
-    -O) shift; operations="$1";;
-    -T) shift; contentType="$1";;
-    -c) shift; notifier="$1";;
-    -R) enforceRO="$1";;
-    -r) shift; seed="$1";;
-    -m) shift; maxTries="$1";;
-    -v) showVersion="$1";;
     -l) shift; logFile="$1";;
     -L) shift; logLevel="$1";;
-    -*) usage; exit 1;;
-     *) break;;
+     *) args="$args $1";;
   esac
   shift
 done
@@ -125,12 +35,6 @@ if [ $logFile = "stdout" ] ; then
 else
   logDest=tcases.log.file
 fi
-apiSpec="$1"
-shift
-
-if [ $# -ne 0 ] ; then
-  usage; exit 1
-fi
 
 binDir=`dirname "$0"`
 releaseDir=`cd "$binDir"/..; pwd`
@@ -141,35 +45,4 @@ for jar in "${libDir}"/*.jar; do
   classPath="${classPath}:${jar}"
 done
 
-uname=`uname`
-cygwin=`expr $uname : 'CYGWIN'`
-if [ $cygwin -gt 0 ] ; then
-  classPath=`cygpath --path -m "$classPath"`
-  apiSpec=${apiSpec:+`cygpath -m "$apiSpec"`}
-  logFile=`cygpath -m "$logFile"`
-  outDir=${outDir:+`cygpath -m "$outDir"`}
-  outFile=${outFile:+`cygpath -m "$outFile"`}
-fi
-
-java \
-  -cp "$classPath" \
-  -D${logDest}="$logFile" \
-  -Dtcases.log.level="$logLevel" \
-  org.cornutum.tcases.openapi.ApiTestCommand \
-  ${testType:+-t "$testType"} \
-  ${execType:+-e "$execType"} \
-  ${testName:+-n "$testName"} \
-  ${testPackage:+-p "$testPackage"} \
-  ${baseClass:+-b "$baseClass"} \
-  ${outFile:+-f "$outFile"} \
-  ${outDir:+-o "$outDir"} \
-  ${mocoTestConfig:+-M "$mocoTestConfig"} \
-  ${paths:+-P "$paths"} \
-  ${operations:+-O "$operations"} \
-  ${contentType:+-T "$contentType"} \
-  ${notifier:+-c "$notifier"} \
-  ${enforceRO} \
-  ${seed:+-r "$seed"} \
-  ${maxTries:+-m "$maxTries"} \
-  ${showVersion} \
-  ${apiSpec:+"$apiSpec"}
+runJava $args
