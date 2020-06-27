@@ -354,12 +354,17 @@ public class TcasesCommand
       {
       String arg = args[i];
 
-      if( arg.equals( "-o"))
+      if( arg.equals( "-help"))
+        {
+        throwHelpException();
+        }
+
+      else if( arg.equals( "-o"))
         {
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setOutDir( new File( args[i]));
         }
@@ -369,7 +374,7 @@ public class TcasesCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setOutFile( new File( args[i]));
         }
@@ -379,7 +384,7 @@ public class TcasesCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setTestDef( new File( args[i]));
         }
@@ -389,7 +394,7 @@ public class TcasesCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -411,7 +416,7 @@ public class TcasesCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setGenDef( new File( args[i]));
         }
@@ -421,7 +426,7 @@ public class TcasesCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -443,7 +448,7 @@ public class TcasesCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -489,7 +494,7 @@ public class TcasesCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setTransformDef( new File( args[i]));
         }
@@ -499,7 +504,7 @@ public class TcasesCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         String binding = args[i];
         int valuePos = binding.indexOf( '=');
@@ -518,7 +523,7 @@ public class TcasesCommand
 
       else
         {
-        throwUsageException();
+        throwUsageException( String.format( "Unknown option: %s", arg));
         }
 
       return i + 1;
@@ -533,7 +538,7 @@ public class TcasesCommand
 
       if( nargs > 1)
         {
-        throwUsageException();
+        throwUsageException( String.format( "Unexpected argument: %s", args[i+1]));
         }
 
       if( nargs > 0)
@@ -543,15 +548,15 @@ public class TcasesCommand
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a missing option value
      */
-    protected void throwUsageException()
+    protected void throwMissingValue( String option)
       {
-      throwUsageException( null, null);
+      throwUsageException( String.format( "No value given for %s option", option));
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a command line error.
      */
     protected void throwUsageException( String detail)
       {
@@ -559,32 +564,114 @@ public class TcasesCommand
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a command line error.
      */
     protected void throwUsageException( String detail, Exception cause)
       {
-      if( detail != null)
-        {
-        cause = new RuntimeException( detail, cause);
-        }
-
       throw
         new IllegalArgumentException
-        ( "Usage: "
-          + Tcases.class.getSimpleName()
-          + " [-v]"
-          + " [-c tupleSize]"
-          + " [-f outFile]"
-          + " [-g genDef]"
-          + " [-n]"
-          + " [-o outDir]"
-          + " [-p name=value]"
-          + " [-r seed] [-R]"
-          + " [-t testDef]"
-          + " [-T contentType]"
-          + " [-x transformDef | -J | -H]"
-          + " [inputDef]",
-          cause);
+        ( "Invalid command line argument. For all command line details, use the -help option.",
+          new IllegalArgumentException( detail, cause));
+      }
+
+    /**
+     * Throws a HelpException after printing usage information to standard error.
+     */
+    protected void throwHelpException()
+      {
+      printUsage();
+      throw new HelpException();
+      }
+
+    /**
+     * Prints usage information to standard error.
+     */
+    protected void printUsage()
+      {
+      for( String line :
+             new String[] {
+               "Usage: tcases [option...] [inputDef]",
+               "",
+               "Generates a set of test cases from a system input definition, according to the given options.",
+               "",
+               "The system input definition is read from the given inputDef. If omitted, the system input",
+               "definition is read from standard input. Otherwise, the system input definition is read from",
+               "the first one of the following files that can be located.",
+               "",
+               "  1. inputDef",
+               "  2. inputDef-Input.xml",
+               "  3. inputDef.xml",
+               "",
+               "Each option is one of the following:",
+               "",
+               "  -c tuples   If -c is defined, use the given default tuple size for all generators.",
+               "              This updates the generator definitions specified by the genDef file.",
+               "",
+               "  -f outFile  If -f is defined, test definition output is written to the specified",
+               "              outFile, relative to the given outDir. If omitted, test definitions are",
+               "              written to the file specified by the -t option. If an output path cannot",
+               "              be derived, output is written to standard output.",
+               "",
+               "  -g genDef   If -g is defined, test definitions are created using the generator(s)",
+               "              specified by the given genDef file. If omitted, the default generator",
+               "              definition is used. The default generator definition is read from the",
+               "              corresponding *-Generators.xml file in the same directory as the inputDef,",
+               "              if it exists. Otherwise, the default TupleGenerator is used for all",
+               "              functions.",
+               "",
+               "  -J          If -J is defined, test definition output is transformed into Java source",
+               "              code for a JUnit test class. The resulting Java source file is written to",
+               "              the specified outDir.",
+               "",
+               "  -H          If -H is defined, test definition output is transformed into an HTML report",
+               "              that is written to the specified outDir.",
+               "",
+               "  -l logFile  If -l is defined, log output is written to the given file. If omitted,",
+               "              log output is written to a file named tcases.log in the current working",
+               "              directory. If logFile is 'stdout', log output is written to standard output.",
+               "",
+               "  -L logLevel Defines the level for Tcases log output. If omitted, the default level is INFO",
+               "              Tcases logging uses the configuration and levels defined by the Logback system.",
+               "",
+               "  -n          If -n is defined, any previous contents of the testDef are ignored.",
+               "              If omitted, new test definitions are based on the previous testDef.",
+               "",
+               "  -o outDir   If -o is defined, test definition output is written to the specified",
+               "              directory. If omitted, the default outDir is the directory containing",
+               "              the inputDef or, if reading from standard input, the current working",
+               "              directory. If an output path cannot be derived, output is written to",
+               "              standard output.",
+               "",
+               "  -p name=value  Defines the value of a transform parameter. Any number of -p options",
+               "              may be specified. This option is meaningful only if the -x or -J option is given.",
+               "",
+               "  -r seed     If -r is defined, use the given random number seed for all generators.",
+               "              This updates the generator definitions specified by the genDef file.",
+               "",
+               "  -R          If -R is defined, choose a new random number seed for all generators.",
+               "              This updates the generator definitions specified by the genDef file.",
+               "",
+               "  -t testDef  If -t is defined, test definition output is written to the specified",
+               "              testDef path, relative to the outDir. If omitted, the default testDef",
+               "              name is derived from the inputDef name. If an output path cannot be",
+               "              derived, output is written to standard output.",
+               "",
+               "  -T contentType  Defines the default content type for the files read and produced.",
+               "              The contentType must be one of 'json' or 'xml'. The default content type is",
+               "              assumed for any file that is not specified explicitly or that does not have a",
+               "              recognized extension. If omitted, the default content type is derived from the",
+               "              inputDef name.",
+               "",
+               "  -v          Shows the current Tcases version. If this option is given, no other",
+               "              action is performed.",
+               "",
+               "  -x xsltDef  If -x is defined, test definition output is transformed according to the",
+               "              XSLT transform defined by the xsltDef file. If relative, the xsltDef path is",
+               "              assumed to be relative to the directory containing the inputDef."
+             })
+        {
+        System.err.println( line);
+        }
       }
 
     /**
@@ -1073,6 +1160,10 @@ public class TcasesCommand
     try
       {
       run( new Options( args));
+      }
+    catch( HelpException h)
+      {
+      exitCode = 1;
       }
     catch( Exception e)
       {
