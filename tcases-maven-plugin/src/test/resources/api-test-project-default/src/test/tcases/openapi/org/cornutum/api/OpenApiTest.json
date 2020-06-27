@@ -1,0 +1,507 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "OpenAPI Request Test Cases",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/posts": {
+            "trace": {
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "required": true,
+                        "in": "cookie",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [ "A", "B", "C"]
+                            },
+                            "minItems": 1,
+                            "maxItems": 2,
+                            "uniqueItems": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+            
+            "options": {
+                "parameters": [
+                    {
+                        "name": "X-Post-Types",
+                        "required": true,
+                        "in": "header",
+                        "style": "simple",
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "enum": [ "1001", "2345", "7700"]
+                            },
+                            "minItems": 2,
+                            "maxItems": 2,
+                            "uniqueItems": true
+                        }
+                    },
+                    {
+                        "name": "X-User-Id",
+                        "required": true,
+                        "in": "header",
+                        "style": "simple",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+            
+            "post": {
+                "parameters": [
+                    {
+                        "name": "approved",
+                        "required": true,
+                        "in": "cookie",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "maxLength": 32
+                                    },
+                                    "text": {
+                                        "type": "string",
+                                        "minLength": 0,
+                                        "maxLength": 64
+                                    }
+                                },
+                                "required": [ "email", "text" ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+            
+            "get": {
+                "parameters": [
+                    {
+                        "name": "ids",
+                        "required": true,
+                        "in": "query",
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 100
+                            },
+                            "minItems": 1,
+                            "maxItems": 4,
+                            "uniqueItems": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+
+            "put": {
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "required": true,
+                        "in": "cookie",
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "country": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 16
+                                },
+                                "region": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 16
+                                }
+                            },
+                            "required": [ "country", "region" ],
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "text/plain": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "maxLength": 32
+                                    },
+                                    "text": {
+                                        "type": "string",
+                                        "minLength": 0,
+                                        "maxLength": 64
+                                    }
+                                },
+                                "required": [ "email", "text" ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        
+        "/posts/{userId}/{[attributes]}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "style": "simple",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "[attributes]",
+                        "required": true,
+                        "in": "path",
+                        "style": "simple",
+                        "explode": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "approved": {
+                                    "type": "boolean"
+                                },
+                                "likes": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
+                            },
+                            "minProperties": 1,
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+
+        "/posts/{attributes}": {
+            "trace": {
+                "parameters": [
+                    {
+                        "name": "attributes",
+                        "required": true,
+                        "in": "path",
+                        "style": "matrix",
+                        "explode": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "approved": {
+                                    "type": "boolean"
+                                },
+                                "likes": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                },
+                                "subject": {
+                                    "type": "string",
+                                    "enum": [ "A Day In Hell", "What? Me, worry?" ]
+                                }
+                            },
+                            "required": [ "approved", "likes" ],
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        
+        "/post": {
+            "put": {
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "required": true,
+                        "in": "query",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "number",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "approved": {
+                                        "type": "boolean"
+                                    },
+                                    "reviewer": {
+                                        "type": "string",
+                                        "enum": [ "Larry Moe", "(?)", "Me+You"]
+                                    }
+                                },
+                                "required": [ "approved", "reviewer" ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+
+            "head": {
+                "parameters": [
+                    {
+                        "name": "user attributes",
+                        "required": true,
+                        "in": "query",
+                        "style": "deepObject",
+                        "explode": false,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user type": {
+                                    "type": "string",
+                                    "enum": [ "Typical User", "VIP!" ]
+                                }
+                            },
+                            "required": [ "user type" ],
+                            "additionalProperties": false
+                        }
+                    },
+                    {
+                        "name": "post?",
+                        "required": true,
+                        "in": "query",
+                        "style": "deepObject",
+                        "explode": false,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "post references": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer",
+                                        "enum": [ 0, 1, 2 ]
+                                    },
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "uniqueItems": true
+                                }
+                            },
+                            "required": [ "post references" ],
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+            
+            "patch": {
+                "parameters": [
+                    {
+                        "name": "Post Marks",
+                        "required": true,
+                        "in": "query",
+                        "style": "spaceDelimited",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [ "{X}", "<Y>", "#Z" ]
+                            },
+                            "minItems": 1,
+                            "maxItems": 3
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        
+        "/post/{userId}/{approved}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "style": "label",
+                        "explode": false,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000
+                        }
+                    },
+                    {
+                        "name": "approved",
+                        "required": true,
+                        "in": "path",
+                        "style": "label",
+                        "explode": false,
+                        "schema": {
+                            "type": "integer",
+                            "enum": [ 0, 1 ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "requestBodies": {
+            "standard": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

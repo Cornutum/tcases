@@ -19,6 +19,7 @@ import org.codehaus.plexus.util.DirectoryScanner;
 import static org.apache.commons.io.FilenameUtils.getPath;
 
 import java.io.File;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -435,7 +436,10 @@ public class ApiTestMojo extends AbstractMojo
    */
   public void setPaths( Set<String> paths)
     {
-    this.paths = paths;
+    this.paths =
+      Optional.ofNullable( paths)
+      .filter( set -> !set.isEmpty())
+      .orElse( null);
     }
 
   /**
@@ -451,7 +455,10 @@ public class ApiTestMojo extends AbstractMojo
    */
   public void setOperations( Set<String> operations)
     {
-    this.operations = operations;
+    this.operations = 
+      Optional.ofNullable( operations)
+      .filter( set -> !set.isEmpty())
+      .orElse( null);
     }
 
   /**
