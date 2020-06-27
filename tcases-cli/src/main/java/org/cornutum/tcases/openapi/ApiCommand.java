@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.HelpException;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.Tcases;
 import org.cornutum.tcases.TcasesIO;
@@ -333,12 +334,17 @@ public class ApiCommand
       {
       String arg = args[i];
 
-      if( arg.equals( "-o"))
+      if( arg.equals( "-help"))
+        {
+        throwHelpException();
+        }
+
+      else if( arg.equals( "-o"))
         {
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setOutDir( new File( args[i]));
         }
@@ -348,7 +354,7 @@ public class ApiCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setConditionNotifiers( args[i]);
         }
@@ -358,7 +364,7 @@ public class ApiCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setOutFile( new File( args[i]));
         }
@@ -378,7 +384,7 @@ public class ApiCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -444,7 +450,7 @@ public class ApiCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setTransformDef( new File( args[i]));
         }
@@ -454,7 +460,7 @@ public class ApiCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         String binding = args[i];
         int valuePos = binding.indexOf( '=');
@@ -476,7 +482,7 @@ public class ApiCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -493,7 +499,7 @@ public class ApiCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -507,7 +513,7 @@ public class ApiCommand
 
       else
         {
-        throwUsageException();
+        throwUsageException( String.format( "Unknown option: %s", arg));
         }
 
       return i + 1;
@@ -522,7 +528,7 @@ public class ApiCommand
 
       if( nargs > 1)
         {
-        throwUsageException();
+        throwUsageException( String.format( "Unexpected argument: %s", args[i+1]));
         }
 
       if( nargs > 0)
@@ -532,15 +538,15 @@ public class ApiCommand
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a missing option value
      */
-    protected void throwUsageException()
+    protected void throwMissingValue( String option)
       {
-      throwUsageException( null, null);
+      throwUsageException( String.format( "No value given for %s option", option));
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a command line error.
      */
     protected void throwUsageException( String detail)
       {
@@ -548,7 +554,7 @@ public class ApiCommand
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a command line error.
      */
     protected void throwUsageException( String detail, Exception cause)
       {
@@ -556,34 +562,105 @@ public class ApiCommand
       }
 
     /**
-     * Returns a RuntimeException reporting a command line error.
+     * Returns an IllegalArgumentException reporting a command line error.
      */
-    protected RuntimeException getUsageException( String detail, Exception cause)
+    protected IllegalArgumentException getUsageException( String detail, Exception cause)
       {
-      if( detail != null)
-        {
-        cause = new RuntimeException( detail, cause);
-        }
-
       return
         new IllegalArgumentException
-        ( "Usage: "
-          + ApiCommand.class.getSimpleName()
-          + " [-v]"
-          + " [-C | -S | -D]"
-          + " [-I]"
-          + " [-R]"
-          + " [-W]"
-          + " [-c {log | fail | ignore}]"
-          + " [-f outFile]"
-          + " [-o outDir]"
-          + " [-x transformDef | -J | -H]"
-          + " [-p name=value]"
-          + " [-r seed]"
-          + " [-m maxTries]"
-          + " [-T contentType]"
-          + " [apiSpec]",
-          cause);
+        ( "Invalid command line argument. For all command line details, use the -help option.",
+          new IllegalArgumentException( detail, cause));
+      }
+
+    /**
+     * Throws a HelpException after printing usage information to standard error.
+     */
+    protected void throwHelpException()
+      {
+      printUsage();
+      throw new HelpException();
+      }
+
+    /**
+     * Prints usage information to standard error.
+     */
+    protected void printUsage()
+      {
+      for( String line :
+             new String[] {
+               "Usage: tcases-api [option...] [apiSpec]",
+               "",
+               "Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec.",
+               "",
+               "An OpenApi v3 API spec is read from the given apiSpec file. If omitted, the API spec is read from standard input.",
+               "If no outFile is specified, output is written to a default file derived from the apiSpec or, if no apiSpec is",
+               "given, to standard output.",
+               "",
+               "Suppose that the base name of apiSpec (less any extension) is B. Then, assuming defaults for all options, output",
+               "will be a test definition for API requests written to a file named 'B-Requests-Test.json'. If -C is specified,",
+               "output will be a test definition for API responses written to a file named 'B-Responses-Test.json'. If -D is",
+               "specified, output will be a list of request test cases written to a file named 'B-Request-Cases.json'. If -I is",
+               "specified, output will be the corresponding input definition, written to either 'B-Requests-Input.json' or",
+               "'B-Responses-Input.json', respectively.",
+               "",
+               "Each option is one of the following:",
+               "",
+               "  -C, -S, -D  If -C is given, produce results to test inputs to an API client, i.e. API responses. If -S is given,",
+               "              produce results to test inputs to an API server, i.e. API requests. If -D is given, produce request",
+               "              test cases for an API server, i.e. API request tests. If none of these is given, the default is -S.",
+               "",
+               "  -I          Produce an input definition file for either an API client (-C) or an API server (-S). If omitted,",
+               "              produce the corresponding test definition file.",
+               "",
+               "  -R          If specified, tests will be generated assuming that the API will strictly enforce exclusion of 'readOnly'",
+               "              properties from request parameters. If omitted, no strict enforcement is assumed.",
+               "",
+               "  -W          If specified, tests will be generated assuming that the API will strictly enforce exclusion of 'writeOnly'",
+               "              properties from responses. If omitted, no strict enforcement is assumed.",
+               "",
+               "  -c M[R]     Defines how input modelling and request case resolution conditions are reported. Both M (for modelling conditions)",
+               "              and R (for resolution conditions) must be one of 'log', 'fail', or 'ignore'. If 'log' is specified, conditions are",
+               "              reported using log messages. If 'fail' is specified, any condition will cause an exception. If 'ignore' is specified,",
+               "              all conditions are silently ignored. If R is omitted, the default is 'log'. If -c is omitted, the default is",
+               "              'log,log'.",
+               "",
+               "  -f outFile  If -f is defined, output is written to the specified outFile, relative to the given outDir.",
+               "              If omitted, the default outFile is derived from the apiSpec.",
+               "",
+               "  -o outDir   If -o is defined, output is written to the specified directory. If omitted, the default outDir is",
+               "              the directory containing the apiSpec or, if reading from standard input, the current working directory.",
+               "              If an output path cannot be derived, output is written to standard output.",
+               "",
+               "  -J          If -J is defined, test definition output is transformed into Java source",
+               "              code for a JUnit test class. The resulting Java source file is written to",
+               "              the specified outDir.",
+               "",
+               "  -H          If -H is defined, test definition output is transformed into an HTML report",
+               "              that is written to the specified outDir.",
+               "",
+               "  -x xsltDef  If -x is defined, test definition output is transformed according to the",
+               "              XSLT transform defined by the xsltDef file. If relative, the xsltDef path is",
+               "              assumed to be relative to the directory containing the apiSpec.",
+               "",
+               "  -p name=value  Defines the value of a transform parameter. Any number of -p options",
+               "              may be specified. This option is meaningful only if the -x or -J option is given.",
+               "",
+               "  -r seed     When -D is specified, use the given random number seed to generate request test case",
+               "              input values. If omitted, the default random number seed is derived from the 'apiSpec' name.",
+               "",
+               "  -m maxTries When -D is specified, defines the maximum attempts made to resolve a request test case input",
+               "              value before reporting failure. If omitted, the default value is 10000.",
+               "",
+               "  -T docType  Defines the content type of the OpenApi specification. The 'docType' must be one of 'json', 'yaml',",
+               "              or 'yml'. If omitted, the default content type is derived from the 'apiSpec' name. ",
+               "              If the 'apiSpec' is read from standard input or does not have a recognized extension, the default",
+               "              content type is 'json'.",
+               "",
+               "  -v          Prints the current command version identifier to standard output."
+             })
+        {
+        System.err.println( line);
+        }
       }
 
     /**
@@ -1226,6 +1303,10 @@ public class ApiCommand
     try
       {
       run( new Options( args));
+      }
+    catch( HelpException h)
+      {
+      exitCode = 1;
       }
     catch( Exception e)
       {

@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.HelpException;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.Tcases;
 import org.cornutum.tcases.openapi.io.TcasesOpenApiIO;
@@ -338,12 +339,17 @@ public class ApiTestCommand
       {
       String arg = args[i];
 
-      if( arg.equals( "-t"))
+      if( arg.equals( "-help"))
+        {
+        throwHelpException();
+        }
+
+      else if( arg.equals( "-t"))
         {
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -360,7 +366,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -377,7 +383,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setTestName( args[i]);
         }
@@ -387,7 +393,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setTestPackage( args[i]);
         }
@@ -397,7 +403,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setBaseClass( args[i]);
         }
@@ -407,7 +413,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setOutFile( new File( args[i]));
         }
@@ -417,7 +423,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setOutDir( new File( args[i]));
         }
@@ -427,7 +433,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setMocoTestConfig( new File( args[i]));
         }
@@ -437,7 +443,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setPaths( Arrays.asList( args[i].split( " *, *")));
         }
@@ -447,7 +453,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setOperations( Arrays.asList( args[i].split( " *, *")));
         }
@@ -457,7 +463,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setConditionNotifiers( args[i]);
         }
@@ -472,7 +478,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -489,7 +495,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -506,7 +512,7 @@ public class ApiTestCommand
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -525,7 +531,7 @@ public class ApiTestCommand
 
       else
         {
-        throwUsageException();
+        throwUsageException( String.format( "Unknown option: %s", arg));
         }
 
       return i + 1;
@@ -540,7 +546,7 @@ public class ApiTestCommand
 
       if( nargs > 1)
         {
-        throwUsageException();
+        throwUsageException( String.format( "Unexpected argument: %s", args[i+1]));
         }
 
       if( nargs > 0)
@@ -550,15 +556,15 @@ public class ApiTestCommand
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a missing option value
      */
-    protected void throwUsageException()
+    protected void throwMissingValue( String option)
       {
-      throwUsageException( null, null);
+      throwUsageException( String.format( "No value given for %s option", option));
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a command line error.
      */
     protected void throwUsageException( String detail)
       {
@@ -566,7 +572,7 @@ public class ApiTestCommand
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a command line error.
      */
     protected void throwUsageException( String detail, Exception cause)
       {
@@ -574,37 +580,107 @@ public class ApiTestCommand
       }
 
     /**
-     * Returns a RuntimeException reporting a command line error.
+     * Returns an IllegalArgumentException reporting a command line error.
      */
-    protected RuntimeException getUsageException( String detail, Exception cause)
+    protected IllegalArgumentException getUsageException( String detail, Exception cause)
       {
-      if( detail != null)
-        {
-        cause = new RuntimeException( detail, cause);
-        }
-
       return
         new IllegalArgumentException
-        ( "Usage: "
-          + ApiTestCommand.class.getSimpleName()
-          + " [-v]"
-          + " [-t testType]"
-          + " [-e execType]"
-          + " [-n testName]"
-          + " [-p testPackage]"
-          + " [-b baseClass]"
-          + " [-f outFile]"
-          + " [-o outDir]"
-          + " [-M mocoTestConfig]"
-          + " [-P paths]"
-          + " [-O operations]"
-          + " [-T contentType]"
-          + " [-c condRep[,condRep]]"
-          + " [-R]"
-          + " [-r seed]"
-          + " [-m maxTries]"
-          + " [apiSpec]",
-          cause);
+        ( "Invalid command line argument. For all command line details, use the -help option.",
+          new IllegalArgumentException( detail, cause));
+      }
+
+    /**
+     * Throws a HelpException after printing usage information to standard error.
+     */
+    protected void throwHelpException()
+      {
+      printUsage();
+      throw new HelpException();
+      }
+
+    /**
+     * Prints usage information to standard error.
+     */
+    protected void printUsage()
+      {
+      for( String line :
+             new String[] {
+               "Usage: tcases-api-test [option...] [apiSpec]",
+               "",
+               "Generates executable test code for API servers, based on an OpenAPI v3 compliant API spec.",
+               "",
+               "An OpenAPI v3 API spec is read from the given apiSpec file. If omitted, the API spec is read from",
+               "standard input. If no outFile is specified, output is written to a default file derived from the",
+               "apiSpec or, if no apiSpec is given, to standard output.",
+               "",
+               "Each option is one of the following:",
+               "",
+               "  -t testType     Defines the test framework used to run API tests. Valid values are 'junit', 'testng',",
+               "                  or 'moco'. If omitted, the default is 'junit'.",
+               "",
+               "                  Use 'moco' to generate a JUnit test that sends requests to a Moco stub server.",
+               "                  To define the Moco server test configuration, use the '-M' option.",
+               "",
+               "  -e execType     Defines the request execution interface used to run API tests. Valid values are",
+               "                  'restassured'. If omitted, the default is 'restassured'.",
+               "",
+               "  -n testName     Defines the name of the test class that is generated. This can be either a fully-",
+               "                  qualified class name or a simple class name. If omitted, the default is based on",
+               "                  the title of the apiSpec.",
+               "",
+               "  -p testPackage  Defines the package for the test class that is generated. This can be omitted if",
+               "                  the testName is a fully-qualified class name or if the package can be determined",
+               "                  from the outDir.",
+               "",
+               "  -b baseClass    If defined, specifies a base class for the generated test class. This can be a",
+               "                  fully-qualified class name or a simple class name, if the baseClass belongs to",
+               "                  the same package as the generated test class.",
+               "",
+               "  -f outFile      If defined, output is written to the specified outFile, relative to the given outDir.",
+               "                  If omitted, the default outFile is derived from the testName.",
+               "",
+               "  -o outDir       If -o is defined, output is written to the specified directory. If omitted, the",
+               "                  default outDir is the directory containing the apiSpec or, if reading from standard",
+               "                  input, output is written to standard output.",
+               "",
+               "  -M mocoTestConfig When the testType is 'moco', specifies the Moco server test configuration file.",
+               "",
+               "  -P paths        If defined, tests are generated only for the specified API resource paths. The paths",
+               "                  option must be a comma-separated list of resource paths defined in the apiSpec. If",
+               "                  omitted, tests are generated for all resource paths.",
+               "",
+               "  -O operations   If defined, tests are generated only for the specified HTTP methods. The operations",
+               "                  option must be a comma-separated list of path operations defined in the apiSpec. If",
+               "                  omitted, tests are generated for all operations.",
+               "",
+               "  -T contentType  Defines the content type of the OpenApi specification. The contentType must be one",
+               "                  of 'json', 'yaml', or 'yml'. If omitted, the default content type is derived from the",
+               "                  apiSpec name. If the apiSpec is read from standard input or does not have a recognized",
+               "                  extension, the default content type is 'json'.",
+               "",
+               "  -c M[,R]        Defines how input modelling and request case resolution conditions are reported.",
+               "                  Both M (for modelling conditions) and R (for resolution conditions) must be one of",
+               "                  'log', 'fail', or 'ignore'. If 'log' is specified, conditions are reported using log",
+               "                  messages. If 'fail' is specified, any condition will cause an exception. If 'ignore'",
+               "                  is specified, all conditions are silently ignored. If R is omitted, the default is",
+               "                  'log'. If -c is omitted, the default is 'log,log'.",
+               "",
+               "  -R              If specified, tests will be generated assuming that the API will strictly enforce",
+               "                  exclusion of 'readOnly' properties from request parameters. If omitted, no strict",
+               "                  enforcement is assumed.",
+               "",
+               "  -r seed         If defined, use the given random number seed to generate request test case input",
+               "                  values. If omitted, the default random number seed is derived from the apiSpec name.",
+               "",
+               "  -m maxTries     Defines the maximum attempts made to resolve a request test case input value before",
+               "                  reporting failure. If omitted, the default value is 10000.",
+               "",
+               "  -v              Prints the current command version identifier to standard output."
+             })
+        {
+        System.err.println( line);
+        }
       }
 
     /**
@@ -1336,6 +1412,10 @@ public class ApiTestCommand
     try
       {
       run( new Options( args));
+      }
+    catch( HelpException h)
+      {
+      exitCode = 1;
       }
     catch( Exception e)
       {
