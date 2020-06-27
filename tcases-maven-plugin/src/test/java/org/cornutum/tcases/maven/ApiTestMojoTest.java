@@ -48,6 +48,28 @@ public class ApiTestMojoTest
     assertThat( "Tests", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTests));
     }
   
+  @Test
+  public void execute_default() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-test-project-default");
+
+    // When...
+    ApiTestMojo apiTestMojo = (ApiTestMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api-test");
+    clean( apiTestMojo);
+    apiTestMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/resources");
+    assertThat( "Input dir", apiTestMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/tcases/java");
+    assertThat( "Out dir", apiTestMojo.getOutDirFile(), is( expectedOutDir));
+
+    List<String> expectedTests = Arrays.asList( "org/examples/SwaggerPetstoreTest.java");
+    assertThat( "Tests", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTests));
+    }
+  
   /**
    * Returns the set of paths relative to the given base directory matching any of the given patterns.
    */
