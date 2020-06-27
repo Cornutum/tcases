@@ -212,12 +212,17 @@ public class ReducerCommand extends Reducer
       {
       String arg = args[i];
 
-      if( arg.equals( "-f"))
+      if( arg.equals( "-help"))
+        {
+        throwHelpException();
+        }
+
+      else if( arg.equals( "-f"))
         {
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setFunction( args[i]);
         }
@@ -227,7 +232,7 @@ public class ReducerCommand extends Reducer
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setGenDef( new File( args[i]));
         }
@@ -237,7 +242,7 @@ public class ReducerCommand extends Reducer
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -259,7 +264,7 @@ public class ReducerCommand extends Reducer
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -281,7 +286,7 @@ public class ReducerCommand extends Reducer
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         setTestDef( new File( args[i]));
         }
@@ -291,7 +296,7 @@ public class ReducerCommand extends Reducer
         i++;
         if( i >= args.length)
           {
-          throwUsageException();
+          throwMissingValue( arg);
           }
         try
           {
@@ -305,7 +310,7 @@ public class ReducerCommand extends Reducer
       
       else
         {
-        throwUsageException();
+        throwUsageException( String.format( "Unknown option: %s", arg));
         }
       
       return i + 1;
@@ -319,22 +324,22 @@ public class ReducerCommand extends Reducer
       int nargs = args.length - i;
       if( nargs != 1)
         {
-        throwUsageException();
+        throwUsageException( String.format( "Unexpected argument: %s", args[i+1]));
         }
 
       setInputDef( new File( args[i]));
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a missing option value
      */
-    protected void throwUsageException()
+    protected void throwMissingValue( String option)
       {
-      throwUsageException( null, null); 
+      throwUsageException( String.format( "No value given for %s option", option));
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a command line error.
      */
     protected void throwUsageException( String detail)
       {
@@ -342,28 +347,78 @@ public class ReducerCommand extends Reducer
       }
 
     /**
-     * Throws a RuntimeException reporting a command line error.
+     * Throws a IllegalArgumentException reporting a command line error.
      */
     protected void throwUsageException( String detail, Exception cause)
       {
-      if( detail != null)
-        {
-        cause = new RuntimeException( detail, cause);
-        }
-      
       throw
-        new RuntimeException
-        ( "Usage: "
-          + ReducerCommand.class.getSimpleName()
-          + " [-f function]"
-          + " [-g genDef]"
-          + " [-r resampleFactor]"
-          + " [-R]"
-          + " [-s sampleCount]"
-          + " [-t testDef]"
-          + " [-T contentType]"
-          + " inputDef",
-          cause);
+        new IllegalArgumentException
+        ( "Invalid command line argument. For all command line details, use the -help option.",
+          new IllegalArgumentException( detail, cause));
+      }
+
+    /**
+     * Throws a HelpException after printing usage information to standard error.
+     */
+    protected void throwHelpException()
+      {
+      printUsage();
+      throw new HelpException();
+      }
+
+    /**
+     * Prints usage information to standard error.
+     */
+    protected void printUsage()
+      {
+      for( String line :
+             new String[] {
+               "Usage: tcases-reducer [option...] inputDef",
+               "",
+               "For a system input definition, updates the associated test case generators to reduce the number",
+               "of generated test cases, using the given command line options.",
+               "",
+               "Each option is one of the following:",
+               "",
+               "  -f function        If -f is defined, update only the test case generator for the given function.",
+               "                     Otherwise, update the test case generators for all functions.",
+               "",
+               "  -g genDef          If -g is defined, update the generator specified in the given genDef file.",
+               "                     Otherwise, update the default generate definition file: the corresponding",
+               "                     *-Generators.xml file in the same directory as the inputDef.",
+               "",
+               "  -l logFile         If -l is defined, log output is written to the given file. If omitted,",
+               "                     log output is written to a file named tcases-reducer.log in the current working",
+               "                     directory. If logFile is 'stdout', log output is written to standard output.",
+               "",
+               "  -L logLevel        Defines the level for Tcases log output. If omitted, the default level is INFO",
+               "                     Tcases logging uses the configuration and levels defined by the Logback system.",
+               "",
+               "  -r resampleFactor  If -r is defined, use the given resampleFactor to determine the number",
+               "                     of samples in the next round of reducing. Depending on the resampleFactor,",
+               "                     the next round may use more or fewer samples. If the previous round called",
+               "                     for N samples and produced a reduction, then the number of samples for the ",
+               "                     next round will be N * ( 1 + resampleFactor). To increase sample count with",
+               "                     each round, define resampleFactor > 0. To decrease sample count with each round,",
+               "                     define -1 < resampleFactor < 0. If resampleFactor is omitted, the default value is 0.",
+               "",
+               "  -R                 If defined, ignore any random seed defined in the genDef file and search for a new seed.",
+               "",
+               "  -s sampleCount     Defines the number of samples for the initial round of reducing. If omitted,",
+               "                     the default sampleCount is 10.",
+               "",
+               "  -t testDef         If -t is defined, generate test cases based on the test definitions in the",
+               "                     specified testDef file, relative to the directory containing the inputDef.",
+               "",
+               "  -T contentType     Defines the default content type for the files read and produced.",
+               "                     The contentType must be one of 'json' or 'xml'. The default content type is",
+               "                     assumed for any file that is not specified explicitly or that does not have a",
+               "                     recognized extension. If omitted, the default content type is derived from the",
+               "                     inputDef name."
+             })
+        {
+        System.err.println( line);
+        }
       }
 
     /**
@@ -655,6 +710,10 @@ public class ReducerCommand extends Reducer
       {
       ReducerCommand reducer = new ReducerCommand();
       reducer.run( new Options( args));
+      }
+    catch( HelpException h)
+      {
+      exitCode = 1;
       }
     catch( Exception e)
       {
