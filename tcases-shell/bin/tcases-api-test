@@ -14,15 +14,15 @@ runJava()
     -D${logDest}="$logFile" \
     -Dtcases.log.level="$logLevel" \
     org.cornutum.tcases.openapi.ApiTestCommand \
-    $@
+    "$@"
 }
 
-args=
+ARGDELIM="|"
 while [ $# -gt 0 ] ; do
   case $1 in
     -l) shift; logFile="$1";;
     -L) shift; logLevel="$1";;
-     *) args="$args $1";;
+     *) args="${args}${args:+${ARGDELIM}}$1";;
   esac
   shift
 done
@@ -45,4 +45,4 @@ for jar in "${libDir}"/*.jar; do
   classPath="${classPath}:${jar}"
 done
 
-runJava $args
+IFS=${ARGDELIM}; runJava $args
