@@ -9,6 +9,11 @@ pgm=`basename "$0"`
 
 runJava()
 {
+  uname=`uname`
+  cygwin=`expr $uname : 'CYGWIN'`
+  if [ $cygwin -gt 0 ] ; then
+    classPath=`cygpath --path -m "$classPath"`
+  fi
   java \
     -cp "$classPath" \
     -D${logDest}="$logFile" \
