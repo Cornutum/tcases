@@ -4,21 +4,26 @@
 
 This is a patch release to fix the following problems.
 
-  * **tcases-maven-plugin**:
-    Fixes a brazen defect in how the `tcases:api-test` goal handles the `paths` and `operations` parameters, which caused the
-    default configuration (all request paths, all request operations) to be incorrectly interpreted as "no paths, no operations"!
-    [[124](https://github.com/Cornutum/tcases/issues/124)]
+  * **tcases-maven-plugin**
 
- * **Shell command help**:
-    A new implementation of the Tcases CLI provides better command line help information. All commands now use the same interface
-    (the `-help` option) to display full command line details in a consistent format on both UNIX and Windows platforms. Also, for
-    each command, help information is now defined in a single location, where it is more easily kept accurate and up-to-date.
-    [[122](https://github.com/Cornutum/tcases/issues/122)]
+    * Fixes a brazen defect in how the `tcases:api-test` goal handles the `paths` and `operations` parameters, which caused the
+      default configuration (all request paths, all request operations) to be incorrectly interpreted as "no paths, no operations"!
+      [[124](https://github.com/Cornutum/tcases/issues/124)]
 
-    This change is fully compatible with previous CLI versions, with one exception: when running in the Cygwin environment, UNIX shell
-    commands no longer automatically convert file name arguments to the preferred `--mixed` format. If you encounter trouble with
-    file names of the form `/cygdrive/c/...`, try converting them using the `cygpath --mixed` command.
+ * **CLI**
 
+   * Shell commands now work correctly when the Tcases installation directory path contains space characters.
+     [[116](https://github.com/Cornutum/tcases/issues/116)]
+   
+   * Shell command help:
+     A new implementation of the Tcases CLI provides better command line help information. All commands now use the same interface
+     (the `-help` option) to display full command line details in a consistent format on both UNIX and Windows platforms. Also, for
+     each command, help information is now defined in a single location, where it is more easily kept accurate and up-to-date.
+     [[122](https://github.com/Cornutum/tcases/issues/122)]
+
+     This change is fully compatible with previous CLI versions, with one exception: when running in the Cygwin environment, UNIX shell
+     commands no longer automatically convert file name arguments to the preferred `--mixed` format. If you encounter trouble with
+     file names of the form `/cygdrive/c/...`, try converting them using the `cygpath --mixed` command.
 
 ## 3.4.0 ##
 
