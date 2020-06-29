@@ -54,6 +54,7 @@
       <directory>${project.basedir}/bin</directory>
       <outputDirectory>bin</outputDirectory>
       <includes>
+        <include>tcases-exec</include>
         <include>tcases</include>
         <include>tcases.bat</include>
         <include>tcases-reducer</include>
