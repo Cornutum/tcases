@@ -2478,7 +2478,7 @@ public class OpenApiTest {
     }
 
     @Test
-    public void getUsers_NoneDefined_Is_No() {
+    public void getUsers() {
         given()
         .when()
             .request( "GET", "http://localhost:12306/users")
