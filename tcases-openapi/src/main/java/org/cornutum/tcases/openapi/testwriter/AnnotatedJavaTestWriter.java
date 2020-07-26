@@ -130,15 +130,28 @@ public abstract class AnnotatedJavaTestWriter extends JavaTestWriter
         });
 
     // ... followed by the request case description
-    methodName.append( "_").append( getDescriptor( requestCase));
+    getDescriptor( requestCase)
+      .ifPresent( descriptor -> methodName.append( "_").append( descriptor));
     
     return methodName.toString();
     }
 
   /**
    * Returns an identifier containing a description of the given request case.
+   * Returns <CODE>Optional.empty()</CODE> if no description is needed.
    */
-  protected String getDescriptor( RequestCase requestCase)
+  protected Optional<String> getDescriptor( RequestCase requestCase)
+    {
+    return
+      "None.Defined='No'".equals( requestCase.getName())
+      ? Optional.empty()
+      : Optional.of( createDescriptor( requestCase));
+    }
+
+  /**
+   * Returns an identifier containing a description of the given request case.
+   */
+  protected String createDescriptor( RequestCase requestCase)
     {
     return
       Optional.ofNullable( requestCase.getName())
