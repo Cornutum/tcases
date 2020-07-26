@@ -150,8 +150,8 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       // Skip if operation not defined
       .filter( Objects::nonNull)
 
-      // Skip if operation has no inputs to model
-      .filter( this::hasInputs));
+      // Ensure a complete input model for each operation
+      .map( this::completeInputs));
     }
 
   /**
@@ -247,6 +247,25 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
       // Skip if operation has no inputs to model
       .filter( this::hasInputs));
+    }
+
+  /**
+   * Returns if the given {@link FunctionInputDef function input definition}, adding a null input variable
+   * if no other variables are defined.
+   */
+  private FunctionInputDef completeInputs( FunctionInputDef functionDef)
+    {
+    if( !hasInputs( functionDef))
+      {
+      String none = "None";
+      functionDef.addVarDef(
+        VarSetBuilder.with( none)
+        .type( "implicit")
+        .members( instanceDefinedVar( none, Definition.NEVER))
+        .build());
+      }
+    
+    return functionDef;
     }
 
   /**

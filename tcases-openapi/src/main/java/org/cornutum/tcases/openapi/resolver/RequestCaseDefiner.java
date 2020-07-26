@@ -115,7 +115,7 @@ public class RequestCaseDefiner
     {
     return
       toStream( testCase.getVarBindings())
-      .filter( binding -> !"request".equals( binding.getType()))
+      .filter( binding -> !("request".equals( binding.getType()) || "implicit".equals( binding.getType())))
       .collect( groupingBy( this::getInputName))
       .entrySet().stream()
       .collect(

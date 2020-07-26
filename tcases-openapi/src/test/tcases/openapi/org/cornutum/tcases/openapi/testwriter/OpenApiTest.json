@@ -467,6 +467,19 @@
                     }
                 }
             }
+        },
+
+        "/users": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
         }
     },
     "components": {

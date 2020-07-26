@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<System name="Operations">
+  <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
+  <Has name="title" value="Operations"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="OPTIONS_operations">
+    <Has name="operation" value="OPTIONS"/>
+    <Has name="path" value="/operations"/>
+    <Input type="implicit">
+      <VarSet name="None">
+        <Var name="Defined">
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

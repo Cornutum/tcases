@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<TestCases system="Operations">
+  <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
+  <Has name="title" value="Operations"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="OPTIONS_operations">
+    <Has name="operation" value="OPTIONS"/>
+    <Has name="path" value="/operations"/>
+    <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
+    <Has name="title" value="Operations"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="None.Defined=&apos;No&apos;">
+      <Has name="operation" value="OPTIONS"/>
+      <Has name="path" value="/operations"/>
+      <Has name="server" value="http://www.cornutum.org/tcases/reducer/api"/>
+      <Has name="title" value="Operations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="implicit">
+        <Var name="None.Defined" value="No"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

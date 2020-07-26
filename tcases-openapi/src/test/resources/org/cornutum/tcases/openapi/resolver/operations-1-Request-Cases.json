@@ -136,6 +136,15 @@
     },
     {
         "id": 0,
+        "name": "None.Defined='No'",
+        "server": "http://www.cornutum.org/tcases/api",
+        "version": "0.0.0",
+        "api": "Operations",
+        "path": "/operations",
+        "operation": "OPTIONS"
+    },
+    {
+        "id": 0,
         "name": "id.Defined='Yes'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",

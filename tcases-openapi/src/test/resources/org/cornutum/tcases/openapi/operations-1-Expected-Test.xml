@@ -129,6 +129,23 @@
       </Input>
     </TestCase>
   </Function>
+  <Function name="OPTIONS_operations">
+    <Has name="operation" value="OPTIONS"/>
+    <Has name="path" value="/operations"/>
+    <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+    <Has name="title" value="Operations"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="None.Defined=&apos;No&apos;">
+      <Has name="operation" value="OPTIONS"/>
+      <Has name="path" value="/operations"/>
+      <Has name="server" value="http://www.cornutum.org/tcases/api"/>
+      <Has name="title" value="Operations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="implicit">
+        <Var name="None.Defined" value="No"/>
+      </Input>
+    </TestCase>
+  </Function>
   <Function name="HEAD_operations">
     <Has name="operation" value="HEAD"/>
     <Has name="path" value="/operations"/>
