@@ -29,6 +29,17 @@
       </VarSet>
     </Input>
   </Function>
+  <Function name="OPTIONS_operations">
+    <Has name="operation" value="OPTIONS"/>
+    <Has name="path" value="/operations"/>
+    <Input type="implicit">
+      <VarSet name="None">
+        <Var name="Defined">
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
   <Function name="HEAD_operations">
     <Has name="operation" value="HEAD"/>
     <Has name="path" value="/operations"/>

@@ -597,7 +597,7 @@ public class OperationsTest extends OpenApiTest
   public void API_10()
     {
     // Given...
-    verifyRequestInputModelNone( "operations-10");
+    verifyRequestInputModel( "operations-10");
     }
 
   /**

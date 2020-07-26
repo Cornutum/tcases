@@ -2476,4 +2476,14 @@ public class OpenApiTest {
             .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
             ;
     }
+
+    @Test
+    public void getUsers_NoneDefined_Is_No() {
+        given()
+        .when()
+            .request( "GET", "http://localhost:12306/users")
+        .then()
+            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            ;
+    }
 }
