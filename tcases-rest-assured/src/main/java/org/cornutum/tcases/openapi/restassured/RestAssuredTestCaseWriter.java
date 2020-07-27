@@ -44,6 +44,7 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
   public void writeDependencies( String testName, IndentedWriter targetWriter)
     {
     targetWriter.println();
+    targetWriter.println( "import org.hamcrest.Matcher;");
     targetWriter.println( "import static io.restassured.RestAssured.*;");
     targetWriter.println( "import static org.hamcrest.Matchers.*;");
     }
@@ -91,7 +92,18 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
    */
   public void writeClosing( String testName, IndentedWriter targetWriter)
     {
-    // By default, none
+    targetWriter.println();
+    targetWriter.println( "private Matcher<Integer> isSuccess() {");
+    targetWriter.indent();
+    targetWriter.println( "return allOf( greaterThanOrEqualTo(200), lessThan(300));");
+    targetWriter.unindent();
+    targetWriter.println( "}");
+    targetWriter.println();
+    targetWriter.println( "private Matcher<Integer> isBadRequest() {");
+    targetWriter.indent();
+    targetWriter.println( "return allOf( greaterThanOrEqualTo(400), lessThan(500));");
+    targetWriter.unindent();
+    targetWriter.println( "}");
     }
   
   /**
@@ -304,11 +316,11 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     if( requestCase.isFailure())
       {
       targetWriter.println( String.format( "// %s", requestCase.getInvalidInput()));
-      targetWriter.println( ".statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))");
+      targetWriter.println( ".statusCode( isBadRequest())");
       }
     else
       {
-      targetWriter.println( ".statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))");
+      targetWriter.println( ".statusCode( isSuccess())");
       }
     }
   }
