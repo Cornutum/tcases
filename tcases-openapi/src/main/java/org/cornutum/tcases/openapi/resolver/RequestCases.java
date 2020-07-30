@@ -11,6 +11,7 @@ import org.cornutum.tcases.FunctionTestDef;
 import org.cornutum.tcases.SystemTestDef;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,15 +40,16 @@ public final class RequestCases
    */
   public static RequestTestDef realizeRequestCases( RequestTestDef requestTestDef)
     {
-    List<RequestCase> serializable =
-      requestTestDef.getRequestCases().stream()
-      .filter( RequestCases::isSerializable)
-      .collect( toList());
+    RequestTestDef realizable =
+      new RequestTestDef(
+        requestTestDef.getRequestCases().stream()
+        .filter( RequestCases::isSerializable)
+        .collect( toList()));
 
-    getSerializedDups( serializable)
-      .forEach( rc -> serializable.remove( rc));
+    getSerializedDups( realizable)
+      .forEach( rc -> realizable.remove( rc));
 
-    return new RequestTestDef( serializable);
+    return realizable;
     }
 
   /**
@@ -123,6 +125,23 @@ public final class RequestCases
       .orElse( false);
 
     return !stringTypeFailure || invalidBodyJson;
+    }
+
+  /**
+   * Returns the subset of the given request cases that are duplicates of other
+   * request cases after serialization.
+   */
+  private static List<RequestCase> getSerializedDups( RequestTestDef requestTestDef)
+    {
+    List<RequestCase> dups = new ArrayList<RequestCase>();
+    for( String path : requestTestDef.getPaths())
+      {
+      for( String op : requestTestDef.getOperations( path))
+        {
+        dups.addAll( getSerializedDups( requestTestDef.getRequestCases( path, op)));
+        }
+      }
+    return dups;
     }
 
   /**
