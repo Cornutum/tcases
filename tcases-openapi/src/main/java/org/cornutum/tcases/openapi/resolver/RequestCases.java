@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.FunctionTestDef;
 import org.cornutum.tcases.SystemTestDef;
+import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.ArrayList;
@@ -249,13 +250,16 @@ public final class RequestCases
       getFailureData( requestCase)
       .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Defined=No", inputId)))
       .map( failure -> {
-
-        boolean simpleEncoded =
+        ParamData param =
           failure instanceof ParamData
-          ? "simple".equals( ((ParamData) failure).getStyle())
-          : !"application/json".equals( failure.getMediaType());
+          ? (ParamData) failure
+          : null;
 
-        return simpleEncoded && !inputType.isComposite();
+        return
+          param != null
+          && param.getStyle().equals( "simple")
+          && param.getLocation() == Location.PATH
+          && !inputType.isComposite();
         })
       .orElse( false);
     }
