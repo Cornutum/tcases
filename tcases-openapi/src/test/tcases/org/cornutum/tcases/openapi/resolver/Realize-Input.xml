@@ -1,0 +1,111 @@
+<System name="RequestCases">
+    <Function name="realizeRequestCases">
+        <Input>
+            <Var name="Complete">
+                <Value name="Yes">
+                    <When>
+                        <NotLessThan property="unrealizable" min="1"/>
+                    </When>
+                </Value>
+            </Var>
+            <VarSet name="Param">
+                <Var name="Defined">
+                    <Value name="Yes" property="param"/>
+                    <Value name="No" when="body"/>
+                </Var>
+                <Var name="Style" when="param">
+                    <Value name="simple"/>
+                    <Value name="form"/>
+                </Var>
+                <Var name="Required" when="param">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Type" when="param">
+                    <Value name="string" property="paramString"/>
+                    <Value name="object" property="paramObject"/>
+                    <Value name="integer" property="paramInteger"/>
+                </Var>
+                <VarSet name="Properties" when="param">
+                    <VarSet name="String" when="paramString">
+                        <Var name="nullable">
+                            <Value name="Yes"/>
+                            <Value name="No" property="unrealizable"/>
+                        </Var>
+                        <Var name="minLength">
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="Object" when="paramObject">
+                        <VarSet name="String-Property">
+                            <Var name="nullable">
+                                <Value name="Yes"/>
+                                <Value name="No" property="unrealizable"/>
+                            </Var>
+                            <Var name="minLength">
+                                <Value name="0"/>
+                                <Value name="&gt; 0"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    <VarSet name="Integer" when="paramInteger">
+                        <Var name="nullable">
+                            <Value name="Yes"/>
+                            <Value name="No" property="unrealizable"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+            <VarSet name="Body">
+                <Var name="Defined">
+                    <Value name="Yes" property="body"/>
+                    <Value name="No" when="param"/>
+                </Var>
+                <Var name="Required" when="body">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Media-Type" when="body">
+                    <Value name="application/json" property="bodyJson"/>
+                    <Value name="application/x-www-form-urlencoded"/>
+                </Var>
+                <Var name="Type" when="body">
+                    <Value name="string" property="bodyString"/>
+                    <Value name="object" property="bodyObject"/>
+                    <Value name="integer" property="bodyInteger"/>
+                </Var>
+                <VarSet name="Properties" when="body">
+                    <VarSet name="String" when="bodyString">
+                        <Var name="nullable" whenNot="bodyJson">
+                            <Value name="Yes"/>
+                            <Value name="No" property="unrealizable"/>
+                        </Var>
+                        <Var name="minLength">
+                            <Value name="0"/>
+                            <Value name="&gt; 0"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="Object" when="bodyObject">
+                        <VarSet name="String-Property">
+                            <Var name="nullable" whenNot="bodyJson">
+                                <Value name="Yes"/>
+                                <Value name="No" property="unrealizable"/>
+                            </Var>
+                            <Var name="minLength">
+                                <Value name="0"/>
+                                <Value name="&gt; 0"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                    <VarSet name="Integer" when="bodyInteger">
+                        <Var name="nullable" whenNot="bodyJson">
+                            <Value name="Yes"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

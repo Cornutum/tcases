@@ -1,0 +1,324 @@
+
+[
+    {
+        "id": 0,
+        "name": "param.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -286487905,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "string",
+                "value": "S"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "name": "param.Value.Is='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "null",
+                "value": null
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "name": "param.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 558027119,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "string",
+                "value": "$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\"]Y,9fw7?5 K"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "name": "param.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "string",
+                "value": "J"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Defined=No"
+    },
+    {
+        "id": 4,
+        "name": "param.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "string",
+                "value": "Y"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Type=null"
+    },
+    {
+        "id": 5,
+        "name": "param.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": ""
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "string",
+                "value": "]"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Type=Not integer"
+    },
+    {
+        "id": 6,
+        "name": "Body.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -678129651,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": false
+        },
+        "invalidInput": "Body.Defined=No"
+    },
+    {
+        "id": 7,
+        "name": "Body.Media-Type='Other'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -500756076,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/xml",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "string",
+                        "value": ""
+                    },
+                    {
+                        "type": "string",
+                        "value": "D"
+                    }
+                ]
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.Media-Type=Other"
+    },
+    {
+        "id": 8,
+        "name": "Body.application-x-www-form-urlencoded.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -479230933,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "number",
+                "value": 1018.2
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-x-www-form-urlencoded.Type=Not string"
+    },
+    {
+        "id": 9,
+        "name": "Body.application-x-www-form-urlencoded.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -933792284,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "string",
+                "value": ""
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-x-www-form-urlencoded.Value.Length=0"
+    }
+]

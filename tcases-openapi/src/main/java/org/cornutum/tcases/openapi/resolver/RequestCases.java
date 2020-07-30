@@ -12,10 +12,11 @@ import org.cornutum.tcases.SystemTestDef;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Defines methods for generating {@link RequestCase request test cases} from the {@link SystemTestDef test definitions} for
@@ -43,8 +44,8 @@ public final class RequestCases
       .filter( RequestCases::isSerializable)
       .collect( toList());
 
-    List<RequestCase> dups = getSerializedDups( serializable);
-    dups.stream().forEach( rc -> serializable.remove( rc));
+    getSerializedDups( serializable)
+      .forEach( rc -> serializable.remove( rc));
 
     return new RequestTestDef( serializable);
     }
@@ -130,15 +131,26 @@ public final class RequestCases
    */
   private static List<RequestCase> getSerializedDups( List<RequestCase> requestCases)
     {
-    List<String> nullFailureInputs =
+    List<RequestCase> nullFailureCases =
       requestCases.stream()
-      .map( RequestCases::nullFailureInput)
-      .filter( Objects::nonNull)
+      .filter( RequestCases::isNullFailure)
       .collect( toList());
 
+    Map<String,DataValue.Type> nullFailureTypes =
+      nullFailureCases.stream()
+      .collect(
+        toMap(
+          rc -> nullFailureId( rc),
+          rc -> nullFailureType( requestCases, rc)));
+
     return
-      nullFailureInputs.stream()
-      .flatMap( id -> requestCases.stream().filter( rc -> isStringEmptyFailureDup( rc, id) || isUndefinedFailureDup( rc, id)))
+      nullFailureTypes.keySet().stream()
+      .flatMap( id -> {
+        DataValue.Type idType = nullFailureTypes.get(id);
+        return
+          requestCases.stream()
+          .filter( rc -> isStringEmptyFailureDup( rc, id) || isUndefinedFailureDup( rc, id, idType));
+        })
       .collect( toList());
     }
 
@@ -146,14 +158,53 @@ public final class RequestCases
    * If the given request case represents an unexpected null value failure, returns the id of the failure input.
    * Otherwise, returns null.
    */
-  private static String nullFailureInput( RequestCase requestCase)
+  private static boolean isNullFailure( RequestCase requestCase)
     {
     return
       Optional.ofNullable( requestCase.getInvalidInput())
-      .map( invalid -> invalid.lastIndexOf( ".Type=null"))
-      .filter( end -> end >= 0)
-      .map( end -> requestCase.getInvalidInput().substring( 0, end))
+      .map( invalid -> invalid.endsWith( ".Type=null"))
+      .orElse( false);
+    }
+
+  /**
+   * For a null failure case, returns the id of the failure input.
+   */
+  private static String nullFailureId( RequestCase nullFailure)
+    {
+    String invalidInput = nullFailure.getInvalidInput();
+    return invalidInput.substring( 0, invalidInput.lastIndexOf( ".Type=null"));
+    }
+
+  /**
+   * For a null failure case, returns the type of the failure input.
+   */
+  private static DataValue.Type nullFailureType( List<RequestCase> requestCases, RequestCase nullFailure)
+    {
+    String paramName =
+      getFailureData( nullFailure)
+      .filter( failure -> failure instanceof ParamData)
+      .map( failure -> ((ParamData) failure).getName())
       .orElse( null);
+
+    return
+      requestCases.stream()
+      .map( rc -> {
+        return
+          Optional.ofNullable( paramName)
+          .map( p -> {
+            MessageData paramData =
+              toStream( rc.getParams())
+              .filter( param -> param.getName().equals( paramName))
+              .findFirst()
+              .get();
+            return paramData;
+            })
+          .orElse( rc.getBody());
+        })
+      .filter( MessageData::isValid)
+      .findFirst()
+      .map( MessageData::getType)
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't find null failure type for %s", nullFailure)));
     }
 
   /**
@@ -173,12 +224,20 @@ public final class RequestCases
    * Returns if the given request case represents a failure caused by an undefined value that
    * duplicates a null value when serialized.
    */
-  private static boolean isUndefinedFailureDup( RequestCase requestCase, String inputId)
+  private static boolean isUndefinedFailureDup( RequestCase requestCase, String inputId, DataValue.Type inputType)
     {
     return
       getFailureData( requestCase)
       .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Defined=No", inputId)))
-      .map( failure -> failure instanceof ParamData && "simple".equals( ((ParamData) failure).getStyle()))
+      .map( failure -> {
+
+        boolean simpleEncoded =
+          failure instanceof ParamData
+          ? "simple".equals( ((ParamData) failure).getStyle())
+          : !"application/json".equals( failure.getMediaType());
+
+        return simpleEncoded && !inputType.isComposite();
+        })
       .orElse( false);
     }
 
@@ -200,5 +259,4 @@ public final class RequestCases
           .orElse( rc.getBody());
         });
     }
-
   }

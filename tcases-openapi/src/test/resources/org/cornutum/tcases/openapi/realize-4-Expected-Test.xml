@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<TestCases system="realize">
+  <Has name="server" value="/"/>
+  <Has name="title" value="realize"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_realize">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/realize"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="realize"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="Content,text-plain,text-plainValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="text-plain">
+          <Has name="mediaType" value="text/plain"/>
+        </Var>
+        <Var name="Body.text-plain.Type" value="string"/>
+        <Var name="Body.text-plain.Value.Length" value="0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="Body.text-plain.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="Content,text-plain"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="text-plain">
+          <Has name="mediaType" value="text/plain"/>
+        </Var>
+        <Var name="Body.text-plain.Type" value="null"/>
+        <Var name="Body.text-plain.Value.Length" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2" name="Body.text-plain.Value.Length=&apos;&gt; 0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="Content,text-plain,text-plainValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="text-plain">
+          <Has name="mediaType" value="text/plain"/>
+        </Var>
+        <Var name="Body.text-plain.Type" value="string"/>
+        <Var name="Body.text-plain.Value.Length" value="&gt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true" name="Body.Defined=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="No" failure="true"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.text-plain.Type" NA="true"/>
+        <Var name="Body.text-plain.Value.Length" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="Body.Media-Type=&apos;Other&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="Content"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;text/plain&apos;"/>
+        </Var>
+        <Var name="Body.text-plain.Type" NA="true"/>
+        <Var name="Body.text-plain.Value.Length" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true" name="Body.text-plain.Type=&apos;Not string&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="Content,text-plain"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="text-plain">
+          <Has name="mediaType" value="text/plain"/>
+        </Var>
+        <Var name="Body.text-plain.Type" value="Not string" failure="true"/>
+        <Var name="Body.text-plain.Value.Length" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

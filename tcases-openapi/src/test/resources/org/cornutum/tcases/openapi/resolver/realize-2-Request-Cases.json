@@ -1,0 +1,409 @@
+
+[
+    {
+        "id": 0,
+        "name": "param.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "param.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "param.Value.Properties.id.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 161818671,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "param.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Type=null"
+    },
+    {
+        "id": 4,
+        "name": "param.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -373,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Type=Not object"
+    },
+    {
+        "id": 5,
+        "name": "param.Value.Properties.id.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Value.Properties.id.Defined=No"
+    },
+    {
+        "id": 6,
+        "name": "param.Value.Properties.id.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "id": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Value.Properties.id.Type=null"
+    },
+    {
+        "id": 7,
+        "name": "param.Value.Properties.id.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "id": {
+                            "type": "object",
+                            "value": {
+                                "fncghyfh": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "xcpexs": {
+                                    "type": "integer",
+                                    "value": -778,
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Value.Properties.id.Type=Not integer"
+    },
+    {
+        "id": 8,
+        "name": "param.Value.Properties.id.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Value.Properties.id.Value.Is=-1"
+    },
+    {
+        "id": 9,
+        "name": "param.Value.Properties.tag.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "id": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Value.Properties.tag.Defined=No"
+    },
+    {
+        "id": 10,
+        "name": "param.Value.Properties.tag.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Value.Properties.tag.Type=null"
+    },
+    {
+        "id": 11,
+        "name": "param.Value.Properties.tag.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "number",
+                            "value": -721.3
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Value.Properties.tag.Type=Not string"
+    },
+    {
+        "id": 12,
+        "name": "param.Value.Properties.Additional='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "i": {
+                            "type": "number",
+                            "value": 580.4
+                        },
+                        "dhzgvk": {
+                            "type": "object",
+                            "value": {
+                                "ybmgpmh": {
+                                    "type": "number",
+                                    "value": -914.9
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param.Value.Properties.Additional=Yes"
+    }
+]

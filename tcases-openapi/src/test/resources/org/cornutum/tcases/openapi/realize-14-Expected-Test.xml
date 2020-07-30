@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<TestCases system="realize">
+  <Has name="server" value="/"/>
+  <Has name="title" value="realize"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_realize">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/realize"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="realize"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="param.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" value="integer">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-x-www-form-urlencoded">
+          <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+        </Var>
+        <Var name="Body.application-x-www-form-urlencoded.Type" value="integer"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" value="&lt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="param.Defined=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="No">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-x-www-form-urlencoded">
+          <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+        </Var>
+        <Var name="Body.application-x-www-form-urlencoded.Type" value="null"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2" name="param.Value.Is=&apos;0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" value="integer">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" value="0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-x-www-form-urlencoded">
+          <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+        </Var>
+        <Var name="Body.application-x-www-form-urlencoded.Type" value="integer"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" value="0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" name="param.Value.Is=&apos;&gt; 0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" value="integer">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-x-www-form-urlencoded">
+          <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+        </Var>
+        <Var name="Body.application-x-www-form-urlencoded.Type" value="integer"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" value="&gt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="param.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" value="null" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-x-www-form-urlencoded">
+          <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+        </Var>
+        <Var name="Body.application-x-www-form-urlencoded.Type" value="integer"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" value="&lt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true" name="param.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" value="Not integer" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-x-www-form-urlencoded">
+          <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+        </Var>
+        <Var name="Body.application-x-www-form-urlencoded.Type" value="integer"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" value="&lt; 0"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true" name="Body.Defined=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="No">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No" failure="true"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Type" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true" name="Body.Media-Type=&apos;Other&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="Content"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="No">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+        </Var>
+        <Var name="Body.application-x-www-form-urlencoded.Type" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="Body.application-x-www-form-urlencoded.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/realize"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,Content"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="realize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param.Defined" value="No">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param.Type" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="param.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-x-www-form-urlencoded">
+          <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+        </Var>
+        <Var name="Body.application-x-www-form-urlencoded.Type" value="Not integer" failure="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Is" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

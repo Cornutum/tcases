@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="realizeRequestCases" seed="4199015556437450752" tuples="1">
+    <Combine tuples="2">
+      <Include var="Param.Required"/>
+      <Include var="Param.Style"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Body.Required"/>
+      <Include var="Body.Type"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Param.Properties.String.minLength"/>
+      <Include var="Param.Properties.String.nullable"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Param.Properties.Object.String-Property.minLength"/>
+      <Include var="Param.Properties.Object.String-Property.nullable"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Body.Properties.String.minLength"/>
+      <Include var="Body.Properties.String.nullable"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Body.Properties.Object.String-Property.minLength"/>
+      <Include var="Body.Properties.Object.String-Property.nullable"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Param.Style"/>
+      <Include var="Param.Type"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>
