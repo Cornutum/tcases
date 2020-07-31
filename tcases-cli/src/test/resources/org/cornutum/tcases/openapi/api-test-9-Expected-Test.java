@@ -136,19 +136,6 @@ public class ReadOnlyTest extends MyBaseClass {
     }
 
     @Test
-    public void postObject_Param0ValuePropertiesBravoType_Is_NotString() {
-        given()
-            .queryParam( "bravo", "")
-            .queryParam( "delta", "")
-        .when()
-            .request( "POST", "/object")
-        .then()
-            // param0.Value.Properties.bravo.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void postObject_Param0ValuePropertiesCharlieDefined_Is_Yes() {
         given()
             .queryParam( "delta", "")
@@ -172,20 +159,6 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Value.Properties.delta.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void postObject_Param0ValuePropertiesDeltaType_Is_NotString() {
-        given()
-            .queryParam( "delta", "true")
-            .queryParam( "ljips", "true")
-            .queryParam( "qvpzrlhxfi", "lbmnqax,-707.1")
-        .when()
-            .request( "POST", "/object")
-        .then()
-            // param0.Value.Properties.delta.Type=Not string
             .statusCode( isBadRequest())
             ;
     }

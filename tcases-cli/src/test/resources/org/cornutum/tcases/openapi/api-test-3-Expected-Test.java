@@ -115,18 +115,6 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     }
 
     @Test
-    public void tracePosts_PostIdItemsContainsType_Is_NotString() {
-        given()
-            .cookie( "postId", "49|qhpdtdbqfk,-320,wrtsmrqtiqkh,843,w,-699.8")
-        .when()
-            .request( "TRACE", "/posts")
-        .then()
-            // postId.Items.Contains.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void tracePosts_PostIdItemsContainsValue_Is_Other() {
         given()
             .cookie( "postId", "[(L&~c@x{Xp7Btyr+R+'p[jrH_o$X`LnQgI'mW?MxX|GcS[=P2R2jAx5z4OLaEDo=8cde$AvZR#F#0>Z[cld8Em_%vE!{(9$+z!(Ghc.{J[m^1HdT/7PKLdR0v:@srfapHf(c/l2s&<{QFg8oMlvF<0@dbS:.")
@@ -311,18 +299,6 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
             .request( "TRACE", "/posts/{attributes}")
         .then()
             // attributes.Value.Properties.subject.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_NotString() {
-        given()
-            .pathParam( "attributes", ";approved=false;subject=cblssshuamos,-395,fswhlbninr,true;likes=867422281")
-        .when()
-            .request( "TRACE", "/posts/{attributes}")
-        .then()
-            // attributes.Value.Properties.subject.Type=Not string
             .statusCode( isBadRequest())
             ;
     }

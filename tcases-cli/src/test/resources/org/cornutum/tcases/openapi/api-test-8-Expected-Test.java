@@ -126,18 +126,6 @@ public class MyTest extends MyBaseClass {
     }
 
     @Test
-    public void patchPost_PostMarksItemsContainsType_Is_NotString() {
-        given()
-            .queryParam( "Post Marks", "c")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Contains.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
             .queryParam( "Post Marks", "j]s}f?r68%}sCY:`Ox6#0{D4#7]d#G6'ctN&LOh(h8lDPv@KQt$By\"Pe`}7zy\"gjGs6(2SD,;HDm8&5ui)m.gLEXa[@j39#x/n;y2*ql0'1kFor@*kV{LMqYgm}RI|%,?2Xymv&}H#;=Djkkb=FG+};m0{JacOOE\\zCRKR7+~B|)bYS!'/|cFUf1<inkYU1Q;..e}q/L~$R=@u7_(}{<s%`yJ!>P1\\")
@@ -372,21 +360,6 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_NotString() {
-        given()
-            .queryParam( "postId", "24320768166583601.4")
-            .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "false")
-            .formParam( "reviewer", "-171")
-        .when()
-            .request( "PUT", "/post")
-        .then()
-            // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string
             .statusCode( isBadRequest())
             ;
     }
@@ -664,36 +637,6 @@ public class MyTest extends MyBaseClass {
     }
 
     @Test
-    public void putPosts_PostIdValuePropertiesCountryType_Is_NotString() {
-        given()
-            .cookie( "country", "JI7K8,bO*2,")
-            .cookie( "region", ")")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"b@D.net\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.country.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesCountryValueLength_Is_0() {
-        given()
-            .cookie( "country", "")
-            .cookie( "region", "6")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"X@L.net\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.country.Value.Length=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         given()
             .cookie( "country", "{DMe:+Q(5)aW)N%Ge")
@@ -733,36 +676,6 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.region.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesRegionType_Is_NotString() {
-        given()
-            .cookie( "country", "7")
-            .cookie( "region", "681.2")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"-@H.gov\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.region.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesRegionValueLength_Is_0() {
-        given()
-            .cookie( "country", "Q")
-            .cookie( "region", "")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"}@y.org\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.region.Value.Length=0
             .statusCode( isBadRequest())
             ;
     }
@@ -888,21 +801,6 @@ public class MyTest extends MyBaseClass {
     }
 
     @Test
-    public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_NotString() {
-        given()
-            .cookie( "country", "N")
-            .cookie( "region", "U")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":true}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // Body.text-plain.Value.Properties.email.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         given()
             .cookie( "country", "}")
@@ -958,21 +856,6 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_BodyTextPlainValuePropertiesTextType_Is_NotString() {
-        given()
-            .cookie( "country", "B")
-            .cookie( "region", "N")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":[\"]h.\",\"[m3'1;\"],\"email\":\"s@O.net\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // Body.text-plain.Value.Properties.text.Type=Not string
             .statusCode( isBadRequest())
             ;
     }

@@ -126,18 +126,6 @@ public class MyTest extends MyBaseClass {
     }
 
     @Test
-    public void patchPost_PostMarksItemsContainsType_Is_NotString() {
-        given()
-            .queryParam( "Post Marks", "-5")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Contains.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
             .queryParam( "Post Marks", "1U53/_Q41CZ68YH)c3/q\"S9&SeyuB/_a&J\"NSg`yJ&38{0]~J2NX74igr%E5EGc\\OigZb;Oe{5oWhA5|hu8QQ#eO@QBr\\B)45dU%wpU*Lq/%;JxdQHuGKPFqA>MQX^9[lVB8=e>fq\\XzA7T\"ILUr9sj.^y5t%1l}>dsaGQec@CT,J~pO!")
@@ -310,18 +298,6 @@ public class MyTest extends MyBaseClass {
             .request( "TRACE", "/posts/{attributes}")
         .then()
             // attributes.Value.Properties.subject.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_NotString() {
-        given()
-            .pathParam( "attributes", ";approved=false;subject=mP:A,>?3p,s&;likes=132350435")
-        .when()
-            .request( "TRACE", "/posts/{attributes}")
-        .then()
-            // attributes.Value.Properties.subject.Type=Not string
             .statusCode( isBadRequest())
             ;
     }

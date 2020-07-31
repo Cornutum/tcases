@@ -708,36 +708,6 @@ public class MyTest extends MyBaseClass {
     }
 
     @Test
-    public void putPosts_PostIdValuePropertiesCountryType_Is_NotString() {
-        given()
-            .cookie( "country", "JI7K8,bO*2,")
-            .cookie( "region", ")")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"b@D.net\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.country.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesCountryValueLength_Is_0() {
-        given()
-            .cookie( "country", "")
-            .cookie( "region", "6")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"X@L.net\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.country.Value.Length=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         given()
             .cookie( "country", "{DMe:+Q(5)aW)N%Ge")
@@ -777,36 +747,6 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.region.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesRegionType_Is_NotString() {
-        given()
-            .cookie( "country", "7")
-            .cookie( "region", "681.2")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"-@H.gov\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.region.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesRegionValueLength_Is_0() {
-        given()
-            .cookie( "country", "Q")
-            .cookie( "region", "")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"}@y.org\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.region.Value.Length=0
             .statusCode( isBadRequest())
             ;
     }
@@ -932,21 +872,6 @@ public class MyTest extends MyBaseClass {
     }
 
     @Test
-    public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_NotString() {
-        given()
-            .cookie( "country", "N")
-            .cookie( "region", "U")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":true}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // Body.text-plain.Value.Properties.email.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         given()
             .cookie( "country", "}")
@@ -1002,21 +927,6 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_BodyTextPlainValuePropertiesTextType_Is_NotString() {
-        given()
-            .cookie( "country", "B")
-            .cookie( "region", "N")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":[\"]h.\",\"[m3'1;\"],\"email\":\"s@O.net\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // Body.text-plain.Value.Properties.text.Type=Not string
             .statusCode( isBadRequest())
             ;
     }
@@ -1151,18 +1061,6 @@ public class MyTest extends MyBaseClass {
             .request( "TRACE", "/posts")
         .then()
             // postId.Items.Contains.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void tracePosts_PostIdItemsContainsType_Is_NotString() {
-        given()
-            .cookie( "postId", "-405|-786")
-        .when()
-            .request( "TRACE", "/posts")
-        .then()
-            // postId.Items.Contains.Type=Not string
             .statusCode( isBadRequest())
             ;
     }

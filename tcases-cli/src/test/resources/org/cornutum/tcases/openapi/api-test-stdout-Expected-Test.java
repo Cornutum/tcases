@@ -109,19 +109,6 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
-    public void headPost_UserAttributesValuePropertiesUserTypeType_Is_NotString() {
-        given()
-            .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "user attributes[user-type]", "true")
-        .when()
-            .request( "HEAD", "/post")
-        .then()
-            // user-attributes.Value.Properties.user-type.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_Other() {
         given()
             .queryParam( "post?[post-references]", "0,2")
@@ -433,18 +420,6 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
-    public void patchPost_PostMarksItemsContainsType_Is_NotString() {
-        given()
-            .queryParam( "Post Marks", "true")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Contains.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
             .queryParam( "Post Marks", "lddD|&#G@^v]`2^LMsq[P!dDWgE[#cLX&El|P1h'\"MfsJsOj7}-g=M{y~QqB?K.d\\+16j_AXL[BvizE*b5|0e|\\,NRHWOJN9XIlQ{/p)p2DZ,R8RAnI\"z.f8X^RLv]{Cdr%%|]G3SvhE5cF0cF`YXz,iHvSL+P6G<Wb_*i504*r~wE:/_8}Y^B=#9ZQo*^d-zO:K8jn?EK']vY.v\"L{c()hy,?")
@@ -679,21 +654,6 @@ public class OpenAPIRequestTestCasesTest {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_NotString() {
-        given()
-            .queryParam( "postId", "345166232202424351.9")
-            .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "false")
-            .formParam( "reviewer", "")
-        .when()
-            .request( "PUT", "/post")
-        .then()
-            // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string
             .statusCode( isBadRequest())
             ;
     }
@@ -1568,36 +1528,6 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
-    public void putPosts_PostIdValuePropertiesCountryType_Is_NotString() {
-        given()
-            .cookie( "country", "")
-            .cookie( "region", "(")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"B@Y.org\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.country.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesCountryValueLength_Is_0() {
-        given()
-            .cookie( "country", "")
-            .cookie( "region", "5")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"h@A.net\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.country.Value.Length=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         given()
             .cookie( "country", "+X^NIyVxY>0H]#cgg")
@@ -1637,36 +1567,6 @@ public class OpenAPIRequestTestCasesTest {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.region.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesRegionType_Is_NotString() {
-        given()
-            .cookie( "country", "K")
-            .cookie( "region", "true")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"/@u.gov\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.region.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesRegionValueLength_Is_0() {
-        given()
-            .cookie( "country", "m")
-            .cookie( "region", "")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"g@f.edu\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // postId.Value.Properties.region.Value.Length=0
             .statusCode( isBadRequest())
             ;
     }
@@ -1792,21 +1692,6 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
-    public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_NotString() {
-        given()
-            .cookie( "country", "^")
-            .cookie( "region", "-")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":[\"yL\"]}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // Body.text-plain.Value.Properties.email.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         given()
             .cookie( "country", ">")
@@ -1862,21 +1747,6 @@ public class OpenAPIRequestTestCasesTest {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_BodyTextPlainValuePropertiesTextType_Is_NotString() {
-        given()
-            .cookie( "country", "$")
-            .cookie( "region", "8")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":{\"tsa\":-963.9,\"zrlsaxkmbeeevzlb\":658},\"email\":\"h@i.net\"}")
-        .when()
-            .request( "PUT", "/posts")
-        .then()
-            // Body.text-plain.Value.Properties.text.Type=Not string
             .statusCode( isBadRequest())
             ;
     }
@@ -2011,18 +1881,6 @@ public class OpenAPIRequestTestCasesTest {
             .request( "TRACE", "/posts")
         .then()
             // postId.Items.Contains.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void tracePosts_PostIdItemsContainsType_Is_NotString() {
-        given()
-            .cookie( "postId", "239.6|true")
-        .when()
-            .request( "TRACE", "/posts")
-        .then()
-            // postId.Items.Contains.Type=Not string
             .statusCode( isBadRequest())
             ;
     }
@@ -2217,18 +2075,6 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
-    public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_NotString() {
-        given()
-            .pathParam( "attributes", ";approved=false;subject=-442;likes=222416384")
-        .when()
-            .request( "TRACE", "/posts/{attributes}")
-        .then()
-            // attributes.Value.Properties.subject.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_Other() {
         given()
             .pathParam( "attributes", ";approved=false;subject=fwcJYu&H7cwat!)7U*9%m#/E\\xaR C3L$L!7CuE^D`zivT 8KY2G\"'?FjW?la&:<{E&>9t6sxMPPkU\"t6BzKl0n)<r-5ca7J,/U#OG;;,p-jforEO=_lZy\"U R~*T(\"i,Z%$ 3uJ6g}6@[TS7&oeK>57gl+z;likes=411920977")
@@ -2285,19 +2131,6 @@ public class OpenAPIRequestTestCasesTest {
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
             .statusCode( isSuccess())
-            ;
-    }
-
-    @Test
-    public void deletePostsUserIdAttributes_UserIdDefined_Is_No() {
-        given()
-            .pathParam( "[attributes]", "approved=true")
-            .pathParam( "userId", "")
-        .when()
-            .request( "DELETE", "/posts/{userId}/{[attributes]}")
-        .then()
-            // userId.Defined=No
-            .statusCode( isBadRequest())
             ;
     }
 

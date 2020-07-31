@@ -247,21 +247,6 @@ public class MyMocoTest {
     }
 
     @Test
-    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_NotString() {
-        given()
-            .queryParam( "postId", "701243072640385781.2")
-            .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "false")
-            .formParam( "reviewer", "obuuyffctnwssfrb,EqV&$")
-        .when()
-            .request( "PUT", "http://localhost:9999/post")
-        .then()
-            // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_Other() {
         given()
             .queryParam( "postId", "6066229520155986.0")
@@ -534,36 +519,6 @@ public class MyMocoTest {
     }
 
     @Test
-    public void putPosts_PostIdValuePropertiesCountryType_Is_NotString() {
-        given()
-            .cookie( "country", "-525")
-            .cookie( "region", "n")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"-@2.net\"}")
-        .when()
-            .request( "PUT", "http://localhost:9999/posts")
-        .then()
-            // postId.Value.Properties.country.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesCountryValueLength_Is_0() {
-        given()
-            .cookie( "country", "")
-            .cookie( "region", "T")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"?@q.com\"}")
-        .when()
-            .request( "PUT", "http://localhost:9999/posts")
-        .then()
-            // postId.Value.Properties.country.Value.Length=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         given()
             .cookie( "country", "J$7j'AJKsh61`bvz&")
@@ -603,36 +558,6 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.region.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesRegionType_Is_NotString() {
-        given()
-            .cookie( "country", "b")
-            .cookie( "region", "385")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"6@v.org\"}")
-        .when()
-            .request( "PUT", "http://localhost:9999/posts")
-        .then()
-            // postId.Value.Properties.region.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_PostIdValuePropertiesRegionValueLength_Is_0() {
-        given()
-            .cookie( "country", "=")
-            .cookie( "region", "")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"B@s.gov\"}")
-        .when()
-            .request( "PUT", "http://localhost:9999/posts")
-        .then()
-            // postId.Value.Properties.region.Value.Length=0
             .statusCode( isBadRequest())
             ;
     }
@@ -758,21 +683,6 @@ public class MyMocoTest {
     }
 
     @Test
-    public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_NotString() {
-        given()
-            .cookie( "country", "U")
-            .cookie( "region", "@")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":{\"zxcpsbfk\":205.2}}")
-        .when()
-            .request( "PUT", "http://localhost:9999/posts")
-        .then()
-            // Body.text-plain.Value.Properties.email.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         given()
             .cookie( "country", "X")
@@ -828,21 +738,6 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPosts_BodyTextPlainValuePropertiesTextType_Is_NotString() {
-        given()
-            .cookie( "country", "<")
-            .cookie( "region", "+")
-            .contentType( "text/plain")
-            .request().body( "{\"text\":true,\"email\":\"c@U.gov\"}")
-        .when()
-            .request( "PUT", "http://localhost:9999/posts")
-        .then()
-            // Body.text-plain.Value.Properties.text.Type=Not string
             .statusCode( isBadRequest())
             ;
     }

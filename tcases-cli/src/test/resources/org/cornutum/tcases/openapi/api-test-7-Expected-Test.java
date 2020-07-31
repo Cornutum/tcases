@@ -109,19 +109,6 @@ public class WhyNotTest {
     }
 
     @Test
-    public void headPost_UserAttributesValuePropertiesUserTypeType_Is_NotString() {
-        given()
-            .queryParam( "post?[post-references]", "0,1")
-            .queryParam( "user attributes[user-type]", "")
-        .when()
-            .request( "HEAD", "/post")
-        .then()
-            // user-attributes.Value.Properties.user-type.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_Other() {
         given()
             .queryParam( "post?[post-references]", "0,2")
@@ -433,18 +420,6 @@ public class WhyNotTest {
     }
 
     @Test
-    public void patchPost_PostMarksItemsContainsType_Is_NotString() {
-        given()
-            .queryParam( "Post Marks", "d&%5nxM,_DfZ;L,W<")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Contains.Type=Not string
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
             .queryParam( "Post Marks", ":-f*EN_~(u%i?(R61,]/RFOV6(??>jo#OW\\|J:^[hs,LIH|Ec<s'\"wWbG~#>I6}(IQ#UE4)Zd.1`sm(7FP68}H_i9{[i&>*Br#u,\\Mq_e6JtVJ/X'e0_(k\\#[_zmwjf+N-pdv\\U;!0=s[({0%Ppj.S&;=|7>,4<kz<rg/ggvPa9alK$>'c~WFwmC.Uf2z6-OYp~\"mW7~-k\\i)VSbT7fT6aNUD\\*sJc\"W7Qy>)O,Ed^VNa")
@@ -679,21 +654,6 @@ public class WhyNotTest {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=null
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_NotString() {
-        given()
-            .queryParam( "postId", "701243072640385781.2")
-            .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "false")
-            .formParam( "reviewer", "obuuyffctnwssfrb,EqV&$")
-        .when()
-            .request( "PUT", "/post")
-        .then()
-            // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string
             .statusCode( isBadRequest())
             ;
     }
