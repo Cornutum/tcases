@@ -3,6 +3,7 @@ package org.cornutum.examples.tests;
 
 import org.junit.Test;
 
+import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -16,7 +17,7 @@ public class MyTests {
         .when()
             .request( "OPTIONS", "/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -28,7 +29,7 @@ public class MyTests {
         .when()
             .request( "OPTIONS", "/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -40,7 +41,7 @@ public class MyTests {
         .when()
             .request( "OPTIONS", "/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -52,7 +53,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -65,7 +66,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -78,7 +79,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Type=Not array
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -91,7 +92,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Items.Size=1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -104,7 +105,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Items.Size=3
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -117,7 +118,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Items.Contains.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -130,7 +131,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Items.Contains.Type=Not integer
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -143,7 +144,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Items.Contains.Value.Is=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -156,7 +157,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-Post-Types.Items.Unique=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -168,7 +169,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-User-Id.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -181,7 +182,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-User-Id.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -194,7 +195,7 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-User-Id.Type=Not integer
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -207,7 +208,15 @@ public class MyTests {
             .request( "OPTIONS", "/posts")
         .then()
             // X-User-Id.Value.Is=-1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
+    }
+
+    private Matcher<Integer> isSuccess() {
+        return allOf( greaterThanOrEqualTo(200), lessThan(300));
+    }
+
+    private Matcher<Integer> isBadRequest() {
+        return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 }

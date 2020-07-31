@@ -3,6 +3,7 @@ package org.cornutum.readonly;
 
 import org.junit.Test;
 
+import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -18,7 +19,7 @@ public class ReadOnlyTest extends MyBaseClass {
         .when()
             .request( "POST", "/object")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -28,7 +29,7 @@ public class ReadOnlyTest extends MyBaseClass {
         .when()
             .request( "POST", "/object")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -40,7 +41,7 @@ public class ReadOnlyTest extends MyBaseClass {
         .when()
             .request( "POST", "/object")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -52,7 +53,7 @@ public class ReadOnlyTest extends MyBaseClass {
         .when()
             .request( "POST", "/object")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -65,7 +66,7 @@ public class ReadOnlyTest extends MyBaseClass {
         .when()
             .request( "POST", "/object")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -77,7 +78,7 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -89,7 +90,7 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -101,7 +102,7 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Value.Property-Count=< 2
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -117,7 +118,7 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Value.Properties.alpha.Defined=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -130,7 +131,7 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Value.Properties.bravo.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -143,7 +144,7 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Value.Properties.bravo.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -157,7 +158,7 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Value.Properties.charlie.Defined=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -171,7 +172,7 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Value.Properties.delta.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -185,7 +186,15 @@ public class ReadOnlyTest extends MyBaseClass {
             .request( "POST", "/object")
         .then()
             // param0.Value.Properties.delta.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
+    }
+
+    private Matcher<Integer> isSuccess() {
+        return allOf( greaterThanOrEqualTo(200), lessThan(300));
+    }
+
+    private Matcher<Integer> isBadRequest() {
+        return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 }

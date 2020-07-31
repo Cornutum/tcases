@@ -7,6 +7,7 @@ import com.github.dreamhead.moco.junit.MocoJunitRunner;
 import static com.github.dreamhead.moco.Moco.*;
 import org.junit.ClassRule;
 
+import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -23,7 +24,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "HEAD", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -35,7 +36,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "HEAD", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -47,7 +48,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "HEAD", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -59,7 +60,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // user-attributes.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -72,7 +73,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // user-attributes.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -85,7 +86,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // user-attributes.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -97,7 +98,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // user-attributes.Value.Properties.user-type.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -110,7 +111,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // user-attributes.Value.Properties.user-type.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -123,7 +124,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // user-attributes.Value.Properties.user-type.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -136,7 +137,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // user-attributes.Value.Properties.user-type.Value=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -151,7 +152,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // user-attributes.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -163,7 +164,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -176,7 +177,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -189,7 +190,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -201,7 +202,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -214,7 +215,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -227,7 +228,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Type=Not array
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -240,7 +241,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Items.Size=1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -253,7 +254,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Items.Size=3
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -266,7 +267,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Items.Contains.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -279,7 +280,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Items.Contains.Type=Not integer
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -292,7 +293,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Items.Contains.Value.Is=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -305,7 +306,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.post-references.Items.Unique=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -319,7 +320,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "HEAD", "http://localhost:12306/post")
         .then()
             // post.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -330,7 +331,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "PATCH", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -341,7 +342,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "PATCH", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -352,7 +353,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "PATCH", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -363,7 +364,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "PATCH", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -374,7 +375,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "http://localhost:12306/post")
         .then()
             // Post-Marks.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -386,7 +387,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "http://localhost:12306/post")
         .then()
             // Post-Marks.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -398,7 +399,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "http://localhost:12306/post")
         .then()
             // Post-Marks.Type=Not array
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -410,7 +411,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "http://localhost:12306/post")
         .then()
             // Post-Marks.Items.Size=0
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -422,7 +423,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "http://localhost:12306/post")
         .then()
             // Post-Marks.Items.Size=4
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -434,7 +435,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "http://localhost:12306/post")
         .then()
             // Post-Marks.Items.Contains.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -446,7 +447,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "http://localhost:12306/post")
         .then()
             // Post-Marks.Items.Contains.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -458,7 +459,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "http://localhost:12306/post")
         .then()
             // Post-Marks.Items.Contains.Value=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -472,7 +473,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -486,7 +487,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -500,7 +501,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -514,7 +515,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // postId.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -529,7 +530,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // postId.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -544,7 +545,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // postId.Type=Not number
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -559,7 +560,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // postId.Value.Is=-1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -571,7 +572,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -585,7 +586,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.Media-Type=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -598,7 +599,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -612,7 +613,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -626,7 +627,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -641,7 +642,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -656,7 +657,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=Not boolean
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -670,7 +671,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -685,7 +686,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -700,7 +701,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -715,7 +716,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -733,7 +734,15 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PUT", "http://localhost:12306/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
+    }
+
+    private Matcher<Integer> isSuccess() {
+        return allOf( greaterThanOrEqualTo(200), lessThan(300));
+    }
+
+    private Matcher<Integer> isBadRequest() {
+        return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 }

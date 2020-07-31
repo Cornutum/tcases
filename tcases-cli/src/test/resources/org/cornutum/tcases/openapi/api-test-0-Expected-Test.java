@@ -3,6 +3,7 @@ package org.cornutum.examples;
 
 import org.junit.Test;
 
+import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -15,7 +16,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "GET", "/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -26,7 +27,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "GET", "/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -37,7 +38,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -49,7 +50,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -61,7 +62,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Type=Not array
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -73,7 +74,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Items.Size=0
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -85,7 +86,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Items.Size=5
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -97,7 +98,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Items.Contains.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -109,7 +110,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Items.Contains.Type=Not integer
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -121,7 +122,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Items.Contains.Value.Is=-1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -133,7 +134,7 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Items.Contains.Value.Is=101
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -145,7 +146,25 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Items.Unique=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
+    }
+
+    @Test
+    public void getUsers() {
+        given()
+        .when()
+            .request( "GET", "/users")
+        .then()
+            .statusCode( isSuccess())
+            ;
+    }
+
+    private Matcher<Integer> isSuccess() {
+        return allOf( greaterThanOrEqualTo(200), lessThan(300));
+    }
+
+    private Matcher<Integer> isBadRequest() {
+        return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 }

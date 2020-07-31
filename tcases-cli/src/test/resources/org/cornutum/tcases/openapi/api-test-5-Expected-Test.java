@@ -9,6 +9,7 @@ import org.junit.Rule;
 import com.github.dreamhead.moco.HttpsCertificate;
 import static com.github.dreamhead.moco.HttpsCertificate.certificate;
 
+import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -28,7 +29,7 @@ public class MyMocoTest {
         .when()
             .request( "PUT", "http://localhost:9999/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -42,7 +43,7 @@ public class MyMocoTest {
         .when()
             .request( "PUT", "http://localhost:9999/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -56,7 +57,7 @@ public class MyMocoTest {
         .when()
             .request( "PUT", "http://localhost:9999/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -70,7 +71,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // postId.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -85,7 +86,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // postId.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -100,7 +101,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // postId.Type=Not number
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -115,7 +116,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // postId.Value.Is=-1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -127,7 +128,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -141,7 +142,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.Media-Type=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -154,7 +155,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -168,7 +169,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -182,7 +183,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -197,7 +198,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -212,7 +213,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=Not boolean
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -226,7 +227,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -241,7 +242,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -256,7 +257,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -271,7 +272,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -289,7 +290,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -300,7 +301,7 @@ public class MyMocoTest {
         .when()
             .request( "GET", "http://localhost:9999/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -311,7 +312,7 @@ public class MyMocoTest {
         .when()
             .request( "GET", "http://localhost:9999/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -322,7 +323,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -334,7 +335,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -346,7 +347,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Type=Not array
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -358,7 +359,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Items.Size=0
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -370,7 +371,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Items.Size=5
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -382,7 +383,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Items.Contains.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -394,7 +395,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Items.Contains.Type=Not integer
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -406,7 +407,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Items.Contains.Value.Is=-1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -418,7 +419,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Items.Contains.Value.Is=101
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -430,7 +431,7 @@ public class MyMocoTest {
             .request( "GET", "http://localhost:9999/posts")
         .then()
             // ids.Items.Unique=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -444,7 +445,7 @@ public class MyMocoTest {
         .when()
             .request( "PUT", "http://localhost:9999/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -458,7 +459,7 @@ public class MyMocoTest {
         .when()
             .request( "PUT", "http://localhost:9999/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -471,7 +472,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -485,7 +486,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -499,7 +500,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -513,7 +514,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.country.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -528,7 +529,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.country.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -543,7 +544,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.country.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -558,7 +559,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.country.Value.Length=0
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -573,7 +574,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.country.Value.Length=17
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -587,7 +588,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.region.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -602,7 +603,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.region.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -617,7 +618,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.region.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -632,7 +633,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.region.Value.Length=0
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -647,7 +648,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.region.Value.Length=17
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -664,7 +665,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // postId.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -677,7 +678,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -692,7 +693,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.Media-Type=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -707,7 +708,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -722,7 +723,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -737,7 +738,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -752,7 +753,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -767,7 +768,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -782,7 +783,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Value.Length=6
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -797,7 +798,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Value.Length=33
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -812,7 +813,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -827,7 +828,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -842,7 +843,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -857,7 +858,7 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Value.Length=65
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -872,7 +873,15 @@ public class MyMocoTest {
             .request( "PUT", "http://localhost:9999/posts")
         .then()
             // Body.text-plain.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
+    }
+
+    private Matcher<Integer> isSuccess() {
+        return allOf( greaterThanOrEqualTo(200), lessThan(300));
+    }
+
+    private Matcher<Integer> isBadRequest() {
+        return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 }
