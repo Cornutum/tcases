@@ -1,0 +1,84 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "realize",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/realize": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param",
+                        "in": "header",
+
+                        "style": "simple",
+                        "required": true,
+
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "minLength": 0
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "nullable": false,
+                                        "minimum": 0
+                                    },
+                                    "tag": {
+                                        "type": "string",
+                                        "nullable": false,
+                                        "minLength": 0
+                                    }
+                                },
+                                "required": [ "id", "tag" ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

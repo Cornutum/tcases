@@ -21,7 +21,15 @@ public class DataValue<T>
   public static enum Type
 	{
 	ARRAY, BOOLEAN, INTEGER, NULL, NUMBER, OBJECT, STRING;
-	
+
+    /**
+     * Returns true if this type designates a composite value
+     */
+    public boolean isComposite()
+      {
+      return this == ARRAY || this == OBJECT;
+      }
+
 	/**
 	 * Returns the set containing only the specified type.
 	 */

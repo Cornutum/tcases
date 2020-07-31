@@ -1458,12 +1458,14 @@ public class ApiTestCommand
     else
       {
       if( options.getRandomSeed() == null)
-          {
-          options.setRandomSeed( options.getDefaultRandomSeed());
-          }
+        {
+        options.setRandomSeed( options.getDefaultRandomSeed());
+        }
       logger_.info( "Generating request test cases using random seed={}", options.getRandomSeed());
       RequestTestDef testDef = RequestCases.getRequestCases( Tcases.getTests( inputDef, null, null), options.getResolverContext());
-      TestSource testSource = options.getTestSource( testDef);
+
+      // Write API tests for realized request cases only
+      TestSource testSource = options.getTestSource( RequestCases.realizeRequestCases( testDef));
 
       TestCaseWriter testCaseWriter = options.getTestCaseWriter();
       TestWriter<?,?> testWriter = options.getTestWriter( testCaseWriter);

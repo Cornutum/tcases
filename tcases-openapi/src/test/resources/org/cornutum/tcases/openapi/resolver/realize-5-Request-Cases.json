@@ -1,0 +1,804 @@
+
+[
+    {
+        "id": 0,
+        "name": "param.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "A"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -941699467,
+                "format": "int32"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "name": "param.Value.Properties.id.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ")$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 642692119,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": 0,
+                "format": "int32"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "name": "Body.application-json.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "I"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": 14026026,
+                "format": "int32"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "name": "param.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -1065650488,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Defined=No"
+    },
+    {
+        "id": 4,
+        "name": "param.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -757091478,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Type=null"
+    },
+    {
+        "id": 5,
+        "name": "param.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "integer",
+                    "value": -821,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -461374118,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Type=Not object"
+    },
+    {
+        "id": 6,
+        "name": "param.Value.Properties.id.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "leN\"]Y,9fw7?5 KJYu$s]/Hf"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -693866140,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.id.Defined=No"
+    },
+    {
+        "id": 7,
+        "name": "param.Value.Properties.id.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "pDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSV"
+                        },
+                        "id": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -389121941,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.id.Type=null"
+    },
+    {
+        "id": 8,
+        "name": "param.Value.Properties.id.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5a"
+                        },
+                        "id": {
+                            "type": "object",
+                            "value": {
+                                "lzzo": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "2kNWE"
+                                        }
+                                    ]
+                                },
+                                "juk": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "bE"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "zR;"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "Y#'("
+                                        }
+                                    ]
+                                },
+                                "beh": {
+                                    "type": "string",
+                                    "value": ">ddf523C"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -382452494,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.id.Type=Not integer"
+    },
+    {
+        "id": 9,
+        "name": "param.Value.Properties.id.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "(#ur5@!]i@lNx2T>[ T.n+4e/QXQFoMTvrLW#X}bu (P,&tLxMMRrgg;PU{$X/&13;Oq9B]BAEm+ET;&8pY>.SkrSOH<zOh.ISql!.*/Y@S}4zRlE7O]^Oj;R(hB:\\#EOdZX@_#9h>Sx*]@2vCg\\"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -355041748,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.id.Value.Is=-1"
+    },
+    {
+        "id": 10,
+        "name": "param.Value.Properties.tag.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "id": {
+                            "type": "integer",
+                            "value": 637396423,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -679135907,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.tag.Defined=No"
+    },
+    {
+        "id": 11,
+        "name": "param.Value.Properties.tag.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 922774300,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -162539597,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.tag.Type=null"
+    },
+    {
+        "id": 12,
+        "name": "param.Value.Properties.tag.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "number",
+                            "value": -171.5
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 211808037,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -625440465,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.tag.Type=Not string"
+    },
+    {
+        "id": 13,
+        "name": "param.Value.Properties.tag.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 219048253,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -349146382,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.tag.Value.Length=0"
+    },
+    {
+        "id": 14,
+        "name": "param.Value.Properties.Additional='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "-G\\$L MJd0T$mTU|Te.j./Z~wa[oW79@!}GdOxSX4_HQoZsW F4j#G(9$4Z9gxd+p>N0dO\\9hw3dRq9;"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 755826816,
+                            "format": "int32"
+                        },
+                        "r": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "qI^e"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "4Hd@2"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "2"
+                                }
+                            ]
+                        },
+                        "cf": {
+                            "type": "string",
+                            "value": "w RJ=\"8"
+                        },
+                        "rqnwnhrx": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -625813097,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "param.Value.Properties.Additional=Yes"
+    },
+    {
+        "id": 15,
+        "name": "Body.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "$Yl!&( 3hQ.G3P{C_2`OKs914cJYO&=(T>{hfh'##I/*uigZ6GmM&Pm%` %DKf!jA,:\\(DkCa \"+#%nm,B5L3@': xQ`YeX<nq9zrZ\\>W/i'FFp3[cDuks&|t5vCKQjPAF_@KB&HOD7y]8s#C'wGb{A1k?w(RX{T1Jrw#^pfc'V[nyu0(uBY"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 726452083,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": false
+        },
+        "invalidInput": "Body.Defined=No"
+    },
+    {
+        "id": 16,
+        "name": "Body.Media-Type='Other'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "pE!j`fgJ${JXIpa67M2i@.lwXgIZjb%WWDG:>2AvL#|L1:8E;u#>Dmy:o27HkDZ%rt)listU>?]sAviyah`46\"yhpb\"~'tm1ZV>& S{DOg6(3Wtz>n1bF%j|UIqx[@`~t0Yub'x>\"&w<b|xQ#,:t\"S`9T\\[450nSg],I=BTHC6;vgsi}{1YsSiTi|>S:c`%\""
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 845325228,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/xml",
+            "data": {
+                "type": "object",
+                "value": {
+                }
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.Media-Type=Other"
+    },
+    {
+        "id": 17,
+        "name": "Body.application-json.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": "IY0S#=[fBQR|Yk_o#)?iw1sv09rscxxp8%X/#>V|=KN(ip@[:+&rEEMcN.PyrD\\.9M5:</v2\\t|3I;&@@K~$JU@ihst_E[pP)^"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 740573007,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "null",
+                "value": null
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Type=null"
+    },
+    {
+        "id": 18,
+        "name": "Body.application-json.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ")x4U1!` `FGJ+1Z~3\"P(Ys|!DI,F) >*$t{egzYY<JB](%E4N9BRTWHzX(0o|HhJW4M.w(:\"QB6?Nu^7M%pKSwr/BFl6m7V$v2vn mLDewSA>qQZ=`bn"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 232465125,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -518.2
+            },
+            "valid": false
+        },
+        "invalidInput": "Body.application-json.Type=Not integer"
+    }
+]
