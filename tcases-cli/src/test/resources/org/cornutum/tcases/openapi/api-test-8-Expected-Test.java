@@ -4,6 +4,7 @@ import org.cornutum.utils.MyBaseClass
 
 import org.junit.Test;
 
+import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -16,7 +17,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PATCH", "/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -27,7 +28,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PATCH", "/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -38,7 +39,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PATCH", "/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -49,7 +50,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PATCH", "/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -60,7 +61,7 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -72,7 +73,7 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -84,7 +85,7 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Type=Not array
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -96,7 +97,7 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Items.Size=0
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -108,7 +109,7 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Items.Size=4
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -120,7 +121,7 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Items.Contains.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -132,7 +133,7 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Items.Contains.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -144,7 +145,7 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Items.Contains.Value=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -158,7 +159,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PUT", "/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -172,7 +173,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PUT", "/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -186,7 +187,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PUT", "/post")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -200,7 +201,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // postId.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -215,7 +216,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // postId.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -230,7 +231,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // postId.Type=Not number
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -245,7 +246,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // postId.Value.Is=-1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -257,7 +258,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -271,7 +272,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.Media-Type=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -284,7 +285,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -298,7 +299,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -312,7 +313,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -327,7 +328,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -342,7 +343,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=Not boolean
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -356,7 +357,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -371,7 +372,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -386,7 +387,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -401,7 +402,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -417,7 +418,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/post")
         .then()
             // Body.application-x-www-form-urlencoded.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -429,7 +430,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -441,7 +442,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -454,7 +455,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // userId.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -467,7 +468,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // userId.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -480,7 +481,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // userId.Type=Not integer
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -493,7 +494,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // userId.Value.Is=-1
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -506,7 +507,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // userId.Value.Is=1001
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -519,7 +520,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // approved.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -532,7 +533,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // approved.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -545,7 +546,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // approved.Type=Not integer
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -558,7 +559,7 @@ public class MyTest extends MyBaseClass {
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
             // approved.Value.Is=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -572,7 +573,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PUT", "/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -586,7 +587,7 @@ public class MyTest extends MyBaseClass {
         .when()
             .request( "PUT", "/posts")
         .then()
-            .statusCode( allOf( greaterThanOrEqualTo(200), lessThan(300)))
+            .statusCode( isSuccess())
             ;
     }
 
@@ -599,7 +600,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -613,7 +614,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -629,7 +630,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -643,7 +644,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.country.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -658,7 +659,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.country.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -673,7 +674,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.country.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -688,7 +689,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.country.Value.Length=0
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -703,7 +704,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.country.Value.Length=17
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -717,7 +718,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.region.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -732,7 +733,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.region.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -747,7 +748,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.region.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -762,7 +763,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.region.Value.Length=0
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -777,7 +778,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.region.Value.Length=17
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -794,7 +795,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // postId.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -807,7 +808,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -822,7 +823,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.Media-Type=Other
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -837,7 +838,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -852,7 +853,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Type=Not object
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -867,7 +868,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -882,7 +883,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -897,7 +898,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -912,7 +913,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Value.Length=6
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -927,7 +928,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.email.Value.Length=33
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -942,7 +943,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Defined=No
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -957,7 +958,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Type=null
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -972,7 +973,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Type=Not string
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -987,7 +988,7 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.text.Value.Length=65
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
     }
 
@@ -1002,7 +1003,15 @@ public class MyTest extends MyBaseClass {
             .request( "PUT", "/posts")
         .then()
             // Body.text-plain.Value.Properties.Additional=Yes
-            .statusCode( allOf( greaterThanOrEqualTo(400), lessThan(500)))
+            .statusCode( isBadRequest())
             ;
+    }
+
+    private Matcher<Integer> isSuccess() {
+        return allOf( greaterThanOrEqualTo(200), lessThan(300));
+    }
+
+    private Matcher<Integer> isBadRequest() {
+        return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 }
