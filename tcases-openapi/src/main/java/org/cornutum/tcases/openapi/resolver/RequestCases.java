@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.FunctionTestDef;
 import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.ArrayList;
@@ -259,7 +260,7 @@ public final class RequestCases
           param != null
           && param.getStyle().equals( "simple")
           && param.getLocation() == Location.PATH
-          && !inputType.isComposite();
+          && (!inputType.isComposite() || inputId.equals( toIdentifier( param.getName())));
         })
       .orElse( false);
     }

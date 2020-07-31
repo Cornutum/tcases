@@ -2174,19 +2174,6 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_AttributesDefined_Is_No() {
-        given()
-            .pathParam( "[attributes]", "")
-            .pathParam( "userId", "181273175")
-        .when()
-            .request( "DELETE", "/posts/{userId}/{[attributes]}")
-        .then()
-            // attributes.Defined=No
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void deletePostsUserIdAttributes_AttributesType_Is_Null() {
         given()
             .pathParam( "[attributes]", "")

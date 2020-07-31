@@ -3481,38 +3481,6 @@
         "invalidInput": "userId.Value.Is=-1"
     },
     {
-        "id": 7,
-        "name": "attributes.Defined='No'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "OpenAPI Request Test Cases",
-        "path": "/posts/{userId}/{[attributes]}",
-        "operation": "DELETE",
-        "parameters": [
-            {
-                "name": "[attributes]",
-                "in": "path",
-                "style": "simple",
-                "explode": true,
-                "data": null,
-                "valid": false
-            },
-            {
-                "name": "userId",
-                "in": "path",
-                "style": "simple",
-                "explode": false,
-                "data": {
-                    "type": "integer",
-                    "value": 501099652,
-                    "format": "int32"
-                },
-                "valid": true
-            }
-        ],
-        "invalidInput": "attributes.Defined=No"
-    },
-    {
         "id": 8,
         "name": "attributes.Type=null",
         "server": "/",
