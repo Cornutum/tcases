@@ -5,4 +5,5 @@
 # 
 #######################################################################
 
-exec tcases-exec org.cornutum.tcases.ReducerCommand "$@"
+pgm=`basename "$0"`
+exec tcases-exec $pgm org.cornutum.tcases.ReducerCommand "$@"

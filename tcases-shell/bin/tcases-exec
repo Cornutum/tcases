@@ -5,8 +5,6 @@
 # 
 #######################################################################
 
-pgm=`basename "$0"`
-
 runJava()
 {
   uname=`uname`
@@ -22,6 +20,7 @@ runJava()
     "$@"
 }
 
+pgm=$1; shift
 main=$1; shift
 
 ARGDELIM="|"
