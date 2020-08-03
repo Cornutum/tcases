@@ -78,7 +78,7 @@ public class UuidDomain extends AbstractStringDomain
         toHex( randomBytes, 8, 2),
         toHex( randomBytes, 10, 6));
 
-    // If invalid length, ensure time value is invalid.
+    // If invalid length, ensure UUID value is invalid.
     return
       length < value.length()?
       value.substring( 0, length) :
