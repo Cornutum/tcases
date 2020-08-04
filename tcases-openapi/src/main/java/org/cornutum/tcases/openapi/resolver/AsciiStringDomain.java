@@ -51,6 +51,17 @@ public class AsciiStringDomain extends AbstractStringDomain
     }
 
   /**
+   * Returns a new random string.
+   */
+  protected String newValue( ResolverContext context)
+    {
+    PatternResolver patternResolver = new PatternResolver( context);
+    return
+      patternResolver.generatedMatch( getLengthRange())
+      .orElseGet( () -> super.newValue( context, patternResolver));
+    }
+
+  /**
    * Returns a new random string of the given length for this domain.
    */
   protected String newValue( ResolverContext context, int length)
