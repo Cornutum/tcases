@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -110,7 +110,7 @@
     <TestCase id="3" name="param0.Value.Properties.myString.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -242,7 +242,7 @@
     <TestCase id="7" failure="true" name="param0.Value.Property-Count=&apos;&gt; 3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>

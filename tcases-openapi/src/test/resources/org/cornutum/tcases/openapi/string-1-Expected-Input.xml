@@ -23,10 +23,10 @@
           <Has name="default" value="Change Me!"/>
           <Has name="format" value="password"/>
           <Var name="Length">
-            <Value name="0"/>
-            <Value name="128"/>
+            <Value name="0" property="param0LengthValid"/>
+            <Value name="128" property="param0LengthValid"/>
             <Value name="129" failure="true"/>
-            <Value name="&lt; 128"/>
+            <Value name="&lt; 128" property="param0LengthValid"/>
           </Var>
         </VarSet>
       </VarSet>

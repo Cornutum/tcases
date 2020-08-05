@@ -119,8 +119,8 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Length">
-            <Value name="&gt; 0"/>
-            <Value name="0"/>
+            <Value name="&gt; 0" property="param0LengthValid"/>
+            <Value name="0" property="param0LengthValid"/>
           </Var>
         </VarSet>
       </VarSet>

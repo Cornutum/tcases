@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -51,7 +51,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -120,7 +120,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -193,7 +193,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -263,7 +263,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -351,7 +351,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -420,7 +420,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -493,7 +493,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -563,7 +563,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -651,7 +651,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -720,7 +720,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -793,7 +793,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -863,7 +863,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -951,7 +951,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -1020,7 +1020,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1093,7 +1093,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1163,7 +1163,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1212,7 +1212,7 @@
     <TestCase id="4" name="param0.Alternative.0.Value.Properties.alpha.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative0,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -1250,8 +1250,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -1320,7 +1320,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1393,7 +1393,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1463,7 +1463,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1512,7 +1512,7 @@
     <TestCase id="5" name="param0.Alternative.0.Value.Properties.alpha.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -1550,8 +1550,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -1620,7 +1620,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1693,7 +1693,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1763,7 +1763,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1812,7 +1812,7 @@
     <TestCase id="6" name="param0.Alternative.0.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -1850,8 +1850,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -1920,7 +1920,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -1993,7 +1993,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2063,7 +2063,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2112,7 +2112,7 @@
     <TestCase id="7" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -2151,7 +2151,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -2220,7 +2220,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2293,7 +2293,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2363,7 +2363,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2412,7 +2412,7 @@
     <TestCase id="8" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative0,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -2450,8 +2450,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -2520,7 +2520,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2593,7 +2593,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2663,7 +2663,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2712,7 +2712,7 @@
     <TestCase id="9" name="param0.Alternative.1.Type=&apos;object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -2751,7 +2751,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -2820,7 +2820,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2893,7 +2893,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -2963,7 +2963,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3051,7 +3051,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -3120,7 +3120,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3193,7 +3193,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3263,7 +3263,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3312,7 +3312,7 @@
     <TestCase id="11" name="param0.Alternative.1.Value.Properties.alpha.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -3351,7 +3351,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -3419,8 +3419,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3493,7 +3493,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3563,7 +3563,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3612,7 +3612,7 @@
     <TestCase id="12" name="param0.Alternative.1.Value.Properties.bravo.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative1,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -3651,7 +3651,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -3719,8 +3719,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3793,7 +3793,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3863,7 +3863,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -3912,7 +3912,7 @@
     <TestCase id="13" name="param0.Alternative.1.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -3951,7 +3951,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -4019,8 +4019,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4093,7 +4093,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4163,7 +4163,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4212,7 +4212,7 @@
     <TestCase id="14" name="param0.Alternative.1.Value.Properties.Additional.Value.Properties.optional.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative1,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative1,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -4251,7 +4251,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -4320,7 +4320,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4393,7 +4393,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4463,7 +4463,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4512,7 +4512,7 @@
     <TestCase id="15" name="param0.Alternative.2.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative2,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative2,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -4551,7 +4551,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -4620,7 +4620,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4693,7 +4693,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4764,7 +4764,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4813,7 +4813,7 @@
     <TestCase id="16" name="param0.Alternative.2.Value.Properties.alpha.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative2,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative2,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -4852,7 +4852,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -4921,7 +4921,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -4994,7 +4994,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5064,7 +5064,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5113,7 +5113,7 @@
     <TestCase id="17" name="param0.Alternative.2.Value.Properties.bravo.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -5152,7 +5152,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -5221,7 +5221,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5293,8 +5293,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5365,7 +5365,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5414,7 +5414,7 @@
     <TestCase id="18" name="param0.Alternative.2.Value.Properties.bravo.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative2,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -5453,7 +5453,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -5522,7 +5522,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5594,8 +5594,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5665,7 +5665,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5714,7 +5714,7 @@
     <TestCase id="19" name="param0.Alternative.2.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -5753,7 +5753,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -5822,7 +5822,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5894,8 +5894,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -5966,7 +5966,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6015,7 +6015,7 @@
     <TestCase id="20" name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.optional.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative2,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative2,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -6054,7 +6054,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -6123,7 +6123,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6196,7 +6196,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6267,7 +6267,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6355,7 +6355,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -6424,7 +6424,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6497,7 +6497,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6567,7 +6567,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6616,7 +6616,7 @@
     <TestCase id="22" name="param0.Alternative.3.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -6655,7 +6655,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -6724,7 +6724,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6797,7 +6797,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6867,7 +6867,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -6916,7 +6916,7 @@
     <TestCase id="23" name="param0.Alternative.3.Value.Properties.alpha.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative3,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative3,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -6955,7 +6955,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -7024,7 +7024,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7097,7 +7097,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7167,7 +7167,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7216,7 +7216,7 @@
     <TestCase id="24" name="param0.Alternative.3.Value.Properties.bravo.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -7255,7 +7255,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -7324,7 +7324,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7397,7 +7397,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7466,8 +7466,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7516,7 +7516,7 @@
     <TestCase id="25" name="param0.Alternative.3.Value.Properties.bravo.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -7555,7 +7555,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -7624,7 +7624,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7697,7 +7697,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7766,8 +7766,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7816,7 +7816,7 @@
     <TestCase id="26" name="param0.Alternative.3.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -7855,7 +7855,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -7924,7 +7924,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -7997,7 +7997,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8066,8 +8066,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8116,7 +8116,7 @@
     <TestCase id="27" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.optional.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative3,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative3,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -8155,7 +8155,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -8224,7 +8224,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8297,7 +8297,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8367,7 +8367,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8455,7 +8455,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -8524,7 +8524,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8597,7 +8597,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8667,7 +8667,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8755,7 +8755,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -8824,7 +8824,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8897,7 +8897,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -8967,7 +8967,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9016,7 +9016,7 @@
     <TestCase id="30" failure="true" name="param0.Alternative.0.Value.Properties.alpha.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -9054,8 +9054,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -9124,7 +9124,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9197,7 +9197,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9267,7 +9267,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9316,7 +9316,7 @@
     <TestCase id="31" failure="true" name="param0.Alternative.0.Value.Properties.alpha.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -9354,8 +9354,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -9424,7 +9424,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9497,7 +9497,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9567,7 +9567,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9616,7 +9616,7 @@
     <TestCase id="32" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -9655,7 +9655,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -9724,7 +9724,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9797,7 +9797,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9867,7 +9867,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -9916,7 +9916,7 @@
     <TestCase id="33" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -9955,7 +9955,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -10024,7 +10024,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10097,7 +10097,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10167,7 +10167,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10216,7 +10216,7 @@
     <TestCase id="34" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -10255,7 +10255,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -10324,7 +10324,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10397,7 +10397,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10467,7 +10467,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10516,7 +10516,7 @@
     <TestCase id="35" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -10555,7 +10555,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -10624,7 +10624,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10697,7 +10697,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10767,7 +10767,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10816,7 +10816,7 @@
     <TestCase id="36" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -10855,7 +10855,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -10924,7 +10924,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -10997,7 +10997,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11067,7 +11067,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11113,10 +11113,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="37" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0=&apos;No&apos;">
+    <TestCase id="37" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -11154,8 +11154,308 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="0" failure="true">
+          <Has name="itemMinLength" value="1"/>
+          <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
+          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="pattern" value="X+"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="pattern" value="Y+"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.alpha.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="1"/>
+          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="pattern" value="X+"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.charlie.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.charlie.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Value.Properties.required.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Value.Properties.required.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Value.Properties.optional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Properties.Additional.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.alpha.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="1"/>
+          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="pattern" value="X+"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.optional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.alpha.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="string"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
+          <Has name="itemMinLength" value="1"/>
+          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="pattern" value="X+"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.required.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.required.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.required.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.optional.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.optional.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.optional.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="38" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/not"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Not"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Alternative.Used" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.alpha.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.alpha.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type" value="string">
+          <Has name="itemType" value="string"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -11224,7 +11524,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11297,7 +11597,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11367,7 +11667,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11413,10 +11713,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="38" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1=&apos;Yes&apos;">
+    <TestCase id="39" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -11454,8 +11754,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -11524,7 +11824,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11597,7 +11897,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11667,7 +11967,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11713,10 +12013,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="39" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Type=null">
+    <TestCase id="40" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -11754,8 +12054,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -11824,7 +12124,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11897,7 +12197,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -11967,7 +12267,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12013,10 +12313,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="40" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Type=&apos;Not object&apos;">
+    <TestCase id="41" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -12054,8 +12354,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -12124,7 +12424,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12197,7 +12497,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12267,7 +12567,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12313,10 +12613,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="41" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Defined=&apos;No&apos;">
+    <TestCase id="42" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -12354,8 +12654,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -12424,7 +12724,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12497,7 +12797,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12567,7 +12867,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12613,10 +12913,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="42" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=null">
+    <TestCase id="43" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -12654,8 +12954,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -12724,7 +13024,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12797,7 +13097,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12867,7 +13167,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -12913,10 +13213,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="43" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=&apos;Not string&apos;">
+    <TestCase id="44" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -12954,8 +13254,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -13024,7 +13324,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13097,7 +13397,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13167,7 +13467,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13213,10 +13513,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="44" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=null">
+    <TestCase id="45" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -13254,8 +13554,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -13324,7 +13624,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13397,7 +13697,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13467,7 +13767,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13513,10 +13813,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="45" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=&apos;Not integer&apos;">
+    <TestCase id="46" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -13554,8 +13854,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -13624,7 +13924,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13697,7 +13997,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13767,7 +14067,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13813,10 +14113,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="46" failure="true" name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern=&apos;No&apos;">
+    <TestCase id="47" failure="true" name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -13855,7 +14155,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -13923,8 +14223,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -13997,7 +14297,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14067,7 +14367,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14113,10 +14413,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="47" failure="true" name="param0.Alternative.1.Value.Properties.charlie.Defined=&apos;No&apos;">
+    <TestCase id="48" failure="true" name="param0.Alternative.1.Value.Properties.charlie.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -14155,7 +14455,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -14224,7 +14524,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14297,7 +14597,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14367,7 +14667,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14413,10 +14713,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="48" failure="true" name="param0.Alternative.1.Value.Properties.charlie.Type=null">
+    <TestCase id="49" failure="true" name="param0.Alternative.1.Value.Properties.charlie.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -14455,7 +14755,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -14524,7 +14824,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14597,7 +14897,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14667,7 +14967,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14713,10 +15013,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="49" failure="true" name="param0.Alternative.1.Value.Properties.charlie.Type=&apos;number&apos;">
+    <TestCase id="50" failure="true" name="param0.Alternative.1.Value.Properties.charlie.Type=&apos;number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -14755,7 +15055,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -14824,7 +15124,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14897,7 +15197,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -14967,7 +15267,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15013,7 +15313,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="50" failure="true" name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=&apos;X&apos;">
+    <TestCase id="51" failure="true" name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=&apos;X&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
@@ -15055,7 +15355,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -15124,7 +15424,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15197,7 +15497,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15267,7 +15567,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15313,7 +15613,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="51" failure="true" name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=&apos;Y&apos;">
+    <TestCase id="52" failure="true" name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=&apos;Y&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
@@ -15355,7 +15655,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -15424,7 +15724,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15497,7 +15797,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15567,7 +15867,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15613,7 +15913,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="52" failure="true" name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=&apos;Z&apos;">
+    <TestCase id="53" failure="true" name="param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=&apos;Z&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
@@ -15655,7 +15955,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -15724,7 +16024,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15797,7 +16097,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15867,7 +16167,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -15913,10 +16213,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="53" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Defined=&apos;No&apos;">
+    <TestCase id="54" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -15955,7 +16255,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -16024,7 +16324,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -16097,7 +16397,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -16167,7 +16467,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -16213,10 +16513,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="54" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=null">
+    <TestCase id="55" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -16255,7 +16555,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -16324,7 +16624,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -16397,7 +16697,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -16467,7 +16767,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -16513,10 +16813,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="55" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=&apos;boolean&apos;">
+    <TestCase id="56" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=&apos;boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -16555,7 +16855,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -16624,7 +16924,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -16697,7 +16997,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -16767,7 +17067,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="itemPatterns" value="&apos;X+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>

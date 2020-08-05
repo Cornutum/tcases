@@ -186,8 +186,8 @@
             </Var>
             <VarSet name="Value" when="4XXtext-plainValue">
               <Var name="Length">
-                <Value name="&gt; 0"/>
-                <Value name="0"/>
+                <Value name="&gt; 0" property="4XXtext-plainLengthValid"/>
+                <Value name="0" property="4XXtext-plainLengthValid"/>
               </Var>
             </VarSet>
           </VarSet>

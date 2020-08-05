@@ -42,8 +42,8 @@
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="param0AlphaLengthValid"/>
+                      <Value name="0" property="param0AlphaLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -76,13 +76,14 @@
                       </Var>
                       <VarSet name="Value" when="param0BravoItemsValue">
                         <Var name="Length">
-                          <Has name="itemMinLength" value="0"/>
+                          <Has name="itemMinLength" value="1"/>
                           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
                           <Has name="itemPatterns" value="&apos;X+&apos;"/>
-                          <Value name="&gt; 0"/>
-                          <Value name="0"/>
+                          <Value name="0" failure="true"/>
+                          <Value name="1" property="param0BravoItemsLengthValid"/>
+                          <Value name="&gt; 1" property="param0BravoItemsLengthValid"/>
                         </Var>
-                        <VarSet name="Matches-Patterns">
+                        <VarSet name="Matches-Patterns" when="param0BravoItemsLengthValid">
                           <Var name="0">
                             <Has name="pattern" value="X+"/>
                             <Value name="Yes"/>
@@ -126,8 +127,8 @@
                         </Var>
                         <VarSet name="Value" when="param0AdditionalRequiredValue">
                           <Var name="Length">
-                            <Value name="&gt; 0"/>
-                            <Value name="0"/>
+                            <Value name="&gt; 0" property="param0AdditionalRequiredLengthValid"/>
+                            <Value name="0" property="param0AdditionalRequiredLengthValid"/>
                           </Var>
                         </VarSet>
                       </VarSet>
@@ -175,8 +176,8 @@
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="param0AlphaLengthValid"/>
+                      <Value name="0" property="param0AlphaLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -205,12 +206,12 @@
                       </Var>
                       <VarSet name="Value" when="param0BravoItemsValue">
                         <Var name="Length">
-                          <Has name="itemMinLength" value="0"/>
+                          <Has name="itemMinLength" value="1"/>
                           <Has name="itemPatterns" value="&apos;X+&apos;"/>
-                          <Value name="&gt; 0"/>
-                          <Value name="0"/>
+                          <Value name="1" property="param0BravoItemsLengthValid"/>
+                          <Value name="&gt; 1" property="param0BravoItemsLengthValid"/>
                         </Var>
-                        <Var name="Matches-Pattern">
+                        <Var name="Matches-Pattern" when="param0BravoItemsLengthValid">
                           <Has name="pattern" value="X+"/>
                           <Value name="Yes"/>
                           <Value name="No" failure="true"/>
@@ -253,8 +254,8 @@
                         </Var>
                         <VarSet name="Value" when="param0AdditionalRequiredValue">
                           <Var name="Length">
-                            <Value name="&gt; 0"/>
-                            <Value name="0"/>
+                            <Value name="&gt; 0" property="param0AdditionalRequiredLengthValid"/>
+                            <Value name="0" property="param0AdditionalRequiredLengthValid"/>
                           </Var>
                         </VarSet>
                       </VarSet>
@@ -309,8 +310,8 @@
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="param0AlphaLengthValid"/>
+                      <Value name="0" property="param0AlphaLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -339,12 +340,12 @@
                       </Var>
                       <VarSet name="Value" when="param0BravoItemsValue">
                         <Var name="Length">
-                          <Has name="itemMinLength" value="0"/>
+                          <Has name="itemMinLength" value="1"/>
                           <Has name="itemPatterns" value="&apos;X+&apos;"/>
-                          <Value name="&gt; 0"/>
-                          <Value name="0"/>
+                          <Value name="1" property="param0BravoItemsLengthValid"/>
+                          <Value name="&gt; 1" property="param0BravoItemsLengthValid"/>
                         </Var>
-                        <Var name="Matches-Pattern">
+                        <Var name="Matches-Pattern" when="param0BravoItemsLengthValid">
                           <Has name="pattern" value="X+"/>
                           <Value name="Yes"/>
                         </Var>
@@ -375,8 +376,8 @@
                         </Var>
                         <VarSet name="Value" when="param0AdditionalRequiredValue">
                           <Var name="Length" when="param0AdditionalRequiredNotExcluded">
-                            <Value name="&gt; 0"/>
-                            <Value name="0"/>
+                            <Value name="&gt; 0" property="param0AdditionalRequiredLengthValid"/>
+                            <Value name="0" property="param0AdditionalRequiredLengthValid"/>
                           </Var>
                           <Var name="Is">
                             <Value name="Any" property="param0AdditionalRequiredNotExcluded">
@@ -439,8 +440,8 @@
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="param0AlphaLengthValid"/>
+                      <Value name="0" property="param0AlphaLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -469,12 +470,12 @@
                       </Var>
                       <VarSet name="Value" when="param0BravoItemsValue">
                         <Var name="Length">
-                          <Has name="itemMinLength" value="0"/>
+                          <Has name="itemMinLength" value="1"/>
                           <Has name="itemPatterns" value="&apos;X+&apos;"/>
-                          <Value name="&gt; 0"/>
-                          <Value name="0"/>
+                          <Value name="1" property="param0BravoItemsLengthValid"/>
+                          <Value name="&gt; 1" property="param0BravoItemsLengthValid"/>
                         </Var>
-                        <Var name="Matches-Pattern">
+                        <Var name="Matches-Pattern" when="param0BravoItemsLengthValid">
                           <Has name="pattern" value="X+"/>
                           <Value name="Yes"/>
                         </Var>
@@ -505,8 +506,8 @@
                         </Var>
                         <VarSet name="Value" when="param0AdditionalRequiredValue">
                           <Var name="Length">
-                            <Value name="&gt; 0"/>
-                            <Value name="0"/>
+                            <Value name="&gt; 0" property="param0AdditionalRequiredLengthValid"/>
+                            <Value name="0" property="param0AdditionalRequiredLengthValid"/>
                           </Var>
                         </VarSet>
                       </VarSet>

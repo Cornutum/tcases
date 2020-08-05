@@ -8,7 +8,7 @@
     <Has name="title" value="Objects"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0" name="Status-Code=&apos;Other&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -38,7 +38,7 @@
       </Input>
     </TestCase>
     <TestCase id="1" name="Other.Content.application-json.Value.Properties.alpha.Value.Length=&apos;0&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaLengthValid,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -68,7 +68,7 @@
       </Input>
     </TestCase>
     <TestCase id="2" name="Other.Content.application-json.Value.Properties.charlie.Value.Length=&apos;0&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -98,7 +98,7 @@
       </Input>
     </TestCase>
     <TestCase id="3" name="Other.Content.application-json.Value.Properties.delta.Value.Length=&apos;0&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaLengthValid,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -128,7 +128,7 @@
       </Input>
     </TestCase>
     <TestCase id="4" name="Other.Content.application-json.Value.Properties.Additional=&apos;Yes&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -276,7 +276,7 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true" name="Other.Content.application-json.Value.Property-Count=&apos;&gt; 3&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaLengthValid,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -306,7 +306,7 @@
       </Input>
     </TestCase>
     <TestCase id="10" failure="true" name="Other.Content.application-json.Value.Properties.alpha.Defined=&apos;No&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaLengthValid,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -336,7 +336,7 @@
       </Input>
     </TestCase>
     <TestCase id="11" failure="true" name="Other.Content.application-json.Value.Properties.alpha.Type=null">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -366,7 +366,7 @@
       </Input>
     </TestCase>
     <TestCase id="12" failure="true" name="Other.Content.application-json.Value.Properties.alpha.Type=&apos;Not string&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -396,7 +396,7 @@
       </Input>
     </TestCase>
     <TestCase id="13" failure="true" name="Other.Content.application-json.Value.Properties.bravo.Defined=&apos;No&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonDelta,defaultapplication-jsonDeltaLengthValid,defaultapplication-jsonDeltaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -426,7 +426,7 @@
       </Input>
     </TestCase>
     <TestCase id="14" failure="true" name="Other.Content.application-json.Value.Properties.bravo.Type=null">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -456,7 +456,7 @@
       </Input>
     </TestCase>
     <TestCase id="15" failure="true" name="Other.Content.application-json.Value.Properties.bravo.Type=&apos;Not string&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonCharlie,defaultapplication-jsonCharlieLengthValid,defaultapplication-jsonCharlieValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -486,7 +486,7 @@
       </Input>
     </TestCase>
     <TestCase id="16" failure="true" name="Other.Content.application-json.Value.Properties.charlie.Type=null">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -516,7 +516,7 @@
       </Input>
     </TestCase>
     <TestCase id="17" failure="true" name="Other.Content.application-json.Value.Properties.charlie.Type=&apos;Not string&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonCharlie,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -546,7 +546,7 @@
       </Input>
     </TestCase>
     <TestCase id="18" failure="true" name="Other.Content.application-json.Value.Properties.delta.Type=null">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonDelta,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonDelta,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -576,7 +576,7 @@
       </Input>
     </TestCase>
     <TestCase id="19" failure="true" name="Other.Content.application-json.Value.Properties.delta.Type=&apos;Not string&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoValue,defaultapplication-jsonDelta,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonBravo,defaultapplication-jsonBravoLengthValid,defaultapplication-jsonBravoValue,defaultapplication-jsonDelta,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>

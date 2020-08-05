@@ -62,8 +62,8 @@
                       </Var>
                       <VarSet name="Value" when="200application-jsonItemsNameValue">
                         <Var name="Length">
-                          <Value name="&gt; 0"/>
-                          <Value name="0"/>
+                          <Value name="&gt; 0" property="200application-jsonItemsNameLengthValid"/>
+                          <Value name="0" property="200application-jsonItemsNameLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
@@ -79,8 +79,8 @@
                       </Var>
                       <VarSet name="Value" when="200application-jsonItemsTagValue">
                         <Var name="Length">
-                          <Value name="&gt; 0"/>
-                          <Value name="0"/>
+                          <Value name="&gt; 0" property="200application-jsonItemsTagLengthValid"/>
+                          <Value name="0" property="200application-jsonItemsTagLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
@@ -171,8 +171,8 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonMessageValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonMessageLengthValid"/>
+                      <Value name="0" property="defaultapplication-jsonMessageLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -229,8 +229,8 @@
                   </Var>
                   <VarSet name="Value" when="200application-jsonNameValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="200application-jsonNameLengthValid"/>
+                      <Value name="0" property="200application-jsonNameLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -246,8 +246,8 @@
                   </Var>
                   <VarSet name="Value" when="200application-jsonTagValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="200application-jsonTagLengthValid"/>
+                      <Value name="0" property="200application-jsonTagLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -332,8 +332,8 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonMessageValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonMessageLengthValid"/>
+                      <Value name="0" property="defaultapplication-jsonMessageLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -390,8 +390,8 @@
                   </Var>
                   <VarSet name="Value" when="200application-jsonNameValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="200application-jsonNameLengthValid"/>
+                      <Value name="0" property="200application-jsonNameLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -407,8 +407,8 @@
                   </Var>
                   <VarSet name="Value" when="200application-jsonTagValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="200application-jsonTagLengthValid"/>
+                      <Value name="0" property="200application-jsonTagLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -493,8 +493,8 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonMessageValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonMessageLengthValid"/>
+                      <Value name="0" property="defaultapplication-jsonMessageLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -577,8 +577,8 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonMessageValue">
                     <Var name="Length">
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonMessageLengthValid"/>
+                      <Value name="0" property="defaultapplication-jsonMessageLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>

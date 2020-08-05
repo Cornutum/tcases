@@ -40,8 +40,8 @@
             <VarSet name="Value" when="tagsItemsValue">
               <Var name="Length">
                 <Has name="itemMinLength" value="0"/>
-                <Value name="&gt; 0"/>
-                <Value name="0"/>
+                <Value name="&gt; 0" property="tagsItemsLengthValid"/>
+                <Value name="0" property="tagsItemsLengthValid"/>
               </Var>
             </VarSet>
           </VarSet>
@@ -111,8 +111,8 @@
                 </Var>
                 <VarSet name="Value" when="application-jsonNameValue">
                   <Var name="Length">
-                    <Value name="&gt; 0"/>
-                    <Value name="0"/>
+                    <Value name="&gt; 0" property="application-jsonNameLengthValid"/>
+                    <Value name="0" property="application-jsonNameLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>
@@ -128,8 +128,8 @@
                 </Var>
                 <VarSet name="Value" when="application-jsonTagValue">
                   <Var name="Length">
-                    <Value name="&gt; 0"/>
-                    <Value name="0"/>
+                    <Value name="&gt; 0" property="application-jsonTagLengthValid"/>
+                    <Value name="0" property="application-jsonTagLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>

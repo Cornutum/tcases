@@ -79,7 +79,7 @@
                           <VarSet name="Value" when="200application-jsonItemsIdValue">
                             <Has name="format" value="uriref"/>
                             <Var name="Length">
-                              <Value name="&gt; 0"/>
+                              <Value name="&gt; 0" property="200application-jsonItemsIdLengthValid"/>
                             </Var>
                           </VarSet>
                         </VarSet>
@@ -96,7 +96,7 @@
                           <VarSet name="Value" when="200application-jsonItemsBaseValue">
                             <Has name="format" value="uriref"/>
                             <Var name="Length">
-                              <Value name="&gt; 0"/>
+                              <Value name="&gt; 0" property="200application-jsonItemsBaseLengthValid"/>
                             </Var>
                           </VarSet>
                         </VarSet>
@@ -203,8 +203,8 @@
                                         </Var>
                                         <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationIdentificationIDValue">
                                           <Var name="Length">
-                                            <Value name="&gt; 0"/>
-                                            <Value name="0"/>
+                                            <Value name="&gt; 0" property="200application-jsonItemsVehicleIdentificationIdentificationIDLengthValid"/>
+                                            <Value name="0" property="200application-jsonItemsVehicleIdentificationIdentificationIDLengthValid"/>
                                           </Var>
                                         </VarSet>
                                       </VarSet>
@@ -231,8 +231,8 @@
                                             <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationIdentificationIDItemsValue">
                                               <Var name="Length">
                                                 <Has name="itemMinLength" value="0"/>
-                                                <Value name="&gt; 0"/>
-                                                <Value name="0"/>
+                                                <Value name="&gt; 0" property="200application-jsonItemsVehicleIdentificationIdentificationIDItemsLengthValid"/>
+                                                <Value name="0" property="200application-jsonItemsVehicleIdentificationIdentificationIDItemsLengthValid"/>
                                               </Var>
                                             </VarSet>
                                           </VarSet>
@@ -298,8 +298,8 @@
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDValue">
                                               <Var name="Length">
-                                                <Value name="&gt; 0"/>
-                                                <Value name="0"/>
+                                                <Value name="&gt; 0" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDLengthValid"/>
+                                                <Value name="0" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDLengthValid"/>
                                               </Var>
                                             </VarSet>
                                           </VarSet>
@@ -325,8 +325,8 @@
                                                 <VarSet name="Value" when="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsValue">
                                                   <Var name="Length">
                                                     <Has name="itemMinLength" value="0"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsVehicleIdentificationItemsIdentificationIDItemsLengthValid"/>
                                                   </Var>
                                                 </VarSet>
                                               </VarSet>
@@ -606,8 +606,8 @@
                                               <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
                                                 <Has name="itemMinLength" value="0"/>
                                                 <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
-                                                <Value name="&gt; 0"/>
-                                                <Value name="0"/>
+                                                <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
+                                                <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
                                               </Var>
                                               <Var name="Is">
                                                 <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
@@ -646,8 +646,8 @@
                                               <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
                                                 <Has name="itemMinLength" value="0"/>
                                                 <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
-                                                <Value name="&gt; 0"/>
-                                                <Value name="0"/>
+                                                <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
+                                                <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
                                               </Var>
                                               <Var name="Is">
                                                 <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
@@ -686,8 +686,8 @@
                                               <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
                                                 <Has name="itemMinLength" value="0"/>
                                                 <Has name="itemNotEnums" value="&apos;USD&apos;"/>
-                                                <Value name="&gt; 0"/>
-                                                <Value name="0"/>
+                                                <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
+                                                <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
                                               </Var>
                                               <Var name="Is">
                                                 <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
@@ -806,8 +806,8 @@
                                                   </Var>
                                                   <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueValue">
                                                     <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
-                                                      <Value name="&gt; 0"/>
-                                                      <Value name="0"/>
+                                                      <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
+                                                      <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
                                                     </Var>
                                                     <Var name="Is">
                                                       <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
@@ -860,8 +860,8 @@
                                                   </Var>
                                                   <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueValue">
                                                     <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
-                                                      <Value name="&gt; 0"/>
-                                                      <Value name="0"/>
+                                                      <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
+                                                      <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
                                                     </Var>
                                                     <Var name="Is">
                                                       <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
@@ -914,8 +914,8 @@
                                                   </Var>
                                                   <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueValue">
                                                     <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
-                                                      <Value name="&gt; 0"/>
-                                                      <Value name="0"/>
+                                                      <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
+                                                      <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
                                                     </Var>
                                                     <Var name="Is">
                                                       <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
@@ -1054,8 +1054,8 @@
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
@@ -1115,8 +1115,8 @@
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
@@ -1176,8 +1176,8 @@
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;USD&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
@@ -1360,8 +1360,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
@@ -1435,8 +1435,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
@@ -1510,8 +1510,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
@@ -1799,8 +1799,8 @@
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
@@ -1838,8 +1838,8 @@
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
@@ -1877,8 +1877,8 @@
                                                   <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;USD&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
@@ -1991,8 +1991,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
@@ -2044,8 +2044,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
@@ -2097,8 +2097,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
@@ -2231,8 +2231,8 @@
                                                       <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
@@ -2291,8 +2291,8 @@
                                                       <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
@@ -2351,8 +2351,8 @@
                                                       <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;USD&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
@@ -2528,8 +2528,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
@@ -2602,8 +2602,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
@@ -2676,8 +2676,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
@@ -2773,7 +2773,7 @@
                               <VarSet name="Value" when="200application-jsonItemsItemsIdValue">
                                 <Has name="format" value="uriref"/>
                                 <Var name="Length">
-                                  <Value name="&gt; 0"/>
+                                  <Value name="&gt; 0" property="200application-jsonItemsItemsIdLengthValid"/>
                                 </Var>
                               </VarSet>
                             </VarSet>
@@ -2790,7 +2790,7 @@
                               <VarSet name="Value" when="200application-jsonItemsItemsBaseValue">
                                 <Has name="format" value="uriref"/>
                                 <Var name="Length">
-                                  <Value name="&gt; 0"/>
+                                  <Value name="&gt; 0" property="200application-jsonItemsItemsBaseLengthValid"/>
                                 </Var>
                               </VarSet>
                             </VarSet>
@@ -2891,8 +2891,8 @@
                                             </Var>
                                             <VarSet name="Value" when="200application-jsonItemsItemsVehicleIdentificationIdentificationIDValue">
                                               <Var name="Length">
-                                                <Value name="&gt; 0"/>
-                                                <Value name="0"/>
+                                                <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleIdentificationIdentificationIDLengthValid"/>
+                                                <Value name="0" property="200application-jsonItemsItemsVehicleIdentificationIdentificationIDLengthValid"/>
                                               </Var>
                                             </VarSet>
                                           </VarSet>
@@ -2918,8 +2918,8 @@
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleIdentificationIdentificationIDItemsValue">
                                                   <Var name="Length">
                                                     <Has name="itemMinLength" value="0"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleIdentificationIdentificationIDItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsItemsVehicleIdentificationIdentificationIDItemsLengthValid"/>
                                                   </Var>
                                                 </VarSet>
                                               </VarSet>
@@ -2984,8 +2984,8 @@
                                                 </Var>
                                                 <VarSet name="Value" when="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationIDValue">
                                                   <Var name="Length">
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationIDLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationIDLengthValid"/>
                                                   </Var>
                                                 </VarSet>
                                               </VarSet>
@@ -3011,8 +3011,8 @@
                                                     <VarSet name="Value" when="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationIDItemsValue">
                                                       <Var name="Length">
                                                         <Has name="itemMinLength" value="0"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationIDItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationIDItemsLengthValid"/>
                                                       </Var>
                                                     </VarSet>
                                                   </VarSet>
@@ -3284,8 +3284,8 @@
                                                   <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
@@ -3323,8 +3323,8 @@
                                                   <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
@@ -3362,8 +3362,8 @@
                                                   <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
                                                     <Has name="itemMinLength" value="0"/>
                                                     <Has name="itemNotEnums" value="&apos;USD&apos;"/>
-                                                    <Value name="&gt; 0"/>
-                                                    <Value name="0"/>
+                                                    <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
+                                                    <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsLengthValid"/>
                                                   </Var>
                                                   <Var name="Is">
                                                     <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsNotExcluded">
@@ -3476,8 +3476,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
@@ -3529,8 +3529,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
@@ -3582,8 +3582,8 @@
                                                       </Var>
                                                       <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueValue">
                                                         <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
-                                                          <Value name="&gt; 0"/>
-                                                          <Value name="0"/>
+                                                          <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
+                                                          <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueLengthValid"/>
                                                         </Var>
                                                         <Var name="Is">
                                                           <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-valueNotExcluded">
@@ -3716,8 +3716,8 @@
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
@@ -3776,8 +3776,8 @@
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
@@ -3836,8 +3836,8 @@
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;USD&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsNotExcluded">
@@ -4013,8 +4013,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
@@ -4087,8 +4087,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
@@ -4161,8 +4161,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-valueNotExcluded">
@@ -4449,8 +4449,8 @@
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
@@ -4488,8 +4488,8 @@
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
@@ -4527,8 +4527,8 @@
                                                       <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
                                                         <Has name="itemMinLength" value="0"/>
                                                         <Has name="itemNotEnums" value="&apos;USD&apos;"/>
-                                                        <Value name="&gt; 0"/>
-                                                        <Value name="0"/>
+                                                        <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
+                                                        <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsLengthValid"/>
                                                       </Var>
                                                       <Var name="Is">
                                                         <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsNotExcluded">
@@ -4641,8 +4641,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
@@ -4694,8 +4694,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
@@ -4747,8 +4747,8 @@
                                                           </Var>
                                                           <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueValue">
                                                             <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
-                                                              <Value name="&gt; 0"/>
-                                                              <Value name="0"/>
+                                                              <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
+                                                              <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueLengthValid"/>
                                                             </Var>
                                                             <Var name="Is">
                                                               <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-valueNotExcluded">
@@ -4881,8 +4881,8 @@
                                                           <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
                                                             <Has name="itemMinLength" value="0"/>
                                                             <Has name="itemNotEnums" value="&apos;EUR&apos;"/>
-                                                            <Value name="&gt; 0"/>
-                                                            <Value name="0"/>
+                                                            <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
+                                                            <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
                                                           </Var>
                                                           <Var name="Is">
                                                             <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
@@ -4941,8 +4941,8 @@
                                                           <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
                                                             <Has name="itemMinLength" value="0"/>
                                                             <Has name="itemNotEnums" value="&apos;GBP&apos;"/>
-                                                            <Value name="&gt; 0"/>
-                                                            <Value name="0"/>
+                                                            <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
+                                                            <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
                                                           </Var>
                                                           <Var name="Is">
                                                             <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
@@ -5001,8 +5001,8 @@
                                                           <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
                                                             <Has name="itemMinLength" value="0"/>
                                                             <Has name="itemNotEnums" value="&apos;USD&apos;"/>
-                                                            <Value name="&gt; 0"/>
-                                                            <Value name="0"/>
+                                                            <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
+                                                            <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsLengthValid"/>
                                                           </Var>
                                                           <Var name="Is">
                                                             <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsNotExcluded">
@@ -5178,8 +5178,8 @@
                                                               </Var>
                                                               <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueValue">
                                                                 <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
-                                                                  <Value name="&gt; 0"/>
-                                                                  <Value name="0"/>
+                                                                  <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                                  <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
                                                                 </Var>
                                                                 <Var name="Is">
                                                                   <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
@@ -5252,8 +5252,8 @@
                                                               </Var>
                                                               <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueValue">
                                                                 <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
-                                                                  <Value name="&gt; 0"/>
-                                                                  <Value name="0"/>
+                                                                  <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                                  <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
                                                                 </Var>
                                                                 <Var name="Is">
                                                                   <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
@@ -5326,8 +5326,8 @@
                                                               </Var>
                                                               <VarSet name="Value" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueValue">
                                                                 <Var name="Length" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">
-                                                                  <Value name="&gt; 0"/>
-                                                                  <Value name="0"/>
+                                                                  <Value name="&gt; 0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
+                                                                  <Value name="0" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueLengthValid"/>
                                                                 </Var>
                                                                 <Var name="Is">
                                                                   <Value name="Any" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-valueNotExcluded">

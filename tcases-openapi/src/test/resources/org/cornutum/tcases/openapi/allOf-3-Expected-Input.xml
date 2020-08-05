@@ -42,11 +42,11 @@
             </Var>
             <VarSet name="Value" when="param0Value">
               <Var name="Length">
-                <Value name="1" failure="true"/>
-                <Value name="2"/>
-                <Value name="&gt; 2"/>
+                <Value name="2" failure="true"/>
+                <Value name="3" property="param0LengthValid"/>
+                <Value name="&gt; 3" property="param0LengthValid"/>
               </Var>
-              <VarSet name="Matches-Patterns">
+              <VarSet name="Matches-Patterns" when="param0LengthValid">
                 <Var name="0">
                   <Has name="pattern" value=".*"/>
                   <Value name="Yes"/>
@@ -77,10 +77,9 @@
             <VarSet name="Value" when="param0Value">
               <Var name="Length" when="param0NotExcluded">
                 <Value name="0" failure="true"/>
-                <Value name="1"/>
-                <Value name="2" failure="true"/>
+                <Value name="1" property="param0LengthValid"/>
               </Var>
-              <VarSet name="Matches-Patterns" when="param0NotExcluded">
+              <VarSet name="Matches-Patterns" when="param0LengthValid">
                 <Var name="0">
                   <Has name="pattern" value=".*"/>
                   <Value name="Yes"/>

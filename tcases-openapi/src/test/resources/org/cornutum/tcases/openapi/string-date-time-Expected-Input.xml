@@ -23,7 +23,7 @@
           <Has name="format" value="date-time"/>
           <Var name="Length">
             <Value name="28" failure="true"/>
-            <Value name="29"/>
+            <Value name="29" property="withinLengthValid"/>
             <Value name="30" failure="true"/>
           </Var>
         </VarSet>
@@ -44,7 +44,7 @@
           <Has name="format" value="date-time"/>
           <Var name="Length">
             <Value name="28" failure="true"/>
-            <Value name="29"/>
+            <Value name="29" property="outsideLengthValid"/>
             <Value name="30" failure="true"/>
           </Var>
         </VarSet>
@@ -65,7 +65,7 @@
           <Has name="format" value="date-time"/>
           <Var name="Length">
             <Value name="28" failure="true"/>
-            <Value name="29"/>
+            <Value name="29" property="noneLengthValid"/>
             <Value name="30" failure="true"/>
           </Var>
         </VarSet>
