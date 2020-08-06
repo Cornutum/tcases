@@ -161,7 +161,7 @@
         <dependency>
             <groupId>org.cornutum.regexp</groupId>
             <artifactId>regexp-gen</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.2-SNAPSHOT</version>
         </dependency>
         
         <dependency>

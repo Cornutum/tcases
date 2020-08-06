@@ -11,15 +11,15 @@ import org.cornutum.tcases.openapi.Characters;
 import static org.cornutum.tcases.util.CollectionUtils.restOf;
 
 import org.cornutum.regexpgen.RegExpGen;
-import org.cornutum.regexpgen.Bounds;
 import org.cornutum.regexpgen.RandomGen;
 import org.cornutum.regexpgen.js.Parser;
 import org.cornutum.regexpgen.random.RandomBoundsGen;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -185,25 +185,11 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
       List<String> matching = getMatching();
       List<String> notMatching = getNotMatching();
 
-      OptionalInt generatedBy =
-        IntStream.range( 0, matching.size())
-        .filter( i -> {
-            try
-              {
-                Parser.parseRegExp( matching.get(i));
-                return true;
-              }
-            catch( IllegalArgumentException e)
-              {
-                return false;
-              }
-          })
-        .findFirst();
-    
+      Optional<Integer> generatedBy = getGeneratedBy( matching);
       if( generatedBy.isPresent())
         {
-        generatedBy_ = matching.get( generatedBy.getAsInt());
-        filtering_ = toPatterns( context, restOf( matching, generatedBy.getAsInt()));
+        generatedBy_ = matching.get( generatedBy.get());
+        filtering_ = toPatterns( context, restOf( matching, generatedBy.get()));
         matching_ = toPatterns( null, matching);
         }
       else
@@ -308,9 +294,38 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
           return
             context_.tryUntil(
               () ->
-              Optional.of( generator.generate( random_, new Bounds( length.getMin(), length.getMax())))
+              Optional.of( generator.generate( random_, length.getMin(), length.getMax()))
               .filter( value -> matchesRemaining( value)));
           });
+      }
+
+    /**
+     * Returns the index of the regular expression used to generate matching values.
+     * Returns <CODE>Optional.empty()</CODE> if no such regular expression is found.
+     */
+    private Optional<Integer> getGeneratedBy( List<String> matching)
+      {
+      return
+        IntStream.range( 0, matching.size())
+        .mapToObj( i -> new SimpleEntry<Integer,RegExpGen>( i, generatorFor( matching.get(i))))
+        .sorted( Comparator.nullsLast( Comparator.comparing( SimpleEntry::getValue)))
+        .findFirst()
+        .map( SimpleEntry::getKey);
+      }
+
+    /**
+     * Returns a RegExpGen for the given regular expression.
+     */
+    private RegExpGen generatorFor( String regexp)
+      {
+      try
+        {
+        return Parser.parseRegExp( regexp);
+        }
+      catch( IllegalArgumentException e)
+        {
+        return null;
+        }
       }
 
     private final ResolverContext context_;
