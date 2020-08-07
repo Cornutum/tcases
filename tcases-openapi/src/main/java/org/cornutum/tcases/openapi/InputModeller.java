@@ -17,7 +17,6 @@ import static org.cornutum.tcases.openapi.SchemaUtils.*;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import org.cornutum.regexpgen.RegExpGen;
-import org.cornutum.regexpgen.js.Parser;
 import static org.cornutum.regexpgen.Bounds.bounded;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -2185,26 +2184,6 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
 
     return min;
-    }
-
-  /**
-   * TBD
-   */
-  private Stream<RegExpGen> patternGenerators( Schema<?> stringSchema)
-    {
-    return
-      getPatterns( stringSchema).stream()
-      .map( pattern -> {
-        try
-          {
-          return Parser.parseRegExp( pattern);
-          }
-        catch( Exception e)
-          {
-          return null;
-          }
-        })
-      .filter( Objects::nonNull);
     }
 
   /**
