@@ -13,6 +13,8 @@ import static org.cornutum.tcases.util.CollectionUtils.*;
 import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
+
+import org.apache.commons.lang3.text.WordUtils;
 import org.cornutum.regexpgen.RegExpGen;
 import org.cornutum.regexpgen.js.Parser;
 import static org.cornutum.regexpgen.Bounds.bounded;
@@ -45,6 +47,170 @@ public final class SchemaUtils
     {
     // Static methods only
     }
+
+  /**
+   * Returns a concise description of the assertions made by the given schema.
+   */
+  public static String asserts( Schema<?> schema)
+    {
+    return
+      Optional.ofNullable( schema)
+      .map( s -> {
+        String type = assertsType( s);
+        return
+          new StringBuilder()
+          .append( WordUtils.capitalize( type))
+          .append(
+            assertsList(
+              assertsMap( type, s).entrySet().stream()
+              .map( entry -> String.format( "%s=%s", entry.getKey(), entry.getValue()))))
+          .toString();
+        })
+      .orElse( null);
+    }
+
+  /**
+   * Returns a description of the type of the given schema.
+   */
+  private static String assertsType( Schema<?> schema)
+    {
+    return
+      schema.getType() == null?
+      "any" :
+
+      !"string".equals( schema.getType())?
+      schema.getType() :
+
+      "binary".equals( schema.getFormat())?
+      "binary" :
+
+      "byte".equals( schema.getFormat())?
+      "byte" :
+
+      "string";
+    }
+
+  /**
+   * Returns a map of assertion descriptions for the given schema.
+   */
+  private static Map<String,String> assertsMap( String type, Schema<?> schema)
+    {
+    Map<String,String> asserts = new LinkedHashMap<String,String>();
+    if( !(type.equals( "binary") || type.equals( "byte")))
+      {
+      Optional.ofNullable( schema.getEnum())
+        .ifPresent( v -> {
+          asserts.put(
+            "enum",
+            assertsList( v.stream().map( e -> Objects.toString( e, ""))));
+          });
+      Optional.ofNullable( schema.getAdditionalProperties())
+        .ifPresent( v -> {
+          asserts.put(
+            "additionalProperties",
+            Optional.ofNullable( additionalPropertiesSchema( schema))
+            .map( SchemaUtils::asserts)
+            .orElse( Objects.toString( v, "")));
+          });
+      Optional.ofNullable( schema.getExclusiveMaximum())
+        .ifPresent( v -> asserts.put( "exclusiveMaximum", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getExclusiveMinimum())
+        .ifPresent( v -> asserts.put( "exclusiveMinimum", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getFormat())
+        .ifPresent( v -> asserts.put( "format", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getMaxLength())
+        .ifPresent( v -> asserts.put( "maxLength", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getMaxProperties())
+        .ifPresent( v -> asserts.put( "maxProperties", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getMaximum())
+        .ifPresent( v -> asserts.put( "maximum", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getMinLength())
+        .ifPresent( v -> asserts.put( "minLength", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getMinProperties())
+        .ifPresent( v -> asserts.put( "minProperties", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getMinimum())
+        .ifPresent( v -> asserts.put( "minimum", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getMultipleOf())
+        .ifPresent( v -> asserts.put( "multipleOf", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getNullable())
+        .ifPresent( v -> asserts.put( "nullable", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getProperties())
+        .ifPresent( v -> {
+          asserts.put(
+            "properties",
+            assertsList(
+              v.entrySet().stream()
+              .map( e -> String.format( "%s=%s", e.getKey(), asserts( e.getValue())))));
+          });
+      Optional.ofNullable( schema.getRequired())
+        .ifPresent( v -> {
+          asserts.put(
+            "required",
+            assertsList( v.stream().map( e -> Objects.toString( e, ""))));
+          });
+      Optional.ofNullable( schema.getReadOnly())
+        .ifPresent( v -> asserts.put( "readOnly", Objects.toString( v, "")));
+      Optional.ofNullable( schema.getWriteOnly())
+        .ifPresent( v -> asserts.put( "writeOnly", Objects.toString( v, "")));
+
+      Optional.ofNullable( schema.getExtensions())
+        .ifPresent( v -> {
+          v.entrySet().stream().forEach( e -> asserts.put( e.getKey(), Objects.toString( e.getValue(), "")));
+          });
+
+      Optional.ofNullable( asArraySchema( schema))
+        .ifPresent( array -> {
+          Optional.ofNullable( array.getItems())
+            .ifPresent( v -> asserts.put( "items", asserts( v)));
+          Optional.ofNullable( array.getMaxItems())
+            .ifPresent( v -> asserts.put( "maxItems", Objects.toString( v, "")));
+          Optional.ofNullable( array.getMinItems())
+            .ifPresent( v -> asserts.put( "minItems", Objects.toString( v, "")));
+          Optional.ofNullable( array.getUniqueItems())
+            .ifPresent( v -> asserts.put( "uniqueItems", Objects.toString( v, "")));
+          });
+
+      Optional.ofNullable( schema.getNot())
+        .ifPresent( not -> asserts.put( "not", asserts( not)));
+
+      Optional.ofNullable( asComposedSchema( schema))
+        .ifPresent( composed -> {
+          Optional.ofNullable( composed.getAllOf())
+            .ifPresent( v -> {
+              Optional.of( v)
+                .filter( schemas -> !schemas.isEmpty())
+                .ifPresent( schemas -> asserts.put( "allOf", assertsList( schemas.stream().map( SchemaUtils::asserts))));
+              });
+          Optional.ofNullable( composed.getAnyOf())
+            .ifPresent( v -> {
+              Optional.of( v)
+                .filter( schemas -> !schemas.isEmpty())
+                .ifPresent( schemas -> asserts.put( "anyOf", assertsList( schemas.stream().map( SchemaUtils::asserts))));
+              });
+          Optional.ofNullable( composed.getOneOf())
+            .ifPresent( v -> {
+              Optional.of( v)
+                .filter( schemas -> !schemas.isEmpty())
+                .ifPresent( schemas -> asserts.put( "oneOf", assertsList( schemas.stream().map( SchemaUtils::asserts))));
+              });
+          });
+      }
+    
+    return asserts;
+    }
+
+  /**
+   * Returns a description of the given list of assertions.
+   */
+  public static String assertsList( Stream<String> assertions)
+    {
+    return
+      new StringBuilder()
+      .append( '[')
+      .append( assertions.collect( joining( ", ")))
+      .append( ']')
+      .toString();
+      }
 
   /**
    * If necessary, updates the type of the given schema based its properties.
@@ -899,7 +1065,7 @@ public final class SchemaUtils
     }
 
   /**
-   * Returns the given schema after removing all but the given schemas.
+   * Returns the given schema after removing all but the given extensions.
    */
   private static Schema<?> withExtensions( Schema<?> schema, String... extensions)
     {
