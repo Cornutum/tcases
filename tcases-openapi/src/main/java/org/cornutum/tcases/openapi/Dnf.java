@@ -7,12 +7,10 @@
 
 package org.cornutum.tcases.openapi;
 
-import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import io.swagger.v3.oas.models.media.Schema;
 import org.apache.commons.collections4.multimap.AbstractSetValuedMap;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -21,6 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.Collections.emptySet;
+import static java.util.stream.Collectors.joining;
 
 /**
  * Represents the disjunctive normal form of a schema. An instance is validated by a schema
@@ -142,17 +141,31 @@ public class Dnf
 
   public String toString()
     {
-    ToStringBuilder builder = ToString.getBuilder( this);
+    StringBuilder builder = new StringBuilder();
+
+    builder
+      .append( '\n')
+      .append( "Dnf").append( '[');
+
     if( undefined( this))
       {
       builder.append( "Undefined");
       }
     else
       {
-      getTypes().stream().forEach( type -> builder.append( type, getAlternatives( type).size()));
+      getTypes().stream()
+        .forEach( type -> {
+          builder
+            .append( "\n  ").append( type).append( " [")
+            .append( "\n    ").append( getAlternatives( type).stream().map( SchemaUtils::asserts).collect( joining( "\n    ")))
+            .append( "\n  ]");
+          });
       }
 
-    return builder.toString();
+    return
+      builder
+      .append( ']')
+      .toString();
     }
 
   /**
