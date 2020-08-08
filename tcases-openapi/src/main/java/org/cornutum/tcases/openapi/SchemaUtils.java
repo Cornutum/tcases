@@ -544,47 +544,35 @@ public final class SchemaUtils
     addPatterns( combined, getPatterns( additional));
 
     // Reconcile length and pattern constraints
-    Optional.ofNullable( maxLengthPattern( combined))
-      .ifPresent( generator -> {
-        Integer patternMax = bounded( generator.getMaxLength()).orElse( null);
-
-        combined.setMaxLength(
-          combined.getMaxLength() == null?
-          patternMax :
-
-          patternMax == null?
-          combined.getMaxLength() :
-
-          patternMax.compareTo( combined.getMaxLength()) < 0?
-          patternMax :
-
-          combined.getMaxLength());
-
-        if( combined.getMaxLength() != null && combined.getMinLength() != null && combined.getMaxLength() < combined.getMinLength())
-          {
-          throw inconsistentAssertions( "minLength: %s", combined.getMinLength(), "pattern: %s", generator.getOptions().getRegExp());
-          }
+    Optional.ofNullable( combined.getMaxLength())
+      .ifPresent( maxLength -> {
+        Optional.ofNullable( maxLengthPattern( combined))
+          .ifPresent( generator -> {
+            Integer patternMax = bounded( generator.getMaxLength()).orElse( null);
+            if( patternMax != null && patternMax.compareTo( maxLength) < 0)
+              {
+              combined.setMaxLength( patternMax);
+              }
+            if( combined.getMinLength() != null && combined.getMaxLength() < combined.getMinLength())
+              {
+              throw inconsistentAssertions( "minLength: %s", combined.getMinLength(), "pattern: %s", generator.getOptions().getRegExp());
+              }
+            });
         });
-    Optional.ofNullable( minLengthPattern( combined))
-      .ifPresent( generator -> {
-        Integer patternMin = Optional.of( generator.getMinLength()).filter( minLength -> minLength > 0).orElse( null);
-
-        combined.setMinLength(
-          combined.getMinLength() == null?
-          patternMin :
-
-          patternMin == null?
-          combined.getMinLength() :
-          
-          patternMin.compareTo( combined.getMinLength()) > 0?
-          patternMin :
-
-          combined.getMinLength());
-        
-        if( combined.getMaxLength() != null && combined.getMinLength() != null && combined.getMinLength() > combined.getMaxLength())
-          {
-          throw inconsistentAssertions( "maxLength: %s", combined.getMaxLength(), "pattern: %s", generator.getOptions().getRegExp());
-          }
+    Optional.ofNullable( combined.getMinLength())
+      .ifPresent( minLength -> {
+        Optional.ofNullable( minLengthPattern( combined))
+          .ifPresent( generator -> {
+            Integer patternMin = Optional.of( generator.getMinLength()).filter( min -> min > 0).orElse( null);
+            if( patternMin != null && patternMin.compareTo( combined.getMinLength()) > 0)
+              {
+              combined.setMinLength( patternMin);
+              }
+            if( combined.getMaxLength() != null && combined.getMinLength() > combined.getMaxLength())
+              {
+              throw inconsistentAssertions( "maxLength: %s", combined.getMaxLength(), "pattern: %s", generator.getOptions().getRegExp());
+              }
+            });
         });
     
     // Combine not patterns
