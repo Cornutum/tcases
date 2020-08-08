@@ -1000,10 +1000,21 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
       .map( minLength -> assertNot( schema, minLength, (s,v) -> s.setMaxLength( v - 1)))
       .ifPresent( s -> alternatives.add( s));
 
-    // Not pattern
-    Optional.ofNullable( schema.getPattern())
-      .map( pattern -> assertNot( schema, pattern, (s,v) -> addNotPattern( s, v)))
-      .ifPresent( s -> alternatives.add( s));
+    // Not patterns
+    Optional.ofNullable( getPatterns( schema))
+      .ifPresent( patterns -> {
+        patterns.stream()
+          .map( pattern -> assertNot( schema, pattern, (s,v) -> addNotPattern( s, v)))
+          .forEach( s -> alternatives.add( s));
+        });
+
+    // Not not patterns
+    Optional.ofNullable( getNotPatterns( schema))
+      .ifPresent( patterns -> {
+        patterns.stream()
+          .map( pattern -> assertNot( schema, pattern, (s,v) -> addPattern( s, v)))
+          .forEach( s -> alternatives.add( s));
+        });
 
     return alternatives;
     }
