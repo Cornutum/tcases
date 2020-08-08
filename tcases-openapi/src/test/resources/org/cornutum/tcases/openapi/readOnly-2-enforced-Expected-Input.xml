@@ -50,7 +50,7 @@
               </Var>
               <VarSet name="Value" when="param0BravoValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="param0BravoLengthValid"/>
+                  <Value name="&gt; 0" property="param0BravoLengthValid, param0BravoNotEmpty"/>
                   <Value name="0" property="param0BravoLengthValid"/>
                 </Var>
               </VarSet>
@@ -74,7 +74,7 @@
               </Var>
               <VarSet name="Value" when="param0DeltaValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="param0DeltaLengthValid"/>
+                  <Value name="&gt; 0" property="param0DeltaLengthValid, param0DeltaNotEmpty"/>
                   <Value name="0" property="param0DeltaLengthValid"/>
                 </Var>
               </VarSet>

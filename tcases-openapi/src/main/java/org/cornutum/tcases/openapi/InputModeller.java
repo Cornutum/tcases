@@ -1838,6 +1838,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         length.values(
           VarValueDefBuilder.with( "> 0")
           .properties( validLengthProperty( instanceVarTag))
+          .properties( notEmptyProperty( instanceVarTag))
           .build());
 
         if(
@@ -1878,11 +1879,17 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             Optional<String> validLength =
               Optional.of( validLengthProperty( instanceVarTag))
               .filter( p -> type == VarValueDef.Type.VALID);
+
+            Optional<String> notEmpty =
+              validLength
+              .filter( p -> i > 0)
+              .map( p -> notEmptyProperty( instanceVarTag));
             
             length.values(
               VarValueDefBuilder.with( i)
               .type( type)
               .properties( validLength)
+              .properties( notEmpty)
               .build());
             }
           }
@@ -1893,6 +1900,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             length.values(
               VarValueDefBuilder.with( String.format( "< %s", maxLength))
               .properties( validLengthProperty( instanceVarTag))
+              .properties( notEmptyProperty( instanceVarTag))
               .build());
             }
           }
@@ -1901,6 +1909,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           length.values(
             VarValueDefBuilder.with( String.format( "> %s", minLength))
             .properties( validLengthProperty( instanceVarTag))
+            .properties( notEmptyProperty( instanceVarTag))
             .build());
           }
         }
@@ -1914,12 +1923,20 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         length.hasIf( "itemPatterns", getPatterns( instanceSchema));
         length.hasIf( "itemNotPatterns", getNotPatterns( instanceSchema));
         }
-      
-      valueVarSet.members( length.build());
+
+      VarDef lengthVar = length.build();
+      valueVarSet.members( lengthVar);
 
       // Add variables for any pattern assertions
       String[] patterns = getPatterns( instanceSchema).stream().toArray(String[]::new);
       String[] notPatterns = Optional.ofNullable( getNotPatterns( instanceSchema)).orElse( emptySet()).stream().toArray(String[]::new);
+
+      Optional<ICondition> notEmpty =
+        toStream( lengthVar.getValidValues())
+        .filter( value -> value.hasProperty( notEmptyProperty( instanceVarTag)))
+        .findFirst()
+        .map( value -> has( notEmptyProperty( instanceVarTag)));
+
       if( patterns.length == 1 && notPatterns.length == 0)
         {
         valueVarSet.members(
@@ -1928,7 +1945,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           .has( "pattern", patterns[0])
           .values(
             VarValueDefBuilder.with( "Yes").build(),
-            VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+            VarValueDefBuilder.with( "No").when( notEmpty).type( VarValueDef.Type.FAILURE).build())
           .build());
         }
       else if( patterns.length == 0 && notPatterns.length == 1)
@@ -1938,7 +1955,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           .when( has( validLengthProperty( instanceVarTag)))
           .has( "pattern", notPatterns[0])
           .values(
-            VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).build(),
+            VarValueDefBuilder.with( "Yes").when( notEmpty).type( VarValueDef.Type.FAILURE).build(),
             VarValueDefBuilder.with( "No").build())
           .build());
         }
@@ -1955,7 +1972,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
               .has( "pattern", patterns[i])
               .values(
                 VarValueDefBuilder.with( "Yes").build(),
-                VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+                VarValueDefBuilder.with( "No").when( notEmpty).type( VarValueDef.Type.FAILURE).build())
               .build()))
           .members(
             IntStream.range( 0, notPatterns.length)
@@ -1964,7 +1981,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
               VarDefBuilder.with( String.valueOf( patterns.length + i))
               .has( "pattern", notPatterns[i])
               .values(
-                VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).build(),
+                VarValueDefBuilder.with( "Yes").when( notEmpty).type( VarValueDef.Type.FAILURE).build(),
                 VarValueDefBuilder.with( "No").build())
               .build()))
           .build());
@@ -2456,6 +2473,14 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private String validLengthProperty( String instanceTag)
     {
     return instanceTag + "LengthValid";
+    }
+
+  /**
+   * Returns the "not empty" property for the given schema instance.
+   */
+  private String notEmptyProperty( String instanceTag)
+    {
+    return instanceTag + "NotEmpty";
     }
 
   /**

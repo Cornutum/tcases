@@ -77,7 +77,7 @@
     <TestCase id="3" name="param0.Value.Length=&apos;128&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
-      <Has name="properties" value="param0,param0LengthValid,param0Value"/>
+      <Has name="properties" value="param0,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="String"/>
       <Has name="version" value="0.0.0"/>
@@ -99,7 +99,7 @@
     <TestCase id="4" name="param0.Value.Length=&apos;&lt; 128&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
-      <Has name="properties" value="param0,param0LengthValid,param0Value"/>
+      <Has name="properties" value="param0,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="String"/>
       <Has name="version" value="0.0.0"/>

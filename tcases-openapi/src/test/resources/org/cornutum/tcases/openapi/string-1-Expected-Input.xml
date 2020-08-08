@@ -24,9 +24,9 @@
           <Has name="format" value="password"/>
           <Var name="Length">
             <Value name="0" property="param0LengthValid"/>
-            <Value name="128" property="param0LengthValid"/>
+            <Value name="128" property="param0LengthValid, param0NotEmpty"/>
             <Value name="129" failure="true"/>
-            <Value name="&lt; 128" property="param0LengthValid"/>
+            <Value name="&lt; 128" property="param0LengthValid, param0NotEmpty"/>
           </Var>
         </VarSet>
       </VarSet>

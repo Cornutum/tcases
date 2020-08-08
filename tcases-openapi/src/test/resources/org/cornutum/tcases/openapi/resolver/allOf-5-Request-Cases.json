@@ -16,7 +16,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
+                    "value": ""
                 },
                 "valid": true
             }
@@ -65,7 +65,7 @@
     },
     {
         "id": 3,
-        "name": "param0.Value.Length='0'",
+        "name": "param0.Value.Length='> 0'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -79,7 +79,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ""
+                    "value": "XIJWCJCJLYMLWYXW"
                 },
                 "valid": true
             }
@@ -100,8 +100,8 @@
                 "style": "simple",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": 190.9
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": false
             }
@@ -124,7 +124,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*a"
+                    "value": "M*8*b<L3%IRa|8C(`KgUnbd:8?1z"
                 },
                 "valid": false
             }

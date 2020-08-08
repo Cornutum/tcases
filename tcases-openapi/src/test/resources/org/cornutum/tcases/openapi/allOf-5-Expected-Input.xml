@@ -22,12 +22,12 @@
         <VarSet name="Value" when="param0Value">
           <Var name="Length">
             <Value name="0" property="param0LengthValid"/>
-            <Value name="&gt; 0" property="param0LengthValid"/>
+            <Value name="&gt; 0" property="param0LengthValid, param0NotEmpty"/>
           </Var>
           <Var name="Matches-Pattern" when="param0LengthValid">
             <Has name="pattern" value="^[A-Z]*$"/>
             <Value name="Yes"/>
-            <Value name="No" failure="true"/>
+            <Value name="No" failure="true" when="param0NotEmpty"/>
           </Var>
         </VarSet>
       </VarSet>

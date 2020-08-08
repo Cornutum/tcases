@@ -27,7 +27,7 @@
             </Var>
             <VarSet name="Value" when="2XXHeaderX-standard-headerValue">
               <Var name="Length">
-                <Value name="&gt; 0" property="2XXHeaderX-standard-headerLengthValid"/>
+                <Value name="&gt; 0" property="2XXHeaderX-standard-headerLengthValid, 2XXHeaderX-standard-headerNotEmpty"/>
                 <Value name="0" property="2XXHeaderX-standard-headerLengthValid"/>
               </Var>
             </VarSet>
@@ -79,8 +79,8 @@
             <VarSet name="Value" when="2XXapplication-jsonValue">
               <Var name="Length">
                 <Value name="15" failure="true"/>
-                <Value name="16" property="2XXapplication-jsonLengthValid"/>
-                <Value name="255" property="2XXapplication-jsonLengthValid"/>
+                <Value name="16" property="2XXapplication-jsonLengthValid, 2XXapplication-jsonNotEmpty"/>
+                <Value name="255" property="2XXapplication-jsonLengthValid, 2XXapplication-jsonNotEmpty"/>
                 <Value name="256" failure="true"/>
               </Var>
             </VarSet>
@@ -94,9 +94,9 @@
             <VarSet name="Value" when="2XXtext-javascriptValue">
               <Var name="Length">
                 <Value name="0" property="2XXtext-javascriptLengthValid"/>
-                <Value name="16" property="2XXtext-javascriptLengthValid"/>
+                <Value name="16" property="2XXtext-javascriptLengthValid, 2XXtext-javascriptNotEmpty"/>
                 <Value name="17" failure="true"/>
-                <Value name="&lt; 16" property="2XXtext-javascriptLengthValid"/>
+                <Value name="&lt; 16" property="2XXtext-javascriptLengthValid, 2XXtext-javascriptNotEmpty"/>
               </Var>
             </VarSet>
           </VarSet>

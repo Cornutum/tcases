@@ -23,8 +23,8 @@
           <Has name="format" value="email"/>
           <Var name="Length">
             <Value name="6" failure="true"/>
-            <Value name="7" property="withinLengthValid"/>
-            <Value name="320" property="withinLengthValid"/>
+            <Value name="7" property="withinLengthValid, withinNotEmpty"/>
+            <Value name="320" property="withinLengthValid, withinNotEmpty"/>
             <Value name="321" failure="true"/>
           </Var>
         </VarSet>
@@ -45,8 +45,8 @@
           <Has name="format" value="email"/>
           <Var name="Length">
             <Value name="6" failure="true"/>
-            <Value name="7" property="outsideLengthValid"/>
-            <Value name="320" property="outsideLengthValid"/>
+            <Value name="7" property="outsideLengthValid, outsideNotEmpty"/>
+            <Value name="320" property="outsideLengthValid, outsideNotEmpty"/>
             <Value name="321" failure="true"/>
           </Var>
         </VarSet>
@@ -67,8 +67,8 @@
           <Has name="format" value="email"/>
           <Var name="Length">
             <Value name="6" failure="true"/>
-            <Value name="7" property="noneLengthValid"/>
-            <Value name="320" property="noneLengthValid"/>
+            <Value name="7" property="noneLengthValid, noneNotEmpty"/>
+            <Value name="320" property="noneLengthValid, noneNotEmpty"/>
             <Value name="321" failure="true"/>
           </Var>
         </VarSet>

@@ -102,7 +102,7 @@
     <TestCase id="2" name="param0.Alternative.0.Value.Length=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative0,param0LengthValid,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative0,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -192,7 +192,7 @@
     <TestCase id="4" name="param0.Alternative.1.Value.Length=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -372,7 +372,7 @@
     <TestCase id="8" failure="true" name="param0.Alternative.0.Value.Matches-Pattern=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative0,param0LengthValid,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative0,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -387,7 +387,7 @@
         <Var name="param0.Alternative.0.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Length" value="0">
+        <Var name="param0.Alternative.0.Value.Length" value="1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Matches-Pattern" value="No" failure="true">
@@ -417,7 +417,7 @@
     <TestCase id="9" failure="true" name="param0.Alternative.1.Value.Matches-Patterns.0=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -442,7 +442,7 @@
         <Var name="param0.Alternative.1.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Length" value="0">
+        <Var name="param0.Alternative.1.Value.Length" value="1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" value="No" failure="true">
@@ -462,7 +462,7 @@
     <TestCase id="10" failure="true" name="param0.Alternative.1.Value.Matches-Patterns.1=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -487,7 +487,7 @@
         <Var name="param0.Alternative.1.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Length" value="0">
+        <Var name="param0.Alternative.1.Value.Length" value="1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" value="Yes">
@@ -507,7 +507,7 @@
     <TestCase id="11" failure="true" name="param0.Alternative.1.Value.Matches-Patterns.2=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -532,7 +532,7 @@
         <Var name="param0.Alternative.1.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Length" value="0">
+        <Var name="param0.Alternative.1.Value.Length" value="1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Patterns.0" value="Yes">

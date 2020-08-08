@@ -8,7 +8,7 @@
     <Has name="title" value="Objects"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0" name="Status-Code=&apos;Other&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaNotEmpty,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -195,7 +195,7 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true" name="Other.Content.application-json.Value.Properties.Additional=&apos;Yes&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaNotEmpty,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>

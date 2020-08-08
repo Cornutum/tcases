@@ -62,7 +62,7 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonAlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonAlphaLengthValid"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonAlphaLengthValid, defaultapplication-jsonAlphaNotEmpty"/>
                       <Value name="0" property="defaultapplication-jsonAlphaLengthValid"/>
                     </Var>
                   </VarSet>
@@ -79,7 +79,7 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonBravoValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonBravoLengthValid"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonBravoLengthValid, defaultapplication-jsonBravoNotEmpty"/>
                       <Value name="0" property="defaultapplication-jsonBravoLengthValid"/>
                     </Var>
                   </VarSet>
@@ -96,7 +96,7 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonCharlieValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonCharlieLengthValid"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonCharlieLengthValid, defaultapplication-jsonCharlieNotEmpty"/>
                       <Value name="0" property="defaultapplication-jsonCharlieLengthValid"/>
                     </Var>
                   </VarSet>
@@ -113,7 +113,7 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonDeltaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonDeltaLengthValid"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonDeltaLengthValid, defaultapplication-jsonDeltaNotEmpty"/>
                       <Value name="0" property="defaultapplication-jsonDeltaLengthValid"/>
                     </Var>
                   </VarSet>

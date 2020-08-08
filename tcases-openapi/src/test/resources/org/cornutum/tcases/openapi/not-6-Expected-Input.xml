@@ -41,14 +41,14 @@
             <VarSet name="Value" when="param0Value">
               <Var name="Length" when="param0NotExcluded">
                 <Value name="0" failure="true"/>
-                <Value name="1" property="param0LengthValid"/>
-                <Value name="256" property="param0LengthValid"/>
+                <Value name="1" property="param0LengthValid, param0NotEmpty"/>
+                <Value name="256" property="param0LengthValid, param0NotEmpty"/>
                 <Value name="257" failure="true"/>
               </Var>
               <Var name="Matches-Pattern" when="param0LengthValid">
                 <Has name="pattern" value="[0-9]+"/>
                 <Value name="Yes"/>
-                <Value name="No" failure="true"/>
+                <Value name="No" failure="true" when="param0NotEmpty"/>
               </Var>
               <Var name="Is">
                 <Value name="Any" property="param0NotExcluded">

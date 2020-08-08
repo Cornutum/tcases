@@ -277,7 +277,7 @@
       </Input>
     </TestCase>
     <TestCase id="1" name="Status-Code=&apos;4XX&apos;">
-      <Has name="properties" value="4XXContent,4XXtext-plain,4XXtext-plainLengthValid,4XXtext-plainValue,status4XX"/>
+      <Has name="properties" value="4XXContent,4XXtext-plain,4XXtext-plainLengthValid,4XXtext-plainNotEmpty,4XXtext-plainValue,status4XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>

@@ -28,13 +28,13 @@
             <VarSet name="Value" when="param0Value">
               <Var name="Length">
                 <Value name="0" property="param0LengthValid"/>
-                <Value name="1" property="param0LengthValid"/>
+                <Value name="1" property="param0LengthValid, param0NotEmpty"/>
                 <Value name="2" failure="true"/>
               </Var>
               <Var name="Matches-Pattern" when="param0LengthValid">
                 <Has name="pattern" value=".*"/>
                 <Value name="Yes"/>
-                <Value name="No" failure="true"/>
+                <Value name="No" failure="true" when="param0NotEmpty"/>
               </Var>
             </VarSet>
           </VarSet>
@@ -45,22 +45,22 @@
             <VarSet name="Value" when="param0Value">
               <Var name="Length">
                 <Value name="0" property="param0LengthValid"/>
-                <Value name="1" property="param0LengthValid"/>
+                <Value name="1" property="param0LengthValid, param0NotEmpty"/>
               </Var>
               <VarSet name="Matches-Patterns" when="param0LengthValid">
                 <Var name="0">
                   <Has name="pattern" value=".*"/>
                   <Value name="Yes"/>
-                  <Value name="No" failure="true"/>
+                  <Value name="No" failure="true" when="param0NotEmpty"/>
                 </Var>
                 <Var name="1">
                   <Has name="pattern" value="[0-9]+"/>
-                  <Value name="Yes" failure="true"/>
+                  <Value name="Yes" failure="true" when="param0NotEmpty"/>
                   <Value name="No"/>
                 </Var>
                 <Var name="2">
                   <Has name="pattern" value="Error"/>
-                  <Value name="Yes" failure="true"/>
+                  <Value name="Yes" failure="true" when="param0NotEmpty"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

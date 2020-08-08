@@ -28,19 +28,19 @@
             <VarSet name="Value" when="param0Value">
               <Var name="Length">
                 <Value name="2" failure="true"/>
-                <Value name="3" property="param0LengthValid"/>
-                <Value name="&gt; 3" property="param0LengthValid"/>
+                <Value name="3" property="param0LengthValid, param0NotEmpty"/>
+                <Value name="&gt; 3" property="param0LengthValid, param0NotEmpty"/>
               </Var>
               <VarSet name="Matches-Patterns" when="param0LengthValid">
                 <Var name="0">
                   <Has name="pattern" value=".*"/>
                   <Value name="Yes"/>
-                  <Value name="No" failure="true"/>
+                  <Value name="No" failure="true" when="param0NotEmpty"/>
                 </Var>
                 <Var name="1">
                   <Has name="pattern" value="XXX"/>
                   <Value name="Yes"/>
-                  <Value name="No" failure="true"/>
+                  <Value name="No" failure="true" when="param0NotEmpty"/>
                 </Var>
               </VarSet>
             </VarSet>

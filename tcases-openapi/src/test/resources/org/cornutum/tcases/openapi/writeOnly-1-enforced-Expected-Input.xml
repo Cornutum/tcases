@@ -56,7 +56,7 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonAlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonAlphaLengthValid"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonAlphaLengthValid, defaultapplication-jsonAlphaNotEmpty"/>
                       <Value name="0" property="defaultapplication-jsonAlphaLengthValid"/>
                     </Var>
                   </VarSet>
@@ -73,7 +73,7 @@
                   </Var>
                   <VarSet name="Value" when="defaultapplication-jsonBravoValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonBravoLengthValid"/>
+                      <Value name="&gt; 0" property="defaultapplication-jsonBravoLengthValid, defaultapplication-jsonBravoNotEmpty"/>
                       <Value name="0" property="defaultapplication-jsonBravoLengthValid"/>
                     </Var>
                   </VarSet>

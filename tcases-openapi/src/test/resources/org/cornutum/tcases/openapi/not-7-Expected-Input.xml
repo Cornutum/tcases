@@ -32,8 +32,8 @@
             <VarSet name="Value" when="param0Value">
               <Var name="Length">
                 <Value name="256" failure="true"/>
-                <Value name="257" property="param0LengthValid"/>
-                <Value name="&gt; 257" property="param0LengthValid"/>
+                <Value name="257" property="param0LengthValid, param0NotEmpty"/>
+                <Value name="&gt; 257" property="param0LengthValid, param0NotEmpty"/>
               </Var>
             </VarSet>
           </VarSet>

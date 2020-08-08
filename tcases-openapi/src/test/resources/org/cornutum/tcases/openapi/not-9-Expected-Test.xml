@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Value,param1,param1LengthValid,param1NotExcluded,param1Value"/>
+      <Has name="properties" value="param0,param0Value,param1,param1LengthValid,param1NotEmpty,param1NotExcluded,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -80,7 +80,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" value="No">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" value="Any">
           <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
@@ -158,7 +158,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -168,7 +168,7 @@
     <TestCase id="2" name="param0.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value,param1,param1LengthValid,param1NotExcluded,param1Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value,param1,param1LengthValid,param1NotEmpty,param1NotExcluded,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -236,7 +236,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" value="No">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" value="Any">
           <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
@@ -315,7 +315,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -325,7 +325,7 @@
     <TestCase id="4" name="param0.Value.Properties.bravo.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsNotExcluded,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value,param1,param1LengthValid,param1NotExcluded,param1Value"/>
+      <Has name="properties" value="param0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsNotEmpty,param0BravoItemsNotExcluded,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value,param1,param1LengthValid,param1NotEmpty,param1NotExcluded,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -394,7 +394,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" value="No">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" value="Any">
           <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
@@ -405,7 +405,7 @@
     <TestCase id="5" name="param0.Value.Properties.bravo.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotExcluded,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotExcluded,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -474,7 +474,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -484,7 +484,7 @@
     <TestCase id="6" name="param0.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotExcluded,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value,param1,param1LengthValid,param1NotExcluded,param1Value"/>
+      <Has name="properties" value="param0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsNotExcluded,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value,param1,param1LengthValid,param1NotEmpty,param1NotExcluded,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -553,7 +553,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" value="No">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" value="Any">
           <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
@@ -632,7 +632,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -710,7 +710,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -788,7 +788,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -866,7 +866,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -876,7 +876,7 @@
     <TestCase id="11" failure="true" name="param0.Value.Properties.alpha.Value.Matches-Pattern=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -898,7 +898,7 @@
         <Var name="param0.Value.Properties.alpha.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.alpha.Value.Length" value="0">
+        <Var name="param0.Value.Properties.alpha.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Value.Matches-Pattern" value="Yes" failure="true">
@@ -944,7 +944,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1022,7 +1022,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1100,7 +1100,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1178,7 +1178,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1256,7 +1256,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1334,7 +1334,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1412,7 +1412,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1490,7 +1490,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1568,7 +1568,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1646,7 +1646,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" NA="true">
           <Has name="paramName" value="param1"/>
@@ -1724,7 +1724,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" value="Any">
           <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
@@ -1735,7 +1735,7 @@
     <TestCase id="22" failure="true" name="param1.Value.Matches-Pattern=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param1,param1LengthValid,param1NotExcluded,param1Value"/>
+      <Has name="properties" value="param1,param1LengthValid,param1NotEmpty,param1NotExcluded,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -1803,7 +1803,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" value="Yes" failure="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" value="Any">
           <Has name="excluded" value="&apos;ABCDE&apos;,&apos;FGHIJK&apos;"/>
@@ -1882,7 +1882,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" value="ABCDE" failure="true">
           <Has name="paramName" value="param1"/>
@@ -1960,7 +1960,7 @@
         </Var>
         <Var name="param1.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param1"/>
-          <Has name="pattern" value="W*T*F*"/>
+          <Has name="pattern" value="WTF"/>
         </Var>
         <Var name="param1.Value.Is" value="FGHIJK" failure="true">
           <Has name="paramName" value="param1"/>

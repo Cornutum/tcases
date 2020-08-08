@@ -23,7 +23,7 @@
           <Has name="default" value="12345678"/>
           <Has name="format" value="password"/>
           <Var name="Length">
-            <Value name="&gt; 0" property="param0LengthValid"/>
+            <Value name="&gt; 0" property="param0LengthValid, param0NotEmpty"/>
             <Value name="0" property="param0LengthValid"/>
           </Var>
         </VarSet>

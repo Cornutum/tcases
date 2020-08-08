@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -1212,7 +1212,7 @@
     <TestCase id="4" name="param0.Alternative.0.Value.Properties.alpha.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -1512,7 +1512,7 @@
     <TestCase id="5" name="param0.Alternative.0.Value.Properties.alpha.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -1812,7 +1812,7 @@
     <TestCase id="6" name="param0.Alternative.0.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -2112,7 +2112,7 @@
     <TestCase id="7" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -2412,7 +2412,7 @@
     <TestCase id="8" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -2712,7 +2712,7 @@
     <TestCase id="9" name="param0.Alternative.1.Type=&apos;object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -3312,7 +3312,7 @@
     <TestCase id="11" name="param0.Alternative.1.Value.Properties.alpha.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -3612,7 +3612,7 @@
     <TestCase id="12" name="param0.Alternative.1.Value.Properties.bravo.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -3912,7 +3912,7 @@
     <TestCase id="13" name="param0.Alternative.1.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -4512,7 +4512,7 @@
     <TestCase id="15" name="param0.Alternative.2.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative2,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Alternative2,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -5113,7 +5113,7 @@
     <TestCase id="17" name="param0.Alternative.2.Value.Properties.bravo.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -5414,7 +5414,7 @@
     <TestCase id="18" name="param0.Alternative.2.Value.Properties.bravo.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -5714,7 +5714,7 @@
     <TestCase id="19" name="param0.Alternative.2.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredNotExcluded,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative2,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -6616,7 +6616,7 @@
     <TestCase id="22" name="param0.Alternative.3.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -7216,7 +7216,7 @@
     <TestCase id="24" name="param0.Alternative.3.Value.Properties.bravo.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -7516,7 +7516,7 @@
     <TestCase id="25" name="param0.Alternative.3.Value.Properties.bravo.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaNotEmpty,param0AlphaValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -7816,7 +7816,7 @@
     <TestCase id="26" name="param0.Alternative.3.Value.Properties.bravo.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalExtraValue,param0AdditionalOptional,param0AdditionalOptionalValue,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -9016,7 +9016,7 @@
     <TestCase id="30" failure="true" name="param0.Alternative.0.Value.Properties.alpha.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -9316,7 +9316,7 @@
     <TestCase id="31" failure="true" name="param0.Alternative.0.Value.Properties.alpha.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -11416,7 +11416,7 @@
     <TestCase id="38" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -11716,7 +11716,7 @@
     <TestCase id="39" failure="true" name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -12016,7 +12016,7 @@
     <TestCase id="40" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -12316,7 +12316,7 @@
     <TestCase id="41" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -12616,7 +12616,7 @@
     <TestCase id="42" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -12916,7 +12916,7 @@
     <TestCase id="43" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -13216,7 +13216,7 @@
     <TestCase id="44" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -13516,7 +13516,7 @@
     <TestCase id="45" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -13816,7 +13816,7 @@
     <TestCase id="46" failure="true" name="param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalOptional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative0,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsMany,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -14116,7 +14116,7 @@
     <TestCase id="47" failure="true" name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaLengthValid,param0AlphaValue,param0Alternative1,param0Bravo,param0BravoItemsLengthValid,param0BravoItemsNotEmpty,param0BravoItemsValue,param0BravoValue,param0Charlie,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -16216,7 +16216,7 @@
     <TestCase id="54" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -16516,7 +16516,7 @@
     <TestCase id="55" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>
@@ -16816,7 +16816,7 @@
     <TestCase id="56" failure="true" name="param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=&apos;boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/not"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalExtra,param0AdditionalProperties,param0AdditionalRequired,param0AdditionalRequiredLengthValid,param0AdditionalRequiredNotEmpty,param0AdditionalRequiredValue,param0AdditionalValue,param0Alternative3,param0Bravo,param0BravoItemsNone,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Not"/>
       <Has name="version" value="0.0.0"/>

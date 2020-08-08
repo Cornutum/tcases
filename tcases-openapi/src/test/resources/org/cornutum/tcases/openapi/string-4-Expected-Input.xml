@@ -23,13 +23,13 @@
           <Has name="format" value="password"/>
           <Var name="Length">
             <Value name="0" failure="true"/>
-            <Value name="1" property="param0LengthValid"/>
-            <Value name="&gt; 1" property="param0LengthValid"/>
+            <Value name="1" property="param0LengthValid, param0NotEmpty"/>
+            <Value name="&gt; 1" property="param0LengthValid, param0NotEmpty"/>
           </Var>
           <Var name="Matches-Pattern" when="param0LengthValid">
             <Has name="pattern" value="^[A-Za-z0-9]+"/>
             <Value name="Yes"/>
-            <Value name="No" failure="true"/>
+            <Value name="No" failure="true" when="param0NotEmpty"/>
           </Var>
         </VarSet>
       </VarSet>

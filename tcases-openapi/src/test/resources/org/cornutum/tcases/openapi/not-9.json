@@ -52,7 +52,7 @@
                                         "enum": [ "ABCDE" ]
                                     },
                                     {
-                                        "pattern": "W*T*F*"
+                                        "pattern": "WTF"
                                     },
                                     {
                                         "type": "string",

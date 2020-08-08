@@ -12,7 +12,7 @@
     <TestCase id="0" name="within.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,outsideLengthValid,outsideValue,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -97,7 +97,7 @@
     <TestCase id="2" failure="true" name="within.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,outsideLengthValid,outsideValue,within"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -140,7 +140,7 @@
     <TestCase id="3" failure="true" name="within.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,outsideLengthValid,outsideValue,within"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -183,7 +183,7 @@
     <TestCase id="4" failure="true" name="within.Value.Length=&apos;28&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,outsideLengthValid,outsideValue,within,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -226,7 +226,7 @@
     <TestCase id="5" failure="true" name="within.Value.Length=&apos;30&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,outsideLengthValid,outsideValue,within,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -269,7 +269,7 @@
     <TestCase id="6" failure="true" name="outside.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -312,7 +312,7 @@
     <TestCase id="7" failure="true" name="outside.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -355,7 +355,7 @@
     <TestCase id="8" failure="true" name="outside.Value.Length=&apos;28&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,outsideValue,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -398,7 +398,7 @@
     <TestCase id="9" failure="true" name="outside.Value.Length=&apos;30&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneLengthValid,noneValue,outside,outsideValue,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -441,7 +441,7 @@
     <TestCase id="10" failure="true" name="none.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,outside,outsideLengthValid,outsideValue,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -484,7 +484,7 @@
     <TestCase id="11" failure="true" name="none.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,outside,outsideLengthValid,outsideValue,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -527,7 +527,7 @@
     <TestCase id="12" failure="true" name="none.Value.Length=&apos;28&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneValue,outside,outsideLengthValid,outsideValue,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
@@ -570,7 +570,7 @@
     <TestCase id="13" failure="true" name="none.Value.Length=&apos;30&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/date-time"/>
-      <Has name="properties" value="none,noneValue,outside,outsideLengthValid,outsideValue,within,withinLengthValid,withinValue"/>
+      <Has name="properties" value="none,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Date-Time"/>
       <Has name="version" value="0.0.0"/>
