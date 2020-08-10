@@ -14,7 +14,6 @@ import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
 
@@ -196,32 +195,23 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
     DataValue<T> nextItem;
 
     // Select array items, observing any uniqueness constraint
-    try
+    ValueDomain<T> nextItemValues = getItemValues();
+    ValueDomain<T> otherItemValues = Optional.ofNullable( getOtherItemValues()).orElse( nextItemValues);
+    for( int itemCount = getItemCount().selectValue( context);
+           
+         items.size() < itemCount;
+           
+         items.add( nextItem),
+           nextItemValues = otherItemValues)
       {
-      for( int itemCount = getItemCount().selectValue( context);
-           items.size() < itemCount;
-           items.add( nextItem))
-        {
-        nextItem =
-          context.resultFor(
-            String.format( "%sitem[%s] of %s", itemsUnique? "unique " : "", items.size(), itemCount),
-            () -> getNextItem( context, item -> !( itemsUnique && items.contains( item))));
-        }
-      }
-    catch( ResolverSkipException skip)
-      {
-      // Couldn't completed attempted array size. But is current array size satisfactory?
-      if( !getItemCount().contains( items.size()))
-        {
-        // No, report failure.
-        throw skip;
-        }
+      nextItem = getNextItem( context, nextItemValues, itemCount, items, itemsUnique);
       }
 
     if( !itemsUnique && items.size() > 1)
       {
-      // Given a random target item...
-      int target = context.getRandom().nextInt( items.size());
+      // The first item, which satisifies required item assertions, must remain unchanged.
+      // But given a different random target item ...
+      int target = context.getRandom().nextInt( items.size() - 1) + 1;
 
       // ...and a different source item...
       int source;
@@ -237,25 +227,15 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   /**
    * Returns the random item for this array domain.
    */
-  private DataValue<T> getNextItem( ResolverContext context, Predicate<DataValue<T>> itemFilter)
+  private DataValue<T> getNextItem( ResolverContext context, ValueDomain<T> nextItemValues, int itemCount, List<DataValue<T>> items, boolean itemsUnique)
     {
-    ValueDomain<T> otherItemValues;
-
-    try
-      {
-      // Try to select another satisfying item from the item value domain
-      return context.tryUntil( () -> Optional.of( getItemValues().select( context)).filter( itemFilter));
-      }
-    catch( ResolverSkipException skip)
-      {
-      // Or, if a value domain is defined for additional items...
-      otherItemValues =
-        Optional.ofNullable( getOtherItemValues())
-        .orElseThrow( () -> skip);
-      }
-
-    // Try to select another satisfying item from the additional item value domain
-    return context.tryUntil( () -> Optional.of( otherItemValues.select( context)).filter( itemFilter));
+    return
+      context.tryUntil( () -> {
+        return
+          context.resultFor(
+            String.format( "%sitem[%s] of %s", itemsUnique? "unique " : "", items.size(), itemCount),
+            () -> Optional.of( nextItemValues.select( context)).filter( item -> !( itemsUnique && items.contains( item))));
+        });
     }
 
   /**
