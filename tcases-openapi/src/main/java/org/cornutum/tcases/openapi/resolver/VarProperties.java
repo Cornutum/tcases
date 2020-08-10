@@ -810,27 +810,29 @@ public final class VarProperties
       {
       VarBinding lengthVar = expectVarBinding( expectPropertyValues( propertyValues, "Value"), "Length");
       String format = lengthVar.getAnnotation( "format");
-
+      List<String> patterns = lengthVar.getAnnotationList( "itemPatterns");
+      List<String> notPatterns = lengthVar.getAnnotationList( "itemPatterns");
+      
       SequenceDomain<?> baseDomain =
-        "date".equals( format)?
-        new DateDomain() :
-
-        "date-time".equals( format)?
-        new DateTimeDomain() :
-
-        "uuid".equals( format)?
-        new UuidDomain() :
-
         "binary".equals( format)?
         new BinaryDomain() :
 
         "byte".equals( format)?
         new Base64Domain() :
 
-        "email".equals( format)?
-        new EmailDomain( chars) :
+        "date".equals( format)?
+        withItemPatterns( patterns, notPatterns, new DateDomain()) :
 
-        new AsciiStringDomain( chars);
+        "date-time".equals( format)?
+        withItemPatterns( patterns, notPatterns, new DateTimeDomain()) :
+
+        "uuid".equals( format)?
+        withItemPatterns( patterns, notPatterns, new UuidDomain()) :
+
+        "email".equals( format)?
+        withItemPatterns( patterns, notPatterns, new EmailDomain( chars)) :
+
+        withItemPatterns( patterns, notPatterns, new AsciiStringDomain( chars));
 
       Integer minLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMinLength")).map( Integer::valueOf).orElse( null);
       Integer maxLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMaxLength")).map( Integer::valueOf).orElse( null);
@@ -843,6 +845,23 @@ public final class VarProperties
       }
 
     return domain;
+    }
+
+  /**
+   * Returns the string domain with the specified pattern properties.
+   */
+  private static AbstractStringDomain withItemPatterns( List<String> patterns, List<String> notPatterns, AbstractStringDomain stringDomain)
+    {
+    if( patterns != null)
+      {
+      stringDomain.setMatching( patterns);
+      }
+    if( notPatterns != null)
+      {
+      stringDomain.setNotMatching( notPatterns);
+      }
+    
+    return stringDomain;
     }
 
   /**
