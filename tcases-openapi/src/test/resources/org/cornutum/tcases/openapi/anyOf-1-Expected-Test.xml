@@ -255,7 +255,9 @@
         <Var name="Body.application-json.Alternative.Used" value="0"/>
         <Var name="Body.application-json.Alternative.0.Type" value="number"/>
         <Var name="Body.application-json.Alternative.0.Value.Is" value="&gt; 102.0"/>
-        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2d0" value="No" failure="true"/>
+        <Var name="Body.application-json.Alternative.0.Value.Multiple-Of.2d0" value="No" failure="true">
+          <Has name="multipleOf" value="2.0"/>
+        </Var>
         <Var name="Body.application-json.Alternative.1.Type" NA="true"/>
         <Var name="Body.application-json.Alternative.1.Value.Is" NA="true"/>
         <Var name="Body.application-json.Alternative.2.Type" NA="true"/>

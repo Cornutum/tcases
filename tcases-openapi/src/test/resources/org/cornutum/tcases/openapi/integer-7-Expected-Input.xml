@@ -31,7 +31,9 @@
               <Value name="Yes">
                 <Has name="multipleOf" value="2"/>
               </Value>
-              <Value name="No" failure="true"/>
+              <Value name="No" failure="true">
+                <Has name="multipleOf" value="2"/>
+              </Value>
             </Var>
           </VarSet>
         </VarSet>

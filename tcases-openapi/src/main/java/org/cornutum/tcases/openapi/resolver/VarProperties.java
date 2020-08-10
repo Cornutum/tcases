@@ -717,7 +717,8 @@ public final class VarProperties
         new IntegerDomain( range);
 
       Map<String,Object> multipleOfValues =
-        Optional.ofNullable( getPropertyValues( propertyValues, "Multiple-Of"))
+        Optional.ofNullable( valueProperties)
+        .flatMap( value -> Optional.ofNullable( getPropertyValues( value, "Multiple-Of")))
         .orElse( emptyMap());
 
       multipleOfValues.keySet().stream()

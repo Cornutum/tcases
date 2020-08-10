@@ -103,7 +103,9 @@
                       <Value name="Yes" failure="true">
                         <Has name="multipleOf" value="5"/>
                       </Value>
-                      <Value name="No"/>
+                      <Value name="No">
+                        <Has name="multipleOf" value="5"/>
+                      </Value>
                     </Var>
                   </VarSet>
                 </VarSet>

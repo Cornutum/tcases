@@ -58,7 +58,7 @@
                 "explode": false,
                 "data": {
                     "type": "integer",
-                    "value": 787254021,
+                    "value": 214278417,
                     "format": "int32"
                 },
                 "valid": true
@@ -151,7 +151,7 @@
                 "explode": false,
                 "data": {
                     "type": "integer",
-                    "value": 558027323,
+                    "value": 919711697,
                     "format": "int32"
                 },
                 "valid": false

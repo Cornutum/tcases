@@ -172,13 +172,18 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
    */
   public Stream<DataValue<BigDecimal>> values( ResolverContext context)
     {
-    // Find smallest and largest (multiples) in range
+    // Find unit of iteration over value range
     int unitScale =
       Math.max(
         Math.max( 1, Optional.ofNullable( getMultipleOf()).map( BigDecimal::scale).orElse( 0)),
         Math.max( getMin().scale(), getMax().scale()));
     
-    BigDecimal unit = new BigDecimal( BigInteger.ONE, unitScale);
+    BigDecimal unit;
+    for( unit = new BigDecimal( BigInteger.ONE, unitScale);
+         getNotMultipleOfs().contains( unit);
+         unit = new BigDecimal( BigInteger.ONE, ++unitScale));
+
+    // Find smallest and largest (multiples) in range
     BigDecimal multiple = Optional.ofNullable( getMultipleOf()).orElse( unit);
     BigDecimal firstMultiple = divideCeiling( getMin(), multiple).multiply( multiple);
     BigDecimal lastMultiple = divideFloor( getMax(), multiple).multiply( multiple);

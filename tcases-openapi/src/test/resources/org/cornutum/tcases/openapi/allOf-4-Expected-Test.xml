@@ -166,6 +166,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Multiple-Of.10" value="No" failure="true">
+          <Has name="multipleOf" value="10"/>
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>

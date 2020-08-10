@@ -206,6 +206,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No">
+          <Has name="multipleOf" value="5"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Unique" NA="true">
@@ -682,6 +683,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No">
+          <Has name="multipleOf" value="5"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Unique" NA="true">
@@ -750,6 +752,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Contains.Value.Multiple-Of.5" value="No">
+          <Has name="multipleOf" value="5"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Items.Unique" value="No">

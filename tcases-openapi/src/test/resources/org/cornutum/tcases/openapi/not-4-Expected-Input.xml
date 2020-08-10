@@ -37,13 +37,17 @@
                   <Value name="Yes">
                     <Has name="multipleOf" value="0.1"/>
                   </Value>
-                  <Value name="No" failure="true"/>
+                  <Value name="No" failure="true">
+                    <Has name="multipleOf" value="0.1"/>
+                  </Value>
                 </Var>
                 <Var name="2d0">
                   <Value name="Yes" failure="true">
                     <Has name="multipleOf" value="2.0"/>
                   </Value>
-                  <Value name="No"/>
+                  <Value name="No">
+                    <Has name="multipleOf" value="2.0"/>
+                  </Value>
                 </Var>
               </VarSet>
             </VarSet>
@@ -83,7 +87,9 @@
                   <Value name="Yes" failure="true">
                     <Has name="multipleOf" value="7.5"/>
                   </Value>
-                  <Value name="No"/>
+                  <Value name="No">
+                    <Has name="multipleOf" value="7.5"/>
+                  </Value>
                 </Var>
               </VarSet>
             </VarSet>

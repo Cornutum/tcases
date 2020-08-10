@@ -1372,7 +1372,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           ( VarDefBuilder.with( toIdentifier( multipleOf))
             .values(
               VarValueDefBuilder.with( "Yes").has( "multipleOf", multipleOf).build(),
-              VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+              VarValueDefBuilder.with( "No").has( "multipleOf", multipleOf).type( VarValueDef.Type.FAILURE).build())
             .build());
         }
       for( BigDecimal m : notMultipleOfs)
@@ -1381,7 +1381,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           ( VarDefBuilder.with( toIdentifier( m))
             .values(
               VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).has( "multipleOf", m).build(),
-              VarValueDefBuilder.with( "No").build())
+              VarValueDefBuilder.with( "No").has( "multipleOf", m).build())
             .build());
         }
 

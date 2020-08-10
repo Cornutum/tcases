@@ -223,6 +223,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" value="No">
+          <Has name="multipleOf" value="2.0"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -383,6 +384,7 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Multiple-Of.7d5" value="No">
+          <Has name="multipleOf" value="7.5"/>
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -503,9 +505,11 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Multiple-Of.0d1" value="No" failure="true">
+          <Has name="multipleOf" value="0.1"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Multiple-Of.2d0" value="No">
+          <Has name="multipleOf" value="2.0"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
