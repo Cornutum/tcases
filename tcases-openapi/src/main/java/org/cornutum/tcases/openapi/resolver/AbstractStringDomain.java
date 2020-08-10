@@ -16,6 +16,7 @@ import org.cornutum.regexpgen.js.Parser;
 import org.cornutum.regexpgen.random.RandomBoundsGen;
 
 import java.util.AbstractMap.SimpleEntry;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -75,6 +76,14 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
     }
 
   /**
+   * Changes the set of patterns that values in this domain must match.
+   */
+  public void setMatching( String... patterns)
+    {
+    setMatching( Arrays.asList( patterns));
+    }
+
+  /**
    * Returns the set of patterns that values in this domain must match.
    */
   protected List<String> getMatching()
@@ -88,6 +97,14 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   public void setNotMatching( List<String> patterns)
     {
     notMatching_ = patterns;
+    }
+
+  /**
+   * Changes the set of patterns that values in this domain must <U>NOT</U> match.
+   */
+  public void setNotMatching( String... patterns)
+    {
+    setNotMatching( Arrays.asList( patterns));
     }
 
   /**

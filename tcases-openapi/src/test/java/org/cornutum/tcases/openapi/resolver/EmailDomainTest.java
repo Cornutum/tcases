@@ -132,13 +132,15 @@ public class EmailDomainTest extends ValueDomainTest
     EmailDomain domain = new EmailDomain( 16);
 
     // When...
-    //   MatchPatterns = Some
-    //   NotMatchPatterns = Some
+    domain.setMatching( ".org$");
+    domain.setNotMatching( "^\\d");
 
     // Then...
     verifyContainsValues( domain, 1000);
     assertThat( "Contains", domain.contains( "you@mydomain.org"), is( true));
     assertThat( "Contains", domain.contains( "myself@mydomain.org"), is( false));
+    assertThat( "Contains", domain.contains( "you@mydomain.com"), is( false));
+    assertThat( "Contains", domain.contains( "9ou@mydomain.org"), is( false));
 
     // When...
     DataValue<String> value = domain.select( getResolverContext());
