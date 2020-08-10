@@ -107,23 +107,34 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
     }
 
   /**
-   * Returns a new random string.
+   * Returns a random sequence of possible members of this domain matching all pattern requirements.
    */
-  protected String newValue( ResolverContext context)
+  protected Stream<String> matchingValues( ResolverContext context, PatternResolver patternResolver)
     {
-    return newValue( context, new PatternResolver( context));
+    return Stream.generate( () -> {
+      return
+        context.tryUntil(
+          newValues( context)
+          .map( value -> Optional.of( value).filter( v -> patternResolver.matchesAll( v))));
+      });
     }
 
   /**
-   * Returns a new random string.
+   * Generates a random sequence of possible members of this domain matching all pattern requirements.
    */
-  protected String newValue( ResolverContext context, PatternResolver patternResolver)
+  protected Stream<String> generateMatchingValues( ResolverContext context, PatternResolver patternResolver)
     {
     return
-      context.tryUntil(
-        () ->
-        Optional.of( newValue( context, getLengthRange().selectValue( context)))
-        .filter( value -> patternResolver.matchesAll( value)));
+      patternResolver.generatedMatches( getLengthRange())
+      .orElse( matchingValues( context, patternResolver));
+    }
+
+  /**
+   * Returns a random sequences of possible members of this domain.
+   */
+  protected Stream<String> newValues( ResolverContext context)
+    {
+    return Stream.generate( () -> newValue( context, getLengthRange().selectValue( context)));
     }
 
   /**
@@ -136,7 +147,24 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
    */
   protected Stream<String> candidates( ResolverContext context)
     {
-    return Stream.generate( () -> newValue( context));
+    PatternResolver patternResolver = new PatternResolver( context);
+    patternResolver.patternInfeasible( getLengthRange())
+      .ifPresent( pattern -> {
+        throw
+          new ResolverSkipException(
+            context.getLocation(),
+            String.format( "Can't match pattern=%s with length=%s", pattern, getLengthRange()));
+        });
+
+    return matchingCandidates( context, patternResolver);
+    }
+  
+  /**
+   * Returns a random sequence of possible members of this domain matching all pattern requirements.
+   */
+  protected Stream<String> matchingCandidates( ResolverContext context, PatternResolver patternResolver)
+    {
+    return matchingValues( context, patternResolver);
     }
 
   /**
@@ -185,7 +213,16 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
       List<String> matching = getMatching();
       List<String> notMatching = getNotMatching();
 
-      Optional<Integer> generatedBy = getGeneratedBy( matching);
+      List<SimpleEntry<Integer,RegExpGen>> generatorsIndexed =
+        IntStream.range( 0, matching.size())
+        .mapToObj( i -> Optional.ofNullable( generatorFor( matching.get(i))).map( gen -> new SimpleEntry<Integer,RegExpGen>( i, gen)).orElse( null))
+        .filter( Objects::nonNull)
+        .sorted( Comparator.nullsLast( Comparator.comparing( SimpleEntry::getValue)))
+        .collect( toList());
+
+      generators_ = generatorsIndexed.stream().map( SimpleEntry::getValue).collect( toList());
+      
+      Optional<Integer> generatedBy = generatorsIndexed.stream().findFirst().map( SimpleEntry::getKey);
       if( generatedBy.isPresent())
         {
         generatedBy_ = matching.get( generatedBy.get());
@@ -226,6 +263,19 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
       return
         matching.stream().allMatch( pattern -> pattern.matcher( value).find())
         && notMatching.stream().noneMatch( pattern -> pattern.matcher( value).find());
+      }
+
+    /**
+     * If all pattern requirements are feasible for strings with the given length domain,
+     * returns <CODE>Optional.empty()</CODE>; otherwise, returns an infeasible pattern.
+     */
+    public Optional<String> patternInfeasible( LengthDomain length)
+      {
+      return
+        generators_.stream()
+        .filter( gen -> !gen.getLength().intersects( length.getMin(), length.getMax()))
+        .findFirst()
+        .map( gen -> gen.getOptions().getRegExp());
       }
 
     /**
@@ -283,34 +333,24 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
       }
 
     /**
-     * Returns a generated match to all pattern requirements {@link #getMatching matching pattern}.
+     * Returns a sequence of generated matches to all pattern requirements {@link #getMatching matching pattern}.
      * Returns <CODE>Optional.empty()</CODE> if no generated match is possible.
      */
-    public Optional<String> generatedMatch( LengthDomain length)
+    public Optional<Stream<String>> generatedMatches( LengthDomain length)
       {
       return
         Optional.ofNullable( getGenerator())
         .map( generator -> {
           return
-            context_.tryUntil(
-              () ->
-              Optional.of( generator.generate( random_, length.getMin(), length.getMax()))
-              .filter( value -> matchesRemaining( value)));
+            Stream.generate( () -> {
+              return
+                context_.tryUntil( () -> {
+                  return
+                    Optional.of( generator.generate( random_, length.getMin(), length.getMax()))
+                    .filter( value -> matchesRemaining( value));
+                  });
+              });
           });
-      }
-
-    /**
-     * Returns the index of the regular expression used to generate matching values.
-     * Returns <CODE>Optional.empty()</CODE> if no such regular expression is found.
-     */
-    private Optional<Integer> getGeneratedBy( List<String> matching)
-      {
-      return
-        IntStream.range( 0, matching.size())
-        .mapToObj( i -> new SimpleEntry<Integer,RegExpGen>( i, generatorFor( matching.get(i))))
-        .sorted( Comparator.nullsLast( Comparator.comparing( SimpleEntry::getValue)))
-        .findFirst()
-        .map( SimpleEntry::getKey);
       }
 
     /**
@@ -329,6 +369,7 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
       }
 
     private final ResolverContext context_;
+    private final List<RegExpGen> generators_;
     private final List<Pattern> matching_;
     private final List<Pattern> notMatching_;
     private final List<Pattern> filtering_;
