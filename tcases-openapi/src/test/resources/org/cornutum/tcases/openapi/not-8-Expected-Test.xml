@@ -53,12 +53,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -121,12 +121,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -194,12 +194,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -264,12 +264,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -353,12 +353,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -421,12 +421,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -494,12 +494,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -564,12 +564,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -653,12 +653,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -721,12 +721,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -794,12 +794,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -864,12 +864,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -953,12 +953,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1021,12 +1021,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1094,12 +1094,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1164,12 +1164,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1253,12 +1253,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -1321,12 +1321,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1394,12 +1394,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1464,12 +1464,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1553,12 +1553,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -1621,12 +1621,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1694,12 +1694,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1764,12 +1764,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1853,12 +1853,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -1921,12 +1921,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1994,12 +1994,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2064,12 +2064,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2153,12 +2153,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2221,12 +2221,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2294,12 +2294,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2364,12 +2364,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2453,12 +2453,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -2521,12 +2521,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2594,12 +2594,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2664,12 +2664,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2753,12 +2753,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2821,12 +2821,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2894,12 +2894,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2964,12 +2964,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3053,12 +3053,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3121,12 +3121,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3194,12 +3194,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3264,12 +3264,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3353,12 +3353,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3421,12 +3421,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3494,12 +3494,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3564,12 +3564,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3653,12 +3653,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3721,12 +3721,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" value="Yes">
           <Has name="paramName" value="param0"/>
@@ -3794,12 +3794,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3864,12 +3864,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -3953,12 +3953,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4021,12 +4021,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" value="No">
           <Has name="paramName" value="param0"/>
@@ -4094,12 +4094,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4164,12 +4164,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4253,12 +4253,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4321,12 +4321,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4394,12 +4394,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4464,12 +4464,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4553,12 +4553,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4621,12 +4621,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4694,12 +4694,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4765,12 +4765,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4854,12 +4854,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4922,12 +4922,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -4995,12 +4995,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5065,12 +5065,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5154,12 +5154,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5222,12 +5222,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5295,12 +5295,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5366,12 +5366,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5455,12 +5455,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5523,12 +5523,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5596,12 +5596,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" value="Yes">
           <Has name="paramName" value="param0"/>
@@ -5666,12 +5666,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5755,12 +5755,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5823,12 +5823,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -5896,12 +5896,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" value="No">
           <Has name="paramName" value="param0"/>
@@ -5967,12 +5967,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6056,12 +6056,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6124,12 +6124,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6197,12 +6197,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6268,12 +6268,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6357,12 +6357,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6425,12 +6425,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6498,12 +6498,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6568,12 +6568,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6657,12 +6657,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6725,12 +6725,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6798,12 +6798,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6868,12 +6868,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -6957,12 +6957,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7025,12 +7025,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7098,12 +7098,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7168,12 +7168,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7257,12 +7257,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7325,12 +7325,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7398,12 +7398,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7468,12 +7468,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7557,12 +7557,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7625,12 +7625,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7698,12 +7698,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7768,12 +7768,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" value="Yes">
           <Has name="paramName" value="param0"/>
@@ -7857,12 +7857,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7925,12 +7925,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -7998,12 +7998,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8068,12 +8068,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" value="No">
           <Has name="paramName" value="param0"/>
@@ -8157,12 +8157,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8225,12 +8225,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8298,12 +8298,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8368,12 +8368,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8457,12 +8457,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8525,12 +8525,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8598,12 +8598,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8668,12 +8668,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8757,12 +8757,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8825,12 +8825,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8898,12 +8898,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -8968,12 +8968,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9057,12 +9057,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -9125,12 +9125,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9198,12 +9198,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9268,12 +9268,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9357,12 +9357,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -9425,12 +9425,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9498,12 +9498,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9568,12 +9568,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9657,12 +9657,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9725,12 +9725,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9798,12 +9798,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9868,12 +9868,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -9957,12 +9957,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10025,12 +10025,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10098,12 +10098,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10168,12 +10168,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10257,12 +10257,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10325,12 +10325,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10398,12 +10398,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10468,12 +10468,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10557,12 +10557,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10625,12 +10625,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10698,12 +10698,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10768,12 +10768,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10857,12 +10857,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10925,12 +10925,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -10998,12 +10998,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11068,12 +11068,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11157,12 +11157,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="0" failure="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11225,12 +11225,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11298,12 +11298,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11368,12 +11368,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11457,12 +11457,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="No" failure="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -11525,12 +11525,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11598,12 +11598,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11668,12 +11668,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11757,12 +11757,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="Yes" failure="true">
           <Has name="paramName" value="param0"/>
@@ -11825,12 +11825,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11898,12 +11898,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -11968,12 +11968,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12057,12 +12057,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -12125,12 +12125,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12198,12 +12198,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12268,12 +12268,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12357,12 +12357,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -12425,12 +12425,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12498,12 +12498,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12568,12 +12568,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12657,12 +12657,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -12725,12 +12725,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12798,12 +12798,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12868,12 +12868,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -12957,12 +12957,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -13025,12 +13025,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13098,12 +13098,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13168,12 +13168,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13257,12 +13257,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -13325,12 +13325,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13398,12 +13398,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13468,12 +13468,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13557,12 +13557,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -13625,12 +13625,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13698,12 +13698,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13768,12 +13768,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13857,12 +13857,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" value="1">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" value="Yes">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" value="No">
           <Has name="paramName" value="param0"/>
@@ -13925,12 +13925,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -13998,12 +13998,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14068,12 +14068,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14157,12 +14157,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14225,12 +14225,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" value="&gt; 1">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" value="No" failure="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14298,12 +14298,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14368,12 +14368,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14457,12 +14457,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14525,12 +14525,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14598,12 +14598,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14668,12 +14668,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14757,12 +14757,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14825,12 +14825,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14898,12 +14898,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -14968,12 +14968,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15057,12 +15057,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15125,12 +15125,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15198,12 +15198,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15268,12 +15268,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15357,12 +15357,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15425,12 +15425,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15498,12 +15498,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15568,12 +15568,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15657,12 +15657,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15725,12 +15725,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15798,12 +15798,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15868,12 +15868,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -15957,12 +15957,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16025,12 +16025,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16098,12 +16098,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16168,12 +16168,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16257,12 +16257,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16325,12 +16325,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16398,12 +16398,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16468,12 +16468,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16557,12 +16557,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16625,12 +16625,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16698,12 +16698,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16768,12 +16768,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16857,12 +16857,12 @@
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
           <Has name="itemNotPatterns" value="&apos;Y+&apos;"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16925,12 +16925,12 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -16998,12 +16998,12 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
@@ -17068,12 +17068,12 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Length" NA="true">
           <Has name="itemMinLength" value="1"/>
-          <Has name="itemPatterns" value="&apos;X+&apos;"/>
+          <Has name="itemPatterns" value="&apos;\\w+&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern" NA="true">
           <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X+"/>
+          <Has name="pattern" value="\w+"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>

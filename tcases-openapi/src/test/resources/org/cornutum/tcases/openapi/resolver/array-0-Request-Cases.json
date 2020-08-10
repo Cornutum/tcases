@@ -237,15 +237,15 @@
                         },
                         {
                             "type": "number",
-                            "value": 0
+                            "value": -4473410806740678956.0
                         },
                         {
                             "type": "number",
-                            "value": 0
+                            "value": -3859839022118758899.9
                         },
                         {
                             "type": "number",
-                            "value": 0
+                            "value": -3859839022118758899.9
                         }
                     ]
                 },
@@ -300,9 +300,8 @@
                     "type": "array",
                     "value": [
                         {
-                            "type": "object",
-                            "value": {
-                            }
+                            "type": "string",
+                            "value": "Ra|8C"
                         }
                     ]
                 },

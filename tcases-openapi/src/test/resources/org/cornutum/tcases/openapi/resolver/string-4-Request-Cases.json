@@ -16,7 +16,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ""
+                    "value": "r"
                 },
                 "valid": true
             }
@@ -65,7 +65,7 @@
     },
     {
         "id": 3,
-        "name": "param0.Value.Length='> 0'",
+        "name": "param0.Value.Length='> 1'",
         "server": "/",
         "version": "0.0.0",
         "api": "String",
@@ -79,7 +79,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
+                    "value": "ioXCk5EIIRmP2A8wWkNicPdggEU8msVDiOTv80P3XHspepboKJ2dBEbnW3mpWDCM7e12yzZTwDLHaPWChikf2q5wjDUSL961TRrpyQ1afTn8PCRg4rFPvcUhIOverduIupLEccQ6NjG7aHfoNlvZ9YaUYfpwA0PnTWT0diPrz8f5Jjduaiu8WDyO5aYQOu8ILud0aXfM3Eoz6z60ej0RDqZ7prgL8sYGMfBOkQJ3h|hn"
                 },
                 "valid": true
             }
@@ -100,8 +100,9 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": 190.9
+                    "type": "integer",
+                    "value": -851,
+                    "format": "int32"
                 },
                 "valid": false
             }
@@ -110,7 +111,7 @@
     },
     {
         "id": 5,
-        "name": "param0.Value.Matches-Pattern='No'",
+        "name": "param0.Value.Length='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "String",
@@ -125,6 +126,29 @@
                 "data": {
                     "type": "string",
                     "value": ""
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Length=0"
+    },
+    {
+        "id": 6,
+        "name": "param0.Value.Matches-Pattern='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "String",
+        "path": "/string",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "^"
                 },
                 "valid": false
             }

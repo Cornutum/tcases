@@ -57,7 +57,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "A"
+                    "value": "%"
                 },
                 "valid": true
             }
@@ -101,7 +101,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "S"
+                    "value": "j"
                 },
                 "valid": true
             }
@@ -145,8 +145,27 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "object",
+                    "value": {
+                        "llinyhozb": {
+                            "type": "integer",
+                            "value": -595,
+                            "format": "int32"
+                        },
+                        "xblbqey": {
+                            "type": "number",
+                            "value": 478.4
+                        },
+                        "mczosccgaahwfei": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "Yu$s]/H"
+                                }
+                            ]
+                        }
+                    }
                 },
                 "valid": false
             }
@@ -169,58 +188,12 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ")$"
+                    "value": "fv"
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Alternative.0.Value.Length=2"
-    },
-    {
-        "id": 8,
-        "name": "param0.Alternative.0.Value.Matches-Pattern='No'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Not",
-        "path": "/not",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": ""
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "param0.Alternative.0.Value.Matches-Pattern=No"
-    },
-    {
-        "id": 9,
-        "name": "param0.Alternative.1.Value.Matches-Patterns.0='No'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Not",
-        "path": "/not",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": ""
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "param0.Alternative.1.Value.Matches-Patterns.0=No"
     },
     {
         "id": 10,
@@ -238,34 +211,11 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ""
+                    "value": "4"
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Alternative.1.Value.Matches-Patterns.1=Yes"
-    },
-    {
-        "id": 11,
-        "name": "param0.Alternative.1.Value.Matches-Patterns.2='Yes'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Not",
-        "path": "/not",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": ""
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "param0.Alternative.1.Value.Matches-Patterns.2=Yes"
     }
 ]

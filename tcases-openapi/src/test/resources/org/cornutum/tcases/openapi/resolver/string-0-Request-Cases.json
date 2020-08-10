@@ -16,7 +16,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "AS0)$yh"
+                    "value": "?5^E.\\<"
                 },
                 "valid": true
             }
@@ -57,7 +57,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "hlf~$]%`"
+                    "value": "NvA*|\\_G"
                 },
                 "valid": true
             }
@@ -105,7 +105,15 @@
                     "value": [
                         {
                             "type": "string",
-                            "value": "{wM*8*"
+                            "value": "&TgKd[m"
+                        },
+                        {
+                            "type": "string",
+                            "value": "3[Xi2s["
+                        },
+                        {
+                            "type": "string",
+                            "value": "b'^"
                         }
                     ]
                 },
@@ -130,7 +138,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "b<L3%I"
+                    "value": "1)jCHc"
                 },
                 "valid": false
             }
@@ -153,34 +161,11 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "Ra|8C(`Kg"
+                    "value": "Y=x\\gDBQy"
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Value.Length=9"
-    },
-    {
-        "id": 7,
-        "name": "param0.Value.Matches-Pattern='No'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "String",
-        "path": "/string",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "Unbd:8?"
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "param0.Value.Matches-Pattern=No"
     }
 ]

@@ -70,37 +70,6 @@
         ]
     },
     {
-        "id": 3,
-        "name": "param0.Items.Size='> 1'",
-        "server": "http://www.cornutum.org/tcases/reducer/api",
-        "version": "0.0.0",
-        "api": "Operations",
-        "path": "/operations",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": true,
-                "data": {
-                    "type": "array",
-                    "value": [
-                        {
-                            "type": "boolean",
-                            "value": false
-                        },
-                        {
-                            "type": "boolean",
-                            "value": true
-                        }
-                    ]
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
         "id": 4,
         "name": "param0.Items.Unique='No'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
@@ -127,7 +96,7 @@
                         },
                         {
                             "type": "boolean",
-                            "value": true
+                            "value": false
                         },
                         {
                             "type": "boolean",
@@ -135,27 +104,27 @@
                         },
                         {
                             "type": "boolean",
-                            "value": true
+                            "value": false
                         },
                         {
                             "type": "boolean",
-                            "value": true
+                            "value": false
                         },
                         {
                             "type": "boolean",
-                            "value": true
+                            "value": false
                         },
                         {
                             "type": "boolean",
-                            "value": true
+                            "value": false
                         },
                         {
                             "type": "boolean",
-                            "value": true
+                            "value": false
                         },
                         {
                             "type": "boolean",
-                            "value": true
+                            "value": false
                         }
                     ]
                 },
@@ -201,8 +170,8 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "number",
+                    "value": 827.6
                 },
                 "valid": false
             }
@@ -255,21 +224,9 @@
                     "type": "array",
                     "value": [
                         {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "!TRdm"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": ":/0n"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "5\\QCc"
-                                }
-                            ]
+                            "type": "integer",
+                            "value": -279,
+                            "format": "int32"
                         }
                     ]
                 },

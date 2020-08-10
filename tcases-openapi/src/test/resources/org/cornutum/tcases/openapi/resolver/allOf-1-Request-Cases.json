@@ -162,17 +162,17 @@
                 "value": [
                     {
                         "type": "integer",
-                        "value": -757064037,
+                        "value": -396573646,
                         "format": "int32"
                     },
                     {
                         "type": "integer",
-                        "value": -757064037,
+                        "value": -396573646,
                         "format": "int32"
                     },
                     {
                         "type": "integer",
-                        "value": -76701105,
+                        "value": 997040718,
                         "format": "int32"
                     },
                     {
@@ -187,12 +187,12 @@
                     },
                     {
                         "type": "integer",
-                        "value": -498580416,
+                        "value": 575161407,
                         "format": "int32"
                     },
                     {
                         "type": "integer",
-                        "value": -1002880112,
+                        "value": 70861711,
                         "format": "int32"
                     }
                 ]
@@ -223,11 +223,10 @@
         "path": "/allOf",
         "operation": "POST",
         "body": {
-            "mediaType": "application/x-www-form-urlencoded",
+            "mediaType": "application/xml",
             "data": {
-                "type": "integer",
-                "value": 824,
-                "format": "int32"
+                "type": "string",
+                "value": "3"
             },
             "valid": false
         },
@@ -262,8 +261,8 @@
         "body": {
             "mediaType": "application/json",
             "data": {
-                "type": "string",
-                "value": "(`K"
+                "type": "boolean",
+                "value": true
             },
             "valid": false
         },
@@ -306,8 +305,13 @@
                 "type": "array",
                 "value": [
                     {
-                        "type": "boolean",
-                        "value": true
+                        "type": "array",
+                        "value": [
+                            {
+                                "type": "string",
+                                "value": "C(`"
+                            }
+                        ]
                     }
                 ]
             },
