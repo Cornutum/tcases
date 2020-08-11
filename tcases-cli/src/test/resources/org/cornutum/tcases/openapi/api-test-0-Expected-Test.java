@@ -141,7 +141,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsUnique_Is_No() {
         given()
-            .queryParam( "ids", "0|0|0|0")
+            .queryParam( "ids", "0|20|50|50")
         .when()
             .request( "GET", "/posts")
         .then()

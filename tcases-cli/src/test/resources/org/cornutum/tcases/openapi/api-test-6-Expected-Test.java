@@ -125,8 +125,8 @@ public class MyTests {
     @Test
     public void optionsPosts_XPostTypesItemsContainsType_Is_NotInteger() {
         given()
-            .header( "X-Post-Types", "PyCeS/;&,XTzA Y,~H|,-758.0")
-            .header( "X-User-Id", "525375865")
+            .header( "X-Post-Types", "PyCeS/;&,XTzA Y,~H|,1001")
+            .header( "X-User-Id", "944060091")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -138,8 +138,8 @@ public class MyTests {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_Other() {
         given()
-            .header( "X-Post-Types", "-440430350,571624916")
-            .header( "X-User-Id", "936274124")
+            .header( "X-Post-Types", "-698622611,1001")
+            .header( "X-User-Id", "633311474")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -152,7 +152,7 @@ public class MyTests {
     public void optionsPosts_XPostTypesItemsUnique_Is_No() {
         given()
             .header( "X-Post-Types", "1001,1001")
-            .header( "X-User-Id", "60294574")
+            .header( "X-User-Id", "57695003")
         .when()
             .request( "OPTIONS", "/posts")
         .then()

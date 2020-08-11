@@ -24,7 +24,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePosts_PostIdItemsSize_Is_2() {
         given()
-            .cookie( "postId", "B|C")
+            .cookie( "postId", "B|A")
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -69,7 +69,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePosts_PostIdType_Is_NotArray() {
         given()
-            .cookie( "postId", "j1")
+            .cookie( "postId", "568.0")
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -105,7 +105,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePosts_PostIdItemsContainsType_Is_Null() {
         given()
-            .cookie( "postId", "|A")
+            .cookie( "postId", "|B")
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -117,7 +117,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePosts_PostIdItemsContainsValue_Is_Other() {
         given()
-            .cookie( "postId", "[(L&~c@x{Xp7Btyr+R+'p[jrH_o$X`LnQgI'mW?MxX|GcS[=P2R2jAx5z4OLaEDo=8cde$AvZR#F#0>Z[cld8Em_%vE!{(9$+z!(Ghc.{J[m^1HdT/7PKLdR0v:@srfapHf(c/l2s&<{QFg8oMlvF<0@dbS:.")
+            .cookie( "postId", "jLId'31*^UjExCZerfw#(S_b#m[(L&~c@x{Xp7Btyr+R+'p[jrH_o$X`LnQgI'mW?MxXRGcS[=P2R2jAx5z4OLaEDo=8cde$AvZR#F#0>Z[cld8Em_%vE!{(9$+z!(Ghc.{J[m^1HdT/7PKLdR0v:@srfapHf(c/l2s&<{QFg8oMlvF<0@dbS:.5ef?WOZ+>MHIUD-{?yH$5-DM3*T>hR%ct'(7EzCR]8|A")
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -152,7 +152,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedValue_Is_False() {
         given()
-            .pathParam( "attributes", ";approved=false;likes=681280805")
+            .pathParam( "attributes", ";approved=false;likes=597033979")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -198,7 +198,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePostsAttributes_AttributesType_Is_NotObject() {
         given()
-            .pathParam( "attributes", ";attributes=7^?")
+            .pathParam( "attributes", ";attributes=-441")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -210,7 +210,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
-            .pathParam( "attributes", ";likes=944897639")
+            .pathParam( "attributes", ";likes=1035843385")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -222,7 +222,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
-            .pathParam( "attributes", ";approved=;likes=515833097")
+            .pathParam( "attributes", ";approved=;likes=127128009")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -234,7 +234,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
-            .pathParam( "attributes", ";approved=cyhdwbn,rUyOPpmo,hvkexe,337.6;likes=1066915565")
+            .pathParam( "attributes", ";approved=\"+DZYOH4;likes=222686173")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -294,7 +294,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
-            .pathParam( "attributes", ";approved=false;subject=;likes=462664869")
+            .pathParam( "attributes", ";approved=false;subject=;likes=279878075")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -306,7 +306,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_Other() {
         given()
-            .pathParam( "attributes", ";approved=false;subject=7y,|is:=qA}tbaqb^*'U=-\"+DZYOH4|vO,]/c~+:.-g:o)lz~^hL-;. o1\\Vc64a#.Sm!*Y`|qrPD^$*wXi2.a22Qkgt|f8T;#g33QP&F3Sq{<43[l#SP:C>1C~NW?G\\a _%Jkm?u2\"l\"H7*]q:f9@rekaJ{;likes=559447665")
+            .pathParam( "attributes", ";approved=false;subject=~+:.-g:o)lz~^hL-;. o1\\Vc64a#.Sm!*Y`|qrPD^$*wXi2.a22Qkgt|f8T;#g33QP&F3Sq{<43[l#SP:C>1C~NW?G\\a _%Jkm?u2\"l\"H7*]q:f9@re;likes=859073676")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -318,7 +318,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
-            .pathParam( "attributes", ";approved=false;likes=930884796;kesrtqj=61")
+            .pathParam( "attributes", ";approved=false;likes=776704486;wuf=")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()

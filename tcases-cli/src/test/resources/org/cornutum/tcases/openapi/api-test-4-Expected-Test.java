@@ -141,7 +141,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsUnique_Is_No() {
         given()
-            .queryParam( "ids", "0|0|0|0")
+            .queryParam( "ids", "0|96|96|42")
         .when()
             .request( "GET", "/posts")
         .then()
@@ -266,8 +266,8 @@ public class MyTest extends MyBaseClass {
     @Test
     public void optionsPosts_XPostTypesItemsContainsType_Is_NotInteger() {
         given()
-            .header( "X-Post-Types", "PyCeS/;&,XTzA Y,~H|,-758.0")
-            .header( "X-User-Id", "525375865")
+            .header( "X-Post-Types", "PyCeS/;&,XTzA Y,~H|,1001")
+            .header( "X-User-Id", "944060091")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -279,8 +279,8 @@ public class MyTest extends MyBaseClass {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_Other() {
         given()
-            .header( "X-Post-Types", "-440430350,571624916")
-            .header( "X-User-Id", "936274124")
+            .header( "X-Post-Types", "-698622611,1001")
+            .header( "X-User-Id", "633311474")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -293,7 +293,7 @@ public class MyTest extends MyBaseClass {
     public void optionsPosts_XPostTypesItemsUnique_Is_No() {
         given()
             .header( "X-Post-Types", "1001,1001")
-            .header( "X-User-Id", "60294574")
+            .header( "X-User-Id", "57695003")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -610,10 +610,10 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPosts_PostIdDefined_Is_Yes() {
         given()
-            .cookie( "country", "4")
-            .cookie( "region", ">")
+            .cookie( "country", "R")
+            .cookie( "region", "3")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"=@u.com\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"K@a.net\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -624,10 +624,10 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_16() {
         given()
-            .cookie( "country", "59/]S|iXKvw{MDZl")
-            .cookie( "region", "WT(|.f-V+0l'Eh80")
+            .cookie( "country", "/]S|iXKvw{MDZlWT")
+            .cookie( "region", "(|.f-V+0l'Eh80Z=")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"[Mm;>7KVj.uk!bMr$S/-*% jTw/P%.T#~a sHY |UzR3*.>'PQE0^Sjhn!14kQLd\",\"email\":\"c.?@ZXlp.ND79.cS0O.a0ol.iCC8.org\"}")
+            .request().body( "{\"text\":\"m;>7KVj.uk!bMr$S/-*% jTw/P%.T#~a sHY |UzR3*.>'PQE0^Sjhn!14kQLdhY\",\"email\":\"l_.R{.hD.{7.Hy.$A@a0.oli.CC8.org\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1068,7 +1068,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePosts_PostIdItemsContainsValue_Is_Other() {
         given()
-            .cookie( "postId", "8ZJVDR!8L`95Z/C{-+Lv'ODNFkc&/#*@z7ScA_&Kh}c2dxrBz/2PfD*IPF_(d]lYR0q@rqRSby8?k+)tXEc415q-u0`?]oJRBh1*'Rn`I[3}3H*wvowcHY$V$ySBh*/k(0hA<SRbfN|rv8:-cfSWPu4ZCLv@4@u*0ii@bn@h>cW)vV~(<Q#]N3fX#WJm~0VM22Gm>z/_&:cg>)nd^[9qQbOs?0RA(R'NtG8IYUXgL~gq$-v'Wbv_%9Ij~&u[M{kh[pkP.&mPRpqks_+=9R~%fMbsGtSG@R/J!01ir6Ot8`Hf{0ovp0noOfJ:o)2FXhe.*'%7f*`MFP`dZM`?g{[x2UQn{'z3ZHdmw`3:]V&OP%6H#V0WNQYlht1<j5A)YX")
+            .cookie( "postId", "&8ZJVDR!8L`95Z/C{-+Lv'ODNFkc&/#*@z7ScA_&Kh}c2dxrBz/2PfD*IPF_(d]lYR0q@rqRSby8?k+)tXEc415q-u0`?]oJRBh1*'Rn`I[3}3H*wvowcHY$V$ySBh*/k(0hA<SRbfNgrv8:-cfSWPu4ZCLv@4@u*0ii@bn@h>cW)vV~(<Q#]N3fX#|A")
         .when()
             .request( "TRACE", "/posts")
         .then()

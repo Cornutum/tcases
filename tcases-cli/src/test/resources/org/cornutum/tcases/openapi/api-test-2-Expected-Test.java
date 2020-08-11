@@ -80,7 +80,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksType_Is_NotArray() {
         given()
-            .queryParam( "Post Marks", "-98")
+            .queryParam( "Post Marks", "-474.0")
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -104,7 +104,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksItemsSize_Is_4() {
         given()
-            .queryParam( "Post Marks", "<Y> <Y> <Y> <Y>")
+            .queryParam( "Post Marks", "<Y> <Y> {X} <Y>")
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -128,7 +128,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
-            .queryParam( "Post Marks", "1U53/_Q41CZ68YH)c3/q\"S9&SeyuB/_a&J\"NSg`yJ&38{0]~J2NX74igr%E5EGc\\OigZb;Oe{5oWhA5|hu8QQ#eO@QBr\\B)45dU%wpU*Lq/%;JxdQHuGKPFqA>MQX^9[lVB8=e>fq\\XzA7T\"ILUr9sj.^y5t%1l}>dsaGQec@CT,J~pO!")
+            .queryParam( "Post Marks", "x|[NnB:\"Dmm25G\\hocY\":K9TpYT53nL75FTt4;\"Cbq)Huthv's0_TN2.jfk],:~XCj|e+&#OtbX`2C^P<?m>d4Vk-lBQQ5BuZj%5hpjz:up.P*%?J3>][=k;1,fQ)1[1$7ej8@;bv`{pY#ceqH\\l/,qqnu9rx;vIiwsx6FIY2YV1U53/_Q41CZ68YH)c3/q\"S")
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -151,7 +151,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedValue_Is_False() {
         given()
-            .pathParam( "attributes", ";approved=false;likes=507386362")
+            .pathParam( "attributes", ";approved=false;likes=1071789681")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -197,7 +197,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesType_Is_NotObject() {
         given()
-            .pathParam( "attributes", ";attributes=577")
+            .pathParam( "attributes", ";attributes=")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -209,7 +209,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
-            .pathParam( "attributes", ";likes=1034226798")
+            .pathParam( "attributes", ";likes=262543935")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -221,7 +221,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
-            .pathParam( "attributes", ";approved=;likes=539289752")
+            .pathParam( "attributes", ";approved=;likes=586639729")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -233,7 +233,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
-            .pathParam( "attributes", ";approved=-539;likes=184728028")
+            .pathParam( "attributes", ";approved=4E?}Dwv;likes=191593065")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -269,7 +269,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_NotInteger() {
         given()
-            .pathParam( "attributes", ";approved=false;likes=")
+            .pathParam( "attributes", ";approved=false;likes=true")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -293,7 +293,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
-            .pathParam( "attributes", ";approved=false;subject=;likes=50486665")
+            .pathParam( "attributes", ";approved=false;subject=;likes=538838946")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -305,7 +305,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_Other() {
         given()
-            .pathParam( "attributes", ";approved=false;subject=H%g^2^2dfq}-seRK\"aJ{}.u0g<1ZR3_I0_[32?OV<=# W?N8@48te2#Jac4mHVJ+,48Bj_~j?AqZqSo,gyU;$'qV#M6RvTgzu/^iI-3Nr#ka{4E?}Dwv)?F*#D?f'R}Ho/#'JNN}*GZU&./+zl#/Y$|+&JRA~>=x.GJ;likes=707370706")
+            .pathParam( "attributes", ";approved=false;subject=f'R}Ho/#'JNN}*GZU&./+zl#/Y$|+&JRA~>=x.GJH_>UadC~zCeW:<WAN/rrEoSqE^il_.E`H'Pr=2C[(<Vov|9{;likes=225452120")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -317,7 +317,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
-            .pathParam( "attributes", ";approved=false;likes=347939369;hkosltmgqzmjkfk=;hyhudkjuolivgmrm=")
+            .pathParam( "attributes", ";approved=false;likes=156717470;qm=105;vskmwx=;ibjhzcukoxbvngqs=418.7")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()

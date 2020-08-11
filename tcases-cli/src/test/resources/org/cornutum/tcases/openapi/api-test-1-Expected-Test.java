@@ -19,7 +19,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_UserAttributesDefined_Is_Yes() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
+            .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes[user-type]", "Typical User")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
@@ -31,7 +31,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_VIP() {
         given()
-            .queryParam( "post?[post-references]", "1,0")
+            .queryParam( "post?[post-references]", "1,2")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
@@ -55,7 +55,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_UserAttributesDefined_Is_No() {
         given()
-            .queryParam( "post?[post-references]", "0,1")
+            .queryParam( "post?[post-references]", "0,2")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
         .then()
@@ -80,8 +80,8 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_UserAttributesType_Is_NotObject() {
         given()
-            .queryParam( "post?[post-references]", "0,1")
-            .queryParam( "user attributes", " ")
+            .queryParam( "post?[post-references]", "0,2")
+            .queryParam( "user attributes", "-163.3")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
         .then()
@@ -93,7 +93,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeDefined_Is_No() {
         given()
-            .queryParam( "post?[post-references]", "0,1")
+            .queryParam( "post?[post-references]", "0,2")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
         .then()
@@ -118,8 +118,8 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_Other() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "user attributes[user-type]", "njD-u8{%z!jLh/-ieQmYy^c1bZ#sM[$Pw_Z#~nK%!$1y#?%[{WwAM@qq9o1pfbn0z}[IWF>Cj~&w+Ut2';Pd[fzlka+IG+N*z(?fz6GdiX&rd\"l+fWZb0*Wwc[ddhO/{o]|z7@503%RJJa ,o{AP@N~lmP1O'a>(L}I)]\"DR3)U(\"g?9~*0`a&V:d,~}~{>-UCutB!>:@ULE*>8}%&n=M4@K\\N|$pWc_VK55p2B!1b\\D)mXi")
+            .queryParam( "post?[post-references]", "0,1")
+            .queryParam( "user attributes[user-type]", "*76s/1*r")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
         .then()
@@ -131,10 +131,11 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_UserAttributesValuePropertiesAdditional_Is_Yes() {
         given()
-            .queryParam( "post?[post-references]", "0,1")
+            .queryParam( "post?[post-references]", "0,2")
             .queryParam( "user attributes[user-type]", "VIP!")
-            .queryParam( "user attributes[vzyqzcopfkzcp]", ":6t9F_u,>Z!6")
-            .queryParam( "user attributes[lgxw]", "!P&H~Ge$")
+            .queryParam( "user attributes[wfgawhzebqxw]", "-993.3")
+            .queryParam( "user attributes[bt]", "-646")
+            .queryParam( "user attributes[d]", "429")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
         .then()
@@ -171,7 +172,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_PostType_Is_NotObject() {
         given()
-            .queryParam( "post?", "-239")
+            .queryParam( "post?", "-689.9")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
@@ -209,7 +210,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_PostValuePropertiesPostReferencesType_Is_NotArray() {
         given()
-            .queryParam( "post?[post-references]", "803")
+            .queryParam( "post?[post-references]", "true")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
@@ -248,7 +249,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_Null() {
         given()
-            .queryParam( "post?[post-references]", ",0")
+            .queryParam( "post?[post-references]", ",1")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
@@ -261,7 +262,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_NotInteger() {
         given()
-            .queryParam( "post?[post-references]", "true,203.3")
+            .queryParam( "post?[post-references]", ",,NU,2")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
@@ -274,7 +275,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsValue_Is_Other() {
         given()
-            .queryParam( "post?[post-references]", "-60832782,622737627")
+            .queryParam( "post?[post-references]", "518413185,0")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
@@ -300,8 +301,8 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void headPost_PostValuePropertiesAdditional_Is_Yes() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "post?[sp]", "129")
+            .queryParam( "post?[post-references]", "0,1")
+            .queryParam( "post?[pfuxkykifiozux]", "g\"YtKR,&")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "http://localhost:12306/post")
@@ -325,7 +326,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksItemsSize_Is_3() {
         given()
-            .queryParam( "Post Marks", "<Y> #Z {X}")
+            .queryParam( "Post Marks", "<Y> {X} #Z")
         .when()
             .request( "PATCH", "http://localhost:12306/post")
         .then()
@@ -381,7 +382,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksType_Is_NotArray() {
         given()
-            .queryParam( "Post Marks", "true")
+            .queryParam( "Post Marks", "+")
         .when()
             .request( "PATCH", "http://localhost:12306/post")
         .then()
@@ -405,7 +406,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksItemsSize_Is_4() {
         given()
-            .queryParam( "Post Marks", "<Y> <Y> <Y> <Y>")
+            .queryParam( "Post Marks", "<Y> <Y> <Y> {X}")
         .when()
             .request( "PATCH", "http://localhost:12306/post")
         .then()
@@ -429,7 +430,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
-            .queryParam( "Post Marks", ":-f*EN_~(u%i?(R61,]/RFOV6(??>jo#OW\\|J:^[hs,LIH|Ec<s'\"wWbG~#>I6}(IQ#UE4)Zd.1`sm(7FP68}H_i9{[i&>*Br#u,\\Mq_e6JtVJ/X'e0_(k\\#[_zmwjf+N-pdv\\U;!0=s[({0%Ppj.S&;=|7>,4<kz<rg/ggvPa9alK$>'c~WFwmC.Uf2z6-OYp~\"mW7~-k\\i)VSbT7fT6aNUD\\*sJc\"W7Qy>)O,Ed^VNa")
+            .queryParam( "Post Marks", "#/lL\"%`\\M,7/RPK2]eZ/b\"LtW=MB6,(")
         .when()
             .request( "PATCH", "http://localhost:12306/post")
         .then()
@@ -455,7 +456,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_PostIdValue_Is_Gt_0() {
         given()
-            .queryParam( "postId", "28999950531402111.8")
+            .queryParam( "postId", "884128300094585099.3")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "(?)")
@@ -512,7 +513,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_PostIdType_Is_NotNumber() {
         given()
-            .queryParam( "postId", "jg-")
+            .queryParam( "postId", "%")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -542,7 +543,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyDefined_Is_No() {
         given()
-            .queryParam( "postId", "919575277660755414.0")
+            .queryParam( "postId", "579110988210992054.5")
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()
@@ -554,9 +555,9 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyMediaType_Is_Other() {
         given()
-            .queryParam( "postId", "448997346156574075.8")
-            .contentType( "text/plain")
-            .request().body( "[\"MlyFy,$\",\"iP22^\"]")
+            .queryParam( "postId", "100055597218570470.8")
+            .contentType( "application/xml")
+            .request().body( ">jg-FQI")
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()
@@ -568,7 +569,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_Null() {
         given()
-            .queryParam( "postId", "571802726739922035.8")
+            .queryParam( "postId", "545768800747318227.7")
             .contentType( "application/x-www-form-urlencoded")
         .when()
             .request( "PUT", "http://localhost:12306/post")
@@ -581,9 +582,9 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_NotObject() {
         given()
-            .queryParam( "postId", "180496212748754591.4")
+            .queryParam( "postId", "787781271506673512.7")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "number", "682.4")
+            .formParam( "string", "")
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()
@@ -595,7 +596,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedDefined_Is_No() {
         given()
-            .queryParam( "postId", "673335475426531261.3")
+            .queryParam( "postId", "887390451195556957.7")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -609,7 +610,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_Null() {
         given()
-            .queryParam( "postId", "408953493899394760.6")
+            .queryParam( "postId", "218911377319422868.8")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "")
             .formParam( "reviewer", "Larry Moe")
@@ -624,9 +625,9 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_NotBoolean() {
         given()
-            .queryParam( "postId", "704936566657433448.3")
+            .queryParam( "postId", "847512139010470218.2")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "[bd|Gb&!")
+            .formParam( "approved", "eytx,7ea{")
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "http://localhost:12306/post")
@@ -639,7 +640,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerDefined_Is_No() {
         given()
-            .queryParam( "postId", "395913240289997151.7")
+            .queryParam( "postId", "711003745143914146.9")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
         .when()
@@ -653,7 +654,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_Null() {
         given()
-            .queryParam( "postId", "129624029192585112.5")
+            .queryParam( "postId", "167771822150204639.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "")
@@ -668,10 +669,10 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_Other() {
         given()
-            .queryParam( "postId", "6066229520155986.0")
+            .queryParam( "postId", "886308504886987482.6")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
-            .formParam( "reviewer", "~E_{ilb'3*76s/1*rt}aB2-ZF:6&HQoL9#`4:\"7\",Dt6K7BH.fpq-a=|e3 ,,NUhF&4hVmkeev1$d?/ vGu(m6v {g\"YtKRC&!R@O^fH|v&,QP2q>\\EL&:s{t\\'[EZ|t9bR_?<uo(/nD+[y0N#$g*yaTi0q{}X#wb$H9#1=NKr}esL&'I")
+            .formParam( "reviewer", "i&")
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()
@@ -683,13 +684,12 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesAdditional_Is_Yes() {
         given()
-            .queryParam( "postId", "214226054972517301.1")
+            .queryParam( "postId", "920816794015899048.8")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
-            .formParam( "i", "occjduoicfrrgd,true")
-            .formParam( "ptqdburuoffuq", "fuofhaaejdzc,503.9,u,152.0,ynixryojinfn,i#")
-            .formParam( "dxgvbsanhusc", "qy\\` #NX")
+            .formParam( "dxobuuyffc", "true")
+            .formParam( "wssfr", "true")
         .when()
             .request( "PUT", "http://localhost:12306/post")
         .then()

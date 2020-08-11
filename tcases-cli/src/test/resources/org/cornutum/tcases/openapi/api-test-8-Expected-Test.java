@@ -80,7 +80,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksType_Is_NotArray() {
         given()
-            .queryParam( "Post Marks", "-325")
+            .queryParam( "Post Marks", "%j")
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -128,7 +128,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
-            .queryParam( "Post Marks", "j]s}f?r68%}sCY:`Ox6#0{D4#7]d#G6'ctN&LOh(h8lDPv@KQt$By\"Pe`}7zy\"gjGs6(2SD,;HDm8&5ui)m.gLEXa[@j39#x/n;y2*ql0'1kFor@*kV{LMqYgm}RI|%,?2Xymv&}H#;=Djkkb=FG+};m0{JacOOE\\zCRKR7+~B|)bYS!'/|cFUf1<inkYU1Q;..e}q/L~$R=@u7_(}{<s%`yJ!>P1\\")
+            .queryParam( "Post Marks", "}sCY:`Ox6")
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -154,7 +154,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_PostIdValue_Is_Gt_0() {
         given()
-            .queryParam( "postId", "429373621376764523.4")
+            .queryParam( "postId", "178531885024436552.1")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "(?)")
@@ -211,7 +211,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_PostIdType_Is_NotNumber() {
         given()
-            .queryParam( "postId", "mruonbuzblmtih,bnYfUHN\\")
+            .queryParam( "postId", "dsdbhyyefkylvx,P Bet]2`,(zJbCAW9,+?HG,xjubku,true,w,311.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -241,7 +241,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyDefined_Is_No() {
         given()
-            .queryParam( "postId", "395657729052207882.7")
+            .queryParam( "postId", "135650747761652364.5")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -253,9 +253,9 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyMediaType_Is_Other() {
         given()
-            .queryParam( "postId", "178844844465171357.9")
+            .queryParam( "postId", "1908410660688479.5")
             .contentType( "application/json")
-            .request().body( "{\"mhtql\":\")dNI\"}")
+            .request().body( "{}")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -267,7 +267,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_Null() {
         given()
-            .queryParam( "postId", "384508755815968548.5")
+            .queryParam( "postId", "620754315360254345.9")
             .contentType( "application/x-www-form-urlencoded")
         .when()
             .request( "PUT", "/post")
@@ -280,9 +280,9 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_NotObject() {
         given()
-            .queryParam( "postId", "54123914100510963.7")
+            .queryParam( "postId", "186878807057420118.5")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "0", "F&")
+            .formParam( "string", "6fAF27`")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -294,7 +294,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedDefined_Is_No() {
         given()
-            .queryParam( "postId", "488307816111880069.0")
+            .queryParam( "postId", "882056840776722462.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -308,7 +308,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_Null() {
         given()
-            .queryParam( "postId", "487540343777326758.2")
+            .queryParam( "postId", "22335668025250416.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "")
             .formParam( "reviewer", "Larry Moe")
@@ -323,9 +323,9 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_NotBoolean() {
         given()
-            .queryParam( "postId", "293352798676361038.1")
+            .queryParam( "postId", "898680887852493317.2")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "200.7")
+            .formParam( "approved", "552")
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "/post")
@@ -338,7 +338,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerDefined_Is_No() {
         given()
-            .queryParam( "postId", "394806315164229311.8")
+            .queryParam( "postId", "697432282442948039.3")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
         .when()
@@ -352,7 +352,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_Null() {
         given()
-            .queryParam( "postId", "501513882115898758.3")
+            .queryParam( "postId", "669399166412585775.6")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "")
@@ -367,10 +367,10 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_Other() {
         given()
-            .queryParam( "postId", "424633537822095097.2")
+            .queryParam( "postId", "567618593728897571.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
-            .formParam( "reviewer", "tDB!l|]S.!=6A\\cplTx5Xa;j*!GmV4l&8J_C:'5s_has%$ASU.QipQ,TsI`zu6;ta,j")
+            .formParam( "reviewer", "&1OXI0v}]nrNIY[o()^c].aB:g?$U#;S`<o|wvom%r-(D.4}Xc1G]94bvS?oji}#>7%VabnYfUHN\\\"LrnIUXxmT?7)>)dNIjHS-@:WDdF&]i%qj01)}/WB/:Jw8=,,tDB!l|]S.!=6A\\cplTx5Xa;j*!GmV4l&8J_C:'5s_has%$AS")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -382,11 +382,12 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesAdditional_Is_Yes() {
         given()
-            .queryParam( "postId", "831430642366230064.6")
+            .queryParam( "postId", "427407811245599884.0")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
-            .formParam( "vzzeuckjfvfj", "sjnzmw,186,ogcopbfnok,613,nb,-974")
+            .formParam( "g", "true")
+            .formParam( "qlglu", "true")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -449,7 +450,7 @@ public class MyTest extends MyBaseClass {
     public void deletePostUserIdApproved_UserIdType_Is_NotInteger() {
         given()
             .pathParam( "approved", ".0")
-            .pathParam( "userId", ".")
+            .pathParam( "userId", ".Su{SaQJi")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
@@ -513,7 +514,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void deletePostUserIdApproved_ApprovedType_Is_NotInteger() {
         given()
-            .pathParam( "approved", "._")
+            .pathParam( "approved", ".972.9")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
@@ -526,7 +527,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void deletePostUserIdApproved_ApprovedValue_Is_Other() {
         given()
-            .pathParam( "approved", ".-660126811")
+            .pathParam( "approved", ".753713747")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
@@ -539,10 +540,10 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPosts_PostIdDefined_Is_Yes() {
         given()
-            .cookie( "country", "4")
-            .cookie( "region", ">")
+            .cookie( "country", "R")
+            .cookie( "region", "3")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"=@u.com\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"K@a.net\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -553,10 +554,10 @@ public class MyTest extends MyBaseClass {
     @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_16() {
         given()
-            .cookie( "country", "59/]S|iXKvw{MDZl")
-            .cookie( "region", "WT(|.f-V+0l'Eh80")
+            .cookie( "country", "/]S|iXKvw{MDZlWT")
+            .cookie( "region", "(|.f-V+0l'Eh80Z=")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"[Mm;>7KVj.uk!bMr$S/-*% jTw/P%.T#~a sHY |UzR3*.>'PQE0^Sjhn!14kQLd\",\"email\":\"c.?@ZXlp.ND79.cS0O.a0ol.iCC8.org\"}")
+            .request().body( "{\"text\":\"m;>7KVj.uk!bMr$S/-*% jTw/P%.T#~a sHY |UzR3*.>'PQE0^Sjhn!14kQLdhY\",\"email\":\"l_.R{.hD.{7.Hy.$A@a0.oli.CC8.org\"}")
         .when()
             .request( "PUT", "/posts")
         .then()

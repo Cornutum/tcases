@@ -230,12 +230,9 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   private DataValue<T> getNextItem( ResolverContext context, ValueDomain<T> nextItemValues, int itemCount, List<DataValue<T>> items, boolean itemsUnique)
     {
     return
-      context.tryUntil( () -> {
-        return
-          context.resultFor(
-            String.format( "%sitem[%s] of %s", itemsUnique? "unique " : "", items.size(), itemCount),
-            () -> Optional.of( nextItemValues.select( context)).filter( item -> !( itemsUnique && items.contains( item))));
-        });
+      context.resultFor(
+        String.format( "%sitem[%s] of %s", itemsUnique? "unique " : "", items.size(), itemCount),
+        () -> context.tryUntil( () -> Optional.of( nextItemValues.select( context)).filter( item -> !( itemsUnique && items.contains( item)))));
     }
 
   /**
