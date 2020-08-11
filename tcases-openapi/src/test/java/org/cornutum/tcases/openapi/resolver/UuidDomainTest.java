@@ -106,11 +106,14 @@ public class UuidDomainTest extends ValueDomainTest
 
     // When...
     domain.setLengthRange(36);
-    //   MatchPatterns = Some
-    //   NotMatchPatterns = Some
+    domain.setMatching( "^a");
+    domain.setNotMatching( "f$");
 
     // Then...
     verifyContainsValues( domain, 1000);
+    assertThat( "Contains", domain.contains( "a81d4fae-7dec-11d0-a765-00a0c91e6bf6"), is( true));
+    assertThat( "Contains", domain.contains( "a81d4fae-7dec-11d0-a765-00a0c91e6bff"), is( false));
+    assertThat( "Contains", domain.contains( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"), is( false));
     }
 
   @Test

@@ -16,6 +16,9 @@ import static org.cornutum.tcases.openapi.SchemaExtensions.*;
 import static org.cornutum.tcases.openapi.SchemaUtils.*;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
+import org.cornutum.regexpgen.RegExpGen;
+import static org.cornutum.regexpgen.Bounds.bounded;
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
@@ -1369,7 +1372,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           ( VarDefBuilder.with( toIdentifier( multipleOf))
             .values(
               VarValueDefBuilder.with( "Yes").has( "multipleOf", multipleOf).build(),
-              VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+              VarValueDefBuilder.with( "No").has( "multipleOf", multipleOf).type( VarValueDef.Type.FAILURE).build())
             .build());
         }
       for( BigDecimal m : notMultipleOfs)
@@ -1378,7 +1381,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           ( VarDefBuilder.with( toIdentifier( m))
             .values(
               VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).has( "multipleOf", m).build(),
-              VarValueDefBuilder.with( "No").build())
+              VarValueDefBuilder.with( "No").has( "multipleOf", m).build())
             .build());
         }
 
@@ -1805,9 +1808,10 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .when( has( instanceValueProperty( instanceVarTag)));
 
       // Ensure min/max range is feasible
-      Integer maxLength = maxStringFormat( format, instanceSchema.getMaxLength());
+      Integer maxLength = maxPatternMatch( instanceSchema, maxStringFormat( format, instanceSchema.getMaxLength()));
+
       Integer minLength = 
-        Optional.ofNullable( minStringFormat( format, instanceSchema.getMinLength()))
+        Optional.ofNullable( minPatternMatch( instanceSchema, minStringFormat( format, instanceSchema.getMinLength())))
         .map( min -> Optional.ofNullable( maxLength).map( max -> adjustedMinOf( "Length", min, max)).orElse( min))
         .orElse( null);
 
@@ -1831,7 +1835,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       if( minLength == null && maxLength == null)
         {
         // No, add standard values
-        length.values( VarValueDefBuilder.with( "> 0").build());
+        length.values(
+          VarValueDefBuilder.with( "> 0")
+          .properties( validLengthProperty( instanceVarTag))
+          .properties( notEmptyProperty( instanceVarTag))
+          .build());
 
         if(
           // Format allows empty string?
@@ -1841,7 +1849,10 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           !notEnums.stream().map( String::valueOf).anyMatch( String::isEmpty))
           {
           // Yes, allow empty values
-          length.values( VarValueDefBuilder.with( 0).build());
+          length.values(
+            VarValueDefBuilder.with( 0)
+            .properties( validLengthProperty( instanceVarTag))
+            .build());
           }
         }
       else
@@ -1860,25 +1871,46 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           {
           if( i >= 0)
             {
-            length.values
-              ( VarValueDefBuilder.with( i)
-                .type(
-                  (i < effMinLength) || (maxLength != null && i > maxLength)
-                  ? VarValueDef.Type.FAILURE
-                  : VarValueDef.Type.VALID)
-                .build());
+            VarValueDef.Type type =
+              (i < effMinLength) || (maxLength != null && i > maxLength)
+              ? VarValueDef.Type.FAILURE
+              : VarValueDef.Type.VALID;
+
+            Optional<String> validLength =
+              Optional.of( validLengthProperty( instanceVarTag))
+              .filter( p -> type == VarValueDef.Type.VALID);
+
+            Optional<String> notEmpty =
+              validLength
+              .filter( p -> i > 0)
+              .map( p -> notEmptyProperty( instanceVarTag));
+            
+            length.values(
+              VarValueDefBuilder.with( i)
+              .type( type)
+              .properties( validLength)
+              .properties( notEmpty)
+              .build());
             }
           }
         if( minLength == null)
           {
           if( maxLength > 1)
             {
-            length.values( VarValueDefBuilder.with( String.format( "< %s", maxLength)).build());
+            length.values(
+              VarValueDefBuilder.with( String.format( "< %s", maxLength))
+              .properties( validLengthProperty( instanceVarTag))
+              .properties( notEmptyProperty( instanceVarTag))
+              .build());
             }
           }
         else if( maxLength == null)
           {
-          length.values( VarValueDefBuilder.with( String.format( "> %s", minLength)).build());
+          length.values(
+            VarValueDefBuilder.with( String.format( "> %s", minLength))
+            .properties( validLengthProperty( instanceVarTag))
+            .properties( notEmptyProperty( instanceVarTag))
+            .build());
           }
         }
 
@@ -1891,31 +1923,39 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         length.hasIf( "itemPatterns", getPatterns( instanceSchema));
         length.hasIf( "itemNotPatterns", getNotPatterns( instanceSchema));
         }
-      
-      valueVarSet.members( length.build());
+
+      VarDef lengthVar = length.build();
+      valueVarSet.members( lengthVar);
 
       // Add variables for any pattern assertions
       String[] patterns = getPatterns( instanceSchema).stream().toArray(String[]::new);
       String[] notPatterns = Optional.ofNullable( getNotPatterns( instanceSchema)).orElse( emptySet()).stream().toArray(String[]::new);
+
+      Optional<ICondition> notEmpty =
+        toStream( lengthVar.getValidValues())
+        .filter( value -> value.hasProperty( notEmptyProperty( instanceVarTag)))
+        .findFirst()
+        .map( value -> has( notEmptyProperty( instanceVarTag)));
+
       if( patterns.length == 1 && notPatterns.length == 0)
         {
         valueVarSet.members(
           VarDefBuilder.with( "Matches-Pattern")
-          .when( notExcluded)
+          .when( has( validLengthProperty( instanceVarTag)))
           .has( "pattern", patterns[0])
           .values(
             VarValueDefBuilder.with( "Yes").build(),
-            VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+            VarValueDefBuilder.with( "No").when( notEmpty).type( VarValueDef.Type.FAILURE).build())
           .build());
         }
       else if( patterns.length == 0 && notPatterns.length == 1)
         {
         valueVarSet.members(
           VarDefBuilder.with( "Matches-Pattern")
-          .when( notExcluded)
+          .when( has( validLengthProperty( instanceVarTag)))
           .has( "pattern", notPatterns[0])
           .values(
-            VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).build(),
+            VarValueDefBuilder.with( "Yes").when( notEmpty).type( VarValueDef.Type.FAILURE).build(),
             VarValueDefBuilder.with( "No").build())
           .build());
         }
@@ -1923,7 +1963,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         {
         valueVarSet.members(
           VarSetBuilder.with( "Matches-Patterns")
-          .when( notExcluded)
+          .when( has( validLengthProperty( instanceVarTag)))
           .members(
             IntStream.range( 0, patterns.length)
             .mapToObj(
@@ -1932,7 +1972,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
               .has( "pattern", patterns[i])
               .values(
                 VarValueDefBuilder.with( "Yes").build(),
-                VarValueDefBuilder.with( "No").type( VarValueDef.Type.FAILURE).build())
+                VarValueDefBuilder.with( "No").when( notEmpty).type( VarValueDef.Type.FAILURE).build())
               .build()))
           .members(
             IntStream.range( 0, notPatterns.length)
@@ -1941,7 +1981,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
               VarDefBuilder.with( String.valueOf( patterns.length + i))
               .has( "pattern", notPatterns[i])
               .values(
-                VarValueDefBuilder.with( "Yes").type( VarValueDef.Type.FAILURE).build(),
+                VarValueDefBuilder.with( "Yes").when( notEmpty).type( VarValueDef.Type.FAILURE).build(),
                 VarValueDefBuilder.with( "No").build())
               .build()))
           .build());
@@ -2075,6 +2115,87 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           "minLength=%s is below the minimum allowed for format=%s -- using minLength=%s instead",
           minLength,
           format,
+          minAllowed));
+      min = minAllowed;
+      }
+
+    return min;
+    }
+
+  /**
+   * If the given <CODE>maxLength</CODE> is valid for values matching the patterns required for the
+   * given schema, returns <CODE>maxLength</CODE>.  Otherwise, returns the maximum
+   * length required for pattern matches.
+   */
+  private Integer maxPatternMatch( Schema<?> stringSchema, Integer maxLength)
+    {
+    Integer max;
+
+    Integer maxAllowed =
+      patternGenerators( stringSchema)
+      .map( RegExpGen::getMaxLength)
+      .min( Integer::compareTo)
+      .map( matchMax -> bounded( matchMax).orElse( null))
+      .orElse( null);
+
+    if( maxAllowed == null)
+      {
+      max = maxLength;
+      }
+    else if( maxLength == null)
+      {
+      max = maxAllowed;
+      }
+    else if( maxLength <= maxAllowed)
+      {
+      max = maxLength;
+      }
+    else
+      {
+      notifyWarning(
+        String.format(
+          "maxLength=%s exceeds maximum allowed for pattern matches -- using maxLength=%s instead",
+          maxLength,
+          maxAllowed));
+      max = maxAllowed;
+      }
+
+    return max;
+    }
+
+  /**
+   * If the given <CODE>minLength</CODE> is valid for values matching the patterns required for the
+   * given schema, returns <CODE>minLength</CODE>.  Otherwise, returns the minimum
+   * length required for pattern matches.
+   */
+  private Integer minPatternMatch( Schema<?> stringSchema, Integer minLength)
+    {
+    Integer min;
+
+    Integer minAllowed =
+      patternGenerators( stringSchema)
+      .map( RegExpGen::getMinLength)
+      .max( Integer::compareTo)
+      .orElse( null);
+
+    if( minAllowed == null)
+      {
+      min = minLength;
+      }
+    else if( minLength == null)
+      {
+      min = minAllowed;
+      }
+    else if( minLength >= minAllowed)
+      {
+      min = minLength;
+      }
+    else
+      {
+      notifyWarning(
+        String.format(
+          "minLength=%s is below the minimum allowed for pattern matches -- using minLength=%s instead",
+          minLength,
           minAllowed));
       min = minAllowed;
       }
@@ -2344,6 +2465,22 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private String valueNotExcludedProperty( String instanceTag)
     {
     return instanceTag + "NotExcluded";
+    }
+
+  /**
+   * Returns the "valid length" property for the given schema instance.
+   */
+  private String validLengthProperty( String instanceTag)
+    {
+    return instanceTag + "LengthValid";
+    }
+
+  /**
+   * Returns the "not empty" property for the given schema instance.
+   */
+  private String notEmptyProperty( String instanceTag)
+    {
+    return instanceTag + "NotEmpty";
     }
 
   /**

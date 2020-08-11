@@ -45,7 +45,7 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
    */
   public void setLengthRange( Integer length)
     {
-    setLengthRange( new IntegerConstant( Optional.ofNullable( length).map( m -> Math.max( 0, m)).orElse( 0)));
+    setLengthRange( new LengthDomain( length));
     }
 
   /**
@@ -57,10 +57,7 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
     // If necessary, resolve an unspecified upper bound to exceed any specified lower bound.
     int lowerBound = Optional.ofNullable( min).orElse( 0);
     int upperBound = Optional.ofNullable( max).orElse( lowerBound > getMaxLength()? lowerBound + 1 : getMaxLength());
-
-    IntegerDomain length = new IntegerDomain();
-    length.setRange( lowerBound, upperBound);
-    setLengthRange( length);
+    setLengthRange( new LengthDomain( lowerBound, upperBound));
     }
 
   /**
@@ -105,7 +102,7 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
   /**
    * Changes the length range for values in this domain.
    */
-  protected void setLengthRange( ValueDomain<Integer> domain)
+  protected void setLengthRange( LengthDomain domain)
     {
     lengthRange_ = domain;
     }
@@ -113,7 +110,7 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns the length range for values in this domain.
    */
-  protected ValueDomain<Integer> getLengthRange()
+  protected LengthDomain getLengthRange()
     {
     return lengthRange_;
     }
@@ -206,6 +203,6 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
     }
 
   private final int maxLength_;
-  private ValueDomain<Integer> lengthRange_;
+  private LengthDomain lengthRange_;
   private Set<T> excluded_;
   }

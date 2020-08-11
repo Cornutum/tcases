@@ -23,8 +23,8 @@
           <Has name="format" value="byte"/>
           <Var name="Length">
             <Value name="0" failure="true"/>
-            <Value name="1"/>
-            <Value name="&gt; 1"/>
+            <Value name="1" property="param0LengthValid, param0NotEmpty"/>
+            <Value name="&gt; 1" property="param0LengthValid, param0NotEmpty"/>
           </Var>
         </VarSet>
       </VarSet>

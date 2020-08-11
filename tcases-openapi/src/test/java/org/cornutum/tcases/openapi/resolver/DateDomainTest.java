@@ -108,11 +108,14 @@ public class DateDomainTest extends ValueDomainTest
 
     // When...
     domain.setLengthRange(10);
-    //   MatchPatterns = Some
-    //   NotMatchPatterns = Some
+    domain.setMatching( "[123]$");
+    domain.setNotMatching( "-31$");
 
     // Then...
     verifyContainsValues( domain, 1000);
+    assertThat( "Contains", domain.contains( "1941-12-01"), is( true));
+    assertThat( "Contains", domain.contains( "1941-12-07"), is( false));
+    assertThat( "Contains", domain.contains( "1941-12-31"), is( false));
     }
 
   @Test

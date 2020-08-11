@@ -43,12 +43,12 @@
               </Var>
               <VarSet name="Value" when="param0AlphaValue">
                 <Var name="Length">
-                  <Value name="&gt; 0"/>
-                  <Value name="0"/>
+                  <Value name="&gt; 0" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                  <Value name="0" property="param0AlphaLengthValid"/>
                 </Var>
-                <Var name="Matches-Pattern">
+                <Var name="Matches-Pattern" when="param0AlphaLengthValid">
                   <Has name="pattern" value="1999-.*"/>
-                  <Value name="Yes" failure="true"/>
+                  <Value name="Yes" failure="true" when="param0AlphaNotEmpty"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>
@@ -84,8 +84,8 @@
                     <Var name="Length" when="param0BravoItemsNotExcluded">
                       <Has name="itemMinLength" value="0"/>
                       <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
-                      <Value name="&gt; 0"/>
-                      <Value name="0"/>
+                      <Value name="&gt; 0" property="param0BravoItemsLengthValid, param0BravoItemsNotEmpty"/>
+                      <Value name="0" property="param0BravoItemsLengthValid"/>
                     </Var>
                     <Var name="Is">
                       <Value name="Any" property="param0BravoItemsNotExcluded">
@@ -125,12 +125,12 @@
         <VarSet name="Value" when="param1Value">
           <Var name="Length" when="param1NotExcluded">
             <Value name="4" failure="true"/>
-            <Value name="5"/>
-            <Value name="&gt; 5"/>
+            <Value name="5" property="param1LengthValid, param1NotEmpty"/>
+            <Value name="&gt; 5" property="param1LengthValid, param1NotEmpty"/>
           </Var>
-          <Var name="Matches-Pattern" when="param1NotExcluded">
-            <Has name="pattern" value="W*T*F*"/>
-            <Value name="Yes" failure="true"/>
+          <Var name="Matches-Pattern" when="param1LengthValid">
+            <Has name="pattern" value="WTF"/>
+            <Value name="Yes" failure="true" when="param1NotEmpty"/>
             <Value name="No"/>
           </Var>
           <Var name="Is">

@@ -54,8 +54,8 @@
                 <VarSet name="Value" when="param0ItemsItemsValue">
                   <Var name="Length">
                     <Has name="itemMinLength" value="0"/>
-                    <Value name="&gt; 0"/>
-                    <Value name="0"/>
+                    <Value name="&gt; 0" property="param0ItemsItemsLengthValid, param0ItemsItemsNotEmpty"/>
+                    <Value name="0" property="param0ItemsItemsLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>

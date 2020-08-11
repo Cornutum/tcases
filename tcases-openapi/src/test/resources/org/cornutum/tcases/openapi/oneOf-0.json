@@ -13,7 +13,7 @@
                         "in": "query",
 
                         "schema": {
-                            "pattern": ".",
+                            "pattern": "X*",
                             "oneOf": [
                                 {
                                     "minLength": 1

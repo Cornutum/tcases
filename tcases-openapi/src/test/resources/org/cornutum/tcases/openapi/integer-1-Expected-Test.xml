@@ -180,6 +180,7 @@
         </Var>
         <Var name="param0.Value.Multiple-Of.3" value="No" failure="true">
           <Has name="format" value="int32"/>
+          <Has name="multipleOf" value="3"/>
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>

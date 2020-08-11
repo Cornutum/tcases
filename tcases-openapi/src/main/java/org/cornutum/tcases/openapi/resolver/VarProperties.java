@@ -23,6 +23,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toList;
@@ -523,25 +524,25 @@ public final class VarProperties
     else
       {
       SequenceDomain<?> baseDomain =
-        "date".equals( format)?
-        new DateDomain() :
-
-        "date-time".equals( format)?
-        new DateTimeDomain() :
-
-        "uuid".equals( format)?
-        new UuidDomain() :
-
         "binary".equals( format)?
         new BinaryDomain() :
 
         "byte".equals( format)?
         new Base64Domain() :
 
-        "email".equals( format)?
-        new EmailDomain( chars) :
+        "date".equals( format)?
+        withPatterns( stringProperties, new DateDomain()) :
 
-        new AsciiStringDomain( chars);
+        "date-time".equals( format)?
+        withPatterns( stringProperties, new DateTimeDomain()) :
+
+        "uuid".equals( format)?
+        withPatterns( stringProperties, new UuidDomain()) :
+
+        "email".equals( format)?
+        withPatterns( stringProperties, new EmailDomain( chars)) :
+
+        withPatterns( stringProperties, new AsciiStringDomain( chars));
 
       Optional.ofNullable( length)
         .map( Range::of)
@@ -552,6 +553,53 @@ public final class VarProperties
       }
     
     return domain;
+    }
+
+  /**
+   * Returns the string domain with the specified pattern properties.
+   */
+  private static AbstractStringDomain withPatterns( Map<String,Object> stringProperties, AbstractStringDomain stringDomain)
+    {
+    List<VarBinding> matchingPatterns =
+      Optional.ofNullable( stringProperties)
+      .map(
+        values ->
+        // Single pattern match defined?
+        Optional.ofNullable( getIfVarBinding( values, "Matches-Pattern"))
+        .map( matchesPattern -> {
+          // Yes, return binding as singleton list
+          List<VarBinding> matchesPatterns =
+            matchesPattern.isValueNA()
+            ? emptyList()
+            : Arrays.asList( matchesPattern);
+          return matchesPatterns;
+          })
+
+        // Multiple pattern matches defined?
+        .orElseGet(
+          () ->
+          Optional.ofNullable( getIfPropertyValues( values, "Matches-Patterns"))
+
+          // Yes, return all bindings
+          .map( matchesPatterns -> getVarBindings( matchesPatterns).filter( matchesPattern -> !matchesPattern.isValueNA()).collect( toList()))
+
+          // No, no pattern matches defined
+          .orElse( emptyList())))
+      .orElse( emptyList());
+
+    stringDomain.setMatching(
+      matchingPatterns.stream()
+      .filter( binding -> "Yes".equals( binding.getValue()))
+      .map( binding -> binding.getAnnotation( "pattern"))
+      .collect( toList()));
+
+    stringDomain.setNotMatching(
+      matchingPatterns.stream()
+      .filter( binding -> "No".equals( binding.getValue()))
+      .map( binding -> binding.getAnnotation( "pattern"))
+      .collect( toList()));
+
+    return stringDomain;
     }
 
   /**
@@ -669,7 +717,8 @@ public final class VarProperties
         new IntegerDomain( range);
 
       Map<String,Object> multipleOfValues =
-        Optional.ofNullable( getPropertyValues( propertyValues, "Multiple-Of"))
+        Optional.ofNullable( valueProperties)
+        .flatMap( value -> Optional.ofNullable( getPropertyValues( value, "Multiple-Of")))
         .orElse( emptyMap());
 
       multipleOfValues.keySet().stream()
@@ -762,27 +811,29 @@ public final class VarProperties
       {
       VarBinding lengthVar = expectVarBinding( expectPropertyValues( propertyValues, "Value"), "Length");
       String format = lengthVar.getAnnotation( "format");
-
+      List<String> patterns = lengthVar.getAnnotationList( "itemPatterns");
+      List<String> notPatterns = lengthVar.getAnnotationList( "itemPatterns");
+      
       SequenceDomain<?> baseDomain =
-        "date".equals( format)?
-        new DateDomain() :
-
-        "date-time".equals( format)?
-        new DateTimeDomain() :
-
-        "uuid".equals( format)?
-        new UuidDomain() :
-
         "binary".equals( format)?
         new BinaryDomain() :
 
         "byte".equals( format)?
         new Base64Domain() :
 
-        "email".equals( format)?
-        new EmailDomain( chars) :
+        "date".equals( format)?
+        withItemPatterns( patterns, notPatterns, new DateDomain()) :
 
-        new AsciiStringDomain( chars);
+        "date-time".equals( format)?
+        withItemPatterns( patterns, notPatterns, new DateTimeDomain()) :
+
+        "uuid".equals( format)?
+        withItemPatterns( patterns, notPatterns, new UuidDomain()) :
+
+        "email".equals( format)?
+        withItemPatterns( patterns, notPatterns, new EmailDomain( chars)) :
+
+        withItemPatterns( patterns, notPatterns, new AsciiStringDomain( chars));
 
       Integer minLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMinLength")).map( Integer::valueOf).orElse( null);
       Integer maxLength = Optional.ofNullable( lengthVar.getAnnotation( "itemMaxLength")).map( Integer::valueOf).orElse( null);
@@ -795,6 +846,23 @@ public final class VarProperties
       }
 
     return domain;
+    }
+
+  /**
+   * Returns the string domain with the specified pattern properties.
+   */
+  private static AbstractStringDomain withItemPatterns( List<String> patterns, List<String> notPatterns, AbstractStringDomain stringDomain)
+    {
+    if( patterns != null)
+      {
+      stringDomain.setMatching( patterns);
+      }
+    if( notPatterns != null)
+      {
+      stringDomain.setNotMatching( notPatterns);
+      }
+    
+    return stringDomain;
     }
 
   /**

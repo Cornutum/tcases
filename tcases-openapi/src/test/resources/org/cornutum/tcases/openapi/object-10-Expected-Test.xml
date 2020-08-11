@@ -131,7 +131,7 @@
     <TestCase id="2" name="param0.Value.Property-Count=&apos;&lt;= 4&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringNotEmpty,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -191,7 +191,7 @@
     <TestCase id="3" name="param0.Value.Properties.myString.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -311,7 +311,7 @@
     <TestCase id="5" name="param0.Value.Properties.myNumber.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringNotEmpty,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -551,7 +551,7 @@
     <TestCase id="9" failure="true" name="param0.Value.Property-Count=&apos;&gt; 4&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -731,7 +731,7 @@
     <TestCase id="12" failure="true" name="param0.Value.Properties.myBoolean.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -791,7 +791,7 @@
     <TestCase id="13" failure="true" name="param0.Value.Properties.myBoolean.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -851,7 +851,7 @@
     <TestCase id="14" failure="true" name="param0.Value.Properties.myNumber.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyNumber,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyNumber,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -911,7 +911,7 @@
     <TestCase id="15" failure="true" name="param0.Value.Properties.myNumber.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyNumber,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyNumber,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -971,7 +971,7 @@
     <TestCase id="16" failure="true" name="param0.Value.Properties.myInteger.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyInteger,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -1031,7 +1031,7 @@
     <TestCase id="17" failure="true" name="param0.Value.Properties.myInteger.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyInteger,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>

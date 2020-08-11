@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
-      <Has name="properties" value="param0,param0Value,param1,param1Value,param2,param2Value"/>
+      <Has name="properties" value="param0,param0LengthValid,param0Value,param1,param1LengthValid,param1NotEmpty,param1Value,param2,param2LengthValid,param2NotEmpty,param2Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="String"/>
       <Has name="version" value="0.0.0"/>
@@ -44,7 +44,7 @@
         <Var name="param2.Type" value="string">
           <Has name="paramName" value="param2"/>
         </Var>
-        <Var name="param2.Value.Length" value="&gt; 0">
+        <Var name="param2.Value.Length" value="1">
           <Has name="paramName" value="param2"/>
         </Var>
         <Var name="param2.Value.Matches-Pattern" value="Yes">
@@ -99,7 +99,7 @@
     <TestCase id="2" name="param0.Value.Length=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
-      <Has name="properties" value="param0,param0Value,param1,param1Value,param2,param2Value"/>
+      <Has name="properties" value="param0,param0LengthValid,param0NotEmpty,param0Value,param1,param1LengthValid,param1NotEmpty,param1Value,param2,param2LengthValid,param2NotEmpty,param2Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="String"/>
       <Has name="version" value="0.0.0"/>
@@ -131,7 +131,7 @@
         <Var name="param2.Type" value="string">
           <Has name="paramName" value="param2"/>
         </Var>
-        <Var name="param2.Value.Length" value="0">
+        <Var name="param2.Value.Length" value="1">
           <Has name="paramName" value="param2"/>
         </Var>
         <Var name="param2.Value.Matches-Pattern" value="Yes">
@@ -492,7 +492,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true" name="param2.Value.Matches-Pattern=&apos;No&apos;">
+    <TestCase id="11" failure="true" name="param2.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
       <Has name="properties" value="param2,param2Value"/>
@@ -527,7 +527,95 @@
         <Var name="param2.Type" value="string">
           <Has name="paramName" value="param2"/>
         </Var>
-        <Var name="param2.Value.Length" value="&gt; 0">
+        <Var name="param2.Value.Length" value="0" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param2"/>
+          <Has name="pattern" value="^[A-Z]$"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true" name="param2.Value.Length=&apos;2&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/string"/>
+      <Has name="properties" value="param2,param2Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="String"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Length" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param2.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param2.Type" value="string">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Length" value="2" failure="true">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param2"/>
+          <Has name="pattern" value="^[A-Z]$"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true" name="param2.Value.Matches-Pattern=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/string"/>
+      <Has name="properties" value="param2,param2LengthValid,param2NotEmpty,param2Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="String"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Length" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param2.Defined" value="Yes">
+          <Has name="paramName" value="param2"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param2.Type" value="string">
+          <Has name="paramName" value="param2"/>
+        </Var>
+        <Var name="param2.Value.Length" value="1">
           <Has name="paramName" value="param2"/>
         </Var>
         <Var name="param2.Value.Matches-Pattern" value="No" failure="true">

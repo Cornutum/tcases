@@ -22,8 +22,8 @@
         <VarSet name="Value" when="param0Value">
           <Has name="format" value="binary"/>
           <Var name="Length">
-            <Value name="&gt; 0"/>
-            <Value name="0"/>
+            <Value name="&gt; 0" property="param0LengthValid, param0NotEmpty"/>
+            <Value name="0" property="param0LengthValid"/>
           </Var>
         </VarSet>
       </VarSet>

@@ -8,7 +8,7 @@
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0" name="Status-Code=&apos;2XX&apos;">
-      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerLengthValid,2XXHeaderX-extra-headerNotEmpty,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -76,7 +76,7 @@
       </Input>
     </TestCase>
     <TestCase id="3" name="2XX.Headers.x-extra-header.Value.Length=&apos;&gt; 1&apos;">
-      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXHeaderX-extra-header,2XXHeaderX-extra-headerLengthValid,2XXHeaderX-extra-headerNotEmpty,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>

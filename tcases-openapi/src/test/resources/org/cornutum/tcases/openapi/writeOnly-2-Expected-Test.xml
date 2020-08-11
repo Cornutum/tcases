@@ -29,7 +29,7 @@
       </Input>
     </TestCase>
     <TestCase id="1" name="Other.Content.application-json.Value.Property-Count=&apos;&gt; 0&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaNotEmpty,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>
@@ -50,7 +50,7 @@
       </Input>
     </TestCase>
     <TestCase id="2" name="Other.Content.application-json.Value.Properties.alpha.Value.Length=&apos;0&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonAlpha,defaultapplication-jsonAlphaLengthValid,defaultapplication-jsonAlphaValue,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Objects"/>
       <Has name="version" value="0.0.0"/>

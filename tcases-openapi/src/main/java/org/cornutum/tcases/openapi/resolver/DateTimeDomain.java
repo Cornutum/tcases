@@ -47,7 +47,7 @@ public class DateTimeDomain extends TimeDomain
    */
   protected void initLengthRange()
     {
-    setLengthRange( new IntegerConstant( 29));
+    setLengthRange( 29);
     }
 
   /**

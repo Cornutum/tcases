@@ -21,8 +21,8 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Length">
-            <Value name="0"/>
-            <Value name="1"/>
+            <Value name="0" property="param0LengthValid"/>
+            <Value name="1" property="param0LengthValid, param0NotEmpty"/>
             <Value name="2" failure="true"/>
           </Var>
         </VarSet>
@@ -42,8 +42,8 @@
         <VarSet name="Value" when="param1Value">
           <Var name="Length">
             <Value name="0" failure="true"/>
-            <Value name="1"/>
-            <Value name="&gt; 1"/>
+            <Value name="1" property="param1LengthValid, param1NotEmpty"/>
+            <Value name="&gt; 1" property="param1LengthValid, param1NotEmpty"/>
           </Var>
         </VarSet>
       </VarSet>
@@ -61,13 +61,14 @@
         </Var>
         <VarSet name="Value" when="param2Value">
           <Var name="Length">
-            <Value name="&gt; 0"/>
-            <Value name="0"/>
+            <Value name="0" failure="true"/>
+            <Value name="1" property="param2LengthValid, param2NotEmpty"/>
+            <Value name="2" failure="true"/>
           </Var>
-          <Var name="Matches-Pattern">
+          <Var name="Matches-Pattern" when="param2LengthValid">
             <Has name="pattern" value="^[A-Z]$"/>
             <Value name="Yes"/>
-            <Value name="No" failure="true"/>
+            <Value name="No" failure="true" when="param2NotEmpty"/>
           </Var>
         </VarSet>
       </VarSet>

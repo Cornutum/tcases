@@ -116,8 +116,6 @@ public class DateTimeDomainTest extends ValueDomainTest
 
     // When...
     domain.setLengthRange(29);
-    //   MatchPatterns = Some
-    //   NotMatchPatterns = Some
 
     // Then...
     verifyContainsValues( domain, 1000);

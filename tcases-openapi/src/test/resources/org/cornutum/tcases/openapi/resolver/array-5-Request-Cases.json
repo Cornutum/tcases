@@ -204,8 +204,8 @@
                             "value": 478.5
                         },
                         {
-                            "type": "number",
-                            "value": 1013.4
+                            "type": "boolean",
+                            "value": true
                         }
                     ]
                 },

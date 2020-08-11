@@ -48,8 +48,8 @@
             <VarSet name="Value" when="2XXHeaderX-extra-headerValue">
               <Var name="Length">
                 <Value name="0" failure="true"/>
-                <Value name="1"/>
-                <Value name="&gt; 1"/>
+                <Value name="1" property="2XXHeaderX-extra-headerLengthValid, 2XXHeaderX-extra-headerNotEmpty"/>
+                <Value name="&gt; 1" property="2XXHeaderX-extra-headerLengthValid, 2XXHeaderX-extra-headerNotEmpty"/>
               </Var>
             </VarSet>
           </VarSet>

@@ -50,8 +50,8 @@ public class AsciiStringDomainTest extends ValueDomainTest
     // When...
     domain.setLengthRange( Range.of( VarBindingBuilder.with( "Length").value( "> 16").build()));
     domain.setExcluded( Stream.of( "abcdefghijklmnopqrstuvwzyz").collect( toSet()));
-    //   MatchPatterns = Some
-    //   NotMatchPatterns = Some
+    domain.setMatching( "ABC|dinger|123");
+    domain.setNotMatching( "^\\d");
 
     // Then...
     verifyContainsValues( domain, 1000);
@@ -60,6 +60,8 @@ public class AsciiStringDomainTest extends ValueDomainTest
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOP"), is( false));
     assertThat( "Contains", domain.contains( "ABCDEFGHIJKLMNOPQRSTUVWZYZABCDEFG"), is( false));
     assertThat( "Contains", domain.contains( "Mañana, Schrödinger"), is( false));
+    assertThat( "Contains", domain.contains( "123, ABC, Schrodinger"), is( false));
+    assertThat( "Contains", domain.contains( "Uncertainty hates cats"), is( false));
 
     // When...
     DataValue<String> value = domain.select( getResolverContext());
@@ -93,8 +95,6 @@ public class AsciiStringDomainTest extends ValueDomainTest
     // When...
     domain.setLengthRange( 8);
     domain.setExcluded( Stream.of( "01234567", "abcdefgh").collect( toSet()));
-    //   MatchPatterns = Some
-    //   NotMatchPatterns = None
 
     // Then...
     verifyContainsValues( domain, 1000);

@@ -102,7 +102,7 @@ public abstract class TimeDomain extends AbstractStringDomain
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<String> candidates( ResolverContext context)
+  protected Stream<String> newValues( ResolverContext context)
     {
     return timeValues( context).map( this::format).map( value -> withLength( context, value));
     }

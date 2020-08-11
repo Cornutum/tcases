@@ -23,7 +23,7 @@
           <Has name="format" value="uuid"/>
           <Var name="Length">
             <Value name="35" failure="true"/>
-            <Value name="36"/>
+            <Value name="36" property="withinLengthValid, withinNotEmpty"/>
             <Value name="37" failure="true"/>
           </Var>
         </VarSet>
@@ -44,7 +44,7 @@
           <Has name="format" value="uuid"/>
           <Var name="Length">
             <Value name="35" failure="true"/>
-            <Value name="36"/>
+            <Value name="36" property="outsideLengthValid, outsideNotEmpty"/>
             <Value name="37" failure="true"/>
           </Var>
         </VarSet>
@@ -65,7 +65,7 @@
           <Has name="format" value="uuid"/>
           <Var name="Length">
             <Value name="35" failure="true"/>
-            <Value name="36"/>
+            <Value name="36" property="noneLengthValid, noneNotEmpty"/>
             <Value name="37" failure="true"/>
           </Var>
         </VarSet>

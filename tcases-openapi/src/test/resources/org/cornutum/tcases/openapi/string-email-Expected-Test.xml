@@ -12,7 +12,7 @@
     <TestCase id="0" name="within.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/email"/>
-      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Email"/>
       <Has name="version" value="0.0.0"/>
@@ -97,7 +97,7 @@
     <TestCase id="2" name="within.Value.Length=&apos;320&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/email"/>
-      <Has name="properties" value="none,noneValue,outside,outsideValue,within,withinValue"/>
+      <Has name="properties" value="none,noneLengthValid,noneNotEmpty,noneValue,outside,outsideLengthValid,outsideNotEmpty,outsideValue,within,withinLengthValid,withinNotEmpty,withinValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Email"/>
       <Has name="version" value="0.0.0"/>

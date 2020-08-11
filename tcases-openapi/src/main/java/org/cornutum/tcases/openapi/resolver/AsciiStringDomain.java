@@ -9,6 +9,8 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
 
+import java.util.stream.Stream;
+
 /**
  * Defines a set of ASCII string values that can be used by a request.
  */
@@ -48,6 +50,14 @@ public class AsciiStringDomain extends AbstractStringDomain
     allowedChars_ =
       chars.filtered( Characters.Ascii.chars())
       .orElseThrow( () -> new ValueDomainException( String.format( "Character set=%s does not accept any ASCII characters", chars)));
+    }
+  
+  /**
+   * Returns a random sequence of possible members of this domain matching all pattern requirements.
+   */
+  protected Stream<String> matchingCandidates( ResolverContext context, PatternResolver patternResolver)
+    {
+    return generateMatchingValues( context, patternResolver);
     }
 
   /**

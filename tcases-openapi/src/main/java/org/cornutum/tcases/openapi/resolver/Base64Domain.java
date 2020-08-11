@@ -88,7 +88,7 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns the length range for values in this domain.
    */
-  protected ValueDomain<Integer> getLengthRange()
+  protected LengthDomain getLengthRange()
     {
     return getBytes().getLengthRange();
     }

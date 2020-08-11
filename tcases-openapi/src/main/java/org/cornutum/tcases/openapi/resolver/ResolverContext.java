@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.openapi.ExecutionContext;
 import org.cornutum.tcases.openapi.Notifier;
 
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Random;
 import java.util.function.Supplier;
@@ -101,14 +102,34 @@ public class ResolverContext extends ExecutionContext<ResolverException>
    */
   public <T> T tryUntil( Supplier<Optional<T>> valueSupplier) throws ResolverSkipException
     {
-    return
-      Stream.generate( () -> valueSupplier.get())
-      .limit( getMaxTries())
-      .filter( Optional::isPresent)
-      .findFirst()
-      .map( Optional::get)
-      .orElseThrow( () -> new ResolverSkipException( getLocation(), String.format( "Unable to resolve a value after %s tries", getMaxTries())));
+    return tryUntil( Stream.generate( () -> valueSupplier.get()));
     }
+
+  /**
+   * Returns the first result that is present. If the {@link #getMaxTries maximum tries} have been
+   * attempted unsuccessfully reports a failure. Otherwise, returns the result.
+   */
+  public <T> T tryUntil( Stream<Optional<T>> results) throws ResolverSkipException
+    {
+    Iterator<Optional<T>> supplier = results.iterator();
+    T result = null;
+    int tries;
+
+    for( tries = 0;
+
+         tries < getMaxTries()
+           && supplier.hasNext()
+           && (result = supplier.next().orElse( null)) == null;
+
+         tries++);
+
+    if( result == null)
+      {
+      throw new ResolverSkipException( getLocation(), String.format( "Unable to resolve a value after %s tries", tries));
+      }
+
+    return result;
+    }    
 
   /**
    * Reports a condition that will affect the expected test cat.

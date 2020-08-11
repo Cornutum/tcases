@@ -12,7 +12,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesDefined_Is_Yes() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
+            .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes[user-type]", "Typical User")
         .when()
             .request( "HEAD", "/post")
@@ -48,7 +48,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesDefined_Is_No() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
+            .queryParam( "post?[post-references]", "0,1")
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -60,7 +60,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesType_Is_Null() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
+            .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes", "")
         .when()
             .request( "HEAD", "/post")
@@ -73,8 +73,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesType_Is_NotObject() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "user attributes", "true")
+            .queryParam( "post?[post-references]", "0,1")
+            .queryParam( "user attributes", "Cm-4uM")
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -86,7 +86,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeDefined_Is_No() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
+            .queryParam( "post?[post-references]", "0,1")
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -98,7 +98,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeType_Is_Null() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
+            .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes[user-type]", "")
         .when()
             .request( "HEAD", "/post")
@@ -111,8 +111,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_Other() {
         given()
-            .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "user attributes[user-type]", "15YlA^j5<(c4H1uhXv=:wE+^^zw%~<yqvD>+Xi?8P|XzD^B|8Yro1:461Sfr^sh%k`G0\\KvY}'Cm\"Iq+fxKW/|I>|J(r5$=4o>_HLt_.b)R{?C")
+            .queryParam( "post?[post-references]", "0,1")
+            .queryParam( "user attributes[user-type]", "\">gb//V~cOamLd\"guT=(|fwcJYu&H7cwat!)7U*9%m#/E\\xaR C3L$L!7CuE^D`zivT 8KY2G\"'?FjW?la&:<{E&>9t6sxMPPkU\"t6BzKl0n)<r-5ca7J,/U#OG;;,p-jforEO=_lZy\"U R~*T(\"i,Z%$ 3uJ6g}6@[TS7&oeK>57gl+z:q8#s'sYn  /FfzE.buMUx!dsHyzc~1x")
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -126,7 +126,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .queryParam( "post?[post-references]", "0,2")
             .queryParam( "user attributes[user-type]", "VIP!")
-            .queryParam( "user attributes[kygt]", "true")
+            .queryParam( "user attributes[larulaaxjyqkr]", "1wWIn")
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -163,7 +163,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostType_Is_NotObject() {
         given()
-            .queryParam( "post?", "',-he!*")
+            .queryParam( "post?", "247")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -201,7 +201,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesType_Is_NotArray() {
         given()
-            .queryParam( "post?[post-references]", "sqdkcljugsxrek,-19.3,qiouvny,true")
+            .queryParam( "post?[post-references]", "-65")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -227,7 +227,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsSize_Is_3() {
         given()
-            .queryParam( "post?[post-references]", "0,2,1")
+            .queryParam( "post?[post-references]", "0,1,2")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -240,7 +240,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_Null() {
         given()
-            .queryParam( "post?[post-references]", ",2")
+            .queryParam( "post?[post-references]", ",1")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -253,7 +253,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_NotInteger() {
         given()
-            .queryParam( "post?[post-references]", "UL+|REP\",wfvwcydyt,898.1,numhrirnfxa,9(b\\oMff,wfqjwtdpqlrqkex,h?")
+            .queryParam( "post?[post-references]", "eb,true,2")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -266,7 +266,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsValue_Is_Other() {
         given()
-            .queryParam( "post?[post-references]", "-464348292,-371243855")
+            .queryParam( "post?[post-references]", "-454253172,0")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -293,8 +293,7 @@ public class OpenAPIRequestTestCasesTest {
     public void headPost_PostValuePropertiesAdditional_Is_Yes() {
         given()
             .queryParam( "post?[post-references]", "0,1")
-            .queryParam( "post?[tdnvk]", "ltj,true,jhsz,w{\"eIuH")
-            .queryParam( "post?[psbpbucvwauf]", "-818")
+            .queryParam( "post?[ahujej]", "-923")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -374,7 +373,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksType_Is_NotArray() {
         given()
-            .queryParam( "Post Marks", "x,992")
+            .queryParam( "Post Marks", "-726")
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -398,7 +397,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsSize_Is_4() {
         given()
-            .queryParam( "Post Marks", "<Y> <Y> <Y> <Y>")
+            .queryParam( "Post Marks", "<Y> {X} {X} {X}")
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -422,7 +421,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
-            .queryParam( "Post Marks", "lddD|&#G@^v]`2^LMsq[P!dDWgE[#cLX&El|P1h'\"MfsJsOj7}-g=M{y~QqB?K.d\\+16j_AXL[BvizE*b5|0e|\\,NRHWOJN9XIlQ{/p)p2DZ,R8RAnI\"z.f8X^RLv]{Cdr%%|]G3SvhE5cF0cF`YXz,iHvSL+P6G<Wb_*i504*r~wE:/_8}Y^B=#9ZQo*^d-zO:K8jn?EK']vY.v\"L{c()hy,?")
+            .queryParam( "Post Marks", "v<O`")
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -448,7 +447,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_PostIdValue_Is_Gt_0() {
         given()
-            .queryParam( "postId", "452469921616994319.7")
+            .queryParam( "postId", "475916517641722120.2")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "(?)")
@@ -505,7 +504,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_PostIdType_Is_NotNumber() {
         given()
-            .queryParam( "postId", "sdtdljw,523.3,ulaaxjyq,")
+            .queryParam( "postId", "")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -535,7 +534,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyDefined_Is_No() {
         given()
-            .queryParam( "postId", "175464114579317670.5")
+            .queryParam( "postId", "605865143995980997.5")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -547,9 +546,9 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyMediaType_Is_Other() {
         given()
-            .queryParam( "postId", "482818433752875825.7")
-            .contentType( "application/xml")
-            .request().body( "n@LSH")
+            .queryParam( "postId", "704226969094570698.1")
+            .contentType( "application/json")
+            .request().body( "[\"oq8$f6\",\"Zzg\",\"R7&,\"]")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -561,7 +560,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_Null() {
         given()
-            .queryParam( "postId", "288916711720028870.4")
+            .queryParam( "postId", "717516071707418917.7")
             .contentType( "application/x-www-form-urlencoded")
         .when()
             .request( "PUT", "/post")
@@ -574,9 +573,9 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_NotObject() {
         given()
-            .queryParam( "postId", "369964187156311844.0")
+            .queryParam( "postId", "321628010121646716.6")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "boolean", "true")
+            .formParam( "number", "815.7")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -588,7 +587,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedDefined_Is_No() {
         given()
-            .queryParam( "postId", "103428616012442938.0")
+            .queryParam( "postId", "455879347664227151.2")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "reviewer", "Larry Moe")
         .when()
@@ -602,7 +601,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_Null() {
         given()
-            .queryParam( "postId", "528463357387617479.5")
+            .queryParam( "postId", "588727425155782203.3")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "")
             .formParam( "reviewer", "Larry Moe")
@@ -617,9 +616,9 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_NotBoolean() {
         given()
-            .queryParam( "postId", "266068349843845731.9")
+            .queryParam( "postId", "781577041014836317.1")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "995")
+            .formParam( "approved", "OO")
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "/post")
@@ -632,7 +631,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerDefined_Is_No() {
         given()
-            .queryParam( "postId", "261648016784061629.4")
+            .queryParam( "postId", "318391597246017975.3")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
         .when()
@@ -646,7 +645,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_Null() {
         given()
-            .queryParam( "postId", "825246336522073607.9")
+            .queryParam( "postId", "110822385164496122.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "")
@@ -661,10 +660,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_Other() {
         given()
-            .queryParam( "postId", "547930985012684067.1")
+            .queryParam( "postId", "709336837994542699.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
-            .formParam( "reviewer", "\\56rU=~*8j09EHtm6#-VembB!vNDkwjip=4vVrqg>/N_pt\"bE5RL6baS'0ce@1 tL\"GO7 6@_BlW>7G+?\"AnqR~qOd'fg4^> YiY}rC/UX\\%.k;{HERmAn!~WAu%u1=G+wJf\"XH}z9bT<]pwMtKA6.rR1B2;c")
+            .formParam( "reviewer", "HdW\\=z^v/tD>C5ab[so1p]B8`DQSWnL7z[Q{")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -676,12 +675,11 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesAdditional_Is_Yes() {
         given()
-            .queryParam( "postId", "210789597607818634.4")
+            .queryParam( "postId", "34427969928977086.3")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
-            .formParam( "tujnfrejqfz", "143")
-            .formParam( "eyxvzvcjofroftz", "746.6")
+            .formParam( "gjosghzwtdqokjpw", "xntquexllpz,473")
         .when()
             .request( "PUT", "/post")
         .then()
@@ -744,7 +742,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostUserIdApproved_UserIdType_Is_NotInteger() {
         given()
             .pathParam( "approved", ".0")
-            .pathParam( "userId", ".726.6")
+            .pathParam( "userId", ".true")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
@@ -808,7 +806,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_ApprovedType_Is_NotInteger() {
         given()
-            .pathParam( "approved", "")
+            .pathParam( "approved", ".true")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
@@ -821,7 +819,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_ApprovedValue_Is_Other() {
         given()
-            .pathParam( "approved", ".-492163572")
+            .pathParam( "approved", ".-184521552")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
@@ -963,7 +961,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsUnique_Is_No() {
         given()
-            .queryParam( "ids", "0|0|0|0")
+            .queryParam( "ids", "0|0|91|44")
         .when()
             .request( "GET", "/posts")
         .then()
@@ -988,7 +986,7 @@ public class OpenAPIRequestTestCasesTest {
     public void optionsPosts_XPostTypesItemsContainsValue_Is_2345() {
         given()
             .header( "X-Post-Types", "2345,7700")
-            .header( "X-User-Id", "118523476")
+            .header( "X-User-Id", "304086962")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -999,7 +997,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_7700() {
         given()
-            .header( "X-Post-Types", "7700,1001")
+            .header( "X-Post-Types", "7700,2345")
             .header( "X-User-Id", "0")
         .when()
             .request( "OPTIONS", "/posts")
@@ -1011,7 +1009,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesDefined_Is_No() {
         given()
-            .header( "X-User-Id", "348369597")
+            .header( "X-User-Id", "776767066")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1024,7 +1022,7 @@ public class OpenAPIRequestTestCasesTest {
     public void optionsPosts_XPostTypesType_Is_Null() {
         given()
             .header( "X-Post-Types", "")
-            .header( "X-User-Id", "1066327691")
+            .header( "X-User-Id", "623701463")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1036,8 +1034,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesType_Is_NotArray() {
         given()
-            .header( "X-Post-Types", "true")
-            .header( "X-User-Id", "747311532")
+            .header( "X-Post-Types", "-963.4")
+            .header( "X-User-Id", "1032704551")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1050,7 +1048,7 @@ public class OpenAPIRequestTestCasesTest {
     public void optionsPosts_XPostTypesItemsSize_Is_1() {
         given()
             .header( "X-Post-Types", "1001")
-            .header( "X-User-Id", "430759478")
+            .header( "X-User-Id", "533873321")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1062,8 +1060,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsSize_Is_3() {
         given()
-            .header( "X-Post-Types", "1001,7700,2345")
-            .header( "X-User-Id", "174337893")
+            .header( "X-Post-Types", "1001,2345,7700")
+            .header( "X-User-Id", "181167995")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1076,7 +1074,7 @@ public class OpenAPIRequestTestCasesTest {
     public void optionsPosts_XPostTypesItemsContainsType_Is_Null() {
         given()
             .header( "X-Post-Types", ",2345")
-            .header( "X-User-Id", "780065460")
+            .header( "X-User-Id", "354736")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1088,8 +1086,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsType_Is_NotInteger() {
         given()
-            .header( "X-Post-Types", ",750.3")
-            .header( "X-User-Id", "262848199")
+            .header( "X-Post-Types", "SP_KH,5,MWxCd,7700")
+            .header( "X-User-Id", "118523476")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1101,8 +1099,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_Other() {
         given()
-            .header( "X-Post-Types", "721239609,-800327189")
-            .header( "X-User-Id", "461091879")
+            .header( "X-Post-Types", "-378304222,1001")
+            .header( "X-User-Id", "348369597")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1115,7 +1113,7 @@ public class OpenAPIRequestTestCasesTest {
     public void optionsPosts_XPostTypesItemsUnique_Is_No() {
         given()
             .header( "X-Post-Types", "1001,1001")
-            .header( "X-User-Id", "883036008")
+            .header( "X-User-Id", "1008527334")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1139,7 +1137,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XUserIdType_Is_Null() {
         given()
-            .header( "X-Post-Types", "1001,7700")
+            .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "")
         .when()
             .request( "OPTIONS", "/posts")
@@ -1152,8 +1150,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XUserIdType_Is_NotInteger() {
         given()
-            .header( "X-Post-Types", "1001,2345")
-            .header( "X-User-Id", "true")
+            .header( "X-Post-Types", "1001,7700")
+            .header( "X-User-Id", "yjxdckmlmkupo,mh-3,")
         .when()
             .request( "OPTIONS", "/posts")
         .then()
@@ -1180,7 +1178,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "true")
             .contentType( "application/json")
-            .request().body( "{\"text\":\"\",\"email\":\"p@S.org\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"y@9.org\"}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1204,7 +1202,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "true")
             .contentType( "application/json")
-            .request().body( "{\"text\":\"^Cn\\\\R0hO3(BG;K\\\\Z+],z=:IHT]dJ*c,[<IH==,S;B(vRMQOORi4(X6a`%Z\\\\Y?:A%\",\"email\":\"V.9tM.0tf.w_9@4K.hw.rt.EL.Li.com\"}")
+            .request().body( "{\"text\":\")`uM;l J8CC`5,YnP]d,C#\\\\8J+8{zQ\\\"dSJFz^Cn\\\\R0hO3(BG;K\\\\Z+],z=:IHT]dJ\",\"email\":\"L.6**.t4X@Lc2.jA.6m.Bj.wz.2L.edu\"}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1238,7 +1236,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_ApprovedType_Is_NotBoolean() {
         given()
-            .cookie( "approved", "_QCCa,)b2%pdru,")
+            .cookie( "approved", "220")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1251,8 +1249,8 @@ public class OpenAPIRequestTestCasesTest {
     public void postPosts_BodyMediaType_Is_Other() {
         given()
             .cookie( "approved", "false")
-            .contentType( "text/plain")
-            .request().body( "u;h1K[r")
+            .contentType( "application/xml")
+            .request().body( "-1012.7")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1280,7 +1278,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "19.3")
+            .request().body( "true")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1322,7 +1320,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "{\"text\":\"\",\"email\":314.4}")
+            .request().body( "{\"text\":\"\",\"email\":674.0}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1336,7 +1334,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "{\"text\":\"\",\"email\":\"Zy.net\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"9S.edu\"}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1350,7 +1348,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "{\"text\":\"\",\"email\":\"J/sCq$=GCUf9^n9CR5fjf7S^@jyoX.gov\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"w_9j!u/En;$_LuJD+Lq73VUiT1@VD.edu\"}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1364,7 +1362,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "{\"email\":\"K@G.gov\"}")
+            .request().body( "{\"email\":\"G@M.org\"}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1378,7 +1376,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "{\"text\":null,\"email\":\"{@u.edu\"}")
+            .request().body( "{\"text\":null,\"email\":\"K@x.net\"}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1392,7 +1390,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "{\"text\":[\"Qy>I\"],\"email\":\"~@j.com\"}")
+            .request().body( "{\"text\":907,\"email\":\"#@X.net\"}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1406,7 +1404,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "{\"text\":\";e$@i+R qYZ^OUX/+0YA*#GC5'9Q4 b{8R_akN6yr@es\\\\w NB=DoH%'w94_(5?$Fl\",\"email\":\"v@c.org\"}")
+            .request().body( "{\"text\":\"QTc!FO\\\\TOZ9\\\"QK@+$br\\\\%w}2O)lmlw#Q(SL6gy6*(`.$Fmkz{P>=HQy>ILCo`w?;e\",\"email\":\"_@J.org\"}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1420,7 +1418,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "approved", "false")
             .contentType( "application/json")
-            .request().body( "{\"text\":\"\",\"email\":\"d@E.edu\",\"yq\":[\"\"]}")
+            .request().body( "{\"text\":\"\",\"email\":\"C@D.edu\",\"jfqdxwtpqqm\":\" b{8R\",\"wyxzvaqalrv\":545}")
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1432,10 +1430,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdDefined_Is_Yes() {
         given()
-            .cookie( "country", "{")
-            .cookie( "region", "N")
+            .cookie( "country", "#")
+            .cookie( "region", "s")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"^@Y.gov\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"T@G.gov\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1446,10 +1444,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_16() {
         given()
-            .cookie( "country", "@T+o03M8u3l]Yytb")
-            .cookie( "region", "?%Nd4U#f[?E>gU'=")
+            .cookie( "country", "o03M8u3l]Yytb?%N")
+            .cookie( "region", "d4U#f[?E>gU'=4X#")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"O,I0rXnR+w^VdUaLjyXJ1duEPdCDFe5iWJS2!kEZ*lH<[kr/ZC\\\\i_wfXn>Xj:6e|\",\"email\":\"Wa.3|.Qg.~`.^=.AK.-V@T9WdT60.org\"}")
+            .request().body( "{\"text\":\"0rXnR+w^VdUaLjyXJ1duEPdCDFe5iWJS2!kEZ*lH<[kr/ZC\\\\i_wfXn>Xj:6e|l_U\",\"email\":\"|Qg~`^=.AK-V9}X@dT.60F5.cOvs.com\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1461,7 +1459,7 @@ public class OpenAPIRequestTestCasesTest {
     public void putPosts_PostIdDefined_Is_No() {
         given()
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"!@s.com\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"N@Y.com\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1475,7 +1473,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .cookie( "postId", "")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"N@Y.com\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"S@H.com\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1487,9 +1485,9 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdType_Is_NotObject() {
         given()
-            .cookie( "postId", "true")
+            .cookie( "postId", "e|t")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"&@E.gov\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"5@E.gov\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1501,9 +1499,9 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryDefined_Is_No() {
         given()
-            .cookie( "region", "^")
+            .cookie( "region", ".")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"%@4.com\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"m@R.com\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1516,9 +1514,9 @@ public class OpenAPIRequestTestCasesTest {
     public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
             .cookie( "country", "")
-            .cookie( "region", "[")
+            .cookie( "region", "M")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"_@D.gov\"}")
+            .request().body( "{\"text\":\"\",\"email\":\";@M.edu\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1530,10 +1528,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         given()
-            .cookie( "country", "+X^NIyVxY>0H]#cgg")
-            .cookie( "region", "Q")
+            .cookie( "country", ">0H]#cggQ}Wa*>u<c")
+            .cookie( "region", "7")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"8@S.org\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"`@F.gov\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1545,9 +1543,9 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionDefined_Is_No() {
         given()
-            .cookie( "country", "<")
+            .cookie( "country", "s")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"T@y.edu\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"^@7.com\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1559,10 +1557,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionType_Is_Null() {
         given()
-            .cookie( "country", "z")
+            .cookie( "country", "/")
             .cookie( "region", "")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"y@4.edu\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"2@l.net\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1574,10 +1572,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionValueLength_Is_17() {
         given()
-            .cookie( "country", "(")
-            .cookie( "region", "BABC$)53N&B[6|E|2")
+            .cookie( "country", "&")
+            .cookie( "region", "B[6|E|2JcPzw*R(04")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"E@U.edu\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"z@v.org\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1589,12 +1587,12 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesAdditional_Is_Yes() {
         given()
-            .cookie( "country", "R")
-            .cookie( "region", "(")
-            .cookie( "yjbarrrgeqxgwt", "345")
-            .cookie( "hbx", "1009.7")
+            .cookie( "country", "0")
+            .cookie( "region", "-")
+            .cookie( "xgwtqoghbxd", "true")
+            .cookie( "wpdxd", "true")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"D@X.net\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"A@h.gov\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1606,8 +1604,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyDefined_Is_No() {
         given()
-            .cookie( "country", "1")
-            .cookie( "region", "q")
+            .cookie( "country", "/")
+            .cookie( "region", ":")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1619,10 +1617,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyMediaType_Is_Other() {
         given()
-            .cookie( "country", "!")
-            .cookie( "region", "c")
-            .contentType( "application/x-www-form-urlencoded")
-            .formParam( "boolean", "true")
+            .cookie( "country", "&")
+            .cookie( "region", "1")
+            .contentType( "application/json")
+            .request().body( "\"J)\\\"\"")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1634,8 +1632,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainType_Is_Null() {
         given()
-            .cookie( "country", ":")
-            .cookie( "region", "&")
+            .cookie( "country", "|")
+            .cookie( "region", "E")
             .contentType( "text/plain")
             .request().body( "null")
         .when()
@@ -1649,10 +1647,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainType_Is_NotObject() {
         given()
-            .cookie( "country", "1")
-            .cookie( "region", "`")
+            .cookie( "country", "-")
+            .cookie( "region", "T")
             .contentType( "text/plain")
-            .request().body( ")\"s T")
+            .request().body( "W\\S")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1664,8 +1662,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailDefined_Is_No() {
         given()
-            .cookie( "country", "E")
-            .cookie( "region", "-")
+            .cookie( "country", "A")
+            .cookie( "region", "`")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\"}")
         .when()
@@ -1679,8 +1677,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_Null() {
         given()
-            .cookie( "country", "T")
-            .cookie( "region", "y")
+            .cookie( "country", "j")
+            .cookie( "region", ">")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":null}")
         .when()
@@ -1694,10 +1692,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         given()
-            .cookie( "country", ">")
-            .cookie( "region", "^")
+            .cookie( "country", "*")
+            .cookie( "region", "R")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"ES.org\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"H6.com\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1709,10 +1707,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_33() {
         given()
-            .cookie( "country", "W")
-            .cookie( "region", "8")
+            .cookie( "country", "Z")
+            .cookie( "region", "?")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"w{6.CQ-R@9V.Uy.7P.Kv.0v.rK.Ua.gov\"}")
+            .request().body( "{\"text\":\"\",\"email\":\"Q.-R.O%.xI.8_.R~@0vr.KU.aj.T0.net\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1724,10 +1722,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextDefined_Is_No() {
         given()
-            .cookie( "country", "r")
-            .cookie( "region", "c")
+            .cookie( "country", "l")
+            .cookie( "region", "m")
             .contentType( "text/plain")
-            .request().body( "{\"email\":\"A@y.edu\"}")
+            .request().body( "{\"email\":\"d@a.gov\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1739,10 +1737,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextType_Is_Null() {
         given()
-            .cookie( "country", "8")
-            .cookie( "region", "Z")
+            .cookie( "country", "0")
+            .cookie( "region", "*")
             .contentType( "text/plain")
-            .request().body( "{\"text\":null,\"email\":\"!@H.org\"}")
+            .request().body( "{\"text\":null,\"email\":\"M@5.gov\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1754,10 +1752,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextValueLength_Is_65() {
         given()
-            .cookie( "country", "v")
-            .cookie( "region", "D")
+            .cookie( "country", "W")
+            .cookie( "region", "e")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"E U&=Tvy)0BVvr\\\\4e$S`F]~%X&v~KbwBZX=\\\"l1\\\",EU[]|h$PPeo|4qg\\\"QE])(u>&~\",\"email\":\"H@2.org\"}")
+            .request().body( "{\"text\":\"XDS:6kGbu7hpwCtKd`560|E U&=Tvy)0BVvr\\\\4e$S`F]~%X&v~KbwBZX=\\\"l1\\\",EU[\",\"email\":\"}@d.edu\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1769,10 +1767,10 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesAdditional_Is_Yes() {
         given()
-            .cookie( "country", "0")
-            .cookie( "region", "w")
+            .cookie( "country", "P")
+            .cookie( "region", "K")
             .contentType( "text/plain")
-            .request().body( "{\"text\":\"\",\"email\":\"F@E.gov\",\"ptqdeilswznz\":[\"P]d,\"],\"qweennt\":{}}")
+            .request().body( "{\"text\":\"\",\"email\":\"*@H.gov\",\"gkajbwqvp\":\"k2cW\"}")
         .when()
             .request( "PUT", "/posts")
         .then()
@@ -1795,7 +1793,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsSize_Is_2() {
         given()
-            .cookie( "postId", "B|C")
+            .cookie( "postId", "B|A")
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -1840,7 +1838,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdType_Is_NotArray() {
         given()
-            .cookie( "postId", "-172.3")
+            .cookie( "postId", "-297.0")
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -1888,7 +1886,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsContainsValue_Is_Other() {
         given()
-            .cookie( "postId", "-kQr{oH&F5t6_4R7i4.d@-gs5gZFdIi6B#N?xOsn]1Q}yh*NC[l}>wH*NzR^O<Wmc3Ki*cX*|mpr*bafLCX7gkWk/.B#c=nrqFEo~xo[(+Dwp_$pzgETGcjaAhgRIzYt[<s27WRs316H]#4[{':9Y7DzYRD@B%J('LiOFjsS#I+eWn)XB/5gkakT07>12+3TjrE-a=TkrRb[v3tlMkt{@<@b3$YFMV)W.Dd2u?uDYm#Jr5J8x6}7EKk[niz>CF~?Op1&vo8Ga/%Cvin='RHSqH@@CzX3!tn$vy!w9<vG3s$&S![")
+            .cookie( "postId", "-kQr{oH&F5t6_4R7i4.d@-gs5gZFdIi6B#N?xOsn]1Q}yh*NC[l}>wH*NzR^O<Wmc3Ki*cX*|C")
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -1923,7 +1921,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedValue_Is_False() {
         given()
-            .pathParam( "attributes", ";approved=false;likes=447496980")
+            .pathParam( "attributes", ";approved=false;likes=968584127")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -1969,7 +1967,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesType_Is_NotObject() {
         given()
-            .pathParam( "attributes", ";attributes=")
+            .pathParam( "attributes", ";attributes=217")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -1981,7 +1979,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
-            .pathParam( "attributes", ";likes=938207574")
+            .pathParam( "attributes", ";likes=354355398")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -1993,7 +1991,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
-            .pathParam( "attributes", ";approved=;likes=656414581")
+            .pathParam( "attributes", ";approved=;likes=703703613")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2005,7 +2003,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
-            .pathParam( "attributes", ";approved=cOam,d;likes=592757965")
+            .pathParam( "attributes", ";approved=;likes=89711824")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2065,7 +2063,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
-            .pathParam( "attributes", ";approved=false;subject=;likes=864749366")
+            .pathParam( "attributes", ";approved=false;subject=;likes=369139405")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2077,7 +2075,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_Other() {
         given()
-            .pathParam( "attributes", ";approved=false;subject=fwcJYu&H7cwat!)7U*9%m#/E\\xaR C3L$L!7CuE^D`zivT 8KY2G\"'?FjW?la&:<{E&>9t6sxMPPkU\"t6BzKl0n)<r-5ca7J,/U#OG;;,p-jforEO=_lZy\"U R~*T(\"i,Z%$ 3uJ6g}6@[TS7&oeK>57gl+z;likes=411920977")
+            .pathParam( "attributes", ";approved=false;subject==EOonKR3%i@(h,kXwv]bDcPjC*8 }PXp1CcGRBK_I_r 9T@f'vtYf!`G`PCGAn5mQS8DuqLn?NE;likes=372852380")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2089,7 +2087,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
-            .pathParam( "attributes", ";approved=false;likes=369490659;gouzjasqzi=.buMUx")
+            .pathParam( "attributes", ";approved=false;likes=509855036;ar=725")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2114,7 +2112,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostsUserIdAttributes_UserIdValue_Is_Gt_0() {
         given()
             .pathParam( "[attributes]", "approved=false")
-            .pathParam( "userId", "677615018")
+            .pathParam( "userId", "363198115")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2125,7 +2123,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
-            .pathParam( "[attributes]", "likes=357740399")
+            .pathParam( "[attributes]", "likes=744505988")
             .pathParam( "userId", "0")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
@@ -2151,7 +2149,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostsUserIdAttributes_UserIdType_Is_NotInteger() {
         given()
             .pathParam( "[attributes]", "approved=true")
-            .pathParam( "userId", ">C5ab[,o1p]B,")
+            .pathParam( "userId", "true")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2177,7 +2175,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostsUserIdAttributes_AttributesType_Is_Null() {
         given()
             .pathParam( "[attributes]", "")
-            .pathParam( "userId", "187524432")
+            .pathParam( "userId", "381255829")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2189,8 +2187,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesType_Is_NotObject() {
         given()
-            .pathParam( "[attributes]", "Wn")
-            .pathParam( "userId", "956835912")
+            .pathParam( "[attributes]", "|")
+            .pathParam( "userId", "129395836")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2203,7 +2201,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostsUserIdAttributes_AttributesValuePropertyCount_Is_Lt_1() {
         given()
             .pathParam( "[attributes]", "")
-            .pathParam( "userId", "104620531")
+            .pathParam( "userId", "841917001")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2216,7 +2214,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
             .pathParam( "[attributes]", "approved=")
-            .pathParam( "userId", "562325183")
+            .pathParam( "userId", "468903080")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2228,8 +2226,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
-            .pathParam( "[attributes]", "approved={Qvqt")
-            .pathParam( "userId", "243005471")
+            .pathParam( "[attributes]", "approved=")
+            .pathParam( "userId", "365462155")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2242,7 +2240,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
             .pathParam( "[attributes]", "approved=true,likes=")
-            .pathParam( "userId", "818070057")
+            .pathParam( "userId", "873203121")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2254,8 +2252,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesType_Is_NotInteger() {
         given()
-            .pathParam( "[attributes]", "approved=true,likes=hzwtdqokj,kCr!")
-            .pathParam( "userId", "201910517")
+            .pathParam( "[attributes]", "approved=true,likes=h'sx_E7")
+            .pathParam( "userId", "1023834291")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2268,7 +2266,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesValue_Is_M1() {
         given()
             .pathParam( "[attributes]", "approved=true,likes=-1")
-            .pathParam( "userId", "626970249")
+            .pathParam( "userId", "535291287")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()
@@ -2280,8 +2278,8 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
-            .pathParam( "[attributes]", "approved=true,exllpztkactwllr=true,kriihqdsbllpj=999")
-            .pathParam( "userId", "986830352")
+            .pathParam( "[attributes]", "approved=true,shhelptr=54,avuhxdkoidtkij=-85")
+            .pathParam( "userId", "196324320")
         .when()
             .request( "DELETE", "/posts/{userId}/{[attributes]}")
         .then()

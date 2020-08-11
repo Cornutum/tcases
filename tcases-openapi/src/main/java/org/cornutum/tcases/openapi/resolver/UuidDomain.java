@@ -42,7 +42,7 @@ public class UuidDomain extends AbstractStringDomain
    */
   protected void initLengthRange()
     {
-    setLengthRange( new IntegerConstant( MAX_LENGTH));
+    setLengthRange( MAX_LENGTH);
     }
 
   /**

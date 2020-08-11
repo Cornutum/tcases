@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Bravo,param0BravoLengthValid,param0BravoNotEmpty,param0BravoValue,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -161,7 +161,7 @@
     <TestCase id="2" name="param0.Value.Properties.bravo.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaValue,param0Hotel,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -236,7 +236,7 @@
     <TestCase id="3" name="param0.Value.Properties.bravo.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Bravo,param0BravoLengthValid,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -461,7 +461,7 @@
     <TestCase id="6" failure="true" name="param0.Value.Property-Count=&apos;&lt; 2&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -536,7 +536,7 @@
     <TestCase id="7" failure="true" name="param0.Value.Properties.alpha.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -611,7 +611,7 @@
     <TestCase id="8" failure="true" name="param0.Value.Properties.bravo.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Bravo,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -686,7 +686,7 @@
     <TestCase id="9" failure="true" name="param0.Value.Properties.bravo.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Bravo,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -761,7 +761,7 @@
     <TestCase id="10" failure="true" name="param0.Value.Properties.charlie.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -986,7 +986,7 @@
     <TestCase id="13" failure="true" name="param0.Value.Properties.echo.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -1061,7 +1061,7 @@
     <TestCase id="14" failure="true" name="param0.Value.Properties.foxtrot.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -1136,7 +1136,7 @@
     <TestCase id="15" failure="true" name="param0.Value.Properties.golf.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -1211,7 +1211,7 @@
     <TestCase id="16" failure="true" name="param0.Value.Properties.hotel.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -1286,7 +1286,7 @@
     <TestCase id="17" failure="true" name="param0.Value.Properties.hotel.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -1361,7 +1361,7 @@
     <TestCase id="18" failure="true" name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>

@@ -15,9 +15,13 @@ import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 
 import org.apache.commons.lang3.text.WordUtils;
+import org.cornutum.regexpgen.RegExpGen;
+import org.cornutum.regexpgen.js.Parser;
+import static org.cornutum.regexpgen.Bounds.bounded;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -539,6 +543,38 @@ public final class SchemaUtils
     setPatterns( combined, getPatterns( base));
     addPatterns( combined, getPatterns( additional));
 
+    // Reconcile length and pattern constraints
+    Optional.ofNullable( combined.getMaxLength())
+      .ifPresent( maxLength -> {
+        Optional.ofNullable( maxLengthPattern( combined))
+          .ifPresent( generator -> {
+            Integer patternMax = bounded( generator.getMaxLength()).orElse( null);
+            if( patternMax != null && patternMax.compareTo( maxLength) < 0)
+              {
+              combined.setMaxLength( patternMax);
+              }
+            if( combined.getMinLength() != null && combined.getMaxLength() < combined.getMinLength())
+              {
+              throw inconsistentAssertions( "minLength: %s", combined.getMinLength(), "pattern: %s", generator.getOptions().getRegExp());
+              }
+            });
+        });
+    Optional.ofNullable( combined.getMinLength())
+      .ifPresent( minLength -> {
+        Optional.ofNullable( minLengthPattern( combined))
+          .ifPresent( generator -> {
+            Integer patternMin = Optional.of( generator.getMinLength()).filter( min -> min > 0).orElse( null);
+            if( patternMin != null && patternMin.compareTo( combined.getMinLength()) > 0)
+              {
+              combined.setMinLength( patternMin);
+              }
+            if( combined.getMaxLength() != null && combined.getMinLength() > combined.getMaxLength())
+              {
+              throw inconsistentAssertions( "maxLength: %s", combined.getMaxLength(), "pattern: %s", generator.getOptions().getRegExp());
+              }
+            });
+        });
+    
     // Combine not patterns
     setNotPatterns( combined, getNotPatterns( base));
     addNotPatterns( combined, getNotPatterns( additional));
@@ -917,6 +953,48 @@ public final class SchemaUtils
       }
 
     return base;
+    }
+
+  /**
+   * Returns a {@link RegExpGen} the required pattern with the smallest maximum length.
+   */
+  private static RegExpGen maxLengthPattern( Schema<?> stringSchema)
+    {
+    return
+      patternGenerators( stringSchema)
+      .min( Comparator.comparing( RegExpGen::getMaxLength))
+      .orElse( null);
+    }
+
+  /**
+   * Returns a {@link RegExpGen} the required pattern with the largest minimum length.
+   */
+  private static RegExpGen minLengthPattern( Schema<?> stringSchema)
+    {
+    return
+      patternGenerators( stringSchema)
+      .max( Comparator.comparing( RegExpGen::getMinLength))
+      .orElse( null);
+    }
+
+  /**
+   * Returns a {@link RegExpGen} for each matching pattern required.
+   */
+  public static Stream<RegExpGen> patternGenerators( Schema<?> stringSchema)
+    {
+    return
+      getPatterns( stringSchema).stream()
+      .map( pattern -> {
+        try
+          {
+          return Parser.parseRegExp( pattern);
+          }
+        catch( Exception e)
+          {
+          return null;
+          }
+        })
+      .filter( Objects::nonNull);
     }
 
   /**

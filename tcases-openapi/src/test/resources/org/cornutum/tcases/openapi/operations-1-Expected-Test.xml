@@ -381,7 +381,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -420,7 +420,7 @@
     <TestCase id="2" name="param0.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0LengthValid,param0Value"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>

@@ -101,7 +101,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ""
+                    "value": "6"
                 },
                 "valid": true
             }
@@ -123,7 +123,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "AS0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\"]Y,9fw7?5 KJ"
+                    "value": "29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\"]Y,9fw7?5 KJYu$s]/HfvwpDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9Gq473569431030051166818232624AcSVW%M'|y3{f5xCL8-"
                 },
                 "valid": true
             }
@@ -131,28 +131,6 @@
     },
     {
         "id": 6,
-        "name": "param0.Alternative.1.Value.Length='< 256'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Not",
-        "path": "/not",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "u$s]/HfvwpDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au"
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 7,
         "name": "param0.Alternative.0.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -175,7 +153,7 @@
         "invalidInput": "param0.Alternative.0.Type=null"
     },
     {
-        "id": 8,
+        "id": 7,
         "name": "param0.Alternative.0.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
@@ -189,8 +167,17 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "k*"
+                        },
+                        {
+                            "type": "string",
+                            "value": "a9A+*A,"
+                        }
+                    ]
                 },
                 "valid": false
             }
@@ -198,7 +185,7 @@
         "invalidInput": "param0.Alternative.0.Type=Not string"
     },
     {
-        "id": 9,
+        "id": 8,
         "name": "param0.Alternative.0.Value='Other'",
         "server": "/",
         "version": "0.0.0",
@@ -213,12 +200,35 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ".sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@"
+                    "value": "L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5a"
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Alternative.0.Value=Other"
+    },
+    {
+        "id": 9,
+        "name": "param0.Alternative.1.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Length=0"
     },
     {
         "id": 10,
@@ -236,7 +246,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5as@3O-;]90Q2kNWES$tnaIbbEvzR;]Y#'(0I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ T.n+4e/QXQFoMTvrLW#X}bu (P,&tLxMMRrgg;PU{$X/&13;Oq9B]BAE"
+                    "value": "s@3O-;]90Q2kNWES$tnaIbbEvzR;]Y#'(0I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ T.n+4e/QXQFoMTvrLW#X}bu (P,&tLxMMRrgg;PU{$X/&13;Oq9B]BAEm+ET;&8pY>.SkrSOH<zOh.ISql!.*/Y@S}4zRlE7O]^Oj;R(hB:\\#EOdZX@_#9h>Sx*]@2vCg\\z\"N`DZ<):0'yx-G\\$L MJd0T$mTU|Te.j./Z~wa[oW79@!}GdOxSX4_HQoZs"
                 },
                 "valid": false
             }
@@ -259,7 +269,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ""
+                    "value": "W"
                 },
                 "valid": false
             }
