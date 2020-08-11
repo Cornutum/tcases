@@ -262,7 +262,7 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> extends Abs
      */
     public static Range of( String op, String bound)
       {
-      return of( op, bound, emptySet());
+      return of( op, bound, null, emptySet());
       }
 
     /**
@@ -282,16 +282,18 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> extends Abs
         .map( values -> values.stream().collect( toSet()))
         .orElse( emptySet());
 
+      String rangeMin = binding.getAnnotation( "rangeMin");
+
       String op = matcher.group(2);
       String bound = matcher.group(3);
 
-      return of( op, bound, excluded);
+      return of( op, bound, rangeMin, excluded);
       }
 
     /**
      * Returns the Range represented by the given number binding.
      */
-    private static Range of( String op, String bound, Set<String> excluded)
+    private static Range of( String op, String bound, String boundHint, Set<String> excluded)
       {
       String min =
         op == null || op.startsWith( ">")
@@ -303,6 +305,14 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> extends Abs
         ? bound
         : null;
 
+      if( boundHint != null)
+        {
+        if( max != null && min == null)
+          {
+          min = boundHint;
+          }
+        }
+      
       boolean minExclusive = ">".equals( op);
       boolean maxExclusive = "<".equals( op);
 

@@ -26,7 +26,9 @@
             <Value name="0" property="param0LengthValid"/>
             <Value name="128" property="param0LengthValid, param0NotEmpty"/>
             <Value name="129" failure="true"/>
-            <Value name="&lt; 128" property="param0LengthValid, param0NotEmpty"/>
+            <Value name="&lt; 128" property="param0LengthValid, param0NotEmpty">
+              <Has name="rangeMin" value="1"/>
+            </Value>
           </Var>
         </VarSet>
       </VarSet>

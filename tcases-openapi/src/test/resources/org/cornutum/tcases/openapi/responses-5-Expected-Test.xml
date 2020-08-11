@@ -207,7 +207,9 @@
         <Var name="2XX.Content.application-json.Type" NA="true"/>
         <Var name="2XX.Content.application-json.Value.Length" NA="true"/>
         <Var name="2XX.Content.text-javascript.Type" value="string"/>
-        <Var name="2XX.Content.text-javascript.Value.Length" value="&lt; 16"/>
+        <Var name="2XX.Content.text-javascript.Value.Length" value="&lt; 16">
+          <Has name="rangeMin" value="1"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true" name="2XX.Headers.x-standard-header.Type=null">

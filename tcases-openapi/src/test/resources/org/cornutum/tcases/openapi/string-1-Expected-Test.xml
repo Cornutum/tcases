@@ -115,6 +115,7 @@
           <Has name="default" value="Change Me!"/>
           <Has name="format" value="password"/>
           <Has name="paramName" value="param0"/>
+          <Has name="rangeMin" value="1"/>
         </Var>
       </Input>
     </TestCase>

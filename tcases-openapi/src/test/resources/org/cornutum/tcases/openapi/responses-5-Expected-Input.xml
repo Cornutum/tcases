@@ -96,7 +96,9 @@
                 <Value name="0" property="2XXtext-javascriptLengthValid"/>
                 <Value name="16" property="2XXtext-javascriptLengthValid, 2XXtext-javascriptNotEmpty"/>
                 <Value name="17" failure="true"/>
-                <Value name="&lt; 16" property="2XXtext-javascriptLengthValid, 2XXtext-javascriptNotEmpty"/>
+                <Value name="&lt; 16" property="2XXtext-javascriptLengthValid, 2XXtext-javascriptNotEmpty">
+                  <Has name="rangeMin" value="1"/>
+                </Value>
               </Var>
             </VarSet>
           </VarSet>

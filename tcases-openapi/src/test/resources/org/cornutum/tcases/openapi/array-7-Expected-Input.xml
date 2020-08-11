@@ -25,7 +25,9 @@
             <Value name="2" property="param0ItemsMany"/>
             <Value name="3" failure="true"/>
             <Value name="0" property="param0ItemsNone"/>
-            <Value name="&lt; 2"/>
+            <Value name="&lt; 2">
+              <Has name="rangeMin" value="1"/>
+            </Value>
           </Var>
           <VarSet name="Contains">
             <When>

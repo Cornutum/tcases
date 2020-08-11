@@ -150,6 +150,7 @@
         </Var>
         <Var name="param0.Items.Size" value="&lt; 5">
           <Has name="paramName" value="param0"/>
+          <Has name="rangeMin" value="1"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
@@ -274,6 +275,7 @@
         </Var>
         <Var name="param0.Items.Size" value="&lt; 5">
           <Has name="paramName" value="param0"/>
+          <Has name="rangeMin" value="1"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="null" failure="true">
           <Has name="itemType" value="integer"/>
@@ -305,6 +307,7 @@
         </Var>
         <Var name="param0.Items.Size" value="&lt; 5">
           <Has name="paramName" value="param0"/>
+          <Has name="rangeMin" value="1"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="Not integer" failure="true">
           <Has name="itemType" value="integer"/>

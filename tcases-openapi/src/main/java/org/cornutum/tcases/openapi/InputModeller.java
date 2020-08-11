@@ -1048,6 +1048,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           {
           size.values(
             VarValueDefBuilder.with( String.format( "< %s", maxItems))
+            .has( "rangeMin", 1)
             .properties( Optional.ofNullable( maxItems > 2? arrayItemsManyProperty( instanceVarTag) : null))
             .build());
           }
@@ -1899,6 +1900,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             {
             length.values(
               VarValueDefBuilder.with( String.format( "< %s", maxLength))
+              .has( "rangeMin", 1)
               .properties( validLengthProperty( instanceVarTag))
               .properties( notEmptyProperty( instanceVarTag))
               .build());
