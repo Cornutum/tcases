@@ -2,11 +2,11 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.4.1](ReleaseNotes.md#341)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.4.2](ReleaseNotes.md#342)) is now available at the Maven Central Repository.
     See [*How To Download Tcases*](HowToDownload.md) for download instructions.
 
-  * Tcases 3.4.1 is a patch release to fix problems in the Maven plugin and the CLI.
-    See the [release notes](ReleaseNotes.md#341) for details.
+  * Tcases 3.4.2 provide improvements for several Tcases components.
+    See the [release notes](ReleaseNotes.md#342) for details.
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
