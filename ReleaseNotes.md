@@ -1,5 +1,42 @@
 # Release Notes #
 
+## 3.4.2 ##
+
+This release provides the following improvements:
+
+  * **CLI**
+
+    * Unix shell commands simplified by consolidating common steps using the `tcases-exec` command.
+
+  * **Tcases for OpenAPI**
+
+    * Request test case resolution now produces values that satisfy specified "pattern" assertions.
+      [[104](https://github.com/Cornutum/tcases/issues/104)]
+
+    * Request test case resolution now produces values that correctly satisfy specified "multipleOf" assertions.
+    
+    * In certain cases, request test case resolution now produces more useful test cases for "string" and "array" inputs.
+      For example, for a "string" that defines a "maxLength" but no "minLength", generated success cases will supply either
+      an empty string, a string with the maximum length, or a string with some random length less than the maximum.
+      But, in previous versions, that random length might be 0, often producing a duplicate test case. The current
+      version fixes that to ensure random lengths are non-zero. The same fix applies also to "array" values that define a
+      "maxItems" but no "minItems".
+    
+    * At least one test case is created for each request defined, even for a request that has no parameters or request body.
+      [[132](https://github.com/Cornutum/tcases/issues/132)]
+
+    * `api-test` now produces only executable test cases that are uniquely "realizable". Previously, some test cases
+      turned out to be either duplicates or infeasible because of the way inputs were serialized into HTTP messages.
+      For example, a query parameter value of `null` is indistinguishable from an empty string. Similarly, a test case
+      to verify a failure when an query parameter expecting a string value is given a non-string is not actually
+      realizable when all inputs are serialized as simple strings. [[133](https://github.com/Cornutum/tcases/issues/133)]
+
+    * Upgraded to latest swagger-parser version 2.0.21.
+
+  * **Core**
+
+    * No more bogus warnings about unused properties for properties that are referenced only by cardinality conditions.
+
 ## 3.4.1 ##
 
 This is a patch release to fix the following problems.
