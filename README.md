@@ -12,7 +12,9 @@
 
 ## What Does It Do? ##
 
-Tcases is a tool for designing tests. It doesn't matter what kind of system you are testing. Nor does it matter what level of the system you are testing -- unit, subsystem, or full system. You can use Tcases to design your tests in any of these situations. With Tcases, you define the input space for your system-under-test and the level of coverage that you want. Then Tcases generates a minimal set of test cases that meets your requirements.
+Tcases is a tool for designing tests. It doesn't matter what kind of system you are testing -- UI, command line,
+[REST-ful API](tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful), or backend.
+Nor does it matter what level of the system you are testing -- unit, subsystem, or full system. You can use Tcases to design your tests in any of these situations. With Tcases, you define the input space for your system-under-test and the level of coverage that you want. Then Tcases generates a minimal set of test cases that meets your requirements.
 
 Tcases is primarily a tool for black-box test design. For such tests, the concept of "coverage" is different from structural testing critieria such as line coverage, branch converage, etc. Instead, Tcases is guided by coverage of the input space of your system.
 
@@ -22,7 +24,7 @@ Tcases gives you a way to define the input space for your system in a form that 
 
 First, you create a system input definition, a document that defines your system as a set of functions. For each system
 function, the system input definition defines the variables that characterize the function input space. If you are testing a Web
-service API, you can even [generate a system input definition automatically](tcases-openapi/README.md) from an OpenAPI spec.
+service API, you can even [generate a system input definition automatically](tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful) from an OpenAPI spec.
 
 Then, you can create a generator definition. That's another document that defines the coverage you want for each system function. The generator definition is optional. You can skip this step and still get a basic level of coverage.
 
@@ -38,7 +40,7 @@ JUnit or TestNG test class.
 
   * [Tcases: The Complete Guide](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm)
   * [Tcases: The JSON Guide](http://www.cornutum.org/tcases/docs/Tcases-Json.htm): A companion to _The Complete Guide_ adding info specific to JSON
-  * [Tcases for OpenAPI](tcases-openapi/README.md): Testing a REST-ful API? Generate test cases directly from your OpenAPI v3 spec.
+  * [Tcases for OpenAPI](tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful): Testing a REST-ful API? Generate test cases directly from your OpenAPI v3 spec.
   * [The Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/)
   * [How To Download Using Maven](HowToDownload.md)
   * [Model-Driven Testing Using Tcases](ModelDrivenTestingForAgileTeams.md)
