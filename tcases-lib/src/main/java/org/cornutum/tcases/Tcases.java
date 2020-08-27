@@ -57,41 +57,6 @@ public class Tcases
     }
 
   /**
-   * Returns test case definitions for the given function input definition, using the given generator set and
-   * base test definitions. If <CODE>baseDef</CODE> is null, no base test definitions are used.
-   * <P/>
-   * The <CODE>options</CODE> are optional and may be null. See also {@link #getTests(FunctionInputDef,ITestCaseGenerator,FunctionTestDef)}.
-   *
-   * @deprecated Use {@link #getTests(FunctionInputDef,ITestCaseGenerator,FunctionTestDef,GeneratorOptions)} instead
-   */
-  @Deprecated public static FunctionTestDef getTests( FunctionInputDef functionDef, IGeneratorSet genDef, SystemTestDef baseDef, GeneratorOptions options)
-    {
-    FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
-    ITestCaseGenerator functionGen = genDef.getGenerator( functionDef.getName());
-    if( functionGen == null)
-      {
-      throw new RuntimeException( "No generator for function=" + functionDef.getName());
-      }
-
-    // If applicable, apply specified generator options.
-    Long seed = options==null? null : options.getRandomSeed();
-    Integer defaultTupleSize = options==null? null : options.getDefaultTupleSize();
-    if( seed != null)
-      {
-      functionGen.setRandomSeed( seed);
-      }
-    if( defaultTupleSize != null && functionGen instanceof TupleGenerator)
-      {
-      ((TupleGenerator) functionGen).setDefaultTupleSize( defaultTupleSize);
-      }
-
-    FunctionTestDef functionTestDef = functionGen.getTests(functionDef, functionBase);
-    annotateTests( functionDef, functionTestDef);
-
-    return functionTestDef;
-    }
-
-  /**
    * Returns test case definitions for the given function input definition, using the given test case generator and
    * base test definitions. The <CODE>functionGen</CODE> must be non-null.
    * If <CODE>functionBase</CODE> is null, no base test definitions are used.

@@ -194,17 +194,6 @@ public class PropertySet implements Iterable<String>
 
   /**
    * Returns an iterator that visits a single instance of each property in this set.
-   *
-   * @deprecated Replace using {@link #getUniqueProperties}
-   */
-  @Deprecated
-  public Iterator<String> getProperties()
-    {
-    return getUniqueProperties();
-    }
-
-  /**
-   * Returns an iterator that visits a single instance of each property in this set.
    */
   public Iterator<String> getUniqueProperties()
     {
