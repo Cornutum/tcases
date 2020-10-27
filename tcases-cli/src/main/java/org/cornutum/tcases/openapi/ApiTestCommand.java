@@ -16,9 +16,9 @@ import org.cornutum.tcases.openapi.moco.MocoTestConfigReader;
 import org.cornutum.tcases.openapi.resolver.*;
 import org.cornutum.tcases.openapi.restassured.RestAssuredTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.*;
+import static org.cornutum.tcases.CommandUtils.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 import static java.util.stream.Collectors.joining;
@@ -553,41 +552,6 @@ public class ApiTestCommand
         {
         setApiSpec( new File( args[i]));
         }
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a missing option value
-     */
-    protected void throwMissingValue( String option)
-      {
-      throwUsageException( String.format( "No value given for %s option", option));
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a command line error.
-     */
-    protected void throwUsageException( String detail)
-      {
-      throwUsageException( detail, null);
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a command line error.
-     */
-    protected void throwUsageException( String detail, Exception cause)
-      {
-      throw getUsageException( detail, cause);
-      }
-
-    /**
-     * Returns an IllegalArgumentException reporting a command line error.
-     */
-    protected IllegalArgumentException getUsageException( String detail, Exception cause)
-      {
-      return
-        new IllegalArgumentException
-        ( "Invalid command line argument. For all command line details, use the -help option.",
-          new IllegalArgumentException( detail, cause));
       }
 
     /**
@@ -1541,35 +1505,6 @@ public class ApiTestCommand
       {
       throw new TestWriterException( String.format( "%s: Can't write test for %s", testWriter, testSource), failure);
       }
-    }
-
-  /**
-   * Returns a description of the current version.
-   */
-  public static String getVersion()
-    {
-    Properties tcasesProperties = new Properties();
-    String tcasesPropertyFileName = "/tcases.properties";
-    InputStream tcasesPropertyFile = null;
-    try
-      {
-      tcasesPropertyFile = Tcases.class.getResourceAsStream( tcasesPropertyFileName);
-      tcasesProperties.load( tcasesPropertyFile);
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't read " + tcasesPropertyFileName, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( tcasesPropertyFile);
-      }
-
-    return
-      String.format(
-        "%s (%s)",
-        tcasesProperties.getProperty( "tcases.version"),
-        tcasesProperties.getProperty( "tcases.date"));
     }
 
   private static final Logger logger_ = LoggerFactory.getLogger( ApiTestCommand.class);
