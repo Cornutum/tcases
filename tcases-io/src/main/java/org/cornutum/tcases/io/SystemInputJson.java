@@ -17,6 +17,7 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 import org.apache.commons.collections4.IteratorUtils;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -159,7 +160,7 @@ public final class SystemInputJson
   private static JsonObjectBuilder addProperties( JsonObjectBuilder builder, VarValueDef value)
     {
     JsonArrayBuilder properties = Json.createArrayBuilder();
-    value.getProperties().forEach( property -> properties.add( property));
+    propertySeq( value.getProperties()).forEach( property -> properties.add( property));
     JsonArray json = properties.build();
 
     if( !json.isEmpty())
@@ -623,6 +624,22 @@ public final class SystemInputJson
     return string;
     }
 
+  /**
+   * Returns an ordered sequence of property names.
+   */
+  private static Stream<String> propertySeq( Iterable<String> properties)
+    {
+    return propertySeq( properties.iterator());
+    }
+
+  /**
+   * Returns an ordered sequence of property names.
+   */
+  private static Stream<String> propertySeq( Iterator<String> properties)
+    {
+    return toStream( properties).sorted();
+    }
+
   private static class ConditionJson implements IConditionVisitor
     {
     public static Optional<JsonObject> toJson( IConditional conditional)
@@ -673,7 +690,7 @@ public final class SystemInputJson
     public void visit( ContainsAll condition)
       {
       JsonArrayBuilder properties = Json.createArrayBuilder();
-      toStream( condition.getProperties()).forEach( property -> properties.add( property));
+      propertySeq( condition.getProperties()).forEach( property -> properties.add( property));
 
       json_ =
         Json.createObjectBuilder()
@@ -684,7 +701,7 @@ public final class SystemInputJson
     public void visit( ContainsAny condition)
       {
       JsonArrayBuilder properties = Json.createArrayBuilder();
-      toStream( condition.getProperties()).forEach( property -> properties.add( property));
+      propertySeq( condition.getProperties()).forEach( property -> properties.add( property));
 
       json_ =
         Json.createObjectBuilder()
@@ -710,7 +727,7 @@ public final class SystemInputJson
         {
         // Special case: abbreviate "not:{hasAny:[...]}" as "hasNone:[...]".
         JsonArrayBuilder properties = Json.createArrayBuilder();
-        toStream( ((ContainsAny) conditions[0]).getProperties()).forEach( property -> properties.add( property));
+        propertySeq( ((ContainsAny) conditions[0]).getProperties()).forEach( property -> properties.add( property));
         builder.add( HAS_NONE_KEY, properties);
         }
       else
