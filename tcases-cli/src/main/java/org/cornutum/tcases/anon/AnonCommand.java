@@ -13,6 +13,7 @@ import org.cornutum.tcases.io.Resource;
 import org.cornutum.tcases.io.SystemInputDocWriter;
 import org.cornutum.tcases.io.SystemInputJsonWriter;
 import org.cornutum.tcases.io.SystemInputResource;
+import static org.cornutum.tcases.CommandUtils.*;
 import static org.cornutum.tcases.io.Resource.withDefaultType;
 
 import org.slf4j.Logger;
@@ -110,33 +111,6 @@ public class AnonCommand
         {
         setInputDef( new File( args[i]));
         }
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a missing option value
-     */
-    protected void throwMissingValue( String option)
-      {
-      throwUsageException( String.format( "No value given for %s option", option));
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a command line error.
-     */
-    protected void throwUsageException( String detail)
-      {
-      throwUsageException( detail, null);
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a command line error.
-     */
-    protected void throwUsageException( String detail, Exception cause)
-      {
-      throw
-        new IllegalArgumentException
-        ( "Invalid command line argument. For all command line details, use the -help option.",
-          new IllegalArgumentException( detail, cause));
       }
 
     /**
@@ -395,15 +369,6 @@ public class AnonCommand
       {
       throw new RuntimeException( "Can't write anonymized system input definition", e);
       }
-    }
-
-
-  /**
-   * Returns a description of the current version.
-   */
-  public static String getVersion()
-    {
-    return null;
     }
 
   private static final Logger logger_ = LoggerFactory.getLogger( AnonCommand.class);
