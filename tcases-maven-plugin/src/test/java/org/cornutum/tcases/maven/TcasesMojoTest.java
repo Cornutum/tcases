@@ -5,7 +5,8 @@ import org.apache.maven.plugin.testing.MojoRule;
 import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
-import org.cornutum.tcases.TcasesCommand;
+import static org.cornutum.tcases.CommandUtils.*;
+
 import org.junit.Rule;
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -45,7 +46,7 @@ public class TcasesMojoTest
     assertThat( "Test defs", expectedTestDefs.length, is( 1));
 
     File expectedInputDef = new File( expectedInputDefs[0]);
-    File expectedTestDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "-Test.xml");
+    File expectedTestDef = new File( expectedInputDef.getParent(), getProjectName( expectedInputDef) + "-Test.xml");
     assertThat( "Test def", expectedTestDefs[0], is( expectedTestDef.getPath()));
     }
   @Test
@@ -72,13 +73,13 @@ public class TcasesMojoTest
 
     String[] expectedXmlTestDefs = findPathsMatching( expectedOutDir, "**/*-Test.xml");
     assertThat( "XML test defs", expectedXmlTestDefs.length, is( 1));
-    File expectedXmlTestDef = new File( expectedXmlInputDef.getParent(), TcasesCommand.getProjectName( expectedXmlInputDef) + "-Test.xml");
+    File expectedXmlTestDef = new File( expectedXmlInputDef.getParent(), getProjectName( expectedXmlInputDef) + "-Test.xml");
     assertThat( "XML test def", expectedXmlTestDefs[0], is( expectedXmlTestDef.getPath()));
     assertThat( "XML test def exists", new File( expectedOutDir, expectedXmlTestDef.getPath()).exists(), is( true));
 
     String[] expectedXmlGenDefs = findPathsMatching( expectedInputDir, "**/*-Generators.xml");
     assertThat( "XML generator defs", expectedXmlGenDefs.length, is( 1));
-    File expectedXmlGenDef = new File( expectedXmlInputDef.getParent(), TcasesCommand.getProjectName( expectedXmlInputDef) + "-Generators.xml");
+    File expectedXmlGenDef = new File( expectedXmlInputDef.getParent(), getProjectName( expectedXmlInputDef) + "-Generators.xml");
     assertThat( "XML gen def", expectedXmlGenDefs[0], is( expectedXmlGenDef.getPath()));
     assertThat( "XML gen def exists", new File( expectedInputDir, expectedXmlGenDef.getPath()).exists(), is( true));
 
@@ -89,13 +90,13 @@ public class TcasesMojoTest
 
     String[] expectedJsonTestDefs = findPathsMatching( expectedOutDir, "**/*-Test.json");
     assertThat( "JSON test defs", expectedJsonTestDefs.length, is( 1));
-    File expectedJsonTestDef = new File( expectedJsonInputDef.getParent(), TcasesCommand.getProjectName( expectedJsonInputDef) + "-Test.json");
+    File expectedJsonTestDef = new File( expectedJsonInputDef.getParent(), getProjectName( expectedJsonInputDef) + "-Test.json");
     assertThat( "JSON test def", expectedJsonTestDefs[0], is( expectedJsonTestDef.getPath()));
     assertThat( "JSON test def exists", new File( expectedOutDir, expectedJsonTestDef.getPath()).exists(), is( true));
 
     String[] expectedJsonGenDefs = findPathsMatching( expectedInputDir, "**/*-Generators.json");
     assertThat( "JSON generator defs", expectedJsonGenDefs.length, is( 1));
-    File expectedJsonGenDef = new File( expectedJsonInputDef.getParent(), TcasesCommand.getProjectName( expectedJsonInputDef) + "-Generators.json");
+    File expectedJsonGenDef = new File( expectedJsonInputDef.getParent(), getProjectName( expectedJsonInputDef) + "-Generators.json");
     assertThat( "JSON gen def", expectedJsonGenDefs[0], is( expectedJsonGenDef.getPath()));
     assertThat( "JSON gen def exists", new File( expectedInputDir, expectedJsonGenDef.getPath()).exists(), is( true));
     }
@@ -235,7 +236,7 @@ public class TcasesMojoTest
     assertThat( "Test defs", expectedTestDefs.length, is( 1));
 
     File expectedInputDef = new File( expectedInputDefs[0]);
-    File expectedTestDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "Test.java");
+    File expectedTestDef = new File( expectedInputDef.getParent(), getProjectName( expectedInputDef) + "Test.java");
     assertThat( "Test def", expectedTestDefs[0], is( expectedTestDef.getPath()));
     }
 
@@ -298,7 +299,7 @@ public class TcasesMojoTest
     for( int i = 0; i < expectedInputDefs.length; i++)
       {
       File expectedInputDef = new File( expectedInputDefs[i]);
-      File expectedTestDef = new File( expectedInputDef.getParent(), "Tests-For-" + TcasesCommand.getProjectName( expectedInputDef) + ".xml");
+      File expectedTestDef = new File( expectedInputDef.getParent(), "Tests-For-" + getProjectName( expectedInputDef) + ".xml");
       assertThat( "Test def", expectedTestDefs[i], is( expectedTestDef.getPath()));
       }
     }
