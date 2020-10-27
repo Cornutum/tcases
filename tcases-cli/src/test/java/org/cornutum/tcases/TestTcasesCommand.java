@@ -1034,7 +1034,7 @@ public class TestTcasesCommand
     {
     // Given...
     File inFile = getResourceFile( "run-transform-html");
-    File outFilePath = new File( inFile.getParentFile(), TcasesCommand.getProjectName( inFile) + "-Test.htm");
+    File outFilePath = new File( inFile.getParentFile(), CommandUtils.getProjectName( inFile) + "-Test.htm");
 
     String[] args =
       {

@@ -10,6 +10,7 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 import org.cornutum.tcases.io.*;
+import static org.cornutum.tcases.CommandUtils.*;
 import static org.cornutum.tcases.io.Resource.withDefaultType;
 
 import org.slf4j.Logger;
@@ -307,6 +308,11 @@ public class ReducerCommand extends Reducer
           throwUsageException( "Invalid content type", e);
           }
         }
+
+      else if( arg.equals( "-v"))
+        {
+        setShowVersion( true);
+        }
       
       else
         {
@@ -322,39 +328,18 @@ public class ReducerCommand extends Reducer
     protected void handleArgs( String[] args, int i)
       {
       int nargs = args.length - i;
-      if( nargs != 1)
+      if( nargs == 1)
+        {
+        setInputDef( new File( args[i]));
+        }
+      else if( nargs > 1)
         {
         throwUsageException( String.format( "Unexpected argument: %s", args[i+1]));
         }
-
-      setInputDef( new File( args[i]));
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a missing option value
-     */
-    protected void throwMissingValue( String option)
-      {
-      throwUsageException( String.format( "No value given for %s option", option));
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a command line error.
-     */
-    protected void throwUsageException( String detail)
-      {
-      throwUsageException( detail, null);
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a command line error.
-     */
-    protected void throwUsageException( String detail, Exception cause)
-      {
-      throw
-        new IllegalArgumentException
-        ( "Invalid command line argument. For all command line details, use the -help option.",
-          new IllegalArgumentException( detail, cause));
+      else if( !showVersion())
+        {
+        throwUsageException( "No input definition file specified");
+        }
       }
 
     /**
@@ -578,6 +563,22 @@ public class ReducerCommand extends Reducer
       }
 
     /**
+     * Changes if the current version should be shown.
+     */
+    public void setShowVersion( boolean showVersion)
+      {
+      showVersion_ = showVersion;
+      }
+
+    /**
+     * Returns if the current version should be shown.
+     */
+    public boolean showVersion()
+      {
+      return showVersion_;
+      }
+
+    /**
      * Returns a new Options builder.
      */
     public static Builder builder()
@@ -625,6 +626,7 @@ public class ReducerCommand extends Reducer
     private File genDef_;
     private ReducerOptions reducerOptions_ = new ReducerOptions();
     private Resource.Type contentType_;
+    private boolean showVersion_;
 
     public static class Builder
       {
@@ -743,6 +745,13 @@ public class ReducerCommand extends Reducer
    */
   public void run( Options options) throws Exception
     {
+    if( options.showVersion())
+      {
+      System.out.println( getVersion());
+      return;
+      }
+    logger_.info( "{}", getVersion());
+
     // Identify the system input definition file.
     File inputDefOption = options.getInputDef();
 
@@ -763,7 +772,7 @@ public class ReducerCommand extends Reducer
         Resource.Type.XML);
 
     File inputDir = inputDefFile.getParentFile();
-    String project = TcasesCommand.getProjectName( inputDefFile);
+    String project = getProjectName( inputDefFile);
     
     // Read the system input definition.
     logger_.info( "Reading system input definition={}", inputDefFile);

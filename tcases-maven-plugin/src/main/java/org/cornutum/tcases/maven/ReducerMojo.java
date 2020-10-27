@@ -2,7 +2,7 @@ package org.cornutum.tcases.maven;
 
 import org.cornutum.tcases.ReducerCommand.Options;
 import org.cornutum.tcases.ReducerCommand;
-import org.cornutum.tcases.TcasesCommand;
+import static org.cornutum.tcases.CommandUtils.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
@@ -72,7 +72,7 @@ public class ReducerMojo extends AbstractMojo
         File inputDef = new File( inputRootDir, inputFile);
         File inputDir = new File( inputRootDir, inputPath);
 
-        String projectName = TcasesCommand.getProjectName( inputDef);
+        String projectName = getProjectName( inputDef);
 
         String testDef = getTestDef();
         if( testDef != null && (testDef = getProjectFile( projectName, testDef)) == null)

@@ -1,6 +1,7 @@
 package org.cornutum.tcases.maven;
 
 import org.cornutum.tcases.TcasesCommand.Options;
+import static org.cornutum.tcases.CommandUtils.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
@@ -84,7 +85,7 @@ public class TcasesMojo extends AbstractMojo
           File inputDir = new File( inputRootDir, inputPath);
           File outDir = new File( outRootDir, inputPath);
 
-          String projectName = TcasesCommand.getProjectName( inputDef);
+          String projectName = getProjectName( inputDef);
           String outFile = getOutFile();
           if( outFile != null && (outFile = getProjectFile( projectName, outFile)) == null)
             {

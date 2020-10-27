@@ -5,7 +5,8 @@ import org.apache.maven.plugin.testing.MojoRule;
 import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
-import org.cornutum.tcases.TcasesCommand;
+import static org.cornutum.tcases.CommandUtils.*;
+
 import org.junit.Rule;
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -42,7 +43,7 @@ public class ReducerMojoTest
     assertThat( "Gen defs", expectedGenDefs.length, is( 1));
 
     File expectedInputDef = new File( expectedInputDefs[0]);
-    File expectedGenDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "-Generators.xml");
+    File expectedGenDef = new File( expectedInputDef.getParent(), getProjectName( expectedInputDef) + "-Generators.xml");
     assertThat( "Gen def", expectedGenDefs[0], is( expectedGenDef.getPath()));
     }
   
@@ -181,7 +182,7 @@ public class ReducerMojoTest
     assertThat( "Test defs", expectedTestDefs.length, is( 1));
 
     File expectedInputDef = new File( expectedInputDefs[0]);
-    File expectedTestDef = new File( expectedInputDef.getParent(), TcasesCommand.getProjectName( expectedInputDef) + "Test.java");
+    File expectedTestDef = new File( expectedInputDef.getParent(), getProjectName( expectedInputDef) + "Test.java");
     assertThat( "Test def", expectedTestDefs[0], is( expectedTestDef.getPath()));
     }
 
@@ -244,7 +245,7 @@ public class ReducerMojoTest
     for( int i = 0; i < expectedInputDefs.length; i++)
       {
       File expectedInputDef = new File( expectedInputDefs[i]);
-      File expectedTestDef = new File( expectedInputDef.getParent(), "Tests-For-" + TcasesCommand.getProjectName( expectedInputDef) + ".xml");
+      File expectedTestDef = new File( expectedInputDef.getParent(), "Tests-For-" + getProjectName( expectedInputDef) + ".xml");
       assertThat( "Test def", expectedTestDefs[i], is( expectedTestDef.getPath()));
       }
     }

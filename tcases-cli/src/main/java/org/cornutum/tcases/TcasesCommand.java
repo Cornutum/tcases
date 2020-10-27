@@ -10,10 +10,9 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 import org.cornutum.tcases.io.*;
+import static org.cornutum.tcases.CommandUtils.*;
 import static org.cornutum.tcases.io.Resource.withDefaultType;
 
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,11 +20,9 @@ import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -545,33 +542,6 @@ public class TcasesCommand
         {
         setInputDef( new File( args[i]));
         }
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a missing option value
-     */
-    protected void throwMissingValue( String option)
-      {
-      throwUsageException( String.format( "No value given for %s option", option));
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a command line error.
-     */
-    protected void throwUsageException( String detail)
-      {
-      throwUsageException( detail, null);
-      }
-
-    /**
-     * Throws a IllegalArgumentException reporting a command line error.
-     */
-    protected void throwUsageException( String detail, Exception cause)
-      {
-      throw
-        new IllegalArgumentException
-        ( "Invalid command line argument. For all command line details, use the -help option.",
-          new IllegalArgumentException( detail, cause));
       }
 
     /**
@@ -1439,55 +1409,6 @@ public class TcasesCommand
         throw new RuntimeException( "Can't write generator definition file=" + genUpdateFile, e);
         }
       }
-    }
-
-  /**
-   * Returns the name of the project for the given input definition file.
-   */
-  public static String getProjectName( File inputDefFile)
-    {
-    String projectName = null;
-    if( inputDefFile != null)
-      {
-      String inputBase = FilenameUtils.getBaseName( inputDefFile.getName());
-
-      projectName =
-        inputBase.toLowerCase().endsWith( "-input")
-        ? inputBase.substring( 0, inputBase.length() - "-input".length())
-        : inputBase;
-      }
-
-    return projectName;
-    }
-
-
- /**
-   * Returns a description of the current version.
-   */
-  public static String getVersion()
-    {
-    Properties tcasesProperties = new Properties();
-    String tcasesPropertyFileName = "/tcases.properties";
-    InputStream tcasesPropertyFile = null;
-    try
-      {
-      tcasesPropertyFile = Tcases.class.getResourceAsStream( tcasesPropertyFileName);
-      tcasesProperties.load( tcasesPropertyFile);
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't read " + tcasesPropertyFileName, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( tcasesPropertyFile);
-      }
-
-    return
-      "Tcases "
-      + tcasesProperties.getProperty( "tcases.version") + " ("
-      + tcasesProperties.getProperty( "tcases.date")
-      + ")";
     }
 
   private static final Logger logger_ = LoggerFactory.getLogger( Tcases.class);
