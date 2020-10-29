@@ -32,7 +32,6 @@ import java.util.Optional;
  */
 public class AnonCommandTest
   {
-
   @Test
   public void whenInputFile() throws Exception
     {
@@ -50,6 +49,22 @@ public class AnonCommandTest
 
     // Then...
     verifyAnonymized( "whenInputFile", anonymized);
+    }
+  
+  @Test
+  public void whenInputStdin() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "system-input-def-objects.xml");
+    
+    String[] args = new String[0];
+    
+    // When...
+    StringBuffer anonymized = new StringBuffer();
+    runWithStdIO( new Options( args), inFile, anonymized);
+
+    // Then...
+    verifyAnonymized( "whenInputStdin", anonymized);
     }
 
   /**

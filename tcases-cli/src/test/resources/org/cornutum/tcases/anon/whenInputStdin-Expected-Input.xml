@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<System name="S">
+  <Function name="F0">
+    <Input type="arg">
+      <Var name="V-0">
+        <Value name="-2147483648"/>
+        <Value name="true"/>
+        <Value name="null" failure="true"/>
+        <Value name="9223372036854775807"/>
+        <Value name="0.12345"/>
+        <Value name="12345.0"/>
+      </Var>
+    </Input>
+  </Function>
+</System>
