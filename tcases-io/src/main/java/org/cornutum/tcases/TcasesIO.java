@@ -75,6 +75,21 @@ public class TcasesIO
     }
 
   /**
+   * Writes an XML document describing the given system input definition to the given output stream.
+   */
+  public static void writeInputModel( SystemInputDef inputDef, OutputStream outputStream)
+    {
+    try( SystemInputDocWriter writer = new SystemInputDocWriter( outputStream))
+      {
+      writer.write( inputDef);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write input definition", e);
+      }
+    }
+
+  /**
    * Writes an XML document describing the given test case definitions to the given output stream.
    */
   public static void writeTests( SystemTestDef testDef, OutputStream outputStream)
