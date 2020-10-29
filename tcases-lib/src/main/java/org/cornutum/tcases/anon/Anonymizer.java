@@ -374,8 +374,13 @@ public class Anonymizer
     for( int i = 0; values.hasNext(); i++)
       {
       VarValueDef value = values.next();
+
       Object valueName = value.getName();
-      Object anonValueName = valueName instanceof String? String.format( "%s_%s", anonValueTag, i) : valueName;
+      Object anonValueName =
+        valueName == null || valueName instanceof Number || valueName instanceof Boolean
+        ? valueName
+        : String.format( "%s_%s", anonValueTag, i);
+
       anonVar.addValue(
         VarValueDefBuilder.with( anonValueName)
         .type( value.getType())
