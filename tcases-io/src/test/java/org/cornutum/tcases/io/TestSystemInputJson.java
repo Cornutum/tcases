@@ -267,7 +267,7 @@ public class TestSystemInputJson
   public void assertDefinitionError( String systemInputResource, String expected)
     {
     expectFailure( SystemInputException.class)
-      .when( () -> systemInputResources_.readJson( systemInputResource))
+      .when( () -> systemInputResources_.readJson( systemInputResource), t -> t.getCause())
       .then( failure -> {
         while( failure.getCause() != null)
           {
@@ -281,7 +281,7 @@ public class TestSystemInputJson
   public void assertValidationFailure( String systemInputResource, String... expected)
     {
     expectFailure( SystemInputException.class)
-      .when( () -> systemInputResources_.readJson( systemInputResource))
+      .when( () -> systemInputResources_.readJson( systemInputResource), t -> t.getCause())
       .then( failure -> {
         Throwable cause = failure.getCause();
         assertThat( "Cause", cause.getClass(), equalTo( JsonValidatingException.class));

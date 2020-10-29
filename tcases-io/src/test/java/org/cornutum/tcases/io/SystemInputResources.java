@@ -10,8 +10,8 @@ package org.cornutum.tcases.io;
 import org.cornutum.tcases.SystemInputDef;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.ClassUtils;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -107,6 +107,21 @@ public class SystemInputResources
     }
 
   /**
+   * Returns the {@link SystemInputDef} defined by the given buffer.
+   */
+  public SystemInputDef read( StringBuffer buffer)
+    {
+    try
+      {
+      return read( new ByteArrayInputStream( buffer.toString().getBytes( "UTF-8")));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read buffer", e);
+      }
+    }
+
+  /**
    * Returns the {@link SystemInputDef} defined by the given stream.
    */
   public SystemInputDef read( InputStream stream) throws Exception
@@ -122,23 +137,22 @@ public class SystemInputResources
    */
   public SystemInputDef readJson( String resource)
     {
-    SystemInputDef  systemInputDef  = null;
-    InputStream     stream          = null;
-    
-    stream = class_.getResourceAsStream( resource);
-    if( stream == null)
+    try
       {
-      throw
-        new RuntimeException
-        ( "Can't find resource=" + ClassUtils.getPackageName( class_) + "." + resource);
-      }
+      InputStream stream  = class_.getResourceAsStream( resource);
+      if( stream == null)
+        {
+        throw
+          new RuntimeException
+          ( "Can't find resource=" + class_.getName() + "." + resource);
+        }
 
-    try( SystemInputJsonReader reader = new SystemInputJsonReader( stream))
+      return readJson( stream);
+      }
+    catch( Exception e)
       {
-      systemInputDef = reader.getSystemInputDef();
+      throw new RuntimeException( "Can't read resource=" + resource, e);
       }
-
-    return systemInputDef;
     }
 
   /**
@@ -146,17 +160,40 @@ public class SystemInputResources
    */
   public SystemInputDef readJson( File file)
     {
-    SystemInputDef  systemInputDef  = null;
-    try( SystemInputJsonReader reader = new SystemInputJsonReader( new FileInputStream( file)))
+    try
       {
-      systemInputDef = reader.getSystemInputDef();
+      return readJson( new FileInputStream( file));
       }
     catch( Exception e)
       {
       throw new RuntimeException( "Can't read file=" + file, e);
       }
+    }
 
-    return systemInputDef;
+  /**
+   * Returns the {@link SystemInputDef} defined by the given JSON buffer.
+   */
+  public SystemInputDef readJson( StringBuffer buffer)
+    {
+    try
+      {
+      return readJson( new ByteArrayInputStream( buffer.toString().getBytes( "UTF-8")));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read buffer", e);
+      }
+    }
+
+  /**
+   * Returns the {@link SystemInputDef} defined by the given JSON stream.
+   */
+  public SystemInputDef readJson( InputStream stream) throws Exception
+    {
+    try( SystemInputJsonReader reader = new SystemInputJsonReader( stream))
+      {
+      return reader.getSystemInputDef();
+      }
     }
 
   /**
