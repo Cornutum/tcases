@@ -8,10 +8,15 @@
 package org.cornutum.tcases.anon;
 
 import org.cornutum.tcases.io.SystemInputResources;
+import org.cornutum.tcases.SystemInputDef;
+import org.cornutum.tcases.SystemInputDefMatcher;
 import org.cornutum.tcases.anon.AnonCommand.Options;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.hamcrest.MatcherAssert.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -20,6 +25,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Optional;
 
 /**
  * Runs tests for {@link AnonCommand}.
@@ -39,8 +45,11 @@ public class AnonCommandTest
       };
     
     // When...
-    StringBuffer outFile = new StringBuffer();
-    runWithStdIO( new Options( args), null, outFile);
+    StringBuffer anonymized = new StringBuffer();
+    runWithStdIO( new Options( args), null, anonymized);
+
+    // Then...
+    verifyAnonymized( "whenInputFile", anonymized);
     }
 
   /**
@@ -96,5 +105,41 @@ public class AnonCommandTest
       }
     }
 
+  /**
+   * Verifies that the anonymized system input definition matches expectations.
+   */
+  private void verifyAnonymized( String baseName, StringBuffer anonymized) throws Exception
+    {
+    SystemInputDef anonDef = inputResources_.read( anonymized);
+
+    String expectedFile = String.format( "%s-Expected-Input.xml", baseName);
+    if( acceptAsExpected())
+      {
+      File anonExpected = new File( saveExpectedDir_, expectedFile);
+      inputResources_.write( anonDef, anonExpected);
+      }
+    else
+      {
+      File anonExpected = getResourceFile( expectedFile);
+      assertThat(
+        baseName,
+        anonDef,
+        matches( new SystemInputDefMatcher( inputResources_.read( anonExpected))));
+      }
+    }
+
+  /**
+   * Returns true if all generated results are automatically accepted.
+   */
+  private boolean acceptAsExpected()
+    {
+    return saveExpectedDir_ != null;
+    }
+
   private SystemInputResources inputResources_ = new SystemInputResources( getClass());
+
+  private final File saveExpectedDir_ =
+    Optional.ofNullable( StringUtils.trimToNull( System.getProperty( "saveExpectedTo")))
+    .map( path -> new File( path))
+    .orElse( null);
   }
