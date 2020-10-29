@@ -19,6 +19,7 @@ import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Optional;
 import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Writes a {@link SystemInputDef} in the form of an XML document.
@@ -129,6 +130,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
       .element( varTag)
       .attribute( NAME_ATR, varDef.getName())
       .attributeIf( WHEN_ATR, conditionWriter.getWhenAttribute())
+      .attributeIf( WHENNOT_ATR, conditionWriter.getWhenNotAttribute())
       .content( () ->
         {
         writeAnnotations( varDef);
@@ -158,6 +160,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
       .attributeIf( value.getType() == FAILURE, FAILURE_ATR, "true")
       .attributeIf( value.getType() == ONCE, ONCE_ATR, "true")
       .attributeIf( WHEN_ATR, conditionWriter.getWhenAttribute())
+      .attributeIf( WHENNOT_ATR, conditionWriter.getWhenNotAttribute())
       .attributeIf( PROPERTY_ATR, propertyList( toStream( value.getProperties())))
       .contentIf(
         value.getAnnotationCount() > 0 || conditionWriter.hasWhenElement(),
@@ -236,15 +239,20 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
       {
       condition_ = condition;
 
-      containsAll_ =
-        condition != null && condition.getClass().equals( ContainsAll.class)
-        ? (ContainsAll) condition
-        : null;
+      Optional<AllOf> attributes = asAttributes( condition);
+      when_ =
+        attributes.isPresent()
+        ? attributes.flatMap( this::whenAttributeOf).get()
+        : asWhenCondition( condition).orElse( null);
+      whenNot_ =
+        attributes.isPresent()
+        ? attributes.flatMap( this::whenNotAttributeOf).get()
+        : asWhenNotCondition( condition).orElse( null);
       }
 
     public boolean hasWhenElement()
       {
-      return condition_ != null && containsAll_ == null;
+      return condition_ != null && when_ == null && whenNot_ == null;
       }
 
     public void writeWhenElement()
@@ -261,8 +269,16 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
     public Optional<String> getWhenAttribute()
       {
       return
-        containsAll_ != null
-        ? propertyList( toStream( containsAll_.getProperties()))
+        when_ != null
+        ? propertyList( toStream( when_.getProperties()))
+        : Optional.empty();
+      }
+
+    public Optional<String> getWhenNotAttribute()
+      {
+      return
+        whenNot_ != null
+        ? propertyList( toStream( whenNot_.getProperties()))
         : Optional.empty();
       }
     
@@ -398,8 +414,82 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .filter( c -> !c.getClass().equals( propExprClass));
       }
 
+    private Optional<AllOf> asAttributes( ICondition condition)
+      {
+      AllOf allOf =
+        condition != null && condition.getClass().equals( AllOf.class)
+        ? (AllOf) condition
+        : null;
+
+      return
+        // Is this an AllOf condition...
+        Optional.ofNullable( allOf)
+
+        // ... containing only a "when" condition and a "whenNot" condition?
+        .filter( conditionSet -> whenAttributeOf( conditionSet).isPresent() && whenNotAttributeOf( conditionSet).isPresent());
+      }
+    
+    private Optional<ContainsAll> asWhenCondition( ICondition condition)
+      {
+      return
+        condition != null && condition.getClass().equals( ContainsAll.class)
+        ? Optional.of( (ContainsAll) condition)
+        : Optional.empty();
+      }
+
+    private Optional<ContainsAny> asWhenNotCondition( ICondition condition)
+      {
+      Not not =
+        condition != null && condition.getClass().equals( Not.class)
+        ? (Not) condition
+        : null;
+      
+      return
+        // Is this a Not condition...
+        Optional.ofNullable( not)
+
+        // ... with exactly 1 member...
+        .map( conditionSet -> toStream( conditionSet.getConditions()).collect( toList()))
+        .filter( conditions -> conditions.size() == 1)
+
+        // ... which is a ContainsAny condition?
+        .map( conditions -> conditions.get(0))
+        .flatMap( c -> Optional.ofNullable( c.getClass().equals( ContainsAny.class)? (ContainsAny) c : null));
+      }
+
+    private Optional<ContainsAll> whenAttributeOf( AllOf allOf)
+      {
+      return
+        // If this is a condition set with exactly 2 members...
+        Optional.of( toStream( allOf.getConditions()).collect( toList()))
+        .filter( conditions -> conditions.size() == 2)
+
+        // ... containing exactly 1 "when" condition...
+        .map( conditions -> conditions.stream().map( this::asWhenCondition).filter( Optional::isPresent).collect( toList()))
+        .filter( whens -> whens.size() == 1)
+
+        // ... then return the "when" condition
+        .map( whens -> whens.get(0).get());
+      }
+
+    private Optional<ContainsAny> whenNotAttributeOf( AllOf allOf)
+      {
+      return
+        // If this is a condition set with exactly 2 members...
+        Optional.of( toStream( allOf.getConditions()).collect( toList()))
+        .filter( conditions -> conditions.size() == 2)
+
+        // ... containing exactly 1 "whenNot" condition...
+        .map( conditions -> conditions.stream().map( this::asWhenNotCondition).filter( Optional::isPresent).collect( toList()))
+        .filter( whenNots -> whenNots.size() == 1)
+
+        // ... then return the "whenNot" condition
+        .map( whenNots -> whenNots.get(0).get());
+      }
+
     private ICondition condition_;
-    private ContainsAll containsAll_;
+    private ContainsAll when_;
+    private ContainsAny whenNot_;
     }
   
   private XmlWriter xmlWriter_;
