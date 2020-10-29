@@ -9,9 +9,9 @@ package org.cornutum.tcases.anon;
 
 import org.cornutum.tcases.HelpException;
 import org.cornutum.tcases.SystemInputDef;
+import org.cornutum.tcases.TcasesIO;
+import org.cornutum.tcases.TcasesJson;
 import org.cornutum.tcases.io.Resource;
-import org.cornutum.tcases.io.SystemInputDocWriter;
-import org.cornutum.tcases.io.SystemInputJsonWriter;
 import org.cornutum.tcases.io.SystemInputResource;
 import static org.cornutum.tcases.CommandUtils.*;
 import static org.cornutum.tcases.io.Resource.withDefaultType;
@@ -358,11 +358,11 @@ public class AnonCommand
       {
       if( outputFileType == Resource.Type.JSON)
         {
-        new SystemInputJsonWriter().write( anonInputDef);
+        TcasesJson.writeInputModel( anonInputDef, System.out);
         }
       else
         {
-        new SystemInputDocWriter().write( anonInputDef);
+        TcasesIO.writeInputModel( anonInputDef, System.out);
         }
       }
     catch( Exception e)
