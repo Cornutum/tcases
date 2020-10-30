@@ -1,0 +1,9 @@
+#######################################################################
+#
+#                     Copyright 2020, Cornutum Project
+#                              www.cornutum.org
+# 
+#######################################################################
+
+pgm=`basename "$0"`
+exec tcases-exec $pgm org.cornutum.tcases.anon.AnonCommand "$@"

@@ -63,6 +63,8 @@
         <include>tcases-api.bat</include>
         <include>tcases-api-test</include>
         <include>tcases-api-test.bat</include>
+        <include>tcases-anon</include>
+        <include>tcases-anon.bat</include>
       </includes>
       <fileMode>0755</fileMode>
     </fileSet>
