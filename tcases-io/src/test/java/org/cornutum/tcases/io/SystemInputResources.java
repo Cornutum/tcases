@@ -107,17 +107,17 @@ public class SystemInputResources
     }
 
   /**
-   * Returns the {@link SystemInputDef} defined by the given buffer.
+   * Returns the {@link SystemInputDef} defined by the given string.
    */
-  public SystemInputDef read( StringBuffer buffer)
+  public SystemInputDef readString( String string)
     {
     try
       {
-      return read( new ByteArrayInputStream( buffer.toString().getBytes( "UTF-8")));
+      return read( new ByteArrayInputStream( string.getBytes( "UTF-8")));
       }
     catch( Exception e)
       {
-      throw new RuntimeException( "Can't read buffer", e);
+      throw new RuntimeException( "Can't read string", e);
       }
     }
 
@@ -171,17 +171,17 @@ public class SystemInputResources
     }
 
   /**
-   * Returns the {@link SystemInputDef} defined by the given JSON buffer.
+   * Returns the {@link SystemInputDef} defined by the given JSON string.
    */
-  public SystemInputDef readJson( StringBuffer buffer)
+  public SystemInputDef readJsonString( String string)
     {
     try
       {
-      return readJson( new ByteArrayInputStream( buffer.toString().getBytes( "UTF-8")));
+      return readJson( new ByteArrayInputStream( string.getBytes( "UTF-8")));
       }
     catch( Exception e)
       {
-      throw new RuntimeException( "Can't read buffer", e);
+      throw new RuntimeException( "Can't read string", e);
       }
     }
 

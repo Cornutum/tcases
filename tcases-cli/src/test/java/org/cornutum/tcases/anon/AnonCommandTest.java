@@ -48,7 +48,7 @@ public class AnonCommandTest
     runWithStdIO( new Options( args), null, anonymized);
 
     // Then...
-    verifyAnonymized( "whenInputFile", anonymized);
+    verifyAnonymized( "whenInputFile", anonymized.toString());
     }
   
   @Test
@@ -64,7 +64,7 @@ public class AnonCommandTest
     runWithStdIO( new Options( args), inFile, anonymized);
 
     // Then...
-    verifyAnonymized( "whenInputStdin", anonymized);
+    verifyAnonymized( "whenInputStdin", anonymized.toString());
     }
   
   @Test
@@ -83,7 +83,7 @@ public class AnonCommandTest
     runWithStdIO( new Options( args), inFile, anonymized);
 
     // Then...
-    verifyAnonymizedJson( "whenInputJson", anonymized);
+    verifyAnonymizedJson( "whenInputJson", anonymized.toString());
     }
 
   /**
@@ -142,9 +142,9 @@ public class AnonCommandTest
   /**
    * Verifies that the anonymized system input definition matches expectations.
    */
-  private void verifyAnonymized( String baseName, StringBuffer anonymized) throws Exception
+  private void verifyAnonymized( String baseName, String anonymized) throws Exception
     {
-    SystemInputDef anonDef = inputResources_.read( anonymized);
+    SystemInputDef anonDef = inputResources_.readString( anonymized);
 
     String expectedFile = String.format( "%s-Expected-Input.xml", baseName);
     if( acceptAsExpected())
@@ -165,9 +165,9 @@ public class AnonCommandTest
   /**
    * Verifies that the anonymized system input definition matches expectations.
    */
-  private void verifyAnonymizedJson( String baseName, StringBuffer anonymized) throws Exception
+  private void verifyAnonymizedJson( String baseName, String anonymized) throws Exception
     {
-    SystemInputDef anonDef = inputResources_.readJson( anonymized);
+    SystemInputDef anonDef = inputResources_.readJsonString( anonymized);
 
     String expectedFile = String.format( "%s-Expected-Input.json", baseName);
     if( acceptAsExpected())
