@@ -88,6 +88,25 @@ public class AnonCommandTest
     // Then...
     verifyAnonymizedJson( "whenInputJson", anonymized.toString());
     }
+  
+  @Test
+  public void whenAnnotations() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "annotations-Input.json");
+    
+    String[] args =
+      {
+        inFile.getPath()
+      };
+    
+    // When...
+    StringBuffer anonymized = new StringBuffer();
+    runWithStdIO( new Options( args), null, anonymized);
+
+    // Then...
+    verifyAnonymizedJson( "whenAnnotations", anonymized.toString());
+    }
 
   /**
    * Return the file for the given resource.
