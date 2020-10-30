@@ -66,6 +66,25 @@ public class AnonCommandTest
     // Then...
     verifyAnonymized( "whenInputStdin", anonymized);
     }
+  
+  @Test
+  public void whenInputJson() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "Ice-Cream-Input.json");
+    
+    String[] args =
+      {
+        "-T", "json"
+      };
+    
+    // When...
+    StringBuffer anonymized = new StringBuffer();
+    runWithStdIO( new Options( args), inFile, anonymized);
+
+    // Then...
+    verifyAnonymizedJson( "whenInputJson", anonymized);
+    }
 
   /**
    * Return the file for the given resource.
@@ -140,6 +159,29 @@ public class AnonCommandTest
         baseName,
         anonDef,
         matches( new SystemInputDefMatcher( inputResources_.read( anonExpected))));
+      }
+    }
+
+  /**
+   * Verifies that the anonymized system input definition matches expectations.
+   */
+  private void verifyAnonymizedJson( String baseName, StringBuffer anonymized) throws Exception
+    {
+    SystemInputDef anonDef = inputResources_.readJson( anonymized);
+
+    String expectedFile = String.format( "%s-Expected-Input.json", baseName);
+    if( acceptAsExpected())
+      {
+      File anonExpected = new File( saveExpectedDir_, expectedFile);
+      inputResources_.writeJson( anonDef, anonExpected);
+      }
+    else
+      {
+      File anonExpected = getResourceFile( expectedFile);
+      assertThat(
+        baseName,
+        anonDef,
+        matches( new SystemInputDefMatcher( inputResources_.readJson( anonExpected))));
       }
     }
 
