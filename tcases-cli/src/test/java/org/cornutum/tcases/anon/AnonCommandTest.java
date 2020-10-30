@@ -12,6 +12,7 @@ import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.SystemInputDefMatcher;
 import org.cornutum.tcases.anon.AnonCommand.Options;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -37,18 +38,20 @@ public class AnonCommandTest
     {
     // Given...
     File inFile = getResourceFile( "find-Input.xml");
+    File outFile = getResourceFile( "anon-Input.xml");
+    outFile.delete();
     
     String[] args =
       {
+        "-f", outFile.getPath(),
         String.format( "%s/find", inFile.getParent())
       };
     
     // When...
-    StringBuffer anonymized = new StringBuffer();
-    runWithStdIO( new Options( args), null, anonymized);
+    AnonCommand.run( new Options( args));
 
     // Then...
-    verifyAnonymized( "whenInputFile", anonymized.toString());
+    verifyAnonymized( "whenInputFile", FileUtils.readFileToString( outFile, "UTF-8"));
     }
   
   @Test

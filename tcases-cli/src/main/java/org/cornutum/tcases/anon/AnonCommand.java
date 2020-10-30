@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 /**
  * Converts a system input definition into an equivalent form using anonymous identifiers.
@@ -68,6 +70,16 @@ public class AnonCommand
       else if( arg.equals( "-v"))
         {
         setShowVersion( true);
+        }
+
+      else if( arg.equals( "-f"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwMissingValue( arg);
+          }
+        setOutFile( new File( args[i]));
         }
 
       else if( arg.equals( "-T"))
@@ -127,7 +139,38 @@ public class AnonCommand
      */
     protected void printUsage()
       {
-      }
+      for( String line :
+             new String[] {
+               "Usage: tcases-anon [option...] [inputDef]",
+               "",
+               "Prints an anonymized version of a system input definition.",
+               "",
+               "The system input definition is read from the given inputDef. If omitted, the system input",
+               "definition is read from standard input. Otherwise, the system input definition is read from",
+               "the first one of the following files that can be located.",
+               "",
+               "  1. inputDef",
+               "  2. inputDef-Input.xml",
+               "  3. inputDef.xml",
+               "",
+               "Each option is one of the following:",
+               "",
+               "  -f outFile  If -f is defined, anonymized output is written to the specified",
+               "              outFile. If omitted, output is written to standard output.",
+               "",
+               "  -T contentType  Defines the default content type for the files read and produced.",
+               "              The contentType must be one of 'json' or 'xml'. The default content type is",
+               "              assumed for any file that is not specified explicitly or that does not have a",
+               "              recognized extension. If omitted, the default content type is derived from the",
+               "              inputDef name.",
+               "",
+               "  -v          Shows the current version. If this option is given, no other",
+               "              action is performed."
+             })
+        {
+        System.err.println( line);
+        }
+      } 
 
     /**
      * Changes the input definition file
@@ -178,6 +221,22 @@ public class AnonCommand
     public boolean showVersion()
       {
       return showVersion_;
+      }
+
+    /**
+     * Changes the output file for anonymized output.
+     */
+    public void setOutFile( File outFile)
+      {
+      outFile_ = outFile;
+      }
+
+    /**
+     * Returns the output file for anonymized output.
+     */
+    public File getOutFile()
+      {
+      return outFile_;
       }
 
     /**
@@ -237,6 +296,7 @@ public class AnonCommand
     private File inputDef_;
     private File workingDir_;
     private boolean showVersion_;
+    private File outFile_;
     private Resource.Type contentType_;
 
     public static class Builder
@@ -336,6 +396,18 @@ public class AnonCommand
         Resource.Type.of( inputDefFile),
         Resource.Type.XML);
 
+    // Identify the output file
+    File outputFile = options.getOutFile();
+    if( outputFile != null)
+      {
+      // Ensure output directory exists.
+      File outputDir = outputFile.getParentFile();
+      if( outputDir != null && !outputDir.exists() && !outputDir.mkdirs())
+        {
+        throw new RuntimeException( "Can't create output directory=" + outputDir);
+        }
+      }
+    
     // Read the system input definition.
     logger_.info( "Reading system input definition={}", inputDefFile);
     SystemInputDef inputDef = null;
@@ -353,16 +425,30 @@ public class AnonCommand
     SystemInputDef anonInputDef = anonymizer.anonymize( inputDef);
 
     // Write anonymized system input definition.
+    logger_.info( "Writing results to {}", outputFile==null? "standard output" : outputFile);
+    OutputStream outputStream = null;
+    try
+      {
+      outputStream =
+        outputFile != null?
+        new FileOutputStream( outputFile) :
+        null;
+      }
+    catch( Exception e)
+      {
+      throw new IllegalStateException( "Can't open output file=" + outputFile, e);
+      }
+
     Resource.Type outputFileType = firstNonNull( Resource.Type.of( withDefaultType( inputDefFile, defaultContentType)), defaultContentType);
     try
       {
       if( outputFileType == Resource.Type.JSON)
         {
-        TcasesJson.writeInputModel( anonInputDef, System.out);
+        TcasesJson.writeInputModel( anonInputDef, outputStream);
         }
       else
         {
-        TcasesIO.writeInputModel( anonInputDef, System.out);
+        TcasesIO.writeInputModel( anonInputDef, outputStream);
         }
       }
     catch( Exception e)
