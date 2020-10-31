@@ -1,0 +1,60 @@
+<System name="AnonMojo">
+  <Function name="execute">
+
+    <Input type="arg">
+
+      <VarSet name="InputDefPatterns">
+        <Var name="Count">
+          <Value name="None"/>
+          <Value name="One" property="inputPatterns"/>
+          <Value name="Many" property="inputPatterns" when="inputDefs"/>
+        </Var>
+        <Var name="Defined-By" when="inputPatterns">
+          <Value name="inputDefs" property="inputDefs"/>
+          <Value name="inputDef"/>
+          <Value name="project"/>
+        </Var>
+        <Var name="Matched">
+          <Value name="None" once="true"/>
+          <Value name="One" property="inputDef"/>
+          <Value name="Many" property="inputDef"/>
+        </Var>
+      </VarSet>
+
+      <Var name="InputDir">
+        <Value name="Default"/>
+        <Value name="Other" once="true"/>
+      </Var>
+
+      <Var name="ContentType" when="inputDef">
+        <Value name="Default"/>
+        <Value name="json" once="true"/>
+        <Value name="xml" once="true"/>
+      </Var>
+
+      <Var name="OutDir" when="inputDef">
+        <Value name="Default"/>
+        <Value name="Other" once="true"/>
+      </Var>
+
+      <VarSet name="OutFile" when="inputDef">
+        <Var name="Defined">
+          <Value name="Yes" property="outfile"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Wildcard" when="outfile">
+          <Value name="None"/>
+          <Value name="One"/>
+          <Value name="Many" failure="true"/>
+        </Var>
+      </VarSet>
+
+    </Input>
+
+    <Input type="env">
+
+      
+
+    </Input>
+  </Function>
+</System>
