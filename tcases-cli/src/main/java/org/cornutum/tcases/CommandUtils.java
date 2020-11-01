@@ -16,7 +16,7 @@ import java.util.Properties;
 /**
  * Defines common CLI command methods.
  */
-public class CommandUtils
+public final class CommandUtils
   {
   /**
    * Creates a new CommandUtils instance.
