@@ -1,13 +1,8 @@
 package org.cornutum.tcases.maven;
 
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.testing.MojoRule;
-import org.codehaus.plexus.PlexusTestCase;
-import org.codehaus.plexus.util.DirectoryScanner;
-import org.codehaus.plexus.util.FileUtils;
 import static org.cornutum.tcases.CommandUtils.*;
 
-import org.junit.Rule;
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -22,7 +17,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Runs tests for the {@link AnonMojo} plugin.
  */
-public class AnonMojoTest
+public class AnonMojoTest extends AbstractMojoTest
   {
   @Test
   public void withConfigDefault() throws Exception
@@ -32,7 +27,7 @@ public class AnonMojoTest
 
     // When...
     AnonMojo anonMojo = (AnonMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "anon");
-    clean( anonMojo);
+    clean( anonMojo.getOutDirFile());
     anonMojo.execute();
 
     // Then...
@@ -78,7 +73,7 @@ public class AnonMojoTest
 
     // When...
     AnonMojo anonMojo = (AnonMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "anon");
-    clean( anonMojo);
+    clean( anonMojo.getOutDirFile());
     anonMojo.execute();
 
     // Then...
@@ -119,7 +114,7 @@ public class AnonMojoTest
 
     // When...
     AnonMojo anonMojo = (AnonMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "anon");
-    clean( anonMojo);
+    clean( anonMojo.getOutDirFile());
     anonMojo.execute();
 
     // Then...
@@ -169,7 +164,7 @@ public class AnonMojoTest
 
     // When...
     AnonMojo anonMojo = (AnonMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "anon");
-    clean( anonMojo);
+    clean( anonMojo.getOutDirFile());
     anonMojo.execute();
 
     // Then...
@@ -215,7 +210,7 @@ public class AnonMojoTest
 
     // When...
     AnonMojo anonMojo = (AnonMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "anon");
-    clean( anonMojo);
+    clean( anonMojo.getOutDirFile());
     anonMojo.execute();
 
     // Then...
@@ -265,7 +260,7 @@ public class AnonMojoTest
 
     // When...
     AnonMojo anonMojo = (AnonMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "anon");
-    clean( anonMojo);
+    clean( anonMojo.getOutDirFile());
 
     expectFailure( MojoExecutionException.class)
       .when( () -> anonMojo.execute())
@@ -284,55 +279,5 @@ public class AnonMojoTest
             "Invalid outFile pattern='*-Input.*'"));
         });
     }
-  
-  /**
-   * Returns the set of paths relative to the given base directory matching any of the given patterns.
-   */
-  private String[] findPathsMatching( File baseDir, String... patterns)
-    {
-    DirectoryScanner scanner = new DirectoryScanner();
-    scanner.setBasedir( baseDir);
-    scanner.setIncludes( patterns);
-    scanner.scan();
-    return scanner.getIncludedFiles();
-    }
-
-  /**
-   * Clean configured output directory.
-   */
-  private void clean( AnonMojo anonMojo)
-    {
-    File outDir = anonMojo.getOutDirFile();
-    if( outDir.exists())
-      {
-      try
-        {
-        FileUtils.deleteDirectory( outDir);
-        }
-      catch( Exception e)
-        {
-        throw new RuntimeException( "Can't clear outDir=" + outDir, e);
-        }
-      }
-    }
-
-  /**
-   * Returns the path to the base directory for the given test project.
-   */
-  private File getBaseDirTest( String testProjectName)
-    {
-    return new File( getTestProjectDir(), testProjectName);
-    }
-
-  /**
-   * Returns the path to the directory containing test projects.
-   */
-  private File getTestProjectDir()
-    {
-    return new File( PlexusTestCase.getBasedir(), "src/test/resources");
-    }
-
-  @Rule
-  public MojoRule mojoHelper = new MojoRule();
   }
 

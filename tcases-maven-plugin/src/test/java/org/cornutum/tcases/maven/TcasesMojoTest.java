@@ -1,13 +1,8 @@
 package org.cornutum.tcases.maven;
 
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.testing.MojoRule;
-import org.codehaus.plexus.PlexusTestCase;
-import org.codehaus.plexus.util.DirectoryScanner;
-import org.codehaus.plexus.util.FileUtils;
 import static org.cornutum.tcases.CommandUtils.*;
 
-import org.junit.Rule;
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
@@ -19,7 +14,7 @@ import java.util.Arrays;
 /**
  * Runs tests for the {@link TcasesMojo} plugin.
  */
-public class TcasesMojoTest
+public class TcasesMojoTest extends AbstractMojoTest
   {
   @Test
   public void withConfigDefault() throws Exception
@@ -29,7 +24,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then...
@@ -57,7 +52,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then expect XML project results...
@@ -109,7 +104,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then...
@@ -164,7 +159,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then...
@@ -219,7 +214,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then...
@@ -278,7 +273,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then...
@@ -342,7 +337,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then...
@@ -393,7 +388,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then...
@@ -468,7 +463,7 @@ public class TcasesMojoTest
 
     // When...
     TcasesMojo tcasesMojo = (TcasesMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "tcases");
-    clean( tcasesMojo);
+    clean( tcasesMojo.getOutDirFile());
     tcasesMojo.execute();
 
     // Then...
@@ -484,55 +479,5 @@ public class TcasesMojoTest
     String[] expectedTestDefs = findPathsMatching( expectedOutDir, "**/*");
     assertThat( "Test defs", expectedTestDefs.length, is( 2));
     }
-  
-  /**
-   * Returns the set of paths relative to the given base directory matching any of the given patterns.
-   */
-  private String[] findPathsMatching( File baseDir, String... patterns)
-    {
-    DirectoryScanner scanner = new DirectoryScanner();
-    scanner.setBasedir( baseDir);
-    scanner.setIncludes( patterns);
-    scanner.scan();
-    return scanner.getIncludedFiles();
-    }
-
-  /**
-   * Clean configured output directory.
-   */
-  private void clean( TcasesMojo tcasesMojo)
-    {
-    File outDir = tcasesMojo.getOutDirFile();
-    if( outDir.exists())
-      {
-      try
-        {
-        FileUtils.cleanDirectory( outDir);
-        }
-      catch( Exception e)
-        {
-        throw new RuntimeException( "Can't clear outDir=" + outDir, e);
-        }
-      }
-    }
-
-  /**
-   * Returns the path to the base directory for the given test project.
-   */
-  private File getBaseDirTest( String testProjectName)
-    {
-    return new File( getTestProjectDir(), testProjectName);
-    }
-
-  /**
-   * Returns the path to the directory containing test projects.
-   */
-  private File getTestProjectDir()
-    {
-    return new File( PlexusTestCase.getBasedir(), "src/test/resources");
-    }
-
-  @Rule
-  public MojoRule mojoHelper = new MojoRule();
   }
 
