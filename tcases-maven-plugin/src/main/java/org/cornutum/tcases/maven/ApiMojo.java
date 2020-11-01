@@ -3,6 +3,7 @@ package org.cornutum.tcases.maven;
 import org.cornutum.tcases.openapi.ApiCommand.Options;
 import org.cornutum.tcases.openapi.ApiCommand.Options.TransformType;
 import org.cornutum.tcases.openapi.ApiCommand;
+import static org.cornutum.tcases.maven.MojoUtils.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
@@ -129,14 +130,7 @@ public class ApiMojo extends AbstractMojo
    */
   private File getBaseDir( File path)
     {
-    return
-      path == null?
-      baseDir_ :
-      
-      path.isAbsolute()?
-      path :
-
-      new File( baseDir_, path.getPath());
+    return getDirPath( baseDir_, path);
     }
 
   /**
@@ -145,14 +139,7 @@ public class ApiMojo extends AbstractMojo
    */
   private File getTargetDir( File path)
     {
-    return
-      path == null?
-      targetDir_ :
-
-      path.isAbsolute()?
-      path :
-
-      new File( targetDir_, path.getPath());
+    return getDirPath( targetDir_, path);
     }
 
   /**

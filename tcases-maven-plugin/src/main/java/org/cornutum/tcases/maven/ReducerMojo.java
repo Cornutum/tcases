@@ -3,6 +3,7 @@ package org.cornutum.tcases.maven;
 import org.cornutum.tcases.ReducerCommand.Options;
 import org.cornutum.tcases.ReducerCommand;
 import static org.cornutum.tcases.CommandUtils.*;
+import static org.cornutum.tcases.maven.MojoUtils.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
@@ -14,8 +15,6 @@ import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Runs the Tcases Reducer. For full details on the Reducer &mdash; what it does and how it works &mdash; see
@@ -108,41 +107,12 @@ public class ReducerMojo extends AbstractMojo
     }
 
   /**
-   * Returns the file name defined by applying the given pattern to the project name.
-   * Returns null if the file pattern is invalid.
-   */
-  private String getProjectFile( String projectName, String filePattern)
-    {
-    String projectFile = null;
-    if( !StringUtils.isBlank( filePattern))
-      {
-      Matcher matcher = projectFilePattern_.matcher( filePattern);
-      if( matcher.matches())
-        {
-        projectFile =
-          StringUtils.isBlank( matcher.group(2))
-          ? filePattern
-          : matcher.group(1) + projectName + matcher.group(3);
-        }
-      }
-    
-    return projectFile;
-    }
-
-  /**
    * If the given path is not absolute, returns it as an absolute path relative to the
    * project base directory. Otherwise, returns the given absolute path.
    */
   private File getBaseDir( File path)
     {
-    return
-      path == null?
-      baseDir_ :
-      
-      path.isAbsolute()?
-      path :
-
-      new File( baseDir_, path.getPath());
+    return getDirPath( baseDir_, path);
     }
 
   /**
@@ -442,6 +412,4 @@ public class ReducerMojo extends AbstractMojo
 
   @Parameter(readonly=true,defaultValue="${project.build.directory}")
   private File targetDir_;
-
-  private static final Pattern projectFilePattern_ = Pattern.compile( "([^\\*]*)(\\*?)([^\\*]*)");
   }
