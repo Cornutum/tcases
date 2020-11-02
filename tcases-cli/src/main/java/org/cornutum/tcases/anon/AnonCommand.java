@@ -421,8 +421,8 @@ public class AnonCommand
       }
 
     // Create anonymized system input definition.
-    Anonymizer anonymizer = new Anonymizer();
-    SystemInputDef anonInputDef = anonymizer.anonymize( inputDef);
+    Anonymizer anonymizer = new Anonymizer( inputDef);
+    SystemInputDef anonInputDef = anonymizer.getInputDef();
 
     // Write anonymized system input definition.
     logger_.info( "Writing results to {}", outputFile==null? "standard output" : outputFile);
