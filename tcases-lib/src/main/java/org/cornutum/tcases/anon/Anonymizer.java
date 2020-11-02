@@ -29,13 +29,54 @@ public class Anonymizer
   /**
    * Translates identifiers to anonymous equivalents.
    */
-  private static class Dictionary
+  private static class SystemDictionary
     {
     /**
-     * Creates a new Dictionary instance.
+     * Creates a new SystemDictionary instance.
      */
-    public Dictionary( FunctionInputDef inputDef)
+    public SystemDictionary( SystemInputDef inputDef)
       {
+      anonSystem_ = "S";
+      Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs();
+      for( int i = 0; functionDefs.hasNext(); i++)
+        {
+        FunctionInputDef functionDef = functionDefs.next();
+        String anonFunction = String.format( "F%s", i);
+        functionToDict_.put( functionDef.getName(), new FunctionDictionary( anonFunction, functionDef));
+        }
+      }
+
+    /**
+     * Returns the anonymous name for this system.
+     */
+    public String getAnonSystem()
+      {
+      return anonSystem_;
+      }
+
+    /**
+     * Returns the dictionary for the given function.
+     */
+    public FunctionDictionary getDictForFunction( String function)
+      {
+      return functionToDict_.get( function);
+      }
+
+    private final String anonSystem_;
+    private final Map<String,FunctionDictionary> functionToDict_ = new HashMap<String,FunctionDictionary>();
+    }
+  
+  /**
+   * Translates identifiers to anonymous equivalents.
+   */
+  private static class FunctionDictionary
+    {
+    /**
+     * Creates a new FunctionDictionary instance.
+     */
+    public FunctionDictionary( String anonFunction, FunctionInputDef inputDef)
+      {
+      anonFunction_ = anonFunction;
       createVarNames( inputDef);
       createPropertyNames( inputDef);
       }
@@ -105,6 +146,14 @@ public class Anonymizer
       }
 
     /**
+     * Returns the anonymous name for this function.
+     */
+    public String getAnonFunction()
+      {
+      return anonFunction_;
+      }
+
+    /**
      * Returns the anonymous synonym for the given variable path.
      */
     public String getAnonForVarPath( String varPath)
@@ -120,6 +169,7 @@ public class Anonymizer
       return propertyToAnon_.get( property);
       }
 
+    private final String anonFunction_;
     private Map<String,String> varPathToAnon_ = new HashMap<String,String>();
     private Map<String,String> propertyToAnon_ = new HashMap<String,String>();
     }
@@ -132,7 +182,7 @@ public class Anonymizer
     /**
      * Returns an anonymous version of the given condition.
      */
-    public static ICondition anonymize( Dictionary dictionary, ICondition condition)
+    public static ICondition anonymize( FunctionDictionary dictionary, ICondition condition)
       {
       ICondition anonCondition = null;
       if( condition != null)
@@ -148,7 +198,7 @@ public class Anonymizer
     /**
      * Creates a new ConditionAnonymizer instance.
      */
-    public ConditionAnonymizer( Dictionary dictionary)
+    public ConditionAnonymizer( FunctionDictionary dictionary)
       {
       dictionary_ = dictionary;
       }
@@ -250,29 +300,36 @@ public class Anonymizer
           condition.getMin().getBound());
       }
 
-    private Dictionary dictionary_;
+    private FunctionDictionary dictionary_;
     private ICondition anonCondition_;
     }
 
   /**
    * Creates a new Anonymizer instance.
    */
-  public Anonymizer()
+  public Anonymizer( SystemInputDef inputDef)
     {
-    reset();
+    dictionary_ = new SystemDictionary( inputDef);
+    anonDef_ = anonymize( inputDef);
+    }
+
+  /**
+   * Returns an anonymized system input definition.
+   */
+  public SystemInputDef getInputDef()
+    {
+    return anonDef_;
     }
 
   /**
    * Converts a system input definition into an equivalent form using anonymous identifiers.
    */
-  public SystemInputDef anonymize( SystemInputDef inputDef)
+  private SystemInputDef anonymize( SystemInputDef inputDef)
     {
-    reset();
-
-    SystemInputDef anonDef = new SystemInputDef( "S");
+    SystemInputDef anonDef = new SystemInputDef( dictionary_.getAnonSystem());
 
     toStream( inputDef.getFunctionInputDefs())
-      .map( this::anonymize)
+      .map( f -> anonymize( dictionary_.getDictForFunction( f.getName()), f))
       .forEach( f -> anonDef.addFunctionInputDef( f));
     
     return anonDef;
@@ -281,11 +338,9 @@ public class Anonymizer
   /**
    * Converts a function input definition into an equivalent form using anonymous identifiers.
    */
-  public FunctionInputDef anonymize( FunctionInputDef inputDef)
+  private FunctionInputDef anonymize( FunctionDictionary dictionary, FunctionInputDef inputDef)
     {
-    Dictionary dictionary = new Dictionary( inputDef);
-
-    FunctionInputDef anonDef = new FunctionInputDef( String.format( "F%s", functionNext_++));
+    FunctionInputDef anonDef = new FunctionInputDef( dictionary.getAnonFunction());
     anonymizeVars( dictionary, inputDef, anonDef);
     anonymizeValues( dictionary, inputDef, anonDef);
 
@@ -295,7 +350,7 @@ public class Anonymizer
   /**
    * Adds an anonymized version of each variable in <CODE>inputDef</CODE> to the given <CODE>anonDef</CODE>.
    */
-  private void anonymizeVars( Dictionary dictionary, FunctionInputDef inputDef, FunctionInputDef anonDef)
+  private void anonymizeVars( FunctionDictionary dictionary, FunctionInputDef inputDef, FunctionInputDef anonDef)
     {
     toStream( new VarDefIterator( inputDef))
       .forEach( varDef -> anonymizeVar( dictionary, anonDef, varDef));
@@ -304,7 +359,7 @@ public class Anonymizer
   /**
    * Adds an anonymized version of the given variable to the given <CODE>anonDef</CODE>.
    */
-  private IVarDef anonymizeVar( Dictionary dictionary, FunctionInputDef anonDef, IVarDef var)
+  private IVarDef anonymizeVar( FunctionDictionary dictionary, FunctionInputDef anonDef, IVarDef var)
     {
     String anonVarPath = dictionary.getAnonForVarPath( var.getPathName());
     IVarDef anonVar = anonDef.findVarPath( anonVarPath);
@@ -350,7 +405,7 @@ public class Anonymizer
   /**
    * Adds an anonymized version of each variable value in <CODE>inputDef</CODE> to the given <CODE>anonDef</CODE>.
    */
-  private void anonymizeValues( Dictionary dictionary, FunctionInputDef inputDef, FunctionInputDef anonDef)
+  private void anonymizeValues( FunctionDictionary dictionary, FunctionInputDef inputDef, FunctionInputDef anonDef)
     {
     toStream( new VarDefIterator( inputDef))
       .forEach( varDef -> anonymizeValues( dictionary, inputDef, anonDef, varDef));
@@ -359,7 +414,7 @@ public class Anonymizer
   /**
    * Adds an anonymized version of each value of the given variable in <CODE>inputDef</CODE> to the given <CODE>anonDef</CODE>.
    */
-  private void anonymizeValues( Dictionary dictionary, FunctionInputDef inputDef, FunctionInputDef anonDef, VarDef varDef)
+  private void anonymizeValues( FunctionDictionary dictionary, FunctionInputDef inputDef, FunctionInputDef anonDef, VarDef varDef)
     {
     String anonVarPath = dictionary.getAnonForVarPath( varDef.getPathName());
 
@@ -390,13 +445,6 @@ public class Anonymizer
       }
     }
 
-  /**
-   * Resets the state of this Anonymizer.
-   */
-  private void reset()
-    {
-    functionNext_ = 0;
-    }
-
-  private int functionNext_ = -1;
+  private final SystemDictionary dictionary_;
+  private final SystemInputDef anonDef_;
   }
