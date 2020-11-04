@@ -24,6 +24,7 @@
                 <inputDef>**/not-*.xml</inputDef>
                 <inputDef>**/not-*.json</inputDef>
             </inputDefs>
+            <genDef>*.generators</genDef>
             <contentType>json</contentType>
         </configuration>
       </plugin>

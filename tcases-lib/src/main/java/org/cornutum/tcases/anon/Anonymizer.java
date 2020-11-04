@@ -10,9 +10,11 @@ package org.cornutum.tcases.anon;
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
+import org.cornutum.tcases.generator.*;
 import static org.cornutum.tcases.conditions.Conditions.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -59,7 +61,22 @@ public class Anonymizer
      */
     public FunctionDictionary getDictForFunction( String function)
       {
-      return functionToDict_.get( function);
+      FunctionDictionary dictionary;
+      if( !GeneratorSet.ALL.equals( function))
+        {
+        dictionary = functionToDict_.get( function);
+        }
+      else if( functionToDict_.size() != 1)
+        {
+        throw new IllegalStateException( String.format( "%s functions associated with generator=%s", functionToDict_.size(), function));
+        }
+      else
+        {
+        // Can anonymize an "all functions" generator only if exactly one function defined
+        dictionary = new FunctionDictionary( GeneratorSet.ALL, functionToDict_.values().iterator().next());
+        }
+      
+      return dictionary;
       }
 
     private final String anonSystem_;
@@ -78,7 +95,19 @@ public class Anonymizer
       {
       anonFunction_ = anonFunction;
       createVarNames( inputDef);
+      createValueNames( inputDef);
       createPropertyNames( inputDef);
+      }
+    
+    /**
+     * Creates a new FunctionDictionary instance.
+     */
+    public FunctionDictionary( String anonFunction, FunctionDictionary other)
+      {
+      anonFunction_ = anonFunction;
+      varPathToAnon_ = other.varPathToAnon_;
+      varPathValuesToAnon_ = other.varPathValuesToAnon_;
+      propertyToAnon_ = other.propertyToAnon_;
       }
 
     /**
@@ -127,6 +156,40 @@ public class Anonymizer
       }
 
     /**
+     * Creates the value name dictionary.
+     */
+    private void createValueNames( FunctionInputDef inputDef)
+      {
+      toStream( new VarDefIterator( inputDef))
+        .forEach( varDef -> {
+          String anonVarPath = getAnonForVarPath( varDef.getPathName());
+
+          String anonValueTag =
+            Optional.of( DefUtils.toPath( anonVarPath))
+            .map( path -> path[ path.length - 1])
+            .map( name -> name.replaceAll( "V", "L"))
+            .get();
+
+          Iterator<VarValueDef> values = varDef.getValues();
+          Map<Object,Object> anonValues = new HashMap<Object,Object>();
+          for( int i = 0; values.hasNext(); i++)
+            {
+            VarValueDef value = values.next();
+
+            Object valueName = value.getName();
+            Object anonValueName =
+              valueName == null || valueName instanceof Number || valueName instanceof Boolean
+              ? valueName
+              : String.format( "%s_%s", anonValueTag, i);
+
+            anonValues.put( valueName, anonValueName);
+            }
+
+          varPathValuesToAnon_.put( varDef.getPathName(), anonValues);
+          });
+      }
+
+    /**
      * Creates the property name dictionary.
      */
     private void createPropertyNames( FunctionInputDef inputDef)
@@ -162,6 +225,14 @@ public class Anonymizer
       }
 
     /**
+     * Returns the anonymous synonym for the given variable value.
+     */
+    public Object getAnonForValue( String varPath, Object value)
+      {
+      return varPathValuesToAnon_.get( varPath).get( value);
+      }
+
+    /**
      * Returns the anonymous synonym for the given property.
      */
     public String getAnonForProperty( String property)
@@ -171,6 +242,7 @@ public class Anonymizer
 
     private final String anonFunction_;
     private Map<String,String> varPathToAnon_ = new HashMap<String,String>();
+    private Map<String,Map<Object,Object>> varPathValuesToAnon_ = new HashMap<String,Map<Object,Object>>();
     private Map<String,String> propertyToAnon_ = new HashMap<String,String>();
     }
 
@@ -416,33 +488,105 @@ public class Anonymizer
    */
   private void anonymizeValues( FunctionDictionary dictionary, FunctionInputDef inputDef, FunctionInputDef anonDef, VarDef varDef)
     {
-    String anonVarPath = dictionary.getAnonForVarPath( varDef.getPathName());
-
-    String anonValueTag =
-      Optional.of( DefUtils.toPath( anonVarPath))
-      .map( path -> path[ path.length - 1])
-      .map( name -> name.replaceAll( "V", "L"))
-      .get();
-
+    String varPath = varDef.getPathName();
+    String anonVarPath = dictionary.getAnonForVarPath( varPath);
     VarDef anonVar = anonDef.findVarDefPath( anonVarPath);
-    Iterator<VarValueDef> values = varDef.getValues();
-    for( int i = 0; values.hasNext(); i++)
-      {
-      VarValueDef value = values.next();
 
-      Object valueName = value.getName();
-      Object anonValueName =
-        valueName == null || valueName instanceof Number || valueName instanceof Boolean
-        ? valueName
-        : String.format( "%s_%s", anonValueTag, i);
+    toStream( varDef.getValues())
+      .forEach( value -> {
+        anonVar.addValue(
+          VarValueDefBuilder.with( dictionary.getAnonForValue( varPath, value.getName()))
+          .type( value.getType())
+          .when( ConditionAnonymizer.anonymize( dictionary, value.getCondition()))
+          .properties( toStream( value.getProperties()).map( p -> dictionary.getAnonForProperty( p)).collect( toList()))
+          .build());
+        });
+    }
 
-      anonVar.addValue(
-        VarValueDefBuilder.with( anonValueName)
-        .type( value.getType())
-        .when( ConditionAnonymizer.anonymize( dictionary, value.getCondition()))
-        .properties( toStream( value.getProperties()).map( p -> dictionary.getAnonForProperty( p)).collect( toList()))
-        .build());
-      }
+  /**
+   * Converts a generator set into an equivalent form using anonymous identifiers.
+   */
+  public IGeneratorSet anonymize( IGeneratorSet genDef)
+    {
+    GeneratorSet anonDef = new GeneratorSet();
+
+    Arrays.stream( genDef.getGeneratorFunctions())
+      .forEach( f -> {
+        FunctionDictionary functionDict = dictionary_.getDictForFunction( f);
+        anonDef.addGenerator( functionDict.getAnonFunction(), anonymize( functionDict, (TupleGenerator) genDef.getGenerator( f)));
+        });
+      
+    return anonDef;
+    }
+
+  /**
+   * Converts a {@link TupleGenerator} into an equivalent form using anonymous identifiers.
+   */
+  private TupleGenerator anonymize( FunctionDictionary dictionary, TupleGenerator tupleGen)
+    {
+    TupleGenerator anonGen = new TupleGenerator();
+
+    anonGen.setDefaultTupleSize( tupleGen.getDefaultTupleSize());
+    anonGen.setRandomSeed( tupleGen.getRandomSeed());
+    anonGen.setCombiners( tupleGen.getCombiners().stream().map( c -> anonymize( dictionary, c)).collect( toList()));
+
+    return anonGen;
+    }
+
+  /**
+   * Converts a {@link TupleCombiner} into an equivalent form using anonymous identifiers.
+   */
+  private TupleCombiner anonymize( FunctionDictionary dictionary, TupleCombiner tupleCombiner)
+    {
+    TupleCombiner anonCombiner = new TupleCombiner();
+
+    anonCombiner.setTupleSize( tupleCombiner.getTupleSize());
+
+    Arrays.stream( tupleCombiner.getIncluded())
+      .forEach( varRef -> anonCombiner.addIncludedVar( anonymizeVarRef( dictionary, varRef)));
+    Arrays.stream( tupleCombiner.getExcluded())
+      .forEach( varRef -> anonCombiner.addExcludedVar( anonymizeVarRef( dictionary, varRef)));
+    toStream( tupleCombiner.getOnceTuples())
+      .forEach( tupleRef -> anonCombiner.addOnceTuple( anonymizeTupleRef( dictionary, tupleRef)));
+
+    return anonCombiner;
+    }
+
+  /**
+   * Converts a variable reference into an equivalent form using anonymous identifiers.
+   */
+  private String anonymizeVarRef( FunctionDictionary dictionary, String varRef)
+    {
+    int wildcardStart = varRef.lastIndexOf( ".*");
+
+    String varPath =
+      wildcardStart >= 0
+      ? varRef.substring( 0, wildcardStart)
+      : varRef;
+
+    String wildcard =
+      wildcardStart >= 0
+      ? varRef.substring( wildcardStart)
+      : "";
+    
+    return String.format( "%s%s", dictionary.getAnonForVarPath( varPath), wildcard);
+    }
+
+  /**
+   * Converts a tuple reference into an equivalent form using anonymous identifiers.
+   */
+  private TupleRef anonymizeTupleRef( FunctionDictionary dictionary, TupleRef tupleRef)
+    {
+    TupleRef anonRef = new TupleRef();
+
+    toStream( tupleRef.getVarBindings())
+      .map( binding -> {
+        String anonVar = dictionary.getAnonForVarPath( binding.getVar());
+        return new VarBinding( anonVar, dictionary.getAnonForValue( binding.getVar(), binding.getValue()));
+        })
+      .forEach( binding -> anonRef.addVarBinding( binding));
+    
+    return anonRef;
     }
 
   private final SystemDictionary dictionary_;

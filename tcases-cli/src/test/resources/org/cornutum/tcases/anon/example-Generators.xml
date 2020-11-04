@@ -1,0 +1,18 @@
+<Generators>
+
+  <TupleGenerator function="*" tuples="2" seed="123456789">
+
+    <Combine tuples="3">
+      <Include var="pattern.**"/>
+      <Once>
+        <Var name="pattern.size" value="manyChars"/>
+        <Var name="pattern.blanks" value="many"/>
+        <Var name="pattern.embeddedQuotes" value="many"/>
+      </Once>
+      <Exclude var="pattern.quoted"/>
+      <Include var="fileName"/>
+    </Combine>
+
+  </TupleGenerator>
+
+</Generators>

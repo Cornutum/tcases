@@ -11,6 +11,8 @@ import org.cornutum.tcases.HelpException;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.TcasesIO;
 import org.cornutum.tcases.TcasesJson;
+import org.cornutum.tcases.generator.IGeneratorSet;
+import org.cornutum.tcases.generator.io.GeneratorSetResource;
 import org.cornutum.tcases.io.Resource;
 import org.cornutum.tcases.io.SystemInputResource;
 import static org.cornutum.tcases.CommandUtils.*;
@@ -23,6 +25,7 @@ import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Optional;
 
 /**
  * Converts a system input definition into an equivalent form using anonymous identifiers.
@@ -80,6 +83,16 @@ public class AnonCommand
           throwMissingValue( arg);
           }
         setOutFile( new File( args[i]));
+        }
+
+      else if( arg.equals( "-g"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwMissingValue( arg);
+          }
+        setGenDef( new File( args[i]));
         }
 
       else if( arg.equals( "-T"))
@@ -155,8 +168,14 @@ public class AnonCommand
                "",
                "Each option is one of the following:",
                "",
-               "  -f outFile  If -f is defined, anonymized output is written to the specified",
-               "              outFile. If omitted, output is written to standard output.",
+               "  -f outFile  If -f is defined, the anonymized system input definition is written to the given",
+               "              outFile and anonymized generators are written to the same directory. If omitted,",
+               "              the anonymized system input (only) is written to standard output.",
+               "",
+               "  -g genDef   If -g is defined, generators for the given inputDef are read from the given",
+               "              genDef file. If omitted, generators are read from the corresponding *-Generators.xml",
+               "              or *-Generators.json file (depending on the contentType) in the same directory as",
+               "              the inputDef, if it exists.",
                "",
                "  -T contentType  Defines the default content type for the files read and produced.",
                "              The contentType must be one of 'json' or 'xml'. The default content type is",
@@ -164,8 +183,7 @@ public class AnonCommand
                "              recognized extension. If omitted, the default content type is derived from the",
                "              inputDef name.",
                "",
-               "  -v          Shows the current version. If this option is given, no other",
-               "              action is performed."
+               "  -v          Shows the current version. If this option is given, no other action is performed."
              })
         {
         System.err.println( line);
@@ -186,6 +204,22 @@ public class AnonCommand
     public File getInputDef()
       {
       return inputDef_;
+      }
+
+    /**
+     * Changes the generator definition file.
+     */
+    public void setGenDef( File genDef)
+      {
+      genDef_ = genDef;
+      }
+
+    /**
+     * Returns the generator definition file.
+     */
+    public File getGenDef()
+      {
+      return genDef_;
       }
 
     /**
@@ -280,6 +314,16 @@ public class AnonCommand
       {
       StringBuilder builder = new StringBuilder();
 
+      if( getOutFile() != null)
+        {
+        builder.append( " -f ").append( getOutFile().getPath());
+        }
+
+      if( getGenDef() != null)
+        {
+        builder.append( " -g ").append( getGenDef().getPath());
+        }
+      
       if( getContentType() != null)
         {
         builder.append( " -T ").append( getContentType());
@@ -294,6 +338,7 @@ public class AnonCommand
       }
 
     private File inputDef_;
+    private File genDef_;
     private File workingDir_;
     private boolean showVersion_;
     private File outFile_;
@@ -309,6 +354,12 @@ public class AnonCommand
       public Builder inputDef( File inputDef)
         {
         options_.setInputDef( inputDef);
+        return this;
+        }
+
+      public Builder genDef( File genDef)
+        {
+        options_.setGenDef( genDef);
         return this;
         }
 
@@ -390,13 +441,18 @@ public class AnonCommand
         throw new RuntimeException( "Can't locate input file for path=" + options.getInputDef());
         }
 
+    File inputDir =
+      inputDefFile==null
+      ? options.getWorkingDir()
+      : inputDefFile.getParentFile();
+
     Resource.Type defaultContentType =
       firstNonNull
       ( options.getContentType(),
         Resource.Type.of( inputDefFile),
         Resource.Type.XML);
 
-    // Identify the output file
+    // Identify the anonymized system input definition file
     File outputFile = options.getOutFile();
     if( outputFile != null)
       {
@@ -407,7 +463,40 @@ public class AnonCommand
         throw new RuntimeException( "Can't create output directory=" + outputDir);
         }
       }
-    
+    Resource.Type outputFileType =
+      firstNonNull(
+        Resource.Type.of( outputFile),
+        defaultContentType);
+
+    // Identify the generator definition file.
+    File genDefFile = options.getGenDef();
+    if( genDefFile != null)
+      {
+      if( !genDefFile.isAbsolute())
+        {
+        genDefFile = new File( inputDir, genDefFile.getPath());
+        }
+      }
+    else if( inputDefFile != null)
+      {
+      File genDefDefault = withDefaultType( new File( inputDir, getProjectName( inputDefFile) + "-Generators"), defaultContentType);
+      if( genDefDefault.exists())
+        {
+        genDefFile = genDefDefault;
+        }
+      }
+    Resource.Type genDefType =
+      firstNonNull(
+        Resource.Type.of( genDefFile),
+        defaultContentType);
+
+    // Identify the anonymized generator definition file
+    File genOutFile =
+      Optional.ofNullable( genDefFile)
+      .flatMap( f -> Optional.ofNullable( outputFile))
+      .map( f -> withDefaultType( new File( f.getParentFile(), getProjectName( f) + "-Generators"), outputFileType))
+      .orElse( null);    
+
     // Read the system input definition.
     logger_.info( "Reading system input definition={}", inputDefFile);
     SystemInputDef inputDef = null;
@@ -425,7 +514,7 @@ public class AnonCommand
     SystemInputDef anonInputDef = anonymizer.getInputDef();
 
     // Write anonymized system input definition.
-    logger_.info( "Writing results to {}", outputFile==null? "standard output" : outputFile);
+    logger_.info( "Writing anonymized system input definition to {}", outputFile==null? "standard output" : outputFile);
     OutputStream outputStream = null;
     try
       {
@@ -439,7 +528,6 @@ public class AnonCommand
       throw new IllegalStateException( "Can't open output file=" + outputFile, e);
       }
 
-    Resource.Type outputFileType = firstNonNull( Resource.Type.of( withDefaultType( inputDefFile, defaultContentType)), defaultContentType);
     try
       {
       if( outputFileType == Resource.Type.JSON)
@@ -454,6 +542,55 @@ public class AnonCommand
     catch( Exception e)
       {
       throw new RuntimeException( "Can't write anonymized system input definition", e);
+      }
+
+    if( genOutFile != null)
+      {
+      // Read the generator definition.
+      logger_.info( "Reading generator definition={}", genDefFile);
+      IGeneratorSet genDef = null;
+      try( GeneratorSetResource reader = withDefaultType( GeneratorSetResource.of( genDefFile), genDefType))
+        {
+        genDef = reader.getGeneratorSet();
+        }
+      catch( Exception e)
+        {
+        throw new RuntimeException( "Can't read generator definition file=" + genDefFile, e);
+        }
+
+      // Write anonymized generator definition.
+      IGeneratorSet anonGenDef = anonymizer.anonymize( genDef);
+      
+      logger_.info( "Writing anonymized generator definition to {}", genOutFile);
+      OutputStream genOutStream = null;
+      try
+        {
+        genOutStream = new FileOutputStream( genOutFile);
+        }
+      catch( Exception e)
+        {
+        throw new IllegalStateException( "Can't open output file=" + genOutFile, e);
+        }
+      
+      Resource.Type genOutType =
+        firstNonNull(
+          Resource.Type.of( genOutFile),
+          outputFileType);
+      try
+        {
+        if( genOutType == Resource.Type.JSON)
+          {
+          TcasesJson.writeGenerators( anonGenDef, genOutStream);
+          }
+        else
+          {
+          TcasesIO.writeGenerators( anonGenDef, genOutStream);
+          }
+        }
+      catch( Exception e)
+        {
+        throw new RuntimeException( "Can't write anonymized generator definition", e);
+        }
       }
     }
 

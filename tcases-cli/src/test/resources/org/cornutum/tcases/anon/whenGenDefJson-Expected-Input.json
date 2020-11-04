@@ -1,0 +1,226 @@
+
+{
+    "system": "S",
+    "F0": {
+        "arg": {
+            "V-0": {
+                "when": {
+                    "hasAll": [
+                        "P-4"
+                    ]
+                },
+                "members": {
+                    "V-0-0": {
+                        "values": {
+                            "L-0-0_0": {
+                                "properties": [
+                                    "P-0"
+                                ]
+                            },
+                            "L-0-0_1": {
+                                "properties": [
+                                    "P-1"
+                                ]
+                            },
+                            "L-0-0_2": {
+                            }
+                        }
+                    },
+                    "V-0-1": {
+                        "values": {
+                            "L-0-1_0": {
+                                "properties": [
+                                    "P-2"
+                                ]
+                            },
+                            "L-0-1_1": {
+                                "when": {
+                                    "hasNone": [
+                                        "P-0"
+                                    ]
+                                }
+                            },
+                            "L-0-1_2": {
+                                "failure": true
+                            }
+                        }
+                    },
+                    "V-0-2": {
+                        "when": {
+                            "hasNone": [
+                                "P-0"
+                            ]
+                        },
+                        "values": {
+                            "L-0-2_0": {
+                            },
+                            "L-0-2_1": {
+                                "when": {
+                                    "hasAll": [
+                                        "P-1",
+                                        "P-2"
+                                    ]
+                                }
+                            },
+                            "L-0-2_2": {
+                                "when": {
+                                    "allOf": [
+                                        {
+                                            "hasAll": [
+                                                "P-2"
+                                            ]
+                                        },
+                                        {
+                                            "hasNone": [
+                                                "P-1"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "V-0-3": {
+                        "when": {
+                            "hasNone": [
+                                "P-0",
+                                "P-1"
+                            ]
+                        },
+                        "values": {
+                            "L-0-3_0": {
+                            },
+                            "L-0-3_1": {
+                            },
+                            "L-0-3_2": {
+                                "once": true
+                            }
+                        }
+                    }
+                }
+            },
+            "V-1": {
+                "values": {
+                    "L-1_0": {
+                        "properties": [
+                            "P-3"
+                        ]
+                    },
+                    "L-1_1": {
+                        "failure": true
+                    }
+                }
+            }
+        },
+        "env": {
+            "V-2": {
+                "when": {
+                    "hasAll": [
+                        "P-3"
+                    ]
+                },
+                "members": {
+                    "V-2-0": {
+                        "values": {
+                            "L-2-0_0": {
+                                "properties": [
+                                    "P-4"
+                                ]
+                            },
+                            "L-2-0_1": {
+                                "failure": true
+                            }
+                        }
+                    },
+                    "V-2-1": {
+                        "when": {
+                            "allOf": [
+                                {
+                                    "hasAll": [
+                                        "P-4"
+                                    ]
+                                },
+                                {
+                                    "hasNone": [
+                                        "P-0"
+                                    ]
+                                }
+                            ]
+                        },
+                        "members": {
+                            "V-2-1-0": {
+                                "values": {
+                                    "L-2-1-0_0": {
+                                        "once": true,
+                                        "properties": [
+                                            "P-5"
+                                        ]
+                                    },
+                                    "L-2-1-0_1": {
+                                        "properties": [
+                                            "P-5"
+                                        ]
+                                    },
+                                    "L-2-1-0_2": {
+                                        "failure": true
+                                    }
+                                }
+                            },
+                            "V-2-1-1": {
+                                "when": {
+                                    "allOf": [
+                                        {
+                                            "hasAll": [
+                                                "P-5"
+                                            ]
+                                        },
+                                        {
+                                            "hasNone": [
+                                                "P-0"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "values": {
+                                    "L-2-1-1_0": {
+                                        "once": true
+                                    },
+                                    "L-2-1-1_1": {
+                                        "properties": [
+                                            "P-6"
+                                        ]
+                                    },
+                                    "L-2-1-1_2": {
+                                        "properties": [
+                                            "P-6",
+                                            "P-7"
+                                        ]
+                                    }
+                                }
+                            },
+                            "V-2-1-2": {
+                                "when": {
+                                    "hasAll": [
+                                        "P-6"
+                                    ]
+                                },
+                                "values": {
+                                    "L-2-1-2_0": {
+                                    },
+                                    "L-2-1-2_1": {
+                                        "once": true,
+                                        "when": {
+                                            "hasAll": [
+                                                "P-7"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
