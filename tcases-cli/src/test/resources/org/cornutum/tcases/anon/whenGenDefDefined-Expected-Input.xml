@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<System name="S">
+  <Function name="F0">
+    <Input type="arg">
+      <VarSet name="V-0" when="P-4">
+        <Var name="V-0-0">
+          <Value name="L-0-0_0" property="P-0"/>
+          <Value name="L-0-0_1" property="P-1"/>
+          <Value name="L-0-0_2"/>
+        </Var>
+        <Var name="V-0-1">
+          <Value name="L-0-1_0" property="P-2"/>
+          <Value name="L-0-1_1" whenNot="P-0"/>
+          <Value name="L-0-1_2" failure="true"/>
+        </Var>
+        <Var name="V-0-2" whenNot="P-0">
+          <Value name="L-0-2_0"/>
+          <Value name="L-0-2_1" when="P-1, P-2"/>
+          <Value name="L-0-2_2" when="P-2" whenNot="P-1"/>
+        </Var>
+        <Var name="V-0-3" whenNot="P-0, P-1">
+          <Value name="L-0-3_0"/>
+          <Value name="L-0-3_1"/>
+          <Value name="L-0-3_2" once="true"/>
+        </Var>
+      </VarSet>
+      <Var name="V-1">
+        <Value name="L-1_0" property="P-3"/>
+        <Value name="L-1_1" failure="true"/>
+      </Var>
+    </Input>
+    <Input type="env">
+      <VarSet name="V-2" when="P-3">
+        <Var name="V-2-0">
+          <Value name="L-2-0_0" property="P-4"/>
+          <Value name="L-2-0_1" failure="true"/>
+        </Var>
+        <VarSet name="V-2-1" when="P-4" whenNot="P-0">
+          <Var name="V-2-1-0">
+            <Value name="L-2-1-0_0" once="true" property="P-5"/>
+            <Value name="L-2-1-0_1" property="P-5"/>
+            <Value name="L-2-1-0_2" failure="true"/>
+          </Var>
+          <Var name="V-2-1-1" when="P-5" whenNot="P-0">
+            <Value name="L-2-1-1_0" once="true"/>
+            <Value name="L-2-1-1_1" property="P-6"/>
+            <Value name="L-2-1-1_2" property="P-6, P-7"/>
+          </Var>
+          <Var name="V-2-1-2" when="P-6">
+            <Value name="L-2-1-2_0"/>
+            <Value name="L-2-1-2_1" once="true" when="P-7"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

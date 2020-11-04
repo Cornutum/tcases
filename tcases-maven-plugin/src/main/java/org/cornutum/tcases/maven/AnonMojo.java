@@ -89,12 +89,18 @@ public class AnonMojo extends AbstractMojo
             throw new IllegalArgumentException( "Invalid outFile pattern='" + getOutFile() + "'");
             }
 
+          String genDef = getGenDef();
+          if( genDef != null && (genDef = getProjectFile( projectName, genDef)) == null)
+            {
+            throw new IllegalArgumentException( "Invalid genDef pattern='" + getGenDef() + "'");
+            }
+
           // Set options for this Tcases project.
           Options options = new Options();
           options.setInputDef( inputDef);
+          options.setGenDef( genDef==null? null : new File( genDef));
           options.setOutFile( new File( outDir, outFile));
           options.setContentType( getContentType());
-
 
           // Anonymize the system input definition for this Tcases project.
           AnonCommand.run( options);
@@ -230,6 +236,22 @@ public class AnonMojo extends AbstractMojo
     }
 
   /**
+   * Changes the generator definition path.
+   */
+  public void setGenDef( String genDef)
+    {
+    this.genDef = genDef;
+    }
+
+  /**
+   * Returns the generator definition path.
+   */
+  public String getGenDef()
+    {
+    return genDef;
+    }
+
+  /**
    * Changes the output directory for generated test definitions.
    */
   public void setOutDir( String outDir)
@@ -305,6 +327,17 @@ public class AnonMojo extends AbstractMojo
    */
   @Parameter(property="contentType")
   private String contentType;
+
+  /**
+   * Defines the name for the generator definition file for an input definition file.
+   * This file name may contain at most one "*" wildcard character, in which case
+   * the "*" is replaced by the <EM>project name</EM> of the corresponding
+   * input definition file &mdash; see the <B><CODE>inputDef</CODE></B> parameter for
+   * details.
+   * The default value is "*-Generators.xml" or "*-Generators.json" (depending on the <B><CODE>contentType</CODE></B>).
+   */
+  @Parameter(property="genDef")
+  private String genDef;
 
   /**
    * Defines the name for the anonymized output file generated from an input definition file.

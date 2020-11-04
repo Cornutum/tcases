@@ -39,13 +39,15 @@ public class AnonMojoTest extends AbstractMojoTest
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/*-Input.xml");
     assertThat( "Input defs", expectedInputDefs.length, is( 1));
+    File expectedInputDef = new File( expectedInputDefs[0]);
 
     String[] expectedAnonDefs = findPathsMatching( expectedOutDir, "**/*");
-    assertThat( "Anon defs", expectedAnonDefs.length, is( 1));
-
-    File expectedInputDef = new File( expectedInputDefs[0]);
-    File expectedAnonDef = new File( expectedInputDef.getParent(), String.format( "anon-%s", expectedInputDef.getName()));
-    assertThat( "Anon def", expectedAnonDefs[0], is( expectedAnonDef.getPath()));
+    assertThat(
+      "Anon defs",
+      expectedAnonDefs,
+      containsElements(
+        String.format( "%s/anon-%s", expectedInputDef.getParent(), expectedInputDef.getName()),
+        String.format( "%s/anon-%s-Generators.xml", expectedInputDef.getParent(), getProjectName( expectedInputDef))));
     }
   
   /**
@@ -176,13 +178,15 @@ public class AnonMojoTest extends AbstractMojoTest
 
     String[] expectedInputDefs = findPathsMatching( expectedInputDir, "**/*.input");
     assertThat( "Input defs", expectedInputDefs.length, is( 1));
+    File expectedInputDef = new File( expectedInputDefs[0]);
 
     String[] expectedAnonDefs = findPathsMatching( expectedOutDir, "**/*");
-    assertThat( "Anon defs", expectedAnonDefs.length, is( 1));
-
-    File expectedInputDef = new File( expectedInputDefs[0]);
-    File expectedAnonDef = new File( expectedInputDef.getParent(), String.format( "anon-%s", expectedInputDef.getName()));
-    assertThat( "Anon def", expectedAnonDefs[0], is( expectedAnonDef.getPath()));
+    assertThat(
+      "Anon defs",
+      expectedAnonDefs,
+      containsElements(
+        String.format( "%s/anon-%s", expectedInputDef.getParent(), expectedInputDef.getName()),
+        String.format( "%s/anon-%s-Generators.json", expectedInputDef.getParent(), getProjectName( expectedInputDef))));
     }
 
   /**

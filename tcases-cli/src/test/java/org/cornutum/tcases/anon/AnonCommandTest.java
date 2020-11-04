@@ -7,10 +7,12 @@
 
 package org.cornutum.tcases.anon;
 
-import org.cornutum.tcases.io.SystemInputResources;
 import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.SystemInputDefMatcher;
 import org.cornutum.tcases.anon.AnonCommand.Options;
+import org.cornutum.tcases.generator.IGeneratorSet;
+import org.cornutum.tcases.generator.io.GeneratorSetResources;
+import org.cornutum.tcases.io.SystemInputResources;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -18,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -51,7 +54,7 @@ public class AnonCommandTest
     AnonCommand.run( new Options( args));
 
     // Then...
-    verifyAnonymized( "whenInputFile", FileUtils.readFileToString( outFile, "UTF-8"));
+    verifyAnonymized( "whenInputFile", outFile);
     }
   
   @Test
@@ -106,6 +109,110 @@ public class AnonCommandTest
 
     // Then...
     verifyAnonymizedJson( "whenAnnotations", anonymized.toString());
+    }
+  
+  @Test
+  public void whenOutputJson() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "find-Input.xml");
+    File outFile = getResourceFile( "anon-find.json");
+    File genOutFile= getResourceFile( "anon-find-Generators.json");
+
+    outFile.delete();
+    genOutFile.delete();
+    
+    String[] args =
+      {
+        "-f", outFile.getPath(),
+        inFile.getPath()
+      };
+    
+    // When...
+    AnonCommand.run( new Options( args));
+
+    // Then...
+    verifyAnonymizedJson( "whenOutputJson", outFile);
+    verifyAnonymizedGenJson( "whenOutputJson", genOutFile);
+    }
+  
+  @Test
+  public void whenGenDefDefined() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "find-Input.xml");
+    File genFile = getResourceFile( "example-Generators.xml");
+    File outFile = getResourceFile( "generated/anon-Input.xml");
+    File genOutFile = getResourceFile( "generated/anon-Generators.xml");
+    
+    outFile.delete();
+    genOutFile.delete();
+    
+    String[] args =
+      {
+        "-f", outFile.getPath(),
+        "-g", genFile.getPath(),
+        inFile.getPath()
+      };
+    
+    // When...
+    AnonCommand.run( new Options( args));
+
+    // Then...
+    verifyAnonymized( "whenGenDefDefined", outFile);
+    verifyAnonymizedGen( "whenGenDefDefined", genOutFile);
+    }
+  
+  @Test
+  public void whenGenDefDefault() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "example.json");
+    File outFile = getResourceFile( "generated/my-anon");
+    File genOutFile = getResourceFile( "generated/my-anon-Generators.json");
+
+    outFile.delete();
+    genOutFile.delete();
+    
+    String[] args =
+      {
+        "-f", outFile.getPath(),
+        inFile.getPath()
+      };
+    
+    // When...
+    AnonCommand.run( new Options( args));
+
+    // Then...
+    verifyAnonymizedJson( "whenGenDefDefault", outFile);
+    verifyAnonymizedGenJson( "whenGenDefDefault", genOutFile);
+    }
+  
+  @Test
+  public void whenGenDefJson() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "example");
+    File outFile = getResourceFile( "generated/anon-example-Input");
+    File genFile = getResourceFile( "generators");
+    File genOutFile = getResourceFile( "generated/anon-example-Generators.json");
+    
+    outFile.delete();
+    genOutFile.delete();
+    
+    String[] args =
+      {
+        "-f", outFile.getPath(),
+        "-g", genFile.getName(),
+        inFile.getPath()
+      };
+    
+    // When...
+    AnonCommand.run( new Options( args));
+
+    // Then...
+    verifyAnonymizedJson( "whenGenDefJson", outFile);
+    verifyAnonymizedGenJson( "whenGenDefJson", genOutFile);
     }
 
   /**
@@ -164,6 +271,14 @@ public class AnonCommandTest
   /**
    * Verifies that the anonymized system input definition matches expectations.
    */
+  private void verifyAnonymized( String baseName, File anonymized) throws Exception
+    {
+    verifyAnonymized( baseName, FileUtils.readFileToString( anonymized, "UTF-8"));
+    }
+
+  /**
+   * Verifies that the anonymized system input definition matches expectations.
+   */
   private void verifyAnonymized( String baseName, String anonymized) throws Exception
     {
     SystemInputDef anonDef = inputResources_.readString( anonymized);
@@ -182,6 +297,34 @@ public class AnonCommandTest
         anonDef,
         matches( new SystemInputDefMatcher( inputResources_.read( anonExpected))));
       }
+    }
+
+  /**
+   * Verifies that the anonymized generator definition matches expectations.
+   */
+  private void verifyAnonymizedGen( String baseName, File anonymized) throws Exception
+    {
+    IGeneratorSet anonDef = generatorSetResources_.read( anonymized);
+
+    String expectedFile = String.format( "%s-Expected-Generators.xml", baseName);
+    if( acceptAsExpected())
+      {
+      File anonExpected = new File( saveExpectedDir_, expectedFile);
+      generatorSetResources_.write( anonDef, anonExpected);
+      }
+    else
+      {
+      File anonExpected = getResourceFile( expectedFile);
+      assertThat( baseName, anonDef, is( generatorSetResources_.read( anonExpected)));
+      }
+    }
+
+  /**
+   * Verifies that the anonymized system input definition matches expectations.
+   */
+  private void verifyAnonymizedJson( String baseName, File anonymized) throws Exception
+    {
+    verifyAnonymizedJson( baseName, FileUtils.readFileToString( anonymized, "UTF-8"));
     }
 
   /**
@@ -208,6 +351,26 @@ public class AnonCommandTest
     }
 
   /**
+   * Verifies that the anonymized generator definition matches expectations.
+   */
+  private void verifyAnonymizedGenJson( String baseName, File anonymized) throws Exception
+    {
+    IGeneratorSet anonDef = generatorSetResources_.readJson( anonymized);
+
+    String expectedFile = String.format( "%s-Expected-Generators.json", baseName);
+    if( acceptAsExpected())
+      {
+      File anonExpected = new File( saveExpectedDir_, expectedFile);
+      generatorSetResources_.writeJson( anonDef, anonExpected);
+      }
+    else
+      {
+      File anonExpected = getResourceFile( expectedFile);
+      assertThat( baseName, anonDef, is( generatorSetResources_.readJson( anonExpected)));
+      }
+    }
+
+  /**
    * Returns true if all generated results are automatically accepted.
    */
   private boolean acceptAsExpected()
@@ -216,7 +379,8 @@ public class AnonCommandTest
     }
 
   private SystemInputResources inputResources_ = new SystemInputResources( getClass());
-
+  private GeneratorSetResources generatorSetResources_ = new GeneratorSetResources( getClass());
+  
   private final File saveExpectedDir_ =
     Optional.ofNullable( StringUtils.trimToNull( System.getProperty( "saveExpectedTo")))
     .map( path -> new File( path))

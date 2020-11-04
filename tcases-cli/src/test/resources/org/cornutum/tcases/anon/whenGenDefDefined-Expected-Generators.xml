@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="*" seed="123456789" tuples="2">
+    <Combine tuples="3">
+      <Include var="V-0.**"/>
+      <Include var="V-1"/>
+      <Exclude var="V-0.V-0-1"/>
+      <Once>
+        <Var name="V-0.V-0-2" value="L-0-2_2"/>
+        <Var name="V-0.V-0-3" value="L-0-3_2"/>
+        <Var name="V-0.V-0-0" value="L-0-0_2"/>
+      </Once>
+    </Combine>
+  </TupleGenerator>
+</Generators>

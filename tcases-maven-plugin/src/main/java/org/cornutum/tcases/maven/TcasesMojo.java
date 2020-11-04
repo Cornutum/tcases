@@ -555,7 +555,7 @@ public class TcasesMojo extends AbstractMojo
    * the "*" is replaced by the <EM>project name</EM> of the corresponding
    * input definition file &mdash; see the <B><CODE>inputDef</CODE></B> parameter for
    * details.
-   * The default value is "*-Generators.xml or "*-Generators.json" (depending on the <B><CODE>contentType</CODE></B>)".
+   * The default value is "*-Generators.xml" or "*-Generators.json" (depending on the <B><CODE>contentType</CODE></B>).
    */
   @Parameter(property="genDef")
   private String genDef;
