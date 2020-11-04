@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
+import java.util.Optional;
 
 /**
  * Provides access to generator definition resources.
@@ -84,27 +85,40 @@ public class GeneratorSetResources
     }
 
   /**
+   * Returns the {@link IGeneratorSet} defined by the given JSON file.
+   */
+  public IGeneratorSet readJson( File file)
+    {
+    try
+      {
+      return readJson( new FileInputStream( file));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read file=" + file, e);
+      }
+    }
+
+  /**
    * Returns the {@link IGeneratorSet} defined by the given JSON resource.
    */
   public IGeneratorSet readJson( String resource)
     {
-    IGeneratorSet  generatorSet  = null;
-    InputStream     stream          = null;
-    
-    stream = class_.getResourceAsStream( resource);
-    if( stream == null)
-      {
-      throw
-        new RuntimeException
-        ( "Can't find resource=" + ClassUtils.getPackageName( class_) + "." + resource);
-      }
+    return
+      readJson(
+        Optional.ofNullable( class_.getResourceAsStream( resource))
+        .orElseThrow( () -> new RuntimeException( "Can't find resource=" + ClassUtils.getPackageName( class_) + "." + resource)));
+    }
 
+  /**
+   * Returns the {@link IGeneratorSet} defined by the given JSON stream.
+   */
+  public IGeneratorSet readJson( InputStream stream)
+    {
     try( GeneratorSetJsonReader reader = new GeneratorSetJsonReader( stream))
       {
-      generatorSet = reader.getGeneratorSet();
+      return reader.getGeneratorSet();
       }
-
-    return generatorSet;
     }
 
   /**
@@ -123,6 +137,21 @@ public class GeneratorSetResources
     }
 
   /**
+   * Writes the {@link IGeneratorSet} to the the given JSON file.
+   */
+  public void writeJson( IGeneratorSet generatorSet, File file)
+    {
+    try( GeneratorSetJsonWriter writer = createJsonWriter( file))
+      {
+      writer.write( generatorSet);
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't write " + generatorSet + " to file=" + file, e);
+      }
+    }
+
+  /**
    * Creates a {@link GeneratorSetDocWriter} for the given file.
    */
   private GeneratorSetDocWriter createWriter( File file)
@@ -130,6 +159,21 @@ public class GeneratorSetResources
     try
       {
       return new GeneratorSetDocWriter( new FileWriter( file));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't open file=" + file, e);
+      }
+    }
+
+  /**
+   * Creates a {@link GeneratorSetDocWriter} for the given JSON file.
+   */
+  private GeneratorSetJsonWriter createJsonWriter( File file)
+    {
+    try
+      {
+      return new GeneratorSetJsonWriter( new FileWriter( file));
       }
     catch( Exception e)
       {
