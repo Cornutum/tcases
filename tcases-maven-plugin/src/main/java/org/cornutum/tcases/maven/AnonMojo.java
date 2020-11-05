@@ -19,7 +19,7 @@ import java.io.File;
 import java.util.Set;
 
 /**
- * Runs the Tcases Anonymizer.
+ * Runs the <A href="https://github.com/Cornutum/tcases/How-To-Anonymize.md#how-to-anonymize-your-input-model">Tcases Anonymizer</A>.
  */
 @Mojo(name="anon")
 public class AnonMojo extends AbstractMojo

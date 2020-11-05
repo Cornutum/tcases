@@ -38,6 +38,8 @@ Tcases Plugin
 
   * {{{./api-test-mojo.html}tcases:api-test}} Runs Tcases for OpenAPI to {{{./usage.html#Generating_Executable_API_Tests}generate executable API tests}}.
 
+  * {{{./anon-mojo.html}tcases:anon}} Runs the {{{https://github.com/Cornutum/tcases/How-To-Anonymize.md#how-to-anonymize-your-input-model}Tcases Anonymizer}}.
+
 * Usage
 
   General instructions on how to use the Tcases Plugin can be found on the {{{./usage.html}usage page}}.  
