@@ -22,12 +22,7 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Property-Count">
-            <Value name="0" once="true">
-              <When>
-                <Not property="param0Properties">
-                </Not>
-              </When>
-            </Value>
+            <Value name="0" once="true" whenNot="param0Properties"/>
             <Value name="&lt;= 1">
               <When>
                 <NotMoreThan property="param0Properties" max="1"/>
@@ -133,12 +128,7 @@
         </Var>
         <VarSet name="Value" when="param3Value">
           <Var name="Property-Count">
-            <Value name="0" once="true">
-              <When>
-                <Not property="param3Properties">
-                </Not>
-              </When>
-            </Value>
+            <Value name="0" once="true" whenNot="param3Properties"/>
             <Value name="&gt; 0" when="param3Properties"/>
           </Var>
           <VarSet name="Properties">
@@ -148,9 +138,18 @@
                 <Value name="No"/>
               </Var>
               <Var name="Type" when="param3Alpha">
-                <Value name="Not null" property="param3AlphaValue"/>
+                <Value name="object" property="param3AlphaValue"/>
                 <Value name="null" failure="true"/>
+                <Value name="Not object" failure="true"/>
               </Var>
+              <VarSet name="Value" when="param3AlphaValue">
+                <VarSet name="Properties">
+                  <Var name="Additional">
+                    <Value name="Yes" property="param3AlphaProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
             </VarSet>
             <VarSet name="bravo">
               <Var name="Defined">
@@ -158,9 +157,18 @@
                 <Value name="No"/>
               </Var>
               <Var name="Type" when="param3Bravo">
-                <Value name="Not null" property="param3BravoValue"/>
+                <Value name="object" property="param3BravoValue"/>
                 <Value name="null" failure="true"/>
+                <Value name="Not object" failure="true"/>
               </Var>
+              <VarSet name="Value" when="param3BravoValue">
+                <VarSet name="Properties">
+                  <Var name="Additional">
+                    <Value name="Yes" property="param3BravoProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
             </VarSet>
             <Var name="Additional">
               <Value name="Yes" property="param3Properties"/>
