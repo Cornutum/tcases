@@ -349,53 +349,6 @@ public final class SchemaUtils
     }
 
   /**
-   * Returns true if examples for this schema can be composed from subschema examples.
-   */
-  public static boolean isExampleComposable( Schema<?> schema)
-    {
-    ComposedSchema composed;
-
-    // Composable if this schema ...
-    return
-      // ... is non-null ...
-      schema != null
-
-      // ... without a "not" assertion ...
-      && schema.getNot() == null
-
-      // ... matching types containing subschemas ...
-      && isExampleComposable( getValidTypes( schema))
-
-      // ... and is either a leaf schema...
-      && ((composed = asComposedSchema( schema)) == null
-          ||
-          // ... or a composed schema consisting of a single "anyOf" or "oneOf" assertion...
-          (isEmpty( copySchema( composed).type( null))
-           && composed.getAllOf().isEmpty()
-           && composed.getAnyOf().isEmpty() != composed.getOneOf().isEmpty()
-
-           // ... containing only composable members
-           && (isExampleComposable( composed.getAnyOf()) || isExampleComposable( composed.getAnyOf()))));
-    }
-
-  /**
-   * Returns true if examples for all of the given schemas can be composed from subschema examples.
-   */
-  @SuppressWarnings("rawtypes")
-  private static boolean isExampleComposable( List<Schema> schemas)
-    {
-    return schemas.stream().allMatch( SchemaUtils::isExampleComposable);
-    }
-
-  /**
-   * Returns true if examples can be composed for schemas of the given types.
-   */
-  private static boolean isExampleComposable( Set<String> types)
-    {
-    return types.stream().allMatch( type -> "array".equals( type) || "object".equals( type));
-    }
-
-  /**
    * Returns a new schema that validates any instance that satisfies both the base schema and the additional schema.
    * Throws an exception if a consistent combination is not possible.
    */
