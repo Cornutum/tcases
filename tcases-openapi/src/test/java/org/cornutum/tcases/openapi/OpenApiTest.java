@@ -43,14 +43,15 @@ import static java.util.stream.Collectors.toList;
 public abstract class OpenApiTest
   {
   /**
-   * Verifies expected request input model for the given API.
+   * Verifies the expected request input model for the given API.
    */
   protected void verifyRequestInputModel( String apiName)
     {
     verifyRequestInputModel( apiName, apiName);
     }
+  
   /**
-   * Verifies expected request input model for the given API.
+   * Verifies the expected request input model for the given API.
    */
   protected void verifyRequestInputModel( String apiName, String expectedName)
     {
@@ -58,7 +59,15 @@ public abstract class OpenApiTest
     }
   
   /**
-   * Verifies expected response input model for the given API.
+   * Verifies the expected request examples model for the given API.
+   */
+  protected void verifyRequestExamplesModel( String apiName, String expectedName)
+    {
+    verifyInputModel( apiName, expectedName, api -> getRequestExamplesModel( api));
+    }
+  
+  /**
+   * Verifies the expected response input model for the given API.
    */
   protected void verifyResponseInputModel( String apiName)
     {
@@ -66,7 +75,7 @@ public abstract class OpenApiTest
     }
   
   /**
-   * Verifies expected response input model for the given API.
+   * Verifies the expected response input model for the given API.
    */
   protected void verifyResponseInputModel( String apiName, String expectedName)
     {
@@ -92,6 +101,15 @@ public abstract class OpenApiTest
     }
 
   /**
+   * Returns a request examples model for the given API.
+   */
+  protected SystemInputDef getRequestExamplesModel( OpenAPI api)
+    {
+    SystemInputDef inputDef = TcasesOpenApi.getRequestExamplesModel( api, getModelOptions());
+    return inputDef;
+    }
+
+  /**
    * Returns the {@link ModelOptions} used for this test.
    */
   protected ModelOptions getModelOptions()
@@ -101,7 +119,7 @@ public abstract class OpenApiTest
     }
 
   /**
-   * Verifies expected input model for the given API.
+   * Verifies the expected input model for the given API.
    */
   protected void verifyInputModel( String apiName, String expectedName, Function<OpenAPI,SystemInputDef> inputDefSupplier)
     {

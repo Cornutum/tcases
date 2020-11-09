@@ -22,6 +22,7 @@ import static org.cornutum.regexpgen.Bounds.bounded;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
+import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.BooleanSchema;
@@ -132,6 +133,42 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined by examples in the given
+   * OpenAPI specification. Returns null if the given spec defines no API request examples to model.
+   */
+  protected SystemInputDef requestExamplesModel( OpenAPI api)
+    {
+    Info info;
+    String title;
+    try
+      {
+      info = expectedValueOf( api.getInfo(), "API info");
+      title = expectedValueOf( StringUtils.trimToNull( info.getTitle()), "API title");
+      }
+    catch( Exception e)
+      {
+      throw new OpenApiException( "Invalid API spec", e);
+      }
+
+    return
+      resultFor( title,
+        () -> {
+        SystemInputDef inputDef =
+          SystemInputDefBuilder.with( toIdentifier( title))
+          .has( "title", title)
+          .has( "version", info.getVersion())
+          .hasIf( "server", membersOf( api.getServers()).findFirst().map( InputModeller::getServerUrl))
+          .functions( entriesOf( api.getPaths()).flatMap( path -> pathRequestExamples( api, path.getKey(), path.getValue())))
+          .build();
+
+        return
+          inputDef.getFunctionInputDefs().hasNext()
+          ? inputDef
+          : null;
+        });
+    }
+
+  /**
    * Returns a request {@link FunctionInputDef function input definition} for each of the API operations for the given path.
    */
   private Stream<FunctionInputDef> pathRequestDefs( OpenAPI api, String path, PathItem pathItem)
@@ -158,6 +195,32 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
+   * Returns a request {@link FunctionInputDef function input definition} for the examples of each of the API operations for the given path.
+   */
+  private Stream<FunctionInputDef> pathRequestExamples( OpenAPI api, String path, PathItem pathItem)
+    {
+    return
+      resultFor( path,
+
+      () ->
+      Stream.of(
+        opRequestExamples( api, path, pathItem, "GET", pathItem.getGet()),
+        opRequestExamples( api, path, pathItem, "PUT", pathItem.getPut()),
+        opRequestExamples( api, path, pathItem, "POST", pathItem.getPost()),
+        opRequestExamples( api, path, pathItem, "DELETE", pathItem.getDelete()),
+        opRequestExamples( api, path, pathItem, "OPTIONS", pathItem.getOptions()),
+        opRequestExamples( api, path, pathItem, "HEAD", pathItem.getHead()),
+        opRequestExamples( api, path, pathItem, "PATCH", pathItem.getPatch()),
+        opRequestExamples( api, path, pathItem, "TRACE", pathItem.getTrace()))
+
+      // Skip if operation not defined
+      .filter( Objects::nonNull)
+
+      // Ensure a complete input model for each operation
+      .map( this::completeInputs));
+    }
+
+  /**
    * Returns the request {@link FunctionInputDef function input definition} for the given API operation.
    */
   private FunctionInputDef opRequestDef( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
@@ -175,6 +238,27 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .has( "operation", opName)
         .vars( opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))))
         .vars( iterableOf( requestBodyVarDef( api, op.getRequestBody())))
+        .build());
+    }
+
+  /**
+   * Returns the request {@link FunctionInputDef function input definition} for the examples of the given API operation.
+   */
+  private FunctionInputDef opRequestExamples( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
+    {
+    return
+      resultFor( opName,
+        () ->
+        op == null?
+        null :
+
+        FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
+        .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
+        .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
+        .has( "path", path)
+        .has( "operation", opName)
+        .vars( opParameters( pathItem, op).map( p -> parameterExamples( api, resolveParameter( api, p))))
+        .vars( iterableOf( requestBodyExamples( api, op.getRequestBody())))
         .build());
     }
 
@@ -329,6 +413,31 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
+   * Returns the {@link IVarDef input variable definition} for the given request body examples.
+   */
+  private Optional<IVarDef> requestBodyExamples( OpenAPI api, RequestBody body)
+    {
+    return
+      resultFor( "requestBody",
+        () ->
+        Optional.ofNullable( body)
+        .map( b -> resolveRequestBody( api, b))
+        .map( b -> {
+          String contentVarTag = "Content";
+          Map<String,MediaType> mediaTypes = expectedValueOf( b.getContent(), "Request body content");
+          return
+            VarSetBuilder.with( "Body")
+            .type( "request")
+            .members(
+              instanceDefinedVar( contentVarTag, Boolean.TRUE.equals( b.getRequired())),
+              mediaTypeVar( contentVarTag, mediaTypes))
+            .members(
+              mediaTypeContentExamples( api, contentVarTag, mediaTypes))
+            .build();
+          }));
+    }
+
+  /**
    * Returns the {@link IVarDef input variable definition} for the given media types.
    */
   private IVarDef mediaTypeVar( String contentVarTag, Map<String,MediaType> mediaTypes)
@@ -397,6 +506,48 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
+   * Returns the {@link IVarDef input variable definitions} for the given media type content examples.
+   */
+  private Stream<IVarDef> mediaTypeContentExamples( OpenAPI api, String contentVarTag, Map<String,MediaType> mediaTypes)
+    {
+    return
+      mediaTypes.entrySet().stream()
+      .map(
+        contentDef ->
+        {
+        String mediaTypeName = contentDef.getKey();
+
+        return
+          resultFor( mediaTypeName,
+            () -> {
+            String mediaTypeVarName = mediaTypeVarName( mediaTypeName);
+            String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaTypeName);
+            MediaType mediaType = contentDef.getValue();
+
+            return
+              VarSetBuilder.with( mediaTypeVarName)
+              .when( has( mediaTypeVarTag))
+              .members( mediaTypeExampleVar( mediaTypeVarTag, mediaType))
+              .build();
+            });
+        });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definition} for the given media type examples.
+   */
+  private IVarDef mediaTypeExampleVar( String mediaTypeVarTag, MediaType mediaType)
+    {
+    return
+      instanceExampleVar(
+        mediaTypeVarTag,
+        false,
+        mediaType.getExample(),
+        mediaType.getExamples(),
+        mediaType.getSchema());
+    }
+  
+  /**
    * Returns the {@link IVarDef input variable definition} for the given parameter.
    */
   private IVarDef parameterVarDef( OpenAPI api, Parameter parameter)
@@ -424,6 +575,50 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           .members( instanceSchemaVars( parameterVarName, parameterSchema))
           .build();
         });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definition} for the given parameter examples.
+   */
+  private IVarDef parameterExamples( OpenAPI api, Parameter parameter)
+    {
+    String parameterName = parameter.getName();
+    return
+      resultFor( parameterName,
+        () ->
+        {
+        String parameterIn = expectedValueOf( parameter.getIn(), "in", parameterName);
+        if( parameterIn.equals( "cookie") && !Characters.TOKEN.allowed( parameterName))
+          {
+          throw new IllegalStateException( String.format( "Parameter name='%s' contains characters not allowed in a cookie name", parameterName));
+          }
+        
+        String parameterVarName = toIdentifier( parameterName);
+        Schema<?> parameterSchema = parameterSchema( api, parameter);
+        String parameterType = parameterSchema.getType();
+
+        return
+          VarSetBuilder.with( parameterVarName)
+          .type( parameterIn)
+          .has( "paramName", parameterName)
+          .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
+          .members( parameterExampleVar( parameterVarName, parameterSchema, parameter))
+          .build();
+        });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definition} for the given parameter examples.
+   */
+  private IVarDef parameterExampleVar( String parameterVarTag, Schema<?> parameterSchema, Parameter parameter)
+    {
+    return
+      instanceExampleVar(
+        parameterVarTag,
+        true,
+        parameter.getExample(),
+        parameter.getExamples(),
+        parameterSchema);
     }
 
   /**
@@ -1467,6 +1662,446 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       .when( has( instanceValueProperty( instanceVarTag)))
       .members( iterableOf( objectPropertyCountVar( instanceVarTag, instanceSchema, constraints)))
       .members( objectPropertiesVar( instanceVarTag, instanceSchema, constraints))
+      .build();
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definition} for the given examples.
+   */
+  private IVarDef instanceExampleVar( String instanceVarTag, boolean instanceOptional, Object instanceExample, Map<String,Example> instanceExamples, Schema<?> instanceSchema)
+    {
+    return
+      buildExampleVar( instanceVarTag, instanceOptional, instanceExample, instanceExamples, instanceSchema)
+      .build();
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definition} for the given examples.
+   */
+  private IVarDef instanceExampleVar( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+    {
+    return
+      buildExampleVar( instanceVarTag, instanceOptional, instanceSchema)
+      .build();
+    }
+
+  /**
+   * Returns an AbstractVarDefBuilder for the given examples.
+   */
+  private AbstractVarDefBuilder buildExampleVar( String instanceVarTag, Schema<?> instanceSchema)
+    {
+    return buildExampleVar( instanceVarTag, false, instanceSchema);
+    }
+
+  /**
+   * Returns an AbstractVarDefBuilder for the given examples.
+   */
+  private AbstractVarDefBuilder buildExampleVar( String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema)
+    {
+    return buildExampleVar( instanceVarTag, instanceOptional, schemaExample( instanceSchema), null, instanceSchema);
+    }
+
+  /**
+   * Returns an AbstractVarDefBuilder for the given examples.
+   */
+  private AbstractVarDefBuilder buildExampleVar(
+    String instanceVarTag,
+    boolean instanceOptional,
+    Object instanceExample,
+    Map<String,Example> instanceExamples,
+    Schema<?> instanceSchema)
+    {
+    Stream<VarValueDef> exampleValues = instanceExampleValues( instanceExample, instanceExamples, instanceSchema);
+    return
+      exampleValues != null?
+
+      VarDefBuilder.with( "Value")
+      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
+      .values( exampleValues)
+      .butWith() :
+
+      VarSetBuilder.with( "Value")
+      .when( instanceDefinedCondition( instanceVarTag, instanceOptional))
+      .members( composedExampleVars( instanceVarTag, instanceSchema))
+      .butWith();      
+    }
+
+  /**
+   * Returns the {@link VarValueDef value definitions} for the given examples.
+   */
+  private Stream<VarValueDef> instanceExampleValues( Object instanceExample, Map<String,Example> instanceExamples, Schema<?> instanceSchema)
+    {
+    Stream<VarValueDef> values = null;
+
+    Optional<Object> exampleObject = Optional.ofNullable( instanceExample);
+    if( exampleObject.isPresent())
+      {
+      values = Stream.of( exampleValueDef( exampleObject.get()));
+      }
+
+    else if( !Optional.ofNullable( instanceExamples).map( Map::isEmpty).orElse( true))
+      {
+      values =
+        instanceExamples.entrySet().stream()
+        .map( entry -> resultFor( entry.getKey(), () -> exampleValueDef( entry.getKey(), exampleValue( entry.getValue()))));
+      }
+
+    else if( (exampleObject = schemaExample( instanceSchema)) != null)
+      {
+      values = Stream.of( exampleValueDef( exampleObject.orElse( null)));
+      }
+
+    else if( hasEnumValues( instanceSchema))
+      {
+      values = enumExampleValues( instanceSchema);
+      }
+
+    else if( !isExampleComposable( instanceSchema))
+      {
+      throw new IllegalStateException( "No examples defined");
+      }
+
+    return values;
+    }
+
+  /**
+   * Returns the enumerated {@link VarValueDef value definitions} for the given schema.
+   */
+  private boolean hasEnumValues( Schema<?> instanceSchema)
+    {
+    return
+      // Schema defined?
+      Optional.ofNullable( instanceSchema)
+      .map( s -> {
+        return
+          // Enum values defined?
+          !Optional.ofNullable( s.getEnum()).map( List::isEmpty).orElse( true)
+          ||
+          // Boolean schema?
+          Optional.ofNullable( s.getType()).map( type -> "boolean".equals( type)).orElse( false);
+        })
+      .orElse( false);
+    }
+
+  /**
+   * Returns the enumerated {@link VarValueDef value definitions} for the given schema.
+   */
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+  private Stream<VarValueDef> enumExampleValues( Schema instanceSchema)
+    {
+    Set<Object> enums =
+      Optional.of( asOrderedSet( instanceSchema.getEnum()))
+      .filter( values -> !values.isEmpty())
+      .orElseGet( () -> {
+        return
+          Optional.ofNullable( instanceSchema.getType())
+          .filter( type -> "boolean".equals( type))
+          .map( type -> asOrderedSet( true, false))
+          .orElse( emptySet());
+        });
+
+    Set<Object> notEnums = asOrderedSet( getNotEnums( instanceSchema));
+
+    return
+      enums.stream()
+      .filter( e -> !notEnums.contains( e))
+      .map( e -> VarValueDefBuilder.with( e).build())
+      ;
+    }
+
+  /**
+   * Returns the {@link IVarDef input variables} that describe examples composed for the given schema.
+   */
+  private Stream<IVarDef> composedExampleVars( String instanceVarTag, Schema<?> instanceSchema)
+    {
+    return
+      Optional.ofNullable( asComposedSchema( instanceSchema))
+      .map( composed -> Optional.of( composed.getAnyOf()).filter( anyOf -> !anyOf.isEmpty()).orElse( composed.getOneOf()))
+      .map( alternatives -> alternativeExampleVars( instanceVarTag, alternatives))
+      .orElseGet( () -> typeExampleVars( instanceVarTag, instanceSchema));
+    }
+
+  /**
+   * Returns the {@link IVarDef input variables} that describe examples composed for the given leaf schema.
+   */
+  private Stream<IVarDef> typeExampleVars( String instanceVarTag, Schema<?> instanceSchema)
+    {
+    if( "object".equals( instanceSchema.getType()))
+      {
+      return objectExampleVars( instanceVarTag, instanceSchema);
+      }
+    else if( "array".equals( instanceSchema.getType()))
+      {
+      return arrayExampleVars( instanceVarTag, instanceSchema);
+      }
+    else
+      {
+      throw new IllegalStateException( String.format( "Can't compose examples for schema type=%s", instanceSchema.getType()));
+      }
+    }
+
+  /**
+   * Returns the {@link IVarDef input variables} that describe examples composed for the given alternative schemas.
+   */
+  @SuppressWarnings("rawtypes")
+  private Stream<IVarDef> alternativeExampleVars( String instanceVarTag, List<Schema> alternatives)
+    {
+    return
+      Stream.of(
+        VarSetBuilder.with( "Alternative")
+        .members(
+          VarDefBuilder.with( "Used")
+          .values(
+            IntStream.range( 0, alternatives.size())
+            .mapToObj(
+              i ->
+              VarValueDefBuilder.with( String.valueOf( i))
+              .properties( alternativeProperty( instanceVarTag, i))
+              .build()))
+          .build())
+
+        .members(
+          IntStream.range( 0, alternatives.size())
+          .mapToObj(
+            i->
+            buildExampleVar( instanceVarTag, alternatives.get(i))
+            .name( String.valueOf( i))
+            .when( has( alternativeProperty( instanceVarTag, i)))
+            .build()))
+        
+        .build());
+    }
+
+  /**
+   * Returns the {@link IVarDef input variables} that describe examples composed for the given object schema.
+   */
+  @SuppressWarnings("rawtypes")
+  private Stream<IVarDef> objectExampleVars( String instanceVarTag, Schema<?> instanceSchema)
+    {
+    // Ensure schema defined for all required properties, using a default empty schema if necessary.
+    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
+    Optional.ofNullable( instanceSchema.getRequired())
+      .map( required -> required.stream().filter( property -> !propertyDefs.containsKey( property)).collect( toList()))
+      .filter( undefined -> !undefined.isEmpty())
+      .ifPresent( undefined -> {
+        undefined.stream().forEach( required -> propertyDefs.put( required, emptySchema()));
+        instanceSchema.setProperties( propertyDefs);
+        });
+
+    // Reconcile any "required" constraints for read/WriteOnly properties.
+    instanceSchema.setRequired(
+      Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList())
+      .stream()
+      .filter( property -> expectedInView( propertyDefs.get( property)))
+      .collect( toList()));
+
+    // Accumulate constraints on the number of properties expected.
+    PropertyCountConstraints constraints = new PropertyCountConstraints();
+    constraints.setRequiredCount( Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList()).size());
+    constraints.setTotalCount( objectTotalProperties( instanceSchema));
+
+    constraints.setHasAdditional(
+      // additionalProperties keyword is not false...
+      Optional.ofNullable( instanceSchema.getAdditionalProperties())
+      .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
+      .orElse( true)
+      &&
+      // maxProperties not already satisfied by required properties
+      Optional.ofNullable( instanceSchema.getMaxProperties())
+      .map( max -> max > constraints.getRequiredCount())
+      .orElse( true));
+
+    // Ensure min/max range is feasible
+    instanceSchema.setMinProperties(
+      Optional.ofNullable( instanceSchema.getMinProperties())
+      .map( min -> Optional.ofNullable( instanceSchema.getMaxProperties()).map( max -> adjustedMinOf( "Properties", min, max)).orElse( min))
+      .orElse( null));
+
+    // Ensure minimum is a usable constraint
+    instanceSchema.setMinProperties(
+      Optional.ofNullable( instanceSchema.getMinProperties())
+      .filter( min -> isUsablePropertyLimit( "minProperties", min, constraints))
+      .orElse( null));
+
+    // Ensure maximum is a usable constraint
+    instanceSchema.setMaxProperties(
+      Optional.ofNullable( instanceSchema.getMaxProperties())
+      .filter( max -> isUsablePropertyMax( "maxProperties", max, constraints))
+      .orElse( null));
+
+    // Are additional properties are required to satisfy the minimum?
+    Integer minProperties = instanceSchema.getMinProperties();
+    constraints.setRequiresAdditional(
+      Optional.ofNullable( minProperties)
+      .map( min -> min > constraints.getTotalCount() && constraints.hasAdditional())
+      .orElse( false));
+
+    // Are all properties effectively required to satisfy the minimum?
+    constraints.setAllRequired(
+      Optional.ofNullable( minProperties)
+      .map( min -> min == constraints.getTotalCount() && !constraints.hasAdditional())
+      .orElse( false));
+
+    return
+      Stream.of(
+        objectPropertyCountVar( instanceVarTag, instanceSchema, constraints).orElse( null),
+        objectPropertiesExampleVar( instanceVarTag, instanceSchema, constraints))
+      .filter( Objects::nonNull);
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable} representing examples for the properties of an object instance.
+   */
+  @SuppressWarnings("rawtypes")
+  private IVarDef objectPropertiesExampleVar( String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
+    {
+    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap());
+
+    Set<String> notRequiredProperties = Optional.ofNullable( getNotRequired( instanceSchema)).orElse( emptySet());
+    List<String> requiredProperties =
+      Optional.ofNullable( instanceSchema.getRequired())
+      .map( r -> r.stream().filter( p -> !notRequiredProperties.contains(p)).collect( toList()))
+      .orElse( emptyList());
+
+    return
+      VarSetBuilder.with( "Properties")
+
+      .members(
+        propertyDefs.entrySet().stream()
+        .map(
+          propertyDef ->
+          objectPropertyExampleVar(
+            instanceVarTag,
+            propertyDef.getKey(),
+            constraints.allRequired() || requiredProperties.contains( propertyDef.getKey()),
+            propertyDef.getValue()))
+        .filter( Optional::isPresent)
+        .map( Optional::get))
+
+      .members(
+        objectAdditionalExampleVar( instanceVarTag, instanceSchema, constraints))
+
+      .build();
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable} representing example values for an object instance property.
+   */
+  private Optional<IVarDef> objectPropertyExampleVar( String instanceVarTag, String propertyName, boolean required, Schema<?> propertySchema)
+    {
+    return
+      excludedFromView( propertySchema)?
+      Optional.empty() :
+      
+      resultFor( propertyName,
+        () ->
+        {
+        String propertyVarName = toIdentifier( propertyName);
+        String propertyVarTag = instanceVarTag + StringUtils.capitalize( propertyVarName);
+      
+        return
+          Optional.of(
+            VarSetBuilder.with( propertyVarName)
+            .members( instanceDefinedVar( propertyVarTag, required, objectPropertiesProperty( instanceVarTag)))
+            .members( instanceExampleVar( propertyVarTag, true, propertySchema))
+            .build());
+        });
+    }
+  
+  /**
+   * Returns the {@link IVarDef input variable} representing examples for the additional properties of an object instance.
+   */
+  private IVarDef objectAdditionalExampleVar( String instanceVarTag, Schema<?> instanceSchema, PropertyCountConstraints constraints)
+    {
+    boolean allowed =
+      constraints.hasAdditional()
+      &&
+      Optional.ofNullable( instanceSchema.getMaxProperties()).orElse( Integer.MAX_VALUE) > 0;
+
+    boolean required =
+      allowed
+      &&
+      Optional.ofNullable( instanceSchema.getMinProperties())
+      .map( min -> min > constraints.getTotalCount())
+      .orElse( false);
+
+    Schema<?> propertySchema = additionalPropertiesSchema( instanceSchema);
+
+    return
+      propertySchema != null?
+      objectPropertyExampleVar( instanceVarTag, "Additional", required, propertySchema).get() :
+
+      VarDefBuilder.with( "Additional")
+      .values(
+        VarValueDefBuilder.with( "Yes")
+        .type( allowed? VarValueDef.Type.VALID : VarValueDef.Type.FAILURE)
+        .properties( Optional.ofNullable( allowed? objectPropertiesProperty( instanceVarTag) : null))
+        .build(),
+
+        VarValueDefBuilder.with( "No")
+        .type( required? VarValueDef.Type.FAILURE : VarValueDef.Type.VALID)
+        .build())
+      .build();
+    }
+
+  /**
+   * Returns the {@link IVarDef input variables} that describe examples composed for the given array schema.
+   */
+  private Stream<IVarDef> arrayExampleVars( String instanceVarTag, Schema<?> instanceSchema)
+    {
+    return
+      Stream.of(
+        arraySizeVar( instanceVarTag, instanceSchema, false, false, false),
+        arrayExampleItemsVar( instanceVarTag, instanceSchema).orElse( null),
+        arrayUniqueItemsVar( instanceVarTag, instanceSchema).orElse(null))
+
+      .filter( Objects::nonNull);
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable} that describes item examples composed for the given array schema.
+   */
+  private Optional<IVarDef> arrayExampleItemsVar( String instanceVarTag, Schema<?> instanceSchema)
+    {
+    return
+      Optional.ofNullable( instanceSchema.getMaxItems()).map( maxItems -> maxItems <= 0).orElse( false)?
+      Optional.empty() :
+      
+      Optional.of(
+        resultFor( "items", () -> {
+
+          Schema<?> itemSchema =
+            Optional.ofNullable( asArraySchema( instanceSchema))
+            .map( array -> array.getItems())
+            .orElse( null);
+
+          boolean allowSizeZero = Optional.ofNullable( instanceSchema.getMinItems()).map( min -> min == 0).orElse( true);
+          ICondition itemsCondition = allowSizeZero? not( arrayItemsNoneProperty( instanceVarTag)) : null;
+
+          return
+            buildExampleVar( arrayItemsProperty( instanceVarTag), itemSchema)
+            .name( "Contains")
+            .when( itemsCondition)
+            .build();
+          }));
+    }
+
+  /**
+   * Returns an example value definition.
+   */
+  private VarValueDef exampleValueDef( Object value)
+    {
+    return exampleValueDef( ANON_EXAMPLE, value);
+    }
+
+  /**
+   * Returns an example value definition.
+   */
+  private VarValueDef exampleValueDef( String name, Object value)
+    {
+    return
+      VarValueDefBuilder.with( value)
+      .has( "exampleName", name)
       .build();
     }
 
@@ -2804,4 +3439,5 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
   private static final Pattern uriSegmentPattern_ = Pattern.compile( "([^{}]+)|\\{([^}]+)\\}");
   private static final Pattern combinedAlternativeVarPattern_ = Pattern.compile( "(?:.*\\.)?Alternative\\.\\d+\\.(.*)");
+  private static final String ANON_EXAMPLE = "--anonymous";
 }
