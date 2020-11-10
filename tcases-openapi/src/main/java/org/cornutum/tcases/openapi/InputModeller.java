@@ -252,15 +252,16 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         () ->
         op == null?
         null :
-
-        FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
-        .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
-        .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
-        .has( "path", path)
-        .has( "operation", opName)
-        .vars( opParameters( pathItem, op).map( p -> parameterExamples( api, resolveParameter( api, p))))
-        .vars( iterableOf( requestBodyExamples( api, op.getRequestBody())))
-        .build());
+        
+        withoutFailures(         
+          FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
+          .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
+          .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
+          .has( "path", path)
+          .has( "operation", opName)
+          .vars( opParameters( pathItem, op).map( p -> parameterExamples( api, resolveParameter( api, p))))
+          .vars( iterableOf( requestBodyExamples( api, op.getRequestBody())))
+          .build()));
     }
 
   /**
@@ -338,7 +339,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
-   * Returns if the given {@link FunctionInputDef function input definition}, adding a null input variable
+   * Returns the given {@link FunctionInputDef function input definition}, adding a null input variable
    * if no other variables are defined.
    */
   private FunctionInputDef completeInputs( FunctionInputDef functionDef)
@@ -368,6 +369,23 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
     
     return hasVars;
+    }
+
+  /**
+   * Returns the given {@link FunctionInputDef function input definition} after removing failure values for all variables.
+   */
+  private FunctionInputDef withoutFailures( FunctionInputDef functionDef)
+    {
+    toStream( new VarDefIterator( functionDef))
+      .forEach( varDef -> {
+        toStream( varDef.getFailureValues())
+          .map( VarValueDef::getName)
+          .collect( toList())
+          .stream()
+          .forEach( value -> varDef.removeValue( value));
+        });
+    
+    return functionDef;
     }
 
   /**
